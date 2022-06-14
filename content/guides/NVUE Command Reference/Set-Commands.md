@@ -4617,8 +4617,8 @@ N/A
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `head-end-replication` |  Configures replication of BUM traffic where individual copies send to remote destinations.|
-| `enable` | Turns flooding on or off, or sets flooding to auto.|
-| `multicast-group` | Configures BUM traffic to go to the specified multicast group where receivers who are interested in that group receive the traffic. This usually requires you to use PIM-SM in the network. |
+| `enable` | Turns flooding on or off for the specified VNI.|
+| `multicast-group` | Configures BUM traffic received on the VNI to go to the specified multicast group where receivers who are interested in that group receive the traffic. This usually requires you to use PIM-SM in the network. |
 
 **Version History**
 
@@ -4716,7 +4716,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding multicast-group 224.0.0.10
 ```
 
-## nv set bridge domain <domain-id> vlan <vid> vni <vni-id> mac-learning
+## nv set bridge domain \<domain-id\> vlan \<vid> vni \<vni-id\> mac-learning
 
 Turns MAC learning on or off for the VNI.
 
@@ -4726,7 +4726,7 @@ Turns MAC learning on or off for the VNI.
 
 **Default Setting**
 
-N/A
+`off`
 
 **Identifiers**
 
@@ -4743,12 +4743,12 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning on
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning off
 ```
 
 ## nv set bridge domain \<domain-id\> vlan \<vid\> ptp
 
-Configures Precision Time Protocol (PTP) the VLAN.  All interfaces in this VLAN inherit this setting.
+Configures Precision Time Protocol (PTP) on the VLAN (all interfaces in this VLAN).
 
 **Usage**
 
@@ -4771,9 +4771,13 @@ N/A
 | ---------  | -------------- |
 | `enable`   |  Turns PTP on or off. The default is 'off'. |
 
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
 ## nv set bridge domain \<domain-id\> vlan \<vid\> ptp enable
 
-Turns PTP on or off.
+Turns PTP on or off for the specified VLAN.
 
 **Usage**
 
@@ -4797,12 +4801,12 @@ Introduced in Cumulus Linux 5.0.0
 **Example**
 
 ```
-cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan vlan10 ptp enable on
 ```
 
 ## nv set bridge domain \<domain-id\> vlan \<vid\> multicast
 
-Configure multicast on the vlan
+Configures multicast on the VLAN.
 
 **Usage**
 
@@ -4816,18 +4820,22 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  Domain |
-|`<vid>`  | VLAN ID |
+|`<domain-id>` | The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `snooping`  |   IGMP/MLD snooping configuration |
+| `snooping`  |  Configures IGMP and MLD snooping on the VLAN. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping
 
-IGMP/MLD snooping configuration
+Configures IGMP and MLD snooping on the VLAN.
 
 **Usage**
 
@@ -4841,18 +4849,22 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  Domain |
-|`<vid>`  | VLAN ID |
+|`<domain-id>` | The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`querier` |  IGMP/MLD querier configuration |
+|`querier` |  Configures the IGMP and MLD querier on the VLAN. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier
 
-IGMP/MLD querier configuration
+Configures the IGMP and MLD querier on the VLAN. 
 
 **Usage**
 
@@ -4866,19 +4878,22 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  Domain |
-|`<vid>`  | VLAN ID |
+|`<domain-id>` | The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
+|`source-ip`  | The source IP address you want to use to send IGMP MLD queries. |
 
-|`source-ip  | Source IP to use when sending IGMP/MLD queries. |
+**Version History**
 
-## nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier source-ip \<ipv4\>
+Introduced in Cumulus Linux 5.0.0
 
-Source IP to use when sending IGMP/MLD queries.
+## nv set bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier source-ip \<source-ip\>
+
+Configures the source IP address you want to use to send IGMP MLD queries.
 
 **Usage**
 
@@ -4892,12 +4907,22 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  Domain |
-|`<vid>`  | VLAN ID |
+|`<domain-id>` | The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan vlan10 multicast snooping querier source-ip 10.10.10.1
+```
 
 ## nv set bridge domain \<domain-id\> type vlan-aware
 
-Type of bridge domain.
+Configures the bridge domain to be VLAN-aware.
 
 **Usage**
 
@@ -4911,11 +4936,50 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  Domain |
+|`<domain-id>` |  The bridge domain. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default type vlan-aware
+```
+
+## nv set bridge domain \<domain-id\> untagged
+
+Configures the bridge domain to 
+
+
+**Usage**
+
+`nv set bridge domain <domain-id> untagged [options] (1-4094|none)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default untagged none
+```
 
 ## nv set bridge domain \<domain-id\> encap 802.1Q
 
-Interfaces added to this domain will, by default, use this encapsulation.
+Configures any interfaces in this bridge domain to use 802.1Q encapsulation by default.
 
 **Usage**
 
@@ -4929,12 +4993,49 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  Domain |
+|`<domain-id>` |  The bridge domain. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default encap 802.1Q
+```
+
+## nv set bridge domain \<domain-id\> mac-address
+
+Configures any interfaces in this bridge domain to use this MAC address.
+
+**Usage**
+
+`nv set bridge domain <domain-id> mac-address [options] (auto|<mac>)`
+
+**Default Setting**
+
+N/A
+
+**Identifiers**
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default mac-address 00:00:00:00:00:10
+```
 
 ## nv set bridge domain \<domain-id\> vlan-vni-offset
 
-A VNI offset while (automatically) mapping VLANs to VNIs
-
+Configures the VNI offset when mapping VLANs to VNIs automatically. You can set a value between 0 and 16773120. For example, if you specify an offset of 10000, the VNI is the VLAN plus 10000.
 
 **Usage**
 
@@ -4948,7 +5049,17 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<domain-id>` |  Domain |
+|`<domain-id>` |  The bridge domain. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.1.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan-vni-offset 10000
+```
 
 ## nv set mlag
 

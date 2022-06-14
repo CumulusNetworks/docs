@@ -3,7 +3,7 @@ title: Show Commands
 author: Cumulus Networks
 weight: 20
 product: Cumulus Linux
-type: nojs
+type: nojsscroll
 ---
 This section describes all the `nv show` commands, together with their attributes and identifiers. To see the `[options]` for all the commands, refer to {{<link url="Common-Options" text="Common Options">}}.
 

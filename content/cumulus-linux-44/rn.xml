@@ -195,12 +195,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>3021887</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3021877</td>
 <td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
@@ -2251,12 +2245,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>3031235</td>
 <td>Static VXLAN configuration prevents NCLU from working.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>3021887</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>

@@ -273,12 +273,6 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 <td></td>
 </tr>
 <tr>
-<td>3021887</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3021877</td>
 <td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>

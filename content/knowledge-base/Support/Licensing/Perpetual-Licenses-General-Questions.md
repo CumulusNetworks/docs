@@ -17,7 +17,7 @@ If you already have hardware from the HCL, fill out {{<exlink url="https://www.n
 
 ## How is Cumulus Linux licensed?
 
-Cumulus Linux is commercially available through a perpetual license model, giving you the right to use Cumulus Linux for the lifetime of the Open Networking hardware it runs on.
+Cumulus Linux is commercially available through a perpetual license model, giving you the right to use Cumulus Linux for the lifetime of the Open Networking hardware it runs on. NVIDIA provides a generic license, which you can download from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
 <!-- vale off -->
 ## What do I receive when I purchase a Cumulus Linux license?
 <!-- vale on -->
@@ -69,7 +69,7 @@ Click the following link to view {{<exlink url="https://docs.nvidia.com/cuda/arc
 <!-- vale off -->
 ## When does my Software Updates and Support contract start?
 <!-- vale on -->
-- **New license with a Software Updates and Support contract:** Upon purchase, you have 45 days to activate your license and Software Updates and Support contract through the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}. The date when you activate your contract is the start date. If not activated before 45 days, your contract automatically activates on the forty-fifth day after purchase.
+- **New license with a Software Updates and Support contract:** Upon purchase, you have 45 days to activate the license and Software Updates and Support contract through the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}. The date when you activate your contract is the start date. If not activated before 45 days, your contract automatically activates on the forty-fifth day after purchase.
 
     If you procured your license through Dell, your contract starts within 2 business days after you claim your license from the NVIDIA portal.
 - **Renewal:** Renewals start on the last active date of the contract, regardless of when you purchased the renewal. For example, your Cumulus Linux 10G 1 year support contract starts on February 2, 2016 and expires on February 2, 2017. Renewal starts on February 2, 2017.

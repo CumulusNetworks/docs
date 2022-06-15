@@ -5063,7 +5063,7 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan-vni-offset 10000
 
 ## nv set mlag
 
-Global Multi-chassis Link Aggregation properties
+Configures global Multi-chassis Link Aggregation (MLAG) properties.
 
 **Usage**
 
@@ -5073,26 +5073,40 @@ Global Multi-chassis Link Aggregation properties
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `lacp-conflict` |  Configure the mlag lacp-conflict parameters |
-| `backup`  | Set of MLAG backups |
-|`enable` | Turn the feature 'on' or 'off'. The default is 'off'.|
-|`debug` | Enable MLAG debugging |
-|`init-delay` | The delay, in seconds, before bonds are brought up.|
-|`mac-address` | Override anycast-mac and anycast-id|
-|`peer-ip`  | Peer Ip Address |
-|`priority` | Mlag Priority |
+| `lacp-conflict` |  Configures the MLAG LACP conflict parameters. |
+| `backup`  | Configures the IP address of the MLAG backup switch. The backup IP address is any layer 3 backup interface for the peer link, which the switch uses when the peer link goes down. You must add the backup IP address, which must be different than the peer link IP address. |
+| `enable` | Turns MLAG on or off. The default is 'off'.|
+| `debug` | Turns on MLAG debugging. |
+| `init-delay` | Configures the delay, in seconds, after which bonds come up.|
+| `mac-address` | Configures the MLAG system MAC address so that the switch overrides the anycast MAC and anycast ID.|
+| `peer-ip`  | Configures the IP address of the MLAG peer. |
+| `priority` | Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. |
 
 ## nv set mlag lacp-conflict
 
-Configure the mlag lacp-conflict parameters
+Configures the MLAG LACP conflict parameters.
 
 **Usage**
 
 `nv set mlag lacp-conflict [options]`
 
+**Default Setting**
+
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.1.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag lacp-conflict 
+```
+
 ## nv set mlag backup \<backup-ip\>
 
-alternative ip address or interface for peer to reach us
+Configures the IP address of the MLAG backup switch. The backup IP address is any layer 3 backup interface for the peer link, which the switch uses when the peer link goes down. You must add the backup IP address, which must be different than the peer link IP address.
 
 **Usage**
 
@@ -5106,17 +5120,27 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<backup-ip>` |  `Backup IP of MLAG peer` |
+| `<backup-ip>` |  The IP address of the MLAG backup switch. |
 
 **Attributes**
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `vrf` |  The backup IP's VRF. |
+| `vrf` |  Configures the VRF for backup IP address. |
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2
+```
 
 ## nv set mlag backup \<backup-ip\> vrf \<vrf-name\>
 
-The backup IP's VRF.
+Configures the VRF for MLAG backup IP address.
 
 **Usage**
 
@@ -5130,23 +5154,155 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<backup-ip>` |  Backup IP of MLAG peer |
+| `<backup-ip>` |  The IP address of the MLAG backup switch.|
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2 vrf RED
+```
+
+## nv set mlag enable
+
+Turns MLAG on or off.
+
+**Usage**
+
+`nv set mlag enable [options] (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag enable on
+```
+
+
+## nv set mlag mac-address
+
+Configures the MLAG system MAC address. NVIDIA provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network. Do not to use a multicast MAC address. Make sure you specify a different MAC address for each MLAG pair in the network.
+
+**Usage**
+
+`nv set mlag mac-address [options] (auto|<mac>)`
+
+**Default Setting**
+
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
+```
+
+## nv set mlag peer-ip
+
+Configures the IP address of the MLAG peer.
+
+**Usage**
+
+`nv set mlag peer-ip [options] (linklocal|<ipv4>|<ipv6>)`
+
+**Default Setting**
+
+N/A
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
+```
 
 ## nv set mlag priority
 
-Mlag Priority
+Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a vlaue between 0-65535. 
 
 **Usage**
 
 `nv set mlag priority [options] 0-65535`
 
+**Default Setting**
+
+32768
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag priority 2084
+```
+
 ## nv set mlag init-delay
 
-The delay, in seconds, before bonds are brought up.
+Configures the number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. You can set a value between 0 and 9000.
+
+This timer sets to 0 automatically under the following conditions:
+- When the peer is not alive and the backup link is not active after a reload timeout.
+- When the peer sends a goodbye (through the peer link or the backup link).
+- When both MLAG sessions come up at the same time.
 
 **Usage**
 
 `nv set mlag init-delay [options] 0-900`
+
+**Default Setting**
+
+180
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag init-delay 100
+```
+
+## nv set mlag debug
+
+Turns MLAG degugging on or off.
+
+**Usage**
+
+`nv set mlag debug [options] (on|off)`
+
+**Default Setting**
+
+`off`
+
+**Version History**
+
+Introduced in Cumulus Linux 5.0.0
+
+**Example**
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag debug on
+```
 
 ## nv set evpn
 

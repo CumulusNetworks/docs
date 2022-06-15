@@ -474,6 +474,11 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 <th> Affects </th>
 </tr>
 <tr>
+<td>3055255</td>
+<td>When you run the NVUE {{nv show interface}} command, a watchdog timeout might occur and the {{nvued}} service fails .</td>
+<td>5.0.1</td>
+</tr>
+<tr>
 <td>3053013</td>
 <td>CVE-2022-29799, CVE-2022-29800: The networkd-dispatcher program has directory traversal, symlink race, and time-of-check-time-of-use race condition which can allow a local attacker to gain root access.  This vulnerability is sometimes called "nimbuspwn".  Cumulus Linux does not include the networkd-dispatcher package or script in the default image or in the package repository.  However, networkd-dispatcher_2.0-2 from Debian 10 upstream is vulnerable and should not be installed.</td>
 <td></td>

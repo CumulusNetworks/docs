@@ -106,6 +106,12 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td></td>
 </tr>
 <tr>
+<td>3021879</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
@@ -150,12 +156,6 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 Vulnerable: &lt;= 14.0.2-3+deb8u3
 Fixed: 14.0.2-3+deb8u4</td>
 <td>3.7.0-3.7.16</td>
-<td></td>
-</tr>
-<tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -228,12 +228,6 @@ Fixed: 2014.2.15AR.2-1+deb8u5</td>
 <td></td>
 </tr>
 <tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.3</td>
-<td>5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2866084</td>
 <td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
 To work around this issue:
@@ -257,12 +251,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 
 3. Reboot the affected switches.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2719,6 +2707,12 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
+<td>3021879</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
@@ -2849,12 +2843,6 @@ Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-5.0.1</td>
 <td>3.7.16, 5.1.0</td>
-</tr>
-<tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2993471</td>
@@ -3180,22 +3168,10 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866096</td>
@@ -3236,12 +3212,6 @@ Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2861951</td>
@@ -5926,6 +5896,12 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
+<td>3021879</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -6232,22 +6208,10 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2866111</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866096</td>
@@ -6288,12 +6252,6 @@ Vulnerable: &lt;= 9.4.26-0+deb8u4
 Fixed: 9.4.26-0+deb8u5</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2861951</td>
@@ -8869,6 +8827,12 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
+<td>3021879</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -9160,12 +9124,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866096</td>
@@ -12333,6 +12291,12 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
+<td>3021879</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -12624,12 +12588,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866096</td>
@@ -16010,6 +15968,12 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <td>3.7.16</td>
 </tr>
 <tr>
+<td>3021879</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -16294,12 +16258,6 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>CVE-2019-13616: SDL (Simple DirectMedia Layer) through 1.2.15 and 2.x through 2.0.9 has a heap-based buffer over-read in BlitNtoN in video/SDL_blit_N.c when called from SDL_SoftBlit in video/SDL_blit.c.</td>
 <td>3.7.0-3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866096</td>

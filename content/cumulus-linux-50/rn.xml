@@ -110,6 +110,12 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
+<td>3055255</td>
+<td>When you run the NVUE {{nv show interface}} command, a watchdog timeout might occur and the {{nvued}} service fails .</td>
+<td>5.0.1</td>
+<td>5.1.0</td>
+</tr>
+<tr>
 <td>3054869</td>
 <td>When you run NVUE commands as part of ZTP scripts, the commands fail with many  errors.
 To work around this issue, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
@@ -169,8 +175,8 @@ Failure during apply. Ignore? [y/N]
 <tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3035855</td>
@@ -203,12 +209,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>3021887</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3021877</td>
@@ -787,8 +787,8 @@ Fixed: 5.2.4-1+deb10u1</td>
 <tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3030238</td>
@@ -809,12 +809,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
 <td>4.4.3-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>3021887</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3021877</td>

@@ -1,5 +1,5 @@
 ---
-title: Set Up Your KVM Virtual Machine for a Remote Server Cluster
+title: Set Up Your KVM Virtual Machine for a Cloud Server Cluster
 author: NVIDIA
 weight: 228
 toc: 5
@@ -7,7 +7,7 @@ bookhidden: true
 ---
 First configure the VM on the master node, and then configure the VM on each worker node.
 
-Follow these steps to setup and configure your VM on a cluster of servers in a remote deployment:
+Follow these steps to setup and configure your VM on a cluster of servers in a cloud deployment:
 
 1. Verify that your master node meets the VM requirements.
 

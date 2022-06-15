@@ -11,7 +11,7 @@ This overview is designed to help you understand the various NetQ deployment and
 
 Consider the following before you install the NetQ system:
 
-1. Determine whether to deploy the solution fully **on premises** or as a **cloud** solution.
+1. Determine whether to deploy the solution fully **on premises** or as a **remote** solution.
 2. Decide whether to deploy a **virtual machine** on your own hardware or use one of the **NetQ appliances**.
 3. Choose whether to install the software on a **single server** or as a **server cluster**.
 

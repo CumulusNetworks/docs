@@ -1,11 +1,11 @@
 ---
-title: Set Up Your VMware Virtual Machine for a Single Remote Server
+title: Set Up Your VMware Virtual Machine for a Single Cloud Server
 author: NVIDIA
 weight: 222
 toc: 5
 bookhidden: true
 ---
-Follow these steps to setup and configure your VM for a remote deployment:
+Follow these steps to setup and configure your VM for a cloud deployment:
 
 1. Verify that your system meets the VM requirements.
 

@@ -1,5 +1,5 @@
 ---
-title: Set Up Your KVM Virtual Machine for a Single Remote Server
+title: Set Up Your KVM Virtual Machine for a Single Cloud Server
 author: NVIDIA
 weight: 226
 toc: 5

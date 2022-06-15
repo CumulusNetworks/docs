@@ -7,33 +7,28 @@ toc: 4
 
 The first step in upgrading your NetQ installation to NetQ {{<version>}} is upgrading your NetQ appliances or VMs.
 
-## Prepare for Upgrade
+## Before You Upgrade
 
-Before you upgrade, complete the following steps:
+### Back up NetQ Data
 
-- Download the necessary software tarballs
-- Update the Debian packages on physical server and VMs
+This is an optional step for on-premises deployments only. Refer to {{<link title="Back Up and Restore NetQ">}}. NetQ Cloud Appliances and VMs create backups automatically.
 
-Optionally, you can choose to back up your NetQ Data before performing the upgrade.
+### Download Software and Update Debian Packages
 
-To complete the preparation:
-
-1. For on-premises deployments only, optionally back up your NetQ data. Refer to {{<link title="Back Up and Restore NetQ">}}.
-
-2. Download the relevant software.
+1. Download the relevant software.
 
     {{<netq-install/upgrade-image version="4.2">}}
 
-3. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
+2. Copy the file to the `/mnt/installables/` directory on your appliance or VM.
 
-4. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.2 as follows:
+3. Update `/etc/apt/sources.list.d/cumulus-netq.list` to netq-4.2 as follows:
 
     ```
     cat /etc/apt/sources.list.d/cumulus-netq.list
     deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-4.2
     ```
 
-5. Update the NetQ `debian` packages.
+4. Update the NetQ `debian` packages.
 
     ```
     cumulus@<hostname>:~$ sudo apt-get update
@@ -111,7 +106,7 @@ If any issue occurs, contact the NVIDIA Support team.
 {{%/notice%}}
 ### Upgrade Using the NetQ CLI
 
-After completing the {{<link url="#prepare-for-upgrade" text="preparation steps">}}, upgrading your NetQ On-premises, Cloud Appliances or VMs is simple using the NetQ CLI.
+After completing the preparation steps, upgrade your NetQ On-premises, Cloud Appliances, or VMs using the NetQ CLI.
 
 To upgrade your NetQ software:
 

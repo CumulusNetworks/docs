@@ -5,9 +5,7 @@ weight: 520
 toc: 3
 ---
 
-You should back up your NetQ data according to your company policy. Typically this includes after key configuration changes and on a scheduled basis.
-
-These topics describe how to back up and also restore your NetQ data for the NetQ On-premises Appliance and VMs.
+Back up your NetQ data according to your company policy. The following sections describe how to back up and restore your NetQ data for the NetQ On-premises Appliance and VMs.
 
 {{<notice note>}}
 These procedures <em>do not</em> apply to your NetQ Cloud Appliance or VM. The NetQ cloud service handles data backups automatically.
@@ -15,7 +13,7 @@ These procedures <em>do not</em> apply to your NetQ Cloud Appliance or VM. The N
 
 ## Back Up Your NetQ Data
 
-NetQ stores its data in a Cassandra database. You perform backups by running scripts provided with the software and located in the `/usr/sbin` directory. When you run a backup, it creates a single `tar` file named `netq_master_snapshot_<timestamp>.tar.gz` on a local drive that you specify. NetQ supports only one backup file currently, and includes the entire set of data tables. A new backuup replaces the previous backup.
+NetQ stores its data in a Cassandra database. You perform backups by running scripts provided with the software and located in the `/usr/sbin` directory. When you run a backup, it creates a single `tar` file named `netq_master_snapshot_<timestamp>.tar.gz` on a local drive that you specify. NetQ supports one backup file and includes the entire set of data tables. A new backup replaces the previous backup.
 
 {{<notice note>}}
 If you select the rollback option during the lifecycle management upgrade process (the default behavior), LCM automatically creates a backup.
@@ -64,7 +62,7 @@ To create a scheduled backup, add `./backuprestore.sh --backup --localdir /opt/<
 
 ## Restore Your NetQ Data
 
-You can restore NetQ data using the backup file you created above in {{<link url="#back-up-your-netq-data" text="Back Up Your NetQ Data">}}. You can restore your instance to the same NetQ Platform or NetQ Appliance or to a new platform or appliance. You do not need to stop the server where the backup file resides to perform the restoration, but logins to the NetQ UI fail during the restoration process. The restore option of the backup script, copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. You should not see any data loss as a result of a restore operation.
+You can restore NetQ data using the backup file you created in {{<link url="#back-up-your-netq-data" text="Back Up Your NetQ Data">}}. You can restore your instance to the same NetQ Platform or NetQ Appliance or to a new platform or appliance. You do not need to stop the server where the backup file resides to perform the restoration, but logins to the NetQ UI fail during the restoration process. The restore option of the backup script copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. You should not see any data loss as a result of a restore operation.
 
 To restore NetQ on the same hardware where the backup file resides:
 

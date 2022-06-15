@@ -6,7 +6,7 @@ toc: 4
 ---
 VLAN-aware bridge mode in Cumulus Linux implements a configuration model for large-scale layer 2 environments, with *one single instance* of {{<link url="Spanning-Tree-and-Rapid-Spanning-Tree-STP" text="spanning tree protocol">}}. Each physical bridge member port includes the list of allowed VLANs as well as the port VLAN ID, either the primary VLAN Identifier (PVID) or native VLAN. MAC address learning, filtering and forwarding are *VLAN-aware*. This reduces the configuration size, and eliminates the large overhead of managing the port and VLAN instances as subinterfaces, replacing them with lightweight VLAN bitmaps and state updates.
 
-On NVIDIA Spectrum-2 and Spectrum-3 switches, Cumulus Linux supports multiple VLAN-aware bridges but with the following limitations:
+Cumulus Linux supports multiple VLAN-aware bridges but with the following limitations:
 
 - You cannot use MLAG with multiple VLAN-aware bridges
 - You cannot use the same port with multiple VLAN-aware bridges
@@ -150,16 +150,17 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements and calculate the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 2600 VLANs totals 15600 VLAN elements.
+- NVIDIA Spectrum-1 switches support a maximum of 4000 VLAN elements. NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements.
+Cumulus Linux calculates the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 2600 VLANs totals 15600 VLAN elements.
 
-If you enable multiple VLAN-aware bridges and want to use more VLAN elements than the default, you must update the number of VLAN elements in the `/etc/mlx/datapath/broadcast_domains.conf` file:
-- To specify the total number of bridge domains you want to use, uncomment and edit the `broadcast_domain.max_vlans` parameter. The default value is 6143.
-- To specify the total number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872.
+- On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridges and want to use more VLAN elements than the default, you must update the number of VLAN elements in the `/etc/mlx/datapath/broadcast_domains.conf` file:
+   - To specify the total number of bridge domains you want to use, uncomment and edit the `broadcast_domain.max_vlans` parameter. The default value is 6143.
+   - To specify the total number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872.
 
-You must restart `switchd` with the `systemctl restart switchd` command to apply the configuration.
+   You must restart `switchd` with the `systemctl restart switchd` command to apply the configuration.
 
-- The number of `broadcast_domain.max_vlans` plus `broadcast_domain.max_subinterfaces` cannot exceed 15996.
-- Increasing the `broadcast_domain.max_vlans` parameter can affect layer 2 multicast scale support.
+   The number of `broadcast_domain.max_vlans` plus `broadcast_domain.max_subinterfaces` cannot exceed 15996.
+   Increasing the `broadcast_domain.max_vlans` parameter can affect layer 2 multicast scale support.
 {{%/notice%}}
 
 ## Reserved VLAN Range

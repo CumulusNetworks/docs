@@ -114,12 +114,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>4.4.3, 5.1.0</td>
 </tr>
 <tr>
-<td>2940063</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td>3.7.16, 5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
@@ -159,8 +153,8 @@ Fixed: 3.42.1-1+deb10u4</td>
 <tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
+<td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2859177</td>

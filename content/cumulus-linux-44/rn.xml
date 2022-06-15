@@ -167,8 +167,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3031235</td>
@@ -296,12 +296,6 @@ Fixed:</td>
 <td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
@@ -416,12 +410,6 @@ Fixed:</td>
 <td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2935122</td>
-<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.3</td>
-<td>5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2933466</td>
 <td>You cannot run NVUE commands to configure route leaking. 
 To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
@@ -482,12 +470,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2896672</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>4.3.0-4.4.3</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -505,18 +487,6 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.3</td>
-<td>5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -548,12 +518,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -741,12 +705,6 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <td>When you use the NVUE {{nv set vrf default router bgp peer &lt;peer&gt; local-as asn &lt;asn&gt;}} command to configure a local AS, Cumulus Linux does not update the {{etc/frr/frr.conf}} file.</td>
 <td>4.4.0-4.4.3</td>
 <td>5.0.0-5.1.0</td>
-</tr>
-<tr>
-<td>2770226</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
-<td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2770030</td>
@@ -1020,12 +978,6 @@ To recover from this state, flap the bond interface (not the physical swp) by ru
 To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2556591</td>
@@ -2238,8 +2190,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3031235</td>
@@ -2341,12 +2293,6 @@ Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-5.0.1</td>
 <td>3.7.16, 5.1.0</td>
-</tr>
-<tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2993471</td>
@@ -2507,12 +2453,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2935122</td>
-<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2933466</td>
 <td>You cannot run NVUE commands to configure route leaking. 
 To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
@@ -2581,12 +2521,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2896672</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -2600,29 +2534,10 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td></td>
 </tr>
 <tr>
-<td>2875296</td>
-<td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -2654,12 +2569,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -3117,13 +3026,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td>2654804</td>
 <td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2653493</td>
-<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4636,12 +4538,6 @@ Fixed:</td>
 <td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
@@ -4776,12 +4672,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2935122</td>
-<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2933466</td>
 <td>You cannot run NVUE commands to configure route leaking. 
 To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
@@ -4856,12 +4746,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2896672</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2895333</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.1, 5.0.0-5.1.0</td>
@@ -4911,13 +4795,6 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td></td>
 </tr>
 <tr>
-<td>2875296</td>
-<td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -4930,22 +4807,10 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2867156</td>
 <td>TACACS+ client package installation from the CumulusLinux-4.4-latest distribution on apt.cumulusnetworks.com fails because package metadata in the preinstalled {{cumulus-local-apt-archive}} package is incorrect, which causes a hash sum mismatch.</td>
 <td>4.4.0-4.4.1</td>
 <td>4.4.2-4.4.3</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -4977,12 +4842,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5040,7 +4899,7 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>2854784</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2-4.4.3</td>
+<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2853630</td>
@@ -5645,13 +5504,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td>2654804</td>
 <td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2653493</td>
-<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>

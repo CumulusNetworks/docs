@@ -492,6 +492,15 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 </tr>
 <tr>
+<td>2838905</td>
+<td>On Broadcom ARM switches, the NTP clock slowly drifts to a very high offset (over 500ms) and the clock is not able to synchronize. 
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.
+
+Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Network-Solutions/Chrony-on-Cumulus-Linux/</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2837378</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.3, 5.0.0-5.1.0</td>

@@ -43,12 +43,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3042876</td>
-<td>If you apply a filter to ignore an on-demand validation check, validation results for other checks might also be ignored.</td>
-<td>4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3042840</td>
 <td>Some resolved events might continue to be displayed as Open in the Events card even after they are resolved.</td>
 <td>4.2.0</td>

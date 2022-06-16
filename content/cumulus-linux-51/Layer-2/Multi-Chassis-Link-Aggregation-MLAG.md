@@ -587,6 +587,7 @@ Always enable [STP](## "Spanning Tree Protocol") in your layer 2 network and {{<
 - The STP global configuration must be the same on both peer switches.
 - The STP configuration for dual-connected ports must be the same on both peer switches.
 - The STP priority must be the same on both peer switches.
+- In a multiple bridge configuration, the STP priority must be the same on all bridges on both peer switches.
 - To minimize convergence times when a link transitions to the forwarding state, configure the edge ports (for tagged and untagged frames) with PortAdminEdge and BPDU guard enabled.
 
 ### Peer Link Sizing

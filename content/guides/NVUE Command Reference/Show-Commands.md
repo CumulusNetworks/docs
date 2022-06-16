@@ -7,6 +7,16 @@ type: nojsscroll
 ---
 This section describes all the `nv show` commands, together with their attributes and identifiers. To see the `[options]` for all the commands, refer to {{<link url="Common-Options" text="Common Options">}}.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show router
 
 Shows global routing configuration settings on the switch. You can see which routing features are on or off, such as BGP, IGMP, PIM, PBR, VRR, VRRP, and adaptive routing.
@@ -40,6 +50,16 @@ Introduced in Cumulus Linux 4.0.0
 cumulus@leaf01:mgmt:~$ nv show router
 ```
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show router nexthop-group
 
 Shows the configuration settings for next hop groups.
@@ -64,6 +84,16 @@ Introduced in Cumulus Linux 4.0.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop-group
 ```
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show router nexthop-group \<nexthop-group-id\>
 
 Shows the configuration settings for the next hop group you specify.
@@ -82,7 +112,7 @@ Shows the configuration settings for the next hop group you specify.
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `via` |  A next hop in the next hop group.|
+| `via` |  Shows the next hop in the next hop group.|
 
 ### Version History
 
@@ -92,6 +122,16 @@ Introduced in Cumulus Linux 4.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router nexthop-group group1
+```
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
 ```
 
 ## nv show router nexthop-group \<nexthop-group-id\> via
@@ -119,6 +159,16 @@ Introduced in Cumulus Linux 4.0.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop-group group 1 via
 ```
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show router nexthop-group \<nexthop-group-id\> via \<via-id\>
 
 Shows the egress interface and VRF on the switch.
@@ -136,7 +186,7 @@ Shows the egress interface and VRF on the switch.
 
 ### Version History
 
-Introduced in Cumulus Linux 4.0.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -156,11 +206,11 @@ Shows global PBR configuration settings.
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `map` | The collection of PBR maps.|
+| `map` | Shows PBR map information.|
 
 ### Version History
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -184,7 +234,7 @@ Shows settings for PBR maps. If you do not provide a specific map name, this com
 
 ### Version History
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -210,11 +260,11 @@ Shows the configuration settings for a PBR map used for policy configuration.
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `rule` | The PBR map rule number. |
+| `rule` | Shows the PBR map rule number. |
 
 ### Version History
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -241,12 +291,12 @@ Shows the match and set criteria, and the rule action for a route map.
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| match | The PBR match criteria. |
-| action | The PBR set criteria. |
+| `match` | Shows the PBR match criteria. |
+| `action` | Shows the PBR set criteria. |
 
 ### Version History
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -271,7 +321,7 @@ Shows the rule match criteria for a route map.
 
 ### Version History
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -298,11 +348,11 @@ Shows the route with the next hop group.
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `nexthop-group` | Route with nexthop-group |
+| `nexthop-group` | Shows the route with the nexthop-group. |
 
 ### Version History
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -328,7 +378,7 @@ Shows information about next hop group you specify, such as if the policy is ins
 
 ### Version History
 
-Introduced in Cumulus Linux 4.4.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -348,12 +398,22 @@ Shows route filtering and distribution configuration information. You can see co
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `community-list` | Community lists. |
-| `as-path-list` |  AS path lists. |
-| `ext-community-list` | Extended community lists. |
-| `large-community-list` | Large community lists. |
-| `prefix-list`  | Prefix list rules. |
-| `route-map` | The collection of route maps. |
+| `community-list` | Shows community lists. |
+| `as-path-list` |  Shows AS path lists. |
+| `ext-community-list` | Shows Extended Community lists. |
+| `large-community-list` | Shows Large Community lists. |
+| `prefix-list`  | Shows prefix list rules. |
+| `route-map` | Shows the collection of route maps. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy community-list
 
@@ -365,115 +425,163 @@ Shows route filtering and distribution configuration information. You can see co
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| <list-id> |  Community List ID |
+| `<list-id>` |  The Community List identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy community-list \<list-id\>
+
+A community list is used for matching BGP community policies.
 
 ### Usage
 
 `nv show router policy community-list <list-id> [options] [<attribute> ...]`
 
-### Description
-
-A community list is used for matching BGP community policies.
-
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| <list-id> |  Community List ID |
+| `<list-id>` |  The Community List identifier. |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| rule | Community List rule |
+| `rule` | Shows the Cmmunity List rule. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy community-list \<list-id\> rule
+
+Community list rules
 
 ### Usage
 
 `nv show router policy community-list <list-id> rule [options] [<rule-id> ...]`
 
-### Description
-
-Community list rules
-
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| <list-id> |  Community List ID |
-| <rule-id> |  Prefix List rule number |
+| `<list-id>` |  The Community List identifier. |
+| `<rule-id>` |  The prefix list rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy community-list \<list-id\> rule \<rule-id\>
+
+Community list Matching criteria and action rule
 
 ### Usage
 
 `nv show router policy community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
-### Description
-
-Community list Matching criteria and action rule
-
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| <list-id> |  Community List ID |
-| <rule-id> |  Prefix List rule number |
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-|  community |  Community expression |
+| `community` |  Community expression |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy community-list \<list-id\> rule \<rule-id\> community
+
+Set of community names for community-list
 
 ### Usage
 
 `nv show router policy community-list <list-id> rule <rule-id> community [options] [<community-id> ...]`
 
-### Description
-
-Set of community names for community-list
-
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| <list-id> |  Community List ID |
-| <rule-id> |  Prefix List rule number |
-| <community-id> | Community number in AA:NN format or well known name |
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
+| `<community-id>` | Community number in AA:NN format or well known name |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\>
+
+A community name
 
 ### Usage
 
 `nv show router policy community-list <list-id> rule <rule-id> community <community-id> [options]`
 
-### Description
-
-A community name
-
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| <list-id> |  Community List ID |
-| <rule-id> |  Prefix List rule number |
-| <community-id> | Community number in AA:NN format or well known name |
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
+| `<community-id>` | Community number in AA:NN format or well known name |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy as-path-list
+
+AS Path lists
 
 ### Usage
 
 `nv show router policy as-path-list [options] [<list-id> ...]`
-
-### Description
-
-AS Path lists
 
 ### Identifiers
 
@@ -481,15 +589,23 @@ AS Path lists
 | --------- | -------------- |
 |`<list-id>` | AS Path List ID |
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show router policy as-path-list \<list-id\>
+
+An AS Path list is used for matching BGP AS Path
 
 ### Usage
 
 `nv show router policy as-path-list <list-id> [options] [<attribute> ...]`
-
-### Description
-
-An AS Path list is used for matching BGP AS Path
 
 ### Identifiers
 
@@ -501,34 +617,50 @@ An AS Path list is used for matching BGP AS Path
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| rule | AS Path List rule |
+| `rule` | AS Path List rule |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy as-path-list \<list-id>\ rule \<rule-id\>
+
+AS Path list Matching criteria and action rule
 
 ### Usage
 
 `nv show router policy as-path-list <list-id> rule <rule-id> [options]`
 
-### Description
-
-AS Path list Matching criteria and action rule
-
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| ` <list-id>` |  AS Path List ID |
+| `<list-id>` | AS Path List ID |
 | `<rule-id>` | Prefix List rule number |
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show router policy ext-community-list
+
+Extended Community lists
 
 ### Usage
 
 `nv show router policy ext-community-list [options] [<list-id> ...]`
-
-### Description
-
-Extended Community lists
 
 ### Identifiers
 
@@ -536,15 +668,23 @@ Extended Community lists
 | --------- | -------------- |
 | `<list-id>` | Community List ID |
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show router policy ext-community-list \<list-id\>
+
+A Extended Community list used for matching BGP communities
 
 ### Usage
 
 `nv show router policy ext-community-list <list-id> [options] [<attribute> ...]`
-
-### Description
-
-A Extended Community list used for matching BGP communities
 
 ### Identifiers
 
@@ -556,17 +696,25 @@ A Extended Community list used for matching BGP communities
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| rule | Extended Community List rule |
+| `rule` | Extended Community List rule |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy ext-community-list \<list-id\> rule
+
+Extended Community list rules
 
 ### Usage
 
 `nv show router policy ext-community-list <list-id> rule [options] [<rule-id> ...]`
-
-### Description
-
-Extended Community list rules
 
 ### Identifiers
 
@@ -575,1380 +723,1809 @@ Extended Community list rules
 | `<list-id> |` Community List ID |
 | `<rule-id>` |  Prefix List rule number |
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\>
+
+Extended Community list Matching criteria and action rule
 
 ### Usage
 
 `nv show router policy ext-community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
-### Description
-
-Extended Community list Matching criteria and action rule
-
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <list-id>             Community List ID
-
-  <rule-id>             Prefix List rule number
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `ext-community` |  Extended Community expression |
 
-  ext-community         Extended Community expression
+### Version History
 
-## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
+## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
+
+A Extended community name
 
 ### Usage
 
-  nv show router policy ext-community-list <list-id> rule <rule-id> ext-community [options] [<attribute> ...]
-
-### Description
-
-  A Extended community name
+`nv show router policy ext-community-list <list-id> rule <rule-id> ext-community [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <list-id>             Community List ID
-
-  <rule-id>             Prefix List rule number
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `rt` |  Route Target Extended Community |
+| `soo` | Site of Origin Extended Community |
 
-  rt                    Route Target Extended Community
+### Version History
 
-  soo                   Site of Origin Extended Community
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt
 
+Set of extended communities
+
 ### Usage
 
-  nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt [options] [<ext-community-id> ...]
-
-### Description
-
-  Set of extended communities
+`nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt [options] [<ext-community-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |   Prefix List rule number |
+| `<ext-community-id>` |  Community number in AA:NN or IP:NN format |
 
-  <list-id>             Community List ID
+### Version History
 
-  <rule-id>             Prefix List rule number
+Introduced in Cumulus Linux 5.0.0
 
-  <ext-community-id>    Community number in AA:NN or IP:NN format
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
 
+A extended community name
+
 ### Usage
 
-  nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id> [options]
-
-### Description
-
-  A extended community name
+`nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
+| `<ext-community-id>` |  Community number in AA:NN or IP:NN format |
 
-  <list-id>             Community List ID
+### Version History
 
-  <rule-id>             Prefix List rule number
+Introduced in Cumulus Linux 5.0.0
 
-  <ext-community-id>    Community number in AA:NN or IP:NN format
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community
 
+Set of extended communities
+
 ### Usage
 
-  nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo [options] [<ext-community-id> ...]
-
-### Description
-
-  Set of extended communities
+`nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo [options] [<ext-community-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<list-id>` |   Community List ID |
+| `<rule-id>` |   Prefix List rule number |
+| `<ext-community-id>` |  Community number in AA:NN or IP:NN format |
 
-  <list-id>             Community List ID
+### Version History
 
-  <rule-id>             Prefix List rule number
+Introduced in Cumulus Linux 5.0.0
 
-  <ext-community-id>    Community number in AA:NN or IP:NN format
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
 
+A extended community name
+
 ### Usage
 
-  nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id> [options]
-
-### Description
-
-  A extended community name
+`nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
+| `<ext-community-id>` | Community number in AA:NN or IP:NN format |
 
-  <list-id>             Community List ID
+### Version History
 
-  <rule-id>             Prefix List rule number
+Introduced in Cumulus Linux 5.0.0
 
-  <ext-community-id>    Community number in AA:NN or IP:NN format
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy large-community-list
 
+Large Community lists
+
 ### Usage
 
-  nv show router policy large-community-list [options] [<list-id> ...]
-
-### Description
-
-  Large Community lists
+`nv show router policy large-community-list [options] [<list-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<list-id>` | The Community List ID. |
 
-  <list-id>             Community List ID
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy large-community-list <list-id>
 
+A Large Community list used for matching community based BGP policies
+
 ### Usage
 
-  nv show router policy large-community-list <list-id> [options] [<attribute> ...]
-
-### Description
-
-  A Large Community list used for matching community based BGP policies
+`nv show router policy large-community-list <list-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <list-id>             Community List ID
+| `<list-id>` | The Community List ID. |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `rule` |  Large Community List rules. |
 
-  rule                  Large Community List rules
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy large-community-list <list-id> rule
 
+Large Community list rules
+
 ### Usage
 
-  nv show router policy large-community-list <list-id> rule [options] [<rule-id> ...]
-
-### Description
-
-  Large Community list rules
+`nv show router policy large-community-list <list-id> rule [options] [<rule-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
 
-  <list-id>             Community List ID
+### Version History
 
-  <rule-id>             Prefix List rule number
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy large-community-list <list-id> rule <rule-id>
 
+Large Community list Matching criteria and action rule
+
 ### Usage
 
-  nv show router policy large-community-list <list-id> rule <rule-id> [options] [<attribute> ...]
-
-### Description
-
-  Large Community list Matching criteria and action rule
+`nv show router policy large-community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <list-id>             Community List ID
-
-  <rule-id>             Prefix List rule number
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `large-community` | Large Community expression |
 
-  large-community       Large Community expression
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy large-community-list <list-id> rule <rule-id> large-community
 
+Set of community names for large community list
+
 ### Usage
 
-  nv show router policy large-community-list <list-id> rule <rule-id> large-community [options] [<large-community-id> ...]
-
-### Description
-
-  Set of community names for large community list
+`nv show router policy large-community-list <list-id> rule <rule-id> large-community [options] [<large-community-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
+| `<large-community-id>` |  Community number in AA:BB:CC format |
 
-  <list-id>             Community List ID
+### Version History
 
-  <rule-id>             Prefix List rule number
+Introduced in Cumulus Linux 5.0.0
 
-  <large-community-id>  Community number in AA:BB:CC format
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
 
+Set of community names for large community list
+
 ### Usage
 
-  nv show router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id> [options]
-
-### Description
-
-  Set of community names for large community list
+`nv show router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<list-id>` |  Community List ID |
+| `<rule-id>` |  Prefix List rule number |
+| `<large-community-id>` |  Community number in AA:BB:CC format |
 
-  <list-id>             Community List ID
+### Version History
 
-  <rule-id>             Prefix List rule number
+Introduced in Cumulus Linux 5.0.0
 
-  <large-community-id>  Community number in AA:BB:CC format
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy prefix-list
 
+Prefix list rules
+
 ### Usage
 
-  nv show router policy prefix-list [options] [<prefix-list-id> ...]
-
-### Description
-
-  Prefix list rules
+`nv show router policy prefix-list [options] [<prefix-list-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<prefix-list-id>` |  Prefix List ID |
 
-  <prefix-list-id>      Prefix List ID
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy prefix-list <prefix-list-id>
 
+A prefix list is used for matching IPv4 and IPv6 address prefixes.
+
 ### Usage
 
-  nv show router policy prefix-list <prefix-list-id> [options] [<attribute> ...]
-
-### Description
-
-  A prefix list is used for matching IPv4 and IPv6 address prefixes.
+`nv show router policy prefix-list <prefix-list-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <prefix-list-id>      Prefix List ID
+| `<prefix-list-id>` |  Prefix List ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `rule` |   Prefix List rule |
 
-  rule                  Prefix List rule
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy prefix-list <prefix-list-id> rule <rule-id>
 
+Prefix list Matching criteria and action rule
+
 ### Usage
 
-  nv show router policy prefix-list <prefix-list-id> rule <rule-id> [options] [<attribute> ...]
-
-### Description
-
-  Prefix list Matching criteria and action rule
+`nv show router policy prefix-list <prefix-list-id> rule <rule-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <prefix-list-id>      Prefix List ID
-
-  <rule-id>             Prefix List rule number
+| `<prefix-list-id>` |  Prefix List ID |
+| `<rule-id>` |   Prefix List rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `match` |   Prefix List rule |
 
-  match                 Prefix List rule
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
 
+A prefix matc
+
 ### Usage
 
-  nv show router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> [options]
-
-### Description
-
-  A prefix match
+`nv show router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<prefix-list-id>` | Prefix List ID |
+| `<rule-id>` |  Prefix List rule number |
+| `<match-id>` |  ip v4/v6 prefix, or any |
 
-  <prefix-list-id>      Prefix List ID
+### Version History
 
-  <rule-id>             Prefix List rule number
+Introduced in Cumulus Linux 5.0.0
 
-  <match-id>            ip v4/v6 prefix, or any
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map
 
+Collection of Route Maps
+
 ### Usage
 
-  nv show router policy route-map [options] [<route-map-id> ...]
-
-### Description
-
-  Collection of Route Maps
+`nv show router policy route-map [options] [<route-map-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<route-map-id>` |  Route Map ID |
 
-  <route-map-id>        Route Map ID
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id>
 
+A route map is used for policy configuration.
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> [options] [<attribute> ...]
-
-### Description
-
-  A route map is used for policy configuration.
+`nv show router policy route-map <route-map-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <route-map-id>        Route Map ID
+| `<route-map-id>` |  Route Map ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `rule` | Route Map rule |
 
-  rule                  Route Map rule
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id>
 
+Route Map Matching/setting criteria and action rule
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> [options] [<attribute> ...]
-
-### Description
-
-  Route Map Matching/setting criteria and action rule
+`nv show router policy route-map <route-map-id> rule <rule-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <route-map-id>        Route Map ID
-
-  <rule-id>             Sequence to insert or delete from the route-map
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `match` |   Route Map match |
+| `set` |    Route Map set |
+| `action` |  Route Map set |
 
-  match                 Route Map match
+### Version History
 
-  set                   Route Map set
+Introduced in Cumulus Linux 5.0.0
 
-  action                Route Map set
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> match
 
+Route map rule match
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> match [options]
-
-### Description
-
-  Route map rule match
+`nv show router policy route-map <route-map-id> rule <rule-id> match [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
 
-  <route-map-id>        Route Map ID
+### Version History
 
-  <rule-id>             Sequence to insert or delete from the route-map
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set
 
+Route map rule set
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> set [options] [<attribute> ...]
-
-### Description
-
-  Route map rule set
+`nv show router policy route-map <route-map-id> rule <rule-id> set [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <route-map-id>        Route Map ID
-
-  <rule-id>             Sequence to insert or delete from the route-map
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `as-path-prepend` | AS Path prepend |
+| `community` |  Collection of BGP communities |
+| `large-community` |  Collection of large BGP communities |
+| `aggregator-as` | Collection of aggregator AS |
 
-  as-path-prepend       AS Path prepend
+### Version History
 
-  community             Collection of BGP communities
+Introduced in Cumulus Linux 5.0.0
 
-  large-community       Collection of large BGP communities
+### Example
 
-  aggregator-as         Collection of aggregator AS
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
 
+AS Path prepend
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> set as-path-prepend [options]
-
-### Description
-
-  AS Path prepend
+`nv show router policy route-map <route-map-id> rule <rule-id> set as-path-prepend [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
 
-  <route-map-id>        Route Map ID
+### Version History
 
-  <rule-id>             Sequence to insert or delete from the route-map
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set community <community-id>
 
+BGP Community
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> set community <community-id> [options]
-
-### Description
-
-  BGP Community
+`nv show router policy route-map <route-map-id> rule <rule-id> set community <community-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<community-id>` |  Community number |
 
-  <route-map-id>        Route Map ID
+### Version History
 
-  <rule-id>             Sequence to insert or delete from the route-map
+Introduced in Cumulus Linux 5.0.0
 
-  <community-id>        Community number
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
 
+Large BGP Community
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id> [options]
-
-### Description
-
-  Large BGP Community
+`nv show router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<large-community-id>` |  Large Community number |
 
-  <route-map-id>        Route Map ID
+### Version History
 
-  <rule-id>             Sequence to insert or delete from the route-map
+Introduced in Cumulus Linux 5.0.0
 
-  <large-community-id>  Large Community number
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
 
+Aggregator AS Number
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> [options] [<attribute> ...]
-
-### Description
-
-  Aggregator AS Number
+`nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <route-map-id>        Route Map ID
-
-  <rule-id>             Sequence to insert or delete from the route-map
-
-  <asn-id>              Autonomous number
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<asn-id>` |  Autonomous number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `address` |  Set of IPv4 addresses |
 
-  address               Set of IPv4 addresses
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id>
 
+An IPv4 address
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id> [options]
-
-### Description
-
-  An IPv4 address
+`nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<asn-id>` |   Autonomous number ` |
+| `<ipv4-address-id>`  | IPv4 address |
 
-  <route-map-id>        Route Map ID
+### Version History
 
-  <rule-id>             Sequence to insert or delete from the route-map
+Introduced in Cumulus Linux 5.0.0
 
-  <asn-id>              Autonomous number
+### Example
 
-  <ipv4-address-id>     IPv4 address
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> action
 
+Route map rule action
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> action [options] [<attribute> ...]
-
-### Description
-
-  Route map rule action
+`nv show router policy route-map <route-map-id> rule <rule-id> action [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <route-map-id>        Route Map ID
-
-  <rule-id>             Sequence to insert or delete from the route-map
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `deny` |  Deny action |
+| `permit` | Permit action |
 
-  deny                  Deny action
+### Version History
 
-  permit                Permit action
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> action deny
 
+State details
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> action deny [options]
-
-### Description
-
-  State details
+`nv show router policy route-map <route-map-id> rule <rule-id> action deny [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
 
-  <route-map-id>        Route Map ID
+### Version History
 
-  <rule-id>             Sequence to insert or delete from the route-map
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> action permit
 
+permit action
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> action permit [options] [<attribute> ...]
-
-### Description
-
-  permit action
+`nv show router policy route-map <route-map-id> rule <rule-id> action permit [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <route-map-id>        Route Map ID
-
-  <rule-id>             Sequence to insert or delete from the route-map
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `exit-policy` |  Permit action exit policy |
 
-  exit-policy           Permit action exit policy
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
 
+Permit action exit policy
+
 ### Usage
 
-  nv show router policy route-map <route-map-id> rule <rule-id> action permit exit-policy [options]
-
-### Description
-
-  Permit action exit policy
+`nv show router policy route-map <route-map-id> rule <rule-id> action permit exit-policy [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<route-map-id>` |  Route Map ID |
+| `<rule-id>` |  Sequence to insert or delete from the route-map |
 
-  <route-map-id>        Route Map ID
+### Version History
 
-  <rule-id>             Sequence to insert or delete from the route-map
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router bgp
 
+BGP global configuration.
+
 ### Usage
 
-  nv show router bgp [options] [<attribute> ...]
-
-### Description
-
-  BGP global configuration.
+`nv show router bgp [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `graceful-restart` |  BGP Graceful restart global configuration. |
+| `convergence-wait` |  BGP Graceful restart global configuration. |
 
-  graceful-restart      BGP Graceful restart global configuration.
+### Version History
 
-  convergence-wait      BGP Graceful restart global configuration.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router bgp graceful-restart
 
+BGP Graceful restart global configuration.
+
 ### Usage
 
-  nv show router bgp graceful-restart [options]
+`nv show router bgp graceful-restart [options]`
 
-### Description
+### Version History
 
-  BGP Graceful restart global configuration.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show router bgp graceful-restart
+```
 
 ## nv show router bgp convergence-wait
 
+BGP Graceful restart global configuration.
+
 ### Usage
 
-  nv show router bgp convergence-wait [options]
+`nv show router bgp convergence-wait [options]`
 
-### Description
+### Version History
 
-  BGP Graceful restart global configuration.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show router bgp convergence-wait
+```
 
 ## nv show router ospf
 
+OSPF global configuration.
+
 ### Usage
 
-  nv show router ospf [options] [<attribute> ...]
-
-### Description
-
-  OSPF global configuration.
+`nv show router ospf [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `timers` |  Timers |
 
-  timers                Timers
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router ospf timers
 
+Timers
+
 ### Usage
 
-  nv show router ospf timers [options] [<attribute> ...]
-
-### Description
-
-  Timers
+`nv show router ospf timers [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `lsa` |   LSA timers |
+| `spf` | SPF timers |
 
-  lsa                   LSA timers
+### Version History
 
-  spf                   SPF timers
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router ospf timers lsa
 
+LSA timers
+
 ### Usage
 
-  nv show router ospf timers lsa [options]
+`nv show router ospf timers lsa [options]`
 
-### Description
+### Version History
 
-  LSA timers
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router ospf timers spf
 
+SPF timers
+
 ### Usage
 
-  nv show router ospf timers spf [options]
+`nv show router ospf timers spf [options]`
 
-### Description
+### Version History
 
-  SPF timers
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router pim
 
+PIM global configuration.
+
 ### Usage
 
-  nv show router pim [options] [<attribute> ...]
-
-### Description
-
-  PIM global configuration.
+`nv show router pim [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `timers` |    Timers |
 
-  timers                Timers
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router pim timers
 
+Timers
+
 ### Usage
 
-  nv show router pim timers [options]
+`nv show router pim timers [options]`
 
-### Description
+### Version History
 
-  Timers
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router igmp
 
+IGMP global configuration.
+
 ### Usage
 
-  nv show router igmp [options]
+`nv show router igmp [options]`
 
-### Description
+### Version History
 
-  IGMP global configuration.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router vrrp
 
+VRRP global configuration.
+
 ### Usage
 
-  nv show router vrrp [options]
+`nv show router vrrp [options]`
 
-### Description
+### Version History
 
-  VRRP global configuration.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router vrr
 
+VRR global configuration.
+
 ### Usage
 
-  nv show router vrr [options]
+`nv show router vrr [options]`
 
-### Description
+### Version History
 
-  VRR global configuration.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show router adaptive-routing
 
+Adaptive routing global configuration.
+
 ### Usage
 
-  nv show router adaptive-routing [options]
+`nv show router adaptive-routing [options]`
 
-### Description
+### Version History
 
-  Adaptive routing global configuration.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform
 
+Top-level container for the components in the system. This node represents a system component inventory, which includes hardware and software elements.
+
 ### Usage
 
-  nv show platform [options] [<attribute> ...]
-
-### Description
-
-  Top-level container for the components in the system. This node represents a system component inventory, which includes hardware and software elements.
+`nv show platform [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `capabilities` |  Capabilities of this platform |
+| `hardware`   | The platform's hardware |
+| `environment` |   Platform environment information |
+| `software` |    The platform's software |
 
-  capabilities          Capabilities of this platform
+### Version History
 
-  hardware              The platform's hardware
+Introduced in Cumulus Linux 5.0.0
 
-  environment           Platform environment information
+### Example
 
-  software              The platform's software
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform capabilities
 
+Capabilities of this platform
+
 ### Usage
 
-  nv show platform capabilities [options]
+`nv show platform capabilities [options]`
 
-### Description
+### Version History
 
-  Capabilities of this platform
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform hardware
 
+The platform's hardware
+
 ### Usage
 
-  nv show platform hardware [options] [<attribute> ...]
-
-### Description
-
-  The platform's hardware
+`nv show platform hardware [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `component` | Set of components making up the platform. |
 
-  component             Set of components making up the platform.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform hardware component
 
+Set of components making up the platform.
+
 ### Usage
 
-  nv show platform hardware component [options] [<component-id> ...]
-
-### Description
-
-  Set of components making up the platform.
+`nv show platform hardware component [options] [<component-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<component-id>`  |  Component identifier |
 
-  <component-id>        Component identifier
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform hardware component <component-id>
 
+A component in the platform.
+
 ### Usage
 
-  nv show platform hardware component <component-id> [options] [<attribute> ...]
-
-### Description
-
-  A component in the platform.
+`nv show platform hardware component <component-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <component-id>        Component identifier
+| `<component-id>`  |  Component identifier |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `linecard` | Properties of a linecard component |
+| `port` |   Set of physical ports on this component |
 
-  linecard              Properties of a linecard component
+### Version History
 
-  port                  Set of physical ports on this component
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform hardware component <component-id> linecard
 
+Properties of a linecard component
+
 ### Usage
 
-  nv show platform hardware component <component-id> linecard [options]
-
-### Description
-
-  Properties of a linecard component
+`nv show platform hardware component <component-id> linecard [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<component-id>`  |  Component identifier |
 
-  <component-id>        Component identifier
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform hardware component <component-id> port
 
+Set of physical ports on this component
+
 ### Usage
 
-  nv show platform hardware component <component-id> port [options] [<port-id> ...]
-
-### Description
-
-  Set of physical ports on this component
+`nv show platform hardware component <component-id> port [options] [<port-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<component-id>`  |  Component identifier |
+| `<port-id>` |  Physical port identifier |
 
-  <component-id>        Component identifier
+### Version History
 
-  <port-id>             Physical port identifier
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform hardware component <component-id> port <port-id>
 
+A physical port on the component.
+
 ### Usage
 
-  nv show platform hardware component <component-id> port <port-id> [options] [<attribute> ...]
-
-### Description
-
-  A physical port on the component.
+`nv show platform hardware component <component-id> port <port-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <component-id>        Component identifier
-
-  <port-id>             Physical port identifier
+| `<component-id>`  |  Component identifier |
+| `<port-id>` |  Physical port identifier |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `breakout-mode` | Set of breakout modes supported by this port |
 
-  breakout-mode         Set of breakout modes supported by this port
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform hardware component <component-id> port <port-id> breakout-mode
 
+Set of breakout modes
+
 ### Usage
 
-  nv show platform hardware component <component-id> port <port-id> breakout-mode [options] [<mode-id> ...]
-
-### Description
-
-  Set of breakout modes
+`nv show platform hardware component <component-id> port <port-id> breakout-mode [options] [<mode-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<component-id>`  |  Component identifier |
+| `<port-id>` | Physical port identifier |
+| `<mode-id>` |  Breakout mode identifier |
 
-  <component-id>        Component identifier
+### Version History
 
-  <port-id>             Physical port identifier
+Introduced in Cumulus Linux 5.0.0
 
-  <mode-id>             Breakout mode identifier
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform hardware component <component-id> port <port-id> breakout-mode <mode-id>
 
+A breakout mode
+
 ### Usage
 
-  nv show platform hardware component <component-id> port <port-id> breakout-mode <mode-id> [options]
-
-### Description
-
-  A breakout mode
+`nv show platform hardware component <component-id> port <port-id> breakout-mode <mode-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<component-id>`  |  Component identifier |
+| `<port-id>` | Physical port identifier |
+| `<mode-id>` |  Breakout mode identifier |
 
-  <component-id>        Component identifier
+### Version History
 
-  <port-id>             Physical port identifier
+Introduced in Cumulus Linux 5.0.0
 
-  <mode-id>             Breakout mode identifier
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform environment
 
+Platform environment information
+
 ### Usage
 
-  nv show platform environment [options] [<attribute> ...]
-
-### Description
-
-  Platform environment information
+`nv show platform environment [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `fan` | The fans on the switch. |
+| `sensor` | The sensors on the switch. |
+| `psu` |  The PSUs on the switch. |
+| `led` |  The LEDs on the switch. |
 
-  fan                   The fans on the switch.
+### Version History
 
-  sensor                The sensors on the switch.
+Introduced in Cumulus Linux 5.0.0
 
-  psu                   The PSUs on the switch.
+### Example
 
-  led                   The LEDs on the switch.
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform environment fan
 
+The fans on the switch.
+
 ### Usage
 
-  nv show platform environment fan [options] [<fan-id> ...]
-
-### Description
-
-  The fans on the switch.
+`nv show platform environment fan [options] [<fan-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<fan-id>` |   Physical fan identifier |
 
-  <fan-id>              Physical fan identifier
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform environment fan <fan-id>
 
+A physical fan on the component.
+
 ### Usage
 
-  nv show platform environment fan <fan-id> [options]
-
-### Description
-
-  A physical fan on the component.
+`nv show platform environment fan <fan-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<fan-id>` |   Physical fan identifier |
 
-  <fan-id>              Physical fan identifier
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform environment sensor
 
+The sensors on the switch.
+
 ### Usage
 
-  nv show platform environment sensor [options] [<sensor-id> ...]
-
-### Description
-
-  The sensors on the switch.
+`nv show platform environment sensor [options] [<sensor-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<sensor-id>` |  Physical sensor identifier |
 
-  <sensor-id>           Physical sensor identifier
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform environment sensor <sensor-id>
 
+A physical sensor on the component.
+
 ### Usage
 
-  nv show platform environment sensor <sensor-id> [options]
-
-### Description
-
-  A physical sensor on the component.
+`nv show platform environment sensor <sensor-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<sensor-id>` |  Physical sensor identifier |
 
-  <sensor-id>           Physical sensor identifier
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform environment psu
 
+The PSUs on the switch.
+
 ### Usage
 
-  nv show platform environment psu [options] [<psu-id> ...]
-
-### Description
-
-  The PSUs on the switch.
+`nv show platform environment psu [options] [<psu-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<psu-id>` |  Physical PSU identifier |
 
-  <psu-id>              Physical PSU identifier
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform environment psu <psu-id>
 
+A PSU
+
 ### Usage
 
-  nv show platform environment psu <psu-id> [options]
+`nv show platform environment psu <psu-id> [options]`
 
-### Description
-
-  A PSU
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<psu-id>` |  Physical PSU identifier |
 
-  <psu-id>              Physical PSU identifier
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform environment led
 
+The LEDs on the switch.
+
 ### Usage
 
-  nv show platform environment led [options] [<led-id> ...]
-
-### Description
-
-  The LEDs on the switch.
+`nv show platform environment led [options] [<led-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<led-id>` |  Physical LED identifier |
 
-  <led-id>              Physical LED identifier
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform environment led <led-id>
 
+A LED
+
 ### Usage
 
-  nv show platform environment led <led-id> [options]
-
-### Description
-
-  A LED
+nv show platform environment led <led-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<led-id>` |  Physical LED identifier |
 
-  <led-id>              Physical LED identifier
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform software
 
+The platform's software
+
 ### Usage
 
-  nv show platform software [options] [<attribute> ...]
-
-### Description
-
-  The platform's software
+`nv show platform software [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `installed` |  List of installed software |
 
-  installed             List of installed software
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform software installed
 
+List of installed software
+
 ### Usage
 
-  nv show platform software installed [options] [<installed-id> ...]
-
-### Description
-
-  List of installed software
+`nv show platform software installed [options] [<installed-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<installed-id>` | Package name |
 
-  <installed-id>        Package name
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show platform software installed <installed-id>
 
+An installed package
+
 ### Usage
 
-  nv show platform software installed <installed-id> [options]
-
-### Description
-
-  An installed package
+`nv show platform software installed <installed-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<installed-id>` |  Package name |
 
-  <installed-id>        Package name
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show bridge
 
+Properties associated with an instance of a bridge.
+
 ### Usage
 
-  nv show bridge [options] [<attribute> ...]
-
-### Description
-
-  Properties associated with an instance of a bridge.
+`nv show bridge [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `domain` |  Bridge domains |
 
-  domain                Bridge domains
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show bridge domain
 
+Bridge domains
+
 ### Usage
 
-  nv show bridge domain [options] [<domain-id> ...]
-
-### Description
-
-  Bridge domains
+`nv show bridge domain [options] [<domain-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<domain-id>` |  Domain |
 
-  <domain-id>           Domain
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show bridge domain <domain-id>
 
+Bridge domain
+
 ### Usage
 
-  nv show bridge domain <domain-id> [options] [<attribute> ...]
-
-### Description
-
-  Bridge domain
+`nv show bridge domain <domain-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <domain-id>           Domain
+| `<domain-id>` |  Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `stp`  |   attributes related to global stp |
+| `multicast`    | Configure multicast on the bridge |
+| `vlan`         | Set of vlans in the bridge domain. Only applicable when the domain type is "vlan-aware". |
+| `mac-table`    | L2 FDB |
+| `mdb`          | Set of mdb entries in the bridge domain |
+| `router-port`  | Set of multicast router ports |
 
-  stp                   attributes related to global stp
+### Version History
 
-  multicast             Configure multicast on the bridge
+Introduced in Cumulus Linux 5.0.0
 
-  vlan                  Set of vlans in the bridge domain. Only applicable when the domain type is "vlan-aware".
+### Example
 
-  mac-table             L2 FDB
-
-  mdb                   Set of mdb entries in the bridge domain
-
-  router-port           Set of multicast router ports
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show bridge domain <domain-id> stp
 
+attributes related to global stp
+
 ### Usage
 
-  nv show bridge domain <domain-id> stp [options] [<attribute> ...]
-
-### Description
-
-  attributes related to global stp
+nv show bridge domain <domain-id> stp [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <domain-id>           Domain
+| `<domain-id>` |  Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `state` | The state of STP on the bridge |
 
-  state                 The state of STP on the bridge
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show bridge domain <domain-id> stp state
 
+The state of STP on the bridge
+
 ### Usage
 
-  nv show bridge domain <domain-id> stp state [options]
-
-### Description
-
-  The state of STP on the bridge
+`nv show bridge domain <domain-id> stp state [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<domain-id>` |  Domain |
 
-  <domain-id>           Domain
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show bridge domain <domain-id> multicast
 
+Configure multicast on the bridge
+
 ### Usage
 
-  nv show bridge domain <domain-id> multicast [options] [<attribute> ...]
-
-### Description
-
-  Configure multicast on the bridge
+`nv show bridge domain <domain-id> multicast [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <domain-id>           Domain
+| `<domain-id>` Domain | 
 
 ### Attributes
 
@@ -1957,13 +2534,23 @@ Extended Community list Matching criteria and action rule
 
   snooping              IGMP/MLD snooping configuration
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> multicast snooping
 
 ### Usage
 
-  nv show bridge domain <domain-id> multicast snooping [options] [<attribute> ...]
+  `nv show bridge domain <domain-id> multicast snooping [options] [<attribute> ...]
 
-### Description
+
 
   IGMP/MLD snooping configuration
 
@@ -1981,13 +2568,23 @@ Extended Community list Matching criteria and action rule
 
   querier               IGMP/MLD querier configuration
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> multicast snooping querier
 
 ### Usage
 
-  nv show bridge domain <domain-id> multicast snooping querier [options]
+  `nv show bridge domain <domain-id> multicast snooping querier [options]
 
-### Description
+
 
   IGMP/MLD querier configuration
 
@@ -1998,13 +2595,23 @@ Extended Community list Matching criteria and action rule
 
   <domain-id>           Domain
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> vlan <vid>
 
 ### Usage
 
-  nv show bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]
+  `nv show bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]
 
-### Description
+
 
   A VLAN tag identifier
 
@@ -2028,13 +2635,23 @@ Extended Community list Matching criteria and action rule
 
   multicast             Configure multicast on the vlan
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> vlan <vid> vni <vni-id>
 
 ### Usage
 
-  nv show bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]
+  `nv show bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]
 
-### Description
+
 
   VNI
 
@@ -2056,13 +2673,23 @@ Extended Community list Matching criteria and action rule
 
   flooding              Handling of BUM traffic
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
 
 ### Usage
 
-  nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]
+  `nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]
 
-### Description
+
 
   Handling of BUM traffic
 
@@ -2084,13 +2711,23 @@ Extended Community list Matching criteria and action rule
 
   head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
 
 ### Usage
 
-  nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]
+  `nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]
 
-### Description
+
 
   Set of IPv4 unicast addresses or "evpn".
 
@@ -2107,13 +2744,23 @@ Extended Community list Matching criteria and action rule
 
   <hrep-id>             IPv4 unicast addresses or "evpn"
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> vlan <vid> ptp
 
 ### Usage
 
-  nv show bridge domain <domain-id> vlan <vid> ptp [options]
+  `nv show bridge domain <domain-id> vlan <vid> ptp [options]
 
-### Description
+
 
   VLAN PTP configuration.  Inherited by interfaces in this VLAN.
 
@@ -2126,13 +2773,23 @@ Extended Community list Matching criteria and action rule
 
   <vid>                 VLAN ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> vlan <vid> multicast
 
 ### Usage
 
-  nv show bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]
+  `nv show bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]
 
-### Description
+
 
   Configure multicast on the vlan
 
@@ -2152,13 +2809,23 @@ Extended Community list Matching criteria and action rule
 
   snooping              IGMP/MLD snooping configuration
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> vlan <vid> multicast snooping
 
 ### Usage
 
-  nv show bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]
+  `nv show bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]
 
-### Description
+
 
   IGMP/MLD snooping configuration
 
@@ -2178,13 +2845,23 @@ Extended Community list Matching criteria and action rule
 
   querier               IGMP/MLD querier configuration
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> vlan <vid> multicast snooping querier
 
 ### Usage
 
-  nv show bridge domain <domain-id> vlan <vid> multicast snooping querier [options]
+  `nv show bridge domain <domain-id> vlan <vid> multicast snooping querier [options]
 
-### Description
+
 
   IGMP/MLD querier configuration
 
@@ -2197,13 +2874,23 @@ Extended Community list Matching criteria and action rule
 
   <vid>                 VLAN ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> mac-table
 
 ### Usage
 
-  nv show bridge domain <domain-id> mac-table [options]
+  `nv show bridge domain <domain-id> mac-table [options]
 
-### Description
+
 
   L2 FDB
 
@@ -2214,13 +2901,23 @@ Extended Community list Matching criteria and action rule
 
   <domain-id>           Domain
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> mdb
 
 ### Usage
 
-  nv show bridge domain <domain-id> mdb [options]
+  `nv show bridge domain <domain-id> mdb [options]
 
-### Description
+
 
   Set of mdb entries in the bridge domain
 
@@ -2231,13 +2928,23 @@ Extended Community list Matching criteria and action rule
 
   <domain-id>           Domain
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show bridge domain <domain-id> router-port
 
 ### Usage
 
-  nv show bridge domain <domain-id> router-port [options]
+  `nv show bridge domain <domain-id> router-port [options]
 
-### Description
+
 
   Set of multicast router ports
 
@@ -2248,13 +2955,23 @@ Extended Community list Matching criteria and action rule
 
   <domain-id>           Domain
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag
 
 ### Usage
 
-  nv show mlag [options] [<attribute> ...]
+  `nv show mlag [options] [<attribute> ...]
 
-### Description
+
 
   Global Multi-chassis Link Aggregation properties
 
@@ -2281,23 +2998,43 @@ Extended Community list Matching criteria and action rule
 
   neighbor              Local/peer Neighbour Entries
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag lacp-conflict
 
 ### Usage
 
-  nv show mlag lacp-conflict [options]
+  `nv show mlag lacp-conflict [options]
 
-### Description
+
 
   Configure the mlag lacp-conflict parameters
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag consistency-checker
 
 ### Usage
 
-  nv show mlag consistency-checker [options] [<attribute> ...]
+  `nv show mlag consistency-checker [options] [<attribute> ...]
 
-### Description
+
 
   Show the mlag consistency-checker parameters
 
@@ -2308,23 +3045,43 @@ Extended Community list Matching criteria and action rule
 
   global                mlag global consistency-checker
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag consistency-checker global
 
 ### Usage
 
-  nv show mlag consistency-checker global [options]
+  `nv show mlag consistency-checker global [options]
 
-### Description
+
 
   Global Consistency-checker
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag backup
 
 ### Usage
 
-  nv show mlag backup [options] [<backup-ip> ...]
+  `nv show mlag backup [options] [<backup-ip> ...]
 
-### Description
+
 
   Set of MLAG backups
 
@@ -2335,13 +3092,23 @@ Extended Community list Matching criteria and action rule
 
   <backup-ip>           Backup IP of MLAG peer
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag backup <backup-ip>
 
 ### Usage
 
-  nv show mlag backup <backup-ip> [options]
+  `nv show mlag backup <backup-ip> [options]
 
-### Description
+
 
   alternative ip address or interface for peer to reach us
 
@@ -2352,13 +3119,23 @@ Extended Community list Matching criteria and action rule
 
   <backup-ip>           Backup IP of MLAG peer
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag fdb
 
 ### Usage
 
-  nv show mlag fdb [options] [<attribute> ...]
+  `nv show mlag fdb [options] [<attribute> ...]
 
-### Description
+
 
   Set of all mlag macs
 
@@ -2373,43 +3150,83 @@ Extended Community list Matching criteria and action rule
 
   permanent             Permanent Macs installed on local/peer
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag fdb local
 
 ### Usage
 
-  nv show mlag fdb local [options]
+  `nv show mlag fdb local [options]
 
-### Description
+
 
   Set of MLAG Macs learnt/sync between mlag peers
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag fdb peer
 
 ### Usage
 
-  nv show mlag fdb peer [options]
+  `nv show mlag fdb peer [options]
 
-### Description
+
 
   Set of MLAG Macs learnt/sync between mlag peers
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag fdb permanent
 
 ### Usage
 
-  nv show mlag fdb permanent [options]
+  `nv show mlag fdb permanent [options]
 
-### Description
+
 
   Permanent Mac Entry
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag mdb
 
 ### Usage
 
-  nv show mlag mdb [options] [<attribute> ...]
+  `nv show mlag mdb [options] [<attribute> ...]
 
-### Description
+
 
   Set of Mlag Multicast Database Entries
 
@@ -2422,33 +3239,63 @@ Extended Community list Matching criteria and action rule
 
   peer                  Peer Multicast Database
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag mdb local
 
 ### Usage
 
-  nv show mlag mdb local [options]
+  `nv show mlag mdb local [options]
 
-### Description
+
 
   Multicast Groups Info
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag mdb peer
 
 ### Usage
 
-  nv show mlag mdb peer [options]
+  `nv show mlag mdb peer [options]
 
-### Description
+
 
   Multicast Groups Info
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag multicast-router-port
 
 ### Usage
 
-  nv show mlag multicast-router-port [options] [<attribute> ...]
+  `nv show mlag multicast-router-port [options] [<attribute> ...]
 
-### Description
+
 
   Set of all Mlag Multicast Router Ports
 
@@ -2461,33 +3308,63 @@ Extended Community list Matching criteria and action rule
 
   peer                  Peer Multicast Router Ports
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag multicast-router-port local
 
 ### Usage
 
-  nv show mlag multicast-router-port local [options]
+  `nv show mlag multicast-router-port local [options]
 
-### Description
+
 
   Multicast Router Ports
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag multicast-router-port peer
 
 ### Usage
 
-  nv show mlag multicast-router-port peer [options]
+  `nv show mlag multicast-router-port peer [options]
 
-### Description
+
 
   Multicast Router Ports
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag vni
 
 ### Usage
 
-  nv show mlag vni [options] [<attribute> ...]
+  `nv show mlag vni [options] [<attribute> ...]
 
-### Description
+
 
   Set of all vnis
 
@@ -2500,33 +3377,63 @@ Extended Community list Matching criteria and action rule
 
   peer                  Peer Vnis
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag vni local
 
 ### Usage
 
-  nv show mlag vni local [options]
+  `nv show mlag vni local [options]
 
-### Description
+
 
   Set of VNIs configured
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag vni peer
 
 ### Usage
 
-  nv show mlag vni peer [options]
+  `nv show mlag vni peer [options]
 
-### Description
+
 
   Set of VNIs configured
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag lacpdb
 
 ### Usage
 
-  nv show mlag lacpdb [options] [<attribute> ...]
+  `nv show mlag lacpdb [options] [<attribute> ...]
 
-### Description
+
 
   Set of all mlag local/peer lacpdb
 
@@ -2539,33 +3446,63 @@ Extended Community list Matching criteria and action rule
 
   peer                  Peer Lacp Database
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag lacpdb local
 
 ### Usage
 
-  nv show mlag lacpdb local [options]
+  `nv show mlag lacpdb local [options]
 
-### Description
+
 
   Lacp DB
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag lacpdb peer
 
 ### Usage
 
-  nv show mlag lacpdb peer [options]
+  `nv show mlag lacpdb peer [options]
 
-### Description
+
 
   Lacp DB
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag neighbor
 
 ### Usage
 
-  nv show mlag neighbor [options] [<attribute> ...]
+  `nv show mlag neighbor [options] [<attribute> ...]
 
-### Description
+
 
   Set of all mlag neigh entries
 
@@ -2578,33 +3515,63 @@ Extended Community list Matching criteria and action rule
 
   permanent             Permanent Neighbor
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show mlag neighbor dynamic
 
 ### Usage
 
-  nv show mlag neighbor dynamic [options]
+  `nv show mlag neighbor dynamic [options]
 
-### Description
+
 
   Neighs
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show mlag neighbor permanent
 
 ### Usage
 
-  nv show mlag neighbor permanent [options]
+  `nv show mlag neighbor permanent [options]
 
-### Description
+
 
   Permanent Neighbors
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show evpn
 
 ### Usage
 
-  nv show evpn [options] [<attribute> ...]
+  `nv show evpn [options] [<attribute> ...]
 
-### Description
+
 
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
@@ -2621,23 +3588,43 @@ Extended Community list Matching criteria and action rule
 
   multihoming           Multihoming global configuration parameters
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn route-advertise
 
 ### Usage
 
-  nv show evpn route-advertise [options]
+  `nv show evpn route-advertise [options]
 
-### Description
+
 
   Route dvertising
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show evpn dad
 
 ### Usage
 
-  nv show evpn dad [options] [<attribute> ...]
+  `nv show evpn dad [options] [<attribute> ...]
 
-### Description
+
 
   Duplicate address detection
 
@@ -2648,13 +3635,23 @@ Extended Community list Matching criteria and action rule
 
   duplicate-action    Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted upon.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn dad duplicate-action
 
 ### Usage
 
-  nv show evpn dad duplicate-action [options] [<attribute> ...]
+  `nv show evpn dad duplicate-action [options] [<attribute> ...]
 
-### Description
+
 
   Handling of BUM traffic
 
@@ -2665,23 +3662,43 @@ Extended Community list Matching criteria and action rule
 
   freeze                Further move events for the MAC will not be acted upon.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn dad duplicate-action freeze
 
 ### Usage
 
-  nv show evpn dad duplicate-action freeze [options]
+  `nv show evpn dad duplicate-action freeze [options]
 
-### Description
+
 
   Advertise
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show evpn evi
 
 ### Usage
 
-  nv show evpn evi [options] [<evi-id> ...]
+  `nv show evpn evi [options] [<evi-id> ...]
 
-### Description
+
 
   EVIs
 
@@ -2692,13 +3709,23 @@ Extended Community list Matching criteria and action rule
 
   <evi-id>              VRF
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn evi <evi-id>
 
 ### Usage
 
-  nv show evpn evi <evi-id> [options] [<attribute> ...]
+  `nv show evpn evi <evi-id> [options] [<attribute> ...]
 
-### Description
+
 
   Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
@@ -2718,13 +3745,23 @@ Extended Community list Matching criteria and action rule
 
   route-target          Route targets
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn evi <evi-id> route-advertise
 
 ### Usage
 
-  nv show evpn evi <evi-id> route-advertise [options]
+  `nv show evpn evi <evi-id> route-advertise [options]
 
-### Description
+
 
   Route advertise
 
@@ -2735,13 +3772,23 @@ Extended Community list Matching criteria and action rule
 
   <evi-id>              VRF
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn evi <evi-id> route-target
 
 ### Usage
 
-  nv show evpn evi <evi-id> route-target [options] [<attribute> ...]
+  `nv show evpn evi <evi-id> route-target [options] [<attribute> ...]
 
-### Description
+
 
   EVPN control plane config and info for VRF
 
@@ -2763,13 +3810,23 @@ Extended Community list Matching criteria and action rule
 
   both                  Route targets to import and export
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn evi <evi-id> route-target export
 
 ### Usage
 
-  nv show evpn evi <evi-id> route-target export [options] [<rt-id> ...]
+  `nv show evpn evi <evi-id> route-target export [options] [<rt-id> ...]
 
-### Description
+
 
   Set of route target identifiers
 
@@ -2781,14 +3838,24 @@ Extended Community list Matching criteria and action rule
   <evi-id>              VRF
 
   <rt-id>               Route target ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show evpn evi <evi-id> route-target export <rt-id>
 
 ### Usage
 
-  nv show evpn evi <evi-id> route-target export <rt-id> [options]
+  `nv show evpn evi <evi-id> route-target export <rt-id> [options]
 
-### Description
+
 
   A route target identifier
 
@@ -2800,14 +3867,24 @@ Extended Community list Matching criteria and action rule
   <evi-id>              VRF
 
   <rt-id>               Route target ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show evpn evi <evi-id> route-target import
 
 ### Usage
 
-  nv show evpn evi <evi-id> route-target import [options] [<rt-id> ...]
+  `nv show evpn evi <evi-id> route-target import [options] [<rt-id> ...]
 
-### Description
+
 
   Set of route target identifiers
 
@@ -2820,13 +3897,23 @@ Extended Community list Matching criteria and action rule
 
   <rt-id>               Route target ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn evi <evi-id> route-target import <rt-id>
 
 ### Usage
 
-  nv show evpn evi <evi-id> route-target import <rt-id> [options]
+  `nv show evpn evi <evi-id> route-target import <rt-id> [options]
 
-### Description
+
 
   A route target identifier
 
@@ -2839,13 +3926,23 @@ Extended Community list Matching criteria and action rule
 
   <rt-id>               Route target ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn evi <evi-id> route-target both
 
 ### Usage
 
-  nv show evpn evi <evi-id> route-target both [options] [<rt-id> ...]
+  `nv show evpn evi <evi-id> route-target both [options] [<rt-id> ...]
 
-### Description
+
 
   Set of route target identifiers
 
@@ -2858,13 +3955,23 @@ Extended Community list Matching criteria and action rule
 
   <rt-id>               Route target ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn evi <evi-id> route-target both <rt-id>
 
 ### Usage
 
-  nv show evpn evi <evi-id> route-target both <rt-id> [options]
+  `nv show evpn evi <evi-id> route-target both <rt-id> [options]
 
-### Description
+
 
   A route target identifier
 
@@ -2877,13 +3984,23 @@ Extended Community list Matching criteria and action rule
 
   <rt-id>               Route target ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn multihoming
 
 ### Usage
 
-  nv show evpn multihoming [options] [<attribute> ...]
+  `nv show evpn multihoming [options] [<attribute> ...]
 
-### Description
+
 
   Multihoming global configuration parameters
 
@@ -2896,33 +4013,63 @@ Extended Community list Matching criteria and action rule
 
   segment               Multihoming interface segment
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show evpn multihoming ead-evi-route
 
 ### Usage
 
-  nv show evpn multihoming ead-evi-route [options]
+  `nv show evpn multihoming ead-evi-route [options]
 
-### Description
+
 
   Ethernet Auto-discovery per EVPN instance routes
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show evpn multihoming segment
 
 ### Usage
 
-  nv show evpn multihoming segment [options]
+  `nv show evpn multihoming segment [options]
 
-### Description
+
 
   Multihoming interface segment
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show qos
 
 ### Usage
 
-  nv show qos [options] [<attribute> ...]
+  `nv show qos [options] [<attribute> ...]
 
-### Description
+
 
   QOS
 
@@ -2935,13 +4082,23 @@ Extended Community list Matching criteria and action rule
 
                         Ethernet (RoCE) feature.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show qos roce
 
 ### Usage
 
-  nv show qos roce [options] [<attribute> ...]
+  `nv show qos roce [options] [<attribute> ...]
 
-### Description
+
 
   Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
@@ -2958,53 +4115,103 @@ Extended Community list Matching criteria and action rule
 
   pool                  System Roce pools
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show qos roce prio-map
 
 ### Usage
 
-  nv show qos roce prio-map [options]
+  `nv show qos roce prio-map [options]
 
-### Description
+
 
   RoCE PCP/DSCP->SP mapping configurations
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show qos roce tc-map
 
 ### Usage
 
-  nv show qos roce tc-map [options]
+  `nv show qos roce tc-map [options]
 
-### Description
+
 
   RoCE SP->TC mapping and ETS configurations
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show qos roce pool-map
 
 ### Usage
 
-  nv show qos roce pool-map [options]
+  `nv show qos roce pool-map [options]
 
-### Description
+
 
   System Roce pool config
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show qos roce pool
 
 ### Usage
 
-  nv show qos roce pool [options]
+  `nv show qos roce pool [options]
 
-### Description
+
 
   System Roce pools
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show interface
 
 ### Usage
 
-  nv show interface [options] [<interface-id> ...]
+  `nv show interface [options] [<interface-id> ...]
 
-### Description
+
 
   Interfaces
 
@@ -3015,13 +4222,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id>
 
 ### Usage
 
-  nv show interface <interface-id> [options] [<attribute> ...]
+  `nv show interface <interface-id> [options] [<attribute> ...]
 
-### Description
+
 
   An interface
 
@@ -3061,13 +4278,23 @@ Extended Community list Matching criteria and action rule
 
   tunnel                The state of the interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> pluggable
 
 ### Usage
 
-  nv show interface <interface-id> pluggable [options]
+  `nv show interface <interface-id> pluggable [options]
 
-### Description
+
 
   An interface sfp details
 
@@ -3078,13 +4305,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router
 
 ### Usage
 
-  nv show interface <interface-id> router [options] [<attribute> ...]
+  `nv show interface <interface-id> router [options] [<attribute> ...]
 
-### Description
+
 
   interface router
 
@@ -3108,13 +4345,23 @@ Extended Community list Matching criteria and action rule
 
   adaptive-routing      Adaptive routing interface configuration.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router pbr
 
 ### Usage
 
-  nv show interface <interface-id> router pbr [options] [<attribute> ...]
+  `nv show interface <interface-id> router pbr [options] [<attribute> ...]
 
-### Description
+
 
   PBR interface configuration.
 
@@ -3132,13 +4379,23 @@ Extended Community list Matching criteria and action rule
 
   map                   PBR map to use on this interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router pbr map <pbr-map-id>
 
 ### Usage
 
-  nv show interface <interface-id> router pbr map <pbr-map-id> [options]
+  `nv show interface <interface-id> router pbr map <pbr-map-id> [options]
 
-### Description
+
 
   Interface Pbr map
 
@@ -3151,13 +4408,23 @@ Extended Community list Matching criteria and action rule
 
   <pbr-map-id>          Route Map ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router ospf
 
 ### Usage
 
-  nv show interface <interface-id> router ospf [options] [<attribute> ...]
+  `nv show interface <interface-id> router ospf [options] [<attribute> ...]
 
-### Description
+
 
   OSPF interface configuration.
 
@@ -3179,13 +4446,23 @@ Extended Community list Matching criteria and action rule
 
   bfd                   BFD configuration
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router ospf timers
 
 ### Usage
 
-  nv show interface <interface-id> router ospf timers [options]
+  `nv show interface <interface-id> router ospf timers [options]
 
-### Description
+
 
   Timers configuration
 
@@ -3196,13 +4473,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router ospf authentication
 
 ### Usage
 
-  nv show interface <interface-id> router ospf authentication [options]
+  `nv show interface <interface-id> router ospf authentication [options]
 
-### Description
+
 
   md5 authentication configuration
 
@@ -3213,13 +4500,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router ospf bfd
 
 ### Usage
 
-  nv show interface <interface-id> router ospf bfd [options]
+  `nv show interface <interface-id> router ospf bfd [options]
 
-### Description
+
 
   BFD configuration
 
@@ -3230,13 +4527,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router pim
 
 ### Usage
 
-  nv show interface <interface-id> router pim [options] [<attribute> ...]
+  `nv show interface <interface-id> router pim [options] [<attribute> ...]
 
-### Description
+
 
   PIM interface configuration.
 
@@ -3258,13 +4565,23 @@ Extended Community list Matching criteria and action rule
 
   address-family        Address family specific configuration
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router pim timers
 
 ### Usage
 
-  nv show interface <interface-id> router pim timers [options]
+  `nv show interface <interface-id> router pim timers [options]
 
-### Description
+
 
   Timers
 
@@ -3275,13 +4592,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router pim bfd
 
 ### Usage
 
-  nv show interface <interface-id> router pim bfd [options]
+  `nv show interface <interface-id> router pim bfd [options]
 
-### Description
+
 
   BFD configuration
 
@@ -3292,13 +4619,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router pim address-family
 
 ### Usage
 
-  nv show interface <interface-id> router pim address-family [options] [<attribute> ...]
+  `nv show interface <interface-id> router pim address-family [options] [<attribute> ...]
 
-### Description
+
 
   Address family specific configuration
 
@@ -3316,13 +4653,23 @@ Extended Community list Matching criteria and action rule
 
   ipv4-unicast          IPv4 unicast address family
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router pim address-family ipv4-unicast
 
 ### Usage
 
-  nv show interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
+  `nv show interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
 
-### Description
+
 
   IPv4 unicast address family
 
@@ -3340,13 +4687,23 @@ Extended Community list Matching criteria and action rule
 
   allow-rp              Allow RP feature, which allows RP address to be accepts for the received
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router pim address-family ipv4-unicast allow-rp
 
 ### Usage
 
-  nv show interface <interface-id> router pim address-family ipv4-unicast allow-rp [options]
+  `nv show interface <interface-id> router pim address-family ipv4-unicast allow-rp [options]
 
-### Description
+
 
   Allow RP feature, which allows RP address to be accepts for the received
 
@@ -3357,13 +4714,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> router adaptive-routing
 
 ### Usage
 
-  nv show interface <interface-id> router adaptive-routing [options]
+  `nv show interface <interface-id> router adaptive-routing [options]
 
-### Description
+
 
   Adaptive routing interface configuration.
 
@@ -3374,13 +4741,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> bond
 
 ### Usage
 
-  nv show interface <interface-id> bond [options] [<attribute> ...]
+  `nv show interface <interface-id> bond [options] [<attribute> ...]
 
-### Description
+
 
   The state of the interface
 
@@ -3400,13 +4777,23 @@ Extended Community list Matching criteria and action rule
 
   mlag                  MLAG configuration on the bond interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> bond member <member-id>
 
 ### Usage
 
-  nv show interface <interface-id> bond member <member-id> [options]
+  `nv show interface <interface-id> bond member <member-id> [options]
 
-### Description
+
 
   A bond member
 
@@ -3419,13 +4806,23 @@ Extended Community list Matching criteria and action rule
 
   <member-id>           Bond memer interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> bond mlag
 
 ### Usage
 
-  nv show interface <interface-id> bond mlag [options] [<attribute> ...]
+  `nv show interface <interface-id> bond mlag [options] [<attribute> ...]
 
-### Description
+
 
   MLAG configuration on the bond interface
 
@@ -3445,13 +4842,23 @@ Extended Community list Matching criteria and action rule
 
   consistency-checker   Consistency-checker parameters for mlag interfaces
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> bond mlag lacp-conflict
 
 ### Usage
 
-  nv show interface <interface-id> bond mlag lacp-conflict [options]
+  `nv show interface <interface-id> bond mlag lacp-conflict [options]
 
-### Description
+
 
   Configure the mlag lacp-conflict parameters
 
@@ -3462,13 +4869,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> bond mlag consistency-checker
 
 ### Usage
 
-  nv show interface <interface-id> bond mlag consistency-checker [options]
+  `nv show interface <interface-id> bond mlag consistency-checker [options]
 
-### Description
+
 
   Interface MLAG Consistency-checker
 
@@ -3479,13 +4896,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> bridge
 
 ### Usage
 
-  nv show interface <interface-id> bridge [options] [<attribute> ...]
+  `nv show interface <interface-id> bridge [options] [<attribute> ...]
 
-### Description
+
 
   attributed related to a bridged interface
 
@@ -3503,13 +4930,23 @@ Extended Community list Matching criteria and action rule
 
   domain                Bridge domains on this interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> bridge domain <domain-id>
 
 ### Usage
 
-  nv show interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]
+  `nv show interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]
 
-### Description
+
 
   Bridge domain on this interface
 
@@ -3529,13 +4966,23 @@ Extended Community list Matching criteria and action rule
   stp                   attributed related to a stpd interface
   vlan                  Set of allowed vlans for this bridge domain on this  interface. If "all", inherit all vlans from the bridge domain, if appropriate. This is the default.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> bridge domain <domain-id> stp
 
 ### Usage
 
-  nv show interface <interface-id> bridge domain <domain-id> stp [options]
+  `nv show interface <interface-id> bridge domain <domain-id> stp [options]
 
-### Description
+
 
   attributed related to a stpd interface
 
@@ -3548,13 +4995,23 @@ Extended Community list Matching criteria and action rule
 
   <domain-id>           Domain
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> bridge domain <domain-id> vlan <vid>
 
 ### Usage
 
-  nv show interface <interface-id> bridge domain <domain-id> vlan <vid> [options]
+  `nv show interface <interface-id> bridge domain <domain-id> vlan <vid> [options]
 
-### Description
+
 
   A VLAN tag identifier
 
@@ -3569,13 +5026,23 @@ Extended Community list Matching criteria and action rule
 
   <vid>                 VLAN ID, or all
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip
 
 ### Usage
 
-  nv show interface <interface-id> ip [options] [<attribute> ...]
+  `nv show interface <interface-id> ip [options] [<attribute> ...]
 
-### Description
+
 
   IP configuration for an interface
 
@@ -3609,13 +5076,23 @@ Extended Community list Matching criteria and action rule
 
   neighbor-discovery    Neighbor discovery configuration for an interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip address <ip-prefix-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip address <ip-prefix-id> [options]
+  `nv show interface <interface-id> ip address <ip-prefix-id> [options]
 
-### Description
+
 
   An IP address with prefix
 
@@ -3628,13 +5105,23 @@ Extended Community list Matching criteria and action rule
 
   <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip neighbor
 
 ### Usage
 
-  nv show interface <interface-id> ip neighbor [options] [<attribute> ...]
+  `nv show interface <interface-id> ip neighbor [options] [<attribute> ...]
 
-### Description
+
 
   IP neighbors
 
@@ -3654,13 +5141,23 @@ Extended Community list Matching criteria and action rule
 
   ipv6                  IPv6 neighbors
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip neighbor ipv4 <neighbor-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip neighbor ipv4 <neighbor-id> [options]
+  `nv show interface <interface-id> ip neighbor ipv4 <neighbor-id> [options]
 
-### Description
+
 
   A neighbor
 
@@ -3673,13 +5170,23 @@ Extended Community list Matching criteria and action rule
 
   <neighbor-id>         The IPv4 address of the neighbor node.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip neighbor ipv6 <neighbor-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip neighbor ipv6 <neighbor-id> [options]
+  `nv show interface <interface-id> ip neighbor ipv6 <neighbor-id> [options]
 
-### Description
+
 
   A neighbor
 
@@ -3692,13 +5199,23 @@ Extended Community list Matching criteria and action rule
 
   <neighbor-id>         The IPv6 address of the neighbor node.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip vrr
 
 ### Usage
 
-  nv show interface <interface-id> ip vrr [options] [<attribute> ...]
+  `nv show interface <interface-id> ip vrr [options] [<attribute> ...]
 
-### Description
+
 
   Configuration for VRR
 
@@ -3718,13 +5235,23 @@ Extended Community list Matching criteria and action rule
 
   state                 The state of the interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip vrr address <ip-prefix-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip vrr address <ip-prefix-id> [options]
+  `nv show interface <interface-id> ip vrr address <ip-prefix-id> [options]
 
-### Description
+
 
   An IP address with prefix
 
@@ -3737,13 +5264,23 @@ Extended Community list Matching criteria and action rule
 
   <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip vrr state
 
 ### Usage
 
-  nv show interface <interface-id> ip vrr state [options]
+  `nv show interface <interface-id> ip vrr state [options]
 
-### Description
+
 
   The state of the interface
 
@@ -3754,13 +5291,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip gateway <ip-address-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip gateway <ip-address-id> [options]
+  `nv show interface <interface-id> ip gateway <ip-address-id> [options]
 
-### Description
+
 
   An IP address
 
@@ -3773,13 +5320,23 @@ Extended Community list Matching criteria and action rule
 
   <ip-address-id>       IPv4 or IPv6 address
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip ipv4
 
 ### Usage
 
-  nv show interface <interface-id> ip ipv4 [options]
+  `nv show interface <interface-id> ip ipv4 [options]
 
-### Description
+
 
   IPv4 configuration for an interface
 
@@ -3790,13 +5347,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip ipv6
 
 ### Usage
 
-  nv show interface <interface-id> ip ipv6 [options]
+  `nv show interface <interface-id> ip ipv6 [options]
 
-### Description
+
 
   IPv6 configuration for an interface
 
@@ -3807,13 +5374,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip igmp
 
 ### Usage
 
-  nv show interface <interface-id> ip igmp [options] [<attribute> ...]
+  `nv show interface <interface-id> ip igmp [options] [<attribute> ...]
 
-### Description
+
 
   Configuration for IGMP
 
@@ -3831,13 +5408,23 @@ Extended Community list Matching criteria and action rule
 
   static-group          IGMP static mutlicast mroutes
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip igmp static-group <static-group-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip igmp static-group <static-group-id> [options]
+  `nv show interface <interface-id> ip igmp static-group <static-group-id> [options]
 
-### Description
+
 
   IGMP static multicast mroute
 
@@ -3850,13 +5437,23 @@ Extended Community list Matching criteria and action rule
 
   <static-group-id>     IGMP static multicast mroute destination
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip vrrp
 
 ### Usage
 
-  nv show interface <interface-id> ip vrrp [options] [<attribute> ...]
+  `nv show interface <interface-id> ip vrrp [options] [<attribute> ...]
 
-### Description
+
 
   Configuration for VRRP
 
@@ -3874,13 +5471,23 @@ Extended Community list Matching criteria and action rule
 
   virtual-router        Group of virtual gateways implemented with VRRP
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]
+  `nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]
 
-### Description
+
 
   A virtual gateway implemented with VRRP
 
@@ -3900,13 +5507,23 @@ Extended Community list Matching criteria and action rule
 
   address               A set of virtual addresses for VRRPv3
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]
+  `nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]
 
-### Description
+
 
   An IP address
 
@@ -3921,13 +5538,23 @@ Extended Community list Matching criteria and action rule
 
   <ip-address-id>       IPv4 or IPv6 address
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip neighbor-discovery
 
 ### Usage
 
-  nv show interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]
+  `nv show interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]
 
-### Description
+
 
   Neighbor discovery configuration for an interface
 
@@ -3953,13 +5580,23 @@ Extended Community list Matching criteria and action rule
 
   home-agent            Home agent configuration
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options]
+  `nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options]
 
-### Description
+
 
   A recursive DNS server
 
@@ -3972,13 +5609,23 @@ Extended Community list Matching criteria and action rule
 
   <ipv6-address-id>     IPv6 address
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options]
+  `nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options]
 
-### Description
+
 
   A IPv6 prefix
 
@@ -3991,13 +5638,23 @@ Extended Community list Matching criteria and action rule
 
   <ipv6-prefix-id>      IPv6 address and route prefix in CIDR notation
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id>
 
 ### Usage
 
-  nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options]
+  `nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options]
 
-### Description
+
 
   A DNS search list
 
@@ -4010,13 +5667,23 @@ Extended Community list Matching criteria and action rule
 
   <domain-name-id>      The domain portion of a hostname (RFC 1123) or an internationalized hostname (RFC 5890).
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip neighbor-discovery router-advertisement
 
 ### Usage
 
-  nv show interface <interface-id> ip neighbor-discovery router-advertisement [options]
+  `nv show interface <interface-id> ip neighbor-discovery router-advertisement [options]
 
-### Description
+
 
   Router advertisement configuration for an interface
 
@@ -4027,13 +5694,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ip neighbor-discovery home-agent
 
 ### Usage
 
-  nv show interface <interface-id> ip neighbor-discovery home-agent [options]
+  `nv show interface <interface-id> ip neighbor-discovery home-agent [options]
 
-### Description
+
 
   Indicates to neighbors that this router acts as a Home Agent and includes a Home Agent Option. Not defined by default
 
@@ -4044,13 +5721,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> lldp
 
 ### Usage
 
-  nv show interface <interface-id> lldp [options] [<attribute> ...]
+  `nv show interface <interface-id> lldp [options] [<attribute> ...]
 
-### Description
+
 
   LLDP on for an interface
 
@@ -4068,13 +5755,23 @@ Extended Community list Matching criteria and action rule
 
   neighbor              LLDP neighbors
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> lldp neighbor <neighbor-id>
 
 ### Usage
 
-  nv show interface <interface-id> lldp neighbor <neighbor-id> [options] [<attribute> ...]
+  `nv show interface <interface-id> lldp neighbor <neighbor-id> [options] [<attribute> ...]
 
-### Description
+
 
   LLDP on an interface
 
@@ -4094,13 +5791,23 @@ Extended Community list Matching criteria and action rule
 
   bridge                Bridge properties, such as VLANs, of the neighbor
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> lldp neighbor <neighbor-id> bridge
 
 ### Usage
 
-  nv show interface <interface-id> lldp neighbor <neighbor-id> bridge [options] [<attribute> ...]
+  `nv show interface <interface-id> lldp neighbor <neighbor-id> bridge [options] [<attribute> ...]
 
-### Description
+
 
   An LLDP bridge
 
@@ -4120,13 +5827,23 @@ Extended Community list Matching criteria and action rule
 
   vlan                  Set of vlans understood by this neighbor.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid>
 
 ### Usage
 
-  nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid> [options]
+  `nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid> [options]
 
-### Description
+
 
   A VLAN tag identifier
 
@@ -4141,13 +5858,23 @@ Extended Community list Matching criteria and action rule
 
   <vid>                 VLAN ID, or all
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> link
 
 ### Usage
 
-  nv show interface <interface-id> link [options] [<attribute> ...]
+  `nv show interface <interface-id> link [options] [<attribute> ...]
 
-### Description
+
 
   An physical interface
 
@@ -4173,13 +5900,23 @@ Extended Community list Matching criteria and action rule
 
   flag                  link flags
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> link state
 
 ### Usage
 
-  nv show interface <interface-id> link state [options]
+  `nv show interface <interface-id> link state [options]
 
-### Description
+
 
   The state of the interface
 
@@ -4190,13 +5927,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> link dot1x
 
 ### Usage
 
-  nv show interface <interface-id> link dot1x [options]
+  `nv show interface <interface-id> link dot1x [options]
 
-### Description
+
 
   An physical interface
 
@@ -4207,13 +5954,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> link stats
 
 ### Usage
 
-  nv show interface <interface-id> link stats [options]
+  `nv show interface <interface-id> link stats [options]
 
-### Description
+
 
   Interface stats
 
@@ -4224,13 +5981,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> link traffic-engineering
 
 ### Usage
 
-  nv show interface <interface-id> link traffic-engineering [options]
+  `nv show interface <interface-id> link traffic-engineering [options]
 
-### Description
+
 
   Traffic engineering stats
 
@@ -4241,13 +6008,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> link flag
 
 ### Usage
 
-  nv show interface <interface-id> link flag [options]
+  `nv show interface <interface-id> link flag [options]
 
-### Description
+
 
   link flags
 
@@ -4258,11 +6035,21 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos
 
 ### Usage
 
-  nv show interface <interface-id> qos [options] [<attribute> ...]
+  `nv show interface <interface-id> qos [options] [<attribute> ...]
 
 ### Identifiers
 
@@ -4279,13 +6066,23 @@ Extended Community list Matching criteria and action rule
   counters
   roce
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos counters
 
 ### Usage
 
-  nv show interface <interface-id> qos counters [options] [<attribute> ...]
+  `nv show interface <interface-id> qos counters [options] [<attribute> ...]
 
-### Description
+
 
   Interface QoS counters
 
@@ -4309,13 +6106,23 @@ Extended Community list Matching criteria and action rule
 
   pfc-stats             PFC statistics per internal switch-priority
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos counters port-stats
 
 ### Usage
 
-  nv show interface <interface-id> qos counters port-stats [options] [<attribute> ...]
+  `nv show interface <interface-id> qos counters port-stats [options] [<attribute> ...]
 
-### Description
+
 
   QoS Statistics for Interface
 
@@ -4335,13 +6142,23 @@ Extended Community list Matching criteria and action rule
 
   tx-stats              QoS Tx Statistics for Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos counters port-stats rx-stats
 
 ### Usage
 
-  nv show interface <interface-id> qos counters port-stats rx-stats [options]
+  `nv show interface <interface-id> qos counters port-stats rx-stats [options]
 
-### Description
+
 
   QoS Rx Statistics for Interface
 
@@ -4352,13 +6169,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos counters port-stats tx-stats
 
 ### Usage
 
-  nv show interface <interface-id> qos counters port-stats tx-stats [options]
+  `nv show interface <interface-id> qos counters port-stats tx-stats [options]
 
-### Description
+
 
   QoS Tx Statistics for Interface
 
@@ -4369,13 +6196,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos counters egress-queue-stats
 
 ### Usage
 
-  nv show interface <interface-id> qos counters egress-queue-stats [options]
+  `nv show interface <interface-id> qos counters egress-queue-stats [options]
 
-### Description
+
 
   Egress queue statistics per egress traffic-class
 
@@ -4386,13 +6223,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos counters ingress-buffer-stats
 
 ### Usage
 
-  nv show interface <interface-id> qos counters ingress-buffer-stats [options]
+  `nv show interface <interface-id> qos counters ingress-buffer-stats [options]
 
-### Description
+
 
   Ingress Buffer statistics per priority-group
 
@@ -4403,13 +6250,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos counters pfc-stats
 
 ### Usage
 
-  nv show interface <interface-id> qos counters pfc-stats [options]
+  `nv show interface <interface-id> qos counters pfc-stats [options]
 
-### Description
+
 
   PFC statistics per internal switch-priority
 
@@ -4420,11 +6277,21 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos roce
 
 ### Usage
 
-  nv show interface <interface-id> qos roce [options] [<attribute> ...]
+  `nv show interface <interface-id> qos roce [options] [<attribute> ...]
 
 ### Identifiers
 
@@ -4441,13 +6308,23 @@ Extended Community list Matching criteria and action rule
   counters
   status
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos roce counters
 
 ### Usage
 
-  nv show interface <interface-id> qos roce counters [options]
+  `nv show interface <interface-id> qos roce counters [options]
 
-### Description
+
 
   Interface roce counters
 
@@ -4458,13 +6335,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos roce status
 
 ### Usage
 
-  nv show interface <interface-id> qos roce status [options] [<attribute> ...]
+  `nv show interface <interface-id> qos roce status [options] [<attribute> ...]
 
-### Description
+
 
   Interface status
 
@@ -4486,13 +6373,23 @@ Extended Community list Matching criteria and action rule
 
   tc-map                RoCE SP->TC mapping and ETS configurations
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos roce status pool-map
 
 ### Usage
 
-  nv show interface <interface-id> qos roce status pool-map [options]
+  `nv show interface <interface-id> qos roce status pool-map [options]
 
-### Description
+
 
   Interface Roce pools
 
@@ -4503,13 +6400,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos roce status prio-map
 
 ### Usage
 
-  nv show interface <interface-id> qos roce status prio-map [options]
+  `nv show interface <interface-id> qos roce status prio-map [options]
 
-### Description
+
 
   RoCE PCP/DSCP->SP mapping configurations
 
@@ -4520,13 +6427,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> qos roce status tc-map
 
 ### Usage
 
-  nv show interface <interface-id> qos roce status tc-map [options]
+  `nv show interface <interface-id> qos roce status tc-map [options]
 
-### Description
+
 
   RoCE SP->TC mapping and ETS configurations
 
@@ -4537,13 +6454,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> evpn
 
 ### Usage
 
-  nv show interface <interface-id> evpn [options] [<attribute> ...]
+  `nv show interface <interface-id> evpn [options] [<attribute> ...]
 
-### Description
+
 
   EVPN control plane config and info for VRF
 
@@ -4561,13 +6488,23 @@ Extended Community list Matching criteria and action rule
 
   multihoming           Multihoming interface configuration parameters
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> evpn multihoming
 
 ### Usage
 
-  nv show interface <interface-id> evpn multihoming [options] [<attribute> ...]
+  `nv show interface <interface-id> evpn multihoming [options] [<attribute> ...]
 
-### Description
+
 
   Multihoming interface configuration parameters
 
@@ -4585,13 +6522,23 @@ Extended Community list Matching criteria and action rule
 
   segment               Multihoming interface segment
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> evpn multihoming segment
 
 ### Usage
 
-  nv show interface <interface-id> evpn multihoming segment [options]
+  `nv show interface <interface-id> evpn multihoming segment [options]
 
-### Description
+
 
   Multihoming interface segment
 
@@ -4602,13 +6549,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> acl <acl-id>
 
 ### Usage
 
-  nv show interface <interface-id> acl <acl-id> [options] [<attribute> ...]
+  `nv show interface <interface-id> acl <acl-id> [options] [<attribute> ...]
 
-### Description
+
 
   An ACL is used for matching packets and take actions
 
@@ -4630,13 +6587,23 @@ Extended Community list Matching criteria and action rule
 
   outbound              ACL applied for outbound direction
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> acl <acl-id> inbound
 
 ### Usage
 
-  nv show interface <interface-id> acl <acl-id> inbound [options] [<attribute> ...]
+  `nv show interface <interface-id> acl <acl-id> inbound [options] [<attribute> ...]
 
-### Description
+
 
   inbound direction
 
@@ -4656,13 +6623,23 @@ Extended Community list Matching criteria and action rule
 
   control-plane         ACL applied for control plane
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> acl <acl-id> inbound control-plane
 
 ### Usage
 
-  nv show interface <interface-id> acl <acl-id> inbound control-plane [options]
+  `nv show interface <interface-id> acl <acl-id> inbound control-plane [options]
 
-### Description
+
 
   State details
 
@@ -4675,13 +6652,23 @@ Extended Community list Matching criteria and action rule
 
   <acl-id>              ACL ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> acl <acl-id> outbound
 
 ### Usage
 
-  nv show interface <interface-id> acl <acl-id> outbound [options] [<attribute> ...]
+  `nv show interface <interface-id> acl <acl-id> outbound [options] [<attribute> ...]
 
-### Description
+
 
   State details
 
@@ -4701,13 +6688,23 @@ Extended Community list Matching criteria and action rule
 
   control-plane
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> acl <acl-id> outbound control-plane
 
 ### Usage
 
-  nv show interface <interface-id> acl <acl-id> outbound control-plane [options]
+  `nv show interface <interface-id> acl <acl-id> outbound control-plane [options]
 
-### Description
+
 
   State details
 
@@ -4720,13 +6717,23 @@ Extended Community list Matching criteria and action rule
 
   <acl-id>              ACL ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ptp
 
 ### Usage
 
-  nv show interface <interface-id> ptp [options] [<attribute> ...]
+  `nv show interface <interface-id> ptp [options] [<attribute> ...]
 
-### Description
+
 
   Interface Specific PTP configuration.
 
@@ -4746,13 +6753,23 @@ Extended Community list Matching criteria and action rule
 
   counters              Interface PTP counters
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ptp timers
 
 ### Usage
 
-  nv show interface <interface-id> ptp timers [options]
+  `nv show interface <interface-id> ptp timers [options]
 
-### Description
+
 
   Interface PTP timerss
 
@@ -4763,13 +6780,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> ptp counters
 
 ### Usage
 
-  nv show interface <interface-id> ptp counters [options]
+  `nv show interface <interface-id> ptp counters [options]
 
-### Description
+
 
   Interface PTP counters
 
@@ -4780,13 +6807,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show interface <interface-id> tunnel
 
 ### Usage
 
-  nv show interface <interface-id> tunnel [options]
+  `nv show interface <interface-id> tunnel [options]
 
-### Description
+
 
   The state of the interface
 
@@ -4797,13 +6834,23 @@ Extended Community list Matching criteria and action rule
 
   <interface-id>        Interface
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service
 
 ### Usage
 
-  nv show service [options] [<attribute> ...]
+  `nv show service [options] [<attribute> ...]
 
-### Description
+
 
   A service
 
@@ -4830,13 +6877,23 @@ Extended Community list Matching criteria and action rule
 
   lldp                  Global LLDP
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service dns
 
 ### Usage
 
-  nv show service dns [options] [<vrf-id> ...]
+  `nv show service dns [options] [<vrf-id> ...]
 
-### Description
+
 
   collection of DNS
 
@@ -4844,16 +6901,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dns <vrf-id>
 
 ### Usage
 
-  nv show service dns <vrf-id> [options] [<attribute> ...]
+  `nv show service dns <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   Domain Name Service
 
@@ -4861,8 +6927,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -4871,13 +6936,23 @@ Extended Community list Matching criteria and action rule
 
   server                Remote DNS servers
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service dns <vrf-id> server <dns-server-id>
 
 ### Usage
 
-  nv show service dns <vrf-id> server <dns-server-id> [options]
+  `nv show service dns <vrf-id> server <dns-server-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -4885,18 +6960,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <dns-server-id>       IPv4 or IPv6 address of a DNS server
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service syslog
 
 ### Usage
 
-  nv show service syslog [options] [<vrf-id> ...]
+  `nv show service syslog [options] [<vrf-id> ...]
 
-### Description
+
 
   collection of syslog
 
@@ -4904,16 +6988,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service syslog <vrf-id>
 
 ### Usage
 
-  nv show service syslog <vrf-id> [options] [<attribute> ...]
+  `nv show service syslog <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   Domain Name Service
 
@@ -4921,8 +7014,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -4931,13 +7023,23 @@ Extended Community list Matching criteria and action rule
 
   server                Remote DNS servers
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service syslog <vrf-id> server <server-id>
 
 ### Usage
 
-  nv show service syslog <vrf-id> server <server-id> [options]
+  `nv show service syslog <vrf-id> server <server-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -4945,18 +7047,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <server-id>           Hostname or IP address of a syslog server
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ntp
 
 ### Usage
 
-  nv show service ntp [options] [<vrf-id> ...]
+  `nv show service ntp [options] [<vrf-id> ...]
 
-### Description
+
 
   NTPs
 
@@ -4964,16 +7075,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ntp <vrf-id>
 
 ### Usage
 
-  nv show service ntp <vrf-id> [options] [<attribute> ...]
+  `nv show service ntp <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   Network Time Protocol
 
@@ -4981,8 +7101,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -4993,13 +7112,23 @@ Extended Community list Matching criteria and action rule
 
   pool                  Remote NTP Servers
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service ntp <vrf-id> server <server-id>
 
 ### Usage
 
-  nv show service ntp <vrf-id> server <server-id> [options]
+  `nv show service ntp <vrf-id> server <server-id> [options]
 
-### Description
+
 
   A remote NTP Server
 
@@ -5007,18 +7136,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<server-id>` |   Hostname or IP address of the NTP server |
 
-  <vrf-id>              VRF
+### Version History
 
-  <server-id>           Hostname or IP address of the NTP server
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ntp <vrf-id> pool <server-id>
 
 ### Usage
 
-  nv show service ntp <vrf-id> pool <server-id> [options]
+  `nv show service ntp <vrf-id> pool <server-id> [options]
 
-### Description
+
 
   A remote NTP Server
 
@@ -5026,18 +7163,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<server-id>` |   Hostname or IP address of the NTP server |
 
-  <vrf-id>              VRF
+### Version History
 
-  <server-id>           Hostname or IP address of the NTP server
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-relay
 
 ### Usage
 
-  nv show service dhcp-relay [options] [<vrf-id> ...]
+  `nv show service dhcp-relay [options] [<vrf-id> ...]
 
-### Description
+
 
   DHCP-relays
 
@@ -5045,16 +7190,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-relay <vrf-id>
 
 ### Usage
 
-  nv show service dhcp-relay <vrf-id> [options] [<attribute> ...]
+  `nv show service dhcp-relay <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   DHCP relay
 
@@ -5062,8 +7216,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -5076,13 +7229,23 @@ Extended Community list Matching criteria and action rule
 
   giaddress-interface   Configures DHCP relay giaddress on the interfaes.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service dhcp-relay <vrf-id> server <server-id>
 
 ### Usage
 
-  nv show service dhcp-relay <vrf-id> server <server-id> [options]
+  `nv show service dhcp-relay <vrf-id> server <server-id> [options]
 
-### Description
+
 
   A DHCP server
 
@@ -5090,18 +7253,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <server-id>           DHCP server
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-relay <vrf-id> interface <interface-id>
 
 ### Usage
 
-  nv show service dhcp-relay <vrf-id> interface <interface-id> [options]
+  `nv show service dhcp-relay <vrf-id> interface <interface-id> [options]
 
-### Description
+
 
   An interface on which DHCP relay is configured.
 
@@ -5109,18 +7281,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<interface-id>` |  DHCP relay interface |
 
-  <vrf-id>              VRF
+### Version History
 
-  <interface-id>        DHCP relay interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-relay <vrf-id> giaddress-interface <interface-id>
 
 ### Usage
 
-  nv show service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options]
+  `nv show service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options]
 
-### Description
+
 
   An interface on which DHCP relay giaddress is configured.
 
@@ -5128,18 +7308,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<interface-id>`  | DHCP relay giaddress interface |
 
-  <vrf-id>              VRF
+### Version History
 
-  <interface-id>        DHCP relay giaddress interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-relay6
 
 ### Usage
 
-  nv show service dhcp-relay6 [options] [<vrf-id> ...]
+  `nv show service dhcp-relay6 [options] [<vrf-id> ...]
 
-### Description
+
 
   DHCP-relays
 
@@ -5147,16 +7335,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-relay6 <vrf-id>
 
 ### Usage
 
-  nv show service dhcp-relay6 <vrf-id> [options] [<attribute> ...]
+  `nv show service dhcp-relay6 <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   DHCP relay
 
@@ -5164,23 +7361,31 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `interface`  | DHCP relay interfaces |
 
-  interface             DHCP relay interfaces
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-relay6 <vrf-id> interface
 
 ### Usage
 
-  nv show service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]
+  `nv show service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]
 
-### Description
+
 
   DHCP relay interfaces
 
@@ -5188,8 +7393,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -5200,13 +7404,23 @@ Extended Community list Matching criteria and action rule
 
   downstream            Configures DHCP relay on the interfaes.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service dhcp-relay6 <vrf-id> interface upstream <interface-id>
 
 ### Usage
 
-  nv show service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options]
+  `nv show service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options]
 
-### Description
+
 
   An interface on which DPCH relay is configured.
 
@@ -5214,18 +7428,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<interface-id>` |  DHCP relay interface |
 
-  <vrf-id>              VRF
+### Version History
 
-  <interface-id>        DHCP relay interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-relay6 <vrf-id> interface downstream <interface-id>
 
 ### Usage
 
-  nv show service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options]
+  `nv show service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options]
 
-### Description
+
 
   An interface on which DPCH relay is configured.
 
@@ -5233,18 +7455,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<interface-id>` |  DHCP relay interface |
 
-  <vrf-id>              VRF
+### Version History
 
-  <interface-id>        DHCP relay interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp
 
 ### Usage
 
-  nv show service ptp [options] [<instance-id> ...]
+  `nv show service ptp [options] [<instance-id> ...]
 
-### Description
+
 
   Collection of PTP instances
 
@@ -5252,16 +7482,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id>
 
 ### Usage
 
-  nv show service ptp <instance-id> [options] [<attribute> ...]
+  `nv show service ptp <instance-id> [options] [<attribute> ...]
 
-### Description
+
 
   Global PTP configuration.
 
@@ -5269,8 +7508,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <instance-id>         PTP instance number. It is used for management purpose.
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
 ### Attributes
 
@@ -5289,13 +7527,23 @@ Extended Community list Matching criteria and action rule
 
   time-properties       Time attributes of the clock
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service ptp <instance-id> acceptable-master
 
 ### Usage
 
-  nv show service ptp <instance-id> acceptable-master [options] [<clock-id> ...]
+  `nv show service ptp <instance-id> acceptable-master [options] [<clock-id> ...]
 
-### Description
+
 
   Collection of acceptable masters
 
@@ -5303,18 +7551,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
+| `<clock-id>`  |  Clock ID |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
 
-  <clock-id>            Clock ID
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> acceptable-master <clock-id>
 
 ### Usage
 
-  nv show service ptp <instance-id> acceptable-master <clock-id> [options]
+  `nv show service ptp <instance-id> acceptable-master <clock-id> [options]
 
-### Description
+
 
   List of clocks that the local clock can accept as master clock
 
@@ -5322,18 +7578,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
+| `<clock-id>`  |  Clock ID |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
 
-  <clock-id>            Clock ID
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> monitor
 
 ### Usage
 
-  nv show service ptp <instance-id> monitor [options] [<attribute> ...]
+  `nv show service ptp <instance-id> monitor [options] [<attribute> ...]
 
-### Description
+
 
   PTP monitor configuration
 
@@ -5341,8 +7605,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <instance-id>         PTP instance number. It is used for management purpose.
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
 ### Attributes
 
@@ -5352,13 +7615,23 @@ Extended Community list Matching criteria and action rule
   timestamp-log         Collection of violations logs
   violations            PTP violations
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service ptp <instance-id> monitor timestamp-log
 
 ### Usage
 
-  nv show service ptp <instance-id> monitor timestamp-log [options]
+  `nv show service ptp <instance-id> monitor timestamp-log [options]
 
-### Description
+
 
   Collection of violations logs
 
@@ -5366,16 +7639,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> monitor violations
 
 ### Usage
 
-  nv show service ptp <instance-id> monitor violations [options] [<attribute> ...]
+  `nv show service ptp <instance-id> monitor violations [options] [<attribute> ...]
 
-### Description
+
 
   PTP violations
 
@@ -5383,8 +7665,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <instance-id>         PTP instance number. It is used for management purpose.
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
 ### Attributes
 
@@ -5393,13 +7674,23 @@ Extended Community list Matching criteria and action rule
 
   log                   PTP violations log
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service ptp <instance-id> monitor violations log
 
 ### Usage
 
-  nv show service ptp <instance-id> monitor violations log [options] [<attribute> ...]
+  `nv show service ptp <instance-id> monitor violations log [options] [<attribute> ...]
 
-### Description
+
 
   PTP violations log
 
@@ -5407,8 +7698,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <instance-id>         PTP instance number. It is used for management purpose.
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
 ### Attributes
 
@@ -5425,13 +7715,23 @@ Extended Community list Matching criteria and action rule
 
   path-delay            Collection of violations logs
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service ptp <instance-id> monitor violations log acceptable-master
 
 ### Usage
 
-  nv show service ptp <instance-id> monitor violations log acceptable-master [options]
+  `nv show service ptp <instance-id> monitor violations log acceptable-master [options]
 
-### Description
+
 
   Collection of master violations
 
@@ -5439,16 +7739,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> monitor violations log forced-master
 
 ### Usage
 
-  nv show service ptp <instance-id> monitor violations log forced-master [options]
+  `nv show service ptp <instance-id> monitor violations log forced-master [options]
 
-### Description
+
 
   Collection of master violations
 
@@ -5456,16 +7765,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> monitor violations log max-offset
 
 ### Usage
 
-  nv show service ptp <instance-id> monitor violations log max-offset [options]
+  `nv show service ptp <instance-id> monitor violations log max-offset [options]
 
-### Description
+
 
   Collection of violations logs
 
@@ -5473,16 +7791,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> monitor violations log min-offset
 
 ### Usage
 
-  nv show service ptp <instance-id> monitor violations log min-offset [options]
+  `nv show service ptp <instance-id> monitor violations log min-offset [options]
 
-### Description
+
 
   Collection of violations logs
 
@@ -5490,16 +7817,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> monitor violations log path-delay
 
 ### Usage
 
-  nv show service ptp <instance-id> monitor violations log path-delay [options]
+  `nv show service ptp <instance-id> monitor violations log path-delay [options]
 
-### Description
+
 
   Collection of violations logs
 
@@ -5507,16 +7843,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> current
 
 ### Usage
 
-  nv show service ptp <instance-id> current [options]
+  `nv show service ptp <instance-id> current [options]
 
-### Description
+
 
   Local states learned from the exchange of PTP messages
 
@@ -5524,16 +7869,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> clock-quality
 
 ### Usage
 
-  nv show service ptp <instance-id> clock-quality [options]
+  `nv show service ptp <instance-id> clock-quality [options]
 
-### Description
+
 
   Clock Quality Status
 
@@ -5541,16 +7895,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> parent
 
 ### Usage
 
-  nv show service ptp <instance-id> parent [options] [<attribute> ...]
+  `nv show service ptp <instance-id> parent [options] [<attribute> ...]
 
-### Description
+
 
   Local states learned from the exchange of PTP messages
 
@@ -5558,8 +7921,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <instance-id>         PTP instance number. It is used for management purpose.
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
 ### Attributes
 
@@ -5569,13 +7931,23 @@ Extended Community list Matching criteria and action rule
   grandmaster-clock-quality
                         Clock Quality Status
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service ptp <instance-id> parent grandmaster-clock-quality
 
 ### Usage
 
-  nv show service ptp <instance-id> parent grandmaster-clock-quality [options]
+  `nv show service ptp <instance-id> parent grandmaster-clock-quality [options]
 
-### Description
+
 
   Clock Quality Status
 
@@ -5583,16 +7955,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
-  <instance-id>         PTP instance number. It is used for management purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service ptp <instance-id> time-properties
 
 ### Usage
 
-  nv show service ptp <instance-id> time-properties [options]
+  `nv show service ptp <instance-id> time-properties [options]
 
-### Description
+
 
   Time attributes of the clock
 
@@ -5600,16 +7981,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<instance-id>` | PTP instance number. It is used for management  purpose. |
 
-  <instance-id>         PTP instance number. It is used for management  purpose.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server
 
 ### Usage
 
-  nv show service dhcp-server [options] [<vrf-id> ...]
+`nv show service dhcp-server [options] [<vrf-id> ...]`
 
-### Description
+
 
   DHCP-servers
 
@@ -5617,16 +8007,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server <vrf-id>
 
 ### Usage
 
-  nv show service dhcp-server <vrf-id> [options] [<attribute> ...]
+`nv show service dhcp-server <vrf-id> [options] [<attribute> ...]`
 
-### Description
+
 
   Dynamic Host Configuration Protocol Server
 
@@ -5634,8 +8033,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -5652,13 +8050,23 @@ Extended Community list Matching criteria and action rule
 
   static                DHCP clients with fixed IP address assignments
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service dhcp-server <vrf-id> interface <interface-id>
 
 ### Usage
 
-  nv show service dhcp-server <vrf-id> interface <interface-id> [options]
+  `nv show service dhcp-server <vrf-id> interface <interface-id> [options]
 
-### Description
+
 
   An interface on which DPCH clients are attached.
 
@@ -5666,18 +8074,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <interface-id>        DHCP client interface
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id>
 
 ### Usage
 
-  nv show service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]
+  `nv show service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]
 
-### Description
+
 
   DHCP Pool
 
@@ -5685,8 +8102,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <pool-id>             DHCP pool subnet.
 
@@ -5703,13 +8119,23 @@ Extended Community list Matching criteria and action rule
 
   range                 IP Address range assignments
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
 
 ### Usage
 
-  nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
+  `nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -5717,20 +8143,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |  VRF |
+| `<pool-id>` |  DHCP pool subnet. |
+| `<server-id>` | DNS server |
 
-  <vrf-id>              VRF
+### Version History
 
-  <pool-id>             DHCP pool subnet.
+Introduced in Cumulus Linux 5.0.0
 
-  <server-id>           DNS server
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
 
 ### Usage
 
-  nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]
+  `nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]
 
-### Description
+
 
   TBD
 
@@ -5738,20 +8171,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<pool-id>` | DHCP pool subnet. |
+| `<domain-name-id>` | DHCP domain name |
 
-  <vrf-id>              VRF
+### Version History
 
-  <pool-id>             DHCP pool subnet.
+Introduced in Cumulus Linux 5.0.0
 
-  <domain-name-id>      DHCP domain name
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>
 
 ### Usage
 
-  nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]
+  `nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -5759,20 +8199,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<pool-id>` | DHCP pool subnet. |
+| `<gateway-id>` |  Gateway |
 
-  <vrf-id>              VRF
+### Version History
 
-  <pool-id>             DHCP pool subnet.
+Introduced in Cumulus Linux 5.0.0
 
-  <gateway-id>          Gateway
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id>
 
 ### Usage
 
-  nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options]
+  `nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options]
 
-### Description
+
 
   DHCP Pool range
 
@@ -5780,94 +8227,126 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<pool-id>` | DHCP pool subnet. |
+| `<range-id>` |   DHCP client interface |
 
-  <vrf-id>              VRF
+### Version History
 
-  <pool-id>             DHCP pool subnet.
+Introduced in Cumulus Linux 5.0.0
 
-  <range-id>            DHCP client interface
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server <vrf-id> domain-name <domain-name-id>
 
+TBD
+
 ### Usage
 
-  nv show service dhcp-server <vrf-id> domain-name <domain-name-id> [options]
-
-### Description
-
-  TBD
+`nv show service dhcp-server <vrf-id> domain-name <domain-name-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<domain-name-id>` | DHCP domain name |
 
-  <vrf-id>              VRF
+### Version History
 
-  <domain-name-id>      DHCP domain name
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server <vrf-id> domain-name-server <server-id>
 
+A remote DNS server
+
 ### Usage
 
-  nv show service dhcp-server <vrf-id> domain-name-server <server-id> [options]
-
-### Description
-
-  A remote DNS server
+`nv show service dhcp-server <vrf-id> domain-name-server <server-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<server-id>` |  DNS server |
 
-  <vrf-id>              VRF
+### Version History
 
-  <server-id>           DNS server
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server <vrf-id> static <static-id>
 
+static entry
+
 ### Usage
 
-  nv show service dhcp-server <vrf-id> static <static-id> [options]
-
-### Description
-
-  static entry
+`nv show service dhcp-server <vrf-id> static <static-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<static-id>` | static mapping name|
 
-  <vrf-id>              VRF
+### Version History
 
-  <static-id>           static mapping nane
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server6
 
+DHCP-servers6
+
 ### Usage
 
-  nv show service dhcp-server6 [options] [<vrf-id> ...]
-
-### Description
-
-  DHCP-servers6
+`nv show service dhcp-server6 [options] [<vrf-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server6 <vrf-id>
 
 ### Usage
 
-  nv show service dhcp-server6 <vrf-id> [options] [<attribute> ...]
+  `nv show service dhcp-server6 <vrf-id> [options] [<attribute> ...]
 
-### Description
+
 
   Dynamic Host Configuration Protocol IPv6 Server
 
@@ -5875,8 +8354,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -5893,13 +8371,23 @@ Extended Community list Matching criteria and action rule
 
   static                DHCP clients with fixed IP address assignments
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service dhcp-server6 <vrf-id> interface <interface-id>
 
 ### Usage
 
-  nv show service dhcp-server6 <vrf-id> interface <interface-id> [options]
+  `nv show service dhcp-server6 <vrf-id> interface <interface-id> [options]
 
-### Description
+
 
   An interface on which DPCH clients are attached.
 
@@ -5907,18 +8395,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| <interface-id>` | DHCP client interface |
 
-  <vrf-id>              VRF
+### Version History
 
-  <interface-id>        DHCP client interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id>
 
 ### Usage
 
-  nv show service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]
+  `nv show service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]
 
-### Description
+
 
   DHCP Pool
 
@@ -5926,10 +8422,8 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
-
-  <pool-id>             DHCP6 pool subnet.
+| `<vrf-id>` |    VRF |
+| `<pool-id>` |   DHCP6 pool subnet. |
 
 ### Attributes
 
@@ -5942,13 +8436,23 @@ Extended Community list Matching criteria and action rule
 
   range                 IP Address range assignments
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
 
 ### Usage
 
-  nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
+  `nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -5956,20 +8460,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<pool-id>` |  DHCP6 pool subnet. |
+| `<server-id>` |   DNS server |
 
-  <vrf-id>              VRF
+### Version History
 
-  <pool-id>             DHCP6 pool subnet.
+Introduced in Cumulus Linux 5.0.0
 
-  <server-id>           DNS server
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
 
 ### Usage
 
-  nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]
+  `nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]
 
-### Description
+
 
   TBD
 
@@ -5977,20 +8488,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<pool-id>` |  DHCP6 pool subnet. |
+| `<domain-name-id>` | DHCP domain name |
 
-  <vrf-id>              VRF
+### Version History
 
-  <pool-id>             DHCP6 pool subnet.
+Introduced in Cumulus Linux 5.0.0
 
-  <domain-name-id>      DHCP domain name
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
 
 ### Usage
 
-  nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options]
+  `nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options]
 
-### Description
+
 
   DHCP Pool range
 
@@ -5998,20 +8516,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<pool-id>` |  DHCP6 pool subnet. |
+| `<range-id>` |  DHCP client interface |
 
-  <vrf-id>              VRF
+### Version History
 
-  <pool-id>             DHCP6 pool subnet.
+Introduced in Cumulus Linux 5.0.0
 
-  <range-id>            DHCP client interface
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id>
 
 ### Usage
 
-  nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options]
+  `nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options]
 
-### Description
+
 
   TBD
 
@@ -6019,18 +8544,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<domain-name-id>` | DHCP domain name |
 
-  <vrf-id>              VRF
+### Version History
 
-  <domain-name-id>      DHCP domain name
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server6 <vrf-id> domain-name-server <server-id>
 
 ### Usage
 
-  nv show service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]
+  `nv show service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]
 
-### Description
+
 
   A remote DNS server
 
@@ -6038,18 +8571,26 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<server-id>` |  DNS server |
 
-  <vrf-id>              VRF
+### Version History
 
-  <server-id>           DNS server
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service dhcp-server6 <vrf-id> static <static-id>
 
 ### Usage
 
-  nv show service dhcp-server6 <vrf-id> static <static-id> [options]
+  `nv show service dhcp-server6 <vrf-id> static <static-id> [options]
 
-### Description
+
 
   static entry
 
@@ -6057,28 +8598,46 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<static-id>` |  static mapping name|
 
-  <vrf-id>              VRF
+### Version History
 
-  <static-id>           static mapping nane
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show service lldp
 
 ### Usage
 
-  nv show service lldp [options]
+  `nv show service lldp [options]
 
-### Description
+
 
   Global LLDP
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system
 
 ### Usage
 
-  nv show system [options] [<attribute> ...]
+  `nv show system [options] [<attribute> ...]
 
-### Description
+
 
   Top-level node which contains system-wide properties.
 
@@ -6101,13 +8660,23 @@ Extended Community list Matching criteria and action rule
 
   config                Affect how config operations are performed.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show system control-plane
 
 ### Usage
 
-  nv show system control-plane [options] [<attribute> ...]
+  `nv show system control-plane [options] [<attribute> ...]
 
-### Description
+
 
   Control Plane specific configurations
 
@@ -6120,13 +8689,23 @@ Extended Community list Matching criteria and action rule
 
   policer               Policers
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show system control-plane trap <trap-id>
 
 ### Usage
 
-  nv show system control-plane trap <trap-id> [options]
+  `nv show system control-plane trap <trap-id> [options]
 
-### Description
+
 
   Trap
 
@@ -6134,16 +8713,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<trap-id>` | TRAP ID |
 
-  <trap-id>             TRAP ID
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system control-plane policer <policer-id>
 
 ### Usage
 
-  nv show system control-plane policer <policer-id> [options] [<attribute> ...]
+  `nv show system control-plane policer <policer-id> [options] [<attribute> ...]
 
-### Description
+
 
   Policer
 
@@ -6151,23 +8739,31 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <policer-id>          Policer ID
+| `<policer-id>` |  Policer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `statistics` | Policer Statistics|
 
-  statistics            Policer Statistics
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system control-plane policer <policer-id> statistics
 
 ### Usage
 
-  nv show system control-plane policer <policer-id> statistics [options]
+  `nv show system control-plane policer <policer-id> statistics [options]
 
-### Description
+
 
   Policer Statistics
 
@@ -6175,26 +8771,45 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<policer-id>` | Policer ID |
 
-  <policer-id>          Policer ID
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system message
 
 ### Usage
 
-  nv show system message [options]
+  `nv show system message [options]
 
-### Description
+
 
   System pre-login and post-login messages
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system global
 
 ### Usage
 
-  nv show system global [options] [<attribute> ...]
+  `nv show system global [options] [<attribute> ...]
 
-### Description
+
 
   global system configuration
 
@@ -6202,16 +8817,25 @@ Extended Community list Matching criteria and action rule
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `reserved` |  reserved ranges |
 
-  reserved              reserved ranges
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system global reserved
 
 ### Usage
 
-  nv show system global reserved [options] [<attribute> ...]
+  `nv show system global reserved [options] [<attribute> ...]
 
-### Description
+
 
   reserved ranges
 
@@ -6219,18 +8843,26 @@ Extended Community list Matching criteria and action rule
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `routing-table` |  reserved routing table ranges |
+| `vlan` |  reserved vlan ranges |
 
-  routing-table         reserved routing table ranges
+### Version History
 
-  vlan                  reserved vlan ranges
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system global reserved routing-table
 
 ### Usage
 
-  nv show system global reserved routing-table [options] [<attribute> ...]
+  `nv show system global reserved routing-table [options] [<attribute> ...]
 
-### Description
+
 
   reserved routing table ranges
 
@@ -6238,546 +8870,753 @@ Extended Community list Matching criteria and action rule
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `pbr`  | reserved routing table ranges for PBR |
 
-  pbr                   reserved routing table ranges for PBR
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system global reserved routing-table pbr
 
 ### Usage
 
-  nv show system global reserved routing-table pbr [options]
+  `nv show system global reserved routing-table pbr [options]
 
-### Description
+
 
   reserved routing table ranges for PBR
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show system global reserved vlan
+
+reserved vlan ranges
 
 ### Usage
 
-  nv show system global reserved vlan [options] [<attribute> ...]
-
-### Description
-
-  reserved vlan ranges
+`nv show system global reserved vlan [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `l3-vni-vlan` |  Reserved vlans to be used with l3vni |
 
-  l3-vni-vlan           Reserved vlans to be used with l3vni
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system global reserved vlan l3-vni-vlan
 
+Reserved vlans to be used with l3vni
+
 ### Usage
 
-  nv show system global reserved vlan l3-vni-vlan [options]
+`nv show system global reserved vlan l3-vni-vlan [options]`
 
-### Description
+### Version History
 
-  Reserved vlans to be used with l3vni
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system ztp
 
+System Zero Touch Provisioning
+
 ### Usage
 
-  nv show system ztp [options] [<attribute> ...]
-
-### Description
-
-  System Zero Touch Provisioning
+`nv show system ztp [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `script` |   Zero Touch Provisioning Script |
+| `status` |   Zero Touch Provisioning Last Status |
 
-  script                Zero Touch Provisioning Script
+### Version History
 
-  status                Zero Touch Provisioning Last Status
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system ztp script
 
+Zero Touch Provisioning Script
+
 ### Usage
 
-  nv show system ztp script [options]
+`nv show system ztp script [options]`
 
-### Description
+### Version History
 
-  Zero Touch Provisioning Script
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system ztp status
 
+Zero Touch Provisioning Last Status
+
 ### Usage
 
-  nv show system ztp status [options]
+`nv show system ztp status [options]`
 
-### Description
+### Version History
 
-  Zero Touch Provisioning Last Status
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system reboot
 
+Platform reboot info
+
 ### Usage
 
-  nv show system reboot [options] [<attribute> ...]
-
-### Description
-
-  Platform reboot info
+`nv show system reboot [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `reason` |  Platform reboot reason |
+| `history`  | Platform reboot history |
 
-  reason                Platform reboot reason
+### Version History
 
-  history               Platform reboot history
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system reboot reason
 
+Platform reboot reason
+
 ### Usage
 
-  nv show system reboot reason [options]
+`nv show system reboot reason [options]`
 
-### Description
+### Version History
 
-  Platform reboot reason
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system reboot history
 
+Platform reboot history
+
 ### Usage
 
-  nv show system reboot history [options]
+`nv show system reboot history [options]`
 
-### Description
+### Version History
 
-  Platform reboot history
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror
 
+Port mirror
+
 ### Usage
 
-  nv show system port-mirror [options] [<attribute> ...]
-
-### Description
-
-  Port mirror
+`nv show system port-mirror [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `session` |   sessions |
 
-  session               sessions
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session
 
+sessions
+
 ### Usage
 
-  nv show system port-mirror session [options] [<session-id> ...]
-
-### Description
-
-  sessions
+`nv show system port-mirror session [options] [<session-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>`  |port mirror session number |
 
-  <session-id>          port mirror session number
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id>
 
+port mirror session number
+
 ### Usage
 
-  nv show system port-mirror session <session-id> [options] [<attribute> ...]
-
-### Description
-
-  port mirror session number
+`nv show system port-mirror session <session-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <session-id>          port mirror session number
+| `<session-id>` |  port mirror session number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `span` | Switched Port Analyzer |
+| `erspan` |  Encapsulated Remote Switched Port Analyzer.|
 
-  span                  Switched Port Analyzer
+### Version History
 
-  erspan                Encapsulated Remote Switched Port Analyzer.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> span
 
+Switched Port Analyzer
+
 ### Usage
 
-  nv show system port-mirror session <session-id> span [options] [<attribute> ...]
-
-### Description
-
-  Switched Port Analyzer
+`nv show system port-mirror session <session-id> span [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <session-id>          port mirror session number
+| `<session-id>` |   port mirror session number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `source-port` | Set of source ports.|
+| `destination` |  The SPAN destination port.|
+| `truncate` |  TBD|
 
-  source-port           Set of source ports.
+### Version History
 
-  destination           The SPAN destination port.
-  truncate              TBD
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> span source-port
 
+Set of source ports.
+
 ### Usage
 
-  nv show system port-mirror session <session-id> span source-port [options] [<port-id> ...]
+`nv show system port-mirror session <session-id> span source-port [options] [<port-id> ...]`
 
-### Description
-
-  Set of source ports.
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
+| `<port-id>` | Port interface |
 
-  <session-id>          port mirror session number
+### Version History
 
-  <port-id>             Port interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> span source-port <port-id>
 
+A port-mirror source port (swps or bonds only)
+
 ### Usage
 
-  nv show system port-mirror session <session-id> span source-port <port-id> [options]
-
-### Description
-
-  A port-mirror source port (swps or bonds only)
+`nv show system port-mirror session <session-id> span source-port <port-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
+| `<port-id>` | Port interface |
 
-  <session-id>          port mirror session number
+### Version History
 
-  <port-id>             Port interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> span destination
 
+The SPAN destination port.
+
 ### Usage
 
-  nv show system port-mirror session <session-id> span destination [options] [<port-id> ...]
-
-### Description
-
-  The SPAN destination port.
+`nv show system port-mirror session <session-id> span destination [options] [<port-id> ...]`
 
 ### Identifiers
 
-| Identifier |  Description   |
+|| Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
+| `<port-id>` | Port interface |
 
-  <session-id>          port mirror session number
+### Version History
 
-  <port-id>             Port interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> span destination <port-id>
 
+The SPAN destination port.
+
 ### Usage
 
-  nv show system port-mirror session <session-id> span destination <port-id> [options]
-
-### Description
-
-  The SPAN destination port.
+`nv show system port-mirror session <session-id> span destination <port-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
+| `<port-id>` | Port interface |
 
-  <session-id>          port mirror session number
+### Version History
 
-  <port-id>             Port interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> span truncate
 
+TBD
+
 ### Usage
 
-  nv show system port-mirror session <session-id> span truncate [options]
-
-### Description
-
-  TBD
+`nv show system port-mirror session <session-id> span truncate [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
 
-  <session-id>          port mirror session number
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> erspan
 
+Encapsulated Remote Switched Port Analyzer.
+
 ### Usage
 
-  nv show system port-mirror session <session-id> erspan [options] [<attribute> ...]
-
-### Description
-
-  Encapsulated Remote Switched Port Analyzer.
+`nv show system port-mirror session <session-id> erspan [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <session-id>          port mirror session number
+| `<session-id>` |  port mirror session number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `source-port` |   Set of source ports. |
+| `destination` |   erspan destination |
+| `truncate` |   TBD|
 
-  source-port           Set of source ports.
+### Version History
 
-  destination           erspan destination
+Introduced in Cumulus Linux 5.0.0
 
-  truncate              TBD
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> erspan source-port
 
+Set of source ports.
+
 ### Usage
 
-  nv show system port-mirror session <session-id> erspan source-port [options] [<port-id> ...]
-
-### Description
-
-  Set of source ports.
+`nv show system port-mirror session <session-id> erspan source-port [options] [<port-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
+| `<port-id>` |   Port interface` |
 
-  <session-id>          port mirror session number
+### Version History
 
-  <port-id>             Port interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> erspan source-port <port-id>
 
+A port-mirror source port (swps or bonds only)
+
 ### Usage
 
-  nv show system port-mirror session <session-id> erspan source-port <port-id> [options]
-
-### Description
-
-  A port-mirror source port (swps or bonds only)
+`nv show system port-mirror session <session-id> erspan source-port <port-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
+| `<port-id>` |   Port interface |
 
-  <session-id>          port mirror session number
+### Version History
 
-  <port-id>             Port interface
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> erspan destination
 
+erspan destination
+
 ### Usage
 
-  nv show system port-mirror session <session-id> erspan destination [options] [<attribute> ...]
-
-### Description
-
-  erspan destination
+`nv show system port-mirror session <session-id> erspan destination [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <session-id>          port mirror session number
+| `<session-id>` |  port mirror session number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `source-ip` | TBD |
+| `dest-ip` |   TBD |
 
-  source-ip             TBD
+### Version History
 
-  dest-ip               TBD
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> erspan destination source-ip
 
+Set of IPv4 addresses
+
 ### Usage
 
-  nv show system port-mirror session <session-id> erspan destination source-ip [options] [<source-ip> ...]
-
-### Description
-
-  Set of IPv4 addresses
+`nv show system port-mirror session <session-id> erspan destination source-ip [options] [<source-ip> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
+| `<source-ip>` | IPv4 address |
 
-  <session-id>          port mirror session number
+### Version History
 
-  <source-ip>           IPv4 address
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> erspan destination source-ip <source-ip>
 
+An IPv4 address
+
 ### Usage
 
-  nv show system port-mirror session <session-id> erspan destination source-ip <source-ip> [options]
-
-### Description
-
-  An IPv4 address
+`nv show system port-mirror session <session-id> erspan destination source-ip <source-ip> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
 
-  <session-id>          port mirror session number
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> erspan destination dest-ip
 
+Set of IPv4 addresses
+
 ### Usage
 
-  nv show system port-mirror session <session-id> erspan destination dest-ip [options] [<dest-ip> ...]
-
-### Description
-
-  Set of IPv4 addresses
+`nv show system port-mirror session <session-id> erspan destination dest-ip [options] [<dest-ip> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
+| `<dest-ip>` |  IPv4 address |
 
-  <session-id>          port mirror session number
+### Version History
 
-  <dest-ip>             IPv4 address
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> erspan destination dest-ip <dest-ip>
 
+An IPv4 address
+
 ### Usage
 
-  nv show system port-mirror session <session-id> erspan destination dest-ip <dest-ip> [options]
-
-### Description
-
-  An IPv4 address
+`nv show system port-mirror session <session-id> erspan destination dest-ip <dest-ip> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
 
-  <session-id>          port mirror session number
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system port-mirror session <session-id> erspan truncate
 
+TBD
+
 ### Usage
 
-  nv show system port-mirror session <session-id> erspan truncate [options]
-
-### Description
-
-  TBD
+`nv show system port-mirror session <session-id> erspan truncate [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<session-id>` |  port mirror session number |
 
-  <session-id>          port mirror session number
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system config
 
+Affect how config operations are performed.
+
 ### Usage
 
-  nv show system config [options] [<attribute> ...]
-
-### Description
-
-  Affect how config operations are performed.
+`nv show system config [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `apply`   |  Affect how config apply operations are performed.|
+| `snippet`  | Configuration file snippets that will be loaded as written into the appropriate configuration file during a foundation unit's lifecycle.
 
-  apply                 Affect how config apply operations are performed.
+### Version History
 
-  snippet               Configuration file snippets that will be loaded as written into the appropriate configuration file during a foundation unit's lifecycle. This is essentially a copy-paste operation to handle gaps in the current CUE
-                        OM.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system config apply
 
+Affect how config apply operations are performed.
+
 ### Usage
 
-  nv show system config apply [options] [<attribute> ...]
-
-### Description
-
-  Affect how config apply operations are performed.
+`nv show system config apply [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `ignore` |   Set of files to ignore during config apply operations. |
 
-  ignore                Set of files to ignore during config apply operations.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system config apply ignore
 
+Set of files to ignore during config apply operations.
+
 ### Usage
 
-  nv show system config apply ignore [options] [<ignore-id> ...]
-
-### Description
-
-  Set of files to ignore during config apply operations.
+`nv show system config apply ignore [options] [<ignore-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<ignore-id>` |   Ignored file |
 
-  <ignore-id>           Ignored file
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system config apply ignore <ignore-id>
 
 ### Usage
 
-  nv show system config apply ignore <ignore-id> [options]
+`nv show system config apply ignore <ignore-id> [options]`
 
-### Description
+
 
   File to ignore during config apply operations.
 
@@ -6785,302 +9624,370 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<ignore-id>` |   Ignored file |
 
-  <ignore-id>           Ignored file
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show system config snippet
 
+Configuration file snippets that will be loaded as written into the appropriate configuration file during a foundation unit's lifecycle.  This is essentially a copy-paste operation to handle gaps in the current CUE OM.
+
 ### Usage
 
-  nv show system config snippet [options]
+`nv show system config snippet [options]`
 
-### Description
+### Version History
 
-  Configuration file snippets that will be loaded as written into the appropriate configuration file during a foundation unit's
-  lifecycle.  This is essentially a copy-paste operation to handle gaps in the current CUE OM.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf
 
+Shows the VRFs on the switch.
+
 ### Usage
 
-  nv show vrf [options] [<vrf-id> ...]
-
-### Description
-
-  VRFs
+`nv show vrf [options] [<vrf-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |  The VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> [options] [<attribute> ...]
-
-### Description
-
-  A VRF
+`nv show vrf <vrf-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `loopback` |The loopback IP interface associated with this VRF.|
+| `evpn`     |EVPN control plane config and info for VRF|
+| `router`   |A VRF|
+| `ptp`      |VRF PTP configuration. Inherited by interfaces in this VRF.|
 
-  loopback              The loopback IP interface associated with this VRF.
+### Version History
 
-  evpn                  EVPN control plane config and info for VRF
+Introduced in Cumulus Linux 5.0.0
 
-  router                A VRF
+### Example
 
-  ptp                   VRF PTP configuration. Inherited by interfaces in this VRF.
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> loopback
 
+The loopback IP interface associated with this VRF.
+
 ### Usage
 
-  nv show vrf <vrf-id> loopback [options] [<attribute> ...]
-
-### Description
-
-  The loopback IP interface associated with this VRF.
+`nv show vrf <vrf-id> loopback [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `ip` |  Properties associated with the loopback IP address on this VRF. |
 
-  ip                    Properties associated with the loopback IP address on this VRF.
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> loopback ip
 
+IP addresses associated with the VRF's loopback interface.
+
 ### Usage
 
-  nv show vrf <vrf-id> loopback ip [options] [<attribute> ...]
+`nv show vrf <vrf-id> loopback ip [options] [<attribute> ...]`
 
-### Description
-
-  IP addresses associated with the VRF's loopback interface.
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `address` |  static IPv4 or IPv6 address |
 
-  address               static IPv4 or IPv6 address
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> loopback ip address <ip-prefix-id>
 
+An IP address with prefix
+
 ### Usage
 
-  nv show vrf <vrf-id> loopback ip address <ip-prefix-id> [options]
+`nv show vrf <vrf-id> loopback ip address <ip-prefix-id> [options] |
 
-### Description
-
-  An IP address with prefix
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<ip-prefix-id>` |    IPv4 or IPv6 address and route prefix in CIDR notation \
 
-  <vrf-id>              VRF
+### Version History
 
-  <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> evpn
 
+EVPN control plane config and info for VRF
+
 ### Usage
 
-  nv show vrf <vrf-id> evpn [options] [<attribute> ...]
-
-### Description
-
-  EVPN control plane config and info for VRF
+`nv show vrf <vrf-id> evpn [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `vni`|  L3 VNI |
 
-  vni                   L3 VNI
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> evpn vni <vni-id>
 
+ VNI
+
 ### Usage
 
-  nv show vrf <vrf-id> evpn vni <vni-id> [options]
-
-### Description
-
-  VNI
+`nv show vrf <vrf-id> evpn vni <vni-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<vni-id>` |  VxLAN ID |
 
-  <vrf-id>              VRF
+### Version History
 
-  <vni-id>              VxLAN ID
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router
 
+A VRF
+
 ### Usage
 
-  nv show vrf <vrf-id> router [options] [<attribute> ...]
-
-### Description
-
-  A VRF
+`nv show vrf <vrf-id> router [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `rib`      |RIB Routes|
+| `bgp`      |BGP VRF configuration.|
+| `static`   |Routes|
+| `pim`      |PIM VRF configuration.|
+| `ospf`     |OSPF VRF configuration.|
 
-  rib                   RIB Routes
+### Version History
 
-  bgp                   BGP VRF configuration.
+Introduced in Cumulus Linux 5.0.0
 
-  static                Routes
+### Example
 
-  pim                   PIM VRF configuration.
-
-  ospf                  OSPF VRF configuration.
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router rib <afi>
 
+Vrf aware Routing-table per address-family
+
 ### Usage
 
-  nv show vrf <vrf-id> router rib <afi> [options] [<attribute> ...]
-
-### Description
-
-  Vrf aware Routing-table per address-family
+`nv show vrf <vrf-id> router rib <afi> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
-
-  <afi>                 Route address family.
+| `<vrf-id>` |    VRF |
+| `<afi>` |  Route address family. |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `protocol` |   Import protocols from RIB to FIB |
+| `route` |  RIB Routes with info.|
 
-  protocol              Import protocols from RIB to FIB
+### Version History
 
-  route                 RIB Routes with info.
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
 
+Import Protocols from where routes are known
+
 ### Usage
 
-  nv show vrf <vrf-id> router rib <afi> protocol <import-protocol-id> [options]
-
-### Description
-
-  Import Protocols from where routes are known
+`nv show vrf <vrf-id> router rib <afi> protocol <import-protocol-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<afi>` |   Route address family. |
+| `<import-protocol-id>` |  Import protocol list. |
 
-  <vrf-id>              VRF
+### Version History
 
-  <afi>                 Route address family.
+Introduced in Cumulus Linux 5.0.0
 
-  <import-protocol-id>  Import protocol list.
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router rib <afi> route <route-id>
 
+A route
+
 ### Usage
 
-  nv show vrf <vrf-id> router rib <afi> route <route-id> [options] [<attribute> ...]
-
-### Description
-
-  A route
+`nv show vrf <vrf-id> router rib <afi> route <route-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
-
-  <afi>                 Route address family.
-
-  <route-id>            IP prefix
+| `<vrf-id>` |    VRF |
+| `<afi>` |   Route address family. |
+| `<route-id>`   | IP prefix |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
+| `protocol` |   Route entries |
 
-  protocol              Route entries
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id>
 
+Protocol types from where routes are known
+
 ### Usage
 
-  nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> [options] [<attribute> ...]
-
-### Description
-
-  Protocol types from where routes are known
+`nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <afi>                 Route address family.
 
@@ -7095,13 +10002,23 @@ Extended Community list Matching criteria and action rule
 
   entry-index           Route entries
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp [options] [<attribute> ...]
 
-### Description
+
 
   BGP VRF configuration.
 
@@ -7109,8 +10026,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7135,13 +10051,23 @@ Extended Community list Matching criteria and action rule
 
   neighbor              Peers
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family [options] [<attribute> ...]
 
-### Description
+
 
   Address family specific configuration
 
@@ -7149,8 +10075,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7163,13 +10088,23 @@ Extended Community list Matching criteria and action rule
 
   ipv6-unicast          IPv6 unicast address family
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]
 
-### Description
+
 
   IPv4 unicast address family
 
@@ -7177,8 +10112,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7201,13 +10135,23 @@ Extended Community list Matching criteria and action rule
 
   loc-rib               IPv4 local RIB
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]
 
-### Description
+
 
   Route redistribute
 
@@ -7215,8 +10159,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7231,13 +10174,23 @@ Extended Community list Matching criteria and action rule
 
   ospf                  Route redistribution of ipv4 ospf routes
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options]
 
-### Description
+
 
   Source route type.
 
@@ -7245,16 +10198,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options]
 
-### Description
+
 
   Source route type.
 
@@ -7262,16 +10224,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options]
 
-### Description
+
 
   Source route type.
 
@@ -7279,16 +10250,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options]
 
-### Description
+
 
   Source route type.
 
@@ -7296,16 +10276,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options]
 
-### Description
+
 
   An IPv4 aggregate route
 
@@ -7313,18 +10302,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <aggregate-route-id>  IPv4 address and route prefix in CIDR notation
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options]
 
-### Description
+
 
   An IPv4 static network.
 
@@ -7332,18 +10330,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <static-network-id>   IPv4 address and route prefix in CIDR notation
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]
 
-### Description
+
 
   Route import
 
@@ -7351,8 +10358,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7361,13 +10367,23 @@ Extended Community list Matching criteria and action rule
 
   from-vrf              Controls for VRF to VRF route leaking for this address-family
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]
 
-### Description
+
 
   Controls for VRF to VRF route leaking for this address-family
 
@@ -7375,8 +10391,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7385,13 +10400,23 @@ Extended Community list Matching criteria and action rule
 
   list                  List of VRFs the routes can be imported from
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]
 
-### Description
+
 
   A VRF
 
@@ -7399,18 +10424,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <leak-vrf-id>         VRF
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast multipaths
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options]
 
-### Description
+
 
   Multipaths
 
@@ -7418,16 +10452,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance [options]
 
-### Description
+
 
   Admin distances.
 
@@ -7435,16 +10478,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]
 
-### Description
+
 
   Route export
 
@@ -7452,8 +10504,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7462,13 +10513,23 @@ Extended Community list Matching criteria and action rule
 
   to-evpn               Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options]
 
-### Description
+
 
   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
@@ -7476,16 +10537,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib [options] [<attribute> ...]
 
-### Description
+
 
   IPv4 local RIB
 
@@ -7493,8 +10563,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7503,13 +10572,23 @@ Extended Community list Matching criteria and action rule
 
   route                 IPv6 routes
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> [options] [<attribute> ...]
 
-### Description
+
 
   An IPv4/IPv6 route
 
@@ -7517,8 +10596,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
@@ -7529,13 +10607,23 @@ Extended Community list Matching criteria and action rule
 
   path                  IP route paths
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> [options] [<attribute> ...]
 
-### Description
+
 
   An IPv4/IPv6 route
 
@@ -7543,8 +10631,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
@@ -7571,13 +10658,23 @@ Extended Community list Matching criteria and action rule
 
   ext-community         extended communities
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id> [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id> [options]
 
-### Description
+
 
   An IPv4/IPv6 route
 
@@ -7585,8 +10682,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
@@ -7594,13 +10690,23 @@ Extended Community list Matching criteria and action rule
 
   <nexthop-id>          Nexthop Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> peer
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> peer [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> peer [options]
 
-### Description
+
 
   Nexthop peer information
 
@@ -7608,20 +10714,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> flags
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> flags [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> flags [options]
 
-### Description
+
 
   Route flags
 
@@ -7629,20 +10744,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> bestpath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> bestpath [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> bestpath [options]
 
-### Description
+
 
   A bestpath information
 
@@ -7650,20 +10774,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath [options]
 
-### Description
+
 
   AS paths
 
@@ -7671,20 +10804,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community [options]
 
-### Description
+
 
   Set of community names for community-list
 
@@ -7692,20 +10834,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community [options]
 
-### Description
+
 
   Set of community names for large community list
 
@@ -7713,20 +10864,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community [options]
 
-### Description
+
 
   extended communities
 
@@ -7734,20 +10894,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv4 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family l2vpn-evpn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family l2vpn-evpn [options]
+  `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn [options]
 
-### Description
+
 
   BGP VRF configuration. L2VPN EVPN address family
 
@@ -7755,16 +10924,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast [options] [<attribute> ...]
 
-### Description
+
 
   IPv6 unicast address family
 
@@ -7772,8 +10950,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7796,13 +10973,23 @@ Extended Community list Matching criteria and action rule
 
   loc-rib               IPv6 local RIB
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options]
 
-### Description
+
 
   An IPv6 aggregate route
 
@@ -7810,18 +10997,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <aggregate-route-id>  IPv6 address and route prefix in CIDR notation
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options]
 
-### Description
+
 
   An IPv6 static network.
 
@@ -7829,18 +11025,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <static-network-id>   IPv6 address and route prefix in CIDR notation
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]
 
-### Description
+
 
   Route import
 
@@ -7848,8 +11053,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7858,13 +11062,23 @@ Extended Community list Matching criteria and action rule
 
   from-vrf              Controls for VRF to VRF route leaking for this address-family
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]
 
-### Description
+
 
   Controls for VRF to VRF route leaking for this address-family
 
@@ -7872,8 +11086,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7882,13 +11095,23 @@ Extended Community list Matching criteria and action rule
 
   list                  List of VRFs the routes can be imported from
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]
 
-### Description
+
 
   Set of VRFs
 
@@ -7896,16 +11119,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast multipaths
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options]
 
-### Description
+
 
   Multipaths
 
@@ -7913,16 +11145,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options]
 
-### Description
+
 
   Admin distances.
 
@@ -7930,16 +11171,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]
 
-### Description
+
 
   Route export
 
@@ -7947,8 +11197,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -7957,13 +11206,23 @@ Extended Community list Matching criteria and action rule
 
   to-evpn               Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options]
 
-### Description
+
 
   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
@@ -7971,16 +11230,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]
 
-### Description
+
 
   Route redistribute
 
@@ -7988,8 +11256,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -8004,13 +11271,23 @@ Extended Community list Matching criteria and action rule
 
   ospf6                 Route redistribution of ipv6 ospf routes
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options]
 
-### Description
+
 
   Source route type.
 
@@ -8018,16 +11295,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options]
 
-### Description
+
 
   Source route type.
 
@@ -8035,16 +11321,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options]
 
-### Description
+
 
   Source route type.
 
@@ -8052,16 +11347,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options]
 
-### Description
+
 
   Source route type.
 
@@ -8069,16 +11373,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib [options] [<attribute> ...]
 
-### Description
+
 
   IPv6 local RIB
 
@@ -8086,8 +11399,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -8096,13 +11408,23 @@ Extended Community list Matching criteria and action rule
 
   route                 IPv6 routes
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> [options] [<attribute> ...]
 
-### Description
+
 
   An IPv4/IPv6 route
 
@@ -8110,8 +11432,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
@@ -8122,13 +11443,23 @@ Extended Community list Matching criteria and action rule
 
   path                  IP route paths
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> [options] [<attribute> ...]
 
-### Description
+
 
   An IPv4/IPv6 route
 
@@ -8136,8 +11467,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
@@ -8164,13 +11494,23 @@ Extended Community list Matching criteria and action rule
 
   ext-community         extended communities
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id> [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id> [options]
 
-### Description
+
 
   An IPv4/IPv6 route
 
@@ -8178,8 +11518,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
@@ -8188,13 +11527,23 @@ Extended Community list Matching criteria and action rule
   <nexthop-id>          Nexthop Id
 
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> peer
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> peer [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> peer [options]
 
-### Description
+
 
   Nexthop peer information
 
@@ -8202,20 +11551,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> flags
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> flags [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> flags [options]
 
-### Description
+
 
   Route flags
 
@@ -8223,20 +11581,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> bestpath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> bestpath [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> bestpath [options]
 
-### Description
+
 
   A bestpath information
 
@@ -8244,20 +11611,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath [options]
 
-### Description
+
 
   AS paths
 
@@ -8265,20 +11641,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community [options]
 
-### Description
+
 
   Set of community names for community-list
 
@@ -8286,20 +11671,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community [options]
 
-### Description
+
 
   Set of community names for large community list
 
@@ -8307,20 +11701,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community [options]
+  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community [options]
 
-### Description
+
 
   extended communities
 
@@ -8328,20 +11731,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IPv6 address and route prefix in CIDR notation
 
   <path-id>             Path Id
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp path-selection
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]
 
-### Description
+
 
   BGP path-selection configuration.
 
@@ -8349,8 +11761,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -8363,13 +11774,23 @@ Extended Community list Matching criteria and action rule
 
   multipath             BGP multipath path-selection config, applicable to this BGP instance
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp path-selection aspath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp path-selection aspath [options]
+  `nv show vrf <vrf-id> router bgp path-selection aspath [options]
 
-### Description
+
 
   BGP aspath path-selection config, applicable to this BGP instance
 
@@ -8377,16 +11798,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp path-selection med
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp path-selection med [options]
+  `nv show vrf <vrf-id> router bgp path-selection med [options]
 
-### Description
+
 
   BGP med path-selection config, applicable to this BGP instance
 
@@ -8394,16 +11824,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp path-selection multipath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp path-selection multipath [options]
+  `nv show vrf <vrf-id> router bgp path-selection multipath [options]
 
-### Description
+
 
   BGP multipath path-selection config, applicable to this BGP instance
 
@@ -8411,16 +11850,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp route-reflection
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp route-reflection [options]
+  `nv show vrf <vrf-id> router bgp route-reflection [options]
 
-### Description
+
 
   BGP route-reflection configuration.
 
@@ -8428,16 +11876,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]
 
-### Description
+
 
   BGP global configuration.
 
@@ -8445,8 +11902,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
   <peer-group-id>       Domain
 
 ### Attributes
@@ -8464,17 +11920,27 @@ Extended Community list Matching criteria and action rule
 
   local-as              Local AS feature
 
-  timers                Peer peer-timerss
+  timers                Peer peer-timers
 
   address-family        Address family specific configuration
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options]
 
-### Description
+
 
   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
@@ -8482,18 +11948,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options]
 
-### Description
+
 
   RFC 5082
 
@@ -8501,18 +11976,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options]
 
-### Description
+
 
   Capabilities
 
@@ -8520,18 +12004,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options]
 
-### Description
+
 
   BGP Graceful restart per neighbor configuration
 
@@ -8539,18 +12032,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options]
 
-### Description
+
 
   Local AS feature
 
@@ -8558,37 +12060,55 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> timers
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options]
 
-### Description
 
-  Peer peer-timerss
+
+  Peer peer-timers
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]
 
-### Description
+
 
   Address family specific configuration
 
@@ -8596,8 +12116,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -8612,13 +12131,23 @@ Extended Community list Matching criteria and action rule
 
   l2vpn-evpn            Peer l2vpn EVPN address family.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]
 
-### Description
+
 
   Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
@@ -8626,8 +12155,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -8650,13 +12178,23 @@ Extended Community list Matching criteria and action rule
 
   conditional-advertise Conditional advertise for address family.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options]
 
-### Description
+
 
   Community advertise for address family.
 
@@ -8664,18 +12202,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -8683,18 +12230,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -8702,8 +12258,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -8714,13 +12269,23 @@ Extended Community list Matching criteria and action rule
 
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -8728,18 +12293,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
 
-### Description
+
 
   Limits on prefix from the peer for this address-family
 
@@ -8747,8 +12321,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -8759,13 +12332,23 @@ Extended Community list Matching criteria and action rule
 
   inbound               Limits on inbound prefix from the peer for this address-family
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options]
 
-### Description
+
 
   Limits on inbound prefix from the peer for this address-family
 
@@ -8773,18 +12356,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options]
 
-### Description
+
 
   Default route origination
 
@@ -8792,18 +12384,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for ipv4 unicast
 
@@ -8811,8 +12412,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -8825,13 +12425,23 @@ Extended Community list Matching criteria and action rule
 
   outbound              Outbound unicast policy
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -8839,18 +12449,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -8858,18 +12477,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options]
 
-### Description
+
 
   Conditional advertise for address family.
 
@@ -8877,18 +12505,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast [options] [<attribute> ...]
 
-### Description
+
 
   Peer IPv6 unicast address family.
 
@@ -8896,8 +12533,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -8920,13 +12556,23 @@ Extended Community list Matching criteria and action rule
 
   conditional-advertise Conditional advertise for address family.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for ipv6 unicast
 
@@ -8934,8 +12580,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -8948,13 +12593,23 @@ Extended Community list Matching criteria and action rule
 
   outbound              Outbound unicast policy
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -8962,18 +12617,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -8981,18 +12645,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -9000,8 +12673,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -9012,13 +12684,23 @@ Extended Community list Matching criteria and action rule
 
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn [options]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -9026,18 +12708,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
 
-### Description
+
 
   Limits on prefix from the peer for this address-family
 
@@ -9045,8 +12736,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -9057,13 +12747,23 @@ Extended Community list Matching criteria and action rule
 
   inbound               Limits on inbound prefix from the peer for this address-family
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound [options]
 
-### Description
+
 
   Limits on inbound prefix from the peer for this address-family
 
@@ -9071,18 +12771,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination [options]
 
-### Description
+
 
   Default route origination
 
@@ -9090,18 +12799,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise [options]
 
-### Description
+
 
   Community advertise for address family.
 
@@ -9109,18 +12827,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod [options]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -9128,18 +12855,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise [options]
 
-### Description
+
 
   Conditional advertise for address family.
 
@@ -9147,18 +12883,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn [options] [<attribute> ...]
 
-### Description
+
 
   Peer l2vpn EVPN address family.
 
@@ -9166,8 +12911,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -9182,13 +12926,23 @@ Extended Community list Matching criteria and action rule
 
   policy                Policies for l2vpn evpn
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod [options]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -9196,18 +12950,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -9215,8 +12978,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -9227,13 +12989,23 @@ Extended Community list Matching criteria and action rule
 
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn [options]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -9241,18 +13013,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for l2vpn evpn
 
@@ -9260,8 +13041,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
 
@@ -9274,13 +13054,23 @@ Extended Community list Matching criteria and action rule
 
   outbound              Outbound l2vpn-evpn policy
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options]
 
-### Description
+
 
   Inbound l2vpn-evpn policy
 
@@ -9288,18 +13078,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options]
+  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options]
 
-### Description
+
 
   Outbound l2vpn-evpn policy
 
@@ -9307,18 +13106,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <peer-group-id>       Domain
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp route-export
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp route-export [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp route-export [options] [<attribute> ...]
 
-### Description
+
 
   Controls for exporting ipv4 and ipv6 routes from this VRF
 
@@ -9326,8 +13134,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -9336,13 +13143,23 @@ Extended Community list Matching criteria and action rule
 
   to-evpn               Controls for exporting routes from this VRF into EVPN
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp route-export to-evpn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp route-export to-evpn [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp route-export to-evpn [options] [<attribute> ...]
 
-### Description
+
 
   Controls for exporting routes from this VRF into EVPN
 
@@ -9350,8 +13167,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -9360,13 +13176,23 @@ Extended Community list Matching criteria and action rule
 
   route-target          List the RTs to attach to host or prefix routes when exporting them into EVPN or "auto". If "auto", the RT  will be derived. This is the default.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id> [options]
+  `nv show vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id> [options]
 
-### Description
+
 
   A route target identifier
 
@@ -9374,18 +13200,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <rt-id>               Route targets or "auto"
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp route-import
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp route-import [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp route-import [options] [<attribute> ...]
 
-### Description
+
 
   Controls for importing of ipv4 and ipv6 routes from this VRF
 
@@ -9393,8 +13228,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -9403,13 +13237,23 @@ Extended Community list Matching criteria and action rule
 
   from-evpn             Controls for importing EVPN type-2 and type-5 routes into this VRF
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp route-import from-evpn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp route-import from-evpn [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp route-import from-evpn [options] [<attribute> ...]
 
-### Description
+
 
   Controls for importing EVPN type-2 and type-5 routes into this VRF
 
@@ -9417,8 +13261,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -9427,13 +13270,23 @@ Extended Community list Matching criteria and action rule
 
   route-target          List the RTs to attach to host or prefix routes when importing them into VRF or "auto". If "auto", the RT will be derived. This is the default.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id> [options]
+  `nv show vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id> [options]
 
-### Description
+
 
   A route target identifier
 
@@ -9441,18 +13294,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <rt-id>               Route targets or "auto"
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp timers
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp timers [options]
+  `nv show vrf <vrf-id> router bgp timers [options]
 
-### Description
+
 
   timer values for all peers in this VRF
 
@@ -9460,16 +13322,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp confederation
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp confederation [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp confederation [options] [<attribute> ...]
 
-### Description
+
 
   BGP Confederation options.
 
@@ -9477,8 +13348,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -9487,13 +13357,23 @@ Extended Community list Matching criteria and action rule
 
   member-as             Confederation ASNs of the peers, maps to BGP  confederation peers
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp confederation member-as
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp confederation member-as [options]
+  `nv show vrf <vrf-id> router bgp confederation member-as [options]
 
-### Description
+
 
   Set of autonomous numbers
 
@@ -9501,16 +13381,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> [options] [<attribute> ...]
 
-### Description
+
 
   BGP global configuration.
 
@@ -9518,8 +13407,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -9546,15 +13434,25 @@ Extended Community list Matching criteria and action rule
 
   address-family        Address family specific configuration
 
-  timers                Peer peer-timerss
+  timers                Peer peer-timers
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd [options]
 
-### Description
+
 
   Specifies whether to track BGP peering sessions using this configuration via BFD.
 
@@ -9562,18 +13460,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities [options]
 
-### Description
+
 
   Capabilities
 
@@ -9581,18 +13488,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> local-as
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> local-as [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> local-as [options]
 
-### Description
+
 
   Local AS feature
 
@@ -9600,18 +13516,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart [options]
 
-### Description
+
 
   BGP Graceful restart per neighbor configuration
 
@@ -9619,18 +13544,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security [options]
 
-### Description
+
 
   RFC 5082
 
@@ -9638,18 +13572,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop [options]
 
-### Description
+
 
   Nexthop
 
@@ -9657,18 +13600,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> message-stats
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> message-stats [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> message-stats [options]
 
-### Description
+
 
   Message statistics
 
@@ -9676,18 +13628,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ebgp-policy
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ebgp-policy [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ebgp-policy [options]
 
-### Description
+
 
   EBGP Policy RFC8212
 
@@ -9695,18 +13656,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family [options] [<attribute> ...]
 
-### Description
+
 
   Address family specific configuration
 
@@ -9714,8 +13684,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -9730,13 +13699,23 @@ Extended Community list Matching criteria and action rule
 
   l2vpn-evpn            Peer l2vpn EVPN address family.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast [options] [<attribute> ...]
 
-### Description
+
 
   Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
@@ -9744,8 +13723,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -9771,13 +13749,23 @@ Extended Community list Matching criteria and action rule
 
   graceful-restart      graceful restart information
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod [options]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -9785,18 +13773,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -9804,8 +13801,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -9816,13 +13812,23 @@ Extended Community list Matching criteria and action rule
 
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn [options]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -9830,18 +13836,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for ipv4 unicast
 
@@ -9849,8 +13864,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -9863,13 +13877,23 @@ Extended Community list Matching criteria and action rule
 
   outbound              Outbound unicast policy
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -9877,18 +13901,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -9896,18 +13929,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
   
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
 
-### Description
+
 
   Limits on prefix from the peer for this address-family
 
@@ -9915,8 +13957,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -9927,13 +13968,23 @@ Extended Community list Matching criteria and action rule
 
   inbound               Limits on inbound prefix from the peer for this address-family
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound [options]
 
-### Description
+
 
   Limits on inbound prefix from the peer for this address-family
 
@@ -9941,18 +13992,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination [options]
 
-### Description
+
 
   Default route origination
 
@@ -9960,18 +14020,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise [options]
 
-### Description
+
 
   Community advertise for address family.
 
@@ -9979,18 +14048,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise [options]
 
-### Description
+
 
   Conditional advertise for address family.
 
@@ -9998,18 +14076,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast capabilities
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast capabilities [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast capabilities [options]
 
-### Description
+
 
   AF capabilities advertised and received
 
@@ -10017,18 +14104,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast graceful-restart
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast graceful-restart [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast graceful-restart [options]
 
-### Description
+
 
   graceful restart information
 
@@ -10036,18 +14132,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast [options] [<attribute> ...]
 
-### Description
+
 
   Peer IPv6 unicast address family.
 
@@ -10055,8 +14160,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -10083,13 +14187,23 @@ Extended Community list Matching criteria and action rule
 
   graceful-restart      graceful restart information
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod [options]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -10097,18 +14211,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -10116,8 +14239,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -10128,13 +14250,23 @@ Extended Community list Matching criteria and action rule
 
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn [options]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -10142,18 +14274,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
 
-### Description
+
 
   Limits on prefix from the peer for this address-family
 
@@ -10161,8 +14302,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -10173,13 +14313,23 @@ Extended Community list Matching criteria and action rule
 
   inbound               Limits on inbound prefix from the peer for this  address-family
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound [options]
 
-### Description
+
 
   Limits on inbound prefix from the peer for this address-family
 
@@ -10187,18 +14337,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination [options]
 
-### Description
+
 
   Default route origination
 
@@ -10206,18 +14365,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for ipv6 unicast
 
@@ -10225,8 +14393,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -10239,13 +14406,23 @@ Extended Community list Matching criteria and action rule
 
   outbound              Outbound unicast policy
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound [options]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -10253,18 +14430,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound [options]
 
-### Description
+
 
   Outbound unicast policy
 
@@ -10272,18 +14458,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise [options]
 
-### Description
+
 
   Community advertise for address family.
 
@@ -10291,18 +14486,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise [options]
 
-### Description
+
 
   Conditional advertise for address family.
 
@@ -10310,18 +14514,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast capabilities
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast capabilities [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast capabilities [options]
 
-### Description
+
 
   AF capabilities advertised and received
 
@@ -10329,18 +14542,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast graceful-restart
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast graceful-restart [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast graceful-restart [options]
 
-### Description
+
 
   graceful restart information
 
@@ -10348,10 +14570,19 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn
 
@@ -10359,7 +14590,7 @@ Extended Community list Matching criteria and action rule
 
   nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn [options] [<attribute> ...]
 
-### Description
+
 
   Peer l2vpn EVPN address family.
 
@@ -10367,8 +14598,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -10387,13 +14617,23 @@ Extended Community list Matching criteria and action rule
 
   graceful-restart      graceful restart information
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod [options]
 
-### Description
+
 
   Attribute mod for address family.
 
@@ -10401,18 +14641,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
 
-### Description
+
 
   Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
@@ -10420,8 +14669,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -10432,13 +14680,23 @@ Extended Community list Matching criteria and action rule
 
   allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn [options]
 
-### Description
+
 
   If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
@@ -10446,18 +14704,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
 
-### Description
+
 
   Policies for l2vpn evpn
 
@@ -10465,8 +14732,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
 
@@ -10479,13 +14745,23 @@ Extended Community list Matching criteria and action rule
 
   outbound              Outbound l2vpn-evpn policy
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options]
 
-### Description
+
 
   Inbound l2vpn-evpn policy
 
@@ -10493,18 +14769,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options]
 
-### Description
+
 
   Outbound l2vpn-evpn policy
 
@@ -10512,18 +14797,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn capabilities
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn capabilities [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn capabilities [options]
 
-### Description
+
 
   AF capabilities advertised and received
 
@@ -10531,18 +14825,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn graceful-restart
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn graceful-restart [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn graceful-restart [options]
 
-### Description
+
 
   graceful restart information
 
@@ -10550,37 +14853,55 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> timers
 
 ### Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> timers [options]
+  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> timers [options]
 
-### Description
 
-  Peer peer-timerss
+
+  Peer peer-timers
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <neighbor-id>         Peer ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router static <route-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router static <route-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router static <route-id> [options] [<attribute> ...]
 
-### Description
+
 
   A route
 
@@ -10588,8 +14909,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IP prefix
 
@@ -10602,13 +14922,23 @@ Extended Community list Matching criteria and action rule
 
   via                   Nexthops
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router static <route-id> distance <distance-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router static <route-id> distance <distance-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router static <route-id> distance <distance-id> [options] [<attribute> ...]
 
-### Description
+
 
   A path
 
@@ -10616,8 +14946,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IP prefix
 
@@ -10630,13 +14959,23 @@ Extended Community list Matching criteria and action rule
 
   via                   Nexthops
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> [options] [<attribute> ...]
 
-### Description
+
 
   A via
 
@@ -10644,8 +14983,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IP prefix
 
@@ -10659,14 +14997,24 @@ Extended Community list Matching criteria and action rule
 | --------- | -------------- |
 
   flag                  Nexthop flags
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag
 
 ### Usage
 
-  nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag [options]
+  `nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag [options]
 
-### Description
+
 
   Nexthop flags
 
@@ -10674,8 +15022,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IP prefix
 
@@ -10683,13 +15030,23 @@ Extended Community list Matching criteria and action rule
 
   <via-id>              IP address, interface, or "blackhole".
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router static <route-id> via <via-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router static <route-id> via <via-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router static <route-id> via <via-id> [options] [<attribute> ...]
 
-### Description
+
 
   A via
 
@@ -10697,8 +15054,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IP prefix
 
@@ -10711,13 +15067,23 @@ Extended Community list Matching criteria and action rule
 
   flag                  Nexthop flags
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router static <route-id> via <via-id> flag
 
 ### Usage
 
-  nv show vrf <vrf-id> router static <route-id> via <via-id> flag [options]
+  `nv show vrf <vrf-id> router static <route-id> via <via-id> flag [options]
 
-### Description
+
 
   Nexthop flags
 
@@ -10725,20 +15091,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <route-id>            IP prefix
 
   <via-id>              IP address, interface, or "blackhole".
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router pim
 
 ### Usage
 
-  nv show vrf <vrf-id> router pim [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router pim [options] [<attribute> ...]
 
-### Description
+
 
   PIM VRF configuration.
 
@@ -10746,8 +15121,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -10762,13 +15136,23 @@ Extended Community list Matching criteria and action rule
 
   address-family        Address family specific configuration
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router pim timers
 
 ### Usage
 
-  nv show vrf <vrf-id> router pim timers [options]
+  `nv show vrf <vrf-id> router pim timers [options]
 
-### Description
+
 
   Timers
 
@@ -10776,16 +15160,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router pim ecmp
 
 ### Usage
 
-  nv show vrf <vrf-id> router pim ecmp [options]
+  `nv show vrf <vrf-id> router pim ecmp [options]
 
-### Description
+
 
   Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
 
@@ -10793,16 +15186,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]
 
-### Description
+
 
   MSDP mesh-group
 
@@ -10810,8 +15212,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <msdp-mesh-group-id>  MSDP mesh group name
 
@@ -10822,13 +15223,23 @@ Extended Community list Matching criteria and action rule
 
   member-address        Set of member-address
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]
+  `nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]
 
-### Description
+
 
   A MSDP mesh member
 
@@ -10836,20 +15247,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <msdp-mesh-group-id>  MSDP mesh group name
 
   <mesh-member-id>      MSDP mesh-group member IP address
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router pim address-family
 
 ### Usage
 
-  nv show vrf <vrf-id> router pim address-family [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router pim address-family [options] [<attribute> ...]
 
-### Description
+
 
   Address family specific configuration
 
@@ -10857,8 +15277,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -10867,13 +15286,23 @@ Extended Community list Matching criteria and action rule
 
   ipv4-unicast          IPv4 unicast address family
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast
 
 ### Usage
 
-  nv show vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
 
-### Description
+
 
   IPv4 unicast address family
 
@@ -10881,8 +15310,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -10893,13 +15321,23 @@ Extended Community list Matching criteria and action rule
 
   rp                    RP address and associated group range.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover
 
 ### Usage
 
-  nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options]
+  `nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options]
 
-### Description
+
 
   Build shortest path tree towards source.
 
@@ -10907,16 +15345,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]
 
-### Description
+
 
   RP
 
@@ -10924,8 +15371,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <rp-id>               RP IP address
 
@@ -10936,13 +15382,23 @@ Extended Community list Matching criteria and action rule
 
   group-range           Set of group range assocaited to RP.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]
+  `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]
 
-### Description
+
 
   A group range
 
@@ -10950,20 +15406,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <rp-id>               RP IP address
 
   <group-range-id>      Group range associated to RP.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router ospf
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router ospf [options] [<attribute> ...]
 
-### Description
+
 
   OSPF VRF configuration.
 
@@ -10971,8 +15436,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -10993,13 +15457,23 @@ Extended Community list Matching criteria and action rule
 
   timers                Timers
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router ospf area <area-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]
 
-### Description
+
 
   An OSPF area
 
@@ -11007,8 +15481,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <area-id>             Area
 
@@ -11023,13 +15496,23 @@ Extended Community list Matching criteria and action rule
 
   network               Area networks
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router ospf area <area-id> filter-list
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf area <area-id> filter-list [options]
+  `nv show vrf <vrf-id> router ospf area <area-id> filter-list [options]
 
-### Description
+
 
   Filters networks between OSPF areas
 
@@ -11037,18 +15520,27 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <area-id>             Area
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router ospf area <area-id> range <range-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf area <area-id> range <range-id> [options]
+  `nv show vrf <vrf-id> router ospf area <area-id> range <range-id> [options]
 
-### Description
+
 
   Filters out components of the prefix
 
@@ -11056,20 +15548,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <area-id>             Area
 
   <range-id>            Range
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router ospf area <area-id> network <network-id>
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf area <area-id> network <network-id> [options]
+  `nv show vrf <vrf-id> router ospf area <area-id> network <network-id> [options]
 
-### Description
+
 
   Filters out components of the prefix
 
@@ -11077,20 +15578,29 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
   <area-id>             Area
 
   <network-id>          Network
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router ospf default-originate
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf default-originate [options]
+  `nv show vrf <vrf-id> router ospf default-originate [options]
 
-### Description
+
 
   Advertise a default route as external lsa
 
@@ -11098,16 +15608,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router ospf distance
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf distance [options]
+  `nv show vrf <vrf-id> router ospf distance [options]
 
-### Description
+
 
   Administrative distance for installation into the rib
 
@@ -11115,16 +15634,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router ospf max-metric
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf max-metric [options]
+  `nv show vrf <vrf-id> router ospf max-metric [options]
 
-### Description
+
 
   Set maximum metric value in router lsa to make stub router
 
@@ -11132,16 +15660,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router ospf log
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf log [options]
+  `nv show vrf <vrf-id> router ospf log [options]
 
-### Description
+
 
   Log configuration
 
@@ -11149,16 +15686,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router ospf redistribute
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]
 
-### Description
+
 
   Route redistribute
 
@@ -11166,8 +15712,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -11182,13 +15727,23 @@ Extended Community list Matching criteria and action rule
 
   bgp                   Route redistribute of bgp routes
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router ospf redistribute static
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf redistribute static [options]
+  `nv show vrf <vrf-id> router ospf redistribute static [options]
 
-### Description
+
 
   Source route type.
 
@@ -11196,16 +15751,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router ospf redistribute connected
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf redistribute connected [options]
+  `nv show vrf <vrf-id> router ospf redistribute connected [options]
 
-### Description
+
 
   Source route type.
 
@@ -11213,16 +15777,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router ospf redistribute kernel
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf redistribute kernel [options]
+  `nv show vrf <vrf-id> router ospf redistribute kernel [options]
 
-### Description
+
 
   Source route type.
 
@@ -11230,16 +15803,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router ospf redistribute bgp
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf redistribute bgp [options]
+  `nv show vrf <vrf-id> router ospf redistribute bgp [options]
 
-### Description
+
 
   Source route type.
 
@@ -11247,16 +15829,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router ospf timers
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf timers [options] [<attribute> ...]
+  `nv show vrf <vrf-id> router ospf timers [options] [<attribute> ...]
 
-### Description
+
 
   Timers
 
@@ -11264,8 +15855,7 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <vrf-id>              VRF
+| `<vrf-id>` |    VRF |
 
 ### Attributes
 
@@ -11276,13 +15866,23 @@ Extended Community list Matching criteria and action rule
 
   spf                   SPF timers
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show vrf <vrf-id> router ospf timers lsa
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf timers lsa [options]
+  `nv show vrf <vrf-id> router ospf timers lsa [options]
 
-### Description
+
 
   LSA timers
 
@@ -11290,16 +15890,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> router ospf timers spf
 
 ### Usage
 
-  nv show vrf <vrf-id> router ospf timers spf [options]
+  `nv show vrf <vrf-id> router ospf timers spf [options]
 
-### Description
+
 
   SPF timers
 
@@ -11307,16 +15916,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show vrf <vrf-id> ptp
 
 ### Usage
 
-  nv show vrf <vrf-id> ptp [options]
+  `nv show vrf <vrf-id> ptp [options]
 
-### Description
+
 
   VRF PTP configuration.  Inherited by interfaces in this VRF.
 
@@ -11324,16 +15942,25 @@ Extended Community list Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
+| `<vrf-id>` |    VRF |
 
-  <vrf-id>              VRF
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show nve
 
 ### Usage
 
-  nv show nve [options] [<attribute> ...]
+  `nv show nve [options] [<attribute> ...]
 
-### Description
+
 
   Network Virtualization configuration and operational info
 
@@ -11344,13 +15971,23 @@ Extended Community list Matching criteria and action rule
 
   vxlan                 Global VxLAN configuration and operational properties.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show nve vxlan
 
 ### Usage
 
-  nv show nve vxlan [options] [<attribute> ...]
+  `nv show nve vxlan [options] [<attribute> ...]
 
-### Description
+
 
   VxLAN
 
@@ -11365,33 +16002,63 @@ Extended Community list Matching criteria and action rule
 
   flooding              Configuration to specify how BUM traffic in the overlay is handled. This applies to all overlays (VNIs), but can be overridden by VNI-specific configuration.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show nve vxlan mlag
 
 ### Usage
 
-  nv show nve vxlan mlag [options]
+  `nv show nve vxlan mlag [options]
 
-### Description
+
 
   VxLAN specfic MLAG configuration
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show nve vxlan source
 
 ### Usage
 
-  nv show nve vxlan source [options]
+  `nv show nve vxlan source [options]
 
-### Description
+
 
   Source address
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show nve vxlan flooding
 
 ### Usage
 
-  nv show nve vxlan flooding [options] [<attribute> ...]
+  `nv show nve vxlan flooding [options] [<attribute> ...]
 
-### Description
+
 
   Handling of BUM traffic
 
@@ -11402,13 +16069,23 @@ Extended Community list Matching criteria and action rule
 
   head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show nve vxlan flooding head-end-replication
 
 ### Usage
 
-  nv show nve vxlan flooding head-end-replication [options] [<hrep-id> ...]
+  `nv show nve vxlan flooding head-end-replication [options] [<hrep-id> ...]
 
-### Description
+
 
   Set of IPv4 unicast addresses or "evpn".
 
@@ -11418,14 +16095,24 @@ Extended Community list Matching criteria and action rule
 | --------- | -------------- |
 
   <hrep-id>             IPv4 unicast addresses or "evpn"
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show nve vxlan flooding head-end-replication <hrep-id>
 
 ### Usage
 
-  nv show nve vxlan flooding head-end-replication <hrep-id> [options]
+  `nv show nve vxlan flooding head-end-replication <hrep-id> [options]
 
-### Description
+
 
   Set of IPv4 unicast addresses or "evpn".
 
@@ -11436,13 +16123,23 @@ Extended Community list Matching criteria and action rule
 
   <hrep-id>             IPv4 unicast addresses or "evpn"
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl
 
 ### Usage
 
-  nv show acl [options] [<acl-id> ...]
+  `nv show acl [options] [<acl-id> ...]
 
-### Description
+
 
   ACL rules
 
@@ -11453,13 +16150,23 @@ Extended Community list Matching criteria and action rule
 
   <acl-id>              ACL ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id>
 
 ### Usage
 
-  nv show acl <acl-id> [options] [<attribute> ...]
+  `nv show acl <acl-id> [options] [<attribute> ...]
 
-### Description
+
 
   An ACL is used for matching packets and take actions
 
@@ -11477,13 +16184,23 @@ Extended Community list Matching criteria and action rule
 
   rule                  acl rule
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id>
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> [options] [<attribute> ...]
+  `nv show acl <acl-id> rule <rule-id> [options] [<attribute> ...]
 
-### Description
+
 
   ACL Matching criteria and action rule
 
@@ -11505,13 +16222,23 @@ Extended Community list Matching criteria and action rule
 
   action                ACL action
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> match
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match [options] [<attribute> ...]
+  `nv show acl <acl-id> rule <rule-id> match [options] [<attribute> ...]
 
-### Description
+
 
   An ACL match
 
@@ -11533,13 +16260,23 @@ Extended Community list Matching criteria and action rule
 
   mac                   MAC match
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> match ip
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match ip [options] [<attribute> ...]
+  `nv show acl <acl-id> rule <rule-id> match ip [options] [<attribute> ...]
 
-### Description
+
 
   An ACL IPv4/IPv6 match
 
@@ -11567,13 +16304,23 @@ Extended Community list Matching criteria and action rule
 
   tcp                   TCP protocol packet match
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> match ip source-port <ip-port-id>
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match ip source-port <ip-port-id> [options]
+  `nv show acl <acl-id> rule <rule-id> match ip source-port <ip-port-id> [options]
 
-### Description
+
 
   L4 port
 
@@ -11587,14 +16334,24 @@ Extended Community list Matching criteria and action rule
   <rule-id>             ACL rule number
 
   <ip-port-id>          IP port ID
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id>
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id> [options]
+  `nv show acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id> [options]
 
-### Description
+
 
   L4 port
 
@@ -11609,13 +16366,23 @@ Extended Community list Matching criteria and action rule
 
   <ip-port-id>          IP port ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> match ip fragment
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match ip fragment [options]
+  `nv show acl <acl-id> rule <rule-id> match ip fragment [options]
 
-### Description
+
 
   State details
 
@@ -11628,13 +16395,23 @@ Extended Community list Matching criteria and action rule
 
   <rule-id>             ACL rule number
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> match ip ecn
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match ip ecn [options] [<attribute> ...]
+  `nv show acl <acl-id> rule <rule-id> match ip ecn [options] [<attribute> ...]
 
-### Description
+
 
   ECN
 
@@ -11654,13 +16431,23 @@ Extended Community list Matching criteria and action rule
 
   flags                 ECN protocol flags
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> match ip ecn flags
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match ip ecn flags [options]
+  `nv show acl <acl-id> rule <rule-id> match ip ecn flags [options]
 
-### Description
+
 
   ECN flags
 
@@ -11673,13 +16460,23 @@ Extended Community list Matching criteria and action rule
 
   <rule-id>             ACL rule number
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> match ip tcp
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match ip tcp [options] [<attribute> ...]
+  `nv show acl <acl-id> rule <rule-id> match ip tcp [options] [<attribute> ...]
 
-### Description
+
 
   L4 port
 
@@ -11700,13 +16497,23 @@ Extended Community list Matching criteria and action rule
   flags                 TCP protocol flags
   mask                  TCP protocol flag mask
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> match ip tcp flags
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match ip tcp flags [options]
+  `nv show acl <acl-id> rule <rule-id> match ip tcp flags [options]
 
-### Description
+
 
   TCP flags
 
@@ -11718,14 +16525,24 @@ Extended Community list Matching criteria and action rule
   <acl-id>              ACL ID
 
   <rule-id>             ACL rule number
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
 
 ## nv show acl <acl-id> rule <rule-id> match ip tcp mask
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match ip tcp mask [options]
+  `nv show acl <acl-id> rule <rule-id> match ip tcp mask [options]
 
-### Description
+
 
   TCP flags
 
@@ -11738,13 +16555,23 @@ Extended Community list Matching criteria and action rule
 
   <rule-id>             ACL rule number
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> match mac
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> match mac [options]
+  `nv show acl <acl-id> rule <rule-id> match mac [options]
 
-### Description
+
 
   An ACL MAC match
 
@@ -11757,13 +16584,23 @@ Extended Community list Matching criteria and action rule
 
   <rule-id>             ACL rule number
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> action
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> action [options] [<attribute> ...]
+  `nv show acl <acl-id> rule <rule-id> action [options] [<attribute> ...]
 
-### Description
+
 
   ACL rule action
 
@@ -11793,13 +16630,23 @@ Extended Community list Matching criteria and action rule
 
   police                policing of packets/bytes
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> action permit
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> action permit [options]
+  `nv show acl <acl-id> rule <rule-id> action permit [options]
 
-### Description
+
 
   Permit packets
 
@@ -11812,13 +16659,23 @@ Extended Community list Matching criteria and action rule
 
   <rule-id>             ACL rule number
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> action deny
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> action deny [options]
+  `nv show acl <acl-id> rule <rule-id> action deny [options]
 
-### Description
+
 
   deny packets
 
@@ -11831,13 +16688,23 @@ Extended Community list Matching criteria and action rule
 
   <rule-id>             ACL rule number
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> action log
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> action log [options]
+  `nv show acl <acl-id> rule <rule-id> action log [options]
 
-### Description
+
 
   log packets
 
@@ -11850,13 +16717,23 @@ Extended Community list Matching criteria and action rule
 
   <rule-id>             ACL rule number
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> action set
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> action set [options]
+  `nv show acl <acl-id> rule <rule-id> action set [options]
 
-### Description
+
 
   Set action for packets
 
@@ -11869,13 +16746,23 @@ Extended Community list Matching criteria and action rule
 
   <rule-id>             ACL rule number
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> action erspan
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> action erspan [options]
+  `nv show acl <acl-id> rule <rule-id> action erspan [options]
 
-### Description
+
 
   ERSPAN session
 
@@ -11888,13 +16775,23 @@ Extended Community list Matching criteria and action rule
 
   <rule-id>             ACL rule number
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```
+
 ## nv show acl <acl-id> rule <rule-id> action police
 
 ### Usage
 
-  nv show acl <acl-id> rule <rule-id> action police [options]
+  `nv show acl <acl-id> rule <rule-id> action police [options]
 
-### Description
+
 
   Policing of matched packets/bytes
 
@@ -11906,3 +16803,13 @@ Extended Community list Matching criteria and action rule
   <acl-id>              ACL ID
   
   <rule-id>             ACL rule number
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ 
+```

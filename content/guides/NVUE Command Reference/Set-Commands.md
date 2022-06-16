@@ -11,15 +11,15 @@ This section describes all the `nv set` commands, together with their attributes
 
 Configures global routing settings for BGP, OSPF, PIM, IGMP, VRR, VRRP, router policies, next hop groups, and adaptive routing.
 
-**Usage**
+### Usage
 
 `nv set router [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
@@ -34,7 +34,7 @@ N/A
 | `vrr`:| Configures global VRR (Virtual Router Redundancy Protocol) settings.|
 | `adaptive-routing`| Configures adaptive routing settings.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -42,31 +42,31 @@ Introduced in Cumulus Linux 5.0.0
 
 Sets the name of the next hop group.
 
-**Usage**
+### Usage
 
 `nv set router nexthop-group <nexthop-group-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<nexthop-group-id>` | The next hop group name. |
 
-**Attributes**
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
 | `via` | Configures the next hop. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1
@@ -76,37 +76,37 @@ cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1
 
 Sets the IP addresses of the next hops in the next hop group.
 
-**Usage**
+### Usage
 
 `nv set router nexthop-group <nexthop-group-id> via <via-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<nexthop-group-id>` | The next hop group name. |
 | `<via-id>` | The IP address of the next hop.|
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 |  `interface`| Configures the interface to use for egress. If you do not specify an interface, the switch determines the interface automatically. This attribute is only valid for IPv4 or IPv6 addresses. |
 | `vrf` | Configures the VRF to use for egress. If you do not specify the VRF, the switch uses the VRF that the route uses. This attribute is only valid for IPv4 or IPv6 addresses. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32
@@ -116,15 +116,15 @@ cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32
 
 Sets the interface to use for egress. If you do not specify an interface, the switch determines the interface automatically. This attribute is only valid for IPv4 or IPv6 addresses.
 
-**Usage**
+### Usage
 
 `nv set router nexthop-group <nexthop-group-id> via <via-id> interface [options] (auto|<interface-name>)`
 
-**Default Setting**
+### Default Setting
 
 `auto`: The switch determines the interface automatically.
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -132,11 +132,11 @@ Sets the interface to use for egress. If you do not specify an interface, the sw
 | `<via-id>` | The IP address of the next hop.|
 | `<interface-name>` | The interface to use for egress.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 interface swp51
@@ -146,15 +146,15 @@ cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 inter
 
 Sets the VRF to use for egress. If you do not specify the VRF, the switch uses the VRF that the route uses. This attribute is only valid for IPv4 or IPv6 addresses.
 
-**Usage**
+### Usage
 
 `nv set router nexthop-group <nexthop-group-id> via <via-id> vrf [options] (auto|<vrf-name>)`
 
-**Default Setting**
+### Default Setting
 
 `auto`: The switch uses the VRF that the route uses.
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -162,11 +162,11 @@ Sets the VRF to use for egress. If you do not specify the VRF, the switch uses t
 | `<via-id>` | The IP address of the next hop.|
 | `<vrf-name>` | The vrf to use for egress.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 vrf RED
@@ -176,15 +176,15 @@ cumulus@leaf01:mgmt:~$ nv set router nexthop-group group1 via 192.168.0.32 vrf R
 
 Configures global PBR (Policy-based Routing) settings.
 
-**Usage**
+### Usage
 
 `nv set router pbr [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -195,31 +195,31 @@ N/A
 
 Configures the name of the PBR route map.
 
-**Usage**
+### Usage
 
 `nv set router pbr map <pbr-map-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<pbr-map-id>` | The PBR route map name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `rule`| Configures the PBR rule number. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pbr map map1
@@ -229,33 +229,33 @@ cumulus@leaf01:mgmt:~$ nv set router pbr map map1
 
 Configures the PBR route map rule number.
 
-**Usage**
+### Usage
 
 `nv set router pbr map <pbr-map-id> rule <rule-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<pbr-map-id>` | The PBR route map name. |
 | `<rule-id>` | The PBR rule number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | match     |  Configures the PBR match criteria. |
 | action    |  Configures the action to take; permit or deny.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10
@@ -265,22 +265,22 @@ cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10
 
 Sets the match criteria you want to use for the PBR map rule.
 
-**Usage**
+### Usage
 
 `nv set router pbr map <pbr-map-id> rule <rule-id> match [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<pbr-map-id>` | The PBR route map name. |
 | `<rule-id>`    | The PBR rule number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -289,7 +289,7 @@ N/A
 | `ecn`  | Configures PBR to match packets according to the ECN field in the IP header. The ECN value can be an integer between 0 and 3. |
 | `source-ip`  |  Configures PBR to match a source IP prefix. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -297,15 +297,15 @@ Introduced in Cumulus Linux 5.0.0
 
 Sets PBR to match packets according to the source IP prefix.
 
-**Usage**
+### Usage
 
 `nv set router pbr map <pbr-map-id> rule <rule-id> match source-ip (<ipv4-prefix>|<ipv6-prefix>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -313,11 +313,11 @@ N/A
 | `<rule-id>`   | The PBR rule number. |
 | `<ipv4-prefix>` or `<ipv6-prefix>` | The source IPv4 or IPv6 prefix. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10 match source-ip 10.1.4.1/24 
@@ -327,15 +327,15 @@ cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10 match source-ip 10.1.4
 
 Sets PBR to match packets according to the destination IP prefix.
 
-**Usage**
+### Usage
 
 `nv set router pbr map <pbr-map-id> rule <rule-id> match destination-ip (<ipv4-prefix>|<ipv6-prefix>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -343,11 +343,11 @@ N/A
 | `<rule-id>`   | The PBR rule number. |
 | `<ipv4-prefix>` or `<ipv6-prefix>` | The destination IPv4 or IPv6 prefix. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10 match destination-ip 10.1.2.0/24
@@ -357,26 +357,26 @@ cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 10 match destination-ip 1
 
 Sets PBR to match packets according to the DSCP field in the IP header. The DSCP value can be an integer between 0 and 63 or the DSCP codepoint name.
 
-**Usage**
+### Usage
 
 `nv set router pbr map <pbr-map-id> rule <rule-id> match dscp [options] 0-63`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<pbr-map-id>` |  The PBR route map name. |
 | `<rule-id>`   | The PBR rule number. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 match dscp 10
@@ -386,26 +386,26 @@ cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 match dscp 10
 
 Sets PBR to match packets according to the ECN field in the IP header. The ECN value can be an integer between 0 and 3.
 
-**Usage**
+### Usage
 
 `nv set router pbr map <pbr-map-id> rule <rule-id> match ecn [options] 0-3`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<pbr-map-id>` |  The PBR route map name. |
 | `<rule-id>` |  The PBR rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 match ecn 3
@@ -415,33 +415,33 @@ cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 match ecn 3
 
 Sets the action you want the PBR map rule to take, such as apply a net hop group or a VRF to a policy.
 
-**Usage**
+### Usage
 
 `nv set router pbr map <pbr-map-id> rule <rule-id> action [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<pbr-map-id>` | The PBR route map name. |
 | `<rule-id> `  |  The PBR rule number. |
 
-**Attributes**
+### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
 | `nexthop-group` | Configures the route through the nexthop-group. |
 | `vrf`     | Configures the route through a VRF. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
@@ -451,15 +451,15 @@ cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 Configures the next hop group you want to apply to the policy map.
 
-**Usage**
+### Usage
 
 `nv set router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -467,11 +467,11 @@ N/A
 | `<rule-id>`     |  The PBR rule number. |
 | `<nexthop-group-id>`  | The next hop group name. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action nexthop-group group1
@@ -481,15 +481,15 @@ cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action nexthop-group gr
 
 Sets the VRF you want to apply to the policy map. If you do not set a VRF, the rule uses the VRF table set for the interface.
 
-**Usage**
+### Usage
 
 `nv set router pbr map <pbr-map-id> rule <rule-id> action vrf [options] <vrf-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -497,11 +497,11 @@ N/A
 | `<rule-id>`     |  The PBR rule number. |
 | `<vrf-name>`    |  The VRF you want to apply to the policy map. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
@@ -511,19 +511,19 @@ cumulus@leaf01:mgmt:~$ nv set router pbr map map1 rule 1 action vrf RED
 
 Enables or disables PBR.
 
-**Usage**
+### Usage
 
 `nv set router pbr enable [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pbr enable on
@@ -533,15 +533,15 @@ cumulus@leaf01:mgmt:~$ nv set router pbr enable on
 
 Configures a router policy.
 
-**Usage**
+### Usage
 
 `nv set router policy [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute  |  Description   |
 | ---------  | -------------- |
@@ -552,7 +552,7 @@ N/A
 | `prefix-list` | Configures prefix lists. |
 | `route-map` | Configures route maps. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -560,31 +560,31 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the name of the community list you want to use to match BGP community policies.
 
-**Usage**
+### Usage
 
 `nv set router policy community-list <list-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` |  The community list name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `rule` | | Configures the community list rule. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy community-list 
@@ -594,33 +594,33 @@ cumulus@leaf01:mgmt:~$ nv set router policy community-list
 
 Configures the community list rule number.
 
-**Usage**
+### Usage
 
 `nv set router policy community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>`  | The community list name. |
 | `<rule-id>`  | The community list rule number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | --------- | -------------- |
 | `community` | Configures the community expression. |
 | `action`    | Configures the action you want to take for a match; permit or deny. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
@@ -630,15 +630,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 ac
 
 Sets the name of the community you want to match.
 
-**Usage**
+### Usage
 
 `nv set router policy community-list <list-id> rule <rule-id> community <community-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -646,11 +646,11 @@ N/A
 | `<rule-id>` | The community list rule number. |
 | `<community-id>` | The community number in AA:NN format or the well-known name. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 community 100:100
@@ -660,26 +660,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 co
 
 Sets the action you want to take when you meet the match criteria; permit or deny.
 
-**Usage**
+### Usage
 
 `nv set router policy community-list <list-id> rule <rule-id> action [options] (permit|deny)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>`  | The community list name. |
 | `<rule-id>`  | The community list rule number. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 action permit
@@ -689,31 +689,31 @@ cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 ac
 
 Sets the name of the AS path access list you want to use to match AS paths.
 
-**Usage**
+### Usage
 
 `nv set router policy as-path-list <list-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` | The AS path list name.|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | --------- | -------------- |
 | `rule`    |  Configures the AS path list rule. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist
@@ -723,33 +723,33 @@ cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist
 
 Configures the AS Path list rule number.
 
-**Usage**
+### Usage
 
 `nv set router policy as-path-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` |  The AS Path list name. |
 | `<rule-id>` |  The prefix list rule number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `action` |  Configures the action you want to take when there is a match, such as permit or deny. |
 | `aspath-exp` | Configures the regular expression you want to use to match BGP AS paths. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10
@@ -759,26 +759,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10
 
 Sets the action you want to take for a match; permit or deny.
 
-**Usage**
+### Usage
 
 `nv set router policy as-path-list <list-id> rule <rule-id> action [options] (permit|deny)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` |  The AS path list name. |
 | `<rule-id>` |  The AS path list rule number. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10 action permit
@@ -788,15 +788,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10 action p
 
 Configures the regular expression you want to use to match BGP AS paths.
 
-**Usage**
+### Usage
 
 `nv set router policy as-path-list <list-id> rule <rule-id> aspath-exp [options] <bgp-regex>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -804,11 +804,11 @@ N/A
 | `<rule-id> ` | Th AS path list rule number. |
 | `bgp-regex` | The regular expression you want to use to match BGP AS paths.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10 aspath-exp ^100_
@@ -818,31 +818,31 @@ cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10 aspath-e
 
 Sets the name of the Extended Community list you want to use to match BGP communities.
 
-**Usage**
+### Usage
 
 `nv set router policy ext-community-list <list-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` | The extended community list name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `rule` | Configures the extended community list rule. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist
@@ -852,33 +852,33 @@ cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist
 
 Sets the extended community list rule number.
 
-**Usage**
+### Usage
 
 `nv set router policy ext-community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` |  The community list name. |
 | `<rule-id>` |  The community list rule number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `ext-community` | Configures the Extended Community expression. |
 | `action `  | Configures the action you want to take when there is a match; permit or deny.
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10
@@ -888,33 +888,33 @@ cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10
 
 Sets the Extended Community name.
 
-**Usage**
+### Usage
 
 `nv set router policy ext-community-list <list-id> rule <rule-id> ext-community [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<list-id>` |  The Extended Community list name. |
 | `<rule-id>` | The Extended Community list rule number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `rt ` | Configures the Route Target Extended Community. |
 | `soo ` | Configures the site-of-origin (SoO) Extended Community.  |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community 64510:2
@@ -924,15 +924,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ex
 
 Configures the Route Target Extended Community.
 
-**Usage**
+### Usage
 
 `nv set router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -940,11 +940,11 @@ N/A
 | `<rule-id>` |  The community list rule number. |
 | `<ext-community-id>` | The Extended Community number in AA:NN or IP:NN format. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community rt 64510:1111
@@ -954,15 +954,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ex
 
 Configures the site-of-origin (SoO) Extended Community to identify routes that originate from a certain site so that you can prevent readvertising that prefix back to the source site.
 
-**Usage**
+### Usage
 
 `nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -970,11 +970,11 @@ N/A
 | `<rule-id> ` |  The community list rule number. |
 | `<ext-community-id>` | The Extended Community number in AA:NN or IP:NN format. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ext-community soo ????????
@@ -984,26 +984,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ex
 
 Configures the action to take on a match; permit or deny.
 
-**Usage**
+### Usage
 
 `nv set router policy ext-community-list <list-id> rule <rule-id> action [options] (permit|deny)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` |  The community list name. |
 | `<rule-id>` |  The community list rule number. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 action permit
@@ -1013,31 +1013,31 @@ cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ac
 
 Configures the name of the Large Community list you want to use to match community based BGP policies.
 
-**Usage**
+### Usage
 
 `nv set router policy large-community-list <list-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>  | The community list name |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `rule` |  Configures the Large Community list rule. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist
@@ -1047,33 +1047,33 @@ cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist
 
 Configures the Large Community list rule number.
 
-**Usage**
+### Usage
 
 `nv set router policy large-community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` | The community list name |
 | `<rule-id>`  | The community list rule number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `large-community`  | Configures the large community expression. |
 | `action`  |  Configures the action you want to take when there is a match; permit or deny. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10
@@ -1083,15 +1083,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10
 
 Configures the community names for the large community list.
 
-**Usage**
+### Usage
 
 `nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -1099,11 +1099,11 @@ N/A
 | `<rule-id> ` | The community list rule number. |
 | `<large-community-id>` | The community number in AA:BB:CC format. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 large-community ?????
@@ -1111,26 +1111,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 
 
 ## nv set router policy large-community-list <list-id> rule <rule-id> action
 
-**Usage**
+### Usage
 
 `nv set router policy large-community-list <list-id> rule <rule-id> action [options] (permit|deny)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` |  The community list name. |
 | `<rule-id> ` | The community list rule number. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 action permit
@@ -1140,32 +1140,32 @@ cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 
 
 Configures the name of the prefix list you want to use to match IPv4 and IPv6 address prefixes.
 
-**Usage**
+### Usage
 
 `nv set router policy prefix-list <prefix-list-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<prefix-list-id>` |  The prefix list name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `rule` | Configures the prefix list rule number. |
 | `type` | Configures the prefix list type. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist
@@ -1175,33 +1175,33 @@ cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist
 
 Configures the prefix list rule number.
 
-**Usage**
+### Usage
 
 `nv set router policy prefix-list <prefix-list-id> rule <rule-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<prefix-list-id>`  | The prefix list name. |
 | `<rule-id>`  | The prefix list rule number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | --------- | -------------- |
 | `match` | Configures the prefix list match criteria. |
 | `action` | Configures the action you want to take when there is a match; permit or deny. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10
@@ -1211,15 +1211,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10
 
 Configures the prefix match criteria you want to use.
 
-**Usage**
+### Usage
 
 `nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -1227,18 +1227,18 @@ N/A
 | `<rule-id> ` | The prefix list rule number. |
 | `<match-id>` | The IPv4 or IPv6 prefix you want to match.|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `max-prefix-len` | Configures the maximum prefix length to match. |
 | `min-prefix-len` | Configures the minimum prefix length to match. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16
@@ -1248,15 +1248,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.
 
 Configures the minimum prefix length you want to match.
 
-**Usage**
+### Usage
 
 `nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> min-prefix-len [options] 0-128`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -1264,11 +1264,11 @@ N/A
 | `<rule-id>`  | The prefix list rule number. |
 | `<match-id>` | The IPv4 or IPv6 prefix. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16 min-prefix-len 30
@@ -1278,15 +1278,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.
 
 Configures the maximum prefix length you want to match. You can specify a value between 0 and 128.
 
-**Usage**
+### Usage
 
 `nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> max-prefix-len [options] 0-128`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -1294,11 +1294,11 @@ N/A
 | `<rule-id>` |  The prefix list rule number. |
 | `<match-id>` |  The IPv4 or IPv6 prefix. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.0.0.0/16 max-prefix-len 30
@@ -1308,26 +1308,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 match 10.
 
 Configures the action to take on a match; permit or deny.
 
-**Usage**
+### Usage
 
 `nv set router policy prefix-list <list-id> rule <rule-id> action [options] (permit|deny)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` |  The prefix list name. |
 | `<rule-id>` |  The prefix list rule number. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 action permit
@@ -1337,25 +1337,25 @@ cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist rule 10 action pe
 
 Configures the type of prefix list; IPv4 or IPv6.
 
-**Usage**
+### Usage
 
 `nv set router policy prefix-list <prefix-list-id> type [options] (ipv4|ipv6)`
 
-**Default Setting**
+### Default Setting
 
 `ipv4`
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<list-id>` |  The prefix list name. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist type ipv4
@@ -1365,31 +1365,31 @@ cumulus@leaf01:mgmt:~$ nv set router policy prefix-list mylist type ipv4
 
 Configures the name of the route map you want to use for policy configuration.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` |  The route map name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `rule` | Configures the route map rule. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1
@@ -1399,22 +1399,22 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1
 
 Configures the route map rule number.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -1422,11 +1422,11 @@ N/A
 | `set` | Configures the route map set criteria. |
 | `action` | Configures the action you want to take when there is a match; permit or deny.   |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 
@@ -1436,22 +1436,22 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10
 
 Configures the match criteria you want to use for the route map rule.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -1476,7 +1476,7 @@ N/A
 |`tag`  |Configures the tag. |
 |`type` | Configures the match prefix type. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -1484,26 +1484,26 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the IP prefix list to use as a match in the route map.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-list [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>`  |  The route map rule number. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
@@ -1513,26 +1513,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-pref
 
 Configures the IP address prefix length you want to match. You can specify a value between 0 and 128.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-len [options] 0-128`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-len 128
@@ -1542,26 +1542,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-pref
 
 Configures the IP next hop list you want to use as a match in the route map.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-list [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-prefix-list prefixlist1
@@ -1571,26 +1571,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-pref
 
 Configures the route map to match an IP nexthop prefix length.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-len [options] 0-32`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop-len 32
@@ -1600,15 +1600,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-next
 
 Configures the route map to match the IP address of a nexthop.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop [options] (<ipv4>|<ipv6>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -1616,11 +1616,11 @@ N/A
 | `<rule-id>` | The route map rule number.|
 | `<ipv4>` or `<ipv6>` | The IPv4 or IPv6 address of the next hop.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop 10.10.101
@@ -1630,26 +1630,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-next
 
 Configures the route map to match a null route (blackhole).
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-type [options] blackhole`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-nexthop-type blackhole
@@ -1659,26 +1659,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ip-next
 
 Configures the name of the BGP AS path list you want use in the route map.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match as-path-list [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match as-path-list MYLIST
@@ -1688,26 +1688,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match as-path
 
 Configures the name of the BGP community list you want to use in the route map.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match community-list [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match community-list MYLIST
@@ -1717,26 +1717,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match communi
 
 Configures the name of the BGP Large Community list you want to use in the route map.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match large-community-list [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match large-community-list MYLIST
@@ -1746,26 +1746,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match large-c
 
 Configures the route metric (the cost values used by routers to determine the best path to a destination network) you want to use as a match in the route map.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match metric [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match metric 1
@@ -1775,26 +1775,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match metric 
 
 Configures the interface you want to use as a match in the route map.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match interface (<interface-name>|<vrf-name>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match interface swp51
@@ -1804,26 +1804,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match interfa
 
 Configures the BGP tag you want to use as a match in the route map. You can specify a value between 1 and 4294967295.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match tag [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match tag 10
@@ -1833,26 +1833,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match tag 10
 
 Configures the source protocol you want to use as a match in the route map. The source protocol is the protocol through which the switch learns the route. You can specify `bgp`, `connected`, `kernel`, `ospf`, `spf6`, `sharp` or `static`.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match source-protocol [options] (bgp|connected|kernel|ospf|ospf6|sharp|static)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-protocol bgp
@@ -1862,26 +1862,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-
 
 Configures the BGP origin you want to use as a match in the route map. You can specify `egp`, `igp`, or `incomplete`.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match origin [options] (egp|igp|incomplete)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match origin igp
@@ -1891,26 +1891,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match origin 
 
 Configures the BGP peer you want to use as a match in the route map. You can specify `local`, the interface, or the IPv4 or IPv6 address.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match peer [options] (local|<interface-name>|<ipv4>|<ipv6>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match peer swp51
@@ -1920,26 +1920,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match peer sw
 
 Configures the local preference of the route you want to match in the route map. You can specify a value between 0 and 4294967295.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match local-preference [options] 0-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match local-preference 300
@@ -1949,26 +1949,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match local-p
 
 Configures the EVPN route type you want to match in the route map. You can specify type 2 (MAC or IP advertisement routes), type 3 (Inclusive multicast Ethernet tag routes), or type 5 (IP prefix routes).
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match evpn-route-type [options] (macip|imet|ip-prefix)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-route-type macip
@@ -1978,26 +1978,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-ro
 
 Configures the VNI ID you want to use a match in the route map.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match evpn-vni [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-vni 10
@@ -2007,26 +2007,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-vn
 
 Configures the source VRF you want to use as a match in the route map.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match source-vrf [options] <vrf-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-vrf RED
@@ -2036,26 +2036,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-
 
 Configures the the route types you want to use as a match in the route map. You can specify IPv4 or IPv6 routes.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> match type [options] (ipv4|ipv6)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ipv4
@@ -2065,22 +2065,22 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match ipv4
 
 Configures the route map rule set.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -2107,7 +2107,7 @@ N/A
 | `tag` | Sets the Tag value for the routing protocol for a matched route. |
 | `weight` | Sets the BGP weight for a matched route. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -2115,33 +2115,33 @@ Introduced in Cumulus Linux 5.0.0
 
 Sets the BGP AS Path you want to prepend for a matched route.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `as` | Configures the BGP AS number. |
 | `last-as` | Configures the number of times to insert the AS number of the peer. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend
@@ -2151,26 +2151,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-p
 
 Sets the BGP AS number to prepend for a matched route.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as 65101
@@ -2180,26 +2180,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-p
 
 Sets the last BGP AS path to prepend for a matched route. You can set a value between 1 and 10.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as [options] 1-10`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-prepend as last-as 4
@@ -2209,15 +2209,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-p
 
 Sets the BGP Community attribute for a matched route.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set community <community-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -2225,11 +2225,11 @@ N/A
 | `<rule-id>` | The route map rule number.|
 | `<community-id>` | The Community number in AA:NN format or the well-known name.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community 100:100
@@ -2239,15 +2239,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community
 
 Sets the Large BGP Community for a matched route.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -2255,11 +2255,11 @@ N/A
 | `<rule-id>` | The route map rule number.|
 | `<large-community-id>` | The Large Community number in AA:BB:CC format.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community ????
@@ -2269,15 +2269,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-com
 
 Sets the aggregator AS Number for a matched route.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -2285,17 +2285,17 @@ N/A
 | `<rule-id>` | The route map rule number.|
 | `<asn-id>` | The ASN number.|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | --------- | -------------- |
 | `address` | Configures the set of IPv4 addresses. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 65101
@@ -2305,15 +2305,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregato
 
 Sets the originating AS of an aggregated route if there is a match.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -2322,11 +2322,11 @@ N/A
 | `<asn-id>` | The ASN number.|
 | `<ipv4-address-id>` |  The IPv4 address. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregator-as 65101 address 10.10.10.01
@@ -2336,26 +2336,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set aggregato
 
 Configures a set clause in the route map to remove the AS number from the AS Path attribute of the route. You can specify a value between 1 and 4294967295.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set as-path-exclude [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-exclude 65101
@@ -2365,26 +2365,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set as-path-e
 
 Configures a set clause in the route map to inform BGP peers that the local router is using a less specific (aggregated) route to a destination. You can specify `on` or `off`.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set atomic-aggregate [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set atomic-aggregate on
@@ -2394,15 +2394,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set atomic-ag
 
 Sets the route target Extended Community for a matched route.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-rt [options] <route-distinguisher>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -2410,11 +2410,11 @@ N/A
 | `<rule-id>` | The route map rule number.|
 |`<route-distinguisher>` | The route distinguisher. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-rt 64510:1111
@@ -2424,15 +2424,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-commu
 
 Sets the site-of-origin (SoO) Extended Community for a matched route.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-soo [options] <route-distinguisher>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -2440,11 +2440,11 @@ N/A
 | `<rule-id>` | The route map rule number.|
 | `<route-distinguisher>` |The route distinguisher. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-soo ????
@@ -2454,26 +2454,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-commu
 
 Sets the BGP Extended Community for a matched route. You can specify `cumulative` `multipaths` `cumulative-non-transitive`, or `multipaths-non-transitive`.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-bw [options] (cumulative|multipaths|cumulative-non-transitive|multipaths-non-transitive)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-bw multipaths.
@@ -2483,26 +2483,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-commu
 
 Sets the BGP local preference for a matched route. You can specify a value between 0 and 4294967295.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set local-preference [options] 0-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set local-preference 300
@@ -2512,26 +2512,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set local-pre
 
 Sets the BGP weight value for a matched route. You can specify a value between 0 and 4294967295.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set weight [options] 0-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set weight 300
@@ -2541,26 +2541,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set weight 30
 
 Configures a set clause in the route map for the metric value for the destination routing protocol. You can set `metric-plus`, `metric-minus`, `rtt`, `rtt-plus`, or `rtt-minus`.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set metric [options] (metric-plus|metric-minus|rtt|rtt-plus|rtt-minus)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric metric-minus
@@ -2570,26 +2570,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric me
 
 Configures a set clause in the route map for the metric type for routes that match the map. The metric type is used by the the OSPF protocol. You can set OSPF external type 1 metric or OSPF external type 2 metric.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set metric [options] (type-1|type-2)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric type type-2
@@ -2599,26 +2599,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric ty
 
 Configures a set clause in the route map for the BGP origin code for the matched route. You can specify `egp` (the switch learns the origin of the route from an exterior routing protocol with the given autonomous system number) `igp` (the switch learns the the origin of the route from an interior routing protocol), or `incomplete` (the origin of the route is unknown).
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set origin [options] ((egp|igp|incomplete) `
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set origin igp
@@ -2628,26 +2628,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set origin ig
 
 Configures a set clause in the route map for the tag value for the routing protocol.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set metric [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set tag 100
@@ -2657,26 +2657,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set tag 100
 
 Configures a set clause in the route map for IPv6 next hop global address.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-global [options] <ipv6>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-global 2001:db8:0002::0a00:0002
@@ -2686,26 +2686,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-next
 
 Configures a set clause in the route map for the IPv6 next hop local address.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-local [options] <ipv6>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-local 2001:db8:0002::0a00:0002
@@ -2715,26 +2715,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-next
 
 Configures a set clause in the route map to use the global address as the IPv6 next hop.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-prefer-global [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-nexthop-prefer-global on
@@ -2744,26 +2744,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ipv6-next
 
 Configures a set clause in the route map for the next hop address for an incoming packet regardless of the explicit route for the packet. You can specify the IP address of the peer, or leave it unchanged.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set ip-nexthop [options] (unchanged|peer-addr)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ip-nexthop peer-addr
@@ -2773,26 +2773,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ip-nextho
 
 Configures a set clause in the route map for the source IP address. You can specify an IPv4 or IPv6 address.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set source-ip [options] (<ipv4>|<ipv6>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set source-ip 10.1.10.0
@@ -2802,26 +2802,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set source-ip
 
 Configures a set clause in the route map to remove BGP communities from being advertised to other BGP routes.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set community-delete-list [options] (<instance-name>|<integer>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community-delete-list communitylist1
@@ -2831,26 +2831,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set community
 
 Configures a set clause in the route map to remove BGP Large Communities from being advertised to other BGP routes.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list [options] (<instance-name>|<integer>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community-delete-list largecommunitylist1
@@ -2860,29 +2860,29 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-com
 
 Configures the route map rule action; permit or deny.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> action [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `deny`   |  Configures the action of the rule to deny. |
 | `permit` |  Configures the action of the rule to permit. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -2890,26 +2890,26 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the route map rule action to deny.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> action deny [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 deny
@@ -2919,32 +2919,32 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 deny
 
 Configures the route map rule action to permit.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> action permit [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `exit-policy` | Configures the permit action exit policy. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit
@@ -2954,32 +2954,32 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit
 
 Configures the permit action exit policy.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `rule` | Configures jump to specific rule |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-policy
@@ -2989,26 +2989,26 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-p
 
 Configures the route map to go to specific rule when the matching conditions are met.
 
-**Usage**
+### Usage
 
 `nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<route-map-id>` | The route map name. |
 | `<rule-id>` | The route map rule number.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-policy rule 20
@@ -3018,15 +3018,15 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-p
 
 Configures BGP global configuration.
 
-**Usage**
+### Usage
 
 `nv set router bgp [options] [<attribute> ...`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -3039,7 +3039,7 @@ Configures BGP global configuration.
 |` router-id`  | Configures the BGP router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures a BGP router ID for all VRFs if a common VRF is used; otherwise, you must set a router ID for every VRF. |
 | `wait-for-install` | Configures BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3047,15 +3047,15 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures BGP graceful restart globally on the switch so that a BGP speaker can signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. It also enables a BGP speaker to continue to use routes announced by a peer even after the peer has gone down.
 
-**Usage**
+### Usage
 
 `nv set router bgp graceful-restart [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -3064,7 +3064,7 @@ N/A
 | `restart-time` |  Configures the number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. The default is 120 seconds. You can set a value between 1 and 4095. |
 | `stale-routes-time` | Configures the number of seconds to hold stale routes for a restarting peer. The default is 360 seconds. You can set a value between 1 and 4095. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3072,19 +3072,19 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the role of the router during BGP graceful restart. You can specify `helper-only`, where the router is in helper mode, `full`, where the router is in both helper and restarter mode, or `off`, where BGP graceful restart is off.
 
-**Usage**
+### Usage
 
 `nv set router bgp graceful-restart mode [options] (off|helper-only|full)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart mode full
@@ -3094,19 +3094,19 @@ cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart mode full
 
 Configures the number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. You can set a value between 1 and 4095.
 
-**Usage**
+### Usage
 
 `nv set router bgp graceful-restart restart-time [options] 1-3600`
 
-**Default Setting**
+### Default Setting
 
 120 seconds
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp restart-time 400
@@ -3116,19 +3116,19 @@ cumulus@leaf01:mgmt:~$ nv set router bgp restart-time 400
 
 Configures the number of seconds a restarting peer defers path-selection when waiting for the EOR (end of RIB) marker from peers. You can set a value between 0 and 3600.
 
-**Usage**
+### Usage
 
 `nv set router bgp graceful-restart path-selection-deferral-time [options] 0-3600`
 
-**Default Setting**
+### Default Setting
 
 360 seconds
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart path-selection-deferral-time 300
@@ -3138,19 +3138,19 @@ cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart path-selection-deferra
 
 Configures the number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 4095.
 
-**Usage**
+### Usage
 
 `nv set router bgp graceful-restart stale-routes-time [options] 1-3600`
 
-**Default Setting**
+### Default Setting
 
 360 seconds
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart stale-routes-time 400
@@ -3160,22 +3160,22 @@ cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart stale-routes-time 400
 
 Configures read-only mode so that you can reduce CPU and network usage when restarting the BGP process.
 
-**Usage**
+### Usage
 
 `nv set router bgp convergence-wait [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `establish-wait-time` | Configures the maximum time to wait to establish BGP sessions. BGP does not track any peers that do not come up in this time for convergence-wait purposes. A value of 0 means there is no maximum time and BGP tracks peers for convergence time.|
 | `time`  | Configures the time to wait for peers to send an EOR (end of RIB) before the switch selects the path, installs and advertises the route. BGP uses the time to wait during startup or when all peerings flap. A value of zero means that there is no wait time. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3183,19 +3183,19 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the time to wait for peers to send an EOR (end of RIB) before the switch selects the path, installs and advertises the route. BGP uses the time to wait during startup or when all peerings flap. You can set a value between 0 and 3600 seconds. A value of zero means that there is no wait time.
 
-**Usage**
+### Usage
 
 `nv set router bgp convergence-wait time [options] 0-3600`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp convergence-wait time 300
@@ -3205,19 +3205,19 @@ cumulus@leaf01:mgmt:~$ nv set router bgp convergence-wait time 300
 
 Configures the maximum time to wait to establish BGP sessions. BGP does not track any peers that do not come up in this time for convergence-wait purposes.  You can set a value between 0 and 600 seconds.  A value of 0 means there is no maximum time and BGP tracks peers for convergence time.
 
-**Usage**
+### Usage
 
 `nv set router bgp convergence-wait establish-wait-time [options] 0-3600`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp establish-wait-time time 200
@@ -3227,19 +3227,19 @@ cumulus@leaf01:mgmt:~$ nv set router bgp establish-wait-time time 200
 
 Turns BGP on or off. The default is off.
 
-**Usage**
+### Usage
 
 `nv set router bgp enable [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp enable on
@@ -3249,19 +3249,19 @@ cumulus@leaf01:mgmt:~$ nv set router bgp enable on
 
 Configures the ASN to identify the BGP node. This command configures the ASN for all VRFs if a single AS is in use; otherwise, you must set an ASN for every VRF.
 
-**Usage**
+### Usage
 
 `nv set router bgp autonomous-system [options] (1-4294967295|none|leaf|spine)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp autonomous-system 65101
@@ -3271,19 +3271,19 @@ cumulus@leaf01:mgmt:~$ nv set router bgp autonomous-system 65101
 
 Configures the BGP router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures a BGP router ID for all VRFs if a common VRF is used; otherwise, you must set a router ID for every VRF.
 
-**Usage**
+### Usage
 
 `nv set router bgp router-id [options] (none|<ipv4>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp router-id 10.10.10.1
@@ -3293,19 +3293,19 @@ cumulus@leaf01:mgmt:~$ nv set router bgp router-id 10.10.10.1
 
 Configures the wait time in seconds before processing updates to policies to ensure that a series of changes process together. You can set a value between o and 600.
 
-**Usage**
+### Usage
 
 `nv set router bgp policy-update-timer [options] 0-600`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp policy-update-timer 200
@@ -3315,19 +3315,19 @@ cumulus@leaf01:mgmt:~$ nv set router bgp policy-update-timer 200
 
 Configures graceful shutdown, which forces traffic to route around the BGP node and reduces packet loss during planned maintenance of a router or link.
 
-**Usage**
+### Usage
 
 `nv set router bgp graceful-shutdown [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp graceful-shutdown on
@@ -3337,19 +3337,19 @@ cumulus@leaf01:mgmt:~$ nv set router bgp graceful-shutdown on
 
 Configures BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 
-**Usage**
+### Usage
 
 `nv set router bgp wait-for-install [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router bgp wait-for-install on
@@ -3359,15 +3359,15 @@ cumulus@leaf01:mgmt:~$ nv set router bgp wait-for-install on
 
 Configures OSPF globally on the switch.
 
-**Usage**
+### Usage
 
 `nv set router ospf [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -3375,7 +3375,7 @@ N/A
 | `enable` | Turns OSPF on or off. The default is off. |
 | `router-id` | Configures the OSPF router ID. This command configures the router ID for all VRFs if a common one is used; otherwise, you must set the router ID for every VRF. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3383,15 +3383,15 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures OSPF Link State Advertisement (LSA) and Shortest Path First (SPF) timers, and the refresh interval.
 
-**Usage**
+### Usage
 
 `nv set router ospf timers [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | --------- | -------------- |
@@ -3399,7 +3399,7 @@ N/A
 | `spf` | Configures the SPF timers. |
 | `refresh` | Configures the refresh interval in seconds to resend LSAs to prevent them from aging out.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3407,22 +3407,22 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures LSA timers.
 
-**Usage**
+### Usage
 
 `nv set router ospf timers lsa [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `min-arrival` |  Configures the minimum interval during which OSPF can accept the same LSA.|
 | `throttle` |  Configures the delay in milliseconds between sending LSAs. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3430,19 +3430,19 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the minimum interval in seconds during which OSPF can accept the same LSA. You can specify a value between 0 and 600000.
 
-**Usage**
+### Usage
 
 `nv set router ospf timers lsa min-arrival [options] 0-600000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa min-arrival 300000
@@ -3452,19 +3452,19 @@ cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa min-arrival 300000
 
 Configures the amount of time after which OSPF sends LSAs. You can specify a value between 0 and 5000 milliseconds.
 
-**Usage**
+### Usage
 
 `nv set router ospf timers lsa throttle [options] 0-5000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa throttle 3000
@@ -3474,15 +3474,15 @@ cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa throttle 3000
 
 Configures the SPF timers.
 
-**Usage**
+### Usage
 
 `nv set router ospf timers spf [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -3490,7 +3490,7 @@ N/A
 | `holdtime` | Configures the amount of time to wait between consecutive SPF calculations.| 
 | `max-holdtime` | Configures the maximum amount of time to wait between consecutive SPF calculations. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3498,19 +3498,19 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the amount of time to wait to do the SPF calculation after receiving the first topology change. You can specify a value between 0 and 600000 milliseconds.
 
-**Usage**
+### Usage
 
 `nv set router ospf timers spf delay [options] 0-600000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router ospf timers spf delay 300000
@@ -3520,19 +3520,19 @@ cumulus@leaf01:mgmt:~$ nv set router ospf timers spf delay 300000
 
 Configures the amount of time to wait between consecutive SPF calculations. You can specify a value between 0 and 600000 milliseconds.
 
-**Usage**
+### Usage
 
 `nv set router ospf timers spf holdtime [options] 0-600000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router ospf timers spf holdtime 300000
@@ -3542,19 +3542,19 @@ cumulus@leaf01:mgmt:~$ nv set router ospf timers spf holdtime 300000
 
 Configures the maximum amount of time to wait between consecutive SPF calculations. You can specify a value between 0 and 600000 milliseconds.
 
-**Usage**
+### Usage
 
 `nv set router ospf timers spf max-holdtime [options] 0-600000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router ospf timers spf max-holdtime 300000
@@ -3564,19 +3564,19 @@ cumulus@leaf01:mgmt:~$ nv set router ospf timers spf max-holdtime 300000
 
 Configures the refresh interval in seconds to resend LSAs to prevent them from aging out. You can specify a value between 10 and 1800 seconds.
 
-**Usage**
+### Usage
 
 `nv set router ospf timers refresh [options] 10-1800`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router ospf timers refresh 100
@@ -3586,19 +3586,19 @@ cumulus@leaf01:mgmt:~$ nv set router ospf timers refresh 100
 
 Turns OSPF on or off. 
 
-**Usage**
+### Usage
 
 `nv set router ospf enable [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router ospf enable on
@@ -3608,19 +3608,19 @@ cumulus@leaf01:mgmt:~$ nv set router ospf enable on
 
 Configures the OSPF router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures the router ID for all VRFs if a common one is used; otherwise, you must set the router ID for every VRF.
 
-**Usage**
+### Usage
 
 `nv set router ospf router-id [options] (none|<ipv4>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router ospf router-id 10.10.10.1.
@@ -3630,15 +3630,15 @@ cumulus@leaf01:mgmt:~$ nv set router ospf router-id 10.10.10.1.
 
 Configures PIM globally on the switch.
 
-**Usage**
+### Usage
 
 `nv set router pim [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -3646,7 +3646,7 @@ N/A
 | `enable` | Turns PIM feature on or off. |
 | `packets` |Configures the number of incoming packets to process from the neighbor. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3654,15 +3654,15 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures PIM timers.
 
-**Usage**
+### Usage
 
 `nv set router pim timers [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -3672,7 +3672,7 @@ N/A
 | `register-suppress` | Configures the number of seconds during which to stop sending register messages to the RP. |
 | `rp-keep-alive` | Configures the RP's timeout value, in seconds. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3680,19 +3680,19 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the interval in seconds at which the PIM router sends hello messages to discover PIM neighbors and maintain PIM neighbor relationships. You can specify a value between 1 and 180.
 
-**Usage**
+### Usage
 
 `nv set router pim timers hello-interval [options] 1-180`
 
-**Default Setting**
+### Default Setting
 
 30 seconds
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pim timers hello-interval 60
@@ -3702,19 +3702,19 @@ cumulus@leaf01:mgmt:~$ nv set router pim timers hello-interval 60
 
 The number of seconds during which to stop sending register messages to the RP. You can specify a value between 5 and 60000 seconds.
 
-**Usage**
+### Usage
 
 `nv set router pim timers register-suppress [options] 5-60000`
 
-**Default Setting**
+### Default Setting
 
 60 seconds
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pim timers register-suppress 20000
@@ -3724,19 +3724,19 @@ cumulus@leaf01:mgmt:~$ nv set router pim timers register-suppress 20000
 
 Configures the interval in seconds at which a PIM router sends join and prune messages to its upstream neighbors for a state update. You can specify a value between 60 and 600 seconds.
 
-**Usage**
+### Usage
 
 `nv set router pim timers join-prune-interval [options] 60-600`
 
-**Default Setting**
+### Default Setting
 
 60 seconds
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pim timers join-prune-interval 100
@@ -3746,19 +3746,19 @@ cumulus@leaf01:mgmt:~$ nv set router pim timers join-prune-interval 100
 
 Configures the timeout value for the S,G stream in seconds. You can specify a value between 31 and 60000.
 
-**Usage**
+### Usage
 
 `nv set router pim timers keep-alive [options] 31-60000`
 
-**Default Setting**
+### Default Setting
 
 210 seconds
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pim timers keep-alive 10000
@@ -3768,19 +3768,19 @@ cumulus@leaf01:mgmt:~$ nv set router pim timers keep-alive 10000
 
 Configures the timeout value for the RP in seconds. You can specify a value between 31 and 60000.
 
-**Usage**
+### Usage
 
 `nv set router pim timers rp-keep-alive [options] 31-60000`
 
-**Default Setting**
+### Default Setting
 
 185 seconds
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pim timers rp-keep-alive 10000
@@ -3791,19 +3791,19 @@ cumulus@leaf01:mgmt:~$ nv set router pim timers rp-keep-alive 10000
 
 Turns PIM on or off.
 
-**Usage**
+### Usage
 
 `nv set router pim enable [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pim enable on
@@ -3813,19 +3813,19 @@ cumulus@leaf01:mgmt:~$ nv set router pim enable on
 
 Configures the number of incoming packets from the neighbor that PIM can process. You can specify a value between 1 and 100.
 
-**Usage**
+### Usage
 
 `nv set router pim packets [options] 1-100`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router pim packets 50
@@ -3835,21 +3835,21 @@ cumulus@leaf01:mgmt:~$ nv set router pim packets 50
 
 Configures IGMP globally on the switch.
 
-**Usage**
+### Usage
 
 `nv set router igmp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `enable` |  Turns IGMP on or off.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3857,19 +3857,19 @@ Introduced in Cumulus Linux 5.0.0
 
 Turns IGMP on or off.
 
-**Usage**
+### Usage
 
 `nv set router igmp enable [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `on`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router igmp enable on
@@ -3879,15 +3879,15 @@ cumulus@leaf01:mgmt:~$ nv set router igmp enable on
 
 Configures VRRP globally on the switch.
 
-**Usage**
+### Usage
 
 `nv set router vrrp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -3896,7 +3896,7 @@ N/A
 | `preempt` | Configures preempt mode, which lets the router take over as master for a virtual router group if it has a higher priority than the current master. |
 | `priority` |  Configures the priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. Virtual routers have a priority between 1 and 254; the router with the highest priority becomes the master. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -3904,19 +3904,19 @@ Introduced in Cumulus Linux 5.0.0
 
 Turns VRRP on or off.
 
-**Usage**
+### Usage
 
 `nv set router vrrp enable [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router vrrp enable on
@@ -3926,19 +3926,19 @@ cumulus@leaf01:mgmt:~$ nv set router vrrp enable on
 
 Configures the priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. Virtual routers have a priority between 1 and 254; the router with the highest priority becomes the master.
 
-**Usage**
+### Usage
 
 `nv set router vrrp priority [options] 1-2`54`
 
-**Default Setting**
+### Default Setting
 
 100
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router vrrp priority 254
@@ -3948,19 +3948,19 @@ cumulus@leaf01:mgmt:~$ nv set router vrrp priority 254
 
 Configures the router to take over as master for a virtual router group if it has a higher priority than the current master.
 
-**Usage**
+### Usage
 
 `nv set router vrrp preempt [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `on`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router vrrp preempt off
@@ -3970,19 +3970,19 @@ cumulus@leaf01:mgmt:~$ nv set router vrrp preempt off
 
 Configures the advertisement interval between successive advertisements by the master in a virtual router group. You can specify a value between 10 and 40950.
 
-**Usage**
+### Usage
 
 `nv set router vrrp advertisement-interval [options] 10-40950`
 
-**Default Setting**
+### Default Setting
 
 1000 milliseconds
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router vrrp advertisement-interval 2000
@@ -3992,21 +3992,21 @@ cumulus@leaf01:mgmt:~$ nv set router vrrp advertisement-interval 2000
 
 Configures VRR globally on the switch.
 
-**Usage**
+### Usage
 
 `nv set router vrr [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `enable` |   Turns VRR on or off. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4014,19 +4014,19 @@ Introduced in Cumulus Linux 5.0.0
 
 Turns VRR on or off.
 
-**Usage**
+### Usage
 
 `nv set router vrr [options]  (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router vrr enable on
@@ -4036,21 +4036,21 @@ cumulus@leaf01:mgmt:~$ nv set router vrr enable on
 
 Configures adaptive routing globally on the switch. Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
 
-**Usage**
+### Usage
 
 `nv set router adaptive-routing [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `enable` | Turns adaptive routing on or off. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.1.0
 
@@ -4058,19 +4058,19 @@ Introduced in Cumulus Linux 5.1.0
 
 Turns adaptive routing on or off.
 
-**Usage**
+### Usage
 
 `nv set router adaptive-routing [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.1.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router adaptive-routing enable on
@@ -4080,21 +4080,21 @@ cumulus@leaf01:mgmt:~$ nv set router adaptive-routing enable on
 
 Configures the switch platform settings.
 
-**Usage**
+### Usage
 
 `nv set platform [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `hardware` | Configures the switch hardware components. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4102,21 +4102,21 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the hardware components of the switch. 
 
-**Usage**
+### Usage
 
 `nv set platform hardware [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `component` | Configures a hardware component on the switch. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4124,21 +4124,21 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures a hardware component on the switch.
 
-**Usage**
+### Usage
 
 `nv set platform hardware component <component-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<component-id>` | The hardware component you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -4146,7 +4146,7 @@ N/A
 | `admin-state` | Configures the admin state of the hardware component. |
 | `type` | Configures the conponent type. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4154,27 +4154,27 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the properties of a line card.
 
-**Usage**
+### Usage
 
 `nv set platform hardware component <component-id> linecard [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<component-id>` | The hardware component you want to configure.|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `provision`  | Configures the provision line card type. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4182,25 +4182,25 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the properties of a line card. You can specify 16x100GE, 4x400GE, 8x200GE, or NONE.
 
-**Usage**
+### Usage
 
 `nv set platform hardware component <component-id> linecard provision [options] (16x100GE|4x400GE|8x200GE|NONE)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<component-id>` | The hardware component you want to configure.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set platform hardware component device linecard provision 4x400GE 
@@ -4210,25 +4210,25 @@ cumulus@leaf01:mgmt:~$ nv set platform hardware component device linecard provis
 
 Configures the conponent type; the switch or a line card.
 
-**Usage**
+### Usage
 
 `nv set platform hardware component <component-id> type [options] (switch|linecard)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<component-id>` | The hardware component you want to configure.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set platform hardware component device type linecard
@@ -4238,25 +4238,25 @@ cumulus@leaf01:mgmt:~$ nv set platform hardware component device type linecard
 
 Configures the admin state of the hardware component. You can specify enable or disable.
 
-**Usage**
+### Usage
 
 `nv set platform hardware component <component-id> admin-state [options] (enable|disable)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<component-id>` | The hardware component you want to configure.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set platform hardware component device admin-state enable
@@ -4266,21 +4266,21 @@ cumulus@leaf01:mgmt:~$ nv set platform hardware component device admin-state ena
 
 Configures a bridge on the switch.
 
-**Usage**
+### Usage
 
 `nv set bridge [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `domain` |  Configures the bridge domain. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4288,21 +4288,21 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the bridge domain.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 `br_default`
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<domain-id>` |  The name of the bridge domain. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -4315,7 +4315,7 @@ Configures the bridge domain.
 | `untagged` |  Configures the interfaces in the bridge domain to be trunk interfaces with a single untagged VLAN by default. Untagged packets on domain ports are in this VLAN. |
 | `vlan-vni-offset` |  Configures a VNI offset while automatically mapping VLANs to VNIs.
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0 
 
@@ -4323,28 +4323,28 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures STP on the bridge domain.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> stp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `state` |  Configures the STP state on the bridge domain; down or up.|
 | `priority` | Configures the spanning tree priority. The bridge with the lowest priority is the root bridge. You must specify a value between 4096 and 32768. The value must be a multiple of 4096. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4352,25 +4352,25 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the spanning tree priority. The bridge with the lowest priority is the root bridge. The priority must be a number between 0 and 61440, and must be a multiple of 4096.
  
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> stp priority [options] 4096-61440`
 
-**Default Setting**
+### Default Setting
 
 32768
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default stp priority 8192
@@ -4380,27 +4380,27 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default stp priority 8192
 
 Configures multicast on the bridge domain.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> multicast [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `snooping` |  Configures IGMP and MLD snooping.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4408,28 +4408,28 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures IGMP and MLD snooping to prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> multicast snooping [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `querier`|  Configures the IGMP and MLD querier. |
 | `enable` | Turns IGMP and MLD snooping on or off. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4437,27 +4437,27 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the IGMP and MLD querier. Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> multicast snooping querier [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `enable` |  Turns the multicast querier on or off.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4465,25 +4465,25 @@ Introduced in Cumulus Linux 5.0.0
 
 Turns the multicast querier on or off.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> multicast snooping querier enable [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default multicast snooping querier enable on
@@ -4493,26 +4493,26 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default multicast snooping querie
 
 Turns IGMP and MLD snooping on or off.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> multicast snooping enable [options] (on|off)`
 
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default multicast snooping enable on
@@ -4522,22 +4522,22 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default multicast snooping enable
 
 Configures the VLAN tag identifier.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<domain-id>` |  The bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -4545,11 +4545,11 @@ N/A
 | `ptp` |  Configures PTP on the VLAN (on all the interfaces in this VLAN).|
 | `multicast` |  Configures multicast on the VLAN.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10
@@ -4559,15 +4559,15 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10
 
 Maps a VLAN to a VNI.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -4575,18 +4575,18 @@ N/A
 | `<vid>`   |  The VLAN identifier.
 | `<vni-id>` | The VXLAN ID. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `flooding`  |  Configures how to handle BUM traffic.|
 | `mac-learning` | Controls dynamic MAC learning over VXLAN tunnels based on received packets. This applies to all overlays (VNIs). You can override this setting with VNI-specific configuration. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10`
@@ -4596,15 +4596,15 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10`
 
 Configures how to handle BUM traffic.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -4612,7 +4612,7 @@ N/A
 | `<vid>`   |  The VLAN identifier.
 | `<vni-id>` | The VXLAN ID. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -4620,7 +4620,7 @@ N/A
 | `enable` | Turns flooding on or off for the specified VNI.|
 | `multicast-group` | Configures BUM traffic received on the VNI to go to the specified multicast group where receivers who are interested in that group receive the traffic. This usually requires you to use PIM-SM in the network. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4628,15 +4628,15 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures replication of BUM traffic where individual copies send to remote destinations.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -4645,11 +4645,11 @@ N/A
 | `<vni-id>` | The VXLAN ID. |
 | `<hrep-id>`  |  The IPv4 unicast addresses or `evpn`. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
@@ -4659,15 +4659,15 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding h
 
 Turns flooding on or off for the VNI. 
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding enable [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -4675,11 +4675,11 @@ N/A
 | `<vid>`   |  The VLAN identifier.
 | `<vni-id>` | The VXLAN ID. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding enable on
@@ -4689,15 +4689,15 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding e
 
 Configures BUM traffic to go to the specified multicast group, where receivers who are interested in that group recieve the traffic. This requires PIM-SM to be used in the network.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group [options] <ipv4-multicast>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -4706,11 +4706,11 @@ N/A
 | `<vni-id>` | The VXLAN ID. |
 | `<ipv4-multicast>` | The multicast group.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding multicast-group 224.0.0.10
@@ -4720,15 +4720,15 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding m
 
 Turns MAC learning on or off for the VNI.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> vni <vni-id> mac-learning [options] (on|off|auto)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -4736,11 +4736,11 @@ Turns MAC learning on or off for the VNI.
 | `<vid>`   |  The VLAN identifier.
 | `<vni-id>` | The VXLAN ID. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learning off
@@ -4750,28 +4750,28 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learni
 
 Configures Precision Time Protocol (PTP) on the VLAN (all interfaces in this VLAN).
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> ptp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` | The bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `enable`   |  Turns PTP on or off. The default is 'off'. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4779,26 +4779,26 @@ Introduced in Cumulus Linux 5.0.0
 
 Turns PTP on or off for the specified VLAN.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> ptp enable [options]`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` | The bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan vlan10 ptp enable on
@@ -4808,28 +4808,28 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan vlan10 ptp enable on
 
 Configures multicast on the VLAN.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` | The bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `snooping`  |  Configures IGMP and MLD snooping on the VLAN. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4837,28 +4837,28 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures IGMP and MLD snooping on the VLAN.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` | The bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 |`querier` |  Configures the IGMP and MLD querier on the VLAN. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4866,28 +4866,28 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the IGMP and MLD querier on the VLAN. 
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> multicast snooping querier [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` | The bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 |`source-ip`  | The source IP address you want to use to send IGMP MLD queries. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
@@ -4895,26 +4895,26 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the source IP address you want to use to send IGMP MLD queries.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip [options] <ipv4>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` | The bridge domain. |
 | `<vid>`   |  The VLAN identifier.
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan vlan10 multicast snooping querier source-ip 10.10.10.1
@@ -4924,25 +4924,25 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan vlan10 multicast sno
 
 Configures the bridge domain to be VLAN-aware.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> type [options] vlan-aware`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default type vlan-aware
@@ -4953,25 +4953,25 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default type vlan-aware
 Configures the bridge domain to 
 
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> untagged [options] (1-4094|none)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default untagged none
@@ -4981,25 +4981,25 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default untagged none
 
 Configures any interfaces in this bridge domain to use 802.1Q encapsulation by default.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> encap [options] 802.1Q`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default encap 802.1Q
@@ -5009,25 +5009,25 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default encap 802.1Q
 
 Configures any interfaces in this bridge domain to use this MAC address.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> mac-address [options] (auto|<mac>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default mac-address 00:00:00:00:00:10
@@ -5037,25 +5037,25 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default mac-address 00:00:00:00:0
 
 Configures the VNI offset when mapping VLANs to VNIs automatically. You can set a value between 0 and 16773120. For example, if you specify an offset of 10000, the VNI is the VLAN plus 10000.
 
-**Usage**
+### Usage
 
 `nv set bridge domain <domain-id> vlan-vni-offset [options] 0-16773120`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<domain-id>` |  The bridge domain. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.1.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan-vni-offset 10000
@@ -5065,11 +5065,11 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan-vni-offset 10000
 
 Configures global Multi-chassis Link Aggregation (MLAG) properties.
 
-**Usage**
+### Usage
 
 `nv set mlag [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5086,19 +5086,19 @@ Configures global Multi-chassis Link Aggregation (MLAG) properties.
 
 Configures the MLAG LACP conflict parameters.
 
-**Usage**
+### Usage
 
 `nv set mlag lacp-conflict [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.1.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag lacp-conflict 
@@ -5108,31 +5108,31 @@ cumulus@leaf01:mgmt:~$ nv set mlag lacp-conflict
 
 Configures the IP address of the MLAG backup switch. The backup IP address is any layer 3 backup interface for the peer link, which the switch uses when the peer link goes down. You must add the backup IP address, which must be different than the peer link IP address.
 
-**Usage**
+### Usage
 
 `nv set mlag backup <backup-ip> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<backup-ip>` |  The IP address of the MLAG backup switch. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `vrf` |  Configures the VRF for backup IP address. |
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2
@@ -5142,25 +5142,25 @@ cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2
 
 Configures the VRF for MLAG backup IP address.
 
-**Usage**
+### Usage
 
 `nv set mlag backup <backup-ip> vrf [options] <vrf-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<backup-ip>` |  The IP address of the MLAG backup switch.|
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2 vrf RED
@@ -5170,19 +5170,19 @@ cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2 vrf RED
 
 Turns MLAG on or off.
 
-**Usage**
+### Usage
 
 `nv set mlag enable [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag enable on
@@ -5193,19 +5193,19 @@ cumulus@leaf01:mgmt:~$ nv set mlag enable on
 
 Configures the MLAG system MAC address. NVIDIA provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network. Do not to use a multicast MAC address. Make sure you specify a different MAC address for each MLAG pair in the network.
 
-**Usage**
+### Usage
 
 `nv set mlag mac-address [options] (auto|<mac>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
@@ -5215,19 +5215,19 @@ cumulus@leaf01:mgmt:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
 
 Configures the IP address of the MLAG peer.
 
-**Usage**
+### Usage
 
 `nv set mlag peer-ip [options] (linklocal|<ipv4>|<ipv6>)`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
@@ -5237,19 +5237,19 @@ cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
 
 Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a vlaue between 0-65535. 
 
-**Usage**
+### Usage
 
 `nv set mlag priority [options] 0-65535`
 
-**Default Setting**
+### Default Setting
 
 32768
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag priority 2084
@@ -5264,19 +5264,19 @@ This timer sets to 0 automatically under the following conditions:
 - When the peer sends a goodbye (through the peer link or the backup link).
 - When both MLAG sessions come up at the same time.
 
-**Usage**
+### Usage
 
 `nv set mlag init-delay [options] 0-900`
 
-**Default Setting**
+### Default Setting
 
 180
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag init-delay 100
@@ -5286,19 +5286,19 @@ cumulus@leaf01:mgmt:~$ nv set mlag init-delay 100
 
 Turns MLAG degugging on or off.
 
-**Usage**
+### Usage
 
 `nv set mlag debug [options] (on|off)`
 
-**Default Setting**
+### Default Setting
 
 `off`
 
-**Version History**
+### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-**Example**
+### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag debug on
@@ -5308,11 +5308,11 @@ cumulus@leaf01:mgmt:~$ nv set mlag debug on
 
 Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-**Usage**
+### Usage
 
 `nv set evpn [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5326,11 +5326,11 @@ Enables the EVPN control plane.  When enabled, it also means that the EVPN servi
 
 Route dvertising
 
-**Usage**
+### Usage
 
 `nv set evpn route-advertise [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5342,11 +5342,11 @@ Route dvertising
 
 Duplicate address detection
 
-**Usage**
+### Usage
 
 `nv set evpn dad [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5359,11 +5359,11 @@ move-window` |         Time window during which the move threshold applies |
 
 Handling of BUM traffic
 
-**Usage**
+### Usage
 
 `nv set evpn dad duplicate-action [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5373,11 +5373,11 @@ Handling of BUM traffic
 
 Advertise
 
-**Usage**
+### Usage
 
 `nv set evpn dad duplicate-action freeze [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5387,7 +5387,7 @@ Advertise
 
 Number of MAC moves within a time window before the MAC is flagged as a possible duplicate.
 
-**Usage**
+### Usage
 
 `nv set evpn dad mac-move-threshold [options] 2-1000`
 
@@ -5395,29 +5395,29 @@ Number of MAC moves within a time window before the MAC is flagged as a possible
 
 Time window during which the move threshold applies
 
-**Usage**
+### Usage
 
 `nv set evpn dad move-window [options] 2-1800`
 
 ## nv set evpn evi \<evi-id\>
 
-**Usage**
+### Usage
 
 `nv set evpn evi <evi-id> [options] [<attribute> ...]`
 
 Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<evi-id>` |  VRF |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5429,21 +5429,21 @@ N/A
 
 Route advertise
 
-**Usage**
+### Usage
 
 `nv set evpn evi <evi-id> route-advertise [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<evi-id>` | VRF |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5454,21 +5454,21 @@ N/A
 
 EVPN control plane config and info for VRF
 
-**Usage**
+### Usage
 
 `nv set evpn evi <evi-id> route-target [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<evi-id>` | VRF |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5480,15 +5480,15 @@ N/A
 
 A route target identifier
 
-**Usage**
+### Usage
 
 `nv set evpn evi <evi-id> route-target export <rt-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -5499,15 +5499,15 @@ N/A
 
 A route target identifier
 
-**Usage**
+### Usage
 
 `nv set evpn evi <evi-id> route-target import <rt-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -5518,15 +5518,15 @@ N/A
 
 A route target identifier
 
-**Usage**
+### Usage
 
 `nv set evpn evi <evi-id> route-target both <rt-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -5537,11 +5537,11 @@ N/A
 
 Multihoming global configuration parameters
 
-**Usage**
+### Usage
 
 `nv set evpn multihoming [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5556,11 +5556,11 @@ Multihoming global configuration parameters
 
 Ethernet Auto-discovery per EVPN instance routes
 
-**Usage**
+### Usage
 
 `nv set evpn multihoming ead-evi-route [options] [<attribute> ...]`
   
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5571,11 +5571,11 @@ Ethernet Auto-discovery per EVPN instance routes
 
 Multihoming interface segment
 
-**Usage**
+### Usage
 
 `nv set evpn multihoming segment [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5586,7 +5586,7 @@ Multihoming interface segment
 
 MAC address per ethernet segment.  Required.
 
-**Usage**
+### Usage
 
 `nv set evpn multihoming segment mac-address [options] <mac>`
 
@@ -5594,7 +5594,7 @@ MAC address per ethernet segment.  Required.
 
 Designated forwarder preference value.
 
-**Usage**
+### Usage
 
 `nv set evpn multihoming segment df-preference [options] 1-65535`
 
@@ -5602,7 +5602,7 @@ Designated forwarder preference value.
 
 During this interval, the switch attempts to independently establish reachability of the MAC on the local ethernet segment. If 'none', there is no holdtime.
 
-**Usage**
+### Usage
 
 `nv set evpn multihoming mac-holdtime [options] 0-86400`
 
@@ -5610,7 +5610,7 @@ During this interval, the switch attempts to independently establish reachabilit
 
 During this interval, the switch attempts to independently establish reachability of the host on the local ethernet segment.
 
-**Usage**
+### Usage
 
 `nv set evpn multihoming neighbor-holdtime [options] 0-86400`
 
@@ -5618,7 +5618,7 @@ During this interval, the switch attempts to independently establish reachabilit
 
 The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart.
 
-**Usage**
+### Usage
 
 `nv set evpn multihoming startup-delay [options] 0-3600`
 
@@ -5626,11 +5626,11 @@ The duration for which a switch holds the Ethernet segment-bond in a protodown s
 
 QOS
 
-**Usage**
+### Usage
 
 `nv set qos [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5640,11 +5640,11 @@ QOS
 
 Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
-**Usage**
+### Usage
 
 `nv set qos roce [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5656,7 +5656,7 @@ Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
 
 Cable Length(in meters) for Roce Lossless Config
 
-**Usage**
+### Usage
 
 `nv set qos roce cable-length [options] 1-100000`
   
@@ -5664,21 +5664,21 @@ Cable Length(in meters) for Roce Lossless Config
 
 An interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5701,21 +5701,21 @@ N/A
 
 interface router
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |` <interface-id>` |    Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5728,21 +5728,21 @@ N/A
 
 PBR interface configuration.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pbr [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |` <interface-id>` |    Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5752,15 +5752,15 @@ N/A
 
 Interface Pbr map
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pbr map <pbr-map-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -5771,21 +5771,21 @@ N/A
 
 OSPF interface configuration.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |` <interface-id>` |  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5804,21 +5804,21 @@ N/A
 
 Timers configuration
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf timers [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |` <interface-id>` |  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5831,15 +5831,15 @@ N/A
 
 Required and only valid if `dead-interval` is `minimal`.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf timers hello-multiplier [options] 1-10`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -5849,15 +5849,15 @@ N/A
 
 How often to transmit a hello packet, in seconds.  Only valid if `dead-interval` is not `minimal`.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf timers hello-interval [options] 1-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -5867,15 +5867,15 @@ N/A
 
 How often to retransmit a packet not acknowledged, in seconds
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf timers retransmit-interval [options] 1-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -5885,15 +5885,15 @@ N/A
 
 Delay before sending a new lsa, in seconds
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf timers transmit-delay [options] 1-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -5903,21 +5903,21 @@ N/A
 
 md5 authentication configuration
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf authentication [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5929,15 +5929,15 @@ N/A
 
 Message digest key
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf authentication message-digest-key [options] 1-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -5947,15 +5947,15 @@ N/A
 
 md5 key
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf authentication md5-key [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -5965,21 +5965,21 @@ N/A
 
 BFD configuration
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf bfd [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -5992,15 +5992,15 @@ N/A
 
 Detect multiplier value
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf bfd detect-multiplier [options] 2-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6010,15 +6010,15 @@ N/A
 
 Minimum receive interval in milliseconds
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf bfd min-receive-interval [options] 50-60000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6028,15 +6028,15 @@ N/A
 
 Minimum transmit interval in milliseconds
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf bfd min-transmit-interval [options] 50-60000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6046,15 +6046,15 @@ N/A
 
 Eligibility of this router to become DR on multi-access network
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router ospf priority [options] 0-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6064,21 +6064,21 @@ N/A
 
 PIM interface configuration.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pim [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6093,21 +6093,21 @@ N/A
 
 Timers
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pim timers [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6117,21 +6117,21 @@ N/A
 
 BFD configuration
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pim bfd [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6144,15 +6144,15 @@ N/A
 
 Detect multiplier value
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pim bfd detect-multiplier [options] 2-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6162,15 +6162,15 @@ N/A
 
 Minimum receive interval in milliseconds
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pim bfd min-receive-interval [options] 50-60000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6180,15 +6180,15 @@ N/A
 
 Minimum transmit interval in milliseconds
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pim bfd min-transmit-interval [options] 50-60000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6198,21 +6198,21 @@ N/A
 
 Address family specific configuration
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pim address-family [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6222,21 +6222,21 @@ N/A
 
 IPv4 unicast address family
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6248,21 +6248,21 @@ N/A
 
 Allow RP feature, which allows RP address to be accepts for the received
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pim address-family ipv4-unicast allow-rp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6273,15 +6273,15 @@ N/A
 
 Designated Router Election priority.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router pim dr-priority [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6291,21 +6291,21 @@ N/A
 
 Adaptive routing interface configuration.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router adaptive-routing [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6316,15 +6316,15 @@ N/A
 
 Link utilization threshold percentage
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> router adaptive-routing link-utilization-threshold [options] 1-100`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6334,21 +6334,21 @@ N/A
 
 The state of the interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> bond [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6364,15 +6364,15 @@ N/A
 
 A bond member
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> bond member <member-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6383,21 +6383,21 @@ N/A
 
 MLAG configuration on the bond interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> bond mlag [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6409,15 +6409,15 @@ N/A
 
 Configure the mlag lacp-conflict parameters
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> bond mlag lacp-conflict [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6427,16 +6427,16 @@ N/A
 
 bond down delay
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> bond down-delay [options] 0-65535`
 
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6446,15 +6446,15 @@ N/A
 
 bond up delay
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> bond up-delay [options] 0-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6464,21 +6464,21 @@ N/A
 
 attributed related to a bridged interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> bridge [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6488,23 +6488,23 @@ N/A
 
 Bridge domain on this interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]`
 
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>`|  Interface |
 | `<domain-id>` |     Domain  |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6518,22 +6518,22 @@ N/A
 
 attributed related to a stpd interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> bridge domain <domain-id> stp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>`|  Interface |
 | `<domain-id>` |     Domain  |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6548,15 +6548,15 @@ N/A
 
 A VLAN tag identifier
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> bridge domain <domain-id> vlan <vid> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6568,21 +6568,21 @@ N/A
 
 IP configuration for an interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>`|  Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6600,15 +6600,15 @@ N/A
 
 An IP address with prefix
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip address <ip-prefix-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6619,21 +6619,21 @@ N/A
 
 Configuration for VRR
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip vrr [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6647,15 +6647,15 @@ N/A
 
 An IP address with prefix
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip vrr address <ip-prefix-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6666,15 +6666,15 @@ N/A
 
 An IP address
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip gateway <ip-address-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6685,21 +6685,21 @@ N/A
 
 IPv4 configuration for an interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip ipv4 [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6709,21 +6709,21 @@ N/A
 
 IPv6 configuration for an interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip ipv6 [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6734,21 +6734,21 @@ N/A
 
 Configuration for IGMP
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip igmp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6763,22 +6763,22 @@ N/A
 
 IGMP static multicast mroute
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip igmp static-group <static-group-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 | `<static-group-id>` |  IGMP static multicast mroute destination |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6788,15 +6788,15 @@ N/A
 
 IGMP static multicast mroute source.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip igmp static-group <static-group-id> source-address [options] <ipv4-unicast>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6807,15 +6807,15 @@ N/A
 
 Query interval, in seconds.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip igmp query-interval [options] 1-1800`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6825,15 +6825,15 @@ N/A
 
 Max query response time, in seconds.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip igmp query-max-response-time [options] 10-250`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6843,15 +6843,15 @@ N/A
 
 Last member query interval.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip igmp last-member-query-interval [options] 1-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6861,21 +6861,21 @@ N/A
 
 Configuration for VRRP
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip vrrp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6886,22 +6886,22 @@ N/A
 
 A virtual gateway implemented with VRRP
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 | `<virtual-router-id>` |   Virtual Router IDentifier (VRID) |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6915,15 +6915,15 @@ N/A
 
 An IP address
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -6935,21 +6935,21 @@ N/A
 
 Neighbor discovery configuration for an interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6965,22 +6965,22 @@ N/A
 
 A recursive DNS server
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 |`<ipv6-address-id>` |  IPv6 address |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -6990,22 +6990,22 @@ N/A
 
 A IPv6 prefix
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 | `<ipv6-address-id>` |  IPv6 address |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7019,15 +7019,15 @@ N/A
 
 Time in seconds the prefix is valid for on-link determination
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> valid-lifetime [options] 0-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7038,15 +7038,15 @@ N/A
 
 Time in seconds that addresses generated from a prefix remain preferred
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> preferred-lifetime [options] 0-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7057,22 +7057,22 @@ N/A
 
 A DNS search list
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 |`<domain-name-id>` |  The domain portion of a hostname (RFC 1123) or an internationalized hostname (RFC 5890). |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7082,21 +7082,21 @@ N/A
 
 Router advertisement configuration for an interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery router-advertisement [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | Interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7116,15 +7116,15 @@ N/A
 
 Maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery router-advertisement interval [options] 70-1800000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7134,15 +7134,15 @@ N/A
 
 Maximum time in seconds that the router can be treated as default gateway
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery router-advertisement lifetime [options] 0-9000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7152,15 +7152,15 @@ N/A
 
 Time in milliseconds that a IPv6 node is considered reachable
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery router-advertisement reachable-time [options] 0-3600000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7170,15 +7170,15 @@ N/A
 
 Time in milliseconds between retransmission of neighbor solicitation messages
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery router-advertisement retransmit-time [options] 0-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7188,15 +7188,15 @@ N/A
 
 Value in hop count field in IP header of the outgoing router advertisement packet
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery router-advertisement hop-limit [options] 0-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7206,21 +7206,21 @@ N/A
 
 Indicates to neighbors that this router acts as a Home Agent and includes a Home Agent Option. Not defined by default
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery home-agent [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7231,15 +7231,15 @@ N/A
 
 Lifetime of a home agent in seconds
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery home-agent lifetime [options] 0-65520`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7249,15 +7249,15 @@ N/A
 
 Home agent's preference value that is used to order the addresses returned in the home agent address discovery reply.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery home-agent preference [options] 0-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7267,15 +7267,15 @@ N/A
 
 MTU option for neighbor discovery messages
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip neighbor-discovery mtu [options] 1-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7285,15 +7285,15 @@ N/A
 
 Virtual routing and forwarding
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ip vrf [options] <vrf-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7303,21 +7303,21 @@ N/A
 
 LLDP on for an interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> lldp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7329,21 +7329,21 @@ N/A
 
 An physical interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> link [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7360,21 +7360,21 @@ N/A
 
 An physical interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> link dot1x [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7385,15 +7385,15 @@ N/A
 
 interface mtu
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> link mtu [options] 552-9216`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7403,21 +7403,21 @@ N/A
 
 EVPN control plane config and info for VRF
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> evpn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7427,21 +7427,21 @@ N/A
 
 Multihoming interface configuration parameters
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> evpn multihoming [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7452,21 +7452,21 @@ N/A
 
 Multihoming interface segment
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> evpn multihoming segment [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7480,15 +7480,15 @@ N/A
 
 Ethernet segment local-id.  If provided, it will be combined with the global multihoming `mac-address` to create the ethernet segment identifier, which must be unique for each segment and match other bonds in the segment.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> evpn multihoming segment local-id [options] 1-16777215`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7498,15 +7498,15 @@ N/A
 
 Ethernet segment identifier.  This must be unique for each segment and match other bonds in the segment.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> evpn multihoming segment identifier [options] <es-identifier>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7516,22 +7516,22 @@ N/A
 
 An ACL is used for matching packets and take actions
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> acl <acl-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 |`<acl-id>` |  ACL ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7542,22 +7542,22 @@ N/A
 
 Inbound direction
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> acl <acl-id> inbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 | `<acl-id>` |   ACL ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7567,15 +7567,15 @@ N/A
 
 State details
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> acl <acl-id> inbound control-plane [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7586,22 +7586,22 @@ N/A
 
 State details
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> acl <acl-id> outbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 | `<acl-id>` |  ACL ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7611,15 +7611,15 @@ N/A
 
 State details
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> acl <acl-id> outbound control-plane [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7630,21 +7630,21 @@ N/A
 
 Interface Specific PTP configuration.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ptp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7662,21 +7662,21 @@ N/A
 
 Interface PTP timers
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ptp timers [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure.|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7689,15 +7689,15 @@ N/A
 
 Mean time interval between successive Announce messages.  It's specified as a power of two in seconds.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ptp timers announce-interval [options] -3-4`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7707,15 +7707,15 @@ N/A
 
 The mean SyncInterval for multicast messages.  It's specified as a power of two in seconds.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ptp timers sync-interval [options] -7-1`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7725,15 +7725,15 @@ N/A
 
 The minimum permitted mean time interval between successive Delay Req messages.  It's specified as a power of two in seconds.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ptp timers delay-req-interval [options] -7-6`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7743,15 +7743,15 @@ N/A
 
 The number of announceIntervals that have to pass without receipt of an Announce message before the occurrence of the timeout event
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ptp timers announce-timeout [options] 2-10`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7761,15 +7761,15 @@ N/A
 
 PTP instance number.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ptp instance [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7779,15 +7779,15 @@ N/A
 
 Mode in which PTP message is transmitted.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ptp delay-mechanism [options] end-to-end`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7797,15 +7797,15 @@ N/A
 
 Maximum number of hops the PTP messages can make before it gets dropped.
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> ptp ttl [options] 1-2`55
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7815,21 +7815,21 @@ N/A
 
 The state of the interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> tunnel [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7843,15 +7843,15 @@ N/A
 
 Source underlay IP address
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> tunnel source-ip [options] <ipv4>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7861,15 +7861,15 @@ N/A
 
 Destination underlay IP address
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> tunnel dest-ip [options] <ipv4>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7879,15 +7879,15 @@ N/A
 
 time to live
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> tunnel ttl [options] 1-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7897,15 +7897,15 @@ N/A
 
 tunnel mode
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> tunnel mode [options] gre`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7915,15 +7915,15 @@ N/A
 
 Physical underlay interface to used for Tunnel packets
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> tunnel interface [options] <interface-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7933,15 +7933,15 @@ N/A
 
 Details about the interface
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> description [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7951,15 +7951,15 @@ N/A
 
 VLAN ID
 
-**Usage**
+### Usage
 
 `nv set interface <interface-id> vlan [options] 1-4094`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -7969,11 +7969,11 @@ N/A
 
 A service
 
-**Usage**
+### Usage
 
 `nv set service [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -7991,21 +7991,21 @@ A service
 
 Domain Name Service
 
-**Usage**
+### Usage
 
 `nv set service dns <vrf-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8015,15 +8015,15 @@ N/A
 
 A remote DNS server
 
-**Usage**
+### Usage
 
 `nv set service dns <vrf-id> server <dns-server-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8034,21 +8034,21 @@ N/A
 
 Domain Name Service
 
-**Usage**
+### Usage
 
 `nv set service syslog <vrf-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8058,22 +8058,22 @@ N/A
 
 A remote DNS server
 
-**Usage**
+### Usage
 
 `nv set service syslog <vrf-id> server <server-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` | VRF |
 | `<server-id>` |  Hostname or IP address of a syslog server |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8084,15 +8084,15 @@ N/A
 
 Port number of the remote syslog server
 
-**Usage**
+### Usage
 
 `nv set service syslog <vrf-id> server <server-id> port [options] 1-32767`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 
 | Identifier |  Description   |
@@ -8104,21 +8104,21 @@ N/A
 
 Network Time Protocol
 
-**Usage**
+### Usage
 
 `nv set service ntp <vrf-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8130,22 +8130,22 @@ N/A
 
 A remote NTP Server
 
-**Usage**
+### Usage
 
 `nv set service ntp <vrf-id> server <server-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` | VRF |
 | `<server-id>` |  Hostname or IP address of the NTP server |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8155,22 +8155,22 @@ N/A
 
 A remote NTP Server
 
-**Usage**
+### Usage
 
 `nv set service ntp <vrf-id> pool <server-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` | VRF |
 | `<server-id>` |  Hostname or IP address of the NTP server |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8180,15 +8180,15 @@ N/A
 
 NTP interface to listen on.
 
-**Usage**
+### Usage
 
 `nv set service ntp <vrf-id> listen [options] <interface-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8198,21 +8198,21 @@ N/A
 
 DHCP relay
 
-**Usage**
+### Usage
 
 `nv set service dhcp-relay <vrf-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8225,15 +8225,15 @@ N/A
 
 A DHCP server
 
-**Usage**
+### Usage
 
 `nv set service dhcp-relay <vrf-id> server <server-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8244,15 +8244,15 @@ N/A
 
 An interface on which DHCP relay is configured.
 
-**Usage**
+### Usage
 
 `nv set service dhcp-relay <vrf-id> interface <interface-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8263,22 +8263,22 @@ N/A
 
 An interface on which DHCP relay giaddress is configured.
 
-**Usage**
+### Usage
 
 `nv set service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<interface-id>` |  DHCP relay giaddress interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8288,21 +8288,21 @@ N/A
 
 DHCP relay
 
-**Usage**
+### Usage
 
 `nv set service dhcp-relay6 <vrf-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8312,21 +8312,21 @@ N/A
 
 DHCP relay interfaces
 
-**Usage**
+### Usage
 
 `nv set service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8337,22 +8337,22 @@ N/A
 
 An interface on which DPCH relay is configured.
 
-**Usage**
+### Usage
 
 `nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 |`<interface-id>` |  The DHCP relay interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8362,15 +8362,15 @@ N/A
 
 ipv6 address on interface
 
-**Usage**
+### Usage
 
 `nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> address [options] <ipv6>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8381,22 +8381,22 @@ N/A
 
 An interface on which DPCH relay is configured.
 
-**Usage**
+### Usage
 
 `nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 |`<interface-id>` |  The DHCP relay interface |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8406,15 +8406,15 @@ N/A
 
 ipv6 address on interface
 
-**Usage**
+### Usage
 
 `nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> address [options] <ipv6>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8425,21 +8425,21 @@ N/A
 
 Global PTP configuration.
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<instance-id>` |  The PTP instance number used for management purposes. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8456,22 +8456,22 @@ N/A
 
 List of clocks that the local clock can accept as master clock
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> acceptable-master <clock-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<instance-id>` |  The PTP instance number used for management purposes. |
 | `<clock-id>` |  The clock ID. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8481,15 +8481,15 @@ N/A
 
 Alternate priority
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> acceptable-master <clock-id> alt-priority [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8500,21 +8500,21 @@ N/A
 
 PTP monitor configuration
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> monitor [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<instance-id>` |  The PTP instance number used for management purposes. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8530,15 +8530,15 @@ N/A
 
 Minimum offset threshold in nano seconds
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> monitor min-offset-threshold [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8548,15 +8548,15 @@ N/A
 
 Maximum offset threshold in nano seconds
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> monitor max-offset-threshold [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8566,15 +8566,15 @@ N/A
 
 Path delay threshold in nano seconds
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> monitor path-delay-threshold [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8584,15 +8584,15 @@ N/A
 
 Maximum timestamp entries allowed
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> monitor max-timestamp-entries [options] 400-1000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8602,15 +8602,15 @@ N/A
 
 Maximum violation logs sets allowed
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> monitor max-violation-log-sets [options] 8-128`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8620,15 +8620,15 @@ N/A
 
 Maximum violation log entries per set
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> monitor max-violation-log-entries [options] 8-128`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8638,15 +8638,15 @@ N/A
 
 violation log intervals in seconds
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> monitor violation-log-interval [options] 0-259200`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8656,15 +8656,15 @@ N/A
 
 Priority1 attribute of the local clock
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> priority1 [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8674,15 +8674,15 @@ N/A
 
 Priority2 attribute of the local clock
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> priority2 [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8692,15 +8692,15 @@ N/A
 
 Domain number of the current syntonization
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> domain [options] 0-127`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8710,15 +8710,15 @@ N/A
 
 Sets the Diffserv code point for all PTP packets originated locally.
 
-**Usage**
+### Usage
 
 `nv set service ptp <instance-id> ip-dscp [options] 0-63`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8728,21 +8728,21 @@ N/A
 
 Dynamic Host Configuration Protocol Server
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8756,15 +8756,15 @@ N/A
 
 An interface on which DPCH clients are attached.
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> interface <interface-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8775,22 +8775,22 @@ N/A
 
 DHCP Pool
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<pool-id>` | The DHCP pool subnet. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8808,15 +8808,15 @@ N/A
 
 A remote DNS server
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8827,15 +8827,15 @@ N/A
 
 TBD
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8843,7 +8843,7 @@ N/A
 | `<pool-id>` |  The DHCP pool subnet. |
 | `<domain-name-id>` | The DHCP domain name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8853,15 +8853,15 @@ N/A
 
 DHCP domain name
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8873,15 +8873,15 @@ N/A
 
 A remote DNS server
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8893,15 +8893,15 @@ N/A
 
 DHCP Pool range
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8909,7 +8909,7 @@ N/A
 | `<pool-id>` |  The DHCP pool subnet. |
 | `<range-id>` |  The DHCP client interface. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -8919,15 +8919,15 @@ N/A
 
 End of the range.
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> to [options] <ipv4>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8939,15 +8939,15 @@ N/A
 
 Name
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> pool-name [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8958,15 +8958,15 @@ N/A
 
 Network address lease time in seconds assigned to DHCP clients.
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> lease-time [options] 180-31536000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8977,15 +8977,15 @@ N/A
 
 TBD
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> default-url [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -8996,15 +8996,15 @@ N/A
 
 Cumulus specific URL for provisioning script
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9015,22 +9015,22 @@ N/A
 
 TBD
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> domain-name <domain-name-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<domain-name-id>` |  The DHCP domain name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9040,15 +9040,15 @@ N/A
 
 DHCP domain name
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9059,15 +9059,15 @@ N/A
 
 A remote DNS server
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> domain-name-server <server-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9078,22 +9078,22 @@ N/A
 
 static entry
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> static <static-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<static-id>` | The static mapping name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9105,15 +9105,15 @@ N/A
 
 MAC (hardware) address
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> static <static-id> mac-address [options] <mac>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9124,15 +9124,15 @@ N/A
 
 IP address
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> static <static-id> ip-address [options] <ipv4>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9143,15 +9143,15 @@ N/A
 
 Cumulus specific URL for provisioning script
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9162,21 +9162,21 @@ N/A
 
 Dynamic Host Configuration Protocol IPv6 Server
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9190,15 +9190,15 @@ N/A
 
 An interface on which DPCH clients are attached.
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> interface <interface-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9209,22 +9209,22 @@ N/A
 
 DHCP Pool
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<pool-id>` | The DHCP6 pool subnet. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9241,15 +9241,15 @@ N/A
 
 A remote DNS server
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9261,15 +9261,15 @@ N/A
 
 TBD
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9277,7 +9277,7 @@ N/A
 | `<pool-id>` | The DHCP6 pool subnet. |
 | `<domain-name-id>`|  The DHCP domain name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9287,15 +9287,15 @@ N/A
 
 DHCP domain name
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9307,15 +9307,15 @@ N/A
 
 DHCP Pool range
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9323,7 +9323,7 @@ N/A
 | `<pool-id>` | The DHCP6 pool subnet. |
 | `<domain-name-id>`|  The DHCP domain name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9333,15 +9333,15 @@ N/A
 
 End of the range.
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to [options] <ipv6>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9353,15 +9353,15 @@ N/A
 
 Name
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> pool <pool-id> pool-name [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9372,15 +9372,15 @@ N/A
 
 Network address lease time in seconds assigned to DHCP clients.
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> pool <pool-id> lease-time [options] 180-31536000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9391,15 +9391,15 @@ N/A
 
 TBD
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> pool <pool-id> default-url [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9410,15 +9410,15 @@ N/A
 
 Cumulus specific URL for provisioning script
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9429,22 +9429,22 @@ N/A
 
 TBD
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<domain-name-id>`|  The DHCP domain name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9454,15 +9454,15 @@ N/A
 
 DHCP domain name
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9473,15 +9473,15 @@ N/A
 
 A remote DNS server
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9492,22 +9492,22 @@ N/A
 
 static entry
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> static <static-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<static-id>` |  The static mapping name. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9519,15 +9519,15 @@ N/A
 
 MAC (hardware) address
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> static <static-id> mac-address [options] <mac>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9538,15 +9538,15 @@ N/A
 
 IP address
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> static <static-id> ip-address [options] <ipv6>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9557,15 +9557,15 @@ N/A
 
 Cumulus specific URL for provisioning script
 
-**Usage**
+### Usage
 
 `nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url [options] <value>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9576,11 +9576,11 @@ N/A
 
 Global LLDP
 
-**Usage**
+### Usage
 
 `nv set service lldp [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9592,7 +9592,7 @@ Global LLDP
 
 change transmit delay
 
-**Usage**
+### Usage
 
 `nv set service lldp tx-interval [options] 10-300`
 
@@ -9600,7 +9600,7 @@ change transmit delay
 
 TTL of transmitted packets is calculated by multiplying the tx-interval by the given factor
 
-**Usage**
+### Usage
 
 `nv set service lldp tx-hold-multiplier [options] 1-10`
 
@@ -9608,11 +9608,11 @@ TTL of transmitted packets is calculated by multiplying the tx-interval by the g
 
 Top-level node which contains system-wide properties.
 
-**Usage**
+### Usage
 
 `nv set system [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9628,11 +9628,11 @@ Top-level node which contains system-wide properties.
 
 Control Plane specific configurations
 
-**Usage**
+### Usage
 
 `nv set system control-plane [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9643,21 +9643,21 @@ Control Plane specific configurations
 
 Trap
 
-**Usage**
+### Usage
 
 `nv set system control-plane trap <trap-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<trap-id>` |  TRAP ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9667,21 +9667,21 @@ N/A
 
 Policer
 
-**Usage**
+### Usage
 
 `nv set system control-plane policer <policer-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<policer-id>` |  Policer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9693,15 +9693,15 @@ N/A
 
 policer burst value
 
-**Usage**
+### Usage
 
 `nv set system control-plane policer <policer-id> burst [options] 10-10000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9711,15 +9711,15 @@ N/A
 
 policer rate value
 
-**Usage**
+### Usage
 
 `nv set system control-plane policer <policer-id> rate [options] 10-10000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9729,11 +9729,11 @@ N/A
 
 System pre-login and post-login messages
 
-**Usage**
+### Usage
 
 `nv set system message [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9744,7 +9744,7 @@ System pre-login and post-login messages
 
 configure pre-login banner
 
-**Usage**
+### Usage
 
 `nv set system message pre-login [options] <value>`
 
@@ -9752,7 +9752,7 @@ configure pre-login banner
 
 configure post-login message of the day
 
-**Usage**
+### Usage
 
 `nv set system message post-login [options] <value>`
 
@@ -9760,11 +9760,11 @@ configure post-login message of the day
 
 global system configuration
 
-**Usage**
+### Usage
 
 `nv set system global [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9779,11 +9779,11 @@ global system configuration
 
 reserved ranges
 
-**Usage**
+### Usage
 
 `nv set system global reserved [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9794,11 +9794,11 @@ reserved ranges
 
 reserved routing table ranges
 
-**Usage**
+### Usage
 
 `nv set system global reserved routing-table [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9808,11 +9808,11 @@ reserved routing table ranges
 
 reserved routing table ranges for PBR
 
-**Usage**
+### Usage
 
 `nv set system global reserved routing-table pbr [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9823,7 +9823,7 @@ reserved routing table ranges for PBR
 
 Beginning of reserved routing table range for PBR
 
-**Usage**
+### Usage
 
 `nv set system global reserved routing-table pbr begin [options] 10000-4294966272`
 
@@ -9831,7 +9831,7 @@ Beginning of reserved routing table range for PBR
 
 End of reserved routing table range for PBR
 
-**Usage**
+### Usage
 
 `nv set system global reserved routing-table pbr end [options] 10000-4294966272`
 
@@ -9839,11 +9839,11 @@ End of reserved routing table range for PBR
 
 reserved vlan ranges
 
-**Usage**
+### Usage
 
 `nv set system global reserved vlan [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9853,11 +9853,11 @@ reserved vlan ranges
 
 Reserved vlans to be used with l3vni
 
-**Usage**
+### Usage
 
 `nv set system global reserved vlan l3-vni-vlan [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9868,7 +9868,7 @@ Reserved vlans to be used with l3vni
 
 Beginning of reserved vlan range for L3 VNI
 
-**Usage**
+### Usage
 
 `nv set system global reserved vlan l3-vni-vlan begin [options] 1-4093`
 
@@ -9876,7 +9876,7 @@ Beginning of reserved vlan range for L3 VNI
 
 End of reserved vlan range for L3 VNI
 
-**Usage**
+### Usage
 
 `nv set system global reserved vlan l3-vni-vlan end [options] 2-4093`
 
@@ -9884,7 +9884,7 @@ End of reserved vlan range for L3 VNI
 
 An integer (1-255) to select first hop router MAC adress in range 00:00:5E:00:01:01 to 00:00:5E:00:01:ff
 
-**Usage**
+### Usage
 
 `nv set system global fabric-id [options] 1-2`55
 
@@ -9892,11 +9892,11 @@ An integer (1-255) to select first hop router MAC adress in range 00:00:5E:00:01
 
 Port mirror
 
-**Usage**
+### Usage
 
 `nv set system port-mirror [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9906,21 +9906,21 @@ Port mirror
 
 port mirror session number
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<session-id>` | The port mirror session number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9931,21 +9931,21 @@ N/A
 
 Switched Port Analyzer
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> span [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<session-id>` | The port mirror session number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -9959,15 +9959,15 @@ N/A
 
 A port-mirror source port (swps or bonds only)
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> span source-port <port-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9978,15 +9978,15 @@ N/A
 
 The SPAN destination port.
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> span destination <port-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -9997,21 +9997,21 @@ N/A
 
 TBD
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> span truncate [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<session-id>` | The port mirror session number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10022,21 +10022,21 @@ N/A
 
 Encapsulated Remote Switched Port Analyzer.
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> erspan [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<session-id>` | The port mirror session number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10050,15 +10050,15 @@ N/A
 
 A port-mirror source port (swps or bonds only)
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> erspan source-port <port-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10069,21 +10069,21 @@ N/A
 
 erspan destination
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> erspan destination [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<session-id>` | The port mirror session number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10094,15 +10094,15 @@ N/A
 
 An IPv4 address
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> erspan destination source-ip <source-ip> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10112,15 +10112,15 @@ N/A
 
 An IPv4 address
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> erspan destination dest-ip <dest-ip> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10130,21 +10130,21 @@ N/A
 
 TBD
 
-**Usage**
+### Usage
 
 `nv set system port-mirror session <session-id> erspan truncate [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<session-id>` | The port mirror session number. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10155,11 +10155,11 @@ N/A
 
 Affect how config operations are performed.
 
-**Usage**
+### Usage
 
 `nv set system config [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10169,11 +10169,11 @@ Affect how config operations are performed.
 
 Affect how config apply operations are performed.
 
-**Usage**
+### Usage
 
 `nv set system config apply [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10184,15 +10184,15 @@ Affect how config apply operations are performed.
 
 File to ignore during config apply operations.
 
-**Usage**
+### Usage
 
 `nv set system config apply ignore <ignore-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10202,7 +10202,7 @@ N/A
 
 Static hostname for the switch
 
-**Usage**
+### Usage
 
 `nv set system hostname [options] <idn-hostname>`
 
@@ -10210,21 +10210,21 @@ Static hostname for the switch
 
  A VRF
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10238,21 +10238,21 @@ N/A
 
 The loopback IP interface associated with this VRF.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> loopback [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10262,21 +10262,21 @@ N/A
 
 IP addresses associated with the VRF's loopback interface.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> loopback ip [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10286,15 +10286,15 @@ N/A
 
 An IP address with prefix
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> loopback ip address <ip-prefix-id> [options]
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10305,21 +10305,21 @@ N/A
 
 EVPN control plane config and info for VRF
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> evpn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10331,22 +10331,22 @@ N/A
 
 VNI
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> evpn vni <vni-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<vni-id>` |  The VXLAN ID. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10356,21 +10356,21 @@ N/A
 
 A VRF
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10384,22 +10384,22 @@ N/A
 
 Vrf aware Routing-table per address-family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router rib <afi> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<afi>`   |  The route address family. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10409,15 +10409,15 @@ N/A
 
 Import Protocols from where routes are known
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10425,7 +10425,7 @@ N/A
 | `<afi>`   |  The route address family. |
 | `<import-protocol-id>` |  Import protocol list. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10435,21 +10435,21 @@ N/A
 
 BGP VRF configuration.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10472,21 +10472,21 @@ N/A
 
 Address family specific configuration
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10498,21 +10498,21 @@ N/A
 
 IPv4 unicast address family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10530,21 +10530,21 @@ N/A
 
 Route redistribute
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10557,21 +10557,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10583,21 +10583,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10609,21 +10609,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10635,21 +10635,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10661,22 +10661,22 @@ N/A
 
 An IPv4 aggregate route
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<aggregate-route-id>` |  Thw IPv4 address and route prefix in CIDR notation. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10688,22 +10688,22 @@ N/A
 
 An IPv4 static network.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<static-network-id>` |  IPv4 address and route prefix in CIDR notation |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10713,21 +10713,21 @@ N/A
 
 Route import
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10737,21 +10737,21 @@ N/A
 
 Controls for VRF to VRF route leaking for this address-family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10763,15 +10763,15 @@ N/A
 
 A VRF
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10782,15 +10782,15 @@ N/A
 
 Route-map to control the import of routes into EVPN
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf route-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10800,21 +10800,21 @@ N/A
 
 Multipaths
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10826,15 +10826,15 @@ N/A
 
 EBGP multipath
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ebgp [options] 1-128`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10844,15 +10844,15 @@ N/A
 
 IBGP multipath
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths ibgp [options] 1-128`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10862,21 +10862,21 @@ N/A
 
 Admin distances.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10887,15 +10887,15 @@ N/A
 
 Distance to apply to routes from EBGP peers when installed into the RIB
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance external [options] 1-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10905,15 +10905,15 @@ N/A
 
 Distance to apply to routes from IBGP peers when installed into the RIB
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance internal [options] 1-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -10923,21 +10923,21 @@ N/A
 
 Route export
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10947,21 +10947,21 @@ N/A
 
 Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10973,21 +10973,21 @@ N/A
 
 BGP VRF configuration. L2VPN EVPN address family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family l2vpn-evpn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -10997,21 +10997,21 @@ N/A
 
 IPv6 unicast address family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11029,22 +11029,22 @@ N/A
 
 An IPv6 aggregate route
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<aggregate-route-id>` |  IPv6 address and route prefix in CIDR notation |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11056,22 +11056,22 @@ N/A
 
 An IPv6 static network.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<static-network-id>`  |IPv6 address and route prefix in CIDR notation|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11081,21 +11081,21 @@ N/A
 
 Route import
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11105,21 +11105,21 @@ N/A
 
 Controls for VRF to VRF route leaking for this address-family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11131,15 +11131,15 @@ N/A
 
 Set of VRFs
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11149,15 +11149,15 @@ N/A
 
 Route-map to control the import of routes into EVPN
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf route-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11167,21 +11167,21 @@ N/A
 
 Multipaths
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11193,15 +11193,15 @@ N/A
 
 EBGP multipath
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ebgp [options] 1-128`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11211,15 +11211,15 @@ N/A
 
 IBGP multipath
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths ibgp [options] 1-128`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11229,21 +11229,21 @@ N/A
 
 Admin distances.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11254,15 +11254,15 @@ N/A
 
 Distance to apply to routes from EBGP peers when installed into the RIB
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance external [options] 1-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11272,15 +11272,15 @@ N/A
 
 Distance to apply to routes from IBGP peers when installed into the RIB
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance internal [options] 1-2`55
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11290,21 +11290,21 @@ N/A
 
 Route export
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11314,21 +11314,21 @@ N/A
 
 Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11340,21 +11340,21 @@ N/A
 
 Route redistribute
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11367,21 +11367,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11393,21 +11393,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11419,21 +11419,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11445,21 +11445,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11471,21 +11471,21 @@ N/A
 
 BGP path-selection configuration.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11497,21 +11497,21 @@ N/A
 
 BGP aspath path-selection config, applicable to this BGP instance
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp path-selection aspath [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11522,21 +11522,21 @@ N/A
 
 BGP med path-selection config, applicable to this BGP instance
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp path-selection med [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11549,21 +11549,21 @@ N/A
 
 BGP multipath path-selection config, applicable to this BGP instance
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp path-selection multipath [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11575,21 +11575,21 @@ N/A
 
 BGP route-reflection configuration.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp route-reflection [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11602,22 +11602,22 @@ N/A
 
 BGP global configuration.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11640,22 +11640,22 @@ N/A
 
 Specifies whether to track BGP peering sessions using this configuration via BFD.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11668,15 +11668,15 @@ N/A
 
 Detect multiplier
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd detect-multiplier [options] 2-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11687,15 +11687,15 @@ N/A
 
 Minimum receive interval
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-rx-interval [options] 50-60000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11706,15 +11706,15 @@ N/A
 
 Minimum transmit interval.  The actual value used is the smaller of this or what the peer expects.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd min-tx-interval [options] 50-60000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11725,22 +11725,22 @@ N/A
 
 RFC 5082
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11751,15 +11751,15 @@ N/A
 
 Number of hops
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security hops [options] 1-254`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11770,22 +11770,22 @@ N/A
 
 Capabilities
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11796,22 +11796,22 @@ N/A
 
 BGP Graceful restart per neighbor configuration
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11821,22 +11821,22 @@ N/A
 
 Local AS feature
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11849,15 +11849,15 @@ N/A
 
 ASN to use to establish the peering if different from the ASN of the BGP instance.  This configuration finds use during AS renumbering.  The local-as configured is also attached to incoming and outgoing updates.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -11868,22 +11868,22 @@ N/A
 
 Peer peer-timers
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11896,22 +11896,22 @@ N/A
 
 Address family specific configuration
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11923,22 +11923,22 @@ N/A
 
 Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11961,22 +11961,22 @@ N/A
 
 Community advertise for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -11988,22 +11988,22 @@ N/A
 
 Attribute mod for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12015,22 +12015,22 @@ N/A
 
 Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12042,22 +12042,22 @@ N/A
 
 If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12069,15 +12069,15 @@ N/A
 
 Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options] 1-10`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12088,22 +12088,22 @@ N/A
 
 Limits on prefix from the peer for this address-family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12113,22 +12113,22 @@ N/A
 
 Limits on inbound prefix from the peer for this address-family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12141,15 +12141,15 @@ N/A
 
 Percentage of the maximum at which a warning syslog is generated.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options] 1-100`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12160,15 +12160,15 @@ N/A
 
 Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12179,22 +12179,22 @@ N/A
 
 Default route origination
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12205,22 +12205,22 @@ N/A
 
 Policies for ipv4 unicast
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12231,22 +12231,22 @@ N/A
 
 Outbound unicast policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12258,15 +12258,15 @@ N/A
 
 AS-Path filter list to apply to Updates received from this peer
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound aspath-list [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12277,22 +12277,22 @@ N/A
 
 Outbound unicast policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12305,15 +12305,15 @@ N/A
 
 S-Path filter list to apply to Updates sent to this peer
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound aspath-list [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12324,22 +12324,22 @@ N/A
 
 Conditional advertise for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12352,15 +12352,15 @@ N/A
 
 route-map contains prefix-list which has list of routes/prefixes to operate on.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise advertise-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12371,15 +12371,15 @@ N/A
 
 route-map contains the conditional routes/prefixes in prefix-list.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise exist-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12390,15 +12390,15 @@ N/A
 
 route-map contains the negative conditional routes/prefixes in prefix-list.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise non-exist-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12409,15 +12409,15 @@ N/A
 
 Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast weight [options] 0-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12428,22 +12428,22 @@ N/A
 
 Peer IPv6 unicast address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12466,22 +12466,22 @@ N/A
 
 Policies for ipv6 unicast
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12492,22 +12492,22 @@ N/A
 
 Outbound unicast policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12519,15 +12519,15 @@ N/A
 
 AS-Path filter list to apply to Updates received from this peer
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound aspath-list [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12538,22 +12538,22 @@ N/A
 
 Outbound unicast policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12566,15 +12566,15 @@ N/A
 
 AS-Path filter list to apply to Updates sent to this peer
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12585,22 +12585,22 @@ N/A
 
 Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12612,22 +12612,22 @@ N/A
 
 If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12639,15 +12639,15 @@ N/A
 
 Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn occurrences [options] 1-10`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12658,22 +12658,22 @@ N/A
 
 Limits on prefix from the peer for this address-family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12683,22 +12683,22 @@ N/A
 
 Limits on inbound prefix from the peer for this address-family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12711,15 +12711,15 @@ N/A
 
 Percentage of the maximum at which a warning syslog is generated.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound warning-threshold [options] 1-100`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12730,15 +12730,15 @@ N/A
 
 Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12749,22 +12749,22 @@ N/A
 
 Default route origination
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12775,22 +12775,22 @@ N/A
 
 Community advertise for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12802,22 +12802,22 @@ N/A
 
 Attribute mod for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12829,22 +12829,22 @@ N/A
 
 Conditional advertise for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12857,15 +12857,15 @@ N/A
 
 route-map contains prefix-list which has list of routes/prefixes to operate on.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise advertise-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12876,15 +12876,15 @@ N/A
 
 route-map contains the conditional routes/prefixes in prefix-list.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise exist-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12895,15 +12895,15 @@ N/A
 
 route-map contains the negative conditional routes/prefixes in prefix-list.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise non-exist-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12914,15 +12914,15 @@ N/A
 
 Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast weight [options] 0-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -12933,23 +12933,23 @@ N/A
 
 Peer l2vpn EVPN address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn [options] [<attribute> ...]`
 
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12967,22 +12967,22 @@ N/A
 
 Attribute mod for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -12994,22 +12994,22 @@ N/A
 
 Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13021,22 +13021,22 @@ N/A
 
 If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13048,15 +13048,15 @@ N/A
 
 Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn occurrences [options] 1-10`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13067,22 +13067,22 @@ N/A
 
 Policies for l2vpn evpn
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13093,22 +13093,22 @@ N/A
 
 Inbound l2vpn-evpn policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13118,22 +13118,22 @@ N/A
 
 Outbound l2vpn-evpn policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<peer-group-id>` |       Domain |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13144,15 +13144,15 @@ N/A
 
 Password
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> password [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13163,15 +13163,15 @@ N/A
 
 neighbor description
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp peer-group <peer-group-id> description [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13182,21 +13182,21 @@ N/A
 
 Controls for exporting ipv4 and ipv6 routes from this VRF
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp route-export [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13206,21 +13206,21 @@ N/A
 
 Controls for exporting routes from this VRF into EVPN
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp route-export to-evpn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13230,15 +13230,15 @@ N/A
 
 A route target identifier
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13249,21 +13249,21 @@ N/A
 
 Controls for importing of ipv4 and ipv6 routes from this VRF
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp route-import [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13273,21 +13273,21 @@ N/A
 
 Controls for importing EVPN type-2 and type-5 routes into this VRF
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp route-import from-evpn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13297,15 +13297,15 @@ N/A
 
 A route target identifier
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13316,21 +13316,21 @@ N/A
 
 timer values for all peers in this VRF
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp timers [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13344,15 +13344,15 @@ N/A
 
 Time interval at which connection attempts are retried upon a failure.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp timers connection-retry [options] 1-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13362,21 +13362,21 @@ N/A
 
 BGP Confederation options.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp confederation [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13387,15 +13387,15 @@ N/A
 
 Set of autonomous numbers
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp confederation member-as [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13405,22 +13405,22 @@ N/A
 
 BGP global configuration.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13446,22 +13446,22 @@ N/A
 
 Specifies whether to track BGP peering sessions using this configuration via BFD.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13474,15 +13474,15 @@ N/A
 
 Detect multiplier
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd detect-multiplier [options] 2-255`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13493,15 +13493,15 @@ N/A
 
 Minimum receive interval
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-rx-interval [options] 50-60000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13512,15 +13512,15 @@ N/A
 
 Minimum transmit interval.  The actual value used is the smaller of this or what the peer expects.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> bfd min-tx-interval [options] 50-60000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13531,22 +13531,22 @@ N/A
 
 Capabilities
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13557,22 +13557,22 @@ N/A
 
 Local AS feature
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13585,15 +13585,15 @@ N/A
 
 ASN to use to establish the peering if different from the ASN of the BGP instance.  This configuration finds use during AS renumbering.  The local-as configured is also attached to incoming and outgoing updates.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> local-as asn [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13604,22 +13604,22 @@ N/A
 
 BGP Graceful restart per neighbor configuration
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13629,22 +13629,22 @@ N/A
 
 RFC 5082
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13655,15 +13655,15 @@ N/A
 
 Number of hops
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security hops [options] 1-254`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13674,22 +13674,22 @@ N/A
 
 Address family specific configuration
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13701,22 +13701,22 @@ N/A
 
 Peer IPv4 unicast address family.  Always on, unless disabled globally.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13739,22 +13739,22 @@ N/A
 
 Attribute mod for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13766,22 +13766,22 @@ N/A
 
 Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13793,22 +13793,22 @@ N/A
 
 If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13820,15 +13820,15 @@ N/A
 
 Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn occurrences [options] 1-10`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13840,22 +13840,22 @@ N/A
 Policies for ipv4 unicast
 
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13866,22 +13866,22 @@ N/A
 
 Outbound unicast policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13893,15 +13893,15 @@ N/A
 
 AS-Path filter list to apply to Updates received from this peer
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound aspath-list [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13912,22 +13912,22 @@ N/A
 
 Outbound unicast policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13942,7 +13942,7 @@ N/A
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound aspath-list none
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound aspath-list [options] none`
 
@@ -13950,11 +13950,11 @@ N/A
 
   AS-Path filter list to apply to Updates sent to this peer
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -13963,7 +13963,7 @@ N/A
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]`
 
@@ -13971,18 +13971,18 @@ N/A
 
   Limits on prefix from the peer for this address-family
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -13991,7 +13991,7 @@ N/A
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound [options] [<attribute> ...]`
 
@@ -13999,11 +13999,11 @@ N/A
 
   Limits on inbound prefix from the peer for this address-family
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14011,7 +14011,7 @@ N/A
   <vrf-id>           VRF
   <neighbor-id>      Peer ID
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14024,15 +14024,15 @@ N/A
 
 Percentage of the maximum at which a warning syslog is generated.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound warning-threshold [options] 1-100`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14043,15 +14043,15 @@ N/A
 
 Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14062,22 +14062,22 @@ N/A
 
 Default route origination
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14090,22 +14090,22 @@ N/A
 
 Community advertise for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14120,22 +14120,22 @@ N/A
 
 advertise for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14148,15 +14148,15 @@ N/A
 
 route-map contains prefix-list which has list of routes/prefixes to operate on.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise advertise-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14167,15 +14167,15 @@ N/A
 
 route-map contains the conditional routes/prefixes in prefix-list.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise exist-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14186,15 +14186,15 @@ N/A
 
 route-map contains the negative conditional routes/prefixes in prefix-list.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise non-exist-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14205,15 +14205,15 @@ N/A
 
 Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast weight [options] 0-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14224,22 +14224,22 @@ N/A
 
 Peer IPv6 unicast address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14261,22 +14261,22 @@ N/A
 
 Attribute mod for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14288,22 +14288,22 @@ N/A
 
 Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14315,22 +14315,22 @@ N/A
 
 If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14342,15 +14342,15 @@ N/A
 
 Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn occurrences [options] 1-10`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14361,22 +14361,22 @@ N/A
 
 Limits on prefix from the peer for this address-family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14386,22 +14386,22 @@ N/A
 
 Limits on inbound prefix from the peer for this address-family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14414,15 +14414,15 @@ N/A
 
 Percentage of the maximum at which a warning syslog is generated.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound warning-threshold [options] 1-100`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14433,15 +14433,15 @@ N/A
 
 Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound reestablish-wait [options] 1-4294967295`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14452,22 +14452,22 @@ N/A
 
 Default route origination
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14478,22 +14478,22 @@ N/A
 
 Policies for ipv6 unicast
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14503,22 +14503,22 @@ N/A
 
 Outbound unicast policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14530,15 +14530,15 @@ N/A
 
 AS-Path filter list to apply to Updates received from this peer
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound aspath-list [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14549,22 +14549,22 @@ N/A
 
 Outbound unicast policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14577,15 +14577,15 @@ N/A
 
 AS-Path filter list to apply to Updates sent to this peer
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound aspath-list [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14596,22 +14596,22 @@ N/A
 
 Community advertise for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14623,22 +14623,22 @@ N/A
 
 Conditional advertise for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14651,15 +14651,15 @@ N/A
 
 route-map contains prefix-list which has list of routes/prefixes to operate on.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise advertise-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14670,15 +14670,15 @@ N/A
 
 route-map contains the conditional routes/prefixes in prefix-list.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise exist-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14689,15 +14689,15 @@ N/A
 
 route-map contains the negative conditional routes/prefixes in prefix-list.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise non-exist-map [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14708,15 +14708,15 @@ N/A
 
 Weight applied to routes received from peer; this is used in the BGP route selection algorithm
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast weight [options] 0-65535`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14727,22 +14727,22 @@ N/A
 
 Peer l2vpn EVPN address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14760,22 +14760,22 @@ N/A
 
 Attribute mod for address family.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14787,22 +14787,22 @@ N/A
 
 Options for handling AS_PATH for prefixes from/to peer for the specified address family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14814,22 +14814,22 @@ N/A
 
 If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14842,15 +14842,15 @@ N/A
 Indicates max number of occurrences of the local system's AS number in the received AS_PATH
 
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn occurrences [options] 1-10`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14861,22 +14861,22 @@ N/A
 
 Policies for l2vpn evpn
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14887,22 +14887,22 @@ N/A
 
 Inbound l2vpn-evpn policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14912,22 +14912,22 @@ N/A
 
 Outbound l2vpn-evpn policy
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14938,22 +14938,22 @@ N/A
 
 Peer peer-timers
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<neighbor-id>`   |  The Peer ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -14966,15 +14966,15 @@ N/A
 
 Password
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> password [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -14985,15 +14985,15 @@ N/A
 
 neighbor description
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp neighbor <neighbor-id> description [options] none`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15004,15 +15004,15 @@ N/A
 
 Maximum number of dynamic neighbors from whom we can accept a connection. Applicable only if 'dynamic-peering' subnet ranges are configured
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router bgp dynamic-peer-limit [options] 1-5000`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15022,22 +15022,22 @@ N/A
 
 A route
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router static <route-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IP prefix |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15050,15 +15050,15 @@ N/A
 
 A path
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router static <route-id> distance <distance-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15066,7 +15066,7 @@ N/A
 | `<route-id>` |  The IP prefix |
 | `<distance-id>` |  A path distance |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15077,15 +15077,15 @@ N/A
 
 A via
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15094,7 +15094,7 @@ N/A
 | `<distance-id>` |  A path distance |
 | `<via-id>`       | IP address, interface, or "blackhole". |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15107,15 +15107,15 @@ N/A
 
 Nexthop flags
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag [options] onlink`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15128,15 +15128,15 @@ N/A
 
 A via
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router static <route-id> via <via-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15144,7 +15144,7 @@ N/A
 | `<route-id>` |  The IP prefix |
 | `<via-id>`       | IP address, interface, or "blackhole". |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15157,15 +15157,15 @@ N/A
 
 Nexthop flags
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router static <route-id> via <via-id> flag [options] onlink`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15177,21 +15177,21 @@ N/A
 
 PIM VRF configuration.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15205,21 +15205,21 @@ N/A
 
 Timers
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim timers [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15230,21 +15230,21 @@ N/A
 
 Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim ecmp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15255,22 +15255,22 @@ N/A
 
 MSDP mesh-group
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<msdp-mesh-group-id>`  | MSDP mesh group name |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15281,15 +15281,15 @@ N/A
 
 A MSDP mesh member
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15301,15 +15301,15 @@ N/A
 
 MSDP mesh-group source IP address
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> source-address [options] <ipv4>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15320,21 +15320,21 @@ N/A
 
 Address family specific configuration
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim address-family [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15344,22 +15344,22 @@ N/A
 
 IPv4 unicast address family
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15373,21 +15373,21 @@ N/A
 
 Build shortest path tree towards source.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15398,15 +15398,15 @@ N/A
 
 Prefix-list to specify multicast group range.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover prefix-list [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15416,22 +15416,22 @@ N/A
 
 RP
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<rp-id>`  | RP IP address|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15442,15 +15442,15 @@ N/A
 
 A group range
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15462,15 +15462,15 @@ N/A
 
 Prefix-list to specify multicast group range.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> prefix-list [options] <instance-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15481,21 +15481,21 @@ N/A
 
 OSPF VRF configuration.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15515,22 +15515,22 @@ N/A
 
 An OSPF area
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<area-id>` | Area|
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15544,22 +15544,22 @@ N/A
 
 Filters networks between OSPF areas
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf area <area-id> filter-list [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<area-id>` | Area |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15570,15 +15570,15 @@ N/A
 
 Filters out components of the prefix
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf area <area-id> range <range-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15586,7 +15586,7 @@ N/A
 | `<area-id>` | Area |
 | `<range-id>` |  Range |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15597,15 +15597,15 @@ N/A
 
 Filters out components of the prefix
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf area <area-id> network <network-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15617,15 +15617,15 @@ N/A
 
 Default LSA cost.  Only applies when type is non-normal.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf area <area-id> default-lsa-cost [options] 0-16777215`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15636,21 +15636,21 @@ N/A
 
 Advertise a default route as external lsa
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf default-originate [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15664,15 +15664,15 @@ N/A
 
 Set OSPF External Type 1/2 metrics
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf default-originate metric-type [options] 1-2`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15682,21 +15682,21 @@ N/A
 
 Administrative distance for installation into the rib
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf distance [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15708,21 +15708,21 @@ N/A
 
 Set maximum metric value in router lsa to make stub router
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf max-metric [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15734,22 +15734,22 @@ N/A
 
 Log configuration
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf log [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 
   <vrf-id>           VRF
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15760,21 +15760,21 @@ N/A
 
 Route redistribute
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15787,21 +15787,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf redistribute static [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |S
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15814,15 +15814,15 @@ N/A
 
 Set OSPF External Type 1/2 metrics
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf redistribute static metric-type [options] 1-2`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15832,21 +15832,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf redistribute connected [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15859,15 +15859,15 @@ N/A
 
 Set OSPF External Type 1/2 metrics
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf redistribute connected metric-type [options] 1-2`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15877,21 +15877,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf redistribute kernel [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15904,15 +15904,15 @@ N/A
 
 Set OSPF External Type 1/2 metrics
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf redistribute kernel metric-type [options] 1-2`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15922,21 +15922,21 @@ N/A
 
 Source route type.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf redistribute bgp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15949,15 +15949,15 @@ N/A
 
 Set OSPF External Type 1/2 metrics
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf redistribute bgp metric-type [options] 1-2`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -15967,21 +15967,21 @@ N/A
 
 Timers
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf timers [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -15993,21 +15993,21 @@ N/A
 
 LSA timers
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf timers lsa [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16018,21 +16018,21 @@ N/A
 
 SPF timers
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf timers spf [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16044,15 +16044,15 @@ N/A
 
 Used to determine link cost/metric value relative to defined reference
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> router ospf reference-bandwidth [options] 1-4294967`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16062,21 +16062,21 @@ N/A
 
 VRF PTP configuration.  Inherited by interfaces in this VRF.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> ptp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16086,15 +16086,15 @@ N/A
 
 The routing table number, between 1001-1255, used by the named VRF. If auto, the default, it will be auto generated.
 
-**Usage**
+### Usage
 
 `nv set vrf <vrf-id> table [options] auto`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16104,11 +16104,11 @@ N/A
 
 Network Virtualization configuration and operational info
 
-**Usage**
+### Usage
 
 `nv set nve [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16118,11 +16118,11 @@ Network Virtualization configuration and operational info
 
 VxLAN
 
-**Usage**
+### Usage
 
 `nv set nve vxlan [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16139,11 +16139,11 @@ VxLAN
 
 VxLAN specfic MLAG configuration
 
-**Usage**
+### Usage
 
 `nv set nve vxlan mlag [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16153,11 +16153,11 @@ VxLAN specfic MLAG configuration
 
 Source address
 
-**Usage**
+### Usage
 
 `nv set nve vxlan source [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16167,11 +16167,11 @@ Source address
 
 Handling of BUM traffic
 
-**Usage**
+### Usage
 
 `nv set nve vxlan flooding [options] [<attribute> ...]`
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16183,15 +16183,15 @@ Handling of BUM traffic
 
 Set of IPv4 unicast addresses or "evpn".
 
-**Usage**
+### Usage
 
 `nv set nve vxlan flooding head-end-replication <hrep-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16201,7 +16201,7 @@ N/A
 
 BUM traffic is sent to the specified multicast group and will be received by receivers who are interested in that group. This usually requires PIM-SM to be used in the network.
 
-**Usage**
+### Usage
 
 `nv set nve vxlan flooding multicast-group [options] <ipv4-multicast>`
 
@@ -16209,7 +16209,7 @@ BUM traffic is sent to the specified multicast group and will be received by rec
 
 UDP port for VXLAN frames
 
-**Usage**
+### Usage
 
 `nv set nve vxlan port [options] 1024-65535`
 
@@ -16217,7 +16217,7 @@ UDP port for VXLAN frames
 
 interface mtu
 
-**Usage**
+### Usage
 
 `nv set nve vxlan mtu [options] 552-9216`
 
@@ -16225,21 +16225,21 @@ interface mtu
 
 An ACL is used for matching packets and take actions
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16250,22 +16250,22 @@ N/A
 
 ACL Matching criteria and action rule
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 | `<rule-id>` |  ACL rule number |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16276,22 +16276,22 @@ N/A
 
 An ACL match
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 | `<rule-id>` |  ACL rule number |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16302,22 +16302,22 @@ N/A
 
 An ACL IPv4/IPv6 match
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match ip [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 | `<rule-id>` |  ACL rule number |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16337,15 +16337,15 @@ N/A
 
 L4 port
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match ip source-port <ip-port-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16357,15 +16357,15 @@ N/A
 
  L4 port
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id> [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16377,15 +16377,15 @@ N/A
 
 State details
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match ip fragment [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16396,22 +16396,22 @@ N/A
 
 ECN
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match ip ecn [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 | `<rule-id>` |  ACL rule number |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16422,15 +16422,15 @@ N/A
 
 IP ECT
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match ip ecn ip-ect [options] 0-3`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16441,22 +16441,22 @@ N/A
 
 L4 port
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match ip tcp [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 | `<rule-id>` |  ACL rule number |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16468,15 +16468,15 @@ N/A
 
 TCP state
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match ip tcp state [options] established`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16487,22 +16487,22 @@ N/A
 
 An ACL MAC match
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match mac [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 | `<rule-id>` |  ACL rule number |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16517,15 +16517,15 @@ N/A
 
 Source MAC address mask
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match mac source-mac-mask [options] <mac>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16536,15 +16536,15 @@ N/A
 
 Destination MAC address mask
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask [options] <mac>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16555,15 +16555,15 @@ N/A
 
 VLAN ID
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> match mac vlan [options] 1-4094`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16574,22 +16574,22 @@ N/A
 
 ACL rule action
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 | `<rule-id>` |  ACL rule number |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16605,15 +16605,15 @@ N/A
 
 Permit packets
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action permit [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16624,15 +16624,15 @@ N/A
 
 deny packets
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action deny [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16643,15 +16643,15 @@ N/A
 
 log packets
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action log [options]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16662,22 +16662,22 @@ N/A
 
 Set action for packets
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action set [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 | `<rule-id>` |  ACL rule number |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16689,15 +16689,15 @@ N/A
 
 Sets the class value for classification of the packet
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action set class [options] 0-7`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16708,15 +16708,15 @@ N/A
 
 Set the CoS value
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action set cos [options] 0-7`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16727,22 +16727,22 @@ N/A
 
 ERSPAN session
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action erspan [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 | `<rule-id>` |  ACL rule number |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16754,15 +16754,15 @@ N/A
 
 Time to Live
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action erspan ttl [options] 1-2`55`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16771,22 +16771,22 @@ N/A
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action police
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action police [options] [<attribute> ...]`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |    ACL ID |
 | `<rule-id>` |  ACL rule number |
 
-**Attributes**
+### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
@@ -16798,15 +16798,15 @@ N/A
 
 Policing burst value
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action police burst [options] 1-2`147483647`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16817,15 +16817,15 @@ N/A
 
 Policing rate value
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action police rate [options] 1-2`147483647`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
@@ -16836,15 +16836,15 @@ N/A
 
 SPAN session
 
-**Usage**
+### Usage
 
 `nv set acl <acl-id> rule <rule-id> action span [options] <interface-name>`
 
-**Default Setting**
+### Default Setting
 
 N/A
 
-**Identifiers**
+### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |

@@ -254,18 +254,14 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 </tr>
 <tr>
 <td>3016882</td>
-<td>When you power-cycle a newly installed switch and apply the default configuration, the underlying NVUE repository becomes corrupted. Even if you correct the corruption, NVUE cannot run.
-To recover, uninstall NVUE and delete the {{/var/lib/nvue}} directory:
+<td>In certain cases, when you power cycle the switch, the NVUE configuration might become corrupted, which prevents NVUE from running. You see an critical error in the log file similar to:
+{nofromat}
+CRITICAL: cue_versions_v1.repo: The NVUE internal data store is corrupted or has been initialized incorrectly. The is an unrecoverable error.
 
 
-cumulus@leaf01:~$ sudo apt remove python3-nvue
-cumulus@leaf01:~$ rm -r /var/lib/nvue
-cumulus@leaf01:~$ sudo apt update
-cumulus@leaf01:~$ sudo apt install python3-nvue
-cumulus@leaf01:~$ sudo systemctl enable nvued
-cumulus@leaf01:~$ sudo systemctl start nvued
+To work around this issue, remove the {{/var/lib/nvue/config}} and {{/var/lib/nvue/meta}} directories, then restart the {{nvued}} service with the {{sudo systemctl start nvued}} command. 
 
-</td>
+If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}} directory. You can reapply the recovered configuration with the {{nv config patch nvue-recovery-&lt;timestamp&gt;.yaml}} command. </td>
 <td>5.0.1-5.1.0</td>
 <td></td>
 </tr>
@@ -556,7 +552,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2873053</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
+<td>In an EVPN Multihoming configuration,  when ES Bond members go down, the software forwarded traffic other than unicast ARP request/reply and unicast ipv6 NS/NA, destined to the access port is dropped and not forwarded via vxlan overlay. </td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -1129,7 +1125,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2873053</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
+<td>In an EVPN Multihoming configuration,  when ES Bond members go down, the software forwarded traffic other than unicast ARP request/reply and unicast ipv6 NS/NA, destined to the access port is dropped and not forwarded via vxlan overlay. </td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>

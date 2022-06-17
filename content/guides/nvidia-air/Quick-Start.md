@@ -7,6 +7,18 @@ product: NVIDIA Air
 
 This quick start provides the basics so that you can get started with the NVIDIA Air network simulation platform.
 
+## Supported Browsers
+
+The following browsers are fully supported:
+
+- Google Chrome 91 or later
+- Mozilla Firefox 89 or later
+
+The following browsers are supported on a best effort basis:
+
+- Microsoft Edge 
+- Safari
+
 ## Login
 
 NVIDIA Air uses the same credentials as the NVIDIA developer forums for account access. When the login page opens, enter the email address you use for the forums or the one you intend to use to sign up, then click **GET STARTED**:

@@ -3,6 +3,7 @@ product: NVIDIA Air
 title: Air Python SDK
 author: NVIDIA
 weight: 999
+type: nojsscroll
 ---
 
 This project provides a Python SDK for interacting with the NVIDIA Air API (https://air.nvidia.com/api/).

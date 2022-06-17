@@ -2548,7 +2548,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> multicast snooping [options] [<attribute> ...]
+`nv show bridge domain <domain-id> multicast snooping [options] [<attribute> ...]
 
 
 
@@ -2582,7 +2582,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> multicast snooping querier [options]
+`nv show bridge domain <domain-id> multicast snooping querier [options]
 
 
 
@@ -2609,7 +2609,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]
+`nv show bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]
 
 
 
@@ -2649,7 +2649,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]
+`nv show bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]
 
 
 
@@ -2687,7 +2687,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]
+`nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]
 
 
 
@@ -2725,7 +2725,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]
+`nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]
 
 
 
@@ -2758,7 +2758,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> vlan <vid> ptp [options]
+`nv show bridge domain <domain-id> vlan <vid> ptp [options]
 
 
 
@@ -2787,7 +2787,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]
+`nv show bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]
 
 
 
@@ -2823,7 +2823,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]
+`nv show bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]
 
 
 
@@ -2859,7 +2859,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> vlan <vid> multicast snooping querier [options]
+`nv show bridge domain <domain-id> vlan <vid> multicast snooping querier [options]
 
 
 
@@ -2888,7 +2888,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> mac-table [options]
+`nv show bridge domain <domain-id> mac-table [options]
 
 
 
@@ -2915,7 +2915,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> mdb [options]
+`nv show bridge domain <domain-id> mdb [options]
 
 
 
@@ -2942,7 +2942,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show bridge domain <domain-id> router-port [options]
+`nv show bridge domain <domain-id> router-port [options]
 
 
 
@@ -2969,7 +2969,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show mlag [options] [<attribute> ...]
+`nv show mlag [options] [<attribute> ...]
 
 
 
@@ -3012,7 +3012,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show mlag lacp-conflict [options]
+`nv show mlag lacp-conflict [options]
 
 
 
@@ -3032,7 +3032,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show mlag consistency-checker [options] [<attribute> ...]
+`nv show mlag consistency-checker [options] [<attribute> ...]
 
 
 
@@ -3059,7 +3059,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show mlag consistency-checker global [options]
+`nv show mlag consistency-checker global [options]
 
 
 
@@ -3079,7 +3079,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show mlag backup [options] [<backup-ip> ...]
+`nv show mlag backup [options] [<backup-ip> ...]
 
 
 
@@ -3104,20 +3104,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag backup <backup-ip>
 
+alternative ip address or interface for peer to reach us
+
 ### Usage
 
-  `nv show mlag backup <backup-ip> [options]
-
-
-
-  alternative ip address or interface for peer to reach us
+`nv show mlag backup <backup-ip> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <backup-ip>           Backup IP of MLAG peer
+| <backup-ip> |  Backup IP of MLAG peer |
 
 ### Version History
 
@@ -3131,24 +3128,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag fdb
 
+Set of all mlag macs
+
 ### Usage
 
-  `nv show mlag fdb [options] [<attribute> ...]
-
-
-
-  Set of all mlag macs
+`nv show mlag fdb [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  local                 Locally learnt macs
-
-  peer                  Peer Synced Macs
-
-  permanent             Permanent Macs installed on local/peer
+| `local`      | Locally learnt macs |
+| `peer`       | Peer Synced Macs |
+| `permanent`  | Permanent Macs installed on local/peer |
 
 ### Version History
 
@@ -3162,13 +3154,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag fdb local
 
+Set of MLAG Macs learnt/sync between mlag peers
+
 ### Usage
 
-  `nv show mlag fdb local [options]
-
-
-
-  Set of MLAG Macs learnt/sync between mlag peers
+`nv show mlag fdb local [options]`
 
 ### Version History
 
@@ -3182,13 +3172,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag fdb peer
 
+Set of MLAG Macs learnt/sync between mlag peers
+
 ### Usage
 
-  `nv show mlag fdb peer [options]
-
-
-
-  Set of MLAG Macs learnt/sync between mlag peers
+`nv show mlag fdb peer [options]`
 
 ### Version History
 
@@ -3202,13 +3190,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag fdb permanent
 
+Permanent Mac Entry
+
 ### Usage
 
-  `nv show mlag fdb permanent [options]
-
-
-
-  Permanent Mac Entry
+`nv show mlag fdb permanent [options]`
 
 ### Version History
 
@@ -3222,22 +3208,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag mdb
 
+Set of Mlag Multicast Database Entries
+
 ### Usage
 
-  `nv show mlag mdb [options] [<attribute> ...]
-
-
-
-  Set of Mlag Multicast Database Entries
+`nv show mlag mdb [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  local                 Local Multicast Database
-
-  peer                  Peer Multicast Database
+| `local`    | Local Multicast Database |
+| `peer `    | Peer Multicast Database |
 
 ### Version History
 
@@ -3251,13 +3233,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag mdb local
 
+Multicast Groups Info
+
 ### Usage
 
-  `nv show mlag mdb local [options]
-
-
-
-  Multicast Groups Info
+`nv show mlag mdb local [options]`
 
 ### Version History
 
@@ -3271,13 +3251,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag mdb peer
 
+Multicast Groups Info
+
 ### Usage
 
-  `nv show mlag mdb peer [options]
-
-
-
-  Multicast Groups Info
+`nv show mlag mdb peer [options]`
 
 ### Version History
 
@@ -3291,22 +3269,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag multicast-router-port
 
+Set of all Mlag Multicast Router Ports
+
 ### Usage
 
-  `nv show mlag multicast-router-port [options] [<attribute> ...]
-
-
-
-  Set of all Mlag Multicast Router Ports
+`nv show mlag multicast-router-port [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  local                 Local Multicast Router Ports
-
-  peer                  Peer Multicast Router Ports
+| `local`   | Local Multicast Router Ports |
+| `peer`    | Peer Multicast Router Ports |
 
 ### Version History
 
@@ -3320,13 +3294,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag multicast-router-port local
 
+Multicast Router Ports
+
 ### Usage
 
-  `nv show mlag multicast-router-port local [options]
-
-
-
-  Multicast Router Ports
+`nv show mlag multicast-router-port local [options]`
 
 ### Version History
 
@@ -3342,11 +3314,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show mlag multicast-router-port peer [options]
-
-
-
-  Multicast Router Ports
+`nv show mlag multicast-router-port peer [options]`
 
 ### Version History
 
@@ -3360,22 +3328,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag vni
 
+Set of all vnis
+
 ### Usage
 
-  `nv show mlag vni [options] [<attribute> ...]
-
-
-
-  Set of all vnis
+`nv show mlag vni [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  local                 Local Vnis
-
-  peer                  Peer Vnis
+| `local`  | Local Vnis |
+| `peer`   | Peer Vnis |
 
 ### Version History
 
@@ -3389,13 +3353,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag vni local
 
+Set of VNIs configured
+
 ### Usage
 
-  `nv show mlag vni local [options]
-
-
-
-  Set of VNIs configured
+`nv show mlag vni local [options]`
 
 ### Version History
 
@@ -3409,13 +3371,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag vni peer
 
+Set of VNIs configured
+
 ### Usage
 
-  `nv show mlag vni peer [options]
-
-
-
-  Set of VNIs configured
+`nv show mlag vni peer [options]`
 
 ### Version History
 
@@ -3429,22 +3389,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag lacpdb
 
+Set of all mlag local/peer lacpdb
+
 ### Usage
 
-  `nv show mlag lacpdb [options] [<attribute> ...]
-
-
-
-  Set of all mlag local/peer lacpdb
+`nv show mlag lacpdb [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  local                 Local Lacp Database
-
-  peer                  Peer Lacp Database
+| `local` | Local Lacp Database |
+| `peer`  | Peer Lacp Database |
 
 ### Version History
 
@@ -3458,13 +3414,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag lacpdb local
 
+Lacp DB
+
 ### Usage
 
-  `nv show mlag lacpdb local [options]
-
-
-
-  Lacp DB
+`nv show mlag lacpdb local [options]`
 
 ### Version History
 
@@ -3478,13 +3432,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag lacpdb peer
 
+Lacp DB
+
 ### Usage
 
-  `nv show mlag lacpdb peer [options]
-
-
-
-  Lacp DB
+`nv show mlag lacpdb peer [options]`
 
 ### Version History
 
@@ -3498,22 +3450,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag neighbor
 
+Set of all mlag neigh entries
+
 ### Usage
 
-  `nv show mlag neighbor [options] [<attribute> ...]
-
-
-
-  Set of all mlag neigh entries
+`nv show mlag neighbor [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  dynamic               Dynamic Neighbor
-
-  permanent             Permanent Neighbor
+| `dynamic`     | Dynamic Neighbor |
+| `permanent`   | Permanent Neighbor |
 
 ### Version History
 
@@ -3527,13 +3475,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag neighbor dynamic
 
+Neighs
+
 ### Usage
 
-  `nv show mlag neighbor dynamic [options]
-
-
-
-  Neighs
+`nv show mlag neighbor dynamic [options]`
 
 ### Version History
 
@@ -3547,13 +3493,10 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show mlag neighbor permanent
 
+Permanent Neighbors 
 ### Usage
 
-  `nv show mlag neighbor permanent [options]
-
-
-
-  Permanent Neighbors
+`nv show mlag neighbor permanent [options]`
 
 ### Version History
 
@@ -3567,26 +3510,20 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn
 
+Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
+
 ### Usage
 
-  `nv show evpn [options] [<attribute> ...]
-
-
-
-  Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
+`nv show evpn [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  route-advertise       Route advertising
-
-  dad                   Advertise
-
-  evi                   EVI
-
-  multihoming           Multihoming global configuration parameters
+| `route-advertise`  | Route advertising |
+| `dad`              | Advertise |
+| `evi`              | EVI |
+| `multihoming`      | Multihoming global configuration parameters |
 
 ### Version History
 
@@ -3602,11 +3539,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show evpn route-advertise [options]
-
-
-
-  Route dvertising
+`nv show evpn route-advertise [options]`
 
 ### Version History
 
@@ -3620,20 +3553,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn dad
 
+Duplicate address detection
+
 ### Usage
 
-  `nv show evpn dad [options] [<attribute> ...]
-
-
-
-  Duplicate address detection
+`nv show evpn dad [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  duplicate-action    Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted upon.
+| `duplicate-action`  | Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted upon. |
 
 ### Version History
 
@@ -3647,20 +3577,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn dad duplicate-action
 
+Handling of BUM traffic
+
 ### Usage
 
-  `nv show evpn dad duplicate-action [options] [<attribute> ...]
-
-
-
-  Handling of BUM traffic
+`nv show evpn dad duplicate-action [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  freeze                Further move events for the MAC will not be acted upon.
+| `freeze`  |  Further move events for the MAC will not be acted upon. |
 
 ### Version History
 
@@ -3674,13 +3601,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn dad duplicate-action freeze
 
+Advertise
+
 ### Usage
 
-  `nv show evpn dad duplicate-action freeze [options]
-
-
-
-  Advertise
+`nv show evpn dad duplicate-action freeze [options]`
 
 ### Version History
 
@@ -3694,20 +3619,16 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn evi
 
+EVIs
+
 ### Usage
 
-  `nv show evpn evi [options] [<evi-id> ...]
-
-
-
-  EVIs
+`nv show evpn evi [options] [<evi-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
-| --------- | -------------- |
-
-  <evi-id>              VRF
+| `<evi-id>`    |  VRF |
 
 ### Version History
 
@@ -3721,29 +3642,23 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn evi <evi-id>
 
+Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
+
 ### Usage
 
-  `nv show evpn evi <evi-id> [options] [<attribute> ...]
-
-
-
-  Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
+`nv show evpn evi <evi-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
-| --------- | -------------- |
-
-  <evi-id>              VRF
+| `<evi-id>`    |  VRF |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  route-advertise       Route advertise
-
-  route-target          Route targets
+| `route-advertise` | Route advertise |
+| `route-target`    | Route targets |
 
 ### Version History
 
@@ -3757,20 +3672,16 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn evi <evi-id> route-advertise
 
+Route advertise
+
 ### Usage
 
-  `nv show evpn evi <evi-id> route-advertise [options]
-
-
-
-  Route advertise
+`nv show evpn evi <evi-id> route-advertise [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
-| --------- | -------------- |
-
-  <evi-id>              VRF
+| `<evi-id>`    |  VRF |
 
 ### Version History
 
@@ -3784,31 +3695,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn evi <evi-id> route-target
 
+EVPN control plane config and info for VRF
+
 ### Usage
 
-  `nv show evpn evi <evi-id> route-target [options] [<attribute> ...]
-
-
-
-  EVPN control plane config and info for VRF
+`nv show evpn evi <evi-id> route-target [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
-| --------- | -------------- |
-
-  <evi-id>              VRF
+| `<evi-id>`    |  VRF |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  export                Route targets to export
-
-  import                Route targets to import
-
-  both                  Route targets to import and export
+| `export` |  Route targets to export |
+| `import` |  Route targets to import |
+| `both`   |  Route targets to import and export |
 
 ### Version History
 
@@ -3822,22 +3726,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn evi <evi-id> route-target export
 
+Set of route target identifiers
+
 ### Usage
 
-  `nv show evpn evi <evi-id> route-target export [options] [<rt-id> ...]
-
-
-
-  Set of route target identifiers
+`nv show evpn evi <evi-id> route-target export [options] [<rt-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <evi-id>              VRF
-
-  <rt-id>               Route target ID
+| `<evi-id>` |   VRF |
+| `<rt-id>` |    Route target ID |
 
 ### Version History
 
@@ -3853,7 +3753,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show evpn evi <evi-id> route-target export <rt-id> [options]
+`nv show evpn evi <evi-id> route-target export <rt-id> [options]
 
 
 
@@ -3863,10 +3763,8 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <evi-id>              VRF
-
-  <rt-id>               Route target ID
+| `<evi-id>` |   VRF |
+| `<rt-id>` |    Route target ID |
 
 ### Version History
 
@@ -3882,7 +3780,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show evpn evi <evi-id> route-target import [options] [<rt-id> ...]
+`nv show evpn evi <evi-id> route-target import [options] [<rt-id> ...]
 
 
 
@@ -3892,10 +3790,8 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <evi-id>              VRF
-
-  <rt-id>               Route target ID
+| `<evi-id>` |   VRF |
+| `<rt-id>` |    Route target ID |
 
 ### Version History
 
@@ -3911,7 +3807,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show evpn evi <evi-id> route-target import <rt-id> [options]
+`nv show evpn evi <evi-id> route-target import <rt-id> [options]
 
 
 
@@ -3921,10 +3817,8 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <evi-id>              VRF
-
-  <rt-id>               Route target ID
+| `<evi-id>` |   VRF |
+| `<rt-id>` |    Route target ID |
 
 ### Version History
 
@@ -3940,7 +3834,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show evpn evi <evi-id> route-target both [options] [<rt-id> ...]
+`nv show evpn evi <evi-id> route-target both [options] [<rt-id> ...]
 
 
 
@@ -3950,10 +3844,8 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <evi-id>              VRF
-
-  <rt-id>               Route target ID
+| `<evi-id>` |   VRF |
+| `<rt-id>` |    Route target ID |
 
 ### Version History
 
@@ -3967,22 +3859,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn evi <evi-id> route-target both <rt-id>
 
+A route target identifier
+
 ### Usage
 
-  `nv show evpn evi <evi-id> route-target both <rt-id> [options]
-
-
-
-  A route target identifier
+`nv show evpn evi <evi-id> route-target both <rt-id> [options]`
 
 ### Identifiers
 
 |  Identifier |  Description   |
 | --------- | -------------- |
-
-  <evi-id>              VRF
-
-  <rt-id>               Route target ID
+| `<evi-id>` |  VRF |
+| `<rt-id>` |Route target ID |
 
 ### Version History
 
@@ -3996,22 +3884,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn multihoming
 
+Multihoming global configuration parameters
+
 ### Usage
 
-  `nv show evpn multihoming [options] [<attribute> ...]
-
-
-
-  Multihoming global configuration parameters
+`nv show evpn multihoming [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  ead-evi-route         Ethernet Auto-discovery per EVPN instance routes
-
-  segment               Multihoming interface segment
+| `ead-evi-route`  | Ethernet Auto-discovery per EVPN instance routes |
+| `segment`        | Multihoming interface segment |
 
 ### Version History
 
@@ -4027,11 +3911,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show evpn multihoming ead-evi-route [options]
-
-
-
-  Ethernet Auto-discovery per EVPN instance routes
+`nv show evpn multihoming ead-evi-route [options]`
 
 ### Version History
 
@@ -4045,13 +3925,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show evpn multihoming segment
 
+Multihoming interface segment
+
 ### Usage
 
-  `nv show evpn multihoming segment [options]
-
-
-
-  Multihoming interface segment
+`nv show evpn multihoming segment [options]`
 
 ### Version History
 
@@ -4065,22 +3943,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show qos
 
+QOS
+
 ### Usage
 
-  `nv show qos [options] [<attribute> ...]
-
-
-
-  QOS
+`nv show qos [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  roce                  Properties associated with the RDMA over Converged
-
-                        Ethernet (RoCE) feature.
+| `roce` | Properties associated with the RDMA over Converged Ethernet (RoCE) feature. |
 
 ### Version History
 
@@ -4094,26 +3967,20 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show qos roce
 
+Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
+
 ### Usage
 
-  `nv show qos roce [options] [<attribute> ...]
-
-
-
-  Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
+`nv show qos roce [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  prio-map              RoCE PCP/DSCP->SP mapping configurations
-
-  tc-map                RoCE SP->TC mapping and ETS configurations
-
-  pool-map              System Roce pool config
-
-  pool                  System Roce pools
+| `prio-map` | RoCE PCP/DSCP->SP mapping configurations |
+| `tc-map`   | RoCE SP->TC mapping and ETS configurations |
+| `pool-map` | System Roce pool config |
+| `pool`     | System Roce pools |
 
 ### Version History
 
@@ -4127,13 +3994,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show qos roce prio-map
 
+RoCE PCP/DSCP->SP mapping configurations
+
 ### Usage
 
-  `nv show qos roce prio-map [options]
-
-
-
-  RoCE PCP/DSCP->SP mapping configurations
+`nv show qos roce prio-map [options]`
 
 ### Version History
 
@@ -4147,13 +4012,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show qos roce tc-map
 
+RoCE SP->TC mapping and ETS configurations
+
 ### Usage
 
-  `nv show qos roce tc-map [options]
-
-
-
-  RoCE SP->TC mapping and ETS configurations
+`nv show qos roce tc-map [options]`
 
 ### Version History
 
@@ -4167,13 +4030,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show qos roce pool-map
 
+System Roce pool config
+
 ### Usage
 
-  `nv show qos roce pool-map [options]
-
-
-
-  System Roce pool config
+`nv show qos roce pool-map [options]`
 
 ### Version History
 
@@ -4187,13 +4048,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show qos roce pool
 
+System Roce pools
+
 ### Usage
 
-  `nv show qos roce pool [options]
-
-
-
-  System Roce pools
+`nv show qos roce pool [options]`
 
 ### Version History
 
@@ -4207,20 +4066,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show interface
 
+Interfaces
+
 ### Usage
 
-  `nv show interface [options] [<interface-id> ...]
-
-
-
-  Interfaces
+`nv show interface [options] [<interface-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4236,7 +4092,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> [options] [<attribute> ...]
+`nv show interface <interface-id> [options] [<attribute> ...]
 
 
 
@@ -4246,8 +4102,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -4292,7 +4147,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> pluggable [options]
+`nv show interface <interface-id> pluggable [options]
 
 
 
@@ -4302,8 +4157,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4319,7 +4173,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router [options] [<attribute> ...]
+`nv show interface <interface-id> router [options] [<attribute> ...]
 
 
 
@@ -4329,8 +4183,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -4359,7 +4212,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router pbr [options] [<attribute> ...]
+`nv show interface <interface-id> router pbr [options] [<attribute> ...]
 
 
 
@@ -4369,8 +4222,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -4393,7 +4245,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router pbr map <pbr-map-id> [options]
+`nv show interface <interface-id> router pbr map <pbr-map-id> [options]
 
 
 
@@ -4403,8 +4255,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <pbr-map-id>          Route Map ID
 
@@ -4422,7 +4273,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router ospf [options] [<attribute> ...]
+`nv show interface <interface-id> router ospf [options] [<attribute> ...]
 
 
 
@@ -4432,8 +4283,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -4460,7 +4310,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router ospf timers [options]
+`nv show interface <interface-id> router ospf timers [options]
 
 
 
@@ -4470,8 +4320,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4487,7 +4336,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router ospf authentication [options]
+`nv show interface <interface-id> router ospf authentication [options]
 
 
 
@@ -4497,8 +4346,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4514,7 +4362,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router ospf bfd [options]
+`nv show interface <interface-id> router ospf bfd [options]
 
 
 
@@ -4524,8 +4372,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4541,7 +4388,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router pim [options] [<attribute> ...]
+`nv show interface <interface-id> router pim [options] [<attribute> ...]
 
 
 
@@ -4551,8 +4398,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -4579,7 +4425,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router pim timers [options]
+`nv show interface <interface-id> router pim timers [options]
 
 
 
@@ -4589,8 +4435,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4606,7 +4451,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router pim bfd [options]
+`nv show interface <interface-id> router pim bfd [options]
 
 
 
@@ -4616,8 +4461,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4633,7 +4477,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router pim address-family [options] [<attribute> ...]
+`nv show interface <interface-id> router pim address-family [options] [<attribute> ...]
 
 
 
@@ -4643,8 +4487,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -4667,7 +4510,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
+`nv show interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
 
 
 
@@ -4677,8 +4520,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -4701,7 +4543,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router pim address-family ipv4-unicast allow-rp [options]
+`nv show interface <interface-id> router pim address-family ipv4-unicast allow-rp [options]
 
 
 
@@ -4711,8 +4553,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4728,7 +4569,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> router adaptive-routing [options]
+`nv show interface <interface-id> router adaptive-routing [options]
 
 
 
@@ -4738,8 +4579,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4755,7 +4595,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> bond [options] [<attribute> ...]
+`nv show interface <interface-id> bond [options] [<attribute> ...]
 
 
 
@@ -4765,8 +4605,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -4791,7 +4630,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> bond member <member-id> [options]
+`nv show interface <interface-id> bond member <member-id> [options]
 
 
 
@@ -4801,8 +4640,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <member-id>           Bond memer interface
 
@@ -4820,7 +4658,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> bond mlag [options] [<attribute> ...]
+`nv show interface <interface-id> bond mlag [options] [<attribute> ...]
 
 
 
@@ -4830,8 +4668,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -4856,7 +4693,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> bond mlag lacp-conflict [options]
+`nv show interface <interface-id> bond mlag lacp-conflict [options]
 
 
 
@@ -4866,8 +4703,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4883,7 +4719,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> bond mlag consistency-checker [options]
+`nv show interface <interface-id> bond mlag consistency-checker [options]
 
 
 
@@ -4893,8 +4729,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -4910,7 +4745,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> bridge [options] [<attribute> ...]
+`nv show interface <interface-id> bridge [options] [<attribute> ...]
 
 
 
@@ -4920,8 +4755,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -4944,7 +4778,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]
+`nv show interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]
 
 
 
@@ -4954,8 +4788,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
   <domain-id>           Domain
 
 ### Attributes
@@ -4980,7 +4813,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> bridge domain <domain-id> stp [options]
+`nv show interface <interface-id> bridge domain <domain-id> stp [options]
 
 
 
@@ -4990,8 +4823,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <domain-id>           Domain
 
@@ -5009,7 +4841,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> bridge domain <domain-id> vlan <vid> [options]
+`nv show interface <interface-id> bridge domain <domain-id> vlan <vid> [options]
 
 
 
@@ -5019,8 +4851,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <domain-id>           Domain
 
@@ -5040,7 +4871,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip [options] [<attribute> ...]
+`nv show interface <interface-id> ip [options] [<attribute> ...]
 
 
 
@@ -5050,8 +4881,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -5090,7 +4920,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip address <ip-prefix-id> [options]
+`nv show interface <interface-id> ip address <ip-prefix-id> [options]
 
 
 
@@ -5100,8 +4930,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
 
@@ -5119,7 +4948,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip neighbor [options] [<attribute> ...]
+`nv show interface <interface-id> ip neighbor [options] [<attribute> ...]
 
 
 
@@ -5129,8 +4958,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -5155,7 +4983,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip neighbor ipv4 <neighbor-id> [options]
+`nv show interface <interface-id> ip neighbor ipv4 <neighbor-id> [options]
 
 
 
@@ -5165,8 +4993,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <neighbor-id>         The IPv4 address of the neighbor node.
 
@@ -5184,7 +5011,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip neighbor ipv6 <neighbor-id> [options]
+`nv show interface <interface-id> ip neighbor ipv6 <neighbor-id> [options]
 
 
 
@@ -5194,8 +5021,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <neighbor-id>         The IPv6 address of the neighbor node.
 
@@ -5213,7 +5039,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip vrr [options] [<attribute> ...]
+`nv show interface <interface-id> ip vrr [options] [<attribute> ...]
 
 
 
@@ -5223,8 +5049,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -5249,7 +5074,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip vrr address <ip-prefix-id> [options]
+`nv show interface <interface-id> ip vrr address <ip-prefix-id> [options]
 
 
 
@@ -5259,8 +5084,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <ip-prefix-id>        IPv4 or IPv6 address and route prefix in CIDR notation
 
@@ -5278,7 +5102,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip vrr state [options]
+`nv show interface <interface-id> ip vrr state [options]
 
 
 
@@ -5288,8 +5112,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -5305,7 +5128,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip gateway <ip-address-id> [options]
+`nv show interface <interface-id> ip gateway <ip-address-id> [options]
 
 
 
@@ -5315,8 +5138,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <ip-address-id>       IPv4 or IPv6 address
 
@@ -5334,7 +5156,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip ipv4 [options]
+`nv show interface <interface-id> ip ipv4 [options]
 
 
 
@@ -5344,8 +5166,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -5361,7 +5182,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip ipv6 [options]
+`nv show interface <interface-id> ip ipv6 [options]
 
 
 
@@ -5371,8 +5192,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -5388,7 +5208,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip igmp [options] [<attribute> ...]
+`nv show interface <interface-id> ip igmp [options] [<attribute> ...]
 
 
 
@@ -5398,8 +5218,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -5422,7 +5241,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip igmp static-group <static-group-id> [options]
+`nv show interface <interface-id> ip igmp static-group <static-group-id> [options]
 
 
 
@@ -5432,8 +5251,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <static-group-id>     IGMP static multicast mroute destination
 
@@ -5451,7 +5269,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip vrrp [options] [<attribute> ...]
+`nv show interface <interface-id> ip vrrp [options] [<attribute> ...]
 
 
 
@@ -5461,8 +5279,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -5485,7 +5302,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]
+`nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]
 
 
 
@@ -5495,8 +5312,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <virtual-router-id>   Virtual Router IDentifier (VRID)
 
@@ -5521,7 +5337,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]
+`nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]
 
 
 
@@ -5531,8 +5347,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <virtual-router-id>   Virtual Router IDentifier (VRID)
 
@@ -5552,7 +5367,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]
+`nv show interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]
 
 
 
@@ -5562,8 +5377,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -5594,7 +5408,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options]
+`nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options]
 
 
 
@@ -5604,8 +5418,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <ipv6-address-id>     IPv6 address
 
@@ -5623,7 +5436,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options]
+`nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options]
 
 
 
@@ -5633,8 +5446,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <ipv6-prefix-id>      IPv6 address and route prefix in CIDR notation
 
@@ -5652,7 +5464,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options]
+`nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options]
 
 
 
@@ -5662,8 +5474,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <domain-name-id>      The domain portion of a hostname (RFC 1123) or an internationalized hostname (RFC 5890).
 
@@ -5681,7 +5492,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip neighbor-discovery router-advertisement [options]
+`nv show interface <interface-id> ip neighbor-discovery router-advertisement [options]
 
 
 
@@ -5691,8 +5502,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -5708,7 +5518,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ip neighbor-discovery home-agent [options]
+`nv show interface <interface-id> ip neighbor-discovery home-agent [options]
 
 
 
@@ -5718,8 +5528,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -5735,7 +5544,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> lldp [options] [<attribute> ...]
+`nv show interface <interface-id> lldp [options] [<attribute> ...]
 
 
 
@@ -5745,8 +5554,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -5769,7 +5577,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> lldp neighbor <neighbor-id> [options] [<attribute> ...]
+`nv show interface <interface-id> lldp neighbor <neighbor-id> [options] [<attribute> ...]
 
 
 
@@ -5779,8 +5587,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <neighbor-id>         System generated identifier for the neighbor on the interface
 
@@ -5805,7 +5612,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> lldp neighbor <neighbor-id> bridge [options] [<attribute> ...]
+`nv show interface <interface-id> lldp neighbor <neighbor-id> bridge [options] [<attribute> ...]
 
 
 
@@ -5815,8 +5622,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <neighbor-id>         System generated identifier for the neighbor on the interface
 
@@ -5841,7 +5647,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid> [options]
+`nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid> [options]
 
 
 
@@ -5851,8 +5657,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <neighbor-id>         System generated identifier for the neighbor on the interface
 
@@ -5872,7 +5677,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> link [options] [<attribute> ...]
+`nv show interface <interface-id> link [options] [<attribute> ...]
 
 
 
@@ -5882,8 +5687,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -5914,7 +5718,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> link state [options]
+`nv show interface <interface-id> link state [options]
 
 
 
@@ -5924,8 +5728,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -5941,7 +5744,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> link dot1x [options]
+`nv show interface <interface-id> link dot1x [options]
 
 
 
@@ -5951,8 +5754,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -5968,7 +5770,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> link stats [options]
+`nv show interface <interface-id> link stats [options]
 
 
 
@@ -5978,8 +5780,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -5995,7 +5796,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> link traffic-engineering [options]
+`nv show interface <interface-id> link traffic-engineering [options]
 
 
 
@@ -6005,8 +5806,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6022,7 +5822,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> link flag [options]
+`nv show interface <interface-id> link flag [options]
 
 
 
@@ -6032,8 +5832,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6049,14 +5848,13 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos [options] [<attribute> ...]
+`nv show interface <interface-id> qos [options] [<attribute> ...]
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -6080,7 +5878,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos counters [options] [<attribute> ...]
+`nv show interface <interface-id> qos counters [options] [<attribute> ...]
 
 
 
@@ -6090,8 +5888,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -6120,7 +5917,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos counters port-stats [options] [<attribute> ...]
+`nv show interface <interface-id> qos counters port-stats [options] [<attribute> ...]
 
 
 
@@ -6130,8 +5927,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -6156,7 +5952,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos counters port-stats rx-stats [options]
+`nv show interface <interface-id> qos counters port-stats rx-stats [options]
 
 
 
@@ -6166,8 +5962,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6183,7 +5978,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos counters port-stats tx-stats [options]
+`nv show interface <interface-id> qos counters port-stats tx-stats [options]
 
 
 
@@ -6193,8 +5988,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6210,7 +6004,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos counters egress-queue-stats [options]
+`nv show interface <interface-id> qos counters egress-queue-stats [options]
 
 
 
@@ -6220,8 +6014,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6237,7 +6030,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos counters ingress-buffer-stats [options]
+`nv show interface <interface-id> qos counters ingress-buffer-stats [options]
 
 
 
@@ -6247,8 +6040,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6264,7 +6056,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos counters pfc-stats [options]
+`nv show interface <interface-id> qos counters pfc-stats [options]
 
 
 
@@ -6274,8 +6066,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6291,14 +6082,13 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos roce [options] [<attribute> ...]
+`nv show interface <interface-id> qos roce [options] [<attribute> ...]
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -6322,7 +6112,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos roce counters [options]
+`nv show interface <interface-id> qos roce counters [options]
 
 
 
@@ -6332,8 +6122,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6349,7 +6138,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos roce status [options] [<attribute> ...]
+`nv show interface <interface-id> qos roce status [options] [<attribute> ...]
 
 
 
@@ -6359,8 +6148,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -6387,7 +6175,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos roce status pool-map [options]
+`nv show interface <interface-id> qos roce status pool-map [options]
 
 
 
@@ -6397,8 +6185,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6414,7 +6201,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos roce status prio-map [options]
+`nv show interface <interface-id> qos roce status prio-map [options]
 
 
 
@@ -6424,8 +6211,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6441,7 +6227,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> qos roce status tc-map [options]
+`nv show interface <interface-id> qos roce status tc-map [options]
 
 
 
@@ -6451,8 +6237,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6468,7 +6253,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> evpn [options] [<attribute> ...]
+`nv show interface <interface-id> evpn [options] [<attribute> ...]
 
 
 
@@ -6478,8 +6263,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -6502,7 +6286,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> evpn multihoming [options] [<attribute> ...]
+`nv show interface <interface-id> evpn multihoming [options] [<attribute> ...]
 
 
 
@@ -6512,8 +6296,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -6536,7 +6319,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> evpn multihoming segment [options]
+`nv show interface <interface-id> evpn multihoming segment [options]
 
 
 
@@ -6546,8 +6329,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6563,7 +6345,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> acl <acl-id> [options] [<attribute> ...]
+`nv show interface <interface-id> acl <acl-id> [options] [<attribute> ...]
 
 
 
@@ -6573,8 +6355,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <acl-id>              ACL ID
 
@@ -6601,7 +6382,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> acl <acl-id> inbound [options] [<attribute> ...]
+`nv show interface <interface-id> acl <acl-id> inbound [options] [<attribute> ...]
 
 
 
@@ -6611,8 +6392,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <acl-id>              ACL ID
 
@@ -6637,7 +6417,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> acl <acl-id> inbound control-plane [options]
+`nv show interface <interface-id> acl <acl-id> inbound control-plane [options]
 
 
 
@@ -6647,8 +6427,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <acl-id>              ACL ID
 
@@ -6666,7 +6445,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> acl <acl-id> outbound [options] [<attribute> ...]
+`nv show interface <interface-id> acl <acl-id> outbound [options] [<attribute> ...]
 
 
 
@@ -6676,8 +6455,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <acl-id>              ACL ID
 
@@ -6702,7 +6480,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> acl <acl-id> outbound control-plane [options]
+`nv show interface <interface-id> acl <acl-id> outbound control-plane [options]
 
 
 
@@ -6712,8 +6490,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
   <acl-id>              ACL ID
 
@@ -6731,7 +6508,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ptp [options] [<attribute> ...]
+`nv show interface <interface-id> ptp [options] [<attribute> ...]
 
 
 
@@ -6741,8 +6518,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Attributes
 
@@ -6767,7 +6543,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ptp timers [options]
+`nv show interface <interface-id> ptp timers [options]
 
 
 
@@ -6777,8 +6553,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6794,7 +6569,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show interface <interface-id> ptp counters [options]
+`nv show interface <interface-id> ptp counters [options]
 
 
 
@@ -6804,8 +6579,7 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>`    |    Interface |
 
 ### Version History
 
@@ -6819,20 +6593,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show interface <interface-id> tunnel
 
+The state of the interface
+
 ### Usage
 
-  `nv show interface <interface-id> tunnel [options]
-
-
-
-  The state of the interface
+`nv show interface <interface-id> tunnel [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <interface-id>        Interface
+| `<interface-id>` |  Interface |
 
 ### Version History
 
@@ -6846,36 +6617,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service
 
+A service
+
 ### Usage
 
-  `nv show service [options] [<attribute> ...]
-
-
-
-  A service
+`nv show service [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  dns                   collection of DNS
-
-  syslog                collection of syslog
-
-  ntp                   NTPs
-
-  dhcp-relay            DHCP-relays
-
-  dhcp-relay6           DHCP-relays
-
-  ptp                   Collection of PTP instances
-
-  dhcp-server           DHCP-servers
-
-  dhcp-server6          DHCP-servers6
-
-  lldp                  Global LLDP
+| `dns`           collection of DNS |
+| `syslog`        collection of syslog |
+| `ntp`           NTPs |
+| `dhcp-relay`    DHCP-relays |
+| `dhcp-relay6`   DHCP-relays |
+| `ptp`           Collection of PTP instances |
+| `dhcp-server`   DHCP-servers |
+| `dhcp-server6`  DHCP-servers6 |
+| `lldp`          Global LLDP |
 
 ### Version History
 
@@ -6889,13 +6649,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dns
 
+collection of DNS
+
 ### Usage
 
-  `nv show service dns [options] [<vrf-id> ...]
-
-
-
-  collection of DNS
+`nv show service dns [options] [<vrf-id> ...]`
 
 ### Identifiers
 
@@ -6915,13 +6673,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dns <vrf-id>
 
+Domain Name Service
+
 ### Usage
 
-  `nv show service dns <vrf-id> [options] [<attribute> ...]
-
-
-
-  Domain Name Service
+`nv show service dns <vrf-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -6933,8 +6689,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  server                Remote DNS servers
+| `server` |   Remote DNS servers |
 
 ### Version History
 
@@ -6948,21 +6703,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dns <vrf-id> server <dns-server-id>
 
+A remote DNS server
+
 ### Usage
 
-  `nv show service dns <vrf-id> server <dns-server-id> [options]
-
-
-
-  A remote DNS server
+`nv show service dns <vrf-id> server <dns-server-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <dns-server-id>       IPv4 or IPv6 address of a DNS server
+| `<dns-server-id>`  | IPv4 or IPv6 address of a DNS server |
 
 ### Version History
 
@@ -6976,13 +6728,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service syslog
 
+collection of syslog
+
 ### Usage
 
-  `nv show service syslog [options] [<vrf-id> ...]
-
-
-
-  collection of syslog
+`nv show service syslog [options] [<vrf-id> ...]`
 
 ### Identifiers
 
@@ -7002,13 +6752,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service syslog <vrf-id>
 
+Domain Name Service
+
 ### Usage
 
-  `nv show service syslog <vrf-id> [options] [<attribute> ...]
-
-
-
-  Domain Name Service
+`nv show service syslog <vrf-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -7020,8 +6768,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  server                Remote DNS servers
+| `server` | Remote DNS servers |
 
 ### Version History
 
@@ -7035,21 +6782,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service syslog <vrf-id> server <server-id>
 
+A remote DNS server
+
 ### Usage
 
-  `nv show service syslog <vrf-id> server <server-id> [options]
-
-
-
-  A remote DNS server
+`nv show service syslog <vrf-id> server <server-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <server-id>           Hostname or IP address of a syslog server
+| `<server-id>` | Hostname or IP address of a syslog server |
 
 ### Version History
 
@@ -7063,13 +6807,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ntp
 
+NTPs
+
 ### Usage
 
-  `nv show service ntp [options] [<vrf-id> ...]
-
-
-
-  NTPs
+`nv show service ntp [options] [<vrf-id> ...]`
 
 ### Identifiers
 
@@ -7089,13 +6831,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ntp <vrf-id>
 
+Network Time Protocol
+
 ### Usage
 
-  `nv show service ntp <vrf-id> [options] [<attribute> ...]
-
-
-
-  Network Time Protocol
+`nv show service ntp <vrf-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -7107,10 +6847,8 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  server                Remote NTP Servers
-
-  pool                  Remote NTP Servers
+| `server` | Remote NTP Servers |
+| `pool`  |  Remote NTP Servers |
 
 ### Version History
 
@@ -7124,13 +6862,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ntp <vrf-id> server <server-id>
 
+A remote NTP Server
+
 ### Usage
 
-  `nv show service ntp <vrf-id> server <server-id> [options]
-
-
-
-  A remote NTP Server
+`nv show service ntp <vrf-id> server <server-id> [options]`
 
 ### Identifiers
 
@@ -7151,13 +6887,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ntp <vrf-id> pool <server-id>
 
+A remote NTP Server
+
 ### Usage
 
-  `nv show service ntp <vrf-id> pool <server-id> [options]
-
-
-
-  A remote NTP Server
+`nv show service ntp <vrf-id> pool <server-id> [options]`
 
 ### Identifiers
 
@@ -7178,13 +6912,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-relay
 
+DHCP-relays
+
 ### Usage
 
-  `nv show service dhcp-relay [options] [<vrf-id> ...]
-
-
-
-  DHCP-relays
+`nv show service dhcp-relay [options] [<vrf-id> ...]`
 
 ### Identifiers
 
@@ -7204,13 +6936,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-relay <vrf-id>
 
+DHCP relay
+
 ### Usage
 
-  `nv show service dhcp-relay <vrf-id> [options] [<attribute> ...]
-
-
-
-  DHCP relay
+`nv show service dhcp-relay <vrf-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -7222,12 +6952,9 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  server                DHCP servers
-
-  interface             Set of interfaces on which to handle DHCP relay traffic
-
-  giaddress-interface   Configures DHCP relay giaddress on the interfaes.
+| `server`                | DHCP servers |
+| `interface`             | Set of interfaces on which to handle DHCP relay traffic |
+| `giaddress-interface`   | Configures DHCP relay giaddress on the interfaes. |
 
 ### Version History
 
@@ -7241,13 +6968,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-relay <vrf-id> server <server-id>
 
+A DHCP server
+
 ### Usage
 
-  `nv show service dhcp-relay <vrf-id> server <server-id> [options]
-
-
-
-  A DHCP server
+`nv show service dhcp-relay <vrf-id> server <server-id> [options]`
 
 ### Identifiers
 
@@ -7271,11 +6996,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show service dhcp-relay <vrf-id> interface <interface-id> [options]
-
-
-
-  An interface on which DHCP relay is configured.
+`nv show service dhcp-relay <vrf-id> interface <interface-id> [options]`
 
 ### Identifiers
 
@@ -7298,11 +7019,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options]
-
-
-
-  An interface on which DHCP relay giaddress is configured.
+`nv show service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options]`
 
 ### Identifiers
 
@@ -7325,11 +7042,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show service dhcp-relay6 [options] [<vrf-id> ...]
-
-
-
-  DHCP-relays
+`nv show service dhcp-relay6 [options] [<vrf-id> ...]`
 
 ### Identifiers
 
@@ -7351,11 +7064,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show service dhcp-relay6 <vrf-id> [options] [<attribute> ...]
-
-
-
-  DHCP relay
+`nv show service dhcp-relay6 <vrf-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -7381,13 +7090,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-relay6 <vrf-id> interface
 
+DHCP relay interfaces
+
 ### Usage
 
-  `nv show service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]
-
-
-
-  DHCP relay interfaces
+`nv show service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -7399,10 +7106,8 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  upstream              Configures DHCP relay on the interfaes.
-
-  downstream            Configures DHCP relay on the interfaes.
+| `upstream`   | Configures DHCP relay on the interfaes. |
+| `downstream` | Configures DHCP relay on the interfaes. |
 
 ### Version History
 
@@ -7416,13 +7121,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-relay6 <vrf-id> interface upstream <interface-id>
 
+An interface on which DPCH relay is configured.
+
 ### Usage
 
-  `nv show service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options]
-
-
-
-  An interface on which DPCH relay is configured.
+`nv show service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options]`
 
 ### Identifiers
 
@@ -7443,13 +7146,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-relay6 <vrf-id> interface downstream <interface-id>
 
+An interface on which DPCH relay is configured.
+
 ### Usage
 
-  `nv show service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options]
-
-
-
-  An interface on which DPCH relay is configured.
+`nv show service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options]`
 
 ### Identifiers
 
@@ -7470,13 +7171,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp
 
+Collection of PTP instances
+
 ### Usage
 
-  `nv show service ptp [options] [<instance-id> ...]
-
-
-
-  Collection of PTP instances
+`nv show service ptp [options] [<instance-id> ...]`
 
 ### Identifiers
 
@@ -7496,13 +7195,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id>
 
+Global PTP configuration.
+
 ### Usage
 
-  `nv show service ptp <instance-id> [options] [<attribute> ...]
-
-
-
-  Global PTP configuration.
+`nv show service ptp <instance-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -7514,18 +7211,12 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  acceptable-master     Collection of acceptable masters
-
-  monitor               PTP monitor configuration
-
-  current               Local states learned from the exchange of PTP messages
-
-  clock-quality         Clock Quality Status
-
-  parent                Local states learned from the exchange of PTP messages
-
-  time-properties       Time attributes of the clock
+| `acceptable-master`     | Collection of acceptable masters |
+| `monitor`               | PTP monitor configuration |
+| `current`               | Local states learned from the exchange of PTP messages |
+| `clock-quality`         | Clock Quality Status |
+| `parent`                | Local states learned from the exchange of PTP messages |
+| `time-properties`       | Time attributes of the clock |
 
 ### Version History
 
@@ -7539,13 +7230,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> acceptable-master
 
+Collection of acceptable masters
+
 ### Usage
 
-  `nv show service ptp <instance-id> acceptable-master [options] [<clock-id> ...]
-
-
-
-  Collection of acceptable masters
+`nv show service ptp <instance-id> acceptable-master [options] [<clock-id> ...]`
 
 ### Identifiers
 
@@ -7566,13 +7255,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> acceptable-master <clock-id>
 
+List of clocks that the local clock can accept as master clock
+
 ### Usage
 
-  `nv show service ptp <instance-id> acceptable-master <clock-id> [options]
-
-
-
-  List of clocks that the local clock can accept as master clock
+`nv show service ptp <instance-id> acceptable-master <clock-id> [options]`
 
 ### Identifiers
 
@@ -7593,13 +7280,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> monitor
 
+PTP monitor configuration
+
 ### Usage
 
-  `nv show service ptp <instance-id> monitor [options] [<attribute> ...]
-
-
-
-  PTP monitor configuration
+`nv show service ptp <instance-id> monitor [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -7611,9 +7296,8 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  timestamp-log         Collection of violations logs
-  violations            PTP violations
+| `timestamp-log`  | Collection of violations logs |
+| `violations`     | PTP violations |
 
 ### Version History
 
@@ -7629,11 +7313,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show service ptp <instance-id> monitor timestamp-log [options]
-
-
-
-  Collection of violations logs
+`nv show service ptp <instance-id> monitor timestamp-log [options]`
 
 ### Identifiers
 
@@ -7653,13 +7333,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> monitor violations
 
+PTP violations
+
 ### Usage
 
-  `nv show service ptp <instance-id> monitor violations [options] [<attribute> ...]
-
-
-
-  PTP violations
+`nv show service ptp <instance-id> monitor violations [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -7671,8 +7349,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  log                   PTP violations log
+| `log` |  PTP violations log |
 
 ### Version History
 
@@ -7686,13 +7363,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> monitor violations log
 
+PTP violations log
+
 ### Usage
 
-  `nv show service ptp <instance-id> monitor violations log [options] [<attribute> ...]
-
-
-
-  PTP violations log
+`nv show service ptp <instance-id> monitor violations log [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -7704,16 +7379,11 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  acceptable-master     Collection of master violations
-
-  forced-master         Collection of master violations
-
-  max-offset            Collection of violations logs
-
-  min-offset            Collection of violations logs
-
-  path-delay            Collection of violations logs
+| `acceptable-master`     | Collection of master violations |
+| `forced-master`         | Collection of master violations |
+| `max-offset`            | Collection of violations logs |
+| `min-offset`            | Collection of violations logs |
+| `path-delay`            | Collection of violations logs |
 
 ### Version History
 
@@ -7727,13 +7397,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> monitor violations log acceptable-master
 
+Collection of master violations
+
 ### Usage
 
-  `nv show service ptp <instance-id> monitor violations log acceptable-master [options]
-
-
-
-  Collection of master violations
+`nv show service ptp <instance-id> monitor violations log acceptable-master [options]`
 
 ### Identifiers
 
@@ -7753,13 +7421,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> monitor violations log forced-master
 
+Collection of master violations
+
 ### Usage
 
-  `nv show service ptp <instance-id> monitor violations log forced-master [options]
-
-
-
-  Collection of master violations
+`nv show service ptp <instance-id> monitor violations log forced-master [options]`
 
 ### Identifiers
 
@@ -7779,13 +7445,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> monitor violations log max-offset
 
+Collection of violations logs
+
 ### Usage
 
-  `nv show service ptp <instance-id> monitor violations log max-offset [options]
-
-
-
-  Collection of violations logs
+`nv show service ptp <instance-id> monitor violations log max-offset [options]`
 
 ### Identifiers
 
@@ -7805,13 +7469,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> monitor violations log min-offset
 
+Collection of violations logs
+
 ### Usage
 
-  `nv show service ptp <instance-id> monitor violations log min-offset [options]
-
-
-
-  Collection of violations logs
+`nv show service ptp <instance-id> monitor violations log min-offset [options]`
 
 ### Identifiers
 
@@ -7831,13 +7493,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> monitor violations log path-delay
 
+Collection of violations logs
+
 ### Usage
 
-  `nv show service ptp <instance-id> monitor violations log path-delay [options]
-
-
-
-  Collection of violations logs
+`nv show service ptp <instance-id> monitor violations log path-delay [options]`
 
 ### Identifiers
 
@@ -7857,13 +7517,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> current
 
+Local states learned from the exchange of PTP messages
+
 ### Usage
 
-  `nv show service ptp <instance-id> current [options]
-
-
-
-  Local states learned from the exchange of PTP messages
+`nv show service ptp <instance-id> current [options]`
 
 ### Identifiers
 
@@ -7883,13 +7541,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> clock-quality
 
+Clock Quality Status
+
 ### Usage
 
-  `nv show service ptp <instance-id> clock-quality [options]
-
-
-
-  Clock Quality Status
+`nv show service ptp <instance-id> clock-quality [options]`
 
 ### Identifiers
 
@@ -7909,13 +7565,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> parent
 
+Local states learned from the exchange of PTP messages 
+
 ### Usage
 
-  `nv show service ptp <instance-id> parent [options] [<attribute> ...]
-
-
-
-  Local states learned from the exchange of PTP messages
+`nv show service ptp <instance-id> parent [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -7927,9 +7581,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  grandmaster-clock-quality
-                        Clock Quality Status
+|`grandmaster-clock-quality` | Clock Quality Status |
 
 ### Version History
 
@@ -7943,13 +7595,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> parent grandmaster-clock-quality
 
+Clock Quality Status
+
 ### Usage
 
-  `nv show service ptp <instance-id> parent grandmaster-clock-quality [options]
-
-
-
-  Clock Quality Status
+`nv show service ptp <instance-id> parent grandmaster-clock-quality [options]`
 
 ### Identifiers
 
@@ -7969,13 +7619,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp <instance-id> time-properties
 
+Time attributes of the clock
+
 ### Usage
 
-  `nv show service ptp <instance-id> time-properties [options]
-
-
-
-  Time attributes of the clock
+`nv show service ptp <instance-id> time-properties [options]`
 
 ### Identifiers
 
@@ -7995,13 +7643,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server
 
+DHCP-servers
+
 ### Usage
 
 `nv show service dhcp-server [options] [<vrf-id> ...]`
-
-
-
-  DHCP-servers
 
 ### Identifiers
 
@@ -8021,13 +7667,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server <vrf-id>
 
+Dynamic Host Configuration Protocol Server
+
 ### Usage
 
 `nv show service dhcp-server <vrf-id> [options] [<attribute> ...]`
-
-
-
-  Dynamic Host Configuration Protocol Server
 
 ### Identifiers
 
@@ -8039,16 +7683,11 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  interface             Assign DHCP options to clients directly attached to these interfaes.
-
-  pool                  DHCP Pools
-
-  domain-name           DHCP domain names
-
-  domain-name-server    DHCP domain name servers
-
-  static                DHCP clients with fixed IP address assignments
+| `interface`             | Assign DHCP options to clients directly attached to these interfaes. |
+| `pool`                  | DHCP Pools |
+| `domain-name`           | DHCP domain names |
+| `domain-name-server`    | DHCP domain name servers |
+| `static`                | DHCP clients with fixed IP address assignments |
 
 ### Version History
 
@@ -8062,21 +7701,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server <vrf-id> interface <interface-id>
 
+An interface on which DPCH clients are attached.
+
 ### Usage
 
-  `nv show service dhcp-server <vrf-id> interface <interface-id> [options]
-
-
-
-  An interface on which DPCH clients are attached.
+`nv show service dhcp-server <vrf-id> interface <interface-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <interface-id>        DHCP client interface
+| `<interface-id>`  | DHCP client interface |
 
 ### Version History
 
@@ -8090,34 +7726,27 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id>
 
+DHCP Pool
+
 ### Usage
 
-  `nv show service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]
-
-
-
-  DHCP Pool
+`nv show service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <pool-id>             DHCP pool subnet.
+| `<pool-id>` |  DHCP pool subnet. |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  domain-name-server    DHCP domain name servers
-
-  domain-name           DHCP domain names
-
-  gateway               DHCP gateway
-
-  range                 IP Address range assignments
+| `domain-name-server`    | DHCP domain name servers |
+| `domain-name`           | DHCP domain names |
+| `gateway`               | DHCP gateway |
+| `range`                 | IP Address range assignments |
 
 ### Version History
 
@@ -8131,13 +7760,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
 
+A remote DNS server
+
 ### Usage
 
-  `nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
-
-
-
-  A remote DNS server
+`nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]`
 
 ### Identifiers
 
@@ -8159,13 +7786,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
 
+TBD
+
 ### Usage
 
-  `nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]
-
-
-
-  TBD
+`nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]`
 
 ### Identifiers
 
@@ -8189,7 +7814,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]
+`nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]`
 
 
 
@@ -8217,7 +7842,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options]
+`nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options]`
 
 
 
@@ -8342,13 +7967,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server6 <vrf-id>
 
+Dynamic Host Configuration Protocol IPv6 Server
+
 ### Usage
 
-  `nv show service dhcp-server6 <vrf-id> [options] [<attribute> ...]
-
-
-
-  Dynamic Host Configuration Protocol IPv6 Server
+`nv show service dhcp-server6 <vrf-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -8360,16 +7983,11 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  interface             Assign DHCP options to clients directly attached to these interfaes.
-
-  pool                  DHCP IP Pools
-
-  domain-name           DHCP domain names
-
-  domain-name-server    DHCP domain name servers
-
-  static                DHCP clients with fixed IP address assignments
+| `interface`             | Assign DHCP options to clients directly attached to these interfaes.|
+| `pool`                  | DHCP IP Pools |
+| `domain-name`           | DHCP domain names |
+| `domain-name-server`    | DHCP domain name servers |
+| `static`                | DHCP clients with fixed IP address assignments |
 
 ### Version History
 
@@ -8385,18 +8003,14 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show service dhcp-server6 <vrf-id> interface <interface-id> [options]
-
-
-
-  An interface on which DPCH clients are attached.
+`nv show service dhcp-server6 <vrf-id> interface <interface-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-| <interface-id>` | DHCP client interface |
+| `<interface-id>` | DHCP client interface |
 
 ### Version History
 
@@ -8410,13 +8024,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id>
 
+DHCP Pool
+
 ### Usage
 
-  `nv show service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]
-
-
-
-  DHCP Pool
+`nv show service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -8448,13 +8060,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
 
+A remote DNS server
+
 ### Usage
 
-  `nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]
-
-
-
-  A remote DNS server
+`nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]`
 
 ### Identifiers
 
@@ -8476,13 +8086,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
 
+TBD
+
 ### Usage
 
-  `nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]
-
-
-
-  TBD
+`nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]`
 
 ### Identifiers
 
@@ -8504,13 +8112,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
 
+DHCP Pool range
+
 ### Usage
 
-  `nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options]
-
-
-
-  DHCP Pool range
+`nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options]`
 
 ### Identifiers
 
@@ -8532,13 +8138,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id>
 
+TBD
+
 ### Usage
 
-  `nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options]
-
-
-
-  TBD
+`nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options]`
 
 ### Identifiers
 
@@ -8559,13 +8163,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server6 <vrf-id> domain-name-server <server-id>
 
+A remote DNS server
+
 ### Usage
 
-  `nv show service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]
-
-
-
-  A remote DNS server
+`nv show service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]`
 
 ### Identifiers
 
@@ -8586,13 +8188,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server6 <vrf-id> static <static-id>
 
+static entry
+
 ### Usage
 
-  `nv show service dhcp-server6 <vrf-id> static <static-id> [options]
-
-
-
-  static entry
+`nv show service dhcp-server6 <vrf-id> static <static-id> [options]`
 
 ### Identifiers
 
@@ -8613,13 +8213,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service lldp
 
+Global LLDP
+
 ### Usage
 
-  `nv show service lldp [options]
-
-
-
-  Global LLDP
+`nv show service lldp [options]`
 
 ### Version History
 
@@ -8633,32 +8231,23 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system
 
+Top-level node which contains system-wide properties.
+
 ### Usage
 
-  `nv show system [options] [<attribute> ...]
-
-
-
-  Top-level node which contains system-wide properties.
+`nv show system [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  control-plane         Control Plane specific configurations
-
-  message               System pre-login and post-login messages
-
-  global                global system configuration
-
-  ztp                   System Zero Touch Provisioning
-
-  reboot                Platform reboot info
-
-  port-mirror           Port mirror
-
-  config                Affect how config operations are performed.
+| `control-plane`         | Control Plane specific configurations |
+| `message`               | System pre-login and post-login messages |
+| `global`                | global system configuration |
+| `ztp`                   | System Zero Touch Provisioning |
+| `reboot`                | Platform reboot info |
+| `port-mirror`           | Port mirror |
+| `config`                | Affect how config operations are performed. |
 
 ### Version History
 
@@ -8672,22 +8261,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system control-plane
 
+Control Plane specific configurations
+
 ### Usage
 
-  `nv show system control-plane [options] [<attribute> ...]
-
-
-
-  Control Plane specific configurations
+`nv show system control-plane [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  trap                  Traps
-
-  policer               Policers
+| `trap`    | Traps |
+| `policer` | Policers |
 
 ### Version History
 
@@ -8701,13 +8286,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system control-plane trap <trap-id>
 
+Trap
+
 ### Usage
 
-  `nv show system control-plane trap <trap-id> [options]
-
-
-
-  Trap
+`nv show system control-plane trap <trap-id> [options]`
 
 ### Identifiers
 
@@ -8727,13 +8310,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system control-plane policer <policer-id>
 
+Policer
+
 ### Usage
 
-  `nv show system control-plane policer <policer-id> [options] [<attribute> ...]
-
-
-
-  Policer
+`nv show system control-plane policer <policer-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -8759,13 +8340,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system control-plane policer <policer-id> statistics
 
+Policer Statistics
+
 ### Usage
 
-  `nv show system control-plane policer <policer-id> statistics [options]
-
-
-
-  Policer Statistics
+`nv show system control-plane policer <policer-id> statistics [options]`
 
 ### Identifiers
 
@@ -8785,13 +8364,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system message
 
+System pre-login and post-login messages
+
 ### Usage
 
-  `nv show system message [options]
-
-
-
-  System pre-login and post-login messages
+`nv show system message [options]`
 
 ### Version History
 
@@ -8805,13 +8382,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system global
 
+global system configuration
+
 ### Usage
 
-  `nv show system global [options] [<attribute> ...]
-
-
-
-  global system configuration
+`nv show system global [options] [<attribute> ...]`
 
 ### Attributes
 
@@ -8831,13 +8406,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system global reserved
 
+reserved ranges
+
 ### Usage
 
-  `nv show system global reserved [options] [<attribute> ...]
-
-
-
-  reserved ranges
+`nv show system global reserved [options] [<attribute> ...]`
 
 ### Attributes
 
@@ -8858,13 +8431,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system global reserved routing-table
 
+reserved routing table ranges
+
 ### Usage
 
-  `nv show system global reserved routing-table [options] [<attribute> ...]
-
-
-
-  reserved routing table ranges
+`nv show system global reserved routing-table [options] [<attribute> ...]`
 
 ### Attributes
 
@@ -8884,13 +8455,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system global reserved routing-table pbr
 
+reserved routing table ranges for PBR
+
 ### Usage
 
-  `nv show system global reserved routing-table pbr [options]
-
-
-
-  reserved routing table ranges for PBR
+`nv show system global reserved routing-table pbr [options]`
 
 ### Version History
 
@@ -9185,7 +8754,6 @@ Set of source ports.
 
 `nv show system port-mirror session <session-id> span source-port [options] [<port-id> ...]`
 
-
 ### Identifiers
 
 | Identifier |  Description   |
@@ -9238,7 +8806,7 @@ The SPAN destination port.
 
 ### Identifiers
 
-|| Identifier |  Description   |
+| Identifier |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 | `<port-id>` | Port interface |
@@ -9612,13 +9180,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system config apply ignore <ignore-id>
 
+File to ignore during config apply operations.
+
 ### Usage
 
 `nv show system config apply ignore <ignore-id> [options]`
-
-
-
-  File to ignore during config apply operations.
 
 ### Identifiers
 
@@ -9776,7 +9342,7 @@ An IP address with prefix
 
 ### Usage
 
-`nv show vrf <vrf-id> loopback ip address <ip-prefix-id> [options] |
+`nv show vrf <vrf-id> loopback ip address <ip-prefix-id> [options]`
 
 
 ### Identifiers
@@ -9784,7 +9350,7 @@ An IP address with prefix
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-| `<ip-prefix-id>` |    IPv4 or IPv6 address and route prefix in CIDR notation \
+| `<ip-prefix-id>` |    IPv4 or IPv6 address and route prefix in CIDR notation |
 
 ### Version History
 
@@ -9988,19 +9554,15 @@ Protocol types from where routes are known
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <afi>                 Route address family.
-
-  <route-id>            IP prefix
-
-  <protocol-id>         Route entry list keys.
+| `<afi>`          | The route address family.|
+| `<route-id>`     | The IP prefix|
+| `<protocol-id>`  | The route entry list keys.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  entry-index           Route entries
+| `entry-index` | Route entries |
 
 ### Version History
 
@@ -10014,13 +9576,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp
 
+BGP VRF configuration.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp [options] [<attribute> ...]
-
-
-
-  BGP VRF configuration.
+`nv show vrf <vrf-id> router bgp [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -10032,24 +9592,15 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  address-family        Address family specific configuration
-
-  path-selection        BGP path-selection configuration.
-
-  route-reflection      BGP route-reflection configuration.
-
-  peer-group            Peers
-
-  route-export          Controls for exporting ipv4 and ipv6 routes from this VRF
-
-  route-import          Controls for importing of ipv4 and ipv6 routes from this VRF
-
-  timers                timer values for all peers in this VRF
-
-  confederation         BGP Confederation options.
-
-  neighbor              Peers
+| `address-family`    |Address family specific configuration |
+| `path-selection`    |BGP path-selection configuration. |
+| `route-reflection`  |BGP route-reflection configuration. |
+| `peer-group`        |Peers |
+| `route-export`      |Controls for exporting ipv4 and ipv6 routes from this VRF |
+| `route-import`      |Controls for importing of ipv4 and ipv6 routes from this VRF |
+| `timers`            |timer values for all peers in this VRF |
+| `confederation`     |BGP Confederation options.|
+| `neighbor`          |Peers |
 
 ### Version History
 
@@ -10063,30 +9614,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family
 
+Address family specific configuration
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family [options] [<attribute> ...]
-
-
-
-  Address family specific configuration
+`nv show vrf <vrf-id> router bgp address-family [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` | The VRF. |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  ipv4-unicast          IPv4 unicast address family
-
-  l2vpn-evpn            BGP VRF configuration. L2VPN EVPN address family
-
-  ipv6-unicast          IPv6 unicast address family
+| `ipv4-unicast`  |IPv4 unicast address family |
+| `l2vpn-evpn`    |BGP VRF configuration. L2VPN EVPN address family |
+| `ipv6-unicast`  |IPv6 unicast address family |
 
 ### Version History
 
@@ -10100,13 +9646,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast
 
+IPv4 unicast address family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]
-
-
-
-  IPv4 unicast address family
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -10118,22 +9662,14 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  redistribute          Route redistribute
-
-  aggregate-route       IPv4 aggregate routes
-
-  network               IPv4 static networks.
-
-  route-import          Route import
-
-  multipaths            Multipaths
-
-  admin-distance        Admin distances.
-
-  route-export          Route export
-
-  loc-rib               IPv4 local RIB
+| `redistribute`     | Route redistribute| 
+| `aggregate-route`  | IPv4 aggregate routes| 
+| `network`          | IPv4 static networks.| 
+| `route-import `    | Route import| 
+| `multipaths`       | Multipaths| 
+| `admin-distance`   | Admin distances.| 
+| `route-export`     | Route export| 
+| `loc-rib`          | IPv4 local RIB|
 
 ### Version History
 
@@ -10147,13 +9683,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
 
+Route redistribute
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]
-
-
-
-  Route redistribute
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -10165,14 +9699,10 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  static                Route redistribution of ipv4 static routes
-
-  connected             Route redistribution of ipv4 connected routes
-
-  kernel                Route redistribution of ipv4 kernel routes
-
-  ospf                  Route redistribution of ipv4 ospf routes
+| `static`    | Route redistribution of ipv4 static routes |
+| `connected` | Route redistribution of ipv4 connected routes |
+| `kernel`    | Route redistribution of ipv4 kernel routes|
+| `ospf`      | Route redistribution of ipv4 ospf routes |
 
 ### Version History
 
@@ -10186,13 +9716,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options]`
 
 ### Identifiers
 
@@ -10212,13 +9740,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options]`
 
 ### Identifiers
 
@@ -10238,13 +9764,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options]`
 
 ### Identifiers
 
@@ -10264,13 +9788,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options]`
 
 ### Identifiers
 
@@ -10290,21 +9812,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id>
 
+An IPv4 aggregate route
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options]
-
-
-
-  An IPv4 aggregate route
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <aggregate-route-id>  IPv4 address and route prefix in CIDR notation
+| `<aggregate-route-id>` |  IPv4 address and route prefix in CIDR notation |
 
 ### Version History
 
@@ -10318,21 +9837,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id>
 
+An IPv4 static network.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options]
-
-
-
-  An IPv4 static network.
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <static-network-id>   IPv4 address and route prefix in CIDR notation
+| `<static-network-id>` |   IPv4 address and route prefix in CIDR notation |
 
 ### Version History
 
@@ -10346,13 +9862,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import
 
+Route import
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]
-
-
-
-  Route import
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -10364,8 +9878,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  from-vrf              Controls for VRF to VRF route leaking for this address-family
+| `from-vrf` |   Controls for VRF to VRF route leaking for this address-family |
 
 ### Version History
 
@@ -10379,13 +9892,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
 
+Controls for VRF to VRF route leaking for this address-family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]
-
-
-
-  Controls for VRF to VRF route leaking for this address-family
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -10397,8 +9908,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  list                  List of VRFs the routes can be imported from
+| `list` |  List of VRFs the routes can be imported from|
 
 ### Version History
 
@@ -10412,21 +9922,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>
 
+A VRF
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]
-
-
-
-  A VRF
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <leak-vrf-id>         VRF
+| `<leak-vrf-id>` |  VRF |
 
 ### Version History
 
@@ -10440,13 +9947,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast multipaths
 
+Multipaths
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options]
-
-
-
-  Multipaths
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast multipaths [options]`
 
 ### Identifiers
 
@@ -10466,13 +9971,12 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance
 
+Admin distances.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance [options]
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast admin-distance [options]`
 
-
-
-  Admin distances.
 
 ### Identifiers
 
@@ -10492,13 +9996,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export
 
+Route export
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]
-
-
-
-  Route export
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -10510,8 +10012,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  to-evpn               Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
+| `to-evpn` |  Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)`
 
 ### Version History
 
@@ -10525,13 +10026,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn
 
+Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options]
-
-
-
-  Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn [options]`
 
 ### Identifiers
 
@@ -10551,13 +10050,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib
 
+IPv4 local RIB
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib [options] [<attribute> ...]
-
-
-
-  IPv4 local RIB
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -10569,8 +10066,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  route                 IPv6 routes
+| `route` |  IPv6 routes |
 
 ### Version History
 
@@ -10584,28 +10080,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id>
 
+An IPv4/IPv6 route
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> [options] [<attribute> ...]
-
-
-
-  An IPv4/IPv6 route
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv4 address and route prefix in CIDR notation
+| `<vrf-id>` |  VRF |
+| `<route-id>` |  IPv4 address and route prefix in CIDR notation |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  path                  IP route paths
+| `path` | IP route paths |
 
 ### Version History
 
@@ -10619,44 +10111,32 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id>
 
+An IPv4/IPv6 route
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> [options] [<attribute> ...]
-
-
-
-  An IPv4/IPv6 route
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IPv4 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<route-id>` |  IPv4 address and route prefix in CIDR notation |
+| `<path-id>` |  Path Id |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  nexthop               Route nexthops
-
-  peer                  Nexthop peer information
-
-  flags                 Route flags
-
-  bestpath              A bestpath information
-
-  aspath                AS paths
-
-  community             Set of community names for community-list
-
-  large-community       Set of community names for large community list
-
-  ext-community         extended communities
+| `nexthop`          | Route nexthops |
+| `peer`             | Nexthop peer information |
+| `flags`            | Route flags |
+| `bestpath`         | A bestpath information |
+| `aspath`           | AS paths |
+| `community`        | Set of community names for community-list |
+| `large-community`  | Set of community names for large community list |
+| `ext-community`    | extended communities |
 
 ### Version History
 
@@ -10670,25 +10150,20 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id>
 
+An IPv4/IPv6 route
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id> [options]
-
-
-
-  An IPv4/IPv6 route
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv4 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
-
-  <nexthop-id>          Nexthop Id
+| `<vrf-id>` |  VRF |
+| `<route-id>`   | IPv4 address and route prefix in CIDR notation|
+| `<path-id>`    | Path Id|
+| `<nexthop-id>` | Nexthop Id|
 
 ### Version History
 
@@ -10702,23 +10177,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> peer
 
+Nexthop peer information
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> peer [options]
-
-
-
-  Nexthop peer information
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> peer [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv4 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` |  VRF |
+| `<route-id>` | IPv4 address and route prefix in CIDR notation |
+| `<path-id>`  | Path Id |
 
 ### Version History
 
@@ -10732,23 +10203,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> flags
 
+Route flags
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> flags [options]
-
-
-
-  Route flags
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> flags [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv4 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` |  VRF |
+| `<route-id>` | IPv4 address and route prefix in CIDR notation |
+| `<path-id>`  | Path Id |
 
 ### Version History
 
@@ -10762,23 +10229,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> bestpath
 
+A bestpath information
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> bestpath [options]
-
-
-
-  A bestpath information
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> bestpath [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv4 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` | VRF |
+| `<route-id>`  | IPv4 address and route prefix in CIDR notation |
+| `<path-id>`   | Path Id |
 
 ### Version History
 
@@ -10792,23 +10255,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath
 
+AS paths
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath [options]
-
-
-
-  AS paths
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> aspath [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv4 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` |  VRF |
+| `<route-id>`   | IPv4 address and route prefix in CIDR notation |
+| `<path-id>`    | Path| 
 
 ### Version History
 
@@ -10822,23 +10281,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community
 
+Set of community names for community-list
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community [options]
-
-
-
-  Set of community names for community-list
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IPv4 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<route-id>`  | IPv4 address and route prefix in CIDR notation |
+| `<path-id>`  | Path Id |
 
 ### Version History
 
@@ -10852,23 +10307,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community
 
+Set of community names for large community list
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community [options]
-
-
-
-  Set of community names for large community list
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IPv4 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<route-id>`  | IPv4 address and route prefix in CIDR notation |
+| `<path-id>`   | Path Id |
 
 ### Version History
 
@@ -10882,23 +10333,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community
 
+extended communities
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community [options]
-
-
-
-  extended communities
+`nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IPv4 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<route-id>` | IPv4 address and route prefix in CIDR notation |
+| `<path-id>`  | Path Id |
 
 ### Version History
 
@@ -10912,13 +10359,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family l2vpn-evpn
 
+BGP VRF configuration. L2VPN EVPN address family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family l2vpn-evpn [options]
-
-
-
-  BGP VRF configuration. L2VPN EVPN address family
+`nv show vrf <vrf-id> router bgp address-family l2vpn-evpn [options]`
 
 ### Identifiers
 
@@ -10938,13 +10383,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast
 
+IPv6 unicast address family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast [options] [<attribute> ...]
-
-
-
-  IPv6 unicast address family
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -10956,22 +10399,14 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  aggregate-route       IPv6 aggregate routes
-
-  network               IPv6 static networks.
-
-  route-import          Route import
-
-  multipaths            Multipaths
-
-  admin-distance        Admin distances.
-
-  route-export          Route export
-
-  redistribute          Route redistribute
-
-  loc-rib               IPv6 local RIB
+| `aggregate-route`  | IPv6 aggregate routes|
+| `network`          | IPv6 static networks.|
+| `route-import`     | Route import|
+| `multipaths`       | Multipaths|
+| `admin-distance`   | Admin distances.|
+| `route-export`     | Route export|
+| `redistribute`     | Route redistribute|
+| `loc-rib`          | IPv6 local RIB|
 
 ### Version History
 
@@ -10985,21 +10420,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id>
 
+An IPv6 aggregate route
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options]
-
-
-
-  An IPv6 aggregate route
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <aggregate-route-id>  IPv6 address and route prefix in CIDR notation
+| `<aggregate-route-id>` |  IPv6 address and route prefix in CIDR notation |
 
 ### Version History
 
@@ -11013,21 +10445,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id>
 
+An IPv6 static network.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options]
-
-
-
-  An IPv6 static network.
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <static-network-id>   IPv6 address and route prefix in CIDR notation
+| `<static-network-id>`  | IPv6 address and route prefix in CIDR notation |
 
 ### Version History
 
@@ -11041,13 +10470,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import
 
+Route import
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]
-
-
-
-  Route import
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -11059,8 +10486,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  from-vrf              Controls for VRF to VRF route leaking for this address-family
+| `from-vrf` |  Controls for VRF to VRF route leaking for this address-family |
 
 ### Version History
 
@@ -11074,13 +10500,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf
 
+Controls for VRF to VRF route leaking for this address-family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]
-
-
-
-  Controls for VRF to VRF route leaking for this address-family
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -11092,8 +10516,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  list                  List of VRFs the routes can be imported from
+| `list` |   List of VRFs the routes can be imported from |
 
 ### Version History
 
@@ -11107,13 +10530,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list
 
+Set of VRFs
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]
-
-
-
-  Set of VRFs
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list [options]`
 
 ### Identifiers
 
@@ -11133,13 +10554,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast multipaths
 
+Multipaths
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options]
-
-
-
-  Multipaths
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast multipaths [options]`
 
 ### Identifiers
 
@@ -11159,13 +10578,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance
 
+Admin distances.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options]
-
-
-
-  Admin distances.
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast admin-distance [options]`
 
 ### Identifiers
 
@@ -11185,13 +10602,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export
 
+Route export
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]
-
-
-
-  Route export
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -11203,8 +10618,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  to-evpn               Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
+| `to-evpn` |  Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes) |
 
 ### Version History
 
@@ -11218,13 +10632,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn
 
+Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options]
-
-
-
-  Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast route-export to-evpn [options]`
 
 ### Identifiers
 
@@ -11244,13 +10656,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute
 
+Route redistribute
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]
-
-
-
-  Route redistribute
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -11262,14 +10672,10 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  static                Route redistribution of ipv4 static routes
-
-  connected             Route redistribution of ipv4 connected routes
-
-  kernel                Route redistribution of ipv4 kernel routes
-
-  ospf6                 Route redistribution of ipv6 ospf routes
+| `static`    | Route redistribution of ipv4 static routes |
+| `connected` | Route redistribution of ipv4 connected routes |
+| `kernel`    | Route redistribution of ipv4 kernel routes|
+| `ospf6`     | Route redistribution of ipv6 ospf routes |
 
 ### Version History
 
@@ -11283,13 +10689,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute static [options]`
 
 ### Identifiers
 
@@ -11309,13 +10713,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute connected [options]`
 
 ### Identifiers
 
@@ -11335,13 +10737,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel [options]`
 
 ### Identifiers
 
@@ -11361,13 +10761,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 [options]`
 
 ### Identifiers
 
@@ -11387,13 +10785,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib
 
+IPv6 local RIB
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib [options] [<attribute> ...]
-
-
-
-  IPv6 local RIB
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -11405,8 +10801,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  route                 IPv6 routes
+| `route` |   IPv6 routes |
 
 ### Version History
 
@@ -11420,28 +10815,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id>
 
+An IPv4/IPv6 route
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> [options] [<attribute> ...]
-
-
-
-  An IPv4/IPv6 route
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IPv6 address and route prefix in CIDR notation
+| `<route-id>` |  IPv6 address and route prefix in CIDR notation |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  path                  IP route paths
+| `path` |  IP route paths |
 
 ### Version History
 
@@ -11455,44 +10846,32 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id>
 
+An IPv4/IPv6 route
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> [options] [<attribute> ...]
-
-
-
-  An IPv4/IPv6 route
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IPv6 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<route-id>` | IPv6 address and route prefix in CIDR notation |
+| `<path-id> ` | Path Id |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  nexthop               Route nexthops
-
-  peer                  Nexthop peer information
-
-  flags                 Route flags
-
-  bestpath              A bestpath information
-
-  aspath                AS paths
-
-  community             Set of community names for community-list
-
-  large-community       Set of community names for large community list
-
-  ext-community         extended communities
+| `nexthop`         | Route nexthops |
+| `peer`            | Nexthop peer information |
+| `flags`           | Route flags |
+| `bestpath`        | A bestpath information |
+| `aspath`          | AS paths |
+| `community`       | Set of community names for community-list |
+| `large-community` | Set of community names for large community list |
+| `ext-community`   | extended communities |
 
 ### Version History
 
@@ -11506,25 +10885,20 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id>
 
+An IPv4/IPv6 route
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id> [options]
-
-
-
-  An IPv4/IPv6 route
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> nexthop <nexthop-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv6 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
-
-  <nexthop-id>          Nexthop Id
+| `<vrf-id>` | VRF |
+| `<route-id>`   |IPv6 address and route prefix in CIDR notation |
+| `<path-id>`    |Path Id |
+| `<nexthop-id>` |Nexthop Id |
 
 
 ### Version History
@@ -11539,23 +10913,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> peer
 
+Nexthop peer information
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> peer [options]
-
-
-
-  Nexthop peer information
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> peer [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv6 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` | VRF |
+| `<route-id>`   |IPv6 address and route prefix in CIDR notation |
+| `<path-id>`    |Path Id |
 
 ### Version History
 
@@ -11569,23 +10939,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> flags
 
+Route flags
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> flags [options]
-
-
-
-  Route flags
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> flags [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv6 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` | VRF |
+| `<route-id>`   |IPv6 address and route prefix in CIDR notation |
+| `<path-id>`    |Path Id |
 
 ### Version History
 
@@ -11599,23 +10965,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> bestpath
 
+A bestpath information
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> bestpath [options]
-
-
-
-  A bestpath information
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> bestpath [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv6 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` | VRF |
+| `<route-id>`   |IPv6 address and route prefix in CIDR notation |
+| `<path-id>`    |Path Id |
 
 ### Version History
 
@@ -11629,23 +10991,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath
 
+AS paths
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath [options]
-
-
-
-  AS paths
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> aspath [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv6 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` | VRF |
+| `<route-id>`   |IPv6 address and route prefix in CIDR notation |
+| `<path-id>`    |Path Id |
 
 ### Version History
 
@@ -11659,23 +11017,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community
 
+Set of community names for community-list
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community [options]
-
-
-
-  Set of community names for community-list
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv6 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` | VRF |
+| `<route-id>`   |IPv6 address and route prefix in CIDR notation |
+| `<path-id>`    |Path Id |
 
 ### Version History
 
@@ -11689,23 +11043,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community
 
+Set of community names for large community list
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community [options]
-
-
-
-  Set of community names for large community list
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv6 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` | VRF |
+| `<route-id>`   |IPv6 address and route prefix in CIDR notation |
+| `<path-id>`    |Path Id |
 
 ### Version History
 
@@ -11719,23 +11069,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community
 
+extended communities
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community [options]
-
-
-
-  extended communities
+`nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <route-id>            IPv6 address and route prefix in CIDR notation
-
-  <path-id>             Path Id
+| `<vrf-id>` | VRF |
+| `<route-id>`   |IPv6 address and route prefix in CIDR notation |
+| `<path-id>`    |Path Id |
 
 ### Version History
 
@@ -11749,13 +11095,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp path-selection
 
+BGP path-selection configuration.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]
-
-
-
-  BGP path-selection configuration.
+`nv show vrf <vrf-id> router bgp path-selection [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -11767,12 +11111,9 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  aspath                BGP aspath path-selection config, applicable to this BGP instance
-
-  med                   BGP med path-selection config, applicable to this BGP instance
-
-  multipath             BGP multipath path-selection config, applicable to this BGP instance
+| `aspath`     | BGP aspath path-selection config, applicable to this BGP instance |
+| `med`        | BGP med path-selection config, applicable to this BGP instance |
+| `multipath`  | BGP multipath path-selection config, applicable to this BGP instance |
 
 ### Version History
 
@@ -11786,13 +11127,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp path-selection aspath
 
+BGP aspath path-selection config, applicable to this BGP instance
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp path-selection aspath [options]
-
-
-
-  BGP aspath path-selection config, applicable to this BGP instance
+`nv show vrf <vrf-id> router bgp path-selection aspath [options]`
 
 ### Identifiers
 
@@ -11812,13 +11151,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp path-selection med
 
+BGP med path-selection config, applicable to this BGP instance
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp path-selection med [options]
-
-
-
-  BGP med path-selection config, applicable to this BGP instance
+`nv show vrf <vrf-id> router bgp path-selection med [options]`
 
 ### Identifiers
 
@@ -11838,13 +11175,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp path-selection multipath
 
+BGP multipath path-selection config, applicable to this BGP instance
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp path-selection multipath [options]
-
-
-
-  BGP multipath path-selection config, applicable to this BGP instance
+`nv show vrf <vrf-id> router bgp path-selection multipath [options]`
 
 ### Identifiers
 
@@ -11864,13 +11199,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp route-reflection
 
+BGP route-reflection configuration.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp route-reflection [options]
-
-
-
-  BGP route-reflection configuration.
+`nv show vrf <vrf-id> router bgp route-reflection [options]`
 
 ### Identifiers
 
@@ -11890,39 +11223,30 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id>
 
+BGP global configuration.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]
-
-
-
-  BGP global configuration.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-  <peer-group-id>       Domain
+| `<peer-group-id>` |  Domain|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  bfd                   Specifies whether to track BGP peering sessions using this configuration via BFD.
-
-  ttl-security          RFC 5082
-
-  capabilities          Capabilities
-
-  graceful-restart      Graceful restart
-
-  local-as              Local AS feature
-
-  timers                Peer peer-timers
-
-  address-family        Address family specific configuration
+| `bfd`               | Specifies whether to track BGP peering sessions using this configuration via BFD.
+| `ttl-security`      | RFC 5082
+| `capabilities`      | Capabilities
+| `graceful-restart`  | Graceful restart
+| `local-as`          | Local AS feature
+| `timers`            | Peer peer-timers
+| `address-family`    | Address family specific configuration
 
 ### Version History
 
@@ -11936,21 +11260,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd
 
+Specifies whether to track BGP peering sessions using this configuration via BFD.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options]
-
-
-
-  Specifies whether to track BGP peering sessions using this configuration via BFD.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> bfd [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -11964,21 +11285,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security
 
+RFC 5082
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options]
-
-
-
-  RFC 5082
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>`  | Domain |
 
 ### Version History
 
@@ -11992,21 +11310,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities
 
+Capabilities
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options]
-
-
-
-  Capabilities
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` |  Domain |
 
 ### Version History
 
@@ -12020,21 +11335,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart
 
+BGP Graceful restart per neighbor configuration
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options]
-
-
-
-  BGP Graceful restart per neighbor configuration
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` |  Domain |
 
 ### Version History
 
@@ -12048,21 +11360,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> local-as
 
+Local AS feature
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options]
-
-
-
-  Local AS feature
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> local-as [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` |  Domain |
 
 ### Version History
 
@@ -12076,21 +11385,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> timers
 
+Peer peer-timers
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options]
-
-
-
-  Peer peer-timers
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> timers [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` |  Domain |
 
 ### Version History
 
@@ -12104,32 +11410,26 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family
 
+Address family specific configuration
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]
-
-
-
-  Address family specific configuration
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` |   Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  ipv4-unicast          Peer IPv4 unicast address family. Always on, unless disabled globaly.
-
-  ipv6-unicast          Peer IPv6 unicast address family.
-
-  l2vpn-evpn            Peer l2vpn EVPN address family.
+| `ipv4-unicast`  | Peer IPv4 unicast address family. Always on, unless disabled globaly. |
+| `ipv6-unicast`  | Peer IPv6 unicast address family. |
+| `l2vpn-evpn`    | Peer l2vpn EVPN address family. |
 
 ### Version History
 
@@ -12143,40 +11443,30 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast
 
+Peer IPv4 unicast address family.  Always on, unless disabled globaly.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]
-
-
-
-  Peer IPv4 unicast address family.  Always on, unless disabled globaly.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  community-advertise   Community advertise for address family.
-
-  attribute-mod         Attribute mod for address family.
-
-  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
-
-  prefix-limits         Limits on prefix from the peer for this address-family
-
-  default-route-origination Default route origination
-
-  policy                Policies for ipv4 unicast
-
-  conditional-advertise Conditional advertise for address family.
+| `community-advertise`   | Community advertise for address family.|
+| `attribute-mode`        | Attribute mod for address family. |
+| `aspath`                | Options for handling AS_PATH for prefixes from/to peer for the specified address family |
+| `prefix-limits`         | Limits on prefix from the peer for this address-family |
+| `default-route-origination` | Default route origination |
+| `policy`                | Policies for ipv4 unicast |
+| `conditional-advertise` | Conditional advertise for address family. |
 
 ### Version History
 
@@ -12190,21 +11480,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise
 
+Community advertise for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options]
-
-
-
-  Community advertise for address family.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` |  Domain |
 
 ### Version History
 
@@ -12218,21 +11505,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod
 
+Attribute mod for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options]
-
-
-
-  Attribute mod for address family.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12246,28 +11530,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath
 
+Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
-
-
-
-  Options for handling AS_PATH for prefixes from/to peer for the specified address family
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+| `allow-my-asn` | If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system |
 
 ### Version History
 
@@ -12281,21 +11561,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn
 
+If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options]
-
-
-
-  If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast aspath allow-my-asn [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12309,28 +11586,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits
 
+Limits on prefix from the peer for this address-family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
-
-
-
-  Limits on prefix from the peer for this address-family
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  inbound               Limits on inbound prefix from the peer for this address-family
+| `inbound` |   Limits on inbound prefix from the peer for this address-family |
 
 ### Version History
 
@@ -12344,21 +11617,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound
 
+Limits on inbound prefix from the peer for this address-family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options]
-
-
-
-  Limits on inbound prefix from the peer for this address-family
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12372,21 +11642,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination
 
+Default route origination
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options]
-
-
-
-  Default route origination
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast default-route-origination [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12400,30 +11667,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy
 
+Policies for ipv4 unicast
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]
-
-
-
-  Policies for ipv4 unicast
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  inbound               Outbound unicast policy
-
-  outbound              Outbound unicast policy
+| `inbound`  | Outbound unicast policy |
+| `outbound` | Outbound unicast policy |
 
 ### Version History
 
@@ -12437,21 +11699,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound
 
+Outbound unicast policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options]
-
-
-
-  Outbound unicast policy
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12465,21 +11724,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound
 
+Outbound unicast policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options]
-
-
-
-  Outbound unicast policy
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12493,21 +11749,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise
 
+Conditional advertise for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options]
-
-
-
-  Conditional advertise for address family.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast conditional-advertise [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12521,40 +11774,30 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast
 
+Peer IPv6 unicast address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast [options] [<attribute> ...]
-
-
-
-  Peer IPv6 unicast address family.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  policy                Policies for ipv4 unicast
-
-  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
-
-  prefix-limits         Limits on prefix from the peer for this address-family
-
-  default-route-origination Default route origination
-
-  community-advertise   Community advertise for address family.
-
-  attribute-mod         Attribute mod for address family.
-
-  conditional-advertise Conditional advertise for address family.
+| `policy`                | Policies for ipv4 unicast|
+| `aspath`                | Options for handling AS_PATH for prefixes from/to peer for the specified address family|
+| `prefix-limits`         | Limits on prefix from the peer for this address-family|
+| `default-route-origination` | Default route origination|
+| `community-advertise`   | Community advertise for address family.|
+| `attribute-mode`        | Attribute mod for address family.|
+| `conditional-advertise` | Conditional advertise for address family.|
 
 ### Version History
 
@@ -12568,30 +11811,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy
 
+Policies for ipv6 unicast
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]
-
-
-
-  Policies for ipv6 unicast
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  inbound               Outbound unicast policy
-
-  outbound              Outbound unicast policy
+| `inbound`  | Outbound unicast policy |
+| `outbound` | Outbound unicast policy |
 
 ### Version History
 
@@ -12605,21 +11843,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound
 
+Outbound unicast policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options]
-
-
-
-  Outbound unicast policy
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12633,21 +11868,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound
 
+Outbound unicast policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options]
-
-
-
-  Outbound unicast policy
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12661,28 +11893,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath
 
+Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
-
-
-
-  Options for handling AS_PATH for prefixes from/to peer for the specified address family
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+| `allow-my-asn` | If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system|
 
 ### Version History
 
@@ -12696,21 +11924,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn
 
+If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn [options]
-
-
-
-  If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12724,28 +11949,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits
 
+Limits on prefix from the peer for this address-family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
-
-
-
-  Limits on prefix from the peer for this address-family
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  inbound               Limits on inbound prefix from the peer for this address-family
+| `inbound` |   Limits on inbound prefix from the peer for this address-family |
 
 ### Version History
 
@@ -12759,21 +11980,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound
 
+Limits on inbound prefix from the peer for this address-family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound [options]
-
-
-
-  Limits on inbound prefix from the peer for this address-family
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12787,21 +12005,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination
 
+Default route origination
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination [options]
-
-
-
-  Default route origination
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12815,21 +12030,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise
 
+Community advertise for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise [options]
-
-
-
-  Community advertise for address family.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12843,21 +12055,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod
 
+Attribute mod for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod [options]
-
-
-
-  Attribute mod for address family.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast attribute-mod [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12871,21 +12080,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise
 
+Conditional advertise for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise [options]
-
-
-
-  Conditional advertise for address family.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Version History
 
@@ -12899,32 +12105,26 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn
 
+Peer l2vpn EVPN address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn [options] [<attribute> ...]
-
-
-
-  Peer l2vpn EVPN address family.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>` | Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  attribute-mod         Attribute mod for address family.
-
-  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
-
-  policy                Policies for l2vpn evpn
+| `attribute-mode` | Attribute mod for address family. |
+| `aspath`         | Options for handling AS_PATH for prefixes from/to peer for the specified address family |
+| `policy`         | Policies for l2vpn evpn|
 
 ### Version History
 
@@ -12938,21 +12138,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod
 
+Attribute mod for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod [options]
-
-
-
-  Attribute mod for address family.
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn attribute-mod [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>`  |   Domain |
 
 ### Version History
 
@@ -12966,28 +12163,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath
 
+Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
-
-
-
-  Options for handling AS_PATH for prefixes from/to peer for the specified address family
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>`  |   Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+| `allow-my-asn`   |  If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system |
 
 ### Version History
 
@@ -13001,21 +12194,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn
 
+If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn [options]
-
-
-
-  If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn aspath allow-my-asn [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>`  |   Domain |
 
 ### Version History
 
@@ -13029,30 +12219,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy
 
+Policies for l2vpn evpn
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
-
-
-
-  Policies for l2vpn evpn
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>`  |   Domain |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  inbound               Inbound l2vpn-evpn policy
-
-  outbound              Outbound l2vpn-evpn policy
+| `inbound`  | Inbound l2vpn-evpn policy |
+| `outbound` | Outbound l2vpn-evpn policy |
 
 ### Version History
 
@@ -13066,21 +12251,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound
 
+Inbound l2vpn-evpn policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options]
-
-
-
-  Inbound l2vpn-evpn policy
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>`  |   Domain |
 
 ### Version History
 
@@ -13094,21 +12276,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound
 
+Outbound l2vpn-evpn policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options]
-
-
-
-  Outbound l2vpn-evpn policy
+`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <peer-group-id>       Domain
+| `<peer-group-id>`  |   Domain |
 
 ### Version History
 
@@ -13122,13 +12301,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp route-export
 
+Controls for exporting ipv4 and ipv6 routes from this VRF
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp route-export [options] [<attribute> ...]
-
-
-
-  Controls for exporting ipv4 and ipv6 routes from this VRF
+`nv show vrf <vrf-id> router bgp route-export [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -13140,8 +12317,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  to-evpn               Controls for exporting routes from this VRF into EVPN
+| `to-evpn` |  Controls for exporting routes from this VRF into EVPN |
 
 ### Version History
 
@@ -13155,13 +12331,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp route-export to-evpn
 
+Controls for exporting routes from this VRF into EVPN
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp route-export to-evpn [options] [<attribute> ...]
-
-
-
-  Controls for exporting routes from this VRF into EVPN
+`nv show vrf <vrf-id> router bgp route-export to-evpn [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -13173,8 +12347,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  route-target          List the RTs to attach to host or prefix routes when exporting them into EVPN or "auto". If "auto", the RT  will be derived. This is the default.
+| `route-target`   | List the RTs to attach to host or prefix routes when exporting them into EVPN or "auto". If "auto", the RT will be derived. This the default. |
 
 ### Version History
 
@@ -13188,21 +12361,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id>
 
+A route target identifier
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id> [options]
-
-
-
-  A route target identifier
+`nv show vrf <vrf-id> router bgp route-export to-evpn route-target <rt-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <rt-id>               Route targets or "auto"
+| `<rt-id>` |  Route targets or "auto" |
 
 ### Version History
 
@@ -13216,13 +12386,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp route-import
 
+Controls for importing of ipv4 and ipv6 routes from this VRF
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp route-import [options] [<attribute> ...]
-
-
-
-  Controls for importing of ipv4 and ipv6 routes from this VRF
+`nv show vrf <vrf-id> router bgp route-import [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -13234,8 +12402,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  from-evpn             Controls for importing EVPN type-2 and type-5 routes into this VRF
+| `from-evpn` |   Controls for importing EVPN type-2 and type-5 routes into this VRF |
 
 ### Version History
 
@@ -13249,13 +12416,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp route-import from-evpn
 
+Controls for importing EVPN type-2 and type-5 routes into this VRF
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp route-import from-evpn [options] [<attribute> ...]
-
-
-
-  Controls for importing EVPN type-2 and type-5 routes into this VRF
+`nv show vrf <vrf-id> router bgp route-import from-evpn [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -13267,8 +12432,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  route-target          List the RTs to attach to host or prefix routes when importing them into VRF or "auto". If "auto", the RT will be derived. This is the default.
+| `route-target`  | List the RTs to attach to host or prefix routes when importing them into VRF or "auto". If "auto", the RT will be derived. This is the default.|
 
 ### Version History
 
@@ -13282,21 +12446,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id>
 
+ A route target identifier
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id> [options]
-
-
-
-  A route target identifier
+`nv show vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <rt-id>               Route targets or "auto"
+| `<rt-id>` | Route targets or "auto" |
 
 ### Version History
 
@@ -13310,13 +12471,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp timers
 
+timer values for all peers in this VRF
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp timers [options]
-
-
-
-  timer values for all peers in this VRF
+`nv show vrf <vrf-id> router bgp timers [options]`
 
 ### Identifiers
 
@@ -13336,13 +12495,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp confederation
 
+BGP Confederation options.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp confederation [options] [<attribute> ...]
-
-
-
-  BGP Confederation options.
+`nv show vrf <vrf-id> router bgp confederation [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -13354,8 +12511,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  member-as             Confederation ASNs of the peers, maps to BGP  confederation peers
+| `member-as` |  Confederation ASNs of the peers, maps to BGP  confederation peers |
 
 ### Version History
 
@@ -13369,13 +12525,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp confederation member-as
 
+Set of autonomous numbers
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp confederation member-as [options]
-
-
-
-  Set of autonomous numbers
+`nv show vrf <vrf-id> router bgp confederation member-as [options]`
 
 ### Identifiers
 
@@ -13395,46 +12549,33 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id>
 
+BGP global configuration.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> [options] [<attribute> ...]
-
-
-
-  BGP global configuration.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<vrf-id>` |   VRF |
+| `<neighbor-id>`  | Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  bfd                   Specifies whether to track BGP peering sessions using this configuration via BFD.
-
-  capabilities          Capabilities
-
-  local-as              Local AS feature
-
-  graceful-restart      BGP Graceful restart per neighbor configuration
-
-  ttl-security          RFC 5082
-
-  nexthop               Nexthop
-
-  message-stats         Message statistics
-
-  ebgp-policy           EBGP Policy RFC8212
-
-  address-family        Address family specific configuration
-
-  timers                Peer peer-timers
+| `bfd`                  | Specifies whether to track BGP peering sessions using this configuration via BFD.|
+| `capabilities`         | Capabilities|
+| `local-as`             | Local AS feature|
+| `graceful-restart`     | BGP Graceful restart per neighbor configuration|
+| `ttl-security`         | RFC 5082|
+| `nexthop`              | Nexthop|
+| `message-stats`        | Message statistics|
+| `ebgp-policy`          | EBGP Policy RFC8212|
+| `address-family`       | Address family specific configuration|
+| `timers`               | Peer peer-timers|
 
 ### Version History
 
@@ -13448,21 +12589,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd
 
+Specifies whether to track BGP peering sessions using this configuration via BFD.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd [options]
-
-
-
-  Specifies whether to track BGP peering sessions using this configuration via BFD.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> bfd [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  | Peer ID |
 
 ### Version History
 
@@ -13476,21 +12614,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities
 
+Capabilities
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities [options]
-
-
-
-  Capabilities
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> capabilities [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>` |  Peer ID |
 
 ### Version History
 
@@ -13504,21 +12639,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> local-as
 
+Local AS feature
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> local-as [options]
-
-
-
-  Local AS feature
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> local-as [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>` |   Peer ID |
 
 ### Version History
 
@@ -13532,21 +12664,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart
 
+BGP Graceful restart per neighbor configuration
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart [options]
-
-
-
-  BGP Graceful restart per neighbor configuration
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> graceful-restart [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -13560,21 +12689,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security
 
+RFC 5082
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security [options]
-
-
-
-  RFC 5082
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ttl-security [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  | Peer ID |
 
 ### Version History
 
@@ -13588,21 +12714,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop
 
+Nexthop
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop [options]
-
-
-
-  Nexthop
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> nexthop [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`   | Peer ID |
 
 ### Version History
 
@@ -13616,21 +12739,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> message-stats
 
+Message statistics
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> message-stats [options]
-
-
-
-  Message statistics
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> message-stats [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  | Peer ID |
 
 ### Version History
 
@@ -13644,21 +12764,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ebgp-policy
 
+EBGP Policy RFC8212
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ebgp-policy [options]
-
-
-
-  EBGP Policy RFC8212
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ebgp-policy [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`   Peer ID |
 
 ### Version History
 
@@ -13672,32 +12789,26 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family
 
+Address family specific configuration
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family [options] [<attribute> ...]
-
-
-
-  Address family specific configuration
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>` |  Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  ipv4-unicast          Peer IPv4 unicast address family. Always on, unless disabled globaly.
-
-  ipv6-unicast          Peer IPv6 unicast address family.
-
-  l2vpn-evpn            Peer l2vpn EVPN address family.
+| `ipv4-unicast` | Peer IPv4 unicast address family. Always on, unless disabled globaly. |
+| `ipv6-unicast` | Peer IPv6 unicast address family. |
+| `l2vpn-evpn`   | Peer l2vpn EVPN address family. |
 
 ### Version History
 
@@ -13711,43 +12822,31 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast
 
+Peer IPv4 unicast address family.  Always on, unless disabled globaly.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast [options] [<attribute> ...]
-
-
-
-  Peer IPv4 unicast address family.  Always on, unless disabled globaly.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  | Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  attribute-mod         Attribute mod for address family.
-
-  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
-
-  policy                Policies for ipv4 unicast
-
-  prefix-limits         Limits on prefix from the peer for this address-family
-  default-route-origination Default route origination
-
-  community-advertise   Community advertise for address family.
-
-  conditional-advertise Conditional advertise for address family.
-
-  capabilities          AF capabilities advertised and received
-
-  graceful-restart      graceful restart information
+| `attribute-mode`        | Attribute mod for address family. |
+| `aspath`                | Options for handling AS_PATH for prefixes from/to peer for the specified address family |
+| `policy`                | Policies for ipv4 unicast |
+| `prefix-limits`         | Limits on prefix from the peer for this address-familydefault-route-origination Default route origination |
+| `community-advertise`   | Community advertise for address family. |
+| `conditional-advertise` | Conditional advertise for address family. |
+| `capabilities`          | AF capabilities advertised and received |
+| `graceful-restart`      | graceful restart information |
 
 ### Version History
 
@@ -13761,21 +12860,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod
 
+Attribute mod for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod [options]
-
-
-
-  Attribute mod for address family.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast attribute-mod [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>` |  Peer ID |
 
 ### Version History
 
@@ -13789,28 +12885,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath
 
+Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath [options] [<attribute> ...]
-
-
-
-  Options for handling AS_PATH for prefixes from/to peer for the specified address family
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  | Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+| `allow-my-asn`  | If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system |
 
 ### Version History
 
@@ -13824,21 +12916,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn
 
+If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn [options]
-
-
-
-  If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast aspath allow-my-asn [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  | Peer ID |
 
 ### Version History
 
@@ -13852,30 +12941,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy
 
+Policies for ipv4 unicast
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]
-
-
-
-  Policies for ipv4 unicast
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  | Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  inbound               Outbound unicast policy
-
-  outbound              Outbound unicast policy
+| `inbound` |  Outbound unicast policy |
+| `outbound` |   Outbound unicast policy |
 
 ### Version History
 
@@ -13889,21 +12973,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound
 
+Outbound unicast policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options]
-
-
-
-  Outbound unicast policy
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  | Peer ID |
 
 ### Version History
 
@@ -13917,21 +12998,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound
 
+Outbound unicast policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options]
-
-
-
-  Outbound unicast policy
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-  
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -13945,28 +13023,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits
 
+Limits on prefix from the peer for this address-family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]
-
-
-
-  Limits on prefix from the peer for this address-family
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  inbound               Limits on inbound prefix from the peer for this address-family
+| `inbound` |   Limits on inbound prefix from the peer for this address-family |
 
 ### Version History
 
@@ -13980,21 +13054,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound
 
+Limits on inbound prefix from the peer for this address-family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound [options]
-
-
-
-  Limits on inbound prefix from the peer for this address-family
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14008,21 +13079,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination
 
+Default route origination
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination [options]
-
-
-
-  Default route origination
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast default-route-origination [options]
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14036,21 +13104,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise
 
+Community advertise for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise [options]
-
-
-
-  Community advertise for address family.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast community-advertise [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14064,21 +13129,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise
 
+Conditional advertise for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise [options]
-
-
-
-  Conditional advertise for address family.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast conditional-advertise [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14092,21 +13154,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast capabilities
 
+AF capabilities advertised and received
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast capabilities [options]
-
-
-
-  AF capabilities advertised and received
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast capabilities [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14120,21 +13179,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast graceful-restart
 
+graceful restart information
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast graceful-restart [options]
-
-
-
-  graceful restart information
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast graceful-restart [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14148,44 +13204,32 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast
 
+Peer IPv6 unicast address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast [options] [<attribute> ...]
-
-
-
-  Peer IPv6 unicast address family.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  attribute-mod         Attribute mod for address family.
-
-  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
-
-  prefix-limits         Limits on prefix from the peer for this address-family
-
-  default-route-origination Default route origination
-
-  policy                Policies for ipv4 unicast
-
-  community-advertise   Community advertise for address family.
-
-  conditional-advertise  Conditional advertise for address family.
-
-  capabilities          AF capabilities advertised and received
-
-  graceful-restart      graceful restart information
+| `attribute-mode`        | Attribute mod for address family. |
+| `aspath`                | Options for handling AS_PATH for prefixes from/to peer for the specified address family |
+| `prefix-limits`         | Limits on prefix from the peer for this address-family |
+| `default-route-origination` | Default route origination |
+| `policy`                | Policies for ipv4 unicast |
+| `community-advertise`   | Community advertise for address family. |
+| `conditional-advertise` | Conditional advertise for address family. |
+| `capabilities`          | AF capabilities advertised and received |
+| `graceful-restart`      | graceful restart information |
 
 ### Version History
 
@@ -14199,21 +13243,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod
 
+Attribute mod for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod [options]
-
-
-
-  Attribute mod for address family.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast attribute-mod [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14227,28 +13268,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath
 
+Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath [options] [<attribute> ...]
-
-
-
-  Options for handling AS_PATH for prefixes from/to peer for the specified address family
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+| `allow-my-asn`    | If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system |
 
 ### Version History
 
@@ -14262,21 +13299,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn
 
+If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn [options]
-
-
-
-  If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast aspath allow-my-asn [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14290,28 +13324,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits
 
+Limits on prefix from the peer for this address-family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]
-
-
-
-  Limits on prefix from the peer for this address-family
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  inbound               Limits on inbound prefix from the peer for this  address-family
+| `inbound` |  Limits on inbound prefix from the peer for this  address-family |
 
 ### Version History
 
@@ -14325,21 +13355,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound
 
+Limits on inbound prefix from the peer for this address-family
+
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound [options]
-
-
-
-  Limits on inbound prefix from the peer for this address-family
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14353,21 +13381,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination
 
+Default route origination
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination [options]
-
-
-
-  Default route origination
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast default-route-origination [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14381,30 +13406,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy
 
+Policies for ipv6 unicast
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy [options] [<attribute> ...]
-
-
-
-  Policies for ipv6 unicast
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  inbound               Outbound unicast policy
-
-  outbound              Outbound unicast policy
+| `inbound`  | Outbound unicast policy |
+| `outbound` | Outbound unicast policy |
 
 ### Version History
 
@@ -14418,21 +13438,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound
 
+Outbound unicast policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound [options]
-
-
-
-  Outbound unicast policy
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy inbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14446,21 +13463,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound
 
+Outbound unicast policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound [options]
-
-
-
-  Outbound unicast policy
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast policy outbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14474,21 +13488,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise
 
+Community advertise for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise [options]
-
-
-
-  Community advertise for address family.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast community-advertise [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14502,21 +13513,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise
 
+Conditional advertise for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise [options]
-
-
-
-  Conditional advertise for address family.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast conditional-advertise [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14530,21 +13538,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast capabilities
 
+AF capabilities advertised and received
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast capabilities [options]
-
-
-
-  AF capabilities advertised and received
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast capabilities [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14558,21 +13563,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast graceful-restart
 
+graceful restart information
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast graceful-restart [options]
-
-
-
-  graceful restart information
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast graceful-restart [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14586,36 +13588,29 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn
 
+Peer l2vpn EVPN address family.
+
 ## Usage
 
-  nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn [options] [<attribute> ...]
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn [options] [<attribute> ...]`
 
-
-
-  Peer l2vpn EVPN address family.
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  attribute-mod         Attribute mod for address family.
-
-  aspath                Options for handling AS_PATH for prefixes from/to peer for the specified address family
-
-  policy                Policies for l2vpn evpn
-
-  capabilities          AF capabilities advertised and received
-
-  graceful-restart      graceful restart information
+| `attribute-mode`   | Attribute mod for address family. |
+| `aspath`           | Options for handling AS_PATH for prefixes from/to peer for the specified address family |
+| `policy`           | Policies for l2vpn evpn |
+| `capabilities`     | AF capabilities advertised and received |
+| `graceful-restart` | graceful restart information |
 
 ### Version History
 
@@ -14629,21 +13624,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod
 
+Attribute mod for address family.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod [options]
-
-
-
-  Attribute mod for address family.
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn attribute-mod [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14657,28 +13649,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath
 
+Options for handling AS_PATH for prefixes from/to peer for the specified address family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]
-
-
-
-  Options for handling AS_PATH for prefixes from/to peer for the specified address family
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  allow-my-asn          If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+| `allow-my-asn`    | If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system |
 
 ### Version History
 
@@ -14692,21 +13680,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn
 
+If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn [options]
-
-
-
-  If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn aspath allow-my-asn [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14720,30 +13705,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy
 
+Policies for l2vpn evpn
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]
-
-
-
-  Policies for l2vpn evpn
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  inbound               Inbound l2vpn-evpn policy
-
-  outbound              Outbound l2vpn-evpn policy
+| `inbound`    | Inbound l2vpn-evpn policy |
+| `outbound`   | Outbound l2vpn-e |
 
 ### Version History
 
@@ -14757,21 +13737,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound
 
+Inbound l2vpn-evpn policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options]
-
-
-
-  Inbound l2vpn-evpn policy
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14785,21 +13762,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound
 
+Outbound l2vpn-evpn policy
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options]
-
-
-
-  Outbound l2vpn-evpn policy
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14813,21 +13787,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn capabilities
 
+AF capabilities advertised and received
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn capabilities [options]
-
-
-
-  AF capabilities advertised and received
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn capabilities [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14841,21 +13812,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn graceful-restart
 
+graceful restart information
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn graceful-restart [options]
-
-
-
-  graceful restart information
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn graceful-restart [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14869,21 +13837,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router bgp neighbor <neighbor-id> timers
 
+Peer peer-timers
+
 ### Usage
 
-  `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> timers [options]
-
-
-
-  Peer peer-timers
+`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> timers [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <neighbor-id>         Peer ID
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -14897,30 +13862,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router static <route-id>
 
+A route 
+
 ### Usage
 
-  `nv show vrf <vrf-id> router static <route-id> [options] [<attribute> ...]
-
-
-
-  A route
+`nv show vrf <vrf-id> router static <route-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IP prefix
+| `<route-id>` |   IP prefix |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  distance              Paths
-
-  via                   Nexthops
+| `distance` |  Paths |
+| `via` |  Nexthops |
 
 ### Version History
 
@@ -14934,30 +13894,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router static <route-id> distance <distance-id>
 
+A path
+
 ### Usage
 
-  `nv show vrf <vrf-id> router static <route-id> distance <distance-id> [options] [<attribute> ...]
-
-
-
-  A path
+`nv show vrf <vrf-id> router static <route-id> distance <distance-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IP prefix
-
-  <distance-id>         A path distance
+| `<route-id>` |   IP prefix |
+| `<distance-id>` |  A path distance |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  via                   Nexthops
+| `via`  |  Nexthops |
 
 ### Version History
 
@@ -14971,32 +13926,26 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id>
 
+A via
+
 ### Usage
 
-  `nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> [options] [<attribute> ...]
-
-
-
-  A via
+`nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IP prefix
-
-  <distance-id>         A path distance
-
-  <via-id>              IP address, interface, or "blackhole".
+| `<route-id>` |   IP prefix |
+| `<distance-id>` |  A path distance |
+| `<via-id>` | IP address, interface, or "blackhole". |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  flag                  Nexthop flags
+| `flag` |  Nexthop flags |
 
 ### Version History
 
@@ -15010,25 +13959,20 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag
 
+Nexthop flags
+
 ### Usage
 
-  `nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag [options]
-
-
-
-  Nexthop flags
+`nv show vrf <vrf-id> router static <route-id> distance <distance-id> via <via-id> flag [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IP prefix
-
-  <distance-id>         A path distance
-
-  <via-id>              IP address, interface, or "blackhole".
+| `<route-id>` |   IP prefix |
+| `<distance-id>` |  A path distance |
+| `<via-id>` | IP address, interface, or "blackhole". |
 
 ### Version History
 
@@ -15042,30 +13986,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router static <route-id> via <via-id>
 
+A via
+
 ### Usage
 
-  `nv show vrf <vrf-id> router static <route-id> via <via-id> [options] [<attribute> ...]
-
-
-
-  A via
+`nv show vrf <vrf-id> router static <route-id> via <via-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IP prefix
-
-  <via-id>              IP address, interface, or "blackhole".
+| `<route-id>` |   IP prefix |
+| `<via-id>` | IP address, interface, or "blackhole". |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  flag                  Nexthop flags
+| `flag` |  Nexthop flags |
 
 ### Version History
 
@@ -15081,7 +14020,7 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show vrf <vrf-id> router static <route-id> via <via-id> flag [options]
+`nv show vrf <vrf-id> router static <route-id> via <via-id> flag [options]
 
 
 
@@ -15092,10 +14031,8 @@ cumulus@leaf04:mgmt:~$
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <route-id>            IP prefix
-
-  <via-id>              IP address, interface, or "blackhole".
+| `<route-id>` |   IP prefix |
+| `<via-id>` |   IP address, interface, or "blackhole". |
 
 ### Version History
 
@@ -15109,13 +14046,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router pim
 
+PIM VRF configuration.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router pim [options] [<attribute> ...]
-
-
-
-  PIM VRF configuration.
+`nv show vrf <vrf-id> router pim [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -15127,14 +14062,10 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  timers                Timers
-
-  ecmp                  Choose all available ECMP paths for a particular RPF. If 'off', the first nexthop found will be used. This is the default.
-
-  msdp-mesh-group       To connect multiple PIM-SM multicast domains using RPs.
-
-  address-family        Address family specific configuration
+| `timers`                | Timers |
+| `ecmp`                  | Choose all available ECMP paths for a particular RPF. If 'off', the first nexthop found will be used. This is the default.|
+| `msdp-mesh-group`       | To connect multiple PIM-SM multicast domains using RPs. |
+| `address-family`        | Address family specific configuration |
 
 ### Version History
 
@@ -15148,13 +14079,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router pim timers
 
+Timers
+
 ### Usage
 
-  `nv show vrf <vrf-id> router pim timers [options]
-
-
-
-  Timers
+`nv show vrf <vrf-id> router pim timers [options]`
 
 ### Identifiers
 
@@ -15174,13 +14103,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router pim ecmp
 
+Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router pim ecmp [options]
-
-
-
-  Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
+`nv show vrf <vrf-id> router pim ecmp [options]`
 
 ### Identifiers
 
@@ -15200,28 +14127,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id>
 
+MSDP mesh-group
+
 ### Usage
 
-  `nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]
-
-
-
-  MSDP mesh-group
+`nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <msdp-mesh-group-id>  MSDP mesh group name
+| `<msdp-mesh-group-id>` |  MSDP mesh group name |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  member-address        Set of member-address
+| `member-address` | Set of member-address |
 
 ### Version History
 
@@ -15235,23 +14158,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id>
 
+A MSDP mesh member
+
 ### Usage
 
-  `nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]
-
-
-
-  A MSDP mesh member
+`nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <msdp-mesh-group-id>  MSDP mesh group name
-
-  <mesh-member-id>      MSDP mesh-group member IP address
+| `<msdp-mesh-group-id>`  | MSDP mesh group name |
+| `<mesh-member-id>`      | MSDP mesh-group member IP address |
 
 ### Version History
 
@@ -15265,13 +14184,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router pim address-family
 
+Address family specific configuration
+
 ### Usage
 
-  `nv show vrf <vrf-id> router pim address-family [options] [<attribute> ...]
-
-
-
-  Address family specific configuration
+`nv show vrf <vrf-id> router pim address-family [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -15283,8 +14200,7 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  ipv4-unicast          IPv4 unicast address family
+| `ipv4-unicast`   |  IPv4 unicast address family |
 
 ### Version History
 
@@ -15298,13 +14214,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast
 
+IPv4 unicast address family
+
 ### Usage
 
-  `nv show vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]
-
-
-
-  IPv4 unicast address family
+`nv show vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -15316,10 +14230,8 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  spt-switchover        Build shortest path tree towards source.
-
-  rp                    RP address and associated group range.
+|`spt-switchover`   | Build shortest path tree towards source. |
+| `rp`  |  RP address and associated group range. |
 
 ### Version History
 
@@ -15333,13 +14245,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover
 
+Build shortest path tree towards source.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options]
-
-
-
-  Build shortest path tree towards source.
+`nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options]`
 
 ### Identifiers
 
@@ -15359,28 +14269,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id>
 
+RP
+
 ### Usage
 
-  `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]
-
-
-
-  RP
+`nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <rp-id>               RP IP address
+| `<rp-id>` |  RP IP address |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  group-range           Set of group range assocaited to RP.
+| `group-range`   |  Set of group range assocaited to RP.|
 
 ### Version History
 
@@ -15394,23 +14300,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id>
 
+A group range
+
 ### Usage
 
-  `nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]
-
-
-
-  A group range
+`nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <rp-id>               RP IP address
-
-  <group-range-id>      Group range associated to RP.
+| `<rp-id>`  | RP IP address |
+| `<group-range-id>`  |  Group range associated to RP. |
 
 ### Version History
 
@@ -15424,13 +14326,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf
 
+OSPF VRF configuration.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf [options] [<attribute> ...]
-
-
-
-  OSPF VRF configuration.
+`nv show vrf <vrf-id> router ospf [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -15442,20 +14342,13 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  area                  OSPF areas
-
-  default-originate     Advertise a default route as external lsa
-
-  distance              Administrative distance for installation into the rib
-
-  max-metric            Set maximum metric value in router lsa to make stub router
-
-  log                   Log configuration
-
-  redistribute          Route redistribute
-
-  timers                Timers
+| `area`                  | OSPF areas |
+| `default-originate`     | Advertise a default route as external lsa |
+| `distance`              | Administrative distance for installation into the rib |
+| `max-metric`            | Set maximum metric value in router lsa to make stub router |
+| `log`                   | Log configuration |
+| `redistribute`          | Route redistribute |
+| `timers`                | Timers |
 
 ### Version History
 
@@ -15469,32 +14362,26 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf area <area-id>
 
+An OSPF area
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]
-
-
-
-  An OSPF area
+`nv show vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <area-id>             Area
+| `<area-id>` |  Area |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  filter-list           Filters networks between OSPF areas
-
-  range                 Area ranges
-
-  network               Area networks
+| `filter-list`  | Filters networks between OSPF areas |
+| `range`        | Area ranges |
+| `network`      | Area networks |
 
 ### Version History
 
@@ -15508,21 +14395,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf area <area-id> filter-list
 
+Filters networks between OSPF areas
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf area <area-id> filter-list [options]
-
-
-
-  Filters networks between OSPF areas
+`nv show vrf <vrf-id> router ospf area <area-id> filter-list [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <area-id>             Area
+| `<area-id>` |  Area |
 
 ### Version History
 
@@ -15536,23 +14419,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf area <area-id> range <range-id>
 
+Filters out components of the prefix
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf area <area-id> range <range-id> [options]
-
-
-
-  Filters out components of the prefix
+`nv show vrf <vrf-id> router ospf area <area-id> range <range-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <area-id>             Area
-
-  <range-id>            Range
+| `<area-id>` |  Area |
+| `<range-id>` |  Range |
 
 ### Version History
 
@@ -15566,23 +14445,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf area <area-id> network <network-id>
 
+Filters out components of the prefix
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf area <area-id> network <network-id> [options]
-
-
-
-  Filters out components of the prefix
+`nv show vrf <vrf-id> router ospf area <area-id> network <network-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-  <area-id>             Area
-
-  <network-id>          Network
+| `<area-id>` |  Area |
+| `<network-id>`  | Network |
 
 ### Version History
 
@@ -15596,13 +14471,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf default-originate
 
+Advertise a default route as external lsa
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf default-originate [options]
-
-
-
-  Advertise a default route as external lsa
+`nv show vrf <vrf-id> router ospf default-originate [options]`
 
 ### Identifiers
 
@@ -15622,13 +14495,12 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf distance
 
+Administrative distance for installation into the rib
+
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf distance [options]
-
-
-
-  Administrative distance for installation into the rib
+`nv show vrf <vrf-id> router ospf distance [options]`
 
 ### Identifiers
 
@@ -15648,13 +14520,12 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf max-metric
 
+Set maximum metric value in router lsa to make stub router
+
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf max-metric [options]
-
-
-
-  Set maximum metric value in router lsa to make stub router
+`nv show vrf <vrf-id> router ospf max-metric [options]`
 
 ### Identifiers
 
@@ -15674,13 +14545,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf log
 
+Log configuration
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf log [options]
-
-
-
-  Log configuration
+`nv show vrf <vrf-id> router ospf log [options]`
 
 ### Identifiers
 
@@ -15700,13 +14569,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf redistribute
 
+Route redistribute
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]
-
-
-
-  Route redistribute
+`nv show vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -15718,14 +14585,10 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  static                Route redistribute of static routes
-
-  connected             Route redistribute of connected routes
-
-  kernel                Route redistribute of kernel routes
-
-  bgp                   Route redistribute of bgp routes
+| `static`      | Route redistribute of static routes |
+| `connected`   | Route redistribute of connected routes |
+| `kernel`      | Route redistribute of kernel routes |
+| `bgp`         | Route redistribute of bgp routes |
 
 ### Version History
 
@@ -15739,13 +14602,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf redistribute static
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf redistribute static [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router ospf redistribute static [options]`
 
 ### Identifiers
 
@@ -15765,13 +14626,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf redistribute connected
 
+ Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf redistribute connected [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router ospf redistribute connected [options]`
 
 ### Identifiers
 
@@ -15791,13 +14650,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf redistribute kernel
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf redistribute kernel [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router ospf redistribute kernel [options]`
 
 ### Identifiers
 
@@ -15817,13 +14674,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf redistribute bgp
 
+Source route type.
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf redistribute bgp [options]
-
-
-
-  Source route type.
+`nv show vrf <vrf-id> router ospf redistribute bgp [options]`
 
 ### Identifiers
 
@@ -15843,13 +14698,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf timers
 
+Timers
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf timers [options] [<attribute> ...]
-
-
-
-  Timers
+`nv show vrf <vrf-id> router ospf timers [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -15861,10 +14714,8 @@ cumulus@leaf04:mgmt:~$
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  lsa                   LSA timers
-
-  spf                   SPF timers
+| `lsa`     | LSA timers |
+| `spf`     | SPF timers |
 
 ### Version History
 
@@ -15878,13 +14729,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf timers lsa
 
+LSA timers
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf timers lsa [options]
-
-
-
-  LSA timers
+`nv show vrf <vrf-id> router ospf timers lsa [options]`
 
 ### Identifiers
 
@@ -15904,13 +14753,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> router ospf timers spf
 
+SPF timers
+
 ### Usage
 
-  `nv show vrf <vrf-id> router ospf timers spf [options]
-
-
-
-  SPF timers
+`nv show vrf <vrf-id> router ospf timers spf [options]`
 
 ### Identifiers
 
@@ -15930,13 +14777,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf <vrf-id> ptp
 
+VRF PTP configuration.  Inherited by interfaces in this VRF.
+
 ### Usage
 
-  `nv show vrf <vrf-id> ptp [options]
-
-
-
-  VRF PTP configuration.  Inherited by interfaces in this VRF.
+`nv show vrf <vrf-id> ptp [options]`
 
 ### Identifiers
 
@@ -15956,20 +14801,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show nve
 
+Network Virtualization configuration and operational info
+
 ### Usage
 
-  `nv show nve [options] [<attribute> ...]
-
-
-
-  Network Virtualization configuration and operational info
+`nv show nve [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  vxlan                 Global VxLAN configuration and operational properties.
+| `vxlan`  | Global VxLAN configuration and operational properties. |
 
 ### Version History
 
@@ -15983,24 +14825,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show nve vxlan
 
+VxLAN
+
 ### Usage
 
-  `nv show nve vxlan [options] [<attribute> ...]
-
-
-
-  VxLAN
+`nv show nve vxlan [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  mlag                  VxLAN specific MLAG address
-
-  source                Source address
-
-  flooding              Configuration to specify how BUM traffic in the overlay is handled. This applies to all overlays (VNIs), but can be overridden by VNI-specific configuration.
+| `mlag`      | VxLAN specific MLAG address |
+| `source`    | Source address |
+| `flooding`  | Configuration to specify how BUM traffic in the overlay is handled. This applies to all overlays (VNIs), but can be overridden by VNI-specific configuration. |
 
 ### Version History
 
@@ -16014,13 +14851,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show nve vxlan mlag
 
+VxLAN specfic MLAG configuration
+
 ### Usage
 
-  `nv show nve vxlan mlag [options]
-
-
-
-  VxLAN specfic MLAG configuration
+`nv show nve vxlan mlag [options]`
 
 ### Version History
 
@@ -16034,13 +14869,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show nve vxlan source
 
+Source address
+
 ### Usage
 
-  `nv show nve vxlan source [options]
-
-
-
-  Source address
+`nv show nve vxlan source [options]`
 
 ### Version History
 
@@ -16054,20 +14887,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show nve vxlan flooding
 
+Handling of BUM traffic
+
 ### Usage
 
-  `nv show nve vxlan flooding [options] [<attribute> ...]
-
-
-
-  Handling of BUM traffic
+`nv show nve vxlan flooding [options] [<attribute> ...]`
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  head-end-replication  BUM traffic is replicated and individual copies sent to remote destinations.
+| `head-end-replication` |  BUM traffic is replicated and individual copies sent to remote destinations.|
 
 ### Version History
 
@@ -16081,20 +14911,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show nve vxlan flooding head-end-replication
 
+Set of IPv4 unicast addresses or "evpn".
+
 ### Usage
 
-  `nv show nve vxlan flooding head-end-replication [options] [<hrep-id> ...]
-
-
-
-  Set of IPv4 unicast addresses or "evpn".
+`nv show nve vxlan flooding head-end-replication [options] [<hrep-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <hrep-id>             IPv4 unicast addresses or "evpn"
+| `<hrep-id>` |  IPv4 unicast addresses or "evpn" |
 
 ### Version History
 
@@ -16108,20 +14935,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show nve vxlan flooding head-end-replication <hrep-id>
 
+Set of IPv4 unicast addresses or "evpn".
+
 ### Usage
 
-  `nv show nve vxlan flooding head-end-replication <hrep-id> [options]
-
-
-
-  Set of IPv4 unicast addresses or "evpn".
+`nv show nve vxlan flooding head-end-replication <hrep-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <hrep-id>             IPv4 unicast addresses or "evpn"
+| `<hrep-id>` |  IPv4 unicast addresses or "evpn" |
 
 ### Version History
 
@@ -16135,20 +14959,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl
 
+ACL rules
+
 ### Usage
 
-  `nv show acl [options] [<acl-id> ...]
-
-
-
-  ACL rules
+`nv show acl [options] [<acl-id> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
+| <acl-id> |  ACL ID |
 
 ### Version History
 
@@ -16162,27 +14983,23 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id>
 
+An ACL is used for matching packets and take actions
+
 ### Usage
 
-  `nv show acl <acl-id> [options] [<attribute> ...]
-
-
-
-  An ACL is used for matching packets and take actions
+`nv show acl <acl-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
+| `<acl-id>`  |  ACL ID |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  rule                  acl rule
+| `rule` |  acl rule |
 
 ### Version History
 
@@ -16196,31 +15013,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id>
 
+ACL Matching criteria and action rule
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> [options] [<attribute> ...]
-
-
-
-  ACL Matching criteria and action rule
+`nv show acl <acl-id> rule <rule-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  match                 ACL match criteria
-
-  action                ACL action
+| `match`   | ACL match criteria |
+| `action`  | ACL action |
 
 ### Version History
 
@@ -16234,31 +15045,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> match
 
+An ACL match
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match [options] [<attribute> ...]
-
-
-
-  An ACL match
+`nv show acl <acl-id> rule <rule-id> match [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  ip                    IPv4 and IPv6 match
-
-  mac                   MAC match
+| `ip` |   IPv4 and IPv6 match |
+| `mac` |  MAC match |
 
 ### Version History
 
@@ -16272,37 +15077,28 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> match ip
 
+An ACL IPv4/IPv6 match
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match ip [options] [<attribute> ...]
-
-
-
-  An ACL IPv4/IPv6 match
+`nv show acl <acl-id> rule <rule-id> match ip [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  source-port           source port
-
-  dest-port             destination port
-
-  fragment              Fragment packets
-
-  ecn                   ECN protocol packet match
-
-  tcp                   TCP protocol packet match
+| `source-port`| source port |
+| `dest-port`  | destination port |
+| `fragment`   | Fragment packets |
+| `ecn`        | ECN protocol packet match |
+| `tcp`        | TCP protocol packet match |
 
 ### Version History
 
@@ -16318,22 +15114,15 @@ cumulus@leaf04:mgmt:~$
 
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match ip source-port <ip-port-id> [options]
-
-
-
-  L4 port
+`nv show acl <acl-id> rule <rule-id> match ip source-port <ip-port-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
-
-  <ip-port-id>          IP port ID
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
+| `<ip-port-id>` |  IP port ID |
 
 ### Version History
 
@@ -16347,24 +15136,19 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id>
 
+L4 port
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id> [options]
-
-
-
-  L4 port
+`nv show acl <acl-id> rule <rule-id> match ip dest-port <ip-port-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
-
-  <ip-port-id>          IP port ID
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
+| `<ip-port-id>` | IP port ID |
 
 ### Version History
 
@@ -16378,22 +15162,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> match ip fragment
 
+State details
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match ip fragment [options]
-
-
-
-  State details
+`nv show acl <acl-id> rule <rule-id> match ip fragment [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Version History
 
@@ -16407,29 +15187,24 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> match ip ecn
 
+ECN
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match ip ecn [options] [<attribute> ...]
-
-
-
-  ECN
+`nv show acl <acl-id> rule <rule-id> match ip ecn [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  flags                 ECN protocol flags
+| `flags`  |  ECN protocol flags |
 
 ### Version History
 
@@ -16443,22 +15218,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> match ip ecn flags
 
+ECN flags
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match ip ecn flags [options]
-
-
-
-  ECN flags
+`nv show acl <acl-id> rule <rule-id> match ip ecn flags [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Version History
 
@@ -16472,30 +15243,25 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> match ip tcp
 
+L4 port
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match ip tcp [options] [<attribute> ...]
-
-
-
-  L4 port
+`nv show acl <acl-id> rule <rule-id> match ip tcp [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  flags                 TCP protocol flags
-  mask                  TCP protocol flag mask
+| `flags`  | TCP protocol flags |
+| `mask`   | TCP protocol flag mask |
 
 ### Version History
 
@@ -16509,22 +15275,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> match ip tcp flags
 
+TCP flags
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match ip tcp flags [options]
-
-
-
-  TCP flags
+`nv show acl <acl-id> rule <rule-id> match ip tcp flags [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Version History
 
@@ -16538,22 +15300,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> match ip tcp mask
 
+TCP flags
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match ip tcp mask [options]
-
-
-
-  TCP flags
+`nv show acl <acl-id> rule <rule-id> match ip tcp mask [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Version History
 
@@ -16567,22 +15325,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> match mac
 
+An ACL MAC match
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> match mac [options]
-
-
-
-  An ACL MAC match
+`nv show acl <acl-id> rule <rule-id> match mac [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Version History
 
@@ -16596,39 +15350,29 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> action
 
+ACL rule action
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> action [options] [<attribute> ...]
-
-
-
-  ACL rule action
+`nv show acl <acl-id> rule <rule-id> action [options] [<attribute> ...]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-
-  permit                Permit action
-
-  deny                  Deny action
-
-  log                   Provides ACL logging facility
-
-  set                   Modify the packet with appropriate values
-
-  erspan                ERSPAN session
-
-  police                policing of packets/bytes
+| `permit`  | Permit action |
+| `deny`    | Deny action |
+| `log`     | Provides ACL logging facility |
+| `set`     | Modify the packet with appropriate values |
+| `erspan`  | ERSPAN session |
+| `police`  | policing of packets/bytes |
 
 ### Version History
 
@@ -16642,22 +15386,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> action permit
 
+Permit packets
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> action permit [options]
-
-
-
-  Permit packets
+`nv show acl <acl-id> rule <rule-id> action permit [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Version History
 
@@ -16671,22 +15411,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> action deny
 
+deny packets
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> action deny [options]
-
-
-
-  deny packets
+`nv show acl <acl-id> rule <rule-id> action deny [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Version History
 
@@ -16700,22 +15436,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> action log
 
+log packets
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> action log [options]
-
-
-
-  log packets
+`nv show acl <acl-id> rule <rule-id> action log [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Version History
 
@@ -16729,22 +15461,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> action set
 
+Set action for packets
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> action set [options]
-
-
-
-  Set action for packets
+`nv show acl <acl-id> rule <rule-id> action set [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Version History
 
@@ -16758,22 +15486,18 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> action erspan
 
+ERSPAN session
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> action erspan [options]
-
-
-
-  ERSPAN session
+`nv show acl <acl-id> rule <rule-id> action erspan [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
-
-  <rule-id>             ACL rule number
+| `<acl-id>` | ACL ID |
+| `<rule-id>`  |   ACL rule number |
 
 ### Version History
 
@@ -16787,20 +15511,17 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl <acl-id> rule <rule-id> action police
 
+Policing of matched packets/bytes
+
 ### Usage
 
-  `nv show acl <acl-id> rule <rule-id> action police [options]
-
-
-
-  Policing of matched packets/bytes
+`nv show acl <acl-id> rule <rule-id> action police [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-
-  <acl-id>              ACL ID
+| `<acl-id>`  |  ACL ID |
   
   <rule-id>             ACL rule number
 

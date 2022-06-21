@@ -1,0 +1,153 @@
+---
+title: SyncE 
+author: NVIDIA
+weight: 129
+toc: 3
+---
+[SyncE](## "Synchronous Ethernet") is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network. This is done by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, ([ESMC](## "Ethernet Synchronization Messaging Channel")), manages this synchronization.
+
+The Cumulus Linux switch is responsible for managing the synchronization hierarchy; the switch decides which node in the network is the master and signals the other nodes on the network to lock on and synchronize with the master clock. 
+
+SyncE controller reads performance counters to calculate the differences between TX and RX ethernet symbols on the physical layer to fine tune the clock frequency.
+
+The SyncE daemon (`syncd`) manages:
+- Transmitting and receiving Synchronization Status Messages (SSMs) on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
+- The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the Quality Level (QL) in the SSM.
+- Failover to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
+- The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
+
+{{%notice note%}}
+SyncE is supported on the NVIDIA SN3700-S switch as an early access feature.
+{{%/notice%}}
+
+## Basic Configuration
+
+Basic SyncE configuration requires you:
+- Enable SyncE on the switch.
+- Configure SyncE on at least one interface or bond so that the interface is a timing source that is passed to the selection algorithm.
+
+The basic configuration shown below uses the default settings:
+- Sets the {{<link url="#quality-level-for-the-switch" text="quality level (QL)">}} for the switch to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.
+- Sets the {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface to 100
+- Sets the {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using it for synchronization to 5 minutes.
+
+```
+cumulus@switch:~$ nv set synce enable on
+cumulus@switch:~$ nv set interface swp2 synce enable on
+cumulus@switch:~$ nv config apply
+```
+
+## Optional Global Configuration
+
+### QL for the Switch
+
+The network type specifies the QL for the switch. You can specify one of the following values. The default is `option 1`.
+- `option 1` includes PRC, SSU-A, SSU-B, SEC and DNU.
+- `option 2 generation 1` includes PRS, STU, ST2, ST3, SMC, ST4, RES and DUS.
+- `option 2 generation 2` includes PRS, STU, ST2, ST3, TNC, ST3E, SMC, ST4, PROV and DUS.
+
+The following command example sets the QL for the switch to `option 2 generation 1`:
+
+```
+cumulus@switch:~$ nv set synce network-type option 2 generation 1
+cumulus@switch:~$ nv config apply
+```
+
+### Logging
+
+You can set SyncE logging to either write a log message:
+- Every time there is a change to the selected source in addition to errors
+- Only when there are no available frequency sources or when the only available frequency source is the internal oscillator
+
+The following command example sets logging to write a log message every time there is a change to the selected source in addition to errors:
+
+```
+cumulus@switch:~$ nv set synce changes
+cumulus@switch:~$ nv config apply
+```
+
+The following command example sets logging to write a log message only when there are no available frequency sources or when the only available frequency source is the internal oscillator:
+
+```
+cumulus@switch:~$ nv set synce errors
+cumulus@switch:~$ nv config apply
+```
+
+## Optional Interface Configuration
+
+### Frequency Source Priority
+
+The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same QL. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 100.
+
+The following command example sets the priority on swp2 to 254:
+
+```
+cumulus@switch:~$ nv set interface swp2 synce priority 254
+cumulus@switch:~$ nv config apply
+```
+
+### Wait to Restore Time
+
+The wait to restore time is the amount of time SyncE waits after the interface comes up before using it for synchronization. You can set a value betwen 0 and 12 minutes. The default value is 5 minutes.
+
+The following command example sets the wait to restore time to 3 minutes:
+
+```
+cumulus@switch:~$ nv set interface swp2 synce wait-to-restore 3
+cumulus@switch:~$ nv config apply
+```
+
+## Disable Synchronization Status Messages
+
+You can disable [SSMs](## "Synchronization Status Messages") on an interface to prevent sending ESMC packets and ignore any received ESMC packets.
+
+The following command example disables SSMs on swp2:
+
+```
+cumulus@switch:~$ nv set interface swp2 synce ssm disable
+cumulus@switch:~$ nv config apply
+```
+
+### QL to Transmit in Status Messages
+
+This setting enables you to override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) transmitted in SSM messages.
+
+You can set the following options:
+- `exact <ql>` specifies the exact QL regardless of the value received.
+- `highest <ql>` specifies an upper limit on the QL. If the selected source has a higher QL than the QL specified here, this QL is sent instead.
+- `lowest <ql>` specifies a lower limit on the QL. If the selected source has a lower QL than the QL specified here, DNU is sent instead.
+
+The following command example specifies an upper limit of `option 1`:
+
+```
+cumulus@switch:~$ nv set interface swp2 synce highest option 1
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+The QL must match the globally configured QL with the `network-type` command.
+{{%/notice%}}
+
+### QL to Receive in Status Messages
+
+This setting enables you to override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) to receive in SSM messages before it is used in the selection algorithm. You can set one of the following options:
+- `exact <quality-level>`  specifies the exact QL regardless of the value received unless the received value is DNU.
+- `highest <quality-level>` specifies an upper limit on the received QL. If the received value is higher than this specified QL, this QL is used instead.
+- `lowest <quality-level>` specifies a lower limit on the received QL. If the received value is lower than this specified QL, DNU is used instead.
+
+The following command example specifies a lower limit of `option 2 generation 1`:
+
+```
+cumulus@switch:~$ nv set interface swp2 synce lowest option 2 generation 1
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+The QL to receive must match the globally configured QL set with the `network-type` command.
+{{%/notice%}}
+
+## Troubleshooting
+
+## Related Information
+
+{{<exlink url="https://www.itu.int/rec/T-REC-G.781" text="ITU G.781">}}

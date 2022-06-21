@@ -648,7 +648,7 @@ addon_scripts_support=1
 
 ## Chassis Management
 
-The NVIDIA SN4800 switch is available in Cumulus Linux 5.1 as early access.
+Cumulius Linux supports the NVIDIA SN4800 switch.
 
 {{%notice note%}}
 - Only 100G port speed is supported. 1G, 10G, 40G, 50G, and breakout ports are not supported.

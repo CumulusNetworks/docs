@@ -15,7 +15,6 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="3085017"></a> [3085017](#3085017) <a name="3085017"></a> <br /> | When you hover over a device with WJH events in the flow analysis graph, the number of WJH packet drops in the event summary might display 0 drops. This is because the device did not detect any WJH events on the selected path. To view the WJH events, select different paths to display any WJH events for that device. | 4.2.0 | |
-| <a name="3084990"></a> [3084990](#3084990) <a name="3084990"></a> <br /> | The large flow analysis card might show zero paths with WJH drops even when there are WJH events detected in the flow. To view the WJH events, hover over the card header and select <code>View details</code>. You can then view the WJH events on individual paths of the flow. | 4.2.0 | |
 | <a name="3053143"></a> [3053143](#3053143) <a name="3053143"></a> <br /> | The MLAG Session card might not show all MLAG events. | 4.2.0 | |
 | <a name="3053091"></a> [3053091](#3053091) <a name="3053091"></a> <br /> | Lifecycle management (LCM) features do not work when the NetQ Cloud Appliance uses an external proxy server. | 4.2.0 | |
 | <a name="3047149"></a> [3047149](#3047149) <a name="3047149"></a> <br /> | When you reboot the OPTA, the NetQ validation summary might show an incorrect number of validations. This condition will resolve itself within an hour of the reboot. | 4.2.0 | |

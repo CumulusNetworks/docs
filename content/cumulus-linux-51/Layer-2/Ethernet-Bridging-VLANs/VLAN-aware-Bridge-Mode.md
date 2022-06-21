@@ -150,7 +150,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-- NVIDIA Spectrum-1 switches support a maximum of 4000 VLAN elements. NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements.
+- NVIDIA Spectrum-1 switches support a maximum of 10000 VLAN elements. NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements.
 Cumulus Linux calculates the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 2600 VLANs totals 15600 VLAN elements.
 
 - On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridges and want to use more VLAN elements than the default, you must update the number of VLAN elements in the `/etc/mlx/datapath/broadcast_domains.conf` file:

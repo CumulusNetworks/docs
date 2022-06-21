@@ -21,6 +21,6 @@ Do not skip the normal installation flow until you have performed this process m
 | Remote | Single server | NVIDIA NetQ Cloud Appliance | NA | {{<link title="Install the NetQ Cloud Appliance" text="Start Install" >}} |
 | Remote | Single server | Own Hardware plus VM | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Single Remote Server" text="Start Install" >}} |
 | Remote | Single server | Own Hardware plus VM | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Single Remote Server" text="Start Install" >}} |
-| Remote | Server cluster | NVIDIA NetQ Cloud Appliance | NA | {{<link title="Install the NetQ Cloud Appliance" text="Start Install" >}} |
+| Remote | Server cluster | NVIDIA NetQ Cloud Appliance | NA | {{<link title="Install a NetQ Cloud Appliance Cluster" text="Start Install" >}} |
 | Remote | Server cluster | Own Hardware plus VM | KVM | {{<link title="Set Up Your KVM Virtual Machine for a Remote Server Cluster" text="Start Install" >}} |
 | Remote | Server cluster | Own Hardware plus VM | VMware | {{<link title="Set Up Your VMware Virtual Machine for a Remote Server Cluster" text="Start Install" >}} |

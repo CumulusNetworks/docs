@@ -14,7 +14,7 @@
 </tr>
 <tr>
 <td>3093863</td>
-<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -385,8 +385,8 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.16</td>
-<td></td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0-4.4.3</td>
 </tr>
 <tr>
 <td>2684452</td>
@@ -3746,8 +3746,8 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.16</td>
-<td></td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0-4.4.3</td>
 </tr>
 <tr>
 <td>2684452</td>
@@ -6642,8 +6642,8 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.16</td>
-<td></td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0-4.4.3</td>
 </tr>
 <tr>
 <td>2684452</td>
@@ -9523,8 +9523,8 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.16</td>
-<td></td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0-4.4.3</td>
 </tr>
 <tr>
 <td>2684452</td>
@@ -12987,8 +12987,8 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.16</td>
-<td></td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0-4.4.3</td>
 </tr>
 <tr>
 <td>2684452</td>
@@ -16657,8 +16657,8 @@ ip route 10.10.0.0/16 Null0
 
 
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
-<td>3.7.12-3.7.16</td>
-<td></td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0-4.4.3</td>
 </tr>
 <tr>
 <td>2684452</td>

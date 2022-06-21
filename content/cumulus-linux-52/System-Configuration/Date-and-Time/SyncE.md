@@ -6,15 +6,13 @@ toc: 3
 ---
 [SyncE](## "Synchronous Ethernet") is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network. This is done by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, ([ESMC](## "Ethernet Synchronization Messaging Channel")), manages this synchronization.
 
-The Cumulus Linux switch is responsible for managing the synchronization hierarchy; the switch decides which node in the network is the master and signals the other nodes on the network to lock on and synchronize with the master clock. 
-
-SyncE controller reads performance counters to calculate the differences between TX and RX ethernet symbols on the physical layer to fine tune the clock frequency.
-
-The SyncE daemon (`syncd`) manages:
-- Transmitting and receiving Synchronization Status Messages (SSMs) on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
-- The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the Quality Level (QL) in the SSM.
-- Failover to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
-- The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
+The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
+- The SyncE controller reads performance counters to calculate the differences between TX and RX ethernet symbols on the physical layer to fine tune the clock frequency.
+- The SyncE daemon (`syncd`) manages:
+  - Transmitting and receiving Synchronization Status Messages (SSMs) on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
+  - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the Quality Level (QL) in the SSM.
+  - Failover to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
+  - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
 
 {{%notice note%}}
 SyncE is supported on the NVIDIA SN3700-S switch as an early access feature.
@@ -27,7 +25,7 @@ Basic SyncE configuration requires you:
 - Configure SyncE on at least one interface or bond so that the interface is a timing source that is passed to the selection algorithm.
 
 The basic configuration shown below uses the default settings:
-- Sets the {{<link url="#quality-level-for-the-switch" text="quality level (QL)">}} for the switch to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.
+- Sets the {{<link url="#quality-level-for-the-switch" text="QL">}} for the switch to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.
 - Sets the {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface to 100
 - Sets the {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using it for synchronization to 5 minutes.
 

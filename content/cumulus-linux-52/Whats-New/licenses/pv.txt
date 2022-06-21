@@ -1,0 +1,18 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: pv
+Upstream-Contact: Andrew Wood <andrew.wood@ivarch.com>
+Source: https://www.ivarch.com/programs/pv.shtml
+
+Files: *
+Copyright: @ 2010 Andrew Wood <andrew.wood@ivarch.com>
+License: Artistic
+    On Debian GNU/Linux systems, the complete text of the Artistic License
+    can be found in `/usr/share/common-licenses/Artistic'.
+
+Files: debian/*
+Copyright: © 2014 Antoine Beaupré <anarcat@debian.org>
+           © 2007-2011 Kevin Coyner <kcoyner@debian.org>
+           © 2002 Cedric Delfosse <cedric@debian.org>
+License: GPL-2+
+    On Debian GNU/Linux systems, the complete text of the GNU General Public
+    License version 2 can be found in `/usr/share/common-licenses/GPL-2'.

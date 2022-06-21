@@ -1,0 +1,1 @@
+sntp-dbgsym has no copyright file

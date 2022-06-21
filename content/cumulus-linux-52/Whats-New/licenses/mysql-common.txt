@@ -1,0 +1,45 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: debian/*
+Copyright:
+ 1997-1998, Scott Hanson <shanson@debian.org>
+ 1997, Christian Schwarz <schwarz@debian.org>
+ 1999-2007, 2009, Christian Hammers <ch@debian.org>
+ 2000-2001, Christopher C. Chimelis <chris@debian.org>
+ 2001, Matthew Wilcox <willy@debian.org>
+ 2005-2007, sean finney <seanius@debian.org>
+ 2006, Adam Conrad <adconrad@0c3.net>
+ 2007-2011, Norbert Tretkowski <norbert@tretkowski.de>
+ 2007-2008, Monty Taylor <mordred@inaugust.com>
+ 2008, Devin Carraway <devin@debian.org>
+ 2008, Steffen Joeris <white@debian.org>
+ 2009, Canonical Ltd
+ 2010, Xavier Oswald <xoswald@debian.org>
+ 2011, Clint Byrum <clint@ubuntu.com>
+ 2011, Ondřej Surý <ondrej@debian.org>
+ 2012, Nicholas Bamber <nicholas@periapt.co.uk>
+ 2013-2014, Otto Kekäläinen <otto@seravo.fi>
+ 2016-2018, Andreas Beckmann <anbe@debian.org>
+License: GPL-2+
+
+Files: doc/*
+Copyright:
+ 2018, Canonical Ltd
+License: GPL-2+
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".

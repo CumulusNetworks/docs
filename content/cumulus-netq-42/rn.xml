@@ -13,12 +13,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3084990</td>
-<td>The large flow analysis card might show zero paths with WJH drops even when there are WJH events detected in the flow. To view the WJH events, hover over the card header and select {{View details}}. You can then view the WJH events on individual paths of the flow.</td>
-<td>4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3053143</td>
 <td>The MLAG Session card might not show all MLAG events.</td>
 <td>4.2.0</td>

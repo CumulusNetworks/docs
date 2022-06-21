@@ -1,0 +1,115 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: kbd
+Upstream-Contact: kbd@lists.altlinux.org, Alexey Gladkov <gladkov.alexey@gmail.com>
+Source: http://ftp.altlinux.org/pub/people/legion/kbd/
+
+Files: *
+Copyright: 1994–1999, Andries E. Brouwer,
+           2007–2014, Alexey Gladkov <gladkov.alexey@gmail.com>
+License: GPL-2+
+
+Files: src/libkeymap/*
+Copyright: 2012-2014 Alexey Gladkov <gladkov.alexey@gmail.com>
+License: GPL-2+
+
+Files: src/kbdrate.c docs/man/man8/kbdrate.8
+Copyright: 1992, Rickard E. Faith
+License: GPL-any
+
+Files: src/dumpkeys.c src/libkeymap/analyze.l
+       src/libkeymap/ksyms.c src/libkeymap/ksyms.h src/showkey.c
+       docs/man/man1/loadkeys.1 docs/man/man1/dumpkeys.1
+       docs/man/man1/showkey.1 docs/man/man5/keymaps.5
+Copyright: 1993, Risto Kankkunen
+License: GPL-any
+
+Files: src/setfont.c docs/man/man8/setfont.8
+       src/mapscrn.c docs/man/man8/mapscrn.8
+Copyright: 1993, Eugene G. Crosser
+License: GPL-any
+
+Files: src/loadkeys.c src/libkeymap/parser.y src/libkeymap/dump.c
+Copyright: 1993  Risto Kankkunen.
+           1993  Eugene G. Crosser.
+           1994-2007  Andries E. Brouwer.
+           2007-2013  Alexey Gladkov <gladkov.alexey@gmail.com>
+License: GPL-any
+
+Files: docs/man/man1/psfaddtable.1 docs/man/man1/psfgettable.1
+       docs/man/man1/psfstriptable.1
+Copyright: 1994, H. Peter Anvin
+License: GPL-any
+
+Files: src/chvt.c src/clrunimap.c src/deallocvt.c src/fgconsole.c
+       src/libkeymap/findfile.c src/getfd.c src/getkeycodes.c src/getunimap.c
+       src/kbd_mode.c src/loadunimap.c src/psffontop.c src/psfxtable.c
+       src/resizecons.c src/screendump.c src/setkeycodes.c src/setleds.c
+       src/setmetamode.c src/setvesablank.c src/showconsolefont.c
+       src/spawn_console.c src/spawn_login.c docs/man/man1/chvt.1
+       docs/man/man1/deallocvt.1 docs/man/man1/kbd_mode.1
+       docs/man/man1/setleds.1 docs/man/man1/setmetamode.1
+       docs/man/man8/getkeycodes.8 docs/man/man8/loadunimap.8
+       docs/man/man8/resizecons.8 docs/man/man8/setkeycodes.8
+Copyright: 1994–1999, Andries E. Brouwer
+License: GPL-any
+
+Files: docs/man/man1misc/splitfont.1 docs/man/man1/openvt.1
+       docs/man/man8misc/setlogcons.8 docs/man/man8misc/vcstime.8
+Copyright: 2007–2008, Alexey Gladkov <gladkov.alexey@gmail.com>
+License: GPL-any
+
+Files: src/setvtrgb.c
+Copyright: 2011, Alexey Gladkov <gladkov.alexey@gmail.com>,
+           2011, Canonical Ltd (Seth Forshee <seth.forshee@canonical.com>
+	                     and Dustin Kirkland <kirkland@canonical.com>)
+License: GPL-any
+
+Files: data/consolefonts/
+Copyright: Kurt Garloff
+           Jacek Lipkowski
+           Andries
+           alter@cybercafe.com.ua
+           Ethiopian Science and Technology Commission <ncic@padis.gn.apc.org> or <ncic@telecom.net.et>
+           Yitna Firdyiwek <ybf2u@virgina.edu> of GohaTibeb Associates
+           Daniel Yacob <Daniel_Yacob_at_UNECA@un.org> and <yacob@padis.gn.apc.org>
+           Sotiris Tsimbonis <tsimbonis@rosehill-1.irc.gr>.
+           2006 Dimitar Toshkov Zhekov
+           Guylhem AZNAR <guylhem@oeil.qc.ca>
+           Jakub Jelinek <jj@ultra.linux.cz>
+Note: See data/consolefonts/README.*
+License: GPL-2-with-exceptions
+ All files in this package may be freely copied under the terms
+ of the GNU General Public License (GPL), version 2, or at your
+ option any later version - except possibly for the restrictions
+ mentioned in the directory consolefonts.
+
+Files: src/vlock/*
+Copyright: 1994–1998, Michael K. Johnson <johnsonm@redhat.com>
+           1997–1998, Juan Cespedes <cespedes@debian.org>
+           2002–2006, 2013 Dmitry V. Levin <ldv@altlinux.org>
+License: GPL-2+
+
+Files: debian/*
+Copyright: 1991-2001, Yann Dirson <dirson@debian.org>,
+           2001, Alcove <http://alcove.fr/>,
+           2004, Wartan Hachaturow <wart@debian.org>,
+           2004–2006, Denis Barbier <barbier@debian.org>,
+           2007, Anton Zinoviev <zinoviev@debian.org>,
+           2008–2013, Michael Schutte <michi@debian.org>,
+           2015-2016, Andreas Henriksson <andreas@fatal.se>
+License: GPL-2+
+
+License: GPL-any
+ Distributed under the GPL. This program comes with ABSOLUTELY NO WARRANTY.
+ .
+ On Debian systems, the applicable versions of the GNU General Public
+ License can be found in the files “/usr/share/common-licenses/GPL-*”.
+
+License: GPL-2+
+ All files in this package may be freely copied under the terms
+ of the GNU General Public License (GPL), version 2, or at your
+ option any later version.
+ .
+ On Debian systems, the full text of the earliest applicable version of
+ the GNU General Public License can be found in the file
+ “/usr/share/common-licenses/GPL-2”.

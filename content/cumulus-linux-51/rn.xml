@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3107615</td>
+<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
+
+To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3096918</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -14,7 +22,7 @@
 </tr>
 <tr>
 <td>3093863</td>
-<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -40,7 +48,7 @@ Fixed: 1.19.8</td>
 </tr>
 <tr>
 <td>3082583</td>
-<td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
+<td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -122,13 +130,6 @@ cumulus@switch:~$ nv config apply
 2022-05-04T21:36:10.800975+00:00 switch frrinit.sh16431: Stopped watchfrr.
 </td>
 <td>5.0.1-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3060400</td>
-<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
-To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
-<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -268,7 +269,7 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 </tr>
 <tr>
 <td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
+<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -292,18 +293,14 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 </tr>
 <tr>
 <td>3016882</td>
-<td>When you power-cycle a newly installed switch and apply the default configuration, the underlying NVUE repository becomes corrupted. Even if you correct the corruption, NVUE cannot run.
-To recover, uninstall NVUE and delete the {{/var/lib/nvue}} directory:
+<td>In certain cases, when you power cycle the switch, the NVUE configuration might become corrupted, which prevents NVUE from running. You see an critical error in the log file similar to:
+{nofromat}
+CRITICAL: cue_versions_v1.repo: The NVUE internal data store is corrupted or has been initialized incorrectly. The is an unrecoverable error.
 
 
-cumulus@leaf01:~$ sudo apt remove python3-nvue
-cumulus@leaf01:~$ rm -r /var/lib/nvue
-cumulus@leaf01:~$ sudo apt update
-cumulus@leaf01:~$ sudo apt install python3-nvue
-cumulus@leaf01:~$ sudo systemctl enable nvued
-cumulus@leaf01:~$ sudo systemctl start nvued
+To work around this issue, remove the {{/var/lib/nvue/config}} and {{/var/lib/nvue/meta}} directories, then restart the {{nvued}} service with the {{sudo systemctl start nvued}} command. 
 
-</td>
+If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}} directory. You can reapply the recovered configuration with the {{nv config patch nvue-recovery-&lt;timestamp&gt;.yaml}} command. </td>
 <td>5.0.1-5.1.0</td>
 <td></td>
 </tr>
@@ -411,7 +408,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2873053</td>
-<td>In an EVPN Multihoming configuration, when any host side bond member port is brought admin down ({{ifdown}} and up {{ifup}}),  the VTEP might not program the local MAC addresses in hardware.</td>
+<td>In an EVPN Multihoming configuration, when ES bond members go down, all software forwarded traffic destined to the access port, except for unicast ARP requests and replies, and unicast IPv6 NS and NA, is dropped and not forwarded through the VXLAN overlay. 
+To work around this issue, bring the host side bond admin down and up (ifdown/ifup) on the bond interface itself and not on its member port.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -475,7 +473,7 @@ warning: vni10: possible mis-configuration detected: l2-vni configured with brid
 </tr>
 <tr>
 <td>3055255</td>
-<td>When you run the NVUE {{nv show interface}} command, a watchdog timeout might occur and the {{nvued}} service fails .</td>
+<td>When you run the NVUE {{nv show interface}} command, a watchdog timeout might occur and the {{nvued}} service fails.</td>
 <td>5.0.1</td>
 </tr>
 <tr>
@@ -565,7 +563,8 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 </tr>
 <tr>
 <td>3017127</td>
-<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
+<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.
+To work around this issue, restart {{switchd}} with the {{sudo systemctl restart switchd.service}} command.</td>
 <td>4.4.2-5.0.1</td>
 </tr>
 <tr>

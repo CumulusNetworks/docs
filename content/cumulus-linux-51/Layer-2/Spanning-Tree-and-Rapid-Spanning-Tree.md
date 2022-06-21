@@ -56,6 +56,10 @@ There several ways to customize STP in Cumulus Linux. Exercise caution when chan
 
 If you have a multiple spanning tree instance (MSTI 0, also known as a common spanning tree, or CST), you can set the *tree priority* for a bridge. The bridge with the lowest priority is the *root bridge*. The priority must be a number between *0* and *61440,* and must be a multiple of 4096. The default is *32768*.
 
+{{%notice note%}}
+If you are running MLAG and have multiple bridges, the STP priority must be the same on all bridges on both peer switches.
+{{%/notice%}}
+
 The following example command sets the tree priority to 8192:
 
 {{< tabs "TabID213 ">}}

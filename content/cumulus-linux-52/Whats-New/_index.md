@@ -17,18 +17,23 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - {{<link url="Interface-Configuration-and-Management/#chassis-management" text="NVIDIA SN4800 (100G Spectrum-3) now generally available">}}
-- NVIDIA SN4410 (100G and 400G Spectrum-3) now generally available
-- NVIDIA SN4600 (200G Spectrum-3) now generally available
+- NVIDIA SN2201 (1G and 100G Spectrum-1)
 
 ### New Features and Enhancements
 
-- 
+- PTP ITU-T G.8275.1 and ITU-T G.8275.2 profiles:
+- SyncE
+- cl-support WJH event collection
+- ECMP performance improvement  
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
-  - 
+  - Abbreviated commands
+  - Tab complete shows the TYPE associated with valid values
+  - Tab completion for `nv set` commands indicate if you can create a new instance
+  - PTP unicast command
   - {{< expand "New NVUE commands" >}}
   
 ```
-
+ADD NEW NVUE COMMANDS HERE
 ```
 {{< /expand >}}
 

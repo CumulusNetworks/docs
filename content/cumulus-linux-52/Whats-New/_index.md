@@ -21,10 +21,10 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Features and Enhancements
 
-- PTP profiles: ITU-T G.8275.1 and ITU-T G.8275.2
-- SyncE
-- `cl-`support` WJH event collection
-- ECMP performance improvement  
+- {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP profiles">}}: ITU-T G.8275.1 and ITU-T G.8275.2
+- {{<link url="SyncE" text="SyncE">}}
+- `cl-support` file includes WJH event collection
+- ECMP performance improvements
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - Abbreviated commands
   - Tab completion shows the TYPE associated with valid values

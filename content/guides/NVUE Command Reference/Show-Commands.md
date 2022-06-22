@@ -7,16 +7,6 @@ type: nojsscroll
 ---
 This section describes all the `nv show` commands, together with their attributes and identifiers. To see the `[options]` for all the commands, refer to {{<link url="Common-Options" text="Common Options">}}.
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
-
 ## nv show router
 
 Shows global routing configuration settings on the switch. You can see which routing features are on or off, such as BGP, IGMP, PIM, PBR, VRR, VRRP, and adaptive routing.
@@ -50,16 +40,6 @@ Introduced in Cumulus Linux 4.0.0
 cumulus@leaf01:mgmt:~$ nv show router
 ```
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
-
 ## nv show router nexthop-group
 
 Shows the configuration settings for next hop groups.
@@ -82,16 +62,6 @@ Introduced in Cumulus Linux 4.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router nexthop-group
-```
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
 ```
 
 ## nv show router nexthop-group \<nexthop-group-id\>
@@ -124,16 +94,6 @@ Introduced in Cumulus Linux 4.0.0
 cumulus@leaf01:mgmt:~$ nv show router nexthop-group group1
 ```
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
-
 ## nv show router nexthop-group \<nexthop-group-id\> via
 
 Shows the IP addresses of the next hops in the next hop group.
@@ -157,16 +117,6 @@ Introduced in Cumulus Linux 4.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router nexthop-group group 1 via
-```
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
 ```
 
 ## nv show router nexthop-group \<nexthop-group-id\> via \<via-id\>

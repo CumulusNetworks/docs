@@ -4885,7 +4885,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`source-ip`  | The source IP address you want to use to send IGMP MLD queries. |
+|`source-ip`  | Configures the source IP address you want to use to send IGMP MLD queries. |
 
 ### Version History
 
@@ -5126,7 +5126,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `vrf` |  Configures the VRF for backup IP address. |
+| `vrf` |  Configures the VRF for the backup IP address. |
 
 ### Version History
 
@@ -5306,41 +5306,123 @@ cumulus@leaf01:mgmt:~$ nv set mlag debug on
 
 ## nv set evpn
 
-Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
+Enables and disables the EVPN control plane. When enabled, the EVPN service offered is a VLAN-based service and an EVI is created automatically for each extended VLAN.
 
 ### Usage
 
 `nv set evpn [options] [<attribute> ...]`
 
+### Default Setting
+
+`off`
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`route-advertise` | Route advertising |
-|`dad`  | Advertise |
-|`evi` | EVI |
-|`multihoming`  | Multihoming global configuration parameters |
-|`enable` |  Turn the feature 'on' or 'off'. The default is 'off'. |
+|`route-advertise` | Configures EVPN route advertising |
+|`dad`  | Configures EVPN duplicate address detection.  |
+|`evi` | Configures the EVI |
+|`multihoming`  | Configures EVPN multihoming global configuration parameters. |
+|`enable` |  Turns EVPN on or off.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set evpn route-advertise
 
-Route dvertising
+Configures EVPN route advertising.
 
 ### Usage
 
 `nv set evpn route-advertise [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `default-gateway` |  This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do  ARP suppression and for hosts to learn of the gateway's IP to MAC binding. |
-| `nexthop-setting` |  Specifies the next hop IP and MAC (Router MAC) to use in the advertisement of type-5 routes and “self” type-2 routes (“self” = SVI IP/MAC). Relevant only in an MLAG configuration.|
-| `svi-ip` | If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes. This configuration should not be enabled if SVI IPs are reused in the network. \
+| `default-gateway` |  Configures the gateway VTEPs to advertise their IP and MAC address. Only turn this setting on in a centralized-routing deployment and only on the centralized gateway router. When set to `on`, the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The remote layer 2 only VTEPs use ARP suppression and the hosts learn of the gateway's IP to MAC binding. |
+| `nexthop-setting` |  Configures the next hop IP and MAC (Router MAC) to use when advertising type-5 routes and “self” type-2 routes (“self” = SVI IP/MAC). Only use this setting in an MLAG configuration.|
+| `svi-ip` | Configures the switch to announce the IP addresses of SVIs in all EVIs as type-2 routes. Only enable this option if you reuse SVI IP addresses in the network. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set evpn route-advertise nexthop-setting
+
+<!--NEED Description -->
+
+### Usage
+
+`nv set evpn route-advertise nexthop-setting [options] (system-ip-mac|shared-ip-mac)`
+
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn route-advertise nexthop-setting system-ip-mac
+```
+
+## nv set evpn route-advertise svi-ip
+
+Configures the switch to announce the IP addresses of SVIs in all EVIs as type-2 routes. Only enable this option if you reuse SVI IP addresses in the network.
+
+### Usage
+
+`nv set evpn route-advertise svi-ip [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn route-advertise svi-ip on
+```
+
+## nv set evpn route-advertise default-gateway
+
+Configures the gateway VTEPs to advertise their IP and MAC address. Only turn this setting on in a centralized routing deployment and only on the centralized gateway router. When set to `on`, the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The remote layer 2 only VTEPs use ARP suppression and the hosts learn of the gateway's IP to MAC binding. 
+
+### Usage
+
+`nv set evpn route-advertise default-gateway [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn route-advertise default-gateway on
+```
 
 ## nv set evpn dad
 
-Duplicate address detection
+Configures EVPN duplicate address detection.
 
 ### Usage
 

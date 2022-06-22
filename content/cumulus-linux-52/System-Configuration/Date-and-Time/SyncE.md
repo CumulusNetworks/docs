@@ -25,9 +25,9 @@ Basic SyncE configuration requires you:
 - Configure SyncE on at least one interface or bond so that the interface is a timing source that is passed to the selection algorithm.
 
 The basic configuration shown below uses the default settings:
-- Sets the {{<link url="#quality-level-for-the-switch" text="QL">}} for the switch to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.
-- Sets the {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface to 100
-- Sets the {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using it for synchronization to 5 minutes.
+- The {{<link url="#quality-level-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.
+- The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is set to 100
+- The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using it for synchronization is set to 5 minutes.
 
 ```
 cumulus@switch:~$ nv set synce enable on
@@ -39,7 +39,7 @@ cumulus@switch:~$ nv config apply
 
 ### QL for the Switch
 
-The network type specifies the QL for the switch. You can specify one of the following values. The default is `option 1`.
+You can specify the ITU-T QL for the switch. You can specify one of the following values. The default is `option 1`.
 - `option 1` includes PRC, SSU-A, SSU-B, SEC and DNU.
 - `option 2 generation 1` includes PRS, STU, ST2, ST3, SMC, ST4, RES and DUS.
 - `option 2 generation 2` includes PRS, STU, ST2, ST3, TNC, ST3E, SMC, ST4, PROV and DUS.
@@ -53,7 +53,7 @@ cumulus@switch:~$ nv config apply
 
 ### Logging
 
-You can set SyncE logging to either write a log message:
+By default, SyncE logging is disabled on the switch. You enable logging to write a log message:
 - Every time there is a change to the selected source in addition to errors
 - Only when there are no available frequency sources or when the only available frequency source is the internal oscillator
 
@@ -108,9 +108,7 @@ cumulus@switch:~$ nv config apply
 
 ### QL to Transmit in Status Messages
 
-This setting enables you to override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) transmitted in SSM messages.
-
-You can set the following options:
+To override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) transmitted in SSM messages, you can set the following options:
 - `exact <ql>` specifies the exact QL regardless of the value received.
 - `highest <ql>` specifies an upper limit on the QL. If the selected source has a higher QL than the QL specified here, this QL is sent instead.
 - `lowest <ql>` specifies a lower limit on the QL. If the selected source has a lower QL than the QL specified here, DNU is sent instead.
@@ -128,7 +126,7 @@ The QL must match the globally configured QL with the `network-type` command.
 
 ### QL to Receive in Status Messages
 
-This setting enables you to override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) to receive in SSM messages before it is used in the selection algorithm. You can set one of the following options:
+To override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) received in SSM messages before it is used in the selection algorithm, you can set one of the following options:
 - `exact <quality-level>`  specifies the exact QL regardless of the value received unless the received value is DNU.
 - `highest <quality-level>` specifies an upper limit on the received QL. If the received value is higher than this specified QL, this QL is used instead.
 - `lowest <quality-level>` specifies a lower limit on the received QL. If the received value is lower than this specified QL, DNU is used instead.

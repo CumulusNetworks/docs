@@ -144,6 +144,27 @@ The QL to receive must match the globally configured QL set with the `network-ty
 
 ## Troubleshooting
 
+To show SyncE configuration, run the `nv show synce` command:
+
+```
+cumulus@switch:~$ nv show synce
+ADD OUTPUT
+```
+
+To show SyncE statistics for all the enabled interfaces, run the `nv show synce interface statistics` command:
+
+```
+cumulus@switch:~$ nv show synce interface statistics
+ADD OUTPUT
+```
+
+To show SyncE statistics for a specific interfaces, run the `nv show synce interface statistics <interface>` command:
+
+```
+cumulus@switch:~$ nv show synce interface statistics swp2
+ADD OUTPUT
+```
+
 ## Related Information
 
 {{<exlink url="https://www.itu.int/rec/T-REC-G.781" text="ITU G.781">}}

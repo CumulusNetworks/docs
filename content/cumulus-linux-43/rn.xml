@@ -94,6 +94,13 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td></td>
 </tr>
 <tr>
+<td>3059135</td>
+<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3053063</td>
 <td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
 To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>

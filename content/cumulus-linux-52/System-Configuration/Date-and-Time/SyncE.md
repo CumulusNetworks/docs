@@ -25,7 +25,7 @@ Basic SyncE configuration requires you:
 - Configure SyncE on at least one interface or bond so that the interface is a timing source that is passed to the selection algorithm.
 
 The basic configuration shown below uses the default settings:
-- The {{<link url="#quality-level-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.
+- The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.
 - The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is set to 100
 - The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using it for synchronization is set to 5 minutes.
 
@@ -95,7 +95,7 @@ cumulus@switch:~$ nv set interface swp2 synce wait-to-restore 3
 cumulus@switch:~$ nv config apply
 ```
 
-## Disable Synchronization Status Messages
+### Disable Synchronization Status Messages
 
 You can disable [SSMs](## "Synchronization Status Messages") on an interface to prevent sending ESMC packets and ignore any received ESMC packets.
 

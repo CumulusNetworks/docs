@@ -247,36 +247,26 @@ network_transport       UDPv4
 
 ## Optional Global PTP Configuration
 
-<!--### PTP Profiles
+### PTP Profiles
 
 PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
 Cumulus Linux supports the following profiles:
 - *Default* is the profile specified in the IEEE 1588 standard. If you do not choose a profile or perform any optional configuration, the PTP software is initialized with default values in the standard. The default profile addresses some common applications, such as Industrial Automation. It does not have any network restrictions and is used as the first profile to be tested in qualification of equipment.
-- *AES67* is a standard developed by the Audio Engineering Society to support Audio Over IP and Audio Over Ethernet. The standard uses IPV4 multicast and IGMP. DiffServ and DSCP are used for setting priorities. This PTP profile allows you to combine audio streams at the receiver end and allows synchronization of multiple streams.
-- *SMPTE ST-2059-2* is a standard developed by the Society of Motion Pictures and Television Engineers. The standard was developed specifically to synchronize video equipment in a professional broadcast environment. Strict timing is required to switch between video streams at the frame level in the nano second range. For example, an NFL broadcast typically has multiple cameras sending video streams . You need to synchronize the clocks in these cameras to the nano second level. This allows switching from one camera angle to another by switching at the frame level without viewers noticing a blank frame.
+- ITU-T G.8275.1 is the profile for applications that require accurate phase and time synchronization. It supports the architecture defined in ITU-T G. 8275 to enable the distribution of phase and time with full timing support and is based on the second version of PTP defined in [IEEE 1588].
+- ITU-T G.8275.2 is the PTP profile for use in telecom networks where phase or time-of-day synchronization is required. It differs from G. 8275.1 in that it is not required that each device in the network participates in the PTP protocol.
 
-AES67 and SMPTE ST-2059-2 are PTP Multimedia profiles. These profiles support video and audio applications used in professional broadcast environments and synchronization of multiple video and audio streams across multiple devices.
-
-The following table shows the default settings for each profile.
-
-| Profile | Domain| Priority1| Priority2 | Announce | Announce Timeout| Sync     | Delay Request |
-| ------- | ------| -------- | --------- | -------- | --------------- | -------- | ------------- |
-| Default | Default: 0<br>Range: 0 to 127   | Default: 128<br>Range: 0 to 255 | Default: 128<br>Range: 0 to 255 | Default: 1 (1 per 2 s)<br>Range: 0 to 4 | Default: 3<br>Range: 2 to 10 | Default:0 (1/s)<br>Range: -1 to 1 | Default:0<br>Range: 0 to 5 |
-| AES67   | Default: 0<br>Range: 0 to 127   | Default: 128<br>Range: 0 to 255 | Default: 128<br>Range: 0 to 255 | Default: 0 (1/s)<br>Range: 0 to 4 | Default: 3<br>Range: 2 to 10 | Default:-2 250 ms (4/s)<br>Range: -4 to 1 | Default: -2 250ms (4/s)<br>Range: -4 to 1 |
-| SMPTE   | Default: 127<br>Range: 0 to 127 | Default: 128<br>Range: 0 to 255 | Default: 128<br>Range: 0 to 255 | Default: -2 250ms (4/s)<br>Range: -3 to 1 |Default: 3<br>Range: 2 to 10 | Default: -3 125ms (8/s)<br>Range: -7 to -1 |Default: -3 125ms (8/s)<br>Range: -7 to -1 |
-
-To configure the switch to use the AES67 profile:
+To configure the switch to use the ITU-T G.8275.1 profile:
 
 ```
-cumulus@switch:~$ nv set service ptp 1 profile-type aes67
+cumulus@switch:~$ nv set service ptp 1 profile-type G.8275.1
 cumulus@switch:~$ nv config apply
 ```
 
-To configure the switch to use the SMPTE ST-2059-2 profile:
+To configure the switch to use the ITU-T G.8275.2 profile:
 
 ```
-cumulus@switch:~$ nv set service ptp 1 profile-type smpte
+cumulus@switch:~$ nv set service ptp 1 profile-type G.8275.2
 cumulus@switch:~$ nv config apply
 ```
 
@@ -286,7 +276,7 @@ To set the profile back to the default:
 cumulus@switch:~$ nv set service ptp 1 profile-type default-1588
 cumulus@switch:~$ nv config apply
 ```
--->
+
 ### Clock Domains
 
 PTP domains allow different independent timing systems to be present in the same network without confusing each other. A PTP domain is a network or a portion of a network within which all the clocks synchronize. Every PTP message contains a domain number. A PTP instance works in only one domain and ignores messages that contain a different domain number.

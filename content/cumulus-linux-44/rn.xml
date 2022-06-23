@@ -62,6 +62,12 @@ Fixed: 2.2.10-6+deb10u6</td>
 <td></td>
 </tr>
 <tr>
+<td>3084027</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3083265</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -2151,6 +2157,12 @@ system may result in privilege escalation.
 Vulnerable: &lt;= 2.2.10-6+deb10u5
 Fixed: 2.2.10-6+deb10u6</td>
 <td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3084027</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4436,6 +4448,12 @@ system may result in privilege escalation.
 Vulnerable: &lt;= 2.2.10-6+deb10u5
 Fixed: 2.2.10-6+deb10u6</td>
 <td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3084027</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>

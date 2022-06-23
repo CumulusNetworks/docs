@@ -114,12 +114,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>4.4.3, 5.1.0</td>
 </tr>
 <tr>
-<td>2940063</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td>3.7.16, 5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
 To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
@@ -159,8 +153,8 @@ Fixed: 3.42.1-1+deb10u4</td>
 <tr>
 <td>2866097</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
+<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
+<td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2859177</td>
@@ -376,6 +370,39 @@ Vulnerable: &lt;= 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td>4.0.0-4.4.3</td>
 <td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
+
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0-4.4.3</td>
 </tr>
 <tr>
 <td>2687160</td>
@@ -3489,6 +3516,39 @@ Vulnerable: &lt;= 4.11.4+99-g8bce4698f6-1
 Fixed: 4.11.4+107-gef32c7afa2-1</td>
 <td>4.0.0-4.4.3</td>
 <td></td>
+</tr>
+<tr>
+<td>2687332</td>
+<td>When you configure BGP {{aggregate-address summary-only}} and any component route within the summary updates, all component routes within the summary update in the RIB on the device advertising the summary. This condition might result in increased CPU usage.
+
+To workaround this issue, remove the {{aggregate-address summary-only}} configuration, add a static route to Null0 for the prefix, and configure an outbound route map to restrict anything more specific than the desired prefix from being advertised. For example: 
+
+Before:
+
+address-family ipv4 unicast
+   aggregate-address 10.10.0.0/16 summary-only
+   redistribute connected
+
+
+After:
+
+ip route 10.10.0.0/16 Null0
+   !
+   address-family ipv4 unicast
+   redistribute connected route-map DENY-COMPONENTS
+   redistribute static
+    exit-address-family
+   ip prefix-list NO-COMPONENTS seq 5 permit 10.10.0.0/16 ge 17
+   !
+   route-map DENY-COMPONENTS deny 10
+    match ip address prefix-list NO-COMPONENTS
+   !
+   route-map DENY-COMPONENTS permit 20
+
+
+This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
+<td>3.7.12-4.2.1</td>
+<td>4.3.0-4.4.3</td>
 </tr>
 <tr>
 <td>2687160</td>

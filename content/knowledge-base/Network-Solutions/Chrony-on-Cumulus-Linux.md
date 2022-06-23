@@ -14,7 +14,7 @@ To use Chrony, you need to:
 - Edit the system configuration to establish Chrony as a management service.
 - Add a low latency time source to the Chrony configuration.
 
-Follow these steps:
+NVIDIA has validated the following procedure with Netq 4.2.0 (4.2.0-cl4u38~1652820696.25f4ac06) and chrony_3.4-4+deb10u2_armel.deb.
 
 1. Edit the `/etc/apt/sources.list` file to allow upstream repositories:
 

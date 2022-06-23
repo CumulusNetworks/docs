@@ -1,6 +1,6 @@
 <em>Flannel Virtual Networks</em>
 
-<p>If you are using Flannel with a container environment on your network, you may need to change its default IP address ranges if they conflict with other addresses on your network. This can only be done one time during the first installation. You do this by running the <code>bootstrap</code> command.</p>
+<p>If you are using Flannel with a container environment on your network, you may need to change its default IP address ranges if they conflict with other addresses on your network. This can only be done one time during the first installation.</p>
 
 <p>The address range is 10.244.0.0/16. NetQ overrides the original Flannel default, which is 10.1.0.0/16.</p>
 
@@ -30,20 +30,11 @@
 
 {{ end }}
 
-<em>Docker Default Bridge Interface</em>
-
-<p>The default Docker bridge interface is disabled in NetQ. If you need to reenable the interface, contact <a href="https://support.mellanox.com/s/" target="_blank">support</a>.</p>
-
-
 {{- if eq (.Get "version") "4.1" -}}
 
 <pre>cumulus@hostname:~$ netq bootstrap master interface eth0 tarball /mnt/installables/netq-bootstrap-4.1.0.tgz pod-ip-range 10.255.0.0/16</pre>
 
 {{ end }}
-
-<em>Docker Default Bridge Interface</em>
-
-<p>The default Docker bridge interface is disabled in NetQ. If you need to reenable the interface, contact <a href="https://support.mellanox.com/s/" target="_blank">support</a>.</p>
 
 
 {{- if eq (.Get "version") "4.2" -}}

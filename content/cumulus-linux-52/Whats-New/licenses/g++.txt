@@ -1,0 +1,1 @@
+g++ has no copyright file

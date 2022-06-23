@@ -1,0 +1,879 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: *
+Copyright: 2008-2015, Intel Corporation.
+License: GPL-2+
+
+Files: android/*
+Copyright: 2012-2016, Intel Corporation.
+License: LGPL-2.1+
+
+Files: android/audio_utils/*
+Copyright: 2008, 2011, The Android Open-Source Project
+License: Apache-2.0
+
+Files: android/avctp.c
+Copyright: 2011, Texas Instruments, Inc.
+  2006-2010, Nokia Corporation
+  2004-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: android/avctp.h
+  android/avdtp.c
+  android/avdtp.h
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: android/avdtptest.c
+Copyright: 2011-2015, Intel Corporation
+License: GPL-2+
+
+Files: android/bluetoothd-wrapper.c
+  android/hal-a2dp-sink.c
+  android/hal-a2dp.c
+  android/hal-audio-sbc.c
+  android/hal-audio.c
+  android/hal-audio.h
+  android/hal-avrcp-ctrl.c
+  android/hal-avrcp.c
+  android/hal-bluetooth.c
+  android/hal-gatt.c
+  android/hal-handsfree-client.c
+  android/hal-handsfree.c
+  android/hal-health.c
+  android/hal-hidhost.c
+  android/hal-ipc.c
+  android/hal-ipc.h
+  android/hal-log.h
+  android/hal-map-client.c
+  android/hal-pan.c
+  android/hal-sco.c
+  android/hal-socket.c
+  android/hal-utils.c
+  android/hal-utils.h
+  android/hal.h
+  android/tester-a2dp.c
+  android/tester-avrcp.c
+  android/tester-bluetooth.c
+  android/tester-gatt.c
+  android/tester-hdp.c
+  android/tester-hidhost.c
+  android/tester-main.c
+  android/tester-map-client.c
+  android/tester-pan.c
+  android/tester-socket.c
+Copyright: 2013, 2014, Intel Corporation
+License: Apache-2.0
+
+Files: android/client/*
+Copyright: 2013, 2014, Intel Corporation
+License: Apache-2.0
+
+Files: android/compat/*
+Copyright: 1987-2011, Free Software Foundation, Inc.
+License: GPL-2+
+
+Files: android/compat/wordexp.h
+Copyright: 1991-2013, Free Software Foundation, Inc.
+License: LGPL-2.1+
+
+Files: android/hal-audio-aptx.c
+Copyright: 2014, Tieto Poland
+License: Apache-2.0
+
+Files: android/hardware/*
+Copyright: 2008, 2011-2014, The Android Open Source Project
+License: Apache-2.0
+
+Files: android/health.c
+Copyright: 2014, Intel Corporation.
+  2010, GSyC/LibreSoft, Universidad Rey Juan Carlos.
+License: LGPL-2.1+
+
+Files: android/log.c
+  android/sco.c
+Copyright: 2008-2015, Intel Corporation.
+License: GPL-2+
+
+Files: android/system/*
+Copyright: 2008, 2011-2014, The Android Open Source Project
+License: Apache-2.0
+
+Files: attrib/*
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: attrib/att-database.h
+Copyright: 2012, Texas Instruments Corporation
+License: GPL-2+
+
+Files: attrib/gatttool.h
+  attrib/interactive.c
+  attrib/utils.c
+Copyright: 2007-2011, Nokia Corporation
+License: GPL-2+
+
+Files: btio/*
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: emulator/*
+Copyright: 2011-2014, Intel Corporation
+  2002-2010, Marcel Holtmann <marcel@holtmann.org>
+License: LGPL-2.1+
+
+Files: emulator/b1ee.c
+  emulator/hfp.c
+Copyright: 2009-2012, Intel Corporation
+  2004-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: emulator/hciemu.c
+  emulator/hciemu.h
+Copyright: 2012-2016, Intel Corporation.
+License: LGPL-2.1+
+
+Files: emulator/smp.c
+Copyright: 2013, 2014, 2016, Intel Corporation
+License: LGPL-2.1+
+
+Files: gdbus/*
+Copyright: 2002-2012, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: lib/*
+Copyright: 2002-2010, Marcel Holtmann <marcel@holtmann.org>
+  2002, 2003, Maxim Krasnyansky <maxk@qualcomm.com>
+  2000, 2001, Qualcomm Incorporated
+License: GPL-2+
+
+Files: lib/a2mp.h
+Copyright: 2012, Intel Corporation.
+  2012, Code Aurora Forum.
+License: GPL-2+
+
+Files: lib/amp.h
+Copyright: 2012, Intel Corporation.
+  2010, 2011, Code Aurora Forum.
+License: GPL-2
+
+Files: lib/bnep.h
+  lib/rfcomm.h
+  lib/sco.h
+Copyright: 2002-2011, Marcel Holtmann <marcel@holtmann.org>
+  2000-2003, Maxim Krasnyansky <maxk@qualcomm.com>
+License: GPL-2+
+
+Files: lib/cmtp.h
+  lib/hidp.h
+Copyright: 2002-2012, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: lib/l2cap.h
+Copyright: 2012, Code Aurora Forum.
+  2002-2010, Marcel Holtmann <marcel@holtmann.org>
+  2002, 2003, Maxim Krasnyansky <maxk@qualcomm.com>
+  2000, 2001, Qualcomm Incorporated
+License: GPL-2+
+
+Files: lib/mgmt.h
+  lib/uuid.c
+  lib/uuid.h
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: lib/sdp.c
+  lib/sdp.h
+  lib/sdp_lib.h
+Copyright: 2002-2010, Marcel Holtmann <marcel@holtmann.org>
+  2002, 2003, Stephen Crane <steve.crane@rococosoft.com>
+  2002, 2003, Maxim Krasnyansky <maxk@qualcomm.com>
+  2001, 2002, Nokia Corporation
+License: GPL-2+
+
+Files: monitor/*
+Copyright: 2011-2014, Intel Corporation
+  2002-2010, Marcel Holtmann <marcel@holtmann.org>
+License: LGPL-2.1+
+
+Files: monitor/a2dp.c
+  monitor/a2dp.h
+  monitor/avdtp.c
+  monitor/avdtp.h
+Copyright: 2015, Andrzej Kaczmarek <andrzej.kaczmarek@codecoup.pl>
+License: LGPL-2.1+
+
+Files: monitor/tty.h
+Copyright: 2013, 2014, 2016, Intel Corporation
+License: LGPL-2.1+
+
+Files: obexd/*
+Copyright: 2002-2012, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: obexd/client/bluetooth.c
+  obexd/client/bluetooth.h
+  obexd/client/opp.c
+  obexd/client/opp.h
+  obexd/client/transport.c
+  obexd/client/transport.h
+Copyright: 2011-2015, Intel Corporation
+License: GPL-2+
+
+Files: obexd/client/dbus.c
+  obexd/client/dbus.h
+Copyright: 2008-2011, Intel Corporation.
+License: GPL-2
+
+Files: obexd/client/map-event.c
+  obexd/client/map-event.h
+  obexd/client/mns.c
+Copyright: 2012, 2013, BMW Car IT GmbH.
+License: GPL-2+
+
+Files: obexd/client/map.c
+  obexd/client/map.h
+Copyright: 2011, Bartosz Szatkowski <bulislaw@linux.com> for Comarch
+License: GPL-2+
+
+Files: obexd/client/pbap.c
+  obexd/client/pbap.h
+  obexd/client/sync.c
+  obexd/client/sync.h
+Copyright: 2007-2010, Marcel Holtmann <marcel@holtmann.org>
+  2007-2010, Intel Corporation
+License: GPL-2+
+
+Files: obexd/client/session.c
+  obexd/client/session.h
+  obexd/client/transfer.c
+  obexd/client/transfer.h
+Copyright: 2011, 2012, BMW Car IT GmbH.
+  2007-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: obexd/plugins/*
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: obexd/plugins/filesystem.c
+  obexd/plugins/pbap.c
+  obexd/plugins/phonebook-dummy.c
+Copyright: 2009-2012, Intel Corporation
+  2004-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: obexd/plugins/filesystem.h
+  obexd/plugins/ftp.h
+  obexd/plugins/phonebook.h
+Copyright: 2002-2012, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: obexd/plugins/irmc.c
+Copyright: 2010, Marcel Mol <marcel@mesa.nl>
+License: GPL-2+
+
+Files: obexd/plugins/mas.c
+  obexd/plugins/messages-dummy.c
+  obexd/plugins/messages.h
+Copyright: 2007-2011, Nokia Corporation
+License: GPL-2+
+
+Files: obexd/plugins/vcard.c
+  obexd/plugins/vcard.h
+Copyright: 2008-2015, Intel Corporation.
+License: GPL-2+
+
+Files: obexd/src/manager.h
+  obexd/src/map_ap.h
+Copyright: 2007-2011, Nokia Corporation
+License: GPL-2+
+
+Files: obexd/src/obex-priv.h
+  obexd/src/obex.c
+  obexd/src/obex.h
+  obexd/src/server.c
+  obexd/src/server.h
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: peripheral/*
+Copyright: 2012-2016, Intel Corporation.
+License: LGPL-2.1+
+
+Files: plugins/autopair.c
+Copyright: 2012, 2014, 2015, Google Inc.
+License: GPL-2+
+
+Files: plugins/external-dummy.c
+Copyright: no-info-found
+License: GPL-2+
+
+Files: plugins/gatt-example.c
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: plugins/hostname.c
+Copyright: 2002-2012, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: plugins/neard.c
+Copyright: 2012, 2013, Tieto Poland
+License: GPL-2+
+
+Files: plugins/sixaxis.c
+Copyright: 2013, Szymon Janc <szymon.janc@gmail.com>
+  2011, Antonio Ospite <ospite@studenti.unina.it>
+  2009, Bastien Nocera <hadess@hadess.net>
+License: GPL-2+
+
+Files: plugins/wiimote.c
+Copyright: 2011, 2012, David Herrmann <dh.herrmann@googlemail.com>
+License: GPL-2+
+
+Files: profiles/*
+Copyright: 2002-2012, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: profiles/audio/*
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: profiles/audio/a2dp-codecs.h
+Copyright: 2006-2010, Nokia Corporation
+  2004-2010, Marcel Holtmann <marcel@holtmann.org>
+License: LGPL-2.1+
+
+Files: profiles/audio/a2dp.c
+  profiles/audio/a2dp.h
+  profiles/audio/media.c
+Copyright: 2011, BMW Car IT GmbH.
+  2006-2010, Nokia Corporation
+  2004-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: profiles/audio/avctp.c
+  profiles/audio/avrcp.c
+  profiles/audio/control.c
+Copyright: 2011, Texas Instruments, Inc.
+  2006-2010, Nokia Corporation
+  2004-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: profiles/audio/player.c
+  profiles/audio/player.h
+Copyright: 2012, Intel Corporation
+  2006, 2007, Nokia Corporation
+  2004-2009, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: profiles/audio/source.c
+  profiles/audio/source.h
+Copyright: 2009, Joao Paulo Rechi Vita
+  2006-2010, Nokia Corporation
+  2004-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: profiles/battery/*
+Copyright: 2014, Intel Corporation.
+License: LGPL-2.1+
+
+Files: profiles/deviceinfo/*
+Copyright: 2012-2016, Intel Corporation.
+License: LGPL-2.1+
+
+Files: profiles/deviceinfo/deviceinfo.c
+Copyright: 2015, Google Inc.
+  2012, Texas Instruments, Inc.
+License: GPL-2+
+
+Files: profiles/deviceinfo/dis.c
+Copyright: 2012, Texas Instruments, Inc.
+License: GPL-2+
+
+Files: profiles/gap/*
+Copyright: 2014, Google Inc.
+  2012, Instituto Nokia de Tecnologia - INdT
+License: GPL-2+
+
+Files: profiles/health/*
+Copyright: 2010, 2011, GSyC/LibreSoft, Universidad Rey Juan Carlos.
+License: GPL-2+
+
+Files: profiles/health/mcap.c
+  profiles/health/mcap.h
+Copyright: 2014, Intel Corporation.
+  2010, Signove
+  2010, GSyC/LibreSoft, Universidad Rey Juan Carlos.
+License: GPL-2+
+
+Files: profiles/input/device.c
+  profiles/input/hidp_defs.h
+Copyright: 2014, Google Inc.
+  2003-2014, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: profiles/input/hog-lib.c
+Copyright: 2014, Intel Corporation.
+  2012, Nordic Semiconductor Inc.
+  2012, Marcel Holtmann <marcel@holtmann.org>
+  2012, Instituto Nokia de Tecnologia - INdT
+License: GPL-2+
+
+Files: profiles/input/hog-lib.h
+Copyright: 2012-2016, Intel Corporation.
+License: LGPL-2.1+
+
+Files: profiles/input/hog.c
+Copyright: 2012, Nordic Semiconductor Inc.
+  2012, Marcel Holtmann <marcel@holtmann.org>
+  2012, Instituto Nokia de Tecnologia - INdT
+License: GPL-2+
+
+Files: profiles/input/suspend-dummy.c
+  profiles/input/suspend-none.c
+  profiles/input/suspend.h
+Copyright: 2012, Nordic Semiconductor Inc.
+  2012, Instituto Nokia de Tecnologia - INdT
+License: GPL-2+
+
+Files: profiles/input/uhid_copy.h
+Copyright: 2012, David Herrmann
+License: GPL-2+
+
+Files: profiles/sap/*
+Copyright: 2010, 2014, Instituto Nokia de Tecnologia - INdT
+License: GPL-2+
+
+Files: profiles/sap/sap-dummy.c
+Copyright: 2011, Tieto Poland
+  2010, ST-Ericsson SA
+License: GPL-2+
+
+Files: profiles/sap/sap-u8500.c
+Copyright: 2010, 2011, ST-Ericsson SA
+License: GPL-2
+
+Files: profiles/sap/sap.h
+Copyright: 2010, ST-Ericsson SA
+  2010, Instituto Nokia de Tecnologia - INdT
+License: GPL-2+
+
+Files: profiles/sap/server.c
+Copyright: 2011, Tieto Poland
+  2010, ST-Ericsson SA
+  2010, Instituto Nokia de Tecnologia - INdT
+License: GPL-2+
+
+Files: profiles/sap/server.h
+Copyright: 2010, ST-Ericsson SA
+License: GPL-2+
+
+Files: profiles/scanparam/*
+Copyright: 2012, Nordic Semiconductor Inc.
+  2012, Instituto Nokia de Tecnologia - INdT
+License: GPL-2+
+
+Files: profiles/scanparam/scpp.h
+Copyright: 2014, Intel Corporation.
+License: LGPL-2.1+
+
+Files: profiles/thermometer/*
+Copyright: 2010, 2011, GSyC/LibreSoft, Universidad Rey Juan Carlos.
+License: GPL-2+
+
+Files: profiles/time/*
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: src/*
+Copyright: 2002-2012, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: src/adapter.c
+  src/adapter.h
+  src/agent.c
+  src/agent.h
+  src/attio.h
+  src/attrib-server.c
+  src/attrib-server.h
+  src/dbus-common.h
+  src/device.c
+  src/device.h
+  src/eir.c
+  src/eir.h
+  src/storage.c
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: src/advertising.c
+  src/advertising.h
+  src/gatt-client.c
+  src/gatt-client.h
+  src/gatt-database.c
+  src/gatt-database.h
+Copyright: 2012, 2014, 2015, Google Inc.
+License: GPL-2+
+
+Files: src/dbus-common.c
+Copyright: 2006-2010, Nokia Corporation
+  2005-2007, Johan Hedberg <johan.hedberg@nokia.com>
+  2004-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: src/error.c
+  src/error.h
+Copyright: 2007, 2008, Fabien Chevalier <fabchevalier@free.fr>
+  2006-2010, Nokia Corporation
+  2004-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: src/hcid.h
+  src/main.c
+Copyright: 2002-2010, Marcel Holtmann <marcel@holtmann.org>
+  2002, 2003, Maxim Krasnyansky <maxk@qualcomm.com>
+  2000, 2001, Qualcomm Incorporated
+License: GPL-2+
+
+Files: src/profile.c
+  src/profile.h
+  src/systemd.c
+  src/systemd.h
+Copyright: 2008-2015, Intel Corporation.
+License: GPL-2+
+
+Files: src/sdpd-database.c
+  src/sdpd-request.c
+  src/sdpd-server.c
+  src/sdpd-service.c
+  src/sdpd.h
+Copyright: 2002-2010, Marcel Holtmann <marcel@holtmann.org>
+  2002, 2003, Stephen Crane <steve.crane@rococosoft.com>
+  2002, 2003, Maxim Krasnyansky <maxk@qualcomm.com>
+  2001, 2002, Nokia Corporation
+License: GPL-2+
+
+Files: src/service.c
+  src/service.h
+Copyright: 2012, 2013, BMW Car IT GmbH.
+License: GPL-2+
+
+Files: src/shared/*
+Copyright: 2012-2016, Intel Corporation.
+License: LGPL-2.1+
+
+Files: src/shared/ad.c
+  src/shared/ad.h
+  src/shared/att-types.h
+  src/shared/att.c
+  src/shared/att.h
+  src/shared/gatt-client.c
+  src/shared/gatt-client.h
+  src/shared/gatt-helpers.c
+  src/shared/gatt-helpers.h
+  src/shared/gatt-server.c
+  src/shared/gatt-server.h
+Copyright: 2014, 2015, Google Inc.
+License: LGPL-2.1+
+
+Files: src/shared/ecc.c
+  src/shared/ecc.h
+Copyright: 2013, Kenneth MacKay
+License: BSD-2-clause
+
+Files: src/shared/hci-crypto.c
+  src/shared/hci-crypto.h
+Copyright: 2013, 2014, 2016, Intel Corporation
+License: LGPL-2.1+
+
+Files: src/shared/mainloop.c
+  src/shared/mainloop.h
+Copyright: 2011-2014, Intel Corporation
+  2002-2010, Marcel Holtmann <marcel@holtmann.org>
+License: LGPL-2.1+
+
+Files: test/*
+Copyright: 2010, 2011, ST-Ericsson SA """
+License: GPL-2+
+
+Files: tools/amptest.c
+  tools/btattach.c
+  tools/btinfo.c
+  tools/btproxy.c
+  tools/btsnoop.c
+  tools/cltest.c
+  tools/eddystone.c
+  tools/ibeacon.c
+  tools/oobtest.c
+Copyright: 2009-2012, Intel Corporation
+  2004-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: tools/avinfo.c
+  tools/avtest.c
+  tools/btiotest.c
+Copyright: 2006-2011, Nokia Corporation
+  2004-2011, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: tools/bccmd.c
+  tools/bdaddr.c
+  tools/ciptool.c
+  tools/csr.c
+  tools/csr.h
+  tools/csr_3wire.c
+  tools/csr_bcsp.c
+  tools/csr_h4.c
+  tools/csr_hci.c
+  tools/csr_usb.c
+  tools/hciattach.h
+  tools/hciattach_st.c
+  tools/hciattach_tialt.c
+  tools/hcieventmask.c
+  tools/hwdb.c
+  tools/mpris-proxy.c
+  tools/rfcomm.c
+Copyright: 2002-2012, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: tools/bneptest.c
+  tools/hex2hcd.c
+  tools/mcaptest.c
+  tools/nokfw.c
+  tools/seq2bseq.c
+Copyright: 2011-2015, Intel Corporation
+License: GPL-2+
+
+Files: tools/btgatt-client.c
+  tools/btgatt-server.c
+Copyright: 2012, 2014, 2015, Google Inc.
+License: GPL-2+
+
+Files: tools/gatt-service.c
+Copyright: 2010, 2014, Instituto Nokia de Tecnologia - INdT
+License: GPL-2+
+
+Files: tools/hciattach.c
+  tools/hciconfig.c
+  tools/hcitool.c
+  tools/l2ping.c
+  tools/l2test.c
+Copyright: 2002-2010, Marcel Holtmann <marcel@holtmann.org>
+  2002, 2003, Maxim Krasnyansky <maxk@qualcomm.com>
+  2000, 2001, Qualcomm Incorporated
+License: GPL-2+
+
+Files: tools/hciattach_ath3k.c
+Copyright: 2009, 2010, Atheros Communications Inc.
+License: GPL-2+
+
+Files: tools/hciattach_qualcomm.c
+Copyright: 2010, Code Aurora Forum.
+  2005-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: tools/hciattach_ti.c
+Copyright: 2007, 2008, Texas Instruments, Inc.
+  2005-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: tools/hcidump.c
+  tools/hcisecfilter.c
+  tools/rctest.c
+  tools/scotest.c
+Copyright: 2002-2011, Marcel Holtmann <marcel@holtmann.org>
+  2000-2003, Maxim Krasnyansky <maxk@qualcomm.com>
+License: GPL-2+
+
+Files: tools/hid2hci.c
+Copyright: 2009-2011, Kay Sievers <kay.sievers@vrfy.org>
+  2008, 2009, Mario Limonciello <mario_limonciello@dell.com>
+  2003-2010, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: tools/obex-client-tool.c
+  tools/obex-server-tool.c
+Copyright: 2008-2011, Intel Corporation.
+License: GPL-2
+
+Files: tools/parser/*
+Copyright: 2002-2012, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: tools/parser/amp.c
+  tools/parser/avrcp.c
+  tools/parser/smp.c
+Copyright: 2008-2015, Intel Corporation.
+License: GPL-2+
+
+Files: tools/parser/att.c
+Copyright: 2011, André Dieb Martins <andre.dieb@gmail.com>
+License: GPL-2+
+
+Files: tools/parser/bnep.c
+Copyright: 2003-2011, Marcel Holtmann <marcel@holtmann.org>
+  2002, 2003, Takashi Sasai <sasai@sm.sony.co.jp>
+License: GPL-2+
+
+Files: tools/parser/hci.c
+  tools/parser/l2cap.c
+  tools/parser/l2cap.h
+  tools/parser/parser.c
+  tools/parser/parser.h
+Copyright: 2002-2011, Marcel Holtmann <marcel@holtmann.org>
+  2000-2003, Maxim Krasnyansky <maxk@qualcomm.com>
+License: GPL-2+
+
+Files: tools/parser/rfcomm.c
+  tools/parser/rfcomm.h
+Copyright: 2003-2011, Marcel Holtmann <marcel@holtmann.org>
+  2001, 2002, Wayne Lee <waynelee@qualcomm.com>
+License: GPL-2+
+
+Files: tools/parser/sap.c
+Copyright: 2012, 2013, Tieto Poland
+License: GPL-2+
+
+Files: tools/parser/sdp.c
+  tools/parser/sdp.h
+Copyright: 2003-2011, Marcel Holtmann <marcel@holtmann.org>
+  2001, 2002, Ricky Yuen <ryuen@qualcomm.com>
+License: GPL-2+
+
+Files: tools/sdptool.c
+Copyright: 2002-2010, Marcel Holtmann <marcel@holtmann.org>
+  2002, 2003, Stephen Crane <steve.crane@rococosoft.com>
+  2002, 2003, Maxim Krasnyansky <maxk@qualcomm.com>
+  2002, 2003, Jean Tourrilhes <jt@hpl.hp.com>
+  2001, 2002, Nokia Corporation
+License: GPL-2+
+
+Files: tools/test-runner.c
+Copyright: 2012-2016, Intel Corporation.
+License: LGPL-2.1+
+
+Files: tools/ubcsp.c
+  tools/ubcsp.h
+Copyright: 2000-2005, CSR Ltd.
+License: Expat
+
+Files: unit/test-crc.c
+  unit/test-crypto.c
+  unit/test-eir.c
+  unit/test-gdbus-client.c
+  unit/test-uuid.c
+Copyright: 2011-2015, Intel Corporation
+License: GPL-2+
+
+Files: unit/test-ecc.c
+Copyright: 2013, Kenneth MacKay
+License: BSD-2-clause
+
+Files: unit/test-gattrib.c
+Copyright: 2014, Google, Inc.
+License: GPL-2+
+
+Files: unit/test-lib.c
+Copyright: 2013, Intel Corporation.
+  2013, Instituto Nokia de Tecnologia - INdT
+License: GPL-2+
+
+Files: unit/test-textfile.c
+Copyright: 2002-2012, Marcel Holtmann <marcel@holtmann.org>
+License: GPL-2+
+
+Files: unit/util.c
+  unit/util.h
+Copyright: 2008-2011, Intel Corporation.
+License: GPL-2
+
+Files: debian/*
+Copyright: Edd Dumbill <edd@usefulinc.com>
+  Andrea Veri <andrea.veri89@gmail.com>
+  Filippo Giunchedi <filippo@debian.org>
+  Baptiste Mille-Mathias <baptiste.millemathias@gmail.com>
+  Mario Limonciello <mario_limonciello@dell.com>
+  Scott James Remnant <scott@ubuntu.com>
+  Nobuhiro Iwamatsu <iwamatsu@debian.org>
+License: GPL-2+
+
+License: Apache-2.0
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS"BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian systems, the complete text of the Apache License,
+ Version 2.0 can be found in '/usr/share/common-licenses/Apache-2.0'.
+
+License: BSD-2-clause
+ Please fill license BSD-2-clause from header of src/shared/ecc.c src/shared/ecc.h
+
+License: Expat
+ The MIT License
+ .
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated
+ documentation files (the "Software"), to deal in the Software
+ without restriction, including without limitation the rights to
+ use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to
+ whom the Software is furnished to do so, subject to the
+ following conditions:
+ .
+ The above copyright notice and this permission notice shall
+ be included in all copies or substantial portions of the
+ Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
+ WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ PURPOSE AND NONINFRINGEMENT. IN NO EVENT
+ SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+
+License: GPL-2
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 dated June, 1991.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 dated June, 1991, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+License: LGPL-2.1+
+ This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU Lesser General Public License as published by the
+ Free Software Foundation; version 2.1 of the License, or (at
+ your option) any later version.
+ .
+ On Debian systems, the complete text of version 2.1 of the GNU Lesser
+ General Public License can be found in `/usr/share/common-licenses/LGPL-2.1'.

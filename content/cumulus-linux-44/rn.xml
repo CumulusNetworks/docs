@@ -7,25 +7,33 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3110735</td>
+<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
+<td>4.4.2-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3110729</td>
+<td>When you change the time with NTP or manually, the clagd service stops.</td>
+<td>4.4.3, 5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3107615</td>
+<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
+
+To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
-<td>3096918</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3093863</td>
-<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
-<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3091561</td>
+<td>3091560</td>
 <td>CVE-2022-24903: rsyslog modules for TCP syslog eception have a potential heap buffer overflow when octet-counted framing is used.  Modules &apos;imtcp&apos;, &apos;imptcp&apos;, &apos;imgssapi&apos;, and &apos;imhttp&apos; are used for regular syslog message reception. It is best practice not to directly expose them to the public. When this practice is followed, the risk is considerably lower. Module &apos;imdiag&apos; is a diagnostics module primarily intended for testbench runs. We do not expect it to be present on any production installation. Octet-counted framing is not very common. Usually, it needs to be specifically enabled at senders. If users do not need it, they can turn it off for the most important modules. This will mitigate the vulnerability.
 Vulnerable: &lt;= 8.1901.0-1+deb10u1
 Fixed: 8.1901.0-1+deb10u2</td>
@@ -45,7 +53,7 @@ Fixed: 8.1901.0-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>3085280</td>
+<td>3085279</td>
 <td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
 system may result in privilege escalation.
 Vulnerable: &lt;= 2.2.10-6+deb10u5
@@ -54,13 +62,19 @@ Fixed: 2.2.10-6+deb10u6</td>
 <td></td>
 </tr>
 <tr>
+<td>3083265</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
+<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3082583</td>
-<td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
+<td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3082555</td>
+<td>3082554</td>
 <td>CVE-2022-29824: several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. 
 Vulnerable: &lt;= 2.9.4+dfsg1-7+deb10u3
 Fixed: 2.9.4+dfsg1-7+deb10u4</td>
@@ -89,7 +103,7 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
-<td>3077723</td>
+<td>3077722</td>
 <td>CVE-2022-29155: In OpenLDAP 2.x before 2.5.12 and 2.6.x before 2.6.2, a SQL injection vulnerability exists in the experimental back-sql backend to slapd, via a SQL statement within an LDAP query. This can occur during an LDAP search operation when the search filter is processed, due to a lack of proper escaping.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u6
 Fixed: 2.4.47+dfsg-3+deb10u7</td>
@@ -97,7 +111,7 @@ Fixed: 2.4.47+dfsg-3+deb10u7</td>
 <td></td>
 </tr>
 <tr>
-<td>3077694</td>
+<td>3077693</td>
 <td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to
 prevent command injection.
 Vulnerable: &lt;= 1.1.1n-0+deb10u1
@@ -137,13 +151,6 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td></td>
 </tr>
 <tr>
-<td>3060400</td>
-<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
-To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
-<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3060399</td>
 <td>When you add an interface to a layer 3 bond, traffic does not forward and you see errors similar to the following:
 
@@ -153,25 +160,32 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
+<td>3059135</td>
+<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3053197</td>
+<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3046023</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3041307</td>
+<td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3040080</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3031235</td>
+<td>3031228</td>
 <td>Static VXLAN configuration prevents NCLU from working.</td>
 <td>4.3.0-4.4.3</td>
 <td></td>
@@ -189,14 +203,14 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
-<td>3021897</td>
-<td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
-<td>4.4.3-5.0.1</td>
+<td>3021887</td>
+<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
+<td>4.4.2-5.0.1</td>
 <td>5.1.0</td>
 </tr>
 <tr>
 <td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
+<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -208,14 +222,9 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3021698</td>
-<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
+<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.
+To work around this issue, restart {{switchd}} with the {{sudo systemctl restart switchd.service}} command.</td>
 <td>4.4.2-5.0.1</td>
-<td>5.1.0</td>
-</tr>
-<tr>
-<td>3021696</td>
-<td>When you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
-<td>4.4.0-5.0.1</td>
 <td>5.1.0</td>
 </tr>
 <tr>
@@ -231,10 +240,16 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
-<td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>3018159</td>
+<td>After you remove the port from the EVPN-MH bond, the port stays in the PRTDN state with the {{protodown}} flag ON.</td>
+<td>4.4.3-5.0.1</td>
+<td>5.1.0</td>
+</tr>
+<tr>
+<td>3017180</td>
+<td>When you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
+<td>4.4.0-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3017044</td>
@@ -296,16 +311,10 @@ Fixed:</td>
 <td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2991501</td>
@@ -416,12 +425,6 @@ Fixed:</td>
 <td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2935122</td>
-<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.3</td>
-<td>5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2933466</td>
 <td>You cannot run NVUE commands to configure route leaking. 
 To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
@@ -431,8 +434,8 @@ To work around this issue, create a snippet in yaml format and add the configura
 <tr>
 <td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.3</td>
-<td>3.7.16</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2923737</td>
@@ -482,16 +485,10 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2896672</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>4.3.0-4.4.3</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
+<td></td>
 </tr>
 <tr>
 <td>2875301</td>
@@ -505,18 +502,6 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-4.4.3</td>
-<td>5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -548,12 +533,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -630,6 +609,15 @@ To work around this issue, configure an anycast IP address under the loopback in
 <td>5.0.0-5.1.0</td>
 </tr>
 <tr>
+<td>2838905</td>
+<td>On Broadcom ARM switches, the NTP clock slowly drifts to a very high offset (over 500ms) and the clock is not able to synchronize. 
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.
+
+Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Network-Solutions/Chrony-on-Cumulus-Linux/</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>2837378</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
@@ -640,6 +628,29 @@ To work around this issue, configure an anycast IP address under the loopback in
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
 <td>3.7.15, 4.3.0-4.4.3</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2821869</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15-4.4.3</td>
+<td>5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2820565</td>
@@ -667,6 +678,16 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0-5.0.1</td>
 <td>3.7.16, 5.1.0</td>
+</tr>
+<tr>
+<td>2804044</td>
+<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
+
+kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
+kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
+</td>
+<td>4.4.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2803044</td>
@@ -741,12 +762,6 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <td>When you use the NVUE {{nv set vrf default router bgp peer &lt;peer&gt; local-as asn &lt;asn&gt;}} command to configure a local AS, Cumulus Linux does not update the {{etc/frr/frr.conf}} file.</td>
 <td>4.4.0-4.4.3</td>
 <td>5.0.0-5.1.0</td>
-</tr>
-<tr>
-<td>2770226</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.15, 4.3.0-4.4.3</td>
-<td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2770030</td>
@@ -826,6 +841,18 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <td>The bridge MAC address is updated during a port change on bridge interfaces.</td>
 <td>4.3.0-4.4.3</td>
 <td>5.0.0-5.1.0</td>
+</tr>
+<tr>
+<td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2728119</td>
@@ -977,8 +1004,8 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15, 4.3.0-4.4.3</td>
-<td>3.7.16</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2639303</td>
@@ -1020,12 +1047,6 @@ To recover from this state, flap the bond interface (not the physical swp) by ru
 To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
 <td>4.4.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>2556811</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.3</td>
-<td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2556591</td>
@@ -2090,25 +2111,27 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3110735</td>
+<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
+<td>4.4.2-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3107615</td>
+<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
+
+To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
-<td>3096918</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3093863</td>
-<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
-<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3091561</td>
+<td>3091560</td>
 <td>CVE-2022-24903: rsyslog modules for TCP syslog eception have a potential heap buffer overflow when octet-counted framing is used.  Modules &apos;imtcp&apos;, &apos;imptcp&apos;, &apos;imgssapi&apos;, and &apos;imhttp&apos; are used for regular syslog message reception. It is best practice not to directly expose them to the public. When this practice is followed, the risk is considerably lower. Module &apos;imdiag&apos; is a diagnostics module primarily intended for testbench runs. We do not expect it to be present on any production installation. Octet-counted framing is not very common. Usually, it needs to be specifically enabled at senders. If users do not need it, they can turn it off for the most important modules. This will mitigate the vulnerability.
 Vulnerable: &lt;= 8.1901.0-1+deb10u1
 Fixed: 8.1901.0-1+deb10u2</td>
@@ -2122,7 +2145,7 @@ Fixed: 8.1901.0-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>3085280</td>
+<td>3085279</td>
 <td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
 system may result in privilege escalation.
 Vulnerable: &lt;= 2.2.10-6+deb10u5
@@ -2131,13 +2154,19 @@ Fixed: 2.2.10-6+deb10u6</td>
 <td></td>
 </tr>
 <tr>
+<td>3083265</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
+<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3082583</td>
-<td>On the NVIDIA SN3420, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
+<td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3082555</td>
+<td>3082554</td>
 <td>CVE-2022-29824: several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. 
 Vulnerable: &lt;= 2.9.4+dfsg1-7+deb10u3
 Fixed: 2.9.4+dfsg1-7+deb10u4</td>
@@ -2166,7 +2195,7 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
-<td>3077723</td>
+<td>3077722</td>
 <td>CVE-2022-29155: In OpenLDAP 2.x before 2.5.12 and 2.6.x before 2.6.2, a SQL injection vulnerability exists in the experimental back-sql backend to slapd, via a SQL statement within an LDAP query. This can occur during an LDAP search operation when the search filter is processed, due to a lack of proper escaping.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u6
 Fixed: 2.4.47+dfsg-3+deb10u7</td>
@@ -2174,7 +2203,7 @@ Fixed: 2.4.47+dfsg-3+deb10u7</td>
 <td></td>
 </tr>
 <tr>
-<td>3077694</td>
+<td>3077693</td>
 <td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to
 prevent command injection.
 Vulnerable: &lt;= 1.1.1n-0+deb10u1
@@ -2208,13 +2237,6 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td></td>
 </tr>
 <tr>
-<td>3060400</td>
-<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
-To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
-<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3060399</td>
 <td>When you add an interface to a layer 3 bond, traffic does not forward and you see errors similar to the following:
 
@@ -2224,32 +2246,45 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
+<td>3059135</td>
+<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3053197</td>
+<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3046023</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3041307</td>
+<td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3040080</td>
-<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3031235</td>
+<td>3031228</td>
 <td>Static VXLAN configuration prevents NCLU from working.</td>
 <td>4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
+<td>3021887</td>
+<td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0</td>
+</tr>
+<tr>
 <td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.</td>
+<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -2261,14 +2296,9 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3021698</td>
-<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.</td>
+<td>After you convert a port from a layer 2 bond member to a layer 3 port, the switch drops transmitted untagged packets as egress VLAN membership discards.
+To work around this issue, restart {{switchd}} with the {{sudo systemctl restart switchd.service}} command.</td>
 <td>4.4.2-5.0.1</td>
-<td>5.1.0</td>
-</tr>
-<tr>
-<td>3021696</td>
-<td>When you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
-<td>4.4.0-5.0.1</td>
 <td>5.1.0</td>
 </tr>
 <tr>
@@ -2284,10 +2314,10 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
-<td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>3017180</td>
+<td>When you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
+<td>4.4.0-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3017044</td>
@@ -2341,12 +2371,6 @@ Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-5.0.1</td>
 <td>3.7.16, 5.1.0</td>
-</tr>
-<tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2993471</td>
@@ -2507,12 +2531,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2935122</td>
-<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2933466</td>
 <td>You cannot run NVUE commands to configure route leaking. 
 To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
@@ -2581,12 +2599,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2896672</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -2600,29 +2612,10 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td></td>
 </tr>
 <tr>
-<td>2875296</td>
-<td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -2654,12 +2647,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -2734,6 +2721,15 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 To work around this issue, configure an anycast IP address under the loopback interface on both switches in the MLAG pair.</td>
 <td>4.4.2-4.4.3</td>
 <td>5.0.0-5.1.0</td>
+</tr>
+<tr>
+<td>2838905</td>
+<td>On Broadcom ARM switches, the NTP clock slowly drifts to a very high offset (over 500ms) and the clock is not able to synchronize. 
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.
+
+Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Network-Solutions/Chrony-on-Cumulus-Linux/</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2837378</td>
@@ -3117,13 +3113,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td>2654804</td>
 <td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2653493</td>
-<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -4413,25 +4402,21 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3107615</td>
+<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
+
+To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
-<td>3096918</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3093863</td>
-<td>Slow memory leak caused by snmpd process using Zabbix template "Template Net Mellanox SNMP"</td>
-<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3091561</td>
+<td>3091560</td>
 <td>CVE-2022-24903: rsyslog modules for TCP syslog eception have a potential heap buffer overflow when octet-counted framing is used.  Modules &apos;imtcp&apos;, &apos;imptcp&apos;, &apos;imgssapi&apos;, and &apos;imhttp&apos; are used for regular syslog message reception. It is best practice not to directly expose them to the public. When this practice is followed, the risk is considerably lower. Module &apos;imdiag&apos; is a diagnostics module primarily intended for testbench runs. We do not expect it to be present on any production installation. Octet-counted framing is not very common. Usually, it needs to be specifically enabled at senders. If users do not need it, they can turn it off for the most important modules. This will mitigate the vulnerability.
 Vulnerable: &lt;= 8.1901.0-1+deb10u1
 Fixed: 8.1901.0-1+deb10u2</td>
@@ -4445,7 +4430,7 @@ Fixed: 8.1901.0-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>3085280</td>
+<td>3085279</td>
 <td>CVE-2022-26691: in cups, a logic error in the validation of the secret key used in the "local" authorisation mode of the CUPS printing
 system may result in privilege escalation.
 Vulnerable: &lt;= 2.2.10-6+deb10u5
@@ -4454,7 +4439,13 @@ Fixed: 2.2.10-6+deb10u6</td>
 <td></td>
 </tr>
 <tr>
-<td>3082555</td>
+<td>3083265</td>
+<td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
+<td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3082554</td>
 <td>CVE-2022-29824: several buffer handling functions in buf.c (xmlBuf*) and tree.c (xmlBuffer*) don't check for integer overflows. This can result in out-of-bounds memory writes. Exploitation requires a victim to open a crafted, multi-gigabyte XML file. 
 Vulnerable: &lt;= 2.9.4+dfsg1-7+deb10u3
 Fixed: 2.9.4+dfsg1-7+deb10u4</td>
@@ -4483,7 +4474,7 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td></td>
 </tr>
 <tr>
-<td>3077723</td>
+<td>3077722</td>
 <td>CVE-2022-29155: In OpenLDAP 2.x before 2.5.12 and 2.6.x before 2.6.2, a SQL injection vulnerability exists in the experimental back-sql backend to slapd, via a SQL statement within an LDAP query. This can occur during an LDAP search operation when the search filter is processed, due to a lack of proper escaping.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u6
 Fixed: 2.4.47+dfsg-3+deb10u7</td>
@@ -4491,7 +4482,7 @@ Fixed: 2.4.47+dfsg-3+deb10u7</td>
 <td></td>
 </tr>
 <tr>
-<td>3077694</td>
+<td>3077693</td>
 <td>CVE-2022-1292: The c_rehash script does not properly sanitise shell metacharacters to
 prevent command injection.
 Vulnerable: &lt;= 1.1.1n-0+deb10u1
@@ -4525,10 +4516,16 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td></td>
 </tr>
 <tr>
-<td>3060400</td>
+<td>3059135</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3053197</td>
+<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4538,22 +4535,16 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
-<td>3041307</td>
+<td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3031235</td>
+<td>3031228</td>
 <td>Static VXLAN configuration prevents NCLU from working.</td>
 <td>4.3.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>3021696</td>
-<td>When you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
-<td>4.4.0-5.0.1</td>
-<td>5.1.0</td>
 </tr>
 <tr>
 <td>3021693</td>
@@ -4568,10 +4559,10 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
-<td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td></td>
+<td>3017180</td>
+<td>When you run the {{/usr/share/snmp/resq_pp.py}} script used by SNMP, you see the following log message in syslog regardless of the forwarding table profile set in the {{/etc/cumulus/datapath/traffic.conf}} file.</td>
+<td>4.4.0-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3017044</td>
@@ -4634,12 +4625,6 @@ Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4
 Fixed:</td>
 <td>3.7.0-3.7.15, 4.0.0-5.0.1</td>
 <td>3.7.16, 5.1.0</td>
-</tr>
-<tr>
-<td>2993773</td>
-<td>When a VNI goes into a protodown state, MLAG updates the VTEP IP address, which results in {{switchd}} changing the tunnel SIP in hardware.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2993471</td>
@@ -4776,12 +4761,6 @@ Fixed: 2:3.42.1-1+deb10u5</td>
 <td>3.7.16, 5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2935122</td>
-<td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2933466</td>
 <td>You cannot run NVUE commands to configure route leaking. 
 To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
@@ -4856,12 +4835,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2896672</td>
-<td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
-<td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2895333</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.1, 5.0.0-5.1.0</td>
@@ -4911,13 +4884,6 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td></td>
 </tr>
 <tr>
-<td>2875296</td>
-<td>On the Mellanox Spectrum-2 switches, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -4930,22 +4896,10 @@ To work around this issue, run the {{ifreload -a}} command to restart networking
 <td>5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2873185</td>
-<td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over the peer link during {{ifreload}} when you add new VLANS or bridges. </td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
 <td>2867156</td>
 <td>TACACS+ client package installation from the CumulusLinux-4.4-latest distribution on apt.cumulusnetworks.com fails because package metadata in the preinstalled {{cumulus-local-apt-archive}} package is incorrect, which causes a hash sum mismatch.</td>
 <td>4.4.0-4.4.1</td>
 <td>4.4.2-4.4.3</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.16, 4.1.1-4.4.3</td>
-<td></td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -4977,12 +4931,6 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
 <td>2866080</td>
 <td>On the Maverick S4148T switch with MLAG, Cumulus Linux drops LACP, ARP, LLDP and BGP traffic.</td>
 <td>4.3.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2862214</td>
-<td>{{switchd}} can leak memory leak during VXLAN route updates during high frequency.</td>
-<td>3.7.14.2-3.7.16, 4.3.0-4.4.3</td>
 <td></td>
 </tr>
 <tr>
@@ -5040,7 +4988,7 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>2854784</td>
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
-<td>4.4.2-4.4.3</td>
+<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2853630</td>
@@ -5129,6 +5077,15 @@ Fixed: crash 7.2.8-1+cl5.0.0u6</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
 <td>4.0.0-4.4.3</td>
 <td>5.0.0-5.1.0</td>
+</tr>
+<tr>
+<td>2838905</td>
+<td>On Broadcom ARM switches, the NTP clock slowly drifts to a very high offset (over 500ms) and the clock is not able to synchronize. 
+To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.
+
+Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Network-Solutions/Chrony-on-Cumulus-Linux/</td>
+<td>4.3.0-4.4.3</td>
+<td></td>
 </tr>
 <tr>
 <td>2837378</td>
@@ -5645,13 +5602,6 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <td>2654804</td>
 <td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
 <td>4.4.0-4.4.3</td>
-<td></td>
-</tr>
-<tr>
-<td>2653493</td>
-<td>After running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports.
-To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
-<td>4.2.1-4.4.3</td>
 <td></td>
 </tr>
 <tr>

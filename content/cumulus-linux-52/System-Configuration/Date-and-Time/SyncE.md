@@ -41,13 +41,13 @@ cumulus@switch:~$ nv config apply
 
 You can specify the ITU-T QL for the switch. You can specify one of the following values. The default is `option 1`.
 - `option 1` includes PRC, SSU-A, SSU-B, SEC and DNU.
-- `option 2 generation 1` includes PRS, STU, ST2, ST3, SMC, ST4, RES and DUS.
-- `option 2 generation 2` includes PRS, STU, ST2, ST3, TNC, ST3E, SMC, ST4, PROV and DUS.
+- `option 2` includes PRS, STU, ST2, ST3, SMC, ST4, RES and DUS.
+- `option 3` includes PRS, STU, ST2, ST3, TNC, ST3E, SMC, ST4, PROV and DUS.
 
-The following command example sets the QL for the switch to `option 2 generation 1`:
+The following command example sets the QL for the switch to `option 2`:
 
 ```
-cumulus@switch:~$ nv set synce network-type option 2 generation 1
+cumulus@switch:~$ nv set synce network-type option 2
 cumulus@switch:~$ nv config apply
 ```
 

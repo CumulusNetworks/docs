@@ -1,0 +1,1 @@
+libx32quadmath0 has no copyright file

@@ -76,7 +76,7 @@ If you are using a load balancer in your deployment, we recommend you install th
 
 ## Where to Go Next
 
-When you're ready to install NetQ, visit the {{<link title="Install the NetQ System" text="installation matrix">}} and follow the instructions for your deployment type.
+After you've decided on your deployment type, you're ready to {{<link title="Install the NetQ System" text="install NetQ">}}.
 
 
 <!---

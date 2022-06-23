@@ -11,6 +11,10 @@ This document supports the Cumulus Linux 4.4 release, and lists new platforms an
 - To upgrade to Cumulus Linux 4.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 
 <!-- vale off -->
+## What's New in Cumulus Linux 4.4.4
+<!-- vale on -->
+Cumulus Linux 4.4.4 provides bug fixes.
+<!-- vale off -->
 ## What's New in Cumulus Linux 4.4.3
 <!-- vale on -->
 Cumulus Linux 4.4.3 provides bug fixes.

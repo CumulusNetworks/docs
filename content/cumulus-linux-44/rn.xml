@@ -15,8 +15,8 @@
 <tr>
 <td>3110729</td>
 <td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3, 5.0.1-5.1.0</td>
-<td></td>
+<td>4.4.3-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3107615</td>
@@ -195,12 +195,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>Static VXLAN configuration prevents NCLU from working.</td>
 <td>4.3.0-4.4.3</td>
 <td></td>
-</tr>
-<tr>
-<td>3030238</td>
-<td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3-5.0.1</td>
-<td>5.1.0</td>
 </tr>
 <tr>
 <td>3023256</td>

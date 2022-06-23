@@ -1,12 +1,8 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: cumulus-overrides
-Source: https://www.cumulusnetworks.com
-Disclaimer: Not part of Debian distributions.
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: cumulus-tools
+Source: http://www.cumulusnetworks.com
 
-Files: *
-Copyright: 2013 Cumulus Networks
-           2014, 2015, 2016, 2017, 2018, 2019, 2020 Cumulus Networks, Inc.
-License: Cumulus Networks Proprietary
+License: NVIDIA Cumulus Networks Proprietary
  All Rights reserved.
  .
  The Cumulus Networks End User License Agreement can be found at the
@@ -15,9 +11,6 @@ License: Cumulus Networks Proprietary
  Internet: https://cumulusnetworks.com/downloads/eula/latest/view/
  Cumulus Linux systems: /usr/share/cumulus/EULA.txt
 
-Files: debian/*
-Copyright: 2013 Cumulus Networks
-           2014, 2015, 2016, 2017, 2018, 2019, 2020 Cumulus Networks, Inc.
 License: GPL-2
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -34,3 +27,13 @@ License: GPL-2
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
 
+
+Files: *
+Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
+Copyright: 2013, 2014, 2015, 2016, 2017, 2018, 2019 Cumulus Networks, Inc.
+License: NVIDIA Cumulus Networks Proprietary
+
+Files: debian/*
+Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
+Copyright: 2013, 2014, 2015, 2016, 2017, 2018, 2019 Cumulus Networks, Inc.
+License: GPL-2

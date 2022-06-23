@@ -3,10 +3,12 @@ Upstream-Name: rdneighd
 Source: http://www.cumulusnetworks.com
 
 Files: *
+Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2014 Cumulus Networks
 License: GPL-2
 
 Files: debian/*
+Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2014 Cumulus Networks
 License: GPL-2
  This package is free software; you can redistribute it and/or modify

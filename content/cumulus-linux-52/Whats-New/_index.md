@@ -21,15 +21,15 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Features and Enhancements
 
-- {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP profiles">}}: ITU-T G.8275.1 and ITU-T G.8275.2
+- {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 profile">}}
 - {{<link url="SyncE" text="SyncE">}}
+- ZTP over front panel ports
 - `cl-support` file includes WJH event collection
 - ECMP performance improvements
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - Abbreviated commands
   - Tab completion shows the TYPE associated with valid values
   - Tab completion for `nv set` commands indicates if you can create a new instance
-  - PTP unicast command
   - {{< expand "New NVUE commands" >}}
   
 ```

@@ -152,12 +152,12 @@ Get an existing account
 
 **Returns**:
 
-  [`Account`](/docs/account)
+  [`Account`](#account)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -186,7 +186,7 @@ List existing accounts
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -268,7 +268,7 @@ Gets a new bearer token for a given username and password
 
 **Raises**:
 
-  - [`AirAuthorizationError`](/docs/exceptions) - API did not return a token
+  - [`AirAuthorizationError`](#airerror) - API did not return a token
   - `JSONDecodeError` - API's response is not a valid JSON object
 
 <a name="air_sdk.air_api.AirApi.get"></a>
@@ -314,7 +314,7 @@ High-level interface for the Simulation API
 <a name="air_sdk.capacity.CapacityApi.get"></a>
 ### get
 
-Get current platform capacity for a [`Simulation`](/docs/simulation)
+Get current platform capacity for a [`Simulation`](#simulation)
 
 **Arguments**:
 
@@ -323,12 +323,12 @@ Get current platform capacity for a [`Simulation`](/docs/simulation)
 
 **Returns**:
 
-  [`Capacity`](/docs/capacity)
+  [`Capacity`](#capacity)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -367,12 +367,12 @@ Get an existing demo
 
 **Returns**:
 
-  [`Demo`](/docs/demo)
+  [`Demo`](#demo)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -401,7 +401,7 @@ List existing demos
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -443,11 +443,11 @@ Manage an image
 
 ### delete
 Delete the image. Once successful, the object should no longer be used and will raise
-[`AirDeletedObject`](/docs/exceptions) when referenced.
+[`AirDeletedObject`](#airerror) when referenced.
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Delete failed
+  [`AirUnexpectedresponse`](#airerror) - Delete failed
   
   ### json
   Returns a JSON string representation of the image
@@ -476,7 +476,7 @@ Upload an image file
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Upload failed
+  [`AirUnexpectedresponse`](#airerror) - Upload failed
 
 <a name="air_sdk.image.ImageApi"></a>
 ## ImageApi
@@ -497,12 +497,12 @@ Get an existing image
 
 **Returns**:
 
-  [`Image`](/docs/image)
+  [`Image`](#image)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -531,7 +531,7 @@ List existing images
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -558,12 +558,12 @@ Create a new image
 
 **Returns**:
 
-  [`Image`](/docs/image)
+  [`Image`](#image)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -605,12 +605,12 @@ Get an existing interface
 
 **Returns**:
 
-  [`Interface`](/docs/interface)
+  [`Interface`](#interface)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -639,7 +639,7 @@ List existing interfaces
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -690,12 +690,12 @@ Get an existing simulation interface
 
 **Returns**:
 
-  [`SimulationInterface`](/docs/simulationinterface)
+  [`SimulationInterface`](#simulationinterface)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -724,7 +724,7 @@ List existing simulation interfaces
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -775,12 +775,12 @@ Get an existing job
 
 **Returns**:
 
-  [`Job`](/docs/job)
+  [`Job`](#job)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -809,7 +809,7 @@ List existing jobs
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -828,11 +828,11 @@ Manage a link
 
 ### delete
 Delete the link. Once successful, the object should no longer be used and will raise
-[`AirDeletedObject`](/docs/exceptions) when referenced.
+[`AirDeletedObject`](#airerror) when referenced.
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Delete failed
+  [`AirUnexpectedresponse`](#airerror) - Delete failed
   
   ### json
   Returns a JSON string representation of the link
@@ -868,12 +868,12 @@ Get an existing link
 
 **Returns**:
 
-  [`Link`](/docs/link)
+  [`Link`](#link)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -902,7 +902,7 @@ List existing links
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -928,12 +928,12 @@ Create a new link
 
 **Returns**:
 
-  [`Link`](/docs/link)
+  [`Link`](#link)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -973,12 +973,12 @@ Get login information or start an OAuth request. This is equivalent to `login.li
 
 **Returns**:
 
-  [`Login`](/docs/login)
+  [`Login`](#login)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1002,12 +1002,12 @@ Get login information or start an OAuth request. This is equivalent to `login.ge
 
 **Returns**:
 
-  [`Login`](/docs/login)
+  [`Login`](#login)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1047,12 +1047,12 @@ Get an existing Marketplace Demo
 
 **Returns**:
 
-  [`Marketplace`](/docs/marketplace)
+  [`Marketplace`](#marketplace)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1081,7 +1081,7 @@ List existing Marketplace demos
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1099,11 +1099,11 @@ Manage a node
 
 ### delete
 Delete the node. Once successful, the object should no longer be used and will raise
-[`AirDeletedObject`](/docs/exceptions) when referenced.
+[`AirDeletedObject`](#airerror) when referenced.
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Delete failed
+  [`AirUnexpectedresponse`](#airerror) - Delete failed
   
   ### json
   Returns a JSON string representation of the node
@@ -1139,12 +1139,12 @@ Get an existing node
 
 **Returns**:
 
-  [`Node`](/docs/node)
+  [`Node`](#node)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1173,7 +1173,7 @@ List existing nodes
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1199,12 +1199,12 @@ Create a new node
 
 **Returns**:
 
-  [`Node`](/docs/node)
+  [`Node`](#node)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1254,7 +1254,7 @@ Create instructions for the `SimulationNode`'s agent to execute
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1283,7 +1283,7 @@ List all instructions for a `SimulationNode`
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1301,7 +1301,7 @@ Delete all instructions for a `SimulationNode`
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Instruction delete failed
+  [`AirUnexpectedresponse`](#airerror) - Instruction delete failed
   
 
 **Example**:
@@ -1363,12 +1363,12 @@ Get an existing simulation node
 
 **Returns**:
 
-  [`SimulationNode`](/docs/simulationnode)
+  [`SimulationNode`](#simulationnode)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1397,7 +1397,7 @@ List existing simulation nodes
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1415,11 +1415,11 @@ Manage an organization
 
 ### delete
 Delete the organization. Once successful, the object should no longer be used and will raise
-[`AirDeletedObject`](/docs/exceptions) when referenced.
+[`AirDeletedObject`](#airerror) when referenced.
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Delete failed
+  [`AirUnexpectedresponse`](#airerror) - Delete failed
   
   ### json
   Returns a JSON string representation of the organization
@@ -1455,12 +1455,12 @@ Get an existing organization
 
 **Returns**:
 
-  [`Organization`](/docs/organization)
+  [`Organization`](#organization)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1489,7 +1489,7 @@ List existing organizations
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1508,19 +1508,19 @@ Create a new organization
 **Arguments**:
 
 - `name` _str_ - Organization name
-- `members` _list_ - List of member [`Account`](/docs/account) objects or IDs
+- `members` _list_ - List of member [`Account`](#account) objects or IDs
 - `kwargs` _dict, optional_ - All other optional keyword arguments are applied as key/value
   pairs in the request's JSON payload
   
 
 **Returns**:
 
-  [`Organization`](/docs/organization)
+  [`Organization`](#organization)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1538,11 +1538,11 @@ Manage a permission
 
 ### delete
 Delete the permission. Once successful, the object should no longer be used and will raise
-[`AirDeletedObject`](/docs/exceptions) when referenced.
+[`AirDeletedObject`](#airerror) when referenced.
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Delete failed
+  [`AirUnexpectedresponse`](#airerror) - Delete failed
   
   ### json
   Returns a JSON string representation of the permission
@@ -1581,12 +1581,12 @@ Create a new permission. The caller MUST provide `simulation`, `topology`, or `s
 
 **Returns**:
 
-  [`Permission`](/docs/permission)
+  [`Permission`](#permission)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1614,12 +1614,12 @@ Get an existing permission
 
 **Returns**:
 
-  [`Permission`](/docs/permission)
+  [`Permission`](#permission)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1648,7 +1648,7 @@ List existing permissions
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1666,11 +1666,11 @@ Manage a service
 
 ### delete
 Delete the service. Once successful, the object should no longer be used and will raise
-[`AirDeletedObject`](/docs/exceptions) when referenced.
+[`AirDeletedObject`](#airerror) when referenced.
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Delete failed
+  [`AirUnexpectedresponse`](#airerror) - Delete failed
   
   ### json
   Returns a JSON string representation of the service
@@ -1706,12 +1706,12 @@ Get an existing service
 
 **Returns**:
 
-  [`Service`](/docs/service)
+  [`Service`](#service)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1740,7 +1740,7 @@ List existing services
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1761,8 +1761,8 @@ Create a new service
 - `name` _str_ - Service name
 - `interface` _str | `SimulationInterface`_ - Interface that the service should be created
   for. This can be provided in one of the following formats:
-  - [`SimulationInterface`](/docs/simulationinterface) object
-  - ID of a [`SimulationInterface`](/docs/simulationinterface)
+  - [`SimulationInterface`](#simulationinterface) object
+  - ID of a [`SimulationInterface`](#simulationinterface)
   - String in the format of 'node_name:interface_name'
 - `simulation` _str | `Simulation`_ - `Simulation` or ID
 - `kwargs` _dict, optional_ - All other optional keyword arguments are applied as key/value
@@ -1771,12 +1771,12 @@ Create a new service
 
 **Returns**:
 
-  [`Service`](/docs/service)
+  [`Service`](#service)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1818,8 +1818,8 @@ Create a new service for this simulation
 - `name` _str_ - Name of the service
 - `interface` _str | `SimulationInterface`_ - Interface that the service should be created
   for. This can be provided in one of the following formats:
-  - [`SimulationInterface`](/docs/simulation-interface) object
-  - ID of a [`SimulationInterface`](/docs/simulation-interface)
+  - [`SimulationInterface`](#simulation-interface) object
+  - ID of a [`SimulationInterface`](#simulation-interface)
   - String in the format of 'node_name:interface_name'
 - `dest_port` _int_ - Service port number
 - `kwargs` _dict, optional_ - All other optional keyword arguments are applied as key/value
@@ -1828,7 +1828,7 @@ Create a new service for this simulation
 
 **Returns**:
 
-  [`Service`](/docs/service)
+  [`Service`](#service)
   
 
 **Example**:
@@ -1854,7 +1854,7 @@ Adds permission for a given user to this simulation.
 
 **Returns**:
 
-  [`Permission`](/docs/permission)
+  [`Permission`](#permission)
   
 
 **Example**:
@@ -1932,12 +1932,12 @@ Duplicate/clone an existing simulation
 
 **Returns**:
 
-  ([`Simulation`](/docs/simulation), dict): Newly created simulation and response JSON
+  ([`Simulation`](#simulation), dict): Newly created simulation and response JSON
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1955,12 +1955,12 @@ Get the active CITC reference simulation
 
 **Returns**:
 
-  [`Simulation`](/docs/simulation)
+  [`Simulation`](#simulation)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -1985,12 +1985,12 @@ Get an existing simulation
 
 **Returns**:
 
-  [`Simulation`](/docs/simulation)
+  [`Simulation`](#simulation)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2019,7 +2019,7 @@ List existing simulations
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2044,12 +2044,12 @@ Create a new simulation
 
 **Returns**:
 
-  [`Simulation`](/docs/simulation)
+  [`Simulation`](#simulation)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2098,12 +2098,12 @@ Get an existing simulation interface
 
 **Returns**:
 
-  [`SimulationInterface`](/docs/simulationinterface)
+  [`SimulationInterface`](#simulationinterface)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2132,7 +2132,7 @@ List existing simulation interfaces
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2182,7 +2182,7 @@ Create instructions for the `SimulationNode`'s agent to execute
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2211,7 +2211,7 @@ List all instructions for a `SimulationNode`
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2229,7 +2229,7 @@ Delete all instructions for a `SimulationNode`
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Instruction delete failed
+  [`AirUnexpectedresponse`](#airerror) - Instruction delete failed
   
 
 **Example**:
@@ -2291,12 +2291,12 @@ Get an existing simulation node
 
 **Returns**:
 
-  [`SimulationNode`](/docs/simulationnode)
+  [`SimulationNode`](#simulationnode)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2325,7 +2325,7 @@ List existing simulation nodes
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2343,11 +2343,11 @@ Manage an SSH key
 
 ### delete
 Delete the key. Once successful, the object should no longer be used and will raise
-[`AirDeletedObject`](/docs/exceptions) when referenced.
+[`AirDeletedObject`](#airerror) when referenced.
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Delete failed
+  [`AirUnexpectedresponse`](#airerror) - Delete failed
   
   ### json
   Returns a JSON string representation of the key
@@ -2378,7 +2378,7 @@ List existing keys
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2404,12 +2404,12 @@ Add a new public key to your account
 
 **Returns**:
 
-  [`SSHKey`](/docs/sshkey)
+  [`SSHKey`](#sshkey)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2449,7 +2449,7 @@ List existing tokens
 
 **Raises**:
 
-  [`AirUnexpectedResponse`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedResponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2474,12 +2474,12 @@ Add a new api token to your account
 
 **Returns**:
 
-  [`Token`](/docs/token)
+  [`Token`](#token)
   
 
 **Raises**:
 
-  [`AirUnexpectedResponse`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedResponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2508,7 +2508,7 @@ Delete the token
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Received an unexpected response 
+  [`AirUnexpectedresponse`](#airerror) - Received an unexpected response 
   from the Cumulus AIR API (404): {"detail":"Not found."}
   
 
@@ -2526,11 +2526,11 @@ Manage a topology
 
 ### delete
 Delete the topology. Once successful, the object should no longer be used and will raise
-[`AirDeletedObject`](/docs/exceptions) when referenced.
+[`AirDeletedObject`](#airerror) when referenced.
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - Delete failed
+  [`AirUnexpectedresponse`](#airerror) - Delete failed
   
   ### json
   Returns a JSON string representation of the topology
@@ -2561,7 +2561,7 @@ Adds permission for a given user to this topology.
 
 **Returns**:
 
-  [`Permission`](/docs/permission)
+  [`Permission`](#permission)
   
 
 **Example**:
@@ -2590,12 +2590,12 @@ Get an existing topology
 
 **Returns**:
 
-  [`Topology`](/docs/topology)
+  [`Topology`](#topology)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2624,7 +2624,7 @@ List existing topologies
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2650,12 +2650,12 @@ Create a new topology. The caller must provide either `dot` (recommended) or `js
 
 **Returns**:
 
-  [`Topology`](/docs/topology)
+  [`Topology`](#topology)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2717,12 +2717,12 @@ Get an existing worker
 
 **Returns**:
 
-  [`Worker`](/docs/worker)
+  [`Worker`](#worker)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2751,7 +2751,7 @@ List existing workers
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 
@@ -2782,12 +2782,12 @@ Create a new worker
 
 **Returns**:
 
-  [`Worker`](/docs/worker)
+  [`Worker`](#worker)
   
 
 **Raises**:
 
-  [`AirUnexpectedResposne`](/docs/exceptions) - API did not return a 200 OK
+  [`AirUnexpectedresponse`](#airerror) - API did not return a 200 OK
   or valid response JSON
   
 

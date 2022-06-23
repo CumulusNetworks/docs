@@ -5356,7 +5356,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set evpn route-advertise nexthop-setting
 
-<!--NEED Description -->
+Configures how to advertise type-5 routes. Each switch in an MLAG pair advertises type-5 routes with its own system IP address, which creates an additional next hop at the remote VTEPs. In a large multi-tenancy EVPN deployment, where additional resources are a concern, you can disable this feature. Set this command to `shared-ip-mac` if you do not want to advertise type-5 routes with the system IP address. Set this command to `system-ip-mac` to advertise type-5 routes with the system IP address.
 
 ### Usage
 
@@ -5364,7 +5364,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ### Default Setting
 
-N/A
+`system-ip-mac`
 
 ### Version History
 
@@ -5373,7 +5373,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set evpn route-advertise nexthop-setting system-ip-mac
+cumulus@leaf01:mgmt:~$ nv set evpn route-advertise nexthop-setting shared-ip-mac
 ```
 
 ## nv set evpn route-advertise svi-ip
@@ -5422,64 +5422,156 @@ cumulus@leaf01:mgmt:~$ nv set evpn route-advertise default-gateway on
 
 ## nv set evpn dad
 
-Configures EVPN duplicate address detection.
+Configures EVPN duplicate address detection. The VTEP considers a host MAC or IP address to be duplicate if the address moves across the network more than a certain number of times within a certain number of seconds. In addition to legitimate host or VM mobility scenarios, address movement can occur when you configure IP addresses incorrectly on a host or when packet looping occurs in the network due to faulty configuration or behavior.
 
 ### Usage
 
 `nv set evpn dad [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`duplicate-action` |    Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted |`upon.|
-|`enable`|             Turn the feature 'on' or 'off'. The default is 'off'. |
-|`mac-move-threshold` |  Number of MAC moves within a time window before the MAC is flagged as a possible duplicate. |
-move-window` |         Time window during which the move threshold applies |
+|`duplicate-action` |    Configures the action to take when the switch flags a MAC address as a possible duplicate. |
+|`enable`|  Turns duplicate address detection on or off. |
+|`mac-move-threshold` |  Configures the number of MAC moves allowed within a time window before flagging the MAC address as a possible duplicate. |
+|`move-window` |   Configures the time window during which the move threshold applies. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set evpn dad duplicate-action
 
-Handling of BUM traffic
+Configures the action to take when the switch flags a MAC address as a possible duplicate.
 
 ### Usage
 
 `nv set evpn dad duplicate-action [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `freeze` |   Further move events for the MAC will not be acted upon. |
+| `freeze` |   Configures the switch to take no action for further move events for the MAC address. |
 
 ## nv set evpn dad duplicate-action freeze
 
-Advertise
+Configures the switch to take no action for further move events for the MAC address.
 
 ### Usage
 
 `nv set evpn dad duplicate-action freeze [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `duration` |    Freeze the MAC for the specified duration or, if 'permanent' until the operator intervenes. |
+| `duration` |  Configures the switch to freeze duplicate addresses for a specific period of time or permnently (until the operator intervenes). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set evpn dad duplicate-action freeze duration
+
+Configures the switch to freeze duplicate addresses for a specific period of time. You can specify a value between 30 and 3600 seconds or `permanent` to freeze duplicate addresses until you run the clear command.
+
+### Usage
+
+`nv set evpn dad duplicate-action freeze duration [options] (30-3600|permanent)`
+
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn dad duplicate-action freeze duration permanent
+```
+
+## nv set evpn dad enable (on|off)
+
+Enables and disables duplicate address detection.
+
+### Usage
+
+`nv set evpn dad enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn dad enable on
+```
 
 ## nv set evpn dad mac-move-threshold
 
-Number of MAC moves within a time window before the MAC is flagged as a possible duplicate.
+Configures the number of MAC moves allowed within the detection time specified before the switch flags the MAC address as a possible duplicate. You can specify a value between 2 and 1000.
 
 ### Usage
 
 `nv set evpn dad mac-move-threshold [options] 2-1000`
 
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn dad mac-move-threshold 10
+```
+
 ## nv set evpn dad move-window
 
-Time window during which the move threshold applies
+Configures the detection time interval during which the MAC move threshold applies. You can specify a value between 2 and 1800.
 
 ### Usage
 
 `nv set evpn dad move-window [options] 2-1800`
+
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn dad move-window 1200
+```
 
 ## nv set evpn evi \<evi-id\>
 

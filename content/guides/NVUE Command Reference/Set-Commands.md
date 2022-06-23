@@ -5575,11 +5575,11 @@ cumulus@leaf01:mgmt:~$ nv set evpn dad move-window 1200
 
 ## nv set evpn evi \<evi-id\>
 
+Enables the EVPN control plane so that the EVPN service offered is VLAN-based and an EVI is auto-created for each extended VLAN.
+
 ### Usage
 
 `nv set evpn evi <evi-id> [options] [<attribute> ...]`
-
-Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
 ### Default Setting
 

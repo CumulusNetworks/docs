@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3110729</td>
-<td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3, 5.0.1-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3107615</td>
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
@@ -24,6 +18,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>3096918</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3096915</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -117,6 +117,13 @@ cumulus@switch:~$ nv config apply
 <td></td>
 </tr>
 <tr>
+<td>3059135</td>
+<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3055255</td>
 <td>When you run the NVUE {{nv show interface}} command, a watchdog timeout might occur and the {{nvued}} service fails.</td>
 <td>5.0.1</td>
@@ -200,8 +207,8 @@ Failure during apply. Ignore? [y/N]
 <tr>
 <td>3030238</td>
 <td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3-5.0.1</td>
-<td>5.1.0</td>
+<td>4.4.3, 5.0.1-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3025899</td>
@@ -713,6 +720,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td></td>
 </tr>
 <tr>
+<td>3096915</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -750,6 +763,13 @@ To work around this issue, disable, then enable the port.</td>
 <td>3073649</td>
 <td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3059135</td>
+<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -794,12 +814,6 @@ Fixed: 5.2.4-1+deb10u1</td>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-5.0.1</td>
-<td>5.1.0</td>
-</tr>
-<tr>
-<td>3030238</td>
-<td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3-5.0.1</td>
 <td>5.1.0</td>
 </tr>
 <tr>

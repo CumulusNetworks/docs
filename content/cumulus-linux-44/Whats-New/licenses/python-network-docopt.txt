@@ -3,6 +3,7 @@ Upstream-Name: python-network-docopt
 Source: http://github.com/CumulusNetworks/NetworkDocopt
 
 Files: *
+Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2015, 2016, 2017, 2018 Cumulus Networks <ce-ceng@cumulusnetworks.com>
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify

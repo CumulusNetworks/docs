@@ -1,0 +1,59 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: oslo.config
+Source: https://github.com/openstack/oslo.config
+
+Files: *
+Copyright: 2012-2013, The openstack foundation and contributors
+	(c) 2013, Hewlett-Packard Development Company, L.P.
+	(c) 2013, Intel Corporation
+	(c) 2012, Red Hat Inc.
+	Author list, biggest contributor first:
+	Mark McLoughlin <markmc@redhat.com>
+	Zhongyue Luo <zhongyue.nah@intel.com>
+	Vishvananda Ishaya <vishvananda@gmail.com>
+	Joe Gordon <jogo@cloudscaling.com>
+	Davanum Srinivas <dims@linux.vnet.ibm.com>
+	Russell Bryant <rbryant@redhat.com>
+	Rick Harris <rconradharris@gmail.com>
+	Johannes Erdfelt <johannes.erdfelt@rackspace.com>
+	Eoghan Glynn <eglynn@redhat.com>
+	Yuriy Taraday <yorik.sar@gmail.com>
+	YAMAMOTO Takashi <yamamoto@valinux.co.jp>
+	Vincent Untz <vuntz@suse.com>
+	Monty Taylor <mordred@inaugust.com>
+	Michael Basnight <mbasnight@gmail.com>
+	lzyeval <lzyeval@gmail.com>
+	Laurence Miao <laurence.miao@gmail.com>
+	Kevin L. Mitchell <kevin.mitchell@rackspace.com>
+	Julien Danjou <julien@danjou.info>
+	Joe Heck <heckj@mac.com>
+	Jason Kölker <jason@koelker.net>
+	Giampaolo Lauria <lauria@us.ibm.com>
+	Gary Kotton <gkotton@redhat.com>
+	Doug Hellmann <doug.hellmann@dreamhost.com>
+	David Ripton <dripton@redhat.com>
+	Davanum Srinivas <davanum@gmail.com>
+	Dan Prince <dprince@redhat.com>
+	Brian Waldon <bcwaldon@gmail.com>
+	Anthony Young <sleepsonthefloor@gmail.com>
+License: Apache-2.0
+
+Files: debian/*
+Copyright: (c) 2012-2016, Thomas Goirand <zigo@debian.org>
+License: Apache-2.0
+
+License: Apache-2.0
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+    http://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian-based systems the full text of the Apache version 2.0 license
+ can be found in `/usr/share/common-licenses/Apache-2.0'.

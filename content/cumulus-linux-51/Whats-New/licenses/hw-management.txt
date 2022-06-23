@@ -4,10 +4,8 @@ Source: https://github.com/Mellanox/hw-mgmt
 Disclaimer: Not part of Debian distributions.
 
 Files: *
-Copyright: 2018, 2019, 2020 Mellanox Technologies
-License: BSD-like or GPL-2
- Copyright (c) 2018, 2019, 2020 Mellanox Technologies. All rights reserved.
- .
+Copyright: Copyright (c) 2020-2022, NVIDIA CORPORATION & AFFILIATES. All rights reserved
+License: GPL-2
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are met:
  .
@@ -47,3 +45,7 @@ License: Cumulus Networks Proprietary
  Internet: https://cumulusnetworks.com/downloads/eula/latest/view/
  Cumulus Linux systems: /usr/share/cumulus/EULA.txt
 
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ '/usr/share/common-licenses/GPL-2'.

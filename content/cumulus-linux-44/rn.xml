@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3110735</td>
+<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
+<td>4.4.2-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3110729</td>
+<td>When you change the time with NTP or manually, the clagd service stops.</td>
+<td>4.4.3, 5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3107615</td>
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
@@ -47,6 +59,12 @@ system may result in privilege escalation.
 Vulnerable: &lt;= 2.2.10-6+deb10u5
 Fixed: 2.2.10-6+deb10u6</td>
 <td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3084027</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -145,6 +163,13 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
 <td>4.4.2-4.4.3, 5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3059135</td>
+<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2092,6 +2117,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3110735</td>
+<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
+<td>4.4.2-4.4.3</td>
+<td></td>
+</tr>
+<tr>
 <td>3107615</td>
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
@@ -2126,6 +2157,12 @@ system may result in privilege escalation.
 Vulnerable: &lt;= 2.2.10-6+deb10u5
 Fixed: 2.2.10-6+deb10u6</td>
 <td>4.0.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3084027</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2218,6 +2255,13 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
 <td>4.4.2-4.4.3, 5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3059135</td>
+<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4407,6 +4451,12 @@ Fixed: 2.2.10-6+deb10u6</td>
 <td></td>
 </tr>
 <tr>
+<td>3084027</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3083265</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16, 4.2.1-4.4.3, 5.0.0-5.1.0</td>
@@ -4481,6 +4531,13 @@ Fixed: 1.1.1n-0+deb10u2</td>
 <td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
 To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.3</td>
+<td></td>
+</tr>
+<tr>
+<td>3059135</td>
+<td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
+To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>

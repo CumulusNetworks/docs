@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3110729</td>
-<td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3, 5.0.1-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3107615</td>
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
@@ -213,8 +207,8 @@ Failure during apply. Ignore? [y/N]
 <tr>
 <td>3030238</td>
 <td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3-5.0.1</td>
-<td>5.1.0</td>
+<td>4.4.3, 5.0.1-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3025899</td>
@@ -820,12 +814,6 @@ Fixed: 5.2.4-1+deb10u1</td>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-5.0.1</td>
-<td>5.1.0</td>
-</tr>
-<tr>
-<td>3030238</td>
-<td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3-5.0.1</td>
 <td>5.1.0</td>
 </tr>
 <tr>

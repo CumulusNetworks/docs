@@ -355,70 +355,69 @@ If you are running NTP in your out-of-band management network with VRF, specify 
    {{<tab "Use Chrony (Ubuntu 18.04 only)" >}}
 
    1. Install chrony if needed.
-
-          root@ubuntu:~# sudo apt install chrony
-
+```
+root@ubuntu:~# sudo apt install chrony
+```
    2. Start the chrony service.
-
-          root@ubuntu:~# sudo /usr/local/sbin/chronyd
-
+```
+root@ubuntu:~# sudo /usr/local/sbin/chronyd
+```
    3. Verify it installed successfully.
-
-          root@ubuntu:~# chronyc activity
-          200 OK
-          8 sources online
-          0 sources offline
-          0 sources doing burst (return to online)
-          0 sources doing burst (return to offline)
-          0 sources with unknown address
-
+```
+root@ubuntu:~# chronyc activity
+200 OK
+8 sources online
+0 sources offline
+0 sources doing burst (return to online)
+0 sources doing burst (return to offline)
+0 sources with unknown address
+```
    4. View the time servers chrony is using.
+```
+root@ubuntu:~# chronyc sources
+210 Number of sources = 8
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+^+ golem.canonical.com           2   6   377    39  -1135us[-1135us] +/-   98ms
+^* clock.xmission.com            2   6   377    41  -4641ns[ +144us] +/-   41ms
+^+ ntp.ubuntu.net              2   7   377   106   -746us[ -573us] +/-   41ms
+...
+```
+Open the *chrony.conf* configuration file (by default at */etc/chrony/*) and edit if needed.
 
-          root@ubuntu:~# chronyc sources
-          210 Number of sources = 8
-
-          MS Name/IP address         Stratum Poll Reach LastRx Last sample
-          ===============================================================================
-          ^+ golem.canonical.com           2   6   377    39  -1135us[-1135us] +/-   98ms
-          ^* clock.xmission.com            2   6   377    41  -4641ns[ +144us] +/-   41ms
-          ^+ ntp.ubuntu.net              2   7   377   106   -746us[ -573us] +/-   41ms
-          ...
-
-      Open the *chrony.conf* configuration file (by default at */etc/chrony/*) and edit if needed.
-
-      Example with individual servers specified:
-
-          server golem.canonical.com iburst
-          server clock.xmission.com iburst
-          server ntp.ubuntu.com iburst
-          driftfile /var/lib/chrony/drift
-          makestep 1.0 3
-          rtcsync
-
-      Example when using a pool of servers:
-
-          pool pool.ntp.org iburst
-          driftfile /var/lib/chrony/drift
-          makestep 1.0 3
-          rtcsync
-
+Example with individual servers specified:
+```
+server golem.canonical.com iburst
+server clock.xmission.com iburst
+server ntp.ubuntu.com iburst
+driftfile /var/lib/chrony/drift
+makestep 1.0 3
+rtcsync
+```
+Example when using a pool of servers:
+```
+pool pool.ntp.org iburst
+driftfile /var/lib/chrony/drift
+makestep 1.0 3
+rtcsync
+```
    5. View the server chrony is currently tracking.
-
-          root@ubuntu:~# chronyc tracking
-          Reference ID    : 5BBD59C7 (golem.canonical.com)
-          Stratum         : 3
-          Ref time (UTC)  : Mon Feb 10 14:35:18 2020
-          System time     : 0.0000046340 seconds slow of NTP time
-          Last offset     : -0.000123459 seconds
-          RMS offset      : 0.007654410 seconds
-          Frequency       : 8.342 ppm slow
-          Residual freq   : -0.000 ppm
-          Skew            : 26.846 ppm
-          Root delay      : 0.031207654 seconds
-          Root dispersion : 0.001234590 seconds
-          Update interval : 115.2 seconds
-          Leap status     : Normal
-
+```
+root@ubuntu:~# chronyc tracking
+Reference ID    : 5BBD59C7 (golem.canonical.com)
+Stratum         : 3
+Ref time (UTC)  : Mon Feb 10 14:35:18 2020
+System time     : 0.0000046340 seconds slow of NTP time
+Last offset     : -0.000123459 seconds
+RMS offset      : 0.007654410 seconds
+Frequency       : 8.342 ppm slow
+Residual freq   : -0.000 ppm
+Skew            : 26.846 ppm
+Root delay      : 0.031207654 seconds
+Root dispersion : 0.001234590 seconds
+Update interval : 115.2 seconds
+Leap status     : Normal
+```
 {{</tab>}}
 
 {{</tabs>}}

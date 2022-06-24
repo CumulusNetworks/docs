@@ -22,7 +22,7 @@ NetQ displays:
 - **Software Transmit** with *soft\_out\_* prefix: errors, drops, tx_fifo_full
 - **Software Receive** with *soft\_in\_* prefix: errors, frame_errors, drops -->
 
-You can use Grafana version 6.x or 7.x, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plugin.  
+You can use Grafana, an open source analytics and monitoring tool, to view these statistics. The fastest way to achieve this is by installing Grafana on an application server or locally per user, and then installing the NetQ plugin.  
 
 {{%notice note%}}
 
@@ -70,49 +70,43 @@ After installing the plugin, you must restart Grafana, following the steps speci
 
 Now that you have the plugin installed, you need to configure access to the NetQ data source.
 
-1. Open the Grafana user interface.
+1. Open the Grafana user interface and log in. Navigate to the Home Dashboard:
 
-2. Log in using your application credentials.
+    {{<figure src="/images/netq/grafana-home-page-230.png" width="700" alt="Grafana Home Dashboard">}}
 
-    {{<figure src="/images/netq/grafana-login-230.png" width="400">}}
-
-    The Home Dashboard appears.
-
-    {{<figure src="/images/netq/grafana-home-page-230.png" width="700">}}
-
-3. Click **Add data source** or {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} > *Data Sources*.
+2. Click **Add data source** or {{<img src="/images/netq/grafana-config-icon.png" width="24" height="24">}} > *Data Sources*.
 
 <!-- 4. Enter **Net-Q** or **Net-Q-Ethtool** in the search box. Alternately, scroll down to the **Other** category, and select one of these sources from there.
 
     {{<figure src="/images/netq/grafana-add-data-src-320.png" width="500">}} -->
 
-4. Enter **Net-Q** in the search box. Alternately, scroll down to the **Other** category, and select it from there.
+3. Enter **Net-Q** in the search box. Alternately, scroll down to the **Other** category, and select it from there.
 
     {{<figure src="/images/netq/grafana-add-data-src-330.png" width="500">}}
 
 <!-- 5. Enter *Net-Q* or *Net-Q-Ethtool* into the **Name** field. -->
 
-5. Enter *Net-Q* into the **Name** field.
+4. Enter *Net-Q* into the **Name** field.
 
-6. Enter the URL used to access the database:
+5. Enter the URL used to access the database:
     - Cloud: *plugin.netq.cumulusnetworks.com*
     - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/plugin*
     - Cumulus in the Cloud (CITC): *plugin.air.netq.cumulusnetworks.com*
 
 <!-- 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*. -->
 
-7. Select *procdevstats* from the **Module** dropdown.
+6. Select *procdevstats* from the **Module** dropdown.
 
-8. Enter your credentials (the ones used to log in).
+7. Enter your credentials (the ones used to log in).
 
-9. For NetQ cloud deployments only, if you have more than one premises configured, you can select the premises you want to view, as follows:
+8. For NetQ cloud deployments only, if you have more than one premises configured, you can select the premises you want to view, as follows:
 
     - If you leave the **Premises** field blank, the first premises name is selected by default
     - If you enter a premises name, that premises is selected for viewing
 
         *Note*: If multiple premises are configured with the same name, then the first premises of that name is selected for viewing
 
-10. Click **Save & Test**.
+9. Click **Save & Test**.
 
 ## Create Your NetQ Dashboard
 
@@ -222,19 +216,19 @@ With the data source configured, you can create a dashboard with the transmit an
 
     {{<figure src="/images/netq/grafana-create-chart-select-metrics-331.png" width="600">}}
 
-This example shows a dashboard with two hostnames, two interfaces, and one metric selected. The more values you select from the variable options, the more charts appear on your dashboard.
+The following example shows a dashboard with two hostnames, two interfaces, and one metric selected. The more values you select from the variable options, the more charts appear on your dashboard.
 
 {{<figure src="/images/netq/grafana-netq-dashboard-331.png" width="600">}}
 
 ## Analyze the Data
 
-Once you have your dashboard configured, you can start analyzing the data. Review the statistics, looking for peaks and valleys, unusual patterns, and so forth. Explore the data more by modifying the data view in one of several ways using the dashboard tool set:
+When you have configured the dashboard, you can start analyzing the data. You can explore the data by modifying the viewing paramters in one of several ways using the dashboard tool set:
 
 {{<figure src="/images/netq/grafana-dashboard-tools-230.png" width="600">}}
 
 - Select a different time period for the data by clicking the forward or back arrows. The default time range is dependent on the width of your browser window.
 - Zoom in on the dashboard by clicking the magnifying glass.
 - Manually refresh the dashboard data, or set an automatic refresh rate for the dashboard from the down arrow.
-- Add additional panels
-- Click any chart title to edit or remove it from the dashboard
-- Rename the dashboard by clicking the cog wheel and entering the new name
+- Add additional panels.
+- Click any chart title to edit or remove it from the dashboard.
+- Rename the dashboard by clicking the cog wheel and entering the new name.

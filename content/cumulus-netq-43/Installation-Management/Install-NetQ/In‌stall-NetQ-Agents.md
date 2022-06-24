@@ -5,7 +5,7 @@ weight: 280
 toc: 4
 ---
 
-After installing your {{<link url="Install-NetQ" text="NetQ software">}}, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
+After installing the NetQ software, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
 - Cumulus Linux 3.7.12 and later
 - SONiC 202012 and later
@@ -353,6 +353,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
    {{</tab>}}
 
    {{<tab "Use Chrony (Ubuntu 18.04 only)" >}}
+
    1. Install chrony if needed.
 ```
 root@ubuntu:~# sudo apt install chrony
@@ -679,7 +680,7 @@ On-switch OPTA functionality is an Early Access feature, and it does not support
 
 On-switch OPTA is intended for use in small NetQ Cloud deployments where a dedicated OPTA might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
 
-Instead of installing a {{<link title="Install NetQ as a Remote Deployment" text="dedicated OPTA appliance">}}, you can enable the OPTA service on every switch in your environment that will send data to the NetQ Cloud. To configure a switch for OPTA functionality, install the `netq-opta` package.
+Instead of installing a dedicated OPTA appliance, you can enable the OPTA service on every switch in your environment that will send data to the NetQ Cloud. To configure a switch for OPTA functionality, install the `netq-opta` package.
 
 ```
 sudo apt-get update

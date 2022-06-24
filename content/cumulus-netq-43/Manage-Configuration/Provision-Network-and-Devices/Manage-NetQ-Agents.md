@@ -5,9 +5,7 @@ weight: 700
 toc: 3
 ---
 
-At various points in time, you might want to change which network nodes NetQ monitors or look more closely at a network node for troubleshooting purposes. To learn about adding the NetQ Agent to a switch or host, read {{<link url="Install-NetQ" text="Install NetQ">}}.
-
-This topic describes viewing the status of an Agent, disabling an Agent, managing NetQ Agent logging, and configuring the events the agent collects.
+This page tells you how to view the status of an agent, disable an agent, manage NetQ Agent logging, and configure the events the agent collects.
 
 ## View NetQ Agent Status
 

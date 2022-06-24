@@ -2168,8 +2168,6 @@ Configures the NetQ CLI on the switch or host where you run this command. Cloud 
 
 When the NetQ CLI is not configured, you can run only `netq config` and `netq help` commands, and you must use `sudo` to run them.
 
-For additional configuration information, refer to the {{<link title="Install the NetQ System" text="NetQ User Guide">}}.
-
 ### Syntax
 
 ```

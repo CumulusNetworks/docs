@@ -21,7 +21,7 @@ To connect to your LDAP server, you need the URI and bind credentials. The URI i
 
 ### Specify Your Authentication Method
 
-Two methods of user authentication are available: anonymous and basic.
+There are two types of user authentication: anonymous and basic.
 
 - **Anonymous**: LDAP client does not require any authentication. The user can access all resources anonymously. This is not commonly used for production environments.
 - **Basic**: (Also called Simple) LDAP client must provide a bind DN and password to authenticate the connection. When selected, the **Admin** credentials appear: Bind DN and Bind Password. You define the distinguished name (DN) using a string of variables. Some common variables include:
@@ -57,26 +57,24 @@ Search scope options include:
 
 - **Subtree**: Search for users from base, subordinates at any depth (default)
 - **Base**: Search for users at the base level only; no subordinates
-- **One Level**: Search for immediate children of user; not at base or for any descendants
+- **One level**: Search for immediate children of user; not at base or for any descendants
 - **Subordinate**: Search for subordinates at any depth of user; but not at base
 
 A typical search query for users could be *{userIdAttribute}={userId}*.
 
-Now that you are familiar with the various LDAP configuration parameters, you can configure the integration of your LDAP server with NetQ using the instructions in the next section.
-
 ## Create an LDAP Configuration
 
-You can configure one LDAP server per bind DN (distinguished name). After you configure LDAP, you can validate the connectivity and save the configuration.
+You can configure one LDAP server per bind DN (distinguished name). After you configure LDAP, you can verify the connectivity and save the configuration.
 
 To create an LDAP configuration:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>, then select *Management* under **Admin**.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
 
 2. Locate the LDAP Server Info card, and click **Configure LDAP**.
 
-    {{<figure src="/images/netq/netq-mgmt-ldap-config-modal-231.png" width="500">}}
+    {{<figure src="/images/netq/netq-mgmt-ldap-config-modal-231.png" width="500" alt="">}}
 
-3. Fill out the LDAP Server Configuration form according to your particular configuration. Refer to {{<link title="#Overview" text="Overview">}} for details about the various parameters.
+3. Fill out the LDAP Server Configuration form according to your particular configuration.
 
     **Note**: Items with an asterisk (*) are required. All others are optional.
 
@@ -154,13 +152,13 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 
 ## Add LDAP Users to NetQ
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>, then select *Management* under **Admin**.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
 
 2. Locate the User Accounts card, and click **Manage**.
 
 3. On the User Accounts tab, click **Add User**.
 
-    {{<figure src="/images/netq/netq-mgmt-user-acct-add-new-user-modal-230.png" width="250">}}
+    {{<figure src="/images/netq/netq-mgmt-user-acct-add-new-user-modal-230.png" width="250" alt="">}}
 
 4. Select **LDAP User**.
 
@@ -170,7 +168,7 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 
 7. Click **Search**.
 
-8. If the user is found, the email address, first and last name fields are automatically filled in on the Add New User form. If searching is not enabled on the LDAP server, you must enter the information manually.
+8. If the user is found, the email address, first, and last name fields are automatically populated. If searching is not enabled on the LDAP server, you must enter the information manually.
 
     {{<figure src="/images/netq/netq-mgmt-user-acct-ldap-search-result-230.png" width="300">}}
 
@@ -196,8 +194,7 @@ LDAP user passwords are not stored in the NetQ database and are always authentic
 
 You can remove LDAP users in the same manner as local users.
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>, then select *Management* under **Admin**.
-
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
 2. Locate the User Accounts card, and click **Manage**.
 
 3. Select the user or users you want to remove.

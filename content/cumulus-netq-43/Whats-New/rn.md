@@ -1,9 +1,9 @@
 ---
-title: NVIDIA NetQ 4.2 Release Notes
+title: NVIDIA NetQ 4.3 Release Notes
 author: NVIDIA
 weight: 30
 product: Cumulus NetQ
-version: "4.2"
+version: "4.3"
 toc: 1
 type: rn
 pdfhidden: True

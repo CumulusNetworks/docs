@@ -5320,9 +5320,9 @@ Enables and disables the EVPN control plane. When enabled, the EVPN service offe
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`route-advertise` | Configures EVPN route advertising |
+|`route-advertise` | Configures EVPN route advertising. |
 |`dad`  | Configures EVPN duplicate address detection.  |
-|`evi` | Configures the EVI |
+|`evi` | Configures the EVI. |
 |`multihoming`  | Configures EVPN multihoming global configuration parameters. |
 |`enable` |  Turns EVPN on or off.|
 
@@ -5575,7 +5575,7 @@ cumulus@leaf01:mgmt:~$ nv set evpn dad move-window 1200
 
 ## nv set evpn evi \<evi-id\>
 
-Enables the EVPN control plane so that the EVPN service offered is VLAN-based and an EVI is auto-created for each extended VLAN.
+Enables the EVPN control plane so that the EVPN service offered is VLAN-based and an EVI is created automatically for each extended VLAN.
 
 ### Usage
 
@@ -5589,19 +5589,23 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<evi-id>` |  VRF |
+| `<evi-id>` | The EVPN instance. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`route-advertise` |  Route advertise |
-| `route-target` |    Route targets |
-| `rd` | BGP Route Distinguisher to use for EVPN type-5 routes originated for this VRF. |
+|`route-advertise` |  Configures route advertisement. |
+| `route-target` |    Configures route targets. |
+| `rd` | Configures the BGP Route Distinguisher to use for EVPN type-5 routes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set evpn evi \<evi-id\> route-advertise
 
-Route advertise
+Configures route advertisement for an EVPN instance.
 
 ### Usage
 
@@ -5615,18 +5619,79 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<evi-id>` | VRF |
+| `<evi-id>` | The EVPN instance. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`default-gateway` |  If 'auto', inherit from global config. This is the default. This configuration should be turned 'on' only in a centralized-routing deployment and only on the centralized GW router(s). If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The purpose is for remote L2-only VTEPs to do ARP suppression and for hosts to learn of the gateway's IP to MAC binding. |
-|`svi-ip` |          If 'auto', inherit from global config. This is the default. If 'on', the IP addresses of SVIs in all EVIs are announced as type-2 routes. This configuration should not be enabled if SVI IPs are reused in the network. |
+|`default-gateway` |  Turns centralized routing on or off. When you turn centralized routing on, the gateway VTEPs advertise their IP and MAC address. |
+|`svi-ip` | Turns the advertise SVI IP and MAC address option on or off for the EVPN instance so you can advertise the SVI IP and MAC address as a type-2 route. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set evpn evi \<evi-id\> route-advertise svi-ip
+
+Turns the advertise SVI IP and MAC address option on or off for the EVPN instance so you can advertise the SVI IP and MAC address as a type-2 route. This eliminates the need for any flooding over VXLAN to reach the IP address from a remote VTEP or rack. You typically turn this setting on if you use unique SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable through remote VTEPs. You can specify `on`, `off`, or `auto`. If you specify `auto`, the EVI inherits from the global configuration. If you turn this setting `on`, the IP addresses of SVIs in all EVIs are announced as type-2 routes. Do not turn this setting `on` if you reuse SVI IP addresses in the network.
+
+### Usage
+
+`nv set evpn evi <evi-id> route-advertise svi-ip [options] (on|off|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<evi-id>` | The EVPN instance. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn evi 10 route-advertise svi-ip on
+```
+
+## nv set evpn evi \<evi-id\> route-advertise default-gateway
+
+Turns centralized routing on or off for the EVI. When you turn centralized routing on, the gateway VTEPs advertise their IP and MAC address.
+You can also specify `auto`, where the EVI inherits from the global configuration. Only turn this setting `on` in a centralized-routing deployment and only on the centralized GW router. When you turn this setting `on`, the IP addresses of SVIs in all EVIs announce as type-2 routes with the gateway extended community so that only remote layer 2 VTEPs run ARP suppression and hosts learn of the gateway's IP to MAC binding.
+
+### Usage
+
+`nv set evpn evi <evi-id> route-advertise default-gateway [options] (on|off|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<evi-id>` | The EVPN instance. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn evi 10 route-advertise default-gateway on
+```
 
 ## nv set evpn evi \<evi-id\> route-target
 
-EVPN control plane config and info for VRF
+Configures route targets for an EVPN instance.
 
 ### Usage
 
@@ -5640,19 +5705,19 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<evi-id>` | VRF |
+| `<evi-id>` | The EVPN instance. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`export` | Route targets to export |
-|`import` |  Route targets to import |
-|`both` | Route targets to import and export |
+|`export` | Configures the route targets you want to export. |
+|`import` | Configures the route targets you want to import. |
+|`both` | Configures the route targets you want to both import and export. |
 
 ## nv set evpn evi \<evi-id\> route-target export \<rt-id\>
 
-A route target identifier
+Configures the route targets you want to export for the EVPN instance.
 
 ### Usage
 
@@ -5666,12 +5731,12 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<evi-id>` | VRF |
-| `<rt-id>` |  Route target ID |
+| `<evi-id>` | The EVPN instance. |
+| `<rt-id>` |  The route target identifier. |
 
 ## nv set evpn evi \<evi-id\> route-target import \<rt-id\>
 
-A route target identifier
+Configures the route targets you want to import for the EVPN instance.
 
 ### Usage
 
@@ -5685,12 +5750,12 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<evi-id>` | VRF |
-| `<rt-id>` |     Route target ID |
+| `<evi-id>` | The EVPN instance. |
+| `<rt-id>` |  The route target identifier. |
 
 ## nv set evpn evi \<evi-id\> route-target both \<rt-id\>
 
-A route target identifier
+Configures the route targets you want to b oth import and export for the EVPN instance.
 
 ### Usage
 
@@ -5704,12 +5769,12 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<evi-id>` | VRF |
-| `<rt-id>` |  Route target ID |
+| `<evi-id>` | The EVPN instance. |
+| `<rt-id>` |  The route target identifier. |
 
 ## nv set evpn multihoming
 
-Multihoming global configuration parameters
+Configures EvPN multihoming global configuration parameters.
 
 ### Usage
 

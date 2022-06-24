@@ -5715,6 +5715,10 @@ N/A
 |`import` | Configures the route targets you want to import. |
 |`both` | Configures the route targets you want to both import and export. |
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
 ## nv set evpn evi \<evi-id\> route-target export \<rt-id\>
 
 Configures the route targets you want to export for the EVPN instance.
@@ -5732,7 +5736,17 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<evi-id>` | The EVPN instance. |
-| `<rt-id>` |  The route target identifier. |
+| `<rt-id>` |  The route target. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn evi 10 route-target export 65101:10
+```
 
 ## nv set evpn evi \<evi-id\> route-target import \<rt-id\>
 
@@ -5751,11 +5765,21 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<evi-id>` | The EVPN instance. |
-| `<rt-id>` |  The route target identifier. |
+| `<rt-id>` |  The route target. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn evi 10 route-target import 65102:10
+```
 
 ## nv set evpn evi \<evi-id\> route-target both \<rt-id\>
 
-Configures the route targets you want to b oth import and export for the EVPN instance.
+Configures the route targets you want to both import and export for the EVPN instance.
 
 ### Usage
 
@@ -5770,11 +5794,50 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<evi-id>` | The EVPN instance. |
-| `<rt-id>` |  The route target identifier. |
+| `<rt-id>` |  The route target. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn evi 10 route-target both 65101:10
+```
+
+## nv set evpn evi <evi-id> rd
+
+Configures the BGP Route Distinguisher to use for EVPN type-5 routes originated from this EVI.
+
+### Usage
+
+`nv set evpn evi <evi-id> rd [options] (auto|<route-distinguisher>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<evi-id>` | The EVPN instance. |
+| `<rt-id>` |  The route target. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn evi 10 rd 10.10.10.1:20
+```
 
 ## nv set evpn multihoming
 
-Configures EvPN multihoming global configuration parameters.
+Configures EVPN multihoming global configuration parameters.
 
 ### Usage
 

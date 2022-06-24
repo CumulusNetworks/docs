@@ -5,13 +5,13 @@ weight: 395
 toc: 3
 ---
 
-You can add additional nodes to your server cluster on-premise and cloud deployments using the CLI:
+You can add additional nodes to your server cluster on-premises and cloud deployments using the CLI:
 
 {{<tabs "addworkerCLI">}}
 
 {{<tab "On-premise Deployments">}}
 
-Run the following CLI command to add a new worker node for on-premise deployments:
+Run the following CLI command to add a new worker node for on-premises deployments:
 
 ```netq install cluster add-worker <text-worker-01>```
 

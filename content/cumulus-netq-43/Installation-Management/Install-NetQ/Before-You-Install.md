@@ -1,5 +1,5 @@
 ---
-title: Pre-installation Guide
+title: Before You Install
 author: NVIDIA
 weight: 190
 toc: 3
@@ -17,7 +17,7 @@ Consider the following before you install the NetQ system:
 
 The following decision tree reflects these steps:
 
-{{<figure src="/images/netq/install-decision-tree-330.png" alt="NetQ system installation choices" width="400">}}
+{{<figure src="/images/netq/install-decision-tree-330.png" alt="NetQ system deployment options" width="400">}}
 
 ## Deployment Type: On Premises or Remote
 

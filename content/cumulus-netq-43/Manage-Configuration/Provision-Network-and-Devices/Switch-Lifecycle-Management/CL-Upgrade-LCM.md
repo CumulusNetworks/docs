@@ -5,7 +5,7 @@ weight: 680
 toc: 4
 ---
 
-LCM provides the ability to upgrade Cumulus Linux on one or more switches in your network through the NetQ UI or the NetQ CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time.
+LCM lets you upgrade Cumulus Linux on one or more switches in your network through the NetQ UI or the NetQ CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time.
 
 You can upgrade Cumulus Linux from:
 

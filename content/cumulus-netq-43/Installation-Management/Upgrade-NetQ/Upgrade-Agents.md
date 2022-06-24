@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 420
 toc: 4
 ---
-NVIDIA strongly recommends that you upgrade your NetQ Agents when you install or upgrade to a new release. The following instructions apply to Cumulus Linux for both on-premises and cloud deployments.
+Upgrading the NetQ Agents is optional, but recommended.
 
 ## Upgrade NetQ Agent
 

@@ -12,7 +12,7 @@ You can remove the NetQ software from your system server and switches when neces
 
 {{<tab "Cumulus Linux Switch or Ubuntu Host">}}
 
-Use the `apt-get purge` command to remove the NetQ agent or CLI package from a Cumulus Linux switch or an Ubuntu host.
+Use the `apt-get purge` command to remove the NetQ Agent or CLI package from a Cumulus Linux switch or an Ubuntu host.
 
 ```
 cumulus@switch:~$ sudo apt-get update

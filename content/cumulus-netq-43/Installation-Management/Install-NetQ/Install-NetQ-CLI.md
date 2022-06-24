@@ -5,9 +5,9 @@ weight: 320
 toc: 4
 --- 
 
-When installing NetQ {{<version>}}, you are not required to install the NetQ CLI on your NetQ Appliances or VMs, or monitored switches and hosts, but it provides new features, important bug fixes, and the ability to manage your network from multiple points in the network.
+Installing the NetQ CLI on your NetQ Appliances, VMs, switches, or hosts is not required. However, the CLI can give you access to new features and bug fixes, and allows you to manage your network from multiple points in the network.
 
-After installing your NetQ software and the NetQ {{<version>}} Agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
+After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
 - Cumulus Linux 3.7.12 and later
 - SONiC 202012 and later
@@ -19,7 +19,7 @@ After installing your NetQ software and the NetQ {{<version>}} Agent on each swi
 If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NetQ repository.
 {{</notice>}}
 
-## Prepare for NetQ CLI Installation on a RHEL, CentOS or Ubuntu Server
+## Prepare for NetQ CLI Installation on a RHEL, CentOS, or Ubuntu Server
 
 For servers running RHEL 7, CentOS or Ubuntu OS, you need to:
 
@@ -28,7 +28,7 @@ For servers running RHEL 7, CentOS or Ubuntu OS, you need to:
 - Install and configure NTP, if needed
 - Obtain NetQ software packages
 
-You do not take any of these steps on Cumulus Linux or SONiC.
+These steps are not required for Cumulus Linux or SONiC.
 
 ### Verify Service Package Versions
 
@@ -306,7 +306,7 @@ The use of <code>netq-latest</code> in these examples means that a <code>get</co
 
 ## Install NetQ CLI
 
-A simple process installs the NetQ CLI on a switch or host.
+Follow these steps to install the NetQ CLI on a switch or host.
 
 {{<tabs "Install NetQ CLI">}}
 
@@ -488,7 +488,7 @@ To obtain the NetQ Agent package:
 
 ## Configure the NetQ CLI
 
-Two methods are available for configuring the NetQ CLI:
+There are two ways to configure the NetQ CLI:
 
 - Run NetQ CLI commands on the switch
 - Edit the configuration file on the switch
@@ -510,7 +510,7 @@ To configure the NetQ Agent, read {{<link url="Install-NetQ-Agents/#configure-ad
 
 ### Configure NetQ CLI Using the CLI
 
-The steps to configure the CLI are different depending on whether you installed the NetQ software for an on-premises or cloud deployment. Follow the instructions for your deployment type.
+Configure the CLI according to your deployment type.
 
 {{<tabs "Configure CLI with CLI">}}
 
@@ -522,7 +522,7 @@ To access and configure the CLI for your on-premise NetQ deployment, you must ha
 
 To generate AuthKeys:
 
-1. In your Internet browser, enter your on-premise NetQ appliance hostnme or IP address into the address field to open the NetQ UI login page.
+1. In your Internet browser, enter your on-premises NetQ appliance hostname or IP address into the address field to open the NetQ UI login page.
 
 2. Enter your username and password.
 

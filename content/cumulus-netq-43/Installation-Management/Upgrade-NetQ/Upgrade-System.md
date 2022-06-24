@@ -11,7 +11,7 @@ The first step in upgrading your NetQ installation to NetQ {{<version>}} is upgr
 
 ### Back up NetQ Data
 
-This is an optional step for on-premises deployments only. Refer to {{<link title="Back Up and Restore NetQ">}}. NetQ Cloud Appliances and VMs create backups automatically.
+This is an optional step for on-premises deployments. Refer to {{<link title="Back Up and Restore NetQ">}}. NetQ Cloud Appliances and VMs create backups automatically.
 
 ### Download Software and Update Debian Packages
 

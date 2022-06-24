@@ -5,13 +5,13 @@ weight: 225
 toc: 5
 bookhidden: true
 ---
-Follow these steps to setup and configure your VM on a single server in an on-premises deployment:
+Follow these steps to set up and configure your VM on a single server in an on-premises deployment:
 
 1. Verify that your system meets the VM requirements.
 
     {{<netq-install/vm-reqs deployment="onprem" hypervisor="kvm" version="4.2.0">}}
 
-2. Confirm that the needed ports are open for communications.
+2. Confirm that the required ports are open for communications.
 
     {{<netq-install/port-reqs server="single">}}
 
@@ -19,11 +19,11 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
     {{<netq-install/kvm-platform-image deployment="onprem" version="4.2">}}
 
-4. Setup and configure your VM.
+4. Set up and configure your VM.
 
     {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.2">}}
 
-5. Log in to the VM and change the password.
+5. Log into the VM and change the password.
 
     {{<netq-install/change-pswd>}}
 

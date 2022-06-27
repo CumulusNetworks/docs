@@ -25,6 +25,37 @@ bridge     interface  nve        qos        service    vrf
 cumulus@switch:~$ nv set
 ```
 
+## Command Question Mark
+
+You can type a question mark (`?`) after a command to display required information quickly and concisely. When you type `?`, NVUE specifies the value type, range, and options with a brief description of each. NVUE also indicates when it expects a <new_instance> value. For example:
+
+```
+cumulus@switch:~$ nv set interface swp1 link state ?
+   (down|up)    The state of the interface
+cumulus@switch:~$ nv set interface swp1 link mtu ?
+   552-9216     interface mtu
+cumulus@switch:~$ nv set interface swp1 link speed ?
+   (auto|10M|100M|1G|10G|25G|40G|50G|100G|200G|400G)    Link speed
+```
+
+```
+cumulus@switch:~$ nv set interface swp1 bridge domain ?
+   <domain-id>    Bridge domains on this interface
+```
+
+## Command Abbreviation
+
+NVUE supports command abbreviation, where you can type a certain number of characters instead of a whole command to speed up CLI interaction. For example, instead of typing `nv show interface`, you can type `nv sh int`.
+
+If the command you type is ambiguous, NVUE shows the reason for the ambiguity so that you can correct the shortcut. For example:
+
+```
+cumulus@switch:~$ nv s i 
+Ambiguous Command: 
+   set interface 
+   show interface 
+```
+
 ## Command Help
 <!-- vale off -->
 As you enter commands, you can get help with command syntax by entering `-h` or `--help` at various points within a command entry. For example, to examine the options available for `nv set interface`, enter `nv set interface -h` or `nv set interface --help`.

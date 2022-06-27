@@ -43,12 +43,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3042476</td>
-<td>In addition to displaying routes installed on monitored devices in your network, the NetQ UI unexpectedly displays IP routes installed on the NetQ server. This issue does not affect the routes displayed on the CLI with {{netq show ip routes}} and {{netq show ipv6 routes}}.</td>
-<td>4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3041860</td>
 <td>The Events card displays duplicate entries for VLAN interface link down events.</td>
 <td>4.2.0</td>

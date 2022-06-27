@@ -25,11 +25,14 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="SyncE" text="SyncE">}}
 - ZTP over front panel ports
 - `cl-support` file includes WJH event collection
-- ECMP performance improvements
+- Secured switch updates include:
+  - Verification of image signature before installation
+  - Support for Cumulus Linux signed images
+  - Secure update of individual packages using SecureApt.
+  - As an additional security enhancement, the default transport listed in `/etc/apt/sources.list` for Cumulus Linux package repositories is now HTTPS.
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
-  - Abbreviated commands
-  - Tab completion shows the TYPE associated with valid values
-  - Tab completion for `nv set` commands indicates if you can create a new instance
+  - {{<link url="NVUE-CLI/#command-abbreviation" text="Command abbreviation">}}
+  - {{<link url="NVUE-CLI/#command-question-mark" text="Command question mark (?)">}} to show required information quickly and concisely, such as the command value type, range, and options with a brief description of each. `?` also shows if the command expects a <new_instance> value.
   - {{< expand "New NVUE commands" >}}
   
 ```

@@ -5843,35 +5843,99 @@ Configures EVPN multihoming global configuration parameters.
 
 `nv set evpn multihoming [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`ead-evi-route`  | Ethernet Auto-discovery per EVPN instance routes |
-|`segment`  | Multihoming interface segment |
-|`enable`  | Turn the feature 'on' or 'off'. The default is 'off'. |
-|`mac-holdtime` | During this interval, the switch attempts to independently establish reachability of the MAC on the local ethernet segment. If 'none', there is no holdtime. |
-|`neighbor-holdtime` |During this interval, the switch attempts to independently establish reachability of the host on the local ethernet segment.|
-|`startup-delay`  | The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or  process restart.|
+|`ead-evi-route`  | Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes. Some third party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements. |
+|`segment`  | Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes Some third party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.|
+|`enable`  | Turns EVPN multihoming on or off. The default is 'off'. |
+|`mac-holdtime` |Configures the MAC hold time, which specifies the duration for which a switch maintains SYNC MAC entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the MAC address on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.|
+|`neighbor-holdtime` | Configures the neighbor hold times, which pecifies the duration for which a switch maintains SYNC neighbor entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. The hold time can be between 0 and 86400 seconds. The default is 1080 seconds.|
+|`startup-delay`  | Configures the duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. The delay can be between 0 and 216000 seconds. The default is 180 seconds.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set evpn multihoming ead-evi-route
 
-Ethernet Auto-discovery per EVPN instance routes
+Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-EVI (Ethernet Auto-discovery per EVPN instance) routes. 
+
+Note: Some third party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
 
 ### Usage
 
 `nv set evpn multihoming ead-evi-route [options] [<attribute> ...]`
-  
+
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`rx` |  Disable EAD-per-EVI at receiving end.|
-|`tx` | Suppress advertisement of EAD-per-EVI routes.|
+|`rx` | Turns EAD-per-EVI at the receiving end on or off.|
+|`tx` | Turns EAD-per-EVI route advertisement on or off.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set evpn multihoming ead-evi-route rx
+
+Turns EAD-per-EVI at the receiving end on or off.
+
+### Usage
+
+`nv set evpn multihoming ead-evi-route rx [options] (on|off)`
+
+### Default Setting
+
+`on`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming ead-evi-route rx off
+```
+
+## nv set evpn multihoming ead-evi-route tx
+
+Turns EAD-per-EVI route advertisement on or off.
+
+### Usage
+
+`nv set evpn multihoming ead-evi-route tx [options] (on|off)`
+
+### Default Setting
+
+`on`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming ead-evi-route tx off
+```
 
 ## nv set evpn multihoming segment
 
-Multihoming interface segment
+Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes.
+
+Note: Some third party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
 
 ### Usage
 
@@ -5881,48 +5945,148 @@ Multihoming interface segment
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `df-preference` |  Designated forwarder preference value. |
-| `mac-address` |    MAC address per ethernet segment. Required. |
+| `df-preference` | Configures the designated forwarder preference value for EVPN multihoming. |
+| `mac-address` |  Configures the MAC address per ethernet segment for EVPN multihoming. |
+
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set evpn multihoming segment mac-address \<mac\>
 
-MAC address per ethernet segment.  Required.
+Configures the MAC address per ethernet segment for EVPN multihoming. This setting is required.
 
 ### Usage
 
 `nv set evpn multihoming segment mac-address [options] <mac>`
 
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming segment mac-address 00:00:00:00:00:10
+```
+
 ## nv set evpn multihoming segment df-preference
 
-Designated forwarder preference value.
+Configures the designated forwarder preference value for EVPN multihoming. You can specify a value between 1 and 65535.
 
 ### Usage
 
 `nv set evpn multihoming segment df-preference [options] 1-65535`
 
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming segment df-preference 50000
+```
+
+## nv set evpn multihoming enable (on|off)
+
+Turns EVPN multihoming on or off.
+
+### Usage
+
+`nv set evpn multihoming enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming enable on
+```
+
 ## nv set evpn multihoming mac-holdtime
 
-During this interval, the switch attempts to independently establish reachability of the MAC on the local ethernet segment. If 'none', there is no holdtime.
+Configures the MAC hold time, which specifies the duration for which a switch maintains SYNC MAC entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the MAC address on the local Ethernet segment. You can specify a value between 0 and 86400 seconds.
 
 ### Usage
 
 `nv set evpn multihoming mac-holdtime [options] 0-86400`
 
+### Default Setting
+
+1080 seconds
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming mac-holdtime 1000
+```
+
 ## nv set evpn multihoming neighbor-holdtime
 
-During this interval, the switch attempts to independently establish reachability of the host on the local ethernet segment.
+Configures the neighbor hold times, which pecifies the duration for which a switch maintains SYNC neighbor entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. You can specify a value between between 0 and 86400 seconds.
 
 ### Usage
 
 `nv set evpn multihoming neighbor-holdtime [options] 0-86400`
 
+### Default Setting
+
+1080 seconds
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming neighbor-holdtime 600
+```
+
 ## nv set evpn multihoming startup-delay
 
-The duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart.
+Configures the duration for which a switch holds the Ethernet segment-bond in a protodown state after a reboot or process restart. This allows the initialization of the VXLAN overlay to complete. You can specify a value between 0 and 3600 seconds.
 
 ### Usage
 
 `nv set evpn multihoming startup-delay [options] 0-3600`
+
+### Default Setting
+
+180 seconds
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming startup-delay 1000
+```
 
 ## nv set qos
 

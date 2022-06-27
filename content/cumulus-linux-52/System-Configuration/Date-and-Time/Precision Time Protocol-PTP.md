@@ -46,7 +46,7 @@ Basic PTP configuration requires you:
 
 The basic configuration shown below uses the *default* PTP settings:
 - The clock mode is Boundary. This is the only clock mode that Cumulus Linux supports.
-- The PTP profile is default-1588; the profile in the IEEE 1588 standard. This is the only profile that Cumulus Linux supports.
+- The PTP profile is default-1588; the profile in the IEEE 1588 standard.
 - {{<link url="#clock-domains" text="The PTP clock domain">}} is 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are both 128.
 - {{<link url="#dscp" text="The DSCP" >}} is 46 for both general and event messages.
@@ -56,7 +56,7 @@ The basic configuration shown below uses the *default* PTP settings:
 - The delay mechanism is End-to-End (E2E).
 - The hardware packet time stamping mode is two-step. Cumulus Linux does not support one-step mode.
 
-To configure optional settings, such as the PTP domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
+To configure optional settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
 
 {{< tabs "TabID65 ">}}
 {{< tab "NVUE Commands ">}}
@@ -253,17 +253,12 @@ PTP profiles are a standardized set of configurations and rules intended to meet
 
 Cumulus Linux supports the following profiles:
 - *Default* is the profile specified in the IEEE 1588 standard. If you do not choose a profile or perform any optional configuration, the PTP software is initialized with default values in the standard. The default profile addresses some common applications, such as Industrial Automation. It does not have any network restrictions and is used as the first profile to be tested in qualification of equipment.
-- ITU-T G.8275.1 is the profile for applications that require accurate phase and time synchronization. It supports the architecture defined in ITU-T G. 8275 to enable the distribution of phase and time with full timing support and is based on the second version of PTP defined in [IEEE 1588].
-- ITU-T G.8275.2 is the PTP profile for use in telecom networks where phase or time-of-day synchronization is required. It differs from G. 8275.1 in that it is not required that each device in the network participates in the PTP protocol.
-
-To configure the switch to use the ITU-T G.8275.1 profile:
-
-```
-cumulus@switch:~$ nv set service ptp 1 profile-type G.8275.1
-cumulus@switch:~$ nv config apply
-```
+- *ITU-T G.8275.2* is the PTP profile for use in telecom networks where phase or time-of-day synchronization is required. It differs from G. 8275.1 in that it is not required that each device in the network participates in the PTP protocol.
 
 To configure the switch to use the ITU-T G.8275.2 profile:
+
+{{< tabs "TabID260 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set service ptp 1 profile-type G.8275.2
@@ -276,6 +271,34 @@ To set the profile back to the default:
 cumulus@switch:~$ nv set service ptp 1 profile-type default-1588
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `profile-type` setting, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               128
+priority2               128
+domainNumber            3
+profile-type            G.8275.2
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+To set the profile back to the default, change the `profile-type` setting to `default-1588`, then restart the `ptp4l` service.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Clock Domains
 

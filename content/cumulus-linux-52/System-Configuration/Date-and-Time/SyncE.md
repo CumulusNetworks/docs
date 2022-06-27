@@ -9,8 +9,8 @@ toc: 3
 The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 - The SyncE controller reads performance counters to calculate the differences between TX and RX ethernet symbols on the physical layer to fine tune the clock frequency.
 - The SyncE daemon (`syncd`) manages:
-  - Transmitting and receiving Synchronization Status Messages (SSMs) on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
-  - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the Quality Level (QL) in the SSM.
+  - Transmitting and receiving [SSMs](## "Synchronization Status Messages") on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
+  - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the [QL](## "Quality Level") in the SSM.
   - Failover to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
   - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
 
@@ -26,7 +26,7 @@ Basic SyncE configuration requires you:
 
 The basic configuration shown below uses the default settings:
 - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.
-- The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is set to 100
+- The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is set to 100.
 - The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using it for synchronization is set to 5 minutes.
 
 ```
@@ -46,10 +46,29 @@ You can specify the ITU-T QL for the switch. You can specify one of the followin
 
 The following command example sets the QL for the switch to `option 2`:
 
+{{< tabs "TabID49 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@switch:~$ nv set synce network-type option 2
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced.conf` file to change the QL setting, then restart the `syncd` service.
+
+```
+EXAMPLE FILE HERE
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart syncd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Logging
 
@@ -59,17 +78,55 @@ By default, SyncE logging is disabled on the switch. You enable logging to write
 
 The following command example sets logging to write a log message every time there is a change to the selected source in addition to errors:
 
+{{< tabs "TabID81 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@switch:~$ nv set synce changes
 cumulus@switch:~$ nv config apply
 ```
 
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced.conf` file to change the logging setting, then restart the `syncd` service.
+
+```
+EXAMPLE FILE HERE
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart syncd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 The following command example sets logging to write a log message only when there are no available frequency sources or when the only available frequency source is the internal oscillator:
+
+{{< tabs "TabID107 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set synce errors
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced.conf` file to change the logging setting, then restart the `syncd` service.
+
+```
+EXAMPLE FILE HERE
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart syncd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Optional Interface Configuration
 
@@ -79,10 +136,29 @@ The clock selection algorithm uses the frequency source priority on an interface
 
 The following command example sets the priority on swp2 to 254:
 
+{{< tabs "TabID139 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@switch:~$ nv set interface swp2 synce priority 254
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced.conf` file to change the priority setting, then restart the `syncd` service.
+
+```
+EXAMPLE FILE HERE
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart syncd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Wait to Restore Time
 
@@ -90,10 +166,29 @@ The wait to restore time is the amount of time SyncE waits after the interface c
 
 The following command example sets the wait to restore time to 3 minutes:
 
+{{< tabs "TabID169 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@switch:~$ nv set interface swp2 synce wait-to-restore 3
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced.conf` file to change the wait to restore time setting, then restart the `syncd` service.
+
+```
+EXAMPLE FILE HERE
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart syncd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Disable Synchronization Status Messages
 
@@ -101,10 +196,29 @@ You can disable [SSMs](## "Synchronization Status Messages") on an interface to 
 
 The following command example disables SSMs on swp2:
 
+{{< tabs "TabID199 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@switch:~$ nv set interface swp2 synce ssm disable
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced.conf` file to disable SSMs, then restart the `syncd` service.
+
+```
+EXAMPLE FILE HERE
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart syncd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### QL to Transmit in Status Messages
 
@@ -115,10 +229,29 @@ To override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation
 
 The following command example specifies an upper limit of `option 1`:
 
+{{< tabs "TabID232 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@switch:~$ nv set interface swp2 synce highest option 1
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced.conf` file to specify an upper limit of `option 1`, then restart the `syncd` service.
+
+```
+EXAMPLE FILE HERE
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart syncd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 The QL must match the globally configured QL with the `network-type` command.
@@ -133,10 +266,29 @@ To override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation
 
 The following command example specifies a lower limit of `option 2 generation 1`:
 
+{{< tabs "TabID269 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@switch:~$ nv set interface swp2 synce lowest option 2 generation 1
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced.conf` file to specify a lower limit of `option 2 generation 1`, then restart the `syncd` service.
+
+```
+EXAMPLE FILE HERE
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart syncd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice note%}}
 The QL to receive must match the globally configured QL set with the `network-type` command.

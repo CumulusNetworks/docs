@@ -6200,7 +6200,7 @@ cumulus@leaf01:mgmt:~$ nv set qos roce cable-length 1000
 
 ## nv set interface \<interface-id\>
 
-An interface
+Configures an interface.
 
 ### Usage
 
@@ -6214,7 +6214,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` |  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
@@ -6251,7 +6251,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|` <interface-id>` |    Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
@@ -6278,7 +6278,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|` <interface-id>` |    Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 

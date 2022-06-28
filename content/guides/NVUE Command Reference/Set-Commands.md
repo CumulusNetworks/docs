@@ -91,10 +91,6 @@ N/A
 | `<nexthop-group-id>` | The next hop group name. |
 | `<via-id>` | The IP address of the next hop.|
 
-### Default Setting
-
-N/A
-
 ### Attributes
 
 | Atrribute |  Description   |
@@ -190,6 +186,10 @@ N/A
 | ---------  | -------------- |
 | `map`| Configures PBR policies.|
 | `enable`| Turns the PBR `on` or `off`. The default is `off`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set router pbr map \<pbr-map-id\>
 

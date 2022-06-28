@@ -32,7 +32,7 @@ Shows global routing configuration settings on the switch. You can see which rou
 
 ### Version History
 
-Introduced in Cumulus Linux 4.0.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -56,7 +56,7 @@ Shows the configuration settings for next hop groups.
 
 ### Version History
 
-Introduced in Cumulus Linux 4.0.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -86,7 +86,7 @@ Shows the configuration settings for the next hop group you specify.
 
 ### Version History
 
-Introduced in Cumulus Linux 4.0.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
@@ -111,7 +111,7 @@ Shows the IP addresses of the next hops in the next hop group.
 
 ### Version History
 
-Introduced in Cumulus Linux 4.0.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 

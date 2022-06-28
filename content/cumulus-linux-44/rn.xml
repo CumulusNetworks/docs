@@ -262,8 +262,8 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
+<td>4.2.1-5.0.1</td>
+<td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
 <td>2875301</td>
@@ -271,12 +271,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td>4.3.0-4.4.4</td>
 <td></td>
-</tr>
-<tr>
-<td>2875279</td>
-<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -2170,8 +2164,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4</td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -2488,8 +2482,8 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.2.1-5.0.1</td>
+<td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
 <td>2875301</td>
@@ -2497,12 +2491,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td>4.3.0-4.4.4</td>
 <td></td>
-</tr>
-<tr>
-<td>2875279</td>
-<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -4262,8 +4250,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4</td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -4614,8 +4602,8 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.2.1-5.0.1</td>
+<td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
 <td>2875301</td>
@@ -4623,12 +4611,6 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td>4.3.0-4.4.4</td>
 <td></td>
-</tr>
-<tr>
-<td>2875279</td>
-<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -6544,8 +6526,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4</td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -6898,8 +6880,8 @@ Fixed: 3.42.1-1+deb10u4</td>
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.2.1-5.0.1</td>
+<td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
 <td>2875301</td>
@@ -6907,12 +6889,6 @@ Fixed: 3.42.1-1+deb10u4</td>
 To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td>4.3.0-4.4.4</td>
 <td></td>
-</tr>
-<tr>
-<td>2875279</td>
-<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2873322</td>

@@ -229,6 +229,10 @@ cumulus@switch:~$ sudo bridge -d -s mdb show
   router ports on bridge: swp3
 ```
 
+## DIP-based Multicast Forwarding on Mellanox Spectrum Switches
+
+Mellanox Spectrum Switches do not support DIP-based multicast forwarding. Do not configure the 224.0.0.x through 239.0.0.x and 224.128.0.x through 239.128.0.x IP ranges as multicast groups, which map to link-local MAC addresses (01:00:5e:00:00:xx).
+
 ## Related Information
 
 - {{<exlink url="http://en.wikipedia.org/wiki/IGMP_snooping" text="Wikipedia entry for IGMP snooping">}}

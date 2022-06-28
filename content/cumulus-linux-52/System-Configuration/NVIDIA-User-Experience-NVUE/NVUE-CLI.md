@@ -27,7 +27,7 @@ cumulus@switch:~$ nv set
 
 ## Command Question Mark
 
-You can type a question mark (`?`) after a command to display required information quickly and concisely. When you type `?`, NVUE specifies the value type, range, and options with a brief description of each. NVUE also indicates when it expects a <new_instance> value. For example:
+You can type a question mark (`?`) after a command to display required information quickly and concisely. When you type `?`, NVUE specifies the value type, range, and options with a brief description of each; for example:
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state ?
@@ -37,6 +37,8 @@ cumulus@switch:~$ nv set interface swp1 link mtu ?
 cumulus@switch:~$ nv set interface swp1 link speed ?
    (auto|10M|100M|1G|10G|25G|40G|50G|100G|200G|400G)    Link speed
 ```
+
+NVUE also indicates if you need to provide specific values for the command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain ?

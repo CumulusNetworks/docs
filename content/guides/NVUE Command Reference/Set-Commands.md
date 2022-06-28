@@ -6090,7 +6090,7 @@ cumulus@leaf01:mgmt:~$ nv set evpn multihoming startup-delay 1000
 
 ## nv set qos
 
-Configures [QOS](## "Quality of Service").
+Configures Quality of Service (QOS).
 
 ### Usage
 

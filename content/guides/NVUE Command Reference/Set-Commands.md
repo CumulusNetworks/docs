@@ -6090,42 +6090,114 @@ cumulus@leaf01:mgmt:~$ nv set evpn multihoming startup-delay 1000
 
 ## nv set qos
 
-QOS
+Configures [QOS](## "Quality of Service").
 
 ### Usage
 
 `nv set qos [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`roce` |  Properties associated with the RDMA over Converged Ethernet (RoCE) feature. |
+|`roce` |  Configures RDMA over Converged Ethernet lossless (RoCE). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set qos roce
 
-Properties associated with the RDMA over Converged Ethernet (RoCE) feature.
+Configures RDMA over Converged Ethernet lossless (RoCE). 
 
 ### Usage
 
 `nv set qos roce [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`enable` |  Turn the feature 'on' or 'off'. The default is 'off'. \
-|`mode` | Roce Mode |
-|`cable-length` | Cable Length(in meters) for Roce Lossless Config |
+|`enable` |  Turns RDMA over Converged Ethernet on and off. |
+|`mode` | Configures the Roce mode: lossy or lossless. |
+|`cable-length` | Configures the table length (in meters) for Roce lossless. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set qos roce enable
+
+### Usage
+
+`nv set qos roce enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos roce enable off
+```
+
+## nv set qos roce mode
+
+Configures the Roce mode. You can specify `lossy` or `lossless`.
+
+### Usage
+
+`nv set qos roce mode [options] (lossy|lossless)`
+
+### Default Setting
+
+`lossless`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos roce mode lossy
+```
 
 ## nv set qos roce cable-length
 
-Cable Length(in meters) for Roce Lossless Config
+Configures the cable length (in meters)for Roce lossless. You can specify a value between 1 and 100000.
 
 ### Usage
 
 `nv set qos roce cable-length [options] 1-100000`
-  
+
+### Default Setting
+
+100
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos roce cable-length 1000
+```
+
 ## nv set interface \<interface-id\>
 
 An interface

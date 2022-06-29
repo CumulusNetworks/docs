@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3119615"></a> [3119615](#3119615) <a name="3119615"></a> <br /> | In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic.  | 3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0 | |
+| <a name="3119614"></a> [3119614](#3119614) <a name="3119614"></a> <br /> | In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic.  | 3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0 | |
 | <a name="3098936"></a> [3098936](#3098936) <a name="3098936"></a> <br /> | When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs. | 3.7.12-3.7.16, 4.3.0-4.4.4 | |
 | <a name="3093863"></a> [3093863](#3093863) <a name="3093863"></a> <br /> | The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the <code>systemctl restart snmpd</code> command. | 3.7.16-4.4.3, 5.0.0-5.1.0 | 4.4.4|
 | <a name="3091625"></a> [3091625](#3091625) <a name="3091625"></a> <br /> | CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401<br />Vulnerable: <= 1.631-3+deb8u1Fixed: 1.631-3+deb8u2 | 3.7.0-3.7.16 | |
@@ -347,6 +349,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3119615"></a> [3119615](#3119615) <a name="3119615"></a> <br /> | In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic.  | 3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0 | |
+| <a name="3119614"></a> [3119614](#3119614) <a name="3119614"></a> <br /> | In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic.  | 3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0 | |
 | <a name="3098936"></a> [3098936](#3098936) <a name="3098936"></a> <br /> | When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs. | 3.7.12-3.7.16, 4.3.0-4.4.4 | |
 | <a name="3091625"></a> [3091625](#3091625) <a name="3091625"></a> <br /> | CVE-2014-10402: DBD::File drivers can open files from folders other than those specifically passed via the f_dir attribute in the data source name (DSN). NOTE: this issue exists because of an incomplete fix for CVE-2014-10401<br />Vulnerable: <= 1.631-3+deb8u1Fixed: 1.631-3+deb8u2 | 3.7.0-3.7.16 | |
 | <a name="3091623"></a> [3091623](#3091623) <a name="3091623"></a> <br /> | CVE-2022-29155: SQL injection vulnerability in the back-sql backend to slapd in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol, allowing an attacker to alter the database during an LDAP search operations when a specially crafted search filter is processed<br />Vulnerable: <= 2.4.40+dfsg-1+deb8u10Fixed: 2.4.40+dfsg-1+deb8u11 | 3.7.0-3.7.16 | |

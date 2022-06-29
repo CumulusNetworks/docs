@@ -300,6 +300,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 {{< /tab >}}
 {{< /tabs >}}
+
 ## Troubleshooting
 
 To show the IGMP/MLD snooping bridge state, run the `brctl showstp <bridge>` command:
@@ -363,6 +364,7 @@ cumulus@switch:~$ sudo bridge -d -s mdb show
   dev bridge port swp2 grp ff1a::9 permanent 0.00
   router ports on bridge: swp3
 ```
+
 ## Scale Considerations
 
 The number of unique multicast groups supported in the mdb is 4096 by default. To increase the number of maximum number of multicast groups in the mdb, edit the `/etc/network/interfaces` file to add a `bridge-hashmax` value to the bridge stanza:
@@ -385,6 +387,10 @@ The supported values for `bridge-hashmax` are 512, 1024, 2048, 4096, 8192, 16384
 - Spectrum 1 switches limit multicast groups to 16300 in the MDB with OMF disabled and 14800 multicast groups with OMF enabled.
 - On Spectrum 1 switches, to support this uppper limit you must change the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
 {{%/notice%}}
+
+## DIP-based Multicast Forwarding
+
+Cumulus Linux does not support DIP-based multicast forwarding. Do not configure the 224.0.0.x through 239.0.0.x and 224.128.0.x through 239.128.0.x IP ranges as multicast groups, which map to link-local MAC addresses (01:00:5e:00:00:xx).
 
 ## Related Information
 

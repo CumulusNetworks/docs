@@ -67,7 +67,6 @@ To complete the preparation:
     Processing triggers for rsyslog (8.32.0-1ubuntu4) ...
     Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
     ```
-
 ## Run the Upgrade
 
 {{%notice note%}}
@@ -110,7 +109,6 @@ Check if the kubelet process is running with the `sudo systemctl status kubelet`
 If any issue occurs, contact the NVIDIA Support team.
 
 {{%/notice%}}
-
 ### Upgrade Using the NetQ CLI
 
 After completing the {{<link url="#prepare-for-upgrade" text="preparation steps">}}, upgrading your NetQ On-premises, Cloud Appliances or VMs is simple using the NetQ CLI.

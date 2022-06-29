@@ -6354,10 +6354,10 @@ N/A
 | `bfd` | Configures BFD on an interface. |
 | `enable` |  Turns OSPF on and off. |
 | `area` |   Configures the area number for enabling OSPF on an interface. |
-| `cost`  | Configures the cost of this link. If `auto`, determine the cost based on link speed. This is the default. |
+| `cost`  | Configures the cost of this link. If `auto`, determine the cost based on link speed. |
 | `mtu-ignore` | Configures OSPF to ignore MTU matching for peering. |
-| `network-type` | Configures the network type: point-to-point or broadcast. |
-| `passive` | configures the interface as passive. A passive interface creates a database entry but does not send or receive OSPF hello packets. |
+| `network-type` | Configures the network type for the OSPF interface: point-to-point or broadcast. |
+| `passive` | Configures the interface as passive. A passive interface creates a database entry but does not send or receive OSPF hello packets. |
 | `priority` | Configures the priority in becoming the OSPF Designated Router (DR) on a broadcast interface. |
 
 ### Version History
@@ -6560,13 +6560,13 @@ N/A
 | ---------  | -------------- |
 | `enable` |  Turns md5 authentication on and off. |
 | `md5-key` | Configures the MD5 key. |
-| `message-digest-key` |  Configures the message digest key .|
+| `message-digest-key` |  Configures the message digest key.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set interface \<interface-id\> router ospf authentication enable (on|off)
+## nv set interface \<interface-id\> router ospf authentication enable
 
 ### Usage
 
@@ -6620,7 +6620,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication message-digest-key 1
 ```
 
-## nv set interface <interface-id> router ospf authentication md5-key \<value\>
+## nv set interface \<interface-id\> router ospf authentication md5-key \<value\>
 
 Configures the MD5 key.
 
@@ -6637,6 +6637,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
+| `<value>` | The MD5 key. 
 
 ### Version History
 
@@ -6650,7 +6651,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication md5-key
 
 ## nv set interface \<interface-id\> router ospf bfd
 
-BFD configuration
+Configures Bidirectional Forwarding Detection (BFD) on an interface. BFD provides low overhead and rapid detection of failures in the paths between two network devices.
 
 ### Usage
 
@@ -6670,14 +6671,46 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable` | Turn the feature 'on' or 'off'. The default is 'off'. |
-| `detect-multiplier` |  Detect multiplier value |
-| `min-receive-interval` | Minimum receive interval in milliseconds |
-| `min-transmit-interval` | Minimum transmit interval in milliseconds |
+| `enable` | Turns BFD on and off on the OSPF interface.|
+| `detect-multiplier` |  Configures the detect multiplier value. |
+| `min-receive-interval` | Configures the minimum receive interval in milliseconds. |
+| `min-transmit-interval` | Configures the minimum transmit interval in milliseconds. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set interface \<interface-id\> router ospf bfd enable
+
+Turns BFD on and off on the OSPF interface.
+
+### Usage
+
+`nv set interface <interface-id> router ospf bfd enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf bfd enable on
+```
 
 ## nv set interface \<interface-id\> router ospf bfd detect-multiplier
 
-Detect multiplier value
+Configures the detection time multiplier. You can specify a value between 2 and 255.
 
 ### Usage
 
@@ -6693,9 +6726,19 @@ N/A
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf bfd detect-multiplier 100
+```
+
 ## nv set interface \<interface-id\> router ospf bfd min-receive-interval
 
-Minimum receive interval in milliseconds
+Configures the required minimum interval between the received BFD control packets. You can specify a value between 50 and 60000.
 
 ### Usage
 
@@ -6711,9 +6754,19 @@ N/A
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf bfd min-receive-interval 400
+```
+
 ## nv set interface \<interface-id\> router ospf bfd min-transmit-interval
 
-Minimum transmit interval in milliseconds
+Configures the minimum transmit interval in milliseconds. You can specify a value between 50 and 60000.
 
 ### Usage
 
@@ -6729,11 +6782,189 @@ N/A
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
 
-## nv set interface \<interface-id\> router ospf priority
+### Version History
 
-Eligibility of this router to become DR on multi-access network
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf bfd min-transmit-interval 400
+```
+
+## nv set interface \<interface-id\> router ospf enable
+
+Turns OSFP on and off on the interface.
 
 ### Usage
+
+`nv set interface <interface-id> router ospf enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf enable on
+```
+
+## nv set interface \<interface-id\> router ospf area
+
+Configures the OSPF area on the interface.
+
+### Usage
+
+`nv set interface <interface-id> router ospf area [options] (0-4294967295|none|<ipv4>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf area 0
+```
+
+## nv set interface \<interface-id\> router ospf cost 
+
+Configures the cost of this link. You can specify a value between 1 and 65535 or `auto` to determine the cost based on link speed.
+
+## Usage
+
+`nv set interface <interface-id> router ospf cost [options] (1-65535|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf cost 60
+```
+
+## nv set interface \<interface-id\> router ospf mtu-ignore
+
+Configures OSPF to turn MTU value checking in the OSPF DBD packets on or off.
+
+## Usage
+
+`nv set interface <interface-id> router ospf mtu-ignore [options] (on|off)`
+
+### Default Setting
+
+`on`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf mtu-ignore off
+```
+
+## nv set interface \<interface-id\> router ospf network-type
+
+Configures the network type for the OSPF interface: point-to-point or broadcast.
+
+## Usage
+
+`nv set interface <interface-id> router ospf network-type [options] (broadcast|non-broadcast|point-to-multipoint|point-to-point)`
+
+### Default Setting
+
+`broadcast`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf network-type point-to-multipoint
+```
+
+## nv set interface \<interface-id\> router ospf passive
+
+Configures the interface as passive. A passive interface creates a database entry but does not send or receive OSPF hello packets.
+
+## Usage
+
+`nv set interface <interface-id> router ospf passive [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf passive on
+```
+
+## nv set interface \<interface-id\> router ospf priority
+
+Configures the priority in becoming the OSPF Designated Router (DR) on a broadcast interface. 
+
+## Usage
 
 `nv set interface <interface-id> router ospf priority [options] 0-255`
 
@@ -6747,9 +6978,19 @@ N/A
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf priority 5
+```
+
 ## nv set interface \<interface-id\> router pim
 
-PIM interface configuration.
+Configures PIM  on an interface.
 
 ### Usage
 
@@ -6769,16 +7010,20 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `timers` | Timers |
-| `bfd` | BFD configuration |
-| `address-family` | Address family specific configuration |
-| `enable` | Turn the feature 'on' or 'off'. The default is 'off'. |
-| `active-active` | Enable/disable active-active for PIM MLAG operation on the interface. |
-| `dr-priority` | Designated Router Election priority. |
+| `timers` | Configures PIM timers on an interface. |
+| `bfd` | Configures BFD for the PIM enabled interface. |
+| `address-family` | Configures the address family on the PIM enabled interface. |
+| `enable` | Turns PIM on or off on the interface. |
+| `active-active` | Configures active-active for PIM MLAG operation on the interface. |
+| `dr-priority` | Configures the designated Router Election priority on the PIM enabled interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> router pim timers
 
-Timers
+Configures PIM timers on an interface.
 
 ### Usage
 
@@ -6798,11 +7043,15 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `hello-interval` |  PIM Hello packets periodic interval. If "auto", inherit from the VRF. This is the default. Holdtime is 3.5 times the hello-interval, the amount of time neighbor must kept in reachable state. |
+| `hello-interval` |  Configures the PIM Hello packets periodic interval. If `auto`, the interval is inherited from the VRF. The hold time is 3.5 times the `hello-interval`, the amount of time the neighbor must be in a reachable state. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> router pim bfd
 
-BFD configuration
+Configures BFD for the PIM enabled interface.
 
 ### Usage
 
@@ -6822,10 +7071,10 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`  | Turn the feature 'on' or 'off'. The default is 'off'. |
-| `detect-multiplier` | Detect multiplier value |
-| `min-receive-interval` | Minimum receive interval in milliseconds |
-| `min-transmit-interval`| Minimum transmit interval in milliseconds|
+| `enable`  | Turns BFD on or off on the PIM enabled interface. |
+| `detect-multiplier` | Configures the detect multiplier value. |
+| `min-receive-interval` | Configures the minimum receive interval in milliseconds. |
+| `min-transmit-interval`| Configures the minimum transmit interval in milliseconds. |
 
 ## nv set interface \<interface-id\> router pim bfd detect-multiplier
 

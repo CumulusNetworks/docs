@@ -46,7 +46,7 @@ Basic PTP configuration requires you:
 
 The basic configuration shown below uses the *default* PTP settings:
 - The clock mode is Boundary. This is the only clock mode that Cumulus Linux supports.
-- The PTP profile is default-1588; the profile in the IEEE 1588 standard.
+- {{<link url="#ptp-profiles" text="The PTP profile">}} is default-1588; the profile in the IEEE 1588 standard.
 - {{<link url="#clock-domains" text="The PTP clock domain">}} is 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are both 128.
 - {{<link url="#dscp" text="The DSCP" >}} is 46 for both general and event messages.
@@ -253,15 +253,15 @@ PTP profiles are a standardized set of configurations and rules intended to meet
 
 Cumulus Linux supports the following profiles:
 - *Default* is the profile specified in the IEEE 1588 standard. If you do not choose a profile or perform any optional configuration, the PTP software is initialized with default values in the standard. The default profile addresses some common applications, such as Industrial Automation. It does not have any network restrictions and is used as the first profile to be tested in qualification of equipment.
-- *ITU-T G.8275.2* is the PTP profile for use in telecom networks where phase or time-of-day synchronization is required. It differs from G. 8275.1 in that it is not required that each device in the network participates in the PTP protocol.
+- *ITU-T G.8275.1* is the PTP profile for use in telecom networks where phase or time-of-day synchronization is required. Each device in the network must participate in the PTP protocol.
 
-To configure the switch to use the ITU-T G.8275.2 profile:
+To configure the switch to use the ITU-T G.8275.1 profile:
 
 {{< tabs "TabID260 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service ptp 1 profile-type G.8275.2
+cumulus@switch:~$ nv set service ptp 1 profile-type G.8275.1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -287,7 +287,7 @@ slaveOnly               0
 priority1               128
 priority2               128
 domainNumber            3
-profile-type            G.8275.2
+profile-type            G.8275.1
 ...
 ```
 

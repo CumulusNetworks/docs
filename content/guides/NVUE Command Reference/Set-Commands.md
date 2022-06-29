@@ -6235,9 +6235,13 @@ N/A
 |`type` | The type of interface
 |`vlan` | VLAN ID
 
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
 ## nv set interface \<interface-id\> router
 
-interface router
+Configues routing settings on an interface.
 
 ### Usage
 
@@ -6257,14 +6261,18 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `pbr`  |PBR interface configuration. |
-| `ospf` | OSPF interface configuration. |
-| `pim` |  PIM interface configuration. |
-| `adaptive-routing`  | Adaptive routing interface configuration. |
+| `pbr`  | Configures PBR on an interface. |
+| `ospf` | Configures OSPF on an interface. |
+| `pim` |  Configures PIM on an interface. |
+| `adaptive-routing` | Configures adaptive routing on an interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> router pbr
 
-PBR interface configuration.
+Configures PBR on an interface.
 
 ### Usage
 
@@ -6284,11 +6292,15 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `map` |   PBR map to use on this interface |
+| `map` |   Configures the PBR map to use on the specified interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> router pbr map \<pbr-map-id\>
 
-Interface Pbr map
+Configures the PBR map to use on the specified interface.
 
 ### Usage
 
@@ -6302,12 +6314,22 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|` <interface-id>` |  Interface |
-| `<pbr-map-id>` |  Route Map ID |
+| `<interface-id>` |  The interface you want to configure. |
+| `<pbr-map-id>` |  The route map name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router pbr map1
+```
 
 ## nv set interface \<interface-id\> router ospf
 
-OSPF interface configuration.
+Configures OSPF on an interface.
 
 ### Usage
 
@@ -6321,26 +6343,30 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|` <interface-id>` |  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `timers` |  Timers configuration |
-| `authentication` |  md5 authentication configuration |
-| `bfd` | BFD configuration|
-| `enable` |  Turn the feature 'on' or 'off'. The default is 'off'. |
-| `area` |   Area number for enabling ospf on this interface. |
-| `cost`  | The cost of this link the router lsa. If `auto`, determine the cost based on link speed. This is the default. |
-| `mtu-ignore` | Do not test mtu matching for peering. |
-| `network-type` | Network type. |
-| `passive` | Stops the creation of peers on this interface |
-| `priority` | Eligibility of this router to become DR on multi-access network |
+| `timers` |  Configures OSPF timers. |
+| `authentication` |  Configures OSPF MD5 authentication on an interface. |
+| `bfd` | Configures BFD on an interface. |
+| `enable` |  Turns OSPF on and off. |
+| `area` |   Configures the area number for enabling OSPF on an interface. |
+| `cost`  | Configures the cost of this link. If `auto`, determine the cost based on link speed. This is the default. |
+| `mtu-ignore` | Configures OSPF to ignore MTU matching for peering. |
+| `network-type` | Configures the network type: point-to-point or broadcast. |
+| `passive` | configures the interface as passive. A passive interface creates a database entry but does not send or receive OSPF hello packets. |
+| `priority` | Configures the priority in becoming the OSPF Designated Router (DR) on a broadcast interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> router ospf timers
 
-Timers configuration
+Configures OSPF timers.
 
 ### Usage
 
@@ -6354,20 +6380,53 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|` <interface-id>` |  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `dead-interval` | Length of time, in seconds, without a hello before  declaring the neighbor dead. If `minimal`, `hello-multiplier` must be set.|
-| `hello-interval` | How often to transmit a hello packet, in seconds. Only valid if `dead-interval` is not `minimal`.|
-| `hello-multiplier` | Required and only valid if `dead-interval` is `minimal`.|
-| `transmit-delay` | Delay before sending a new lsa, in seconds |
+| `dead-interval` | Configures the number of seconds to wait without a hello before declaring the neighbor dead. If you specify `minimal`, you must set the `hello-multiplier`.|
+| `hello-interval` | Configures how often in seconds to transmit a hello packet. This setting is only valid if `dead-interval` is not `minimal`.|
+| `hello-multiplier` | Configures the required multiplier to use if `dead-interval` is `minimal`. |
+| `transmit-interval`| Configures how often in seconds to retransmit a packet that is not acknowledged. |
+| `transmit-delay` | Configures the number of seconds to wait before sending a new LSA. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set interface \<interface-id\> router ospf timers dead-interval
+
+Configures the number of seconds to wait without a hello before declaring the neighbor dead. You can specify a value between 1 and 65535, or `minimal`. If you specify `minimal`, you must set the `hello-multiplier`.
+
+### Usage
+
+`nv set interface <interface-id> router ospf timers dead-interval [options] (1-65535|minimal)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers dead-interval 600
+```
 
 ## nv set interface \<interface-id\> router ospf timers hello-multiplier
 
-Required and only valid if `dead-interval` is `minimal`.
+Configures the multiplier to use if `dead-interval` is `minimal`. You can specify a value between 1 and 10.
 
 ### Usage
 
@@ -6381,11 +6440,21 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers hello-multiplier 6
+```
 
 ## nv set interface \<interface-id\> router ospf timers hello-interval
 
-How often to transmit a hello packet, in seconds.  Only valid if `dead-interval` is not `minimal`.
+Configures how often in seconds to transmit a hello packet. This setting is only valid if `dead-interval` is not `minimal`. You can specify a value between 1 and 65535.
 
 ### Usage
 
@@ -6399,11 +6468,21 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers hello-interval 600
+```
 
 ## nv set interface \<interface-id\> router ospf timers retransmit-interval
 
-How often to retransmit a packet not acknowledged, in seconds
+Configures how often in seconds to retransmit a packet that is not acknowledged. You can specify a value between 1 and 65535.
 
 ### Usage
 
@@ -6417,11 +6496,21 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers retransmit-interval 600
+```
 
 ## nv set interface \<interface-id\> router ospf timers transmit-delay
 
-Delay before sending a new lsa, in seconds
+Configures the number of seconds to wait before sending a new LSA. You can specify a value between 1 and 65535.
 
 ### Usage
 
@@ -6435,11 +6524,21 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers retransmit-delay 600
+```
 
 ## nv set interface \<interface-id\> router ospf authentication
 
-md5 authentication configuration
+Configures OSPF MD5 authentication on an interface.
 
 ### Usage
 
@@ -6453,19 +6552,49 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable` |  Turn the feature 'on' or 'off'. The default is 'off'. |
-| `md5-key` | md5 key |
-| `message-digest-key` |  Message digest key |
+| `enable` |  Turns md5 authentication on and off. |
+| `md5-key` | Configures the MD5 key. |
+| `message-digest-key` |  Configures the message digest key .|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set interface \<interface-id\> router ospf authentication enable (on|off)
+
+### Usage
+
+`nv set interface <interface-id> router ospf authentication enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication enable on
+```
 
 ## nv set interface \<interface-id\> router ospf authentication message-digest-key
 
-Message digest key
+Configures the message digest key. You can specify a value between 1 and 255. The value must be consistent across all routers on a link.
 
 ### Usage
 
@@ -6479,11 +6608,21 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication message-digest-key 1
+```
 
 ## nv set interface <interface-id> router ospf authentication md5-key \<value\>
 
-md5 key
+Configures the MD5 key.
 
 ### Usage
 
@@ -6497,7 +6636,17 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication md5-key thisisthekey
+```
 
 ## nv set interface \<interface-id\> router ospf bfd
 
@@ -6515,7 +6664,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
@@ -6542,7 +6691,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ## nv set interface \<interface-id\> router ospf bfd min-receive-interval
 
@@ -6560,7 +6709,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ## nv set interface \<interface-id\> router ospf bfd min-transmit-interval
 
@@ -6578,7 +6727,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ## nv set interface \<interface-id\> router ospf priority
 
@@ -6596,7 +6745,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ## nv set interface \<interface-id\> router pim
 
@@ -6614,7 +6763,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
@@ -6643,7 +6792,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
@@ -6667,7 +6816,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
@@ -6694,7 +6843,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ## nv set interface \<interface-id\> router pim bfd min-receive-interval
 
@@ -6712,7 +6861,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ## nv set interface \<interface-id\> router pim bfd min-transmit-interval
 
@@ -6730,7 +6879,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ## nv set interface \<interface-id\> router pim address-family
 
@@ -6748,7 +6897,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
@@ -6772,7 +6921,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
@@ -6798,7 +6947,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
@@ -6823,7 +6972,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ## nv set interface \<interface-id\> router adaptive-routing
 
@@ -6841,7 +6990,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
@@ -6866,7 +7015,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ## nv set interface \<interface-id\> bond
 
@@ -6884,7 +7033,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-|`<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 

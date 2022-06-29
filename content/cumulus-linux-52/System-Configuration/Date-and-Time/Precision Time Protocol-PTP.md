@@ -588,7 +588,7 @@ Cumulus Linux supports the following PTP message modes:
 - *Multicast*, where the ports subscribe to two multicast addresses, one for event messages with timestamps and the other for general messages without timestamps. The Sync message that the master sends is a multicast message; all slave ports receive this message because the slaves need the time from the master. The slave ports in turn generate a Delay Request to the master. This is a multicast message that the intended master for the message and other slave ports receive. Similarly, all slave ports in addition to the intended slave port receive the master's Delay Response. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth if there are hundreds of slave ports.
 - *Mixed*, where Sync and Announce messages are multicast messages but Delay Request and Response messages are unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
 
-Multicast mode is the default setting. To set the message mode to *mixed* on an interface:
+Multicast mode is the default setting. To change the message mode to mixed on swp1:
 
 {{< tabs "TabID494 ">}}
 {{< tab "NVUE Commands ">}}
@@ -601,7 +601,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `Hybrid_e2e` setting to 1 for the interface, then restart the `ptp4l` service.
+Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `Hybrid_e2e` setting to 1 under the interface, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf

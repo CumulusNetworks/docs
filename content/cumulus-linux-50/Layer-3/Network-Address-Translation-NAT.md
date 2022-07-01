@@ -23,9 +23,9 @@ The following illustration shows a basic NAT configuration.
 
 {{%notice note%}}
 - NVIDIA Spectrum-2 and Spectrum-3 switches only support NAT.
-- You can configure NAT on physical and bond interfaces only; logical interfaces (loopback, SVI, BVI, sub-interface, etc.) are not supported.
+- You can configure NAT on physical and bond interfaces only; logical interfaces such as the loopback, SVIs, and subinterfaces do not support NAT.
 - You can only configure NAT in the default VRF.
-- Static NAT and dynamic NAT can be enabled and used concurrently.
+- You can enable both static NAT and dynamic NAT at the same time.
 - You cannot translate IPv6 rules to IPv4 rules.
 - NAT does not support multicast traffic.
 - You cannot use NAT in an EVPN configuration.

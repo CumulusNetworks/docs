@@ -1156,14 +1156,8 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>

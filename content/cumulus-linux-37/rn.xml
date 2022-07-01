@@ -7,18 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3119615</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3119614</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
@@ -126,18 +114,6 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>
@@ -2594,18 +2570,6 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3119615</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3119614</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
@@ -2739,18 +2703,6 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>

@@ -655,8 +655,8 @@ You can configure a PTP interface on the switch to be a unicast client or a unic
 
 To configure a PTP interface to be the unicast client:
 - Configure the unicast master:
-  - Set the unicast table ID and the unicast master address. You can set more than one unicast master address. You can use an IPv4, IPv6, or MAC address.
-  - Set the IP address for peer delay requests.
+  - Set the unicast table ID and the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
+  - Set the IP address for peer delay requests. You can set an IPv4 or IPv6 address.
   - Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between `-3` and `4`. The default value is `- 0` (2 power).
 - On the PTP interface:
   - Set the table index of the unicast master table you want to use.
@@ -732,6 +732,22 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 {{< /tab >}}
 {{< /tabs >}}
+
+#### Show Unicast Master Information
+
+To show information about the unicast master table, run the `nv show service ptp <instance-id> unicast-master <table-id>` command:
+
+```
+cumulus@switch:~$ nv show service ptp 1 unicast-master 1
+SHOW OUTPUT
+```
+
+To show information about a specific unicast master, run the `nv show service ptp <instance-id> unicast-master <table-id> address <ip-mac-address-id>` command:
+
+```
+cumulus@switch:~$ nv show service ptp 1 unicast-master 1 address 10.10.10.1
+SHOW OUTPUT
+```
 
 ### TTL for a PTP Message
 

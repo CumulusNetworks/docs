@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3118375</td>
+<td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
+Vulnerable: &lt;= 1.1.1n-0+deb10u2
+Fixed: 1.1.1n-0+deb10u3
+Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
@@ -68,14 +77,8 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>
@@ -3196,6 +3199,15 @@ CVE-2020-10531: An issue was discovered in International Components for Unicode 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3118375</td>
+<td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
+Vulnerable: &lt;= 1.1.1n-0+deb10u2
+Fixed: 1.1.1n-0+deb10u3
+Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
@@ -3257,14 +3269,8 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>

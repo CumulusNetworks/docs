@@ -3,6 +3,7 @@ title: Changelog Archive
 author: NVIDIA
 weight: 20
 product: NVIDIA Air
+bookhidden: true
 ---
 <!-- vale off -->
 ## December 2021

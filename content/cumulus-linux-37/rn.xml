@@ -114,18 +114,6 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>
@@ -2121,7 +2109,7 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <tr>
 <td>2875279</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td>4.2.1-5.0.1</td>
 </tr>
 <tr>
 <td>2866111</td>
@@ -2715,18 +2703,6 @@ Fixed: 7.2d-6.4+deb8u1</td>
 <tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>

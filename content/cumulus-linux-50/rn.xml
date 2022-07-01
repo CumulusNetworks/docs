@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3118374</td>
+<td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
+Vulnerable: &lt;= 1.1.1n-0+deb10u2
+Fixed: 1.1.1n-0+deb10u3
+Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3107615</td>
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
@@ -15,10 +24,10 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3096918</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
+<td>3107606</td>
+<td>ONIE installation over HTTP fails if the web server hosting the installation image returns valid HTML content when ONIE requests an {{optional_pkgs}} file that does not exist. To work around this issue, configure the hosting web server to return an HTTP 404 code when the non-existant file is requested, or host an empty file on the web server with the format {{&lt;image name&gt;.optional_pkgs}}.</td>
+<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3096915</td>
@@ -142,6 +151,12 @@ export HOME
 <td></td>
 </tr>
 <tr>
+<td>3053197</td>
+<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4</td>
+</tr>
+<tr>
 <td>3046023</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
@@ -245,18 +260,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>
@@ -556,14 +559,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2875279</td>
-<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
+<td>4.2.1-5.0.1</td>
+<td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
 <td>2873053</td>
@@ -706,6 +703,15 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3118374</td>
+<td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
+Vulnerable: &lt;= 1.1.1n-0+deb10u2
+Fixed: 1.1.1n-0+deb10u3
+Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3107615</td>
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
@@ -714,10 +720,10 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3096918</td>
-<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
+<td>3107606</td>
+<td>ONIE installation over HTTP fails if the web server hosting the installation image returns valid HTML content when ONIE requests an {{optional_pkgs}} file that does not exist. To work around this issue, configure the hosting web server to return an HTTP 404 code when the non-existant file is requested, or host an empty file on the web server with the format {{&lt;image name&gt;.optional_pkgs}}.</td>
+<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3096915</td>
@@ -783,6 +789,12 @@ export HOME
 </td>
 <td>5.0.0-5.1.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3053197</td>
+<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4</td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -851,18 +863,6 @@ Fixed: 1.2.11.dfsg-1+deb10u1</td>
 <tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3020254</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>
@@ -1139,14 +1139,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2875279</td>
-<td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
+<td>4.2.1-5.0.1</td>
+<td>3.7.16, 5.1.0</td>
 </tr>
 <tr>
 <td>2873053</td>

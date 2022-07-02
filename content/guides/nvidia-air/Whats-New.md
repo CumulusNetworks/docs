@@ -11,11 +11,15 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 ### 82.2022.0606-015
 - Added unique URLs for marketplace demos
 - Fixed a bug that caused IPv6 addresses to not be assigned after multiple power on/power off events
-<!-- Air:WhatsNew -->
+
 ### 82.2022.0616
 - Fixed an incorrect error message that may be displayed while a simulation is loading
 - Fixed a bug that removed a simulation from its organization after updating its details
 - Fixed a bug that caused some VM interfaces to be unreachable inside a simulation
+
+<!-- Air:WhatsNew -->
+### 82.2022.0628
+- Added Cumulus Linux 4.4.4
 <!-- Air:WhatsNew -->
 
 ## May 2022

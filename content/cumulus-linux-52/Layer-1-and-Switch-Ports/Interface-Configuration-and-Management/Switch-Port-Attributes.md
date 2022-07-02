@@ -1188,7 +1188,7 @@ Maximum 400G ports: 32
 
 SN4800 is a modular chassis with up to 8 line cards. Each line card has 16x QSFP28 NRZ encoding 100G interfaces and supports all speeds down to 1G.
 
-This platform is avaliable only with 16x QSFP28 line cards without an option to breakout ports. Thus, you can install a maximum of 128x100G ports. 
+This platform is avaliable only with 16x QSFP28 line cards without an option to breakout ports; you can install a maximum of 128x100G ports. 
 
 {{< /tab >}}
 {{< /tabs >}}

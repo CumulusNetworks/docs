@@ -653,20 +653,20 @@ To change the message mode back to the default setting of multicast, change the 
 
 You can configure a PTP interface on the switch to be a unicast client or a unicast server.
 
-To configure a PTP interface to be the unicast client:
+To configure a PTP interface to be the unicast *client*:
 - Configure the unicast master:
   - Set the unicast table ID and the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
   - Set the IP address for peer delay requests. You can set an IPv4 or IPv6 address.
-  - Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between `-3` and `4`. The default value is `- 0` (2 power).
+  - Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between `-3` and `4`. The default value is `-0` (2 power).
 - On the PTP interface:
   - Set the table index of the unicast master table you want to use.
-  - Set the unicast service mode to client.
+  - Set the unicast service mode to `client`.
 
 {{%notice note%}}
 A PTP interface as a unicast client or server only supports a single communictation mode and does not work with multicast servers or clients. Make sure that both sides of a PTP link are in unicast mode.
 {{%/notice%}}
 
-The following example commands set the unicast table ID to 1, the unicast master address and the peer address to 10.10.10.1, the query interval to 4, and the unicast service mode to client.
+The following example commands set the unicast table ID to 1, the unicast master address and the peer address to 10.10.10.1, the query interval to 4, and the unicast service mode to `client`.
 
 {{< tabs "TabID668 ">}}
 {{< tab "NVUE Commands ">}}
@@ -699,16 +699,25 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-To configure a PTP interface to be the unicast server:
-  - Set the unicast service mode to server.
+To configure a PTP interface to be the unicast *server*:
+- Set the unicast table ID and the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
+  - Set the IP address for peer delay requests. You can set an IPv4 or IPv6 address.
+  - Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between `-3` and `4`. The default value is `-0` (2 power).
+- On the PTP interface:
+  - Set the table index of the unicast master table you want to use.
+  - Set the unicast service mode to `server`.
   - Set the unicast request duration; the service time in seconds to be requested during discovery. This setting is optional. The default value is 300 seconds.
 
-The following example commands set the unicast service mode to server and the unicast request duration to 20 seconds.
+The following example commands set the unicast table ID to 1, the unicast master address and the peer address to 10.10.10.1, the query interval to 4, the unicast service mode to `server`, and the unicast request duration to 20 seconds.
 
 {{< tabs "TabID706 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
+cumulus@switch:~$ nv set service ptp 1 unicast-master 1 address 10.10.10.1
+cumulus@switch:~$ nv set service ptp 1 unicast-master 1 peer-address 10.10.10.1
+cumulus@switch:~$ nv set service ptp 1 unicast-master 1 query-interval 4
+cumulus@switch:~$ nv set interface swp1 ptp unicast-master-table-id 1
 cumulus@switch:~$ nv set interface swp1 ptp unicast-service-mode server
 cumulus@switch:~$ nv set interface swp1 ptp unicast-request-duration 20
 cumulus@switch:~$ nv config apply

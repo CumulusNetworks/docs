@@ -418,7 +418,7 @@ Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-
 <td></td>
 </tr>
 <tr>
-<td>2829196</td>
+<td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
 <td>3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
@@ -2650,7 +2650,7 @@ Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-
 <td></td>
 </tr>
 <tr>
-<td>2829196</td>
+<td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
 <td>3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
@@ -4782,7 +4782,7 @@ Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-
 <td></td>
 </tr>
 <tr>
-<td>2829196</td>
+<td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
 <td>3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
@@ -7162,7 +7162,7 @@ Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-
 <td></td>
 </tr>
 <tr>
-<td>2829196</td>
+<td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
 <td>3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>

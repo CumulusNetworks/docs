@@ -1,5 +1,5 @@
 ---
-title: Integrate NetQ with Your LDAP Server
+title: LDAP Authentication
 author: NVIDIA
 weight: 540
 toc: 3

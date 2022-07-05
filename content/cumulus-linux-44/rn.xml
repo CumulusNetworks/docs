@@ -7,18 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3119615</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3119614</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3118376</td>
 <td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
 Vulnerable: &lt;= 1.1.1n-0+deb10u2
@@ -98,12 +86,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>PBR rules that you apply to interfaces in the default VRF install in the kernel with the action {{lookup local}}. As a result, packets that match this rule only perform a route lookup in the local table (which contains special routes for local IP addresses and broadcast addresses) but not in the main table (which contains unicast routes).  As a result, policy routing might be applied to traffic incorrectly.</td>
 <td>4.4.2-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>3021693</td>
-<td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3008388</td>
@@ -1972,7 +1954,7 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 </tr>
 <tr>
 <td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
+<td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
 </tr>
 <tr>
@@ -2039,18 +2021,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3119615</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3119614</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3118376</td>
 <td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
 Vulnerable: &lt;= 1.1.1n-0+deb10u2
@@ -2066,12 +2036,6 @@ Vulnerable: &lt;= 1.1.1n-0+deb10u2
 Fixed: 1.1.1n-0+deb10u3
 Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
 <td>4.0.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
-<td>3110735</td>
-<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
-<td>4.4.2-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -2302,16 +2266,10 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>4.4.4, 5.1.0</td>
 </tr>
 <tr>
-<td>3021693</td>
+<td>3021692</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
-</tr>
-<tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3018159</td>
@@ -4179,18 +4137,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3119615</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3119614</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3118376</td>
 <td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
 Vulnerable: &lt;= 1.1.1n-0+deb10u2
@@ -4206,12 +4152,6 @@ Vulnerable: &lt;= 1.1.1n-0+deb10u2
 Fixed: 1.1.1n-0+deb10u3
 Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
 <td>4.0.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
-<td>3110735</td>
-<td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
-<td>4.4.2-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4418,16 +4358,10 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>4.4.4, 5.1.0</td>
 </tr>
 <tr>
-<td>3021693</td>
+<td>3021692</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
-</tr>
-<tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3017180</td>
@@ -6512,18 +6446,6 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3119615</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3119614</td>
-<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3118376</td>
 <td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
 Vulnerable: &lt;= 1.1.1n-0+deb10u2
@@ -6705,16 +6627,10 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3021693</td>
+<td>3021692</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
-</tr>
-<tr>
-<td>3021692</td>
-<td>GARPs from {{neighmgrd}} for remote neighbors are sent over VXLAN when ARP suppression is off.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3017180</td>

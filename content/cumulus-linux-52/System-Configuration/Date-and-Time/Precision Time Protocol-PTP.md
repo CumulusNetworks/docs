@@ -252,7 +252,7 @@ network_transport       UDPv4
 PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
 Cumulus Linux supports the following profiles:
-- *Default* is the profile specified in the IEEE 1588 standard. If you do not choose a profile or perform any optional configuration, the PTP software initializes with default values in the standard. The default profile addresses some common applications, such as Industrial Automation. It does not have any network restrictions and is the first profile tested in qualification of equipment.
+- *Default* is the profile specified in the IEEE 1588 standard. If you do not choose a profile or perform any optional configuration, the PTP software initializes with default values in the standard. The default profile addresses some common applications and does not have any network restrictions.
 - *ITU-T G.8275.1* is the PTP profile for use in telecom networks that require phase or time-of-day synchronization. Each device in the network must participate in the PTP protocol.
 
 To configure the switch to use the ITU-T G.8275.1 profile:
@@ -392,7 +392,7 @@ The Cumulus Linux switch supports hardware packet time stamping and provides two
 - In *two-step* mode, PTP notes the time when the PTP packet egresses the port and sents it in a separate (follow-up) message.
 
 {{%notice note%}}
-One-step correction mode is available for early access only.
+One-step mode is available for early access only.
 {{%/notice%}}
 
 Two-step mode is the default configuration. To configure the switch to use one-step mode:

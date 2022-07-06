@@ -37,7 +37,6 @@ The values in the following tables reflect results from testing, which can diffe
 | v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
 | v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4), 32k (IPv6-long) and 32K (IPv6/64) |
 | lpm-balanced   | 8k            | 8k (IPv4) and 8k (IPv6)   | 60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
-<!-- vale on -->
 
 ### Spectrum-2 and Spectrum-3
 
@@ -52,10 +51,6 @@ The values in the following tables reflect results from testing, which can diffe
 | lpm-balanced   | 16k           | 16k (IPv4) and 12k (IPv6) | 124k (IPv4), 124k (IPv6-long), 10K (IPv4-Mcast)|
 | ipmc-heavy     | 57k           | 41k (IPv4) and 20k (IPv6) | 82K (IPv4), 66K (IPv6), 8K (IPv4-Mcast)     |
 | ipmc-max       | 41K           | 41k (IPv4) and 20k (IPv6) | 74K (IPv4), 66K (IPv6), 15K (IPv4-Mcast)    |
-<!--
-| v6-lpm-heavy-1 | 5K            | 4K (IPv4) and 4K (IPv6)   | 120K (IPv4), 105K (IPv6-long), 1K (IPv4-Mcast)   |
-| l2-heavy-3     | 105K          | 84K (IPv4) and 75K (IPv6) | 30K (IPv4), 1K (IPv6-long), 1K (IPv4-Mcast)      |
--->
 <!-- vale on -->
 The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
 

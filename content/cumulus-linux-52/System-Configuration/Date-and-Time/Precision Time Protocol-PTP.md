@@ -28,7 +28,7 @@ Cumulus Linux supports:
 - PTP on layer 3 interfaces, trunk ports, bonds, and switch ports belonging to a VLAN.
 - Multicast, unicast, and mixed message mode.
 - End-to-End delay mechanism (not Peer-to-Peer).
-- Two-step clock correction mode, where PTP notes the time when the packet goes out of the port and sends the time in a separate (follow-up) message. Cumulus Linux does not support one-step mode.
+- One-step and two-step clock mode. One-step mode is available for early access.
 - Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 {{%notice note%}}
@@ -385,11 +385,15 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-<!-- ### One-step and Two-step Mode
+### One-step and Two-step Clock
 
 The Cumulus Linux switch supports hardware packet time stamping and provides two modes:
 - In *one-step* mode, the PTP packet is time stamped as it egresses the port and there is no need for a follow-up packet.
 - In *two-step* mode, the time is noted when the PTP packet egresses the port and is sent in a separate (follow-up) message.
+
+{{%notice note%}}
+One-step correction mode is available for early access only.
+{{%/notice%}}
 
 Two-step mode is the default configuration. To configure the switch to use one-step mode:
 
@@ -428,7 +432,8 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
 {{< /tab >}}
-{{< /tabs >}} -->
+{{< /tabs >}}
+
 ### DSCP
 
 You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.

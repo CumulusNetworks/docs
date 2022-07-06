@@ -20,7 +20,7 @@ To add a new account:
 
 1. On the User Accounts card, select **Manage** to open a table listing all user accounts.
 
-2. Above the table, select + to add a user.
+2. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" alt="add" height="18" width="18">}} to add a user.
 
     {{< figure src="/images/netq/add-new-user-modal-221.png" width="250" >}}
 

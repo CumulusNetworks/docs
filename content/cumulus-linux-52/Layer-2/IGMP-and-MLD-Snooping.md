@@ -330,9 +330,9 @@ The supported values for `bridge-hashmax` are 512, 1024, 2048, 4096, 8192, 16384
 * Spectrum 1 switches limit multicast groups to 16300 in the MDB with OMF disabled and 14800 multicast groups with OMF enabled.
 * On Spectrum 1 switches, to support this uppper limit you must change the {{<link url="Supported-Route-Table-Entries/#forwarding-resource-profiles" text="forwarding resource profile">}} to `rash-custom-profile1`, then restart `switchd`.
 {{%/notice%}}
-
+<!-- vale off -->
 ## DIP-based Multicast Forwarding
-
+<!-- vale on -->
 Cumulus Linux does not support DIP-based multicast forwarding. Do not configure the 224.0.0.x through 239.0.0.x and 224.128.0.x through 239.128.0.x IP ranges as multicast groups, which map to link-local MAC addresses (01:00:5e:00:00:xx).
 
 ## Related Information

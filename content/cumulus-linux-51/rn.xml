@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3119673</td>
+<td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3118374</td>
 <td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
 Vulnerable: &lt;= 1.1.1n-0+deb10u2
@@ -16,9 +22,21 @@ Note: Use of the c_rehash script is considered obsolete and should be replaced b
 <td></td>
 </tr>
 <tr>
+<td>3115415</td>
+<td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTime}} OID does not correctly report the time since a BGP session goes down. </td>
+<td>4.4.4, 5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3115242</td>
 <td>When you configure two VNIs in the same VLAN, ifupdown2  shows a "vlan added to two or more VXLANS" warning, which is only issued after the VNI is already added to the bridge. This leaves the new VNI in the PVID even if there is already an existing VNI configured in that PVID.</td>
 <td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3112938</td>
+<td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
+<td>4.4.4, 5.1.0</td>
 <td></td>
 </tr>
 <tr>

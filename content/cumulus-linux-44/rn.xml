@@ -25,10 +25,22 @@ Note: Use of the c_rehash script is considered obsolete and should be replaced b
 <td></td>
 </tr>
 <tr>
+<td>3115415</td>
+<td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTime}} OID does not correctly report the time since a BGP session goes down. </td>
+<td>4.4.4, 5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3113042</td>
 <td>After a fresh installation of Cumulus Linux, the package manager reports that the cumulus-archive-keyring package can be upgraded.
 This is a security fix made available after the 4.4.4 image release to change the repository URLs in the {{/etc/apt/sources.list}} file from http to https.</td>
 <td>4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3112938</td>
+<td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
+<td>4.4.4, 5.1.0</td>
 <td></td>
 </tr>
 <tr>

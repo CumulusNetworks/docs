@@ -10,7 +10,6 @@ The {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-c
 
 - Cumulus Express CX-1048-P
 - Dell N3048EP-ON
-- Delta AG6248C PoE
 - EdgeCore AS4610-54P
 
 ## PoE Basics

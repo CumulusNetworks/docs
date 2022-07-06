@@ -56,8 +56,6 @@ These platforms are not supported in Cumulus Linux 4.0. They are supported in Cu
 The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.0. These platforms will be supported in a future Cumulus Linux release.
 
 #### Dell Platforms
-
-- Dell N3048EP-ON
 - Dell S4128F-ON
 - Dell S4128T-ON
 - Dell S4148F-ON

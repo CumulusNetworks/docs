@@ -651,8 +651,8 @@ addon_scripts_support=1
 The NVIDIA SN4800 switch is available in Cumulus Linux 5.1 as early access.
 
 {{%notice note%}}
-- Only 100G port speed is supported. 1G, 10G, 40G, 50G, and breakout ports are not supported.
-- Do not remove and reinsert line cards when the switch is powered on.
+- Cumulsu Linux only supports 100G port speed and does *not* support 1G, 10G, 40G, 50G, and breakout ports.
+- Do not remove and reinsert line cards after you power on the switch.
 - NVUE `nv set` and `nv config` commands are not available. You must configure the switch with Linux commands and by editing the configuration files manually. However, you can use the NVUE `nv show` commands to display configuration information.
 {{%/notice%}}
 

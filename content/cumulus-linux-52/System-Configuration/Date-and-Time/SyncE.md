@@ -4,25 +4,25 @@ author: NVIDIA
 weight: 129
 toc: 3
 ---
-[SyncE](## "Synchronous Ethernet") is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network. This is done by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, ([ESMC](## "Ethernet Synchronization Messaging Channel")), manages this synchronization.
+[SyncE](## "Synchronous Ethernet") is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, ([ESMC](## "Ethernet Synchronization Messaging Channel")), manages this synchronization.
 
 The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 - The SyncE controller reads performance counters to calculate the differences between TX and RX ethernet symbols on the physical layer to fine tune the clock frequency.
 - The SyncE daemon (`syncd`) manages:
   - Transmitting and receiving [SSMs](## "Synchronization Status Messages") on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
   - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the [QL](## "Quality Level") in the SSM.
-  - Failover to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
+  - Using to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
   - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
 
 {{%notice note%}}
-SyncE is supported on the NVIDIA SN3700-S switch as an early access feature.
+Cumulus Linux supports SyncE on the NVIDIA SN3700-S switch only as an early access feature.
 {{%/notice%}}
 
 ## Basic Configuration
 
 Basic SyncE configuration requires you:
 - Enable SyncE on the switch.
-- Configure SyncE on at least one interface or bond so that the interface is a timing source that is passed to the selection algorithm.
+- Configure SyncE on at least one interface or bond so that the interface is a timing source that passes to the selection algorithm.
 
 The basic configuration shown below uses the default settings:
 - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.
@@ -72,7 +72,7 @@ cumulus@switch:~$ sudo systemctl restart syncd
 
 ### Logging
 
-By default, SyncE logging is disabled on the switch. You enable logging to write a log message:
+By default, SyncE logging is off on the switch. You can enable logging to write a log message:
 - Every time there is a change to the selected source in addition to errors
 - Only when there are no available frequency sources or when the only available frequency source is the internal oscillator
 
@@ -224,8 +224,8 @@ cumulus@switch:~$ sudo systemctl restart syncd
 
 To override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) transmitted in SSM messages, you can set the following options:
 - `exact <ql>` specifies the exact QL regardless of the value received.
-- `highest <ql>` specifies an upper limit on the QL. If the selected source has a higher QL than the QL specified here, this QL is sent instead.
-- `lowest <ql>` specifies a lower limit on the QL. If the selected source has a lower QL than the QL specified here, DNU is sent instead.
+- `highest <ql>` specifies an upper limit on the QL. If the selected source has a higher QL than the QL specified here, the switch transmits this QL instead.
+- `lowest <ql>` specifies a lower limit on the QL. If the selected source has a lower QL than the QL specified here, the switch transmits DNU instead.
 
 The following command example specifies an upper limit of `option 1`:
 
@@ -259,10 +259,10 @@ The QL must match the globally configured QL with the `network-type` command.
 
 ### QL to Receive in Status Messages
 
-To override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) received in SSM messages before it is used in the selection algorithm, you can set one of the following options:
+To override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) received in SSM messages before using it in the selection algorithm, you can set one of the following options:
 - `exact <quality-level>`  specifies the exact QL regardless of the value received unless the received value is DNU.
-- `highest <quality-level>` specifies an upper limit on the received QL. If the received value is higher than this specified QL, this QL is used instead.
-- `lowest <quality-level>` specifies a lower limit on the received QL. If the received value is lower than this specified QL, DNU is used instead.
+- `highest <quality-level>` specifies an upper limit on the received QL. If the received value is higher than this specified QL, the switch transmits this QL instead.
+- `lowest <quality-level>` specifies a lower limit on the received QL. If the received value is lower than this specified QL, the switch transmits DNU instead.
 
 The following command example specifies a lower limit of `option 2 generation 1`:
 

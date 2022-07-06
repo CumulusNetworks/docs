@@ -161,12 +161,6 @@ You need a console connection to access the switch; you cannot perform this proc
 
 Follow the steps below if your laptop is on the same network as the switch eth0 interface but *no* DHCP server is available.
 
-{{%notice note%}}
-
-Installing the Cumulus Linux image using FTP from ONIE is not supported on the Dell N3048EP-ON switch. Use one of the other installation methods, such as a USB, or install the image from Cumulus Linux.
-
-{{%/notice%}}
-
 {{< tabs "TabID162 ">}}
 
 {{< tab "Install from ONIE ">}}
@@ -218,12 +212,6 @@ Installing the Cumulus Linux image using FTP from ONIE is not supported on the D
 ## Install Using a Local File
 
 Follow the steps below to install the Cumulus Linux image referencing a local file.
-
-{{%notice note%}}
-
-Installing the Cumulus Linux image referencing a local file from ONIE is not supported on the Dell N3048EP-ON switch. Use one of the other installation methods, such as a web server or USB, or install the image from Cumulus Linux.
-
-{{%/notice%}}
 
 {{< tabs "TabID217 ">}}
 

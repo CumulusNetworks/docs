@@ -618,7 +618,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `hybrid_e2e` setting to `1` under the interface, then restart the `ptp4l` service.
+Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to add the `hybrid_e2e  1` line under the interface, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -638,10 +638,6 @@ logSyncInterval         -3
 logMinDelayReqInterval  -3
 announceReceiptTimeout  3
 Hybrid_e2e              1
-udp_ttl                 20
-masterOnly              1
-delay_mechanism         E2E
-network_transport       UDPv4
 ...
 ```
 

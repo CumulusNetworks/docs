@@ -23,6 +23,7 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 
 - {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.1 profile">}}
 - {{<link url="Precision-Time-Protocol-PTP/#message-mode" text="PTP unicast message mode">}}
+- {{<link url="Precision-Time-Protocol-PTP/#one-step-and-two-step-clock" text="One-step clock mode">}} available for early access
 - {{<link url="SyncE" text="SyncE">}} available for early access
 - ZTP over front panel ports
 - `cl-support` file includes WJH event collection

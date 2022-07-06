@@ -142,9 +142,8 @@ address-family l2vpn evpn
 {{< /tabs >}}
 
 {{%notice note%}}
-
-If you delete the RD or RT later, it reverts back to its corresponding default value.
-
+- If you delete the RD or RT later, it reverts back to its corresponding default value.
+- Route target auto derivation does not support 4-byte AS numbers; If the router has a 4-byte AS, you must define the RTs manually.
 {{%/notice%}}
 
 You can configure multiple RT values. In addition, you can configure both the import and export route targets with a single command by using `route-target both`:

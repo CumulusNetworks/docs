@@ -7611,13 +7611,13 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`member` | Set of bond members |
-| `mlag` | MLAG configuration on the bond interface |
-| `down-delay` |  bond down delay |
-| `lacp-bypass` | lacp bypass |
-| `lacp-rate` | lacp rate |
-| `mode` | bond mode |
-| `up-delay` |bond up delay|
+|`member` | Configures the bond members. |
+| `mlag` | Configures MLAG on the bond interface. |
+| `down-delay` |  Configures the bond down delay. |
+| `lacp-bypass` | Configures LACP bypass on the bond interface.  |
+| `lacp-rate` | Configures the LACP rate on the bond interface. |
+| `mode` | Configures the bond mode: IEEE 802.3ad or Balance-xor.  |
+| `up-delay` | Configures the bond up delay.|
 
 ### Version History
 
@@ -7625,7 +7625,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> bond member \<member-id\>
 
-A bond member
+Configures the bond members.
 
 ### Usage
 
@@ -7639,8 +7639,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>`|  Interface |
-| `<member-id>` | Bond memer interface |
+| `<interface-id>` |  The interface you want to configure. |
+| `<member-id>` |The bond member interfaces. |
 
 ### Version History
 
@@ -7649,7 +7649,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface bond1 bond member swp1-4
 ```
 
 ## nv set interface \<interface-id\> bond mlag

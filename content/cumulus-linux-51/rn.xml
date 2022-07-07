@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3131402</td>
+<td>CVE-2022-34903: GnuPG through 2.3.6, in unusual situations where an attacker possesses any secret-key information from a victim's keyring and other constraints (e.g., use of GPGME) are met, allows signature forgery via injection into the status line.
+Vulnerable: &lt;= 2.2.12-1+deb10u1
+Fixed: 2.2.12-1+deb10u2</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3119673</td>
 <td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
 <td>5.1.0</td>

@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3131403</td>
+<td>CVE-2022-34903: GnuPG through 2.3.6, in unusual situations where an attacker possesses any secret-key information from a victim's keyring and other constraints (e.g., use of GPGME) are met, allows signature forgery via injection into the status line.
+Vulnerable: &lt;= 2.2.12-1+deb10u1
+Fixed: 2.2.12-1+deb10u2</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3118375</td>
 <td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
 Vulnerable: &lt;= 1.1.1n-0+deb10u2
@@ -3100,6 +3108,14 @@ asic-monitor[7389]: File "/usr/lib/python2.7/dist-packages/cumulus/asic_monitor.
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3131403</td>
+<td>CVE-2022-34903: GnuPG through 2.3.6, in unusual situations where an attacker possesses any secret-key information from a victim's keyring and other constraints (e.g., use of GPGME) are met, allows signature forgery via injection into the status line.
+Vulnerable: &lt;= 2.2.12-1+deb10u1
+Fixed: 2.2.12-1+deb10u2</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>3118375</td>

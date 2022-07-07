@@ -54,9 +54,9 @@ You can upgrade Cumulus Linux on switches that already have a NetQ Agent install
 
 1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in any workbench header, then click **Manage switches**.
 
-2. Upload the Cumulus Linux {{<link title="Manage NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
+2. Upload the Cumulus Linux {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
 
-3. Optionally, specify a {{<link title="Manage NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
+3. Optionally, specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
 4. Optionally, create a new {{<link title="Manage Switch Configurations/#create-cumulus-netq-configuration-profiles" text="NetQ configuration profile">}}.
 
@@ -77,7 +77,7 @@ Your LCM dashboard should look similar to this after you have completed these st
        cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 
        NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556db
 
-2. Upload the Cumulus Linux {{<link title="Manage NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}. 
+2. Upload the Cumulus Linux {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}. 
 
 3. Configure {{<link title="Manage Switch Credentials" text="switch access credentials">}}.
 

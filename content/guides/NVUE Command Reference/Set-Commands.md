@@ -7011,11 +7011,11 @@ N/A
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `timers` | Configures PIM timers on an interface. |
-| `bfd` | Configures BFD for the PIM enabled interface. |
-| `address-family` | Configures the address family on the PIM enabled interface. |
+| `bfd` | Configures BFD for the PIM-enabled interface. |
+| `address-family` | Configures the address family on the PIM-enabled interface. |
 | `enable` | Turns PIM on or off on the interface. |
 | `active-active` | Configures active-active for PIM MLAG operation on the interface. |
-| `dr-priority` | Configures the designated Router Election priority on the PIM enabled interface. |
+| `dr-priority` | Configures the designated Router Election priority on the PIM-enabled interface. |
 
 ### Version History
 
@@ -7049,6 +7049,34 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set interface \<interface-id\> router pim timers hello-interval 
+
+Configures the PIM Hello packets periodic interval. If `auto`, the interval is inherited from the VRF. The hold time is 3.5 times the `hello-interval`, the amount of time the neighbor must be in a reachable state.
+
+### Usage
+
+`nv set interface <interface-id> router pim timers hello-interval [options] (1-180|auto)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface router pim timers hello-interval 100
+```
+
 ## nv set interface \<interface-id\> router pim bfd
 
 Configures BFD for the PIM enabled interface.
@@ -7071,18 +7099,46 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`  | Turns BFD on or off on the PIM enabled interface. |
-| `detect-multiplier` | Configures the detect multiplier value. |
-| `min-receive-interval` | Configures the minimum receive interval in milliseconds. |
-| `min-transmit-interval`| Configures the minimum transmit interval in milliseconds. |
+| `enable`  | Turns BFD on or off on the PIM-enabled interface. |
+| `detect-multiplier` | Configures the BFD detect multiplier value for a PIM-enabled interface. |
+| `min-receive-interval` | Configures the BFD minimum receive interval in milliseconds or a PIM-enabled interface. |
+| `min-transmit-interval`| Configures the BFD minimum transmit interval in milliseconds or a PIM-enabled interface. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set interface \<interface-id\> router pim bfd enable
+
+Turns BFD on or off on the PIM-enabled interface.
+
+### Usage
+
+`nv set interface <interface-id> router pim bfd [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface router pim bfd on
+```
+
 ## nv set interface \<interface-id\> router pim bfd detect-multiplier
 
-Detect multiplier value
+Configures the BFD detect multiplier value for a PIM-enabled interface. You can set a value between 2 and 255.
 
 ### Usage
 
@@ -7105,12 +7161,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim bfd detect-multiplier  10
 ```
 
 ## nv set interface \<interface-id\> router pim bfd min-receive-interval
 
-Minimum receive interval in milliseconds
+Configures the BFD minimum receive interval in milliseconds or a PIM-enabled interface. You can set a value between 50 and 60000.
 
 ### Usage
 
@@ -7133,12 +7189,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim bfd min-receive-interval 300
 ```
 
 ## nv set interface \<interface-id\> router pim bfd min-transmit-interval
 
-Minimum transmit interval in milliseconds
+Configures the BFD minimum transmit interval in milliseconds or a PIM-enabled interface. You can set a value between 50 and 60000.
 
 ### Usage
 
@@ -7161,12 +7217,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim bfd min-transmit-interval 300
 ```
 
 ## nv set interface \<interface-id\> router pim address-family
 
-Address family specific configuration
+Configures the address family on the PIM-enabled interface.
 
 ### Usage
 
@@ -7244,12 +7300,154 @@ Configures the interface to ignore the RP check for all upstream neighbors.
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`enable` | Turns allow RP on or off.|
+|`enable` | Turns allow RP on or off on the PIM-enabled interface.|
 |`rp-list`  | Configures the prefix list that provides the list of group addresses to accept downstream (*,G) joins and propogate towards the allowed RP.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+## nv set interface \<interface-id\> router pim address-family ipv4-unicast allow-rp enable
+
+Turns allow RP on or off on the PIM-enabled interface.
+
+### Usage
+
+`nv set interface <interface-id> router pim address-family ipv4-unicast allow-rp enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim address-family ipv4-unicast allow-rp enable on
+```
+
+## nv set interface \<interface-id\> router pim address-family ipv4-unicast allow-rp rp-list
+
+Configures the prefix list that provides the list of group addresses to accept downstream (*,G) joins and propogate towards the allowed RP.
+
+### Usage
+
+`nv set interface <interface-id> router pim address-family ipv4-unicast allow-rp rp-list [options] (none|<instance-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<instance-name>` | The name of the prefix list. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim address-family ipv4-unicast allow-rp rp-list myprefixlist
+```
+
+## nv set interface \<interface-id\> router pim address-family ipv4-unicast multicast-boundary-oil
+
+Configures multicast boundaries to limit the distribution of multicast traffic and push multicast to a subset of the network.
+
+### Usage
+
+`nv set interface <interface-id> router pim address-family ipv4-unicast multicast-boundary-oil [options] (none|<instance-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<instance-name>` | The name of the prefix list. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim address-family ipv4-unicast multicast-boundary-oil MyPrefixList
+```
+
+## nv set interface \<interface-id\> router pim address-family ipv4-unicast use-source
+
+Configures the PIM-enabled interface to use the unique source address in the PIM Hello source field.
+
+### Usage
+
+`nv set interface <interface-id> router pim address-family ipv4-unicast use-source [options] (none|<ipv4>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim address-family ipv4-unicast use-source 10.100.100.100
+```
+
+## nv set interface \<interface-id\> router pim enable
+
+Turns PIM on or off on the interface.
+
+### Usage
+
+`nv set interface <interface-id> router pim enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim enable on
+```
 
 ## nv set interface \<interface-id\> router pim dr-priority
 
@@ -7276,12 +7474,40 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 router pim dr-priority 100
+```
+
+## nv set interface \<interface-id\> router pim active-active
+
+Turns PIM active-active on or off on the interface.
+
+### Usage
+
+`nv set interface <interface-id> router pim active-active [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim active-active on
 ```
 
 ## nv set interface \<interface-id\> router adaptive-routing
 
-Adaptive routing interface configuration.
+Configures adaptive routing on the PIM-enabled interface.
 
 ### Usage
 
@@ -7301,16 +7527,43 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable` | Turn the feature 'on' or 'off'. The default is 'off'. |
-| `link-utilization-threshold` |  Link utilization threshold percentage |
+| `enable` | Turns adaptive routing on or off on the PIM-enabled interface. |
+| `link-utilization-threshold` |  Configures the link utilization threshold percentage. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set interface \<interface-id\> router adaptive-routing enable
+
+Turns adaptive routing on or off on the interface.
+### Usage
+
+`nv set interface <interface-id> router adaptive-routing enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router adaptive-routing enable on
+```
+
 ## nv set interface \<interface-id\> router adaptive-routing link-utilization-threshold
 
-Link utilization threshold percentage
+Configures the link utilization threshold percentage. You can set a value between 1 and 100.
 
 ### Usage
 
@@ -7333,12 +7586,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 router adaptive-routing link-utilization-threshold 50
 ```
 
 ## nv set interface \<interface-id\> bond
 
-The state of the interface
+Configures a bond.
 
 ### Usage
 

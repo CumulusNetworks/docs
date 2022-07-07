@@ -80,7 +80,6 @@ These platforms are not supported in Cumulus Linux 4.1. They are supported in Cu
 
 The following platforms are supported in Cumulus Linux 3.7 but are not yet supported in Cumulus Linux 4.1. Support for these platforms will be added in a future Cumulus Linux release.
 
-- Dell N3048EP-ON
 - Delta AG7648
 - QCT QuantaMesh BMS T3048-LY8
 - QCT QuantaMesh BMS T3048-LY9

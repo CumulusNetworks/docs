@@ -10,7 +10,7 @@ The most basic SNMP configuration requires you to specify:
 - One or more IP addresses on which the SNMP agent listens.
 - Either a username (for SNMPv3) or a read-only community string (a password, for SNMPv1 or SNMPv2c).
 
-By default, the SNMP configuration has a listening address of localhost (127.0.0.1), which allows the agent (the `snmpd` service) to respond to SNMP requests originating on the switch itself. This is a secure method that allows checking the SNMP configuration without exposing the switch to outside attacks. For an external SNMP NMS to poll a Cumulus Linux switch, you must configure the `snmpd` service running on the switch to listen to one or more IP addresses on interfaces that have a link state UP.
+By default, the SNMP configuration has a listening address of localhost (127.0.0.1), which allows the agent (the `snmpd` service) to respond to SNMP requests originating on the switch itself. This is a secure method that allows checking the SNMP configuration without exposing the switch to outside attacks. For an external SNMP [NMS](## "Network Management Software") to poll a Cumulus Linux switch, you must configure the `snmpd` service running on the switch to listen to one or more IP addresses on interfaces that have a link state UP.
 
 Use the SNMPv3 username instead of the read-only community name. The SNMPv3 username does not expose the user credentials and can encrypt packet contents. However, SNMPv1 and SNMPv2c environments require read-only community passwords so that the `snmpd` daemon can respond to requests. The read-only community string enables you to poll various MIB objects on the device.
 
@@ -21,8 +21,6 @@ Before you can use SNMP, you need to enable and start the `snmpd` service.
 {{%notice note%}}
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
 {{%/notice%}}
-
-To start the SNMP service:
 
 1. Start the `snmpd` service:
 
@@ -44,7 +42,7 @@ To start the SNMP service:
    RestartSec=60
    ```
 
-4. Run the `sudo systemctl daemon-reload` command.
+3. Run the `sudo systemctl daemon-reload` command.
 
 After the service starts, you can use SNMP to manage various components on the switch.
 
@@ -55,6 +53,8 @@ For security reasons, the listening address is the localhost by default so that 
 The IP address must exist on an interface that has link UP on the switch where you use `snmpd`. By default, the IP address is `udp:127.0.0.1:161`, so `snmpd` only responds to requests (such as `snmpwalk`, `snmpget`, `snmpgetnext`) that originate from the switch. A wildcard setting of *udp:161,udp6:161* forces `snmpd` to listen on all IPv4 and IPv6 interfaces for incoming SNMP requests.
 
 You can configure multiple IP addresses and bind to a particular IP address within a particular VRF table.
+
+To configure the listening IP addresses:
 
 {{< tabs "Listening IP" >}}
 {{< tab "NVUE Commands" >}}
@@ -73,14 +73,14 @@ cumulus@switch:~$ nv set service snmp-server listening-address all-v6
 cumulus@switch:~$ nv config apply
 ```
 
-To configure snmpd to listen to a specific IPv4 or IPv6 address, run:
+To configure `snmpd` to listen to a specific IPv4 or IPv6 address:
 
 ```
 cumulus@switch:~$ nv set service snmp-server listening-address 192.168.200.11
 cumulus@switch:~$ nv config apply
 ```
 
-To configure snmpd to listen to a group of addresses with space separated values for incoming SNMP queries, run:
+To configure `snmpd` to listen to multiple addresses for incoming SNMP queries, separate the addresses with a space:
 
 ```
 cumulus@switch:~$ nv set service snmp-server listening-address 192.168.200.11 192.168.200.21
@@ -105,7 +105,7 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 
 #### SNMP and VRFs
 
-Cumulus Linux provides a listening address for VRFs along with trap and inform support. You can configure `snmpd` to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If you do not provide a VRF name, Cumulus Linux uses the default VRF.
+Cumulus Linux provides a listening address for VRFs together with trap and inform support. You can configure `snmpd` to listen to a specific IPv4 or IPv6 address on an interface within a particular VRF. With VRFs, identical IP addresses can exist in different VRF tables. This command restricts listening to a particular IP address within a particular VRF. If you do not provide a VRF name, Cumulus Linux uses the default VRF.
 
 {{< tabs "SNMP and VRFs" >}}
 {{< tab "NVUE Commands" >}}
@@ -117,7 +117,7 @@ cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.10 vrf m
 cumulus@switch:~$ nv config apply
 ```
 
-By default, snmpd does not cross VRF table boundaries. To listen on IP addresses in different VRF tables, use multiple listening-address commands each with a VRF name, as shown below.
+By default, `snmpd` does not cross VRF table boundaries. To listen on IP addresses in different VRF tables, use multiple `listening-address` commands each with a VRF name:
 
 ```
 cumulus@switch:~$ nv set service snmp-server listening-address 10.10.10.10 vrf rocket
@@ -128,7 +128,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-To bind to a particular IP address within a particular VRF table, edit the `/etc/snmp/snmpd.conf` file and append an *@* and the name of the VRF table to the IP address (for example, *192.168.200.11@mgmt*).
+To bind to a particular IP address within a particular VRF table, edit the `/etc/snmp/snmpd.conf` file and append `@` and the name of the VRF table to the IP address (for example, `192.168.200.11@mgmt`).
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -143,7 +143,7 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 
 ### Configure the SNMPv3 Username
 
-NVIDIA recommends you use an SNMPv3 username and password instead of the read-only community string as the more secure way to use SNMP because SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
+NVIDIA recommends you use an SNMPv3 username and password instead of the read-only community; SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
 
 You add SNMPv3 usernames, together with plain text authentication and encryption pass phrases, to the `/etc/snmp/snmpd.conf` file.
 
@@ -188,7 +188,7 @@ cumulus@switch:~$ nv set service snmp-server username testuserauth auth-md5 myau
 cumulus@switch:~$ nv config apply
 ```
 
-You can restrict a user to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in `/usr/share/snmp/mibs/`. If the MIB you want to use does not install by default, you must install it with the latest Debian `snmp-mibs-downloader` package.
+You can restrict a user to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you must install it with the latest Debian `snmp-mibs-downloader` package.
 
 ```
 cumulus@switch:~$ nv set service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myaessecret oid 1.3.6.1.2.1.1
@@ -223,10 +223,10 @@ cumulus@switch:~$ nv config apply
 Three directives define an internal SNMPv3 username that you need for `snmpd` to retrieve information and send built-in traps or for traps you configure with the `monitor` command (see {{<link url="#configure-snmp-trap-and-inform-messages" text="below">}}):
 
 - `createuser` is the default SNMPv3 username.
-- `iquerysecName` is the default SNMPv3 username you use when making internal queries to retrieve monitored expressions &mdash; either to evaluate the monitored expression or build a notification payload. These internal queries always use SNMPv3, even if you query the agent using SNMPv1 or SNMPv2c. The `iquerysecname` directive only defines which user to use.
+- `iquerysecName` is the default SNMPv3 username you use when making internal queries to retrieve monitored expressions, either to evaluate the monitored expression or build a notification payload. These internal queries always use SNMPv3, even if you query the agent using SNMPv1 or SNMPv2c. The `iquerysecname` directive only defines which user to use.
 - `rouser` is the username for these SNMPv3 queries.
 
-Edit the `/etc/snmp/snmpd.conf` file and add the `createuser`, `iquerysecName`, `rouser` commands. The example configuration here configures *snmptrapusernameX* as the username using the `createUser` command.
+Edit the `/etc/snmp/snmpd.conf` file and add the `createuser`, `iquerysecName`, `rouser` commands. The following example configuration configures *snmptrapusernameX* as the username using the `createUser` command.
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -288,7 +288,6 @@ The following example shows a more advanced but slightly more secure method of c
 3. Use the `net-snmp-config` command to create two users, one with MD5 and DES, and the next with SHA and AES.
 
     {{%notice note%}}
-
 The minimum password length is eight characters and the arguments `-a` and `-x` have different meanings in `net-snmp-config` than `snmpwalk`.
 {{%/notice%}}
 
@@ -301,7 +300,6 @@ The minimum password length is eight characters and the arguments `-a` and `-x` 
 This adds a `createUser` command in `/var/lib/snmp/snmpd.conf`. Do **not** edit this file by hand unless you are removing usernames. You can edit this file and restrict access to certain parts of the MIB by adding `noauth`, `auth` or `priv` to allow unauthenticated access, require authentication, or to enforce use of encryption.
 
 The `snmpd` daemon reads the information from the `/var/lib/snmp/snpmd.conf` file and then removes the line (so that Cumulus Linux does not store the master password for that user) and replaces it with the key it derives (using the EngineID). The key is a localized key so that if someone steals the password, they cannot use it to access other agents. To remove the two users `userMD5withDES` and `userSHAwithAES`, stop the `snmpd` daemon and edit the `/var/lib/snmp/snmpd.conf` file. Remove the lines containing the username, then restart the `snmpd` daemon as in step 3 above.
-
 {{%/notice%}}
 
 {{< /tab >}}
@@ -360,9 +358,9 @@ You can also specify a view to restrict the subset of the OID tree.
 {{< tab "NVUE Commands" >}}
 
 The following example configuration:
-- Sets the read-only community string to simplepassword for SNMP requests.
+- Sets the read-only community string to `simplepassword` for SNMP requests.
 - Restricts requests to only those that come from hosts in the 192.168.200.10/24 subnet.
-- Restricts viewing to the mysystem view, which you define with the viewname command.
+- Restricts viewing to the `mysystem` view, which you define with the `view` command.
 
 ```
 cumulus@switch:~$ nv set service snmp-server viewname mysystem included 1.3.6.1.2.1.1
@@ -370,7 +368,7 @@ cumulus@switch:~$ nv set service snmp-server readonly-community simplepassword a
 cumulus@switch:~$ nv config apply
 ```
 
-This example creates a read-only community password showitall that allows access to the entire OID tree for requests originating from any source IP address.
+This example creates a read-only community password `showitall` that allows access to the entire OID tree for requests originating from any source IP address.
 
 ```
 cumulus@switch:~$ nv set service snmp-server readonly-community showitall access any
@@ -389,9 +387,9 @@ To enable the community string, provide a community string, then set `rocommunit
 NVIDIA strongly recommends you change this password to something else.
 {{%/notice%}}
 
-- `default`: Allows connections from any system.
-- `localhost`: Allows requests only from the local host. A restricted source can either be a specific hostname (or address), or a subnet, represented as IP/MASK (like 10.10.10.0/255.255.255.0), or IP/BITS (like 10.10.10.0/24), or the IPv6 equivalents.
-- `-V`: Restricts viewing to a specific {{<link url="#configure-an-snmp-view-name" text="view">}}. For example, `systemonly` is one SNMP view. This is a user-defined value.
+- `default` allows connections from any system.
+- `localhost` allows requests only from the local host. A restricted source can either be a specific hostname (or address), or a subnet, represented as IP/MASK (like 10.10.10.0/255.255.255.0), or IP/BITS (like 10.10.10.0/24), or the IPv6 equivalents.
+- `-V` restricts viewing to a specific {{<link url="#configure-an-snmp-view-name" text="view">}}. For example, `systemonly` is one SNMP view. This is a user-defined value.
 
 Edit the `/etc/snmp/snmpd.conf` file and add the community string.
 
@@ -416,7 +414,7 @@ cumulus@switch:~$ systemctl restart snmpd.service
 
 ### Configure System Settings
 
-You can configure system settings for the SNMPv2 MIB. The example commands here set:
+You can configure system settings for the SNMPv2 MIB. The following example commands set:
 
 - The system physical location for the node in the SNMPv2-MIB system table (the `syslocation`).
 - The username and email address of the contact person for this managed node (the `syscontact`).
@@ -425,14 +423,14 @@ You can configure system settings for the SNMPv2 MIB. The example commands here 
 {{< tabs "sys-settings" >}}
 {{< tab "NVUE Commands" >}}
 
-For example, to set the system physical location for the node in the SNMPv2-MIB system table, run:
+For example, to set the system physical location for the node in the SNMPv2-MIB system table:
 
 ```
 cumulus@switch:~$ nv set service snmp-server system-location My private bunker
 cumulus@switch:~$ nv config apply
 ```
 
-To set the username and email address of the contact person for this managed node, run:
+To set the username and email address of the contact person for this managed node:
 
 ```
 cumulus@switch:~$ nv set service snmp-server system-contact user X at myemail@example.com
@@ -469,7 +467,7 @@ SNMP supports routing MIBs in {{<link url="FRRouting" text="FRR">}}. To enable S
 
 The default `/etc/snmp/snmpd.conf` configuration already enables AgentX and sets the correct permissions.
 
-Enabling FRR includes support for BGP. However, if you plan on using the BGP4 MIB, be sure to provide access to the MIB tree 1.3.6.1.2.1.15.
+Enabling FRR includes support for BGP. However, if you plan to use the BGP4 MIB, be sure to provide access to the MIB tree 1.3.6.1.2.1.15.
 
 {{%notice tip%}}
 If you plan on using the OSPFv2 MIB, provide access to 1.3.6.1.2.1.14 and to 1.3.6.1.2.1.191 for the OSPv3 MIB.
@@ -489,7 +487,7 @@ To enable SNMP support for FRR:
    switch# exit
    ```
 
-2. Edit `/etc/frr/daemons` and add a line like the following to configure the appropriate routing daemon; the example below uses `bgpd`, the BGP daemon.
+2. Edit the `/etc/frr/daemons` file and add a line similar to the following to configure the appropriate routing daemon; the example below uses `bgpd`, the BGP daemon.
 
    ```
    cumulus@switch:~$ sudo nano /etc/frr/daemons
@@ -502,7 +500,7 @@ To enable SNMP support for FRR:
    cumulus@switch:~$ sudo systemctl restart frr.service
    ```
 
-4. Update the SNMP configuration to enable FRR to respond to SNMP requests. Edit `/etc/snmp/snmpd.conf` and verify that the following configuration exists:
+4. Update the SNMP configuration to enable FRR to respond to SNMP requests. Edit the `/etc/snmp/snmpd.conf` file and verify that the following configuration exists:
 
    ```
    cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -512,7 +510,6 @@ To enable SNMP support for FRR:
    ```
 
    {{%notice note%}}
-
 Make sure that the `/var/agentx` directory is world-readable and world-searchable (octal mode 755).
 
 ```
@@ -521,7 +518,6 @@ cumulus@switch:~$ ls -la /var/
 drwxr-xr-x  2 root root  4096 Nov 11 12:06 agentx
 ...
 ```
-
    {{%/notice%}}
 
 5. Optionally, you might need to expose various MIBs:

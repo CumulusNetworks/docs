@@ -214,9 +214,3 @@ If you update your scripts to work with the new version of the commands, just ch
 {{%notice tip%}}
 Use `netq check mlag` in place of `netq check clag` from NetQ 2.4 onward. `netq check clag` remains available for automation scripts, but you should begin migrating to `netq check mlag` to maintain compatibility with future NetQ releases.
 {{%/notice%}}
-
-## Related Information
-
-- {{<link title="Manage Configurations">}}
-- {{<link title="Monitor Operations">}}
-- {{<link title="NetQ UI Card Reference">}}

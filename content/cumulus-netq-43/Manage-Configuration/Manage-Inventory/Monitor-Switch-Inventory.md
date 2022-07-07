@@ -1,5 +1,5 @@
 ---
-title: Monitor Switch Inventory
+title: Switch Inventory
 author: NVIDIA
 weight: 740
 toc: 4
@@ -16,7 +16,7 @@ The commands and cards available to obtain this type of information help you to 
 - What is the ACL and forwarding resources usage?
 <!-- vale on -->
 
-To monitor networkwide inventory, refer to {{<link title="Monitor Networkwide Inventory">}}.
+To monitor networkwide inventory, refer to {{<link title="Networkwide Inventory">}}.
 
 ## Access Switch Inventory Data
 

@@ -1,5 +1,5 @@
 ---
-title: Manage Switch Configurations
+title: Switch Configurations
 author: NVIDIA
 weight: 660
 toc: 4
@@ -634,7 +634,7 @@ Choose carefully as once this has been selected, it cannot be changed for the gi
 
 <div style="padding-left: 18px;"><em>To create a new set of network settings:</em>
 
-- Select the various forms to specify parameters for this configuration. Note that selected parameters are required on each form, noted by red asterisks (*). Refer to {{<link title="Manage Switch Configurations/#create-network-templates" text="Create Network Templates">}} for a description of the fields.
+- Select the various forms to specify parameters for this configuration. Note that selected parameters are required on each form, noted by red asterisks (*). Refer to {{<link title="Switch Configurations/#create-network-templates" text="Create Network Templates">}} for a description of the fields.
 
 - When you have completed the network settings, click **Done**.
 
@@ -668,7 +668,7 @@ In either case, if you change your mind about including network settings, click 
 
 <em>To create a new configuration profile:</em>
 
-<ul><li>Select values as appropriate for your situation. Refer to {{<link title="Manage Switch Configurations/#create-cumulus-netq-configuration-profiles" text="Create NetQ Configuration Profiles">}} for descriptions of these parameters.</li></ul></div>
+<ul><li>Select values as appropriate for your situation. Refer to {{<link title="Switch Configurations/#create-cumulus-netq-configuration-profiles" text="Create NetQ Configuration Profiles">}} for descriptions of these parameters.</li></ul></div>
 
 3. Click one of the following:
 
@@ -1240,7 +1240,7 @@ Click **Continue to port details**, or click **Save and Exit** to come back late
     
     {{<figure src="/images/netq/lcm-switch-config-post-assign-config-assign-330.png" width="400">}}
 
-8. Click **View** on the Config Assignment History card to open the details of all assignment jobs. Refer to {{<link title="Manage Switch Configurations/#view-switch-configuration-history">}} for more detail about this card.
+8. Click **View** on the Config Assignment History card to open the details of all assignment jobs. Refer to {{<link title="Switch Configurations/#view-switch-configuration-history">}} for more detail about this card.
 
 ### Edit a Switch Configuration
 
@@ -1256,7 +1256,7 @@ To edit a switch configuration:
 
 4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18">}}, then select *Edit*.
 
-5. Follow the instructions in {{<link title="Manage Switch Configurations/#create-switch-configuration-profiles" text="Create Switch Configuration Profiles">}}, starting at Step 5, to make any required edits.
+5. Follow the instructions in {{<link title="Switch Configurations/#create-switch-configuration-profiles" text="Create Switch Configuration Profiles">}}, starting at Step 5, to make any required edits.
 
 ### Clone a Switch Configuration
 
@@ -1276,7 +1276,7 @@ To clone an assignment job:
 
 6. Change the Configuration Name.
 
-7. Follow the instructions in {{<link title="Manage Switch Configurations/#create-switch-configuration-profiles" text="Create Switch Configuration Profiles">}}, starting at Step 5, to make any required edits.
+7. Follow the instructions in {{<link title="Switch Configurations/#create-switch-configuration-profiles" text="Create Switch Configuration Profiles">}}, starting at Step 5, to make any required edits.
 
 ### Remove a Switch Configuration
 
@@ -1304,7 +1304,7 @@ To remove a switch configuration:
 
 You can assign existing switch configurations to one or more switches at any time. You can also change the switch configuration already assigned to a switch.
 
-If you need to create a new switch configuration, follow the instructions in {{<link title="Manage Switch Configurations/#create-switch-configuration-profiles" text="Create Switch Configuration Profiles">}}.
+If you need to create a new switch configuration, follow the instructions in {{<link title="Switch Configurations/#create-switch-configuration-profiles" text="Create Switch Configuration Profiles">}}.
 
 #### Add an Assignment
 

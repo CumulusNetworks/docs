@@ -1433,7 +1433,7 @@ You can remove a user-defined scheduled validation at any time using the NetQ UI
 
 ## Validate Device Groups
 
-Both on-demand and scheduled validations can run on specific {{<link title="Manage Device Groups" text="device groups.">}} To create a validation for a device group rather than all devices:
+Both on-demand and scheduled validations can run on specific {{<link title="Device Groups" text="device groups.">}} To create a validation for a device group rather than all devices:
 
 1. Click {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} (**Validation**), then click **Create a validation**. Choose **Run on group of switches:**
 

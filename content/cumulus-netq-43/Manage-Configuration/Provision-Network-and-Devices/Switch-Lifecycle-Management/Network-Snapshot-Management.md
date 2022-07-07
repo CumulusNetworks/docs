@@ -1,5 +1,5 @@
 ---
-title: Manage Network Snapshots
+title: Network Snapshots
 author: NVIDIA
 weight: 690
 toc: 4

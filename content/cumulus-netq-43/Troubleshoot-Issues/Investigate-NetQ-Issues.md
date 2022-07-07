@@ -110,7 +110,7 @@ NetQ records network events and stores them in its database. You can:
 
 The `netq trace` command traces the route of an IP or MAC address from one endpoint to another. It works across bridged, routed and VXLAN connections, computing the path using available data instead of sending real traffic &mdash; this way, you can run it from anywhere. It performs MTU and VLAN consistency checks for every link along the path.
 
-Refer to {{<link title="Manage Events and Notifications">}} and {{<link title="Verify Network Connectivity">}} for more information.
+Refer to {{<link title="Events and Notifications">}} and {{<link title="Verify Network Connectivity">}} for more information.
 
 ## Use NetQ as a Time Machine
 

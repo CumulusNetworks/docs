@@ -58,11 +58,11 @@ You can upgrade Cumulus Linux on switches that already have a NetQ Agent install
 
 3. Optionally, specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-4. Optionally, create a new {{<link title="Manage Switch Configurations/#create-cumulus-netq-configuration-profiles" text="NetQ configuration profile">}}.
+4. Optionally, create a new {{<link title="Switch Configurations/#create-cumulus-netq-configuration-profiles" text="NetQ configuration profile">}}.
 
-5. Configure {{<link title="Manage Switch Credentials" text="switch access credentials">}}.
+5. Configure {{<link title="Switch Credentials" text="switch access credentials">}}.
 
-6. Assign a {{<link  title="Manage Switch Credentials/#assign-switch-roles" text="role">}} to each switch (optional, but recommended).
+6. Assign a {{<link  title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch (optional, but recommended).
 
 Your LCM dashboard should look similar to this after you have completed these steps:
 
@@ -79,9 +79,9 @@ Your LCM dashboard should look similar to this after you have completed these st
 
 2. Upload the Cumulus Linux {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}. 
 
-3. Configure {{<link title="Manage Switch Credentials" text="switch access credentials">}}.
+3. Configure {{<link title="Switch Credentials" text="switch access credentials">}}.
 
-4. Assign a {{<link title="Manage Switch Credentials/#assign-switch-roles" text="role">}} to each switch (optional, but recommended).
+4. Assign a {{<link title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch (optional, but recommended).
 
 {{</tab>}}
 
@@ -188,7 +188,7 @@ cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-cl430 cl-version 4.3.0 
 
 #### Network Snapshot Creation
 
-You can also generate a Network Snapshot before and after the upgrade by adding the `run-snapshot-before-after` option to the command:
+You can also generate a network snapshot before and after the upgrade by adding the `run-snapshot-before-after` option to the command:
 
 ```
 cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 netq-version 4.0.0 hostnames spine01,spine02,leaf01,leaf02 order spine,leaf run-snapshot-before-after
@@ -530,7 +530,7 @@ Click **Remove** if you decide to use a different file or want to use IP address
 
     {{</tabs>}}
 
-5. Note that you can use the switch access credentials defined in {{<link title="Manage Switch Credentials">}} to access these switches. If you have issues accessing the switches, you might need to update your credentials.
+5. Note that you can use the switch access credentials defined in {{<link title="Switch Credentials">}} to access these switches. If you have issues accessing the switches, you might need to update your credentials.
 
 6. Click **Next**.
 

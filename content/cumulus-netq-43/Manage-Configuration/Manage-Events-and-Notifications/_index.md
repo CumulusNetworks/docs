@@ -1,5 +1,5 @@
 ---
-title: Manage Events and Notifications
+title: Events and Notifications
 author: NVIDIA
 weight: 770
 toc: 3

@@ -28,7 +28,7 @@ NetQ 4.2.0 includes the following new features and improvements:
 - {{<link title="Validate Overall Network Health" text="Improved network health UI with validation summary">}}
 - GUI support for {{<link title="Validation Checks##addresses-validation-tests" text="duplicate address detection">}}
 - Early Access {{<link title="Install NetQ Agents#configure-the-on-switch-opta" text="on-switch OPTA support for NetQ cloud deployments.">}}
-- Early Access support for {{<link title="Monitor DPU Inventory" text="DPU monitoring">}}
+- Early Access support for {{<link title="DPU Inventory" text="DPU monitoring">}}
 ## Upgrade Paths
 
 You can upgrade NetQ versions 4.1.0 and later directly to version 4.2.0. Upgrades from NetQ versions earlier than 4.1.0 require a fresh installation or an incremental upgrade to version 4.1.0 first.

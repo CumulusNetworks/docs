@@ -1,5 +1,5 @@
 ---
-title: Integrate NetQ with Your LDAP Server
+title: LDAP Authentication
 author: NVIDIA
 weight: 540
 toc: 3
@@ -68,13 +68,13 @@ You can configure one LDAP server per bind DN (distinguished name). After you co
 
 To create an LDAP configuration:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
+1. Click menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
 
 2. Locate the LDAP Server Info card, and click **Configure LDAP**.
 
     {{<figure src="/images/netq/netq-mgmt-ldap-config-modal-231.png" width="500" alt="">}}
 
-3. Fill out the LDAP Server Configuration form according to your particular configuration.
+3. Fill out the LDAP server configuration form according to your particular configuration.
 
     **Note**: Items with an asterisk (*) are required. All others are optional.
 
@@ -152,7 +152,7 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 
 ## Add LDAP Users to NetQ
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
+1. Click menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
 
 2. Locate the User Accounts card, and click **Manage**.
 
@@ -160,15 +160,11 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 
     {{<figure src="/images/netq/netq-mgmt-user-acct-add-new-user-modal-230.png" width="250" alt="">}}
 
-4. Select **LDAP User**.
+4. Select **LDAP User**, then enter the user's ID.
 
-5. Enter the user's ID.
+5. Enter your administrator password, then select **Search**.
 
-6. Enter your administrator password.
-
-7. Click **Search**.
-
-8. If the user is found, the email address, first, and last name fields are automatically populated. If searching is not enabled on the LDAP server, you must enter the information manually.
+6. If the user is found, the email address, first, and last name fields are automatically populated. If searching is not enabled on the LDAP server, you must enter the information manually.
 
     {{<figure src="/images/netq/netq-mgmt-user-acct-ldap-search-result-230.png" width="300">}}
 
@@ -176,9 +172,9 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 If the fields are not automatically filled in, and searching is enabled on the LDAP server, you might require changes to the mapping file.
     {{%/notice%}}
 
-9. Select the NetQ user role for this user, *admin* or *user*, in the **User Type** dropdown.
+7. Select the NetQ user role for this user, *admin* or *user*, in the **User Type** dropdown.
 
-10. Enter your admin password, and click **Save**, or click **Cancel** to discard the user account.
+8. Enter your admin password, and click **Save**, or click **Cancel** to discard the user account.
 
     {{<figure src="/images/netq/netq-mgmt-user-acct-fullscr-added-user-230.png" width="700">}}
 
@@ -188,18 +184,18 @@ LDAP user passwords are not stored in the NetQ database and are always authentic
 
     {{%/notice%}}
 
-11. Repeat these steps to add additional LDAP users.
+9. Repeat these steps to add additional LDAP users.
 
 ## Remove LDAP Users from NetQ
 
 You can remove LDAP users in the same manner as local users.
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
+1. Click  menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
 2. Locate the User Accounts card, and click **Manage**.
 
 3. Select the user or users you want to remove.
 
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18"/> in the Edit menu.
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="delete" width="18" height="18"/> in the Edit menu.
 
 {{%notice tip%}}
 If you delete an LDAP user in LDAP it is not automatically deleted from NetQ; however, the login credentials for these LDAP users stop working immediately.

@@ -5,40 +5,30 @@ weight: 550
 toc: 3
 ---
 
-## Integrate with Your Microsoft Azure or Google Cloud for SSO
+You can integrate your NetQ Cloud deployment with a Microsoft Azure Active Directory (AD) or Google Cloud authentication server to support single sign-on (SSO) to NetQ. NetQ supports integration with SAML (Security Assertion Markup Language), OAuth (Open Authorization), and multi-factor authentication (MFA). Only one SSO configuration can be configured at a time.
 
-You can integrate your NetQ Cloud deployment with a Microsoft Azure Active Directory (AD) or Google Cloud authentication server to support single sign-on (SSO) to NetQ. NetQ supports integration with SAML (Security Assertion Markup Language) or OAuth (Open Authorization). Multi-factor authentication (MFA) is also supported. Only one SSO configuration can be configured at a time. You must enable the configuration for the configuration to take effect.
-
-### Configure Support
+## Configure Support
 
 To integrate your authentication server:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+1. Expand the menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} on the NetQ dashboard.
 
-2. Select *Management* from the **Admin** column.
+2. Under **Admin**, select **Management**. Locate the SSO Config card and click **Manage**.
 
-3. Locate the SSO Config card.
+    {{<figure src="/images/netq/netq-mgmt-sso-card-330.png" alt="" width="200">}}
 
-    {{<figure src="/images/netq/netq-mgmt-sso-card-330.png" width="200">}}
+5. Select either **SAML** or **OpenID** (which uses OAuth with OpenID Connect)
 
-4. Click **Manage**.
+6. Specify the parameters.
 
-5. Click the type of SSO to be integrated:
-
-    - **Open ID**: Choose this option to integrate using OAuth with OpenID Connect
-    - **SAML**: Choose this option to integrate using SAML
-
-6. Specify the required parameters.
-
-    You need several pieces of data from your Microsoft Azure or Google account and authentication server to complete the integration. Open your account for easy cut and paste of this data into the NetQ form.
-
+    You need several pieces of data from your Microsoft Azure or Google account and authentication server to complete the integration.
     {{<tabs "TabID468" >}}
 
 {{<tab "OAuth+OpenID Connect" >}}
 
-{{<figure src="/images/netq/netq-mgmt-add-sso-oauth-330.png" width="600">}}
+{{<figure src="/images/netq/netq-mgmt-add-sso-oauth-330.png" alt="sso configuration card with open id configuration" width="600">}}
 
-1. Enter your administrator password. This is required when creating a new configuration.
+1. Enter your administrator password.
 
 2. Enter a unique name for the SSO configuration.
 
@@ -50,9 +40,9 @@ To integrate your authentication server:
 
 6. Copy the URL of the authorization token into the **Token Endpoint** field.
 
-    This example shows a Microsoft Azure AD integration.
+    The following example shows a Microsoft Azure AD integration.
 
-    {{<figure src="/images/netq/netq-mgmt-add-sso-oauth-msazure-330.png" width="600">}}
+    {{<figure src="/images/netq/netq-mgmt-add-sso-oauth-msazure-330.png" alt="sso configuration card with Microsoft Azure AD integration" width="600">}}
 
 7. Click **Add**.
 
@@ -60,13 +50,13 @@ To integrate your authentication server:
 
 8. As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your OpenID Connect configuration.
 
-9. Click **Test** to verify you are sent to the right place and can login. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
+9. Click **Test** to verify you are sent to the correct place and can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
 
 10. Click **Close**. The SSO Config card reflects the configuration.
 
-    {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-disabled-330.png" width="200">}}
+    {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-disabled-330.png" alt="sso config card displaying an open id configuration with a disabled status" width="200">}}
 
-11. To require users to log in to NetQ using this SSO configuration, click **change** under the current Disabled status.
+11. To require users to log in using this SSO configuration, click **change** under the current Disabled status.
 
 12. Enter your administrator password.
 
@@ -78,7 +68,7 @@ To integrate your authentication server:
 
 {{<tab "SAML" >}}
 
-{{<figure src="/images/netq/netq-mgmt-add-sso-saml-330.png" width="600">}}
+{{<figure src="/images/netq/netq-mgmt-add-sso-saml-330.png" alt="sso configuration card with SAML configuration" width="600">}}
 
 1. Enter your administrator password.
 
@@ -94,7 +84,7 @@ To integrate your authentication server:
 
     This example shows a Google Cloud integration.
 
-    {{<figure src="/images/netq/netq-mgmt-add-sso-saml-google-330.png" width="600">}}
+    {{<figure src="/images/netq/netq-mgmt-add-sso-saml-google-330.png" alt="sso configuration card with Google Cloud integration" width="600">}}
 
 7. Click **Add**.
 
@@ -102,13 +92,13 @@ To integrate your authentication server:
 
 8. As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your identity provider configuration.
 
-9. Click **Test** to verify you are sent to the right place and can login. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
+9. Click **Test** to verify you are sent to the right place and can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
 
 10. Click **Close**. The SSO Config card reflects the configuration.
 
-    {{<figure src="/images/netq/netq-mgmt-sso-saml-config-disabled-330.png" width="200">}}
+    {{<figure src="/images/netq/netq-mgmt-sso-saml-config-disabled-330.png" alt="sso config card displaying a SAML configuration with a disabled status" width="200">}}
 
-11. To require users to log in to NetQ using this SSO configuration, click **change** under the current Disabled status.
+11. To require users to log in using this SSO configuration, click **change** under the current Disabled status.
 
 12. Enter your administrator password.
 
@@ -120,41 +110,35 @@ To integrate your authentication server:
 
     {{</tabs>}}
 
-### Modify Integrations
+## Modify Integrations
 
 You can change the specifications for SSO integration with your authentication server at any time, including changing to an alternate SSO type, disabling the existing configuration, or reconfiguring the current configuration.
 
-#### Change SSO Type
+### Change SSO Type
 
 To choose a different SSO type:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+1. Expand the menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} on the NetQ dashboard.
 
-2. Select *Management* from the **Admin** column.
+2. Under **Admin**, select **Management**.
 
-3. Locate the SSO Config card.
+3. Locate the SSO Config card and click **Disable**, then **Yes**.
 
-4. Click **Disable**.
+4. Click **Manage** then select the desired SSO type and complete the form.
 
-5. Click **Yes**.
-
-6. Click **Manage**.
-
-7. Select the desired SSO type and complete the form with the relevant data for that SSO type.
-
-8. copy the redirect URL on the success dialog into your identity provider configuration.
+8. Copy the redirect URL on the success dialog into your identity provider configuration.
 
 9. Click **Test** to verify proper login operation. Modify your specification and retest the configuration until it is working properly.
 
 10. Click **Update**.
 
-#### Disable SSO Configuration
+### Disable SSO Configuration
 
 To disable the existing SSO configuration:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+1. Expand the menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} on the NetQ dashboard.
 
-2. Select *Management* from the **Admin** column.
+2. Under **Admin**, select **Management**.
 
 3. Locate the SSO Config card.
 
@@ -162,13 +146,13 @@ To disable the existing SSO configuration:
 
 5. Click **Yes** to disable the configuration, or **Cancel** to keep it enabled.
 
-#### Edit the SSO Configuration
+### Edit the SSO Configuration
 
 To edit the existing SSO configuration:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+1. Expand the menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} on the NetQ dashboard.
 
-2. Select *Management* from the **Admin** column.
+2. Under **Admin**, select **Management**.
 
 3. Locate the SSO Config card.
 

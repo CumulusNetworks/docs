@@ -442,7 +442,7 @@ https://security-tracker.debian.org/tracker/linux</td>
 <tr>
 <td>2633245</td>
 <td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
-<td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
+<td>3.7.10-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -3934,7 +3934,7 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <tr>
 <td>2633245</td>
 <td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
-<td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
+<td>3.7.10-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -6821,7 +6821,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <tr>
 <td>2633245</td>
 <td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
-<td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
+<td>3.7.10-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -9691,7 +9691,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <tr>
 <td>2633245</td>
 <td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
-<td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
+<td>3.7.10-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -13142,7 +13142,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <tr>
 <td>2633245</td>
 <td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
-<td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
+<td>3.7.10-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -16806,7 +16806,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <tr>
 <td>2633245</td>
 <td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
-<td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
+<td>3.7.10-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -20140,7 +20140,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <tr>
 <td>2633245</td>
 <td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
-<td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
+<td>3.7.10-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -23202,7 +23202,7 @@ Fixed: 1.4.4-2+deb8u3</td>
 <tr>
 <td>2633245</td>
 <td>On the Dell N3048EP-ON switch, the SPF+ ports remain down after a power cycle.</td>
-<td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
+<td>3.7.10-3.7.16</td>
 <td></td>
 </tr>
 <tr>

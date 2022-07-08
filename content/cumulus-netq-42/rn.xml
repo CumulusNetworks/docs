@@ -43,12 +43,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3041860</td>
-<td>The Events card displays duplicate entries for VLAN interface link down events.</td>
-<td>4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3018737</td>
 <td>The reverse path of flow analysis data might appear empty even when traffic successfully traversed the reverse path. To work around this issue, create a new flow analysis with the original source and destination IP addresses transposed to view the analysis in that direction. </td>
 <td>4.2.0</td>

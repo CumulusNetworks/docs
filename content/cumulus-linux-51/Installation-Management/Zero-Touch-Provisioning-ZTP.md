@@ -106,12 +106,6 @@ subnet 192.168.0.0 netmask 255.255.255.0 {
 Do not use an underscore (_) in the hostname; underscores are not permitted in hostnames.
 {{%/notice%}}
 
-### DHCP on Front Panel Ports
-
-If eth0 is not operational or you prefer to use a front panel port, you can configure ZTP to bring up all the front panel ports that are operational and run DHCP on any active interface. ZTP assesses the list of active ports on every retry cycle. When it receives the DHCP lease and option 239 is present in the response, ZTP starts to execute the script.
-
-To configure ZTP to bring up the front panel ports and run DHCP on any active interface, add the `CUMULUS-AUTOPROVISIONING-FRONT-PANEL` directive to the local ZTP script.
-
 ### Inspect HTTP Headers
 
 The following HTTP headers in the request to the web server retrieve the provisioning script:

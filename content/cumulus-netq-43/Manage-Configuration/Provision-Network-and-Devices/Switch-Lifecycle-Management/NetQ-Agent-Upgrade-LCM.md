@@ -33,8 +33,6 @@ Prepare for NetQ Agent upgrade on switches as follows:
 
 4. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
-5. Optionally, create a new {{<link title="Switch Configurations/#create-cumulus-netq-configuration-profiles" text="switch configuration profile">}}.
-
 Your LCM dashboard should look similar to this after you have completed the above steps:
 
 {{<figure src="/images/netq/lcm-netq-upgrade-dashboard-post-prep-330.png" width="600">}}

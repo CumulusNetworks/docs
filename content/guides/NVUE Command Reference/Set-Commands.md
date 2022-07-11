@@ -7613,9 +7613,9 @@ N/A
 | ---------  | -------------- |
 |`member` | Configures the bond members. |
 | `mlag` | Configures MLAG on the bond interface. |
-| `down-delay` |  Configures the bond down delay. |
-| `lacp-bypass` | Configures LACP bypass on the bond interface.  |
-| `lacp-rate` | Configures the LACP rate on the bond interface. |
+| `down-delay` |  Configures the bond down delay time. |
+| `lacp-bypass` | Turns LACP bypass on or off on the bond interface.  |
+| `lacp-rate` | Configures the rate at which the link partner transmits LACP control packets. |
 | `mode` | Configures the bond mode: IEEE 802.3ad or Balance-xor.  |
 | `up-delay` | Configures the bond up delay.|
 
@@ -7654,7 +7654,7 @@ cumulus@leaf01:mgmt:~$ nv set interface bond1 bond member swp1-4
 
 ## nv set interface \<interface-id\> bond mlag
 
-MLAG configuration on the bond interface
+Configures MLAG on the bond interface.
 
 ### Usage
 
@@ -7668,15 +7668,15 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `lacp-conflict` |  Configure the mlag lacp-conflict parameters|
-| `enable` | Turn the feature 'on' or 'off'. The default is 'off'. |
-| `id` |  MLAG id |
+| `lacp-conflict` |  Configures MLAG LACP conflict.|
+| `enable` | Turns MLAG on or off. |
+| `id` |  Configures the MLAG ID. |
 
 ### Version History
 
@@ -7684,7 +7684,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> bond mlag lacp-conflict
 
-Configure the mlag lacp-conflict parameters
+Configures MLAG LACP conflict on the bond interface.
 
 ### Usage
 
@@ -7698,7 +7698,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Version History
 
@@ -7707,12 +7707,68 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mlag lacp-conflict 
+```
+
+## nv set interface \<interface-id\> bond mlag enable 
+
+Turns MLAG on or off on the bond interface.
+
+### Usage
+
+`nv set interface <interface-id> bond mlag enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mlag enable on
+```
+
+## nv set interface \<interface-id\> bond mlag id
+
+Configures the MLAG ID on the bond interface. You must specify a unique MLAG ID (`clag-id`) for every dual-connected bond on each peer switch so that switches know which links dual-connect or connect to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches. A value of 0 disables MLAG on the bond.
+
+### Usage
+
+`nv set interface <interface-id> bond mlag id [options] (1-65535|auto)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mlag id 1
 ```
 
 ## nv set interface \<interface-id\> bond down-delay
 
-bond down delay
+Configures the bond down delay time, which is the amount of time to wait before disabling a slave interface after detecting a link failure. You can specify a value between 0 and 65535.
 
 ### Usage
 
@@ -7726,7 +7782,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Version History
 
@@ -7735,12 +7791,95 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond down-delay 600
+```
+## nv set interface \<interface-id\> bond lacp-bypass
+
+Turns LACP bypass on or off on the bond interface. When on, LACP bypass on a bond is in 802.3ad mode so that it becomes active and forwards traffic even when there is no LACP partner.
+
+### Usage
+
+`nv set interface <interface-id> bond lacp-bypass [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond lacp-bypass on
+```
+
+## nv set interface <interface-id> bond lacp-rate
+
+Configures the rate at which the link partner transmits LACP control packets. You can specify slow or fast.
+
+### Usage
+
+`nv set interface <interface-id> bond lacp-rate [options] (fast|slow)`
+
+### Default Setting
+
+`fast`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond lacp-rate slow
+```
+
+## nv set interface <interface-id> bond mode
+
+Configures the bond mode: IEEE 802.3ad (`lacp`) or Balance-xor (`static`). Set Balance-xor mode only if you cannot use LACP; LACP can detect mismatched link attributes between bond members and can even detect misconnections.
+
+### Usage
+
+`nv set interface <interface-id> bond mode [options] (lacp|static)`
+
+### Default Setting
+
+`lacp`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mode static
 ```
 
 ## nv set interface \<interface-id\> bond up-delay
 
-bond up delay
+Configures the bond up delay, which is how much time in milliseconds to wait before enabling a slave after detecting a link recovery. 
 
 ### Usage
 
@@ -7754,7 +7893,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Version History
 
@@ -7763,12 +7902,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond up-delay 6000
 ```
 
 ## nv set interface \<interface-id\> bridge
 
-attributed related to a bridged interface
+Configures a bridged interface.
 
 ### Usage
 
@@ -7782,13 +7921,13 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `domain  | Bridge domains on this interface |
+| `domain`  | Configures the bridge domains on this interface. |
 
 ### Version History
 
@@ -7796,7 +7935,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> bridge domain \<domain-id\>
 
-Bridge domain on this interface
+Configures the bridge domains on this interface.
 
 ### Usage
 
@@ -7804,24 +7943,24 @@ Bridge domain on this interface
 
 ### Default Setting
 
-N/A
+`br_default`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>`|  Interface |
-| `<domain-id>` |     Domain  |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `stp` | attributed related to a stpd interface |
-|`vlan` | Set of allowed vlans for this bridge domain on this interface. If "all", inherit all vlans from the bridge domain, if appropriate. This is the default. |
-| `access` |   Untagged packets ingressing on this interface will be put in this vlan. Tagged packets will be dropped. Egress packets will be untagged. If auto, inherit from bridge domain. |
-| `learning` | source mac address learning for this bridge domain on this interface |
-| `untagged` | Untagged packets ingressing on the interface will be put in this vlan. Egress packets are always tagged. If none, then untagged packets will be dropped. If auto, inherit from bridge domain. |
+| `stp` | Configures STP for this bridge domain on this interface. |
+|`vlan` | Configures the allowed VLANs for this bridge domain on this interface. |
+| `access` |  Configures access ports for this bridge domain on this interface.
+| `learning` | Configures source MAC address learning for this bridge domain on this interface. |
+| `untagged` | Configures untagged packets ingressing on the interface to go in a specific VLAN. Egress packets are always tagged. If none, then untagged packets will be dropped. If auto, inherit from bridge domain. |
 
 ### Version History
 
@@ -7829,7 +7968,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> bridge domain \<domain-id\> stp
 
-attributed related to a stpd interface
+Configures STP for this bridge domain on this interface.
 
 ### Usage
 
@@ -7843,27 +7982,207 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>`|  Interface |
-| `<domain-id>` |     Domain  |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `admin-edge` | Edge state of the port|
-| `auto-edge`  | Auto transition to/from edge state of the port|
-| `bpdu-filter` | BPDU filter on a port|
-| `bpdu-guard`| Bridge Protocol Data Unit guard|
-| `network` | Bridge assurance capability for a port|
-| `restrrole` | enable/disable port ability to take root role of the port (need better name)|
+| `admin-edge` | Configures PortAdminEdge on the interface on this bridge domain. PortAdminEdge turns the initial edge state of the interface in a bridge on or off. When on, the interface bypasses the listening and learning states and goes straight to forwarding. This is equivalent to the PortFast feature offered by other vendors. |
+| `auto-edge`  | Configures PortAutoEdge on the interface on this bridge domain. PortAutoEdge turns the automatic transition to and from the edge state of an interface in a bridge on or off. PortAutoEdge is an enhancement to the standard PortAdminEdge (PortFast) mode.|
+| `bpdu-filter` | Configures Bridge Protocol Data Unit (BPDU) filter on the interface on this bridge domain. BPDU filter filters BPDUs in both directions, which disables STP on the interface as no BPDUs transit.|
+| `bpdu-guard`| Configures BPDU guard on the interface on this bridge domain. BPDU guard protects the spanning tree topology from an unauthorized device affecting the forwarding path.|
+| `network` | Configures bridge assurance on the interface on this bridge domain.|
+| `restrrole` | Configures the interface on this bridge domain to take root role.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set interface \<interface-id\> bridge domain <domain-id> stp bpdu-filter
+
+Configures Bridge Protocol Data Unit (BPDU) filter on the interface on this bridge domain. BPDU filter filters BPDUs in both directions, which disables STP on the interface as no BPDUs transit.
+
+### Usage
+
+`nv set interface <interface-id> bridge domain <domain-id> stp bpdu-filter [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain br_default stp bpdu-filter on
+```
+
+## nv set interface \<interface-id\> bridge domain <domain-id> stp bpdu-guard
+
+Configures BPDU guard on the interface on this bridge domain. BPDU guard protects the spanning tree topology from an unauthorized device affecting the forwarding path.
+
+### Usage
+
+`nv set interface <interface-id> bridge domain <domain-id> stp bpdu-guard [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain br_default stp bpdu-guard on
+```
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp admin-edge
+
+Configures PortAdminEdge on the interface on this bridge domain. PortAdminEdge turns the initial edge state of the interface in a bridge on or off. When on, the interface bypasses the listening and learning states and goes straight to forwarding. This is equivalent to the PortFast feature offered by other vendors.
+
+### Usage
+
+`nv set interface <interface-id> bridge domain <domain-id> stp admin-edge [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain br_default stp admin-edge on
+```
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp auto-edge
+
+Configures PortAutoEdge on the interface on this bridge domain. PortAutoEdge turns the automatic transition to and from the edge state of an interface in a bridge on or off. PortAutoEdge is an enhancement to the standard PortAdminEdge (PortFast) mode.
+
+### Usage
+
+`nv set interface <interface-id> bridge domain <domain-id> stp auto-edge [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain br_default stp auto-edge on
+```
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp network
+
+Configures bridge assurance on the interface on this bridge domain. Bridge assurance detects unidirectional links and puts the port in a discarding state. The port is in a bridge assurance inconsistent state until it receives a BPDU from the peer. You need to configure the port type network on both ends of the link for bridge assurance.
+
+### Usage
+
+`nv set interface <interface-id> bridge domain <domain-id> stp network [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain br_default stp network on
+```
+
+## nv set interface <interface-id> bridge domain <domain-id> stp restrrole (on|off)
+
+Configures the interface on this bridge domain to take root role.
+
+### Usage
+
+`nv set interface <interface-id> bridge domain <domain-id> stp restrrole [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain br_default stp restrrole on
+```
+
 ## nv set interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\>
 
-A VLAN tag identifier
+Configures the allowed VLANs for this bridge domain on this interface. The dfault value `all` inherits all VLANs from the bridge domain.
 
 ### Usage
 
@@ -7871,15 +8190,15 @@ A VLAN tag identifier
 
 ### Default Setting
 
-N/A
+`all`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>`|  Interface |
-| `<domain-id>` |     Domain  |
-| `<vid>`  | VLAN ID, or all |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
+| `<vid>`  | The VLAN ID. |
 
 ### Version History
 
@@ -7907,7 +8226,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>`|  Interface |
+| `<interface-id>` |  The interface you want to configure. |
 
 ### Attributes
 

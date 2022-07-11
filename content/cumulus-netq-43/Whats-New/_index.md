@@ -14,7 +14,7 @@ This page summarizes new feature and improvements for the NetQ {{<version>}} rel
 
 This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. We also added the following new features and improvements:
 
-{{<link title="Flow analysis" text="Flow analysis">}} UI enhancements, including:
+{{<link title="Flow Analysis" text="Flow analysis">}} UI enhancements, including:
 
 - Animation with source and destination IP address labels to clarify the flow direction.
 - Updated visualizations to show devices that contain data but are not connected to a path.

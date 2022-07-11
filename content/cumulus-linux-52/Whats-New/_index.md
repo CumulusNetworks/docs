@@ -21,14 +21,15 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Features and Enhancements
 
-- {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="Predefined profiles">}}
-- {{<link url="Precision-Time-Protocol-PTP/#message-mode" text="PTP unicast message mode">}}
-- {{<link url="Precision-Time-Protocol-PTP/#one-step-and-two-step-clock" text="One-step clock mode">}} available for early access
+- Support for signed images on secured switches and for SecureApt to update individual packages
 - {{<link url="SyncE" text="SyncE">}} available for early access
-- Support for signed images on secured switches and for SecureApt to update individual packages.
+- PTP enhancements include:
+   - {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="Pre-defined PTP profiles">}}
+   - {{<link url="Precision-Time-Protocol-PTP/#message-mode" text="PTP unicast message mode">}}
+   - {{<link url="Precision-Time-Protocol-PTP/#one-step-and-two-step-clock" text="PTP one-step clock mode">}} available for early access
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="NVUE-CLI/#command-abbreviation" text="Command abbreviation">}}
-  - {{<link url="NVUE-CLI/#command-question-mark" text="Command question mark (?)">}} to show required information quickly and concisely, such as the command value type, range, and options with a brief description of each. `?` also shows if the command expects a <new_instance> value.
+  - {{<link url="NVUE-CLI/#command-question-mark" text="Command question mark (?)">}} to show required information quickly and concisely, such as the command value type, range, and options with a brief description of each. `?` also indicates if you need to provide specific values for the command.
   - {{<link url="Configure-SNMP" text="SNMP configuration commands">}}
   - {{< expand "New NVUE commands" >}}
   

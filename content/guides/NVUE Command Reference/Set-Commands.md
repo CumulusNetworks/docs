@@ -7958,7 +7958,7 @@ Configures the bridge domains on this interface.
 | ---------  | -------------- |
 | `stp` | Configures STP for this bridge domain on this interface. |
 |`vlan` | Configures the allowed VLANs for this bridge domain on this interface. |
-| `access` |  Configures access ports for this bridge domain on this interface.
+| `access` |  Configures access ports for this bridge domain on this interface. |
 | `learning` | Configures source MAC address learning for this bridge domain on this interface. |
 | `untagged` | Configures untagged packets ingressing on the interface to go in a specific VLAN. Egress packets are always tagged. If none, then untagged packets will be dropped. If auto, inherit from bridge domain. |
 
@@ -8182,7 +8182,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain br_default stp restrr
 
 ## nv set interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\>
 
-Configures the allowed VLANs for this bridge domain on this interface. The dfault value `all` inherits all VLANs from the bridge domain.
+Configures the allowed VLANs for this bridge domain on this interface. The default value `all` inherits all VLANs from the bridge domain.
 
 ### Usage
 
@@ -8207,12 +8207,102 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10,20
+```
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> learning
+
+Turns source MAC address learning on or off for this bridge domain on this interface.
+
+### Usage
+
+`nv set interface <interface-id> bridge domain <domain-id> learning [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain br_default learning on
+```
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> untagged
+
+Configures untagged packets ingressing on the interface to go in a specific VLAN. Egress packets are always tagged. You can specify a value between 1 and 4094, `none` to drop untagged packets, or `auto` to inherit from the bridge domain.
+
+### Usage
+
+`nv set interface <interface-id> bridge domain <domain-id> untagged [options] (1-4094|none|auto)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain br_default untagged 1
+```
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> access
+
+Configures access ports for this bridge domain on this interface. Access ports ignore all tagged packets. You can specify a value between 1 and 4094 or `auto` to inherit from the bridge domain. 
+
+### Usage
+
+`nv set interface <interface-id> bridge domain <domain-id> access [options] (1-4094|auto)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain.  |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain br_default access 10
 ```
 
 ## nv set interface \<interface-id\> ip
 
-IP configuration for an interface
+Configures the IP address for an interface.
 
 ### Usage
 
@@ -8232,15 +8322,15 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `address` | ipv4 and ipv6 address |
-| `vrr`  | Configuration for VRR |
-| `gateway` | default ipv4 and ipv6 gateways |
-| `ipv4` | IPv4 configuration for an interface |
-| `ipv6` | IPv6 configuration for an interface |
-| `igmp` | Configuration for IGMP |
-| `vrrp` | Configuration for VRRP |
-| `neighbor-discovery` | Neighbor discovery configuration for an interface |
-| `vrf` | Virtual routing and forwarding |
+| `address` | Configures an IP address with a prefix for the interface. |
+| `vrr`  | Configures Virtual Router Redundancy (VRR) for an interface. |
+| `gateway` | Configures the default IPv4 and IPv6 gateways. |
+| `ipv4` | Configures IPv4 settings for an interface. |
+| `ipv6` | Configures IPv6 settings for an interface. |
+| `igmp` | Configures IGMP for an interface.|
+| `vrrp` | Configures VRRP for an interface.|
+| `neighbor-discovery` | Configures neighbor discovery for an interface. |
+| `vrf` | Configures virtual routing and forwarding for an interface.|
 
 ### Version History
 
@@ -8248,7 +8338,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> ip address \<ip-prefix-id\>
 
-An IP address with prefix
+Configures an IP address with a route prefix for the interface.
 
 ### Usage
 
@@ -8262,8 +8352,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
-| `<ip-prefix-id>` | IPv4 or IPv6 address and route prefix in CIDR notation |
+| `<interface-id>` | The interface you want to configure. |
+| `<ip-prefix-id>` | The IPv4 or IPv6 address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -8272,12 +8362,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip address 10.0.0.1/30
 ```
 
 ## nv set interface \<interface-id\> ip vrr
 
-Configuration for VRR
+Configures Virtual Router Redundancy (VRR) for an interface. VRR enables hosts to communicate with any redundant switch without reconfiguration by running dynamic router protocols or router redundancy protocols. Redundant switches respond to ARP requests from hosts. The switches respond in an identical manner, but if one fails, the other redundant switches continue to respond. You use VRR with MLAG.
 
 ### Usage
 
@@ -8291,17 +8381,17 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `address` |  Virtual addresses with prefixes |
-| `state` |  The state of the interface |
-| `enable` | Turn the feature 'on' or 'off'. The default is 'off'. |
-| `mac-address` | Override anycast-mac |
-| `mac-id` | Override fabric-id |
+| `address` |  Configures the virtual address and prefix. |
+| `state` |  Configures the state of the interface. |
+| `enable` | Turns VRR on or off on the interface. |
+| `mac-address` | Configures anycast MAC override on the interface. |
+| `mac-id` | Configures fabric ID override on the interface. |
 
 ### Version History
 
@@ -8309,7 +8399,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> ip vrr address \<ip-prefix-id\>
 
-An IP address with prefix
+Configures the virtual address and prefix.
 
 ### Usage
 
@@ -8323,8 +8413,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
-| `<ip-prefix-id>` | IPv4 or IPv6 address and route prefix in CIDR notation |
+| `<interface-id>` | The interface you want to configure. |
+| `<ip-prefix-id>` | IPv4 or IPv6 address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -8333,12 +8423,153 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr address 10.1.10.1/24 
+```
+
+## nv set interface \<interface-id\> ip vrr state
+
+Configures the state of the interface: up or down.
+
+### Usage
+
+`nv set interface <interface-id> ip vrr state [options] (up|down)`
+
+### Default Setting
+
+`down`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr state up 
+```
+
+## nv set interface \<interface-id\> ip vrr enable
+
+Turns VRR on or off on the interface.
+
+### Usage
+
+`nv set interface <interface-id> ip vrr enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr enable on 
+```
+
+## nv set interface \<interface-id\> ip vrr mac-id
+
+Configures the fabric ID override on the interface.
+
+### Usage
+
+`nv set interface <interface-id> ip vrr mac-id [options] (1-255|none)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr mac-id 1
+```
+
+## nv set interface \<interface-id\> ip vrr mac-address
+
+Configures anycast MAC override on the interface.
+
+### Usage
+
+`nv set interface <interface-id> ip vrr mac-address [options] (auto|<mac>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface vlan10 ip vrr mac-address 00:00:5E:00:01:00
+```
+
+## nv set interface \<interface-id\> ip gateway \<ip-address-id\>
+
+Configures the gateway IP address on the interface.
+
+### Usage
+
+`nv set interface <interface-id> ip gateway <ip-address-id> [options]`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<ip-address-id>` | The IP address.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip gateway 10.10.10.1
 ```
 
 ## nv set interface \<interface-id\> ip ipv4
 
-IPv4 configuration for an interface
+Configures IPv4 settings for an interface.
 
 ### Usage
 
@@ -8352,7 +8583,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Attributes
 
@@ -8380,7 +8611,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Attributes
 
@@ -8409,7 +8640,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Attributes
 
@@ -8442,7 +8673,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 | `<static-group-id>` |  IGMP static multicast mroute destination |
 
 ### Attributes
@@ -8471,7 +8702,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 | `<static-group-id>` |  IGMP static multicast mroute destination |
 
 ### Version History
@@ -8500,7 +8731,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Version History
 
@@ -8528,7 +8759,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Version History
 
@@ -8556,7 +8787,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Version History
 
@@ -8584,7 +8815,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Attributes
 
@@ -8613,7 +8844,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 | `<virtual-router-id>` |   Virtual Router IDentifier (VRID) |
 
 ### Attributes
@@ -8646,7 +8877,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 | `<virtual-router-id>` |   Virtual Router IDentifier (VRID) |
 | `<ip-address-id>` |  IPv4 or IPv6 address |
 
@@ -8676,7 +8907,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Attributes
 
@@ -8710,7 +8941,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 |`<ipv6-address-id>` |  IPv6 address |
 
 ### Attributes
@@ -8739,7 +8970,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 | `<ipv6-address-id>` |  IPv6 address |
 
 ### Attributes
@@ -8772,7 +9003,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 | `<ipv6-address-id>` |  IPv6 address |
 
 ### Version History
@@ -8801,7 +9032,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 | `<ipv6-address-id>` |  IPv6 address |
 
 ### Version History
@@ -8830,7 +9061,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 |`<domain-name-id>` |  The domain portion of a hostname (RFC 1123) or an internationalized hostname (RFC 5890). |
 
 ### Attributes
@@ -8859,7 +9090,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Attributes
 
@@ -8897,7 +9128,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Version History
 
@@ -8925,7 +9156,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Version History
 
@@ -8953,7 +9184,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<interface-id>` | Interface |
+| `<interface-id>` | The interface you want to configure. |
 
 ### Version History
 

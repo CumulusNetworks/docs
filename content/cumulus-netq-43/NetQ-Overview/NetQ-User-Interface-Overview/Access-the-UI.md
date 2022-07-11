@@ -14,7 +14,7 @@ To log in to the UI:
 1. Open a new Chrome browser window or tab.
 2. Enter the following URL into the address bar:  
     - NetQ On-premises Appliance or VM: *https://\<hostname-or-ipaddress\>:443*  
-    - NetQ Cloud Appliance or VM: *https://netq.cumulusnetworks.com*
+    - NetQ Cloud Appliance or VM: *https://netq.nvidia.com*
 
     {{< figure src="/images/netq/access-ui-login-screen-400.png" alt="NetQ login screen" width="700" >}}
 
@@ -82,7 +82,7 @@ Any workbench can be set as the home workbench. Click <img src="https://icons.cu
 
 To reset a password for cloud deployments:
 
-1. Enter *https://netq.cumulusnetworks.com* in your browser to open the login page.
+1. Enter *https://netq.nvidia.com* in your browser to open the login page.
 
 2. Click **Forgot Password?** and enter an email address. Look for a message with the subject *NetQ Password Reset Link* from *netq-sre@cumulusnetworks.com*.  
 

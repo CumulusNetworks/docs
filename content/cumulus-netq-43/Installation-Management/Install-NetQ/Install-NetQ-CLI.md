@@ -597,7 +597,7 @@ To access and configure the CLI on your NetQ Cloud Appliance or VM, you must hav
 
 To generate AuthKeys:
 
-1. In your Internet browser, enter **netq.cumulusnetworks.com** into the address field to open the NetQ UI login page.
+1. In your Internet browser, enter **netq.nvidia.com** into the address field to open the NetQ UI login page.
 
 2. Enter your username and password.
 

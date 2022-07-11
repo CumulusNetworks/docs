@@ -89,9 +89,9 @@ Now that you have the plugin installed, you need to configure access to the NetQ
 4. Enter *Net-Q* into the **Name** field.
 
 5. Enter the URL used to access the database:
-    - Cloud: *plugin.netq.cumulusnetworks.com*
+    - Cloud: *plugin.netq.nvidia.com*
     - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/plugin*
-    - Cumulus in the Cloud (CITC): *plugin.air.netq.cumulusnetworks.com*
+    - Cumulus in the Cloud (CITC): *plugin.air.netq.nvidia.com*
 
 <!-- 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*. -->
 

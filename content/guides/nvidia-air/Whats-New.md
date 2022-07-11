@@ -7,6 +7,12 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
+## July 2022
+<!-- Air:WhatsNew -->
+### 82.2022.0711
+- Fixed a bug that prevented a VM's console and/or network interfaces from working properly for VMs with more than 63 interfaces
+<!-- Air:WhatsNew -->
+
 ## June 2022
 ### 82.2022.0606-015
 - Added unique URLs for marketplace demos
@@ -17,10 +23,8 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 - Fixed a bug that removed a simulation from its organization after updating its details
 - Fixed a bug that caused some VM interfaces to be unreachable inside a simulation
 
-<!-- Air:WhatsNew -->
 ### 82.2022.0628
 - Added Cumulus Linux 4.4.4
-<!-- Air:WhatsNew -->
 
 ## May 2022
 ### 82.2022.0518

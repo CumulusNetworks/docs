@@ -251,31 +251,69 @@ network_transport       UDPv4
 
 PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
-Cumulus Linux supports the following profiles:
-- *Default* is the profile specified in the IEEE 1588 standard. If you do not choose a profile or perform any optional configuration, the PTP software initializes with default values in the standard. The default profile addresses some common applications and does not have any network restrictions.
-- *ITU-T G.8275.1* is the PTP profile for use in telecom networks that require phase or time-of-day synchronization. Each device in the network must participate in the PTP protocol.
+Cumulus Linux supports the following pre-defined profiles:
+- *IEEE 1588* is the profile specified in the IEEE 1588 standard. The default profile addresses some common applications and does not have any network restrictions.
+- *ITU 8275.1* is the PTP profile for use in telecom networks that require phase or time-of-day synchronization. Each device in the network must participate in the PTP protocol.
 
-To configure the switch to use the ITU-T G.8275.1 profile:
+The following table shows the default parameter values for the pre-defined profiles.
+
+| Parameter | IEEE 1588 | ITU 8275-1 |
+| --------- | --------- | ---------- |
+| Announce rate | 1 | -3 |
+| Sync rate | 0  | -4 |
+| Delay rate | 0 | -4 |
+| Announce Timeout | 3  | 3 |
+| Domain | 0  | 24 |
+| Priority1 | 128 | 128 |
+| Priority2 |  128 | 128 |
+| Local priority | NA | 128  |
+| Transport | UDPv4, UDPv6 |802.3 |
+| Transmission | Multicast, Unicast | Multicast |
+| BMCA | IEEE 1588 | G.8275.x |
+
+To set a predefined profile: 
 
 {{< tabs "TabID260 ">}}
 {{< tab "NVUE Commands ">}}
 
+To use the ITU 8275.1 profile:
+
 ```
-cumulus@switch:~$ nv set service ptp 1 profile-type G.8275.1
+cumulus@switch:~$ nv set service ptp 1 current-profile default-itu-8275-1
 cumulus@switch:~$ nv config apply
 ```
 
-To set the profile back to the default:
+To use the IEEE 1588 profile:
 
 ```
-cumulus@switch:~$ nv set service ptp 1 profile-type default-1588
+cumulus@switch:~$ nv set service ptp 1 current-profile default-1588
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `profile-type` setting, then restart the `ptp4l` service.
+To use the ITU 8275.1 profile, edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `default-profile` setting to `default-itu-8275-1`, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly                   0
+priority1                   128
+priority2                   128
+domainNumber                3
+default-profile             default-itu-8275-1
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+To use the IEEE 1588 profile, change the `default-profile` setting to `default-1588`, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -287,15 +325,13 @@ slaveOnly               0
 priority1               128
 priority2               128
 domainNumber            3
-profile-type            G.8275.1
+profile-type            default-1588
 ...
 ```
 
 ```
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
-
-To set the profile back to the default, change the `profile-type` setting to `default-1588`, then restart the `ptp4l` service.
 
 {{< /tab >}}
 {{< /tabs >}}

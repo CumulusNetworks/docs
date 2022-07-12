@@ -34,6 +34,10 @@ cumulus@switch:~$ nv set interface bond1 bond member swp1-4
 cumulus@switch:~$ nv config apply
 ```
 
+{{%notice note%}}
+In NVUE, if you create the bond interface with a name that starts with `bond`, NVUE automatically sets the interface type to `bond`. If you create a bond interface with a name that does *not* start with `bond`, you must set the interface type to `bond` with the `nv set interface <interface-name> type bond` command.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 

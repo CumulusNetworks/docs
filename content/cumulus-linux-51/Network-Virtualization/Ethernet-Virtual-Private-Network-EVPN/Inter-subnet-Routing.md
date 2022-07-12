@@ -395,7 +395,7 @@ leaf01# write memory
 <!-- vale off -->
 ### Advertise Primary IP address (VXLAN Active-Active Mode)
 <!-- vale on -->
-In EVPN symmetric routing configurations with VXLAN active-active ([MLAG](## "Multi-chassis Link Aggregation")), all EVPN routes advertise with the anycast IP address as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch might forward traffic to a leaf switch that does not have the destination routes. To prevent dropped trafiic in this failure scenario, Cumulus Linux enables the Advertise Primary IP address feature by default so that the switch handles the next hop IP address of the VTEP conditionally depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
+In EVPN symmetric routing configurations with VXLAN active-active ([MLAG](## "Multi-chassis Link Aggregation")), all EVPN routes advertise with the anycast IP address as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch might forward traffic to a leaf switch that does not have the destination routes. To prevent dropped traffic in this failure scenario, Cumulus Linux enables the Advertise Primary IP address feature by default so that the switch handles the next hop IP address of the VTEP conditionally depending on the route type: host type-2 (MAC/IP advertisement) or type-5 (IP prefix route).
 
 - For host type-2 routes, the anycast IP address is the next hop IP address and the anycast MAC address is the router MAC address.
 - For type-5 routes, the system IP address (the unique primary loopback IP address of the VTEP) is the next hop IP address and the unique router MAC address of the VTEP is the router MAC address.

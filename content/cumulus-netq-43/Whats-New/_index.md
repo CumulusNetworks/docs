@@ -14,13 +14,13 @@ This page summarizes new feature and improvements for the NetQ {{<version>}} rel
 
 This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. We also added the following new features and improvements:
 
+{{<link title="SSO Authentication" text="SSO configuration">}} updates that let administrators add and configure user accounts more efficiently.
+
 {{<link title="Flow Analysis" text="Flow analysis">}} UI enhancements, including:
 
 - Animation with source and destination IP address labels to clarify the flow direction.
-- Updated visualizations to show devices that contain data but are not connected to a path.
-- VRF selection for multi-VRF environments.
-
-{{<link title="SSO Authentication" text="SSO configuration">}} improvements that let administrators add and configure user accounts more efficiently.
+- Visualizations that display devices with data that are not connected to a path.
+- Updated parameter requirements when creating a flow analysis.
 
 An updated {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Licensing/NetQ-Cookie-Policy/" text="cookie policy">}}.
 

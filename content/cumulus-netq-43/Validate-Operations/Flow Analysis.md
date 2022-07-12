@@ -27,7 +27,7 @@ You must enable {{<link title="Manage Switches through Their Lifecycle" text="Li
 
 ### Flow Analysis Settings
 
-The flow analysis wizard prompts you to enter the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the respective menus to choose the protocol and VRF for the flow. The only optional parameter is the source port, for when the ephemeral source port of a flow may be unknown.
+The flow analysis wizard prompts you to enter the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the respective menus to choose the protocol and VRF for the flow.
 
 {{<figure src="/images/netq/flow-analysis-create-dialog-42.png" alt="flow analysis wizard prompting user to enter application parameters" width="600">}}
 

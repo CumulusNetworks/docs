@@ -9228,7 +9228,7 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ## nv set interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\>
 
@@ -9257,7 +9257,7 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -9286,7 +9286,7 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -9325,7 +9325,7 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> valid-lifetime
 
@@ -9348,7 +9348,7 @@ Configures the amount of time that the prefix is valid for on-link determination
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -9377,7 +9377,7 @@ Configures the amount of time that addresses generated from a prefix remain pref
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -9406,7 +9406,7 @@ Configures adverisement to make no statement about prefix on-link or off-link pr
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -9435,7 +9435,7 @@ Configures automatic configuration to indicate to hosts on the local link that t
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -9464,7 +9464,7 @@ Configures adverisement to indicates to hosts on the local link that the specifi
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -9474,7 +9474,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:d
 
 ## nv set interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\>
 
-A DNS search list
+Configures the DNS search lists (DNSSL).
 
 ### Usage
 
@@ -9495,15 +9495,50 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `lifetime` |  Maximum time in seconds for which the domain suffix may be used for domain name resolution |
+| `lifetime` |  Configure the maximum amount of time in seconds that you want to use the domain suffix for domain name resolution.  |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\> lifetime
+
+Configures the maximum amount of time you want to use the domain suffix for domain name resolution. You can set a value between 0 and 4294967295 seconds or use the keyword infinte to set the time to never expire. If you set the value to 0, the host does not use the DNSSL.
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> lifetime [options] (0-4294967295|infinite)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+|`<domain-name-id>` |  The domain portion of a hostname (RFC 1123) or an internationalized hostname (RFC 5890). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com lifetime infinite
+```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement
 
-Router advertisement configuration for an interface
+Configures Router advertisement for an interface.
 
 ### Usage
 
@@ -9523,25 +9558,54 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`enable` | Turn the feature 'on' or 'off'. The default is 'on'. |
-|`fast-retransmit`  |  Allow consecutive RA packets more frequently than every 3  seconds |
-|`hop-limit` | Value in hop count field in IP header of the outgoing router advertisement packet |
-|`interval` |  Maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface |
-|`interval-option`  | Indicates hosts that the router will use advertisement interval to send router advertisements|
-|`lifetime`  |  Maximum time in seconds that the router can be treated as default gateway |
-|`managed-config` |knob to allow dynamic host to use managed (stateful) protocol for address autoconfiguration in addition to any addresses autoconfigured using stateless address autoconfig |
-| `other-config`    |   Knob to allow dynamic host to use managed (stateful) protocol for autoconfiguration information other than  addresses|
-| `reachable-time`  |   Time in milliseconds that a IPv6 node is considered reachable|
-| `retransmit-time`  |  Time in milliseconds between retransmission of neighbor solicitation messages|
-| `router-preference` | Hosts use router preference in selection of the default router |
+|`enable` | Turns Router Advertisement on or off. |
+|`fast-retransmit`  |  Configures Router Advertisement to allow consecutive RA packets more frequently than every 3 seconds. |
+|`hop-limit` | Configures the hop limit value advertised in a Router Advertisement message. |
+|`interval` |  Configures the maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface. |
+|`interval-option`  | Configures Router Advertiesment to indicate to hosts that the router uses an advertisement interval to send Router Advertisements.|
+|`lifetime`  |  Configures the maximum time in seconds that the router can be a default gateway. |
+|`managed-config` | Configures Router Advertisement to allow a dynamic host to use a managed protocol, such as DHCPv6, to configure IP addresses automatically (managed configuration). |
+| `other-config`    |  Configures Router Advertisement to allow a dynamic host to use a managed protocol to configure additional information through DHCPv6.|
+| `reachable-time`  |  Configures the amount of time that an IPv6 node is reachable.|
+| `retransmit-time`  |  Configures interval at which neighbor solicitation messages retransmit.|
+| `router-preference` | Configures Router Advertisement to allow hosts to use router preference to select the default router.|
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
+
+## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement enable
+
+Turns Router Advertisement on or off for the interface.
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement enable off
+```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval
 
-Maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface
+Configures the maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface. You can set a value between 70 and 1800000 miliseconds.
 
 ### Usage
 
@@ -9549,7 +9613,7 @@ Maximum time in milliseconds allowed between sending unsolicited multicast RA fr
 
 ### Default Setting
 
-N/A
+600000
 
 ### Identifiers
 
@@ -9559,17 +9623,74 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval 60000
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval-option
+
+Configures the switch to indicate to hosts that the router uses an advertisement interval to send Router Advertisements.
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement interval-option [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement interval-option on
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement fast-retransmit (on|off)
+
+Configures the switch to allow consecutive Router Advertisement packets to transmit more frequently than every three seconds (fast retransmit).
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement fast-retransmit [options] (on|off)`
+
+### Default Setting
+
+`on`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement fast-retransmit off
 ```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement lifetime
 
-Maximum time in seconds that the router can be treated as default gateway
+
+Configures the maximum amount of time that Router Advertisement messages can exist on the route. You can specify a value between 0 and 9000.
 
 ### Usage
 
@@ -9577,7 +9698,7 @@ Maximum time in seconds that the router can be treated as default gateway
 
 ### Default Setting
 
-N/A
+1800
 
 ### Identifiers
 
@@ -9587,17 +9708,17 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement lifetime 4000
 ```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement reachable-time
 
-Time in milliseconds that a IPv6 node is considered reachable
+Configures the amount of time that an IPv6 node is reachable. You can set a value between 0 and 3600000 milliseconds.
 
 ### Usage
 
@@ -9605,7 +9726,7 @@ Time in milliseconds that a IPv6 node is considered reachable
 
 ### Default Setting
 
-N/A
+0
 
 ### Identifiers
 
@@ -9615,17 +9736,17 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement reachable-time 3600000
 ```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement retransmit-time
 
-Time in milliseconds between retransmission of neighbor solicitation messages
+Configures the interval at which neighbor solicitation messages retransmit. You can set a value between 0 and 4294967295 milliseconds.
 
 ### Usage
 
@@ -9633,7 +9754,7 @@ Time in milliseconds between retransmission of neighbor solicitation messages
 
 ### Default Setting
 
-N/A
+0
 
 ### Identifiers
 
@@ -9643,17 +9764,73 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement retransmit-time 4294967295
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement managed-config
+
+Configures the switch to allow a dynamic host to use a managed protocol, such as DHCPv6, to configure IP addresses automatically (managed configuration).
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement managed-config [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement managed-config on
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement other-config
+
+Configures the switch to allow a dynamic host to use a managed protocol to configure additional information through DHCPv6.
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement other-config [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement other-config on
 ```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement hop-limit
 
-Value in hop count field in IP header of the outgoing router advertisement packet
+Configures the hop limit value in the IP header of the outgoing Router Advertisement packet. You can set a value between 0 and 255.
 
 ### Usage
 
@@ -9661,7 +9838,7 @@ Value in hop count field in IP header of the outgoing router advertisement packe
 
 ### Default Setting
 
-N/A
+64
 
 ### Identifiers
 
@@ -9671,17 +9848,45 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement hop-limit 100
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement router-preference
+
+Configures the switch to allow hosts to use router preference to select the default router. You can set a value of high, medium, or low.
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery router-advertisement router-preference [options] (high|medium|low)`
+
+### Default Setting
+
+`medium`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advertisement router-preference high
 ```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery home-agent
 
-Indicates to neighbors that this router acts as a Home Agent and includes a Home Agent Option. Not defined by default
+Configures the switch to be a Home Agent.
 
 ### Usage
 
@@ -9701,16 +9906,22 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `lifetime` |  Lifetime of a home agent in seconds |
-| `preference |   Home agent's preference value that is used to order the  addresses returned in the home agent address discovery reply. |
+| `lifetime` |  Configures the maximum amount of time you want the router to act as a Home Agent. You can set a value between 0 and 65520 seconds. |
+| `preference` |  Configures the Home Agent router preference used to order the addresses returned in the Home Agent address discovery reply. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent 6552
+```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery home-agent lifetime
 
-Lifetime of a home agent in seconds
+Configures the maximum amount of time you want the router to act as a Home Agent. You can set a value between 0 and 65520 seconds. If you set the value to 0, the router is not a Home Agent.
 
 ### Usage
 
@@ -9718,7 +9929,7 @@ Lifetime of a home agent in seconds
 
 ### Default Setting
 
-N/A
+0
 
 ### Identifiers
 
@@ -9728,17 +9939,17 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent lifetime 0
 ```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery home-agent preference
 
-Home agent's preference value that is used to order the addresses returned in the home agent address discovery reply.
+Configures the Home Agent router preference used to order the addresses returned in the Home Agent address discovery reply. You can set a value between 0 and 65535. 0 is the lowest preference.
 
 ### Usage
 
@@ -9746,7 +9957,7 @@ Home agent's preference value that is used to order the addresses returned in th
 
 ### Default Setting
 
-N/A
+0
 
 ### Identifiers
 
@@ -9756,17 +9967,45 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent preference 0
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery enable
+
+Turns Neighbor Discovery on or off.
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery enable [options] (on|off)`
+
+### Default Setting
+
+`on`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery enable off
 ```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery mtu
 
-MTU option for neighbor discovery messages
+Configures the MTU for Neighbor Discovery messages on an interface. You can set a value between 1 and 65535. 
 
 ### Usage
 
@@ -9784,12 +10023,12 @@ N/A
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery mtu 1500
 ```
 
 ## nv set interface \<interface-id\> ip vrf \<vrf-name\>

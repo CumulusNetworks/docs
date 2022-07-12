@@ -8690,7 +8690,7 @@ Turns forwarding on or off.
 
 ### Default Setting
 
-`off`
+`on`
 
 ### Identifiers
 
@@ -8705,12 +8705,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip ipv6 forward on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip ipv6 forward off
 ```
 
 ## nv set interface \<interface-id\> ip igmp
 
-Configuration for IGMP
+Configures Internet Group Management Protocol (IGMP) and Multicast Listener Discovery (MLD).
 
 ### Usage
 
@@ -8730,12 +8730,12 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`static-group` | IGMP static mutlicast mroutes |
-|`enable` |  Turn the feature 'on' or 'off'. The default is 'off'. |
-|`last-member-query-interval` | Last member query interval. |
-|`query-interval` | Query interval, in seconds. |
-|`query-max-response-time` |  Max query response time, in seconds. |
-|`version` | Protocol version |
+|`static-group` | Configures IGMP static mutlicast mroutes for the interface. |
+|`enable` |  Turns IGMP and MLD on or off for the interface. |
+|`last-member-query-interval` | Configures the last member query interval for the interface. |
+|`query-interval` | Configures the query interval for the interface. |
+|`query-max-response-time` |  Configures the maximum query response time for the interface. |
+|`version` | Configures the protocol version for the interface. |
 
 ### Version History
 
@@ -8743,7 +8743,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> ip igmp static-group \<static-group-id\>
 
-IGMP static multicast mroute
+Configures IGMP static mutlicast mroutes for the interface.
 
 ### Usage
 
@@ -8758,13 +8758,13 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<static-group-id>` |  IGMP static multicast mroute destination |
+| `<static-group-id>` |  The IGMP static multicast mroute destination. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`source-address` |  IGMP static multicast mroute source. |
+|`source-address` |  Configures the IGMP static multicast mroute source. |
 
 ### Version History
 
@@ -8772,7 +8772,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> ip igmp static-group \<static-group-id\> source-address \<ipv4-unicast\>
 
-IGMP static multicast mroute source.
+Configures the IGMP static multicast mroute source for the interface.
 
 ### Usage
 
@@ -8787,7 +8787,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<static-group-id>` |  IGMP static multicast mroute destination |
+| `<static-group-id>` |  The IGMP static multicast mroute destination. |
 
 ### Version History
 
@@ -8796,20 +8796,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp static-group 1 source-address 10.10.10.1
 ```
 
-## nv set interface \<interface-id\> ip igmp query-interval
+## nv set interface \<interface-id\> ip igmp enable
 
-Query interval, in seconds.
+Turns IGMP and MLD on or off for the interface..
 
 ### Usage
 
-`nv set interface <interface-id> ip igmp query-interval [options] 1-1800`
+`nv set interface <interface-id> ip igmp enable [options] (on|off)`
 
 ### Default Setting
 
-N/A
+`off`
 
 ### Identifiers
 
@@ -8824,12 +8824,68 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp enable on
+```
+
+## nv set interface \<interface-id\> ip igmp version
+
+Configures the protocol version for the interface. You can specify either version 2 or 3.
+
+### Usage
+
+`nv set interface <interface-id> ip igmp version [options] (2|3)`
+
+### Default Setting
+
+`2`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp version 3
+```
+
+## nv set interface \<interface-id\> ip igmp query-interval
+
+Configures the query interval for the interface. You can specify a value between 1 and 1800 seconds.
+
+### Usage
+
+`nv set interface <interface-id> ip igmp query-interval [options] 1-1800`
+
+### Default Setting
+
+125
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp query-interval 1800
 ```
 
 ## nv set interface \<interface-id\> ip igmp query-max-response-time
 
-Max query response time, in seconds.
+Configures the maximum query response time for the interface. You can specify a value between 10 and 250 seconds.
 
 ### Usage
 
@@ -8852,12 +8908,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp query-max-response-time 100
 ```
 
 ## nv set interface \<interface-id\> ip igmp last-member-query-interval
 
-Last member query interval.
+Configures the last member query interval for the interface. You can specify a value between 1 and 255
 
 ### Usage
 
@@ -8880,12 +8936,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp ast-member-query-interval 200
 ```
 
 ## nv set interface \<interface-id\> ip vrrp
 
-Configuration for VRRP
+Configures the Virtual Router Redundancy Protocol (VRRP) on the interface.
 
 ### Usage
 
@@ -8905,8 +8961,8 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `virtual-router` |  Group of virtual gateways implemented with VRRP |
-|`enable`   | Turn the feature 'on' or 'off'. The default is 'off'.|
+| `virtual-router` |  Configures the group of virtual gateways implemented with VRRP. |
+|`enable`   | Turns VRRP on or off for the interface.|
 
 ### Version History
 
@@ -8914,7 +8970,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\>
 
-A virtual gateway implemented with VRRP
+Configures the group of virtual gateways implemented with VRRP.
 
 ### Usage
 
@@ -8929,17 +8985,17 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<virtual-router-id>` |   Virtual Router IDentifier (VRID) |
+| `<virtual-router-id>` |  The Virtual Router IDentifier (VRID). |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `address` |  A set of virtual addresses for VRRPv3 |
-| `advertisement-interval` | Sets the interval between successive VRRP advertisements -- RFC 5798 defines this as a 12-bit value expressed as 0.1 seconds, with default 1000 milliseconds, i.e., 1 second. Represented in units of milliseconds |
-| `preempt` |  When set to true, enables preemption by a higher priority backup router of a lower priority master router |
-| `priority`  | Specifies the sending VRRP interface's priority foe the virtual router. Higher values equal higher priority |
-| `version `  | Protocol version |
+| `address` |  Configures a set of virtual addresses for VRRPv3. |
+| `advertisement-interval` | Configures the interval between successive advertisements by the master in a virtual router group. |
+| `preempt` |  Configures preempt mode, which lets the router take over as master for a virtual router group if it has a higher priority than the current master.|
+| `priority`  | Configures the priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. |
+| `version `  | Configures the VRRP protocol version for the interface. |
 
 ### Version History
 
@@ -8947,7 +9003,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address \<ip-address-id\>
 
-An IP address
+Configures a virtual address for VRRPv3.
 
 ### Usage
 
@@ -8962,8 +9018,8 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<virtual-router-id>` |   Virtual Router IDentifier (VRID) |
-| `<ip-address-id>` |  IPv4 or IPv6 address |
+| `<virtual-router-id>` |  The Virtual Router Identifier (VRID). |
+| `<ip-address-id>` |  The IPv4 or IPv6 address. |
 
 ### Version History
 
@@ -8972,7 +9028,172 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip vrrp virtual-router 44 address 10.0.0.1
+```
+
+## nv set interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> version
+
+Configures the VRRP protocol version for the interface. You can specify a value of 2 or 3.
+
+### Usage
+
+`nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> version [options] (2|3)`
+
+### Default Setting
+
+3
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<virtual-router-id>` |  The Virtual Router Identifier (VRID). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip vrrp virtual-router 44 address 10.0.0.1
+```
+
+## nv set interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> priority
+
+Configures the priority level of the virtual router within the virtual router group, which determines the role that each virtual router plays and what happens if the master fails. Virtual routers have a priority between 1 and 254; the router with the highest priority becomes the master.
+
+### Usage
+
+`nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> priority [options] (1-254|auto)`
+
+### Default Setting
+
+100
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<virtual-router-id>` |  The Virtual Router Identifier (VRID). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip vrrp virtual-router 44 priority 254
+```
+
+## nv set interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> preempt
+
+Configures preempt mode, which lets the router take over as master for a virtual router group if it has a higher priority than the current master.
+
+### Usage
+
+`nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> preempt [options] (on|off|auto)`
+
+### Default Setting
+
+`on`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<virtual-router-id>` |  The Virtual Router Identifier (VRID). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip vrrp virtual-router 44 preempt off
+```
+
+## nv set interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> advertisement-interval
+
+Configures the interval between successive advertisements by the master in a virtual router group. You can specify a value between 10 and 40950 milliseconds.
+
+### Usage
+
+`nv set interface <interface-id> ip vrrp virtual-router <virtual-router-id> advertisement-interval [options] (10-40950|auto)`
+
+### Default Setting
+
+1000
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<virtual-router-id>` |  The Virtual Router Identifier (VRID). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip vrrp virtual-router 44 advertisement-interval 2000
+```
+
+## nv set interface \<interface-id\> ip vrrp enable
+
+Turns on VRRP on the interface.
+
+### Usage
+
+`nv set interface <interface-id> ip vrrp enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip vrrp enable on
+```
+
+### Default Setting
+
+1000
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<virtual-router-id>` |  The Virtual Router Identifier (VRID). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip vrrp virtual-router 44 advertisement-interval 2000
 ```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery

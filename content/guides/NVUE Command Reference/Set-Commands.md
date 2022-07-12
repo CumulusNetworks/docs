@@ -8589,15 +8589,43 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `forward` |  Enable or disable forwarding. |
+| `forward` |  Turns forwarding on or off. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set interface \<interface-id\> ip ipv4 forward
+
+ Turns forwarding on or off.
+
+### Usage
+
+`nv set interface <interface-id> ip ipv4 forward [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip ipv4 forward on
+```
+
 ## nv set interface \<interface-id\> ip ipv6
 
-IPv6 configuration for an interface
+Configures IPv6 settings for an interface.
 
 ### Usage
 
@@ -8617,12 +8645,68 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable` | Turn the feature 'on' or 'off'. The default is 'on'. |
-| `forward`  |  Enable or disable forwarding. |
+| `enable` | Turns IPv6 on or off. |
+| `forward` | Turns forwarding on or off. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+## nv set interface \<interface-id\> ip ipv6 enable (on|off)
+
+Turns IPv6 on or off.
+
+### Usage
+
+`nv set interface <interface-id> ip ipv6 enable [options] (on|off)`
+
+### Default Setting
+
+`on`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip ipv6 enable off
+```
+
+## nv set interface \<interface-id\> ip ipv6 forward (on|off)
+
+Turns forwarding on or off. 
+
+### Usage
+
+`nv set interface <interface-id> ip ipv6 forward [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip ipv6 forward on
+```
 
 ## nv set interface \<interface-id\> ip igmp
 

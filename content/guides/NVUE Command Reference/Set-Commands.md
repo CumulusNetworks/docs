@@ -8801,7 +8801,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp static-group 1 source-addre
 
 ## nv set interface \<interface-id\> ip igmp enable
 
-Turns IGMP and MLD on or off for the interface..
+Turns IGMP and MLD on or off for the interface.
 
 ### Usage
 
@@ -8936,7 +8936,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp ast-member-query-interval 200
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp last-member-query-interval 200
 ```
 
 ## nv set interface \<interface-id\> ip vrrp
@@ -9198,7 +9198,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip vrrp virtual-router 44 advertise
 
 ## nv set interface \<interface-id\> ip neighbor-discovery
 
-Neighbor discovery configuration for an interface
+Configures Neighbor Discovery (ND) for an interface. ND allows different devices on the same link to advertise their existence to their neighbors and to learn about the existence of their neighbors. ND is the IPv6 equivalent of IPv4 ARP for layer 2 address resolution.
 
 ### Usage
 
@@ -9218,13 +9218,13 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `rdnss` | Recursive DNS server addresses to be advertised using type 25 option RFC8016 |
-| `prefix` | IPv6 prefix configuration |
-| `dnssl` | Advertise DNS search list using type 31 option RFC8106 |
-| `router-advertisement` |  Router advertisement |
-| `home-agent`  |  Home agent configuration
-| `enable` | Turn the feature 'on' or 'off'. The default is 'on'. |
-| `mtu` |  MTU option for neighbor discovery messages |
+| `rdnss` | Configures recursive DNS servers (RDNSS). |
+| `prefix` | Configures the IPv6 prefixes you want to include in router advertisements. |
+| `dnssl` | Configure DNS search lists (DNSSL). You must specify the domain suffix you want to advertise. |
+| `router-advertisement` |  Configures router advertisement for the interface. |
+| `home-agent`  | Configures the switch to be a Home Agent.
+| `enable` | Turns Neighbor Discovery on or off. The default is 'on'. |
+| `mtu` |  Configures the MTU for neighbor discovery messages on an interface. |
 
 ### Version History
 
@@ -9232,7 +9232,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\>
 
-A recursive DNS server
+Configures recursive DNS servers (RDNSS). You must specify the IPv6 address of each RDNSS you want to advertise.
 
 ### Usage
 
@@ -9247,21 +9247,56 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-|`<ipv6-address-id>` |  IPv6 address |
+|`<ipv6-address-id>` | The IPv6 address. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `lifetime` |  Maximum time in seconds for which the server may be used for domain name resolution |
+| `lifetime` |  Configures the maximum amount of time you want to use the RDNSS for domain name resolution. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\> lifetime 
+
+Configures the maximum amount of time you want to use the RDNSS for domain name resolution. You can specify a value between 0 and 4294967295, or specify `infinite` to use the RDNSS for domain name resolution indefinitely. If you set the value to 0, the RDNSS address no longer advertises.
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> lifetime [options] (0-4294967295|infinite)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+|`<ipv6-address-id>` | The IPv6 address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100 lifetime infinite
+```
+
 ## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\>
 
-A IPv6 prefix
+Configures the IPv6 prefix you want to include in router advertisements.
 
 ### Usage
 
@@ -9276,17 +9311,17 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ipv6-address-id>` |  IPv6 address |
+| `<ipv6-address-id>` | The IPv6 address. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `autoconfig` | Indicates to hosts on the local link that the specified  prefix can be used for v6 autoconfiguration|
-| `off-link`  |  Indicates that adverisement makes no statement about on-link or off-link properties of the prefix |
-| `preferred-lifetime` | Time in seconds that addresses generated from a prefix remain preferred |
-| `router-address` | Indicates to hosts on the local link that the specified prefix contains a complete IP address by setting R flag |
-| `valid-lifetime` | Time in seconds the prefix is valid for on-link determination |
+| `autoconfig` | Configures automatic configuration to indicate to hosts on the local link that they can use the specified prefix for IPv6 auto configuration.|
+| `off-link`  | Configures adverisement to make no statement about prefix on-link or off-link properties. |
+| `preferred-lifetime` | Configures the amount of time that addresses generated from a prefix remain preferred. |
+| `router-address` | Configures adverisement to indicates to hosts on the local link that the specified prefix contains a complete IP address by setting R flag. |
+| `valid-lifetime` | Configures the amount of time that the prefix is valid for on-link determination. |
 
 ### Version History
 
@@ -9294,7 +9329,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> valid-lifetime
 
-Time in seconds the prefix is valid for on-link determination
+Configures the amount of time that the prefix is valid for on-link determination. You can specify a value between 0 and 4294967295.
 
 ### Usage
 
@@ -9302,14 +9337,14 @@ Time in seconds the prefix is valid for on-link determination
 
 ### Default Setting
 
-N/A
+2592000
 
 ### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ipv6-address-id>` |  IPv6 address |
+| `<ipv6-address-id>` | The IPv6 address. |
 
 ### Version History
 
@@ -9318,12 +9353,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 valid-lifetime 2000000000
 ```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> preferred-lifetime
 
-Time in seconds that addresses generated from a prefix remain preferred
+Configures the amount of time that addresses generated from a prefix remain preferred. You can specify a value between 0 and 4294967295.
 
 ### Usage
 
@@ -9331,14 +9366,14 @@ Time in seconds that addresses generated from a prefix remain preferred
 
 ### Default Setting
 
-N/A
+604800
 
 ### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ipv6-address-id>` |  IPv6 address |
+| `<ipv6-address-id>` | The IPv6 address |
 
 ### Version History
 
@@ -9347,7 +9382,94 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 preferred-lifetime 1000000000
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> off-link
+
+Configures adverisement to make no statement about prefix on-link or off-link properties.
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> off-link [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<ipv6-address-id>` | The IPv6 address |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 off-link on
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> autoconfig
+
+Configures automatic configuration to indicate to hosts on the local link that they can use the specified prefix for IPv6 auto configuration.
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> autoconfig [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<ipv6-address-id>` | The IPv6 address |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 autoconfig on
+```
+
+## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> router-address
+
+Configures adverisement to indicates to hosts on the local link that the specified prefix contains a complete IP address by setting R flag.
+
+### Usage
+
+`nv set interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> router-address [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+| `<ipv6-address-id>` | The IPv6 address |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:db8:1::100/32 router-address on
 ```
 
 ## nv set interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\>

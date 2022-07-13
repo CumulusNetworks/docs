@@ -59,7 +59,7 @@ The NVUE commands and outputs are subject to change.
 - {{<link url="Quality-of-Service" text="QoS enhancements ">}} (`traffic.conf` and `datapath.conf` files removed and replaced)
 - {{<link url="Hybrid-Cloud-Connectivity-with-QinQ-and-VXLANs/#double-tag-translation" text="QinQ double-tagged translation ">}} is now supported on switches with the Spectrum-2 and Spectrum-3 ASIC
 - {{<link url="Network-Address-Translation-NAT" text="Double (twice) NAT ">}}
-- ZTP enhancements include {{<link url="Zero-Touch-Provisioning-ZTP/#dhcp-on-front-panel-ports" text="DHCP on front panel ports">}}, the ability to {{<link url="Zero-Touch-Provisioning-ZTP/#continue-provisioning" text="continue provisioning after executing the script locally">}}, and improved logging
+- ZTP enhancements include the ability to {{<link url="Zero-Touch-Provisioning-ZTP/#continue-provisioning" text="continue provisioning after executing the script locally">}}, and improved logging
 - A specific software license key is no longer required to enable the `switchd` service. For more information, refer to [Licensing in Cumulus Linux 44 and Later]({{<ref "/knowledge-base/Installing-and-Upgrading/Installation/Licensing-in-Cumulus-Linux-44-and-Later" >}}).
 
 ### Unsupported Platforms

@@ -8,8 +8,6 @@ Creating and comparing network snapshots can be useful to validate that the netw
 
 ## Create a Network Snapshot
 
-It is simple to capture the state of your network currently or for a time in the past using the snapshot feature.
-
 To create a snapshot:
 
 1. From any workbench in the NetQ UI, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.

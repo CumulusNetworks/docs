@@ -1,11 +1,11 @@
 ---
-title: Monitor Using Topology View
+title: Topology View
 author: NVIDIA
 weight: 1040
 toc: 3
 ---
 
-The core capabilities of NetQ enable you to monitor your network by viewing performance and configuration data about your individual network devices and the entire fabric networkwide. The topics contained in this section describe monitoring tasks you can perform from a topology view rather than through the NetQ UI card workflows or the NetQ CLI.
+NetQ lets you monitor your network by viewing performance and configuration data for individual network devices and the entire fabric networkwide. This section describe monitoring tasks you can perform from a topology view rather than through the NetQ UI card workflows or the NetQ CLI.
 
 ## Access the Topology View
 
@@ -18,8 +18,6 @@ This opens the full screen view of your network topology.
 {{<figure src="/images/netq/topo-main-page-ref-topo-240.png" width="700">}}
 
 This document uses the Cumulus Networks [reference topology](https://gitlab.com/cumulus-consulting/goldenturtle/cldemo2) for all examples.
-
-To close the view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 ## Topology Overview
 
@@ -98,7 +96,7 @@ You can change the time period for the data as well. This enables you to view th
     
 ### Hide Events on Topology Diagram
 
-You can hide the event symbols on the topology diagram. Simple move the Events toggle in the header to the left. Move the toggle to the right to show them again.
+You can hide and show the event symbols on the topology diagram by selecting the toggle in the header.
 
 {{<figure src="/images/netq/topo-hide-show-events-toggle-240.png" width="200">}}
 

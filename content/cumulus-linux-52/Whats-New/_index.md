@@ -21,7 +21,7 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Features and Enhancements
 
-- Support for signed images on secured switches and for SecureApt to update individual packages
+- Support for signed images on secured switches and support for SecureApt to update individual packages
 - {{<link url="Zero-Touch-Provisioning-ZTP/#dhcp-on-front-panel-ports" text="ZTP on front panel ports">}}
 - {{<link url="SyncE" text="SyncE">}} available for early access
 - PTP enhancements include:

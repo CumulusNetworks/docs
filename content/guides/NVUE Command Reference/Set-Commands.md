@@ -10175,7 +10175,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv on
 
 ## nv set interface \<interface-id\> link
 
-Configures the physical interface, such as the state, auto-negotiation, breakouts, FEC, MTU, and speed.
+Configures the physical interface settings, such as the state, auto-negotiation, breakouts, FEC, MTU, and speed.
 
 ### Usage
 
@@ -10195,22 +10195,50 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`state` | Configures the state of the interface |
-|`dot1x`  | Configures |
-|`auto-negotiate` | Link speed and characteristic auto negotiation |
-|`breakout` | sub-divide or disable ports (only valid on plug interfaces) |
-|`duplex` | Link duplex |
-|`fec`  |  Link forward error correction mechanism |
-|`mtu`  | interface mtu |
-|`speed` |  Link speed |
+|`state` | Configures the state of the interface; up or down. |
+|`dot1x`  | Configures the IEEE 802.1X protocol for the interface. |
+|`auto-negotiate` | Configures auto-negotiation for the interface. |
+|`breakout` | Configures breakouts for the interface. |
+|`duplex` | Configures duplex mode for the interface; full or half. |
+|`fec`  |  Configures Forward Error Correction (FEC) for the interface. |
+|`mtu`  | Configures the MTU for the interface. |
+|`speed` |  Configures the speed for the interface.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set interface \<interface-id\> link state
+
+Configures the state of the interface; up or down.
+
+### Usage
+
+`nv set interface <interface-id> link state [options] (up|down)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link state up
+```
+
 ## nv set interface \<interface-id\> link dot1x
 
-An physical interface
+Configures the IEEE 802.1X protocol for the interface.
 
 ### Usage
 
@@ -10230,20 +10258,104 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `mab` |  bypass MAC authentication |
-| `parking-vlan` | VLAN for unauthorized MAC addresses |
+| `mab` |  Configures bypass MAC authentication. |
+| `parking-vlan` | Configures a parking VLAN for unauthorized MAC addresses. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set interface \<interface-id\> link mtu
+## nv set interface \<interface-id\> link dot1x mab
 
-interface mtu
+Configures MAC authentication bypass (MAB), which enables bridge ports to allow devices to bypass authentication based on their MAC address. This is useful for devices that do not support PAE, such as printers or phones.
 
 ### Usage
 
-`nv set interface <interface-id> link mtu [options] 552-9216`
+`nv set interface <interface-id> link dot1x mab [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link dot1x mab on
+```
+
+## nv set interface \<interface-id\> link dot1x parking-vlan
+
+Configures a Parking VLAN. If a non-authorized supplicant tries to communicate with the switch, you can route traffic from that device to a different VLAN and associate that VLAN with one of the switch ports to which the supplicant is attached.
+
+### Usage
+
+`nv set interface <interface-id> link dot1x parking-vlan [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link dot1x parking-vlan on
+```
+
+## nv set interface \<interface-id\> link auto-negotiate
+
+Configures auto-negotiation for the interface.
+
+### Usage
+
+`nv set interface <interface-id> link auto-negotiate [options] (on|off)`
+
+### Default Setting
+
+`on`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link auto-negotiate off
+```
+
+## nv set interface \<interface-id\> link breakout 
+
+Configures breakout ports for the interface.
+
+### Usage
+
+`nv set interface <interface-id> link breakout [options] (1x|2x20G|2x40G|2x50G|2x100G|2x200G|4x10G|4x25G|4x50G|4x100G|8x50G|disabled|loopback)`
 
 ### Default Setting
 
@@ -10262,7 +10374,119 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link breakout 4x25G
+```
+
+## nv set interface \<interface-id\> link duplex 
+
+Configures duplex mode for the interface; full or half.
+
+### Usage
+
+`nv set interface <interface-id> link duplex [options] (half|full)`
+
+### Default Setting
+
+`full`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link duplex half
+```
+
+## nv set interface \<interface-id\> link speed
+
+Configures the speed for the interface.
+
+### Usage
+
+`nv set interface <interface-id> link speed [options] (auto|10M|100M|1G|10G|25G|40G|50G|100G|200G|400G)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link speed 10G
+```
+
+## nv set interface \<interface-id\> link fec
+
+Configures Forward Error Correction (FEC) for the interface. FEC enables the switch to detect and correct bit errors introduced over the cable between two interfaces. 
+
+### Usage
+
+`nv set interface <interface-id> link fec [options] (auto|baser|off|rs|driver-auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link fec baser
+```
+
+## nv set interface \<interface-id\> link mtu
+
+Configures the maximum transmission unit (MTU) for the interface. You can set a value between 552 and 9216.
+
+### Usage
+
+`nv set interface <interface-id> link mtu [options] 552-9216`
+
+### Default Setting
+
+9216
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link mtu 1500
 ```
 
 ## nv set interface \<interface-id\> evpn

@@ -10033,7 +10033,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery mtu 1500
 
 ## nv set interface \<interface-id\> ip vrf \<vrf-name\>
 
-Virtual routing and forwarding
+Configures virtual routing and forwarding on the interface.
 
 ### Usage
 
@@ -10056,12 +10056,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip vrf RED
 ```
 
 ## nv set interface \<interface-id\> lldp
 
-LLDP on for an interface
+Configures Link Layer Discovery Protocol (LLDP) for an interface.
 
 ### Usage
 
@@ -10081,17 +10081,101 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `dcbx-ets-config-tlv` |  DCBX ETS config TLV flag |
-| `dcbx-ets-recomm-tlv` |  DCBX ETS recommendation TLV flag |
-| `dcbx-pfc-tlv` |   DCBX PFC TLV flag |
+| `dcbx-ets-config-tlv` |  Configures ETS TLV transmission on the interface.|
+| `dcbx-ets-recomm-tlv` |  Configures ETS Recommendation TLV transmission on the interface. |
+| `dcbx-pfc-tlv` | Configures PFC TLV transmission on the interface. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set interface \<interface-id\> lldp dcbx-pfc-tlv
+
+Configures PFC TLV transmission on the interface.
+
+### Usage
+
+`nv set interface <interface-id> lldp dcbx-pfc-tlv [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
+```
+
+## nv set interface \<interface-id\> lldp dcbx-ets-config-tlv
+
+Configures ETS TLV transmission on the interface.
+
+### Usage
+
+`nv set interface <interface-id> lldp dcbx-ets-config-tlv [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 lldp dcbx-ets-config-tlv on
+```
+
+## nv set interface \<interface-id\> lldp dcbx-ets-recomm-tlv
+
+Configures ETS Recommendation TLV transmission on the interface.
+
+### Usage
+
+`nv set interface <interface-id> lldp dcbx-ets-recomm-tlv [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv on
+```
+
 ## nv set interface \<interface-id\> link
 
-An physical interface
+Configures the physical interface, such as the state, auto-negotiation, breakouts, FEC, MTU, and speed.
 
 ### Usage
 
@@ -10111,8 +10195,8 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`state` | The state of the interface |
-|`dot1x`  | An physical interface |
+|`state` | Configures the state of the interface |
+|`dot1x`  | Configures |
 |`auto-negotiate` | Link speed and characteristic auto negotiation |
 |`breakout` | sub-divide or disable ports (only valid on plug interfaces) |
 |`duplex` | Link duplex |

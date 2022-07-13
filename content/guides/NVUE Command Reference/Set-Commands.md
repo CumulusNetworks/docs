@@ -10491,7 +10491,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link mtu 1500
 
 ## nv set interface \<interface-id\> evpn
 
-EVPN control plane config and info for VRF
+Configures the EVPN control plane for the interface.
 
 ### Usage
 
@@ -10511,7 +10511,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `multihoming` |  Multihoming interface configuration parameters |
+| `multihoming` |  Configures EVPN multihoming for the interface. |
 
 ### Version History
 
@@ -10519,7 +10519,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> evpn multihoming
 
-Multihoming interface configuration parameters
+Configures EVPN multihoming for the interface.
 
 ### Usage
 
@@ -10539,8 +10539,8 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `segment`  |  Multihoming interface segment |
-| `uplink ` |  Enable evpn multihoming tracking to prevent traffic loss due to NVE connectivity loss, uplink's operational state is tracked when enabled.|
+| `segment`  |  Configures the EVPN multihoming interface segment. |
+| `uplink ` |  Turns EVPN multihoming tracking on or off to prevent traffic loss due to NVE connectivity loss.|
 
 ### Version History
 
@@ -10548,7 +10548,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> evpn multihoming segment
 
-Multihoming interface segment
+Configures the EVPN multihoming interface segment.
 
 ### Usage
 
@@ -10568,19 +10568,47 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`enable` |Turn the feature 'on' or 'off'. The default is 'off'.|
-|`df-preference`  | Designated forwarder preference value for this ethernet segment. If 'auto', the global evpn multihoming preference will be used. This is the default.|
-| `identifier` |Ethernet segment identifier. This must be unique for each segment and match other bonds in the segment.|
-| `local-id`  | Ethernet segment local-id. If provided, it will be combined with the global multihoming `mac-address` to create the ethernet segment identifier, which must be unique for each segment and match other bonds in the segment.|
-| `mac-address` | MAC address for this ethernet segment. If 'auto', the global evpn multihoming mac-address will be used. This is the default.|
+|`enable` | Turns the EVPN multihoming segment on or off.|
+|`df-preference`  | Configures a preference on an Ethernet segment for the designated forwarder (DF) election.  |
+| `identifier` | Configures the Ethernet segment identifier. This must be unique for each segment and match other bonds in the segment.|
+| `local-id`  | Configures the Ethernet segment ID.|
+| `mac-address` | Configures the MAC address for this Ethernet segment.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set interface \<interface-id\> evpn multihoming segment enable
+
+Turns EVPN multihoming segment on or off.
+
+### Usage
+
+`nv set interface <interface-id> evpn multihoming segment enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface bond1 evpn multihoming segment enable on
+```
+
 ## nv set interface \<interface-id\> evpn multihoming segment local-id
 
-Ethernet segment local-id.  If provided, it will be combined with the global multihoming `mac-address` to create the ethernet segment identifier, which must be unique for each segment and match other bonds in the segment.
+Configures the Ethernet segment ID.  If provided, it will be combined with the global multihoming `mac-address` to create the ethernet segment identifier, which must be unique for each segment and match other bonds in the segment.
 
 ### Usage
 
@@ -10603,7 +10631,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface bond1 evpn multihoming segment local-id 1
 ```
 
 ## nv set interface \<interface-id\> evpn multihoming segment identifier \<es-identifier\>
@@ -10631,12 +10659,96 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface bond1 evpn multihoming segment identifier 1
+```
+
+## nv set interface \<interface-id\> evpn multihoming segment mac-address
+
+Configures the MAC address for this Ethernet segment. You can specify the MAC address or `auto`. If you specify `auto`, the switch uses the global EVPN multihoming MAC address.
+
+### Usage
+
+`nv set interface <interface-id> evpn multihoming segment mac-address [options] (auto|<mac>)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
+```
+
+## nv set interface \<interface-id\> evpn multihoming segment df-preference
+
+Configures a preference on an Ethernet segment for the designated forwarder (DF) election. The switch selects a DF for each Ethernet segment. The DF forwards flooded traffic received through the VXLAN overlay to the locally attached Ethernet segment. The EVPN VTEP with the highest DF preference setting becomes the DF.
+
+### Usage
+
+`nv set interface <interface-id> evpn multihoming segment df-preference [options] (1-65535|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
+```
+
+## nv set interface \<interface-id\> evpn multihoming uplink
+
+Turns EVPN multihoming tracking on or off. When all uplinks go down, the VTEP loses connectivity to the VXLAN overlay. To prevent traffic loss, Cumulus Linux tracks the operational state of the uplink. When all the uplinks are down, the Ethernet segment bonds on the switch are in a protodown or error-disabled state.
+
+### Usage
+
+`nv set interface <interface-id> evpn multihoming segment uplink [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51-52 evpn multihoming uplink on
 ```
 
 ## nv set interface \<interface-id\> acl \<acl-id\>
 
-An ACL is used for matching packets and take actions
+Configures the access control list (ACL) rule to apply in the inbound or outbound direction.
 
 ### Usage
 
@@ -10651,14 +10763,14 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-|`<acl-id>` |  ACL ID |
+|`<acl-id>` |  The name of the ACL. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `inbound` | ACL applied for inbound direction |
-| `outbound` | ACL applied for outbound direction |
+| `inbound` | Configures the ACL rule to apply in the inbound direction. |
+| `outbound` | Configures the ACL rule to apply in the outbound direction. |
 
 ### Version History
 
@@ -10666,7 +10778,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> acl \<acl-id\> inbound
 
-Inbound direction
+Configures the ACL rule to apply in the inbound direction.
 
 ### Usage
 
@@ -10681,21 +10793,27 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   ACL ID |
+| `<acl-id>` |   The name of the ACL. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `control-plane`  | ACL applied for control plane |
+| `control-plane`  | Configures the ACL rule to apply to a control plane interface in the inbound direction. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 inbound
+```
+
 ## nv set interface \<interface-id\> acl \<acl-id\> inbound control-plane
 
-State details
+Configures the ACL rule to apply to a control plane interface in the inbound direction.
 
 ### Usage
 
@@ -10710,7 +10828,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   ACL ID |
+| `<acl-id>` |   The name of the ACL. |
 
 ### Version History
 
@@ -10719,12 +10837,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
 ```
 
 ## nv set interface \<interface-id\> acl \<acl-id\> outbound
 
-State details
+Configures the ACL rule to apply in the outbound direction.
 
 ### Usage
 
@@ -10739,21 +10857,27 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |  ACL ID |
+| `<acl-id>` |   The name of the ACL. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `control-plane` |    |
+| `control-plane` | Configures the ACL rule to apply to a control plane interface in the inbound direction.  |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound 
+```
+
 ## nv set interface \<interface-id\> acl \<acl-id\> outbound control-plane
 
-State details
+Configures the ACL rule to apply to a control plane interface in the outbound direction.
 
 ### Usage
 
@@ -10768,7 +10892,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |  ACL ID |
+| `<acl-id>` |   The name of the ACL. |
 
 ### Version History
 
@@ -10777,12 +10901,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound control-plane
 ```
 
 ## nv set interface \<interface-id\> ptp
 
-Interface Specific PTP configuration.
+Configures PTP on the interface.
 
 ### Usage
 
@@ -10802,15 +10926,15 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`timers`  |  Interface PTP timerss|
-|`enable` | Turn the feature 'on' or 'off'. The default is 'off'.|
-|`acceptable-master` | Determines if acceptable master check is enabled for this interface.|
-|`delay-mechanism` |  Mode in which PTP message is transmitted.|
-|`forced-master` | Configures PTP interfaces to forced master state.|
-|`instance`   |PTP instance number.|
-|`message-mode`| Mode in which PTP delay message is transmitted.|
-|`transport` | Transport method for the PTP messages.|
-|`ttl` |    Maximum number of hops the PTP messages can make before it gets dropped.|
+|`timers`  |  Configures PTP timers on the interface.|
+|`enable` | Turns PTP on or off on the interface.|
+|`acceptable-master` | Configures the acceptable master table option, which is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network.|
+|`delay-mechanism` |  Configures the mode in which PTP messages transmit.|
+|`forced-master` | Configures PTP interfaces to always be in a master state. This interface ignores any Announce messages it receives.|
+|`instance`   |Configures the PTP instance number.|
+|`message-mode`| Configures the mode in which PTP delay messages transmit; multicast, unicast, or mixed.|
+|`transport` | Configures the transport method for PTP messages.|
+|`ttl` |    Configures the maximum number of hops the PTP messages can travel.|
 
 ### Version History
 
@@ -10818,7 +10942,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> ptp timers
 
-Interface PTP timers
+Configures timers for PTP messages, such as the average interval between successive Announce messages, the number of announce intervals that have to occur without receiving an Announce message before a timeout occurs, the minimum average time interval allowed between successive Delay Required messages, and the interval between PTP synchronization messages on an interface. 
 
 ### Usage
 
@@ -10838,10 +10962,10 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `announce-interval`|   Mean time interval between successive Announce messages. It's specified as a power of two in seconds.|
-| `announce-timeout` | The number of announceIntervals that have to pass without receipt of an Announce message before the  occurrence of the timeout event|
-| `delay-req-interval` | The minimum permitted mean time interval between successive Delay Req messages. It's specified as a power of two in seconds.|
-| `sync-interval` |  The mean SyncInterval for multicast messages. It's specified as a power of two in seconds.|
+| `announce-interval`|  Configures the average interval between successive Announce messages.|
+| `announce-timeout` | The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs.|
+| `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages.|
+| `sync-interval` |  The interval between PTP synchronization messages on an interface.|
 
 ### Version History
 
@@ -10849,7 +10973,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> ptp timers announce-interval
 
-Mean time interval between successive Announce messages.  It's specified as a power of two in seconds.
+Configures the average interval between successive Announce messages. You specify the value as a power of two in seconds.
 
 ### Usage
 
@@ -10872,12 +10996,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers announce-interval -1
 ```
 
 ## nv set interface \<interface-id\> ptp timers sync-interval
 
-The mean SyncInterval for multicast messages.  It's specified as a power of two in seconds.
+The interval between PTP synchronization messages on an interface. You specify the value as a power of two in seconds.
 
 ### Usage
 
@@ -10900,12 +11024,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers sync-interval -5
 ```
 
 ## nv set interface \<interface-id\> ptp timers delay-req-interval
 
-The minimum permitted mean time interval between successive Delay Req messages.  It's specified as a power of two in seconds.
+The minimum average time interval allowed between successive Delay Required messages. You specify the value as a power of two in seconds.
 
 ### Usage
 
@@ -10928,12 +11052,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers delay-req-interval -5
 ```
 
 ## nv set interface \<interface-id\> ptp timers announce-timeout
 
-The number of announceIntervals that have to pass without receipt of an Announce message before the occurrence of the timeout event
+The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs. Make sure that this value is longer than the `announce-interval` in your network.
 
 ### Usage
 
@@ -10956,12 +11080,40 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers announce-interval 2
+```
+
+## nv set interface \<interface-id\> ptp enable
+
+Turns PTP on the interface on or off.
+
+### Usage
+
+`nv set interface <interface-id> ptp enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp enable on
 ```
 
 ## nv set interface \<interface-id\> ptp instance \<value\>
 
-PTP instance number.
+Configures the PTP instance number. 
 
 ### Usage
 
@@ -10969,7 +11121,7 @@ PTP instance number.
 
 ### Default Setting
 
-N/A
+`off`
 
 ### Identifiers
 
@@ -10984,12 +11136,68 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1
+```
+
+## nv set interface \<interface-id\> ptp forced-master (on|off)
+
+Configures PTP interfaces to always be in a master state. This interface ignores any Announce messages it receives.
+
+### Usage
+
+`nv set interface <interface-id> ptp forced-master [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp forced-master on
+```
+
+## nv set interface \<interface-id\> ptp acceptable-master (on|off)
+
+Turns the acceptable master table option on or off for the interface. You must configure the clock IDs of known Grandmasters in the acceptable master table before turning on the acceptable master table option. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection.
+
+### Usage
+
+`nv set interface <interface-id> ptp acceptable-master [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp acceptable-master on
 ```
 
 ## nv set interface \<interface-id\> ptp delay-mechanism end-to-end
 
-Mode in which PTP message is transmitted.
+Configures the PTP delay mechanism to be end-to-end, where the slave measures the delay between itself and the master. For PTP nodes to synchronize the time of day, each slave has to learn the delay between iteself and the master.
 
 ### Usage
 
@@ -10997,7 +11205,7 @@ Mode in which PTP message is transmitted.
 
 ### Default Setting
 
-N/A
+`peer-to-peer`
 
 ### Identifiers
 
@@ -11012,16 +11220,44 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp delay-mechanism end-to-end
+```
+
+## nv set interface \<interface-id\> ptp transport 
+
+Configures the transport method for PTP messages. You can encapsulate PTP messages in UDP/IPV4 frames or UDP/IPV6 frames.
+
+### Usage
+
+`nv set interface <interface-id> ptp transport [options] (ipv4|ipv6|802.3)`
+
+### Default Setting
+
+IPv4
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp transport ipv6
 ```
 
 ## nv set interface \<interface-id\> ptp ttl
 
-Maximum number of hops the PTP messages can make before it gets dropped.
+Configures the maximum number of hops the PTP messages can travel.
 
 ### Usage
 
-`nv set interface <interface-id> ptp ttl [options] 1-2`55
+`nv set interface <interface-id> ptp ttl [options] 1-255`
 
 ### Default Setting
 
@@ -11040,7 +11276,35 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp ttl 20
+```
+
+## nv set interface \<interface-id\> ptp message-mode 
+
+Configures the mode in which PTP delay messages transmit; multicast, unicast, or mixed.
+
+### Usage
+
+`nv set interface <interface-id> ptp message-mode [options] (multicast|unicast|mixed)`
+
+### Default Setting
+
+`multicast`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp message-mode mixed
 ```
 
 ## nv set interface \<interface-id\> tunnel

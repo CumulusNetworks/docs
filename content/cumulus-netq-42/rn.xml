@@ -19,12 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3053091</td>
-<td>Lifecycle management (LCM) features do not work when the NetQ Cloud Appliance uses an external proxy server.</td>
-<td>4.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3047149</td>
 <td>When you reboot the OPTA, the NetQ validation summary might show an incorrect number of validations. This condition will resolve itself within an hour of the reboot.</td>
 <td>4.2.0</td>
@@ -33,12 +27,6 @@
 <tr>
 <td>3043146</td>
 <td>After you upgrade from NetQ 4.1 to NetQ 4.2, some streaming validation checks might erroneously report failures when services are running properly. This condition will resolve itself within 24 hours of the upgrade. </td>
-<td>4.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3042840</td>
-<td>Some resolved events might continue to be displayed as Open in the Events card even after they are resolved.</td>
 <td>4.2.0</td>
 <td></td>
 </tr>

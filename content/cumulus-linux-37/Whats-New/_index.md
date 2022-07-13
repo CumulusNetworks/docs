@@ -187,7 +187,6 @@ Cumulus Linux 3.7.0 supports new platforms, provides bug fixes, and contains sev
 ### New Features and Enhancements
 
 - {{<link url="Facebook-Voyager-Optical-Interfaces/#configure-a-line-side-loopback" text="Line side loopback and terminal loopback mode">}} for Facebook Voyager troubleshooting
-- {{<link url="OVSDB-Server-High-Availability" text="Active-active OVSDB">}} (Early Access)
 - {{<link url="802.1X-Interfaces/#radius-change-of-authorization-and-disconnect-requests" text="RADIUS Change of Authorization (CoA) requests">}}
 - {{<link url="RADIUS-AAA/#local-fallback-authentication" text="RADIUS AAA local fallback authentication">}}
 - {{<link url="TACACS-Plus/#local-fallback-authentication" text="TACACS Plus local fallback authentication">}}

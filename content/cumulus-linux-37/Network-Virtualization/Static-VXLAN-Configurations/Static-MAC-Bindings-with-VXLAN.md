@@ -26,12 +26,6 @@ Consider the following example:
 
 {{% img src="/images/old_doc_images/vxlan.png" %}}
 
-{{%notice warning%}}
-
-Preconfiguring remote MAC addresses does not scale. A better solution is to use the  {{<link url="Lightweight-Network-Virtualization-Overview" text="Lightweight Network Virtualization">}} feature, or a controller-based option like {{<link url="Integrating-Hardware-VTEPs-with-Midokura-MidoNet-and-OpenStack" text="Midokura MidoNet and OpenStack">}} or {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}.
-
-{{%/notice%}}
-
 ## Configure the Static MAC Bindings VXLAN
 
 To configure the example illustrated above, first create the following

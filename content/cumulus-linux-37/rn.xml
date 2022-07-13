@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3123556</td>
+<td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
@@ -103,6 +109,15 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
 To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1824,6 +1839,12 @@ To work around this issue, correct the bridge VIDs and restart {{switchd}} or de
 <th> Affects </th>
 </tr>
 <tr>
+<td>3135801</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>4.0.0-4.4.4</td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -2570,6 +2591,12 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3123556</td>
+<td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
@@ -2660,6 +2687,15 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
 To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -5840,6 +5876,15 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -8768,6 +8813,15 @@ CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
 Vulnerable: &lt;= 3.1.2-11+deb8u8
 Fixed: 3.1.2-11+deb8u9</td>
 <td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -12232,6 +12286,15 @@ CVE-2019-19221 out-of-bounds read because of an incorrect mbrtowc or mbtowc call
 Vulnerable: &lt;= 3.1.2-11+deb8u8
 Fixed: 3.1.2-11+deb8u9</td>
 <td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -15912,6 +15975,15 @@ Fixed: 3.1.2-11+deb8u9</td>
 <td></td>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -19455,6 +19527,15 @@ Fixed: 1.2.8.dfsg-2+deb8u1</td>
 <td>3.7.12-3.7.16</td>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -22517,6 +22598,15 @@ Fixed: 1.1.28-2+deb8u6</td>
 <td>3.7.11-3.7.16</td>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -25019,6 +25109,15 @@ Vulnerable: &lt;= 1.1.28-2+deb8u5
 Fixed: 1.1.28-2+deb8u6</td>
 <td>3.7.0-3.7.10</td>
 <td>3.7.11-3.7.16</td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -27814,6 +27913,15 @@ Fixed: 1.1.28-2+deb8u6</td>
 <td>3.7.11-3.7.16</td>
 </tr>
 <tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3038398</td>
 <td>CVE-2022-1271: An arbitrary-file-write vulnerability was discovered in xz-utils, which provides XZ-format compression utilities.
 Vulnerable: 5.1.1alpha+20120614-2
@@ -30006,6 +30114,15 @@ Vulnerable: &lt;= 1.1.28-2+deb8u5
 Fixed: 1.1.28-2+deb8u6</td>
 <td>3.7.0-3.7.10</td>
 <td>3.7.11-3.7.16</td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3038398</td>
@@ -32535,6 +32652,15 @@ Vulnerable: &lt;= 1.1.28-2+deb8u5
 Fixed: 1.1.28-2+deb8u6</td>
 <td>3.7.0-3.7.10</td>
 <td>3.7.11-3.7.16</td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3038398</td>

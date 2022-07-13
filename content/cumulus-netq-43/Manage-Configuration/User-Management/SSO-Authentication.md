@@ -15,8 +15,6 @@ To integrate your authentication server:
 
 2. Under **Admin**, select **Management**. Locate the SSO Configuration card and select **Manage**.
 
-    {{<figure src="/images/netq/netq-mgmt-sso-card-330.png" alt="" width="200">}}
-
 3. Select either **SAML** or **OpenID** (which uses OAuth with OpenID Connect)
 
 4. Specify the parameters:
@@ -29,7 +27,9 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 {{<figure src="/images/netq/add-sso-openid.png" alt="sso configuration card with open id configuration" width="600">}}
 
-**SSO Organization** is the name your users will enter to log in with SSO. You can configure login from here and specify the access type (either user or admin).
+**SSO Organization** is what your users will enter to log in with SSO.
+
+**Access Type** is the role (either user or admin) automatically assigned to users when they initalize their account via SSO login.
 
 **Name** is a unique name for the SSO configuration.
 
@@ -47,7 +47,7 @@ After you enter the fields, select **Add**.
 
 As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your OpenID Connect configuration.
 
-  Select **Test** to verify you are sent to the correct place and can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
+  Select **Test** to verify the configuration and ensure that you can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
 
 Select **Close**. The card reflects the configuration.
 
@@ -57,6 +57,8 @@ To require users to log in using this SSO configuration, select **change** under
 
     {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-enabled-330.png" alt="sso configuration card with enabled status" width="200">}}
 
+Once an admin has configured and enabled SSO, any new user who logs in to NetQ via SSO will have their account created automatically. 
+
 {{</tab>}}
 
 {{<tab "SAML" >}}
@@ -65,7 +67,9 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 {{<figure src="/images/netq/add-sso-saml.png" alt="sso configuration card with SAML configuration" width="600">}}
 
-**SSO Organization** is the name your users will enter to log in with SSO. You can configure login from here and specify the access type (either user or admin).
+**SSO Organization** is what your users will enter to log in with SSO.
+
+**Access Type** is the role (either user or admin) automatically assigned to users when they initalize their account via SSO login.
 
 **Name** is a unique name for the SSO configuration.
 
@@ -79,11 +83,11 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 After you enter the fields, select **Add**.
 
-    {{<figure src="/images/netq/netq-mgmt-sso-success-330.png" width="600">}}
+    {{<figure src="/images/netq/sso-url-41.png" width="600">}}
 
 As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your identity provider configuration.
 
-Select **Test** to verify you are sent to the right place and can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
+Select **Test** to verify the configuration and ensure that you can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
 
 Select **Close**. The card reflects the configuration.
 
@@ -95,42 +99,34 @@ Select **Submit** to enable the configuration. The SSO card reflects this new st
 
     {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" width="200">}}
 
+Once an admin has configured and enabled SSO, any new user who logs in to NetQ via SSO will have their account created automatically. 
+
 {{</tab>}}
 
     {{</tabs>}}
 
 ## Modify Configuration
 
-You can change the specifications for SSO integration with your authentication server at any time, including changing to an alternate SSO type, disabling the existing configuration, or reconfiguring the current configuration.
+You can change the specifications for SSO integration with your authentication server at any time, including changing to an alternate SSO type, disabling the existing configuration, or reconfiguring the current configuration. 
 
 ### Change SSO Type
 
-To choose a different SSO type:
+From the SSO Configuration card:
 
-1. Expand the menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} on the NetQ dashboard.
+1. Select **Disable**, then **Yes**.
 
-2. Under **Admin**, select **Management**.
+2. Click **Manage** then select the desired SSO type and complete the form.
 
-3. Locate the SSO Config card and click **Disable**, then **Yes**.
+3. Copy the redirect URL on the success dialog into your identity provider configuration.
 
-4. Click **Manage** then select the desired SSO type and complete the form.
+4. Click **Test** to verify that the login is working. Modify your specification and retest the configuration until it is working properly.
 
-8. Copy the redirect URL on the success dialog into your identity provider configuration.
-
-9. Click **Test** to verify proper login operation. Modify your specification and retest the configuration until it is working properly.
-
-10. Click **Update**.
+5. Click **Update**.
 
 ### Disable SSO Configuration
 
-To disable the existing SSO configuration:
+From the SSO Configuration card:
 
-1. Expand the menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} on the NetQ dashboard.
+1. Click **Disable**.
 
-2. Under **Admin**, select **Management**.
-
-3. Locate the SSO Config card.
-
-4. Click **Disable**.
-
-5. Click **Yes** to disable the configuration, or **Cancel** to keep it enabled.
+2. Select **Yes** to disable the configuration, or **Cancel** to keep it enabled.

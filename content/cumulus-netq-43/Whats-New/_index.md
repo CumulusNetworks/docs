@@ -12,17 +12,17 @@ This page summarizes new feature and improvements for the NetQ {{<version>}} rel
 ## What's New in NetQ 4.3.0
 <!-- vale on -->
 
-This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. We also added the following new features and improvements:
+This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. Additional features and improvements include: 
 
-{{<link title="SSO Authentication" text="SSO configuration">}} that lets administrators add and configure user accounts more efficiently.
+{{<link title="SSO Authentication" text="SSO configuration">}} that lets administrators add user accounts more efficiently.
 
 {{<link title="Flow Analysis" text="Flow analysis">}} UI enhancements, including:
 
 - Animation with source and destination IP address labels to clarify the flow direction.
 - Visualizations that display data from switches that lie outside the network path.
-- Updated parameter requirements when creating a flow analysis.
+- Revised parameter requirements when creating a flow analysis.
 
-An updated {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Licensing/NetQ-Cookie-Policy/" text="cookie policy">}}.
+And an updated {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Licensing/NetQ-Cookie-Policy/" text="cookie policy">}}.
 
 ## Upgrade Paths
 

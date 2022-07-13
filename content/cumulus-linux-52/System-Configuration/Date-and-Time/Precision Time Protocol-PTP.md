@@ -271,7 +271,7 @@ The following table shows the default parameter values for the pre-defined profi
 | Transmission | Multicast, Unicast | Multicast |
 | BMCA | IEEE 1588 | G.8275.x |
 
-To set a predefined profile: 
+To set a predefined profile:
 
 {{< tabs "TabID260 ">}}
 {{< tab "NVUE Commands ">}}
@@ -834,7 +834,6 @@ To show information about a specific unicast master, run the `nv show service pt
 
 ```
 cumulus@switch:~$ nv show service ptp 1 unicast-master 1 address 10.10.10.1
-SHOW OUTPUT
 ```
 
 ### TTL for a PTP Message

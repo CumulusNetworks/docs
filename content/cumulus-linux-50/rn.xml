@@ -7,10 +7,38 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3136905</td>
+<td>When you upgrade to Cumulus Linux 5.0.1 to 5.1.0, the upgrade adds {{KexAlgorithms}} and {{MACs}} configuration (that remove some less secure algorithms from the default lists) to the {{/etc/ssh/sshd_config}} file without prompting for confirmation.  This may cause the {{/etc/ssh/sshd_config}} file to be incorrect if there is a {{Match}} section, since {{KexAlgorithms}} and {{MACs}} must come before {{Match}}
+To work around this issue, move the lines that start with {{KexAlgorithms}} and {{MACs}} to before {{Match}} (or remove them), then restart the SSH service with the {{sudo systemctl restart ssh}} command.
+
+If you have already specified {{KexAlgorithms}} and/or {{MACs}}, you may wish to remove the newly added lines after an upgrade to CumulusLinux 5.1.0 if they are not what you want.</td>
+<td>5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3131423</td>
+<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch.
+To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3131402</td>
 <td>CVE-2022-34903: GnuPG through 2.3.6, in unusual situations where an attacker possesses any secret-key information from a victim's keyring and other constraints (e.g., use of GPGME) are met, allows signature forgery via injection into the status line.
 Vulnerable: &lt;= 2.2.12-1+deb10u1
 Fixed: 2.2.12-1+deb10u2</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3123556</td>
+<td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3119673</td>
+<td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -21,6 +49,13 @@ Vulnerable: &lt;= 1.1.1n-0+deb10u2
 Fixed: 1.1.1n-0+deb10u3
 Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
 <td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3117340</td>
+<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service.
+To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -214,6 +249,15 @@ Failure during apply. Ignore? [y/N]
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td>4.4.4, 5.1.0</td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3035855</td>
@@ -559,6 +603,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.1.0</td>
 </tr>
 <tr>
+<td>2886476</td>
+<td>If you enable or disable the advertise primary IP address setting when originating EVPN default type-5 routes, the default route or prefix originated from one of the MLAG peers sends a null layer 3 VNI, which prevents the remote VTEP from installing the default route.</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2885287</td>
 <td>When you change the port breakout configuration, you must restart {{switchd}} to clean up any previously-associated port states and reinitialize the ports. Reloading {{switchd}} does not work.</td>
 <td>5.0.0-5.0.1</td>
@@ -664,6 +714,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
+<td>2748923</td>
+<td>If you include a dash (-) when configuring an interface name with NVUE, you see an error. NVUE does not support using a dash in interface names.</td>
+<td>4.4.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.4, 5.0.0-5.1.0</td>
@@ -711,10 +767,29 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3131423</td>
+<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch.
+To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3131402</td>
 <td>CVE-2022-34903: GnuPG through 2.3.6, in unusual situations where an attacker possesses any secret-key information from a victim's keyring and other constraints (e.g., use of GPGME) are met, allows signature forgery via injection into the status line.
 Vulnerable: &lt;= 2.2.12-1+deb10u1
 Fixed: 2.2.12-1+deb10u2</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3123556</td>
+<td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3119673</td>
+<td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -725,6 +800,13 @@ Vulnerable: &lt;= 1.1.1n-0+deb10u2
 Fixed: 1.1.1n-0+deb10u3
 Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
 <td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3117340</td>
+<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service.
+To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -843,6 +925,15 @@ Fixed: 5.2.4-1+deb10u1</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td>4.4.4, 5.1.0</td>
+</tr>
+<tr>
+<td>3040075</td>
+<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
+
+2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
+</td>
+<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3025899</td>
@@ -1147,6 +1238,12 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>5.1.0</td>
 </tr>
 <tr>
+<td>2886476</td>
+<td>If you enable or disable the advertise primary IP address setting when originating EVPN default type-5 routes, the default route or prefix originated from one of the MLAG peers sends a null layer 3 VNI, which prevents the remote VTEP from installing the default route.</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2885287</td>
 <td>When you change the port breakout configuration, you must restart {{switchd}} to clean up any previously-associated port states and reinitialize the ports. Reloading {{switchd}} does not work.</td>
 <td>5.0.0-5.0.1</td>
@@ -1249,6 +1346,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2812075</td>
 <td>When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together.</td>
 <td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2748923</td>
+<td>If you include a dash (-) when configuring an interface name with NVUE, you see an error. NVUE does not support using a dash in interface names.</td>
+<td>4.4.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>

@@ -84,8 +84,6 @@ Understanding the location of configuration data is important for successful upg
 {{< /tab >}}
 {{< /tabs >}}
 
-If you use certain forms of network virtualization, such as {{<link url="Integrating-Hardware-VTEPs-with-VMware-NSX-V" text="VMware NSX-V">}}, you update the `/usr/share/openvswitch/scripts/ovs-ctl-vtep` file. This file is not marked as a configuration file; therefore, if the file contents change in a newer release of Cumulus Linux, they overwrite any changes you make to the file. Be sure to back up this file and the database file `conf.db` before upgrading.
-
 {{%notice note%}}
 The following commands show you which files changed after the previous Cumulus Linux installation. Be sure to back up any changed files.
 - Run the `sudo dpkg --verify` command to show a list of changed files.

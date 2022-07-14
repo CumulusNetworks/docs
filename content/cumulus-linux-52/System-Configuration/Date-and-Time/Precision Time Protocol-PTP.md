@@ -273,27 +273,27 @@ The following table shows the default parameter values for the pre-defined profi
 
 To set a predefined profile:
 
-{{< tabs "TabID260 ">}}
+{{< tabs "TabID276 ">}}
 {{< tab "NVUE Commands ">}}
 
 To use the ITU 8275.1 profile:
 
 ```
-cumulus@switch:~$ nv set service ptp 1 current-profile default-itu-8275-1
+cumulus@switch:~$ nv set service ptp 1 profile 1 profile-type itu-g-8275-1
 cumulus@switch:~$ nv config apply
 ```
 
 To use the IEEE 1588 profile:
 
 ```
-cumulus@switch:~$ nv set service ptp 1 current-profile default-1588
+cumulus@switch:~$ nv set service ptp 1 profile 1 profile-type ieee-1588
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To use the ITU 8275.1 profile, edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `default-profile` setting to `default-itu-8275-1`, then restart the `ptp4l` service.
+To use the ITU 8275.1 profile, edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to add the `profile-type` setting to `itu-g-8275-1`, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -305,7 +305,7 @@ slaveOnly                   0
 priority1                   128
 priority2                   128
 domainNumber                3
-default-profile             default-itu-8275-1
+profile-type                itu-g-8275-1
 ...
 ```
 
@@ -313,7 +313,7 @@ default-profile             default-itu-8275-1
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To use the IEEE 1588 profile, change the `default-profile` setting to `default-1588`, then restart the `ptp4l` service.
+To use the IEEE 1588 profile, either add or change the `profile-type` setting to `default-1588`, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -325,7 +325,7 @@ slaveOnly               0
 priority1               128
 priority2               128
 domainNumber            3
-profile-type            default-1588
+profile-type            ieee-1588
 ...
 ```
 

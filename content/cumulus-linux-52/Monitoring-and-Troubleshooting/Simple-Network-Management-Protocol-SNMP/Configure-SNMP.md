@@ -13,6 +13,10 @@ By default, the SNMP configuration has a listening address of localhost (127.0.0
 
 Use the SNMPv3 username instead of the read-only community name. The SNMPv3 username does not expose the user credentials and can encrypt packet contents. However, SNMPv1 and SNMPv2c environments require read-only community passwords so that the `snmpd` daemon can respond to requests. The read-only community string enables you to poll various MIB objects on the device.
 
+{{%notice note%}}
+The NVUE commands for configuring SNMP are available for early access.
+{{%/notice%}}
+
 ## Start the SNMP Service
 
 Before you can use SNMP, you need to enable and start the `snmpd` service.

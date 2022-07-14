@@ -11309,7 +11309,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp message-mode mixed
 
 ## nv set interface \<interface-id\> tunnel
 
-The state of the interface
+Configures Generic Routing Encapsulation (GRE) tunneling on an interface.
 
 ### Usage
 
@@ -11329,11 +11329,11 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `dest-ip` | Destination underlay IP address|
-| `interface` |  Physical underlay interface to used for Tunnel packets\
-| `mode`   | tunnel mode|
-| `source-ip` | Source underlay IP address|
-| `ttl` | time to live|
+| `dest-ip` | Configures the destination underlay IP address.|
+| `interface` |  Configures the physical underlay interface to used for tunnel packets.|
+| `mode`   | Configures the tunnel mode; GRE.|
+| `source-ip` |Configures the source underlay IP address.|
+| `ttl` | Configures the maximum number of hops through which the tunneled packets can pass.|
 
 ### Version History
 
@@ -11341,7 +11341,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set interface \<interface-id\> tunnel source-ip \<ipv4\>
 
-Source underlay IP address
+Configures the source underlay IP address.
 
 ### Usage
 
@@ -11364,12 +11364,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel source-ip 10.10.10.1
 ```
 
 ## nv set interface \<interface-id\> tunnel dest-ip \<ipv4\>
 
-Destination underlay IP address
+Configures the destination underlay IP address.
 
 ### Usage
 
@@ -11392,12 +11392,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel dest-ip 10.10.10.3
 ```
 
 ## nv set interface \<interface-id\> tunnel ttl
 
-time to live
+Configures the maximum number of hops through which the tunneled packets can pass.
 
 ### Usage
 
@@ -11420,12 +11420,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel ttl 255
 ```
 
 ## nv set interface \<interface-id\> tunnel mode gre
 
-tunnel mode
+Configures the tunnel mode to be GRE.
 
 ### Usage
 
@@ -11448,12 +11448,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel mode gre
 ```
 
 ## nv set interface \<interface-id\> tunnel interface \<interface-name\>
 
-Physical underlay interface to used for Tunnel packets
+Configures the physical underlay interface to used for tunnel packets.
 
 ### Usage
 
@@ -11476,12 +11476,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface tunnel interface tunnelR2 
 ```
 
 ## nv set interface \<interface-id\> description \<value\>
 
-Details about the interface
+Configures a description for the interface. Interface descriptions can have a maximum of 256 characters. Avoid using apostrophes or non-ASCII characters.
 
 ### Usage
 
@@ -11504,12 +11504,68 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 description hypervisor_port_1
+```
+
+## nv set interface \<interface-id\> type
+
+Configures the interface type; swp, eth, bond, loopback, svi, sub ,peerlink, or tunnel.
+
+### Usage
+
+`nv set interface <interface-id> type [options] (swp|eth|bond|loopback|svi|sub|peerlink|tunnel)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 type bond
+```
+
+## nv set interface \<interface-id\> base-interface (none|<interface-name>)
+
+Configures the base interface under this interface.
+
+### Usage
+
+`nv set interface <interface-id> base-interface [options] (none|<interface-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1.100 base-interface swp1
 ```
 
 ## nv set interface \<interface-id\> vlan
 
-VLAN ID
+Configures the VLAN ID. You can specify a value between 1 and 4094.
 
 ### Usage
 
@@ -11532,7 +11588,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set interface swp1 vlan 10
 ```
 
 ## nv set service

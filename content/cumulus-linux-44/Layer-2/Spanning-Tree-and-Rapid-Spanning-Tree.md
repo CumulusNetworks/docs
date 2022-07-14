@@ -491,9 +491,9 @@ cumulus@switch:~$ sudo mstpctl setportbpdufilter br100 swp1.100=yes swp2.100=yes
 {{< /tab >}}
 {{< /tabs >}}
 
-### Root Role
+### Restricted Role
 
-To enable the interface in the bridge to take the root role:
+To enable the interface in the bridge to take the restricted role:
 
 {{< tabs "TabID427 ">}}
 {{< tab "NVUE Commands ">}}

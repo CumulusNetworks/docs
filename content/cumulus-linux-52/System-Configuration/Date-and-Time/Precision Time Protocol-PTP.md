@@ -255,6 +255,8 @@ Cumulus Linux supports the following pre-defined profiles:
 - *IEEE 1588* is the profile specified in the IEEE 1588 standard. The default profile addresses some common applications and does not have any network restrictions.
 - *ITU 8275.1* is the PTP profile for use in telecom networks that require phase or time-of-day synchronization. Each device in the network must participate in the PTP protocol.
 
+You can also create your own profiles.
+
 The following table shows the default parameter values for the pre-defined profiles.
 
 | Parameter | IEEE 1588 | ITU 8275-1 |
@@ -293,7 +295,29 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To use the ITU 8275.1 profile, edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to add the `profile-type` setting to `itu-g-8275-1`, then restart the `ptp4l` service.
+To use the ITU 8275.1 profile, edit the `Default Data Set` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
+- Change the `domainNumber` to 24.
+- Add these settings after `dscp_general`.
+
+  ```
+  dataset_comparison             G.8275.x
+  G.8275.defaultDS.localPriority 128
+  G.8275.portDS.localPriority    128
+  ptp_dst_mac                    01:80:C2:00:00:0E
+  network_transport              L2
+  ```
+- Add the `Port Data Set` section:
+
+  ```
+  #
+  # Port Data Set
+  #
+  logAnnounceInterval            -3
+  logSyncInterval                -4
+  logMinDelayReqInterval         -4
+  announceReceiptTimeout         3
+  delay_mechanism                E2E
+  ```
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -301,11 +325,32 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 #
 # Default Data Set
 #
-slaveOnly                   0
-priority1                   128
-priority2                   128
-domainNumber                3
-profile-type                itu-g-8275-1
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   24
+
+twoStepFlag                    1
+dscp_event                     46
+dscp_general                   46
+dataset_comparison             G.8275.x
+G.8275.defaultDS.localPriority 128
+G.8275.portDS.localPriority    128
+ptp_dst_mac                    01:80:C2:00:00:0E
+network_transport              L2
+
+#
+# Port Data Set
+#
+logAnnounceInterval            -3
+logSyncInterval                -4
+logMinDelayReqInterval         -4
+announceReceiptTimeout         3
+delay_mechanism                E2E
+
+offset_from_master_min_threshold   -50
+offset_from_master_max_threshold   50
+mean_path_delay_threshold          200
 ...
 ```
 
@@ -313,7 +358,17 @@ profile-type                itu-g-8275-1
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To use the IEEE 1588 profile, either add or change the `profile-type` setting to `default-1588`, then restart the `ptp4l` service.
+To reset to the IEEE 1588 profile, edit the `Default Data Set` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
+- Change the `domainNumber` to 0.
+- Remove these settings after `dscp_general`.
+
+  ```
+  dataset_comparison             G.8275.x
+  G.8275.defaultDS.localPriority 128
+  G.8275.portDS.localPriority    128
+  ptp_dst_mac                    01:80:C2:00:00:0E
+  network_transport              L2
+  ```
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -321,11 +376,18 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 #
 # Default Data Set
 #
-slaveOnly               0
-priority1               128
-priority2               128
-domainNumber            3
-profile-type            ieee-1588
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   0
+
+twoStepFlag                    1
+dscp_event                     46
+dscp_general                   46
+
+offset_from_master_min_threshold   -50
+offset_from_master_max_threshold   50
+mean_path_delay_threshold          200
 ...
 ```
 
@@ -335,6 +397,22 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To see the current profile setting, run the `nv show service ptp <ptp-instance>` command:
+
+```
+cumulus@leaf02:mgmt:~$ nv show service ptp 1
+                             operational  applied             description
+---------------------------  -----------  ------------------  --------------------------------------------------------------------
+enable                       on           on                  Turn the feature 'on' or 'off'.  The default is 'off'.
+current-profile                           default-itu-8275-1  Current PTP profile index
+domain                       24           0                   Domain number of the current syntonization
+ip-dscp                      46           46                  Sets the Diffserv code point for all PTP packets originated locally.
+priority1                    128          128                 Priority1 attribute of the local clock
+priority2                    128          128                 Priority2 attribute of the local clock
+two-step                     on           on                  Determines if the Clock is a 2 step clock
+...
+```
 
 ### Clock Domains
 

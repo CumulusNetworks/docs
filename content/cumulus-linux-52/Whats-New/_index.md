@@ -24,7 +24,7 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 - Support for signed images on secured switches and support for SecureApt to update individual packages
 - {{<link url="Zero-Touch-Provisioning-ZTP/#dhcp-on-front-panel-ports" text="ZTP on front panel ports">}}
 - PTP enhancements include:
-   - {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="Pre-defined PTP profiles">}}
+   - {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="Pre-defined PTP profiles and custom profiles">}}
    - {{<link url="Precision-Time-Protocol-PTP/#message-mode" text="PTP unicast message mode">}}
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="NVUE-CLI/#command-abbreviation" text="Command abbreviation">}}

@@ -251,13 +251,11 @@ network_transport       UDPv4
 
 PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
-Cumulus Linux supports the following pre-defined profiles:
-- *IEEE 1588* is the profile specified in the IEEE 1588 standard. The default profile addresses some common applications and does not have any network restrictions.
+Cumulus Linux supports the following predefined profiles:
+- *IEEE 1588* is the profile specified in the IEEE 1588 standard. This profile addresses some common applications and does not have any network restrictions.
 - *ITU 8275.1* is the PTP profile for use in telecom networks that require phase or time-of-day synchronization. Each device in the network must participate in the PTP protocol.
 
-You can also create your own profiles.
-
-The following table shows the default parameter values for the pre-defined profiles.
+The following table shows the default parameter values for the predefined profiles.
 
 | Parameter | IEEE 1588 | ITU 8275-1 |
 | --------- | --------- | ---------- |
@@ -281,46 +279,25 @@ To set a predefined profile:
 To use the ITU 8275.1 profile:
 
 ```
-cumulus@switch:~$ nv set service ptp 1 profile 1 profile-type itu-g-8275-1
+cumulus@switch:~$ nv set service ptp 1 current-profile default-itu-8275-1
 cumulus@switch:~$ nv config apply
 ```
 
 To use the IEEE 1588 profile:
 
 ```
-cumulus@switch:~$ nv set service ptp 1 profile 1 profile-type ieee-1588
+cumulus@switch:~$ nv set service ptp 1 current-profile default-1588
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To use the ITU 8275.1 profile, edit the `Default Data Set` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
-- Change the `domainNumber` to 24.
-- Add these settings after `dscp_general`.
-
-  ```
-  dataset_comparison             G.8275.x
-  G.8275.defaultDS.localPriority 128
-  G.8275.portDS.localPriority    128
-  ptp_dst_mac                    01:80:C2:00:00:0E
-  network_transport              L2
-  ```
-- Add the `Port Data Set` section:
-
-  ```
-  #
-  # Port Data Set
-  #
-  logAnnounceInterval            -3
-  logSyncInterval                -4
-  logMinDelayReqInterval         -4
-  announceReceiptTimeout         3
-  delay_mechanism                E2E
-  ```
+To use the predefined ITU 8275.1 profile, the `/etc/ptp4l.conf` file as shown below, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
 [global]
 #
 # Default Data Set
@@ -351,24 +328,61 @@ delay_mechanism                E2E
 offset_from_master_min_threshold   -50
 offset_from_master_max_threshold   50
 mean_path_delay_threshold          200
-...
+
+#
+# Run time options
+#
+logging_level                  6
+path_trace_enabled             0
+use_syslog                     1
+verbose                        0
+summary_interval               0
+
+#
+# servo parameters
+#
+pi_proportional_const          0.000000
+pi_integral_const              0.000000
+pi_proportional_scale          0.700000
+pi_proportional_exponent       -0.300000
+pi_proportional_norm_max       0.700000
+pi_integral_scale              0.300000
+pi_integral_exponent           0.400000
+pi_integral_norm_max           0.300000
+step_threshold                 0.000002
+first_step_threshold           0.000020
+max_frequency                  900000000
+sanity_freq_limit              0
+
+#
+# Default interface options
+#
+time_stamping                  software
+
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       L2
+
+[swp2]
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       L2
 ```
 
 ```
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To reset to the IEEE 1588 profile, edit the `Default Data Set` section of the `/etc/ptp4l.conf` file, then restart the `ptp4l` service.
-- Change the `domainNumber` to 0.
-- Remove these settings after `dscp_general`.
-
-  ```
-  dataset_comparison             G.8275.x
-  G.8275.defaultDS.localPriority 128
-  G.8275.portDS.localPriority    128
-  ptp_dst_mac                    01:80:C2:00:00:0E
-  network_transport              L2
-  ```
+To use the predefined IEEE 1588 profile, edit the `/etc/ptp4l.conf` file as shown below, then restart the `ptp4l` service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -384,11 +398,68 @@ domainNumber                   0
 twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
+dataset_comparison             ieee1588
+
+#
+# Port Data Set
+#
+logAnnounceInterval            1
+logSyncInterval                0
+logMinDelayReqInterval         0
+announceReceiptTimeout         3
+delay_mechanism                E2E
 
 offset_from_master_min_threshold   -50
 offset_from_master_max_threshold   50
 mean_path_delay_threshold          200
-...
+
+#
+# Run time options
+#
+logging_level                  6
+path_trace_enabled             0
+use_syslog                     1
+verbose                        0
+summary_interval               0
+
+#
+# servo parameters
+#
+pi_proportional_const          0.000000
+pi_integral_const              0.000000
+pi_proportional_scale          0.700000
+pi_proportional_exponent       -0.300000
+pi_proportional_norm_max       0.700000
+pi_integral_scale              0.300000
+pi_integral_exponent           0.400000
+pi_integral_norm_max           0.300000
+step_threshold                 0.000002
+first_step_threshold           0.000020
+max_frequency                  900000000
+sanity_freq_limit              0
+
+#
+# Default interface options
+#
+time_stamping                  software
+
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
+
+[swp2]
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv4
 ```
 
 ```
@@ -398,7 +469,48 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-To see the current profile setting, run the `nv show service ptp <ptp-instance>` command:
+To create a custom profile:
+
+{{< tabs "TabID322 ">}}
+{{< tab "NVUE Commands ">}}
+
+- Create a profile name.
+- Set the profile type on which to base the new profile (itu-g-8275-1 or ieee-1588).
+- Update any of the profile settings you want to change (announce-interval, delay-req-interval, priority1, sync-interval, announce-timeout, domain, priority2, transport, delay-mechanism, local-priority).
+- Set the custom profile to be the current profile.
+
+The following example commands creates a custom profile called CUSTOM1, which is based on the predifined profile ITU 8275-1. The commands sets the domain to 3 and the announce timeout to 5, then set CUSTOM1 to be the current profile:
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 profile-type itu-g-8275-1  
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 domain 19
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 announce-timeout 5
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 current-profile CUSTOM1
+cumulus@leaf01:mgmt:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+The following example `/etc/ptp4l.conf` file creates:
+- A custom profile called CUSTOM1, which is based on the predifined profile ITU 8275-1
+- Sets the domain to 3 and the announce timeout to 5.
+- Sets CUSTOM1 to be the current profile.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+NEED EXAMPLE
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To see the current PTP profile setting, run the `nv show service ptp <ptp-instance>` command:
 
 ```
 cumulus@leaf02:mgmt:~$ nv show service ptp 1

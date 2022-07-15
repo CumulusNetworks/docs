@@ -70,7 +70,7 @@ To create a duplicate clone based on an existing workbench:
 
 ### Remove a Workbench
 
-Once you have created a number of custom workbenches, you might find that you no longer need some of them. As an administrative user, you can remove any workbench, except for the default NetQ Workbench. Users with a user role can only remove workbenches they have created.
+As an administrative user, you can remove any workbench, except for the default NetQ Workbench. Users with a user role can only remove workbenches they have created.
 
 To remove a workbench:
 

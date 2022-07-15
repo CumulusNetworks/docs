@@ -1257,7 +1257,7 @@ On the medium and large Validation Result cards, vertically stacked heat maps re
 
 #### Access and Analyze the Scheduled Validation Results
 
-Once a scheduled validation request has completed, the results are available in the corresponding Validation Result card.
+After a scheduled validation request has completed, the results are available in the corresponding Validation Result card.
 
 To access the results:
 

@@ -27,25 +27,11 @@ To log in to the UI:
 
 {{<tabs "login">}}
 
-{{<tab "First Time Log In—On Premises">}}
-
-1. Enter your username.
-
-2. Enter your password.
-
-3. Enter a new password.
-
-4. Enter the new password again to confirm it.
-
-5. Click **Update and Accept** after reading the Terms of Use.
-
-    The default NetQ Workbench opens, with your username shown in the upper right corner of the application.
-
-    {{<figure src="/images/netq/access-ui-cumulus-wb-400.png" alt="" width="700">}}
-
-{{</tab>}}
-
 {{<tab "First Time Log In—NetQ Cloud">}}
+
+Use your username and password to log in. You can also log in with SSO if your company has enabled it.
+
+**Username and Password**
 
 1. Locate the email you received from NVIDIA titled *NetQ Access Link*. Select **Create Password**.
 
@@ -59,7 +45,26 @@ To log in to the UI:
 
     {{<figure src="/images/netq/new-premise-username.png" alt="username and premises information in the UI header" width="300">}}
 
-    You can view your configuration key used during OPTA installation by selecting the premise and choosing **Manage Premises**.
+**SSO**
+
+1. Follow the steps above until you reach the NetQ login screen.
+
+2. Select **Sign up for SSO** and enter your organization's name. 
+
+{{</tab>}}
+
+{{<tab "First Time Log In—On Premises">}}
+
+1. Enter your username and password.
+
+3. Create a new password and enter the new password again to confirm it.
+
+5. Click **Update and Accept** after reading the Terms of Use.
+
+    The default NetQ Workbench opens, with your username shown in the upper right corner of the application.
+
+    {{<figure src="/images/netq/access-ui-cumulus-wb-400.png" alt="" width="700">}}
+
 {{</tab>}}
 
 {{<tab "Log In After First Time">}}
@@ -68,7 +73,7 @@ To log in to the UI:
 
 2. Enter your password.
 
-    The user-specified home workbench is displayed. If a home workbench is not specified, then the Cumulus Default workbench is displayed.
+    The user-specified home workbench is displayed. If a home workbench is not specified, then the default workbench is displayed.
 
     {{<notice tip>}}
 Any workbench can be set as the home workbench. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> (User Settings), click <strong>Profiles and Preferences</strong>, then on the Workbenches card click to the left of the workbench name you want to be your home workbench.
@@ -86,13 +91,13 @@ To reset a password for cloud deployments:
 
 2. Click **Forgot Password?** and enter an email address. Look for a message with the subject *NetQ Password Reset Link* from *netq-sre@cumulusnetworks.com*.  
 
-3. Click on the link in the email and follow the instructions to create a new password. 
+3. Select the link in the email and follow the instructions to create a new password. 
 
 ## Log Out of NetQ
 
 To log out of the NetQ UI:
 
-1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> at the top right of the application.
+1. Select  <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="profile" height="18" width="18"/> at the top right of the application.
 
 2. Select **Log Out**.  
 

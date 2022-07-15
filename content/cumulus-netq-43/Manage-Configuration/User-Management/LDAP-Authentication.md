@@ -81,7 +81,7 @@ To create an LDAP configuration:
 4. Click **Save** to complete the configuration, or click **Cancel** to discard the configuration.
 
 {{%notice info%}}
-LDAP config cannot be changed once configured. If you need to change the configuration, you must delete the current LDAP configuration and create a new one. Note that if you change the LDAP server configuration, all users created against that LDAP server remain in the NetQ database and continue to be visible, but are no longer viable. You must manually delete those users if you do not want to see them.
+LDAP config cannot be changed after it is configured. If you need to change the configuration, you must delete the current LDAP configuration and create a new one. Note that if you change the LDAP server configuration, all users created against that LDAP server remain in the NetQ database and continue to be visible, but are no longer viable. You must manually delete those users if you do not want to see them.
 {{%/notice%}}
 
 ## Example LDAP Configurations

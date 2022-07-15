@@ -7,6 +7,8 @@ toc: 3
 
 You can integrate your NetQ Cloud deployment with a Microsoft Azure Active Directory (AD) or Google Cloud authentication server to support single sign-on (SSO) to NetQ. NetQ supports integration with SAML (Security Assertion Markup Language), OAuth (Open Authorization), and multi-factor authentication (MFA). Only one SSO configuration can be configured at a time.
 
+You can create local user accounts with default access roles by enabling SSO. After enabling SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
+
 ## Add SSO Configuration and User Accounts
 
 To integrate your authentication server:
@@ -57,7 +59,7 @@ To require users to log in using this SSO configuration, select **change** under
 
     {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-enabled-330.png" alt="sso configuration card with enabled status" width="200">}}
 
-Once an admin has configured and enabled SSO, any new user who logs in to NetQ via SSO will have their account created automatically. 
+After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
 
 {{</tab>}}
 
@@ -99,7 +101,7 @@ Select **Submit** to enable the configuration. The SSO card reflects this new st
 
     {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" width="200">}}
 
-Once an admin has configured and enabled SSO, any new user who logs in to NetQ via SSO will have their account created automatically. 
+After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
 
 {{</tab>}}
 

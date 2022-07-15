@@ -589,6 +589,13 @@ After you install the NetQ Agents on the switches you want to monitor, you must 
 
 {{%notice note%}}
 The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, it uses the default VRF (named *default*). If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+
+If you configure the NetQ Agent to communicate in a VRF that is not *default* or *mgmt*, the following line must be added to `/etc/netq/netq.yml` in the `netq-agent` section:
+
+```
+netq-agent:
+  netq_stream_address: 0.0.0.0
+```
 {{%/notice%}}
 
 Two methods are available for configuring a NetQ Agent:

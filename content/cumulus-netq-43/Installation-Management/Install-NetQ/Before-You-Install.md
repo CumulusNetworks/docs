@@ -52,7 +52,7 @@ For the remote, cloud-service implementation, the NetQ Agents collect and transm
 
 {{<figure src="/images/netq/install-remote-cloud-330.png" width="700">}}
 
-For either remote solution, telemetry data is displayed through the same user interfaces as the on-premises solution. When using the cloud service implementation of the remote solution, the browser interface can be pointed to the local NetQ Cloud Appliance or VM, or directly to *netq.cumulusnetworks.com*.
+For either remote solution, telemetry data is displayed through the same user interfaces as the on-premises solution. When using the cloud service implementation of the remote solution, the browser interface can be pointed to the local NetQ Cloud Appliance or VM, or directly to *netq.nvidia.com*.
 
 ## Server Arrangement: Single or Cluster
 

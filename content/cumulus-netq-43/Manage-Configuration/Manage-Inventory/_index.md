@@ -1,5 +1,5 @@
 ---
-title: Manage Inventory
+title: Inventory Management
 author: NVIDIA
 weight: 720
 toc: 3

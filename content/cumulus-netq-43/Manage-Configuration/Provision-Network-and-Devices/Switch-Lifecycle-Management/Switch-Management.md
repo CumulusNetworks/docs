@@ -1,5 +1,5 @@
 ---
-title: Manage Switch Inventory and Roles
+title: Switch Inventory and Roles
 author: NVIDIA
 weight: 650
 toc: 4

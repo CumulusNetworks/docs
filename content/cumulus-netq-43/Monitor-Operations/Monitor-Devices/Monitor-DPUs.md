@@ -7,7 +7,7 @@ toc: 3
 
 {{<notice note>}}
 
-DPU monitoring is an Early Access feature. 
+DPU monitoring is an early access feature. 
 
 {{</notice>}}
 

@@ -1,5 +1,5 @@
 ---
-title: Monitor System Inventory
+title: System Inventory
 author: NVIDIA
 weight: 750
 ---
@@ -144,8 +144,8 @@ The IP Addresses view provides all available parameter data about all IP address
 Refer to the following for information about:
 <ul>
 <li>What Just Happened: {{<link title="Configure and Monitor What Just Happened" text="Configure and Monitor What Just Happened">}}</li>
-<li>Sensors: {{<link title="Monitor Networkwide Inventory/#view-sensor-information" text="View Sensor Information">}} or {{<link title="Monitor Switch Inventory/#view-sensor-information-for-a-switch" text="View Sensor Information for a Switch">}}</li>
-<li>Digital Optics: {{<link title="Monitor Switch Inventory/#view-digital-optics-information-for-a-switch" text="View Digital Optics Information for a Switch">}}</li>
+<li>Sensors: {{<link title="Networkwide Inventory/#view-sensor-information" text="View Sensor Information">}} or {{<link title="Switch Inventory/#view-sensor-information-for-a-switch" text="View Sensor Information for a Switch">}}</li>
+<li>Digital Optics: {{<link title="Switch Inventory/#view-digital-optics-information-for-a-switch" text="View Digital Optics Information for a Switch">}}</li>
 </ul>
 
 {{</notice>}}

@@ -27,7 +27,7 @@ You must enable {{<link title="Manage Switches through Their Lifecycle" text="Li
 
 ### Flow Analysis Settings
 
-The flow analysis wizard prompts you to enter the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the respective menus to choose the protocol and VRF for the flow. The only optional parameter is the source port, for when the ephemeral source port of a flow may be unknown.
+The flow analysis wizard prompts you to enter the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the respective menus to choose the protocol and VRF for the flow.
 
 {{<figure src="/images/netq/flow-analysis-create-dialog-42.png" alt="flow analysis wizard prompting user to enter application parameters" width="600">}}
 
@@ -141,6 +141,12 @@ Unsupported devices are also designated in the flow graph panel:
 Selecting the unsupported device shows device statistics in the left panel if available to NetQ. Otherwise, the display will indicate why the device is not supported:
 
 {{<figure src="/images/netq/partial-path-device-stats-unsupported-42.png" alt="a panel showing an unsupported device. The device is not supported because the CL version is not supported for flow analysis" width="400">}}
+
+Some unsupported devices lie outside the network path and might not appear as part of the flow analysis graph. NetQ can extrapolate telemetry data from these devices. To view the data, select a device from the menu at the top of the page:
+
+{{<figure src="/images/netq/undiscovered-paths-devices-dropdown.png" alt="menu displaying three unsupported devices" width="400">}}
+
+The left panel displays the data, along with ingress and egress ports.
 ## View Device Statistics
 
 You can view latency, buffer occupancy, interface statistics, resource utilization, and WJH events for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the line associated with a device in the main flow analysis graph. The left panel will then update to reflect statistics for the respective device.

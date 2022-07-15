@@ -66,7 +66,7 @@ You can view all MAC addresses across your network with the NetQ UI or the NetQ 
 
 Page through the listing or sort by MAC address.
 
-Refer to {{<link title="Monitor System Inventory/#view-all-macs" text="Monitor System Inventory">}} for descriptions of each of the displayed parameters.
+Refer to {{<link title="System Inventory/#view-all-macs" text="System Inventory">}} for descriptions of each of the displayed parameters.
 
 {{</tab>}}
 
@@ -123,7 +123,7 @@ You can view all MAC addresses on a given device with the NetQ UI or the NetQ CL
 
 Page through the listing.
 
-Refer to {{<link title="Monitor System Inventory/#view-all-macs" text="Monitor System Inventory">}} for descriptions of each of the displayed parameters.
+Refer to {{<link title="System Inventory/#view-all-macs" text="System Inventory">}} for descriptions of each of the displayed parameters.
 
 {{</tab>}}
 
@@ -210,7 +210,7 @@ Page through the listing.
 
 5. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and add the additional hostname filter to view the MAC addresses for a VLAN on a particular device.
 
-Refer to {{<link title="Monitor System Inventory/#view-all-macs" text="Monitor System Inventory">}} for descriptions of each of the displayed parameters.
+Refer to {{<link title="System Inventory/#view-all-macs" text="System Inventory">}} for descriptions of each of the displayed parameters.
 
 {{</tab>}}
 
@@ -324,7 +324,7 @@ You can the MAC addresses that use a particular egress port with the NetQ UI and
 
     This filters the list down to only the MAC addresses for a given device. Then, toggle between A-Z or Z-A order of the egress port used by a MAC address by clicking the **Egress Port** header.
 
-Refer to {{<link title="Monitor System Inventory/#view-all-macs" text="Monitor System Inventory">}} for descriptions of each of the displayed parameters.
+Refer to {{<link title="System Inventory/#view-all-macs" text="System Inventory">}} for descriptions of each of the displayed parameters.
 
 {{</tab>}}
 

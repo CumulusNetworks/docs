@@ -12,7 +12,7 @@ Navigate to the the NetQ Management dashboard to complete the tasks outlined in 
 
 {{<figure src="/images/netq/netq-mgmt-wb-cloud-330.png" width="700"caption="Cloud NetQ Management Dashboard">}}
 
-## Add a User Account
+### Add a User Account
 
 This section outlines the steps to add a local user. To add an LDAP user, refer to {{<link title="LDAP Authentication" text="LDAP Authentication">}}.
 
@@ -30,7 +30,7 @@ To add a new account:
 Be especially careful entering the email address as you *cannot* change it once you save the account. If you save a mistyped email address, you must delete the account and create a new one.
     {{%/notice%}}
 
-## Edit a User Account
+### Edit a User Account
 
 As an admin, you can:
 + edit a user's first or last name
@@ -48,15 +48,15 @@ To edit an account:
     {{< figure src="/images/netq/edit-user-modal-221.png" width="250" >}}
 
 
-## Delete a User Account
+### Delete a User Account
 
 To delete one or more user accounts:
 
 1. On the User Accounts card, select **Manage** to open a table listing all user accounts.
 
-2. Select one or more accounts that you want to remove. Above the table, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="delete" height="18" width="18"/> to delete the selected accounts.
+2. Select one or more accounts. Above the table, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="delete" height="18" width="18"/> to delete the selected account(s).
 
-## View User Activity
+### View User Activity
 
 Administrators can view user activity in the activity log.
 
@@ -65,7 +65,7 @@ To view the log, expand the <img src="https://icons.cumulusnetworks.com/01-Inter
 {{<figure src="/images/netq/main-menu-ntwk-activity-log-320.png" width="700" >}}
 
 
-## Manage Login Policies
+### Manage Login Policies
 
 Administrators can configure a session expiration time and the number of times users can refresh before requiring users to login again to NetQ.
 

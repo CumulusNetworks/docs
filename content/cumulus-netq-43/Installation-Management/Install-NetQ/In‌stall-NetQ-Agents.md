@@ -675,7 +675,7 @@ sudo netq config restart agent
 ## Configure the On-switch OPTA
 
 {{<notice note>}}
-On-switch OPTA functionality is an Early Access feature, and it does not support Flow Analysis or LCM. 
+On-switch OPTA functionality is an early access feature, and it does not support Flow Analysis or LCM. 
 {{</notice>}}
 
 On-switch OPTA is intended for use in small NetQ Cloud deployments where a dedicated OPTA might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.

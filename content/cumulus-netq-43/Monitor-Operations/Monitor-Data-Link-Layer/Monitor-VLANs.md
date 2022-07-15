@@ -1,5 +1,5 @@
 ---
-title: Monitor VLANs
+title: VLAN
 author: NVIDIA
 weight: 910
 toc: 3

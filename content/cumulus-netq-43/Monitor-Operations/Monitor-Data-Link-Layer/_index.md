@@ -1,5 +1,5 @@
 ---
-title: Monitor Data Link Layer Protocols and Services
+title: Data Link Layer Protocols and Services
 author: NVIDIA
 weight: 870
 toc: 3

@@ -1,5 +1,5 @@
 ---
-title: Monitor Application Layer Protocols
+title: Application Layer Protocols
 author: NVIDIA
 weight: 995
 toc: 3

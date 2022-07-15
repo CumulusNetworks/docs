@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3138746</td>
+<td>The switch duplicates DHCP packets that pass through the VTEP.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3136905</td>
 <td>When you upgrade to Cumulus Linux 5.0.1 to 5.1.0, the upgrade adds {{KexAlgorithms}} and {{MACs}} configuration (that remove some less secure algorithms from the default lists) to the {{/etc/ssh/sshd_config}} file without prompting for confirmation.  This may cause the {{/etc/ssh/sshd_config}} file to be incorrect if there is a {{Match}} section, since {{KexAlgorithms}} and {{MACs}} must come before {{Match}}
 To work around this issue, move the lines that start with {{KexAlgorithms}} and {{MACs}} to before {{Match}} (or remove them), then restart the SSH service with the {{sudo systemctl restart ssh}} command.
@@ -765,6 +771,12 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3138746</td>
+<td>The switch duplicates DHCP packets that pass through the VTEP.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3131423</td>

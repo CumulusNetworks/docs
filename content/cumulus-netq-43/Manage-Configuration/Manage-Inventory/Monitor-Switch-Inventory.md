@@ -904,7 +904,7 @@ This example shows the status of the BGP daemon.
 
 ### View Events Related to a Given Service
 
-To view changes over a given time period, use the `netq show events` command. For more detailed information about events, refer to {{<link title="Manage Events and Notifications">}}.
+To view changes over a given time period, use the `netq show events` command. For more detailed information about events, refer to {{<link title="Events and Notifications">}}.
 
 This example shows changes to the `bgpd` service in the last 48 hours.
 

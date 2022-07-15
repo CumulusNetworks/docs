@@ -22,7 +22,7 @@ This release includes several performance and infrastructure improvements that m
 - Visualizations that display data from switches that lie outside the network path.
 - Revised parameter requirements when creating a flow analysis.
 
-And an updated {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Licensing/NetQ-Cookie-Policy/" text="cookie policy">}}.
+An updated {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Licensing/NetQ-Cookie-Policy/" text="cookie policy">}}.
 
 ## Upgrade Paths
 

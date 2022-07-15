@@ -488,29 +488,9 @@ To obtain the NetQ Agent package:
 
 ## Configure the NetQ CLI
 
-Two methods are available for configuring the NetQ CLI:
-
-- Run NetQ CLI commands on the switch
-- Edit the configuration file on the switch
-
-By default, you do not configure the NetQ CLI during the NetQ installation. The configuration resides in the `/etc/netq/netq.yml` file.
-
-While the CLI is not configured, you can run only `netq config` commands and `netq help` commands, and you must use `sudo` to run them.
+By default, you do not configure the NetQ CLI during the NetQ installation. The configuration resides in the `/etc/netq/netq.yml` file. While the CLI is not configured on a device, you can run only `netq config` commands and `netq help` commands, and you must use `sudo` to run them.
 
 At minimum, you need to configure the NetQ CLI and NetQ Agent to communicate with the telemetry server. To do so, configure the NetQ Agent and the NetQ CLI so that they are running in the VRF where the routing tables have connectivity to the telemetry server. Typically this is the management VRF.
-
-To configure the NetQ CLI, run the following command, then restart the NetQ CLI. This example assumes the telemetry server is reachable via the IP address 10.0.1.1 over port 32000 and the management VRF (*mgmt*).
-
-    sudo netq config add cli server 10.0.1.1 vrf mgmt port 32000
-    sudo netq config restart cli
-
-Restarting the CLI stops the current running instance of `netqd` and starts `netqd` in the specified VRF.
-
-To configure the NetQ Agent, read {{<link url="Install-NetQ-Agents/#configure-advanced-netq-agent-settings" text="Configure Advanced NetQ Agent Settings">}}.
-
-### Configure NetQ CLI Using the CLI
-
-The steps to configure the CLI are different depending on whether you installed the NetQ software for an on-premises or cloud deployment. Follow the instructions for your deployment type.
 
 {{<tabs "Configure CLI with CLI">}}
 
@@ -534,7 +514,7 @@ To generate AuthKeys:
 
 5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> above the table.
 
-6. Copy these keys to a safe place.
+6. Copy these keys to a safe place. Select `Copy` to obtain the CLI configuration command to use on your devices. 
 
     {{<notice info>}}
 The secret key is only shown once. If you do not copy these, you will need to regenerate them and reconfigure CLI access.
@@ -555,7 +535,7 @@ secret-key: <user-secret-key-value-here>
 
 {{</notice>}}
 
-7. Now that you have your AuthKeys, use the following command to configure the CLI:
+7. Now that you have your AuthKeys, paste the command from step 6 onto your device to configure the CLI. Alternatively, use the following command:
 
     ```
     netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
@@ -609,7 +589,8 @@ To generate AuthKeys:
 
 5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> above the table.
 
-6. Copy these keys to a safe place.
+6. Copy these keys to a safe place. Select `Copy` to obtain the CLI configuration command to use on your devices. 
+
 
     {{<notice info>}}
 The secret key is only shown once. If you do not copy these, you will need to regenerate them and reconfigure CLI access.
@@ -630,7 +611,7 @@ secret-key: <user-secret-key-value-here>
 
 {{</notice>}}
 
-7. Now that you have your AuthKeys, use the following command to configure the CLI:
+7. Now that you have your AuthKeys, paste the command from step 6 onto your device to configure the CLI. Alternatively, use the following command:
 
     ```
     netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
@@ -668,60 +649,3 @@ If you have multiple premises and want to query data from a different premises t
 
 {{</tabs>}}
 
-### Configure NetQ CLI Using Configuration File
-
-You can configure the NetQ CLI in the `netq.yml` configuration file contained in the `/etc/netq/` directory.
-
-1. Open the `netq.yml` file using your text editor of choice. For example:
-
-    ```
-    sudo nano /etc/netq/netq.yml
-    ```
-<!-- vale off -->
-2. Locate the *netq-cli* section, or add it.
-<!-- vale on -->
-3. Set the parameters for the CLI.
-
-    {{<tabs "TabID1" >}}
-
-{{<tab "On-premises Deployments" >}}
-
-Specify the following parameters:
-
-- netq-user: User who can access the CLI
-- server: IP address of the NetQ server or NetQ Appliance
-- port (default): 32708
-
-Your YAML configuration file should be similar to this:
-
-```
-netq-cli:
-netq-user: admin@company.com
-port: 32708
-server: 192.168.0.254
-```
-
-{{</tab>}}
-
-{{<tab "Cloud Deployments" >}}
-
-Specify the following parameters:
-
-- netq-user: User who can access the CLI
-- server: api.netq.cumulusnetworks.com
-- port (default): 443
-- premises: Name of premises you want to query
-
-Your YAML configuration file should be similar to this:
-
-```
-netq-cli:
-netq-user: admin@company.com
-port: 443
-premises: datacenterwest
-server: api.netq.cumulusnetworks.com
-```
-
-{{</tab>}}
-
-{{</tabs>}}

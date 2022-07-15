@@ -490,17 +490,9 @@ To obtain the NetQ Agent package:
 
 ## Configure the NetQ CLI
 
-By default, you do not configure the NetQ CLI during the NetQ installation. The configuration resides in the `/etc/netq/netq.yml` file.
-
-While the CLI is not configured on a device, you can run only `netq config` commands and `netq help` commands, and you must use `sudo` to run them.
+By default, you do not configure the NetQ CLI during the NetQ installation. The configuration resides in the `/etc/netq/netq.yml` file. While the CLI is not configured on a device, you can run only `netq config` commands and `netq help` commands, and you must use `sudo` to run them.
 
 At minimum, you need to configure the NetQ CLI and NetQ Agent to communicate with the telemetry server. To do so, configure the NetQ Agent and the NetQ CLI so that they are running in the VRF where the routing tables have connectivity to the telemetry server. Typically this is the management VRF.
-
-Restarting the CLI stops the current running instance of `netqd` and starts `netqd` in the specified VRF.
-
-To configure the NetQ Agent, read {{<link url="Install-NetQ-Agents/#configure-advanced-netq-agent-settings" text="Configure Advanced NetQ Agent Settings">}}.
-
-Configure the CLI according to your deployment type.
 
 {{<tabs "Configure CLI with CLI">}}
 
@@ -524,7 +516,7 @@ To generate AuthKeys:
 
 5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> above the table.
 
-6. Copy these keys to a safe place. Click `Copy` to add the configuration command to your clipboard and you can paste the command into the terminal of your devices.
+6. Copy these keys to a safe place. Select `Copy` to obtain the CLI configuration command to use on your devices. 
 
     {{<notice info>}}
 The secret key is only shown once. If you do not copy these, you will need to regenerate them and reconfigure CLI access.
@@ -545,7 +537,7 @@ secret-key: <user-secret-key-value-here>
 
 {{</notice>}}
 
-7. Now that you have your AuthKeys, use the following command to configure the CLI, or paste the appropriate command you copied from the NetQ `Authentication Keys` configuration.
+7. Now that you have your AuthKeys, paste the command from step 6 onto your device to configure the CLI. Alternatively, use the following command:
 
     ```
     netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]
@@ -599,7 +591,7 @@ To generate AuthKeys:
 
 5. Select your user and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18"/> above the table.
 
-6. Copy these keys to a safe place. Click `Copy` to add the configuration command to your clipboard and you can paste the command into the terminal of your devices.
+6. Copy these keys to a safe place. Select `Copy` to obtain the CLI configuration command to use on your devices. 
 
     {{<notice info>}}
 The secret key is only shown once. If you do not copy these, you will need to regenerate them and reconfigure CLI access.
@@ -620,7 +612,7 @@ secret-key: <user-secret-key-value-here>
 
 {{</notice>}}
 
-7. Now that you have your AuthKeys, use the following command to configure the CLI, or paste the appropriate command you copied from the NetQ `Authentication Keys` configuration.
+7. Now that you have your AuthKeys, paste the command from step 6 onto your device to configure the CLI. Alternatively, use the following command:
 
     ```
     netq config add cli server <text-gateway-dest> [access-key <text-access-key> secret-key <text-secret-key> premises <text-premises-name> | cli-keys-file <text-key-file> premises <text-premises-name>] [vrf <text-vrf-name>] [port <text-gateway-port>]

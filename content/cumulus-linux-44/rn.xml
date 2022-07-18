@@ -155,15 +155,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3021838</td>
 <td>PBR rules that you apply to interfaces in the default VRF install in the kernel with the action {{lookup local}}. As a result, packets that match this rule only perform a route lookup in the local table (which contains special routes for local IP addresses and broadcast addresses) but not in the main table (which contains unicast routes).  As a result, policy routing might be applied to traffic incorrectly.</td>
 <td>4.4.2-5.0.1</td>
@@ -2360,15 +2351,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3031228</td>
 <td>Static VXLAN configuration prevents NCLU from working.</td>
 <td>4.3.0-4.4.4</td>
@@ -4520,15 +4502,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3031228</td>
@@ -6878,15 +6851,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3031228</td>

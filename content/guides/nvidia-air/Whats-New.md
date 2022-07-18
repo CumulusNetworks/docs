@@ -8,9 +8,11 @@ product: NVIDIA Air
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
 ## July 2022
-<!-- Air:WhatsNew -->
 ### 82.2022.0711
 - Fixed a bug that prevented a VM's console and/or network interfaces from working properly for VMs with more than 63 interfaces
+<!-- Air:WhatsNew -->
+### 82.2022.0714-008
+- Pre-built topologies have been moved from the "NVIDIA Networking Experience" into the {{<exlink url="https://air.nvidia.com/marketplace" text="Demo Marketplace">}}
 <!-- Air:WhatsNew -->
 
 ## June 2022

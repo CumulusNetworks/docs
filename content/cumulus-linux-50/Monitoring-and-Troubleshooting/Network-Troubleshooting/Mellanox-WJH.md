@@ -17,19 +17,59 @@ cumulus@switch:~$ sudo systemctl enable what-just-happened
 cumulus@switch:~$ sudo systemctl start what-just-happened
 ```
 
+## Configure WJH
+
+By default, WJH monitors all layer 1, layer 2, layer 3, buffer, tunnel, and ACL related issues. You can configure WJH to monitor specific types of dropped packets only.
+
+Edit the `/etc/what-just-happened/what-just-happened.json` file and remove the drop category value from inside the square brackets ([]). After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
+
+The following example configures WJH to only monitor forwarding, tunnel, and ACL packet drops:
+
+```
+root@switch:~# sudo nano /etc/what-just-happened/what-just-happened.json
+{
+  "what-just-happened": {
+    "channels": {
+      "forwarding": {
+        "drop_category_list": ["L2", "L3", "tunnel"]
+      },
+      "layer-1": {
+        "drop_category_list": []
+      },
+      "buffer": {
+        "drop_category_list": []
+      },
+      "tunnel": {
+        "drop_category_list": ["tunnel"]
+      },
+      "acl": {
+        "drop_category_list": ["acl"]
+      }
+    }
+  }
+}
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart what-just-happened
+```
+
 ## Run WJH Commands
 
-After you start the WJH service, you can run the following commands from the command line.
+After you start the WJH service, you can run commands from the command line to show information about dropped packets and diagnose network problems.
+
+In the following commands, `<channel>` can be `forwarding`, `layer-1`, `buffer`, `tunnel`, or `acl`.
 
 | <div style="width:450px">Command  | Description |
 | -------  | ----------- |
-| `what-just-happened poll` | Shows information about dropped packets due to forwarding-related issues (layer 2, layer 3, and tunnel only). The output includes the reason for the drop and the recommended action to take.<br><br>The `what-just-happened poll forwarding` command shows the same information. |
-| `what-just-happened poll --aggregate` | Shows information about dropped packets due to forwarding-related issues aggregated by the reason for the drop. This command also shows the number of times the dropped packet occurs.<br><br>The `what-just-happened poll forwarding --aggregate` command shows the same information. |
-| `what-just-happened poll --export` | Saves information about dropped packets due to forwarding-related issues into a file in PCAP format.<br><br>The `what-just-happened poll forwarding --export` command shows the same information. |
-| `what-just-happened poll --export --no_metadata` | Saves information about dropped packets due to forwarding-related issues into a file in PCAP format without metadata.<br><br> The `what-just-happened poll forwarding --export --no_metadata` command shows the same information.|
+| `what-just-happened poll` | Shows information about all dropped packets. The output includes the reason for the drop and the recommended action to take.<br><br> To show information about dropped packets for a specific channel, run the `what-just-happened poll <channel>` command. For example, `what-just-happened poll forwarding`.|
+| `what-just-happened poll --aggregate` | Shows information about dropped packets aggregated by the reason for the drop. This command also shows the number of times the dropped packet occurs.<br><br>To show information about dropped packets for a specific channel aggregated by the reason for the drop, run the `what-just-happened poll <channel> --aggregate` command. For example, `what-just-happened poll forwarding --aggregate`.|
+| `what-just-happened poll --export` | Saves information about dropped packets in a file in PCAP format.<br><br>To save information about dropped packets for a specifc channel in a file in PCAP format, run the `what-just-happened poll <channel> --export` command. For example, `what-just-happened poll forwarding --export`. |
+| `what-just-happened poll --export --no_metadata` | Saves information about dropped packets in a file in PCAP format without metadata.<br><br>To save information about dropped packets for a specifc channel in a file in PCAP format without metadata, run the `what-just-happened poll <channel> --export --no_metadata` command. For example, `what-just-happened poll forwarding --export --no_metadata`.|
+| `what-just-happened configuration` | Shows the current WJH configuration. |
 | `what-just-happened dump` | Displays all diagnostic information on the command line. |
 
-Run the `what-just-happened -h` command to see all the WJH command options. (WJH only supports the forwarding *channel*.)
+Run the `what-just-happened -h` command to see all the WJH command options.
 
 ## Command Examples
 

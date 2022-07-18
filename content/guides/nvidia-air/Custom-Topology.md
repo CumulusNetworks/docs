@@ -111,11 +111,11 @@ To upload the `topology.dot` and `topology.svg` files:
 
 ## NetQ Integration
 
-To include NetQ with any simulation, make sure the NetQ toggle switch is on (green); this is the default setting.
+To include NetQ with any simulation, make sure the NetQ toggle switch is on, which is the default behavior.
 
 {{<img src="/images/guides/nvidia-air/NetQSlider.png" width="240px">}}
 
-To disable NetQ, click the toggle switch to disable it. The toggle changes color from green to grey.
+To disable NetQ, click the toggle switch to disable it.
 
 ## Create a Custom Topology from the Production Network
 

@@ -340,15 +340,6 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <td></td>
 </tr>
 <tr>
-<td>3040075</td>
-<td>On the Edgecore AS4610 switch, MLAG stops responding to watchdog keepalives when a switch uptime reaches around 198 days. {{syslog}} reports an error similar to:
-
-2021-10-08T17:52:29.106746+03:00 nord-isp-out0 systemd[1]: clagd.service: Failed with result 'watchdog'.
-</td>
-<td>3.7.6-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3023345</td>
 <td>When you run NVUE commands to unset one or more options associated with a field, the command fails with an error. For example:
 

@@ -269,7 +269,15 @@ The following table shows the default parameter values for the predefined profil
 | Local priority | NA | 128  |
 | Transport | UDPv4, UDPv6 |802.3 |
 | Transmission | Multicast, Unicast | Multicast |
-| BMCA | IEEE 1588 | G.8275.x |
+| [BMCA](## "Best Master Clock Alogrythm") | IEEE 1588 | G.8275.x |
+
+You can configure the switch to use a predefined profile or you can create a custom profile. You can also change the profile settings, such as the announce rate, sync rate, domain, priority, transport, and so on, for indivdual PTP interfaces.
+
+{{%notice note%}}
+- PTP profiles do not support VLANs and bonds. You must configure profile settings individually for each bond or VLAN.
+- If you set a predefined or custom profile, do not change any global PTP settings, such as the DiffServ code point (DSCP) or the clock domain.
+- If you configure transport mode on individual PTP interfaces, you must reconfigure transport mode for those interfaces whenever you change the current profile.
+{{%/notice%}}
 
 To set a predefined profile:
 
@@ -293,7 +301,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To use the predefined ITU 8275.1 profile, the `/etc/ptp4l.conf` file as shown below, then restart the `ptp4l` service.
+To use the predefined ITU 8275.1 profile, edit the `/etc/ptp4l.conf` file, then restart the `ptp4l` service. Here is an example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -382,7 +390,7 @@ network_transport       L2
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To use the predefined IEEE 1588 profile, edit the `/etc/ptp4l.conf` file as shown below, then restart the `ptp4l` service.
+To use the predefined IEEE 1588 profile, edit the `/etc/ptp4l.conf` file, then restart the `ptp4l` service. Here is an example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -475,32 +483,106 @@ To create a custom profile:
 {{< tab "NVUE Commands ">}}
 
 - Create a profile name.
-- Set the profile type on which to base the new profile (itu-g-8275-1 or ieee-1588).
-- Update any of the profile settings you want to change (announce-interval, delay-req-interval, priority1, sync-interval, announce-timeout, domain, priority2, transport, delay-mechanism, local-priority).
+- Set the profile type on which to base the new profile (`itu-g-8275-1` or `ieee-1588`).
+- Update any of the profile settings you want to change (`announce-interval`, `delay-req-interval`, `priority1`, `sync-interval`, `announce-timeout`, `domain`, `priority2`, `transport`, `delay-mechanism`, `local-priority`).
 - Set the custom profile to be the current profile.
 
-The following example commands creates a custom profile called CUSTOM1, which is based on the predifined profile ITU 8275-1. The commands sets the domain to 3 and the announce timeout to 5, then set CUSTOM1 to be the current profile:
+The following example commands create a custom profile called CUSTOM1, which is based on the predifined profile ITU 8275-1. The commands set the `domain` to 3 and the `announce-timeout` to 5, then set `CUSTOM1` to be the current profile:
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 
-cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 profile-type itu-g-8275-1  
-cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 domain 19
-cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 announce-timeout 5
-cumulus@leaf01:mgmt:~$ nv set service ptp 1 current-profile CUSTOM1
-cumulus@leaf01:mgmt:~$ nv config apply
+cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 
+cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 profile-type itu-g-8275-1  
+cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 domain 19
+cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 announce-timeout 5
+cumulus@switch:~$  nv set service ptp 1 current-profile CUSTOM1
+cumulus@switch:~$  nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example `/etc/ptp4l.conf` file creates:
-- A custom profile called CUSTOM1, which is based on the predifined profile ITU 8275-1
-- Sets the domain to 3 and the announce timeout to 5.
-- Sets CUSTOM1 to be the current profile.
+The following example `/etc/ptp4l.conf` file creates a custom profile based on the predifined profile ITU 8275-1 and sets the `domain` to 3 and the `announce-timeout` to 5.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-NEED EXAMPLE
+[global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   3
+
+twoStepFlag                    1
+dscp_event                     46
+dscp_general                   46
+dataset_comparison             G.8275.x
+G.8275.defaultDS.localPriority 128
+G.8275.portDS.localPriority    128
+ptp_dst_mac                    01:80:C2:00:00:0E
+network_transport              L2
+
+#
+# Port Data Set
+#
+logAnnounceInterval            5
+logSyncInterval                -4
+logMinDelayReqInterval         -4
+announceReceiptTimeout         3
+delay_mechanism                E2E
+
+offset_from_master_min_threshold   -50
+offset_from_master_max_threshold   50
+mean_path_delay_threshold          200
+
+#
+# Run time options
+#
+logging_level                  6
+path_trace_enabled             0
+use_syslog                     1
+verbose                        0
+summary_interval               0
+
+#
+# servo parameters
+#
+pi_proportional_const          0.000000
+pi_integral_const              0.000000
+pi_proportional_scale          0.700000
+pi_proportional_exponent       -0.300000
+pi_proportional_norm_max       0.700000
+pi_integral_scale              0.300000
+pi_integral_exponent           0.400000
+pi_integral_norm_max           0.300000
+step_threshold                 0.000002
+first_step_threshold           0.000020
+max_frequency                  900000000
+sanity_freq_limit              0
+
+#
+# Default interface options
+#
+time_stamping                  software
+
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       L2
+
+[swp2]
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       L2
 ```
 
 ```
@@ -510,10 +592,10 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-To see the current PTP profile setting, run the `nv show service ptp <ptp-instance>` command:
+To show the current PTP profile setting, run the `nv show service ptp <ptp-instance>` command:
 
 ```
-cumulus@leaf02:mgmt:~$ nv show service ptp 1
+cumulus@switch:~$ nv show service ptp 1
                              operational  applied             description
 ---------------------------  -----------  ------------------  --------------------------------------------------------------------
 enable                       on           on                  Turn the feature 'on' or 'off'.  The default is 'off'.
@@ -524,6 +606,25 @@ priority1                    128          128                 Priority1 attribut
 priority2                    128          128                 Priority2 attribute of the local clock
 two-step                     on           on                  Determines if the Clock is a 2 step clock
 ...
+```
+
+To show the settings for a profile, run the `nv show service ptp 1 profile <profile-name>` command:
+
+```
+cumulus@switch:~$ nv show service ptp 1 profile CUSTOM1
+                    operational  applied         description
+------------------  -----------  ------------    ----------------------------------------------------------------------
+announce-interval                -3              Mean time interval between successive Announce messages.  It's spec...
+announce-timeout                 5               The number of announceIntervals that have to pass without receipt o...
+delay-mechanism                  end-to-end      Mode in which PTP message is transmitted.
+delay-req-interval               -4              The minimum permitted mean time interval between successive Delay R...
+domain                           19              Domain number of the current syntonization
+local-priority                   128             Local priority attribute of the local clock
+priority1                        128             Priority1 attribute of the local clock
+priority2                        128             Priority2 attribute of the local clock
+profile-type                     itu-g-8275-1    The profile type
+sync-interval                    -4              The mean SyncInterval for multicast messages.  It's specified as a...
+transport                        802.3           Transport method for the PTP messages.
 ```
 
 ### Clock Domains
@@ -610,9 +711,9 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 {{< /tab >}}
 {{< /tabs >}}
-<!-- vale off -->
+<!--
 ### One-step and Two-step Clock
-<!-- vale on -->
+
 The Cumulus Linux switch supports hardware packet time stamping and provides two modes:
 - In *one-step* mode, the PTP packet is time stamped as it egresses the port and there is no need for a follow-up packet.
 - In *two-step* mode, PTP notes the time when the PTP packet egresses the port and sents it in a separate (follow-up) message.
@@ -659,7 +760,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 {{< /tab >}}
 {{< /tabs >}}
-
+ -->
 ### DSCP
 
 You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.

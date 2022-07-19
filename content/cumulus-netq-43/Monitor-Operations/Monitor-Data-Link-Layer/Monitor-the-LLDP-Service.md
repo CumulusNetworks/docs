@@ -1,5 +1,5 @@
 ---
-title: Monitor the LLDP Service
+title: LLDP
 author: NVIDIA
 weight: 890
 toc: 4

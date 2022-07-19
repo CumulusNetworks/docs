@@ -1,5 +1,5 @@
 ---
-title: Monitor VXLANs
+title: VXLAN
 author: NVIDIA
 weight: 990
 toc: 3

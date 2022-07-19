@@ -1,5 +1,5 @@
 ---
-title: Monitor MAC Addresses
+title: MAC Addresses
 author: NVIDIA
 weight: 915
 toc: 3

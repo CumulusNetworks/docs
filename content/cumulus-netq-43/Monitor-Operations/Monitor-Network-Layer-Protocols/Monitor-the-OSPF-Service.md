@@ -1,5 +1,5 @@
 ---
-title: Monitor the OSPF Service
+title: OSPF
 author: NVIDIA
 weight: 960
 toc: 4

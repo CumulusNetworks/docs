@@ -1,5 +1,5 @@
 ---
-title: Monitor the BGP Service
+title: BGP
 author: NVIDIA
 weight: 950
 toc: 4

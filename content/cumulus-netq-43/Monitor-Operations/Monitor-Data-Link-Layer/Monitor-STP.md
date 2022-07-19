@@ -1,5 +1,5 @@
 ---
-title: Monitor Spanning Tree Protocol
+title: Spanning Tree Protocol
 author: NVIDIA
 weight: 900
 toc: 3

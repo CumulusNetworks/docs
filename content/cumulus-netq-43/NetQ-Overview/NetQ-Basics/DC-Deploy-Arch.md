@@ -34,7 +34,7 @@ The physical *network* hardware includes:
 
 The following figure shows an example of a Clos network fabric design for a data center using an OOB management network overlaid on top, where NetQ resides.The physical connections (shown as gray lines) between Spine 01 and four Leaf devices and two Exit devices, and Spine 02 and the same four Leaf devices and two Exit devices. Leaf 01 and Leaf 02 connect to each other over a peerlink and act as an MLAG pair for Server 01 and Server 02. Leaf 03 and Leaf 04 connect to each other over a peerlink and act as an MLAG pair for Server 03 and Server 04. The Edge connects to both Exit devices, and the Internet node connects to Exit 01.
 
-{{<figure src="/images/netq/deploy-arch-dc-example-230.png" alt="diagram of a Clos network displaying connections between spine switches, leafs, servers, and exit switches." width="700">}}
+{{<figure src="/images/netq/deploy-arch-dc-example-230.png" alt="diagram of a Clos network displaying connections between spine switches, leafs, servers, and exit switches." ewidth="700">}}
 
 <span class="caption">Data Center Network Example</span>
 
@@ -53,7 +53,7 @@ These switches connect to each physical network device through a virtual network
 
 While not the preferred deployment method, you might choose to implement NetQ within your data network. In this scenario, there is no overlay and all traffic to and from the NetQ Agents and the NetQ Platform traverses the data paths along with your regular network traffic. The roles of the switches in the Clos network are the same, except that the NetQ Platform performs the aggregation function that the OOB management switch performed. If your network goes down, you might not have access to the NetQ Platform for troubleshooting.
 
-{{<figure src="/images/netq/deploy-arch-ib-example-230.png" alt="diagram of an in-band management deployment. The NetQ Platform interacts with one border leaf." width="700">}}
+{{<figure src="/images/netq/deploy-arch-ib-example-230.png" alt="diagram of an in-band management deployment. The NetQ Platform interacts with one border leaf." ewidth="700">}}
 
 ## High Availability Deployment
 
@@ -61,4 +61,4 @@ While not the preferred deployment method, you might choose to implement NetQ wi
 NetQ supports a high availability deployment for users who prefer a solution in which the collected data and processing provided by the NetQ Platform remains available through alternate equipment should the platform fail for any reason. In this configuration, three NetQ Platforms are deployed, with one as the master and two as workers (or replicas). Data from the NetQ Agents is sent to all three switches so that if the master NetQ Platform fails, one of the replicas automatically becomes the master and continues to store and provide the telemetry data. The following example is based on an OOB management configuration, and modified to support high availability for NetQ.
 <!-- vale on -->
 
-{{<figure src="/images/netq/deploy-arch-ha-example-240.png" alt="diagram of a high availability deployment with one master and two worker NetQ platforms." width="700">}}
+{{<figure src="/images/netq/deploy-arch-ha-example-240.png" alt="diagram of a high availability deployment with one master and two worker NetQ platforms." ewidth="700">}}

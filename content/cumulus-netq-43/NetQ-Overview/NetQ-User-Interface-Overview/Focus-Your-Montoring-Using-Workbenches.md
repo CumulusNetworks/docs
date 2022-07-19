@@ -17,9 +17,9 @@ Both types of workbenches display a set of cards. Default workbenches are public
 
 ## Default Workbenches
 
-The default workbench contains Device Inventory, Switch Inventory, Events, and Network Health cards, giving you a high-level view of how your network is operating.
+The default workbench contains Device Inventory, Switch Inventory, Events, and Validation Summary cards, giving you a high-level view of how your network is operating.
 
-{{<figure src="/images/netq/access-ui-cumulus-wb-400.png" alt="default netq workbench" width="700">}}
+{{<figure src="/images/netq/default-workbench.png" alt="default netq workbench" width="700">}}
 
 On initial login, the NetQ Workbench opens. On subsequent logins, the last workbench you used opens.
 
@@ -32,23 +32,17 @@ Users with either administrative or user roles can create and save as many custo
 - Has selected switches that you are troubleshooting
 - Is focused on application or user account management
 
-And so forth.
-
 ### Create a Workbench
 
 To create a workbench:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> in the workbench header.
+1. Select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" alt="add icon" height="18" width="18"/> **New** in the workbench header.
 
-      {{<figure src="/images/netq/workbench-new-name-410.png" width="600">}}
+2. Enter a name for the workbench and choose if you would like to set this as your new default home workbench.
 
-2. Enter a name for the workbench.
+4. Select the cards you would like to display on your new workbench.
 
-3. Click "Set as home workbench" if you would like to set this as your new default home workbench.
-
-4. Select the cards you would like to display on your new workbench by clicking on the desired cards:
-
-      {{<figure src="/images/netq/workbench-new-cards-410.png" width="600">}}
+      {{<figure src="/images/netq/create-a-workbench.png" alt="interface displaying the cards a user can select to add to their workbench" width="800">}}
 
 5. Click **Create** to create your new workbench.
 
@@ -58,23 +52,17 @@ Refer to {{<link url="Access-Data-with-Cards">}} for information about interacti
 
 To create a duplicate clone based on an existing workbench:
 
-1. Click <img src="/images/netq/clone.svg" height="18" width="18"/> in the workbench header.
+1. Select <img src="/images/netq/clone.svg" height="18" width="18"/> **Clone** in the workbench header.
 
-2. Set a name for the cloned workbench.
-
-3. Click "set as home workbench" if you would like to set this as your new default home workbench.
-
-4. Click **Clone** to clone the workbench.
-
-      {{<figure src="/images/netq/workbench-clone-410.png" width="600">}}
+2. Name the cloned workbench and select **Clone**.
 
 ### Remove a Workbench
 
-As an administrative user, you can remove any workbench, except for the default NetQ Workbench. Users with a user role can only remove workbenches they have created.
+Administrative users can remove any workbench, except for the default NetQ Workbench. Users with a user role can only remove workbenches they have created.
 
 To remove a workbench:
 
-1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
+1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="profile icon" height="18" width="18"/> in the application header to open the **User Settings** options.
 
     {{<figure src="/images/netq/user-settings-profile-prefs-selected-222.png" width="150">}}
 
@@ -95,7 +83,7 @@ There are several options for opening workbenches:
         - Search by workbench name
         - Click **All My WB** to open all workbenches and select it from the list
 - Open through the main menu
-    - Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18"/> (main menu) and select the workbench from the **Favorites** or **NetQ** columns
+    - Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18"/> and select the workbench from the **Favorites** or **Workbenches** sections
 - Open through the NVIDIA logo
     - Click the logo in the header to open your favorite workbench
 
@@ -111,13 +99,13 @@ By default, auto-refresh is enabled and configured to update every 30 seconds.
 
 ### Disable/Enable Auto-refresh
 
-To disable or pause auto-refresh of your workbenches, click the **Refresh** icon. This toggles between the two states, *Running* and *Paused*, where <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" width="18"/> indicates it is currently disabled and <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" width="18"/> indicates it is currently enabled.
+To disable or pause auto-refresh of your workbenches, select **Refresh** in the workbench header. This toggles between the two states, *Running* and *Paused*, where <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> indicates it is currently disabled and <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> indicates it is currently enabled.
 
 While having the workbenches update regularly is good most of the time, you might find that you want to pause the auto-refresh feature when you are troubleshooting and you do not want the data to change on a given set of cards temporarily. In this case, you can disable the auto-refresh and then enable it again when you are finished.
 
 ### View Current Settings
 
-To view the current auto-refresh rate and operational status, hover over the **Refresh** icon on a workbench header, to open the tool tip as follows:
+To view the current auto-refresh rate and operational status, hover over **Refresh** in the workbench header. A tooltip displays the settings:
 
 {{<figure src="/images/netq/wb-refresh-tooltips-231.png" width="350">}}
 
@@ -125,11 +113,11 @@ To view the current auto-refresh rate and operational status, hover over the **R
 
 To modify the auto-refresh setting:
 
-1. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> the **Refresh** icon.
+1. Select the dropdown <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> next to **Refresh**.
 
-2. Select the refresh rate you want. The refresh rate is applied immediately. A check mark is shown next to the current selection.
+2. Select the refresh rate. A check mark is shown next to the current selection. The new refresh rate is applied immediately. 
 
-    {{<figure src="/images/netq/wb-refresh-rate-set-400.png" width="150">}}
+    {{<figure src="/images/netq/wb-refresh-rate-set-400.png" alt="refresh rate dropdown listng rate options of 30 seconds, 1 minute, and 2 minutes" width="150">}}
 
 ## Manage Workbenches
 

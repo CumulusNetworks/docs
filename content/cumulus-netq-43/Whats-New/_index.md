@@ -19,7 +19,7 @@ This release includes several performance and infrastructure improvements that m
 {{<link title="Flow Analysis" text="Flow analysis">}} UI enhancements, including:
 
 - Animation with source and destination IP address labels to clarify the flow direction.
-- Visualizations that display data from switches that lie outside the network path.
+- Partial-path visualizations that display data from switches outside of discovered paths.
 - Revised parameter requirements when creating a flow analysis.
 
 An updated {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Licensing/NetQ-Cookie-Policy/" text="cookie policy">}}.

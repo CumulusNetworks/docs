@@ -27,13 +27,11 @@ Prepare for NetQ Agent upgrade on switches as follows:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in the workbench header.
 
-2. Add the {{<link title="Manage NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
+2. Add the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
 
-3. Optionally, specify a {{<link title="Manage NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
+3. Optionally, specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-4. Verify or add {{<link title="Manage Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
-
-5. Optionally, create a new {{<link title="Manage Switch Configurations/#create-cumulus-netq-configuration-profiles" text="switch configuration profile">}}.
+4. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
 Your LCM dashboard should look similar to this after you have completed the above steps:
 
@@ -43,11 +41,11 @@ Your LCM dashboard should look similar to this after you have completed the abov
 
 {{<tab "NetQ CLI" >}}
 
-1. Verify or add {{<link title="Manage Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
+1. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
-2. Configure {{<link title="Manage Switch Credentials/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
+2. Configure {{<link title="Switch Credentials/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
-3. Upload the {{<link title="Manage NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux install images">}}.
+3. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux install images">}}.
 
 {{</tab>}}
 
@@ -211,7 +209,7 @@ This example shows that all four of the selected switches were upgraded successf
 
 ### Sample Failed NetQ Agent Upgrade
 
-This example shows that an error has occurred trying to upgrade two of the four switches in a job. The error indicates that the access permissions for the switches are invalid. In this case, you need to modify the {{<link title="Manage Switch Inventory and Roles/#modify-switch-credentials" text="switch access credentials">}} and then create a new upgrade job.
+This example shows that an error has occurred trying to upgrade two of the four switches in a job. The error indicates that the access permissions for the switches are invalid. In this case, you need to modify the {{<link title="Switch Credentials" text="switch access credentials">}} and then create a new upgrade job.
 
 {{<figure src="/images/netq/lcm-netq-upgrade-example-failure-310.png" width="700">}}
 

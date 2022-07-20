@@ -1,5 +1,5 @@
 ---
-title: Monitor Switch Inventory
+title: Switch Inventory
 author: NVIDIA
 weight: 740
 toc: 4
@@ -16,7 +16,7 @@ The commands and cards available to obtain this type of information help you to 
 - What is the ACL and forwarding resources usage?
 <!-- vale on -->
 
-To monitor networkwide inventory, refer to {{<link title="Monitor Networkwide Inventory">}}.
+To monitor networkwide inventory, refer to {{<link title="Networkwide Inventory">}}.
 
 ## Access Switch Inventory Data
 
@@ -904,7 +904,7 @@ This example shows the status of the BGP daemon.
 
 ### View Events Related to a Given Service
 
-To view changes over a given time period, use the `netq show events` command. For more detailed information about events, refer to {{<link title="Manage Events and Notifications">}}.
+To view changes over a given time period, use the `netq show events` command. For more detailed information about events, refer to {{<link title="Events and Notifications">}}.
 
 This example shows changes to the `bgpd` service in the last 48 hours.
 

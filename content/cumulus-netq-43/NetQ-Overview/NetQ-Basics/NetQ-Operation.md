@@ -31,7 +31,7 @@ For example, as thermal sensors in the switch indicate that it is becoming very 
 
 ## The NetQ Platform
 
-Once the collected data is sent to and stored in the NetQ database, you can:
+After the collected data is sent to and stored in the NetQ database, you can:
 
   - Validate configurations, identifying misconfigurations in your
     current network, in the past, or prior to deployment,

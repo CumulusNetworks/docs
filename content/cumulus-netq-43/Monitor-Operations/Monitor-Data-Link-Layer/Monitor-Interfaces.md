@@ -1,5 +1,5 @@
 ---
-title: Monitor Interfaces
+title: Interfaces
 author: NVIDIA
 weight: 880
 toc: 3
@@ -15,7 +15,7 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type interfaces [between <text-time> and <text-endtime>] [json]
 ```
 
-### View Status for All Interfaces
+## View Status for All Interfaces
 
 Viewing the status of all interfaces at one time can be helpful when you are trying to compare the configuration or status of a set of links, or generally when changes occurred.
 

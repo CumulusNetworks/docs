@@ -8,7 +8,7 @@ Each user can customize the NetQ application display, change their account passw
 
 ## Configure Display Settings
 
-The Display card contains the options for setting the application theme, language, time zone, and date formats. There are two themes: a light theme and a dark theme, which is the default. You can choose to view data in the time zone where you or your data center resides. You can also select the date and time format, choosing words or number format and a 12- or 24-hour clock. All changes take effect immediately.
+The Display card contains the options for setting the application theme (light or dark), language, time zone, and date formats.
 
 To configure the display settings:
 

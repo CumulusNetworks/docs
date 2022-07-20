@@ -5,7 +5,7 @@ weight: 1120
 toc: 3
 ---
 
-This reference describes the cards available with the NetQ {{<version>}} graphical user interface (NetQ UI), including each item and field on the four sizes of cards. You can open cards using one of two methods:
+This reference describes the cards available in the NetQ graphical user interface (NetQ UI). You can open cards using one of two methods:
 
 - Search for the card by name in the Global Search field in the application header
 - Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Select a card category or scroll down. Click the desired card. Click **Open Cards**.

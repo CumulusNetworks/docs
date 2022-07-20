@@ -1,5 +1,5 @@
 ---
-title: Manage Device Groups
+title: Device Groups
 author: NVIDIA
 weight: 755
 ---

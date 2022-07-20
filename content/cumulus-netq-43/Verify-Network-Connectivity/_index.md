@@ -794,7 +794,7 @@ After you click **Run Now**, the corresponding results card opens on your workbe
 
 {{<figure src="/images/netq/od-trace-result-medium-l3-running-320.png" width="200">}}
 
-Once results are obtained, it displays them. Using our example from earlier, the following results are shown:
+After it is finished, the results are displayed. The following results use the example previously outlined:
 
 {{<figure src="/images/netq/od-trace-result-medium-320.png" width="200">}}
 
@@ -838,7 +838,7 @@ After clicking **Run Now** on the Trace Request card, the corresponding On-deman
 
 {{<figure src="/images/netq/od-trace-result-medium-running-320.png" width="200">}}
 
-Once the job is completed, the results are displayed.
+After the job is completed, the results are displayed.
 
 <div style="padding-left: 36px;">
 {{<img src="/images/netq/od-trace-result-medium-success-fail-320.png" width="420">}}
@@ -1218,7 +1218,7 @@ On the medium and large Trace Result cards, the status of the runs is represente
 
 ### View Detailed Scheduled Trace Results
 
-Once a scheduled trace request has completed, the results are available in the corresponding Trace Result card.
+After a scheduled trace request has completed, the results are available in the corresponding Trace Result card.
 
 To view the results:
 
@@ -1351,8 +1351,7 @@ cumulus@switch:~$ netq show trace results f501f9b0-cca3-4fa1-a60d-fb6f495b7a0e
 
 ## Manage Scheduled Traces
 
-You can modify and remove scheduled traces at any time as described here. An administrator can also manage scheduled traces through the NetQ Management dashboard. Refer to {{<link title="Manage the NetQ UI/#delete-a-scheduled-trace" text="Delete a Scheduled Trace">}} for details.
-
+You can modify and remove scheduled traces at any time as described here. An administrator can also manage scheduled traces through the NetQ Management dashboard.
 ### Modify a Scheduled Trace
 
 After reviewing the results of a scheduled trace for a period of time, you might want to modify how often you run it or use the VRF or VLAN. You can do this using the NetQ UI.

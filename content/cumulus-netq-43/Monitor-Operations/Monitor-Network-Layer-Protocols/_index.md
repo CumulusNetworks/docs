@@ -1,5 +1,5 @@
 ---
-title: Monitor Network Layer Protocols and Services
+title: Network Layer Protocols and Services
 author: NVIDIA
 weight: 930
 toc: 3

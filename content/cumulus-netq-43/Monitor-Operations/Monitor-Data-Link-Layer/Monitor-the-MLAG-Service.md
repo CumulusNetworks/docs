@@ -1,5 +1,5 @@
 ---
-title: Monitor the MLAG Service
+title: MLAG
 author: NVIDIA
 weight: 920
 toc: 4

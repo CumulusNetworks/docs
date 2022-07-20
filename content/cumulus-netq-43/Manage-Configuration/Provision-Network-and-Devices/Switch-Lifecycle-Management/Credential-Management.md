@@ -1,5 +1,5 @@
 ---
-title: Manage Switch Credentials
+title: Switch Credentials
 author: NVIDIA
 weight: 640
 toc: 4

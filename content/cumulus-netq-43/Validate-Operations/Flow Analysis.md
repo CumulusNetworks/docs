@@ -27,7 +27,7 @@ You must enable {{<link title="Manage Switches through Their Lifecycle" text="Li
 
 ### Flow Analysis Settings
 
-The flow analysis wizard prompts you to enter the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the respective menus to choose the protocol and VRF for the flow. The only optional parameter is the source port, for when the ephemeral source port of a flow may be unknown.
+The flow analysis wizard prompts you to enter the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the respective menus to choose the protocol and VRF for the flow.
 
 {{<figure src="/images/netq/flow-analysis-create-dialog-42.png" alt="flow analysis wizard prompting user to enter application parameters" width="600">}}
 
@@ -128,7 +128,7 @@ You can switch between paths by clicking on an alternate path in the **Flow Grap
 Some flows can still be analyzed if they traverse a network path that includes switches lacking flow analysis support. Partial-path flow analysis is supported in the following conditions:
 
 - The unsupported device cannot be the initial ingress or terminating egress device in the path of the analyzed flow.
-- If there is more than one consecutive transit device in the path that lacks flow analysis support, the analysis will terminate at that point in the topology and flow data will only be available from devices preceding the unsupported switches in the topology. 
+- If there is more than one consecutive transit device in the path that lacks flow analysis support, the path discovery will terminate at that point in the topology and some devices will not be displayed in the flow graph.
 
 An unsupported device is represented in the flow analysis graph as a black bar lined with red x's  {{<img src="/images/netq/partial-path-unsupported-icon-42.png" height="18" width="18">}}. Flow statistics are not displayed for that device.
 
@@ -141,6 +141,12 @@ Unsupported devices are also designated in the flow graph panel:
 Selecting the unsupported device shows device statistics in the left panel if available to NetQ. Otherwise, the display will indicate why the device is not supported:
 
 {{<figure src="/images/netq/partial-path-device-stats-unsupported-42.png" alt="a panel showing an unsupported device. The device is not supported because the CL version is not supported for flow analysis" width="400">}}
+
+Path discovery will terminate if multiple consecutive switches do not support flow analysis.  When additional data is available from switches outside of discovered paths, you can view data from those devices from the menu at the top of the page:
+
+{{<figure src="/images/netq/undiscovered-paths-devices-dropdown.png" alt="menu displaying three unsupported devices" width="400">}}
+
+The left panel displays the data, along with ingress and egress ports.
 ## View Device Statistics
 
 You can view latency, buffer occupancy, interface statistics, resource utilization, and WJH events for each device by clicking on a device in the **Flow Graph** panel, or by clicking on the line associated with a device in the main flow analysis graph. The left panel will then update to reflect statistics for the respective device.

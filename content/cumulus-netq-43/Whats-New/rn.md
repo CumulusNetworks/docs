@@ -9,8 +9,8 @@ type: rn
 pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-netq-42" >}}
-## 4.2.0 Release Notes
-### Open Issues in 4.2.0
+## 4.3.0 Release Notes
+### Open Issues in 4.3.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -32,7 +32,7 @@ pdfhidden: True
 | <a name="2555854"></a> [2555854](#2555854) <a name="2555854"></a> <br />NETQ-8245 | NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten. | 3.0.0-3.3.1, 4.0.0-4.2.0 | |
 | <a name="2549649"></a> [2549649](#2549649) <a name="2549649"></a> <br />NETQ-5737 | NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended. | 3.0.0-3.3.1, 4.0.0-4.2.0 | |
 
-### Fixed Issues in 4.2.0
+### Fixed Issues in 4.3.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="3011307"></a> [3011307](#3011307) <a name="3011307"></a> <br /> | NetQ Agent: The NetQ Agent fails to start in Cumulus Linux on switches with ARM CPUs. The log files show the following message:<pre>systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE</pre> |  | |

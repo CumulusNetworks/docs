@@ -43,12 +43,6 @@ Fixed: 2.2.12-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>3129296</td>
-<td>On a Broadcom switch, kernel interface statistics might update at an inconsistent frequency.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>3123965</td>
 <td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
 <td>4.4.0-4.4.4</td>
@@ -129,6 +123,12 @@ This is a security fix made available after the 4.4.4 image release to change th
 <td></td>
 </tr>
 <tr>
+<td>3070672</td>
+<td>TACACS Command Authorization results in a traceback error and command is not executed</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3066798</td>
 <td>After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down.</td>
 <td>4.4.3-4.4.4</td>
@@ -146,6 +146,12 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3053197</td>
+<td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
+<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -198,8 +204,8 @@ Fixed:</td>
 <tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2991501</td>
@@ -222,8 +228,8 @@ Fixed:</td>
 <tr>
 <td>2971159</td>
 <td>On rare occasions, the link up time on optical media can be more than five seconds. </td>
-<td>4.4.3-5.0.1</td>
-<td>5.1.0</td>
+<td>4.4.3-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2965759</td>
@@ -335,8 +341,8 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-5.0.1</td>
-<td>5.1.0</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2902013</td>
@@ -493,8 +499,8 @@ Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-
 <tr>
 <td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
-<td>3.7.15, 4.3.0-4.4.4</td>
-<td>3.7.16</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2820565</td>
@@ -522,6 +528,16 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>In an EVPN configuration, an FRR restart on a border leaf VRRP master causes a stale route for the VRRP VIP on some remote VTEPs to point to the VRRP backup after convergence.</td>
 <td>3.7.12-3.7.15, 4.3.0-5.0.1</td>
 <td>3.7.16, 5.1.0</td>
+</tr>
+<tr>
+<td>2804044</td>
+<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
+
+kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
+kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
+</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2803044</td>
@@ -865,6 +881,24 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td></td>
 </tr>
 <tr>
+<td>2574368</td>
+<td>When you run the NCLU {{net add bgp maximum-paths ibgp}} command, FRR restarts unexpectedly.
+To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/frr/frr.conf}} file directly, then run {{systemctl reload frr}}.</td>
+<td>4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556772</td>
+<td>The {{net show clag verify-vlans}} command fails with the following log: 
+
+WARNING: '/usr/bin/clagctl verifyvlans' failed due to:
+Command '['/usr/bin/clagctl', 'verifyvlans']' returned non-zero exit status 1
+
+To work around this issue, run the {{/usr/bin/clagctl verifyvlans}} command or the {{net show clag verbose}} command.</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
 To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpctl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>
@@ -895,6 +929,22 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 <td>2556249</td>
 <td>On a Mellanox switch configured with the {{max acl-heavy}} or {{ip-acl-heavy}} profile, the {{cl-resource-query -j}} command takes a long time to run.</td>
 <td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556082</td>
+<td>The NCLU {{net del vrf}} command does not delete a numbered VRF. For example:
+
+cumulus@leaf01:~$ net del vrf 55
+ERROR: Command not found
+</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556081</td>
+<td>You cannot set the time zone can with NCLU commands.</td>
+<td>4.1.1-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -974,6 +1024,12 @@ To work around this issue, configure {{ip pim use-source}} on each unnumbered in
 <td></td>
 </tr>
 <tr>
+<td>2554670</td>
+<td>When you have a large number of ACLs, the {{cl-acltool -L ip}} and {{cl-resource-query}} commands take a long time to complete.</td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2554582</td>
 <td>On switches with the Maverick ASIC, control traffic is dropped due to receive buffering.</td>
 <td>4.2.0-4.4.4</td>
@@ -1033,6 +1089,12 @@ iface vni-30
 <td></td>
 </tr>
 <tr>
+<td>2553989</td>
+<td>Default policer configured for LACP as an INPUT chain rule in 00control_plane.rules is meant to protect CPU from an LACP storm. When LACP storm is originating out of a single bond or bond member interface in a switch with multiple bond interfaces, there is a possibility of other LACP bond interface(s) going down.</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2553887</td>
 <td>When using TACACS+ configured with a DEFAULT user providing privilege level lower than 16, TACACS+ configured users with privilege level 16 access might not be able to run privilege level 16 NCLU commands, such as {{net add}} and {{net del}} and see an error similar to the following:
 
@@ -1040,6 +1102,26 @@ ERROR: You do not have permission to execute that command.
 
 To work around this issue, remove the DEFAULT user from the TACACS+ server.</td>
 <td>3.7.7-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2553677</td>
+<td>When you configure an SNMPv3 user with the {{net-snmp-config}} configuration command from the {{libsnmp-dev}} package, you get an error message similar to the one below:
+
+cumulus@switch:mgmt-vrf:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+adding the following line to /var/lib/snmp/snmpd.conf:           
+   createUser userSHAwithAES SHA "shaauthpass" AES "aesprivpass"       
+adding the following line to /snmp/snmpd.conf:                           
+   rwuser userSHAwithAES                                           
+touch: cannot touch ‘/snmp/snmpd.conf’: No such file or directory
+/usr/bin/net-snmp-create-v3-user: 144: /usr/bin/net-snmp-create-v3-user: cannot create /snmp/snmpd.conf: Directory nonexistent
+
+To work around this issue, use the NCLU command to configure SNMPv3 user parameters; for example:
+
+cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
+
+Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in the documentation.</td>
+<td>3.7.13-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -1113,6 +1195,22 @@ To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td></td>
 </tr>
 <tr>
+<td>2551666</td>
+<td>If you modify an interface name, then reuse the previous interface name for a different VLAN, the {{ifreload -a}} command generates an error similar to the following:
+
+warning: &lt;interface-name&gt;: interface not recognized - please check interface configuration
+
+</td>
+<td>4.1.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2551578</td>
+<td>When you configure a bridge in the {{/etc/network/interfaces}} file, then try to reconfigure the bridge to be a VRF interface with the same name, {{ifreload}}/{{ifup}} commands fail with an {{invalid table id}} or {{unable to get vrf table id}} error.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2551565</td>
 <td>If you toggle VRRP priority values between VRRP routers, then restart {{switchd}}, a few IPv6 VRRP instances might not converge. As a result, both the VRRP routers act as master routers for the impacted IPv6 VRRP instances. IPv4 VRRP instances are not affected.
 To work around this issue, remove, then add back the VRRP configuration with NCLU or vtysh commands.</td>
@@ -1140,6 +1238,19 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td></td>
 </tr>
 <tr>
+<td>2551221</td>
+<td>When span-to-cpu is enabled on L3 swp interface with an IP address configured, packets with destination IP as switchport's IP address don't reach switchport. To capture packets directed towards switcport's IP, disable span-to-cpu and use tcpdump on swichport instead.</td>
+<td>4.2.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2551111</td>
+<td>If a remote EVPN Sticky MAC [Static MAC address] is unexpectedly learned dynamically on a local interface, the selected entries in zebra and BGP are in an inconsistent state.
+zebra increments the local MAC mobility sequence number and considers the MAC address to be local, but BGP maintains the remote Sticky MAC as the best path selected. This results in zebra installing the local MAC address and BGP not updating the route for the MAC address.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2550974</td>
 <td>On the Dell S3000 switch, after installing the Cumulus Linux 4.1.1 disk image without a license, the switch sends a link beat if a remote host port is configured.</td>
 <td>3.7.11-3.7.16, 4.1.1-4.4.4</td>
@@ -1156,6 +1267,12 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td>Configuring the subinterface of a VXLAN uplink under another traditional bridge, which also has the VXLAN VNI enslaved, causes {{switchd}} to use high CPU due to very frequent VXLAN tunnel sync events.
 To work around this issue, do not enslave the subinterface of a VXLAN layer 3 uplink under a traditional bridge in a VXLAN configuration.</td>
 <td>4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2550642</td>
+<td>ACLs with SPAN target and in-interface as bond member are not supported on Spectrum-based switches </td>
+<td>4.2.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -1193,6 +1310,23 @@ Press any key to continue...
 <td></td>
 </tr>
 <tr>
+<td>2549925</td>
+<td>When you run an Ansible script to replace the {{/etc/network/interfaces}} file, then run the {{ifreload -a}} command, you see errors similar to the following:
+
+error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Network is down' (100)
+warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
+
+To work around this issue,  run the {{ifreload -a}} command a second time.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2549872</td>
+<td>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, {{net commit}} or {{ifreload -a}} returns an error.</td>
+<td>3.7.12-3.7.16, 4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2549782</td>
 <td>The JSON format output of the {{net show bgp l2vpn evpn summary}} command shows the incorrect neighbour state. </td>
 <td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
@@ -1222,12 +1356,33 @@ To work around this issue, manually edit the {{etc/frr/frr.conf}} file to define
 <td></td>
 </tr>
 <tr>
+<td>2548657</td>
+<td>When you upgrade Cumulus Linux on the EdgeCore AS7726-32X or AS7326-56X switch, you might see firmware errors similar to the following:
+
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso5.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
+
+You can safely ignore these error messages.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2548315</td>
 <td>The following security advisory has been announced for bash: 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use {{enable -f}} for runtime loading of a new builtin that calls {{setuid()}} to regain dropped privileges.
 To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2548310</td>
+<td>When the system boots, we might see " cumulus systemd-udevd[7566]: Process '/usr/bin/hw-management-thermal-events.sh add thermal_zone /sys /devices/virtual/thermal/thermal_zone25 thermal_zone25' failed with exit code 1" errors. 
+
+These errors are result of  user space acting on kernel events a bit slow. The mlxsw_minimal driver is added during kernel boot; An SDK reset causes the driver to be deleted and re-instantiated; User space handler for thermal zone add sees the add first; But the underlying device is deleted before it can act on it. This situation is rectified as the mlxsw_minimal driver is re-instantiated later; 
+</td>
+<td>4.1.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -1275,6 +1430,12 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>2547782</td>
+<td>If a LLDP neighbor advertises a {{PortDescr}} that contains commas, {{ptmctl -d}} splits the string on the commas and misplaces its components in other columns.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2547706</td>
 <td>When you configure ganged ports in the {{ports.conf}} file, the change does not take effect after you restart {{switchd}}. 
 To work around this issue, reboot the switch.</td>
@@ -1288,6 +1449,12 @@ To work around this issue, reboot the switch.</td>
 Warning: The unit file, source configuration file or drop-ins of hsflowd@mgmt.service changed on disk. Run 'systemctl daemon-reload'.
 </td>
 <td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2547120</td>
+<td>After you hot swap a PSU, the {{decode-syseeprom -t psuX}} command shows the old PSU information (such as the serial number), until you run the {{decode-syseeprom --init}} command.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -1316,6 +1483,31 @@ To increase the {{systemd}} timeout:
 <td>2546874</td>
 <td>On the Dell S5232F, S5248F, S5296F, and S3048 switch, using the {{poweroff}} or {{halt}} commands does not fully power off the switch.</td>
 <td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546255</td>
+<td>On the EdgeCore Minipack-AS8000 switch, a 100G DAC link does not come up when auto-negotiation is enabled on the neighbor. This switch does not support 100G DAC auto-negotiation at this time.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546225</td>
+<td>When you execute the following command on the Delta AG6248C switch, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in {{/var/lib/cumulus/installer}}, which causes issues with cl-support. 
+  
+ sudo onie-install -fai http://&lt;path to image&gt; 
+ sudo reboot 
+  
+ To work around this issue, use the {{onie-select}} command to access ONIE, and then use the {{nos-install}} command in ONIE to install a new binary image. </td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546131</td>
+<td>On the Delta AG-6248C PoE switch, when you run the {{apt upgrade}} command, the upgrade does not work. Cumulus Linux uses {{uboot}} directly instead of {{grub}} to boot the kernel. Uboot needs a special header to boot the kernel, which is not present. Without this header, when you use the {{apt upgrade}} command to upgrade Linux packages, {{uboot}} is unable to boot up the kernel. 
+To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the {{onie-select}} command to go into ONIE, and then use the {{nos-install}} command in ONIE to install a new image.
+This workaround only works when an out-of-band network is present.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -1483,11 +1675,18 @@ See /var/log/netd.log for more details.
 <td></td>
 </tr>
 <tr>
+<td>2543401</td>
+<td>On the Mellanox Spectrum-2 switch, the time required to establish a link (from the time a link is set to {{admin up}} until the link becomes operationally up) can take up to 15 seconds on 40G interfaces and up to 30 seconds on 100G interfaces. 
+To work around this issue, wait up to 15 seconds on 40G interfaces and 30 seconds on 100G interfaces for the link to establish.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2543211</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
-<td>3.7.0-4.4.4</td>
-<td>5.0.0-5.1.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -1752,6 +1951,12 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
   
  Eventually the {{dhcrelay}} service stops. 
  </td>
+<td>3.7.1-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2537544</td>
+<td>When you run the {{mstpctl}} command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of {{mstpctl}}; for example, SNMP output from the BRIDGE-MIB.</td>
 <td>3.7.1-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
@@ -2124,12 +2329,6 @@ Fixed: 2.2.12-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>3129296</td>
-<td>On a Broadcom switch, kernel interface statistics might update at an inconsistent frequency.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>3123965</td>
 <td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
 <td>4.4.0-4.4.4</td>
@@ -2300,8 +2499,8 @@ Fixed: 1.1.1n-0+deb10u2</td>
 <tr>
 <td>3070672</td>
 <td>TACACS Command Authorization results in a traceback error and command is not executed</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>3066798</td>
@@ -2335,8 +2534,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
+<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -2503,8 +2702,8 @@ Fixed:</td>
 <tr>
 <td>2971159</td>
 <td>On rare occasions, the link up time on optical media can be more than five seconds. </td>
-<td>4.4.3-5.0.1</td>
-<td>5.1.0</td>
+<td>4.4.3-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2965759</td>
@@ -2622,8 +2821,8 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-5.0.1</td>
-<td>5.1.0</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2902013</td>
@@ -2780,8 +2979,8 @@ Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-
 <tr>
 <td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
-<td>3.7.15, 4.3.0-4.4.4</td>
-<td>3.7.16</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -3197,6 +3396,24 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td></td>
 </tr>
 <tr>
+<td>2574368</td>
+<td>When you run the NCLU {{net add bgp maximum-paths ibgp}} command, FRR restarts unexpectedly.
+To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/frr/frr.conf}} file directly, then run {{systemctl reload frr}}.</td>
+<td>4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556772</td>
+<td>The {{net show clag verify-vlans}} command fails with the following log: 
+
+WARNING: '/usr/bin/clagctl verifyvlans' failed due to:
+Command '['/usr/bin/clagctl', 'verifyvlans']' returned non-zero exit status 1
+
+To work around this issue, run the {{/usr/bin/clagctl verifyvlans}} command or the {{net show clag verbose}} command.</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
 To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpctl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>
@@ -3227,6 +3444,22 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 <td>2556249</td>
 <td>On a Mellanox switch configured with the {{max acl-heavy}} or {{ip-acl-heavy}} profile, the {{cl-resource-query -j}} command takes a long time to run.</td>
 <td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556082</td>
+<td>The NCLU {{net del vrf}} command does not delete a numbered VRF. For example:
+
+cumulus@leaf01:~$ net del vrf 55
+ERROR: Command not found
+</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556081</td>
+<td>You cannot set the time zone can with NCLU commands.</td>
+<td>4.1.1-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -3306,6 +3539,12 @@ To work around this issue, configure {{ip pim use-source}} on each unnumbered in
 <td></td>
 </tr>
 <tr>
+<td>2554670</td>
+<td>When you have a large number of ACLs, the {{cl-acltool -L ip}} and {{cl-resource-query}} commands take a long time to complete.</td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2554582</td>
 <td>On switches with the Maverick ASIC, control traffic is dropped due to receive buffering.</td>
 <td>4.2.0-4.4.4</td>
@@ -3365,6 +3604,12 @@ iface vni-30
 <td></td>
 </tr>
 <tr>
+<td>2553989</td>
+<td>Default policer configured for LACP as an INPUT chain rule in 00control_plane.rules is meant to protect CPU from an LACP storm. When LACP storm is originating out of a single bond or bond member interface in a switch with multiple bond interfaces, there is a possibility of other LACP bond interface(s) going down.</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2553887</td>
 <td>When using TACACS+ configured with a DEFAULT user providing privilege level lower than 16, TACACS+ configured users with privilege level 16 access might not be able to run privilege level 16 NCLU commands, such as {{net add}} and {{net del}} and see an error similar to the following:
 
@@ -3372,6 +3617,26 @@ ERROR: You do not have permission to execute that command.
 
 To work around this issue, remove the DEFAULT user from the TACACS+ server.</td>
 <td>3.7.7-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2553677</td>
+<td>When you configure an SNMPv3 user with the {{net-snmp-config}} configuration command from the {{libsnmp-dev}} package, you get an error message similar to the one below:
+
+cumulus@switch:mgmt-vrf:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+adding the following line to /var/lib/snmp/snmpd.conf:           
+   createUser userSHAwithAES SHA "shaauthpass" AES "aesprivpass"       
+adding the following line to /snmp/snmpd.conf:                           
+   rwuser userSHAwithAES                                           
+touch: cannot touch ‘/snmp/snmpd.conf’: No such file or directory
+/usr/bin/net-snmp-create-v3-user: 144: /usr/bin/net-snmp-create-v3-user: cannot create /snmp/snmpd.conf: Directory nonexistent
+
+To work around this issue, use the NCLU command to configure SNMPv3 user parameters; for example:
+
+cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
+
+Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in the documentation.</td>
+<td>3.7.13-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -3445,6 +3710,22 @@ To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td></td>
 </tr>
 <tr>
+<td>2551666</td>
+<td>If you modify an interface name, then reuse the previous interface name for a different VLAN, the {{ifreload -a}} command generates an error similar to the following:
+
+warning: &lt;interface-name&gt;: interface not recognized - please check interface configuration
+
+</td>
+<td>4.1.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2551578</td>
+<td>When you configure a bridge in the {{/etc/network/interfaces}} file, then try to reconfigure the bridge to be a VRF interface with the same name, {{ifreload}}/{{ifup}} commands fail with an {{invalid table id}} or {{unable to get vrf table id}} error.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2551565</td>
 <td>If you toggle VRRP priority values between VRRP routers, then restart {{switchd}}, a few IPv6 VRRP instances might not converge. As a result, both the VRRP routers act as master routers for the impacted IPv6 VRRP instances. IPv4 VRRP instances are not affected.
 To work around this issue, remove, then add back the VRRP configuration with NCLU or vtysh commands.</td>
@@ -3472,6 +3753,19 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td></td>
 </tr>
 <tr>
+<td>2551221</td>
+<td>When span-to-cpu is enabled on L3 swp interface with an IP address configured, packets with destination IP as switchport's IP address don't reach switchport. To capture packets directed towards switcport's IP, disable span-to-cpu and use tcpdump on swichport instead.</td>
+<td>4.2.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2551111</td>
+<td>If a remote EVPN Sticky MAC [Static MAC address] is unexpectedly learned dynamically on a local interface, the selected entries in zebra and BGP are in an inconsistent state.
+zebra increments the local MAC mobility sequence number and considers the MAC address to be local, but BGP maintains the remote Sticky MAC as the best path selected. This results in zebra installing the local MAC address and BGP not updating the route for the MAC address.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2550974</td>
 <td>On the Dell S3000 switch, after installing the Cumulus Linux 4.1.1 disk image without a license, the switch sends a link beat if a remote host port is configured.</td>
 <td>3.7.11-3.7.16, 4.1.1-4.4.4</td>
@@ -3488,6 +3782,12 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td>Configuring the subinterface of a VXLAN uplink under another traditional bridge, which also has the VXLAN VNI enslaved, causes {{switchd}} to use high CPU due to very frequent VXLAN tunnel sync events.
 To work around this issue, do not enslave the subinterface of a VXLAN layer 3 uplink under a traditional bridge in a VXLAN configuration.</td>
 <td>4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2550642</td>
+<td>ACLs with SPAN target and in-interface as bond member are not supported on Spectrum-based switches </td>
+<td>4.2.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -3525,6 +3825,23 @@ Press any key to continue...
 <td></td>
 </tr>
 <tr>
+<td>2549925</td>
+<td>When you run an Ansible script to replace the {{/etc/network/interfaces}} file, then run the {{ifreload -a}} command, you see errors similar to the following:
+
+error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Network is down' (100)
+warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
+
+To work around this issue,  run the {{ifreload -a}} command a second time.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2549872</td>
+<td>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, {{net commit}} or {{ifreload -a}} returns an error.</td>
+<td>3.7.12-3.7.16, 4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2549782</td>
 <td>The JSON format output of the {{net show bgp l2vpn evpn summary}} command shows the incorrect neighbour state. </td>
 <td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
@@ -3554,12 +3871,33 @@ To work around this issue, manually edit the {{etc/frr/frr.conf}} file to define
 <td></td>
 </tr>
 <tr>
+<td>2548657</td>
+<td>When you upgrade Cumulus Linux on the EdgeCore AS7726-32X or AS7326-56X switch, you might see firmware errors similar to the following:
+
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso5.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
+
+You can safely ignore these error messages.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2548315</td>
 <td>The following security advisory has been announced for bash: 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use {{enable -f}} for runtime loading of a new builtin that calls {{setuid()}} to regain dropped privileges.
 To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2548310</td>
+<td>When the system boots, we might see " cumulus systemd-udevd[7566]: Process '/usr/bin/hw-management-thermal-events.sh add thermal_zone /sys /devices/virtual/thermal/thermal_zone25 thermal_zone25' failed with exit code 1" errors. 
+
+These errors are result of  user space acting on kernel events a bit slow. The mlxsw_minimal driver is added during kernel boot; An SDK reset causes the driver to be deleted and re-instantiated; User space handler for thermal zone add sees the add first; But the underlying device is deleted before it can act on it. This situation is rectified as the mlxsw_minimal driver is re-instantiated later; 
+</td>
+<td>4.1.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -3607,6 +3945,12 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>2547782</td>
+<td>If a LLDP neighbor advertises a {{PortDescr}} that contains commas, {{ptmctl -d}} splits the string on the commas and misplaces its components in other columns.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2547706</td>
 <td>When you configure ganged ports in the {{ports.conf}} file, the change does not take effect after you restart {{switchd}}. 
 To work around this issue, reboot the switch.</td>
@@ -3620,6 +3964,12 @@ To work around this issue, reboot the switch.</td>
 Warning: The unit file, source configuration file or drop-ins of hsflowd@mgmt.service changed on disk. Run 'systemctl daemon-reload'.
 </td>
 <td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2547120</td>
+<td>After you hot swap a PSU, the {{decode-syseeprom -t psuX}} command shows the old PSU information (such as the serial number), until you run the {{decode-syseeprom --init}} command.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -3648,6 +3998,31 @@ To increase the {{systemd}} timeout:
 <td>2546874</td>
 <td>On the Dell S5232F, S5248F, S5296F, and S3048 switch, using the {{poweroff}} or {{halt}} commands does not fully power off the switch.</td>
 <td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546255</td>
+<td>On the EdgeCore Minipack-AS8000 switch, a 100G DAC link does not come up when auto-negotiation is enabled on the neighbor. This switch does not support 100G DAC auto-negotiation at this time.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546225</td>
+<td>When you execute the following command on the Delta AG6248C switch, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in {{/var/lib/cumulus/installer}}, which causes issues with cl-support. 
+  
+ sudo onie-install -fai http://&lt;path to image&gt; 
+ sudo reboot 
+  
+ To work around this issue, use the {{onie-select}} command to access ONIE, and then use the {{nos-install}} command in ONIE to install a new binary image. </td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546131</td>
+<td>On the Delta AG-6248C PoE switch, when you run the {{apt upgrade}} command, the upgrade does not work. Cumulus Linux uses {{uboot}} directly instead of {{grub}} to boot the kernel. Uboot needs a special header to boot the kernel, which is not present. Without this header, when you use the {{apt upgrade}} command to upgrade Linux packages, {{uboot}} is unable to boot up the kernel. 
+To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the {{onie-select}} command to go into ONIE, and then use the {{nos-install}} command in ONIE to install a new image.
+This workaround only works when an out-of-band network is present.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -3815,11 +4190,18 @@ See /var/log/netd.log for more details.
 <td></td>
 </tr>
 <tr>
+<td>2543401</td>
+<td>On the Mellanox Spectrum-2 switch, the time required to establish a link (from the time a link is set to {{admin up}} until the link becomes operationally up) can take up to 15 seconds on 40G interfaces and up to 30 seconds on 100G interfaces. 
+To work around this issue, wait up to 15 seconds on 40G interfaces and 30 seconds on 100G interfaces for the link to establish.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2543211</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
-<td>3.7.0-4.4.4</td>
-<td>5.0.0-5.1.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -4088,6 +4470,12 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <td></td>
 </tr>
 <tr>
+<td>2537544</td>
+<td>When you run the {{mstpctl}} command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of {{mstpctl}}; for example, SNMP output from the BRIDGE-MIB.</td>
+<td>3.7.1-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2536576</td>
 <td>If you try to bring down several members of a bond remotely at the same time, the link state of one of the interfaces might not transition correctly to the down state; however, all links show down in hardware. 
  </td>
@@ -4295,12 +4683,6 @@ Fixed: 2.2.12-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>3129296</td>
-<td>On a Broadcom switch, kernel interface statistics might update at an inconsistent frequency.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>3123965</td>
 <td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
 <td>4.4.0-4.4.4</td>
@@ -4459,8 +4841,8 @@ Fixed: 1.1.1n-0+deb10u2</td>
 <tr>
 <td>3070672</td>
 <td>TACACS Command Authorization results in a traceback error and command is not executed</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>3066704</td>
@@ -4488,8 +4870,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
+<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -4809,8 +5191,8 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-5.0.1</td>
-<td>5.1.0</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2902013</td>
@@ -4967,8 +5349,8 @@ Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-
 <tr>
 <td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
-<td>3.7.15, 4.3.0-4.4.4</td>
-<td>3.7.16</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -5384,6 +5766,24 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td></td>
 </tr>
 <tr>
+<td>2574368</td>
+<td>When you run the NCLU {{net add bgp maximum-paths ibgp}} command, FRR restarts unexpectedly.
+To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/frr/frr.conf}} file directly, then run {{systemctl reload frr}}.</td>
+<td>4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556772</td>
+<td>The {{net show clag verify-vlans}} command fails with the following log: 
+
+WARNING: '/usr/bin/clagctl verifyvlans' failed due to:
+Command '['/usr/bin/clagctl', 'verifyvlans']' returned non-zero exit status 1
+
+To work around this issue, run the {{/usr/bin/clagctl verifyvlans}} command or the {{net show clag verbose}} command.</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
 To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpctl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>
@@ -5414,6 +5814,22 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 <td>2556249</td>
 <td>On a Mellanox switch configured with the {{max acl-heavy}} or {{ip-acl-heavy}} profile, the {{cl-resource-query -j}} command takes a long time to run.</td>
 <td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556082</td>
+<td>The NCLU {{net del vrf}} command does not delete a numbered VRF. For example:
+
+cumulus@leaf01:~$ net del vrf 55
+ERROR: Command not found
+</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556081</td>
+<td>You cannot set the time zone can with NCLU commands.</td>
+<td>4.1.1-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -5493,6 +5909,12 @@ To work around this issue, configure {{ip pim use-source}} on each unnumbered in
 <td></td>
 </tr>
 <tr>
+<td>2554670</td>
+<td>When you have a large number of ACLs, the {{cl-acltool -L ip}} and {{cl-resource-query}} commands take a long time to complete.</td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2554582</td>
 <td>On switches with the Maverick ASIC, control traffic is dropped due to receive buffering.</td>
 <td>4.2.0-4.4.4</td>
@@ -5552,6 +5974,12 @@ iface vni-30
 <td></td>
 </tr>
 <tr>
+<td>2553989</td>
+<td>Default policer configured for LACP as an INPUT chain rule in 00control_plane.rules is meant to protect CPU from an LACP storm. When LACP storm is originating out of a single bond or bond member interface in a switch with multiple bond interfaces, there is a possibility of other LACP bond interface(s) going down.</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2553887</td>
 <td>When using TACACS+ configured with a DEFAULT user providing privilege level lower than 16, TACACS+ configured users with privilege level 16 access might not be able to run privilege level 16 NCLU commands, such as {{net add}} and {{net del}} and see an error similar to the following:
 
@@ -5559,6 +5987,26 @@ ERROR: You do not have permission to execute that command.
 
 To work around this issue, remove the DEFAULT user from the TACACS+ server.</td>
 <td>3.7.7-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2553677</td>
+<td>When you configure an SNMPv3 user with the {{net-snmp-config}} configuration command from the {{libsnmp-dev}} package, you get an error message similar to the one below:
+
+cumulus@switch:mgmt-vrf:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+adding the following line to /var/lib/snmp/snmpd.conf:           
+   createUser userSHAwithAES SHA "shaauthpass" AES "aesprivpass"       
+adding the following line to /snmp/snmpd.conf:                           
+   rwuser userSHAwithAES                                           
+touch: cannot touch ‘/snmp/snmpd.conf’: No such file or directory
+/usr/bin/net-snmp-create-v3-user: 144: /usr/bin/net-snmp-create-v3-user: cannot create /snmp/snmpd.conf: Directory nonexistent
+
+To work around this issue, use the NCLU command to configure SNMPv3 user parameters; for example:
+
+cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
+
+Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in the documentation.</td>
+<td>3.7.13-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -5632,6 +6080,22 @@ To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td></td>
 </tr>
 <tr>
+<td>2551666</td>
+<td>If you modify an interface name, then reuse the previous interface name for a different VLAN, the {{ifreload -a}} command generates an error similar to the following:
+
+warning: &lt;interface-name&gt;: interface not recognized - please check interface configuration
+
+</td>
+<td>4.1.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2551578</td>
+<td>When you configure a bridge in the {{/etc/network/interfaces}} file, then try to reconfigure the bridge to be a VRF interface with the same name, {{ifreload}}/{{ifup}} commands fail with an {{invalid table id}} or {{unable to get vrf table id}} error.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2551565</td>
 <td>If you toggle VRRP priority values between VRRP routers, then restart {{switchd}}, a few IPv6 VRRP instances might not converge. As a result, both the VRRP routers act as master routers for the impacted IPv6 VRRP instances. IPv4 VRRP instances are not affected.
 To work around this issue, remove, then add back the VRRP configuration with NCLU or vtysh commands.</td>
@@ -5659,6 +6123,19 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td></td>
 </tr>
 <tr>
+<td>2551221</td>
+<td>When span-to-cpu is enabled on L3 swp interface with an IP address configured, packets with destination IP as switchport's IP address don't reach switchport. To capture packets directed towards switcport's IP, disable span-to-cpu and use tcpdump on swichport instead.</td>
+<td>4.2.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2551111</td>
+<td>If a remote EVPN Sticky MAC [Static MAC address] is unexpectedly learned dynamically on a local interface, the selected entries in zebra and BGP are in an inconsistent state.
+zebra increments the local MAC mobility sequence number and considers the MAC address to be local, but BGP maintains the remote Sticky MAC as the best path selected. This results in zebra installing the local MAC address and BGP not updating the route for the MAC address.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2550974</td>
 <td>On the Dell S3000 switch, after installing the Cumulus Linux 4.1.1 disk image without a license, the switch sends a link beat if a remote host port is configured.</td>
 <td>3.7.11-3.7.16, 4.1.1-4.4.4</td>
@@ -5675,6 +6152,12 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td>Configuring the subinterface of a VXLAN uplink under another traditional bridge, which also has the VXLAN VNI enslaved, causes {{switchd}} to use high CPU due to very frequent VXLAN tunnel sync events.
 To work around this issue, do not enslave the subinterface of a VXLAN layer 3 uplink under a traditional bridge in a VXLAN configuration.</td>
 <td>4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2550642</td>
+<td>ACLs with SPAN target and in-interface as bond member are not supported on Spectrum-based switches </td>
+<td>4.2.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -5712,6 +6195,23 @@ Press any key to continue...
 <td></td>
 </tr>
 <tr>
+<td>2549925</td>
+<td>When you run an Ansible script to replace the {{/etc/network/interfaces}} file, then run the {{ifreload -a}} command, you see errors similar to the following:
+
+error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Network is down' (100)
+warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
+
+To work around this issue,  run the {{ifreload -a}} command a second time.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2549872</td>
+<td>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, {{net commit}} or {{ifreload -a}} returns an error.</td>
+<td>3.7.12-3.7.16, 4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2549782</td>
 <td>The JSON format output of the {{net show bgp l2vpn evpn summary}} command shows the incorrect neighbour state. </td>
 <td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
@@ -5741,12 +6241,33 @@ To work around this issue, manually edit the {{etc/frr/frr.conf}} file to define
 <td></td>
 </tr>
 <tr>
+<td>2548657</td>
+<td>When you upgrade Cumulus Linux on the EdgeCore AS7726-32X or AS7326-56X switch, you might see firmware errors similar to the following:
+
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso5.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
+
+You can safely ignore these error messages.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2548315</td>
 <td>The following security advisory has been announced for bash: 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use {{enable -f}} for runtime loading of a new builtin that calls {{setuid()}} to regain dropped privileges.
 To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2548310</td>
+<td>When the system boots, we might see " cumulus systemd-udevd[7566]: Process '/usr/bin/hw-management-thermal-events.sh add thermal_zone /sys /devices/virtual/thermal/thermal_zone25 thermal_zone25' failed with exit code 1" errors. 
+
+These errors are result of  user space acting on kernel events a bit slow. The mlxsw_minimal driver is added during kernel boot; An SDK reset causes the driver to be deleted and re-instantiated; User space handler for thermal zone add sees the add first; But the underlying device is deleted before it can act on it. This situation is rectified as the mlxsw_minimal driver is re-instantiated later; 
+</td>
+<td>4.1.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -5794,6 +6315,12 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>2547782</td>
+<td>If a LLDP neighbor advertises a {{PortDescr}} that contains commas, {{ptmctl -d}} splits the string on the commas and misplaces its components in other columns.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2547706</td>
 <td>When you configure ganged ports in the {{ports.conf}} file, the change does not take effect after you restart {{switchd}}. 
 To work around this issue, reboot the switch.</td>
@@ -5807,6 +6334,12 @@ To work around this issue, reboot the switch.</td>
 Warning: The unit file, source configuration file or drop-ins of hsflowd@mgmt.service changed on disk. Run 'systemctl daemon-reload'.
 </td>
 <td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2547120</td>
+<td>After you hot swap a PSU, the {{decode-syseeprom -t psuX}} command shows the old PSU information (such as the serial number), until you run the {{decode-syseeprom --init}} command.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -5835,6 +6368,31 @@ To increase the {{systemd}} timeout:
 <td>2546874</td>
 <td>On the Dell S5232F, S5248F, S5296F, and S3048 switch, using the {{poweroff}} or {{halt}} commands does not fully power off the switch.</td>
 <td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546255</td>
+<td>On the EdgeCore Minipack-AS8000 switch, a 100G DAC link does not come up when auto-negotiation is enabled on the neighbor. This switch does not support 100G DAC auto-negotiation at this time.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546225</td>
+<td>When you execute the following command on the Delta AG6248C switch, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in {{/var/lib/cumulus/installer}}, which causes issues with cl-support. 
+  
+ sudo onie-install -fai http://&lt;path to image&gt; 
+ sudo reboot 
+  
+ To work around this issue, use the {{onie-select}} command to access ONIE, and then use the {{nos-install}} command in ONIE to install a new binary image. </td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546131</td>
+<td>On the Delta AG-6248C PoE switch, when you run the {{apt upgrade}} command, the upgrade does not work. Cumulus Linux uses {{uboot}} directly instead of {{grub}} to boot the kernel. Uboot needs a special header to boot the kernel, which is not present. Without this header, when you use the {{apt upgrade}} command to upgrade Linux packages, {{uboot}} is unable to boot up the kernel. 
+To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the {{onie-select}} command to go into ONIE, and then use the {{nos-install}} command in ONIE to install a new image.
+This workaround only works when an out-of-band network is present.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -6002,11 +6560,18 @@ See /var/log/netd.log for more details.
 <td></td>
 </tr>
 <tr>
+<td>2543401</td>
+<td>On the Mellanox Spectrum-2 switch, the time required to establish a link (from the time a link is set to {{admin up}} until the link becomes operationally up) can take up to 15 seconds on 40G interfaces and up to 30 seconds on 100G interfaces. 
+To work around this issue, wait up to 15 seconds on 40G interfaces and 30 seconds on 100G interfaces for the link to establish.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2543211</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
-<td>3.7.0-4.4.4</td>
-<td>5.0.0-5.1.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -6271,6 +6836,12 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
   
  Eventually the {{dhcrelay}} service stops. 
  </td>
+<td>3.7.1-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2537544</td>
+<td>When you run the {{mstpctl}} command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of {{mstpctl}}; for example, SNMP output from the BRIDGE-MIB.</td>
 <td>3.7.1-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
@@ -6659,12 +7230,6 @@ Fixed: 2.2.12-1+deb10u2</td>
 <td></td>
 </tr>
 <tr>
-<td>3129296</td>
-<td>On a Broadcom switch, kernel interface statistics might update at an inconsistent frequency.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>3123965</td>
 <td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
 <td>4.4.0-4.4.4</td>
@@ -6817,8 +7382,8 @@ Fixed: 1.1.1n-0+deb10u2</td>
 <tr>
 <td>3070672</td>
 <td>TACACS Command Authorization results in a traceback error and command is not executed</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>3066704</td>
@@ -6837,8 +7402,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
+<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -7124,8 +7689,8 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-5.0.1</td>
-<td>5.1.0</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2902013</td>
@@ -7402,8 +7967,8 @@ Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-
 <tr>
 <td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
-<td>3.7.15, 4.3.0-4.4.4</td>
-<td>3.7.16</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -7952,6 +8517,24 @@ To work around this issue, disable pruning for IPv6 multicast by setting {{bridg
 <td></td>
 </tr>
 <tr>
+<td>2574368</td>
+<td>When you run the NCLU {{net add bgp maximum-paths ibgp}} command, FRR restarts unexpectedly.
+To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/frr/frr.conf}} file directly, then run {{systemctl reload frr}}.</td>
+<td>4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556772</td>
+<td>The {{net show clag verify-vlans}} command fails with the following log: 
+
+WARNING: '/usr/bin/clagctl verifyvlans' failed due to:
+Command '['/usr/bin/clagctl', 'verifyvlans']' returned non-zero exit status 1
+
+To work around this issue, run the {{/usr/bin/clagctl verifyvlans}} command or the {{net show clag verbose}} command.</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
 To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpctl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>
@@ -7982,6 +8565,22 @@ To work around this issue, disable OSPF debugs from global configuration mode.</
 <td>2556249</td>
 <td>On a Mellanox switch configured with the {{max acl-heavy}} or {{ip-acl-heavy}} profile, the {{cl-resource-query -j}} command takes a long time to run.</td>
 <td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556082</td>
+<td>The NCLU {{net del vrf}} command does not delete a numbered VRF. For example:
+
+cumulus@leaf01:~$ net del vrf 55
+ERROR: Command not found
+</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2556081</td>
+<td>You cannot set the time zone can with NCLU commands.</td>
+<td>4.1.1-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -8061,6 +8660,12 @@ To work around this issue, configure {{ip pim use-source}} on each unnumbered in
 <td></td>
 </tr>
 <tr>
+<td>2554670</td>
+<td>When you have a large number of ACLs, the {{cl-acltool -L ip}} and {{cl-resource-query}} commands take a long time to complete.</td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2554582</td>
 <td>On switches with the Maverick ASIC, control traffic is dropped due to receive buffering.</td>
 <td>4.2.0-4.4.4</td>
@@ -8120,6 +8725,12 @@ iface vni-30
 <td></td>
 </tr>
 <tr>
+<td>2553989</td>
+<td>Default policer configured for LACP as an INPUT chain rule in 00control_plane.rules is meant to protect CPU from an LACP storm. When LACP storm is originating out of a single bond or bond member interface in a switch with multiple bond interfaces, there is a possibility of other LACP bond interface(s) going down.</td>
+<td>4.2.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2553887</td>
 <td>When using TACACS+ configured with a DEFAULT user providing privilege level lower than 16, TACACS+ configured users with privilege level 16 access might not be able to run privilege level 16 NCLU commands, such as {{net add}} and {{net del}} and see an error similar to the following:
 
@@ -8127,6 +8738,26 @@ ERROR: You do not have permission to execute that command.
 
 To work around this issue, remove the DEFAULT user from the TACACS+ server.</td>
 <td>3.7.7-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2553677</td>
+<td>When you configure an SNMPv3 user with the {{net-snmp-config}} configuration command from the {{libsnmp-dev}} package, you get an error message similar to the one below:
+
+cumulus@switch:mgmt-vrf:~$ sudo net-snmp-config --create-snmpv3-user -a shaauthpass -x aesprivpass -A SHA -X AES userSHAwithAES
+adding the following line to /var/lib/snmp/snmpd.conf:           
+   createUser userSHAwithAES SHA "shaauthpass" AES "aesprivpass"       
+adding the following line to /snmp/snmpd.conf:                           
+   rwuser userSHAwithAES                                           
+touch: cannot touch ‘/snmp/snmpd.conf’: No such file or directory
+/usr/bin/net-snmp-create-v3-user: 144: /usr/bin/net-snmp-create-v3-user: cannot create /snmp/snmpd.conf: Directory nonexistent
+
+To work around this issue, use the NCLU command to configure SNMPv3 user parameters; for example:
+
+cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
+
+Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in the documentation.</td>
+<td>3.7.13-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -8200,6 +8831,22 @@ To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td></td>
 </tr>
 <tr>
+<td>2551666</td>
+<td>If you modify an interface name, then reuse the previous interface name for a different VLAN, the {{ifreload -a}} command generates an error similar to the following:
+
+warning: &lt;interface-name&gt;: interface not recognized - please check interface configuration
+
+</td>
+<td>4.1.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2551578</td>
+<td>When you configure a bridge in the {{/etc/network/interfaces}} file, then try to reconfigure the bridge to be a VRF interface with the same name, {{ifreload}}/{{ifup}} commands fail with an {{invalid table id}} or {{unable to get vrf table id}} error.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2551565</td>
 <td>If you toggle VRRP priority values between VRRP routers, then restart {{switchd}}, a few IPv6 VRRP instances might not converge. As a result, both the VRRP routers act as master routers for the impacted IPv6 VRRP instances. IPv4 VRRP instances are not affected.
 To work around this issue, remove, then add back the VRRP configuration with NCLU or vtysh commands.</td>
@@ -8227,6 +8874,19 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td></td>
 </tr>
 <tr>
+<td>2551221</td>
+<td>When span-to-cpu is enabled on L3 swp interface with an IP address configured, packets with destination IP as switchport's IP address don't reach switchport. To capture packets directed towards switcport's IP, disable span-to-cpu and use tcpdump on swichport instead.</td>
+<td>4.2.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2551111</td>
+<td>If a remote EVPN Sticky MAC [Static MAC address] is unexpectedly learned dynamically on a local interface, the selected entries in zebra and BGP are in an inconsistent state.
+zebra increments the local MAC mobility sequence number and considers the MAC address to be local, but BGP maintains the remote Sticky MAC as the best path selected. This results in zebra installing the local MAC address and BGP not updating the route for the MAC address.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2550974</td>
 <td>On the Dell S3000 switch, after installing the Cumulus Linux 4.1.1 disk image without a license, the switch sends a link beat if a remote host port is configured.</td>
 <td>3.7.11-3.7.16, 4.1.1-4.4.4</td>
@@ -8243,6 +8903,12 @@ To work around this issue, remove, then add back the VRRP configuration with NCL
 <td>Configuring the subinterface of a VXLAN uplink under another traditional bridge, which also has the VXLAN VNI enslaved, causes {{switchd}} to use high CPU due to very frequent VXLAN tunnel sync events.
 To work around this issue, do not enslave the subinterface of a VXLAN layer 3 uplink under a traditional bridge in a VXLAN configuration.</td>
 <td>4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2550642</td>
+<td>ACLs with SPAN target and in-interface as bond member are not supported on Spectrum-based switches </td>
+<td>4.2.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -8280,6 +8946,23 @@ Press any key to continue...
 <td></td>
 </tr>
 <tr>
+<td>2549925</td>
+<td>When you run an Ansible script to replace the {{/etc/network/interfaces}} file, then run the {{ifreload -a}} command, you see errors similar to the following:
+
+error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Network is down' (100)
+warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
+
+To work around this issue,  run the {{ifreload -a}} command a second time.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2549872</td>
+<td>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, {{net commit}} or {{ifreload -a}} returns an error.</td>
+<td>3.7.12-3.7.16, 4.1.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2549782</td>
 <td>The JSON format output of the {{net show bgp l2vpn evpn summary}} command shows the incorrect neighbour state. </td>
 <td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
@@ -8309,12 +8992,33 @@ To work around this issue, manually edit the {{etc/frr/frr.conf}} file to define
 <td></td>
 </tr>
 <tr>
+<td>2548657</td>
+<td>When you upgrade Cumulus Linux on the EdgeCore AS7726-32X or AS7326-56X switch, you might see firmware errors similar to the following:
+
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso5.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3_tso.bin for module tg3
+W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
+
+You can safely ignore these error messages.</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2548315</td>
 <td>The following security advisory has been announced for bash: 
 CVE-2019-18276 Qualys scan QID 372268 setuid vulnerability
 When bash or bash scripts are run setuid, bash is supposed to drop privileges, but does so incorrectly, so that an attacker with command access to the shell can use {{enable -f}} for runtime loading of a new builtin that calls {{setuid()}} to regain dropped privileges.
 To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 <td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2548310</td>
+<td>When the system boots, we might see " cumulus systemd-udevd[7566]: Process '/usr/bin/hw-management-thermal-events.sh add thermal_zone /sys /devices/virtual/thermal/thermal_zone25 thermal_zone25' failed with exit code 1" errors. 
+
+These errors are result of  user space acting on kernel events a bit slow. The mlxsw_minimal driver is added during kernel boot; An SDK reset causes the driver to be deleted and re-instantiated; User space handler for thermal zone add sees the add first; But the underlying device is deleted before it can act on it. This situation is rectified as the mlxsw_minimal driver is re-instantiated later; 
+</td>
+<td>4.1.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -8362,6 +9066,12 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <td></td>
 </tr>
 <tr>
+<td>2547782</td>
+<td>If a LLDP neighbor advertises a {{PortDescr}} that contains commas, {{ptmctl -d}} splits the string on the commas and misplaces its components in other columns.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2547706</td>
 <td>When you configure ganged ports in the {{ports.conf}} file, the change does not take effect after you restart {{switchd}}. 
 To work around this issue, reboot the switch.</td>
@@ -8375,6 +9085,12 @@ To work around this issue, reboot the switch.</td>
 Warning: The unit file, source configuration file or drop-ins of hsflowd@mgmt.service changed on disk. Run 'systemctl daemon-reload'.
 </td>
 <td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2547120</td>
+<td>After you hot swap a PSU, the {{decode-syseeprom -t psuX}} command shows the old PSU information (such as the serial number), until you run the {{decode-syseeprom --init}} command.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -8403,6 +9119,31 @@ To increase the {{systemd}} timeout:
 <td>2546874</td>
 <td>On the Dell S5232F, S5248F, S5296F, and S3048 switch, using the {{poweroff}} or {{halt}} commands does not fully power off the switch.</td>
 <td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546255</td>
+<td>On the EdgeCore Minipack-AS8000 switch, a 100G DAC link does not come up when auto-negotiation is enabled on the neighbor. This switch does not support 100G DAC auto-negotiation at this time.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546225</td>
+<td>When you execute the following command on the Delta AG6248C switch, the switch reboots and then comes right back into Cumulus Linux without installing the new image. The install image is still in {{/var/lib/cumulus/installer}}, which causes issues with cl-support. 
+  
+ sudo onie-install -fai http://&lt;path to image&gt; 
+ sudo reboot 
+  
+ To work around this issue, use the {{onie-select}} command to access ONIE, and then use the {{nos-install}} command in ONIE to install a new binary image. </td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2546131</td>
+<td>On the Delta AG-6248C PoE switch, when you run the {{apt upgrade}} command, the upgrade does not work. Cumulus Linux uses {{uboot}} directly instead of {{grub}} to boot the kernel. Uboot needs a special header to boot the kernel, which is not present. Without this header, when you use the {{apt upgrade}} command to upgrade Linux packages, {{uboot}} is unable to boot up the kernel. 
+To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the {{onie-select}} command to go into ONIE, and then use the {{nos-install}} command in ONIE to install a new image.
+This workaround only works when an out-of-band network is present.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -8570,11 +9311,18 @@ See /var/log/netd.log for more details.
 <td></td>
 </tr>
 <tr>
+<td>2543401</td>
+<td>On the Mellanox Spectrum-2 switch, the time required to establish a link (from the time a link is set to {{admin up}} until the link becomes operationally up) can take up to 15 seconds on 40G interfaces and up to 30 seconds on 100G interfaces. 
+To work around this issue, wait up to 15 seconds on 40G interfaces and 30 seconds on 100G interfaces for the link to establish.</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2543211</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
-<td>3.7.0-4.4.4</td>
-<td>5.0.0-5.1.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -8839,6 +9587,12 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
   
  Eventually the {{dhcrelay}} service stops. 
  </td>
+<td>3.7.1-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2537544</td>
+<td>When you run the {{mstpctl}} command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of {{mstpctl}}; for example, SNMP output from the BRIDGE-MIB.</td>
 <td>3.7.1-3.7.16, 4.0.0-4.4.4</td>
 <td></td>
 </tr>

@@ -128,7 +128,7 @@ You can switch between paths by clicking on an alternate path in the **Flow Grap
 Some flows can still be analyzed if they traverse a network path that includes switches lacking flow analysis support. Partial-path flow analysis is supported in the following conditions:
 
 - The unsupported device cannot be the initial ingress or terminating egress device in the path of the analyzed flow.
-- If there is more than one consecutive transit device in the path that lacks flow analysis support, the analysis will terminate at that point in the topology and flow data will only be available from devices preceding the unsupported switches in the topology. 
+- If there is more than one consecutive transit device in the path that lacks flow analysis support, the path discovery will terminate at that point in the topology and some devices will not be displayed in the flow graph.
 
 An unsupported device is represented in the flow analysis graph as a black bar lined with red x's  {{<img src="/images/netq/partial-path-unsupported-icon-42.png" height="18" width="18">}}. Flow statistics are not displayed for that device.
 
@@ -142,7 +142,7 @@ Selecting the unsupported device shows device statistics in the left panel if av
 
 {{<figure src="/images/netq/partial-path-device-stats-unsupported-42.png" alt="a panel showing an unsupported device. The device is not supported because the CL version is not supported for flow analysis" width="400">}}
 
-Some unsupported devices lie outside the network path and might not appear as part of the flow analysis graph. NetQ can extrapolate telemetry data from these devices. To view the data, select a device from the menu at the top of the page:
+Path discovery will terminate if multiple consecutive switches do not support flow analysis.  When additional data is available from switches outside of discovered paths, you can view data from those devices from the menu at the top of the page:
 
 {{<figure src="/images/netq/undiscovered-paths-devices-dropdown.png" alt="menu displaying three unsupported devices" width="400">}}
 

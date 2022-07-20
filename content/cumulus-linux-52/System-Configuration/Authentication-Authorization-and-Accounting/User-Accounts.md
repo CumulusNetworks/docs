@@ -27,7 +27,17 @@ cumulus@switch:~$ sudo adduser NEWUSERNAME sudo
 
 To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 
+## NVUE Command Access
 
+You can control local user account access to NVUE commands by changing a user's Linux group membership. Use the following groups to set the desired permissions for local user accounts. To add users to these groups, use the `useradd(8)` or `usermod(8)` commands:
+
+
+
+| Group | Permissions |
+|--------- |---------- |
+| nvshow | Allows `show` commands only |
+| nvset  | Allows `show` commands and staging configuration changes |
+| nvapply | Allows `show` commands, staging and applying configuration changes | 
 ## Enable Remote Access for the root User
 
 The root user does not have a password and cannot log into a switch using SSH. This default account behavior is consistent with Debian. To connect to a switch using the root account, you can do one of the

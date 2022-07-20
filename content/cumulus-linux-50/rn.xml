@@ -189,8 +189,12 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3054869</td>
-<td>When you run NVUE commands as part of ZTP scripts, the commands fail with many  errors.
-To work around this issue, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicates a missing $HOME environment variable.
+
+The issue has been fixed where the ZTP module will initialize the $HOME environment variable before launching the ZTP scripts. This fix should be available with CL 5.2.0.
+
+However, if customers are running older releases, follow these workaround steps below:
+Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
 
 # Manually set HOME var for root user
 HOME=/root
@@ -202,8 +206,8 @@ export HOME
 <tr>
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
+<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -441,12 +445,6 @@ Unrecoverable internal error
 <td></td>
 </tr>
 <tr>
-<td>2971159</td>
-<td>On rare occasions, the link up time on optical media can be more than five seconds. </td>
-<td>4.4.3-5.0.1</td>
-<td>5.1.0</td>
-</tr>
-<tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.1.0</td>
@@ -544,14 +542,6 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.1.0</td>
 <td>4.4.3-4.4.4</td>
-</tr>
-<tr>
-<td>2904450</td>
-<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
-
-</td>
-<td>4.4.0-5.0.1</td>
-<td>5.1.0</td>
 </tr>
 <tr>
 <td>2903374</td>
@@ -671,8 +661,8 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>2847919</td>
 <td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only.
 To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
-<td>5.0.0-5.0.1</td>
-<td>5.1.0</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2847755</td>
@@ -881,8 +871,12 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3054869</td>
-<td>When you run NVUE commands as part of ZTP scripts, the commands fail with many  errors.
-To work around this issue, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicates a missing $HOME environment variable.
+
+The issue has been fixed where the ZTP module will initialize the $HOME environment variable before launching the ZTP scripts. This fix should be available with CL 5.2.0.
+
+However, if customers are running older releases, follow these workaround steps below:
+Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
 
 # Manually set HOME var for root user
 HOME=/root
@@ -894,8 +888,8 @@ export HOME
 <tr>
 <td>3053197</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
+<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3046023</td>
@@ -1072,12 +1066,6 @@ Fixed: 2.2.6-2+deb10u3</td>
 <td></td>
 </tr>
 <tr>
-<td>2971159</td>
-<td>On rare occasions, the link up time on optical media can be more than five seconds. </td>
-<td>4.4.3-5.0.1</td>
-<td>5.1.0</td>
-</tr>
-<tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.1.0</td>
@@ -1176,14 +1164,6 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no longer works, run the {{apt install sx-sdk-eth-dev}} command (and run the command for any other removed package) or reinstall the Cumulus Linux image.</td>
 <td>5.0.0</td>
 <td>5.0.1-5.1.0</td>
-</tr>
-<tr>
-<td>2904450</td>
-<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
-
-</td>
-<td>4.4.0-5.0.1</td>
-<td>5.1.0</td>
 </tr>
 <tr>
 <td>2903374</td>
@@ -1303,8 +1283,8 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>2847919</td>
 <td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only.
 To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
-<td>5.0.0-5.0.1</td>
-<td>5.1.0</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2847755</td>

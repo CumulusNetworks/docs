@@ -1,5 +1,5 @@
 ---
-title: Monitor Networkwide Inventory
+title: Networkwide Inventory
 author: NVIDIA
 weight: 730
 toc: 4
@@ -17,7 +17,7 @@ The commands and cards available to obtain this type of information help you to 
 - What software is installed on my switches?
 <!-- vale on -->
 
-To monitor the inventory of a given switch or DPU, refer to {{<link title="Monitor Switch Inventory">}} or {{<link title="Monitor DPU Inventory">}}.
+To monitor the inventory of a given switch or DPU, refer to {{<link title="Switch Inventory">}} or {{<link title="DPU Inventory">}}.
 
 ## Access Networkwide Inventory Data
 
@@ -2266,7 +2266,7 @@ This example shows the status of the BGP daemon.
 ### View Events Related to a Given Service
 
 To view changes over a given time period, use the `netq show events`
-command. For more detailed information about events, refer to {{<link title="Manage Events and Notifications">}}.
+command. For more detailed information about events, refer to {{<link title="Events and Notifications">}}.
 
 In this example, we want to view changes to the bgpd service in the last
 48 hours.

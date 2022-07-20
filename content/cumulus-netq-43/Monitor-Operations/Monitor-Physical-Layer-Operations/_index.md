@@ -1,5 +1,5 @@
 ---
-title: Monitor Physical Layer Operations
+title: Physical Layer Operations
 author: NVIDIA
 weight: 850
 toc: 3

@@ -540,12 +540,6 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>4.4.0-4.4.4</td>
 </tr>
 <tr>
-<td>2653400</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-4.3.0</td>
-<td>4.4.0-4.4.4</td>
-</tr>
-<tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
 <td>3.7.15-4.3.0</td>
@@ -662,8 +656,8 @@ Fixed: 4.1.0+git191117-2~deb10u2</td>
 <td>2574368</td>
 <td>When you run the NCLU {{net add bgp maximum-paths ibgp}} command, FRR restarts unexpectedly.
 To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/frr/frr.conf}} file directly, then run {{systemctl reload frr}}.</td>
-<td>4.1.1-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>4.1.1-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2566879</td>
@@ -796,8 +790,8 @@ Fixed: 1.0.4-0-cl4.3.0u2</td>
 <tr>
 <td>2556081</td>
 <td>You cannot set the time zone can with NCLU commands.</td>
-<td>4.1.1-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>4.1.1-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2556037</td>
@@ -1054,8 +1048,8 @@ To work around this issue, use the NCLU command to configure SNMPv3 user paramet
 cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
 
 Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in the documentation.</td>
-<td>3.7.13-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>3.7.13-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2553586</td>
@@ -1171,12 +1165,6 @@ Fixed: 9.27~dfsg-2+deb10u4</td>
 To work around this issue, restart {{switchd}}.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0-4.4.4</td>
-</tr>
-<tr>
-<td>2552739</td>
-<td>Counters for IPROUTER rules do not increase when traffic is forwarded to the CPU because there is no IP neighbor.</td>
-<td>3.7.2-4.3.0</td>
-<td>4.4.0-4.4.4</td>
 </tr>
 <tr>
 <td>2552704</td>
@@ -1386,8 +1374,8 @@ Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</td>
 warning: &lt;interface-name&gt;: interface not recognized - please check interface configuration
 
 </td>
-<td>4.1.0-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>4.1.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2551665</td>
@@ -1415,8 +1403,8 @@ Fixed: 2.5.5-3+deb10u2</td>
 <tr>
 <td>2551578</td>
 <td>When you configure a bridge in the {{/etc/network/interfaces}} file, then try to reconfigure the bridge to be a VRF interface with the same name, {{ifreload}}/{{ifup}} commands fail with an {{invalid table id}} or {{unable to get vrf table id}} error.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2551422</td>
@@ -1497,8 +1485,8 @@ bridge fdb add 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master [ static | dynamic ]
 <td>2551111</td>
 <td>If a remote EVPN Sticky MAC [Static MAC address] is unexpectedly learned dynamically on a local interface, the selected entries in zebra and BGP are in an inconsistent state.
 zebra increments the local MAC mobility sequence number and considers the MAC address to be local, but BGP maintains the remote Sticky MAC as the best path selected. This results in zebra installing the local MAC address and BGP not updating the route for the MAC address.</td>
-<td>4.0.0-4.2.1</td>
-<td>4.3.0-4.4.4</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2550974</td>
@@ -1710,8 +1698,8 @@ error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Ne
 warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
 
 To work around this issue,  run the {{ifreload -a}} command a second time.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2549894</td>
@@ -1728,8 +1716,8 @@ To work around this issue,  run the {{ifreload -a}} command a second time.</td>
 <tr>
 <td>2549872</td>
 <td>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, {{net commit}} or {{ifreload -a}} returns an error.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>3.7.12-3.7.16, 4.1.1-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2549859</td>
@@ -2030,8 +2018,8 @@ W: Possible missing firmware /lib/firmware/tigon/tg3_tso.bin for module tg3
 W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
 
 You can safely ignore these error messages.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0-4.4.4</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2548595</td>
@@ -2150,8 +2138,8 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 
 These errors are result of  user space acting on kernel events a bit slow. The mlxsw_minimal driver is added during kernel boot; An SDK reset causes the driver to be deleted and re-instantiated; User space handler for thermal zone add sees the add first; But the underlying device is deleted before it can act on it. This situation is rectified as the mlxsw_minimal driver is re-instantiated later; 
 </td>
-<td>4.1.0-4.1.1</td>
-<td>4.2.0-4.4.4</td>
+<td>4.1.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2548308</td>
@@ -2270,8 +2258,8 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <tr>
 <td>2547782</td>
 <td>If a LLDP neighbor advertises a {{PortDescr}} that contains commas, {{ptmctl -d}} splits the string on the commas and misplaces its components in other columns.</td>
-<td>3.7.11-4.1.1</td>
-<td>4.2.0-4.4.4</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2547706</td>
@@ -2325,6 +2313,12 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</td>
 <td>3.7.11-4.1.1</td>
 <td>4.2.0-4.4.4</td>
+</tr>
+<tr>
+<td>2547120</td>
+<td>After you hot swap a PSU, the {{decode-syseeprom -t psuX}} command shows the old PSU information (such as the serial number), until you run the {{decode-syseeprom --init}} command.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2547100</td>
@@ -2420,8 +2414,8 @@ To work around this issue, run the {{bridge fdb show}} command to show the inter
 <tr>
 <td>2546255</td>
 <td>On the EdgeCore Minipack-AS8000 switch, a 100G DAC link does not come up when auto-negotiation is enabled on the neighbor. This switch does not support 100G DAC auto-negotiation at this time.</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.4.4</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2546225</td>
@@ -2431,16 +2425,16 @@ To work around this issue, run the {{bridge fdb show}} command to show the inter
  sudo reboot 
   
  To work around this issue, use the {{onie-select}} command to access ONIE, and then use the {{nos-install}} command in ONIE to install a new binary image. </td>
-<td>3.7.11-4.1.1</td>
-<td>4.2.0-4.4.4</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2546131</td>
 <td>On the Delta AG-6248C PoE switch, when you run the {{apt upgrade}} command, the upgrade does not work. Cumulus Linux uses {{uboot}} directly instead of {{grub}} to boot the kernel. Uboot needs a special header to boot the kernel, which is not present. Without this header, when you use the {{apt upgrade}} command to upgrade Linux packages, {{uboot}} is unable to boot up the kernel. 
 To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the {{onie-select}} command to go into ONIE, and then use the {{nos-install}} command in ONIE to install a new image.
 This workaround only works when an out-of-band network is present.</td>
-<td>3.7.11-4.1.1</td>
-<td>4.2.0-4.4.4</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2545933</td>
@@ -2717,8 +2711,8 @@ See /var/log/netd.log for more details.
 <td>2543401</td>
 <td>On the Mellanox Spectrum-2 switch, the time required to establish a link (from the time a link is set to {{admin up}} until the link becomes operationally up) can take up to 15 seconds on 40G interfaces and up to 30 seconds on 100G interfaces. 
 To work around this issue, wait up to 15 seconds on 40G interfaces and 30 seconds on 100G interfaces for the link to establish.</td>
-<td>4.0.0-4.2.1</td>
-<td>4.3.0-4.4.4</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2543270</td>
@@ -2731,8 +2725,8 @@ To work around this issue, rely on a different source of default route other tha
 <td>2543211</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
-<td>3.7.0-4.4.4</td>
-<td>5.0.0-5.1.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -3016,8 +3010,8 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <tr>
 <td>2537544</td>
 <td>When you run the {{mstpctl}} command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of {{mstpctl}}; for example, SNMP output from the BRIDGE-MIB.</td>
-<td>3.7.1-4.2.1</td>
-<td>4.3.0-4.4.4</td>
+<td>3.7.1-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2536576</td>
@@ -3735,12 +3729,6 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>4.4.0-4.4.4</td>
 </tr>
 <tr>
-<td>2653400</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-4.3.0</td>
-<td>4.4.0-4.4.4</td>
-</tr>
-<tr>
 <td>2648658</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
 <td>3.7.15-4.3.0</td>
@@ -4230,8 +4218,8 @@ To work around this issue, use the NCLU command to configure SNMPv3 user paramet
 cumulus@switch:mgmt-vrf:~$ net add snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
 
 Alternatively, directly edit the {{/etc/snmp/snmpd.conf}} file as described in the documentation.</td>
-<td>3.7.13-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>3.7.13-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2553586</td>
@@ -4332,12 +4320,6 @@ Fixed: 9.27~dfsg-2+deb10u4</td>
 To work around this issue, restart {{switchd}}.</td>
 <td>3.7.12-4.2.1</td>
 <td>4.3.0-4.4.4</td>
-</tr>
-<tr>
-<td>2552739</td>
-<td>Counters for IPROUTER rules do not increase when traffic is forwarded to the CPU because there is no IP neighbor.</td>
-<td>3.7.2-4.3.0</td>
-<td>4.4.0-4.4.4</td>
 </tr>
 <tr>
 <td>2552704</td>
@@ -4534,8 +4516,8 @@ Fixed: 4.11.4+24-gddaaccbbab-1~deb10u1</td>
 warning: &lt;interface-name&gt;: interface not recognized - please check interface configuration
 
 </td>
-<td>4.1.0-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>4.1.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2551665</td>
@@ -4563,8 +4545,8 @@ Fixed: 2.5.5-3+deb10u2</td>
 <tr>
 <td>2551578</td>
 <td>When you configure a bridge in the {{/etc/network/interfaces}} file, then try to reconfigure the bridge to be a VRF interface with the same name, {{ifreload}}/{{ifup}} commands fail with an {{invalid table id}} or {{unable to get vrf table id}} error.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2551335</td>
@@ -4615,8 +4597,8 @@ bridge fdb add 50:6b:4b:ee:ee:ee dev swp31 vlan 24 master [ static | dynamic ]
 <td>2551111</td>
 <td>If a remote EVPN Sticky MAC [Static MAC address] is unexpectedly learned dynamically on a local interface, the selected entries in zebra and BGP are in an inconsistent state.
 zebra increments the local MAC mobility sequence number and considers the MAC address to be local, but BGP maintains the remote Sticky MAC as the best path selected. This results in zebra installing the local MAC address and BGP not updating the route for the MAC address.</td>
-<td>4.0.0-4.2.1</td>
-<td>4.3.0-4.4.4</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2550942</td>
@@ -4758,8 +4740,8 @@ error: swp1s1.2: netlink: cannot set link swp1s1.2 up: operation failed with 'Ne
 warning: cmd '/bin/ip addr del 10.0.0.1/24 dev eth0' failed: returned 2 (RTNETLINK answers: Cannot assign requested address
 
 To work around this issue,  run the {{ifreload -a}} command a second time.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.4</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2549894</td>
@@ -4772,12 +4754,6 @@ To work around this issue,  run the {{ifreload -a}} command a second time.</td>
 <td>When NAT is configured, non-NAT traffic is incorrectly forwarded to the CPU.</td>
 <td>4.1.0-4.1.1</td>
 <td>4.2.0-4.4.4</td>
-</tr>
-<tr>
-<td>2549872</td>
-<td>If you have an SVI with multiple VRR IP addresses and try to delete one of the VRR configurations, {{net commit}} or {{ifreload -a}} returns an error.</td>
-<td>3.7.12-4.3.0</td>
-<td>4.4.0-4.4.4</td>
 </tr>
 <tr>
 <td>2549859</td>
@@ -5079,8 +5055,8 @@ W: Possible missing firmware /lib/firmware/tigon/tg3_tso.bin for module tg3
 W: Possible missing firmware /lib/firmware/tigon/tg3.bin for module tg3
 
 You can safely ignore these error messages.</td>
-<td>3.7.12-4.2.1</td>
-<td>4.3.0-4.4.4</td>
+<td>3.7.12-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2548655</td>
@@ -5219,8 +5195,8 @@ To work around this issue, do not make bash or bash scripts {{setuid}}.</td>
 
 These errors are result of  user space acting on kernel events a bit slow. The mlxsw_minimal driver is added during kernel boot; An SDK reset causes the driver to be deleted and re-instantiated; User space handler for thermal zone add sees the add first; But the underlying device is deleted before it can act on it. This situation is rectified as the mlxsw_minimal driver is re-instantiated later; 
 </td>
-<td>4.1.0-4.1.1</td>
-<td>4.2.0-4.4.4</td>
+<td>4.1.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2548308</td>
@@ -5339,8 +5315,8 @@ Fixed: 2.9.4+dfsg1-7+deb10u1</td>
 <tr>
 <td>2547782</td>
 <td>If a LLDP neighbor advertises a {{PortDescr}} that contains commas, {{ptmctl -d}} splits the string on the commas and misplaces its components in other columns.</td>
-<td>3.7.11-4.1.1</td>
-<td>4.2.0-4.4.4</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2547706</td>
@@ -5394,6 +5370,12 @@ RTM_NEWNEIGH with unconfigured vlan XXXX on port peerlink
 <td>On the Broadcom switch with the Trident3 ASC, packet priority remark values assigned from each internal CoS value continue to work with default values; if you change the internal CoS value, the change does not take effect.</td>
 <td>3.7.11-4.1.1</td>
 <td>4.2.0-4.4.4</td>
+</tr>
+<tr>
+<td>2547120</td>
+<td>After you hot swap a PSU, the {{decode-syseeprom -t psuX}} command shows the old PSU information (such as the serial number), until you run the {{decode-syseeprom --init}} command.</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2547100</td>
@@ -5489,8 +5471,8 @@ To work around this issue, run the {{bridge fdb show}} command to show the inter
 <tr>
 <td>2546255</td>
 <td>On the EdgeCore Minipack-AS8000 switch, a 100G DAC link does not come up when auto-negotiation is enabled on the neighbor. This switch does not support 100G DAC auto-negotiation at this time.</td>
-<td>4.0.0-4.1.1</td>
-<td>4.2.0-4.4.4</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2546225</td>
@@ -5500,16 +5482,16 @@ To work around this issue, run the {{bridge fdb show}} command to show the inter
  sudo reboot 
   
  To work around this issue, use the {{onie-select}} command to access ONIE, and then use the {{nos-install}} command in ONIE to install a new binary image. </td>
-<td>3.7.11-4.1.1</td>
-<td>4.2.0-4.4.4</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2546131</td>
 <td>On the Delta AG-6248C PoE switch, when you run the {{apt upgrade}} command, the upgrade does not work. Cumulus Linux uses {{uboot}} directly instead of {{grub}} to boot the kernel. Uboot needs a special header to boot the kernel, which is not present. Without this header, when you use the {{apt upgrade}} command to upgrade Linux packages, {{uboot}} is unable to boot up the kernel. 
 To work around this issue, upgrade Cumulus Linux by installing the Cumulus Linux image. Run the {{onie-select}} command to go into ONIE, and then use the {{nos-install}} command in ONIE to install a new image.
 This workaround only works when an out-of-band network is present.</td>
-<td>3.7.11-4.1.1</td>
-<td>4.2.0-4.4.4</td>
+<td>3.7.11-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2545933</td>
@@ -5786,8 +5768,8 @@ See /var/log/netd.log for more details.
 <td>2543401</td>
 <td>On the Mellanox Spectrum-2 switch, the time required to establish a link (from the time a link is set to {{admin up}} until the link becomes operationally up) can take up to 15 seconds on 40G interfaces and up to 30 seconds on 100G interfaces. 
 To work around this issue, wait up to 15 seconds on 40G interfaces and 30 seconds on 100G interfaces for the link to establish.</td>
-<td>4.0.0-4.2.1</td>
-<td>4.3.0-4.4.4</td>
+<td>4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2543270</td>
@@ -5800,8 +5782,8 @@ To work around this issue, rely on a different source of default route other tha
 <td>2543211</td>
 <td>In some cases, the {{switchd}} service might warn of excessive MAC moves from one switch port to itself (for example, from swp18 to swp18).
 </td>
-<td>3.7.0-4.4.4</td>
-<td>5.0.0-5.1.0</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2543164</td>
@@ -6085,8 +6067,8 @@ Note: The advertised link mode gets set incorrectly if you include 1000baseT/Hal
 <tr>
 <td>2537544</td>
 <td>When you run the {{mstpctl}} command, you might see the bridge-port state as blocking when it is actually disabled. You might see the same incorrect bridge-port state when other programs or tools use the output of {{mstpctl}}; for example, SNMP output from the BRIDGE-MIB.</td>
-<td>3.7.1-4.2.1</td>
-<td>4.3.0-4.4.4</td>
+<td>3.7.1-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2536576</td>

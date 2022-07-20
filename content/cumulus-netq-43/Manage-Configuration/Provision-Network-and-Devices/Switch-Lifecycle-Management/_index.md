@@ -19,7 +19,6 @@ Using the NetQ UI or CLI, lifecycle management enables you to:
 - Configure switch access credentials (required for installations and upgrades)
 - Manage Cumulus Linux switch inventory and roles
 - Create snapshots of the network state at various times
-- Create Cumulus Linux switch configurations, with or without network templates
 - Create NetQ configuration profiles
 - Upgrade NetQ (Agents and CLI) on Cumulus Linux switches running NetQ Agents
 - Install or upgrade NetQ (Agents and CLI) on Cumulus Linux switches
@@ -53,5 +52,4 @@ This table summarizes the UI cards and CLI commands available for the LCM featur
 | --- | --- | --- | --- |
 | Switch Management | Discover switches, view switch inventory, assign roles, set user access credentials, perform software installation and upgrade networkwide | <ul><li>Switches</li><li>Access</li></ul> | <ul><li>netq lcm show switches</li><li>netq lcm add role</li><li>netq lcm upgrade</li><li>netq lcm add/del/show credentials</li><li>netq lcm discover</li></ul> |
 | Image Management | View, add, and remove images for software installation and upgrade | <ul><li>Cumulus Linux Images</li><li>NetQ Images</li></ul> | <ul><li>netq lcm add/del/show netq-image</li><li>netq lcm add/del/show cl-images</li><li>netq lcm add/show default-version</li></ul> |
-| Configuration Management | Set up templates for software installation and upgrade, configure and assign switch settings networkwide | <ul><li>NetQ Configurations</li><li>Network Templates</li><li>Switch Configurations</li></ul> | <ul><li>netq lcm show netq-config</li></ul> |
 | Job History | View the results of installation, upgrade, and configuration assignment jobs | <ul><li>CL Upgrade History</li><li>NetQ Install and Upgrade History</li><li>Config Assignment History</li></ul> | <ul><li>netq lcm show status</li><li>netq lcm show upgrade-jobs</li></ul> |

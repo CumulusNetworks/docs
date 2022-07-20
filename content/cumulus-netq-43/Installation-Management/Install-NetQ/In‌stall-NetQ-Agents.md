@@ -5,7 +5,7 @@ weight: 280
 toc: 4
 ---
 
-After installing the NetQ software, you should install the NetQ {{<version>}} Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
+After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
 - Cumulus Linux 3.7.12 and later
 - SONiC 202012 and later
@@ -589,6 +589,13 @@ After you install the NetQ Agents on the switches you want to monitor, you must 
 
 {{%notice note%}}
 The NetQ Agent is aware of and communicates through the designated VRF. If you do not specify one, it uses the default VRF (named *default*). If you later change the VRF configured for the NetQ Agent (using a lifecycle management configuration profile, for example), you might cause the NetQ Agent to lose communication.
+
+If you configure the NetQ Agent to communicate in a VRF that is not *default* or *mgmt*, the following line must be added to `/etc/netq/netq.yml` in the `netq-agent` section:
+
+```
+netq-agent:
+  netq_stream_address: 0.0.0.0
+```
 {{%/notice%}}
 
 Two methods are available for configuring a NetQ Agent:
@@ -675,7 +682,7 @@ sudo netq config restart agent
 ## Configure the On-switch OPTA
 
 {{<notice note>}}
-On-switch OPTA functionality is an Early Access feature, and it does not support Flow Analysis or LCM. 
+On-switch OPTA functionality is an early access feature, and it does not support Flow Analysis or LCM. 
 {{</notice>}}
 
 On-switch OPTA is intended for use in small NetQ Cloud deployments where a dedicated OPTA might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
@@ -687,7 +694,7 @@ sudo apt-get update
 sudo apt-get install netq-opta
 ```
 
-Once the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the premise management configuration. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
+After the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the premise management configuration. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
 
 ```
 netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 

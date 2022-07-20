@@ -1,14 +1,11 @@
 ---
-title: Monitor Host Inventory
+title: Host Inventory
 author: NVIDIA
 weight: 757
 toc: 4
 ---
 
 With the NetQ UI, you can monitor your inventory of hosts across the network or individually. A user can monitor a host's operating system, ASIC, CPU model, disk, and memory information to help manage upgrades, compliance, and other planning tasks.
-
-
-To monitor networkwide inventory, refer to {{<link title="Monitor Networkwide Inventory">}}.
 
 ## Access Host Inventory Data
 

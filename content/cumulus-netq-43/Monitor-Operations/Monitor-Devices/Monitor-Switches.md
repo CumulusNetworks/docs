@@ -14,7 +14,7 @@ Three categories of performance metrics are available for switches:
 
 For information about the health of network services and protocols (BGP, EVPN, NTP, and so forth) running on switches, refer to the relevant layer monitoring topic.
 
-For switch inventory information for all switches (ASIC, platform, CPU, memory, disk, and OS), refer to {{<link title="Monitor Switch Inventory">}}.
+For switch inventory information for all switches (ASIC, platform, CPU, memory, disk, and OS), refer to {{<link title="Switch Inventory">}}.
 
 ## View Overall Health
 

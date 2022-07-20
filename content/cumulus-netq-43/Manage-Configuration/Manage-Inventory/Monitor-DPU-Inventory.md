@@ -1,5 +1,5 @@
 ---
-title: Monitor DPU Inventory
+title: DPU Inventory
 author: NVIDIA
 weight: 755
 toc: 4
@@ -7,14 +7,14 @@ toc: 4
 
 {{<notice note>}}
 
-DPU monitoring is an Early Access feature. 
+DPU monitoring is an early access feature. 
 
 {{</notice>}}
 
 With the NetQ UI, you can monitor your inventory of DPUs across the network or individually. A user can monitor a network’s operating system, ASIC, CPU model, disk, and memory information to help manage upgrades, compliance, and other planning tasks.
 
 
-To monitor networkwide inventory, refer to {{<link title="Monitor Networkwide Inventory">}}.
+To monitor networkwide inventory, refer to {{<link title="Networkwide Inventory">}}.
 
 ## Access DPU Inventory Data
 

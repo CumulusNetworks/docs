@@ -4,15 +4,9 @@ author: NVIDIA
 weight: 1000
 toc: 2
 ---
-When you discover operational anomalies, you can validate that the devices, hosts, network protocols and services are operating as expected. You can also compare the current operation with past operation. With NetQ, you can view the overall health of your network at a glance and then delve deeper for periodic checks or as conditions arise that require attention. When issues are present, NetQ makes it easy to identify and resolve them. You can also see when changes have occurred to the network, devices, and interfaces by viewing their operation, configuration, and status at an earlier point in time.
+When you discover operational anomalies, you can check whether the devices, hosts, network protocols, and services are operating as expected. NetQ lets you see when changes have occurred to the network, devices, and interfaces by viewing their operation, configuration, and status at an earlier point in time.
 
-NetQ enables you to validate the:
-
-- Overall health of the network
-- Operation of the network protocols and services running in your network (either on demand or on a scheduled basis)
-- Configuration of physical layer protocols and services
-
-Validation support is available in the NetQ UI and the NetQ CLI as shown here.
+Validation support is available in the NetQ UI and the NetQ CLI for the following:
 
 | Item | NetQ UI | NetQ CLI |
 | --- | :---: | :---: |
@@ -39,7 +33,7 @@ The NetQ UI uses the following cards to create validations and view results for 
 - Validation Request
 - On-demand and Scheduled Validation Results
 
-For a general understanding of how well your network is operating, the Network Health card workflow is the best place to start as it contains the highest-level view and performance roll-ups. Refer to the {{<link title="NetQ UI Card Reference" text="NetQ UI Card Reference">}} for details about the components on these cards.
+For a general understanding of how well your network is operating, the Network Health card workflow is the best place to start as it contains the highest-level view and performance roll-ups.
 
 ## Validation with the NetQ CLI
 
@@ -62,9 +56,9 @@ You can run validations for a time in the past and output the results in JSON fo
 If you want to go back in time by months or years, use the equivalent number of days.
 {{%/notice%}}
 
-### Improve Output Readability
+### Colorize Outputs
 
-You can the readability of the validation outputs using color. Green output indicates successful results and red output indicates results with failures, warnings, and errors. Use the `netq config add color` command to enable the use of color.
+You can add color to validation outputs to help with readability. Green output indicates successful results and red output indicates results with failures, warnings, and errors. To colorize outputs, use the `netq config add color` command.
 
 ### View Default Validation Tests
 
@@ -121,7 +115,7 @@ bgp:
 
 ### Create Filters for Provisioning Exceptions
 
-You can configure filters to change validation errors to warnings that would normally occur due to the default expectations of the `netq check` commands. This applies to all protocols and services, except for Agents. For example, if you provision BGP with configurations where a BGP peer is not expected or desired, then errors that a BGP peer is missing occur. By creating a filter, you can remove the error in favor of a warning.
+You can configure filters to change validation errors to warnings that would normally occur due to the default expectations of the `netq check` commands. This applies to all protocols and services, except for agents. For example, if you provision BGP with configurations where a BGP peer is not expected or desired, then errors that a BGP peer is missing occur. By creating a filter, you can remove the error in favor of a warning.
 
 To create a validation filter:
 
@@ -214,9 +208,3 @@ If you update your scripts to work with the new version of the commands, just ch
 {{%notice tip%}}
 Use `netq check mlag` in place of `netq check clag` from NetQ 2.4 onward. `netq check clag` remains available for automation scripts, but you should begin migrating to `netq check mlag` to maintain compatibility with future NetQ releases.
 {{%/notice%}}
-
-## Related Information
-
-- {{<link title="Manage Configurations">}}
-- {{<link title="Monitor Operations">}}
-- {{<link title="NetQ UI Card Reference">}}

@@ -14,6 +14,9 @@ Use snippets if you configure Cumulus Linux with NVUE commands, then want to con
 <!-- vale off -->
 ### /etc/frr/frr.conf Snippets
 <!-- vale on -->
+
+#### Example 1: Applying top level configuration
+
 NVUE does not support configuring BGP to peer across the default route. The following example configures BGP to peer across the default route from the default VRF:
 
 1. Create a `.yaml` file with the following snippet:
@@ -49,6 +52,52 @@ NVUE does not support configuring BGP to peer across the default route. The foll
    !---- CUE snippets ----
    ip nht resolve-via-default
    ```
+
+#### Example 2: Applying nested configuration
+
+NVUE does not support configuring EVPN route targets using auto derived values from RFC 8365. The following example configures BGP to enable RFC 8365 derived router targets:
+
+1. Create a `.yaml` file with the following snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano ./bgp_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             frr.conf: |
+               router bgp 65517 vrf default
+                 address-family l2vpn evpn
+                   autort rfc8365-compatible
+   ```
+
+NOTE: Make sure to use spaces and not tabs, as the parser expects spaces in yaml format.
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch ./bgp_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/frr/frr.conf` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+   ...
+   ! end of router bgp 65517 vrf default
+   !---- CUE snippets ----
+   router bgp 65517 vrf default
+   address-family l2vpn evpn
+   autort rfc8365-compatible
+   ```
+
+The snippets for FRR writes content to the `/etc/frr/frr.conf` file. When the configuration and snippet is applied via `nv config apply`, the FRR service goes through and reads in the `/etc/frr/frr.conf` file.
 
 ### /etc/network/interfaces Snippets
 
@@ -188,7 +237,7 @@ The following example creates a snippet called `tacacs-config` in a file called 
 1. Create the `tacacs.yaml` snippet:
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano ./tacacs.yaml 
+   cumulus@leaf01:mgmt:~$ sudo nano ./tacacs.yaml
    - set:
        system:
         config:
@@ -224,7 +273,7 @@ The following example creates a snippet called `snmp-config` in a file called `.
 1. Create the `snmp.yaml` snippet:
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano ./snmp.yaml 
+   cumulus@leaf01:mgmt:~$ sudo nano ./snmp.yaml
    - set:
        system:
          config:

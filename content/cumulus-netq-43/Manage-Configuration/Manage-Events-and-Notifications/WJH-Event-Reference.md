@@ -50,9 +50,9 @@ Displays the reason for a link to be down.
 | VLAN tagging mismatch | Error | VLAN tags on the source and destination do not match |
 | Ingress VLAN filtering | Error | Frames whose port is not a member of the VLAN are discarded |
 | Ingress spanning tree filter | Notice | Port is in Spanning Tree blocking state |
-| Unicast MAC table action discard | Notice | Currently not supported |
+| Unicast MAC table action discard | Notice | Packet dropped due to a MAC table configuration rule |
 | Multicast egress port list is empty | Warning | No ports are defined for multicast egress |
-| Port loopback filter | Error | Port is operating in loopback mode; packets are being sent to itself (source MAC address is the same as the destination MAC address |
+| Port loopback filter | Error | Port is operating in loopback mode; packets are being sent to itself (source MAC address is the same as the destination MAC address) |
 | Source MAC is multicast | Error | Packets have multicast source MAC address |
 | Source MAC equals destination MAC | Error | Source MAC address is the same as the destination MAC address |
 
@@ -90,7 +90,7 @@ Displays the reason why the server is unable to route a packet.
 | Destination IP is loopback address | Error | Cannot read packet as destination IP address is a loopback address (dip=>127.0.0.0/8) |
 | Source IP is multicast | Error | Cannot read packet as source IP address is a multicast address (ipv4 SIP => 224.0.0.0/4) |
 | Source IP is in class E | Error | Cannot read packet as source IP address is a Class E address |
-| Source IP is loopback address | Error | Cannot read packet as source IP address is a loopback address ( ipv4 => 127.0.0.0/8 for ipv6 => ::1/128) |
+| Source IP is loopback address | Error | Cannot read packet as source IP address is a loopback address (ipv4 => 127.0.0.0/8 for ipv6 => ::1/128) |
 | Source IP is unspecified | Error | Cannot read packet as source IP address is unspecified (ipv4 = 0.0.0.0/32; for ipv6 = ::0) |
 | Checksum or IP ver or IPv4 IHL too short | Error | Cannot read packet due to header checksum error, IP version mismatch, or IPv4 header length is too short |
 | Multicast MAC mismatch |  Error | For IPv4, destination MAC address is not equal to {0x01-00-5E-0 (25 bits), DIP\[22:0\]} and DIP is multicast. For IPv6, destination MAC address is not equal to {0x3333, DIP\[31:0\]} and DIP is multicast |

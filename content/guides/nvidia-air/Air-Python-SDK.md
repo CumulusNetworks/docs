@@ -31,20 +31,11 @@ python3.7 -m virtualenv venv37
 
 ## Installation
 
-To install the SDK, use pip. Choose the command that fits your context.
-
-If using the modernized python3 method:
+To install the SDK, use pip:
 
 ```
-python3.7 -m pip install git+https://gitlab.com/cumulus-consulting/air/cumulus_air_sdk.git
+python3 -m pip install air-sdk
 ```
-
-If using the pip3 method:
-
-```
-pip3 install git+https://gitlab.com/cumulus-consulting/air/cumulus_air_sdk.git
-```
-
 
 ## Usage
 
@@ -102,7 +93,7 @@ Contributions to the SDK are very welcome. All code must pass linting and unit t
 ### Requirements
 
 ```
-pip3 install -r requirements-dev.txt
+python3 -m pip install -r requirements-dev.txt
 ```
 
 ### Linting

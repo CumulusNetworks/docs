@@ -15,7 +15,7 @@ Use snippets if you configure Cumulus Linux with NVUE commands, then want to con
 ### /etc/frr/frr.conf Snippets
 <!-- vale on -->
 
-#### Example 1: Applying top level configuration
+#### Example 1: Top Level Configuration
 
 NVUE does not support configuring BGP to peer across the default route. The following example configures BGP to peer across the default route from the default VRF:
 
@@ -53,7 +53,7 @@ NVUE does not support configuring BGP to peer across the default route. The foll
    ip nht resolve-via-default
    ```
 
-#### Example 2: Applying nested configuration
+#### Example 2: Nested Configuration
 
 NVUE does not support configuring EVPN route targets using auto derived values from RFC 8365. The following example configures BGP to enable RFC 8365 derived router targets:
 
@@ -71,7 +71,7 @@ NVUE does not support configuring EVPN route targets using auto derived values f
                    autort rfc8365-compatible
    ```
 
-NOTE: Make sure to use spaces and not tabs, as the parser expects spaces in yaml format.
+Make sure to use spaces not tabs; the parser expects spaces in yaml format.
 
 2. Run the following command to patch the configuration:
 

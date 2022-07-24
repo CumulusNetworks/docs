@@ -23,12 +23,12 @@ PTP in Cumulus Linux uses the `linuxptp` package that includes the following pro
 
 Cumulus Linux supports:
 - PTP boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
-- Both IPv4 and IPv6 UDP PTP encapsulation. Cumulus Linux does not support 802.3 encapsulation.
+- Both IPv4 and IPv6 UDP PTP encapsulation.
 - Only a single PTP domain per network.
 - PTP on layer 3 interfaces, trunk ports, bonds, and switch ports belonging to a VLAN.
 - Multicast, unicast, and mixed message mode.
-- End-to-End delay mechanism (not Peer-to-Peer).
-- One-step and two-step clock mode. One-step mode is available for early access.
+- End-to-End and Peer-to-Peer delay mechanism.
+- One-step mode.
 - Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 {{%notice note%}}
@@ -46,7 +46,7 @@ Basic PTP configuration requires you:
 
 The basic configuration shown below uses the *default* PTP settings:
 - The clock mode is Boundary. This is the only clock mode that Cumulus Linux supports.
-- {{<link url="#ptp-profiles" text="The PTP profile">}} is default-1588; the profile in the IEEE 1588 standard.
+<!-- - {{<link url="#ptp-profiles" text="The PTP profile">}} is default-1588; the profile in the IEEE 1588 standard.-->
 - {{<link url="#clock-domains" text="The PTP clock domain">}} is 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are both 128.
 - {{<link url="#dscp" text="The DSCP" >}} is 46 for both general and event messages.
@@ -54,7 +54,7 @@ The basic configuration shown below uses the *default* PTP settings:
 - {{<link url="#Forced-master-mode" text="Announce messages from any master are accepted">}}.
 - {{<link url="#Message-mode" text="The PTP Interface Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E).
-- The hardware packet time stamping mode is two-step. Cumulus Linux does not support one-step mode.
+- The hardware packet time stamping mode is two-step.
 
 To configure optional settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
 
@@ -170,9 +170,25 @@ verbose                 0
 summary_interval        0
 
 #
+# servo parameters
+#
+pi_proportional_const          0.000000
+pi_integral_const              0.000000
+pi_proportional_scale          0.700000
+pi_proportional_exponent       -0.300000
+pi_proportional_norm_max       0.700000
+pi_integral_scale              0.300000
+pi_integral_exponent           0.400000
+pi_integral_norm_max           0.300000
+step_threshold                 0.000002
+first_step_threshold           0.000020
+max_frequency                  900000000
+sanity_freq_limit              0
+
+#
 # Default interface options
 #
-time_stamping           hardware
+time_stamping                  software
 
 
 # Interfaces in which ptp should be enabled
@@ -181,20 +197,12 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv4
 
 [swp2]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
@@ -208,15 +216,10 @@ For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_
 l2_mode                 trunk
 vlan_intf               vlan10
 src_ip                  10.1.10.2
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv4
-For a switch VLAN, add
 ```
 
 For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
@@ -226,10 +229,6 @@ For a switch port VLAN, add the VLAN configuration to the switch port stanza: se
 l2_mode                 access
 vlan_intf               vlan10
 src_ip                  10.1.10.2
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
@@ -838,20 +837,12 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv6
 
 [swp2]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
@@ -898,10 +889,6 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              1
 delay_mechanism         E2E
@@ -962,10 +949,6 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 Hybrid_e2e              1
 ...
 ```
@@ -1164,10 +1147,6 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
@@ -1238,8 +1217,6 @@ time_stamping           hardware
 [swp1]
 logAnnounceInterval     -1
 logSyncInterval         -5
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
@@ -1290,10 +1267,6 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
@@ -1386,10 +1359,6 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E

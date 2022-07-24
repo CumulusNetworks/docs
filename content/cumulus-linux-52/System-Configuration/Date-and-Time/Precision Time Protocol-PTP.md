@@ -23,12 +23,12 @@ PTP in Cumulus Linux uses the `linuxptp` package that includes the following pro
 
 Cumulus Linux supports:
 - PTP boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
-- Both IPv4 and IPv6 UDP PTP encapsulation. Cumulus Linux does not support 802.3 encapsulation.
+- Both IPv4 and IPv6 UDP PTP encapsulation.
 - Only a single PTP domain per network.
 - PTP on layer 3 interfaces, trunk ports, bonds, and switch ports belonging to a VLAN.
 - Multicast, unicast, and mixed message mode.
-- End-to-End delay mechanism (not Peer-to-Peer).
-- One-step and two-step clock mode. One-step mode is available for early access.
+- End-to-End and Peer-to-Peer delay mechanism.
+- One-step mode.
 - Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
 {{%notice note%}}
@@ -46,7 +46,7 @@ Basic PTP configuration requires you:
 
 The basic configuration shown below uses the *default* PTP settings:
 - The clock mode is Boundary. This is the only clock mode that Cumulus Linux supports.
-- {{<link url="#ptp-profiles" text="The PTP profile">}} is default-1588; the profile in the IEEE 1588 standard.
+<!-- - {{<link url="#ptp-profiles" text="The PTP profile">}} is default-1588; the profile in the IEEE 1588 standard.-->
 - {{<link url="#clock-domains" text="The PTP clock domain">}} is 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are both 128.
 - {{<link url="#dscp" text="The DSCP" >}} is 46 for both general and event messages.
@@ -54,7 +54,7 @@ The basic configuration shown below uses the *default* PTP settings:
 - {{<link url="#Forced-master-mode" text="Announce messages from any master are accepted">}}.
 - {{<link url="#Message-mode" text="The PTP Interface Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E).
-- The hardware packet time stamping mode is two-step. Cumulus Linux does not support one-step mode.
+- The hardware packet time stamping mode is two-step.
 
 To configure optional settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
 
@@ -170,9 +170,25 @@ verbose                 0
 summary_interval        0
 
 #
+# servo parameters
+#
+pi_proportional_const          0.000000
+pi_integral_const              0.000000
+pi_proportional_scale          0.700000
+pi_proportional_exponent       -0.300000
+pi_proportional_norm_max       0.700000
+pi_integral_scale              0.300000
+pi_integral_exponent           0.400000
+pi_integral_norm_max           0.300000
+step_threshold                 0.000002
+first_step_threshold           0.000020
+max_frequency                  900000000
+sanity_freq_limit              0
+
+#
 # Default interface options
 #
-time_stamping           hardware
+time_stamping                  software
 
 
 # Interfaces in which ptp should be enabled
@@ -181,20 +197,12 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv4
 
 [swp2]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
@@ -208,15 +216,10 @@ For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_
 l2_mode                 trunk
 vlan_intf               vlan10
 src_ip                  10.1.10.2
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv4
-For a switch VLAN, add
 ```
 
 For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
@@ -226,10 +229,6 @@ For a switch port VLAN, add the VLAN configuration to the switch port stanza: se
 l2_mode                 access
 vlan_intf               vlan10
 src_ip                  10.1.10.2
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
@@ -267,16 +266,18 @@ The following table shows the default parameter values for the predefined profil
 | Priority1 | 128 | 128 |
 | Priority2 |  128 | 128 |
 | Local priority | NA | 128  |
-| Transport | UDPv4, UDPv6 |802.3 |
-| Transmission | Multicast, Unicast | Multicast |
+| Transport | UDPv4 (UDPv6 supported) |802.3 |
+| Transmission | Multicast (unicast supported) | Multicast |
 | [BMCA](## "Best Master Clock Alogrythm") | IEEE 1588 | G.8275.x |
 
-You can configure the switch to use a predefined profile or you can create a custom profile. You can also change the profile settings, such as the announce rate, sync rate, domain, priority, transport, and so on, for indivdual PTP interfaces.
+The switch has a predefined default profile of each profile type, one for IEEE1588 and one for ITU8275.1.
+You can configure the switch to use a predefined profile or you can create a custom profile. You can change the profile settings of the predfined profiles, such as the announce rate, sync rate, domain, priority, transport, and so on. These changes conform to the ranges and allowed values of the profile type. You can also configure these parameters for individual PTP interfaces. When you configure parameters for an individual interface, the configuration takes precedence over the profile configuration. The interface is not part of the profile.
 
 {{%notice note%}}
 - PTP profiles do not support VLANs and bonds. You must configure profile settings individually for each bond or VLAN.
 - If you set a predefined or custom profile, do not change any global PTP settings, such as the DiffServ code point (DSCP) or the clock domain.
 - If you configure transport mode on individual PTP interfaces, you must reconfigure transport mode for those interfaces whenever you change the current profile.
+- For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp burst <value>` and `nv set system control-plane policer lldp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
 {{%/notice%}}
 
 To set a predefined profile:
@@ -487,7 +488,7 @@ To create a custom profile:
 - Update any of the profile settings you want to change (`announce-interval`, `delay-req-interval`, `priority1`, `sync-interval`, `announce-timeout`, `domain`, `priority2`, `transport`, `delay-mechanism`, `local-priority`).
 - Set the custom profile to be the current profile.
 
-The following example commands create a custom profile called CUSTOM1, which is based on the predifined profile ITU 8275-1. The commands set the `domain` to 3 and the `announce-timeout` to 5, then set `CUSTOM1` to be the current profile:
+The following example commands create a custom profile called CUSTOM1 based on the predifined profile ITU 8275-1. The commands set the `domain` to 3 and the `announce-timeout` to 5, then set `CUSTOM1` to be the current profile:
 
 ```
 cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 
@@ -836,20 +837,12 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv6
 
 [swp2]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
@@ -896,10 +889,6 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              1
 delay_mechanism         E2E
@@ -960,10 +949,6 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 Hybrid_e2e              1
 ...
 ```
@@ -982,12 +967,13 @@ To change the message mode back to the default setting of multicast, remove the 
 You can configure a PTP interface on the switch to be a unicast client or a unicast server.
 
 To configure a PTP interface to be the unicast *client*:
-- Configure the unicast master:
-  - Set the unicast table ID and the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
+- Configure the unicast master table. You must configure at least one unicast master table on the switch. If you configure more than one unicast master table, each table must have a unique ID.
+  - Set the unicast table ID; a unique ID that identifies the unicast master table.
+  - Set the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
   - Set the IP address for peer delay requests. You can set an IPv4 or IPv6 address.
   - Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between `-3` and `4`. The default value is `-0` (2 power).
 - On the PTP interface:
-  - Set the table index of the unicast master table you want to use.
+  - Set the table ID of the unicast master table you want to use.
   - Set the unicast service mode to `client`.
   - Optional: Set the unicast request duration; the service time in seconds requested during discovery. The default value is 300 seconds.
 
@@ -995,7 +981,7 @@ To configure a PTP interface to be the unicast *client*:
 A PTP interface as a unicast client or server only supports a single communictation mode and does not work with multicast servers or clients. Make sure that both sides of a PTP link are in unicast mode.
 {{%/notice%}}
 
-The following example commands set the unicast table ID to 1, the unicast master address and the peer address to 10.10.10.1, the query interval to 4, the unicast service mode to `client`, and the unicast request duration to 20.
+The following example commands configure a unicast master table with ID 1. The commands set the unicast master address and the peer address to 10.10.10.1, the query interval to 4, the unicast service mode to `client`, and the unicast request duration to 20 in the unicast master table.
 
 {{< tabs "TabID668 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1107,6 +1093,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
+{{%notice note%}}
+When you configure a unicast client or server on a PTP interface, make sure to set the global parameter `Priority1` or `Priority2` so that BMCA can choose that end to be the slave or master. See {{<link url="#ptp-priority" text="PTP Priority">}}.
+{{%/notice%}}
+
 #### Show Unicast Master Information
 
 To show the unicast master table configuration on the switch, run the `nv show service ptp <instance-id> unicast-master <table-id>` command:
@@ -1157,10 +1147,6 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
@@ -1231,8 +1217,6 @@ time_stamping           hardware
 [swp1]
 logAnnounceInterval     -1
 logSyncInterval         -5
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
@@ -1283,10 +1267,6 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
@@ -1379,10 +1359,6 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E

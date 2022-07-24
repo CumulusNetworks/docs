@@ -267,16 +267,18 @@ The following table shows the default parameter values for the predefined profil
 | Priority1 | 128 | 128 |
 | Priority2 |  128 | 128 |
 | Local priority | NA | 128  |
-| Transport | UDPv4, UDPv6 |802.3 |
-| Transmission | Multicast, Unicast | Multicast |
+| Transport | UDPv4 (UDPv6 supported) |802.3 |
+| Transmission | Multicast (unicast supported) | Multicast |
 | [BMCA](## "Best Master Clock Alogrythm") | IEEE 1588 | G.8275.x |
 
-You can configure the switch to use a predefined profile or you can create a custom profile. You can also change the profile settings, such as the announce rate, sync rate, domain, priority, transport, and so on, for indivdual PTP interfaces.
+The switch has a predefined default profile of each profile type, one for IEEE1588 and one for ITU8275.1.
+You can configure the switch to use a predefined profile or you can create a custom profile. You can change the profile settings of the predfined profiles, such as the announce rate, sync rate, domain, priority, transport, and so on. These changes conform to the ranges and allowed values of the profile type. You can also configure these parameters for individual PTP interfaces. When you configure parameters for an individual interface, the configuration takes precedence over the profile configuration. The interface is not part of the profile.
 
 {{%notice note%}}
 - PTP profiles do not support VLANs and bonds. You must configure profile settings individually for each bond or VLAN.
 - If you set a predefined or custom profile, do not change any global PTP settings, such as the DiffServ code point (DSCP) or the clock domain.
 - If you configure transport mode on individual PTP interfaces, you must reconfigure transport mode for those interfaces whenever you change the current profile.
+- For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp burst <value>` and `nv set system control-plane policer lldp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
 {{%/notice%}}
 
 To set a predefined profile:
@@ -487,7 +489,7 @@ To create a custom profile:
 - Update any of the profile settings you want to change (`announce-interval`, `delay-req-interval`, `priority1`, `sync-interval`, `announce-timeout`, `domain`, `priority2`, `transport`, `delay-mechanism`, `local-priority`).
 - Set the custom profile to be the current profile.
 
-The following example commands create a custom profile called CUSTOM1, which is based on the predifined profile ITU 8275-1. The commands set the `domain` to 3 and the `announce-timeout` to 5, then set `CUSTOM1` to be the current profile:
+The following example commands create a custom profile called CUSTOM1 based on the predifined profile ITU 8275-1. The commands set the `domain` to 3 and the `announce-timeout` to 5, then set `CUSTOM1` to be the current profile:
 
 ```
 cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 
@@ -982,12 +984,13 @@ To change the message mode back to the default setting of multicast, remove the 
 You can configure a PTP interface on the switch to be a unicast client or a unicast server.
 
 To configure a PTP interface to be the unicast *client*:
-- Configure the unicast master:
-  - Set the unicast table ID and the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
+- Configure the unicast master table. You must configure at least one unicast master table on the switch. If you configure more than one unicast master table, each table must have a unique ID.
+  - Set the unicast table ID; a unique ID that identifies the unicast master table.
+  - Set the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
   - Set the IP address for peer delay requests. You can set an IPv4 or IPv6 address.
   - Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between `-3` and `4`. The default value is `-0` (2 power).
 - On the PTP interface:
-  - Set the table index of the unicast master table you want to use.
+  - Set the table ID of the unicast master table you want to use.
   - Set the unicast service mode to `client`.
   - Optional: Set the unicast request duration; the service time in seconds requested during discovery. The default value is 300 seconds.
 
@@ -995,7 +998,7 @@ To configure a PTP interface to be the unicast *client*:
 A PTP interface as a unicast client or server only supports a single communictation mode and does not work with multicast servers or clients. Make sure that both sides of a PTP link are in unicast mode.
 {{%/notice%}}
 
-The following example commands set the unicast table ID to 1, the unicast master address and the peer address to 10.10.10.1, the query interval to 4, the unicast service mode to `client`, and the unicast request duration to 20.
+The following example commands configure a unicast master table with ID 1. The commands set the unicast master address and the peer address to 10.10.10.1, the query interval to 4, the unicast service mode to `client`, and the unicast request duration to 20 in the unicast master table.
 
 {{< tabs "TabID668 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1106,6 +1109,10 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+When you configure a unicast client or server on a PTP interface, make sure to set the global parameter `Priority1` or `Priority2` so that BMCA can choose that end to be the slave or master. See {{<link url="#ptp-priority" text="PTP Priority">}}.
+{{%/notice%}}
 
 #### Show Unicast Master Information
 

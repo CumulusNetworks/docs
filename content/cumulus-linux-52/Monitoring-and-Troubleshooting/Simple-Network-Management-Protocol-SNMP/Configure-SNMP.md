@@ -214,8 +214,6 @@ cumulus@switch:~$ nv set service snmp-server username user3 auth-md5 user3passwo
 cumulus@switch:~$ nv set service snmp-server username user666 auth-sha user666password encrypt-aes user666encryption
 cumulus@switch:~$ nv set service snmp-server username user999 auth-md5 user999password encrypt-des user999encryption
 cumulus@switch:~$ nv set service snmp-server username user1 auth-none oid 1.3.6.1.2.1
-cumulus@switch:~$ nv set service snmp-server username user1 auth-none oid system
-cumulus@switch:~$ nv set service snmp-server username user2 auth-md5 test1234 view testview oid 1.3.6.1.2.1
 cumulus@switch:~$ nv set service snmp-server username user3 auth-sha testshax encrypt-aes testaesx oid 1.3.6.1.2.1
 cumulus@switch:~$ nv config apply
 ```

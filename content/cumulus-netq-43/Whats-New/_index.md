@@ -22,6 +22,9 @@ This release includes several performance and infrastructure improvements that m
 - Partial-path visualizations that display data from switches outside of discovered paths.
 - Revised parameter defaults when creating a flow analysis, including VRF selection for environments with multiple VRFs.
 
+Domain updates:
+- NetQ Cloud can now be accessed at https://netq.nvidia.com. The previous domain---https://netq.cumulusnetworks.com---is still supported. 
+
 An updated {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/knowledge-base/Support/Licensing/NetQ-Cookie-Policy/" text="cookie policy">}}.
 
 ## Upgrade Paths

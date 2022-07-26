@@ -283,7 +283,7 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-## Load Balancing
+<!--## Load Balancing
 
 The switch distributes egress traffic through a bond to a slave based on a packet hash calculation, providing load balancing over the slaves; the switch distributes conversation flows over all available slaves to load balance the total traffic. Traffic for a single conversation flow always hashes to the same slave. In a failover event, the switch adjusts the hash calculation to steer traffic over available slaves.
 
@@ -390,23 +390,30 @@ To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` paramet
 {{%notice note%}}
 NVUE does not provide commands to enable TEID-based load balancing.
 {{%/notice%}}
+-->
+## Custom Hashing
 
-<!--### Custom Hashing
+The switch distributes egress traffic through a bond to a slave based on a packet hash calculation, providing load balancing over the slaves; the switch distributes conversation flows over all available slaves to load balance the total traffic. Traffic for a single conversation flow always hashes to the same slave. In a failover event, the switch adjusts the hash calculation to steer traffic over available slaves.
+
+The hash calculation uses packet header data to choose to which slave to transmit the packet:
+
+- For IP traffic, the switch uses IP header source and destination fields in the calculation.
+- For IP and TCP or UDP traffic, the switch includes source and destination ports in the hash calculation.
 
 For load balancing between multiple interfaces that are members of the same bond, you can hash on these fields:
 
 | <div style="width:200px">Field  | Default Setting | NVUE Command | `traffic.conf`|
 | ------- | --------------- | ------------ | --------------------------------------------- |
-| IP protocol | on |`nv set system forwarding lag-hash ip-protocol`<br><br>`nv unset system forwarding lag-hash ip-protocol`|`lag_hash_config.ip_prot`|
-| Source MAC address| on |`nv set system forwarding lag-hash source-mac`<br><br>`nv unset system forwarding lag-hash source-mac`|`lag_hash_config.smac`|
-| Destination MAC address| on | `nv set system forwarding lag-hash destination-mac`<br><br>`nv unset system forwarding lag-hash destination-mac`|`lag_hash_config.dmac`|
-| Source IP address | on | `nv set system forwarding lag-hash source-ip`<br><br>`nv unset system forwarding lag-hash source-ip`|`lag_hash_config.sip` |
-| Destination IP address| on | `nv set system forwarding lag-hash destination-ip`<br><br>`nv unset system forwarding lag-hash destination-ip`| `lag_hash_config.dip` |
-| Source port | on | `nv set system forwarding lag-hash source-port`<br><br>`nv unset system forwarding lag-hash source-port`|`lag_hash_config.sport` |
-| Destination port | on | `nv set system forwarding lag-hash destination-port`<br><br>`nv unset system forwarding lag-hash destination-port`| `lag_hash_config.dport` |
-| Ethertype| on | `nv set system forwarding lag-hash ether-type`<br><br>`nv unset system forwarding lag-hash ether-type`|`lag_hash_config.ether_type` |
-| VLAN ID| on | `nv set system forwarding lag-hash vlan`<br><br>`nv unset system forwarding lag-hash vlan`|`lag_hash_config.vlan_id` |
-| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}})| off | `nv set system forwarding lag-hash gtp-teid`<br><br>`nv unset system forwarding lag-hash gtp-teid`| `lag_hash_config.gtp_teid`|
+| IP protocol | on |`nv set system forwarding lag-hash ip-protocol on`<br><br>`nv set system forwarding lag-hash ip-protocol off`|`lag_hash_config.ip_prot`|
+| Source MAC address| on |`nv set system forwarding lag-hash source-mac on`<br><br>`nv set system forwarding lag-hash source-mac off`|`lag_hash_config.smac`|
+| Destination MAC address| on | `nv set system forwarding lag-hash destination-mac on`<br><br>`nv set system forwarding lag-hash destination-mac off`|`lag_hash_config.dmac`|
+| Source IP address | on | `nv set system forwarding lag-hash source-ip on`<br><br>`nv set system forwarding lag-hash source-ip off`|`lag_hash_config.sip` |
+| Destination IP address| on | `nv set system forwarding lag-hash destination-ip on`<br><br>`nv set system forwarding lag-hash destination-ip off`| `lag_hash_config.dip` |
+| Source port | on | `nv set system forwarding lag-hash source-port on`<br><br>`nv set system forwarding lag-hash source-port off`|`lag_hash_config.sport` |
+| Destination port | on | `nv set system forwarding lag-hash destination-port on`<br><br>`nv set system forwarding lag-hash destination-port off`| `lag_hash_config.dport` |
+| Ethertype| on | `nv set system forwarding lag-hash ether-type on`<br><br>`nv set system forwarding lag-hash ether-type off`|`lag_hash_config.ether_type` |
+| VLAN ID| on | `nv set system forwarding lag-hash vlan on`<br><br>`nv set system forwarding lag-hash vlan off`|`lag_hash_config.vlan_id` |
+| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}})| off | `nv set system forwarding lag-hash gtp-teid on`<br><br>`nv set system forwarding lag-hash gtp-teid off`| `lag_hash_config.gtp_teid`|
 
 The following example commands omit the source MAC address and destination MAC address from the hash calculation:
 
@@ -414,13 +421,17 @@ The following example commands omit the source MAC address and destination MAC a
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv unset system forwarding lag-hash source-mac
-cumulus@switch:~$ nv unset system forwarding lag-hash destination-mac
+cumulus@switch:~$ nv set system forwarding lag-hash source-mac off
+cumulus@switch:~$ nv set system forwarding lag-hash destination-mac off
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+{{%notice note%}}
+Use the instructions below when NVUE is not enabled. If you are using NVUE to configure your switch, the NVUE commands change the settings in `/etc/cumulus/datapath/nvue_traffic.conf` which takes precedence over the settings in `/etc/cumulus/datapath/traffic.conf`.
+{{%/notice%}}
 
 1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
    - Uncomment the `lag_hash_config.enable` option.
@@ -465,7 +476,7 @@ Cumulus Linux enables symmetric hashing by default. Make sure that the settings 
 
 You can also set a unique hash seed for each switch to avoid hash polarization. See {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP#unique-hash-seed" text="Unique Hash Seed">}}.
 
-### GTP Hashing
+## GTP Hashing
 
 [GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 
@@ -482,14 +493,18 @@ To enable TEID-based load balancing:
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system forwarding lag-hash gtp-teid
+cumulus@switch:~$ nv set system forwarding lag-hash gtp-teid on
 cumulus@switch:~$ nv config apply
 ```
 
-To disable TEID-based load balancing, run the `nv unset system forwarding lag-hash gtp-teid` command.
+To disable TEID-based load balancing, run the `nv set system forwarding lag-hash gtp-teid off` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+{{%notice note%}}
+Use the instructions below when NVUE is not enabled. If you are using NVUE to configure your switch, the NVUE commands change the settings in `/etc/cumulus/datapath/nvue_traffic.conf` which takes precedence over the settings in `/etc/cumulus/datapath/traffic.conf`.
+{{%/notice%}}
 
 1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
    - Uncomment the `hash_config.enable = true` line.
@@ -514,7 +529,7 @@ To disable TEID-based load balancing, run the `nv unset system forwarding lag-ha
 To disable TEID-based load balancing, set the `lag_hash_config.gtp_teid` parameter to `false`, then reload the configuration.
 
 {{< /tab >}}
-{{< /tabs >}}-->
+{{< /tabs >}}
 
 ## Troubleshooting
 

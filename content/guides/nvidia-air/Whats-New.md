@@ -12,9 +12,11 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 - Fixed a bug that prevented a VM's console and/or network interfaces from working properly for VMs with more than 63 interfaces
 ### 82.2022.0714-008
 - Pre-built topologies have been moved from the "NVIDIA Networking Experience" into the {{<exlink url="https://air.nvidia.com/marketplace" text="Demo Marketplace">}}
-<!-- Air:WhatsNew -->
 ### 82.2022.0721
 - Added a warning when the number of nodes in a simulation exceeds the subnet size of the out-of-band management network
+<!-- Air:WhatsNew -->
+### 82.2022.0726
+- MAC addresses for out-of-band management interfaces are now randomized and prefixed with the NVIDIA OUI
 <!-- Air:WhatsNew -->
 
 ## June 2022

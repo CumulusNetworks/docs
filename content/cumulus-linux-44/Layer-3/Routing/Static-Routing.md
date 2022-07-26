@@ -140,8 +140,9 @@ Run vtysh commands to configure the static route (the destination prefix and nex
 cumulus@border01:~$ sudo vtysh
 
 border01# configure terminal
-border01(config)# ip route 10.10.10.61/32 10.0.0.33 vrf BLUE
-border01(config)# exit
+border01(config)# vrf BLUE
+border01(config-vrf)# ip route 10.10.10.61/32 10.0.0.33
+border01(config-vrf)# end
 border01# write memory
 border01# exit
 cumulus@border01:~$

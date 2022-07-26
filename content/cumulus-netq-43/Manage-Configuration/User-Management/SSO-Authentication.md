@@ -7,7 +7,7 @@ toc: 3
 
 You can integrate your NetQ Cloud deployment with a Microsoft Azure Active Directory (AD) or Google Cloud authentication server to support single sign-on (SSO) to NetQ. NetQ supports integration with SAML (Security Assertion Markup Language), OAuth (Open Authorization), and multi-factor authentication (MFA). Only one SSO configuration can be configured at a time.
 
-You can create local user accounts with default access roles by enabling SSO. After enabling SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
+You can create local user accounts with default access roles by enabling SSO. After enabling SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}} through the NetQ login screen or with a link provided by an admin.
 
 ## Add SSO Configuration and User Accounts
 
@@ -29,7 +29,7 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 {{<figure src="/images/netq/add-sso-openid.png" alt="sso configuration card with open id configuration" width="600">}}
 
-**SSO Organization** is what your users will enter to log in with SSO.
+**SSO Organization** is typically a company's name. The name entered in this field will appear in the SSO signup URL.
 
 **Access Type** is the role (either user or admin) automatically assigned to users when they initalize their account via SSO login.
 
@@ -45,9 +45,9 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 After you enter the fields, select **Add**.
 
-    {{<figure src="/images/netq/sso-url-41.png" width="600">}}
+As indicated, copy the redirect URI (in the following example, *https://api.qa1.netqdev.nvidia.com/netq/auth/v1/sso-callback*) into your OpenID Connect configuration.
 
-As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your OpenID Connect configuration.
+    {{<figure src="/images/netq/uri-sso-config-updated.png" width="600">}}
 
   Select **Test** to verify the configuration and ensure that you can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
 
@@ -59,7 +59,11 @@ To require users to log in using this SSO configuration, select **change** under
 
     {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-enabled-330.png" alt="sso configuration card with enabled status" width="200">}}
 
-After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
+After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}. 
+
+Admins can also provide users with an SSO signup URL: *https://netq.nvidia.com/signup?organization=SSO_Organization*
+
+The SSO organization you entered during the configuration will replace *SSO_Organization* in the URL.
 
 {{</tab>}}
 
@@ -69,7 +73,7 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 {{<figure src="/images/netq/add-sso-saml.png" alt="sso configuration card with SAML configuration" width="600">}}
 
-**SSO Organization** is what your users will enter to log in with SSO.
+**SSO Organization** is typically a company's name. The name entered in this field will appear in the SSO signup URL.
 
 **Access Type** is the role (either user or admin) automatically assigned to users when they initalize their account via SSO login.
 
@@ -85,9 +89,9 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 After you enter the fields, select **Add**.
 
-    {{<figure src="/images/netq/sso-url-41.png" width="600">}}
+As indicated, copy the redirect URI (in the following example, *https://api.qa1.netqdev.nvidia.com/netq/auth/v1/sso-callback*) into your OpenID Connect configuration.
 
-As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your identity provider configuration.
+    {{<figure src="/images/netq/uri-sso-config-updated.png" width="600">}}
 
 Select **Test** to verify the configuration and ensure that you can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
 
@@ -102,6 +106,10 @@ Select **Submit** to enable the configuration. The SSO card reflects this new st
     {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" width="200">}}
 
 After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
+
+Admins can also provide users with an SSO signup URL: *https://netq.nvidia.com/signup?organization=SSO_Organization*
+
+The SSO organization you entered during the configuration will replace *SSO_Organization* in the URL.
 
 {{</tab>}}
 

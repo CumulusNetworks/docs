@@ -45,17 +45,17 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 After you enter the fields, select **Add**.
 
-As indicated, copy the redirect URI (in the following example, *https://api.qa1.netqdev.nvidia.com/netq/auth/v1/sso-callback*) into your OpenID Connect configuration.
+As indicated, copy the redirect URI (https://api.netq.nvidia.com/netq/auth/v1/sso-callback) into your OpenID Connect configuration.
 
-    {{<figure src="/images/netq/uri-sso-config-updated.png" width="600">}}
+    {{<figure src="/images/netq/sso-updated-domain.png" alt="" width="600">}}
 
   Select **Test** to verify the configuration and ensure that you can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
 
-Select **Close**. The card reflects the configuration.
+Select **Close**. The card reflects the configuration:
 
     {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-disabled-330.png" alt="sso config card displaying an open id configuration with a disabled status" width="200">}}
 
-To require users to log in using this SSO configuration, select **change** under the current Disabled status and confirm. The card reflects that SSO is enabled.
+To require users to log in using this SSO configuration, select **change** under the current Disabled status and confirm. The card reflects that SSO is enabled:
 
     {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-enabled-330.png" alt="sso configuration card with enabled status" width="200">}}
 
@@ -89,21 +89,21 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 After you enter the fields, select **Add**.
 
-As indicated, copy the redirect URI (in the following example, *https://api.qa1.netqdev.nvidia.com/netq/auth/v1/sso-callback*) into your OpenID Connect configuration.
+As indicated, copy the redirect URI (https://api.netq.nvidia.com/netq/auth/v1/sso-callback) into your OpenID Connect configuration.
 
-    {{<figure src="/images/netq/uri-sso-config-updated.png" width="600">}}
+    {{<figure src="/images/netq/sso-updated-domain.png" alt="" width="600">}}
 
 Select **Test** to verify the configuration and ensure that you can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
 
-Select **Close**. The card reflects the configuration.
+Select **Close**. The card reflects the configuration:
 
     {{<figure src="/images/netq/netq-mgmt-sso-saml-config-disabled-330.png" alt="sso config card displaying a SAML configuration with a disabled status" width="200">}}
 
 To require users to log in using this SSO configuration, select **change** under the current Disabled status and confirm. The card reflects that SSO is enabled.
 
-Select **Submit** to enable the configuration. The SSO card reflects this new status.
+Select **Submit** to enable the configuration. The SSO card reflects this new status:
 
-    {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" width="200">}}
+    {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" alt="" width="200">}}
 
 After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
 
@@ -117,7 +117,7 @@ The SSO organization you entered during the configuration will replace *SSO_Orga
 
 ## Modify Configuration
 
-You can change the specifications for SSO integration with your authentication server at any time, including changing to an alternate SSO type, disabling the existing configuration, or reconfiguring the current configuration. 
+You can change the specifications for SSO integration with your authentication server at any time, including changing to an alternate SSO type, disabling the existing configuration, or reconfiguring SSO. 
 
 ### Change SSO Type
 
@@ -125,18 +125,18 @@ From the SSO Configuration card:
 
 1. Select **Disable**, then **Yes**.
 
-2. Click **Manage** then select the desired SSO type and complete the form.
+2. Select **Manage** then select the desired SSO type and complete the form.
 
 3. Copy the redirect URL on the success dialog into your identity provider configuration.
 
-4. Click **Test** to verify that the login is working. Modify your specification and retest the configuration until it is working properly.
+4. Select **Test** to verify that the login is working. Modify your specification and retest the configuration until it is working properly.
 
-5. Click **Update**.
+5. Select **Update**.
 
 ### Disable SSO Configuration
 
 From the SSO Configuration card:
 
-1. Click **Disable**.
+1. Select **Disable**.
 
 2. Select **Yes** to disable the configuration, or **Cancel** to keep it enabled.

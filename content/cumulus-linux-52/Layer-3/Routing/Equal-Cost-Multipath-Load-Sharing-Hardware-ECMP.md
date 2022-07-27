@@ -40,7 +40,7 @@ Cumulus Linux enables the BGP `maximum-paths` setting by default and installs mu
 {{%/notice%}}
 <!-- vale off -->
 
-## Custom Hashing
+<!-- ## Custom Hashing
 
 You can configure custom hashing to specify what to include in the hash calculation during load balancing between:
 - Multiple next hops of a layer 3 route (ECMP hashing).
@@ -149,26 +149,32 @@ To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to 
 There are no NVUE commands available to enable TEID-based ECMP hashing.
 {{%/notice%}}
 
-<!-- ### ECMP Hashing
+-->
+
+## ECMP Hashing
+
+You can configure custom hashing to specify what to include in the hash calculation during load balancing between:
+- Multiple next hops of a layer 3 route (ECMP hashing).
+- Multiple interfaces that are members of the same bond (bond or LAG hashing). For bond hashing, see {{<link url="Bonding-Link-Aggregation/#load-balancing" text="Bonding - Link Aggregation" >}}.
 
 For ECMP load balancing between multiple next-hops of a layer 3 route, you can hash on these fields:
 
 |   <div style="width:190px">Field   | Default Setting | NVUE Command | `traffic.conf`|
 | -------- | --------------- | ------------ | --------------------------------------------- |
-| IP protocol | on | `nv set system forwarding ecmp-hash ip-protocol`<br><br>`nv unset system forwarding ecmp-hash ip-protocol`|`hash_config.ip_prot`|
-| Source IP address| on | `nv set system forwarding ecmp-hash source-ip`<br><br>`nv unset system forwarding ecmp-hash source-ip`|`hash_config.sip`|
-| Destination IP address| on | `nv set system forwarding ecmp-hash destination-ip`<br><br>`nv unset system forwarding ecmp-hash destination-ip`|`hash_config.dip`|
-| Source port | on | `nv set system forwarding ecmp-hash source-port`<br><br>`nv unset system forwarding ecmp-hash source-port`|`hash_config.sport` |
-| Destination port| on | `nv set system forwarding ecmp-hash destination-port`<br><br>`nv unset system forwarding ecmp-hash destination-port`| `hash_config.dport` |
-| IPv6 flow label | on | `nv set system forwarding ecmp-hash ipv6-label`<br><br>`nv unset system forwarding ecmp-hash ipv6-label`|`hash_config.ip6_label` |
-| Ingress interface | off | `nv set system forwarding ecmp-hash ingress-interface`<br><br>`nv unset system forwarding ecmp-hash ingress-interface`| `hash_config.ing_intf` |
-| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}}) | off | `nv set system forwarding ecmp-hash gtp-teid`<br><br>`nv unset system forwarding ecmp-hash gtp-teid`| `hash_config.gtp_teid`|
-| Inner IP protocol| off | `nv set system forwarding ecmp-hash inner-ip-protocol`<br><br>`nv unset system forwarding ecmp-hash inner-ip-protocol`|`hash_config.inner_ip_prot` |
-| Inner source IP address| off | `nv set system forwarding ecmp-hash inner-source-ip`<br><br>`nv unset system forwarding ecmp-hash inner-source-ip`|`hash_config.inner_sip` |
-| Inner destination IP address| off | `nv set system forwarding ecmp-hash inner-destination-ip`<br><br>`nv unset system forwarding ecmp-hash inner-destination-ip`|`hash_config.inner_dip` |
-| Inner source port| off | `nv set system forwarding ecmp-hash inner-source-port`<br><br>`nv unset system forwarding ecmp-hash inner-source-port`| `hash_config.inner-sport` |
-| Inner destination port| off | `nv set system forwarding ecmp-hash inner-destination-port`<br><br>`nv unset system forwarding ecmp-hash inner-destination-port`| `hash_config.inner_dport` |
-| Inner IPv6 flow label | off | `nv set system forwarding ecmp-hash inner-ipv6-label`<br><br>`nv unset system forwarding ecmp-hash inner-ipv6-label`|`hash_config.inner_ip6_label` |
+| IP protocol | on | `nv set system forwarding ecmp-hash ip-protocol on`<br><br>`nv set system forwarding ecmp-hash ip-protocol off`|`hash_config.ip_prot`|
+| Source IP address| on | `nv set system forwarding ecmp-hash source-ip on`<br><br>`nv set system forwarding ecmp-hash source-ip off`|`hash_config.sip`|
+| Destination IP address| on | `nv set system forwarding ecmp-hash destination-ip on`<br><br>`nv set system forwarding ecmp-hash destination-ip off`|`hash_config.dip`|
+| Source port | on | `nv set system forwarding ecmp-hash source-port on`<br><br>`nv set system forwarding ecmp-hash source-port off`|`hash_config.sport` |
+| Destination port| on | `nv set system forwarding ecmp-hash destination-port on`<br><br>`nv set system forwarding ecmp-hash destination-port off`| `hash_config.dport` |
+| IPv6 flow label | on | `nv set system forwarding ecmp-hash ipv6-label on`<br><br>`nv set system forwarding ecmp-hash ipv6-label off`|`hash_config.ip6_label` |
+| Ingress interface | off | `nv set system forwarding ecmp-hash ingress-interface on`<br><br>`nv set system forwarding ecmp-hash ingress-interface off`| `hash_config.ing_intf` |
+| TEID (see {{<link url="#gtp-hashing" text="GTP Hashing" >}}) | off | `nv set system forwarding ecmp-hash gtp-teid on`<br><br>`nv set system forwarding ecmp-hash gtp-teid off`| `hash_config.gtp_teid`|
+| Inner IP protocol| off | `nv set system forwarding ecmp-hash inner-ip-protocol on`<br><br>`nv set system forwarding ecmp-hash inner-ip-protocol off`|`hash_config.inner_ip_prot` |
+| Inner source IP address| off | `nv set system forwarding ecmp-hash inner-source-ip on`<br><br>`nv set system forwarding ecmp-hash inner-source-ip off`|`hash_config.inner_sip` |
+| Inner destination IP address| off | `nv set system forwarding ecmp-hash inner-destination-ip on`<br><br>`nv set system forwarding ecmp-hash inner-destination-ip off`|`hash_config.inner_dip` |
+| Inner source port| off | `nv set system forwarding ecmp-hash inner-source-port on`<br><br>`nv set system forwarding ecmp-hash inner-source-port off`| `hash_config.inner-sport` |
+| Inner destination port| off | `nv set system forwarding ecmp-hash inner-destination-port on`<br><br>`nv set system forwarding ecmp-hash inner-destination-port off`| `hash_config.inner_dport` |
+| Inner IPv6 flow label | off | `nv set system forwarding ecmp-hash inner-ipv6-label on`<br><br>`nv set system forwarding ecmp-hash inner-ipv6-label off`|`hash_config.inner_ip6_label` |
 
 The following example commands omit the source port and destination port from the hash calculation:
 
@@ -176,13 +182,17 @@ The following example commands omit the source port and destination port from th
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv unset system forwarding ecmp-hash source-port
-cumulus@switch:~$ nv unset system forwarding ecmp-hash destination-port
+cumulus@switch:~$ nv set system forwarding ecmp-hash source-port off
+cumulus@switch:~$ nv set system forwarding ecmp-hash destination-port off
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+{{%notice note%}}
+Use the instructions below when NVUE is not enabled. If you are using NVUE to configure your switch, the NVUE commands change the settings in `/etc/cumulus/datapath/nvue_traffic.conf` which takes precedence over the settings in `/etc/cumulus/datapath/traffic.conf`.
+{{%/notice%}}
 
 1. Edit the `/etc/cumulus/datapath/traffic.conf` file:
    - Uncomment the `hash_config.enable = true` option.
@@ -221,7 +231,10 @@ hash_config.dport = false
 {{< /tab >}}
 {{< /tabs >}}
 
-### GTP Hashing
+{{%notice note%}}
+Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
+{{%/notice%}}
+## GTP Hashing
 
 [GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
 
@@ -244,14 +257,18 @@ To enable TEID-based ECMP hashing:
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set system forwarding ecmp-hash gtp-teid
+cumulus@switch:~$ nv set system forwarding ecmp-hash gtp-teid on
 cumulus@switch:~$ nv config apply
 ```
 
-To disable TEID-based ECMP hashing, run the `nv unset system forwarding ecmp-hash gtp-teid` command.
+To disable TEID-based ECMP hashing, run the `nv set system forwarding ecmp-hash gtp-teid off` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+{{%notice note%}}
+Use the instructions below when NVUE is not enabled. If you are using NVUE to configure your switch, the NVUE commands change the settings in `/etc/cumulus/datapath/nvue_traffic.conf` which takes precedence over the settings in `/etc/cumulus/datapath/traffic.conf`.
+{{%/notice%}}
 
 1. Edit the `/etc/cumulus/datapath/traffic.conf` file and change the `lag_hash_config.gtp_teid` parameter to `true`:
 
@@ -272,7 +289,7 @@ To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to 
 
 {{< /tab >}}
 {{< /tabs >}}
--->
+
 
 ## Unique Hash Seed
 
@@ -282,23 +299,6 @@ You can set a hash seed value between 0 and 4294967295. If you do not specify a 
 
 To configure the hash seed:
 
-Edit `/etc/cumulus/datapath/traffic.conf` file to change the `ecmp_hash_seed` parameter, then restart `switchd`.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/datapath/traffic.conf
-...
-#Specify the hash seed for Equal cost multipath entries
-# and for custom ecmp and lag hash
-# Default value: random
-# Value Range: {0..4294967295}
-ecmp_hash_seed = 50
-...
-```
-<!-- vale off -->
-{{<cl/restart-switchd>}}
-<!-- vale on -->
-
-<!--
 {{< tabs "TabID125 ">}}
 {{< tab "NVUE Commands">}}
 
@@ -310,6 +310,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
+{{%notice note%}}
+Use the instructions below when NVUE is not enabled. If you are using NVUE to configure your switch, the NVUE commands change the settings in `/etc/cumulus/datapath/nvue_traffic.conf` which takes precedence over the settings in `/etc/cumulus/datapath/traffic.conf`.
+{{%/notice%}}
+
 Edit `/etc/cumulus/datapath/traffic.conf` file to change the `ecmp_hash_seed` parameter, then restart `switchd`.
 
 ```
@@ -326,7 +330,7 @@ ecmp_hash_seed = 50
 {{<cl/restart-switchd>}}
 
 {{< /tab >}}
-{{< /tabs >}} -->
+{{< /tabs >}}
 
 ## Resilient Hashing
 

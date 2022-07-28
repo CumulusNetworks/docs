@@ -29,7 +29,7 @@ An updated {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/k
 
 ## Upgrade Paths
 
-You can upgrade from NetQ versions 4.2.0 and later directly to version 4.3.0. Upgrades from NetQ versions earlier than 4.2.0 require a fresh installation or an incremental upgrade to version 4.2.0 first.
+You can upgrade to NetQ 4.3 directly from version 4.0.1 or later. Upgrades from NetQ versions earlier than 4.0.1 require a fresh installation or an incremental upgrade to version 4.0.0 first.
 ## Compatible Agent Versions
 
 NetQ 4.3.0 is compatible with NetQ Agent versions 4.2.0 and above. You can install NetQ Agents on switches and servers running:

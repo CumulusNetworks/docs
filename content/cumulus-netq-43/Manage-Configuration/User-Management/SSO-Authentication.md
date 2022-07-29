@@ -7,7 +7,7 @@ toc: 3
 
 You can integrate your NetQ Cloud deployment with a Microsoft Azure Active Directory (AD) or Google Cloud authentication server to support single sign-on (SSO) to NetQ. NetQ supports integration with SAML (Security Assertion Markup Language), OAuth (Open Authorization), and multi-factor authentication (MFA). Only one SSO configuration can be configured at a time.
 
-You can create local user accounts with default access roles by enabling SSO. After enabling SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
+You can create local user accounts with default access roles by enabling SSO. After enabling SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}} through the NetQ login screen or with a link provided by an admin.
 
 ## Add SSO Configuration and User Accounts
 
@@ -29,7 +29,7 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 {{<figure src="/images/netq/add-sso-openid.png" alt="sso configuration card with open id configuration" width="600">}}
 
-**SSO Organization** is what your users will enter to log in with SSO.
+**SSO Organization** is typically a company's name. The name entered in this field will appear in the SSO signup URL.
 
 **Access Type** is the role (either user or admin) automatically assigned to users when they initalize their account via SSO login.
 
@@ -45,21 +45,25 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 After you enter the fields, select **Add**.
 
-    {{<figure src="/images/netq/sso-url-41.png" width="600">}}
+As indicated, copy the redirect URI (https://api.netq.nvidia.com/netq/auth/v1/sso-callback) into your OpenID Connect configuration.
 
-As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your OpenID Connect configuration.
+    {{<figure src="/images/netq/sso-updated-domain.png" alt="" width="600">}}
 
   Select **Test** to verify the configuration and ensure that you can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
 
-Select **Close**. The card reflects the configuration.
+Select **Close**. The card reflects the configuration:
 
     {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-disabled-330.png" alt="sso config card displaying an open id configuration with a disabled status" width="200">}}
 
-To require users to log in using this SSO configuration, select **change** under the current Disabled status and confirm. The card reflects that SSO is enabled.
+To require users to log in using this SSO configuration, select **change** under the current Disabled status and confirm. The card reflects that SSO is enabled:
 
     {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-enabled-330.png" alt="sso configuration card with enabled status" width="200">}}
 
-After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
+After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}. 
+
+Admins can also provide users with an SSO signup URL: *https://netq.nvidia.com/signup?organization=SSO_Organization*
+
+The SSO organization you entered during the configuration will replace *SSO_Organization* in the URL.
 
 {{</tab>}}
 
@@ -69,7 +73,7 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 {{<figure src="/images/netq/add-sso-saml.png" alt="sso configuration card with SAML configuration" width="600">}}
 
-**SSO Organization** is what your users will enter to log in with SSO.
+**SSO Organization** is typically a company's name. The name entered in this field will appear in the SSO signup URL.
 
 **Access Type** is the role (either user or admin) automatically assigned to users when they initalize their account via SSO login.
 
@@ -85,23 +89,27 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 After you enter the fields, select **Add**.
 
-    {{<figure src="/images/netq/sso-url-41.png" width="600">}}
+As indicated, copy the redirect URI (https://api.netq.nvidia.com/netq/auth/v1/sso-callback) into your OpenID Connect configuration.
 
-As indicated, copy the redirect URL *https://api.netq.cumulusnetworks.com/netq/auth/v1/sso-callback* into your identity provider configuration.
+    {{<figure src="/images/netq/sso-updated-domain.png" alt="" width="600">}}
 
 Select **Test** to verify the configuration and ensure that you can log in. If it is not working, you are logged out. Check your specification and retest the configuration until it is working properly.
 
-Select **Close**. The card reflects the configuration.
+Select **Close**. The card reflects the configuration:
 
     {{<figure src="/images/netq/netq-mgmt-sso-saml-config-disabled-330.png" alt="sso config card displaying a SAML configuration with a disabled status" width="200">}}
 
 To require users to log in using this SSO configuration, select **change** under the current Disabled status and confirm. The card reflects that SSO is enabled.
 
-Select **Submit** to enable the configuration. The SSO card reflects this new status.
+Select **Submit** to enable the configuration. The SSO card reflects this new status:
 
-    {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" width="200">}}
+    {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" alt="" width="200">}}
 
 After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
+
+Admins can also provide users with an SSO signup URL: *https://netq.nvidia.com/signup?organization=SSO_Organization*
+
+The SSO organization you entered during the configuration will replace *SSO_Organization* in the URL.
 
 {{</tab>}}
 
@@ -109,7 +117,7 @@ After an admin has configured and enabled SSO, users logging in for the first ti
 
 ## Modify Configuration
 
-You can change the specifications for SSO integration with your authentication server at any time, including changing to an alternate SSO type, disabling the existing configuration, or reconfiguring the current configuration. 
+You can change the specifications for SSO integration with your authentication server at any time, including changing to an alternate SSO type, disabling the existing configuration, or reconfiguring SSO. 
 
 ### Change SSO Type
 
@@ -117,18 +125,18 @@ From the SSO Configuration card:
 
 1. Select **Disable**, then **Yes**.
 
-2. Click **Manage** then select the desired SSO type and complete the form.
+2. Select **Manage** then select the desired SSO type and complete the form.
 
 3. Copy the redirect URL on the success dialog into your identity provider configuration.
 
-4. Click **Test** to verify that the login is working. Modify your specification and retest the configuration until it is working properly.
+4. Select **Test** to verify that the login is working. Modify your specification and retest the configuration until it is working properly.
 
-5. Click **Update**.
+5. Select **Update**.
 
 ### Disable SSO Configuration
 
 From the SSO Configuration card:
 
-1. Click **Disable**.
+1. Select **Disable**.
 
 2. Select **Yes** to disable the configuration, or **Cancel** to keep it enabled.

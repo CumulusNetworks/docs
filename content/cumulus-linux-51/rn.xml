@@ -8,7 +8,15 @@
 </tr>
 <tr>
 <td>3141826</td>
-<td>A slow memory leak might occur in SNMP when you walk system MIB objects (1.3.6.1.2.1).</td>
+<td>A slow memory leak (~5KB over 24 hour period at a 60 second polling interval) might occur in SNMP when you walk the following system MIB objects (1.3.6.1.2.1).
+
+1.3.6.1.2.1.47 --&gt; Entity MIB
+ 1.3.6.1.2.1.99 --&gt; Entity Sensor MIB
+ 1.3.6.1.2.1.23 --&gt; rip2
+ 1.3.6.1.2.1.2 --&gt; interface/interfaces
+ 1.3.6.1.2.1.31 --&gt; ifMIB
+ 1.3.6.1.2.1.4 --&gt; IP
+ 1.3.6.1.2.1.25 --&gt; hostResource</td>
 <td>5.0.1-5.1.0</td>
 <td></td>
 </tr>
@@ -31,12 +39,6 @@ To work around this issue, move the lines that start with {{KexAlgorithms}} and 
 
 If you have already specified {{KexAlgorithms}} and/or {{MACs}}, you may wish to remove the newly added lines after an upgrade to CumulusLinux 5.1.0 if they are not what you want.</td>
 <td>5.0.1-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3136063</td>
-<td>When you configure a new VNI on a single VxLAN device, FRR flushes all existing VNIs on that SVD. This results in a loss of connectivity and/or additional unknown unicast flooding during EVPN reconvergence.</td>
-<td>5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -150,19 +152,13 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3093863</td>
+<td>3085285</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3089148</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>4.4.3, 5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3084101</td>
+<td>3084099</td>
 <td>CVE-2022-1664: dpkg has a vulnerability relating to directory traversal for in-place extracts with untrusted v2 and v3 source packages with debian.tar
 Vulnerable: &lt;= 1.19.7
 Fixed: 1.19.8</td>
@@ -170,17 +166,17 @@ Fixed: 1.19.8</td>
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3082583</td>
-<td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
+<td>3084007</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>4.4.3, 5.1.0</td>
 <td>4.4.4</td>
 </tr>
 <tr>
 <td>3081232</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
+<td>4.4.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3078202</td>
@@ -224,17 +220,17 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td></td>
 </tr>
 <tr>
-<td>3073649</td>
-<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously.
 To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>5.1.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3066664</td>
+<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4</td>
 </tr>
 <tr>
 <td>3066280</td>
@@ -437,6 +433,12 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 <td></td>
 </tr>
 <tr>
+<td>3014664</td>
+<td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4</td>
+</tr>
+<tr>
 <td>2999342</td>
 <td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
 Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
@@ -574,7 +576,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
-<td>2837378</td>
+<td>2831968</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
@@ -733,11 +735,6 @@ Fixed: 1.1.1d-0+deb10u8</td>
 <td>4.4.0-4.4.3</td>
 </tr>
 <tr>
-<td>3007564</td>
-<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
-<td>3.7.15-5.0.1</td>
-</tr>
-<tr>
 <td>3007020</td>
 <td>The {{sudo smonctl}} command output shows an error for the ASIC temperature sensor (temp6).</td>
 <td>5.0.0-5.0.1</td>
@@ -775,6 +772,11 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>2993786</td>
 <td>When you configure QoS remarking on a bond, the port stops forwarding traffic. </td>
 <td></td>
+</tr>
+<tr>
+<td>2993719</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
+<td>3.7.15-5.0.1</td>
 </tr>
 <tr>
 <td>2989098</td>

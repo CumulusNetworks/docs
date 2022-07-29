@@ -201,7 +201,7 @@ Hover over the color-coded chart to view and expand individual WJH event categor
 
 Click on a category in the chart for a detailed view:
 
-   {{<figure src="/images/netq/WJH-adv-reason-filtered.png" width="800">}}
+   {{<figure src="/images/netq/wjh-chart-graph.png" width="800">}}
 
 {{</tab>}}
 

@@ -178,7 +178,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2890683</td>
+<td>2890682</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
@@ -329,14 +329,6 @@ Fixed: 1.0.28-6+deb10u1</td>
 <td>4.4.2-4.4.4, 5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2739690</td>
-<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
-Vulnerable: 1.24.1-1
-Fixed: 1.24.1-1+deb 10u1</td>
-<td>4.0.0-4.4.1</td>
-<td>4.4.2-4.4.4, 5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2739640</td>
 <td>CVE-2021-36222: It was discovered that the Key Distribution Center (KDC) in krb5, the MIT implementation of Kerberos, is prone to a NULL pointer dereference flaw. An unauthenticated attacker can take advantage of this flaw to cause a denial of service (KDC crash) by sending a request containing a PA-ENCRYPTED-CHALLENGE padata element without using FAST.
 Vulnerable: &lt;= 1.17-3+deb10u1
@@ -382,6 +374,14 @@ Fixed: 241-7~deb10u8</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-4.4.1</td>
 <td>4.4.2-4.4.4</td>
+</tr>
+<tr>
+<td>2716839</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2-4.4.4, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2713888</td>
@@ -637,7 +637,7 @@ Fixed: 1.1.1d-0+deb10u6</td>
 <td>4.4.0-4.4.4</td>
 </tr>
 <tr>
-<td>2578872</td>
+<td>2578871</td>
 <td>CVE-2021-20270: It was discovered that Pygments, a syntax highlighting package written in Python, could be forced into an infinite loop, resulting in denial of service.
 Vulnerable: 2.3.1+dfsg-1
 Fixed: 2.3.1+dfsg-1+deb10u1</td>
@@ -3373,7 +3373,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2890683</td>
+<td>2890682</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
@@ -3518,14 +3518,6 @@ Fixed: 1.0.28-6+deb10u1</td>
 <td>4.4.2-4.4.4, 5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2739690</td>
-<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
-Vulnerable: 1.24.1-1
-Fixed: 1.24.1-1+deb 10u1</td>
-<td>4.0.0-4.4.1</td>
-<td>4.4.2-4.4.4, 5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2739640</td>
 <td>CVE-2021-36222: It was discovered that the Key Distribution Center (KDC) in krb5, the MIT implementation of Kerberos, is prone to a NULL pointer dereference flaw. An unauthenticated attacker can take advantage of this flaw to cause a denial of service (KDC crash) by sending a request containing a PA-ENCRYPTED-CHALLENGE padata element without using FAST.
 Vulnerable: &lt;= 1.17-3+deb10u1
@@ -3571,6 +3563,14 @@ Fixed: 241-7~deb10u8</td>
 <td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
 <td>3.7.0-4.4.1</td>
 <td>4.4.2-4.4.4</td>
+</tr>
+<tr>
+<td>2716839</td>
+<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
+Vulnerable: 1.24.1-1
+Fixed: 1.24.1-1+deb 10u1</td>
+<td>4.0.0-4.4.1</td>
+<td>4.4.2-4.4.4, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>2713888</td>
@@ -3826,7 +3826,7 @@ Fixed: 1.1.1d-0+deb10u6</td>
 <td>4.4.0-4.4.4</td>
 </tr>
 <tr>
-<td>2578872</td>
+<td>2578871</td>
 <td>CVE-2021-20270: It was discovered that Pygments, a syntax highlighting package written in Python, could be forced into an infinite loop, resulting in denial of service.
 Vulnerable: 2.3.1+dfsg-1
 Fixed: 2.3.1+dfsg-1+deb10u1</td>

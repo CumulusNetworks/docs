@@ -9,7 +9,7 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
 1. Verify that your system meets the VM requirements.
 
-    {{<netq-install/vm-reqs deployment="onprem" hypervisor="vmware" version="4.2.0">}}
+    {{<netq-install/vm-reqs deployment="onprem" hypervisor="vmware" version="4.3.0">}}
 
 2. Confirm that the needed ports are open for communications.
 
@@ -17,11 +17,11 @@ Follow these steps to setup and configure your VM on a single server in an on-pr
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/vmw-platform-image deployment="onprem" version="4.2">}}
+    {{<netq-install/vmw-platform-image deployment="onprem" version="4.3">}}
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.0">}}
+    {{<netq-install/vm-setup hypervisor="vmware" deployment="onprem" version="4.3">}}
 
 5. Log in to the VM and change the password.
 

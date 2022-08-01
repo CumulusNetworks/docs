@@ -8,7 +8,7 @@ License: BSD-2-Clause
 
 Files: debian/*
 Copyright: 2017 Pirate Praveen <praveen@debian.org>
- 2020 Xavier Guimard <yadd@debian.org>
+ 2020 Yadd <yadd@debian.org>
 License: BSD-2-Clause
 
 License: BSD-2-Clause

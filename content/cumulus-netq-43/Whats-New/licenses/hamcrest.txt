@@ -1,10 +1,7 @@
 BSD 3-clause "New" or "Revised" License
 BSD License
 
-
-
 Copyright (c) 2000-2006, www.hamcrest.org
-
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -34,10 +31,7 @@ DAMAGE
 BSD 3-clause "New" or "Revised" License
 BSD License
 
-
-
 Copyright (c) 2000-2015 www.hamcrest.org
-
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

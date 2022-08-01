@@ -11,7 +11,7 @@ Follow these steps to setup and configure your VM on a cluster of servers in an 
 
 1. Verify that your master node meets the VM requirements.
 
-    {{<netq-install/vm-reqs deployment="onprem" hypervisor="kvm" version="4.2.0">}}
+    {{<netq-install/vm-reqs deployment="onprem" hypervisor="kvm" version="4.3.0">}}
 
 2. Confirm that the needed ports are open for communications.
 
@@ -19,11 +19,11 @@ Follow these steps to setup and configure your VM on a cluster of servers in an 
 
 3. Download the NetQ Platform image.
 
-    {{<netq-install/kvm-platform-image deployment="onprem" version="4.2">}}
+    {{<netq-install/kvm-platform-image deployment="onprem" version="4.3">}}
 
 4. Setup and configure your VM.
 
-    {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.2">}}
+    {{<netq-install/vm-setup hypervisor="kvm" deployment="onprem" version="4.3">}}
 
 5. Log in to the VM and change the password.
 

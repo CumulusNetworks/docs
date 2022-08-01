@@ -91,11 +91,11 @@ Now that the appliance is up and running, verify that the software is available 
 
 1. Verify that the needed packages are present and of the correct release, version {{<version>}} and update 38.
 
-    {{<netq-install/verify-pkgs version="4.2" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.3" platform="appliance">}}
 
 2. Verify the installation images are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-image deployment="onprem" version="4.2">}}
+    {{<netq-install/verify-image deployment="onprem" version="4.3">}}
 
 3. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 

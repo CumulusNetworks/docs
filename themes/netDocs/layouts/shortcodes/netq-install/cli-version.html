@@ -1,3 +1,41 @@
+{{- if eq (.Get "version") "4.3" -}}
+
+You should see version 4.3.0 and update 39 in the results. For example:
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+    <li>Cumulus Linux 3.7</li>
+        <ul>
+            <li>netq-apps_<strong>4.3.0</strong>-cl3u<strong>39</strong>~1659220095.34aa65d_armel.deb</li>
+            <li>netq-apps_<strong>4.3.0</strong>-cl3u<strong>39</strong>~1659297480.34aa65d_amd64.deb</li>
+        </ul>
+    <li>Cumulus Linux 4.0.0 and later</li>
+        <ul>
+            <li>netq-apps_<strong>4.3.0</strong>-cl4u<strong>39</strong>~1659301100.34aa65d5_armel.deb</li>
+            <li>netq-apps_<strong>4.3.0</strong>-cl4u<strong>39</strong>~1659297587.34aa65d5_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>netq-apps_<strong>4.3.0</strong>-ub18.04u<strong>39</strong>~1659297239.34aa65d_amd64.deb</li>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<ul>
+    <li>netq-apps_<strong>4.3.0</strong>-rh7u<strong>39</strong>~1659299230.34aa65d.x86_64.rpm</li>
+</ul>
+
+{{ end }}
+
+{{ end }}
+
 {{- if eq (.Get "version") "4.2" -}}
 
 You should see version 4.2.0 and update 38 in the results. For example:

@@ -36,7 +36,7 @@
 
 {{- if eq (.Get "deployment") "cloud-single" -}}
 
-<p>Run the following command on your NetQ Cloud Appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key through the NetQ UI in the premise management configuration. For more information, see <a href=/cumulus-netq-42/Get-Started/NetQ-User-Interface-Overview/Access-the-UI/#log-in-to-netq>First Time Log In - NetQ Cloud</a>.</p>
+<p>Run the following command on your NetQ Cloud Appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key through the NetQ UI in the premise management configuration.</p>
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install opta standalone full interface eth0 bundle /mnt/installables/NetQ-4.3.0-opta.tgz config-key &lt;your-config-key&gt; [proxy-host &lt;proxy-hostname&gt; proxy-port &lt;proxy-port&gt;]
 </code></pre>
@@ -57,7 +57,7 @@
     netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
     </code></pre><p>Run the <code>netq install cluster worker-init &lt;ssh-key></code> on each of your worker nodes.</p>
     
-<p>Run the following command on your NetQ Cloud Appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key through the NetQ UI in the premise management configuration. For more information, see <a href=/cumulus-netq-42/Get-Started/NetQ-User-Interface-Overview/Access-the-UI/#log-in-to-netq>First Time Log In - NetQ Cloud</a>.</p>
+<p>Run the following command on your NetQ Cloud Appliance with the <code>config-key</code> obtained from the email you received from NVIDIA titled <em>NetQ Access Link</em>. You can also obtain the configuration key through the NetQ UI in the premise management configuration.</p>
 
 <pre><code>cumulus@&lt;hostname&gt;:~$ netq install opta cluster full interface eth0 bundle /mnt/installables/NetQ-4.3.0-opta.tgz config-key &lt;your-config-key&gt; workers &lt;worker-1-ip&gt; &lt;worker-2-ip&gt; [proxy-host &lt;proxy-hostname&gt; proxy-port &lt;proxy-port&gt;]
     </code></pre>

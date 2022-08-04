@@ -49,14 +49,6 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 <td></td>
 </tr>
 <tr>
-<td>3131402</td>
-<td>CVE-2022-34903: GnuPG through 2.3.6, in unusual situations where an attacker possesses any secret-key information from a victim's keyring and other constraints (e.g., use of GPGME) are met, allows signature forgery via injection into the status line.
-Vulnerable: &lt;= 2.2.12-1+deb10u1
-Fixed: 2.2.12-1+deb10u2</td>
-<td>5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -65,15 +57,6 @@ Fixed: 2.2.12-1+deb10u2</td>
 <tr>
 <td>3119673</td>
 <td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
-<td>5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3118374</td>
-<td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
-Vulnerable: &lt;= 1.1.1n-0+deb10u2
-Fixed: 1.1.1n-0+deb10u3
-Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -130,14 +113,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>3085285</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3084099</td>
-<td>CVE-2022-1664: dpkg has a vulnerability relating to directory traversal for in-place extracts with untrusted v2 and v3 source packages with debian.tar
-Vulnerable: &lt;= 1.19.7
-Fixed: 1.19.8</td>
-<td>5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>
 <tr>
@@ -269,20 +244,6 @@ export HOME
 <td></td>
 </tr>
 <tr>
-<td>3045302</td>
-<td>CVE-2022-1271: incorrect handling of filenames by xzgrep in xz-utils, the XZ-format compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.
-Vulnerable: 5.2.4-1
-Fixed: 5.2.4-1+deb10u1</td>
-<td>5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3045299</td>
-<td>CVE-2022-1271: incorrect handling of filenames by zgrep in gzip, the GNU compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.</td>
-<td>5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3044596</td>
 <td>In the non-default VRF, BFD goes down after port flap.</td>
 <td>5.0.1-5.1.0</td>
@@ -330,14 +291,6 @@ Failure during apply. Ignore? [y/N]
 <td>When you change the time with NTP or manually, the clagd service stops.</td>
 <td>4.4.3-4.4.4, 5.0.1-5.1.0</td>
 <td></td>
-</tr>
-<tr>
-<td>3025899</td>
-<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
-Vulnerable: 1.2.11.dfsg-1
-Fixed: 1.2.11.dfsg-1+deb10u1</td>
-<td>5.0.0-5.1.0</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3021897</td>
@@ -444,6 +397,24 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>5.1.0</td>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
+<td>3.7.16</td>
+</tr>
+<tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2993719</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15-5.0.1</td>
@@ -456,16 +427,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2984205</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2982534</td>
+<td>2982537</td>
 <td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
 library, which could result in denial of service or potentially the
 execution of arbitrary code, if a malformed XML file is processed.
@@ -627,7 +589,7 @@ Unrecoverable internal error
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2891257</td>
+<td>2891256</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
@@ -838,14 +800,6 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 <td></td>
 </tr>
 <tr>
-<td>3131402</td>
-<td>CVE-2022-34903: GnuPG through 2.3.6, in unusual situations where an attacker possesses any secret-key information from a victim's keyring and other constraints (e.g., use of GPGME) are met, allows signature forgery via injection into the status line.
-Vulnerable: &lt;= 2.2.12-1+deb10u1
-Fixed: 2.2.12-1+deb10u2</td>
-<td>5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -854,15 +808,6 @@ Fixed: 2.2.12-1+deb10u2</td>
 <tr>
 <td>3119673</td>
 <td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
-<td>5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3118374</td>
-<td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
-Vulnerable: &lt;= 1.1.1n-0+deb10u2
-Fixed: 1.1.1n-0+deb10u3
-Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -922,14 +867,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3084099</td>
-<td>CVE-2022-1664: dpkg has a vulnerability relating to directory traversal for in-place extracts with untrusted v2 and v3 source packages with debian.tar
-Vulnerable: &lt;= 1.19.7
-Fixed: 1.19.8</td>
-<td>5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3081232</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
@@ -985,20 +922,6 @@ export HOME
 <td></td>
 </tr>
 <tr>
-<td>3045302</td>
-<td>CVE-2022-1271: incorrect handling of filenames by xzgrep in xz-utils, the XZ-format compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.
-Vulnerable: 5.2.4-1
-Fixed: 5.2.4-1+deb10u1</td>
-<td>5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3045299</td>
-<td>CVE-2022-1271: incorrect handling of filenames by zgrep in gzip, the GNU compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.</td>
-<td>5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.1.0</td>
@@ -1009,14 +932,6 @@ Fixed: 5.2.4-1+deb10u1</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td>4.4.4, 5.1.0</td>
-</tr>
-<tr>
-<td>3025899</td>
-<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
-Vulnerable: 1.2.11.dfsg-1
-Fixed: 1.2.11.dfsg-1+deb10u1</td>
-<td>5.0.0-5.1.0</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3021897</td>
@@ -1110,6 +1025,24 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>5.1.0</td>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
+<td>3.7.16</td>
+</tr>
+<tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2993719</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15-5.0.1</td>
@@ -1122,16 +1055,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2984205</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2982534</td>
+<td>2982537</td>
 <td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
 library, which could result in denial of service or potentially the
 execution of arbitrary code, if a malformed XML file is processed.
@@ -1283,7 +1207,7 @@ Unrecoverable internal error
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2891257</td>
+<td>2891256</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
@@ -1461,18 +1385,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <th> Affects </th>
 </tr>
 <tr>
-<td>2877793</td>
-<td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
-Vulnerable: &lt;= 3.42.1-1+deb10u3
-Fixed: 3.42.1-1+deb10u4</td>
-<td>4.0.0-4.4.1</td>
-</tr>
-<tr>
-<td>2873320</td>
-<td>CVE-2020-21913: International Components for Unicode (ICU-20850) v66.1 was discovered to contain a use after free bug in the pkg_createWithAssemblyCode function in the file tools/pkgdata/pkgdata.cpp.</td>
-<td>4.0.0-4.4.1</td>
-</tr>
-<tr>
 <td>2873186</td>
 <td>In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during {{ifreload}} when adding new VLANS or bridges. </td>
 <td>3.7.14.2-3.7.15, 4.3.0-4.4.4</td>
@@ -1489,25 +1401,9 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td></td>
 </tr>
 <tr>
-<td>2845536</td>
-<td>CVE-2020-19143: A flaw was discovered in tiff, a Tag Image File Format library, which may result in denial of service or the execution of arbitrary code if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u2
-Fixed: 4.1.0+git191117-2~deb10u3</td>
-<td>4.0.0-4.4.1</td>
-</tr>
-<tr>
 <td>2845531</td>
 <td>If you update the MAC address of an SVI when the SVI is in a {{protodown}} state (for example, when no bridge ports that carry this VNI are operationally up or if the MAC address of the SVI's parent bridge changes), {{clagd}} does not notice the change. The MLAG peer incorrectly maintains a PERMANENT neighbor entry for the SVI IP that points to the old MAC address.</td>
 <td>4.2.1-4.4.4</td>
-</tr>
-<tr>
-<td>2845290</td>
-<td>The following vulnerabilities in gdb, as embedded in the crash handling program, have been announced:
-CVE-2019-1010180: Buffer overflow which can be triggered by debugging an ELF file.
-CVE-2017-9778: Vulnerability to a negative length field in DWARF section, resulting in excessive memory allocation.
-Vulnerable: crash 7.2.8-1+cl4u1 and 7.2.8-1+cl3u1 with embedded gdb 7.6
-Fixed: crash 7.2.8-1+cl5.0.0u6</td>
-<td>3.7.15-4.4.4</td>
 </tr>
 <tr>
 <td>2841584</td>
@@ -1593,16 +1489,6 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>4.3.0-4.4.4</td>
 </tr>
 <tr>
-<td>2782032</td>
-<td>The following vulnerabilities have been announced in the openssl packages:
-CVE-2021-3711: buffer overflow vulnerability in SM2 decryption.
-CVE-2021-3712: buffer overrun when processing ASN.1 strings in the X509_aux_print() function.
-More details at https://www.openssl.org/news/secadv/20210824.txt .
-Vulnerable: &lt;= 1.1.1d-0+deb10u6
-Fixed: 1.1.1d-0+deb10u7</td>
-<td>4.0.0-4.4.1</td>
-</tr>
-<tr>
 <td>2780915</td>
 <td>In NVUE, you can't deactivate the IPv4 address family per neighbor.</td>
 <td>4.4.0-4.4.4</td>
@@ -1623,28 +1509,6 @@ Fixed: 1.1.1d-0+deb10u7</td>
 <td>4.0.0-4.4.1</td>
 </tr>
 <tr>
-<td>2754690</td>
-<td>CVE-2021-3672: in c-ares, a library that performs DNS requests and name resolution asynchronously, missing input validation of hostnames returned by DNS servers can lead to output of wrong hostnames (leading to Domain Hijacking).
-Vulnerable: 1.14.0-1
-Fixed: 1.14.0-1+deb10u1</td>
-<td>4.0.0-4.4.1</td>
-</tr>
-<tr>
-<td>2754684</td>
-<td>CVE-2021-38165: lynx, a non-graphical (text-mode) web browser, does not properly handle the userinfo subcomponent of a URI, which can lead to leaking of credential in cleartext in SNI data.
-Vulnerable: 2.8.9rel.1-3
-Fixed: 2.8.9rel.1-3+deb10u1</td>
-<td>4.0.0-4.4.1</td>
-</tr>
-<tr>
-<td>2754678</td>
-<td>CVE-2020-26558 / CVE-2021-0129: Bluez does not properly check permissions during pairing operation, which could allow an attacker to impersonate the initiating device.
-CVE-2020-27153: a double free flaw in the disconnect_cb() routine in the gattool. A remote attacker can take advantage of this flaw during service discovery for denial of service, or potentially, execution of arbitrary code.
-Vulnerable: &lt;= 5.50-1.2~deb10u1
-Fixed: 5.50-1.2~deb10u2</td>
-<td>4.0.0-4.4.1</td>
-</tr>
-<tr>
 <td>2752330</td>
 <td>With BGP and layer 2 forwarding, Smart System Manager warm boot mode can cause packet loss.</td>
 <td>4.4.0-4.4.4</td>
@@ -1653,23 +1517,6 @@ Fixed: 5.50-1.2~deb10u2</td>
 <td>2747750</td>
 <td>Links connected between a Spectrum 2 switch configured for warm boot and Spectrum 3 switches configured for cold boot might not come up when the switches are booted.</td>
 <td>4.4.2-4.4.4</td>
-</tr>
-<tr>
-<td>2747604</td>
-<td>CVE-2021-3246: a buffer overflow in libsndfile, a library
-for reading/writing audio files, which could result in denial of service
-or potentially the execution of arbitrary code when processing a
-malformed audio file.
-Vulnerable: 1.0.28-6
-Fixed: 1.0.28-6+deb10u1</td>
-<td>4.0.0-4.4.1</td>
-</tr>
-<tr>
-<td>2739638</td>
-<td>CVE-2021-36222: It was discovered that the Key Distribution Center (KDC) in krb5, the MIT implementation of Kerberos, is prone to a NULL pointer dereference flaw. An unauthenticated attacker can take advantage of this flaw to cause a denial of service (KDC crash) by sending a request containing a PA-ENCRYPTED-CHALLENGE padata element without using FAST.
-Vulnerable: &lt;= 1.17-3+deb10u1
-Fixed: 1.17-3+deb10u2</td>
-<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2739402</td>
@@ -1713,13 +1560,6 @@ Device is not ready: absent
 <td>When VRF devices are deleted and reconfigured (for example, during a networking service restart), dynamic BGP neighbors might fail to reestablish. 
 To work around this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4</td>
-</tr>
-<tr>
-<td>2716838</td>
-<td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
-Vulnerable: 1.24.1-1
-Fixed: 1.24.1-1+deb 10u1</td>
-<td>4.0.0-4.4.1</td>
 </tr>
 <tr>
 <td>2698649</td>

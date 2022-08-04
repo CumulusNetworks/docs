@@ -56,14 +56,6 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 <td></td>
 </tr>
 <tr>
-<td>3131402</td>
-<td>CVE-2022-34903: GnuPG through 2.3.6, in unusual situations where an attacker possesses any secret-key information from a victim's keyring and other constraints (e.g., use of GPGME) are met, allows signature forgery via injection into the status line.
-Vulnerable: &lt;= 2.2.12-1+deb10u1
-Fixed: 2.2.12-1+deb10u2</td>
-<td>5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -72,15 +64,6 @@ Fixed: 2.2.12-1+deb10u2</td>
 <tr>
 <td>3119673</td>
 <td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
-<td>5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3118374</td>
-<td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
-Vulnerable: &lt;= 1.1.1n-0+deb10u2
-Fixed: 1.1.1n-0+deb10u3
-Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -158,14 +141,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3084099</td>
-<td>CVE-2022-1664: dpkg has a vulnerability relating to directory traversal for in-place extracts with untrusted v2 and v3 source packages with debian.tar
-Vulnerable: &lt;= 1.19.7
-Fixed: 1.19.8</td>
-<td>5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3084007</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
 <td>4.4.3, 5.1.0</td>
@@ -223,7 +198,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously.
 To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
-<td>5.1.0</td>
+<td>4.4.4, 5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -447,10 +422,38 @@ Fixed: 4.19.194-3</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
+<td>2993960</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.15, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
+<td>3.7.16</td>
+</tr>
+<tr>
+<td>2993959</td>
+<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
+by reading too much data on the heap.
+Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
+Fixed:</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2982537</td>
+<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
+library, which could result in denial of service or potentially the
+execution of arbitrary code, if a malformed XML file is processed.
+Vulnerable: &lt;= 2.2.6-2+deb10u2
+Fixed: 2.2.6-2+deb10u3</td>
+<td>5.0.0-5.1.0</td>
+<td>4.4.4</td>
 </tr>
 <tr>
 <td>2972540</td>
@@ -513,7 +516,7 @@ Fixed: 4.19.194-3</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2891257</td>
+<td>2891256</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
@@ -624,23 +627,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>5.0.1</td>
 </tr>
 <tr>
-<td>3053013</td>
-<td>CVE-2022-29799, CVE-2022-29800: The networkd-dispatcher program has directory traversal, symlink race, and time-of-check-time-of-use race condition which can allow a local attacker to gain root access.  This vulnerability is sometimes called "nimbuspwn".  Cumulus Linux does not include the networkd-dispatcher package or script in the default image or in the package repository.  However, networkd-dispatcher_2.0-2 from Debian 10 upstream is vulnerable and should not be installed.</td>
-<td></td>
-</tr>
-<tr>
-<td>3045302</td>
-<td>CVE-2022-1271: incorrect handling of filenames by xzgrep in xz-utils, the XZ-format compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.
-Vulnerable: 5.2.4-1
-Fixed: 5.2.4-1+deb10u1</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>3045299</td>
-<td>CVE-2022-1271: incorrect handling of filenames by zgrep in gzip, the GNU compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>3040080</td>
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
@@ -682,13 +668,6 @@ To work around this issue, reboot the system.</td>
 <td>4.4.3-5.0.1</td>
 </tr>
 <tr>
-<td>3025899</td>
-<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
-Vulnerable: 1.2.11.dfsg-1
-Fixed: 1.2.11.dfsg-1+deb10u1</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>3022955</td>
 <td>Docker creates a bridge called {{docker0}} and this causes compatibility issues with WJH, which runs in a Docker container.</td>
 <td></td>
@@ -715,30 +694,9 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>3017042</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>3010290</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-</tr>
-<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3-5.0.1</td>
-</tr>
-<tr>
-<td>3007603</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>3007020</td>
@@ -751,11 +709,6 @@ Fixed: 1.1.1d-0+deb10u8</td>
 
 The new behavior will make sure to apply the configuration delta without disrupting any traffic as much as possible. Note that a tunnel mode change can't be applied without causing traffic loss. </td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>3001439</td>
-<td>CVE-2022-0847: This vulnerability, known as "dirty pipe", does not affect Cumulus Linux through 5.1.0, which use earlier kernels which do not have the vulnerable code.</td>
-<td></td>
 </tr>
 <tr>
 <td>2999253</td>
@@ -785,28 +738,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>3.7.15-5.0.1</td>
 </tr>
 <tr>
-<td>2989098</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2984205</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2982534</td>
-<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
-library, which could result in denial of service or potentially the
-execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u2
-Fixed: 2.2.6-2+deb10u3</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>2980891</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-5.0.1</td>
@@ -822,30 +753,9 @@ Unrecoverable internal error
 <td>5.0.1</td>
 </tr>
 <tr>
-<td>2971342</td>
-<td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u1
-Fixed: 2.2.6-2+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-</tr>
-<tr>
-<td>2961078</td>
-<td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
-Vulnerable: &lt;= 2.5.5-3+deb10u3
-Fixed: 2.5.5-3+deb10u4</td>
-<td>4.0.0-4.4.2</td>
-</tr>
-<tr>
 <td>2957968</td>
 <td>After you install the RADIUS {{libnss-mapuser}} package, the {{nvued}} service fails to start.</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2949511</td>
-<td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
-Vulnerable: &lt;= 2:3.42.1-1+deb10u4
-Fixed: 2:3.42.1-1+deb10u5</td>
-<td>4.0.0-4.4.2</td>
 </tr>
 <tr>
 <td>2943443</td>

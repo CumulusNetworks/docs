@@ -159,7 +159,7 @@ The use of <code>netq-latest</code> in this example means that a <code>get</code
 
 8. Download NetQ installation tarball:
 
-    1. On the {{<exlink url="https://ui.licensing.nvidia.com/login" text="NVIDIA Licensing Portal">}}, log in to your account.
+    1. On the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}, log in to your account and select **NVIDIA Licensing Portal**.
 
     2. Select **Software Downloads** from the menu.
 

@@ -51,8 +51,8 @@ The NVUE commands save the configuration in the `/etc/cumulus/switchd.d/port-mir
 The following example commands mirror all packets received on swp1, and copy and transmit the packets to swp2 for monitoring:
 
 ```
-cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress 
-cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1 
+cumulus@switch:~$ nv set system port-mirror session 1 span direction ingress
+cumulus@switch:~$ nv set system port-mirror session 1 span source-port swp1
 cumulus@switch:~$ nv set system port-mirror session 1 span destination swp2
 cumulus@switch:~$ nv config apply
 ```
@@ -70,7 +70,7 @@ The following example commands mirror all packets that swp1 receives, and copy a
 
 ```
 cumulus@switch:~$ nv set system port-mirror session 1 erspan source-port swp1
-cumulus@switch:~$ nv set system port-mirror session 1 erspan destination source-ip 10.10.10.1 
+cumulus@switch:~$ nv set system port-mirror session 1 erspan destination source-ip 10.10.10.1
 cumulus@switch:~$ nv set system port-mirror session 1 erspan destination dest-ip 10.10.10.234
 cumulus@switch:~$ nv config apply
 ```
@@ -109,19 +109,21 @@ cumulus@switch:~$ nv config apply
 You can delete all SPAN or ERSPAN sessions with the `nv unset system port-mirror` command. For example:
 
 ```
-cumulus@switch:~$ nv unset system port-mirror 
+cumulus@switch:~$ nv unset system port-mirror
 cumulus@switch:~$ nv config apply
 ```
 <!-- vale off -->
 ## cl-acltool Configuration
 <!-- vale on -->
-You can configure SPAN and ERSPAN with `cl-acltool`, the {{<link url="Netfilter-ACLs" text="same utility used for security ACL configuration">}}. The match criteria for SPAN and ERSPAN is usually an interface; for more granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The SPAN source interface can be a port, a subinterface, or a bond interface. You can match ingress traffic on interfaces. On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, you can match egress traffic. See the {{<link url="#limitations-for-span-and-erspan" text="list of limitations">}} below.
+You can configure SPAN and ERSPAN with `cl-acltool`, the {{<link url="Netfilter-ACLs" text="same utility used for security ACL configuration">}}. The match criteria for SPAN and ERSPAN is usually an interface; for more granular match terms, use {{<link url="#selective-spanning" text="selective spanning">}}. The SPAN source interface can be a port, a subinterface, or a bond interface. You can match ingress traffic on interfaces. On switches with {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}, you can match egress traffic.
 
 Cumulus Linux supports a maximum of two SPAN destinations. Multiple rules (SPAN sources) can point to the same SPAN destination, although a given SPAN source cannot specify two SPAN destinations. The SPAN destination (MTP) interface can be a physical port, subinterface, bond interface or CPU. The SPAN and ERSPAN action is independent of security ACL actions. If packets match both a security ACL rule and a SPAN rule, both actions apply.
 
 {{%notice note%}}
 Always place your rule files under `/etc/cumulus/acl/policy.d/`.
 {{%/notice%}}
+
+**Limitations for SPAN functionality**
 
 - Cumulus Linux supports only a single SPAN destination in atomic mode or three SPAN destinations in non-atomic mode.
 - Cumulus Linux does not support SPAN ACL rules for an output interface that is a subinterface.
@@ -313,7 +315,7 @@ To mirror forwarded UDP packets received from port swp1s0, towards destination I
 ```
 -A FORWARD --in-interface swp1s0 -d 20.0.1.2 -p udp --dport 53 -j SPAN --dport swp1s2
 ```
-  
+
 To mirror all forwarded TCP packets with only SYN set:
 
 ```

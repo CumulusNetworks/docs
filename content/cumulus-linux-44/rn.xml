@@ -200,24 +200,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2993959</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -2180,41 +2162,6 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>4.4.0-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>3017044</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>3010292</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-</tr>
-<tr>
-<td>3007605</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2989100</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2982537</td>
-<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
-library, which could result in denial of service or potentially the
-execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u2
-Fixed: 2.2.6-2+deb10u3</td>
-<td>5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2961216</td>
 <td>When there is a peer link failure followed by a power failure or a crash on the primary switch,  the MLAG secondary switch takes up to 24 seconds to change roles to the Primary.</td>
 <td>4.4.2-4.4.3</td>
@@ -2504,34 +2451,10 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>3017044</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3010292</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>3007605</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3007564</td>
@@ -2554,24 +2477,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2993959</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -2582,12 +2487,6 @@ Fixed:</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>2989100</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>2972540</td>
@@ -4473,13 +4372,6 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
-<td>2971343</td>
-<td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u1
-Fixed: 2.2.6-2+deb10u2</td>
-<td>4.4.0-4.4.2</td>
-</tr>
-<tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.1.0</td>
@@ -4755,30 +4647,6 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>3017044</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3010292</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3007605</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15-5.0.1</td>
@@ -4799,24 +4667,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2993959</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -4829,12 +4679,6 @@ Fixed:</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2989100</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
@@ -4845,14 +4689,6 @@ Fixed:</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2971343</td>
-<td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u1
-Fixed: 2.2.6-2+deb10u2</td>
-<td>4.4.0-4.4.2</td>
-<td>4.4.3-4.4.4</td>
 </tr>
 <tr>
 <td>2968495</td>
@@ -7189,30 +7025,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>3017044</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3010292</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3007605</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15-5.0.1</td>
@@ -7242,24 +7054,6 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2993960</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2993959</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -7272,12 +7066,6 @@ Fixed:</td>
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2989100</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
@@ -7288,14 +7076,6 @@ Fixed:</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2971343</td>
-<td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u1
-Fixed: 2.2.6-2+deb10u2</td>
-<td>4.4.0-4.4.2</td>
-<td>4.4.3-4.4.4</td>
 </tr>
 <tr>
 <td>2968495</td>

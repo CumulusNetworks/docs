@@ -7,35 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3053143</td>
+<td>The MLAG Session card might not show all MLAG events.</td>
+<td>4.2.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3043146</td>
+<td>After you upgrade from NetQ 4.1 to NetQ 4.2, some streaming validation checks might erroneously report failures when services are running properly. This condition will resolve itself within 24 hours of the upgrade. </td>
+<td>4.2.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
-<td>4.1.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2896825</td>
-<td>WJH monitoring fails to start with netq-agent on Cumulus Linux 5.0. To work around this issue, reinstall the netq-agent package and configure the netq agent to start monitoring:
-
-
-1. Add the gpg key for the repository:
-
-{{wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -}}
-
-
-2. Add the repository to {{/etc/apt/sources.list}}:
-
-{{echo 'deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest' | sudo tee -a /etc/apt/sources.list}}
-
-
-3. Reinstall the netq-agent package:
-
-{{sudo apt-get update &amp;&amp; sudo apt-get install --reinstall netq-agent}}</td>
-<td>4.1.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2885440</td>
-<td>After upgrading to NetQ 4.1.0, validation checks might show intermittent errors that are not valid while the validation application processess pending messages after upgrade. This condition will clear once all messages are processed.</td>
 <td>4.1.0-4.3.0</td>
 <td></td>
 </tr>
@@ -53,98 +38,9 @@
 <td></td>
 </tr>
 <tr>
-<td>2843640</td>
-<td>In NetQ clustered environments, the network snapshot feature may fail.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2815596</td>
-<td>The NetQ Cloud VM for KVM hypervisors installer and opta-check fail because the minimum disk requirements do not meet the default image settings. To work around this issue, increase the disk space from 32GB to 64GB before you run the {{netq bootstrap}} command.
-
-
-1. Check the size of the existing hard disk in the VM to confirm it is 32 GB. In this example, the number of 1 MB blocks is 31583, or 32 GB.
-
-	cumulus@netq-401-cloud:~$ df -hm /
-	Filesystem     1M-blocks  Used Available Use% Mounted on
-	/dev/vda1          31583  1192     30375   4% /
-
-2. Shutdown the VM.
-
-3. Check the size of the existing disk on the server hosting the VM to confirm it is 32 GB. In this example, the size appears in the virtual size field:
-
-
-	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	image: netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	file format: qcow2
-	virtual size: 32G (34359738368 bytes)
-	disk size: 1.3G
-	cluster_size: 65536
-	Format specific information:
-	    compat: 1.1
-	    lazy refcounts: false
-	    refcount bits: 16
-	    corrupt: false
-
-4. Add 32 GB to the image:
-
-	root@server:/var/lib/libvirt/images# qemu-img resize netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2 +32G
-	Image resized.
-
-5. Verify the change.
-
-	root@server:/var/lib/libvirt/images# qemu-img info netq-4.0.1-ubuntu-18.04-tscloud-qemu.qcow2
-	image: netq-3.1.0-ubuntu-18.04-tscloud-qemu.qcow2
-	file format: qcow2
-	virtual size: 64G (68719476736 bytes)
-	disk size: 1.3G
-	cluster_size: 65536
-	Format specific information:
-	    compat: 1.1
-	    lazy refcounts: false
-	    refcount bits: 16
-	    corrupt: false
-
-6. Start the VM and log back in.
-
-7. Run the following commands on the partition, referencing the filesystem /dev/vda1 obtained in step 1:
-
-
-	cumulus@netq-401-cloud:~$ sudo growpart /dev/vda 1
-	CHANGED: partition=1 start=227328 old: size=66881503 end=67108831 new: size=133990367,end=134217695
-
-	cumulus@netq-401-cloud:~$ sudo resize2fs /dev/vda1
-	resize2fs 1.44.1 (24-Mar-2018)
-	Filesystem at /dev/vda1 is mounted on /; on-line resizing required
-	old_desc_blocks = 4, new_desc_blocks = 8
-	The filesystem on /dev/vda1 is now 16748795 (4k) blocks long.
-
-8. Verify the disk is now configured with 64 GB. In this example, the number of 1 MB blocks is now 63341, or 64 GB:
-
-	cumulus@netq-401-cloud:~$ df -hm /
-	Filesystem     1M-blocks  Used Available Use% Mounted on
-	/dev/vda1          63341  1193     62132   2% /</td>
-<td>4.0.1-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2711101</td>
-<td>When RoCE (RDMA over Converged Ethernet) data collection is enabled in Cumulus Linux 4.3.z and 4.4.z, you can experience high dual uplink convergence times.
-To work around this issue, disable RoCE monitoring:
-
-1. Edit &apos;/etc/netq/commands/cl4-netq-commands.yml&apos; and comment out the following lines:
-        #- period: "60"
-        #  key: "roce"
-        #  isactive: true
-        #  command: "/usr/lib/cumulus/mlxcmd --json roce counters"
-        #  parser: "local"
-
-2. Delete the &apos;/var/run/netq/netq_commands.yml&apos; file:
-        $ sudo rm /var/run/netq/netq_commands.yml
-
-3. Restart the NetQ agent:
-       $ netq config agent restart</td>
-<td>4.0.0-4.3.0</td>
+<td>2872288</td>
+<td>When a NetQ agent sends messages with validation check data, there might be a delay of up to 120 seconds before the new data is displayed in streaming validation checks.</td>
+<td>4.2.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -175,12 +71,12 @@ To work around this issue, disable RoCE monitoring:
 <tr>
 <td>3085017</td>
 <td>When you hover over a device with WJH events in the flow analysis graph, the number of WJH packet drops in the event summary might display 0 drops. This is because the device did not detect any WJH events on the selected path. To view the WJH events, select different paths to display any WJH events for that device.</td>
-<td></td>
+<td>4.2.0</td>
 </tr>
 <tr>
 <td>3047149</td>
 <td>When you reboot the OPTA, the NetQ validation summary might show an incorrect number of validations. This condition will resolve itself within an hour of the reboot.</td>
-<td></td>
+<td>4.2.0</td>
 </tr>
 <tr>
 <td>2817749</td>

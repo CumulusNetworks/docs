@@ -9,7 +9,7 @@
 <tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
-<td>4.1.0-4.1.1</td>
+<td>4.1.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -20,7 +20,7 @@
 systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
 </td>
 <td>4.1.1</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2896825</td>
@@ -41,13 +41,13 @@ systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
 
 {{sudo apt-get update &amp;&amp; sudo apt-get install --reinstall netq-agent}}</td>
 <td>4.1.0-4.1.1</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2885440</td>
 <td>After upgrading to NetQ 4.1.0, validation checks might show intermittent errors that are not valid while the validation application processess pending messages after upgrade. This condition will clear once all messages are processed.</td>
 <td>4.1.0-4.1.1</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2885312</td>
@@ -59,20 +59,20 @@ systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
    torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
                                                          torc-21:vx-282 and torc-11:peerlink-3
    </td>
-<td>4.1.0-4.1.1</td>
+<td>4.1.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2843640</td>
 <td>In NetQ clustered environments, the network snapshot feature may fail.</td>
 <td>4.0.0-4.1.1</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2817749</td>
 <td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
-<td>4.0.1-4.1.1</td>
-<td></td>
+<td>4.0.1-4.2.0</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2815596</td>
@@ -141,7 +141,7 @@ systemd: netq-agent.service: Main process exited, code=exited, status=1/FAILURE
 	Filesystem     1M-blocks  Used Available Use% Mounted on
 	/dev/vda1          63341  1193     62132   2% /</td>
 <td>4.0.1-4.1.1</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2711101</td>
@@ -161,24 +161,24 @@ To work around this issue, disable RoCE monitoring:
 3. Restart the NetQ agent:
        $ netq config agent restart</td>
 <td>4.0.0-4.1.1</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2663534</td>
 <td>Validation check filtering is only applied to errors in validation results and is not applied to warnings in validation results.</td>
-<td>4.0.0-4.1.1</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2555854</td>
 <td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.1.1</td>
+<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2549649</td>
 <td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.1.1</td>
+<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 </table>
@@ -206,7 +206,7 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 <tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
-<td>4.1.0</td>
+<td>4.1.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -228,13 +228,13 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 
 {{sudo apt-get update &amp;&amp; sudo apt-get install --reinstall netq-agent}}</td>
 <td>4.1.0</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2885440</td>
 <td>After upgrading to NetQ 4.1.0, validation checks might show intermittent errors that are not valid while the validation application processess pending messages after upgrade. This condition will clear once all messages are processed.</td>
 <td>4.1.0</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2885312</td>
@@ -246,20 +246,20 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
    torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021
                                                          torc-21:vx-282 and torc-11:peerlink-3
    </td>
-<td>4.1.0</td>
+<td>4.1.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2843640</td>
 <td>In NetQ clustered environments, the network snapshot feature may fail.</td>
 <td>4.0.0-4.1.0</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2817749</td>
 <td>If you configure an event suppression rule with {{is_active false}}, the event will no longer be displayed with the {{netq show events-config}} command.</td>
-<td>4.0.1-4.1.0</td>
-<td></td>
+<td>4.0.1-4.2.0</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2815596</td>
@@ -328,7 +328,7 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 	Filesystem     1M-blocks  Used Available Use% Mounted on
 	/dev/vda1          63341  1193     62132   2% /</td>
 <td>4.0.1-4.1.0</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2711101</td>
@@ -348,24 +348,24 @@ To work around this issue, disable RoCE monitoring:
 3. Restart the NetQ agent:
        $ netq config agent restart</td>
 <td>4.0.0-4.1.0</td>
-<td></td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2663534</td>
 <td>Validation check filtering is only applied to errors in validation results and is not applied to warnings in validation results.</td>
-<td>4.0.0-4.1.0</td>
+<td>4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2555854</td>
 <td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.1.0</td>
+<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2549649</td>
 <td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.1.0</td>
+<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
 <td></td>
 </tr>
 </table>

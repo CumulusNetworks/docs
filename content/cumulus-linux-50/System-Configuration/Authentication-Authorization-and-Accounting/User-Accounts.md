@@ -27,7 +27,6 @@ cumulus@switch:~$ sudo adduser NEWUSERNAME sudo
 
 To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 
-
 ## Enable Remote Access for the root User
 
 The root user does not have a password and cannot log into a switch using SSH. This default account behavior is consistent with Debian. To connect to a switch using the root account, you can do one of the

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3168681</td>
+<td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -60,12 +66,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td></td>
 </tr>
 <tr>
-<td>3096915</td>
-<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
-<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
@@ -76,6 +76,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
 <td>4.2.1-4.4.3</td>
 <td>4.4.4</td>
+</tr>
+<tr>
+<td>3084027</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3073668</td>

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3168681</td>
+<td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -108,6 +114,12 @@ end vrf
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3084027</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2173,6 +2185,12 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3168681</td>
+<td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
+<td>4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>3138746</td>
@@ -4421,6 +4439,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3168681</td>
+<td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
+<td>4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>3138746</td>
@@ -6839,6 +6863,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3168681</td>
+<td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
+<td>4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>3138746</td>

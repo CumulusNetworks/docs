@@ -234,6 +234,7 @@ hash_config.dport = false
 {{%notice note%}}
 Cumulus Linux enables symmetric hashing by default. Make sure that the settings for the source IP and destination IP fields match, and that the settings for the source port and destination port fields match; otherwise Cumulus Linux disables symmetric hashing automatically. If necessary, you can disable symmetric hashing manually in the `/etc/cumulus/datapath/traffic.conf` file by setting `symmetric_hash_enable = FALSE`.
 {{%/notice%}}
+
 ## GTP Hashing
 
 [GTP](## "GPRS Tunneling Protocol") carries mobile data within the core of the mobile operator’s network. Traffic in the 5G Mobility core cluster, from cell sites to compute nodes, have the same source and destination IP address. The only way to identify individual flows is with the GTP [TEID](## "Tunnel Endpoint Identifier"). Enabling GTP hashing adds the TEID as a hash parameter and helps the Cumulus Linux switches in the network to distribute mobile data traffic evenly across ECMP routes.
@@ -289,7 +290,6 @@ To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to 
 
 {{< /tab >}}
 {{< /tabs >}}
-
 
 ## Unique Hash Seed
 

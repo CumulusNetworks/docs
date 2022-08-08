@@ -19,7 +19,7 @@ GRE uses multiple protocols over a single-protocol backbone and is less demandin
 - Cumulus Linux supports a maximum of 256 GRE tunnels.
 - GRE tunnels do not support layer 3 protocols, ECMP, QoS, ACLs or NAT.
 - All GRE tunnels share the same [TTL](## "Time to live") value; Cumulus Linux uses the TTL value of the tunnel you configure last.
-- You cannot configure the MTU on GRE tunnel interfaces. The GRE tunnel MTU is set to the maximum supported MTU on the switch by default.
+- You cannot configure the MTU on GRE tunnel interfaces. The GRE tunnel MTU is the maximum supported MTU on the switch by default.
 {{%/notice%}}
 
 The following example shows two sites that use IPv4 addresses. Using GRE tunneling, the two end points can encapsulate an IPv4 or IPv6 payload inside an IPv4 packet. The switch routes the packet based on the destination in the outer IPv4 header.

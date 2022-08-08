@@ -243,7 +243,7 @@ Always place your rules files under `/etc/cumulus/acl/policy.d/`.
 
 {{%/notice%}}
 
-### Limitations for SPAN and ERSPAN
+### Limitations
 
 - For Broadcom switches, Cumulus Linux supports a maximum of two SPAN destinations.
 - Because SPAN and ERSPAN is done in hardware, eth0 is not supported as a destination.

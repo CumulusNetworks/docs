@@ -451,10 +451,10 @@ cumulus@switch:~$ net commit
 
 {{< tab "Linux Commands" >}}
 
-You enable the community string by providing a community string and then setting **rocommunity** (for read-only access) or **rwcommunity** (for read-write access). Other options you can specify are described below.
+Enable the community string by providing a community string, then set:
 
-- `rocommunity`/`rwcommunity`: `rwcommunity` is for a read-only community; `rwcommunity` is for read-write access. Specify one or the other.
-- `public`: The plaintext password/community string.
+- `rocommunity` or `rwcommunity`: `rocommunity` is for a read-only community; `rwcommunity` is for read-write access. Specify one or the other.
+- `public`: The plaintext password or community string.
 
   {{%notice info%}}
 

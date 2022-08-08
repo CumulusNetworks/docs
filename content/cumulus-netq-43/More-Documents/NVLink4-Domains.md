@@ -9,13 +9,13 @@ This section describes how to create, edit, and delete NVLink4 domains. After y
 
 ## Requirements
 
-To run GFM, each domain needs a configuration file, a topology file, and an IP file. You need to upload the topology and IP files during the domain creation process. The configuration file is created automatically after you have configured the domain.
+To run GFM, each domain needs a configuration file, a topology file, and an IP address file. You need to upload the topology and IP address files during the domain creation process. The configuration file is created automatically after you have configured the domain.
 
 ## Create a Domain
 
 Select the NVL4 icon in the header, then select **Add domain**:
 
-{{<figure src="/images/netq/netq-header-nvl4.png" width="750">}}
+{{<figure src="/images/netq/netq-header-nvl4.png" alt="" width="750">}}
 
 The first step configures the GFM:
 
@@ -27,7 +27,7 @@ Choose a **log level** of critical, error, warning, info, or none.
 
 **GFM timeout** is the length of time (in seconds) that the GFM node will wait for Local Fabric Managers (LFMs) to boot up on all nodes. Setting this field to -1 (recommended) prevents timeout issues.
 
-**Fabric manager mode** lists supported physical and virtualization models. For more information, refer to chapters 3 and 4 in the {{<exlink url="https://docs.nvidia.com/datacenter/tesla/pdf/fabric-manager-user-guide.pdf" text="Fabric Manager User Guide">}}
+**Fabric manager mode** lists supported physical and virtualization models. For more information, refer to chapters 3 and 4 in the {{<exlink url="https://docs.nvidia.com/datacenter/tesla/pdf/fabric-manager-user-guide.pdf" text="Fabric Manager User Guide">}}.
 
 The next step prompts you to upload a topology file:
 
@@ -43,11 +43,15 @@ This is a text file listing the IP addresses for the nodes (GPU nodes and NVL4 s
 
 The final screen displays a summary of the domain's parameters. In addition to the summary, you can toggle GFM to run after creating the domain. If you are not ready to start GFM, you can save the configuration and start it later.
 
-Enter your credentials to set the switch username and password. Note: If you are also using NetQ to manage ethernet switches, these credentials must match.
+Enter your credentials to set the switch username and password. 
 
-After you select **Finish**, NetQ adds the domain to a list of NVLink4 domains:
+{{<notice info>}}
+If you are also using NetQ to manage ethernet switches, make sure these credentials match.
+{{</notice>}}
 
-{{<figure src="/images/netq/nvl4-domain-list.png" width="950">}}
+After reviewing the summary, select **Finish**. NetQ adds the domain to a list of all NVLink4 domains:
+
+{{<figure src="/images/netq/nvl4-domain-list.png" alt="list of three NVL4 domains, including the one created in the preceding steps" width="950">}}
 
 From the list of NVLink4 domains, you can view and manage multiple domains. Per domain, you can view:
 
@@ -58,18 +62,18 @@ From the list of NVLink4 domains, you can view and manage multiple domains. Per 
 - Total number of nodes (GPU nodes and NVL4 switches)
 - Number of healthy, unhealthy, and undiscovered nodes. *Undiscovered* means that NetQ is not receiving telemetry data from the device.
 
-You can also stop and start GFM by selecting (stop icon) or (play icon). Stopping GFM gradually shuts down monitoring operations and stops the telemetry agent.
+You can also stop and start GFM by selecting (stop icon) or {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" alt="play icon" height="18" width="18">}}. Stopping GFM gradually shuts down monitoring operations and stops the telemetry agent.
 
 Select **View details** to review the domain's configuration and associated devices:
 
-{{<figure src="/images/netq/nvl4-view-details.png" width="950">}}
+{{<figure src="/images/netq/nvl4-view-details.png" alt="configuration summary for a selected domain" width="1050">}}
 
-{{<figure src="/images/netq/nvl4-devices-list.png" width="950">}}
+{{<figure src="/images/netq/nvl4-devices-list.png" alt="devices summary for selected domain" width="1050">}}
 
-## Edit a domain
+## Edit a Domain
 
-Select the three-dot menu (icon) to edit a domain's configuration. Note that if GFM is running, you must stop it before editing a domain. 
+Select the three-dot menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}} to edit a domain's configuration. Note that if GFM is running, you must stop it before editing a domain. 
 
-## Delete a domain
+## Delete a Domain
 
-Select the three-dot menu (icon) and select **Delete**. You cannot delete a topology file if it is in use by a domain.
+Select the three-dot menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}}, then select **Delete**. You cannot delete a topology file that is in use by a domain.

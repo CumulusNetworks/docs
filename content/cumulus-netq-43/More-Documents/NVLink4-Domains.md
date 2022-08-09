@@ -17,13 +17,13 @@ Select the NVL4 icon in the header, then select **Add domain**:
 
 {{<figure src="/images/netq/netq-header-nvl4.png" alt="" width="750">}}
 
-The first step configures the GFM:
+Creating a domain is a 4-step process. The first step configures the GFM:
 
 {{<figure src="/images/netq/nvlink-gfm-config.png" alt="wizard prompting user to configure GFM" width="750">}}
 
 **Domain name** is the name that will appear in the inventory list.
 
-Choose a **log level** of critical, error, warning, info, or none.
+The **log level** is critical, error, warning, info, or none.
 
 **GFM timeout** is the length of time (in seconds) that the GFM node will wait for Local Fabric Managers (LFMs) to boot up on all nodes. Setting this field to -1 (recommended) prevents timeout issues.
 
@@ -46,12 +46,12 @@ The final screen displays a summary of the domain's parameters. In addition to t
 Enter your credentials to set the switch username and password. 
 
 {{<notice info>}}
-If you are also using NetQ to manage ethernet switches, make sure these credentials match.
+If you are also using NetQ to manage ethernet switches, make sure the switch username and password match.
 {{</notice>}}
 
 After reviewing the summary, select **Finish**. NetQ adds the domain to a list of all NVLink4 domains:
 
-{{<figure src="/images/netq/nvl4-domain-list.png" alt="list of three NVL4 domains, including the one created in the preceding steps" width="950">}}
+{{<figure src="/images/netq/nvl4-domain-list.png" alt="list of three NVL4 domains, including the one created in the preceding steps" width="1050">}}
 
 From the list of NVLink4 domains, you can view and manage multiple domains. Per domain, you can view:
 
@@ -62,7 +62,7 @@ From the list of NVLink4 domains, you can view and manage multiple domains. Per 
 - Total number of nodes (GPU nodes and NVL4 switches)
 - Number of healthy, unhealthy, and undiscovered nodes. *Undiscovered* means that NetQ is not receiving telemetry data from the device.
 
-You can also stop and start GFM by selecting (stop icon) or {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-circle-right.svg" alt="play icon" height="18" width="18">}}. Stopping GFM gradually shuts down monitoring operations and stops the telemetry agent.
+You can also stop and start GFM by selecting the stop and play buttons. Stopping GFM gradually shuts down monitoring operations and stops the telemetry agent.
 
 Select **View details** to review the domain's configuration and associated devices:
 

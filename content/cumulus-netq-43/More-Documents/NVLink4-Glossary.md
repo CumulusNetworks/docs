@@ -23,3 +23,5 @@ The following table lists terms and acronyms used throughout the NVLink4 user do
 |OSFP Port/NVLink|Octal Small Form Factor Pluggable based NVLink ports attached to NVIDIA GPU baseboard|
 |Rack switch node|A rack switch with 2 NVSwitch devices with multiple OSFP ports|
 |Trunk NVLink|An NVLink between 2 NVSwitch devices|
+
+For more information, refer to the {{<exlink url="https://docs.nvidia.com/datacenter/tesla/pdf/fabric-manager-user-guide.pdf" text="Fabric Manager User Guide">}}.

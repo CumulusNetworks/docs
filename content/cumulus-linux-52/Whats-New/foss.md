@@ -7,6 +7,15 @@ version: "5.2"
 toc: 1
 pdfhidden: True
 ---
+
+This page shows the open source licenses for the software that Cumulus Linux uses.
+You can also view the open source licenses from the Cumulus Linux switch.
+
+- To view the license file for a specific package, run the `cat /usr/share/doc/<package-name>/copyright` command.
+- To view all open source licenses on the Cumulus Linux switch, run the `ls /usr/share/common-licenses/` command.
+
+To obtain the source code for packages that are not proprietary, run the `sudo apt-get source <package-name>` command on the Cumulus Linux switch. This command fetches the source tarball from the Cumulus Linux software repository and places it in the current working directly for inspection.
+
 ## 5.2.0 Open Source Software Licenses 
 | Package | Version | License(s) |
 |---	        |---	        |---	    |

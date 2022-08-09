@@ -11,4 +11,4 @@ Follow the installation instructions for the NetQ on-premises deployment with a 
 
 {{<netq-install/vm-reqs deployment="onprem" hypervisor="kvm" version="4.2.0">}}
 
-Follow the installation instructions for either a {{<link title="Set Up Your KVM Virtual Machine for an On-premises Server Cluster" text="KVM hypervisor">}} or {{<link title="Set Up Your VMware Virtual Machine for an On-premises Server Cluster" text="VMware hypervisor">}}.
+After ensuring you have the minimum system resource requirements, follow the installation instructions for either a {{<link title="Set Up Your KVM Virtual Machine for an On-premises Server Cluster" text="KVM hypervisor">}} or {{<link title="Set Up Your VMware Virtual Machine for an On-premises Server Cluster" text="VMware hypervisor">}}.

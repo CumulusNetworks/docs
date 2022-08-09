@@ -8,7 +8,15 @@
 </tr>
 <tr>
 <td>3141826</td>
-<td>A slow memory leak might occur in SNMP when you walk system MIB objects (1.3.6.1.2.1).</td>
+<td>A slow memory leak (~5KB over 24 hour period at a 60 second polling interval) might occur in SNMP when you walk the following system MIB objects (1.3.6.1.2.1).
+
+1.3.6.1.2.1.47 --&gt; Entity MIB
+ 1.3.6.1.2.1.99 --&gt; Entity Sensor MIB
+ 1.3.6.1.2.1.23 --&gt; rip2
+ 1.3.6.1.2.1.2 --&gt; interface/interfaces
+ 1.3.6.1.2.1.31 --&gt; ifMIB
+ 1.3.6.1.2.1.4 --&gt; IP
+ 1.3.6.1.2.1.25 --&gt; hostResource</td>
 <td>5.0.1-5.1.0</td>
 <td></td>
 </tr>
@@ -26,17 +34,11 @@
 </tr>
 <tr>
 <td>3136905</td>
-<td>When you upgrade to Cumulus Linux 5.0.1 to 5.1.0, the upgrade adds {{KexAlgorithms}} and {{MACs}} configuration (that remove some less secure algorithms from the default lists) to the {{/etc/ssh/sshd_config}} file without prompting for confirmation.  This may cause the {{/etc/ssh/sshd_config}} file to be incorrect if there is a {{Match}} section, since {{KexAlgorithms}} and {{MACs}} must come before {{Match}}
+<td>When you upgrade to Cumulus Linux 5.0.1 to 5.1.0, the upgrade adds {{KexAlgorithms}} and {{MACs}} configuration (that remove some less secure algorithms from the default lists) to the {{/etc/ssh/sshd_config}} file without prompting for confirmation.  This may cause the {{/etc/ssh/sshd_config}} file to be incorrect if there is a {{Match}} section; {{KexAlgorithms}} and {{MACs}} must come before {{Match}}.
 To work around this issue, move the lines that start with {{KexAlgorithms}} and {{MACs}} to before {{Match}} (or remove them), then restart the SSH service with the {{sudo systemctl restart ssh}} command.
 
 If you have already specified {{KexAlgorithms}} and/or {{MACs}}, you may wish to remove the newly added lines after an upgrade to CumulusLinux 5.1.0 if they are not what you want.</td>
 <td>5.0.1-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3136063</td>
-<td>When you configure a new VNI on a single VxLAN device, FRR flushes all existing VNIs on that SVD. This results in a loss of connectivity and/or additional unknown unicast flooding during EVPN reconvergence.</td>
-<td>5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -54,14 +56,6 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 <td></td>
 </tr>
 <tr>
-<td>3131402</td>
-<td>CVE-2022-34903: GnuPG through 2.3.6, in unusual situations where an attacker possesses any secret-key information from a victim's keyring and other constraints (e.g., use of GPGME) are met, allows signature forgery via injection into the status line.
-Vulnerable: &lt;= 2.2.12-1+deb10u1
-Fixed: 2.2.12-1+deb10u2</td>
-<td>5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -70,15 +64,6 @@ Fixed: 2.2.12-1+deb10u2</td>
 <tr>
 <td>3119673</td>
 <td>If the switch receives an EVPN route with multiple RTs that match the import policy for a local VNI, the {{bgpd}} service crashes.</td>
-<td>5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3118374</td>
-<td>CVE-2022-2068: In addition to the c_rehash shell command injection identified in CVE-2022-1292, further circumstances where the c_rehash script does not properly sanitise shell metacharacters to prevent command injection were found by code review. When the CVE-2022-1292 was fixed it was not discovered that there are other places in the script where the file names of certificates being hashed were possibly passed to a command executed through the shell.
-Vulnerable: &lt;= 1.1.1n-0+deb10u2
-Fixed: 1.1.1n-0+deb10u3
-Note: Use of the c_rehash script is considered obsolete and should be replaced by the OpenSSL rehash command line tool.</td>
 <td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -103,12 +88,7 @@ To recover, restart the networking service with the {{sudo systemctl restart net
 </tr>
 <tr>
 <td>3112971</td>
-<td>When you configure a VRF static route using the legacy command syntax in FRR and make subsequent VRF or route configuration changes, FRR might crash. Example of legacy VRF static route syntax:
-
-{{ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red}}
-
-To avoid this problem, use the current method for configuring VRF routes within the VRF stanza:
-
+<td>When you configure a VRF static route using the legacy command syntax in FRR (for example: {{ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red}}), then make subsequent VRF or route configuration changes, FRR might crash. To avoid this problem, use the current method for configuring VRF routes within the VRF stanza:
 
 vrf vrf-red
   ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red
@@ -139,48 +119,35 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3102128</td>
-<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VxLAN device. To work around this problem, set the VNI interface mapped to VLAN 1 down and up again.</td>
+<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
+To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
 <td>4.4.3-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3096915</td>
-<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
-<td>4.3.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3093863</td>
+<td>3085285</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3089148</td>
+<td>3084027</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3084007</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
 <td>4.4.3, 5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3084101</td>
-<td>CVE-2022-1664: dpkg has a vulnerability relating to directory traversal for in-place extracts with untrusted v2 and v3 source packages with debian.tar
-Vulnerable: &lt;= 1.19.7
-Fixed: 1.19.8</td>
-<td>5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3082583</td>
-<td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4</td>
 </tr>
 <tr>
 <td>3081232</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
+<td>4.4.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3078202</td>
@@ -214,27 +181,25 @@ cumulus@switch:~$ nv config apply
 </tr>
 <tr>
 <td>3074390</td>
-<td>You can not apply NVUE configurations when TACACS is enabled for user authentication. To work around this problem, add the {{nvue}} account to the {{exclude_users}} line in {{/etc/tacplus_nss.conf}}:
-
+<td>You can not apply NVUE configurations when TACACS is enabled for user authentication. To work around this issue, add the {{nvue}} account to the {{exclude_users}} line in {{/etc/tacplus_nss.conf}}:
 
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
-
 </td>
 <td>5.0.1-5.1.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3073649</td>
-<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously.
 To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
-<td>5.1.0</td>
+<td>4.4.4, 5.1.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3066664</td>
+<td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
+<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4</td>
 </tr>
 <tr>
 <td>3066280</td>
@@ -283,12 +248,17 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td></td>
 </tr>
 <tr>
+<td>3055283</td>
+<td>After you run Linux commands to enable a custom ECMP or LAG hash parameter,  if you set the {{hash_config.enable}} or {{lag_hash_config.enable}} parameter to {{false}}, the custom parameters do not restore their default values.
+To work around this issue, change the custom ECMP or LAG hash parameters to their default values manually.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3054869</td>
-<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicates a missing $HOME environment variable.
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicate a missing $HOME environment variable.
 
-The issue has been fixed where the ZTP module will initialize the $HOME environment variable before launching the ZTP scripts. This fix should be available with CL 5.2.0.
-
-However, if customers are running older releases, follow these workaround steps below:
+The issue has been fixed where the ZTP module initializes the $HOME environment variable before launching the ZTP scripts. However, if you are running older releases, follow these workaround steps below.
 Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
 
 # Manually set HOME var for root user
@@ -330,7 +300,7 @@ export HOME
 </tr>
 <tr>
 <td>3045310</td>
-<td>When GTP Hashing is set to {{true}}, after more than two warm boots {switchd}} fails and a cl-support file is generated.</td>
+<td>When GTP Hashing is set to {{true}}, after more than two warm boots {{switchd}} fails and a cl-support file is generated.</td>
 <td>5.1.0</td>
 <td></td>
 </tr>
@@ -348,8 +318,7 @@ export HOME
 </tr>
 <tr>
 <td>3042944</td>
-<td>{{cl-ecmpcalc}} does not support GTP hashing.
-</td>
+<td>Currently, the {{cl-ecmpcalc}} command does not support GTP hashing.</td>
 <td>5.1.0</td>
 <td></td>
 </tr>
@@ -419,8 +388,8 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 </tr>
 <tr>
 <td>3016882</td>
-<td>In certain cases, when you power cycle the switch, the NVUE configuration might become corrupted, which prevents NVUE from running. You see an critical error in the log file similar to:
-{nofromat}
+<td>In certain cases, when you power cycle the switch, the NVUE configuration might become corrupted, which prevents NVUE from running. You see a critical error in the log file similar to:
+
 CRITICAL: cue_versions_v1.repo: The NVUE internal data store is corrupted or has been initialized incorrectly. The is an unrecoverable error.
 
 
@@ -435,6 +404,12 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 <td>The NVUE {{nv show interface &lt;tunnel-name&gt;}} command shows the operational state of the tunnel as down even though the tunnel is up, and encapsulation and decapsulation occurs correctly.</td>
 <td>5.1.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3014664</td>
+<td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
+<td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4</td>
 </tr>
 <tr>
 <td>2999342</td>
@@ -511,7 +486,7 @@ Fixed: 4.19.194-3</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2891257</td>
+<td>2891256</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
@@ -574,7 +549,13 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
-<td>2837378</td>
+<td>2844778</td>
+<td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this problem, consider using the {{nv config patch &lt;yaml-file&gt;}} or {{nv config replace &lt;yaml-file&gt;}} commands to update large pieces of configuration at once.</td>
+<td>5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2831968</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
@@ -614,23 +595,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>3055255</td>
 <td>When you run the NVUE {{nv show interface}} command, a watchdog timeout might occur and the {{nvued}} service fails.</td>
 <td>5.0.1</td>
-</tr>
-<tr>
-<td>3053013</td>
-<td>CVE-2022-29799, CVE-2022-29800: The networkd-dispatcher program has directory traversal, symlink race, and time-of-check-time-of-use race condition which can allow a local attacker to gain root access.  This vulnerability is sometimes called "nimbuspwn".  Cumulus Linux does not include the networkd-dispatcher package or script in the default image or in the package repository.  However, networkd-dispatcher_2.0-2 from Debian 10 upstream is vulnerable and should not be installed.</td>
-<td></td>
-</tr>
-<tr>
-<td>3045302</td>
-<td>CVE-2022-1271: incorrect handling of filenames by xzgrep in xz-utils, the XZ-format compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.
-Vulnerable: 5.2.4-1
-Fixed: 5.2.4-1+deb10u1</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>3045299</td>
-<td>CVE-2022-1271: incorrect handling of filenames by zgrep in gzip, the GNU compression utilities, can result in overwrite of arbitrary files or execution of arbitrary code if a file with a specially crafted filename is processed.</td>
-<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>3040080</td>
@@ -674,13 +638,6 @@ To work around this issue, reboot the system.</td>
 <td>4.4.3-5.0.1</td>
 </tr>
 <tr>
-<td>3025899</td>
-<td>CVE-2018-25032: zlib before 1.2.12 allows memory corruption when deflating (i.e., when compressing) if the input has many distant matches.
-Vulnerable: 1.2.11.dfsg-1
-Fixed: 1.2.11.dfsg-1+deb10u1</td>
-<td>5.0.0-5.0.1</td>
-</tr>
-<tr>
 <td>3022955</td>
 <td>Docker creates a bridge called {{docker0}} and this causes compatibility issues with WJH, which runs in a Docker container.</td>
 <td></td>
@@ -707,35 +664,9 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
-<td>3017042</td>
-<td>CVE-2022-0561 CVE-2022-0562 CVE-2022-0865 CVE-2022-0891 CVE-2022-0907 CVE-2022-0908 CVE-2022-0909 CVE-2022-0924 CVE-2022-22844: Multiple vulnerabilities have been discovered in the libtiff library and the included tools, which may result in denial of service if malformed image files are processed.
-Vulnerable: &lt;= 4.1.0+git191117-2~deb10u3
-Fixed: 4.1.0+git191117-2~deb10u4</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>3010290</td>
-<td>CVE-2021-25220: When using forwarders, bogus NS records supplied by, or via, those forwarders may be cached and used by named if it needs to recurse for any reason, causing it to obtain and pass on potentially incorrect answers.
-Vulnerable: &lt;= 9.11.5.P4+dfsg-5.1+deb10u6
-Fixed: 9.11.5.P4+dfsg-5.1+deb10u7</td>
-<td>4.0.0-4.4.3</td>
-</tr>
-<tr>
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3-5.0.1</td>
-</tr>
-<tr>
-<td>3007603</td>
-<td>CVE-2022-0778: the BN_mod_sqrt() function of OpenSSL could be tricked into an infinite loop. This could result in denial of service via malformed certificates.
-Vulnerable: &lt;= 1.1.1d-0+deb10u7
-Fixed: 1.1.1d-0+deb10u8</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>3007564</td>
-<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
-<td>3.7.15-5.0.1</td>
 </tr>
 <tr>
 <td>3007020</td>
@@ -748,11 +679,6 @@ Fixed: 1.1.1d-0+deb10u8</td>
 
 The new behavior will make sure to apply the configuration delta without disrupting any traffic as much as possible. Note that a tunnel mode change can't be applied without causing traffic loss. </td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>3001439</td>
-<td>CVE-2022-0847: This vulnerability, known as "dirty pipe", does not affect Cumulus Linux through 5.1.0, which use earlier kernels which do not have the vulnerable code.</td>
-<td></td>
 </tr>
 <tr>
 <td>2999253</td>
@@ -777,26 +703,9 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2989098</td>
-<td>CVE-2022-24407: The SQL plugin in cyrus-sasl2, a library implementing the Simple Authentication and Security Layer, is prone to a SQL injection attack. An authenticated remote attacker can take advantage of this flaw to execute arbitrary SQL commands and for privilege escalation.</td>
-<td>4.4.0-4.4.3</td>
-</tr>
-<tr>
-<td>2984205</td>
-<td>CVE-2021-43612: in lldpd, by sending short SONMP packets, an attacker can make the decoder crash
-by reading too much data on the heap.
-Vulnerable: &lt;= 1.0.4-0-cl5.1.0u7, 1.0.4-0-cl4.4.0u0, 1.0.4-0-cl4.3.0u2, 1.0.4-0-cl3u15
-Fixed:</td>
-<td>3.7.0-3.7.15, 4.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2982534</td>
-<td>CVE-2022-25235, CVE-2022-25236, CVE-2022-25313, CVE-2022-25314, CVE-2022-25315: Several vulnerabilities have been discovered in Expat, an XML parsing C
-library, which could result in denial of service or potentially the
-execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u2
-Fixed: 2.2.6-2+deb10u3</td>
-<td>5.0.0-5.0.1</td>
+<td>2993719</td>
+<td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
+<td>3.7.15-5.0.1</td>
 </tr>
 <tr>
 <td>2980891</td>
@@ -814,30 +723,9 @@ Unrecoverable internal error
 <td>5.0.1</td>
 </tr>
 <tr>
-<td>2971342</td>
-<td>CVE-2021-45960 CVE-2021-46143 CVE-2022-22822 CVE-2022-22823 CVE-2022-22824 CVE-2022-22825 CVE-2022-22826 CVE-2022-22827 CVE-2022-23852 CVE-2022-23990: Several vulnerabilities have been discovered in Expat, an XML parsing C library, which could result in denial of service or potentially the execution of arbitrary code, if a malformed XML file is processed.
-Vulnerable: &lt;= 2.2.6-2+deb10u1
-Fixed: 2.2.6-2+deb10u2</td>
-<td>4.0.0-4.4.2</td>
-</tr>
-<tr>
-<td>2961078</td>
-<td>CVE-2021-28965 CVE-2021-31799 CVE-2021-31810 CVE-2021-41817 CVE-2021-41819 CVE-2021-32066: Several vulnerabilities have been discovered in the interpreter for the Ruby language and the Rubygems included, which may result on result in XML roundtrip attacks, the execution of arbitrary code, information disclosure, StartTLS stripping in IMAP or denial of service.
-Vulnerable: &lt;= 2.5.5-3+deb10u3
-Fixed: 2.5.5-3+deb10u4</td>
-<td>4.0.0-4.4.2</td>
-</tr>
-<tr>
 <td>2957968</td>
 <td>After you install the RADIUS {{libnss-mapuser}} package, the {{nvued}} service fails to start.</td>
 <td>5.0.0-5.0.1</td>
-</tr>
-<tr>
-<td>2949511</td>
-<td>CVE-2022-22747: Incorrect parsing of pkcs7 sequences in nss, the Mozilla Network Security Service library, may result in denial of service.
-Vulnerable: &lt;= 2:3.42.1-1+deb10u4
-Fixed: 2:3.42.1-1+deb10u5</td>
-<td>4.0.0-4.4.2</td>
 </tr>
 <tr>
 <td>2943443</td>

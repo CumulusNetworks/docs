@@ -7,15 +7,23 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
+## August 2022
+<!-- Air:WhatsNew -->
+### 82.2022.0801-011
+- Fixed a bug that prevented some large simulations from waking up
+- Fixed a cosmetic error that may be thrown when browsing the Image list
+- Fixed a cosmetic error that may be thrown when clicking on an Organization's Image list
+<!-- Air:WhatsNew -->
+
 ## July 2022
 ### 82.2022.0711
 - Fixed a bug that prevented a VM's console and/or network interfaces from working properly for VMs with more than 63 interfaces
 ### 82.2022.0714-008
 - Pre-built topologies have been moved from the "NVIDIA Networking Experience" into the {{<exlink url="https://air.nvidia.com/marketplace" text="Demo Marketplace">}}
-<!-- Air:WhatsNew -->
 ### 82.2022.0721
 - Added a warning when the number of nodes in a simulation exceeds the subnet size of the out-of-band management network
-<!-- Air:WhatsNew -->
+### 82.2022.0726
+- MAC addresses for out-of-band management interfaces are now randomized and prefixed with the NVIDIA OUI
 
 ## June 2022
 ### 82.2022.0606-015

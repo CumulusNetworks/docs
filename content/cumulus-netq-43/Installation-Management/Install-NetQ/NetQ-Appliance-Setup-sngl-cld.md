@@ -89,11 +89,11 @@ Now that the appliance is up and running, verify that the software is available 
 
 1. Verify that the required packages are present and reflect the most current version.
 
-    {{<netq-install/verify-pkgs version="4.2" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.3" platform="appliance">}}
 
 2. Verify the installation images are present and reflect the most current version.
 
-    {{<netq-install/verify-image deployment="cloud" version="4.2">}}
+    {{<netq-install/verify-image deployment="cloud" version="4.3">}}
 
 3. Verify the appliance is ready for installation. Fix any errors before installing the NetQ software.
 

@@ -275,9 +275,9 @@ Cumulus Linux does not provide NVUE commands for SNMP configuration.
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-To enable the community string, provide a community string, then set `rocommunity` (for read-only access) or `rwcommunity` (for read-write access).
+To enable the community string, provide a community string, then set:
 
-- `rocommunity`/`rwcommunity`: `rwcommunity` is for a read-only community; `rwcommunity` is for read-write access. Specify one or the other.
+- `rocommunity` or `rwcommunity`: `rocommunity` is for a read-only community; `rwcommunity` is for read-write access. Specify one or the other.
 - `public`: The plain text password or community string.
 
   {{%notice info%}}

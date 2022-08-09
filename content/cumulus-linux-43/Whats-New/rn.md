@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3168681"></a> [3168681](#3168681) <a name="3168681"></a> <br />None | In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI.  | 4.3.0-4.4.4 | |
 | <a name="3138746"></a> [3138746](#3138746) <a name="3138746"></a> <br /> | The switch duplicates DHCP packets that pass through the VTEP. | 4.3.0-4.4.4, 5.0.0-5.1.0 | |
 | <a name="3135801"></a> [3135801](#3135801) <a name="3135801"></a> <br />None | Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra<br />When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop. | 4.0.0-4.4.4 | 3.7.16|
 | <a name="3131423"></a> [3131423](#3131423) <a name="3131423"></a> <br /> | During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch<br />To work around this issue, configure the loopback IP address, then restart FRR with the <code>systemctl restart frr</code> command. | 4.3.0-4.4.4, 5.0.0-5.1.0 | |

@@ -83,7 +83,27 @@ Any workbench can be set as the home workbench. Click <img src="https://icons.cu
 
 {{</tabs>}}
 
-## Reset a Forgotten Password
+## Reset a Password
+
+{{<tabs "resetpassword">}}
+
+{{<tab "On Premises">}}
+
+To reset the password for the `admin` account to the default password:
+
+1. Run the following command on the command line of your on-premises appliance:
+
+```
+kubectl exec $(kubectl get pod -oname -l app=cassandra) -- cqlsh -e "INSERT INTO master.user(id,  cust_id,  first_name,  last_name,  password,     access_key,  role,  email,  is_ldap_user,  is_active,  ter
+ms_of_use_accepted,  enable_alarm_notifications,  default_workbench,  preferences,  creation_time,  last_login,  reset_password)     VALUES(  'admin',  0,  'Admin',  '',  '009413d86fd42592e0910bb2146815deaceaadf3a4667b728463c4bc170a
+6511',     null, 'admin',  null,  false,  true,  true,  true,  { workspace_id : 'DEFAULT', workbench_id : 'DEFAULT' },  '{}',  toUnixTimestamp(now()),  toUnixTimestamp(now()),  true )"
+```
+
+2. Log in to your NetQ UI with the default username and password of *admin/admin*. After logging in, you will be prompted to change the password. 
+
+{{</tab>}}
+
+{{<tab "NetQ Cloud">}}
 
 To reset a password for cloud deployments:
 
@@ -93,6 +113,9 @@ To reset a password for cloud deployments:
 
 3. Select the link in the email and follow the instructions to create a new password. 
 
+{{</tab>}}
+
+{{</tabs>}}
 ## Log Out of NetQ
 
 To log out of the NetQ UI:

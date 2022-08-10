@@ -293,7 +293,9 @@ cumulus@switch:~$ nv unset interface swp1 acl EXAMPLE1
 cumulus@switch:~$ nv config apply
 ```
 
-To see the list of NVUE ACL commands, run the `nv list-commands acl` command.
+To show ACL statistics per interface, such as the total number of bytes that match the ACL rule, run the `nv show interface <interface-id> acl <acl-id> statistics` or `nv show interface <interface-id> acl <acl-id> statistics <rule-id>` command.
+
+To see the list of all NVUE ACL commands, run the `nv list-commands acl` command.
 
 <!-- vale off -->
 ## Install and Manage ACL Rules with cl-acltool

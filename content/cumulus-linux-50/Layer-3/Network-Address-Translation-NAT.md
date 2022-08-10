@@ -223,3 +223,37 @@ To see the active connection tracking (conntrack) flows, run the `sudo cat /proc
 cumulus@switch:~$ sudo cat /proc/net/nf_conntrack
 ipv4     2 udp      17 src=172.30.10.5 dst=10.0.0.2 sport=5001 dport=5000 src=10.0.0.2 dst=10.1.0.10 sport=6000 dport=1026 [OFFLOAD] mark=0 zone=0 use=2
 ```
+
+## Considerations
+
+When using NAT, you must enable proxy ARP for intra-subnet ARP requests when:
+- The addresses you define in the static NAT and source NAT pool are in the same subnet as the ingress interface.
+- The addresses in the original destination address entry in the destination NAT rules are in the same subnet as the ingress interface.
+
+To enable proxy ARP for intra-subnet ARP requests:
+
+{{< tabs "TabID234 ">}}
+{{< tab "NVUE Commands ">}}
+
+Cumulus Linux does not provide NVUE commands for this setting.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to set `/proc/sys/net/ipv4/conf/<interface>/proxy_arp_pvlan` to `1` in the interface stanza, then run the `ifreload -a` command.
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto swp1
+iface swp1
+    post-up echo 1 > /proc/sys/net/ipv4/conf/swp1/proxy_arp_pvlan
+...
+```
+
+```
+cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}

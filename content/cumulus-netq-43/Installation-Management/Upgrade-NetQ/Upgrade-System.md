@@ -8,7 +8,6 @@ toc: 4
 The first step in upgrading your NetQ installation to NetQ {{<version>}} is upgrading your NetQ appliances or VMs.
 
 ## Before You Upgrade
-
 ### Back up NetQ Data
 
 This is an optional step for on-premises deployments. Refer to {{<link title="Back Up and Restore NetQ">}}. NetQ Cloud Appliances and VMs create backups automatically.
@@ -65,6 +64,12 @@ This is an optional step for on-premises deployments. Refer to {{<link title="Ba
 ## Run the Upgrade
 
 {{%notice note%}}
+
+Perform the following steps using the `cumulus` user account.
+
+{{%/notice%}}
+### Pre-installation Checks
+
 Verify the following items before upgrading NetQ. For cluster deployments, verify steps 1 and 3 on all nodes in the cluster:
 
 1. Check if enough disk space is available before you proceed with the upgrade:
@@ -76,10 +81,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 cumulus@netq-appliance:~$
 ```
 
-The recommended `Use%` to proceed with installation is under 70%.
-
-You can delete previous software tarballs in the `/mnt/installables/` directory to regain some space.
-If you can not bring disk space to under 70% usage, contact the NVIDIA support team.
+The recommended `Use%` to proceed with installation is under 70%. You can delete previous software tarballs in the `/mnt/installables/` directory to regain some space. If you can not bring disk space to under 70% usage, contact the NVIDIA support team.
 
 2. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If not, contact the NVIDIA support team.
 
@@ -103,7 +105,6 @@ Check if the kubelet process is running with the `sudo systemctl status kubelet`
 
 If any issue occurs, contact the NVIDIA Support team.
 
-{{%/notice%}}
 ### Upgrade Using the NetQ CLI
 
 After completing the preparation steps, upgrade your NetQ On-premises, Cloud Appliances, or VMs using the NetQ CLI.

@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3168681</td>
-<td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -33,9 +27,14 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 </tr>
 <tr>
 <td>3131423</td>
-<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch.
-To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
+<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3128328</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -52,8 +51,7 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 </tr>
 <tr>
 <td>3117340</td>
-<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service.
-To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
+<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -72,12 +70,7 @@ This is a security fix made available after the 4.4.4 image release to change th
 </tr>
 <tr>
 <td>3112971</td>
-<td>When you configure a VRF static route using the legacy command syntax in FRR and make subsequent VRF or route configuration changes, FRR might crash. Example of legacy VRF static route syntax:
-
-{{ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red}}
-
-To avoid this problem, use the current method for configuring VRF routes within the VRF stanza:
-
+<td>When you configure a VRF static route using the legacy command syntax in FRR (for example: {{ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red}}), then make subsequent VRF or route configuration changes, FRR might crash. To avoid this problem, use the current method for configuring VRF routes within the VRF stanza:
 
 vrf vrf-red
   ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red
@@ -106,7 +99,8 @@ end vrf
 </tr>
 <tr>
 <td>3102128</td>
-<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VxLAN device. To work around this problem, set the VNI interface mapped to VLAN 1 down and up again.</td>
+<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
+To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
 <td>4.4.3-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -118,7 +112,7 @@ end vrf
 </tr>
 <tr>
 <td>3084027</td>
-<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -136,8 +130,7 @@ end vrf
 </tr>
 <tr>
 <td>3071652</td>
-<td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously.
-To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
+<td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>4.4.4, 5.1.0</td>
 <td></td>
 </tr>
@@ -178,6 +171,12 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3032234</td>
+<td>In BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE {{nv unset vrf default router bgp neighbor &lt;interface&gt;}} command, the command fails to apply.</td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3021838</td>
@@ -2187,12 +2186,6 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3168681</td>
-<td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -2213,9 +2206,14 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 </tr>
 <tr>
 <td>3131423</td>
-<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch.
-To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
+<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3128328</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2232,19 +2230,13 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 </tr>
 <tr>
 <td>3117340</td>
-<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service.
-To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
+<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3112971</td>
-<td>When you configure a VRF static route using the legacy command syntax in FRR and make subsequent VRF or route configuration changes, FRR might crash. Example of legacy VRF static route syntax:
-
-{{ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red}}
-
-To avoid this problem, use the current method for configuring VRF routes within the VRF stanza:
-
+<td>When you configure a VRF static route using the legacy command syntax in FRR (for example: {{ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red}}), then make subsequent VRF or route configuration changes, FRR might crash. To avoid this problem, use the current method for configuring VRF routes within the VRF stanza:
 
 vrf vrf-red
   ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red
@@ -2275,7 +2267,8 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3102128</td>
-<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VxLAN device. To work around this problem, set the VNI interface mapped to VLAN 1 down and up again.</td>
+<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
+To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
 <td>4.4.3-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -2299,7 +2292,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3084027</td>
-<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -2406,6 +2399,12 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>3032234</td>
+<td>In BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE {{nv unset vrf default router bgp neighbor &lt;interface&gt;}} command, the command fails to apply.</td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3031228</td>
@@ -4441,12 +4440,6 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3168681</td>
-<td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -4467,9 +4460,14 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 </tr>
 <tr>
 <td>3131423</td>
-<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch.
-To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
+<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3128328</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4486,8 +4484,7 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 </tr>
 <tr>
 <td>3117340</td>
-<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service.
-To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
+<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -4519,7 +4516,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3084027</td>
-<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -4620,6 +4617,12 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
 <td>3.7.15, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>3032234</td>
+<td>In BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE {{nv unset vrf default router bgp neighbor &lt;interface&gt;}} command, the command fails to apply.</td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3031228</td>
@@ -6630,13 +6633,6 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
-<td>2999342</td>
-<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
-Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
-Fixed: 4.19.194-3</td>
-<td>4.2.1-4.4.1, 5.0.0-5.1.0</td>
-</tr>
-<tr>
 <td>2999341</td>
 <td>CVE-2021-3570
 The ptp4l program in linuxptp, an implementation of the Precision Time Protocol (PTP), does not validate the messageLength field of incoming messages, allowing a remote attacker to cause a denial of service, information leak, or potentially remote code execution.
@@ -6865,12 +6861,6 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3168681</td>
-<td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -6891,9 +6881,14 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 </tr>
 <tr>
 <td>3131423</td>
-<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch.
-To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
+<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3128328</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6910,8 +6905,7 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 </tr>
 <tr>
 <td>3117340</td>
-<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service.
-To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
+<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -6943,7 +6937,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3084027</td>
-<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -7059,14 +7053,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>2999342</td>
-<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
-Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
-Fixed: 4.19.194-3</td>
-<td>4.2.1-4.4.1, 5.0.0-5.1.0</td>
-<td>4.4.2-4.4.4</td>
 </tr>
 <tr>
 <td>2999341</td>
@@ -7288,16 +7274,16 @@ To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.0.0-4.4.1, 5.0.0-5.1.0</td>
+<td>4.4.2-4.4.4</td>
 </tr>
 <tr>
 <td>2890681</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
+<td>4.0.0-4.4.1, 5.0.0-5.1.0</td>
+<td>4.4.2-4.4.4</td>
 </tr>
 <tr>
 <td>2879712</td>

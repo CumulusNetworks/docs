@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3128328"></a> [3128328](#3128328) <a name="3128328"></a> <br /> | The <code>clagd</code> process uses 100 percent CPU and eventually crashes with an <code>Unable to allocate memory</code> error. | 3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0 | |
 | <a name="3123556"></a> [3123556](#3123556) <a name="3123556"></a> <br /> | When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the <code>/etc/network/interfaces</code> file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it. | 3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0 | |
 | <a name="3098936"></a> [3098936](#3098936) <a name="3098936"></a> <br /> | When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs. | 3.7.12-3.7.16, 4.3.0-4.4.4 | |
 | <a name="3093863"></a> [3093863](#3093863) <a name="3093863"></a> <br /> | The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the <code>systemctl restart snmpd</code> command. | 3.7.16-4.4.3, 5.0.0-5.1.0 | 4.4.4|

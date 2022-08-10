@@ -33,19 +33,27 @@
 <td></td>
 </tr>
 <tr>
+<td>3136983</td>
+<td>When a layer 3 neighbor entry resolves to a bridge FDB entry that does not exist in the kernel, {{switchd}} might contribute to high CPU load while it continues to try to sync and resolve the neighbor entry. This results in many {{sync_l3_nexthop}} messages printed to {{/var/log/switchd.log}}.</td>
+<td>5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3136905</td>
-<td>When you upgrade to Cumulus Linux 5.0.1 to 5.1.0, the upgrade adds {{KexAlgorithms}} and {{MACs}} configuration (that remove some less secure algorithms from the default lists) to the {{/etc/ssh/sshd_config}} file without prompting for confirmation.  This may cause the {{/etc/ssh/sshd_config}} file to be incorrect if there is a {{Match}} section, since {{KexAlgorithms}} and {{MACs}} must come before {{Match}}
-To work around this issue, move the lines that start with {{KexAlgorithms}} and {{MACs}} to before {{Match}} (or remove them), then restart the SSH service with the {{sudo systemctl restart ssh}} command.
-
-If you have already specified {{KexAlgorithms}} and/or {{MACs}}, you may wish to remove the newly added lines after an upgrade to CumulusLinux 5.1.0 if they are not what you want.</td>
+<td>When you upgrade from Cumulus Linux 5.0.1 to Cumulus Linux 5.1.0, the upgrade adds {{KexAlgorithms}} and {{MACs}} configuration to  the {{/etc/ssh/sshd_config}} file without prompting for confirmation.  This might cause the {{/etc/ssh/sshd_config}} file to be incorrect if there is a {{Match}} section; {{KexAlgorithms}} and {{MACs}} must come before {{Match}}. To work around this issue, move the lines that start with {{KexAlgorithms}} and {{MACs}} before {{Match}} or remove them, then restart the SSH service with the {{sudo systemctl restart ssh}} command. If you have already specified {{KexAlgorithms}} or {{MACs}}, you can remove the newly added lines after upgrade.</td>
 <td>5.0.1-5.1.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3131423</td>
-<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch.
-To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
+<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3128328</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -62,19 +70,13 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 </tr>
 <tr>
 <td>3117340</td>
-<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service.
-To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
+<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3112971</td>
-<td>When you configure a VRF static route using the legacy command syntax in FRR and make subsequent VRF or route configuration changes, FRR might crash. Example of legacy VRF static route syntax:
-
-{{ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red}}
-
-To avoid this problem, use the current method for configuring VRF routes within the VRF stanza:
-
+<td>When you configure a VRF static route using the legacy command syntax in FRR (for example: {{ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red}}), then make subsequent VRF or route configuration changes, FRR might crash. To avoid this problem, use the current method for configuring VRF routes within the VRF stanza:
 
 vrf vrf-red
   ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red
@@ -99,7 +101,8 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3102128</td>
-<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VxLAN device. To work around this problem, set the VNI interface mapped to VLAN 1 down and up again.</td>
+<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
+To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
 <td>4.4.3-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -111,7 +114,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3084027</td>
-<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -154,11 +157,9 @@ cumulus@switch:~$ nv config apply
 </tr>
 <tr>
 <td>3074390</td>
-<td>You can not apply NVUE configurations when TACACS is enabled for user authentication. To work around this problem, add the {{nvue}} account to the {{exclude_users}} line in {{/etc/tacplus_nss.conf}}:
-
+<td>You can not apply NVUE configurations when TACACS is enabled for user authentication. To work around this issue, add the {{nvue}} account to the {{exclude_users}} line in {{/etc/tacplus_nss.conf}}:
 
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
-
 </td>
 <td>5.0.1-5.1.0</td>
 <td></td>
@@ -217,14 +218,9 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3054869</td>
-<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicates a missing $HOME environment variable.
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicate a missing $HOME environment variable. The issue has been fixed where the ZTP module initializes the $HOME environment variable before launching the ZTP scripts. However, if you are running older releases:
+Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Export the {{HOME}} variable so it is available globally for NVUE to use.
 
-The issue has been fixed where the ZTP module will initialize the $HOME environment variable before launching the ZTP scripts. This fix should be available with CL 5.2.0.
-
-However, if customers are running older releases, follow these workaround steps below:
-Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
-
-# Manually set HOME var for root user
 HOME=/root
 export HOME
 </td>
@@ -283,7 +279,7 @@ Failure during apply. Ignore? [y/N]
 <tr>
 <td>3032234</td>
 <td>In BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE {{nv unset vrf default router bgp neighbor &lt;interface&gt;}} command, the command fails to apply.</td>
-<td>5.0.1</td>
+<td>4.4.2-5.0.1</td>
 <td>5.1.0</td>
 </tr>
 <tr>
@@ -331,8 +327,8 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 </tr>
 <tr>
 <td>3016882</td>
-<td>In certain cases, when you power cycle the switch, the NVUE configuration might become corrupted, which prevents NVUE from running. You see an critical error in the log file similar to:
-{nofromat}
+<td>In certain cases, when you power cycle the switch, the NVUE configuration might become corrupted, which prevents NVUE from running. You see a critical error in the log file similar to:
+
 CRITICAL: cue_versions_v1.repo: The NVUE internal data store is corrupted or has been initialized incorrectly. The is an unrecoverable error.
 
 
@@ -367,14 +363,6 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 The new behavior will make sure to apply the configuration delta without disrupting any traffic as much as possible. Note that a tunnel mode change can't be applied without causing traffic loss. </td>
 <td>5.0.0-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>2999342</td>
-<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
-Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
-Fixed: 4.19.194-3</td>
-<td>4.2.1-4.4.1, 5.0.0-5.1.0</td>
-<td>4.4.2-4.4.4</td>
 </tr>
 <tr>
 <td>2999253</td>
@@ -561,7 +549,7 @@ Unrecoverable internal error
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2891256</td>
+<td>2891255</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
@@ -569,7 +557,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2890683</td>
+<td>2890681</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
@@ -766,9 +754,14 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 </tr>
 <tr>
 <td>3131423</td>
-<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch.
-To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
+<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3128328</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -785,19 +778,13 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 </tr>
 <tr>
 <td>3117340</td>
-<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service.
-To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
+<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3112971</td>
-<td>When you configure a VRF static route using the legacy command syntax in FRR and make subsequent VRF or route configuration changes, FRR might crash. Example of legacy VRF static route syntax:
-
-{{ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red}}
-
-To avoid this problem, use the current method for configuring VRF routes within the VRF stanza:
-
+<td>When you configure a VRF static route using the legacy command syntax in FRR (for example: {{ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red}}), then make subsequent VRF or route configuration changes, FRR might crash. To avoid this problem, use the current method for configuring VRF routes within the VRF stanza:
 
 vrf vrf-red
   ip route 10.0.0.0/8 172.16.1.1 vrf vrf-red
@@ -822,7 +809,8 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3102128</td>
-<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VxLAN device. To work around this problem, set the VNI interface mapped to VLAN 1 down and up again.</td>
+<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
+To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
 <td>4.4.3-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -834,7 +822,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3084027</td>
-<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -867,14 +855,9 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3054869</td>
-<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicates a missing $HOME environment variable.
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicate a missing $HOME environment variable. The issue has been fixed where the ZTP module initializes the $HOME environment variable before launching the ZTP scripts. However, if you are running older releases:
+Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Export the {{HOME}} variable so it is available globally for NVUE to use.
 
-The issue has been fixed where the ZTP module will initialize the $HOME environment variable before launching the ZTP scripts. This fix should be available with CL 5.2.0.
-
-However, if customers are running older releases, follow these workaround steps below:
-Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
-
-# Manually set HOME var for root user
 HOME=/root
 export HOME
 </td>
@@ -904,6 +887,12 @@ export HOME
 <td>On Spectrum-2 switches, when a packet has a CRC and the ports are in cut-though mode, the switch might stop forwarding traffic.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.0.1</td>
 <td>4.4.4, 5.1.0</td>
+</tr>
+<tr>
+<td>3032234</td>
+<td>In BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE {{nv unset vrf default router bgp neighbor &lt;interface&gt;}} command, the command fails to apply.</td>
+<td>4.4.2-5.0.1</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3021897</td>
@@ -967,14 +956,6 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 The new behavior will make sure to apply the configuration delta without disrupting any traffic as much as possible. Note that a tunnel mode change can't be applied without causing traffic loss. </td>
 <td>5.0.0-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>2999342</td>
-<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
-Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
-Fixed: 4.19.194-3</td>
-<td>4.2.1-4.4.1, 5.0.0-5.1.0</td>
-<td>4.4.2-4.4.4</td>
 </tr>
 <tr>
 <td>2999253</td>
@@ -1151,7 +1132,7 @@ Unrecoverable internal error
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2891256</td>
+<td>2891255</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
@@ -1159,7 +1140,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2890683</td>
+<td>2890681</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>

@@ -178,18 +178,6 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2972540</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2972538</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.1.0</td>

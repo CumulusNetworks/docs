@@ -223,18 +223,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2972540</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2972538</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2971159</td>
 <td>On rare occasions, the link up time on optical media can be more than five seconds. </td>
 <td>4.4.3-4.4.4</td>
@@ -248,7 +236,9 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2964279</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
+Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
+</td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>
@@ -2095,7 +2085,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -2309,17 +2299,10 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3081232</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.0-4.4.3</td>
 <td>4.4.4</td>
 </tr>
 <tr>
@@ -2506,18 +2489,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2972540</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2972538</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2971159</td>
 <td>On rare occasions, the link up time on optical media can be more than five seconds. </td>
 <td>4.4.3-4.4.4</td>
@@ -2531,7 +2502,9 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2964279</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
+Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
+</td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>
@@ -4533,17 +4506,10 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3081232</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.0-4.4.3</td>
 <td>4.4.4</td>
 </tr>
 <tr>
@@ -4706,18 +4672,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>5.1.0</td>
 </tr>
 <tr>
-<td>2972540</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2972538</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
 <td>4.2.1-4.4.2, 5.0.0-5.1.0</td>
@@ -4731,7 +4685,9 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2964279</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
+Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
+</td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>
@@ -6948,17 +6904,10 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td></td>
 </tr>
 <tr>
-<td>3081232</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.0-4.4.3</td>
 <td>4.4.4</td>
 </tr>
 <tr>
@@ -7080,18 +7029,6 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-5.0.1</td>
 <td>5.1.0</td>
-</tr>
-<tr>
-<td>2972540</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2972538</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2968495</td>

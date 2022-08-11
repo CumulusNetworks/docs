@@ -1008,6 +1008,10 @@ IP: 192.168.0.12; State: active; Role: primary
 Peer priority and id: 32768 44:38:39:00:00:12; Peer role: secondary
 ```
 
+{{%notice note%}}
+The MLAG healthCheck module listens on UDP port 5342. If you have not configured a backup VRF, the module listens on all VRFs, which is normal UDP socket behaviour. Make sure to configure a backup link and backup VRF so that the MLAG healtcheck module only listens on the backup VRF.
+{{%/notice%}}
+
 **Comparing VRF and Management VRF Configurations**
 
 The configuration for both a VRF and management VRF is exactly the same. The following example shows a configuration where the backup interface is in a VRF:

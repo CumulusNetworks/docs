@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3128328</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -90,15 +96,9 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td></td>
 </tr>
 <tr>
-<td>2972540</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -1777,7 +1777,9 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 </tr>
 <tr>
 <td>2964279</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
+Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
+</td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 </tr>
 <tr>
@@ -2467,15 +2469,9 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td>3.7.16, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 </tr>
 <tr>
-<td>2972540</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -2486,7 +2482,9 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 </tr>
 <tr>
 <td>2964279</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
+Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
+</td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>

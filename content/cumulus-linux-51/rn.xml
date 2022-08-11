@@ -33,26 +33,33 @@
 <td></td>
 </tr>
 <tr>
+<td>3136983</td>
+<td>When a layer 3 neighbor entry resolves to a bridge FDB entry that does not exist in the kernel, {{switchd}} might contribute to high CPU load while it continues to try to sync and resolve the neighbor entry. This results in many {{sync_l3_nexthop}} messages printed to {{/var/log/switchd.log}}.</td>
+<td>5.0.1-5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3136905</td>
-<td>When you upgrade to Cumulus Linux 5.0.1 to 5.1.0, the upgrade adds {{KexAlgorithms}} and {{MACs}} configuration (that remove some less secure algorithms from the default lists) to the {{/etc/ssh/sshd_config}} file without prompting for confirmation.  This may cause the {{/etc/ssh/sshd_config}} file to be incorrect if there is a {{Match}} section; {{KexAlgorithms}} and {{MACs}} must come before {{Match}}.
-To work around this issue, move the lines that start with {{KexAlgorithms}} and {{MACs}} to before {{Match}} (or remove them), then restart the SSH service with the {{sudo systemctl restart ssh}} command.
-
-If you have already specified {{KexAlgorithms}} and/or {{MACs}}, you may wish to remove the newly added lines after an upgrade to CumulusLinux 5.1.0 if they are not what you want.</td>
+<td>When you upgrade from Cumulus Linux 5.0.1 to Cumulus Linux 5.1.0, the upgrade adds {{KexAlgorithms}} and {{MACs}} configuration to  the {{/etc/ssh/sshd_config}} file without prompting for confirmation.  This might cause the {{/etc/ssh/sshd_config}} file to be incorrect if there is a {{Match}} section; {{KexAlgorithms}} and {{MACs}} must come before {{Match}}. To work around this issue, move the lines that start with {{KexAlgorithms}} and {{MACs}} before {{Match}} or remove them, then restart the SSH service with the {{sudo systemctl restart ssh}} command. If you have already specified {{KexAlgorithms}} or {{MACs}}, you can remove the newly added lines after upgrade.</td>
 <td>5.0.1-5.1.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3135070</td>
-<td>After you configure the NVIDIA SN2010 series switch for the first time with NVUE, you see the fan speed at 100 percent.
-To work around this issue, run the {{sudo systemctl restart hw-management.service}} command to restart the hardware management service.</td>
+<td>After you configure the NVIDIA SN2010 series switch for the first time with NVUE, you see the fan speed at 100 percent. To work around this issue, run the {{sudo systemctl restart hw-management.service}} command to restart the hardware management service.</td>
 <td>5.1.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3131423</td>
-<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch.
-To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
+<td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3128328</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -69,8 +76,7 @@ To work around this issue, configure the loopback IP address, then restart FRR w
 </tr>
 <tr>
 <td>3117340</td>
-<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service.
-To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
+<td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -132,7 +138,7 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 </tr>
 <tr>
 <td>3084027</td>
-<td>Under a high load, you might see ingress drop counters increase. The drops are classified as "HwIfInDiscards" in ethtool and shown as "ingress_general" in hardware.</td>
+<td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
 <td></td>
 </tr>
@@ -146,15 +152,8 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>3081232</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.4, 5.0.0-5.1.0</td>
+<td>5.0.0-5.1.0</td>
 <td></td>
-</tr>
-<tr>
-<td>3078202</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3077736</td>
@@ -190,8 +189,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 </tr>
 <tr>
 <td>3071652</td>
-<td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously.
-To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
+<td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>4.4.4, 5.1.0</td>
 <td></td>
 </tr>
@@ -249,19 +247,15 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3055283</td>
-<td>After you run Linux commands to enable a custom ECMP or LAG hash parameter,  if you set the {{hash_config.enable}} or {{lag_hash_config.enable}} parameter to {{false}}, the custom parameters do not restore their default values.
-To work around this issue, change the custom ECMP or LAG hash parameters to their default values manually.</td>
+<td>After you run Linux commands to enable a custom ECMP or LAG hash parameter,  if you set the {{hash_config.enable}} or {{lag_hash_config.enable}} parameter to {{false}}, the custom parameters do not restore their default values. To work around this issue, change the custom ECMP or LAG hash parameters to their default values manually.</td>
 <td>5.1.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3054869</td>
-<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicate a missing $HOME environment variable.
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicate a missing $HOME environment variable. The issue has been fixed where the ZTP module initializes the $HOME environment variable before launching the ZTP scripts. However, if you are running older releases:
+Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Export the {{HOME}} variable so it is available globally for NVUE to use.
 
-The issue has been fixed where the ZTP module initializes the $HOME environment variable before launching the ZTP scripts. However, if you are running older releases, follow these workaround steps below.
-Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Also, you must export the {{HOME}} variable so it is available globally for NVUE to use.
-
-# Manually set HOME var for root user
 HOME=/root
 export HOME
 </td>
@@ -318,7 +312,7 @@ export HOME
 </tr>
 <tr>
 <td>3042944</td>
-<td>Currently, the {{cl-ecmpcalc}} command does not support GTP hashing.</td>
+<td>Currently, the {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
 <td>5.1.0</td>
 <td></td>
 </tr>
@@ -395,7 +389,7 @@ CRITICAL: cue_versions_v1.repo: The NVUE internal data store is corrupted or has
 
 To work around this issue, remove the {{/var/lib/nvue/config}} and {{/var/lib/nvue/meta}} directories, then restart the {{nvued}} service with the {{sudo systemctl start nvued}} command. 
 
-If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}} directory. You can reapply the recovered configuration with the {{nv config patch nvue-recovery-&lt;timestamp&gt;.yaml}} command. </td>
+If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}} directory. The recovered configuration will be saved as YAML files, which are named as {{nvue-recovery-&lt;timestamp&gt;.yaml}}. You can reapply the recovered configuration with the {{nv config patch nvue-recovery-&lt;timestamp&gt;.yaml}} followed by {{nv config apply}} commands. </td>
 <td>5.0.1-5.1.0</td>
 <td></td>
 </tr>
@@ -412,14 +406,6 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>2999342</td>
-<td>CVE-2020-36311, CVE-2021-3609, CVE-2021-33909, CVE-2021-34693
-Several vulnerabilities have been discovered in the Linux kernel that may lead to a privilege escalation, denial of service or information leaks.
-Fixed: 4.19.194-3</td>
-<td>4.2.1-4.4.1, 5.0.0-5.1.0</td>
-<td>4.4.2-4.4.4</td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -428,13 +414,7 @@ Fixed: 4.19.194-3</td>
 <tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2972538</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -445,7 +425,9 @@ Fixed: 4.19.194-3</td>
 </tr>
 <tr>
 <td>2964279</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
+Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
+</td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>
@@ -486,7 +468,7 @@ Fixed: 4.19.194-3</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2891256</td>
+<td>2891255</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
@@ -494,7 +476,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2890683</td>
+<td>2890681</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
@@ -630,7 +612,7 @@ To work around this issue, reboot the system.</td>
 <tr>
 <td>3032234</td>
 <td>In BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE {{nv unset vrf default router bgp neighbor &lt;interface&gt;}} command, the command fails to apply.</td>
-<td>5.0.1</td>
+<td>4.4.2-5.0.1</td>
 </tr>
 <tr>
 <td>3030238</td>

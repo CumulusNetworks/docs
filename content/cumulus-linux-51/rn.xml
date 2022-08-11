@@ -152,15 +152,8 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>3081232</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.4, 5.0.0-5.1.0</td>
+<td>5.0.0-5.1.0</td>
 <td></td>
-</tr>
-<tr>
-<td>3078202</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3077736</td>
@@ -319,7 +312,7 @@ export HOME
 </tr>
 <tr>
 <td>3042944</td>
-<td>Currently, the {{cl-ecmpcalc}} command does not support GTP hashing.</td>
+<td>Currently, the {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
 <td>5.1.0</td>
 <td></td>
 </tr>
@@ -396,7 +389,7 @@ CRITICAL: cue_versions_v1.repo: The NVUE internal data store is corrupted or has
 
 To work around this issue, remove the {{/var/lib/nvue/config}} and {{/var/lib/nvue/meta}} directories, then restart the {{nvued}} service with the {{sudo systemctl start nvued}} command. 
 
-If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}} directory. You can reapply the recovered configuration with the {{nv config patch nvue-recovery-&lt;timestamp&gt;.yaml}} command. </td>
+If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}} directory. The recovered configuration will be saved as YAML files, which are named as {{nvue-recovery-&lt;timestamp&gt;.yaml}}. You can reapply the recovered configuration with the {{nv config patch nvue-recovery-&lt;timestamp&gt;.yaml}} followed by {{nv config apply}} commands. </td>
 <td>5.0.1-5.1.0</td>
 <td></td>
 </tr>
@@ -421,13 +414,7 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 <tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2972538</td>
-<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
-<td>3.7.15-3.7.16, 4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td>5.0.0-5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -438,7 +425,9 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 </tr>
 <tr>
 <td>2964279</td>
-<td>The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs.</td>
+<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
+Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
+</td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>

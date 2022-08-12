@@ -11330,8 +11330,8 @@ N/A
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `dest-ip` | Configures the destination underlay IP address.|
-| `interface` |  Configures the physical underlay interface to used for tunnel packets.|
-| `mode`   | Configures the tunnel mode; GRE.|
+| `interface` |  Configures the physical underlay interface to use for tunnel packets.|
+| `mode`   | Configures the tunnel mode to be GRE.|
 | `source-ip` |Configures the source underlay IP address.|
 | `ttl` | Configures the maximum number of hops through which the tunneled packets can pass.|
 
@@ -11453,7 +11453,7 @@ cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel mode gre
 
 ## nv set interface \<interface-id\> tunnel interface \<interface-name\>
 
-Configures the physical underlay interface to used for tunnel packets.
+Configures the physical underlay interface to use for tunnel packets.
 
 ### Usage
 
@@ -11509,7 +11509,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 description hypervisor_port_1
 
 ## nv set interface \<interface-id\> type
 
-Configures the interface type; swp, eth, bond, loopback, svi, sub ,peerlink, or tunnel.
+Configures the interface type; swp, eth, bond, loopback, svi, subinterface, peerlink, or tunnel.
 
 ### Usage
 
@@ -11593,7 +11593,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 vlan 10
 
 ## nv set service
 
-A service
+Configures a service, such as DNS, NTP, DHCP relay, PTP, DHCP server, and LLDP.
 
 ### Usage
 
@@ -11603,15 +11603,15 @@ A service
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`dns  | collection of DNS|
-| `syslog`  |  collection of syslog|
-| `ntp`  \ NTPs|
-| `dhcp-relay` | DHCP-relays|
-| `dhcp-relay6` |  DHCP-relays|
-| `ptp`  | Collection of PTP instances|
-| `dhcp-server` |  DHCP-servers|
-| `dhcp-server6`|  DHCP-servers6|
-| `lldp` | Global LLDP|
+| `dns`  | Configures the Domain Name Server (DNS) service. |
+| `syslog`  |  Configures the `syslog` service. |
+| `ntp`  | Configures NTP service.|
+| `dhcp-relay` | Configures DHCP relay for IPv4. |
+| `dhcp-relay6` |  Configures DHCP relay for IPv6.|
+| `ptp`  | Configures the PTP service.|
+| `dhcp-server` |  Configures DHCP servers for IPv4.|
+| `dhcp-server6`|  Configures DHCP servers for IPv6.|
+| `lldp` | Configures Link Layer Discovery Protocol (LLDP). |
 
 ### Version History
 
@@ -11619,7 +11619,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dns \<vrf-id\>
 
-Domain Name Service
+Configures the Domain Name Server (DNS) service. 
 
 ### Usage
 
@@ -11639,7 +11639,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `server`   | Remote DNS servers
+| `server`   | Configures remote DNS servers.
 
 ### Version History
 
@@ -11647,7 +11647,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dns \<vrf-id\> server \<dns-server-id\>
 
-A remote DNS server
+Configures a remote DNS server.
 
 ### Usage
 
@@ -11662,7 +11662,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>`         | The VRF you want to configure. |
-| `<dns-server-id>`  | The IPv4 or IPv6 address of a DNS server.|
+| `<dns-server-id>`  | The IPv4 or IPv6 address of the DNS server.|
 
 ### Version History
 
@@ -11671,7 +11671,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dns default server 
 ```
 
 ## nv set service syslog \<vrf-id\>

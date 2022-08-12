@@ -11662,7 +11662,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>`         | The VRF you want to configure. |
-| `<dns-server-id>`  | The IPv4 or IPv6 address of the DNS server.|
+| `<dns-server-id>`  | The IPv4 or IPv6 address of the remote DNS server.|
 
 ### Version History
 
@@ -11671,12 +11671,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service dns default server 
+cumulus@leaf01:mgmt:~$ nv set service dns default server 192.0.2.44
 ```
 
 ## nv set service syslog \<vrf-id\>
 
-Domain Name Service
+Configures the System Logging Protocol (`syslog`) service so that the switch can use a standard message format to communicate with a logging server.
 
 ### Usage
 
@@ -11696,7 +11696,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `server`| Remote DNS servers |
+| `server`| Configures the remote `syslog` server. |
 
 ### Version History
 
@@ -11704,7 +11704,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service syslog \<vrf-id\> server \<server-id\>
 
-A remote DNS server
+Configures the remote `syslog` server.
 
 ### Usage
 
@@ -11718,15 +11718,15 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` | VRF |
-| `<server-id>` |  Hostname or IP address of a syslog server |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<server-id>` |  The hostname or IP address of the `syslog` server. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `port`   | Port number of the remote syslog server|
-| `protocol` |  Protocol, udp or tcp, of the remote syslog server |
+| `port`   | Configures the port number of the remote `syslog server`.|
+| `protocol` |  Configures the protocol of the remote `syslog` server (UDP or TCP).|
 
 ### Version History
 
@@ -11734,7 +11734,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service syslog \<vrf-id\> server \<server-id\> port
 
-Port number of the remote syslog server
+Configures the port number of the remote `syslog` server.
 
 ### Usage
 
@@ -11748,8 +11748,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` | VRF |
-| `<server-id>` |  Hostname or IP address of a syslog server |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<server-id>` |  The hostname or IP address of the `syslog` server. |
 
 ### Version History
 
@@ -11758,12 +11758,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service syslog default server 192.168.0.254 port 514
 ```
 
 ## nv set service ntp \<vrf-id\>
 
-Network Time Protocol
+Configures the Network Time Protocol (NTP).
 
 ### Usage
 
@@ -11783,9 +11783,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `server` | Remote NTP Servers |
-| `pool` | Remote NTP Servers |
-| `listen` |   NTP interface to listen on.|
+| `server` | Configures the remote NTP server. |
+| `pool` | Configures the remote NTP Server pool. |
+| `listen` | Configures the NTP interface on which to listen.|
 
 ### Version History
 
@@ -11793,7 +11793,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service ntp \<vrf-id\> server \<server-id\>
 
-A remote NTP Server
+Configures the remote NTP server.
 
 ### Usage
 
@@ -11807,22 +11807,28 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` | VRF |
-| `<server-id>` |  Hostname or IP address of the NTP server |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<server-id>` | The hostname or IP address of the NTP server. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `iburst` |  When the server is unreachable, send a burst of eight packets instead of the usual one. |
+| `iburst` |  Configures NTP to send a burst of eight packets instead of the usual one packet when the server is unreachable. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ntp default server ????? iburst on
+```
+
 ## nv set service ntp \<vrf-id\> pool \<server-id\>
 
-A remote NTP Server
+Configures the remote NTP Server pool.
 
 ### Usage
 
@@ -11836,14 +11842,14 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` | VRF |
-| `<server-id>` |  Hostname or IP address of the NTP server |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<server-id>` |  The hostname or IP address of the NTP server. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `iburst` | When the server is unreachable, send a burst of eight packets instead of the usual one.|
+| `iburst` | Configures NTP to send a burst of eight packets instead of the usual one packet when the server is unreachable.|
 
 ### Version History
 

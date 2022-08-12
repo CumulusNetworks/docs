@@ -31,6 +31,10 @@ cumulus@leaf01:~$ net commit
 {{< /tab >}}
 {{< tab "NVUE Commands ">}}
 
+{{%notice note%}}
+NVUE does not support hyphens (-) in BGP peer group names.
+{{%/notice%}}
+
 ```
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE
 cumulus@leaf01:~$ nv set vrf default router bgp peer-group SPINE remote-as external

@@ -24,7 +24,7 @@ Using WJH in combination with NetQ helps you identify losses anywhere in the fab
 
 {{%notice info%}}
 
-By default, Cumulus Linux 4.0.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and optionally the CLI to the latest release.
+By default, Cumulus Linux 4.0.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and CLI to the latest release.
 
 ```
 cumulus@<hostname>:~$ sudo apt-get update

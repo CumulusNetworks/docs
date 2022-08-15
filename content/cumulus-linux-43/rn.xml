@@ -38,17 +38,9 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
-<td>3107615</td>
-<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
-
-To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3107606</td>
-<td>ONIE installation over HTTP fails if the web server hosting the installation image returns valid HTML content when ONIE requests an {{optional_pkgs}} file that does not exist. To work around this issue, configure the hosting web server to return an HTTP 404 code when the non-existant file is requested, or host an empty file on the web server with the format {{&lt;image name&gt;.optional_pkgs}}.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td>3108491</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.3.0-4.4.4, 5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -225,13 +217,6 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <td>After building VLAN or VXLAN interfaces, MLAG becomes unstable.</td>
 <td>4.3.0-4.4.1</td>
 <td>4.4.2-4.4.4, 5.0.0-5.1.0</td>
-</tr>
-<tr>
-<td>2848219</td>
-<td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
-To work around this issue, reboot the switch.</td>
-<td>3.7.15, 4.3.0-4.4.4</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2845531</td>
@@ -2094,6 +2079,13 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>4.4.3-5.0.1</td>
 </tr>
 <tr>
+<td>3068962</td>
+<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
+
+To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
+<td>4.2.1-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+</tr>
+<tr>
 <td>3066704</td>
 <td>The {{hostapd}} service stops working if an 802.1X interface goes up and down many times over a long period of time.
 To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
@@ -2203,6 +2195,12 @@ To work around this issue, load the port configuration in a staggered manner (gr
 <td>2853630</td>
 <td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
 <td>4.3.0</td>
+</tr>
+<tr>
+<td>2845423</td>
+<td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
+To work around this issue, reboot the switch.</td>
+<td>3.7.15, 4.3.0</td>
 </tr>
 <tr>
 <td>2840819</td>
@@ -2379,17 +2377,9 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
-<td>3107615</td>
-<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
-
-To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4</td>
-</tr>
-<tr>
-<td>3107606</td>
-<td>ONIE installation over HTTP fails if the web server hosting the installation image returns valid HTML content when ONIE requests an {{optional_pkgs}} file that does not exist. To work around this issue, configure the hosting web server to return an HTTP 404 code when the non-existant file is requested, or host an empty file on the web server with the format {{&lt;image name&gt;.optional_pkgs}}.</td>
-<td>4.2.1-4.4.4, 5.0.0-5.1.0</td>
+<td>3108491</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.3.0-4.4.4, 5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2427,6 +2417,14 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>When  you delete a bond interface with NCLU, BGP peer group configuration is removed.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
+</tr>
+<tr>
+<td>3068962</td>
+<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
+
+To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.4</td>
 </tr>
 <tr>
 <td>3066704</td>
@@ -2732,17 +2730,17 @@ To work around this issue, use the {{chrony}} implementation of NTP instead of {
 <td></td>
 </tr>
 <tr>
-<td>2848219</td>
-<td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
-To work around this issue, reboot the switch.</td>
-<td>3.7.15, 4.3.0-4.4.4</td>
-<td>3.7.16</td>
-</tr>
-<tr>
 <td>2845531</td>
 <td>If you update the MAC address of an SVI when the SVI is in a {{protodown}} state (for example, when no bridge ports that carry this VNI are operationally up or if the MAC address of the SVI's parent bridge changes), {{clagd}} does not notice the change. The MLAG peer incorrectly maintains a PERMANENT neighbor entry for the SVI IP that points to the old MAC address.</td>
 <td>4.2.1-4.4.4</td>
 <td>5.0.0-5.1.0</td>
+</tr>
+<tr>
+<td>2845423</td>
+<td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
+To work around this issue, reboot the switch.</td>
+<td>3.7.15, 4.3.0-4.4.4</td>
+<td>3.7.16</td>
 </tr>
 <tr>
 <td>2840819</td>

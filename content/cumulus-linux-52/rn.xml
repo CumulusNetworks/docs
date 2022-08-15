@@ -66,24 +66,38 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 <td></td>
 </tr>
 <tr>
+<td>3135952</td>
+<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off):
+
+ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;
+
+For example: {{ethtool -s swp1 speed 100000 autoneg off lanes 2}}</td>
+<td>5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3128328</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
 <td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
+<td>3122301</td>
+<td>On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames.</td>
+<td>5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3115242</td>
-<td>When you configure two VNIs in the same VLAN, ifupdown2  shows a "vlan added to two or more VXLANS" warning, which is only issued after the VNI is already added to the bridge. This leaves the new VNI in the PVID even if there is already an existing VNI configured in that PVID.</td>
+<td>When you configure two VNIs in the same VLAN, ifupdown2  shows a {{vlan added to two or more VXLANS}} warning, which is only issued after the VNI is already added to the bridge. This leaves the new VNI in the PVID even if there is already an existing VNI configured in that PVID.</td>
 <td>5.1.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3107615</td>
-<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
-
-To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.2.0</td>
-<td>4.4.4</td>
+<td>3103821</td>
+<td>On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames.</td>
+<td>5.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3084027</td>
@@ -97,6 +111,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 To work around this issue, disable, then enable the port.</td>
 <td>5.0.0-5.2.0</td>
 <td>4.4.4</td>
+</tr>
+<tr>
+<td>3076843</td>
+<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
+<td>5.1.0-5.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3071652</td>
@@ -371,6 +391,26 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Affects </th>
 </tr>
 <tr>
+<td>3163200</td>
+<td>If there is extensive and continuous next-hop group (NHG) churn when routes keep moving from one NHG to another NHG repeatedly, {{switchd}} increases in memory allocation until memory is exhausted. Other processes might be affected as they try to acquire memory which is unavailable.</td>
+<td>5.1.0</td>
+</tr>
+<tr>
+<td>3163159</td>
+<td>The NVUE command to disable EVPN duplicate address detection does not work. To work around this issue, use an NVUE snippet.</td>
+<td>5.1.0</td>
+</tr>
+<tr>
+<td>3148920</td>
+<td>NVUE configuration commands produce errors when included as part of a ZTP script that executes automatically during the switch boot process. This occurs because the $HOME variable is not set during ZTP. This does not occur if you trigger ZTP manually from the CLI with the {{sudo ztp -r http://x.x.x.x/cumulus-ztp}} command. To work around this issue, define the $HOME variable within the ZTP script with {{export HOME=/root}}.</td>
+<td>5.1.0</td>
+</tr>
+<tr>
+<td>3141818</td>
+<td>If there is extensive and continuous next-hop group (NHG) churn when routes keep moving from one NHG to another NHG repeatedly, {{switchd}} increases in memory allocation until memory is exhausted. Other processes might be affected as they try to acquire memory which is unavailable.</td>
+<td>5.0.1-5.1.0</td>
+</tr>
+<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-5.1.0</td>
@@ -436,9 +476,16 @@ end vrf
 <td>4.4.4-5.1.0</td>
 </tr>
 <tr>
+<td>3108491</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.3.0-5.1.0</td>
+</tr>
+<tr>
 <td>3107606</td>
-<td>ONIE installation over HTTP fails if the web server hosting the installation image returns valid HTML content when ONIE requests an {{optional_pkgs}} file that does not exist. To work around this issue, configure the hosting web server to return an HTTP 404 code when the non-existant file is requested, or host an empty file on the web server with the format {{&lt;image name&gt;.optional_pkgs}}.</td>
-<td>4.2.1-5.1.0</td>
+<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
+
+To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
+<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>3102128</td>

@@ -6,4 +6,4 @@ toc: 3
 pdfhidden: true
 ---
 
-You can download a PDF version of the entire NetQ {{% version %}} user guide {{%pdf_link "here."%}}
+You can view the entire NetQ {{% version %}} user guide as {{%pdf_link "a single page to print to PDF."%}}

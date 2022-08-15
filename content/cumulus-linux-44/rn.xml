@@ -94,7 +94,7 @@ end vrf
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2244,7 +2244,7 @@ end vrf
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4464,7 +4464,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.1.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6868,7 +6868,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.1.0</td>
 <td></td>
 </tr>
 <tr>

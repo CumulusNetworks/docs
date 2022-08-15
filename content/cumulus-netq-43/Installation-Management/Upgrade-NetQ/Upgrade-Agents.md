@@ -36,7 +36,7 @@ sudo yum install netq-agent
 
 {{</tabs>}}
 
-3. Restart the NetQ Agent.
+3. Restart the NetQ Agent with the following command. The {{<link title="Install NetQ CLI" text="NetQ CLI">}} must be installed for the command to run successfully. 
 
    ```
    netq config restart agent

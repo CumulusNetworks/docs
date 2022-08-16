@@ -966,6 +966,10 @@ To change the message mode back to the default setting of multicast, remove the 
 
 You can configure a PTP interface on the switch to be a unicast client or a unicast server.
 
+{{%notice note%}}
+PTP unicast mode does not support bond or VLAN interfaces.
+{{%/notice%}}
+
 To configure a PTP interface to be the unicast *client*:
 - Configure the unicast master table. You must configure at least one unicast master table on the switch. If you configure more than one unicast master table, each table must have a unique ID.
   - Set the unicast table ID; a unique ID that identifies the unicast master table.

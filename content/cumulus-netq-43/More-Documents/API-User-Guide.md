@@ -8,8 +8,6 @@ The NetQ API provides access to key telemetry and system monitoring data gathere
 
 This guide provides an overview of the NetQ API framework, the basics of using Swagger UI 2.0 or `bash` plus `curl` to view and test the APIs. Descriptions of each endpoint and model parameter are in individual API JSON files.
 
-For information regarding new features, improvements, bug fixes, and known issues present in this NetQ release, refer to the {{<link title="NVIDIA NetQ 4.3 Release Notes" text="release notes">}}.
-
 ## API Organization
 
 The NetQ API provides endpoints for:
@@ -32,29 +30,23 @@ The Swagger interface displays both public and internal APIs. Public APIs do not
 
 ## Get Started
 
-You can access the API gateway and execute requests from the Swagger UI or a terminal interface.
+You can access the API gateway and execute requests from the Swagger UI or a terminal interface:
 
 {{<tabs "Access API Gateway">}}
 
 {{<tab "Swagger UI">}}
 
-<!-- vale off -->
-The API is embedded in the NetQ software, making it easy to access from the Swagger UI application.
-<!-- vale on -->
+1. Download {{<exlink url="https://swagger.io/tools/swagger-ui/download/" text="Swagger UI 2.0">}}.
 
-1. Open an Internet browser window.
+2. Open a new browser tab or window, and enter one of the following in the address bar:
 
-2. Download {{<exlink url="https://swagger.io/tools/swagger-ui/download/" text="Swagger UI 2.0">}}.
-
-3. Open a new browser tab or window, and enter one of the following in the address bar:
-
-    - Cloud deployments:  https://api.netq.cumulusnetworks.com/swagger/
+    - Cloud deployments:  https://api.netq.nvidia.com/swagger/
     - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
-    - Cumulus in the Cloud (CITC): https://api.air.netq.cumulusnetworks.com/swagger/
+    - Cumulus in the Cloud (CITC): https://api.air.netq.nvidia.com/swagger/
 
     This opens the Swagger interface.
 
-4. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.
+3. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.
 
     {{<figure src="/images/netq/api-swagger-onopen-320.png" width="700">}}
 
@@ -121,7 +113,7 @@ To log in and obtain authorization:
     This example uses an IP address of 192.168.0.10, port of 443, and the default credentials:
 
     ```
-    <computer-name>:~ <username>$ curl -X POST "https://api.192.168.0.10.netq.cumulusnetworks.com:443/netq/auth/v1/login" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"username\": \"admin\", \"password\": \"admin\", \"access_key\": \"string\"}"
+    <computer-name>:~ <username>$ curl -X POST "https://api.192.168.0.10.netq.nvidia.com:443/netq/auth/v1/login" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"username\": \"admin\", \"password\": \"admin\", \"access_key\": \"string\"}"
     ```
 
     The output provides the access token as the first parameter.

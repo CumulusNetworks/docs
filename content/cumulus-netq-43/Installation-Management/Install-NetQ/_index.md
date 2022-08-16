@@ -13,4 +13,4 @@ The following sections provides installation instruction for the NetQ system and
 
 3. Next, {{<link title="Install NetQ Agents" text="install and configure the NetQ Agents">}} on switches and hosts.
 
-4. Finally, {{<link title="Install NetQ CLI" text="install and configure the NetQ CLI">}} on switches and hosts (optional, but recommended).
+4. Finally, {{<link title="Install NetQ CLI" text="install and configure the NetQ CLI">}} on switches and hosts.

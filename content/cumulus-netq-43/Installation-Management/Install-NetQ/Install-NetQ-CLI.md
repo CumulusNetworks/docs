@@ -5,7 +5,7 @@ weight: 320
 toc: 4
 --- 
 
-Installing the NetQ CLI on your NetQ Appliances, VMs, switches, or hosts is not required. However, the CLI can give you access to new features and bug fixes, and allows you to manage your network from multiple points in the network.
+Installing the NetQ CLI on your NetQ Appliances, VMs, switches, or hosts gives you access to new features and bug fixes, and allows you to manage your network from multiple points in the network.
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
@@ -34,7 +34,7 @@ These steps are not required for Cumulus Linux or SONiC.
 
 {{<tabs "Verify Package Versions">}}
 
-Before you install the NetQ Agent on a server, make sure you install and run at least the minimum versions of the following packages:
+Before you install the NetQ CLI on a server, make sure you install and run at least the minimum versions of the following packages:
 
 {{<tab "RHEL7 or CentOS">}}
 <!-- vale off -->
@@ -62,7 +62,7 @@ Before you install the NetQ Agent on a server, make sure you install and run at 
 
 For CentOS and Ubuntu, make sure you are running lldp**d**, not lldp**ad**. CentOS and Ubuntu do not include `lldpd` by default, even though the installation requires it. In addition, CentOS does not include `wget`, even though the installation requires it.
 
-{{<tabs "Configure NetQ Agent">}}
+{{<tabs "Configure NetQ CLI">}}
 
 {{<tab "CentOS">}}
 
@@ -271,7 +271,7 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Get the NetQ CLI Software Package for Ubuntu
 
-To install the NetQ Agent on an Ubuntu server, you need to install `netq-apps` on each Ubuntu server. This is available from the NetQ repository.
+To install the NetQ CLI on an Ubuntu server, you need to install `netq-apps` on each Ubuntu server. This is available from the NetQ repository.
 
 To get the NetQ CLI package:
 
@@ -320,7 +320,7 @@ Cumulus Linux 4.4 and later includes the `netq-apps` package by default.
 If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
 {{</notice>}}
 
-To obtain the NetQ Agent package:
+To obtain the NetQ CLI package:
 
 Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 
@@ -338,7 +338,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.3
 ```
 
 {{<notice tip>}}
-You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository to always retrieve the latest version of NetQ.
 {{</notice>}}
 
 {{</tab>}}
@@ -374,7 +374,7 @@ You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLin
 3. Verify you have the correct version of the CLI.
 
     ```
-    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
 {{<netq-install/cli-version version="4.3" opsys="cl">}}
@@ -391,7 +391,7 @@ To install the NetQ CLI you need to install `netq-apps` on each switch. This is 
 If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
 {{</notice>}}
 
-To obtain the NetQ Agent package:
+To obtain the NetQ CLI package:
 
 1. Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 
@@ -408,7 +408,7 @@ To obtain the NetQ Agent package:
 3. Verify you have the correct version of the CLI.
 
     ```
-    admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
+    admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
     You should see version 4.3.0 and update 39 in the results. For example:

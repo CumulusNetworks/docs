@@ -11974,7 +11974,7 @@ cumulus@leaf01:mgmt:~$ nv set service ntp default listen swp10
 
 ## nv set service dhcp-relay \<vrf-id\>
 
-DHCP relay
+Configures DHCP relays for IPv4 and IPv6.
 
 ### Usage
 
@@ -11994,10 +11994,10 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`server` |   DHCP servers |
-|`interface` | Set of interfaces on which to handle DHCP relay traffic |
-|`giaddress-interface` | Configures DHCP relay giaddress on the interfaces. |
-|`source-ip` | Source IP to use on the relayed packet. If "giaddr", it will be taken from giaddress. Otherwise, if "auto", it will be taken from an L3 interface on this switch using normal routing methods. This is the default. |
+|`server` |   Configures the DHCP server. |
+|`interface` | Configures the interfaces participating in DHCP relay (facing the server and facing the client). |
+|`giaddress-interface` | Configures the gateway IP address on an interface. |
+|`source-ip` | Configures the source IP address to use on the relayed packet. |
 
 ### Version History
 
@@ -12005,7 +12005,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-relay \<vrf-id\> server \<server-id\>
 
-A DHCP server
+Configures the DHCP server.
 
 ### Usage
 
@@ -12020,7 +12020,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<server-id>` |  DHCP server |
+| `<server-id>` |  The DHCP server. |
 
 ### Version History
 
@@ -12029,12 +12029,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default server 172.16.1.102
 ```
 
 ## nv set service dhcp-relay \<vrf-id\> interface \<interface-id\>
 
-An interface on which DHCP relay is configured.
+Configures the interfaces on which to configure DHCP relay.
 
 ### Usage
 
@@ -12049,7 +12049,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<server-id>` |  DHCP server |
+| `<interface-id>` |  The interface on which to configure DHCP relay. |
 
 ### Version History
 
@@ -12058,12 +12058,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default interface swp51
 ```
 
 ## nv set service dhcp-relay \<vrf-id\> giaddress-interface \<interface-id\>
 
-An interface on which DHCP relay giaddress is configured.
+Configures the gateway IP address on an interface.
 
 ### Usage
 
@@ -12078,17 +12078,81 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<interface-id>` |  DHCP relay giaddress interface |
+| `<interface-id>` | The gateway IP address. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `address` |  ipv4 address on giaddress interface |
+| `giaddress-interface` | Configures the IPv4 address on gateway interface. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default giaddress-interface lo
+```
+
+## nv set service dhcp-relay <vrf-id> giaddress-interface <interface-id> address (auto|<ipv4>)
+
+Configures the IPv4 address on the gateway interface.
+
+### Usage
+
+`nv set service dhcp-relay <vrf-id> giaddress-interface <interface-id> address <ipv4-address> [options] (auto|<ipv4>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<interface-id>` | The gateway IP address. |
+| `<ipv4-address>` | The IPv4 address on the gateway interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default giaddress-interface address lo 10.10.10.1
+```
+
+## nv set service dhcp-relay \<vrf-id\> source-ip
+
+Configures the source IP address to use on the relayed packet.
+
+### Usage
+
+`nv set service dhcp-relay <vrf-id> source-ip [options] (auto|<ipv4>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default source-ip giaddress
+```
 
 ## nv set service dhcp-relay6 \<vrf-id\>
 
@@ -12107,12 +12171,6 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-
-### Attributes
-
-| Atrribute |  Description   |
-| ---------  | -------------- |
-| `interface` |   DHCP relay interfaces |
 
 ### Version History
 

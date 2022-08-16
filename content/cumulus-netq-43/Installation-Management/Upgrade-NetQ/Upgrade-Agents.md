@@ -85,7 +85,3 @@ root@rhel7:~# rpm -q -netq-agent
 {{</tabs>}}
 
 If you see an older version, upgrade the NetQ Agent, as described above.
-
-## Next Steps
-
-- {{<link title="Upgrade NetQ CLI" text="Upgrade NetQ CLI">}}

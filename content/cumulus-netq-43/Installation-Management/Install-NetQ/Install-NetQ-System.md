@@ -7,8 +7,6 @@ toc: 3
 
 The following table lists the various ways to install NetQ. If you are unsure which option is best for your network, refer to the {{<link title="Before You Install" text="Before You Install">}}.
 
-Installation generally takes around 30 minutes.
-
 | Deployment Type | Server Arrangement | System | Hypervisor | Installation Instructions |
 | --- | --- | --- | --- | :---: |
 | On premises | Single server | NVIDIA NetQ Appliance | N/A | {{<link title="Install the NetQ On-premises Appliance" text="Start Install" >}} |

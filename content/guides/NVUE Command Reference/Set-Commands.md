@@ -11761,6 +11761,36 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service syslog default server 192.168.0.254 port 514
 ```
 
+## nv set service syslog \<vrf-id\> server \<server-id\> protocol (tcp|udp)
+
+Configures the protocol you want to use to transmit syslog data. You can specify wither UDP or TCP.
+
+### Usage
+
+`nv [options] set service syslog <vrf-id> server <server-id> protocol <arg>`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<server-id>` |  The hostname or IP address of the `syslog` server. |
+| `<arg>` |  The protocol you want to use: UDP or TCP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service syslog default server 192.168.0.254 protocol tcp
+```
+
 ## nv set service ntp \<vrf-id\>
 
 Configures the Network Time Protocol (NTP).
@@ -11823,12 +11853,41 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service ntp default server ????? iburst on
+cumulus@leaf01:mgmt:~$ nv set service ntp default server 
+```
+
+## nv set service ntp \<vrf-id\> server \<server-id\> iburst
+
+Configures NTP to send a burst of eight packets instead of the usual one packet when the server is unreachable. You can specify `on` or `off`.
+
+### Usage
+
+`nv [options] set service ntp <vrf-id> server <server-id> iburst`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<server-id>` | The hostname or IP address of the NTP server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ntp default server 192.168.0.254 iburst on
 ```
 
 ## nv set service ntp \<vrf-id\> pool \<server-id\>
 
-Configures the remote NTP Server pool.
+Configures the remote NTP server pool.
 
 ### Usage
 
@@ -11855,23 +11914,24 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set service ntp \<vrf-id\> listen \<interface-name\>
+## nv set service ntp \<vrf-id\> pool \<server-id\> iburst
 
-NTP interface to listen on.
+Configures NTP to send a burst of eight packets instead of the usual one packet when the server pool is unreachable. You can specify `on` or `off`.
 
 ### Usage
 
-`nv set service ntp <vrf-id> listen [options] <interface-name>`
+`nv [options] set service ntp <vrf-id> pool <server-id> iburst`
 
 ### Default Setting
 
-N/A
+`off`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<server-id>` | The NTP server pool. |
 
 ### Version History
 
@@ -11880,7 +11940,36 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ntp default pool 4.cumulusnetworks.pool.ntp.org iburst on
+```
+
+## nv set service ntp \<vrf-id\> listen \<interface-name\>
+
+Configures the NTP interface on which to listen.
+
+### Usage
+
+`nv set service ntp <vrf-id> listen [options] <interface-name>`
+
+### Default Setting
+
+`eth0`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<interface-name>` |  The NTP interface on which to listen. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ntp default listen swp10
 ```
 
 ## nv set service dhcp-relay \<vrf-id\>

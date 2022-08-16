@@ -8,8 +8,10 @@ This sections describes how to upgrade from your current installation to NetQ {{
 
 You must upgrade your NetQ On-premises or Cloud Appliances or virtual machines (VMs). While there is some backwards compatability with the previous NetQ release for any version, upgrading NetQ Agents is always recommended. If you want access to new and updated commands, you can upgrade the CLI on your physical servers or VMs, and monitored switches and hosts as well.
 
-To complete the upgrade for either an on-premises or a cloud deployment:
+To upgrade your deployment:
 
-- Start with {{<link title="Upgrade NetQ Appliances and Virtual Machines">}}
-- Then go to {{<link title="Upgrade NetQ Agents">}}
-- Then go to {{<link title="Upgrade NetQ CLI">}}
+1. Start with {{<link title="Upgrade NetQ Appliances and Virtual Machines">}}
+2. Then {{<link title="Upgrade NetQ Agents">}}
+3. Finally {{<link title="Upgrade NetQ CLI">}}
+
+Upgrading NetQ generally takes around 2 hours. 

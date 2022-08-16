@@ -8,6 +8,8 @@ toc: 4
 The first step in upgrading your NetQ installation to NetQ {{<version>}} is upgrading your NetQ appliances or VMs.
 
 ## Before You Upgrade
+
+Note that upgrading NetQ generally takes around 2 hours. 
 ### Back up NetQ Data
 
 This is an optional step for on-premises deployments. Refer to {{<link title="Back Up and Restore NetQ">}}. NetQ Cloud Appliances and VMs create backups automatically.
@@ -103,8 +105,6 @@ sudo systemctl restart kubelet
 
 Check if the kubelet process is running with the `sudo systemctl status kubelet` command before proceeding with the upgrade.
 
-If any issue occurs, contact the NVIDIA Support team.
-
 ### Upgrade Using the NetQ CLI
 
 After completing the preparation steps, upgrade your NetQ On-premises, Cloud Appliances, or VMs using the NetQ CLI.
@@ -141,3 +141,6 @@ netq upgrade bundle /mnt/installables/NetQ-4.3.0-opta.tgz
     APPLIANCE_MANIFEST_HASH=34aa65d
     APPLIANCE_VERSION=4.3.0
     ```
+## Next Steps
+
+- {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}}

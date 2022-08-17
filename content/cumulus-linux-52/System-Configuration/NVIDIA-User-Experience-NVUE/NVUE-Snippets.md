@@ -97,7 +97,7 @@ Make sure to use spaces not tabs; the parser expects spaces in yaml format.
    autort rfc8365-compatible
    ```
 
-The snippets for FRR writes content to the `/etc/frr/frr.conf` file. When the configuration and snippet is applied via `nv config apply`, the FRR service goes through and reads in the `/etc/frr/frr.conf` file.
+The snippets for FRR write content to the `/etc/frr/frr.conf` file. When you apply the configuration and snippet with the `nv config apply` command, the FRR service goes through and reads in the `/etc/frr/frr.conf` file.
 
 ### /etc/network/interfaces Snippets
 

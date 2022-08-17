@@ -31,8 +31,10 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="NVUE-CLI/#command-question-mark" text="Command question mark (?)">}} to show required information quickly and concisely, such as the command value type, range, and options with a brief description of each. `?` also indicates if you need to provide specific values for the command.
   - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#gtp-hashing" text="TEID-based ECMP hashing">}} and {{<link url="Bonding-Link-Aggregation/#gtp-hashing" text="TEID-based bond hashing">}} configuration commands available
   - {{<link url="Netfilter-ACLs/#install-and-manage-acl-rules-with-nvue" text="Show ACL statistics per interface">}} commands
-  - {{< expand "New and changed NVUE commands" >}}
-  
+  - New commands:
+   {{< tabs "TabID34 ">}}
+{{< tab "show commands ">}}
+
 ```
 nv show interface <interface-id> acl <acl-id> statistics
 nv show interface <interface-id> acl <acl-id> statistics <rule-id>
@@ -45,6 +47,12 @@ nv show service ptp <instance-id> profile <profile-id>
 nv show system forwarding
 nv show system forwarding lag-hash
 nv show system forwarding ecmp-hash
+```
+
+{{< /tab >}}
+{{< tab "set commands ">}}
+
+```
 nv set router policy route-map <route-map-id> rule <rule-id> match evpn-default-route (on|off)
 nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as 1-4294967295
 nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as <asn-range>
@@ -113,6 +121,12 @@ nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-netwo
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> route-map <instance-name>
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> route-map (none|<instance-name>)
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> route-map <instance-name>
+```
+
+{{< /tab >}}
+{{< tab "unset commands ">}}
+
+```
 nv unset router policy route-map <route-map-id> rule <rule-id> match evpn-default-route
 nv unset router policy route-map <route-map-id> rule <rule-id> set originator-id
 nv unset router policy route-map <route-map-id> rule <rule-id> set label-index
@@ -174,7 +188,9 @@ nv unset system forwarding ecmp-hash inner-ipv6-label
 nv unset system forwarding hash-seed
 nv config history [<revision>]
 ```
-{{< /expand >}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{%notice info%}}
 Cumulus Linux 5.2 includes the NVUE object model. After you upgrade to Cumulus Linux 5.2, running NVUE configuration commands replaces the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf` and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:

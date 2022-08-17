@@ -281,6 +281,8 @@ nv show interface <interface-id> evpn multihoming
 nv show interface <interface-id> evpn multihoming segment
 nv show interface <interface-id> acl
 nv show interface <interface-id> acl <acl-id>
+nv show interface <interface-id> acl <acl-id> statistics
+nv show interface <interface-id> acl <acl-id> statistics <rule-id>
 nv show interface <interface-id> acl <acl-id> inbound
 nv show interface <interface-id> acl <acl-id> inbound control-plane
 nv show interface <interface-id> acl <acl-id> outbound
@@ -323,6 +325,12 @@ nv show service ptp
 nv show service ptp <instance-id>
 nv show service ptp <instance-id> acceptable-master
 nv show service ptp <instance-id> acceptable-master <clock-id>
+nv show service ptp <instance-id> unicast-master
+nv show service ptp <instance-id> unicast-master <table-id>
+nv show service ptp <instance-id> unicast-master <table-id> address
+nv show service ptp <instance-id> unicast-master <table-id> address <ip-mac-address-id>
+nv show service ptp <instance-id> profile
+nv show service ptp <instance-id> profile <profile-id>
 nv show service ptp <instance-id> monitor
 nv show service ptp <instance-id> monitor timestamp-log
 nv show service ptp <instance-id> monitor violations
@@ -396,6 +404,9 @@ nv show system ztp status
 nv show system reboot
 nv show system reboot reason
 nv show system reboot history
+nv show system forwarding
+nv show system forwarding lag-hash
+nv show system forwarding ecmp-hash
 nv show system port-mirror
 nv show system port-mirror session
 nv show system port-mirror session <session-id>
@@ -757,11 +768,12 @@ nv set router policy route-map <route-map-id> rule <rule-id> match peer (local|<
 nv set router policy route-map <route-map-id> rule <rule-id> match local-preference 0-4294967295
 nv set router policy route-map <route-map-id> rule <rule-id> match evpn-route-type (macip|imet|ip-prefix)
 nv set router policy route-map <route-map-id> rule <rule-id> match evpn-vni <value>
+nv set router policy route-map <route-map-id> rule <rule-id> match evpn-default-route (on|off)
 nv set router policy route-map <route-map-id> rule <rule-id> match source-vrf <vrf-name>
 nv set router policy route-map <route-map-id> rule <rule-id> match type (ipv4|ipv6)
 nv set router policy route-map <route-map-id> rule <rule-id> set
 nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
-nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as 1-4294967295
+nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as <asn-range>
 nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as 1-10
 nv set router policy route-map <route-map-id> rule <rule-id> set community <community-id>
 nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
@@ -785,11 +797,15 @@ nv set router policy route-map <route-map-id> rule <rule-id> set ip-nexthop (unc
 nv set router policy route-map <route-map-id> rule <rule-id> set source-ip (<ipv4>|<ipv6>)
 nv set router policy route-map <route-map-id> rule <rule-id> set community-delete-list (<instance-name>|<integer>)
 nv set router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list (<instance-name>|<integer>)
+nv set router policy route-map <route-map-id> rule <rule-id> set originator-id <ipv4>
+nv set router policy route-map <route-map-id> rule <rule-id> set label-index 0-1048560
+nv set router policy route-map <route-map-id> rule <rule-id> set forwarding-address <ipv6>
 nv set router policy route-map <route-map-id> rule <rule-id> action
 nv set router policy route-map <route-map-id> rule <rule-id> action deny
 nv set router policy route-map <route-map-id> rule <rule-id> action permit
 nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
 nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule <value>
+nv set router policy route-map <route-map-id> rule <rule-id> description none
 nv set router bgp
 nv set router bgp graceful-restart
 nv set router bgp graceful-restart mode (off|helper-only|full)
@@ -1061,9 +1077,10 @@ nv set interface <interface-id> link dot1x
 nv set interface <interface-id> link dot1x mab (on|off)
 nv set interface <interface-id> link dot1x parking-vlan (on|off)
 nv set interface <interface-id> link auto-negotiate (on|off)
-nv set interface <interface-id> link breakout (1x|2x20G|2x40G|2x50G|2x100G|2x200G|4x10G|4x25G|4x50G|4x100G|8x50G|disabled|loopback)
+nv set interface <interface-id> link breakout (1x|2x|4x|8x|2x10G|2x25G|2x40G|2x50G|2x100G|2x200G|4x10G|4x25G|4x50G|4x100G|8x50G|disabled|loopback)
 nv set interface <interface-id> link duplex (half|full)
-nv set interface <interface-id> link speed (auto|10M|100M|1G|10G|25G|40G|50G|100G|200G|400G)
+nv set interface <interface-id> link speed (auto|10M|100M|1G|10G|25G|40G|50G|100G|200G|400G|800G)
+nv set interface <interface-id> link lanes (1|2|4|8)
 nv set interface <interface-id> link fec (auto|baser|off|rs|driver-auto)
 nv set interface <interface-id> link mtu 552-9216
 nv set interface <interface-id> evpn
@@ -1093,7 +1110,10 @@ nv set interface <interface-id> ptp acceptable-master (on|off)
 nv set interface <interface-id> ptp delay-mechanism end-to-end
 nv set interface <interface-id> ptp transport (ipv4|ipv6|802.3)
 nv set interface <interface-id> ptp ttl 1-255
-nv set interface <interface-id> ptp message-mode (multicast|unicast|mixed)
+nv set interface <interface-id> ptp mixed-multicast-unicast (on|off)
+nv set interface <interface-id> ptp unicast-service-mode (client|server)
+nv set interface <interface-id> ptp unicast-request-duration 10-1000
+nv set interface <interface-id> ptp unicast-master-table-id <integer>
 nv set interface <interface-id> tunnel
 nv set interface <interface-id> tunnel source-ip <ipv4>
 nv set interface <interface-id> tunnel dest-ip <ipv4>
@@ -1132,6 +1152,22 @@ nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> address 
 nv set service ptp <instance-id>
 nv set service ptp <instance-id> acceptable-master <clock-id>
 nv set service ptp <instance-id> acceptable-master <clock-id> alt-priority <value>
+nv set service ptp <instance-id> unicast-master <table-id>
+nv set service ptp <instance-id> unicast-master <table-id> address <ip-mac-address-id>
+nv set service ptp <instance-id> unicast-master <table-id> query-interval -3-4
+nv set service ptp <instance-id> unicast-master <table-id> peer-address (<ipv4>|<ipv6>)
+nv set service ptp <instance-id> profile <profile-id>
+nv set service ptp <instance-id> profile <profile-id> profile-type (ieee-1588|itu-g-8275-1)
+nv set service ptp <instance-id> profile <profile-id> priority1 <value>
+nv set service ptp <instance-id> profile <profile-id> priority2 <value>
+nv set service ptp <instance-id> profile <profile-id> local-priority <value>
+nv set service ptp <instance-id> profile <profile-id> domain 0-255
+nv set service ptp <instance-id> profile <profile-id> delay-mechanism end-to-end
+nv set service ptp <instance-id> profile <profile-id> transport (ipv4|ipv6|802.3)
+nv set service ptp <instance-id> profile <profile-id> announce-interval -7-7
+nv set service ptp <instance-id> profile <profile-id> sync-interval -7-7
+nv set service ptp <instance-id> profile <profile-id> delay-req-interval -7-7
+nv set service ptp <instance-id> profile <profile-id> announce-timeout 2-255
 nv set service ptp <instance-id> monitor
 nv set service ptp <instance-id> monitor min-offset-threshold <value>
 nv set service ptp <instance-id> monitor max-offset-threshold <value>
@@ -1141,6 +1177,7 @@ nv set service ptp <instance-id> monitor max-violation-log-sets 8-128
 nv set service ptp <instance-id> monitor max-violation-log-entries 8-128
 nv set service ptp <instance-id> monitor violation-log-interval 0-259200
 nv set service ptp <instance-id> enable (on|off)
+nv set service ptp <instance-id> current-profile <value>
 nv set service ptp <instance-id> two-step (on|off)
 nv set service ptp <instance-id> priority1 <value>
 nv set service ptp <instance-id> priority2 <value>
@@ -1198,7 +1235,7 @@ nv set system control-plane trap <trap-id> state (on|off)
 nv set system control-plane policer <policer-id>
 nv set system control-plane policer <policer-id> state (on|off)
 nv set system control-plane policer <policer-id> burst 10-10000
-nv set system control-plane policer <policer-id> rate 10-10000
+nv set system control-plane policer <policer-id> rate 10-50000
 nv set system message
 nv set system message pre-login <value>
 nv set system message post-login <value>
@@ -1217,6 +1254,34 @@ nv set system global anycast-mac (none|<mac>)
 nv set system global anycast-id (1-65535|none)
 nv set system global fabric-mac (none|<mac>)
 nv set system global fabric-id 1-255
+nv set system forwarding
+nv set system forwarding lag-hash
+nv set system forwarding lag-hash ip-protocol (on|off)
+nv set system forwarding lag-hash source-mac (on|off)
+nv set system forwarding lag-hash destination-mac (on|off)
+nv set system forwarding lag-hash source-ip (on|off)
+nv set system forwarding lag-hash destination-ip (on|off)
+nv set system forwarding lag-hash source-port (on|off)
+nv set system forwarding lag-hash destination-port (on|off)
+nv set system forwarding lag-hash ether-type (on|off)
+nv set system forwarding lag-hash vlan (on|off)
+nv set system forwarding lag-hash gtp-teid (on|off)
+nv set system forwarding ecmp-hash
+nv set system forwarding ecmp-hash ip-protocol (on|off)
+nv set system forwarding ecmp-hash source-ip (on|off)
+nv set system forwarding ecmp-hash destination-ip (on|off)
+nv set system forwarding ecmp-hash source-port (on|off)
+nv set system forwarding ecmp-hash destination-port (on|off)
+nv set system forwarding ecmp-hash ipv6-label (on|off)
+nv set system forwarding ecmp-hash ingress-interface (on|off)
+nv set system forwarding ecmp-hash gtp-teid (on|off)
+nv set system forwarding ecmp-hash inner-ip-protocol (on|off)
+nv set system forwarding ecmp-hash inner-source-ip (on|off)
+nv set system forwarding ecmp-hash inner-destination-ip (on|off)
+nv set system forwarding ecmp-hash inner-source-port (on|off)
+nv set system forwarding ecmp-hash inner-destination-port (on|off)
+nv set system forwarding ecmp-hash inner-ipv6-label (on|off)
+nv set system forwarding hash-seed 0-4294967295
 nv set system port-mirror
 nv set system port-mirror session <session-id>
 nv set system port-mirror session <session-id> span
@@ -1281,7 +1346,7 @@ nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggr
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> as-set (on|off)
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> route-map (none|<instance-name>)
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id>
-nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> route-map (none|<instance-name>)
+nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> route-map <instance-name>
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>
@@ -1309,7 +1374,7 @@ nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggr
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> as-set (on|off)
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> route-map (none|<instance-name>)
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id>
-nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> route-map (none|<instance-name>)
+nv set vrf <vrf-id> router bgp address-family ipv6-unicast network <static-network-id> route-map <instance-name>
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf list
@@ -1935,6 +2000,7 @@ nv unset router policy route-map <route-map-id> rule <rule-id> match peer
 nv unset router policy route-map <route-map-id> rule <rule-id> match local-preference
 nv unset router policy route-map <route-map-id> rule <rule-id> match evpn-route-type
 nv unset router policy route-map <route-map-id> rule <rule-id> match evpn-vni
+nv unset router policy route-map <route-map-id> rule <rule-id> match evpn-default-route
 nv unset router policy route-map <route-map-id> rule <rule-id> match source-vrf
 nv unset router policy route-map <route-map-id> rule <rule-id> match type
 nv unset router policy route-map <route-map-id> rule <rule-id> set
@@ -1967,11 +2033,15 @@ nv unset router policy route-map <route-map-id> rule <rule-id> set ip-nexthop
 nv unset router policy route-map <route-map-id> rule <rule-id> set source-ip
 nv unset router policy route-map <route-map-id> rule <rule-id> set community-delete-list
 nv unset router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list
+nv unset router policy route-map <route-map-id> rule <rule-id> set originator-id
+nv unset router policy route-map <route-map-id> rule <rule-id> set label-index
+nv unset router policy route-map <route-map-id> rule <rule-id> set forwarding-address
 nv unset router policy route-map <route-map-id> rule <rule-id> action
 nv unset router policy route-map <route-map-id> rule <rule-id> action deny
 nv unset router policy route-map <route-map-id> rule <rule-id> action permit
 nv unset router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
 nv unset router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule
+nv unset router policy route-map <route-map-id> rule <rule-id> description
 nv unset router bgp
 nv unset router bgp graceful-restart
 nv unset router bgp graceful-restart mode
@@ -2270,6 +2340,7 @@ nv unset interface <interface-id> link auto-negotiate
 nv unset interface <interface-id> link breakout
 nv unset interface <interface-id> link duplex
 nv unset interface <interface-id> link speed
+nv unset interface <interface-id> link lanes
 nv unset interface <interface-id> link fec
 nv unset interface <interface-id> link mtu
 nv unset interface <interface-id> evpn
@@ -2300,7 +2371,10 @@ nv unset interface <interface-id> ptp acceptable-master
 nv unset interface <interface-id> ptp delay-mechanism
 nv unset interface <interface-id> ptp transport
 nv unset interface <interface-id> ptp ttl
-nv unset interface <interface-id> ptp message-mode
+nv unset interface <interface-id> ptp mixed-multicast-unicast
+nv unset interface <interface-id> ptp unicast-service-mode
+nv unset interface <interface-id> ptp unicast-request-duration
+nv unset interface <interface-id> ptp unicast-master-table-id
 nv unset interface <interface-id> tunnel
 nv unset interface <interface-id> tunnel source-ip
 nv unset interface <interface-id> tunnel dest-ip
@@ -2355,6 +2429,25 @@ nv unset service ptp <instance-id>
 nv unset service ptp <instance-id> acceptable-master
 nv unset service ptp <instance-id> acceptable-master <clock-id>
 nv unset service ptp <instance-id> acceptable-master <clock-id> alt-priority
+nv unset service ptp <instance-id> unicast-master
+nv unset service ptp <instance-id> unicast-master <table-id>
+nv unset service ptp <instance-id> unicast-master <table-id> address
+nv unset service ptp <instance-id> unicast-master <table-id> address <ip-mac-address-id>
+nv unset service ptp <instance-id> unicast-master <table-id> query-interval
+nv unset service ptp <instance-id> unicast-master <table-id> peer-address
+nv unset service ptp <instance-id> profile
+nv unset service ptp <instance-id> profile <profile-id>
+nv unset service ptp <instance-id> profile <profile-id> profile-type
+nv unset service ptp <instance-id> profile <profile-id> priority1
+nv unset service ptp <instance-id> profile <profile-id> priority2
+nv unset service ptp <instance-id> profile <profile-id> local-priority
+nv unset service ptp <instance-id> profile <profile-id> domain
+nv unset service ptp <instance-id> profile <profile-id> delay-mechanism
+nv unset service ptp <instance-id> profile <profile-id> transport
+nv unset service ptp <instance-id> profile <profile-id> announce-interval
+nv unset service ptp <instance-id> profile <profile-id> sync-interval
+nv unset service ptp <instance-id> profile <profile-id> delay-req-interval
+nv unset service ptp <instance-id> profile <profile-id> announce-timeout
 nv unset service ptp <instance-id> monitor
 nv unset service ptp <instance-id> monitor min-offset-threshold
 nv unset service ptp <instance-id> monitor max-offset-threshold
@@ -2364,6 +2457,7 @@ nv unset service ptp <instance-id> monitor max-violation-log-sets
 nv unset service ptp <instance-id> monitor max-violation-log-entries
 nv unset service ptp <instance-id> monitor violation-log-interval
 nv unset service ptp <instance-id> enable
+nv unset service ptp <instance-id> current-profile
 nv unset service ptp <instance-id> two-step
 nv unset service ptp <instance-id> priority1
 nv unset service ptp <instance-id> priority2
@@ -2461,6 +2555,34 @@ nv unset system global anycast-mac
 nv unset system global anycast-id
 nv unset system global fabric-mac
 nv unset system global fabric-id
+nv unset system forwarding
+nv unset system forwarding lag-hash
+nv unset system forwarding lag-hash ip-protocol
+nv unset system forwarding lag-hash source-mac
+nv unset system forwarding lag-hash destination-mac
+nv unset system forwarding lag-hash source-ip
+nv unset system forwarding lag-hash destination-ip
+nv unset system forwarding lag-hash source-port
+nv unset system forwarding lag-hash destination-port
+nv unset system forwarding lag-hash ether-type
+nv unset system forwarding lag-hash vlan
+nv unset system forwarding lag-hash gtp-teid
+nv unset system forwarding ecmp-hash
+nv unset system forwarding ecmp-hash ip-protocol
+nv unset system forwarding ecmp-hash source-ip
+nv unset system forwarding ecmp-hash destination-ip
+nv unset system forwarding ecmp-hash source-port
+nv unset system forwarding ecmp-hash destination-port
+nv unset system forwarding ecmp-hash ipv6-label
+nv unset system forwarding ecmp-hash ingress-interface
+nv unset system forwarding ecmp-hash gtp-teid
+nv unset system forwarding ecmp-hash inner-ip-protocol
+nv unset system forwarding ecmp-hash inner-source-ip
+nv unset system forwarding ecmp-hash inner-destination-ip
+nv unset system forwarding ecmp-hash inner-source-port
+nv unset system forwarding ecmp-hash inner-destination-port
+nv unset system forwarding ecmp-hash inner-ipv6-label
+nv unset system forwarding hash-seed
 nv unset system port-mirror
 nv unset system port-mirror session
 nv unset system port-mirror session <session-id>
@@ -3147,41 +3269,59 @@ To see a description for a command, type the command with `-h` at the end:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag backup -h
-Usage:
-  nv set mlag backup [options] <backup-ip> ...
+usage: 
+  nv [options] set mlag backup <backup-ip>
 
 Description:
-  Set of MLAG backups
+  backup                Set of MLAG backups
 
 Identifiers:
-  <backup-ip>  Backup IP of MLAG peer
+  <backup-ip>           Backup IP of MLAG peer (ipv4 | ipv6)
+
+Output Options:
+  -o <format>, --output <format>
+                        Supported formats: json, yaml, auto, constable, end-table, commands (default:auto)
+  --color (on|off|auto)
+                        Toggle coloring of output (default: auto)
+  --paginate (on|off|auto)
+                        Whether to send output to a pager (default: off)
 
 General Options:
-  -h, --help   Show help.
+  -h, --help            Show help.
 ```
 
 When you use `-h`, replace any variables in the command with a value. For example, for the `nv set vrf <vrf-id> router pim` command, type `nv set vrf default router pim -h`:
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router pim -h
-Usage:
-  nv set vrf <vrf-id> router pim [options] [<attribute> ...]
+usage: 
+  nv [options] set vrf <vrf-id> router pim [address-family ...]
+  nv [options] set vrf <vrf-id> router pim [ecmp ...]
+  nv [options] set vrf <vrf-id> router pim [enable ...]
+  nv [options] set vrf <vrf-id> router pim [msdp-mesh-group ...]
+  nv [options] set vrf <vrf-id> router pim [timers ...]
 
 Description:
-  PIM VRF configuration.
+  pim                   PIM VRF configuration.
 
 Identifiers:
-  <vrf-id>         VRF
+  <vrf-id>              VRF (vrf-name)
 
 Attributes:
-  timers           Timers
-  ecmp             Choose all available ECMP paths for a particular RPF. If
-                   'off', the first nexthop found will be used. This is the
-                   default.
-  msdp-mesh-group  To connect multiple PIM-SM multicast domains using RPs.
-  address-family   Address family specific configuration
-  enable           Turn the feature 'on' or 'off'. The default is 'off'.
+  address-family        Address family specific configuration
+  ecmp                  Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
+  enable                Turn the feature 'on' or 'off'.  The default is 'off'.
+  msdp-mesh-group       To connect multiple PIM-SM multicast domains using RPs.
+  timers                Timers
+
+Output Options:
+  -o <format>, --output <format>
+                        Supported formats: json, yaml, auto, constable, end-table, commands (default:auto)
+  --color (on|off|auto)
+                        Toggle coloring of output (default: auto)
+  --paginate (on|off|auto)
+                        Whether to send output to a pager (default: off)
 
 General Options:
-  -h, --help       Show help.
+  -h, --help            Show help.
 ```

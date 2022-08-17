@@ -137,7 +137,9 @@ The following example shows the `nv show router` commands after pressing the TAB
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router <<TAB>>
-bgp     ospf    pbr     policy
+adaptive-routing  igmp              ospf              pim               vrr               
+bgp               nexthop-group     pbr               policy            vrrp 
+
 cumulus@leaf01:mgmt:~$ nv show router bgp
                                 operational  applied  pending      description
 ------------------------------  -----------  -------  -----------  ----------------------------------------------------------------------
@@ -271,11 +273,6 @@ nv show router pbr
 nv show router pbr map
 nv show router pbr map <pbr-map-id>
 nv show router pbr map <pbr-map-id> rule
-nv show router pbr map <pbr-map-id> rule <rule-id>
-nv show router pbr map <pbr-map-id> rule <rule-id> match
-nv show router pbr map <pbr-map-id> rule <rule-id> action
-nv show router policy
-nv show router policy community-list
 ...
 ```
 
@@ -285,17 +282,12 @@ You can show the list of commands for a command grouping. For example, to show t
 cumulus@switch:~$ nv list-commands interface
 nv show interface
 nv show interface <interface-id>
+nv show interface <interface-id> pluggable
 nv show interface <interface-id> router
 nv show interface <interface-id> router pbr
+nv show interface <interface-id> router pbr map
+nv show interface <interface-id> router pbr map <pbr-map-id>
 nv show interface <interface-id> router ospf
-nv show interface <interface-id> router ospf timers
-nv show interface <interface-id> router ospf authentication
-nv show interface <interface-id> router ospf bfd
-nv show interface <interface-id> bond
-nv show interface <interface-id> bond member
-nv show interface <interface-id> bond member <member-id>
-nv show interface <interface-id> bond mlag
-nv show interface <interface-id> bridge
 ...
 ```
 <!-- vale off -->
@@ -303,7 +295,8 @@ Use the Tab key to get help for the command lists you want to see. For example, 
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
-acl     bond    bridge  evpn    ip      link    ptp     qos     router 
+acl        bridge     ip         lldp       ptp        router     
+bond       evpn       link       pluggable  qos        tunnel
 ```
 
 ## NVUE Configuration File
@@ -453,7 +446,7 @@ adduser               add and remove users and groups                           
 apt                   commandline package manager                                     apt                    1.8.2.3
 arping                sends IP and/or ARP pings (to the MAC address)                  arping                 2.19-6
 arptables             ARP table administration                                        arptables              0.0.4+snapshot20181021-4
-atftp                 advanced TFTP client                                            atftp                  0.7.git20120829-3.2~deb10u1                 
+atftp                 advanced TFTP client                                            atftp                  0.7.git20120829-3.               
 atftpd                advanced TFTP server                                            atftpd                 0.7.git20120829-3.2~deb10u1 
 auditd                User space tools for security auditing                          auditd                 1:2.8.4-3              
 base-files            Debian base system miscellaneous files                          base-files             10.3+deb10u9                 
@@ -518,7 +511,7 @@ cumulus@switch:~$ nv config save
 The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. Cumulus Linux saves the detached configuration to a file `changeset/cumulus/<date>_<time>_xxxx` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `changeset/cumulus/2021-06-11_18.35.06_FPKP`.
 
 ```
-cumulus@switch:~$ nv set interface lo ip address 10.10.10.1
+cumulus@switch:~$ nv set interface lo ip address 10.10.10.1/32
 cumulus@switch:~$ nv config detach
 ```
 
@@ -557,44 +550,4 @@ The following example patches the pending configuration (runs the set or unset c
 
 ```
 cumulus@switch:~$ nv config patch /deps/nv-02/13/2021.yaml
-```
-
-## How Is NVUE Different from NCLU?
-
-This section lists some of the differences between NVUE CLI and the NCLU CLI.
-
-### Configuration File
-
-When you save network configuration using NVUE, Cumulus Linux saves the configuration in the `/etc/nvue.d/startup.yaml` file.
-
-NVUE also writes to underlying Linux files when you apply a configuration, such as the `/etc/network/interfaces` and `/etc/frr/frr.conf` files. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE.
-
-### Bridge Configuration
-
-You set global bridge configuration on the bridge domain. For example:
-
-```
-cumulus@leaf01:~$ nv set bridge domain br_default vlan 10,20
-```
-
-However, you set specific bridge interface options with interface commands. For example:
-
-```
-cumulus@leaf01:~$ nv set interface swp1 bridge domain br_default learning on
-```
-
-The default VLAN-aware bridge in NVUE is `br_default`. The default VLAN-aware bridge in NCLU is `bridge`.
-
-### BGP Configuration
-
-You can set global BGP configuration, such as the ASN, router ID, graceful shutdown and restart with the `nv set router bgp` command. For example:
-
-```
-cumulus@leaf01:~$ nv set router bgp autonomous-system 65101
-```
-
-However, BGP peer and peer group, route information, timer, and address family configuration requires a VRF. For example:
-
-```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 remote-as external
 ```

@@ -29,6 +29,8 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="NVUE-CLI/#command-abbreviation" text="Command abbreviation">}}
   - {{<link url="NVUE-CLI/#command-question-mark" text="Command question mark (?)">}} to show required information quickly and concisely, such as the command value type, range, and options with a brief description of each. `?` also indicates if you need to provide specific values for the command.
+  - {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#gtp-hashing" text="TEID-based ECMP hashing">}} and {{<link url="Bonding-Link-Aggregation/#gtp-hashing" text="TEID-based bond hashing">}} configuration commands available
+  - {{<link url="Netfilter-ACLs/#install-and-manage-acl-rules-with-nvue" text="Show ACL statistics per interface">}} commands
   - {{< expand "New and changed NVUE commands" >}}
   
 ```

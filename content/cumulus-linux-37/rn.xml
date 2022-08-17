@@ -172,28 +172,21 @@ This example assumes no other static routes are present. Otherwise, you might ne
 </tr>
 <tr>
 <td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
 <td>2896733</td>
-<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
-To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
+<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send. To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-5.0.1</td>
 <td>5.1.0</td>
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
+<td>When you reboot a VTEP, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table. To work around this issue, clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command, then add {{"vxlan-learning": "off"}} in the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
    {
         "vxlan": {
             "module_globals": { "vxlan-purge-remotes": "no" },
@@ -205,7 +198,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switches.</td>
+Reboot the affected switches.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -2230,7 +2223,7 @@ Fixed: 1.6.2-2+dev8u9</td>
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
 </tr>
 <tr>
@@ -2688,14 +2681,13 @@ Fixed: 2.1.5-2+deb8u13</td>
 </tr>
 <tr>
 <td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
 <td>2896733</td>
-<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
-To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
+<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send. To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-5.0.1</td>
 <td>5.1.0</td>
 </tr>
@@ -2746,15 +2738,9 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
+<td>When you reboot a VTEP, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table. To work around this issue, clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command, then add {{"vxlan-learning": "off"}} in the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
    {
         "vxlan": {
             "module_globals": { "vxlan-purge-remotes": "no" },
@@ -2766,7 +2752,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switches.</td>
+Reboot the affected switches.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -3231,7 +3217,7 @@ Fixed: 1.6.2-2+dev8u9</td>
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>
@@ -5518,15 +5504,9 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
+<td>When you reboot a VTEP, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table. To work around this issue, clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command, then add {{"vxlan-learning": "off"}} in the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
    {
         "vxlan": {
             "module_globals": { "vxlan-purge-remotes": "no" },
@@ -5538,7 +5518,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switches.</td>
+Reboot the affected switches.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -5880,7 +5860,7 @@ Fixed: 1.6.2-2+dev8u9</td>
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>
@@ -8166,15 +8146,9 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
+<td>When you reboot a VTEP, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table. To work around this issue, clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command, then add {{"vxlan-learning": "off"}} in the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
    {
         "vxlan": {
             "module_globals": { "vxlan-purge-remotes": "no" },
@@ -8186,7 +8160,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switches.</td>
+Reboot the affected switches.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -8497,7 +8471,7 @@ Fixed: 1.6.2-2+dev8u9</td>
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>
@@ -11192,15 +11166,9 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
+<td>When you reboot a VTEP, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table. To work around this issue, clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command, then add {{"vxlan-learning": "off"}} in the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
    {
         "vxlan": {
             "module_globals": { "vxlan-purge-remotes": "no" },
@@ -11212,7 +11180,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switches.</td>
+Reboot the affected switches.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -11523,7 +11491,7 @@ Fixed: 1.6.2-2+dev8u9</td>
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>
@@ -14260,15 +14228,9 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 </tr>
 <tr>
 <td>2866084</td>
-<td>When a VTEP is rebooted, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table.
-To work around this issue:
-
-1. Clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command.
-
-2. In the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file, add {{"vxlan-learning": "off"}}:
+<td>When you reboot a VTEP, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table. To work around this issue, clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command, then add {{"vxlan-learning": "off"}} in the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file:
 
 $ cat /etc/network/ifupdown2/policy.d/vxlan.json
-
    {
         "vxlan": {
             "module_globals": { "vxlan-purge-remotes": "no" },
@@ -14280,7 +14242,7 @@ $ cat /etc/network/ifupdown2/policy.d/vxlan.json
         }
    }
 
-3. Reboot the affected switches.</td>
+Reboot the affected switches.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -14591,7 +14553,7 @@ Fixed: 1.6.2-2+dev8u9</td>
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>

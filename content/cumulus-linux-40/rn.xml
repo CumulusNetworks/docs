@@ -1137,8 +1137,7 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 </tr>
 <tr>
 <td>2896733</td>
-<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send.
-To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
+<td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send. To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-5.0.1</td>
 <td>5.1.0</td>
 </tr>

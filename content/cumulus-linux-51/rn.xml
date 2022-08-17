@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3176318</td>
+<td>The NVUE {{nv set bridge domain br_default stp priority}} command does not change the STP priority.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3163200</td>
 <td>If there is extensive and continuous next-hop group (NHG) churn when routes keep moving from one NHG to another NHG repeatedly, {{switchd}} increases in memory allocation until memory is exhausted. Other processes might be affected as they try to acquire memory which is unavailable.</td>
 <td>5.1.0</td>
@@ -21,6 +27,12 @@
 <tr>
 <td>3148920</td>
 <td>NVUE configuration commands produce errors when included as part of a ZTP script that executes automatically during the switch boot process. This occurs because the $HOME variable is not set during ZTP. This does not occur if you trigger ZTP manually from the CLI with the {{sudo ztp -r http://x.x.x.x/cumulus-ztp}} command. To work around this issue, define the $HOME variable within the ZTP script with {{export HOME=/root}}.</td>
+<td>5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3146886</td>
+<td>FRR does not establish BGP peering with neighbors configured with a router ID that overlaps with IP addresses in the class D or E address spaces.</td>
 <td>5.1.0</td>
 <td></td>
 </tr>

@@ -351,7 +351,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 </tr>
 <tr>
 <td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -744,7 +744,7 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>
@@ -2622,7 +2622,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 </tr>
 <tr>
 <td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -3050,7 +3050,7 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>
@@ -4848,7 +4848,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 </tr>
 <tr>
 <td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -5276,7 +5276,7 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>
@@ -7186,7 +7186,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 </tr>
 <tr>
 <td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -7867,7 +7867,7 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 </tr>
 <tr>
 <td>2700767</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>

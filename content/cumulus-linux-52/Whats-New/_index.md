@@ -25,7 +25,7 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="Zero-Touch-Provisioning-ZTP/#dhcp-on-front-panel-ports" text="ZTP on front panel ports">}}
 - PTP enhancements include:
    - {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="Pre-defined PTP profiles and custom profiles">}}
-   - {{<link url="Precision-Time-Protocol-PTP/#message-mode" text="PTP unicast message mode">}} available for early access
+   - {{<link url="Precision-Time-Protocol-PTP/#message-mode" text="PTP unicast message mode">}}
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="NVUE-CLI/#command-abbreviation" text="Command abbreviation">}}
   - {{<link url="NVUE-CLI/#command-question-mark" text="Command question mark (?)">}} to show required information quickly and concisely, such as the command value type, range, and options with a brief description of each. `?` also indicates if you need to provide specific values for the command.

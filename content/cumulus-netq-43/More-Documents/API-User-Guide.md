@@ -48,7 +48,7 @@ You can access the API gateway and execute requests from the Swagger UI or a ter
 
 3. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.
 
-    {{<figure src="/images/netq/api-swagger-onopen-320.png" width="700">}}
+    {{<figure src="/images/netq/api-swagger-onopen-320.png" alt="" width="700">}}
 
 {{</tab>}}
 

@@ -11,36 +11,33 @@ Only administrative users can perform the tasks described in this topic.
 
 {{</notice>}}
 
-As an administrator, you want to manage the deployment of NVIDIA product software onto your network devices (servers, appliances, and switches) in the most efficient way and with the most information about the process as possible.
-
-Using the NetQ UI or CLI, lifecycle management enables you to:
+Using the NetQ UI or CLI, lifecycle management (LCM) allows you to:
 
 - Manage Cumulus Linux and NetQ images in a local repository
 - Configure switch access credentials (required for installations and upgrades)
 - Manage Cumulus Linux switch inventory and roles
 - Create snapshots of the network state at various times
-- Create NetQ configuration profiles
 - Upgrade NetQ (Agents and CLI) on Cumulus Linux switches running NetQ Agents
 - Install or upgrade NetQ (Agents and CLI) on Cumulus Linux switches
 - View a result history of upgrade attempts
 
 {{<notice note>}}
 
-This feature is fully enabled for on-premises deployments and fully disabled for cloud deployments. Contact your local NVIDIA sales representative or {{<exlink url="https://www.nvidia.com/en-us/support/enterprise/" text="submit a support ticket">}} to activate LCM on cloud deployments.
+LCM is available for on-premises deployments. Contact your NVIDIA sales representative or {{<exlink url="https://www.nvidia.com/en-us/support/enterprise/" text="submit a support ticket">}} to activate LCM on cloud deployments.
 
 {{</notice>}}
 
 ## Access Lifecycle Management Features
 
-To manage the various lifecycle management features using the NetQ UI, open the Manage Switch Assets page in one of the following ways:
+To access lifecycle management features using the NetQ UI, open the Manage Switch Assets page in one of the following ways:
 
-- Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}}, then select **Manage Switches**
-- Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} in a workbench header
+- Expand the menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}}, then select **Manage switches**
+- Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in a workbench header
 - Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in a workbench header, then select **Manage switches**
 
-The Manage Switch Assets view provides access to switch management, image management, and configuration management features as well as job history. Each tab provides cards that let the administrator manage the relevant aspect of switch assets.
+The Manage Switch Assets view provides access to switch management, image management, NetQ Agent configurations, and job history. Each tab provides cards that let the administrator manage the relevant aspect of switch assets.
 
-{{<figure src="/images/netq/lcm-dashboard-330.png" width="700">}}
+{{<figure src="/images/netq/updated-lcm-dashboard.png" alt="dashboard displaying switch management tab" width="700">}}
 
 To manage the various lifecycle management features using the NetQ CLI, use the `netq lcm` command set.
 

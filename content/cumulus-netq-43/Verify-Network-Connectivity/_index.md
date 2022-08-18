@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1030
 toc: 2
 ---
-It is helpful to verify that communications are freely flowing between the various devices in your network. You can verify the connectivity between two devices in both an ad-hoc fashion and by defining connectivity checks to occur on a scheduled basis. NetQ provides three NetQ UI card workflows and several NetQ CLI trace commands to view connectivity:
+You can verify the connectivity between two devices in both an ad-hoc fashion and by defining connectivity checks to occur on a scheduled basis. NetQ provides three NetQ UI card workflows and several NetQ CLI trace commands to view connectivity:
 
 - Trace Request card
     - Run a scheduled trace on demand or create new on-demand or scheduled trace request

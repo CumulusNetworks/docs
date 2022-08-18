@@ -5,11 +5,11 @@ weight: 700
 toc: 3
 ---
 
-This page tells you how to view the status of an agent, disable an agent, manage NetQ Agent logging, and configure the events the agent collects.
+Run the following commands to view the status of an agent, disable an agent, manage logging, and configure the events the agent collects.
 
 ## View NetQ Agent Status
 
-To view the health of your NetQ Agents, run:
+To view NetQ Agent status, run:
 
 ```
 netq [<hostname>] show agents [fresh | dead | rotten | opta] [around <text-time>] [json]
@@ -105,12 +105,12 @@ CPU Quota
 
 ## Modify the Configuration of the NetQ Agent on a Node
 
-The agent configuration commands enable you to do the following:
+The agent configuration commands let you:
 
-- Add, Disable, and Remove a NetQ Agent
-- Start and Stop a NetQ Agent
-- Configure a NetQ Agent to Collect Selected Data (CPU usage limit, FRR, Kubernetes, sensors, WJH)
-- Configure a NetQ Agent to Send Data to a Server Cluster
+- Add, disable, and remove a NetQ Agent
+- Start and stop a NetQ Agent
+- Configure a NetQ Agent to collect selected data (CPU usage limit, FRR, Kubernetes, sensors, WJH)
+- Configure a NetQ Agent to send data to a server cluster
 - Troubleshoot the NetQ Agent
 
 {{<notice note>}}
@@ -121,7 +121,7 @@ Commands apply to one agent at a time, and you run them on the switch or host wh
 
 ### Add and Remove a NetQ Agent
 
-Adding or removing a NetQ Agent is to add or remove the IP address (and port and VRF when specified) from NetQ configuration file (at */etc/netq/netq.yml*). This adds or removes the information about the appliance or VM where the agent sends the data it collects.
+Adding or removing a NetQ Agent is to add or remove the IP address (and port and VRF when specified) from the NetQ configuration file (at */etc/netq/netq.yml*). This adds or removes the information about the appliance or VM where the agent sends the data it collects.
 
 To use the NetQ CLI to add or remove a NetQ Agent on a switch or host, run:
 
@@ -179,7 +179,7 @@ cumulus@switch:~$ netq config restart agent
 
 ### Configure a NetQ Agent to Collect Data from Selected Services
 
-You can enable and disable collection of data from the FRR (FR Routing), Kubernetes, sensors, and WJH (What Just Happened) by the NetQ Agent.
+You can enable and disable data collection about FRR (FRRouting), Kubernetes, sensors, and WJH (What Just Happened).
 
 To configure the agent to start or stop collecting **FRR** data, run:
 
@@ -235,7 +235,7 @@ To configure the agent to send data to the servers in your cluster, run:
 netq config add agent cluster-servers <text-opta-ip-list> [port <text-opta-port>] [vrf <text-vrf-name>]
 ```
 
-You must separate the list of IP addresses by commas, but no spaces. You can optionally specify a port or VRF.
+You must separate the list of IP addresses by commas (not spaces). You can optionally specify a port or VRF.
 
 This example configures the NetQ Agent on a switch to send the data to three servers located at *10.0.0.21*, *10.0.0.22*, and *10.0.0.23* using the *rocket* VRF.
 
@@ -318,7 +318,7 @@ cumulus@switch:~$ netq config restart agent
 
 #### Disable Agent Logging
 
-If you set the logging level to *debug* for troubleshooting, NVIDIA recommends that you either change the logging level to a less heavy mode or completely disable agent logging altogether when you finish troubleshooting.
+If you set the logging level to *debug* for troubleshooting, NVIDIA recommends that you either change the logging level to a less verbose mode or disable agent logging when you finish troubleshooting.
 
 To change the logging level from debug to another level, run:
 
@@ -341,8 +341,6 @@ The NetQ Agent contains a pre-configured set of modular commands that run period
 For example, if your network is not running OSPF, you can disable the command that polls for OSPF events. Or you can decrease the polling interval for LLDP from the default of 60 seconds to 120 seconds. By not polling for selected data or polling less frequently, you can reduce switch CPU usage by the NetQ Agent.
 
 Depending on the switch platform, the NetQ Agent might not execute some supported protocol commands. For example, if a switch has no VXLAN capability, then the agent skips all VXLAN-related commands.
-
-You cannot create new commands in this release.
 
 ### Supported Commands
 
@@ -378,10 +376,10 @@ ospf-interface-json            60  yes       ['/usr/bin/vtysh', '-c', 'show ip o
 
 The NetQ predefined commands include:
 
-- **agent_stats**: Collects statistics about the NetQ Agent every five (5) minutes.
+- **agent_stats**: Collects statistics about the NetQ Agent every 5 minutes.
 - **agent_util_stats**: Collects switch CPU and memory utilization by the NetQ Agent every 30 seconds.
-- **cl-support-json**: Polls the switch every three (3) minutes to determine if an agent generated a `cl-support` file.
-- **config-mon-json**: Polls the */etc/network/interfaces*, */etc/frr/frr.conf*, */etc/lldpd.d/README.conf* and */etc/ptm.d/topology.dot* files every two (2) minutes to determine if the contents of any of these files has changed. If a change occurred, the agent transmits the contents of the file and its modification time to the NetQ appliance or VM.
+- **cl-support-json**: Polls the switch every 3 minutes to determine if an agent generated a `cl-support` file.
+- **config-mon-json**: Polls the */etc/network/interfaces*, */etc/frr/frr.conf*, */etc/lldpd.d/README.conf*, and */etc/ptm.d/topology.dot* files every 2 minutes to determine if the contents of any of these files has changed. If a change occurred, the agent transmits the contents of the file and its modification time to the NetQ appliance or VM.
 - **ports**: Polls for optics plugged into the switch every hour.
 - **proc-net-dev**: Polls for network statistics on the switch every 30 seconds.
 - **running-config-mon-json**: Polls the `clagctl` parameters every 30 seconds and sends a diff of any changes to the NetQ appliance or VM.
@@ -423,7 +421,7 @@ ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip o
 
 ### Disable a Command
 
-You can disable any of these commands if they are not needed on your network. This can help reduce the compute resources the NetQ Agent consumes on the switch. For example, if your network does not run OSPF, you can disable the two OSPF commands:
+You can disable unnecessary commands. This can help reduce the compute resources the NetQ Agent consumes on the switch. For example, if your network does not run OSPF, you can disable the two OSPF commands:
 
 ```
 cumulus@switch:~$ netq config add agent command service-key ospf-neighbor-json enable False

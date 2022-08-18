@@ -910,10 +910,6 @@ Cumulus Linux supports the following PTP message modes:
 - *Unicast*, where you configure the port as a unicast client or server. The client sends out requests for Announce, Sync and Delay Response from its list of servers (masters) from the Unicast Master Table. The servers respond, then start sending Announce Messages. The client uses the Announce Messages to run the BMCA and to choose the best master. You typically use PTP unicast when multicast is not an option in the network or when sending multicast traffic to unintended devices is not desirable.
 - *Mixed*, where Sync and Announce messages are multicast messages but Delay Request and Response messages are unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
 
-{{%notice note%}}
-Unicast mode is available for early access.
-{{%/notice%}}
-
 #### Multicast and Mixed Mode
 
 Multicast mode is the default setting; when you enable PTP on an interface, the message mode is multicast. 

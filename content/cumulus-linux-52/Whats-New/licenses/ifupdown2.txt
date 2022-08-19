@@ -4,11 +4,11 @@ Upstream-Contact: Cumulus Networks dev support <dev-support@cumulusnetworks.com>
 Source: https://www.cumulusnetworks.com/
 
 Files: *
-Copyright: 2014,2015,2016,2017,2018 Cumulus Networks, Inc.
+Copyright: 2014,2015,2016,2017,2018,2019,2020,2021,2022 Cumulus Networks, Inc.
 License: GPL-2
 
 Files: debian/*
-Copyright: 2014,2015,2016,2017,2018 Cumulus Networks, Inc.
+Copyright: 2014,2015,2016,2017,2018,2019,2020,2021,2022 Cumulus Networks, Inc.
 License: GPL-2
 
 License: GPL-2

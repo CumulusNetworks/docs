@@ -16,8 +16,8 @@ Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains sev
 
 ### Platforms
 
-- {{<link url="Interface-Configuration-and-Management/#chassis-management" text="NVIDIA SN4800 (100G Spectrum-3)">}} available for early access
 - NVIDIA SN2201 (1G and 100G Spectrum-1)
+- {{<link url="Interface-Configuration-and-Management/#chassis-management" text="NVIDIA SN4800 (100G Spectrum-3)">}} available for early access
 
 ### New Features and Enhancements
 

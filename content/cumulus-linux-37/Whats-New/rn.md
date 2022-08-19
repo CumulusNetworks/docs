@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3129819"></a> [3129819](#3129819) <a name="3129819"></a> <br /> | On the EdgeCore AS4610 switch, the <code>clagd</code> service loses communication after 198 days of uptime. | 3.7.15-3.7.16, 4.3.0-4.4.4 | |
 | <a name="3128328"></a> [3128328](#3128328) <a name="3128328"></a> <br /> | The <code>clagd</code> process uses 100 percent CPU and eventually crashes with an <code>Unable to allocate memory</code> error. | 3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0 | |
 | <a name="3123556"></a> [3123556](#3123556) <a name="3123556"></a> <br /> | When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the <code>/etc/network/interfaces</code> file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it. | 3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0 | |
 | <a name="3098936"></a> [3098936](#3098936) <a name="3098936"></a> <br /> | When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs. | 3.7.12-3.7.16, 4.3.0-4.4.4 | |
@@ -321,6 +322,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3129819"></a> [3129819](#3129819) <a name="3129819"></a> <br /> | On the EdgeCore AS4610 switch, the <code>clagd</code> service loses communication after 198 days of uptime. | 3.7.15-3.7.16, 4.3.0-4.4.4 | |
 | <a name="3123556"></a> [3123556](#3123556) <a name="3123556"></a> <br /> | When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the <code>/etc/network/interfaces</code> file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it. | 3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0 | |
 | <a name="3098936"></a> [3098936](#3098936) <a name="3098936"></a> <br /> | When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs. | 3.7.12-3.7.16, 4.3.0-4.4.4 | |
 | <a name="3077737"></a> [3077737](#3077737) <a name="3077737"></a> <br /> | The <code>update-ports.service</code> fails because a blank space in the comment lines of the <code>/etc/cumulus/ports.conf</code> file causes parsing errors<br />To work around this issue, remove the blank spaces in the commented lines, then restart the <code>update-ports</code> and <code>switchd</code> services. | 3.7.15-4.4.3 | 4.4.4|

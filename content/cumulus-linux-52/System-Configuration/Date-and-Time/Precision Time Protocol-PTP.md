@@ -85,7 +85,7 @@ cumulus@switch:~$ nv set service ptp 1 enable on
 cumulus@switch:~$ nv set bridge domain br_default
 cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
 cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
-cumulus@switch:~$ nv set bridge domain bridge vlan 10 ptp enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
 cumulus@switch:~$ nv set interface swp1 bridge domain br_default
@@ -109,7 +109,7 @@ cumulus@switch:~$ nv set service ptp 1 enable on
 cumulus@switch:~$ nv set bridge domain br_default
 cumulus@switch:~$ nv set bridge domain br_default type vlan-aware
 cumulus@switch:~$ nv set bridge domain br_default vlan 10-30
-cumulus@switch:~$ nv set bridge domain bridge vlan 10 ptp enable on
+cumulus@switch:~$ nv set bridge domain br_default vlan 10 ptp enable on
 cumulus@switch:~$ nv set interface vlan10 type svi
 cumulus@switch:~$ nv set interface vlan10 ip address 10.1.10.2/24
 cumulus@switch:~$ nv set interface swp2 bridge domain br_default
@@ -909,10 +909,6 @@ Cumulus Linux supports the following PTP message modes:
 - *Multicast*, where the ports subscribe to two multicast addresses, one for event messages with timestamps and the other for general messages without timestamps. The Sync message that the master sends is a multicast message; all slave ports receive this message because the slaves need the time from the master. The slave ports in turn generate a Delay Request to the master. This is a multicast message that the intended master for the message and other slave ports receive. Similarly, all slave ports in addition to the intended slave port receive the master's Delay Response. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth if there are hundreds of slave ports.
 - *Unicast*, where you configure the port as a unicast client or server. The client sends out requests for Announce, Sync and Delay Response from its list of servers (masters) from the Unicast Master Table. The servers respond, then start sending Announce Messages. The client uses the Announce Messages to run the BMCA and to choose the best master. You typically use PTP unicast when multicast is not an option in the network or when sending multicast traffic to unintended devices is not desirable.
 - *Mixed*, where Sync and Announce messages are multicast messages but Delay Request and Response messages are unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
-
-{{%notice note%}}
-Unicast mode is available for early access.
-{{%/notice%}}
 
 #### Multicast and Mixed Mode
 

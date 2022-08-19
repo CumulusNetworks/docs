@@ -559,48 +559,68 @@ Displayed 4 paths for requested prefix
 
 ## Show the VNI EVPN Routing Table
 
-The switch maintains the received EVPN routes in the global EVPN routing table (described above), even if there are no appropriate local VNIs to **import** them into. For example, a spine maintains the global EVPN routing table even though there are no VNIs present in the table. When local VNIs are present, the switch imports received EVPN routes into the per-VNI routing tables according to the route target attributes. You can examine the per-VNI routing table with the vtysh `show bgp l2vpn evpn route vni <vni>` command:
+The switch maintains the received EVPN routes in the global EVPN routing table (described above), even if there are no appropriate local VNIs to **import** them into. For example, a spine maintains the global EVPN routing table even though there are no VNIs present in the table. When local VNIs are present, the switch imports received EVPN routes into the per-VNI routing tables according to the route target attributes. You can examine the per-VNI routing table with the vtysh `show bgp vni <vni>` command:
 
 ```
-cumulus@leaf01:mgmt:~$ 
-leaf01# show bgp l2vpn evpn route vni 10
-BGP table version is 16, local router ID is 10.10.10.1
+leaf01# show bgp vni 10
+BGP table version is 351, local router ID is 10.10.10.1
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal
 Origin codes: i - IGP, e - EGP, ? - incomplete
-EVPN type-1 prefix: [1]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]
+EVPN type-1 prefix: [1]:[ESI]:[EthTag]:[IPlen]:[VTEP-IP]:[Frag-id]
 EVPN type-2 prefix: [2]:[EthTag]:[MAClen]:[MAC]:[IPlen]:[IP]
 EVPN type-3 prefix: [3]:[EthTag]:[IPlen]:[OrigIP]
 EVPN type-4 prefix: [4]:[ESI]:[IPlen]:[OrigIP]
 EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 
    Network          Next Hop            Metric LocPrf Weight Path
-*> [2]:[0]:[48]:[00:60:08:69:97:ef]
-                    10.0.1.1                           32768 i
+*> [2]:[0]:[48]:[44:38:39:00:00:32]:[32]:[10.1.10.101]
+                    10.0.1.12 (leaf01)
+                                                       32768 i
                     ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:be:ef:aa
-*> [2]:[0]:[48]:[26:76:e6:93:32:78]
-                    10.0.1.1                           32768 i
-                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:be:ef:aa
-*> [2]:[0]:[48]:[26:76:e6:93:32:78]:[32]:[10.1.10.101]
-                    10.0.1.1                           32768 i
-                    ET:8 RT:65101:10 RT:65101:4001 Rmac:44:38:39:be:ef:aa
-*> [2]:[0]:[48]:[26:76:e6:93:32:78]:[128]:[fe80::9465:45ff:fe6d:4890]
-                    10.0.1.1                           32768 i
+*> [2]:[0]:[48]:[44:38:39:00:00:32]:[128]:[fe80::4638:39ff:fe00:32]
+                    10.0.1.12 (leaf01)
+                                                       32768 i
                     ET:8 RT:65101:10
-*  [2]:[0]:[48]:[50:88:b2:3c:08:f9]
-                    10.0.1.2                               0 65199 65102 i
-                    RT:65102:10 RT:65102:4001 ET:8 MM:0, sticky MAC Rmac:44:38:39:be:ef:bb
-*  [2]:[0]:[48]:[50:88:b2:3c:08:f9]
-                    10.0.1.2                               0 65199 65102 i
-                    RT:65102:10 RT:65102:4001 ET:8 MM:0, sticky MAC Rmac:44:38:39:be:ef:bb
-*  [2]:[0]:[48]:[50:88:b2:3c:08:f9]
-                    10.0.1.2                               0 65199 65102 i
-                    RT:65102:10 RT:65102:4001 ET:8 MM:0, sticky MAC Rmac:44:38:39:be:ef:bb
-*> [2]:[0]:[48]:[50:88:b2:3c:08:f9]
-                    10.0.1.2                               0 65199 65102 i
-                    RT:65102:10 RT:65102:4001 ET:8 MM:0, sticky MAC Rmac:44:38:39:be:ef:bb
-*  [2]:[0]:[48]:[68:0f:31:ae:3d:7a]
-                    10.0.1.2                               0 65199 65102 i
-                    RT:65102:10 RT:65102:4001 ET:8 Rmac:44:38:39:be:ef:bb
+*  [2]:[0]:[48]:[44:38:39:00:00:3e]:[128]:[fe80::4638:39ff:fe00:3e]
+                    10.0.1.34 (leaf02)
+                                                           0 65102 65199 65104 i
+                    RT:65104:10 ET:8
+*  [2]:[0]:[48]:[44:38:39:00:00:3e]:[128]:[fe80::4638:39ff:fe00:3e]
+                    10.0.1.34 (leaf02)
+                                                           0 65102 65199 65103 i
+                    RT:65103:10 ET:8
+*  [2]:[0]:[48]:[44:38:39:00:00:3e]:[128]:[fe80::4638:39ff:fe00:3e]
+                    10.0.1.34 (spine02)
+                                                           0 65199 65104 i
+                    RT:65104:10 ET:8
+*  [2]:[0]:[48]:[44:38:39:00:00:3e]:[128]:[fe80::4638:39ff:fe00:3e]
+                    10.0.1.34 (spine02)
+                                                           0 65199 65103 i
+                    RT:65103:10 ET:8
+*  [2]:[0]:[48]:[44:38:39:00:00:3e]:[128]:[fe80::4638:39ff:fe00:3e]
+                    10.0.1.34 (spine04)
+                                                           0 65199 65104 i
+                    RT:65104:10 ET:8
+*  [2]:[0]:[48]:[44:38:39:00:00:3e]:[128]:[fe80::4638:39ff:fe00:3e]
+                    10.0.1.34 (spine04)
+                                                           0 65199 65103 i
+                    RT:65103:10 ET:8
+*  [2]:[0]:[48]:[44:38:39:00:00:3e]:[128]:[fe80::4638:39ff:fe00:3e]
+                    10.0.1.34 (spine03)
+                                                           0 65199 65104 i
+                    RT:65104:10 ET:8
+*  [2]:[0]:[48]:[44:38:39:00:00:3e]:[128]:[fe80::4638:39ff:fe00:3e]
+                    10.0.1.34 (spine03)
+                                                           0 65199 65103 i
+                    RT:65103:10 ET:8
+*  [2]:[0]:[48]:[44:38:39:00:00:3e]:[128]:[fe80::4638:39ff:fe00:3e]
+                    10.0.1.34 (spine01)
+                                                           0 65199 65104 i
+                    RT:65104:10 ET:8
+*> [2]:[0]:[48]:[44:38:39:00:00:3e]:[128]:[fe80::4638:39ff:fe00:3e]
+                    10.0.1.34 (spine01)
+                                                           0 65199 65103 i
+                    RT:65103:10 ET:8
 ...
 ```
 

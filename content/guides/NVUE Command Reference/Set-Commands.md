@@ -12156,7 +12156,7 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default source-ip giaddress
 
 ## nv set service dhcp-relay6 \<vrf-id\>
 
-DHCP relay
+Configures DHCP relay for IPv6.
 
 ### Usage
 
@@ -12178,7 +12178,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-relay6 \<vrf-id\> interface
 
-DHCP relay interfaces
+Configures the DHCP relay IPv6 interfaces.
 
 ### Usage
 
@@ -12198,8 +12198,8 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `upstream`  |  Configures DHCP relay on the interfaes. |
-| `downstream` | Configures DHCP relay on the interfaes. |
+| `upstream`  |  Configures the upstream interface for DHCP relay for IPv6. |
+| `downstream` | Configures the downstream interface for DHCP relay for IPv6.  |
 
 ### Version History
 
@@ -12207,7 +12207,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-relay6 \<vrf-id\> interface upstream \<interface-id\>
 
-An interface on which DPCH relay is configured.
+Configures the upstream interface for DHCP relay for IPv6.
 
 ### Usage
 
@@ -12222,13 +12222,13 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-|`<interface-id>` |  The DHCP relay interface |
+|`<interface-id>` |  The DHCP relay upstream interface. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `address` |  The iPv6 address on the interface. |
+| `address` |  The IPv6 address on the interface. |
 
 ### Version History
 
@@ -12236,7 +12236,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-relay6 \<vrf-id\> interface upstream \<interface-id\> address \<ipv6\>
 
-ipv6 address on interface
+Configures the IPv6 address on the DHCP relay upstream interface.
 
 ### Usage
 
@@ -12251,7 +12251,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-|`<interface-id>` |  The DHCP relay interface |
+|`<interface-id>` |  The DHCP relay interface. |
 
 ### Version History
 
@@ -12260,12 +12260,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface upstream swp51 address 2001:db8:0002::0a00:0002
 ```
 
 ## nv set service dhcp-relay6 \<vrf-id\> interface downstream \<interface-id\>
 
-An interface on which DPCH relay is configured.
+Configures the DHCP relay downstream interface.
 
 ### Usage
 
@@ -12286,7 +12286,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `1address`   | ipv6 address on interface |
+| `address`   | Configures the IPv6 address on downstream interface. |
 
 ### Version History
 
@@ -12294,7 +12294,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-relay6 \<vrf-id\> interface downstream \<interface-id\> address \<ipv6\>
 
-ipv6 address on interface
+Configures the IPv6 address on downstream interface.
 
 ### Usage
 
@@ -12309,7 +12309,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-|`<interface-id>` |  The DHCP relay interface |
+|`<interface-id>` |  The DHCP relay downstream interface. |
 
 ### Version History
 
@@ -12318,7 +12318,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface downstream swp1 address 2001:db8::1
 ```
 
 ## nv set service ptp \<instance-id\>

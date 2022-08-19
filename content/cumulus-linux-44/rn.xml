@@ -7,9 +7,40 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3177234</td>
+<td>On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:
+
+Packet size is larger than router interface MTU – Validate the router interface MTU configuration
+</td>
+<td>4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3157240</td>
+<td>When you try to query REDECN counters with the {{mlxcmd}} utility on a bond member port with the following commands, syslog reports an error.
+
+sudo /usr/lib/cumulus/mlxcmd roce counters --port &lt;swp&gt;
+sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
+</td>
+<td>4.4.4, 5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3150317</td>
+<td>During a host failure where link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a linkstate change.</td>
+<td>4.4.2-4.4.4, 5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3138137</td>
+<td>The OID 1.3.6.1.4.1.40310.4.3.1.1.5 doesn't return all BGP unnumered interfaces. To workaround this issue, avoid multiple BGP sessions to routers using the same ID. If you have multiple peering sessions across subinterfaces that live in distinct VRFs, configure a separate router ID per VRF. If there are multiple peering sessions to the same device in the same VRF, consider consolidating into a single BGP session by either peering across a bond or by using a multi hop session between loopbacks.</td>
+<td>4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -29,6 +60,12 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>3131423</td>
 <td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3129819</td>
+<td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -2175,9 +2212,21 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3150317</td>
+<td>During a host failure where link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a linkstate change.</td>
+<td>4.4.2-4.4.4, 5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3138137</td>
+<td>The OID 1.3.6.1.4.1.40310.4.3.1.1.5 doesn't return all BGP unnumered interfaces. To workaround this issue, avoid multiple BGP sessions to routers using the same ID. If you have multiple peering sessions across subinterfaces that live in distinct VRFs, configure a separate router ID per VRF. If there are multiple peering sessions to the same device in the same VRF, consider consolidating into a single BGP session by either peering across a bond or by using a multi hop session between loopbacks.</td>
+<td>4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -2197,6 +2246,12 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>3131423</td>
 <td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3129819</td>
+<td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4411,9 +4466,21 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3150317</td>
+<td>During a host failure where link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a linkstate change.</td>
+<td>4.4.2-4.4.4, 5.1.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3138137</td>
+<td>The OID 1.3.6.1.4.1.40310.4.3.1.1.5 doesn't return all BGP unnumered interfaces. To workaround this issue, avoid multiple BGP sessions to routers using the same ID. If you have multiple peering sessions across subinterfaces that live in distinct VRFs, configure a separate router ID per VRF. If there are multiple peering sessions to the same device in the same VRF, consider consolidating into a single BGP session by either peering across a bond or by using a multi hop session between loopbacks.</td>
+<td>4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4433,6 +4500,12 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>3131423</td>
 <td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3129819</td>
+<td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -6820,6 +6893,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td></td>
 </tr>
 <tr>
+<td>3138137</td>
+<td>The OID 1.3.6.1.4.1.40310.4.3.1.1.5 doesn't return all BGP unnumered interfaces. To workaround this issue, avoid multiple BGP sessions to routers using the same ID. If you have multiple peering sessions across subinterfaces that live in distinct VRFs, configure a separate router ID per VRF. If there are multiple peering sessions to the same device in the same VRF, consider consolidating into a single BGP session by either peering across a bond or by using a multi hop session between loopbacks.</td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3138057</td>
 <td> When the next-hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.4.0-4.4.4, 5.0.0-5.1.0</td>
@@ -6836,6 +6915,12 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>3131423</td>
 <td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.1.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3129819</td>
+<td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>

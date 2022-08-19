@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3129819</td>
+<td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3128328</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
 <td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.1.0</td>
@@ -2377,6 +2383,12 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3129819</td>
+<td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>3123556</td>

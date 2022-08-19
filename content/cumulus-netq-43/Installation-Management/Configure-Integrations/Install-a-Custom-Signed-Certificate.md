@@ -60,7 +60,6 @@ Install a certificate using the NetQ CLI:
        metadata:
          annotations:
            kubernetes.io/ingress.class: "ingress-nginx"
-           nginx.ingress.kubernetes.io/ssl-passthrough: "true"
            nginx.ingress.kubernetes.io/ssl-redirect: "true"
            nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
            nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"

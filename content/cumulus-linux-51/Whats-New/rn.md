@@ -1,7 +1,7 @@
 ---
 title: Cumulus Linux 5.1 Release Notes
 author: NVIDIA
-weight: -30
+weight: -20
 product: Cumulus Linux
 version: "5.1"
 toc: 1

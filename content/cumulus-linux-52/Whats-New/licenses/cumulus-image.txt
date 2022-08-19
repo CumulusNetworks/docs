@@ -3,11 +3,13 @@ Upstream-Name: cumulus-image
 Source: http://www.cumulusnetworks.com
 
 Files: *
+Copyright (C) 2020-2022 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2013 Cumulus Networks
            2014, 2015, 2016, 2017, 2019 Cumulus Networks, Inc.
 License: GPL-2
 
 Files: debian/*
+Copyright (C) 2020-2022 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2013 Cumulus Networks
            2014, 2015, 2016, 2017, 2019 Cumulus Networks, Inc.
 License: GPL-2

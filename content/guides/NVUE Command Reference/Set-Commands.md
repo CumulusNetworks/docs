@@ -12323,7 +12323,7 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface downstream s
 
 ## nv set service ptp \<instance-id\>
 
-Global PTP configuration.
+Configures global Precision Time Protocol (PTP) configuration.
 
 ### Usage
 
@@ -12343,7 +12343,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `acceptable-master` |  Collection of acceptable masters |
+| `acceptable-master` |  Configures the acceptable masters |
 | `monitor` |  PTP monitor configuration|
 | `enable` | Turn the feature 'on' or 'off'. The default is 'off'.|
 | `domain`   |  Domain number of the current syntonization|

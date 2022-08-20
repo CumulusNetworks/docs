@@ -60,7 +60,11 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 </tr>
 <tr>
 <td>3150208</td>
-<td>After upgrading Cumulus Linux from ONIE with a ZTP script, booting the system results in a non-fatal error in the kernel.</td>
+<td>When a ZTP script executes a {{switchd}} restart, the {{switchd}} service might fail with the following log message:
+
+switchd[11549]: hal.c:1378 CRIT No backends found
+
+To work around this issue, avoid restarting the {{switchd}} service in the ZTP script; reboot the switch instead.</td>
 <td>5.1.0</td>
 <td></td>
 </tr>

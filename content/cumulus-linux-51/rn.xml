@@ -351,8 +351,7 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3054869</td>
-<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicate a missing $HOME environment variable. The issue has been fixed where the ZTP module initializes the $HOME environment variable before launching the ZTP scripts. However, if you are running older releases:
-Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Export the {{HOME}} variable so it is available globally for NVUE to use.
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicate a missing $HOME environment variable. The issue has been fixed where the ZTP module initializes the $HOME environment variable before launching the ZTP scripts. However, if you are running older releases, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root), then export the {{HOME}} variable so it is available globally for NVUE to use.
 
 HOME=/root
 export HOME
@@ -529,9 +528,7 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 </tr>
 <tr>
 <td>2964279</td>
-<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
-Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
-</td>
+<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>

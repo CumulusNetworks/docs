@@ -291,6 +291,18 @@ To disable TEID-based ECMP hashing, set the `hash_config.gtp_teid` parameter to 
 {{< /tab >}}
 {{< /tabs >}}
 
+To show that TEID-based ECMP hashing is on, run the command:
+
+```
+cumulus@switch:~$ nv show system forwarding ecmp-hash
+                   applied  description
+-----------------  -------  -----------------------------------
+destination-ip     on       Destination IPv4/IPv6 Address
+destination-port   on       TCP/UDP destination port
+gtp-teid           on       GTP-U TEID
+...
+```
+
 ## Unique Hash Seed
 
 You can configure a unique hash seed for each switch to prevent *hash polarization*, a type of network congestion that occurs when multiple data flows try to reach a switch using the same switch ports.

@@ -273,9 +273,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2964279</td>
-<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
-Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
-</td>
+<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>
@@ -2556,9 +2554,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2964279</td>
-<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
-Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
-</td>
+<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>
@@ -4756,9 +4752,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2964279</td>
-<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
-Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
-</td>
+<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.1.0</td>
 <td>3.7.16</td>
 </tr>

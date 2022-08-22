@@ -56,7 +56,7 @@ The Grafana plugin comes unsigned. Before you can install it, you need to update
 Then install the plugin:
 
 ```
-cumulus@switch:~$ grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip plugins install netq-dashboard
+cumulus@netq-appliance:~$ grafana-cli --pluginUrl https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip plugins install netq-dashboard
 installing netq-dashboard @
 from: https://netq-grafana-dsrc.s3-us-west-2.amazonaws.com/NetQ-DSplugin-3.3.1-plus.zip
 into: /usr/local/var/lib/grafana/plugins

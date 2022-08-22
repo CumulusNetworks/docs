@@ -964,7 +964,7 @@ To change the message mode back to the default setting of multicast, remove the 
 
 #### Unicast Mode
 
-You can configure a PTP interface on the switch to be a unicast client or a unicast server.
+You can configure a PTP interface on the switch to be a unicast client or a unicast server. Unicast mode reduces the amount of bandwidth consumed.
 
 {{%notice note%}}
 PTP unicast mode does not support bond or VLAN interfaces.

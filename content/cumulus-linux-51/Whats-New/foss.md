@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux 5.1 Open Source Packages
+title: Cumulus Linux 5.1 Packages
 author: NVIDIA
 weight: -30
 product: Cumulus Linux
@@ -7,15 +7,15 @@ version: "5.1"
 toc: 1
 pdfhidden: True
 ---
-This page shows the open source licenses for the software that Cumulus Linux uses.
-You can also view the open source licenses from the Cumulus Linux switch.
+This page shows the licenses for the software that Cumulus Linux uses.
+You can also view the licenses from the Cumulus Linux switch.
 
 - To view the license file for a specific package, run the `cat /usr/share/doc/<package-name>/copyright` command.
-- To view all open source licenses on the Cumulus Linux switch, run the `ls /usr/share/common-licenses/` command.
+- To view all licenses on the Cumulus Linux switch, run the `ls /usr/share/common-licenses/` command.
 
 To obtain the source code for packages that are not proprietary, run the `sudo apt-get source <package-name>` command on the Cumulus Linux switch. This command fetches the source tarball from the Cumulus Linux software repository and places it in the current working directly for inspection.
 
-## 5.1.0 Open Source Software Licenses 
+## 5.1.0 Software Licenses 
 | Package | Version | License(s) |
 |---	        |---	        |---	    |
 | {{<foss_file text="acpi" url="cumulus-linux-51/Whats-New/licenses/acpi.txt" >}} | 1.7-1.1 | GPL |

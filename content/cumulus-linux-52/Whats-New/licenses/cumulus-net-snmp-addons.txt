@@ -3,9 +3,10 @@ Upstream-Name: cumulus-net-snmp-addons
 Source: http://www.cumulusnetworks.com
 
 Files: *
+Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2013 Cumulus Networks
            2014, 2015, 2016, 2017, 2018, 2019, 2020 Cumulus Networks, Inc.
-License: Cumulus Networks Proprietary
+License: NVIDIA Cumulus Networks Proprietary
  All Rights reserved.
  .
  The Cumulus Networks End User License Agreement can be found at the
@@ -15,6 +16,7 @@ License: Cumulus Networks Proprietary
  Cumulus Linux systems: /usr/share/cumulus/EULA.txt
 
 Files: debian/*
+Copyright (C) 2020-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
 Copyright: 2018 Cumulus Networks
            2014, 2015, 2016, 2017, 2018 Cumulus Networks, Inc.
 License: GPL-2

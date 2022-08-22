@@ -119,7 +119,7 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 </tr>
 <tr>
 <td>3139164</td>
-<td>NVUE does allow you to set 2X/4X lanes. To work around this issue, set the appropriate lanes for forced speed with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example, {{ethtool -s swp1 speed 100000 autoneg off lanes 2}}.</td>
+<td>NVUE does not allow you to set 2X/4X lanes. To work around this issue, set the appropriate lanes for forced speed with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example, {{ethtool -s swp1 speed 100000 autoneg off lanes 2}}.</td>
 <td>5.2.0</td>
 <td></td>
 </tr>
@@ -137,11 +137,10 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 </tr>
 <tr>
 <td>3135952</td>
-<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off):
+<td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
-ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;
-
-For example: {{ethtool -s swp1 speed 100000 autoneg off lanes 2}}</td>
+ethtool -s swp1 speed 100000 autoneg off lanes 2
+</td>
 <td>5.2.0</td>
 <td></td>
 </tr>
@@ -354,9 +353,7 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 </tr>
 <tr>
 <td>2964279</td>
-<td>Issue: The issue occur's on VNI flap due to duplicate L2 VNI's inserted to the list.
-Impact: Incorrect list of l2VNI's associated with L3VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under layer 3 VNIs. 
-</td>
+<td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.4, 5.0.0-5.2.0</td>
 <td>3.7.16</td>
 </tr>
@@ -688,8 +685,7 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 </tr>
 <tr>
 <td>3054869</td>
-<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicate a missing $HOME environment variable. The issue has been fixed where the ZTP module initializes the $HOME environment variable before launching the ZTP scripts. However, if you are running older releases:
-Before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root). Export the {{HOME}} variable so it is available globally for NVUE to use.
+<td>When you run NVUE commands as part of ZTP scripts, the commands fail with errors that indicate a missing $HOME environment variable. The issue has been fixed where the ZTP module initializes the $HOME environment variable before launching the ZTP scripts. However, if you are running older releases, before you use any NVUE commands in the ZTP script, add a section and define the {{HOME}} environment variable. Populate the variable with the default expected {{root}} user home directory value (/root), then export the {{HOME}} variable so it is available globally for NVUE to use.
 
 HOME=/root
 export HOME

@@ -12844,11 +12844,11 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `interface` | Assign DHCP options to clients directly attached to these interfaces.|
-| `pool` |  DHCP Pools |
-| `domain-name`  |  DHCP domain names |
-| `domain-name-server` | DHCP domain name servers |
-| `static`  | DHCP clients with fixed IP address assignments |
+| `interface` | Configures the DHCP client interface.|
+| `pool` |  Configfures DHCP pools. |
+| `domain-name`  |  Configures DHCP domain names. |
+| `domain-name-server` | Configures DHCP domain name servers. |
+| `static`  | Configures DHCP clients with fixed IP address assignments. |
 
 ### Version History
 
@@ -12856,7 +12856,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-server \<vrf-id\> interface \<interface-id\>
 
-An interface on which DPCH clients are attached.
+Configures the DHCP client interface.
 
 ### Usage
 
@@ -12880,12 +12880,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default interface swp1
 ```
 
 ## nv set service dhcp-server \<vrf-id\> pool \<pool-id\>
 
-DHCP Pool
+Configures a DHCP pool.
 
 ### Usage
 
@@ -12906,15 +12906,15 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `domain-name-server` |   DHCP domain name servers|
-| `domain-name` | DHCP domain names|
-| `gateway` | DHCP gateway|
-| `range`  | IP Address range assignments|
-| `cumulus-provision-url` | Cumulus specific URL for provisioning script|
-| `default-url` | TBD|
-| `lease-time`  | Network address lease time in seconds assigned to DHCP clients.|
-| `ping-check` |  TBD|
-| `pool-name` |  Name|
+| `domain-name-server` |   Configures the remote DHCP domain name server you want to use in this pool.|
+| `domain-name` | Configures the DHCP domain name you want to use in this pool. |
+| `gateway` | Configures the DHCP gateway you want to use in this pool. |
+| `range`  | Configures the IP Address range you want to use in this pool.|
+| `cumulus-provision-url` | Configures a specific URL for the provisioning script. |
+| `default-url` | Confifgures the default URL. |
+| `lease-time`  | Configures the network address lease time in seconds assigned to DHCP clients.|
+| `ping-check` |  Configures the DHCP server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range. |
+| `pool-name` |  Configures the pool name. |
 
 ### Version History
 
@@ -12922,7 +12922,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\>
 
-A remote DNS server
+Configures the remote DHCP domain name server you want to use in this pool.
 
 ### Usage
 
@@ -12937,7 +12937,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
-| `<server-id>` |  The DNS server. |
+| `<server-id>` |  The remote DHCP domain name server . |
 
 ### Version History
 
@@ -12946,12 +12946,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 domain-name-server 192.168.200.53 
 ```
 
 ## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
 
-TBD
+Configures the DHCP domain name you want to use in this pool.
 
 ### Usage
 
@@ -12979,39 +12979,15 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\>
-
-DHCP domain name
-
-### Usage
-
-`nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name [options] <idn-hostname>`
-
-### Default Setting
-
-N/A
-
-### Identifiers
-
-| Identifier |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<pool-id>` |  The DHCP pool subnet. |
-| `<domain-name-id>` | The DHCP domain name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 domain-name example.com
 ```
 
 ## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> gateway \<gateway-id\>
 
-A remote DNS server
+Configures the DHCP gateway you want to use in this pool.
 
 ### Usage
 
@@ -13027,7 +13003,7 @@ N/A
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<pool-id>` |  The DHCP pool subnet. |
-| `<domain-name-id>` | The DHCP domain name. |
+| `<gateway-id>` | The DHCP gateway. |
 
 ### Version History
 
@@ -13036,12 +13012,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 gateway 10.1.10.1
 ```
 
 ## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\>
 
-DHCP Pool range
+Configures the start of the IP address range you want to use in this pool.
 
 ### Usage
 
@@ -13057,13 +13033,13 @@ N/A
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<pool-id>` |  The DHCP pool subnet. |
-| `<range-id>` |  The DHCP client interface. |
+| `<range-id>` |  The start of the IP address range. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `to` |   End of the range. |
+| `to` |   Configures the end of the IP address range you want to use in this pool. |
 
 ### Version History
 
@@ -13071,7 +13047,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\> to \<ipv4\>
 
-End of the range.
+Configures the end of the IP address range you want to use in this pool.
 
 ### Usage
 
@@ -13087,7 +13063,7 @@ N/A
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<pool-id>` |  The DHCP pool subnet. |
-| `<range-id>` |  The DHCP client interface. |
+| `<range-id>` |  The end of the IP address range. |
 
 ### Version History
 
@@ -13096,12 +13072,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 range 10.1.10.100 to 10.1.10.199
 ```
 
 ## nv set service dhcp-server  \<vrf-id\> pool \<pool-id\> pool-name \<value\>
 
-Name
+Configures the pool name.
 
 ### Usage
 
@@ -13125,12 +13101,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 pool-name storage-servers
 ```
 
 ## nv set service dhcp-server  \<vrf-id\> pool \<pool-id\> lease-time
 
-Network address lease time in seconds assigned to DHCP clients.
+Configures the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000.
 
 ### Usage
 
@@ -13138,7 +13114,7 @@ Network address lease time in seconds assigned to DHCP clients.
 
 ### Default Setting
 
-N/A
+600
 
 ### Identifiers
 
@@ -13154,12 +13130,41 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 lease-time 200000
+```
+
+## nv set service dhcp-server <vrf-id> pool <pool-id> ping-check
+
+Configures the DHCP server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range.
+
+### Usage
+
+`nv set service dhcp-server <vrf-id> pool <pool-id> ping-check [options] (on|off)`
+
+### Default Setting
+
+off
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<pool-id>` |  The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 ping-check on
 ```
 
 ## nv set service dhcp-server  \<vrf-id\> pool \<pool-id\> default-url \<value\>
 
-TBD
+Confifgures the default URL for the pool.
 
 ### Usage
 
@@ -13183,7 +13188,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 default-url ???
 ```
 
 ## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> cumulus-provision-url <value>

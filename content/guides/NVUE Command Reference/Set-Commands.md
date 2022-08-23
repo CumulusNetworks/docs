@@ -12343,14 +12343,14 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `acceptable-master` |  Configures the acceptable masters |
-| `monitor` |  PTP monitor configuration|
-| `enable` | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `domain`   |  Domain number of the current syntonization|
-| `ip-dscp`  | Sets the Diffserv code point for all PTP packets originated locally.|
-| `priority1`  |  Priority1 attribute of the local clock|
-| `priority2` |  Priority2 attribute of the local clock|
-| `two-step` |  Determines if the Clock is a 2 step clock|
+| `acceptable-master` |  Configures the acceptable master table. |
+| `monitor` |  Configures PTP monitor settings. |
+| `enable` | Turns PTP on or off. |
+| `domain`   |  Configures the domain number of the current syntonization. |
+| `ip-dscp`  | Configures the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. |
+| `priority1`  |  Configures Priority 1 attribute of the local clock to override the clock class and quality selection criteria to select the best master clock.|
+| `priority2` |  Configures Priorit 2 attribute of the local clock to identify primary and backup clocks among identical redundant Grandmasters.|
+| `two-step` |  Configures two-step clock mode.|
 
 ### Version History
 
@@ -12358,7 +12358,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service ptp \<instance-id\> acceptable-master \<clock-id\>
 
-List of clocks that the local clock can accept as master clock
+Configures the ID of a known Grandmaster clock in the acceptable master table. This setting prevents a rogue player from pretending to be the Grandmaster to take over the PTP network.
 
 ### Usage
 
@@ -12379,15 +12379,21 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `alt-priority` |   Alternate priority |
+| `alt-priority` |   Configures an alternate priority for the Grandmaster clock in the acceptable master table. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
+```
+
 ## nv set service ptp \<instance-id\> acceptable-master \<clock-id\> alt-priority \<value\>
 
-Alternate priority
+ Configures an alternate priority for the acceptable Grandmaster clock in the acceptable master table.
 
 ### Usage
 
@@ -12411,12 +12417,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06 alt-priority 2
 ```
 
 ## nv set service ptp \<instance-id\> monitor
 
-PTP monitor configuration
+Configures PTP monitor settings.
 
 ### Usage
 
@@ -12436,8 +12442,8 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `max-offset-threshold` | Maximum offset threshold in nano seconds |
-| `max-timestamp-entries` | Maximum timestamp entries allowed |
+| `max-offset-threshold` | Configures the maximum offset threshold in nanoseconds. |
+| `max-timestamp-entries` | Configures the maximum timestamp entries allowed. |
 | `max-violation-log-entries` | Maximum violation log entries per set |
 | `max-violation-log-sets` | Maximum violation logs sets allowed |
 | `min-offset-threshold` | Minimum offset threshold in nano seconds |

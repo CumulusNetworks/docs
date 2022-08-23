@@ -12442,13 +12442,13 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `max-offset-threshold` | Configures the maximum offset threshold in nanoseconds. |
-| `max-timestamp-entries` | Configures the maximum timestamp entries allowed. |
-| `max-violation-log-entries` | Maximum violation log entries per set |
-| `max-violation-log-sets` | Maximum violation logs sets allowed |
-| `min-offset-threshold` | Minimum offset threshold in nano seconds |
-| `path-delay-threshold` | Path delay threshold in nano seconds |
-| `violation-log-interval` | violation log intervals in seconds |
+| `max-offset-threshold` | Configures the maximum difference allowed in nanoseconds between the master and slave time. |
+| `max-timestamp-entries` | Configures the maximum number of timestamp entries allowed. |
+| `max-violation-log-entries` | Configures the maximum number of violation log entries allowed for each set. |
+| `max-violation-log-sets` | Configures the maximum number of violation log sets allowed.  |
+| `min-offset-threshold` | Configures the minimum difference allowed in nanoseconds between the master and slave time. |
+| `path-delay-threshold` | Configures the mean time in nanoseconds that PTP packets take to travel between the master and slave. |
+| `violation-log-interval` | Configures the violation log interval in seconds. |
 
 ### Version History
 
@@ -12456,7 +12456,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service ptp \<instance-id\> monitor min-offset-threshold \<value\>
 
-Minimum offset threshold in nano seconds
+Sets the minimum difference allowed in nanoseconds between the master and slave time.
 
 ### Usage
 
@@ -12464,7 +12464,7 @@ Minimum offset threshold in nano seconds
 
 ### Default Setting
 
-N/A
+-50
 
 ### Identifiers
 
@@ -12479,12 +12479,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor min-offset-threshold -20
 ```
 
 ## nv set service ptp \<instance-id\> monitor max-offset-threshold \<value\>
 
-Maximum offset threshold in nano seconds
+Configures the maximum difference allowed in nanoseconds between the master and slave time.
 
 ### Usage
 
@@ -12492,7 +12492,7 @@ Maximum offset threshold in nano seconds
 
 ### Default Setting
 
-N/A
+50
 
 ### Identifiers
 
@@ -12507,20 +12507,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor max-offset-threshold 30
 ```
 
 ## nv set service ptp \<instance-id\> monitor path-delay-threshold \<value\>
 
-Path delay threshold in nano seconds
+Configures the mean time in nanoseconds that PTP packets take to travel between the master and slave.
 
 ### Usage
 
-`nv set service ptp <instance-id> monitor path-delay-threshold [options] <value>`
+`nv set service ptp <instance-id> monitor . [options] <value>`
 
 ### Default Setting
 
-N/A
+200
 
 ### Identifiers
 
@@ -12535,12 +12535,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor path-delay-threshold 300
 ```
 
 ## nv set service ptp \<instance-id\> monitor max-timestamp-entries
 
-Maximum timestamp entries allowed
+Configures the maximum number of timestamp entries allowed. PTP updates the timestamps continuously. You can specify a value between 400 and 1000.
 
 ### Usage
 
@@ -12548,7 +12548,7 @@ Maximum timestamp entries allowed
 
 ### Default Setting
 
-N/A
+400
 
 ### Identifiers
 
@@ -12563,12 +12563,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor max-timestamp-entries 600
 ```
 
 ## nv set service ptp \<instance-id\> monitor max-violation-log-sets
 
-Maximum violation logs sets allowed
+Configures the maximum number of violation log sets allowed. You can specify a value between 8 and 128.
 
 ### Usage
 
@@ -12576,7 +12576,7 @@ Maximum violation logs sets allowed
 
 ### Default Setting
 
-N/A
+8
 
 ### Identifiers
 
@@ -12591,12 +12591,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor max-violation-log-sets 20
 ```
 
 ## nv set service ptp \<instance-id\> monitor max-violation-log-entries
 
-Maximum violation log entries per set
+Configures the maximum number of violation log entries allowed for each set. You can specify a value between 8 and 128.
 
 ### Usage
 
@@ -12604,7 +12604,7 @@ Maximum violation log entries per set
 
 ### Default Setting
 
-N/A
+8
 
 ### Identifiers
 
@@ -12619,12 +12619,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor max-violation-log-entries 16
 ```
 
 ## nv set service ptp \<instance-id\> monitor violation-log-interval
 
-violation log intervals in seconds
+Configures the violation log interval in seconds. You can specify a value between 0 and 259200 seconds.
 
 ### Usage
 
@@ -12632,7 +12632,7 @@ violation log intervals in seconds
 
 ### Default Setting
 
-N/A
+0
 
 ### Identifiers
 
@@ -12647,12 +12647,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor violation-log-interval 1000
 ```
 
 ## nv set service ptp \<instance-id\> priority1 \<value\>
 
-Priority1 attribute of the local clock
+Configures PTP priority 1 to override the clock class and quality selection criteria and select the best master clock. You can set a value between 0 and 255.  For the boundary clock, use a number above 128. The lower priority applies first.
 
 ### Usage
 
@@ -12660,7 +12660,7 @@ Priority1 attribute of the local clock
 
 ### Default Setting
 
-N/A
+128
 
 ### Identifiers
 
@@ -12675,12 +12675,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 priority1 200
 ```
 
 ## nv set service ptp \<instance-id\> priority2 \<value\>
 
-Priority2 attribute of the local clock
+Configures PTP priority 2 to identify primary and backup clocks among identical redundant Grandmasters. You can set a value between 0 and 255.  For the boundary clock, use a number above 128. The lower priority applies first.
 
 ### Usage
 
@@ -12688,7 +12688,7 @@ Priority2 attribute of the local clock
 
 ### Default Setting
 
-N/A
+128
 
 ### Identifiers
 
@@ -12703,12 +12703,16 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 priority2 200
 ```
 
 ## nv set service ptp \<instance-id\> domain
 
-Domain number of the current syntonization
+Configures the PTP domain, which is a network or a portion of a network within which all the clocks synchronize. Every PTP message contains a domain number. A PTP instance works in only one domain and ignores messages that contain a different domain number.
+
+You can specify multiple PTP clock domains. PTP isolates each domain from other domains so that each domain is a different PTP network. You can specify a number between 0 and 127.
+
+
 
 ### Usage
 
@@ -12731,12 +12735,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 domain 3
 ```
 
 ## nv set service ptp \<instance-id\> ip-dscp
 
-Sets the Diffserv code point for all PTP packets originated locally.
+Configures the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
 
 ### Usage
 
@@ -12759,7 +12763,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 ip-dscp 22
 ```
 
 ## nv set service dhcp-server \<vrf-id\>

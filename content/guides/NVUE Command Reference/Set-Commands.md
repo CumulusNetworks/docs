@@ -12650,6 +12650,62 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 monitor violation-log-interval 1000
 ```
 
+## nv set service ptp \<instance-id\> enable
+
+Turns PTP on or off.
+
+### Usage
+
+`nv set service ptp <instance-id> enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 enable on
+```
+
+## nv set service ptp \<instance-id\> two-step
+
+Turns PTP two-step mode on or off.
+
+### Usage
+
+`nv set service ptp <instance-id> two-step [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 two-step on
+```
+
 ## nv set service ptp \<instance-id\> priority1 \<value\>
 
 Configures PTP priority 1 to override the clock class and quality selection criteria and select the best master clock. You can set a value between 0 and 255.  For the boundary clock, use a number above 128. The lower priority applies first.
@@ -12768,7 +12824,7 @@ cumulus@leaf01:mgmt:~$ nv set service ptp 1 ip-dscp 22
 
 ## nv set service dhcp-server \<vrf-id\>
 
-Dynamic Host Configuration Protocol Server
+Configures the Dynamic Host Configuration Protocol Server (DHCP server).
 
 ### Usage
 

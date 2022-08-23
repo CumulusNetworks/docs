@@ -1368,7 +1368,7 @@ To disable the QSFP+ ports, you must set the ports to `disabled`. Do not comment
 - Dell S5248F-ON
 - NVIDIA Spectrum SN2410
 - NVIDIA Spectrum SN2010
-- NVIDIA Spectrum SN3420
+<!-- - NVIDIA Spectrum SN3420-->
 
 1000BASE-T SFP modules are not supported on any 100G or faster platforms.
 

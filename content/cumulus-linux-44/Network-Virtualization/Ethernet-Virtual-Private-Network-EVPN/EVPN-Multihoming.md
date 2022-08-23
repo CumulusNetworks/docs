@@ -3720,11 +3720,9 @@ cumulus@leaf01:~$ net add vlan 30 ip address-virtual 00:00:00:00:00:30 10.1.30.1
 cumulus@leaf01:~$ net add vlan 30 vlan-id 30
 cumulus@leaf01:~$ net add vlan 30 vlan-raw-device bridge
 cumulus@leaf01:~$ net add vlan 30 vrf BLUE
-cumulus@leaf01:~$ net add vlan 4001 hwaddress 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ net add vlan 4001 vlan-id 4001
 cumulus@leaf01:~$ net add vlan 4001 vlan-raw-device bridge
 cumulus@leaf01:~$ net add vlan 4001 vrf RED
-cumulus@leaf01:~$ net add vlan 4002 hwaddress 44:38:39:BE:EF:AA
 cumulus@leaf01:~$ net add vlan 4002 vlan-id 4002
 cumulus@leaf01:~$ net add vlan 4002 vlan-raw-device bridge
 cumulus@leaf01:~$ net add vlan 4002 vrf BLUE
@@ -3826,11 +3824,9 @@ cumulus@leaf02:~$ net add vlan 30 ip address-virtual 00:00:00:00:00:30 10.1.30.1
 cumulus@leaf02:~$ net add vlan 30 vlan-id 30
 cumulus@leaf02:~$ net add vlan 30 vlan-raw-device bridge
 cumulus@leaf02:~$ net add vlan 30 vrf BLUE
-cumulus@leaf02:~$ net add vlan 4001 hwaddress 44:38:39:BE:EF:AA
 cumulus@leaf02:~$ net add vlan 4001 vlan-id 4001
 cumulus@leaf02:~$ net add vlan 4001 vlan-raw-device bridge
 cumulus@leaf02:~$ net add vlan 4001 vrf RED
-cumulus@leaf02:~$ net add vlan 4002 hwaddress 44:38:39:BE:EF:AA
 cumulus@leaf02:~$ net add vlan 4002 vlan-id 4002
 cumulus@leaf02:~$ net add vlan 4002 vlan-raw-device bridge
 cumulus@leaf02:~$ net add vlan 4002 vrf BLUE
@@ -3932,11 +3928,9 @@ cumulus@leaf03:~$ net add vlan 30 ip address-virtual 00:00:00:00:00:30 10.1.30.1
 cumulus@leaf03:~$ net add vlan 30 vlan-id 30
 cumulus@leaf03:~$ net add vlan 30 vlan-raw-device bridge
 cumulus@leaf03:~$ net add vlan 30 vrf BLUE
-cumulus@leaf03:~$ net add vlan 4001 hwaddress 44:38:39:BE:EF:AA
 cumulus@leaf03:~$ net add vlan 4001 vlan-id 4001
 cumulus@leaf03:~$ net add vlan 4001 vlan-raw-device bridge
 cumulus@leaf03:~$ net add vlan 4001 vrf RED
-cumulus@leaf03:~$ net add vlan 4002 hwaddress 44:38:39:BE:EF:AA
 cumulus@leaf03:~$ net add vlan 4002 vlan-id 4002
 cumulus@leaf03:~$ net add vlan 4002 vlan-raw-device bridge
 cumulus@leaf03:~$ net add vlan 4002 vrf BLUE
@@ -4038,11 +4032,9 @@ cumulus@leaf04:~$ net add vlan 30 ip address-virtual 00:00:00:00:00:30 10.1.30.1
 cumulus@leaf04:~$ net add vlan 30 vlan-id 30
 cumulus@leaf04:~$ net add vlan 30 vlan-raw-device bridge
 cumulus@leaf04:~$ net add vlan 30 vrf BLUE
-cumulus@leaf04:~$ net add vlan 4001 hwaddress 44:38:39:BE:EF:AA
 cumulus@leaf04:~$ net add vlan 4001 vlan-id 4001
 cumulus@leaf04:~$ net add vlan 4001 vlan-raw-device bridge
 cumulus@leaf04:~$ net add vlan 4001 vrf RED
-cumulus@leaf04:~$ net add vlan 4002 hwaddress 44:38:39:BE:EF:AA
 cumulus@leaf04:~$ net add vlan 4002 vlan-id 4002
 cumulus@leaf04:~$ net add vlan 4002 vlan-raw-device bridge
 cumulus@leaf04:~$ net add vlan 4002 vrf BLUE
@@ -4233,13 +4225,11 @@ iface vlan30
     vrf BLUE
 auto vlan4001
 iface vlan4001
-    hwaddress 44:38:39:BE:EF:AA
     vlan-id 4001
     vlan-raw-device bridge
     vrf RED
 auto vlan4002
 iface vlan4002
-    hwaddress 44:38:39:BE:EF:AA
     vlan-id 4002
     vlan-raw-device bridge
     vrf BLUE
@@ -4382,13 +4372,11 @@ iface vlan30
     vrf BLUE
 auto vlan4001
 iface vlan4001
-    hwaddress 44:38:39:BE:EF:AA
     vlan-id 4001
     vlan-raw-device bridge
     vrf RED
 auto vlan4002
 iface vlan4002
-    hwaddress 44:38:39:BE:EF:AA
     vlan-id 4002
     vlan-raw-device bridge
     vrf BLUE
@@ -4531,13 +4519,11 @@ iface vlan30
     vrf BLUE
 auto vlan4001
 iface vlan4001
-    hwaddress 44:38:39:BE:EF:AA
     vlan-id 4001
     vlan-raw-device bridge
     vrf RED
 auto vlan4002
 iface vlan4002
-    hwaddress 44:38:39:BE:EF:AA
     vlan-id 4002
     vlan-raw-device bridge
     vrf BLUE
@@ -4680,13 +4666,11 @@ iface vlan30
     vrf BLUE
 auto vlan4001
 iface vlan4001
-    hwaddress 44:38:39:BE:EF:AA
     vlan-id 4001
     vlan-raw-device bridge
     vrf RED
 auto vlan4002
 iface vlan4002
-    hwaddress 44:38:39:BE:EF:AA
     vlan-id 4002
     vlan-raw-device bridge
     vrf BLUE

@@ -13447,11 +13447,11 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `interface`  | Assign DHCP options to clients directly attached to these interfaes. |
-| `pool` | DHCP IP Pools|
-| `domain-name`  | DHCP domain names|
-| `domain-name-server`|  DHCP domain name servers|
-| `static` | DHCP clients with fixed IP address assignments|
+| `interface`  | Configures the DHCP client interface for IPv6. |
+| `pool` | Configfures DHCP IP pools for IPv6.|
+| `domain-name`  | Configures DHCP domain names for IPv6.|
+| `domain-name-server`|  Configures DHCP domain name servers for IPv6.|
+| `static` | Configures DHCP clients with fixed IP address assignments for IPv6.|
 
 ### Version History
 
@@ -13459,7 +13459,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-server6 \<vrf-id\> interface \<interface-id\>
 
-An interface on which DPCH clients are attached.
+Configures the DHCP client interface for IPv6.
 
 ### Usage
 
@@ -13488,7 +13488,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\>
 
-DHCP Pool
+Configfures DHCP IP pools for IPv6.
 
 ### Usage
 
@@ -13509,14 +13509,14 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`domain-name-server`| DHCP domain name servers|
-|`domain-name` | DHCP domain names|
-|`range`  |  IP Address range assignments|
-|`cumulus-provision-url` | Cumulus specific URL for provisioning script|
-|`default-url`  | TBD|
-|`lease-time` | Network address lease time in seconds assigned to DHCP clients.|
-|`ping-check` | TBD|
-|`pool-name` | Name|
+|`domain-name-server`| Configures the remote DHCP domain name server you want to use in this pool.|
+|`domain-name` | Configures the DHCP domain name you want to use in this pool.|
+|`range`  |  Configures the IP Address range you want to use in this pool.|
+|`cumulus-provision-url` | Configures a specific URL for the provisioning script.|
+|`default-url`  | Confifgures the default URL.|
+|`lease-time` | Configures the network address lease time in seconds assigned to DHCP clients.|
+|`ping-check` | Configures the DHCP server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range.|
+|`pool-name` | Configures the pool name.|
 
 ### Version History
 
@@ -13524,7 +13524,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\>
 
-A remote DNS server
+Configures the remote DHCP domain name server you want to use in this pool.
 
 ### Usage
 
@@ -13540,7 +13540,7 @@ N/A
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<pool-id>` | The DHCP6 pool subnet. |
-| `<server-id>`  | The DNS server. |
+| `<server-id>`  | The DNS server IPv6 address. |
 
 ### Version History
 
@@ -13549,12 +13549,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 2001:db8::1/128 domain-name-server 2001:4860:4860::8888
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
 
-TBD
+Configures the DHCP domain name you want to use in this pool.
 
 ### Usage
 

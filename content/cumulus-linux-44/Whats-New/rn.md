@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3177234"></a> [3177234](#3177234) <a name="3177234"></a> <br /> | On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:<pre>Packet size is larger than router interface MTU – Validate the router interface MTU configuration</pre> | 4.4.4 | |
 | <a name="3157240"></a> [3157240](#3157240) <a name="3157240"></a> <br /> | When you try to query REDECN counters with the <code>mlxcmd</code> utility on a bond member port with the following commands, syslog reports an error<br /><pre>sudo /usr/lib/cumulus/mlxcmd roce counters --port <swp>sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port <swp></pre> | 4.4.4-5.1.0 | 5.2.0|
 | <a name="3150317"></a> [3150317](#3150317) <a name="3150317"></a> <br /> | During a host failure where link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a linkstate change. | 4.4.2-4.4.4, 5.1.0-5.2.0 | |
 | <a name="3138746"></a> [3138746](#3138746) <a name="3138746"></a> <br /> | The switch duplicates DHCP packets that pass through the VTEP. | 4.3.0-5.1.0 | 5.2.0|

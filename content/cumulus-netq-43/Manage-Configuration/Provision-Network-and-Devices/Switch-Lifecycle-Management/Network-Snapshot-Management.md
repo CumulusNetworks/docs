@@ -4,154 +4,53 @@ author: NVIDIA
 weight: 690
 toc: 4
 ---
-Creating and comparing network snapshots can be useful to validate that the network state has not changed. Snapshots are typically created when you upgrade or change the configuration of your switches in some way. This section describes the Snapshot card and content, as well as how to create and compare network snapshots at any time. Snapshots can be automatically created during the upgrade process for Cumulus Linux or SONiC. Refer to {{<link title="Upgrade Cumulus Linux Using LCM#perform-a-cumulus-linux-upgrade" text="Perform a Cumulus Linux Upgrade">}}.
+Snapshots capture a network's state---including the services running on the network---at a particular point in time. Comparing snapshots lets you check what (if anything) changed in the network, which can be helpful when upgrading a switch or modifying its configuration. This section outlines how to create, compare, and interpret snapshots.
 
 ## Create a Network Snapshot
 
 To create a snapshot:
 
-1. From any workbench in the NetQ UI, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
+1. From the workbench header, select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}}, then **Create Snapshot**:
 
-    {{<figure src="/images/netq/snapshot-choose-action-modal-320.png" width="400">}}
+    {{<figure src="/images/netq/create-network-snapshot.png" alt="modal prompting user to create, compare, view, or delete snapshots" width="400">}}
 
-2. Click **Create Snapshot**.
+2. Next, enter the snapshot's name, time frame, and the elements you'd like included in the snapshot:
 
-3. Enter a name for the snapshot.
+    {{<figure src="/images/netq/create-network-snapshot-enter-name.png" alt="modal prompting user to add name, time frame, and options while creating a snapshot" width="400">}}
 
-    {{<figure src="/images/netq/snapshot-create-snap-modal-320.png" width="400">}}
+    To capture the network's current state, click **Now**. To capture the network's state at a previous date and time, click **Past**, then in the **Start Time** field, select the calendar icon.
 
-4. Choose the time for the snapshot:
+    The **Choose options** field includes all the elements and services that may run on the network. All are selected by default. Click any element to remove it from the snapshot. Nodes and services are included in all snapshots.
 
-    - For the current network state, click **Now**.
+    The **Notes** field is optional. Here you can add descriptive text to remind you of the snapshot's purpose.
 
-        {{<figure src="/images/netq/snapshot-create-snap-dialog-now-310.png" width="400">}}
+3. Select **Finish**. The card now appears on your workbench.
 
-    - For the network state at a previous date and time, click **Past**, then click in **Start Time** field to use the calendar to step through selection of the date and time. You might need to scroll down to see the entire calendar.
-
-        {{<figure src="/images/netq/snapshot-create-snap-dialog-past-310.png" width="400">}}
-
-5. Choose the services to include in the snapshot.
-
-    In the **Choose options** field, click any service name to remove that service from the snapshot. This would be appropriate if you do not support a particular service, or you are concerned that including that service might cause the snapshot to take an excessive amount of time to complete if included. The checkmark next to the service and the service itself is grayed out when the service is removed. Click any service again to re-include the service in the snapshot. The checkmark is highlighted in green next to the service name and is no longer grayed out.
-
-    {{<notice note>}}
-The Node and Services options are mandatory, and cannot be selected or unselected.
-    {{</notice>}}
-    {{<notice info>}}
-If you remove services, be aware that snapshots taken in the past or future might not be equivalent when performing a network state comparison.
-    {{</notice>}}
-
-    This example removes the OSPF and Route services from the snapshot being created.
-
-    {{<figure src="/images/netq/snapshot-create-snap-dialog-svcs-removed-310.png" width="400">}}
-
-6. Optionally, scroll down and click in the **Notes** field to add descriptive text for the snapshot to remind you of its purpose. For example: "This was taken before adding MLAG pairs," or "Taken after removing the leaf36 switch."
-
-6. Click **Finish**.
-
-    A medium Snapshot card appears on your desktop. Spinning arrows are visible while it works. When it finishes you can see the number of items that have been captured, and if any failed. This example shows a successful result.
-
-    {{<figure src="/images/netq/snapshot-success-300.png" width="200">}}
-
-    {{<notice note>}}
-If you have already created other snapshots, <strong>Compare</strong> is active. Otherwise it is inactive (grayed-out).
-    {{</notice>}}
-
-7. When you are finished viewing the snapshot, click **Dismiss** to close the snapshot. The snapshot is not deleted, merely removed from the workbench.
+4. When you are finished viewing the snapshot, click **Dismiss** to remove it from your workbench. You can add it back by selecting {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} in the header and navigating to the option to view snapshots. 
 
 ## Compare Network Snapshots
 
-You can compare the state of your network before and after an upgrade or other configuration change to validate that the changes have not created an unwanted change in your network state.
+You can compare the state of your network before and after an upgrade or other configuration change to help avoid unwanted changes to your network's state.
 
 To compare network snapshots:
 
-1. Create a snapshot (as described in previous section) *before* you make any changes.
+1. From the workbench header, click {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}}.
 
-2. Make your changes.
+2. Select **Compare Snapshots**, then select the two snapshots you want to compare.
 
-3. Create a second snapshot.
+3. Click **Finish**.
 
-4. Compare the results of the two snapshots.
-
-    Depending on what, if any, cards are open on your workbench:
-
-{{<tabs "TabID80" >}}
-
-{{<tab "Two snapshots open" >}}
-
-1. Put the cards next to each other to view a high-level comparison. Scroll down to see all of the items.
-
-2. To view a more detailed comparison, click **Compare** on one of the cards. Select the other snapshot from the list.
-
-    {{<figure src="/images/netq/snapshot-compare-snap-results-300.png" width="425">}}
-
-{{</tab>}}
-
-{{<tab "One snapshot open" >}}
-
-1. Click **Compare** on the open card.
-
-2. Select the other snapshot to compare.
-
-    {{<figure src="/images/netq/snapshot-compare-select-fr-open-card-300.png" width="250">}}
-
-{{</tab>}}
-
-{{<tab "No snapshots open" >}}
-
-1. Click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}}.
-
-2. Click **Compare Snapshots**.
-
-3. Click on the two snapshots you want to compare.
-
-4. Click **Finish**. Note that two snapshots must be selected before **Finish** is active.
-
-    {{<figure src="/images/netq/snapshot-compare-selection-modal-300.png" width="500">}}
-
-{{</tab>}}
-
-{{</tabs>}}
-
-In the latter two cases, the large Snapshot card opens. The only difference is in the card title. If you opened the comparison card from a snapshot on your workbench, the title includes the name of that card. If you open the comparison card through the Snapshot menu, the title is generic, indicating a comparison only. Functionally, you have reached the same point.
-
-{{<figure src="/images/netq/snapshot-large-compare-titles-230.png" width="200">}}
-
-{{<figure src="/images/netq/snapshot-large-compare-from-modal-oldernewer-330.png" width="500">}}
-
-Scroll down to view all element comparisons.
+If the snapshot cards are already on your workbench, place the cards side-by-side for a high-level comparison. For a more detailed comparison, click **Compare** on one of the cards and select a snapshot for comparison from the list.
 
 ### Interpreting the Comparison Data
 
-For each network element that is compared, count values and changes are shown:
+For each network element with changes, a visualization displays the differences between the two snapshots. Green represents additions, red represents subtractions, and orange represents updates. 
 
-{{<figure src="/images/netq/snapshot-large-compare-data-interpretation-330.png" width="400">}}
+In the following example, Snapshot 3 and Snapshot 4 are being compared. Snapshot 3 has a BGP count of 212, while Snapshot 4 has a BGP count of 186. The comparison also shows 98 BGP updates.
 
-In this example, there are changes to the MAC addresses and neighbors. The snapshot taken before the change (19JanGold) had a total count of 316 MAC addresses and 873 neighbors. The snapshot taken after the changes (Now) has a total count of 320 MAC addresses and 891 neighbors. Between the two totals you can see the number of neighbors added, updated, and removed from one time to the next. This shows four MAC addresses have been added, 9 MAC addresses have been updated, and 18 neighbors have been added.
+{{<figure src="/images/netq/snapshot-comparison.png" alt="comparison data displayed for two snapshots" width="700">}}
 
-{{<notice tip>}}
-The coloring does not indicate whether the additional, removal, or update of items is bad or good. It only indicates that a change has occurred.
-{{</notice>}}
-
-Be aware that depending on the display order of the snapshots determines what is considered added or removed. Compare these two views of the same data.
-
-{{<figure src="/images/netq/snapshot-large-compare-from-modal-oldernewer-330.png" width="500" caption="More recent snapshot on right">}}
-
-{{<figure src="/images/netq/snapshot-large-compare-from-modal-newerolder-330.png" width="500" caption="More recent snapshot on left">}}
-
-You can also change which snapshots to compare. Select an alternate snapshot from one or both of the two snapshot dropdowns and then click **Compare**.
-
-#### View Change Details
-
-You can view additional details about the changes that have occurred between the two snapshots by clicking **View Details**. This opens the full screen Detailed Snapshot Comparison card.
-
-From this card you can:
-
-- View changes for each of the elements that had added, updated, and removed items, and various information about each; only elements with changes are presented
-- Filter the added and removed items by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}}
-- Export all differences in JSON file format by clicking {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18">}}
-
-{{<figure src="/images/netq/snapshot-fullscr-change-details-330.png" width="700">}}
+From this view, you can dismiss the snapshots or select **View Details** for additional information and to filter and export the data as a JSON file.
 
 The following table describes the information provided for each element type when changes are present:
 
@@ -171,30 +70,6 @@ The following table describes the information provided for each element type whe
 | Sensors | <ul><li><strong>Hostname</strong>: Name of the host where sensor resides</li><li><strong>Kind</strong>: Power supply unit, fan, or temperature</li><li><strong>Name</strong>: Name of the sensor that was removed or added</li></ul> |
 | Services | <ul><li><strong>Hostname</strong>: Name of the host where service is running</li><li><strong>Name</strong>: Name of the service that was removed or added</li><li><strong>VRF</strong>: Virtual route forwarding interface associated with service</li></ul> |
 
-## Manage Network Snapshots
+## Related Information
 
-You can create as many snapshots as you like and view them at any time. When a snapshot becomes old and no longer useful, you can remove it.
-
-To view an existing snapshot:
-
-1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
-
-2. Click **View/Delete Snapshots**.
-
-3. Click **View**.
-
-4. Click one or more snapshots you want to view, then click **Finish**.
-
-    Click **Choose Action** to cancel viewing of your selected snapshot(s) and choose another action. Or close the network snapshot dialog by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}.
-
-To remove an existing snapshot:
-
-1. From any workbench, click {{<img src="/images/netq/camera.svg" width="22.5" height="18">}} in the workbench header.
-
-2. Click **View/Delete Snapshots**.
-
-3. Click **Delete**.
-
-4. Click one or more snapshots you want to remove, then click **Finish**.
-
-    Click **Choose Action** to cancel the deletion of your selected snapshot(s) and choose another action. Or close the network snapshot dialog by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}.
+- {{<link title="Back Up and Restore NetQ">}}

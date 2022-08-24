@@ -66,8 +66,6 @@ You can view all MAC addresses across your network with the NetQ UI or the NetQ 
 
 Page through the listing or sort by MAC address.
 
-Refer to {{<link title="System Inventory/#view-all-macs" text="System Inventory">}} for descriptions of each of the displayed parameters.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -122,8 +120,6 @@ You can view all MAC addresses on a given device with the NetQ UI or the NetQ CL
     {{<figure src="/images/netq/main-menu-ntwk-macs-by-hostname-320.png" width="700">}}
 
 Page through the listing.
-
-Refer to {{<link title="System Inventory/#view-all-macs" text="System Inventory">}} for descriptions of each of the displayed parameters.
 
 {{</tab>}}
 
@@ -209,8 +205,6 @@ You can determine the MAC addresses associated with a given VLAN with the NetQ U
 Page through the listing.
 
 5. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and add the additional hostname filter to view the MAC addresses for a VLAN on a particular device.
-
-Refer to {{<link title="System Inventory/#view-all-macs" text="System Inventory">}} for descriptions of each of the displayed parameters.
 
 {{</tab>}}
 
@@ -323,8 +317,6 @@ You can the MAC addresses that use a particular egress port with the NetQ UI and
 4. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname to view the MAC addresses on a particular device.
 
     This filters the list down to only the MAC addresses for a given device. Then, toggle between A-Z or Z-A order of the egress port used by a MAC address by clicking the **Egress Port** header.
-
-Refer to {{<link title="System Inventory/#view-all-macs" text="System Inventory">}} for descriptions of each of the displayed parameters.
 
 {{</tab>}}
 

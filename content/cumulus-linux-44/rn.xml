@@ -7,15 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3177234</td>
-<td>On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:
-
-Packet size is larger than router interface MTU – Validate the router interface MTU configuration
-</td>
-<td>4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>3157240</td>
 <td>When you try to query REDECN counters with the {{mlxcmd}} utility on a bond member port with the following commands, syslog reports an error.
 

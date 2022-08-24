@@ -12824,7 +12824,7 @@ cumulus@leaf01:mgmt:~$ nv set service ptp 1 ip-dscp 22
 
 ## nv set service dhcp-server \<vrf-id\>
 
-Configures the Dynamic Host Configuration Protocol Server (DHCP server).
+Configures the Dynamic Host Configuration Protocol Server (DHCP server) for IPv4.
 
 ### Usage
 
@@ -13133,7 +13133,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 lease-time 200000
 ```
 
-## nv set service dhcp-server <vrf-id> pool <pool-id> ping-check
+## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> ping-check
 
 Configures the DHCP server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range.
 
@@ -13414,7 +13414,6 @@ N/A
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<static-id>` |  The name of the resource. |
- |
 
 ### Version History
 
@@ -13428,7 +13427,7 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 cumulus
 
 ## nv set service dhcp-server6 \<vrf-id\>
 
-Dynamic Host Configuration Protocol IPv6 Server
+Configures the Dynamic Host Configuration Protocol Server (DHCP server) for IPv6.
 
 ### Usage
 

@@ -1661,7 +1661,7 @@ The following  25G switches support 1000BASE-T SFP modules:
 
 - NVIDIA SN2410
 - NVIDIA SN2010
-- NVIDIA SN3420
+<!-- - NVIDIA SN3420-->
 
 100G or faster switches do not support 1000BASE-T SFP modules.
 

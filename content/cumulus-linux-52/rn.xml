@@ -612,6 +612,21 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>4.4.3, 5.1.0</td>
 </tr>
 <tr>
+<td>3083927</td>
+<td>On the NVIDIA SN4800 switch, EEPROM data is not available for certain line cards.</td>
+<td></td>
+</tr>
+<tr>
+<td>3082619</td>
+<td>On the NVIDIA SN4800 switch, when you try to retrieve the port speed, you see error messages on the terminal. </td>
+<td>5.1.0</td>
+</tr>
+<tr>
+<td>3082463</td>
+<td>On the NVIDIA SN4800 switch,  the LED on the line cards does not match the CLI command output.</td>
+<td>5.1.0</td>
+</tr>
+<tr>
 <td>3077736</td>
 <td>When you run the NVUE command to change the minimum interval between received BFD control packets or the minimum interval for sending BFD control packets, the configuration apply fails.
 
@@ -643,6 +658,11 @@ cumulus@switch:~$ nv config apply
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
 </td>
 <td>5.0.1-5.1.0</td>
+</tr>
+<tr>
+<td>3073694</td>
+<td>On the NVIDIA SN4800 switch, under certain conditions, the line cards do not become operational. </td>
+<td></td>
 </tr>
 <tr>
 <td>3066664</td>
@@ -752,6 +772,16 @@ This issue does not affect the operation of the switch.</td>
 <tr>
 <td>2949658</td>
 <td>After multiple power cycles, ports on the SN4800 chassis might fail to come up. Avoid power cycles or any stress testing.</td>
+<td></td>
+</tr>
+<tr>
+<td>2941563</td>
+<td>On the NVIDIA SN4800 switch, the {{l1-show}} command does not display the vendor identifier.</td>
+<td></td>
+</tr>
+<tr>
+<td>2940101</td>
+<td>On the NVIDIA SN4800 switch, the {{chassismgrctl}} command does not disable the line card.</td>
 <td></td>
 </tr>
 <tr>

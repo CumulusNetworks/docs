@@ -13280,7 +13280,7 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-server default domain-name storage-se
 
 ## nv set service dhcp-server \<vrf-id\> domain-name-server \<server-id\>
 
-Confgures the remote DNS server.
+Confgures a remote DNS server globally.
 
 ### Usage
 
@@ -13309,7 +13309,7 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-server default domain-name-server 192
 
 ## nv set service dhcp-server \<vrf-id\> static \<static-id\>
 
-static entry
+Configures a static IP address for a resource, such as a server or printer. 
 
 ### Usage
 
@@ -13324,7 +13324,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
-| `<static-id>` | The static mapping name. |
+| `<static-id>` | The name of the resource to which you want to assign a static IP address. |
 
 ### Attributes
 
@@ -13340,7 +13340,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-server \<vrf-id\> static \<static-id\> mac-address \<mac\>
 
-MAC (hardware) address
+Configures the MAC address of the resource to which you want to assign a static IP address.
 
 ### Usage
 
@@ -13355,7 +13355,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
-| `<static-id>` | The static mapping name. |
+| `<static-id>` | The name of the resource. |
 
 ### Version History
 
@@ -13364,12 +13364,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 mac-address 44:38:39:00:01:7e
 ```
 
 ## nv set service dhcp-server \<vrf-id\> static \<static-id\> ip-address \<ipv4\>
 
-IP address
+Configures the static IP address.
 
 ### Usage
 
@@ -13384,7 +13384,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
-| `<static-id>` | The static mapping name. |
+| `<static-id>` | The name of the resource. |
 
 ### Version History
 
@@ -13393,12 +13393,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 ip-address 10.0.0.2
 ```
 
 ## nv set service dhcp-server \<vrf-id\> static \<static-id\> cumulus-provision-url \<value\>
 
-Cumulus specific URL for provisioning script
+Configures a URL for a provisioning script.
 
 ### Usage
 
@@ -13413,7 +13413,8 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
-| `<static-id>` | The static mapping name. |
+| `<static-id>` |  The name of the resource. |
+ |
 
 ### Version History
 
@@ -13422,7 +13423,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default static server1 cumulus-provision-url http://192.0.2.1/myscript.sh
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\>

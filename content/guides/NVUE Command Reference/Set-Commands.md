@@ -13193,7 +13193,7 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 defa
 
 ## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> cumulus-provision-url <value>
 
-Cumulus specific URL for provisioning script
+Configures a specific URL for the provisioning script.
 
 ### Usage
 
@@ -13217,12 +13217,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 cumulus-provision-url ???
 ```
 
 ## nv set service dhcp-server \<vrf-id\> domain-name \<domain-name-id\>
 
-TBD
+Configures the DHCP domain name.
 
 ### Usage
 
@@ -13251,7 +13251,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-server \<vrf-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\>
 
-DHCP domain name
+Configures a name for the DHCP domain.
 
 ### Usage
 
@@ -13275,12 +13275,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default domain-name storage-server
 ```
 
 ## nv set service dhcp-server \<vrf-id\> domain-name-server \<server-id\>
 
-A remote DNS server
+Confgures the remote DNS server.
 
 ### Usage
 
@@ -13304,7 +13304,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default domain-name-server 192.168.200.53.
 ```
 
 ## nv set service dhcp-server \<vrf-id\> static \<static-id\>

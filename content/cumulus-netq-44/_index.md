@@ -16,4 +16,4 @@ NVIDIA® NetQ™ is a highly scalable, modern network operations tool set that p
 
 This user guide provides in-depth documentation for network administrators who are responsible for deploying, configuring, monitoring, and troubleshooting the network in their data center or campus environment.
 
-For a list of the new features in this release, see {{<link title="What's New" text="What's New">}}. For bug fixes and known issues present in this release, refer to the {{<link title="NVIDIA NetQ 4.3 Release Notes" text="release notes">}}. 
+For a list of the new features in this release, see {{<link title="What's New" text="What's New">}}. For bug fixes and known issues present in this release, refer to the {{<link title="NVIDIA NetQ 4.4 Release Notes" text="release notes">}}. 

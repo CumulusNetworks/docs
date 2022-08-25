@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 690
 toc: 4
 ---
-Snapshots capture a network's state---including the services running on the network---at a particular point in time. They are helpful when upgrading a switch or modifying its configuration. Comparing snapshots lets you check what (if anything) changed in the network. This section outlines how to create, compare, and interpret snapshots.
+Snapshots capture a network's state---including the services running on the network---at a particular point in time. Comparing snapshots lets you check what (if anything) changed in the network, which can be helpful when upgrading a switch or modifying its configuration. This section outlines how to create, compare, and interpret snapshots.
 
 ## Create a Network Snapshot
 
@@ -18,11 +18,11 @@ To create a snapshot:
 
     {{<figure src="/images/netq/create-network-snapshot-enter-name.png" alt="modal prompting user to add name, time frame, and options while creating a snapshot" width="400">}}
 
-To capture the network's current state, click **Now**. To capture the network's state at a previous date and time, click **Past**. In the **Start Time** field, select the calendar icon.
+    To capture the network's current state, click **Now**. To capture the network's state at a previous date and time, click **Past**, then in the **Start Time** field, select the calendar icon.
 
-The **Choose options** field includes all the elements and services that may run on the network. All are selected by default. Click any element to remove it from the snapshot. The Node and Services options are required.
+    The **Choose options** field includes all the elements and services that may run on the network. All are selected by default. Click any element to remove it from the snapshot. Nodes and services are included in all snapshots.
 
-The **Notes** field is optional. Here you can add descriptive text to remind you of the snapshot's purpose.
+    The **Notes** field is optional. Here you can add descriptive text to remind you of the snapshot's purpose.
 
 3. Select **Finish**. The card now appears on your workbench.
 
@@ -30,7 +30,7 @@ The **Notes** field is optional. Here you can add descriptive text to remind you
 
 ## Compare Network Snapshots
 
-You can compare the state of your network before and after an upgrade or other configuration change to help avoid unwanted changes to your network's state. Remember to create a snapshot before you make any changes so that you have a point of comparison.
+You can compare the state of your network before and after an upgrade or other configuration change to help avoid unwanted changes to your network's state.
 
 To compare network snapshots:
 
@@ -40,21 +40,15 @@ To compare network snapshots:
 
 3. Click **Finish**.
 
-If the snapshot cards are already present on your workbench, place the cards side-by-side for a high-level comparison. For a more detailed comparison, click **Compare** on one of the cards and select a snapshot for comparison from the list.
+If the snapshot cards are already on your workbench, place the cards side-by-side for a high-level comparison. For a more detailed comparison, click **Compare** on one of the cards and select a snapshot for comparison from the list.
 
 ### Interpreting the Comparison Data
 
-For each network element with changes, a visualization displays the differences between the two snapshots. In the following example, there are changes to the MAC addresses and neighbors. The snapshot taken before the change had a total count of 316 MAC addresses and 873 neighbors. The snapshot taken after the changes has a total count of 320 MAC addresses and 891 neighbors. Between the two totals you can see the number of neighbors added, updated, and removed. This shows four MAC addresses have been added, 9 MAC addresses have been updated, and 18 neighbors have been added.
+For each network element with changes, a visualization displays the differences between the two snapshots. Green represents additions, red represents subtractions, and orange represents updates. 
 
-{{<figure src="/images/netq/snapshot-large-compare-data-interpretation-330.png" width="400">}}
+In the following example, Snapshot 3 and Snapshot 4 are being compared. Snapshot 3 has a BGP count of 212, while Snapshot 4 has a BGP count of 186. The comparison also shows 98 BGP updates.
 
-Note that the snapshots' display order determines what is considered added or removed. Compare these two views of the same data:
-
-{{<figure src="/images/netq/snapshot-large-compare-from-modal-oldernewer-330.png" width="500" caption="Most recent snapshot on right">}}
-
-{{<figure src="/images/netq/snapshot-large-compare-from-modal-newerolder-330.png" width="500" caption="Most recent snapshot on left">}}
-
-You can also change which snapshots to compare. Select an alternate snapshot from one or both of the two snapshot dropdowns, then click **Compare**.
+{{<figure src="/images/netq/snapshot-comparison.png" alt="comparison data displayed for two snapshots" width="700">}}
 
 From this view, you can dismiss the snapshots or select **View Details** for additional information and to filter and export the data as a JSON file.
 

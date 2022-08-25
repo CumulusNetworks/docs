@@ -189,6 +189,12 @@ This example assumes no other static routes are present. Otherwise, you might ne
 <td>5.1.0-5.2.0</td>
 </tr>
 <tr>
+<td>2867058</td>
+<td>On the Dell Z9264F-ON switch, interfaces that use the QSFP28 module remain down after you restart {{switchd}}.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2866084</td>
 <td>When you reboot a VTEP, MAC address entries might become out of sync between the kernel FDB table and the EVPN MAC VNI table on remote VTEPs. The impacted MAC entries are installed against the rebooted VTEP IP address in the kernel FDB and the correct VTEP IP is present in the EVPN MAC VNI table. To work around this issue, clear all corrupted MAC address entries in the kernel FDB with the {{ bridge fdb del &lt;address&gt; dev &lt;interface&gt; [dst|via] &lt;interface|IP&gt; &lt;flags&gt; }} command, then add {{"vxlan-learning": "off"}} in the {{/etc/network/ifupdown2/policy.d/vxlan.json}} file:
 
@@ -2731,6 +2737,12 @@ Fixed: 5.43-2+deb9u2~deb8u4</td>
 <td>When you add a new VLAN, the VLAN interface type shows as {{unknown}} and cannot be reached.</td>
 <td>3.7.15</td>
 <td>3.7.16</td>
+</tr>
+<tr>
+<td>2867058</td>
+<td>On the Dell Z9264F-ON switch, interfaces that use the QSFP28 module remain down after you restart {{switchd}}.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2866111</td>

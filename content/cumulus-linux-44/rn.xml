@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3185796</td>
+<td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3157240</td>
 <td>When you try to query REDECN counters with the {{mlxcmd}} utility on a bond member port with the following commands, syslog reports an error.
 
@@ -403,7 +409,7 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <tr>
 <td>2867058</td>
 <td>On the Dell Z9264F-ON switch, interfaces that use the QSFP28 module remain down after you restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -2201,6 +2207,12 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3185796</td>
+<td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3150317</td>
 <td>During a host failure where link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a linkstate change.</td>
 <td>4.4.2-4.4.4, 5.1.0-5.2.0</td>
@@ -2690,7 +2702,7 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <tr>
 <td>2867058</td>
 <td>On the Dell Z9264F-ON switch, interfaces that use the QSFP28 module remain down after you restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4453,6 +4465,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3185796</td>
+<td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3150317</td>
 <td>During a host failure where link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a linkstate change.</td>
 <td>4.4.2-4.4.4, 5.1.0-5.2.0</td>
@@ -4932,7 +4950,7 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <tr>
 <td>2867058</td>
 <td>On the Dell Z9264F-ON switch, interfaces that use the QSFP28 module remain down after you restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -6872,6 +6890,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3185796</td>
+<td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-5.1.0</td>
@@ -7330,7 +7354,7 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <tr>
 <td>2867058</td>
 <td>On the Dell Z9264F-ON switch, interfaces that use the QSFP28 module remain down after you restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>

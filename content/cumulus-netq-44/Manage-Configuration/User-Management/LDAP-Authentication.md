@@ -6,10 +6,10 @@ toc: 3
 ---
 
 <!-- vale off -->
-As an administrator, you can integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. Currently there are two roles, *admin* and *user*. With the RBAC integration, LDAP handles user authentication and your directory service, such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service. A copy of each user from LDAP is stored in the local NetQ database.
+As an administrator, you can integrate the NetQ role-based access control (RBAC) with your lightweight directory access protocol (LDAP) server in on-premises deployments. NetQ maintains control over role-based permissions for the NetQ application. There are two roles, *admin* and *user*. With the RBAC integration, LDAP handles account authentication and your directory service (such as Microsoft Active Directory, Kerberos, OpenLDAP, and Red Hat Directory Service). A copy of each account from LDAP is stored in the local NetQ database.
 <!-- vale on -->
 
-Integrating with an LDAP server does not prevent you from configuring local users (stored and managed in the NetQ database) as well.
+Integrating with an LDAP server does not prevent you from configuring local accounts (stored and managed in the NetQ database) as well.
 
 ## Get Started
 
@@ -68,15 +68,11 @@ You can configure one LDAP server per bind DN (distinguished name). After you co
 
 To create an LDAP configuration:
 
-1. Click menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
+1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
 
 2. Locate the LDAP Server Info card, and click **Configure LDAP**.
 
-    {{<figure src="/images/netq/netq-mgmt-ldap-config-modal-231.png" width="500" alt="">}}
-
 3. Fill out the LDAP server configuration form according to your particular configuration.
-
-    **Note**: Items with an asterisk (*) are required. All others are optional.
 
 4. Click **Save** to complete the configuration, or click **Cancel** to discard the configuration.
 
@@ -172,11 +168,9 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 If the fields are not automatically filled in, and searching is enabled on the LDAP server, you might require changes to the mapping file.
     {{%/notice%}}
 
-7. Select the NetQ user role for this user, *admin* or *user*, in the **User Type** dropdown.
+7. Select the role for this user, *admin* or *user*.
 
 8. Enter your admin password, and click **Save**, or click **Cancel** to discard the user account.
-
-    {{<figure src="/images/netq/netq-mgmt-user-acct-fullscr-added-user-230.png" width="700">}}
 
     {{%notice tip%}}
 
@@ -190,12 +184,11 @@ LDAP user passwords are not stored in the NetQ database and are always authentic
 
 You can remove LDAP users in the same manner as local users.
 
-1. Click  menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
+1. Expand the  menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
+
 2. Locate the User Accounts card, and click **Manage**.
 
-3. Select the user or users you want to remove.
-
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="delete" width="18" height="18"/> in the Edit menu.
+3. Select the user(s) you want to remove, then select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="delete" width="18" height="18"/>.
 
 {{%notice tip%}}
 If you delete an LDAP user in LDAP it is not automatically deleted from NetQ; however, the login credentials for these LDAP users stop working immediately.

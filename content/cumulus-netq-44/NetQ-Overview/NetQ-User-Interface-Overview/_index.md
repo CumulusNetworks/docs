@@ -10,6 +10,6 @@ You can access the UI from both the on-premises and cloud deployments. NetQ supp
 
 {{<notice tip>}}
 
-Before you get started, refer to the {{<link title="NVIDIA NetQ 4.3 Release Notes" text="release notes">}} for this version.
+Before you get started, refer to the {{<link title="NVIDIA NetQ 4.4 Release Notes" text="release notes">}} for this version.
 
 {{</notice>}}

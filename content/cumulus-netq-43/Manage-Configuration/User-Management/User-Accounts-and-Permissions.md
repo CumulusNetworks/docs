@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 500
 toc: 2
 ---
-Sign in to NetQ as an admin to view and manager users' accounts. If you are a user and would like to set individual preferences, visit {{<link title="Set User Preferences" text="Set User Preferences">}}.
+Sign in to NetQ as an admin to view and manage users' accounts. If you are a user and would like to set individual preferences, visit {{<link title="Set User Preferences" text="Set User Preferences">}}.
 
 ## NetQ Management Workbench
 

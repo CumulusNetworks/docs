@@ -61,15 +61,15 @@ To view the log, expand the <img src="https://icons.cumulusnetworks.com/01-Inter
 
 ### Manage Login Policies
 
-Administrators can configure a session expiration time and the number of times users can refresh before requiring them to login again to NetQ.
+Administrators can configure a session expiration time and the number of times users can refresh before requiring them to log in again to NetQ.
 
 To configure these login policies:
 
 1. On the Login Management card, select **Manage**
 
-    {{<figure src="/images/netq/login-management-card.png" alt="" width="400" >}}
+2. Select how long an account can be logged in before requiring a user to log in again:
 
-2. Select how long an account can be logged in before logging in again.
+    {{<figure src="/images/netq/login-management-card.png" alt="" width="450" >}}
 
 3. Click **Update** to save the changes.
 

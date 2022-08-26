@@ -14036,19 +14036,23 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server1 cumulu
 
 ## nv set service lldp
 
-Global LLDP
+Configures Link Layer Discovery Protocol LLDP globally on the switch.
 
 ### Usage
 
 `nv set service lldp [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `dot1-tlv` |  Enable dot1 TLV advertisements on enabled ports |
-| `tx-hold-multiplier`  | TTL of transmitted packets is calculated by multiplying the tx-interval by the given factor |
-| `tx-interval` |   change transmit delay |
+| `dot1-tlv` |  Turns dot1 TLV advertisements on or off. |
+| `tx-hold-multiplier`  | Configures the amount of time to hold the information before discarding it. The hold time interval is a multiple of the tx-interval. |
+| `tx-interval` | Configures the frequency of LLDP updates. |
 
 ### Version History
 
@@ -14056,47 +14060,93 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service lldp tx-interval
 
-change transmit delay
+Configures the frequency of LLDP updates. You can specify a value between 10 and 300.
 
 ### Usage
 
 `nv set service lldp tx-interval [options] 10-300`
 
+### Default Setting
+
+N/A
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service lldp tx-interval 100
+```
+
 ## nv set service lldp tx-hold-multiplier
 
-TTL of transmitted packets is calculated by multiplying the tx-interval by the given factor
+Configures the amount of time to hold the information before discarding it. The hold time interval is a multiple of the tx-interval.
 
 ### Usage
 
 `nv set service lldp tx-hold-multiplier [options] 1-10`
 
+### Default Setting
+
+N/A
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service lldp tx-hold-multiplier 3
+```
+
+## nv set service lldp dot1-tlv
+
+Turns dot1 TLV advertisements on or off.
+
+### Usage
+
+`nv set service lldp dot1-tlv [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service lldp dot1-tlv on
+```
+
 ## nv set system
 
-Top-level node which contains system-wide properties.
+Configures system-wide settings.
 
 ### Usage
 
 `nv set system [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `control-plane` | Control Plane specific configurations|
-| `message` | System pre-login and post-login messages|
-| `global` |   global system configuration|
-| `port-mirror`  |  Port mirror|
-| `config` | Affect how config operations are performed.|
-| `hostname`| Static hostname for the switch|
-| `timezone` |  system time zone|
+| `control-plane` | Configures control plane settings, such as policers and traps.|
+| `message` | Configures system pre login and post login messages.|
+| `global` |   Configures the global system settings. |
+| `port-mirror`  | Configures port mirror settings. |
+| `config` | Affects how config operations are performed.|
+| `hostname`| Configures a static hostname for the system. |
+| `timezone` |  Configures the system time zone. |
 
 ### Version History
 
@@ -14104,7 +14154,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system control-plane
 
-Control Plane specific configurations
+Configures control plane settings to ensure quality of service for traffic on the control plane and rate limit traffic so incoming packets drop if they exceed certain thresholds.
 
 ### Usage
 
@@ -14114,8 +14164,8 @@ Control Plane specific configurations
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `trap`  | Traps |
-| `policer`  | Policers |
+| `trap`  | Configures traps. For example, you can configure the switch to drop all IP packets that are larger in size than the MTU value for the egress layer 3 interface instead of fragmenting packets. |
+| `policer`  | Configures quality of service (QoS) policers to rate limit traffic so incoming packets get dropped if they exceed specified thresholds. |
 
 ### Version History
 
@@ -14123,7 +14173,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system control-plane trap \<trap-id\>
 
-Trap
+Configures traps. For example, you can configure the switch to drop all IP packets that are larger in size than the MTU value for the egress layer 3 interface instead of fragmenting packets.
 
 ### Usage
 
@@ -14131,27 +14181,33 @@ Trap
 
 ### Default Setting
 
-N/A
+`off`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<trap-id>` |  TRAP ID |
+| `<trap-id>` |  The trap ID, such as `l3-mtu-err`. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `state` | trap state |
+| `state` | Configures the trap state; on or off. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system control-plane trap l3-mtu-err state on
+```
+
 ## nv set system control-plane policer \<policer-id\>
 
-Policer
+Configures quality of service (QoS) policers to rate limit traffic so incoming packets get dropped if they exceed specified thresholds.
 
 ### Usage
 
@@ -14165,23 +14221,51 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<policer-id>` |  Policer ID |
+| `<policer-id>` |  The trap group: arp, bfd, pim-ospf-rip, bgp, clag, icmp-def, dhcp-ptp, igmp, ssh, icmp6-neigh, icmp6-def-mld, lacp, lldp, rpvst, eapol, ip2me, acl-log, nat, stp, l3-local, span-cpu, catch-all, or NONE. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `burst` | policer burst value |
-| `rate`  |   policer rate value |
-| `state` |  policer state |
+| `burst` | Configures the policer burst rate for the trap group; the number of packets allowed to arrive sequentially. |
+| `rate`  | Configures the forwarding rate for the trap group; the maximum rate in kilobytes (KB) or packets. |
+| `state` | Turns the policer on or off. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set system control-plane policer \<policer-id\> state
+
+Turns the policer on or off.
+
+### Usage
+
+`nv set system control-plane policer <policer-id> state [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<policer-id>` | The trap group: arp, bfd, pim-ospf-rip, bgp, clag, icmp-def, dhcp-ptp, igmp, ssh, icmp6-neigh, icmp6-def-mld, lacp, lldp, rpvst, eapol, ip2me, acl-log, nat, stp, l3-local, span-cpu, catch-all, or NONE.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system control-plane policer bfd state on 
+```
+
 ## nv set system control-plane policer \<policer-id\> burst
 
-policer burst value
+Configures the policer burst rate for the trap group. The burst rate is the number of packets allowed to arrive sequentially. You can specify a value between 10 and 10000.
 
 ### Usage
 
@@ -14195,7 +14279,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<policer-id>` | The Policer ID. |
+| `<policer-id>` | The trap group: arp, bfd, pim-ospf-rip, bgp, clag, icmp-def, dhcp-ptp, igmp, ssh, icmp6-neigh, icmp6-def-mld, lacp, lldp, rpvst, eapol, ip2me, acl-log, nat, stp, l3-local, span-cpu, catch-all, or NONE.|
 
 ### Version History
 
@@ -14204,12 +14288,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set system control-plane policer bfd burst 100 
 ```
 
 ## nv set system control-plane policer \<policer-id\> rate
 
-policer rate value
+Configures the forwarding rate for the trap group. The forwarding rate is the maximum rate in kilobytes (KB) or packets. You can specify a value between 10 and 10000.
 
 ### Usage
 
@@ -14223,7 +14307,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<policer-id>` | The Policer ID. |
+| `<policer-id>` | The trap group: arp, bfd, pim-ospf-rip, bgp, clag, icmp-def, dhcp-ptp, igmp, ssh, icmp6-neigh, icmp6-def-mld, lacp, lldp, rpvst, eapol, ip2me, acl-log, nat, stp, l3-local, span-cpu, catch-all, or NONE. |
 
 ### Version History
 
@@ -14232,7 +14316,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set system control-plane policer bfd rate 100
 ```
 
 ## nv set system message

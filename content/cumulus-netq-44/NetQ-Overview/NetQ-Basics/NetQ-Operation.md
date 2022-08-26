@@ -150,7 +150,7 @@ An administrator can run the following commands from any switch in the network t
 
 ### Manage Network Events
 
-The NetQ notifier lets your capture and filter events for devices, components, protocols, and services. This is especially useful when an interface or routing protocol goes down and you want to get them back up and running as quickly as possible, preferably before anyone notices or complains. You can improve resolution time significantly by creating filters that focus on topics appropriate for a particular group of users. You can create filters for events related to BGP and MLAG session states, interfaces, links, NTP and other services, fans, power supplies, and physical sensor measurements.
+The NetQ notifier lets you capture and filter events for devices, components, protocols, and services. This is especially useful when an interface or routing protocol goes down and you want to get them back up and running as quickly as possible, preferably before anyone notices or complains. You can improve resolution time significantly by creating filters that focus on topics appropriate for a particular group of users. You can create filters for events related to BGP and MLAG session states, interfaces, links, NTP and other services, fans, power supplies, and physical sensor measurements.
 
 For operators responsible for routing, you can create an integration with a notification application that notifies them of routing issues as they occur. The following is an example of a Slack message received on a *netq-notifier* channel indicating that the BGP session on switch *leaf04* interface *swp2* has gone down:
 
@@ -160,7 +160,7 @@ For operators responsible for routing, you can create an integration with a noti
 
 Every event or entry in the NetQ database is stored with a timestamp that captures when an event was captured by the NetQ Agent on the switch or server. This timestamp is based on the switch or server time where the NetQ Agent is running, and is pushed in UTC format.
 
-Interface state, IP addresses, routes, ARP/ND table (IP neighbor) entries and MAC table entries carry a timestamp that represents the time an event occured (such as when a route is deleted or an interface comes up).
+Interface state, IP addresses, routes, ARP/ND table (IP neighbor) entries and MAC table entries carry a timestamp that represents the time an event occurred (such as when a route is deleted or an interface comes up).
 
 Data that is captured and saved based on polling has a timestamp according to when the information was *captured* rather than when the event *actually happened*, though NetQ compensates for this if the data extracted provides additional information to compute a more precise time of the event. For example, BGP uptime can be used to determine when the event actually happened in conjunction with the timestamp.
 

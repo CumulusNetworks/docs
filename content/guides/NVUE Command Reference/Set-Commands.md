@@ -12063,7 +12063,7 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-relay default interface swp51
 
 ## nv set service dhcp-relay \<vrf-id\> giaddress-interface \<interface-id\>
 
-Configures the gateway IP address on an interface.
+Configures the gateway IPv4 address on an interface.
 
 ### Usage
 
@@ -12078,13 +12078,13 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<interface-id>` | The gateway IP address. |
+| `<interface-id>` | The gateway IPv4 address. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `giaddress-interface` | Configures the IPv4 address on gateway interface. |
+| `giaddress-interface` | Configures the gateway IPv4 address on an interface. |
 
 ### Version History
 
@@ -12323,7 +12323,7 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-relay6 default interface downstream s
 
 ## nv set service ptp \<instance-id\>
 
-Configures global Precision Time Protocol (PTP) configuration.
+Configures global Precision Time Protocol (PTP) settings.
 
 ### Usage
 
@@ -12845,10 +12845,10 @@ N/A
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `interface` | Configures the DHCP client interface.|
-| `pool` |  Configfures DHCP pools. |
-| `domain-name`  |  Configures DHCP domain names. |
-| `domain-name-server` | Configures DHCP domain name servers. |
-| `static`  | Configures DHCP clients with fixed IP address assignments. |
+| `pool` |  Configfures the DHCP pool. |
+| `domain-name`  |  Configures the DHCP domain name. |
+| `domain-name-server` | Configures the DHCP domain name server. |
+| `static`  | Configures a DHCP client with a fixed IP address assignment. |
 
 ### Version History
 
@@ -13251,7 +13251,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-server \<vrf-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\>
 
-Configures a name for the DHCP domain.
+Configures the Internationalized Domain Name (IDN) you want to use in this pool
 
 ### Usage
 
@@ -13275,12 +13275,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default domain-name storage-server
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default domain-name example.com domain-name ?????
 ```
 
 ## nv set service dhcp-server \<vrf-id\> domain-name-server \<server-id\>
 
-Confgures a remote DNS server globally.
+Confgures a remote DNS server to use globally.
 
 ### Usage
 
@@ -13584,7 +13584,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\>
 
-DHCP domain name
+Configures the Internationalized Domain Name (IDN) you want to use in this pool for IPv6.
 
 ### Usage
 
@@ -13609,12 +13609,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 2001:db8::1/128 domain-name example.com domain-name ?????
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\>
 
-DHCP Pool range
+Configures the start of the DHCP pool range for IPv6.
 
 ### Usage
 
@@ -13630,7 +13630,7 @@ N/A
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<pool-id>` | The DHCP6 pool subnet. |
-| `<domain-name-id>`|  The DHCP domain name. |
+| `<range-id>`|  The start of the DHCP pool range. |
 
 ### Attributes
 
@@ -13642,9 +13642,15 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 2001:db8::1/128 range ?????
+```
+
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\> to \<ipv6\>
 
-End of the range.
+Configures the end of the DHCP pool range for IPv6.
 
 ### Usage
 
@@ -13660,7 +13666,7 @@ N/A
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<pool-id>` |  The DHCP6 pool subnet.|
-| `<range-id>` | The DHCP client interface |
+| `<range-id>` | The end of the DHCP pool range. |
 
 ### Version History
 
@@ -13669,12 +13675,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 2001:db8::1/128 range ????? to ????
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> pool-name \<value\>
 
-Name
+Configures the DHCP pool name for IPv6.
 
 ### Usage
 
@@ -13698,12 +13704,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 pool-name storage-servers
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> lease-time
 
-Network address lease time in seconds assigned to DHCP clients.
+Configures the network address lease time assigned to DHCP clients. You can specify a number between 180 and 31536000.
 
 ### Usage
 
@@ -13727,12 +13733,41 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 lease-time 200000
+```
+
+## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> ping-check
+
+Configures the DHCP6 server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range.
+
+### Usage
+
+`nv set service dhcp-server6 <vrf-id> pool <pool-id> ping-check [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<pool-id>` |  The DHCP6 pool subnet.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 ping-check on
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> default-url \<value\>
 
-TBD
+Confifgures the default URL for the IPv6 pool.
 
 ### Usage
 
@@ -13756,12 +13791,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 default-url ????
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> cumulus-provision-url \<value\>
 
-Cumulus specific URL for provisioning script
+Configures a specific URL for the provisioning script.
 
 ### Usage
 
@@ -13785,12 +13820,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 cumulus-provision-url ????
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> domain-name \<domain-name-id\>
 
-TBD
+Configures the DHCP domain name for IPv6.
 
 ### Usage
 
@@ -13805,21 +13840,27 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<domain-name-id>`|  The DHCP domain name. |
+| `<domain-name-id>`|  The DHCP6 domain name. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `domain-name` | Configures the DHCP domain name. |
+| `domain-name` | Configures the DHCP6 domain name. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default domain-name example.com
+```
+
 ## nv set service dhcp-server6 \<vrf-id\> domain-name \<domain-name-id\> domain-name \<idn-hostname\>
 
-DHCP domain name
+Configures the Internationalized Domain Name (IDN) of the IPv6 DHCP server.
 
 ### Usage
 
@@ -13843,12 +13884,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default domain-name example.com domain-name ????
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> domain-name-server \<server-id\>
 
-A remote DNS server
+Configures the remote DNS server.
 
 ### Usage
 
@@ -13872,12 +13913,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default domain-name-server 2001:db8::1/128
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> static \<static-id\>
 
-static entry
+Configures a static DHCP6 server for a resource, such as a server or printer.
 
 ### Usage
 
@@ -13892,15 +13933,15 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<static-id>` |  The static mapping name. |
+| `<static-id>` |  The name of the resource. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `cumulus-provision-url` | Cumulus specific URL for provisioning script |
-| `ip-address`   |  IP address |
-| `mac-address` | MAC (hardware) address |
+| `cumulus-provision-url` | Configures a specific URL for a provisioning script. |
+| `ip-address`   |  Configures the IPv6 address for the static DHCP6 server.  |
+| `mac-address` | Configures the MAC (hardware) address for the static DHCP6 server. |
 
 ### Version History
 
@@ -13908,7 +13949,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set service dhcp-server6 \<vrf-id\> static \<static-id\> mac-address \<mac\>
 
-MAC (hardware) address
+Configures the MAC (hardware) address for the static DHCP6 server.
 
 ### Usage
 
@@ -13923,7 +13964,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<static-id>` |  The static mapping name. |
+| `<static-id>` |  The name of the resource. |
 
 ### Version History
 
@@ -13932,12 +13973,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server1 mac-address 44:38:39:00:01:7e
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> static \<static-id\> ip-address \<ipv6\>
 
-IP address
+Configures the IPv6 address for the static DHCP6 server.
 
 ### Usage
 
@@ -13952,7 +13993,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<static-id>` |  The static mapping name. |
+| `<static-id>` |  The name of the resource. |
 
 ### Version History
 
@@ -13961,12 +14002,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server1 ip-address 2001:db8::1/128
 ```
 
 ## nv set service dhcp-server6 \<vrf-id\> static \<static-id\> cumulus-provision-url \<value\>
 
-Cumulus specific URL for provisioning script
+Configures a URL for a provisioning script.
 
 ### Usage
 
@@ -13981,7 +14022,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<static-id>` |  The static mapping name. |
+| `<static-id>` |  The name of the resource. |
 
 ### Version History
 
@@ -13990,7 +14031,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default static server1 cumulus-provision-url ????
 ```
 
 ## nv set service lldp

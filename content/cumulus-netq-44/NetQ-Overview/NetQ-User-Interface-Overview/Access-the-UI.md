@@ -83,19 +83,19 @@ Any workbench can be set as the home workbench. Click <img src="https://icons.cu
 
 ## Reset a Password
 
-If your account is assigned a user role, an admin can {{<link title="Add and Manage Accounts" text="reset your password">}}. If your account is assigned an admin role, reset the password to the default password:
+If your account is assigned a user role, navigate to your user settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="profile" height="18" width="18"/> in the upper-right corner and select **Profile & Preferences**. Locate the card with your account information and select **Change Password**. If your account is assigned an admin role, reset the password to the default password:
 
 {{<tabs "resetpassword">}}
 
 {{<tab "On-Premises">}}
 
-1. Run the following command on the command line of your on-premises appliance:
+1. Run the following command on your on-premises appliance CLI:
 
 ```
 kubectl exec $(kubectl get pod -oname -l app=cassandra) -- cqlsh -e "INSERT INTO master.user(id,  cust_id,  first_name,  last_name,  password,     access_key,  role,  email,  is_ldap_user,  is_active,  terms_of_use_accepted,  enable_alarm_notifications,  default_workbench,  preferences,  creation_time,  last_login,  reset_password)     VALUES(  'admin',  0,  'Admin',  '',  '009413d86fd42592e0910bb2146815deaceaadf3a4667b728463c4bc170a6511',     null, 'admin',  null,  false,  true,  true,  true,  { workspace_id : 'DEFAULT', workbench_id : 'DEFAULT' },  '{}',  toUnixTimestamp(now()),  toUnixTimestamp(now()),  true )"
 ```
 
-2. Log in to the NetQ UI with the default username and password: *admin,admin*. After logging in, you will be prompted to change the password. 
+2. Log in to the NetQ UI with the default username and password: *admin, admin*. After logging in, you will be prompted to change the password. 
 
 {{</tab>}}
 

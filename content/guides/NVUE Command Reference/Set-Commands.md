@@ -14173,7 +14173,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system control-plane trap \<trap-id\>
 
-Configures traps. For example, you can configure the switch to drop all IP packets that are larger in size than the MTU value for the egress layer 3 interface instead of fragmenting packets.
+Configures QoS traps. For example, you can configure the switch to drop all IP packets that are larger in size than the MTU value for the egress layer 3 interface instead of fragmenting packets.
 
 ### Usage
 
@@ -14194,6 +14194,28 @@ Configures traps. For example, you can configure the switch to drop all IP packe
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `state` | Configures the trap state; on or off. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## nv set system control-plane trap \<trap-id\> state
+
+Turns the QoS trap on or off.
+
+### Usage
+
+`nv set system control-plane trap <trap-id> state [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<trap-id>` |  The trap ID, such as `l3-mtu-err`. |
 
 ### Version History
 
@@ -14321,18 +14343,22 @@ cumulus@leaf01:mgmt:~$ nv set system control-plane policer bfd rate 100
 
 ## nv set system message
 
-System pre-login and post-login messages
+Configures pre-login and post-login system messages.
 
 ### Usage
 
 `nv set system message [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `post-login` | configure post-login message of the day |
-| `pre-login`  | configure pre-login banner |
+| `post-login` | Configures a post-login system message of the day. |
+| `pre-login`  | Configures a pre-login system message. |
 
 ### Version History
 
@@ -14340,12 +14366,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system message pre-login \<value\>
 
-configure pre-login banner
+Configures a pre-login system message. Use quotes around any message that is more than one word long.
 
 ### Usage
 
 `nv set system message pre-login [options] <value>`
 
+### Default Setting
+
+N/A
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -14353,17 +14383,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set system message pre-login "add message here"
 ```
 
-## nv set system message post-login <value>
+## nv set system message post-login \<value\>
 
-configure post-login message of the day
+Configures a post-login system message of the day. Use quotes around any message that is more than one word long.
 
 ### Usage
 
 `nv set system message post-login [options] <value>`
 
+### Default Setting
+
+N/A
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -14371,27 +14405,31 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set system message post-login "add message here"
 ```
 
 ## nv set system global
 
-global system configuration
+Configure global system settings, such as the rack MAC address and the first hop router MAC adress.
 
 ### Usage
 
 `nv set system global [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `reserved`   |  reserved ranges|
-| `anycast-id`  | An integer (1-65535) to select rack MAC address in range 44:38:39:ff:00:00 to 44:38:39:ff:ff:ff|
-| `anycast-mac`| MAC address shared by the rack.|
-| `fabric-id`  |  An integer (1-255) to select first hop router MAC adress in range 00:00:5E:00:01:01 to 00:00:5E:00:01:ff|
-| `fabric-mac` |  First hop router MAC address|
-| `system-mac` |  full MAC address.|
+| `reserved`   |  Configures the reserved routing table and reserved VLAN ranges.|
+| `anycast-id`  | Configures the rack MAC address in the range 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff|
+| `anycast-mac`| Configures the MAC address shared by the rack.|
+| `fabric-id`  |  Configures the first hop router MAC adress in the range 00:00:5E:00:01:01 and 00:00:5E:00:01:ff|
+| `fabric-mac` |  Configures the first hop router MAC address. |
+| `system-mac` |  Configures the full system MAC address.|
 
 ### Version History
 
@@ -14399,18 +14437,22 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system global reserved
 
-reserved ranges
+Configures the reserved routing table and reserved VLAN ranges.
 
 ### Usage
 
 `nv set system global reserved [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `routing-table` |  reserved routing table ranges |
-| `vlan` |   reserved vlan ranges |
+| `routing-table` |  Configures the reserved routing table ranges. |
+| `vlan` |   Configures the reserved VLAN ranges. |
 
 ### Version History
 
@@ -14418,17 +14460,21 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system global reserved routing-table
 
-reserved routing table ranges
+Configures the reserved routing table ranges. 
 
 ### Usage
 
 `nv set system global reserved routing-table [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `pbr` |   reserved routing table ranges for PBR |
+| `pbr` |  Configures the reserved routing table ranges for (Policy Based Routing) PBR. |
 
 ### Version History
 
@@ -14436,18 +14482,22 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system global reserved routing-table pbr
 
-reserved routing table ranges for PBR
+Configures the reserved routing table ranges for (Policy Based Routing) PBR.
 
 ### Usage
 
 `nv set system global reserved routing-table pbr [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `begin`|  Beginning of reserved routing table range for PBR |
-| `end`  | End of reserved routing table range for PBR |
+| `begin`|  Configures the start of the reserved routing table range for PBR. |
+| `end`  | Configures the end of the reserved routing table range for PBR. |
 
 ### Version History
 
@@ -14455,12 +14505,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system global reserved routing-table pbr begin
 
-Beginning of reserved routing table range for PBR
+Configures the start of the reserved routing table range for PBR. You can specify a value between 10000 and 4294966272.
 
 ### Usage
 
 `nv set system global reserved routing-table pbr begin [options] 10000-4294966272`
 
+### Default Setting
+
+N/A
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -14468,17 +14522,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set system global reserved routing-table pbr begin 20000
 ```
 
 ## nv set system global reserved routing-table pbr end
 
-End of reserved routing table range for PBR
+Configures the end of the reserved routing table range for PBR. You can specify a value between 10000 and 4294966272.
 
 ### Usage
 
 `nv set system global reserved routing-table pbr end [options] 10000-4294966272`
 
+### Default Setting
+
+N/A
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -14486,22 +14544,26 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set system global reserved routing-table pbr end 20000
 ```
 
 ## nv set system global reserved vlan
 
-reserved vlan ranges
+Configures the reserved VLAN ranges.
 
 ### Usage
 
 `nv set system global reserved vlan [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `l3-vni-vlan` |  Reserved vlans to be used with l3vni |
+| `l3-vni-vlan` |  Configures the reserved VLAN range used with a layer 3 VNI. |
 
 ### Version History
 
@@ -14509,18 +14571,22 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system global reserved vlan l3-vni-vlan
 
-Reserved vlans to be used with l3vni
+Configures the reserved VLAN range used with layer 3 VNIs.
 
 ### Usage
 
 `nv set system global reserved vlan l3-vni-vlan [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `begin`  |  Beginning of reserved vlan range for L3 VNI|
-| `end`  |  End of reserved vlan range for L3 VNI|
+| `begin`  | Configures the start of the reserved vlan range for layer 3 VNIs.|
+| `end`  |  Configures the end of the reserved vlan range for layer 3 VNIs.|
 
 ### Version History
 
@@ -14528,12 +14594,16 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system global reserved vlan l3-vni-vlan begin
 
-Beginning of reserved vlan range for L3 VNI
+Configures the start of the reserved vlan range for layer 3 VNIs. You can specify a value between 1 and 4093.
 
 ### Usage
 
 `nv set system global reserved vlan l3-vni-vlan begin [options] 1-4093`
 
+### Default Setting
+
+N/A
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -14541,17 +14611,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set system global reserved vlan l3-vni-vlan begin 4093
 ```
 
 ## nv set system global reserved vlan l3-vni-vlan end
 
-End of reserved vlan range for L3 VNI
+Configures the end of the reserved vlan range for layer 3 VNIs.
 
 ### Usage
 
 `nv set system global reserved vlan l3-vni-vlan end [options] 2-4093`
 
+### Default Setting
+
+N/A
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -14559,7 +14633,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set system global reserved vlan l3-vni-vlan end 4093
 ```
 
 ## nv set system global fabric-id

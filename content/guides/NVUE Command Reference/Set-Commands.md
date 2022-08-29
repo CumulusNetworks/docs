@@ -14144,7 +14144,7 @@ N/A
 | `message` | Configures system pre login and post login messages.|
 | `global` |   Configures the global system settings. |
 | `port-mirror`  | Configures port mirror settings. |
-| `config` | Affects how config operations are performed.|
+| `config` | Affects how configuration operations are performed.|
 | `hostname`| Configures a static hostname for the system. |
 | `timezone` |  Configures the system time zone. |
 
@@ -14249,8 +14249,8 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `burst` | Configures the policer burst rate for the trap group; the number of packets allowed to arrive sequentially. |
-| `rate`  | Configures the forwarding rate for the trap group; the maximum rate in kilobytes (KB) or packets. |
+| `burst` | Configures the policer burst rate for the trap group, which is the number of packets allowed to arrive sequentially. |
+| `rate`  | Configures the forwarding rate for the trap group, which is the maximum rate in kilobytes (KB) or packets. |
 | `state` | Turns the policer on or off. |
 
 ### Version History
@@ -14636,13 +14636,26 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system global reserved vlan l3-vni-vlan end 4093
 ```
 
+## nv set system global system-mac (auto|<mac>)
+
+## nv set system global anycast-mac (none|<mac>)
+
+## nv set system global anycast-id (1-65535|none)
+
+## nv set system global fabric-mac (none|<mac>)
+
 ## nv set system global fabric-id
 
-An integer (1-255) to select first hop router MAC adress in range 00:00:5E:00:01:01 to 00:00:5E:00:01:ff
+Configures a fabric ID, from which Cumulus Linux derives the MAC address. You can specify a number between 1 and 225. Cumulus Linux adds the number to the MAC address 00:00:5E:00:01:00 in hex. For example, if you specify 225, the VRR MAC address is 00:00:5E:00:01:FF.
+The default VRR MAC address is 00:00:5E:00:01:01, which the switch derives from a fabric ID setting of 1.
 
 ### Usage
 
 `nv set system global fabric-id [options] 1-2`55
+
+### Default Setting
+
+1
 
 ### Version History
 
@@ -14651,7 +14664,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set system global fabric-id 225
 ```
 
 ## nv set system port-mirror

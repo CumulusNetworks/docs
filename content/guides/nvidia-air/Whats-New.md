@@ -9,11 +9,16 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## August 2022
 <!-- Air:WhatsNew -->
+## 82.2022.0829
+- Added Cumulus Linux 5.2.0
+- Added NetQ 4.3.0
+- Updated out-of-band MAC address randomization
+<!-- Air:WhatsNew -->
+
 ### 82.2022.0815
 - Fixed a timing related bug that prevented sign-in in some cases
 - Fixed a bug where the initial node instructions on the `oob-mgmt-switch` were failing
 - Updated templates for notification emails
-<!-- Air:WhatsNew -->
 
 ### 82.2022.0801-011
 - Fixed a bug that prevented some large simulations from waking up

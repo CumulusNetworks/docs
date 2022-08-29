@@ -15407,9 +15407,9 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system config apply overwrite controlled
 ```
 
-## nv set system hostname \<idn-hostname\>
+## nv set system hostname \<hostname\>
 
-Configures a static hostname for the switch.
+Configures a static hostname for the switch. The hostname identifies the switch; make sure you configure the hostname to be unique and descriptive.
 
 ### Usage
 
@@ -15431,7 +15431,7 @@ cumulus@leaf01:mgmt:~$ nv set system hostname leaf01
 
 ## nv set system timezone
 
-Configures the time zone you want to use on the switch.
+Configures the time zone on the switch to be the time zone for your location.
 
 ### Usage
 
@@ -15439,7 +15439,7 @@ Configures the time zone you want to use on the switch.
 
 ### Default Setting
 
-N/A
+UTC
 
 ### Version History
 
@@ -15453,7 +15453,7 @@ cumulus@leaf01:mgmt:~$ nv set system timezone US/Eastern
 
 ## nv set vrf \<vrf-id\>
 
- A VRF
+Configures Virtual routing and forwarding (VRF). Multiple instances of a routing table can exist in a virtual router and work simultaneously.
 
 ### Usage
 
@@ -15473,11 +15473,11 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `loopback`  |  The loopback IP interface associated with this VRF.|
-| `evpn`  |EVPN control plane config and info for VRF|
-| `router` |  A VRF|
-| `ptp` |   VRF PTP configuration. Inherited by interfaces in this VRF.|
-| `table` | The routing table number, between 1001-1255, used by the named VRF. If auto, the default, it will be auto generated.|
+| `loopback`  |  Configures the loopback interface associated with this VRF.|
+| `evpn`  | Configures Ethernet VPN (EVPN) control plane settings for the VRF.|
+| `router` |  Configures router settings for the VRF. |
+| `ptp` |   Configures PTP on all interfaces in this VRF.|
+| `table` | Configures the routing table number.  between 1001-1255, used by the named VRF. If auto, the default, it will be auto generated.|
 
 ### Version History
 
@@ -15485,7 +15485,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> loopback
 
-The loopback IP interface associated with this VRF.
+Configures the loopback interface associated with this VRF.
 
 ### Usage
 
@@ -15505,7 +15505,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `ip` |  Properties associated with the loopback IP address on this VRF.|
+| `ip` |  Configures properties associated with the loopback IP address on this VRF.|
 
 ### Version History
 
@@ -15513,7 +15513,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> loopback ip
 
-IP addresses associated with the VRF's loopback interface.
+The IP address associated with the loopback interface on this VRF. You can specify more than one IP address.
 
 ### Usage
 
@@ -15533,7 +15533,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `address`  |   static IPv4 or IPv6 address|
+| `address`  |  Configures the static IPv4 or IPv6 address of the loopback interface on the VRF.|
 
 ### Version History
 
@@ -15541,11 +15541,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> loopback ip address \<ip-prefix-id\>
 
-An IP address with prefix
+Configures the static IPv4 or IPv6 address of the loopback interface on the VRF.
 
 ### Usage
 
-`nv set vrf <vrf-id> loopback ip address <ip-prefix-id> [options]
+`nv set vrf <vrf-id> loopback ip address <ip-prefix-id> [options]`
 
 ### Default Setting
 
@@ -15556,7 +15556,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` | The VRF you want to configure.|
-| `<ip-prefix-id>`  | IPv4 or IPv6 address and route prefix in CIDR notation |
+| `<ip-prefix-id>`  | The IPv4 or IPv6 address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -15565,12 +15565,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default loopback ip address 10.10.10.1/32
 ```
 
 ## nv set vrf \<vrf-id\> evpn
 
-EVPN control plane config and info for VRF
+Configures Ethernet VPN (EVPN) control plane settings for the VRF.
 
 ### Usage
 
@@ -15590,9 +15590,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `vni`   |  L3 VNI |
-| `enable`  |  Turn the feature 'on' or 'off'. The default is 'off'. |
-| `vlan`  |  VLAN ID |
+| `vni`   |  Configures the layer 3 VNI. |
+| `enable`  |  Turns EVPN on or off on this VRF. |
+| `vlan`  |  Configures the VLAN ID. |
 
 ### Version History
 
@@ -15600,7 +15600,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> evpn vni \<vni-id\>
 
-VNI
+Configures the layer 3 VNI.
 
 ### Usage
 
@@ -15621,15 +15621,106 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `prefix-routes-only` |  Associated L3 VNI and corresponding route targets only with EVPN type-5 routes, not with EVPN type-2 routes.|
+| `prefix-routes-only` |  Configures the associated layer 3 VNI and corresponding route targets with EVPN type-5 routes only, not with EVPN type-2 routes.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default evpn vni 4001
+```
+
+## nv set vrf \<vrf-id\> evpn vni \<vni-id\> prefix-routes-only
+
+Configures the associated layer 3 VNI and corresponding route targets with EVPN type-5 routes only, not with EVPN type-2 routes.
+
+### Usage
+
+`nv set vrf <vrf-id> evpn vni <vni-id> prefix-routes-only [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<vni-id>` |  The VXLAN ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default evpn vni 4001 prefix-routes-only on
+```
+
+## nv set vrf \<vrf-id\> evpn enable
+
+Turns EVPN on or off for this VRF.
+
+### Usage
+
+`nv set vrf <vrf-id> evpn enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default evpn enable on
+```
+
+## nv set vrf \<vrf-id\> evpn vlan
+
+Configures the VLAN ID. You can specify `auto` or a value between 1 and 4094.
+
+### Usage
+
+`nv set vrf <vrf-id> evpn vlan [options] 1-4094|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default evpn vlan 20
+```
+
 ## nv set vrf \<vrf-id\> router
 
-A VRF
+Configures routing for a VRF.
 
 ### Usage
 
@@ -15649,11 +15740,11 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `rib` |   RIB Routes|
-| `bgp`  |  BGP VRF configuration.|
-| `static` |  Routes|
-| `pim` | PIM VRF configuration.|
-| `ospf` |  OSPF VRF configuration.|
+| `rib` |  Configures the routing  table for this VRF.|
+| `bgp`  |  Configures BGP in this VRF.|
+| `static` |  Configures static routes in this VRF.|
+| `pim` | Configures PIM in this VRF.|
+| `ospf` |  Configures OSPF in this VRF.|
 
 ### Version History
 
@@ -15661,7 +15752,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router rib \<afi\>
 
-Vrf aware Routing-table per address-family
+Configures the routing table for this VRF.
 
 ### Usage
 
@@ -15682,7 +15773,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `protocol`  | Configures the import protocols from RIB to FIB. |
+| `protocol`  | Configures the import protocols from the Routing Information Base (RIB) to the Forwarding Information Base (FIB). |
 
 ### Version History
 
@@ -15690,7 +15781,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router rib \<afi\> protocol \<import-protocol-id\>
 
-Import Protocols from where routes are known
+Configures the switch to import protocols from where routes are known.
 
 ### Usage
 
@@ -15706,21 +15797,51 @@ N/A
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<afi>`   |  The route address family. |
-| `<import-protocol-id>` |  Import protocol list. |
+| `<import-protocol-id>` |  The import protocol list. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `fib-filter` |  Route map to apply on the import prootcol's routes. |
+| `fib-filter` |  Configures a route map to apply on the routes of the import protocol. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router rib \<afi\> protocol \<import-protocol-id\> fib-filter (none|\<instance-name\>)
+
+Configures a route map to apply on the routes of the import protocol.
+
+### Usage
+
+`nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id> fib-filter [options] (none|<instance-name>`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<afi>`   |  The route address family. |
+| `<import-protocol-id>` |  The import protocol list. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router rib ipv4 protocol bgp fib-filter routemap1
+```
+
 ## nv set vrf \<vrf-id\> router bgp
 
-BGP VRF configuration.
+Configures BGP on the VRF.
 
 ### Usage
 
@@ -15740,20 +15861,20 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `address-family`  |   Address family specific configuration |
-| `path-selection`     | BGP path-selection configuration. |
-| `route-reflection`   | BGP route-reflection configuration. |
-| `peer-group`         | Peers |
-| `route-export`       | Controls for exporting ipv4 and ipv6 routes from this VRF |
-| `route-import`       | Controls for importing of ipv4 and ipv6 routes from this VRF |
-| `timers`             | timer values for all peers in this VRF |
-| `confederation`      | BGP Confederation options. |
-| `neighbor`           | Peers |
-| `enable`             | Turn the feature 'on' or 'off'. The default is 'off'. |
-| `autonomous-system`  | ASN for this VRF. If "auto", inherit from the global config. This is the default. |
-| `dynamic-peer-limit` | Maximum number of dynamic neighbors from whom we can accept a connection. Applicable only if 'dynamic- peering' subnet ranges are configured |
-| `rd`                 | BGP Route Distinguisher to use when this VRF routes have to be exported.|
-| `router-id`          | BGP router-id for this VRF. If "auto", inherit from the global config. This is the default. |
+| `address-family`     | Configures the address family in this VRF.|
+| `path-selection`     | Configures BGP path-selection in this VRF. |
+| `route-reflection`   | Configures BGP route-reflection in this VRF.|
+| `peer-group`         | Configures BGP peers  in this VRF.|
+| `route-export`       | Configures IPv4 and IPv6 route export from this VRF. |
+| `route-import`       | Configures IPv4 and IPv6 routes import from this VRF |
+| `timers`             | Configures timer values for all BGP peers in this VRF. |
+| `confederation`      | Configures BGP confederation options in this VRF. |
+| `neighbor`           | Configures BGP neighbors (peers) in this VRF. |
+| `enable`             | Turns BGP on or off in this VRF. |
+| `autonomous-system`  | Configures the ASN for this VRF. If "auto", inherit from the global config. |
+| `dynamic-peer-limit` | Configures the maximum number of dynamic neighbors from which you can accept a connection. Applicable only if you configure dynamic- peering subnet ranges.|
+| `rd`                 | Configures the BGP Route Distinguisher to use when routes in this VRF have to be exported.|
+| `router-id`          | Configures the BGP router ID for this VRF. If "auto", inherit from the global config. This is the default. |
 
 ### Version History
 
@@ -15761,7 +15882,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp address-family
 
-Address family specific configuration
+Configures the address family in this VRF.
 
 ### Usage
 
@@ -15781,9 +15902,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`ipv4-unicast` | IPv4 unicast address family|
-|`l2vpn-evpn`   | BGP VRF configuration. L2VPN EVPN address family|
-|`ipv6-unicast` | IPv6 unicast address family|
+|`ipv4-unicast` | Configures the IPv4 unicast address family.|
+|`l2vpn-evpn`   | Configures the layer 2 VPN EVPN address family.|
+|`ipv6-unicast` | Configures the IPv6 unicast address family.|
 
 ### Version History
 
@@ -15791,7 +15912,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast
 
-IPv4 unicast address family
+Configures the IPv4 unicast address family.
 
 ### Usage
 
@@ -15811,7 +15932,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `redistribute`     | Route redistribute |
+| `redistribute`     | Configures route redistribute |
 | `aggregate-route`  | IPv4 aggregate routes |
 | `network`          | IPv4 static networks. |
 | `route-import`     | Route import |
@@ -15827,7 +15948,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute
 
-Route redistribute
+Configures route redistribution, which allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
 
 ### Usage
 
@@ -15847,10 +15968,10 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `static`      | Route redistribution of ipv4 static routes |
-| `connected`   | Route redistribution of ipv4 connected routes |
-| `kernel`      | Route redistribution of ipv4 kernel routes|
-| `ospf`        | Route redistribution of ipv4 ospf routes|
+| `static`      | Configures route redistribution of IPv4 static routes. |
+| `connected`   | Configures route redistribution of IPv4 connected routes. |
+| `kernel`      | Configures route redistribution of IPv4 kernel routes. |
+| `ospf`        | Configures route redistribution of IPv4 OSPF routes. |
 
 ### Version History
 
@@ -15858,7 +15979,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute static
 
-Source route type.
+Configures route redistribution of IPv4 static routes.
 
 ### Usage
 
@@ -15878,7 +15999,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`      | Turn the feature 'on' or 'off'. The default is 'off'.|
+| `enable`      | Turns on or off. The default is 'off'.|
 | `metric`      | Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route. This is the default.\
 | `route-map`   | Route map to apply to the redistributed route.|
 

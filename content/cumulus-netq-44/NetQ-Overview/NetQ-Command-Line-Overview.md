@@ -549,7 +549,7 @@ netq show tca [tca_id <text-tca-id-anchor>] [json]
 
 #### Lifecycle Management Commands
 
-The `netq lcm` {{<link title="Manage Switches through Their Lifecycle" text="lifecycle management">}} commands help you efficiently manage the deployment of NVIDIA product software onto your network devices (servers, appliances, and switches).
+The `netq lcm` {{<link title="Lifecycle Management" text="lifecycle management">}} commands help you efficiently manage the deployment of NVIDIA product software onto your network devices (servers, appliances, and switches).
 
 LCM commands allow you to:
 

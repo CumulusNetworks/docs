@@ -36,6 +36,6 @@
 {{- end -}}
 {{ if not (.Scratch.Get "page_found") }}
     <!-- #ERROR -->
-    {{- /* errorf "broken link in %s" .Position  */ -}}
+     <{{ errorf "broken link in %s" .Position }}>
     <a href="{{(.Scratch.Get "title") | default (.Scratch.Get "url") }}.broken_link">UNABLE TO FIND LINK {{.Get 0}}</a>
 {{- end -}}

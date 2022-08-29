@@ -15314,17 +15314,21 @@ cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 direction ingress
 
 ## nv set system config
 
-Affect how config operations are performed.
+Sets how you want to perform configuration operations.
 
 ### Usage
 
 `nv set system config [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `apply`   | Affect how config apply operations are performed.|
+| `apply`   | Sets how to apply configurations.|
 
 ### Version History
 
@@ -15332,18 +15336,22 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system config apply
 
-Affect how config apply operations are performed.
+Sets how to apply configurations.
 
 ### Usage
 
 `nv set system config apply [options] [<attribute> ...]`
 
+### Default Setting
+
+N/A
+
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `ignore` |  Set of files to ignore during config apply operations.|
-| `overwrite` |   Determine which files can be overwritten during an apply. When "all", then all files can be overwritten. If the file was locally modified, then a warning will be issued and the client will have an opportunity to abort the apply before the local modifications are overwritten. This is the default. When "controlled", then only files that were most recently written by CUE can be overwritten. If the file was locally modified, a warning will be issued, but the file will not be overwritten. |
+| `ignore` |  Configures NVUE to ignore certain underlying Linux files when applying configuration changes.|
+| `overwrite` | Sets which files you can overwrite when you apply configuration changes. |
 
 ### Version History
 
@@ -15351,7 +15359,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set system config apply ignore \<ignore-id\>
 
-File to ignore during config apply operations.
+Configures NVUE to ignore certain underlying Linux files when applying configuration changes.
 
 ### Usage
 
@@ -15365,7 +15373,7 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<ignore-id>` |  Ignored file |
+| `<ignore-id>` |  The file to ignore |
 
 ### Version History
 
@@ -15374,20 +15382,74 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set system config apply ignore /etc/ptp4l.conf
+```
+
+## nv set system config apply overwrite
+
+Sets which files you can overwrite when applying configuration changes. You can specify `all` or `controlled`. Specify `all` to overwrite all files. If the file is locally modified, you see a warning and you can stop the apply before the local modifications are overwritten. Specify `controlled"` to overwrite only files that NVUE most recently changed. If the file is locally modified, you see a warning, but the file is not overwritten.
+
+### Usage
+
+`nv set system config apply overwrite [options] (all|controlled)`
+
+### Default Setting
+
+`all`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system config apply overwrite controlled
 ```
 
 ## nv set system hostname \<idn-hostname\>
 
-Static hostname for the switch
+Configures a static hostname for the switch.
 
 ### Usage
 
 `nv set system hostname [options] <idn-hostname>`
 
+### Default Setting
+
+N/A
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system hostname leaf01
+```
+
+## nv set system timezone
+
+Configures the time zone you want to use on the switch.
+
+### Usage
+
+`nv set system timezone [options]`
+
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system timezone US/Eastern
+```
 
 ## nv set vrf \<vrf-id\>
 

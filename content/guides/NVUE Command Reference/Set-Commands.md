@@ -14636,13 +14636,93 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set system global reserved vlan l3-vni-vlan end 4093
 ```
 
-## nv set system global system-mac (auto|<mac>)
+## nv set system global system-mac
+
+Configures the global system MAC address.
+
+### Usage
+
+`nv set system global system-mac [options] (auto|<mac>)`
+
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global system-mac 44:38:39:be:ef:aa
+```
 
 ## nv set system global anycast-mac (none|<mac>)
 
-## nv set system global anycast-id (1-65535|none)
+Configures the global anycast MAC address, which is unique for each active-active pair. In EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes advertise with the anycast MAC address as the router MAC address.
+
+### Usage
+
+`nv set system global anycast-mac [options] (auto|<mac>)`
+
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global anycast-mac 44:38:39:be:ef:aa
+```
+
+## nv set system global anycast-id
+
+Configures the anycast MAC ID, from which Cumulus Linux derives the MAC address. You can specify a number between 1 and 65535. Cumulus Linux adds the number to the MAC address 44:38:39:ff:00:00 in hex. For example, if you specify 225, the anycast MAC address is 44:38:39:ff:00:FF.
+
+### Usage
+
+`nv set system global anycast-id [options] (1-65535|none)`
+
+### Default Setting
+
+1
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global anycast-id 225
+```
 
 ## nv set system global fabric-mac (none|<mac>)
+
+Configures the fabric-wide VRR MAC address. You can specify a value in the reserved range between 00:00:5E:00:01:00 and 00:00:5E:00:01:FF. Be sure to use an address in this reserved range to prevent MAC address conflicts with other interfaces in the same bridged network.
+
+### Usage
+
+`nv set system global fabric-mac [options] (none|<mac>)`
+
+### Default Setting
+
+00:00:5E:00:01:01
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global fabric-mac 00:00:5E:00:01:FF
+```
 
 ## nv set system global fabric-id
 
@@ -14651,7 +14731,7 @@ The default VRR MAC address is 00:00:5E:00:01:01, which the switch derives from 
 
 ### Usage
 
-`nv set system global fabric-id [options] 1-2`55
+`nv set system global fabric-id [options] 1-255`
 
 ### Default Setting
 

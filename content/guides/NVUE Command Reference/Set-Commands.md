@@ -16846,7 +16846,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths compare-cluster-length
 
-Turns on compare cluster length. When `on` and IBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
+Turns on cluster length comparison. When `on` and IBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
 
 ### Usage
 
@@ -16874,7 +16874,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance
 
-Admin distances.
+Configures the BGP administrative distance so that the switch can choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
 
 ### Usage
 
@@ -16894,8 +16894,8 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|  `external`   | Distance to apply to routes from EBGP peers when installed into the RIB|
-|  `internal`   | Distance to apply to routes from IBGP peers when installed into the RIB|
+|  `external`   | Configures the distance to apply to routes from EBGP peers when installed into the RIB.|
+|  `internal`   | Configures the distance to apply to routes from IBGP peers when installed into the RIB.|
 
 ### Version History
 
@@ -16903,7 +16903,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance external
 
-Distance to apply to routes from EBGP peers when installed into the RIB
+Configures the distance to apply to routes from EBGP peers when installed into the RIB. You can specify a value between 1 and 255.
 
 ### Usage
 
@@ -16926,12 +16926,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast admin-distance external 150
 ```
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance internal
 
-Distance to apply to routes from IBGP peers when installed into the RIB
+Configures the distance to apply to routes from IBGP peers when installed into the RIB. You can specify a value between 1 and 255.
 
 ### Usage
 
@@ -16954,12 +16954,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast admin-distance internal 110
 ```
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export
 
-Route export
+Configures route export settings.
 
 ### Usage
 
@@ -16979,7 +16979,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `to-evpn` |   Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes) |
+| `to-evpn` |   Configures exporting routes from this VRF for this address-family into EVPN as type-5 routes. |
 
 ### Version History
 
@@ -16987,7 +16987,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn
 
-Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
+Configures prefix-based routing using EVPN type-5 routes. Type-5 routes (or prefix routes) primarily route to destinations outside of the data center fabric. EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
 
 ### Usage
 
@@ -17007,13 +17007,101 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable` |Turn the feature 'on' or 'off'. The default is 'off'.|
-| `default-route-origination` | Default route origination|
-| `route-map`  | Route-map to control the export of routes into EVPN|
+| `enable` | Turns prefix-based routing using EVPN type-5 routes on or off.|
+| `default-route-origination` | Configures default route origination. |
+| `route-map`  | Sets the route map to control the export of routes into EVPN. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn enable
+
+Turns prefix-based routing using EVPN type-5 routes on or off. When `on`, the switch can announce IP prefixes in the BGP RIB as EVPN type-5 routes.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast route-export to-evpn enable on
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn route-map
+
+Sets the route map to control the export of routes into EVPN. By default, when announcing IP prefixes in the BGP RIB as EVPN type-5 routes, the switch selects all routes in the BGP RIB to advertise as EVPN type-5 routes. You can use a route map to allow selective route advertisement from the BGP RIB.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn route-map [options] (none|<instance-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast route-export to-evpn route-map HIGH-PRIO
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn default-route-origination
+
+ Configures originating EVPN default type-5 routes. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-export to-evpn default-route-origination [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast route-export to-evpn default-route-origination on
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast rib-filter (none|<instance-name>)
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast enable (on|off)
 
 ## nv set vrf \<vrf-id\> router bgp address-family l2vpn-evpn
 

@@ -15933,14 +15933,14 @@ N/A
 | Atrribute |  Description   |
 | ---------  | -------------- |
 | `redistribute`     | Configures route redistribution. |
-| `aggregate-route`  | IPv4 aggregate routes |
-| `network`          | IPv4 static networks. |
-| `route-import`     | Route import |
-| `multipaths`       | Multipaths |
-| `admin-distance`   | Admin distances. |
-| `route-export`     | Route export |
-| `rib-filter`       | Specifies filtering policies to apply prior to route install into the zebra RI |
-| `enable`           | Turn the feature 'on' or 'off'. The default is 'on'.|
+| `aggregate-route`  | Configures IPv4 aggregate routes. |
+| `network`          | Configures IPv4 static networks. |
+| `route-import`     | Configures route import. |
+| `multipaths`       | Configures multipaths. |
+| `admin-distance`   | Configures admin distances. |
+| `route-export`     | Configures route export |
+| `rib-filter`       | Configures filtering policies to apply before installing the route into the zebra RIB.|
+| `enable`           | Turns BGP address-family ipv4-unicast on or off.|
 
 ### Version History
 
@@ -16041,7 +16041,7 @@ Configures the metric you want to use for the redistributed route. You can speci
 
 ### Usage
 
-`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static [options] (on|off)`
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute static metric [options] (0-4294967295|auto)`
 
 ### Default Setting
 
@@ -16155,7 +16155,7 @@ Configures the metric you want to use for the redistributed connected route. You
 
 ### Usage
 
-`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected [options] (on|off)`
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute connected metric [options] (0-4294967295|auto)`
 
 ### Default Setting
 
@@ -16207,7 +16207,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel
 
-Source route type.
+Configures redistribution of IPv4 kernel routes.
 
 ### Usage
 
@@ -16227,17 +16227,101 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`      | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `metric`      | Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route.  This is the default.|
-| `route-map`   | Route map to apply to the redistributed route.|
+| `enable`      | Turns redistribution of IPv4 kernel routes on or off. |
+| `metric`      | Configures the metric to use for the redistributed kernel route. |
+| `route-map`   | Sets the route map to apply to the redistributed kernelroute.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel enable
+
+Turns redistribution of kernel routes on or off.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute kernel enable on
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel metric
+
+Configures the metric you want to use for the redistributed kernel route. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route. 
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel [options] (0-4294967295|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute kernel metric 4294967295
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel route-map
+
+Sets the route map to apply to the redistributed route.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute kernel route-map [options] (none|<instance-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute kernel route-map routemap1
+```
+
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf
 
-Source route type.
+Configures redistribution of IPv4 OSPF routes.
 
 ### Usage
 
@@ -16257,17 +16341,101 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`      | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `metric`      | Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route. This is the default.|
-| `route-map`   | Route map to apply to the redistributed route.|
+| `enable`      | Turns IPv4 OSPF route distribution on or off. |
+| `metric`      | Configures the metric to use for the redistributed route. |
+| `route-map`   | Sets the route map to apply to the redistributed route.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf enable
+
+Turns redistribution of OSPF routes on or off.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute ospf enable on
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf metric
+
+Configures the metric you want to use for the redistributed ospf routes. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route. 
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf [options] (0-4294967295|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute ospf metric 4294967295
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf route-map
+
+Sets the route map to apply to the redistributed route.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast redistribute ospf route-map [options] (none|<instance-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute ospf route-map routemap1
+```
+
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\>
 
-An IPv4 aggregate route
+Configures route aggregation to minimize the size of the routing table and save bandwidth. You can aggregate a range of networks in your routing table into a single prefix.
 
 ### Usage
 
@@ -16282,23 +16450,110 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<aggregate-route-id>` |  Thw IPv4 address and route prefix in CIDR notation. |
+| `<aggregate-route-id>` |  The IPv4 address and route prefix in CIDR notation. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `as-set`                | If 'on', an AS_SET is generated for the aggregate.|
-| `route-map`             | Optional policy to modify attributes|
-| `summary-only`          | If 'on', suppress more-specific routes.|
+| `as-set`                | Turns generation of an AS_SET for the aggregate on or off.|
+| `route-map`             | Sets the optional policy to modify attributes.|
+| `summary-only`          | Turns on or off suppression of longer prefixes inside the aggregate address before sending updates.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> summary-only
+
+Ensures that BGP suppresses longer prefixes inside the aggregate address before sending updates.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> summary-only [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<aggregate-route-id>` |  The IPv4 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only on
+```
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> as-set
+
+Turns generation of an AS_SET for the aggregate on or off. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The AS_SET option summarizes the AS_PATH attributes of all the individual routes to help BGP detect and avoid loops.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> as-set [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<aggregate-route-id>` |  The IPv4 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 as-set on
+```
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> route-map 
+
+Applies a route map to the aggregate route.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> route-map [options] (none|<instance-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<aggregate-route-id>` |  The IPv4 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 route-map routemap1
+```
+
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast network \<static-network-id\>
 
-An IPv4 static network.
+Configures the prefixes to originate from a BGP node.
 
 ### Usage
 
@@ -16313,17 +16568,52 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<static-network-id>` |  IPv4 address and route prefix in CIDR notation |
+| `<static-network-id>` |  The IPv4 address and route prefix in CIDR notation. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `route-map` |  Optional policy to modify attributes |
+| `route-map` |  Applies a route map to the prefixes that originate from a BGP node. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+```
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> route-map
+
+Applies a route map to the prefixes that originate from a BGP node.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> route-map [options] (none|<instance-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<static-network-id>` |  The IPv4 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32 route-map HI-PRIO
+```
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import
 

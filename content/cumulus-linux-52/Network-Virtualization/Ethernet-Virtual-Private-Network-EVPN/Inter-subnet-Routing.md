@@ -385,8 +385,8 @@ To originate a default type-5 route in EVPN:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv4-unicast route-export to-evpn default-route-origination on
-cumulus@leaf01:~$ nv set vrf default router bgp address-family ipv6-unicast route-export to-evpn default-route-origination on
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn default-route-origination on
+cumulus@leaf01:~$ nv set vrf RED router bgp address-family ipv6-unicast route-export to-evpn default-route-origination on
 ```
 
 {{< /tab >}}

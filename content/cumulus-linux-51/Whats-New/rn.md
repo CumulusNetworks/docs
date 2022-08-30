@@ -15,6 +15,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="3180043"></a> [3180043](#3180043) <a name="3180043"></a> <br /> | The EVPN Multihoming ESI configuration command <code>nv set interface <interface-id> evpn multihoming segment identifier <es-identifier></code> does not work. | 5.1.0-5.2.0 | |
+| <a name="3176318"></a> [3176318](#3176318) <a name="3176318"></a> <br /> | The NVUE <code>nv set bridge domain br_default stp priority</code> command does not change the STP priority. | 5.1.0-5.2.0 | |
 | <a name="3174706"></a> [3174706](#3174706) <a name="3174706"></a> <br /> | When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped. | 5.1.0-5.2.0 | |
 | <a name="3172295"></a> [3172295](#3172295) <a name="3172295"></a> <br /> | In rare cases, changing configuration on an existing bond, VLAN, or VXLAN interface can result in the MTU of that interface being reset to 0. To work around this issue, run <code>ifreload -a</code> a second time to set the MTU back to the configured or default value. | 5.1.0 | 5.2.0|
 | <a name="3166746"></a> [3166746](#3166746) <a name="3166746"></a> <br /> | FRR does not install EVPN type-2 routes correctly after the specific operation that deletes and adds all non-uplink ports.  The routes show as rejected in the zebra RIB. To work around this problem, restart FRR with the <code>sudo systemctl restart frr</code> command. | 5.1.0-5.2.0 | |

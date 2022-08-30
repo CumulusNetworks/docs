@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3176318</td>
+<td>The NVUE {{nv set bridge domain br_default stp priority}} command does not change the STP priority.</td>
+<td>5.1.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3174706</td>
 <td>When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped.</td>
 <td>5.1.0-5.2.0</td>

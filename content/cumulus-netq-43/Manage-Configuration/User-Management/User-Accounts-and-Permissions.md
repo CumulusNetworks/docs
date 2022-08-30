@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 500
 toc: 2
 ---
-Sign in to NetQ as an admin to view and manager users' accounts. If you are a user and would like to set individual preferences, visit {{<link title="Set User Preferences" text="Set User Preferences">}}.
+Sign in to NetQ as an admin to view and manage users' accounts. If you are a user and would like to set individual preferences, visit {{<link title="Set User Preferences" text="Set User Preferences">}}.
 
 ## NetQ Management Workbench
 
@@ -67,15 +67,15 @@ To view the log, expand the <img src="https://icons.cumulusnetworks.com/01-Inter
 
 ### Manage Login Policies
 
-Administrators can configure a session expiration time and the number of times users can refresh before requiring users to login again to NetQ.
+Administrators can configure a session expiration time and the number of times users can refresh before requiring users to log in again to NetQ.
 
 To configure these login policies:
 
-1. On the Login Management card, select **Manage**
+1. On the Login Management card, select **Manage**.
 
-    {{<figure src="/images/netq/netq-mgmt-login-mgmt-config-modal-330.png" width="400" >}}
+2. Select how long a user can be logged in before logging in again.
 
-2. Select how long a user can be logged in before logging in again The default time for on-premises deployments is 6 hours and for cloud is 30 minutes.
+ {{<figure src="/images/netq/netq-mgmt-login-mgmt-config-modal-330.png" width="400" >}}
 
 3. Click **Update** to save the changes.
 

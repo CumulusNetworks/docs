@@ -16617,7 +16617,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import
 
-Route import
+Configures route leaking, where a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP.
 
 ### Usage
 
@@ -16637,7 +16637,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `from-vrf` |    Controls for VRF to VRF route leaking for this address-family |
+| `from-vrf` |   Configures from which VRF route leaking occurs for this address-family. |
 
 ### Version History
 
@@ -16645,7 +16645,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf
 
-Controls for VRF to VRF route leaking for this address-family
+Configures from which VRF route leaking occurs for the IPv4 ddress family.
 
 ### Usage
 
@@ -16665,9 +16665,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `list`        | List of VRFs the routes can be imported from |
-| `enable`      | Turn the feature 'on' or 'off'. The default is 'off'. |
-| `route-map`   | Route-map to control the import of routes into EVPN |
+| `list`        | Configures the VRF from which to import routes. |
+| `enable`      | Turns route leaking on or off.  |
+| `route-map`   | Applies a route map to control importing routes. |
 
 ### Version History
 
@@ -16675,7 +16675,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list \<leak-vrf-id\>
 
-A VRF
+Configures the VRF from which to import routes.You can specify multiple VRFs.
 
 ### Usage
 
@@ -16690,7 +16690,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<leak-vrf-id>`  |VRF |
+| `<leak-vrf-id>`  | The VRF from which you want to leak routes. |
 
 ### Version History
 
@@ -16699,12 +16699,40 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+```
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf enable (on|off)
+
+Turns route leaking on or off for the IPv4 ddress family.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf enable on
 ```
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf route-map \<instance-name\>
 
-Route-map to control the import of routes into EVPN
+Applies a route map to control importing routes. For example, to exclude certain prefixes from the import process, configure the prefixes in a route map.
 
 ### Usage
 
@@ -16727,12 +16755,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf route-map BLUEtoRED
 ```
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths
 
-Multipaths
+Configures the maximum number of equal-cost BGP paths allowed. The BGP multipath option is on by default and the maximum number of paths is 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs. You can set a value between 1 and 256. 1 disables the BGP multipath option.
 
 ### Usage
 
@@ -16740,7 +16768,7 @@ Multipaths
 
 ### Default Setting
 
-N/A
+64
 
 ### Identifiers
 
@@ -16752,9 +16780,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `compare-cluster-length` | If on, if IBGP paths have a CLUSTER_LIST, their lengths must be equal to be selected as multipaths |
-| `ebgp`  |  EBGP multipath |
-| `ibgp` | IBGP multipath |
+| `compare-cluster-length` | If on and IBGP paths have a cluster list, their lengths must be equal to be selected as multipaths. |
+| `ebgp`  |  Configures the number of equal-cost EBGP paths allowed. |
+| `ibgp` | Configures the number of equal-cost IBGP paths allowed. |
 
 ### Version History
 
@@ -16762,7 +16790,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths ebgp
 
-EBGP multipath
+Configures the number of equal-cost EBGP paths allowed.
 
 ### Usage
 
@@ -16785,12 +16813,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast multipaths ebgp 120
 ```
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths ibgp
 
-IBGP multipath
+Configures the number of equal-cost IBGP paths allowed.
 
 ### Usage
 
@@ -16813,7 +16841,35 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast multipaths ibgp 120
+```
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths compare-cluster-length
+
+Turns on compare cluster length. When `on` and IBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths compare-cluster-length [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast compare-cluster-length on
 ```
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance

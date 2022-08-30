@@ -262,8 +262,8 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <td></td>
 </tr>
 <tr>
-<td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
+<td>2899422</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -785,7 +785,7 @@ To workaround this issue, run the command against each VRF independently.</td>
 </tr>
 <tr>
 <td>2699378</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peer link bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a {{peer-ip-mismatch}}.  This behavior is seen when you use a {{clagd-peer-ip linklocal}} configuration.</td>
 <td>4.3.0</td>
 <td>4.4.0-4.4.4</td>
 </tr>
@@ -929,7 +929,7 @@ Fixed: 2.40.1-6+deb10u1</td>
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>

@@ -177,8 +177,8 @@ This example assumes no other static routes are present. Otherwise, you might ne
 <td></td>
 </tr>
 <tr>
-<td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
+<td>2899422</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -2694,8 +2694,8 @@ Fixed: 2.1.5-2+deb8u13</td>
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
+<td>2899422</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -3454,7 +3454,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -6080,7 +6080,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -8680,7 +8680,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -11687,7 +11687,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -14749,7 +14749,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -17575,7 +17575,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -20225,7 +20225,7 @@ Fixed: 0.4.1-1.2+deb8u1</td>
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>

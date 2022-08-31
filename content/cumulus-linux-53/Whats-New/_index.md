@@ -17,12 +17,27 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - {{<link url="Interface-Configuration-and-Management/#chassis-management" text="NVIDIA SN4800 (100G Spectrum-3)">}} generally available access
+- All NVIDIA Spectrum-2 and Spectrum-3 switches support 1G
 
 ### New Features and Enhancements
 
-- ADD LIST
+- Refactor port configuration
+- PTP shaper for Spectrum-1
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
-  -
+  - user management
+  - SNMP Server
+  - RoCE options
+  - support for switchd knobs
+  - add memory and CPU utilization (more info in nv show platform hardware output)
+  - BGP phase 1 (additional commands)
+  - routing phase 1 (additional route-map commands)
+  - FRR Zebra Phase 1
+  - WJH commands
+  - text obfuscation support
+  - support hyphens in more places
+  - improved performance
+  - add username info to Action command
+  - change commands from enable on/off to set enable/unset enable
   - New commands:
    {{< tabs "TabID34 ">}}
 {{< tab "show commands ">}}

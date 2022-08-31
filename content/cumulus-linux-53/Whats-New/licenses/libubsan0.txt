@@ -1,0 +1,1 @@
+libubsan0 has no copyright file

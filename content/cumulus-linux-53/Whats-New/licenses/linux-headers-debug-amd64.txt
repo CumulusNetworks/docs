@@ -1,0 +1,1 @@
+linux-headers-debug-amd64 has no copyright file

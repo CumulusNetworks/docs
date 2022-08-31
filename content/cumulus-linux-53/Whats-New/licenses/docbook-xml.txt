@@ -1,0 +1,41 @@
+The Debian package was created by Adam Di Carlo <aph@debian.org>, who
+is also the current maintainer.  No changes, except bug-fixes were made
+to the upstream version of these materials.  All Debian integration scripts
+and packages are under the GPL v2 or later, a copy of which can be found
+on Debian systems in '/usr/share/common-licenses/GPL'.
+
+The package is currently maintained as part of the Debian XML/SGML group.
+
+Download:
+
+  The original upstream materials may be downloaded from
+  <URL:http://www.oasis-open.org/docbook/xml/>. This process is
+  transparent via the `get-orig-source' target in debian/rules.
+
+Copyright for DocBook XML v4.x:
+
+  Copyright 1992-2006 HaL Computer Systems, Inc.,
+  O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
+  Corporation, Norman Walsh, Sun Microsystems, Inc., and the
+  Organization for the Advancement of Structured Information
+  Standards (OASIS).
+
+License and Warranty for DocBook XML v4.x:
+
+  Permission to use, copy, modify and distribute the DocBook XML DTD
+  and its accompanying documentation for any purpose and without fee
+  is hereby granted in perpetuity, provided that the above copyright
+  notice and this paragraph appear in all copies.  The copyright
+  holders make no representation about the suitability of the DTD for
+  any purpose.  It is provided "as is" without expressed or implied
+  warranty.
+
+  If you modify the DocBook DTD in any way, except for declaring and
+  referencing additional sets of general entities and declaring
+  additional notations, label your DTD as a variant of DocBook.  See
+  the maintenance documentation for more information.
+
+  Please direct all questions, bug reports, or suggestions for 
+  changes to the docbook@lists.oasis-open.org mailing list. For more
+  information, see http://www.oasis-open.org/docbook/.
+

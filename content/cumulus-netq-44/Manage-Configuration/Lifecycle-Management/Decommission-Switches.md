@@ -21,14 +21,14 @@ Decommissioning the switch or host removes information about the switch or host 
 
 To decommission a switch or host:
 
-1. On the given switch or host, stop and disable the NetQ Agent service.
+1. On the given switch or host, stop and disable the NetQ Agent service:
 
     ```
     cumulus@switch:~$ sudo systemctl stop netq-agent
     cumulus@switch:~$ sudo systemctl disable netq-agent
     ```
 
-2. On the NetQ On-premises or Cloud Appliance or VM, decommission the switch or host.
+2. On the NetQ On-premises or Cloud Appliance or VM, decommission the switch or host:
 
     ```
     cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>
@@ -40,19 +40,17 @@ You can decommission a switch or host from the NetQ UI using the Inventory | Dev
 
 1. Expand the Inventory | Devices card to list the devices in the current inventory:
 
-{{<figure src="/images/netq/inventory-devices-card.png" width="200">}}
+{{<figure src="/images/netq/inventory-devices-card.png" alt="inventory card displaying 12 hosts and 12 switches" width="200">}}
 
-2. Select the devices to decommission:
+2. Select the devices to decommission, then select the decommission icon above the table:
 
-{{<figure src="/images/netq/decommission-select.png" width="600">}}
+{{<figure src="/images/netq/decommission-select.png" alt="expanded inventory card with one device selected" width="600">}}
 
 3. Confirm the devices to decommission:
 
-{{<figure src="/images/netq/decommission-confirmation.png" width="600">}}
+{{<figure src="/images/netq/decommission-confirmation.png" alt="confirmation dialog with a list of devices" width="600">}}
 
-4. Wait for the decommission process to complete:
-
-{{<figure src="/images/netq/decommission-completed.png" width="600">}}
+4. Wait for the decommission process to complete, the select **Done**.
 
 
 ## Related Information

@@ -382,8 +382,8 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td></td>
 </tr>
 <tr>
-<td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
+<td>2899422</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -846,7 +846,7 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.15, 4.3.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>
@@ -2675,8 +2675,8 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td></td>
 </tr>
 <tr>
-<td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
+<td>2899422</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -3174,7 +3174,7 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -4923,8 +4923,8 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td></td>
 </tr>
 <tr>
-<td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
+<td>2899422</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -5422,7 +5422,7 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -7279,8 +7279,8 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td></td>
 </tr>
 <tr>
-<td>2899413</td>
-<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {{switchd}} to crash.</td>
+<td>2899422</td>
+<td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -8031,7 +8031,7 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 </tr>
 <tr>
 <td>2652003</td>
-<td>When 802.1x MAB and a parking VLAN are configured on an interface, hostapd might install a static fdb entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
+<td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
 <td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -9335,7 +9335,7 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 </tr>
 <tr>
 <td>2679936</td>
-<td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a "peer-ip-mismatch."  This behavior is seen when you use a "clagd-peer-ip linklocal" configuration.</td>
+<td>Following an event that causes the peer link bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a {{peer-ip-mismatch}}.  This behavior is seen when you use a {{clagd-peer-ip linklocal}} configuration.</td>
 <td>4.3.0</td>
 </tr>
 <tr>

@@ -24,9 +24,9 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 - Refactor port configuration
 - PTP shaper for Spectrum-1
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
-  - user management
-  - SNMP Server
-  - RoCE options
+  - user management commands
+  - SNMP server and SNMP trap commands
+  - RoCE commands
   - support for switchd knobs
   - add memory and CPU utilization (more info in nv show platform hardware output)
   - BGP phase 1 (additional commands)
@@ -34,7 +34,7 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
   - FRR Zebra Phase 1
   - WJH commands
   - text obfuscation support
-  - support hyphens in more places
+  - hyphen support in ??
   - improved performance
   - add username info to Action command
   - change commands from enable on/off to set enable/unset enable

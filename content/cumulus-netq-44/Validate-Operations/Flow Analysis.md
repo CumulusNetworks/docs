@@ -21,7 +21,7 @@ To start a new flow analysis, click the **Flow Analysis** menu and select **Crea
 
 {{<notice note>}}
 
-You must enable {{<link title="Manage Switches through Their Lifecycle" text="Lifecycle Management">}} (LCM) to use the flow analysis tool. If LCM is disabled, you will not see the flow analysis menu in the UI. LCM is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
+You must enable {{<link title="Lifecycle Management" text="Lifecycle Management">}} (LCM) to use the flow analysis tool. If LCM is disabled, you will not see the flow analysis menu in the UI. LCM is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
 
 {{</notice>}}
 

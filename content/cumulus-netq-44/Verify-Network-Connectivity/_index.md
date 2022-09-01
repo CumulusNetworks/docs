@@ -1351,7 +1351,7 @@ cumulus@switch:~$ netq show trace results f501f9b0-cca3-4fa1-a60d-fb6f495b7a0e
 
 ## Manage Scheduled Traces
 
-You can modify and remove scheduled traces at any time as described here. An administrator can also manage scheduled traces through the NetQ Management dashboard.
+You can modify and remove scheduled traces at any time as described here. An administrator can also manage scheduled traces through the NetQ management dashboard.
 ### Modify a Scheduled Trace
 
 After reviewing the results of a scheduled trace for a period of time, you might want to modify how often you run it or use the VRF or VLAN. You can do this using the NetQ UI.

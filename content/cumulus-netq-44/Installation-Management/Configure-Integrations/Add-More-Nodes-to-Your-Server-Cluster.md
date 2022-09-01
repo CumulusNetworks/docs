@@ -9,7 +9,7 @@ You can add additional nodes to your server cluster on-premises and cloud deploy
 
 {{<tabs "addworkerCLI">}}
 
-{{<tab "On-premise Deployments">}}
+{{<tab "On-premises Deployments">}}
 
 Run the following CLI command to add a new worker node for on-premises deployments:
 

@@ -50,7 +50,7 @@ You can decommission a switch or host from the NetQ UI using the Inventory | Dev
 
 {{<figure src="/images/netq/decommission-confirmation.png" alt="confirmation dialog with a list of devices" width="600">}}
 
-4. Wait for the decommission process to complete, the select **Done**.
+4. Wait for the decommission process to complete, then select **Done**.
 
 
 ## Related Information

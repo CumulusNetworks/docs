@@ -42,7 +42,7 @@ for the following protocols:
   - Routing protocols: BGP, OSPF
   - Network virtualization: EVPN, VXLAN
 
-The NetQ Agent is supported on Cumulus Linux 3.7.12 and later and SONiC 202012 and later.
+The NetQ Agent is supported on Cumulus Linux 3.7.12 and later and SONiC 202012 to 202106.
 
 ### Host Agents
 
@@ -81,8 +81,8 @@ The network services component monitors protocols and services operation individ
 
 NetQ data is available through several interfaces:
 
-  - NetQ CLI (command line interface)
-  - NetQ UI (graphical user interface)
+  - NetQ CLI (command-line interface)
+  - NetQ GUI (graphical user interface)
   - NetQ RESTful API (representational state transfer application programming interface)
 
 The CLI and UI query the RESTful API to present data. NetQ can integrate with event notification applications and third-party analytics tools.

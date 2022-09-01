@@ -5,7 +5,7 @@ weight: 650
 toc: 4
 ---
 
-On initial installation, the lifecycle management feature provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.7.12 or later, SONiC 202012 or later, and NetQ Agent 4.1.0 or later in your network. You assign network roles to switches and select switches for software installation and upgrade from this inventory listing.
+Upon installation, lifecycle management provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.7.12 or later, SONiC 202012 to 202106, and NetQ Agent 4.1.0 or later in your network. You can assign network roles to switches and select switches for software installation and upgrades from this inventory listing.
 
 ## View the LCM Switch Inventory
 
@@ -15,13 +15,11 @@ You can view the switch inventory from the NetQ UI and the NetQ CLI.
 
 {{<tab "NetQ UI" >}}
 
-A count of the switches NetQ was able to discover and the network OS versions that are running on those switches is available from the LCM dashboard.
+The Switches card displays the number of switches NetQ was able to discover and the network OS versions that are running on those switches:
 
 {{<figure src="/images/netq/lcm-switches-card-with-labels-320.png" width="400">}}
 
-To view a list of all switches known to lifecycle management, click **Manage** on the Switches card.
-
-{{<figure src="/images/netq/lcm-switch-mgmt-list-330.png" width="700">}}
+To view a list of all discovered switches, select **Manage** on the Switches card.
 
 Review the list:
 - Sort the list by any column; hover over column title and click to toggle between ascending and descending order
@@ -35,7 +33,7 @@ If you have more than one network OS version running on your switches, you can c
 
 {{<tab "NetQ CLI" >}}
 
-To view a list of all switches known to lifecycle management, run:
+To view a list of all switches discovered by lifecycle management, run:
 
 ```
 netq lcm show switches [version <text-cumulus-linux-version>] [json]
@@ -43,7 +41,7 @@ netq lcm show switches [version <text-cumulus-linux-version>] [json]
 <!-- vale off -->
 Use the `version` option to only show switches with a given network OS version, X.Y.Z.
 <!-- vale on -->
-This example shows all switches known by lifecycle management.
+The following example shows all switches discovered by lifecycle management:
 
 ```
 cumulus@switch:~$ netq lcm show switches
@@ -81,28 +79,18 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 
 This listing is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
-- Work with the list you have and add them later
 - Verify the missing switches are reachable using `ping`
 - Verify the NetQ Agent is fresh and version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** or run `netq show agents`)
 - {{<link title="Install NetQ Agents" text="Install NetQ on the switch">}}
-- {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} if needed
+- {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
 
 ## Role Management
 
-Four pre-defined switch roles are available based on the Clos architecture: Superspine, Spine, Leaf, and Exit. With this release, you cannot create your own roles.
+You can assign switches one of four roles: superspine, spine, leaf, and exit.
 
-Switch roles:
+Switch roles identify switch dependencies and determine the order in which switches are upgraded. The upgrade process begins with switches assigned the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally, switches with no role assigned. Upgrades for all switches with a given role must be successful before the upgrade process for switches with the closest dependent role can begin.
 
-- Identify switch dependencies and determine the order in which switches get upgraded
-- Determine when to stop the process if a failure occurs
-
-When you assign roles, the upgrade process begins with switches having the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally switches with no role assigned. The upgrade process for all switches with a given role must be successful before upgrading switches with the closest dependent role can begin.
-
-For example, you select a group of seven switches to upgrade. Three are spine switches and four are leaf switches. After you  successfully upgrade all the spine switches, then you upgrade all the leaf switches. If one of the spine switches fails to upgrade, NetQ upgrades the other two spine switches, but the upgrade process stops after that, leaving the leaf switches untouched, and the upgrade job fails.
-
-When only some of the selected switches have roles assigned in an upgrade job, NetQ upgrades the switches with roles first, then upgrades all switches with no roles assigned.
-
-While role assignment is optional, using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. And when you deploy MLAG pairs, switch roles avoid upgrade conflicts. For these reasons, NVIDIA highly recommends assigning roles to all your switches.
+Role assignment is optional, but recommended. Using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. Additionally, when you deploy MLAG pairs, switch roles avoid upgrade conflicts.
 
 ### Assign Switch Roles
 
@@ -112,13 +100,13 @@ You can assign roles to one or more switches using the NetQ UI or the NetQ CLI.
 
 {{<tab "NetQ UI" >}}
 
-1. Open the LCM dashboard.
+1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>. Under **Admin**, select **Manage Switches**.
 
 2. On the Switches card, click **Manage**.
 
 3. Select one switch or multiple switches to assign to the same role.
 
-4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
+4. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
 
 5. Select the role that applies to the selected switch(es).
 
@@ -131,8 +119,6 @@ You can assign roles to one or more switches using the NetQ UI or the NetQ CLI.
     {{<figure src="/images/netq/lcm-switches-listing-role-assigned-320.png" width="700">}}
 
 7. Continue selecting switches and assigning roles until most or all switches have roles assigned.
-
-A bonus of assigning roles to switches is that you can then filter the list of switches by their roles by clicking the appropriate tab.
 
 {{</tab>}}
 
@@ -162,19 +148,15 @@ netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 
 ### View Switch Roles
 
-You can view the roles assigned to the switches in the LCM inventory at any time.
+To view switch roles:
 
 {{<tabs "TabID151" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Open the LCM dashboard.
+1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>. Under **Admin**, select **Manage Switches**.
 
-2. On the Switches card, click **Manage**.
-
-    The assigned role appears in the **Role** column of the listing.
-
-    {{<figure src="/images/netq/lcm-switch-mgmt-list-300.png" width="700">}}
+2. On the Switches card, click **Manage**. The assigned role appears in the table's **Role** column.
 
 {{</tab>}}
 
@@ -225,8 +207,6 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 {{</tabs>}}
 
 ### Change the Role of a Switch
-
-If you accidentally assign an incorrect role to a switch, you can easily change it to the correct role.
 
 To change a switch role:
 

@@ -8,7 +8,7 @@ toc: 2
 Managing premises involves renaming existing premises or creating multiple premises.
 ## Configure Multiple Premises
 
-The NetQ Management dashboard lets you configure a single NetQ UI and CLI for monitoring data from multiple premises. This mean you do not need to log in to each premises to view the data.
+The NetQ management dashboard lets you configure a single NetQ UI and CLI for monitoring data from multiple premises. This mean you do not need to log in to each premises to view the data.
 
 There are two ways to implement a multi-site, on-premises deployment: either as a full deployment at each premises or as a full deployment at the primary site with a smaller deployment at secondary sites.
 

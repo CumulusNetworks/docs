@@ -17,13 +17,13 @@ To specify access credentials:
 
 {{<tab "NetQ UI">}}
 
-1. Open the LCM dashboard.
+1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>. Under **Admin**, select **Manage Switches**.
 
 2. Click the *Click here to add Switch access* link on the Access card.
 
     {{<figure src="/images/netq/lcm-access-card-no-auth-300.png" width="200">}}
 
-3. Select the authentication method you want to use; **SSH** or **Basic Authentication**. Basic authentication is selected by default.
+3. Select the authentication method you want to use; **SSH** or **Basic Authentication**.
 
 {{<tabs "TabID183">}}
 
@@ -37,13 +37,9 @@ The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinu
 
 {{</notice>}}
 
-1. Enter a username.
+1. Enter a username and password.
 
-2. Enter a password.
-
-    {{<img src="/images/netq/lcm-access-create-dialog-300.png" width="250">}}
-
-3. Click **Save**.
+2. Click **Save**.
 
     The Access card now indicates your credential configuration.
 
@@ -169,8 +165,6 @@ BASIC                           cumulus          **************   Tue Apr 28 19:
 
 ## Modify Switch Credentials
 
-You can modify your switch access credentials at any time. You can change between authentication methods or change values for either method.
-
 To change your access credentials:
 
 {{<tabs "TabID175" >}}
@@ -181,18 +175,11 @@ To change your access credentials:
 
 2. On the Access card, click the *Click here to change access mode* link in the center of the card.
 
-3. Select the authentication method you want to use; **SSH** or **Basic Authentication**. Basic authentication is the default selection.
+3. Select the authentication method you want to use: **SSH** or **Basic Authentication**.
 
 4. Based on your selection:
-
     - **Basic**: Enter a new username and/or password
     - **SSH**: Copy and paste a new SSH private key
-
-<div style="padding-left: 18px;">
-{{<notice tip>}}
-Refer to {{<link title="#Specify Switch Credentials" text="Specify Switch Credentials">}} for details.
-{{</notice>}}
-</div>
 
 5. Click **Save**.
 
@@ -212,7 +199,7 @@ To configure SSH authentication using a public/private key:
 You must have sudoer permission to properly configure switches when using the SSH Key method.
 {{</notice>}}
 
-1. If the new keys do not yet exist, create a pair of SSH private and public keys.
+1. If the new keys do not yet exist, create a pair of SSH private and public keys:
 
     ```
     ssh-keygen -t rsa -C "<USER>"
@@ -223,7 +210,7 @@ You must have sudoer permission to properly configure switches when using the SS
     - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where you generated the SSH key pair for each switch
 
-3. Add these new credentials to the switch.
+3. Add these new credentials to the switch:
 
     ```
     cumulus@switch:~$ netq lcm add credentials ssh-key PUBLIC_SSH_KEY

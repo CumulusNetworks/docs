@@ -18702,19 +18702,123 @@ N/A
 | ---------  | -------------- |
 | `aspath-ignore`   | Configures BGP to ignore the AS path when determining multipath routing.|
 | `bandwidth`       | Configures multipath route selection based on bandwidth.|
-| `generate-asset`  | Requires aspath-ignore to be on|
+| `generate-asset`  | Configures BGP to generate ??? Requires `aspath-ignore` to be on.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set vrf <vrf-id> router bgp path-selection multipath aspath-ignore (on|off)
+## nv set vrf \<vrf-id\> router bgp path-selection multipath aspath-ignore
 
-## nv set vrf <vrf-id> router bgp path-selection multipath generate-asset (on|off)
+Configures BGP to ignore the AS path when determining multipath routing.
 
-## nv set vrf <vrf-id> router bgp path-selection multipath bandwidth (bandwidth|all-paths|skip-missing|default-weight-for-missing|ignore)
+### Usage
 
-## nv set vrf <vrf-id> router bgp path-selection routerid-compare (on|off)
+`nv set vrf <vrf-id> router bgp path-selection multipath aspath-ignore [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection multipath aspath-ignore on
+```
+
+## nv set vrf \<vrf-id\> router bgp path-selection multipath generate-asset (on|off)
+
+?????
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp path-selection multipath generate-asset [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection multipath generate-asset on
+```
+
+## nv set vrf \<vrf-id\> router bgp path-selection multipath bandwidth
+
+Configures multipath route selection based on bandwidth. You can specify `bandwidth`, `all-paths`, `skip-missing`, `default-weight-for-missing`, or `ignore`.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp path-selection multipath bandwidth [options] (bandwidth|all-paths|skip-missing|default-weight-for-missing|ignore)`
+
+### Default Setting
+
+`ignore`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection multipath bandwidth all-paths
+```
+
+## nv set vrf \<vrf-id\> router bgp path-selection routerid-compare (on|off)
+
+Configures BGP to use the router ID to decide the best path when two identical routes are received from two different peers.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp path-selection routerid-compare [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection routerid-compare on
+```
 
 ## nv set vrf \<vrf-id\> router bgp route-reflection
 
@@ -18738,7 +18842,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`                  | Turn the feature 'on' or 'off'. The default is 'off'.|
+| `enable`                  | Turns  the feature 'on' or 'off'. The default is 'off'.|
 | `cluster-id`              | Cluster ID used during route reflection. Required when route-reflection is enabled.|
 | `outbound-policy`         | Allows outbound peer policy to modify the attributes  for reflected routes. Normally, reflected routes have to retain their original attributes.|
 | `reflect-between-clients` |  Allows routes to be reflected between clients.  Normally, routes are reflected only between clients and non-clients, with the clients of a route reflector expected to be fully meshed.|

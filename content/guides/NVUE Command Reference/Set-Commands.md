@@ -18422,7 +18422,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf \<vrf-id\> router bgp path-selection
 
-BGP path-selection configuration.
+Configures BGP best path selection.
 
 ### Usage
 
@@ -18442,7 +18442,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `aspath`            | BGP aspath path-selection config, applicable to this BGP instance |
+| `aspath`            | Configures BGP aspath path selection. |
 | `med`               | BGP med path-selection config, applicable to this BGP instance |
 | `multipath`         | BGP multipath path-selection config, applicable to this BGP instance routerid-compare  Path selection based on Router ID comparison. |
 
@@ -18452,7 +18452,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp path-selection aspath
 
-BGP aspath path-selection config, applicable to this BGP instance
+Configures how BGP selects the best path to an autonomous system (AS).
 
 ### Usage
 
@@ -18472,16 +18472,72 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `compare-confed`   | Select AS based on confederations. |
-| `compare-lengths`  | Select AS based on path length. |
+| `compare-confed`   | Configures BGP to select the AS based on confederations. |
+| `compare-lengths`  | Configures BGP to select the AS based on path length. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp path-selection aspath compare-lengths
+
+Configures BGP to select the AS based on path length.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp path-selection aspath compare-lengths [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp path-selection aspath compare-lengths on
+```
+
+## nv set vrf \<vrf-id\> router bgp path-selection aspath compare-confed (on|off)
+
+Configures BGP to select the AS based on confederations.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp path-selection aspath compare-confed [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp path-selection aspath compare-confed on
+```
+
 ## nv set vrf \<vrf-id\> router bgp path-selection med
 
-BGP med path-selection config, applicable to this BGP instance
+Configures BGP multi-exit discriminator (MED) path selection.
 
 ### Usage
 
@@ -18501,18 +18557,130 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `compare-always`        | Always compare the MED on routes, even when they were received from different neighbouring ASes.|
-| `compare-confed`        | MED configuration for route-selection based on confederations.|
-| `compare-deterministic` | Carry out route-selection in a way that produces deterministic answers locally.|
-| `missing-as-max`        | missing-as-max
+| `compare-always`        | Configures BGP to always compare the MED on routes even when received from different neighbouring autonomous systems.|
+| `compare-confed`        | Configures MED for route-selection based on confederations.|
+| `compare-deterministic` | Applies route selection in a way that produces deterministic answers locally.|
+| `missing-as-max`        | Configures MED missing-as-max. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp path-selection med compare-always
+
+Configures BGP to always compare the MED on routes even when received from different neighbouring autonomous systems. When enabled, BGP compares MEDs for all paths.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp path-selection med compare-always [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection med compare-always on
+```
+
+## nv set vrf \<vrf-id\> router bgp path-selection med compare-deterministic
+
+Applies route selection in a way that produces deterministic answers locally.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp path-selection med compare-deterministic [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection med compare-deterministic on
+```
+
+## nv set vrf \<vrf-id\> router bgp path-selection med compare-confed (on|off)
+
+Configures MED for route-selection based on confederations.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp path-selection med compare-confed [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection med compare-confed on
+```
+
+## nv set vrf \<vrf-id\> router bgp path-selection med missing-as-max (on|off)
+
+Configures MED missing-as-max.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp path-selection med missing-as-max [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection med missing-as-max on
+```
+
 ## nv set vrf \<vrf-id\> router bgp path-selection multipath
 
-BGP multipath path-selection config, applicable to this BGP instance
+Configures BGP multipath path selection.
 
 ### Usage
 
@@ -18532,13 +18700,21 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `aspath-ignore`   | Ignore AS path when determining multipath routing.|
-| `bandwidth`       | Perform multipath route selection based on bandwidth.|
+| `aspath-ignore`   | Configures BGP to ignore the AS path when determining multipath routing.|
+| `bandwidth`       | Configures multipath route selection based on bandwidth.|
 | `generate-asset`  | Requires aspath-ignore to be on|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+## nv set vrf <vrf-id> router bgp path-selection multipath aspath-ignore (on|off)
+
+## nv set vrf <vrf-id> router bgp path-selection multipath generate-asset (on|off)
+
+## nv set vrf <vrf-id> router bgp path-selection multipath bandwidth (bandwidth|all-paths|skip-missing|default-weight-for-missing|ignore)
+
+## nv set vrf <vrf-id> router bgp path-selection routerid-compare (on|off)
 
 ## nv set vrf \<vrf-id\> router bgp route-reflection
 

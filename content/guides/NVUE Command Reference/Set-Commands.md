@@ -18138,7 +18138,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel
 
-Source route type.
+Configures redistribution of IPv4 kernel routes.
 
 ### Usage
 
@@ -18158,17 +18158,101 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`      | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `metric`      | Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route. This is the default.|
-| `route-map`   | Route map to apply to the redistributed route.|
+| `enable`      | Turns redistribution of IPv4 kernel routes on or off.|
+| `metric`      | Configures the metric to use for the redistributed kernel route.|
+| `route-map`   | Applies a route map to the redistributed kernelroute. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel enable
+
+Turns redistribution of kernel routes on or off.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel enable[options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute kernel enable on
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel metric
+
+Configures the metric you want to use for the redistributed kernel route. You can specify auto or a value between 0 and 4294967295. If you specify auto, the switch choses an appropriate value based on the type of route.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel metric [options] (0-4294967295|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute kernel metric 4294967295
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel route-map
+
+Applies a route map to the redistributed route.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute kernel route-map [options] (none|<instance-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute kernel route-map routemap1
+```
+
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6
 
-Source route type.
+Configures redistribution of IPv6 OSPF routes.
 
 ### Usage
 
@@ -18188,13 +18272,153 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`      | Turn the feature 'on' or 'off'. The default is 'off'. |
-| `metric`      | Metric to use for the redistributed route. If "auto", an appropriate value will be chosen based on the type of route. This is the default. |
-| `route-map`   | Route map to apply to the redistributed route. |
+| `enable`      | Turns IPv6 OSPF route distribution on or off. |
+| `metric`      | Configures the metric to use for the redistributed route.|
+| `route-map`   | Applies a route map to the redistributed route. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 enable
+
+Turns redistribution of OSPF routes on or off.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute ospf enable on
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 metric (0-4294967295|auto)
+
+Configures the metric you want to use for the redistributed OSPF routes. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 metric [options] (0-4294967295|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute ospf metric 4294967295
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 route-map (none|<instance-name>)
+
+Applies a route map to the redistributed route.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast redistribute ospf6 route-map [options] (none|<instance-name>)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute ospf route-map routemap1
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast rib-filter
+
+Applies a route map on route updates from BGP to the Route Information Base (RIB). You can match on prefix, next hop, communities, and so on. You can set the metric and next hop only. Route maps do not affect the BGP internal RIB. Route maps work on multi-paths; however, BGP bases the metric setting on the best path only.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast rib-filter  [options] (none|<instance-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast rib-filter routemap1
+```
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast enable (on|off)
+
+Tuns the BGP IPv6 address family on or off.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp address-family ipv6-unicast enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
+```
 
 ## nv set vrf \<vrf-id\> router bgp path-selection
 

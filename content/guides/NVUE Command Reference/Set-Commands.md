@@ -18842,18 +18842,130 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`                  | Turns  the feature 'on' or 'off'. The default is 'off'.|
-| `cluster-id`              | Cluster ID used during route reflection. Required when route-reflection is enabled.|
-| `outbound-policy`         | Allows outbound peer policy to modify the attributes  for reflected routes. Normally, reflected routes have to retain their original attributes.|
-| `reflect-between-clients` |  Allows routes to be reflected between clients.  Normally, routes are reflected only between clients and non-clients, with the clients of a route reflector expected to be fully meshed.|
+| `enable`                  | Turns BGP route reflection on or off. |
+| `cluster-id`              | Configures the cluster ID to use during route reflection. This setting is required when route-reflection is on.|
+| `outbound-policy`         | Allows outbound peer policy to modify the attributes for reflected routes. Typically, reflected routes have to retain their original attributes.|
+| `reflect-between-clients` |  Allows routes to be reflected between clients.  Typically, routes are reflected only between clients and non-clients, with the clients of a route reflector expected to be fully meshed.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp route-reflection enable
+
+Turns BGP route reflection on or off.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp route-reflection enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection enable on
+```
+
+## nv set vrf \<vrf-id\> router bgp route-reflection cluster-id
+
+Configures the cluster ID to use during route reflection. This setting is required when route-reflection is on.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp route-reflection cluster-id [options] (0-4294967295|<ipv4>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection cluster-id 10
+```
+
+## nv set vrf \<vrf-id\> router bgp route-reflection reflect-between-clients
+
+Allows routes to be reflected between clients.  Typically, routes are reflected only between clients and non-clients, with the clients of a route reflector expected to be fully meshed.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp route-reflection reflect-between-clients [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection reflect-between-clients on
+```
+
+## nv set vrf \<vrf-id\> router bgp route-reflection outbound-policy (on|off)
+
+Allows outbound peer policy to modify the attributes for reflected routes. Typically, reflected routes have to retain their original attributes.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp route-reflection outbound-policy [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection outbound-policy on
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\>
 
-BGP global configuration.
+Configures global BGP settings.
 
 ### Usage
 
@@ -18868,7 +18980,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` |  The peer group name. |
 
 ### Attributes
 

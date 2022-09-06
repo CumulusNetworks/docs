@@ -25,7 +25,7 @@ LCM does not support Cumulus Linux upgrades when NVUE is enabled.
 
 If the NetQ Agent is already installed on the switches you'd like to upgrade, follow the steps below.
 
-If the NetQ Agent is *not* installed on the switches you'd like to upgrade, run a {{<link title="Upgrade Cumulus Linux Using LCM/#Upgrade-Cumulus-Linux-on-Switches-Without NetQ-Agent-Installed" text="switch discvery">}}, then proceed with the upgrade.
+If the NetQ Agent is *not* installed on the switches you'd like to upgrade, run a {{<link title="Upgrade Cumulus Linux Using LCM/#Upgrade-Cumulus-Linux-on-Switches-Without NetQ-Agent-Installed" text="switch discovery">}}, then proceed with the upgrade.
 
 ## Upgrade Cumulus Linux on Switches With NetQ Agent Installed
 ### Prepare for a Cumulus Linux Upgrade
@@ -225,8 +225,6 @@ After starting the upgrade you can monitor the progress of your upgrade job and 
 {{<tab "NetQ UI">}}
 
 You can track the progress of your upgrade job from the Preview page or the Upgrade History page of the NetQ UI.
-
-From the preview page, a green circle with rotating arrows appears each step as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the Upgrade History page. The job started most recently appears at the bottom, and the data refreshes every minute.
 
 {{<notice tip>}}
 

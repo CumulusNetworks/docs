@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3136898"></a> [3136898](#3136898) <a name="3136898"></a> <br /> | On switches running Cumulus Linux 5.2.0 and NetQ agent 4.2.0 or earlier, NetQ commands might fail and errors are logged to <code>/var/log/netq-agent.log</code>. To work around this issue, use NetQ agent version 4.3.0. | 4.2.0 | 4.3.0|
 | <a name="3085017"></a> [3085017](#3085017) <a name="3085017"></a> <br /> | When you hover over a device with WJH events in the flow analysis graph, the number of WJH packet drops in the event summary might display 0 drops. This is because the device did not detect any WJH events on the selected path. To view the WJH events, select different paths to display any WJH events for that device. | 4.2.0 | 4.3.0|
 | <a name="3053143"></a> [3053143](#3053143) <a name="3053143"></a> <br /> | The MLAG Session card might not show all MLAG events. | 4.2.0-4.3.0 | |
 | <a name="3047149"></a> [3047149](#3047149) <a name="3047149"></a> <br /> | When you reboot the OPTA, the NetQ validation summary might show an incorrect number of validations. This condition will resolve itself within an hour of the reboot. | 4.2.0 | 4.3.0|

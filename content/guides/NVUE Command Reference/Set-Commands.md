@@ -18822,7 +18822,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection routerid-compare on
 
 ## nv set vrf \<vrf-id\> router bgp route-reflection
 
-BGP route-reflection configuration.
+Configures BGP route reflection. When you configure an iBGP speaker as a route reflector, it can send iBGP learned routes to other iBGP peers.
 
 ### Usage
 
@@ -18909,7 +18909,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection cluster-id 10
 
 ## nv set vrf \<vrf-id\> router bgp route-reflection reflect-between-clients
 
-Allows routes to be reflected between clients.  Typically, routes are reflected only between clients and non-clients, with the clients of a route reflector expected to be fully meshed.
+Allows routes to be reflected between clients. Typically, routes are reflected only between clients and non-clients, with the clients of a route reflector expected to be fully meshed.
 
 ### Usage
 
@@ -18937,7 +18937,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection reflect-between-c
 
 ## nv set vrf \<vrf-id\> router bgp route-reflection outbound-policy (on|off)
 
-Allows outbound peer policy to modify the attributes for reflected routes. Typically, reflected routes have to retain their original attributes.
+Allows an outbound peer policy to modify the attributes for reflected routes. Typically, reflected routes have to retain their original attributes.
 
 ### Usage
 
@@ -18965,7 +18965,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection outbound-policy o
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\>
 
-Configures global BGP settings.
+Configures BGP peer groups settings.
 
 ### Usage
 
@@ -18986,20 +18986,20 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `bfd`                   | Specifies whether to track BGP peering sessions using this configuration via BFD.|
-| `ttl-security`          | RFC 5082|
-| `capabilities`          | Capabilities|
-| `graceful-restart`      | Graceful restart|
-| `local-as`              | Local AS feature|
-| `timers`                | Peer peer-timers|
-| `address-family`        | Address family specific configuration|
-| `description`           | neighbor description|
-| `enforce-first-as`      | If on, when BGP updates are received from EBGP peers  with this config, check that first AS matches peer's AS|
-| `multihop-ttl`          | Maximum hops allowed. When 'auto', the type of peer will determine the appropriate value (255 for iBGP and 1 for eBGP). This is the default.|
+| `bfd`                   | Configures BFD for BGP sessions for the peer group.|
+| `ttl-security`          | Configures the TTL security hop count for the peer group.|
+| `capabilities`          | Configures advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings.|
+| `graceful-restart`      | Configures graceful restart for the peer group.|
+| `local-as`              | Configures the local AS for the peer group.|
+| `timers`                | Configures timers for the peer group. |
+| `address-family`        | Configures address family settings for the peer group.|
+| `description`           | Configures a description for the peer group.|
+| `enforce-first-as`      | If on, when BGP updates are received from EBGP peers, check that first AS matches peer's AS|
+| `multihop-ttl`          | Configures the maximum number of hops allowed for the peer group. When 'auto', the type of peer will determine the appropriate value (255 for iBGP and 1 for eBGP). This is the default.|
 | `nexthop-connected-check` | If 'on', it disables the check that a non-multihop EBGP peer should be directly connected and only announce connected next hops|
-| `passive-mode`          | If enabled, do not initiate the BGP connection but wait for incoming connection|
-| `password`              | Password|
-| `remote-as`             | ASN for the BGP neighbor(s) using this configuration. If specified as 'external', it means an EBGP  configuration but the actual ASN is immaterial. If specified as 'internal', it means an IBGP configuration.|
+| `passive-mode`          | Turns passive mode on or off. If on, the peers in the peer group do not initiate the BGP connection but wait for  an incoming connection.|
+| `password`              | Configures the password for the peer group.|
+| `remote-as`             | Configures the remote ASN for the peer group. If you specify `external`, an EBGP configuration but the actual ASN is immaterial. If specified as 'internal', it means an IBGP configuration.|
 
 ### Version History
 
@@ -19007,7 +19007,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd
 
-Specifies whether to track BGP peering sessions using this configuration via BFD.
+Configures Bidirectional Forwarding Detection (BFD) for BGP sessions for the peer group. When you configure BFD in BGP, PTM registers and de-registers neighbors dynamically.
 
 ### Usage
 
@@ -19022,24 +19022,53 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` |  The peer group name. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`             | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `detect-multiplier`  | Detect multiplier|
-| `min-rx-interval`    | Minimum receive interval|
-| `min-tx-interval`    | Minimum transmit interval. The actual value used is the smaller of this or what the peer expects.|
+| `enable`             | Turns BFD on or off for the peer group.|
+| `detect-multiplier`  | Configures the BFD interval multiplier.|
+| `min-rx-interval`    | Configures the minimum interval between received BFD control packets.|
+| `min-tx-interval`    | Configures the minimum interval between sending BFD control packets.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd enable
+
+Turns BFD on or off for the BGP peer group.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> bfd enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` |  The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE bfd enable on
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd detect-multiplier
 
-Detect multiplier
+Configures the BFD interval multiplier. You can specify a value between 2 and 255.
 
 ### Usage
 
@@ -19054,7 +19083,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` |  The peer group name. |
 
 ### Version History
 
@@ -19063,12 +19092,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE bfd detect-multiplier 4
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group <peer-group-id> bfd min-rx-interval
 
-Minimum receive interval
+Configures the minimum interval between received BFD control packets. You can specify a value between 50 and 60000.
 
 ### Usage
 
@@ -19083,7 +19112,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name.|
 
 ### Version History
 
@@ -19092,12 +19121,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE bfd min-rx-interval 400
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd min-tx-interval
 
-Minimum transmit interval.  The actual value used is the smaller of this or what the peer expects.
+Configures the minimum interval between sending BFD control packets. You can specify a value between 50 and 60000.
 
 ### Usage
 
@@ -19112,7 +19141,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` |  The peer group name. |
 
 ### Version History
 
@@ -19121,12 +19150,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE bfd min-tx-interval 400
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security
 
-RFC 5082
+Configures the TTL security hop count for the peer group to prevent attacks against eBGP, such as denial of service (DoS) attacks. By default, BGP messages to eBGP neighbors have an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. An attacker can adjust the TTL of packets so that they look like they originate from a directly connected peer. The BGP TTL security hops option inverts the direction in which BGP counts the TTL. Instead of accepting only packets with a TTL of 1, Cumulus Linux accepts BGP messages with a TTL greater than or equal to 255 minus the specified hop count.
 
 ### Usage
 
@@ -19141,22 +19170,51 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` |  The peer group name. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`           | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `hops`             | Number of hops|
+| `enable`           | Turns BGP TTL security on or off.|
+| `hops`             | Configures the number of hops to deduct from a TTL greater than or equal to 255. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security enable
+
+Turns BGP TTL security on or off.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> ttl-security enable [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` |  The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE ttl-security enable on 
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security hops
 
-Number of hops
+Configures the number of hops to deduct from a TTL greater than or equal to 255 to prevent attacks against eBGP, such as denial of service (DoS) attacks.
 
 ### Usage
 
@@ -19171,7 +19229,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` |  The peer group name. |
 
 ### Version History
 
@@ -19180,12 +19238,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE ttl-security hops 200 
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities
 
-Capabilities
+Configures advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings.
 
 ### Usage
 
@@ -19200,22 +19258,80 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|  `extended-nexthop`  | If 'on', the extended-nexthop capability defined in RFC  5549 is advertised to peer(s) with this config. If 'auto', it will be 'on' for unnumbered peers and 'off' otherwise. This is the default.|
-|  `source-address`    | source IP address of the TCP connection, which is often  used as the BGP next hop for Updates|
+|  `extended-nexthop`  | Turns extended the nexthop capability defined in RFC  5549 on or off.|
+|  `source-address`    | Configures the source IP address of the TCP connection, which is often used as the BGP next hop for updates.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities extended-nexthop
+
+Turns the extended next hop capability defined in RFC 5549 on or off. The extended nexthop is advertised to peers in the peer group. If you specify `auto`, extended next hop is `on` for unnumbered peers and `off` otherwise.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities extended-nexthop [options] (on|off|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE capabilities extended-nexthop on 
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities source-address
+
+Configures the source IP address of the TCP connection, which is often used as the BGP next hop for updates.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> capabilities source-address [options] (<interface-name>|<ipv4>|<ipv6>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE capabilities source-address 10.10.10.1
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> graceful-restart
 
-BGP Graceful restart per neighbor configuration
+Configures graceful restart to minimize the negative effects that occur when BGP restarts. This option enables a BGP speaker to signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. It also enables a BGP speaker to continue to use routes announced by a peer even after the peer has gone down.
 
 ### Usage
 
@@ -19230,17 +19346,46 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `mode`     |   If 'auto', inherit from global. This is the default. If set to 'off', GR capability is not negotiated with this peer. If set to 'helper-only', only the Helper role is supported for this peer. This means that the GR capability will be negotiated without any address-families with this peer. If set to 'full', both the Helper role and the Restarter role are supported with this peer; the GR capability will be negotiated with the enabled address-families for which GR is also supported.|
+| `mode`     | Configures the graceful restart mode.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> graceful-restart mode 
+
+Configures the graceful restart mode. If you specify `auto`, the mode is inherited from the global setting. If you specify `off`, graceful restart is not negotiated with the peer group. If you specify `helper-only`, the switch is in a helper role only, where routes originated and advertised from a BGP peer in the peer group are not deleted. If you specify `full`, the switch is in both a helper and restarter role.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> graceful-restart mode [options] (auto|off|helper-only|full)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+## Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE graceful-restart mode helper-only
+```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as
 
@@ -19259,7 +19404,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19291,7 +19436,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -19320,7 +19465,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19352,7 +19497,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19383,7 +19528,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19425,7 +19570,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19456,7 +19601,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19487,7 +19632,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19518,7 +19663,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19549,7 +19694,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -19578,7 +19723,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19613,7 +19758,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19645,7 +19790,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -19674,7 +19819,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -19703,7 +19848,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19733,7 +19878,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19763,7 +19908,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19794,7 +19939,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -19823,7 +19968,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19855,7 +20000,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -19884,7 +20029,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -19916,7 +20061,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -19945,7 +20090,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -19968,7 +20113,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -19997,7 +20142,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20026,7 +20171,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20068,7 +20213,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20098,7 +20243,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20129,7 +20274,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20158,7 +20303,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20190,7 +20335,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20219,7 +20364,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20250,7 +20395,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20281,7 +20426,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20310,7 +20455,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20339,7 +20484,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20371,7 +20516,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20394,7 +20539,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20423,7 +20568,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20453,7 +20598,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20484,7 +20629,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20515,7 +20660,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20547,7 +20692,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20576,7 +20721,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20599,7 +20744,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20628,7 +20773,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20658,7 +20803,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20695,7 +20840,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20726,7 +20871,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20757,7 +20902,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20788,7 +20933,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20817,7 +20962,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20847,7 +20992,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20876,7 +21021,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Attributes
 
@@ -20906,7 +21051,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -20935,7 +21080,7 @@ N/A
 | Identifier |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<peer-group-id>` |       Domain |
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 

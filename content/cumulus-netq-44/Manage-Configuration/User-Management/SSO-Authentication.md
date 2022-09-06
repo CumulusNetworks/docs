@@ -7,9 +7,9 @@ toc: 3
 
 You can integrate your NetQ Cloud deployment with a Microsoft Azure Active Directory (AD) or Google Cloud authentication server to support single sign-on (SSO) to NetQ. NetQ supports integration with SAML (Security Assertion Markup Language), OAuth (Open Authorization), and multi-factor authentication (MFA). Only one SSO configuration can be configured at a time.
 
-You can create local user accounts with default access roles by enabling SSO. After enabling SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}} through the NetQ login screen or with a link provided by an admin.
+You can create local accounts with default access roles by enabling SSO. After enabling SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}} through the NetQ login screen or with a link provided by an admin.
 
-## Add SSO Configuration and User Accounts
+## Add SSO Configuration and Accounts
 
 To integrate your authentication server:
 
@@ -29,9 +29,9 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 {{<figure src="/images/netq/add-sso-openid.png" alt="sso configuration card with open id configuration" width="600">}}
 
-**SSO Organization** is typically a company's name. The name entered in this field will appear in the SSO signup URL.
+**SSO Organization** is typically a company's name or a department. The name entered in this field will appear in the SSO signup URL.
 
-**Access Type** is the role (either user or admin) automatically assigned to users when they initalize their account via SSO login.
+**Role** (either user or admin) is automatically assigned when the account is initalized via SSO login.
 
 **Name** is a unique name for the SSO configuration.
 
@@ -53,11 +53,9 @@ As indicated, copy the redirect URI (https://api.netq.nvidia.com/netq/auth/v1/ss
 
 Select **Close**. The card reflects the configuration:
 
-    {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-disabled-330.png" alt="sso config card displaying an open id configuration with a disabled status" width="200">}}
+     {{<figure src="/images/netq/sso-status-disabled.png" alt="sso config card displaying an Open ID configuration with a disabled status" width="200">}}
 
-To require users to log in using this SSO configuration, select **change** under the current Disabled status and confirm. The card reflects that SSO is enabled:
-
-    {{<figure src="/images/netq/netq-mgmt-sso-oauth-config-enabled-330.png" alt="sso configuration card with enabled status" width="200">}}
+To require users to log in using this SSO configuration, select **Change** under the "Disabled" status and confirm. The card updates to reflect that SSO is enabled.
 
 After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}. 
 
@@ -73,9 +71,9 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 {{<figure src="/images/netq/add-sso-saml.png" alt="sso configuration card with SAML configuration" width="600">}}
 
-**SSO Organization** is typically a company's name. The name entered in this field will appear in the SSO signup URL.
+**SSO Organization** is typically a company's name or a department. The name entered in this field will appear in the SSO signup URL.
 
-**Access Type** is the role (either user or admin) automatically assigned to users when they initalize their account via SSO login.
+**Role** (either user or admin) is automatically assigned when the account is initalized via SSO login.
 
 **Name** is a unique name for the SSO configuration.
 
@@ -85,7 +83,7 @@ You need several pieces of data from your Microsoft Azure or Google account and 
 
 **Service Provider Identifier**  is the name of the application server.
 
-**Email Claim Key** is an optional field. When left blank, the user email address is captured.
+**Email Claim Key** is an optional field. When left blank, the email address is captured.
 
 After you enter the fields, select **Add**.
 
@@ -97,13 +95,11 @@ Select **Test** to verify the configuration and ensure that you can log in. If i
 
 Select **Close**. The card reflects the configuration:
 
-    {{<figure src="/images/netq/netq-mgmt-sso-saml-config-disabled-330.png" alt="sso config card displaying a SAML configuration with a disabled status" width="200">}}
+    {{<figure src="/images/netq/sso-status-disabled.png" alt="sso config card displaying a SAML configuration with a disabled status" width="200">}}
 
-To require users to log in using this SSO configuration, select **change** under the current Disabled status and confirm. The card reflects that SSO is enabled.
+To require users to log in using this SSO configuration, select **Change** under the "Disabled" status and confirm. The card updates to reflect that SSO is enabled.
 
-Select **Submit** to enable the configuration. The SSO card reflects this new status:
-
-    {{<figure src="/images/netq/netq-mgmt-sso-saml-config-enabled-330.png" alt="" width="200">}}
+Select **Submit** to enable the configuration. The SSO card reflects the "enabled" status.
 
 After an admin has configured and enabled SSO, users logging in for the first time can {{<link title="Access the NetQ UI" text="sign up for SSO">}}.
 

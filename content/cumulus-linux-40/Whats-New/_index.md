@@ -17,7 +17,7 @@ Cumulus Linux 4.0 supports new platforms, provides bug fixes, and contains sever
 
 ### New Platforms
 
-- EdgeCore Minipack AS8000 (100G Tomahawk3)
+- EdgeCore Minipack AS8000 (100G Tomahawk3) - Cumulus Linux supports this switch in the SPINE network role only.
 - Mellanox SN3700C (100G Spectrum-2)
 - Mellanox SN3700 (200G Spectrum-2): Cumulus Linux 4.0 currently supports 100G speed
 - HPE SN2745M (100G Spectrum)

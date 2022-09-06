@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3192808</td>
+<td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3180043</td>
 <td>The EVPN Multihoming ESI configuration command {{nv set interface &lt;interface-id&gt; evpn multihoming segment identifier &lt;es-identifier&gt;}} does not work.</td>
 <td>5.1.0-5.2.0</td>
@@ -16,6 +22,12 @@
 <td>3177616</td>
 <td>In PTP unicast mode, a client does not failover to a new reference clock after a PTP grandmaster switchover event. To work around this issue, disable and reenable the ports connected to the PTP clients.</td>
 <td>5.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3176318</td>
+<td>The NVUE {{nv set bridge domain br_default stp priority}} command does not change the STP priority.</td>
+<td>5.1.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -38,7 +50,7 @@
 </tr>
 <tr>
 <td>3163810</td>
-<td>After disabling a line card and then re-enabling the same line card, the ports do not come back online.</td>
+<td>On the NVIDIA SN4800 switch, after disabling a line card and then re-enabling the same line card, the ports do not come back online.</td>
 <td>5.2.0</td>
 <td></td>
 </tr>
@@ -67,19 +79,6 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 <tr>
 <td>3148995</td>
 <td>On the Spectrum-1 switch,  PTP time distribution might deviate more than 20 nanoseconds from the master on interfaces with speeds of 50 Gbps and below.</td>
-<td>5.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3147782</td>
-<td>You cannot use NVUE to configure an SNMP view to include a subtree beginning with a period. For example:
-
-
-$ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
-Error: GET /nvue_v1/service/snmp-server/viewname/cumulusOnly/included?pointers=%5B%22%2Fparameters%22%2C+%22%2Fpatch%2FrequestBody%2Fcontent%2Fapplication~1json%2Fschema%22%2C+%22%2Fpatch%2Fparameters%22%2C+%22%2Fpatch%2Fresponses%2F200%2Flinks%22%5D responded with 404 NOT FOUND
-
-
-To work around this problem, reference the OID without the preceding period ( {{.}} ) in the command.</td>
 <td>5.2.0</td>
 <td></td>
 </tr>
@@ -191,7 +190,7 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
 <td>5.0.0-5.2.0</td>
-<td>4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>3076843</td>
@@ -625,6 +624,21 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>4.4.3, 5.1.0</td>
 </tr>
 <tr>
+<td>3083927</td>
+<td>On the NVIDIA SN4800 switch, EEPROM data is not available for certain line cards.</td>
+<td></td>
+</tr>
+<tr>
+<td>3082619</td>
+<td>On the NVIDIA SN4800 switch, when you try to retrieve the port speed, you see error messages on the terminal. </td>
+<td>5.1.0</td>
+</tr>
+<tr>
+<td>3082463</td>
+<td>On the NVIDIA SN4800 switch,  the LED on the line cards does not match the CLI command output.</td>
+<td>5.1.0</td>
+</tr>
+<tr>
 <td>3077736</td>
 <td>When you run the NVUE command to change the minimum interval between received BFD control packets or the minimum interval for sending BFD control packets, the configuration apply fails.
 
@@ -656,6 +670,11 @@ cumulus@switch:~$ nv config apply
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
 </td>
 <td>5.0.1-5.1.0</td>
+</tr>
+<tr>
+<td>3073694</td>
+<td>On the NVIDIA SN4800 switch, under certain conditions, the line cards do not become operational. </td>
+<td></td>
 </tr>
 <tr>
 <td>3066664</td>
@@ -765,6 +784,16 @@ This issue does not affect the operation of the switch.</td>
 <tr>
 <td>2949658</td>
 <td>After multiple power cycles, ports on the SN4800 chassis might fail to come up. Avoid power cycles or any stress testing.</td>
+<td></td>
+</tr>
+<tr>
+<td>2941563</td>
+<td>On the NVIDIA SN4800 switch, the {{l1-show}} command does not display the vendor identifier.</td>
+<td></td>
+</tr>
+<tr>
+<td>2940101</td>
+<td>On the NVIDIA SN4800 switch, the {{chassismgrctl}} command does not disable the line card.</td>
 <td></td>
 </tr>
 <tr>

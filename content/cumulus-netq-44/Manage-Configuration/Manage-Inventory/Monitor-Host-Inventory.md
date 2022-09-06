@@ -5,7 +5,7 @@ weight: 757
 toc: 4
 ---
 
-In the UI, you can view your inventory of hosts across the network or individually, including a host's operating system, ASIC, CPU model, disk, and memory information. This information can help wtih upgrades, compliance, and other planning tasks.
+In the UI, you can view your inventory of hosts across the network or individually, including a host's operating system, ASIC, CPU model, disk, and memory information. This information can help with upgrades, compliance, and other planning tasks.
 
 ## Access and View Host Inventory Data
 

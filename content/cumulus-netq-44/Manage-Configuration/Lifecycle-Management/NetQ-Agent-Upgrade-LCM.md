@@ -5,7 +5,7 @@ weight: 670
 toc: 4
 ---
 
-Lifecycle management (LCM) lets you upgrade to the latest agent version on switches with an existing NetQ Agent. You can upgrade the NetQ Agent or both the NetQ Agent and NetQ CLI simultaneously. You can run up to five jobs at the same time; however, a given switch can only appear in one running job at a time.
+Lifecycle management (LCM) lets you upgrade to the latest agent version on switches with an existing NetQ Agent. You can upgrade only the NetQ Agent or both the NetQ Agent and NetQ CLI simultaneously. You can run up to five jobs at the same time; however, a given switch can only appear in one running job at a time.
 
 {{<notice info>}}
 
@@ -23,7 +23,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in the workbench header.
 
-2. Add the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
+2. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
 
 3. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
@@ -37,7 +37,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 2. Configure {{<link title="Switch Credentials/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
-3. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux install images">}}.
+3. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
 {{</tab>}}
 
@@ -53,7 +53,7 @@ After you complete the preparation steps, upgrade the NetQ Agents:
 
 1. In the **Switch Management** tab, locate the Switches card and click **Manage**.
 
-2. Select the switches you want to upgrade. You can filter by role (on left) or sort by column heading to narrow down the list.
+2. Select the switches you want to upgrade. You can filter by role or sort by column heading to narrow down the list.
 
 3. Click {{<img src="/images/netq/netq-upgrade-icon-blk.png" height="18" width="18">}} (Upgrade NetQ) above the table and follow the steps in the UI.
 

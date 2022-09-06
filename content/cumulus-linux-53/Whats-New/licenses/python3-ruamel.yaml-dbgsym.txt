@@ -1,0 +1,1 @@
+python3-ruamel.yaml-dbgsym has no copyright file

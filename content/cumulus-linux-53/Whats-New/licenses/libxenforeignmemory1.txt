@@ -1,0 +1,307 @@
+This work was downloaded from
+
+    http://xenbits.xensource.com/
+
+Copyright:
+
+    Copyright (C) 1998-2005 Hewlett-Packard Co
+                  1999-2006 Silicon Graphics, Inc
+                  2001-2006 IBM Corporation
+                  2005-2006 XenSource Inc
+                  2006-2010 Citrix Systems Inc.
+    and many others
+
+License:
+
+    This package is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License version 2 as
+    published by the Free Software Foundation.
+
+    This package is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>
+
+On Debian systems, the complete text of the GNU General
+Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+The bundled qemu is:
+
+    Copyright (C) 2007 Alexander Graf
+                  2005,2007 Alex Beregszaszi
+                  2005-2008 Andrzej Zaborowski <balrog@zabor.org>
+                  2005-2007 Anthony Liguori <anthony@codemonkey.ws>
+                  2004 Antony T Curtis
+                  2007 Arastra, Inc.
+                  2007 Armin Kuster <akuster@kama-aina.net> or
+                  1999 AT&T Laboratories Cambridge
+                  2006,2007 Aurelien Jarno
+                  2007-2008 AXIS Communications AB
+                  2007-2008 Bull S.A.S.
+                  2006 Christian Limpach
+                  2008 Citrix Systems, Inc.
+                  2005-2008 CodeSourcery
+                  2007 Dan Aloni
+                  1995,1996 Danny Gasparovski
+                  2000-2003 David McCullough <davidm@snapgear.com>
+                  2008 Dmitry Baryshkov
+                  2007-2009 Edgar E. Iglesias, Axis Communications AB.
+                  1996-1999 Eduardo Horvath
+                  1998,2003-2008 Fabrice Bellard
+                  2005 Filip Navara
+                  2006 Frederick Reeve
+                  2009 Freescale Semiconductor
+                  1986-2007 Free Software Foundation, Inc.
+                  2004 Gianni Tedesco
+                  2008 Gleb Natapov
+                  2002 Greg Ungerer <gerg@snapgear.com>
+                  2007-2009 Hervé Poussineau
+                  2005,2007,2008 IBM Corporation
+                  2008 IBM Corporation
+                  2006 Igor Kovalenko
+                  2006 InnoTek Systemberatung GmbH
+                  1999-2008 Intel Corporation
+                  2009 Isaku Yamahata
+                  2003-2004 James Yonan
+                  2008 Jan Kiszka
+                  2006 Joachim Henke
+                  2003-2007 Jocelyn Mayer
+                  2004,2005 Johannes E. Schindelin
+                  2005 Julian Chesterfield and Andrew Warfield.
+                  2008 Kamala Narasimhan
+                  1998 Kenneth Albanowski <kjahds@kjahds.com>
+                  2008 Kevin Wolf
+                  2009 Kevin Wolf <kwolf@suse.de>
+                  2009 Laurent Vivier
+                  2007-2008 Lauro Ramos Venancio  <lauro.venancio@indt.org.br>
+                  2000,2001 Lineo, by David McCullough <davidm@lineo.com>
+                  1991,1992,1996 Linus Torvalds
+                  2006 Lonnie Mendez
+                  2008 Lubomir Rintel
+                  2004,2007 Magnus Damm
+                  2004 Makoto Suzuki (suzu)
+                  2002-2006  Marcel Holtmann <marcel@holtmann.org>
+                  2006 Marius Groeger (FPU operations)
+                  2007 Marko Kohtala
+                  2002-2003  Maxim Krasnyansky <maxk@qualcomm.com>
+                  2008 Max Krasnyansky
+                  2005,2008 Mike Kronenberg
+                  2007 MontaVista Software, Inc
+                  2007 Neocleus Corporation.
+                  2007-2008 Nokia Corporation
+                  2001 OKTET Ltd., St.-Petersburg, Russia
+                  2006-2008 Openedhand Ltd.
+                  2007-2008 OpenMoko, Inc.
+                  1996 Paul Mackerras.
+                  2008 Paul Mundt
+                  2006 Pierre d'Herbemont
+                  2000-2001 Qualcomm Incorporated
+                  2006-2008 Qumranet Technologies
+                  1997-1999,2001,2009 Red Hat, Inc.
+                  1988,1989,1990,1991,1992 Richard Outerbridge
+                  2007 Robert Reif
+                  1998-2004 Samuel Rydh (samuel@ibrium.se)
+                  2005 Samuel Tardieu
+                  2007,2008 Samuel Thibault
+                  2008 Semihalf
+                  2008 Shin-ichiro KAWASAKI
+                  2002 SnapGear, by Paul Dale <pauli@snapgear.com>
+                  2006-2007 Stefan Weil
+                  2008 Takashi YOSHII
+                  1999,2000 Tatsuyuki Satoh , MultiArcadeMachineEmurator development
+                  1993 Theodore Ts'o
+                  2006,2007 Thiemo Seufer
+                  2003 Thomas M. Ogrisegg <tom@fnord.at>
+                  2006 Thomas Sailer
+                  1998-2001,2003 Thomas Sailer (t.sailer@alumni.ethz.ch)
+                  2006,2007 Thorsten Zitterell
+                  2000-2007 Tibor "TS" Schütz
+                  2008 TJ <linux@tjworld.net>
+                  2002-2005 Vassili Karpov (malc)
+                  2005 Vassili Karpov (malc)
+                  2007 Vladimir Ananiev <vovan888@gmail.com>
+                  2006 XenSource
+
+The Debian packaging is:
+
+    Copyright (C) 2008-2010 Bastian Blank <waldi@debian.org>
+
+you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+The following parts are subject of a different license:
+* tools/firmware/vgabios
+* tools/libaio
+* tools/libxen
+* tools/xenstat/libxenstat
+* tools/xenstore
+
+    This package is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+
+    This package is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+On Debian systems, the complete text of the GNU Lesser General
+Public License can be found in "/usr/share/common-licenses/LGPL-2".
+
+Files in xen/include/public are subject to the following license:
+
+    Permission is hereby granted, free of charge, to any person obtaining a
+    copy of this software and associated documentation files (the "Software"),
+    to deal in the Software without restriction, including without limitation
+    the rights to use, copy, modify, merge, publish, distribute, sublicense,
+    and/or sell copies of the Software, and to permit persons to whom the
+    Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE SOFTWARE.
+
+Files in extra/mini-os are subject to the following license:
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    1. Redistributions of source code must retain the above copyright notice,
+       this list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in the
+       documentation and/or other materials provided with the distribution.
+
+    THIS SOFTWARE IS PROVIDED BY AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+    ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+    ARE DISCLAIMED.  IN NO EVENT SHALL AUTHOR OR CONTRIBUTORS BE LIABLE
+    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+    OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+    OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+    SUCH DAMAGE.
+
+Files in tools/vtpm_manager are subject to the following license:
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+      * Redistributions of source code must retain the above copyright
+        notice, this list of conditions and the following disclaimer.
+      * Redistributions in binary form must reproduce the above
+        copyright notice, this list of conditions and the following
+        disclaimer in the documentation and/or other materials provided
+        with the distribution.
+      * Neither the name of Intel Corporation nor the names of its
+        contributors may be used to endorse or promote products derived
+        from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+    COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+    (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+    SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+    HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+    STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+    OF THE POSSIBILITY OF SUCH DAMAGE.
+
+File tools/python/test.py is subject to the following license:
+
+    This software is Copyright (c) Zope Corporation (tm) and
+    Contributors. All rights reserved.
+
+    This license has been certified as open source. It has also
+    been designated as GPL compatible by the Free Software
+    Foundation (FSF).
+
+    Redistribution and use in source and binary forms, with or
+    without modification, are permitted provided that the
+    following conditions are met:
+
+    1. Redistributions in source code must retain the above
+       copyright notice, this list of conditions, and the following
+       disclaimer.
+
+    2. Redistributions in binary form must reproduce the above
+       copyright notice, this list of conditions, and the following
+       disclaimer in the documentation and/or other materials
+       provided with the distribution.
+
+    3. The name Zope Corporation (tm) must not be used to
+       endorse or promote products derived from this software
+       without prior written permission from Zope Corporation.
+
+    4. The right to distribute this software or to use it for
+       any purpose does not give you the right to use Servicemarks
+       (sm) or Trademarks (tm) of Zope Corporation. Use of them is
+       covered in a separate agreement (see
+       http://www.zope.com/Marks).
+
+    5. If any files are modified, you must cause the modified
+       files to carry prominent notices stating that you changed
+       the files and the date of any change.
+
+    Disclaimer
+      
+      THIS SOFTWARE IS PROVIDED BY ZOPE CORPORATION ``AS IS''
+      AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT
+      NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+      AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN
+      NO EVENT SHALL ZOPE CORPORATION OR ITS CONTRIBUTORS BE
+      LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+      EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+      LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+      LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+      HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+      CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+      OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+      SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+      DAMAGE.
+
+    This software consists of contributions made by Zope
+    Corporation and many individuals on behalf of Zope
+    Corporation.  Specific attributions are listed in the
+    accompanying credits file.
+
+Files in tools/python/logging are subject to the following license:
+
+    Copyright (C) 2001-2004 by Vinay Sajip. All Rights Reserved.
+
+    Permission to use, copy, modify, and distribute this software and its
+    documentation for any purpose and without fee is hereby granted,
+    provided that the above copyright notice appear in all copies and that
+    both that copyright notice and this permission notice appear in
+    supporting documentation, and that the name of Vinay Sajip
+    not be used in advertising or publicity pertaining to distribution
+    of the software without specific, written prior permission.
+
+    VINAY SAJIP DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING
+    ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL
+    VINAY SAJIP BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR
+    ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+    AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+    IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+

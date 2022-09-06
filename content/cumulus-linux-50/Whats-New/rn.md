@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3192808"></a> [3192808](#3192808) <a name="3192808"></a> <br />None | When the switch receives an LLDP frame from a Cisco router right after a <code>ptmd</code> restart, the <code>ptmd</code> service crashes. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
 | <a name="3157240"></a> [3157240](#3157240) <a name="3157240"></a> <br /> | When you try to query REDECN counters with the <code>mlxcmd</code> utility on a bond member port with the following commands, syslog reports an error<br /><pre>sudo /usr/lib/cumulus/mlxcmd roce counters --port <swp>sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port <swp></pre> | 4.4.4-5.1.0 | 5.2.0|
 | <a name="3141826"></a> [3141826](#3141826) <a name="3141826"></a> <br /> | A slow memory leak (~5KB over 24 hour period at a 60 second polling interval) might occur in SNMP when you walk the following system MIB objects (1.3.6.1.2.1)<br />1.3.6.1.2.1.47 --> Entity MIB<br />1.3.6.1.2.1.99 --> Entity Sensor MIB<br />1.3.6.1.2.1.23 --> rip2<br />1.3.6.1.2.1.2 --> interface/interfaces<br />1.3.6.1.2.1.31 --> ifMIB<br />1.3.6.1.2.1.4 --> IP<br />1.3.6.1.2.1.25 --> hostResource | 5.0.1-5.2.0 | |
 | <a name="3141818"></a> [3141818](#3141818) <a name="3141818"></a> <br /> | If there is extensive and continuous next-hop group (NHG) churn when routes keep moving from one NHG to another NHG repeatedly, <code>switchd</code> increases in memory allocation until memory is exhausted. Other processes might be affected as they try to acquire memory which is unavailable. | 5.0.1-5.1.0 | 5.2.0|
@@ -130,6 +131,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3192808"></a> [3192808](#3192808) <a name="3192808"></a> <br />None | When the switch receives an LLDP frame from a Cisco router right after a <code>ptmd</code> restart, the <code>ptmd</code> service crashes. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
 | <a name="3157240"></a> [3157240](#3157240) <a name="3157240"></a> <br /> | When you try to query REDECN counters with the <code>mlxcmd</code> utility on a bond member port with the following commands, syslog reports an error<br /><pre>sudo /usr/lib/cumulus/mlxcmd roce counters --port <swp>sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port <swp></pre> | 4.4.4-5.1.0 | 5.2.0|
 | <a name="3138746"></a> [3138746](#3138746) <a name="3138746"></a> <br /> | The switch duplicates DHCP packets that pass through the VTEP. | 4.3.0-5.1.0 | 5.2.0|
 | <a name="3138057"></a> [3138057](#3138057) <a name="3138057"></a> <br /> |  When the next-hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and <code>Route install failed</code> appears in <code>/var/log/frr/frr.log</code>. To work around this problem, restart FRR with the <code>sudo systemctl restart frr</code> command. | 4.4.0-4.4.4, 5.0.0-5.2.0 | |

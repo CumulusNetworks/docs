@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3192808</td>
+<td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3180043</td>
 <td>The EVPN Multihoming ESI configuration command {{nv set interface &lt;interface-id&gt; evpn multihoming segment identifier &lt;es-identifier&gt;}} does not work.</td>
 <td>5.1.0-5.2.0</td>

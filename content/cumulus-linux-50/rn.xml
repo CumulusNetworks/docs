@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3192808</td>
+<td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3157240</td>
 <td>When you try to query REDECN counters with the {{mlxcmd}} utility on a bond member port with the following commands, syslog reports an error.
 
@@ -758,6 +764,12 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3192808</td>
+<td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3157240</td>

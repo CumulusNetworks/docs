@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3192808"></a> [3192808](#3192808) <a name="3192808"></a> <br />None | When the switch receives an LLDP frame from a Cisco router right after a <code>ptmd</code> restart, the <code>ptmd</code> service crashes. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
 | <a name="3180043"></a> [3180043](#3180043) <a name="3180043"></a> <br /> | The EVPN Multihoming ESI configuration command <code>nv set interface <interface-id> evpn multihoming segment identifier <es-identifier></code> does not work. | 5.1.0-5.2.0 | |
 | <a name="3176318"></a> [3176318](#3176318) <a name="3176318"></a> <br /> | The NVUE <code>nv set bridge domain br_default stp priority</code> command does not change the STP priority. | 5.1.0-5.2.0 | |
 | <a name="3174706"></a> [3174706](#3174706) <a name="3174706"></a> <br /> | When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped. | 5.1.0-5.2.0 | |

@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3195390</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3192808</td>
+<td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -1249,13 +1261,6 @@ Fixed: 2.4.47+dfsg-3+deb10u5</td>
 <td>2556369</td>
 <td>If you use NCLU to configure an ACL for eth0, you can't designate it as an INPUT rule; the rule is automatically created as a FORWARD rule in the {{/etc/cumulus/acl/policy.d/50_nclu_acl.rules}} file.
 To work around this issue, manually create an ACL in the {{/etc/cumulus/acl/policy.d/}} file with "-A INPUT -i eth0".</td>
-<td>4.2.1-4.4.4</td>
-<td></td>
-</tr>
-<tr>
-<td>2556353</td>
-<td>You can enable and disable debugs from either exec mode or global configuration mode (config t) in vtysh. When disabling OSPF debugs from exec mode, the debug is disabled at runtime but left in the running configuration.
-To work around this issue, disable OSPF debugs from global configuration mode.</td>
 <td>4.2.1-4.4.4</td>
 <td></td>
 </tr>

@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3192808"></a> [3192808](#3192808) <a name="3192808"></a> <br />None | When the switch receives an LLDP frame from a Cisco router right after a <code>ptmd</code> restart, the <code>ptmd</code> service crashes. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
 | <a name="3180043"></a> [3180043](#3180043) <a name="3180043"></a> <br /> | The EVPN Multihoming ESI configuration command <code>nv set interface <interface-id> evpn multihoming segment identifier <es-identifier></code> does not work. | 5.1.0-5.2.0 | |
 | <a name="3177616"></a> [3177616](#3177616) <a name="3177616"></a> <br /> | In PTP unicast mode, a client does not failover to a new reference clock after a PTP grandmaster switchover event. To work around this issue, disable and reenable the ports connected to the PTP clients. | 5.2.0 | |
 | <a name="3176318"></a> [3176318](#3176318) <a name="3176318"></a> <br /> | The NVUE <code>nv set bridge domain br_default stp priority</code> command does not change the STP priority. | 5.1.0-5.2.0 | |

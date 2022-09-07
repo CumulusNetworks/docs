@@ -50,6 +50,10 @@ MLAG has these requirements:
 - The dual-connected devices (servers or switches) can use LACP (IEEE 802.3ad or 802.1ax) to form the {{<link url="Bonding-Link-Aggregation" text="bond">}}. In this case, the peer switches must also use LACP.
 - Cumulus Linux does not support MLAG with 802.1X; the switch cannot synchronize 802.1X authenticated MAC addresses over the peerlink.
 
+{{%notice note%}}
+The Edgecore Minipack AS8000 and Cumulus Express CX-11128 switches do not support MLAG.
+{{%/notice%}}
+
 ## Basic Configuration
 
 To configure MLAG, you need to create a bond that uses LACP on the dual-connected devices and configure the interfaces (including bonds, VLANs, bridges, and peer links) on each peer switch.

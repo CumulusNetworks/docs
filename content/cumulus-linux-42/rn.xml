@@ -786,13 +786,6 @@ To work around this issue, manually create an ACL in the {{/etc/cumulus/acl/poli
 <td></td>
 </tr>
 <tr>
-<td>2556353</td>
-<td>You can enable and disable debugs from either exec mode or global configuration mode (config t) in vtysh. When disabling OSPF debugs from exec mode, the debug is disabled at runtime but left in the running configuration.
-To work around this issue, disable OSPF debugs from global configuration mode.</td>
-<td>4.2.1-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>2556279</td>
 <td>CVE-2021-3156: A serious heap-based buffer overflow has been discovered in sudo that is exploitable by any local user. It has been given the name Baron Samedit by its discoverer. The bug can be leveraged to elevate privileges to root, even if the user is not listed in the sudoers file. User authentication is not required to exploit the bug.
 Vulnerable: &lt;= 1.8.27-1+deb10u2

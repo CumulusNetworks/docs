@@ -9,7 +9,7 @@
 <tr>
 <td>3195390</td>
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -356,8 +356,8 @@ To work around this issue, create a snippet in yaml format and add the configura
 <tr>
 <td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.4</td>
-<td>3.7.16</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2923737</td>
@@ -533,6 +533,29 @@ Instructions for using {{chrony}} are here : https://docs.nvidia.com/networking-
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
+</tr>
+<tr>
+<td>2821869</td>
+<td>The {{cl-route-check --layer3}} command fails with a memory error. For example:
+
+cumulus@switch:~$ sudo cl-route-check --layer3
+Traceback (most recent call last):
+ File "/usr/cumulus/bin/cl-route-check", line 1270, in &lt;module&gt;
+  routing.collect_data()
+ File "/usr/cumulus/bin/cl-route-check", line 528, in collect_data
+  self.collect_data_bgp_ipv4()
+ File "/usr/cumulus/bin/cl-route-check", line 711, in collect_data_bgp_ipv4
+  bgp_ipv4 = json.loads(output)
+ File "/usr/lib/python2.7/json/__init__.py", line 338, in loads
+  return _default_decoder.decode(s)
+ File "/usr/lib/python2.7/json/decoder.py", line 366, in decode
+  obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+ File "/usr/lib/python2.7/json/decoder.py", line 382, in raw_decode
+  obj, end = self.scan_once(s, idx)
+MemoryError
+</td>
+<td>3.7.15-4.4.4</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2820565</td>
@@ -725,6 +748,18 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <td>5.0.0-5.2.0</td>
 </tr>
 <tr>
+<td>2728207</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>2728206</td>
+<td>CVE-2021-3570: A flaw was found in the ptp4l program of the linuxptp package. A missing length check when forwarding a PTP message between ports allows a remote attacker to cause an information leak, crash, or potentially remote code execution. The highest threat from this vulnerability is to data confidentiality and integrity as well as system availability. </td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2728119</td>
 <td>When VRF devices are deleted and reconfigured (for example, during a networking service restart), dynamic BGP neighbors might fail to reestablish. 
 To work around this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
@@ -859,8 +894,8 @@ This is an information leak in algorithm negotiation that can allow man-in-the-m
 <tr>
 <td>2652003</td>
 <td>When 802.1x MAB and a parking VLAN are configured on an interface, {{hostapd}} might install a static FDB entry if the interface is down.  To work around this issue, delete 802.1x from the interface with the {{net del interface &lt;interface&gt; dot1x}} command, then add back the 802.1x configuration.</td>
-<td>3.7.10-3.7.15, 4.3.0-4.4.4</td>
-<td>3.7.16</td>
+<td>3.7.10-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2639303</td>
@@ -2214,7 +2249,7 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <tr>
 <td>3195390</td>
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4477,7 +4512,7 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <tr>
 <td>3195390</td>
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6708,6 +6743,11 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.0.0-4.4.1, 5.0.0-5.2.0</td>
 </tr>
 <tr>
+<td>2879712</td>
+<td>On CumulusLinux 4.4.0, attempting to install any tacplus or radius package from the CumulusLinux-4.4-latest distribution on apt.cumulusnetworks.com will fail due to incorrect package metadata (specifically a SHA512 checksum that will cause a hash sum mismatch) in the preinstalled cumulus-local-apt-archive package.  The workaround is to remove /var/lib/apt/lists/_var_lib_cumulus_cumulus-local-apt-archive_dists_cumulus-local-apt-archive_main_binary-amd64_Packages or uninstall the cumulus-local-apt-archive package on the affected switch.</td>
+<td>4.4.0-4.4.1</td>
+</tr>
+<tr>
 <td>2877796</td>
 <td>CVE-2021-43527: The NSS package is vulnerable to a heap overflow when verifying DSA/RSA-PSS DER-encoded signatures.
 Vulnerable: &lt;= 3.42.1-1+deb10u3
@@ -6907,7 +6947,7 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <tr>
 <td>3195390</td>
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -7341,7 +7381,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2879712</td>
-<td>TACACS+ and RADIUS package installation from the CumulusLinux-4.4-latest distribution on apt.cumulusnetworks.com fails because package metadata in the preinstalled {{cumulus-local-apt-archive}} package is incorrect.  The SHA512 checksum causes a hash sum mismatch.</td>
+<td>On CumulusLinux 4.4.0, attempting to install any tacplus or radius package from the CumulusLinux-4.4-latest distribution on apt.cumulusnetworks.com will fail due to incorrect package metadata (specifically a SHA512 checksum that will cause a hash sum mismatch) in the preinstalled cumulus-local-apt-archive package.  The workaround is to remove /var/lib/apt/lists/_var_lib_cumulus_cumulus-local-apt-archive_dists_cumulus-local-apt-archive_main_binary-amd64_Packages or uninstall the cumulus-local-apt-archive package on the affected switch.</td>
 <td>4.4.0-4.4.1</td>
 <td>4.4.2-4.4.4</td>
 </tr>

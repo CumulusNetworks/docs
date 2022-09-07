@@ -5,7 +5,7 @@ weight: 670
 toc: 4
 ---
 
-Lifecycle management (LCM) lets you upgrade to the latest agent version on switches with an existing NetQ Agent. You can upgrade only the NetQ Agent or both the NetQ Agent and NetQ CLI simultaneously. You can run up to five jobs at the same time; however, a given switch can only appear in one running job at a time.
+Lifecycle management lets you upgrade to the latest agent version on switches with an existing NetQ Agent. You can upgrade only the NetQ Agent or both the NetQ Agent and NetQ CLI simultaneously. You can run up to five jobs at the same time; however, a given switch can only appear in one running job at a time.
 
 {{<notice info>}}
 
@@ -125,7 +125,9 @@ To view the progress of upgrade jobs using the CLI, run:
 ```
 netq lcm show upgrade-jobs netq-image [json]
 netq lcm show status <text-lcm-job-id> [json]
+
 ```
+{{<expand "Example show upgrade-jobs command">}}
 
 You can view the progress of one upgrade job at a time. This requires the job identifier.
 
@@ -211,7 +213,7 @@ leaf02            4.2.1       4.1.0         3.2.1         ['NetQ default config'
                                                                                                                          please try a
                                                                                                                          gain."]
 ```
-
+{{</expand>}}
 ### Reasons for NetQ Agent Upgrade Failure
 
 Upgrades can fail at any stage of the process. The following table lists common reasons for upgrade failures:

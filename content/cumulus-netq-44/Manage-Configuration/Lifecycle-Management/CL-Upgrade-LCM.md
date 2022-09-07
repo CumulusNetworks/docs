@@ -46,7 +46,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 5. (Optional) Assign a {{<link  title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch.
 
-Your LCM dashboard should look similar to this after you have completed these steps:
+Your LCM dashboard should look similar to this:
 
 {{<figure src="/images/netq/lcm-netq-upgrade-dashboard-post-prep-320.png" alt="LCM dashboard displaying uploaded Cumulus Linux images with a specified default version" width="700">}}
 
@@ -91,10 +91,12 @@ After you complete the preparation steps, upgrade Cumulus Linux:
 
 6. Verify that the switches you selected are included, and that they have the correct IP address and roles assigned.
 
-    - If you accidentally included a switch that you do NOT want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} to remove it from the upgrade job.
-    - If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}}, then select a role for that switch from the dropdown. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} to discard a role change.
+If you accidentally included a switch that you do NOT want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} to remove it from the upgrade job.
+   
 
-        {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-modify-switch-320.png" width="500">}}
+        {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-modify-switch-320.png" alt="switch assigned a spine roll with dropdown to change role" width="500">}}
+
+If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}}, then select a role for that switch from the dropdown. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} to discard a role change:
 
         {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-edit-roles-320.png" width="150">}}
 
@@ -120,7 +122,7 @@ After you complete the preparation steps, upgrade Cumulus Linux:
 
 12. Click **Next**.
 
-13. After the pre-checks have completed successfully, click **Preview**. If there are failures, refer to {{<link url="#Precheck Failures" text="Precheck Failures">}}.
+13. After the pre-checks have completed successfully, click **Preview**. If there are failures, refer to {{<link url="#Pre-check Failures" text="Pre-check Failures">}}.
 
     These checks verify the following:
 
@@ -182,13 +184,11 @@ cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 ne
 
 {{</tabs>}}
 
-### Precheck Failures
+### Pre-check Failures
 
 If one or more of the pre-checks fail, resolve the related issue and start the upgrade again. In the NetQ UI these failures appear on the Upgrade Preview page. In the NetQ CLI, it appears in the form of error messages in the `netq lcm show upgrade-jobs cl-image` command output.
 
-Expand the following dropdown to view common failures, their causes and corrective actions.
-
-{{<expand "Precheck Failure Messages">}}
+{{<expand "Pre-check failure messages">}}
 
 <!-- vale off -->
 | Pre-check | Message | Type | Description | Corrective Action |
@@ -362,13 +362,11 @@ To see only Cumulus Linux upgrade jobs, run `netq lcm show status cl-image job-I
 
 {{</tabs>}}
 
-### Postcheck Failures
+### Post-check Failures
 
 A successful upgrade can still have post-check warnings. For example, you updated the OS, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages appear in the Post-Upgrade Tasks section of the preview. Click the warning category to view the detailed messages.
 
-Expand the following dropdown to view common failures, their causes and corrective actions.
-
-{{< expand "Post-check Failure Messages"  >}}
+{{< expand "Post-check failure messages"  >}}
 
 <table>
 <colgroup>

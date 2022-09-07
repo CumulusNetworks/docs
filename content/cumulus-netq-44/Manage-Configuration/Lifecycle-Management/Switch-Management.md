@@ -5,19 +5,17 @@ weight: 650
 toc: 4
 ---
 
-Upon installation, lifecycle management provides an inventory of switches that have been automatically discovered by NetQ and are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.7.12 or later, SONiC 202012 to 202106, and NetQ Agent 4.1.0 or later in your network. You can assign network roles to switches and select switches for software installation and upgrades from this inventory listing.
+Upon installation, lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.7.12 or later, SONiC 202012 to 202106, and NetQ Agent 4.1.0 or later in your network. You can assign network roles to switches and select switches for software installation and upgrades from this inventory listing.
 
 ## View the LCM Switch Inventory
-
-You can view the switch inventory from the NetQ UI and the NetQ CLI.
 
 {{<tabs "TabID13" >}}
 
 {{<tab "NetQ UI" >}}
 
-The Switches card displays the number of switches NetQ was able to discover and the network OS versions that are running on those switches:
+The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
 
-{{<figure src="/images/netq/lcm-switches-card-with-labels-320.png" width="400">}}
+{{<figure src="/images/netq/lcm-switches-card-with-labels-320.png" alt="switches card displaying 12 discovered switches with Cumulus Linux version 4.1.0" width="400">}}
 
 To view a list of all discovered switches, select **Manage** on the Switches card.
 
@@ -77,7 +75,7 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 
 {{</tabs>}}
 
-This listing is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
+This list is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
 - Verify the missing switches are reachable using `ping`
 - Verify the NetQ Agent is fresh and version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** or run `netq show agents`)
@@ -90,11 +88,9 @@ You can assign switches one of four roles: superspine, spine, leaf, and exit.
 
 Switch roles identify switch dependencies and determine the order in which switches are upgraded. The upgrade process begins with switches assigned the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally, switches with no role assigned. Upgrades for all switches with a given role must be successful before the upgrade process for switches with the closest dependent role can begin.
 
-Role assignment is optional, but recommended. Using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. Additionally, when you deploy MLAG pairs, switch roles avoid upgrade conflicts.
+Role assignment is optional, but recommended. Using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. Additionally, when you deploy MLAG pairs, assigned roles avoid upgrade conflicts.
 
-### Assign Switch Roles
-
-You can assign roles to one or more switches using the NetQ UI or the NetQ CLI.
+### Assign Roles to Switches
 
 {{<tabs "TabID99" >}}
 
@@ -108,15 +104,15 @@ You can assign roles to one or more switches using the NetQ UI or the NetQ CLI.
 
 4. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
 
-5. Select the role that applies to the selected switch(es).
+5. Select the role that applies to the selected switch(es):
 
-    {{<figure src="/images/netq/lcm-role-assign-role-selection-320.png" width="300">}}
+    {{<figure src="/images/netq/lcm-role-assign-role-selection-320.png" alt="dialog showing role options including superspine, leaf, spine, and exit" width="300">}}
 
 6. Click **Assign**.
 
     Note that the **Role** column is updated with the role assigned to the selected switch(es). To return to the full list of switches, click **All**.
 
-    {{<figure src="/images/netq/lcm-switches-listing-role-assigned-320.png" width="700">}}
+    {{<figure src="/images/netq/lcm-switches-listing-role-assigned-320.png" alt="table displaying role column with updated switch role assignments" width="700">}}
 
 7. Continue selecting switches and assigning roles until most or all switches have roles assigned.
 
@@ -147,8 +143,6 @@ netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 {{</tabs>}}
 
 ### View Switch Roles
-
-To view switch roles:
 
 {{<tabs "TabID151" >}}
 
@@ -206,9 +200,7 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 
 {{</tabs>}}
 
-### Change the Role of a Switch
-
-To change a switch role:
+### Reassign Roles to Switches
 
 {{<tabs "TabID179" >}}
 
@@ -248,11 +240,7 @@ cumulus@switch:~$ netq lcm add role exit switches border01,border02
 
 {{</tabs>}}
 
-## Export List of Switches
-
-Using the Switch Management feature you can export a listing of all or a selected set of switches.
-
-To export the switch listing:
+## Export a List of Switches
 
 {{<tabs "TabID223" >}}
 
@@ -262,13 +250,13 @@ To export the switch listing:
 
 2. On the Switches card, click **Manage**.
 
-3. Select one or more switches, filtering as needed, or select all switches (click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="18" width="18"/>).
+3. Select one or more switches.
 
 4. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 
-5. Choose the export file type and click **Export**.
+5. Choose the export file type and click **Export**:
 
-    {{<figure src="/images/netq/export-data-dialog-300.png" width="250">}}
+    {{<figure src="/images/netq/export-data-dialog-300.png" alt="dialog prompting user to export data as a CSV or in JSON format" width="250">}}
 
 {{</tab>}}
 

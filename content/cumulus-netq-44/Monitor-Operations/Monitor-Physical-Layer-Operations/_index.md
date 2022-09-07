@@ -4,22 +4,18 @@ author: NVIDIA
 weight: 850
 toc: 3
 ---
-With NetQ, a network administrator can monitor OSI Layer 1 physical components on network devices, including interfaces, ports, links, and peers. Keeping track of the various physical layer components in your switches and servers ensures you have a fully functioning network and provides inventory management and audit capabilities. You can monitor ports, transceivers, and cabling deployed on a per port (interface), per vendor, per part number and so forth. NetQ enables you to view the current status and the status an earlier point in time. From this information, you can, among other things:
+Use the CLI to monitor OSI Layer 1 physical components on network devices, including interfaces, ports, links, and peers. You can monitor transceivers and cabling deployed per port (interface), per vendor, per part number and so forth. This information can help you:
 
-- Determine which ports are empty versus which ones have cables
-  plugged in and thereby validate expected connectivity
-- Audit transceiver and cable components used by vendor, giving you
-  insights for estimated replacement costs, repair costs, overall
-  costs, and so forth to improve your maintenance and purchasing
-  processes
-- Identify mismatched links
-- Identify changes in your physical layer, and when they occurred, indicating such items as bonds and links going down or flapping
+- Determine which ports are empty versus which ones have cables plugged in to help validate expected connectivity.
+- Audit transceiver and cable components by vendor, helping you estimate replacement costs, repair costs, and overall maintenance costs.
+- Identify mismatched links.
+- Identify when physical layer changes (for example, bonds and links going down or flapping) occurred.
 
 NetQ uses {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
 
 ## View Component Information
 
-You can view performance and status information about cables, transceiver modules, and interfaces using the `netq show interfaces physical` command. Its syntax is:
+ View performance and status information about cables, transceiver modules, and interfaces with the `netq show interfaces physical` command:
 
 ```
 netq [<hostname>] show interfaces physical [<physical-port>] [empty|plugged] [peer] [vendor <module-vendor>|model <module-model>|module] [around <text-time>] [json]
@@ -36,15 +32,18 @@ When entering a time value, you must include a numeric value <em>and</em> the un
 <li><strong>s</strong>: seconds</li>
 <li><strong>now</strong></li>
 </ul>
-For the <code>between</code> option, you can enter the start (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+For the <code>between</code> option, you can enter the start (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not require the same unit of measure. Use the <code>around</code> option to view information for a particular time.
 
 {{</notice>}}
 
 ### View Detailed Cable Information for All Devices
 
-You can view which cables connect to each interface port for all devices, including the module type, vendor, part number and performance characteristics. You can also view the cable information for a given device by adding a hostname to the `show` command.
+- View which cables connect to each interface port for all devices, including the module type, vendor, part number and performance characteristics. 
+- View the cable information for a given device by adding a hostname to the `show` command.
 
-This example shows cable information and status for all interface ports on all devices.
+{{<expand "Example show interfaces physical command">}}
+
+The following example shows cable information and status for all interface ports on all devices:
 
 ```
 cumulus@switch:~$ netq show interfaces physical
@@ -87,12 +86,15 @@ fw2               swp2                      down       Unknown    off     RJ45  
 fw2               swp1                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
 ...
 ```
-
+{{</expand>}}
 ### View Detailed Module Information for a Given Device
 
-You can view detailed information about the transceiver modules on each interface port, including serial number, transceiver type, connector and attached cable length. You can also view the module information for a given device by adding a hostname to the `show` command.
+- View detailed information about the transceiver modules on each interface port, including serial number, transceiver type, connector, and attached cable length. 
+- View the module information for a given device by adding a hostname to the `show` command.
 
-This example shows the detailed module information for the interface ports on *leaf02* switch.
+{{<expand "Example show interfaces physical module command">}}
+
+The following example shows detailed module information for the interface ports on *leaf02* switch:
 
 ```
 cumulus@switch:~$ netq leaf02 show interfaces physical module
@@ -123,12 +125,15 @@ leaf02            swp51                     SFP       Mellanox             MC260
                                                                                                                         Axial Pair (TW)
 leaf02            swp52                     SFP       FINISAR CORP.        FCLF8522P2BTL    PTN1VH2                   1000Base-T       RJ45             100m   Thu Feb  7 22:49:37 2019
 ```
-
+{{</expand>}}
 ### View Ports without Cables Connected for a Given Device
 
-Checking for empty ports enables you to compare expected versus actual deployment. This can be very helpful during deployment or during upgrades. You can also view the cable information for a given device by adding a hostname to the `show` command.
+- Check for empty ports and compare expected versus actual deployment. 
+- View the cable information for a given device by adding a hostname to the `show` command.
 
-This example shows the ports that are empty on *leaf01* switch:
+{{<expand "Example show interfaces physical empty command">}}
+
+The following example shows the ports that are empty on *leaf01* switch:
 
 ```
 cumulus@switch:~$ netq leaf01 show interfaces physical empty
@@ -138,12 +143,15 @@ Hostname         Interface State Speed      AutoNeg Module    Vendor           P
 leaf01           swp49     down  Unknown    on      empty     n/a              n/a              Thu Feb  7 22:49:37 2019
 leaf01           swp52     down  Unknown    on      empty     n/a              n/a              Thu Feb  7 22:49:37 2019
 ```
-
+{{</expand>}}
 ### View Ports with Cables Connected for a Given Device
 
-In a similar manner as checking for empty ports, you can check for ports that have cables connected, enabling you to compare expected versus actual deployment. You can also view the cable information for a given device by adding a hostname to the `show` command. If you add the around keyword, you can view which interface ports had cables connected at a previous time.
+ - Check for ports that have cables connected, and compare expected versus actual deployment. 
+ - View the cable information for a given device by adding a hostname to the `show` command.
 
-This example shows the ports of *leaf01* switch that have attached cables.
+{{<expand "Example show interfaces physical plugged command">}}
+
+The following example shows the ports of *leaf01* switch that have attached cables:
 
 ```
 cumulus@switch:~$ netq leaf01 show interfaces physical plugged
@@ -169,12 +177,14 @@ leaf01            swp51                     down       40G        off     QSFP+ 
 leaf01            swp52                     up         40G        off     QSFP+     Amphenol             603020003        Thu Feb  7 22:49:37 2019
 leaf01            swp54                     down       40G        off     QSFP+     Amphenol             624410002        Thu Feb  7 22:49:37 2019
 ```
-
+{{</expand>}}
 ### View Components from a Given Vendor
 
-By filtering for a specific cable vendor, you can collect information such as how many ports use components from that vendor and when they were last updated. This information can be useful when you run a cost analysis of your network.
+- Filter for a specific cable vendor to collect information such as how many ports use components from that vendor and when they were last updated.
 
-This example shows all the ports that are using components by an *OEM* vendor.
+{{<expand "Example show interfaces physical vendor command">}}
+
+The following example shows all the ports that are using components by an *OEM* vendor:
 
 ```
 cumulus@switch:~$ netq leaf01 show interfaces physical vendor OEM
@@ -186,12 +196,14 @@ leaf01            swp36                     down       10G        off     SFP   
 leaf01            swp37                     down       10G        off     SFP       OEM                  SFP-H10GB-CU1M   Thu Feb  7 22:49:37 2019
 leaf01            swp38                     down       10G        off     SFP       OEM                  SFP-H10GB-CU1M   Thu Feb  7 22:49:37 2019
 ```
-
+{{</expand>}}
 ### View All Devices Using a Given Component
 
-You can view all devices with ports using a particular component. This could be helpful when you need to change out a particular component for possible failure issues, upgrades, or cost reasons.
+- View all devices with ports using a particular component.
 
-This example first determines which models (part numbers) exist on all the devices and then those devices with a part number of QSFP-H40G-CU1M installed.
+{{<expand "Example show interfaces physical model command">}}
+
+The following example first determines which models (part numbers) exist on all the devices and then displays devices with a part number of QSFP-H40G-CU1M installed:
 
 ```
 cumulus@switch:~$ netq show interfaces physical model
@@ -208,14 +220,14 @@ Hostname          Interface                 State      Speed      AutoNeg Module
 leaf01            swp50                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
 leaf02            swp52                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
 ```
-
+{{</expand>}}
 ### View Changes to Physical Components
 
-Because components are often changed, NetQ enables you to determine what, if any, changes you made to the physical components on your devices. This can be helpful during deployments or upgrades.
+- View changes to the physical components on your devices.
 
-You can select how far back in time you want to go, or select a time range using the between keyword. Note that time values must include units to be valid. If there are no changes, a "No matching cable records found" message appears.
+{{<expand "Example show events type interfaces-physical command with time constraints">}}
 
-This example illustrates each of these scenarios for all devices in the network.
+The following example illustrates each of these scenarios for all devices in the network:
 
 ```
 cumulus@switch:~$ netq show events type interfaces-physical between now and 30d
@@ -266,25 +278,25 @@ leaf01            swp52                     down       1G         off     SFP   
 cumulus@switch:~$ netq show events type interfaces-physical between 0s and 5h
 No matching cables records found
 ```
-
+{{</expand>}}
 ## View Utilization Statistics Networkwide
 
-Utilization statistics provide a view into the operation of the devices in your network. They indicate whether resources are becoming dangerously close to their maximum capacity or a user-defined threshold. Depending on the function of the switch, the acceptable thresholds can vary.
+Utilization statistics can indicate whether resources are becoming dangerously close to their maximum capacity or other, user-defined thresholds. Depending on the function of the switch, the acceptable thresholds can vary.
 
 ### View Compute Resources Utilization
 
-You can quickly determine how many compute resources &mdash; CPU, disk and memory &mdash; the switches on your network consume.
-
-To obtain this information, run the relevant command:
+ - View how many compute resources&mdash;CPU, disk, and memory&mdash;the switches on your network consume:
 
 ```
 netq <hostname> show resource-util [cpu | memory] [around <text-time>] [json]
 netq <hostname> show resource-util disk [<text-diskname>] [around <text-time>] [json]
 ```
 
-When you specify no options, the output shows the percentage of CPU and memory the switch consumed as well as the amount and percentage of disk space it consumed. You can use the `around` option to view the information for a particular time.
+If you do not specify options, the output shows the percentage of CPU and memory the switch consumed as well as the amount and percentage of disk space it consumed.
 
-This example shows the CPU, memory, and disk utilization for all devices.
+{{<expand "Example show resource-util commands">}}
+
+The following example shows the CPU, memory, and disk utilization for all devices:
 
 ```
 cumulus@switch:~$ netq show resource-util
@@ -301,7 +313,7 @@ spine01           8.4                  50.3                 /dev/vda4           
 spine02           9.8                  49                   /dev/vda4            6170849280           1522003968           26.8                 Wed Feb 12 03:54:25 2020
 ```
 
-This example shows only the CPU utilization for all devices.
+The following example shows only the CPU utilization for all devices:
 
 ```
 cumulus@switch:~$ netq show resource-util cpu
@@ -319,7 +331,7 @@ spine01           10.4                 Wed Feb 12 04:29:38 2020
 spine02           9.7                  Wed Feb 12 04:29:15 2020
 ```
 
-This example shows only the memory utilization for all devices.
+The following example shows only the memory utilization for all devices:
 
 ```
 cumulus@switch:~$ netq show resource-util memory
@@ -337,7 +349,7 @@ spine01           47.5                 Wed Feb 12 04:29:07 2020
 spine02           49.2                 Wed Feb 12 04:29:15 2020
 ```
 
-This example shows only the disk utilization for all devices.
+The following example shows only the disk utilization for all devices:
 
 ```
 cumulus@switch:~$ netq show resource-util disk
@@ -354,18 +366,20 @@ leaf04            /dev/vda4            6170849280           1522864128          
 spine01           /dev/vda4            6170849280           1522688000           26.8                 Wed Feb 12 04:29:38 2020
 spine02           /dev/vda4            6170849280           1522409472           26.8                 Wed Feb 12 04:29:46 2020
 ```
-
+{{</expand>}}
 ### View Port Statistics
 
-The `ethtool` command provides a wealth of statistics about network interfaces. It returns statistics about a given node and interface, including frame errors, ACL drops, buffer drops and more. The syntax is:
+ - View statistics about a given node and interface, including frame errors, ACL drops, and buffer drops, with the `ethtool` command:
 
 ```
 netq [<hostname>] show ethtool-stats port <physical-port> (rx | tx) [extended] [around <text-time>] [json]
 ```
 
-You can use the `around` option to view the information for a particular time. If there are no changes, a "No matching ethtool_stats records found" message appears.
+If there are no changes, a "No matching ethtool_stats records found" message appears.
 
-This example shows the *transmit* statistics for switch port *swp50* on a the *leaf01* switch in the network.
+{{<expand "Example show ethtool-stats port commands">}}
+
+The following example shows the *transmit* statistics for switch port *swp50* on a the *leaf01* switch in the network:
 
 ```
 cumulus@switch:~$ netq leaf01 show ethtool-stats port swp50 tx
@@ -375,7 +389,7 @@ Hostname          Interface                 HwIfOutOctets        HwIfOutUcastPkt
 leaf01            swp50                     8749                 0                    44                   0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:57 2020
 ```
 
-This example shows the *receive* statistics for switch port *swp50* on a the *leaf01* switch in the network.
+The following example shows the *receive* statistics for switch port *swp50* on a the *leaf01* switch in the network:
 
 ```
 cumulus@switch:~$ netq leaf01 show ethtool-stats port swp50 rx
@@ -519,7 +533,7 @@ cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50 rx extended json
     "truncatedResult":false
 }
 ```
-
+{{</expand>}}
 ### View Interface Statistics and Utilization
 
 NetQ Agents collect performance statistics every 30 seconds for the physical interfaces on switches in your network. The NetQ Agent does not collect statistics for non-physical interfaces, such as bonds, bridges, and VXLANs. The NetQ Agent collects the following statistics:
@@ -538,7 +552,7 @@ netq show interface-stats [errors | all] [<physical-port>] [around <text-time>] 
 netq show interface-utilization [<text-port>] [tx|rx] [around <text-time>] [json]
 ```
 
-Where the various options are:
+Options include:
 
 - `errors` limits the output to only the transmit and receive errors found on the designated interfaces
 - `physical-port` limits the output to a particular port
@@ -547,7 +561,9 @@ Where the various options are:
 - `text-port` limits output to a particular host and port; this option requires a `hostname`
 - `tx`, `rx` limits output to the transmit or receive values, respectively
 
-This example shows the statistics for all interfaces on all devices.
+{{<expand "Example show interface-stats commands">}}
+
+The following example shows statistics for all interfaces on all devices:
 
 ```
 cumulus@switch:~$ netq show interface-stats
@@ -642,7 +658,7 @@ spine04           swp2                      71064                0              
 spine04           swp6                      70271                0                    0                    68416                0                    0                    Fri Sep 18 21:06:12 2020
 ```
 
-This example shows the statistics for the *swp1* interface on all devices.
+The following example shows statistics for the *swp1* interface on all devices:
 
 ```
 cumulus@switch:~$ netq show interface-stats swp1
@@ -662,8 +678,11 @@ spine02           swp1                      72179                0              
 spine03           swp1                      71922                0                    0                    70550                0                    0                    Fri Sep 18 21:23:33 2020
 spine04           swp1                      72047                0                    0                    71448                0                    0                    Fri Sep 18 21:23:23 2020
 ```
+{{</expand>}}
 
-This example shows the utilization data for all devices.
+{{<expand "Example show interface-utilization commands">}}
+
+The following example shows the utilization data for all devices:
 
 ```
 cumulus@switch:~$ netq show interface-utilization
@@ -845,7 +864,7 @@ spine04           swp6                      2566                 0              
 
 ```
 
-This example shows only the transmit utilization data for devices.
+The following example shows only the transmit utilization data for devices:
 
 ```
 cumulus@switch:~$ netq show interface-utilization tx
@@ -1025,20 +1044,20 @@ spine04           swp2                      2459                 0              
 spine04           swp6                      2459                 0                    0                    0                    1G                   Fri Sep 18 21:21:51
                                                                                                                                                      2020
 ```
-
+{{</expand>}}
 ### View ACL Resource Utilization Networkwide
 
-You can monitor the incoming and outgoing access control lists (ACLs) configured on all switches and host.
-
-To view ACL resource utilization across all devices, run:
+ - View incoming and outgoing access control lists (ACLs) configured on all switches and host:
 
 ```
 netq show cl-resource acl [ingress | egress] [around <text-time>] [json]
 ```
 
-Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs. Use the `around` option to show this information for a time in the past.
+Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs.
 
-This example shows the ACL resources available and currently used by all devices.
+{{<expand "Example show cl-resource acl command">}}
+
+The following example shows the ACL resources available and currently used by all devices:
 
 ```
 cumulus@switch:~$ netq show cl-resource acl
@@ -1080,20 +1099,18 @@ cumulus@switch:~$ netq leaf01 show cl-resource acl json
     "truncatedResult":false
 }
 ```
-
+{{</expand>}}
 ### View Forwarding Resources Utilization Networkwide
 
-You can monitor the amount of forwarding resources used by a switch, currently or at a time in the past.
-
-To view forwarding resources utilization on all devices, run:
+ - View forwarding resources on all devices, currently or at a time in the past:
 
 ```
 netq show cl-resource forwarding [around <text-time>] [json]
 ```
 
-Use the `around` option to show this information for a time in the past.
+{{<expand "Example show cl-resource forwarding command">}}
 
-This example shows the forwarding resources used by all switches and hosts.
+The following example shows the forwarding resources used by all switches and hosts.
 
 ```
 cumulus@switch:~$ netq show cl-resource forwarding
@@ -1124,18 +1141,19 @@ cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
     "truncatedResult":false
 }
 ```
-
+{{</expand>}}
 ### View SSD Utilization Networkwide
 
-For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on demand. An alarm gets generated when a drive drops below 10% health, or has more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
+For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on demand. A warning is generated when a drive drops below 10% health, or has more than a 2% loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time lets you see any downward trend or drive instability before you receive a warning message.
 
 To view SDD utilization, run:
 
 ```
 netq show cl-ssd-util [around <text-time>] [json]
 ```
+{{<expand "Example show cl-ssd-util command">}}
 
-This example shows the utilization for all devices which have this type of SSD.
+The following example shows the utilization for all devices which have this type of SSD:
 
 ```
 cumulus@switch:~$ netq show cl-ssd-util
@@ -1143,7 +1161,9 @@ Hostname        Remaining PE Cycle (%)  Current PE Cycles executed      Total PE
 spine02         80                      576                             2880                            M.2 (S42) 3ME3          Thu Oct 31 00:15:06 2019
 ```
 
-This output indicates that the one drive found of this type, on the *spine02* switch, is in a good state overall with 80% of its PE cycles remaining. Use the `around` option to view this information around a particular time in the past.
+This output indicates that the one drive found of this type, on the *spine02* switch, is in a good state overall with 80% of its PE cycles remaining.
+
+{{</expand>}}
 
 ### View Disk Storage After BTRFS Allocation Networkwide
 
@@ -1151,23 +1171,22 @@ Customers running Cumulus Linux 3 which uses the BTRFS (b-tree file system) migh
 
 For details about when to rebalance a partition, refer to [When to Rebalance BTRFS Partitions]({{<ref "/knowledge-base/Configuration-and-Usage/Storage/When-to-Rebalance-BTRFS-Partitions">}}).
 
-To view the disk utilization and whether you need to perform a rebalance, run:
+To view BTRFS disk utilization, run:
 
 ```
 netq show cl-btrfs-util [around <text-time>] [json]
 ```
+{{<expand "Example show show cl-btrfs-info command">}}
 
-This example shows the utilization on all devices:
+The following example shows the utilization on all devices:
 <!-- need example with more than one device -->
 ```
 cumulus@switch:~$ netq show cl-btrfs-info
 Matching btrfs_info records:
-Hostname          Device Allocated     Unallocated Space    Largest Chunk Size   Unused Data Chunks S Rebalance Recommende Last Changed
+Hostname          Device Allocated     Unallocated Space    Largest Chunk Size   Unused Data Chunks S Rebalance Recommended Last Changed
                                                                                  pace                 d
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
 leaf01            37.79 %              3.58 GB              588.5 MB             771.91 MB            yes                  Wed Sep 16 21:25:17 2020
 ```
 
 Look for the **Rebalance Recommended** column. If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the output to determine if you are getting close to needing a rebalance, and come back to view this data at a later time.
-
-Optionally, use the `around` option to view the information for a particular time in the past.

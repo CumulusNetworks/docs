@@ -16,8 +16,6 @@ The commands and cards available to obtain this type of information help you to 
 - What is the ACL and forwarding resources usage?
 <!-- vale on -->
 
-To monitor networkwide inventory, refer to {{<link title="Networkwide Inventory">}}.
-
 ## Access Switch Inventory Data
 
 The NetQ UI provides the Inventory | Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Switches card > **Open Cards**.

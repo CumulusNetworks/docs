@@ -3092,7 +3092,7 @@ cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart mode full
 
 ## nv set router bgp graceful-restart restart-time
 
-Configures the number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. You can set a value between 1 and 4095.
+Configures the number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. You can set a value between 1 and 3600.
 
 ### Usage
 
@@ -3136,7 +3136,7 @@ cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart path-selection-deferra
 
 ## nv set router bgp graceful-restart stale-routes-time
 
-Configures the number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 4095.
+Configures the number of seconds to hold stale routes for a restarting peer. You can set a value between 1 and 360.
 
 ### Usage
 
@@ -19389,7 +19389,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE graceful-restart 
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as
 
-Local AS feature
+Configures the local AS for the peer group.
 
 ### Usage
 
@@ -19410,18 +19410,43 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-|`enable`    | Turn the feature 'on' or 'off'. The default is 'off'.|
-|`asn`        | ASN to use to establish the peering if different from the ASN of the BGP instance. This configuration finds use during AS renumbering. The local-as configured is also attached to incoming and outgoing updates.|
-|`prepend`   | When set to 'off', do not prepend the configured local-as to received updates; otherwise, prepend it.|
-|`replace`    | When set to 'on', attach only the configured local-as to generated updates, effectively "replacing" the AS number configured for the BGP instance with the local-as applicable for the peering; otherwise, attach the AS number of the BGP instance and then prepend it with the configured local-as.|
+|`enable`    | Turns local AS on or off for the peer group.|
+|`asn`        | Configures the ASN you want to use to establish the peering if different from the ASN of the BGP instance. The local AS configured is also attached to incoming and outgoing updates.|
+|`prepend`   | Configures BGP to prepend the configured local AS to updates.|
+|`replace`    | Configures BGP to either attach only the configured local AS to generated updates or attach the ASN of the BGP instance, then prepend it with the configured local AS. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as enable
+
+ Turns local AS on or off for the peer group.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES local-as enable on
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as asn
 
-ASN to use to establish the peering if different from the ASN of the BGP instance.  This configuration finds use during AS renumbering.  The local-as configured is also attached to incoming and outgoing updates.
+Configures the ASN you want to use to establish the peering if it is different from the ASN of the BGP instance. The local AS configured is also attached to incoming and outgoing updates.
 
 ### Usage
 
@@ -19445,12 +19470,70 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES local-as asn ????
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as prepend
+
+Configures BGP to prepend the configured local AS to updates.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as prepend [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES local-as enable on
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as replace
+
+Configures BGP to either attach only the configured local AS to generated updates or attach the ASN of the BGP instance, then prepend it with the configured local AS.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as replace [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES local-as replace on
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers
 
-Peer peer-timers
+Configures BGP timers for the peer group.
 
 ### Usage
 
@@ -19471,14 +19554,130 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `connection-retry`     | Time interval at which connection attempts are retried upon a failure. If `auto`, the global value is used. This is the default.|
-| `hold`                 | Hold timer. If `none`, keepalives from the peer are not tracked and the peering session will not experience a hold timeout. If `auto`, the global value is used. This is the default.|
-| `keepalive`            | Keepalive timer. If `none`, keepalives are not sent. If `auto`, the global value is used. This is the default.|
-| `route-advertisement`  | Time between route advertisements (BGP Updates). A non-zero value allows route advertisements to be delayed and batched. If `auto`, the global value is used. This is the default.|
+| `connection-retry`     | Configures the time interval at which the BGP process attempts to connect to a peer after a failure.|
+| `hold`                 | Configures the hold timer. If BGP does not receive a keepalive or update message from the peer within the hold time, it declares the peer down and withdraws all routes received by this peer from the local BGP table.|
+| `keepalive`            | Configures interval at which BGP exchanges periodic keepalive messages to measure and ensure that a peer is still alive and functioning.|
+| `route-advertisement`  | Configures the time between route advertisements (BGP updates). After making a new best path decision for a prefix, BGP can insert a delay before advertising the new results to a peer. This delay rate limits the amount of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers keepalive
+
+Configures the interval at which BGP exchanges periodic keepalive messages to measure and ensure that a peer is still alive and functioning. You can specify a value between 1 and 65535. If you speciy `none`, keepalives are not sent. If you specify `auto`, the global value is used.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers keepalive [options] (1-65535|none|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers keepalive 10
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers hold
+
+Configures the hold timer. If BGP does not receive a keepalive or update message from a peer in the peer group within the hold time, it declares the peer down and withdraws all routes received by this peer from the local BGP table. If `none`, keepalives from the peer are not tracked and the peering session does not experience a hold timeout. You can specify a value between 3 and 65535. If you specify `auto`, the global value is used.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers hold [options] (3-65535|none|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers hold 30
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers connection-retry
+
+Configures the time interval at which BGP  attempts to connect to a peer after a failure. You can specify a value between 1 and 65535. If you specify `auto`, the global value is used.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers connection-retry [options] (1-65535|none|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers connection-retry 30
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers route-advertisement (1-600|none|auto)
+
+Configures the time between route advertisements (BGP updates). After making a new best path decision for a prefix, BGP can insert a delay before advertising the new results to a peer. This delay rate limits the amount of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. You can specify a value between 1 and 65535. If you specify `none` route advertisements are delayed and batched. If you specify `auto`, the global value is used.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers route-advertisement [options] (1-600|none|auto)`
+
+### Default Setting
+
+`auto`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers route-advertisement 5
+```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family
 

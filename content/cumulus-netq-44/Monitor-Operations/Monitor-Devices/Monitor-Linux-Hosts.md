@@ -4,9 +4,6 @@ author: NVIDIA
 weight: 840
 toc: 3
 ---
-
-Running NetQ on Linux hosts provides unprecedented network visibility, giving the network operator a complete view of the entire infrastructure's network connectivity instead of just from the network devices.
-
 <!-- vale off -->
 The NetQ Agent is supported on the following Linux hosts:
 <!-- vale on -->
@@ -24,7 +21,7 @@ The NetQ Agent monitors the following on Linux hosts:
 - Layer 3: IPv4, IPv6
 - Routing on the Host: BGP, OSPF
 - systemctl for services
-- Docker containers - refer to the {{<link title="Monitor Container Environments Using Kubernetes API Server">}} topic
+- Docker containers---refer to {{<link title="Monitor Container Environments Using Kubernetes API Server">}} for more information.
 
 Using NetQ on a Linux host is the same as using it on a Cumulus Linux switch. For example, if you want to check LLDP neighbor information about a given host, run:
 

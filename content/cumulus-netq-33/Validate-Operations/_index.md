@@ -22,7 +22,6 @@ Validation support is available in the NetQ UI and the NetQ CLI as shown here.
 | EVPN | Yes | Yes |
 | Interfaces | Yes | Yes |
 | License | Yes | Yes |
-| LLDP | No | Yes |
 | MLAG (CLAG) | Yes | Yes |
 | MTU | Yes | Yes |
 | NTP | Yes | Yes |

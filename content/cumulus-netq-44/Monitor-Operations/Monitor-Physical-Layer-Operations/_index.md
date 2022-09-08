@@ -15,7 +15,7 @@ NetQ uses {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" 
 
 ## View Component Information
 
- View performance and status information about cables, transceiver modules, and interfaces with the `netq show interfaces physical` command:
+ View performance and status information about cables, transceiver modules, and interfaces with `netq show interfaces physical`:
 
 ```
 netq [<hostname>] show interfaces physical [<physical-port>] [empty|plugged] [peer] [vendor <module-vendor>|model <module-model>|module] [around <text-time>] [json]
@@ -39,9 +39,9 @@ For the <code>between</code> option, you can enter the start (<code>text-time</c
 ### View Detailed Cable Information for All Devices
 
 - View which cables connect to each interface port for all devices, including the module type, vendor, part number and performance characteristics. 
-- View the cable information for a given device by adding a hostname to the `show` command.
+- View the cable information for a given device by adding a hostname to `show`.
 
-{{<expand "Example show interfaces physical command">}}
+{{<expand "show interfaces physical">}}
 
 The following example shows cable information and status for all interface ports on all devices:
 
@@ -90,9 +90,9 @@ fw2               swp1                      down       Unknown    off     RJ45  
 ### View Detailed Module Information for a Given Device
 
 - View detailed information about the transceiver modules on each interface port, including serial number, transceiver type, connector, and attached cable length. 
-- View the module information for a given device by adding a hostname to the `show` command.
+- View the module information for a given device by adding a hostname to `show`.
 
-{{<expand "Example show interfaces physical module command">}}
+{{<expand "show interfaces physical module">}}
 
 The following example shows detailed module information for the interface ports on *leaf02* switch:
 
@@ -129,9 +129,9 @@ leaf02            swp52                     SFP       FINISAR CORP.        FCLF8
 ### View Ports without Cables Connected for a Given Device
 
 - Check for empty ports and compare expected versus actual deployment. 
-- View the cable information for a given device by adding a hostname to the `show` command.
+- View the cable information for a given device by adding a hostname to `show`.
 
-{{<expand "Example show interfaces physical empty command">}}
+{{<expand "show interfaces physical empty">}}
 
 The following example shows the ports that are empty on *leaf01* switch:
 
@@ -147,9 +147,9 @@ leaf01           swp52     down  Unknown    on      empty     n/a              n
 ### View Ports with Cables Connected for a Given Device
 
  - Check for ports that have cables connected, and compare expected versus actual deployment. 
- - View the cable information for a given device by adding a hostname to the `show` command.
+ - View the cable information for a given device by adding a hostname to `show`.
 
-{{<expand "Example show interfaces physical plugged command">}}
+{{<expand "show interfaces physical plugged">}}
 
 The following example shows the ports of *leaf01* switch that have attached cables:
 
@@ -182,7 +182,7 @@ leaf01            swp54                     down       40G        off     QSFP+ 
 
 - Filter for a specific cable vendor to collect information such as how many ports use components from that vendor and when they were last updated.
 
-{{<expand "Example show interfaces physical vendor command">}}
+{{<expand "show interfaces physical vendor">}}
 
 The following example shows all the ports that are using components by an *OEM* vendor:
 
@@ -201,7 +201,7 @@ leaf01            swp38                     down       10G        off     SFP   
 
 - View all devices with ports using a particular component.
 
-{{<expand "Example show interfaces physical model command">}}
+{{<expand "show interfaces physical model">}}
 
 The following example first determines which models (part numbers) exist on all the devices and then displays devices with a part number of QSFP-H40G-CU1M installed:
 
@@ -225,7 +225,7 @@ leaf02            swp52                     up         1G         off     QSFP+ 
 
 - View changes to the physical components on your devices.
 
-{{<expand "Example show events type interfaces-physical command with time constraints">}}
+{{<expand "show events type interfaces-physical with time constraints">}}
 
 The following example illustrates each of these scenarios for all devices in the network:
 
@@ -294,7 +294,7 @@ netq <hostname> show resource-util disk [<text-diskname>] [around <text-time>] [
 
 If you do not specify options, the output shows the percentage of CPU and memory the switch consumed as well as the amount and percentage of disk space it consumed.
 
-{{<expand "Example show resource-util commands">}}
+{{<expand "show resource-util">}}
 
 The following example shows the CPU, memory, and disk utilization for all devices:
 
@@ -369,7 +369,7 @@ spine02           /dev/vda4            6170849280           1522409472          
 {{</expand>}}
 ### View Port Statistics
 
- - View statistics about a given node and interface, including frame errors, ACL drops, and buffer drops, with the `ethtool` command:
+ - View statistics about a given node and interface, including frame errors, ACL drops, and buffer drops, with `ethtool`:
 
 ```
 netq [<hostname>] show ethtool-stats port <physical-port> (rx | tx) [extended] [around <text-time>] [json]
@@ -377,7 +377,7 @@ netq [<hostname>] show ethtool-stats port <physical-port> (rx | tx) [extended] [
 
 If there are no changes, a "No matching ethtool_stats records found" message appears.
 
-{{<expand "Example show ethtool-stats port commands">}}
+{{<expand "show ethtool-stats port">}}
 
 The following example shows the *transmit* statistics for switch port *swp50* on a the *leaf01* switch in the network:
 
@@ -561,7 +561,7 @@ Options include:
 - `text-port` limits output to a particular host and port; this option requires a `hostname`
 - `tx`, `rx` limits output to the transmit or receive values, respectively
 
-{{<expand "Example show interface-stats commands">}}
+{{<expand "show interface-stats">}}
 
 The following example shows statistics for all interfaces on all devices:
 
@@ -680,7 +680,7 @@ spine04           swp1                      72047                0              
 ```
 {{</expand>}}
 
-{{<expand "Example show interface-utilization commands">}}
+{{<expand "show interface-utilization">}}
 
 The following example shows the utilization data for all devices:
 
@@ -1055,7 +1055,7 @@ netq show cl-resource acl [ingress | egress] [around <text-time>] [json]
 
 Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs.
 
-{{<expand "Example show cl-resource acl command">}}
+{{<expand "show cl-resource acl">}}
 
 The following example shows the ACL resources available and currently used by all devices:
 
@@ -1108,7 +1108,7 @@ cumulus@switch:~$ netq leaf01 show cl-resource acl json
 netq show cl-resource forwarding [around <text-time>] [json]
 ```
 
-{{<expand "Example show cl-resource forwarding command">}}
+{{<expand "show cl-resource forwarding">}}
 
 The following example shows the forwarding resources used by all switches and hosts.
 
@@ -1151,7 +1151,7 @@ To view SDD utilization, run:
 ```
 netq show cl-ssd-util [around <text-time>] [json]
 ```
-{{<expand "Example show cl-ssd-util command">}}
+{{<expand "show cl-ssd-util">}}
 
 The following example shows the utilization for all devices which have this type of SSD:
 
@@ -1176,7 +1176,7 @@ To view BTRFS disk utilization, run:
 ```
 netq show cl-btrfs-util [around <text-time>] [json]
 ```
-{{<expand "Example show show cl-btrfs-info command">}}
+{{<expand "show cl-btrfs-info">}}
 
 The following example shows the utilization on all devices:
 <!-- need example with more than one device -->

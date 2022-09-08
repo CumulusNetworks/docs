@@ -9,7 +9,7 @@
 <tr>
 <td>3195390</td>
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -410,7 +410,7 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -484,7 +484,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -873,12 +873,6 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
 <td>4.0.0-4.3.1</td>
 <td>4.4.0-4.4.4</td>
-</tr>
-<tr>
-<td>2556462</td>
-<td> When you remove a fan tray, {{smonctl}} and {{sensors}} display different information about the removed fans.</td>
-<td>4.2.1-4.4.4</td>
-<td></td>
 </tr>
 <tr>
 <td>2556369</td>
@@ -2287,7 +2281,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>2668543</td>
 <td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0</td>
+<td>4.3.0, 5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2663119</td>
@@ -2318,6 +2312,11 @@ Fixed: 1.14.4-2+deb10u1</td>
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
+<td>2613119</td>
+<td>The Mellanox 100G transceiver MMA1L30-CM Rev A3 is not recognized on the SN4600 switch even though the link is up. The {{ethtool}} output shows the error {{Cannot get Module EEPROM data: Invalid argument}}.</td>
+<td></td>
+</tr>
+<tr>
 <td>2556816</td>
 <td>When ARP suppression is enabled, RARP packets sometimes get dropped and are not flooded by the local VTEP. 
 To work around this issue, disable ARP suppression.</td>
@@ -2334,6 +2333,11 @@ Fixed: 1.3.8+dfsg-3+deb10u2</td>
 <td>2556474</td>
 <td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
 <td>4.0.0-4.3.0</td>
+</tr>
+<tr>
+<td>2556462</td>
+<td> When you remove a fan tray, {{smonctl}} and {{sensors}} display different information about the removed fans.</td>
+<td>4.2.1-4.3.0</td>
 </tr>
 <tr>
 <td>2556456</td>
@@ -2363,7 +2367,7 @@ Fixed: 2.4.47+dfsg-3+deb10u5</td>
 <tr>
 <td>3195390</td>
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3036,7 +3040,7 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3129,7 +3133,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3248,7 +3252,7 @@ To work around this issue, start the MST service with the {{sudo mst start}} com
 <tr>
 <td>2668543</td>
 <td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>

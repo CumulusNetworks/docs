@@ -19681,7 +19681,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers ro
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family
 
-Address family specific configuration
+Configures address family settings for the peer group.
 
 ### Usage
 
@@ -19702,9 +19702,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `ipv4-unicast`     | Peer IPv4 unicast address family. Always on, unless disabled globaly.|
-| `ipv6-unicast`     | Peer IPv6 unicast address family.|
-| `l2vpn-evpn`       | Peer l2vpn EVPN address family.|
+| `ipv4-unicast`     | Configures the IPv4 unicast address family for the peer group. Always on, unless disabled globaly.|
+| `ipv6-unicast`     | Configures the IPv6 unicast address family for the peer group.|
+| `l2vpn-evpn`       | Configures the l2vpn EVPN address family for the peer group.|
 
 ### Version History
 

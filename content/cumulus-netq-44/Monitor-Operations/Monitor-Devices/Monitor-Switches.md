@@ -8,13 +8,11 @@ With the NetQ UI and NetQ CLI, you can monitor the health of individual switches
 
 Three categories of performance metrics are available for switches:
 
-- **System configuration**: alarms, interfaces, IP and MAC addresses, VLANs, IP routes, IP neighbors, and installed software packages
+- **System configuration**: events, interfaces, IP and MAC addresses, VLANs, IP routes, IP neighbors, and installed software packages
 - **Utilization statistics**: CPU, memory, disk, ACL and forwarding resources, SSD, and BTRFS
 - **Physical sensing**: digital optics and chassis sensors
 
-For information about the health of network services and protocols (BGP, EVPN, NTP, and so forth) running on switches, refer to the relevant layer monitoring topic.
-
-For switch inventory information for all switches (ASIC, platform, CPU, memory, disk, and OS), refer to {{<link title="Switch Inventory">}}.
+For inventory information for all switches (ASIC, platform, CPU, memory, disk, and OS), refer to {{<link title="Switch Inventory">}}.
 
 ## View Overall Health
 
@@ -22,7 +20,7 @@ The NetQ UI provides several views that enable users to easily track the overall
 
 ### View Overall Health of a Switch
 
-When you want to view an overview of the current or past health of a particular switch, open the NetQ UI small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that might have been problematic in the recent past or that you have recently installed. The card shows you alarm status, a summary health score, and health trend.
+When you want to view an overview of the current or past health of a particular switch, open the NetQ UI small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that might have been problematic in the recent past or that you have recently installed. The card displays events, a summary health score, and health trend.
 
 To view the summary:
 

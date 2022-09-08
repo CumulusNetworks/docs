@@ -21,50 +21,34 @@ When upgrading to Cumulus Linux 5.0 or later, LCM backs up and restores flat fil
 LCM does not support Cumulus Linux upgrades when NVUE is enabled.
 {{</notice>}}
 
-## Workflows for Cumulus Linux Upgrades Using LCM
+## How to Upgrade Cumulus Linux Using LCM
 
-Three methods are available through LCM for upgrading Cumulus Linux on your switches based on whether the NetQ Agent is already installed on the switch or not, and whether you want to use the NetQ UI or the NetQ CLI:
+If the NetQ Agent is already installed on the switches you'd like to upgrade, follow the steps below.
 
-- Use NetQ UI or NetQ CLI for switches with NetQ Agent already installed
-- Use NetQ UI for switches without NetQ Agent installed
+If the NetQ Agent is *not* installed on the switches you'd like to upgrade, run a {{<link title="Upgrade Cumulus Linux Using LCM/#Upgrade-Cumulus-Linux-on-Switches-Without NetQ-Agent-Installed" text="switch discovery">}}, then proceed with the upgrade.
 
-The workflows vary slightly with each approach:
+## Upgrade Cumulus Linux on Switches With NetQ Agent Installed
+### Prepare for a Cumulus Linux Upgrade
 
-- Using the NetQ UI for switches with NetQ Agent installed, the workflow is:
-
-    {{<figure src="/images/netq/lcm-upgrade-workflow-300.png" width="700">}}
-
-- Using the NetQ CLI for switches with NetQ Agent installed, the workflow is:
-
-    {{<figure src="/images/netq/lcm-upgrade-workflow-cli-320.png" width="500">}}
-
-- Using the NetQ UI for switches without NetQ Agent installed, the workflow is:
-
-    {{<figure src="/images/netq/lcm-netq-upgrade-workflow-discovery-310.png" width="600">}}
-
-## Upgrade Cumulus Linux on Switches with NetQ Agent Installed
-
-You can upgrade Cumulus Linux on switches that already have a NetQ Agent installed using either the NetQ UI or NetQ CLI.
-
-### Prepare for Upgrade
+Before you upgrade, make sure you have the appropriate files and credentials:
 
 {{<tabs "TabID42" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in any workbench header, then click **Manage switches**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in the workbench header, then click **Manage switches**.
 
-2. Upload the Cumulus Linux {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
+2. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
-3. Optionally, specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
+3. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-5. Configure {{<link title="Switch Credentials" text="switch access credentials">}}.
+4. Verify or add {{<link title="Switch Credentials" text="switch access credentials">}}.
 
-6. Assign a {{<link  title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch (optional, but recommended).
+5. (Optional) Assign a {{<link  title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch.
 
-Your LCM dashboard should look similar to this after you have completed these steps:
+Your LCM dashboard should look similar to this:
 
-{{<figure src="/images/netq/lcm-netq-upgrade-dashboard-post-prep-320.png" width="700">}}
+{{<figure src="/images/netq/lcm-netq-upgrade-dashboard-post-prep-320.png" alt="LCM dashboard displaying uploaded Cumulus Linux images with a specified default version" width="700">}}
 
 {{</tab>}}
 
@@ -75,11 +59,11 @@ Your LCM dashboard should look similar to this after you have completed these st
        cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 
        NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556db
 
-2. Upload the Cumulus Linux {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}. 
+2. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}. 
 
-3. Configure {{<link title="Switch Credentials" text="switch access credentials">}}.
+3. Verify or add {{<link title="Switch Credentials" text="switch access credentials">}}.
 
-4. Assign a {{<link title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch (optional, but recommended).
+4. (Optional) Assign a {{<link title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch.
 
 {{</tab>}}
 
@@ -87,7 +71,7 @@ Your LCM dashboard should look similar to this after you have completed these st
 
 ### Perform a Cumulus Linux Upgrade
 
-Upgrade Cumulus Linux on switches through either the NetQ UI or NetQ CLI:
+After you complete the preparation steps, upgrade Cumulus Linux:
 
 {{<tabs "TabID51" >}}
 
@@ -95,28 +79,24 @@ Upgrade Cumulus Linux on switches through either the NetQ UI or NetQ CLI:
 
 1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in any workbench header, then select **Manage switches**.
 
-2. Click **Manage** on the Switches card.
+2. Locate the Switches card and click **Manage**.
 
-    {{<figure src="/images/netq/lcm-upgrade-switch-manage-button-310.png" width="700">}}
+3. Select the switches you want to upgrade. You can filter by role or sort by column heading to narrow down the list.
 
-3. Select the individual switches (or click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="16" width="18"/> to select all switches) that you want to upgrade. If needed, use the filter to the narrow the listing and find the relevant switches.
-
-    {{<figure src="/images/netq/lcm-switch-mgmt-list-switches-selected-300.png" width="700">}}
-
-4. Click {{<img src="/images/netq/cl-upgrade-icon-blk.png" height="14" width="18">}} (Upgrade CL) above the table.
+4. Click {{<img src="/images/netq/cl-upgrade-icon-blk.png" height="14" width="18">}} (Upgrade OS) above the table.
 
     From this point forward, the software walks you through the upgrade process, beginning with a review of the switches that you selected for upgrade.
 
-    {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-tab-320.png" width="500">}}
-
-5. Give the upgrade job a name. This is required, but can be no more than 22 characters, including spaces and special characters.
+    {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-tab-320.png" alt="screen displaying 4 switches selected for upgrading" width="500">}}
 
 6. Verify that the switches you selected are included, and that they have the correct IP address and roles assigned.
 
-    - If you accidentally included a switch that you do NOT want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} to remove it from the upgrade job.
-    - If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}}, then select a role for that switch from the dropdown. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} to discard a role change.
+If you accidentally included a switch that you do NOT want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} to remove it from the upgrade job.
+   
 
-        {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-modify-switch-320.png" width="500">}}
+        {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-modify-switch-320.png" alt="switch assigned a spine roll with dropdown to change role" width="500">}}
+
+If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}}, then select a role for that switch from the dropdown. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} to discard a role change:
 
         {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-edit-roles-320.png" width="150">}}
 
@@ -142,7 +122,7 @@ Upgrade Cumulus Linux on switches through either the NetQ UI or NetQ CLI:
 
 12. Click **Next**.
 
-13. After the pre-checks have completed successfully, click **Preview**. If there are failures, refer to {{<link url="#Precheck Failures" text="Precheck Failures">}}.
+13. After the pre-checks have completed successfully, click **Preview**. If there are failures, refer to {{<link url="#Pre-check Failures" text="Pre-check Failures">}}.
 
     These checks verify the following:
 
@@ -204,13 +184,11 @@ cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 ne
 
 {{</tabs>}}
 
-### Precheck Failures
+### Pre-check Failures
 
 If one or more of the pre-checks fail, resolve the related issue and start the upgrade again. In the NetQ UI these failures appear on the Upgrade Preview page. In the NetQ CLI, it appears in the form of error messages in the `netq lcm show upgrade-jobs cl-image` command output.
 
-Expand the following dropdown to view common failures, their causes and corrective actions.
-
-{{<expand "Precheck Failure Messages">}}
+{{<expand "Pre-check failure messages">}}
 
 <!-- vale off -->
 | Pre-check | Message | Type | Description | Corrective Action |
@@ -247,8 +225,6 @@ After starting the upgrade you can monitor the progress of your upgrade job and 
 {{<tab "NetQ UI">}}
 
 You can track the progress of your upgrade job from the Preview page or the Upgrade History page of the NetQ UI.
-
-From the preview page, a green circle with rotating arrows appears each step as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the Upgrade History page. The job started most recently appears at the bottom, and the data refreshes every minute.
 
 {{<notice tip>}}
 
@@ -386,13 +362,11 @@ To see only Cumulus Linux upgrade jobs, run `netq lcm show status cl-image job-I
 
 {{</tabs>}}
 
-### Postcheck Failures
+### Post-check Failures
 
 A successful upgrade can still have post-check warnings. For example, you updated the OS, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages appear in the Post-Upgrade Tasks section of the preview. Click the warning category to view the detailed messages.
 
-Expand the following dropdown to view common failures, their causes and corrective actions.
-
-{{< expand "Post-check Failure Messages"  >}}
+{{< expand "Post-check failure messages"  >}}
 
 <table>
 <colgroup>
@@ -433,9 +407,7 @@ Expand the following dropdown to view common failures, their causes and correcti
 
 ### Reasons for Upgrade Job Failure
 
-Upgrades can fail at any of the stages of the process, including when backing up data, upgrading the Cumulus Linux software, and restoring the data. Failures can occur when attempting to connect to a switch or perform a particular task on the switch.
-
-Some of the common reasons for upgrade failures and the errors they present:
+Upgrades can fail at any of the stages of the process. The following table lists common reasons for upgrade failures:
 
 <!-- vale off -->
 | Reason | Error Message |
@@ -449,9 +421,7 @@ Some of the common reasons for upgrade failures and the errors they present:
 
 ## Upgrade Cumulus Linux on Switches Without NetQ Agent Installed
 
-When you want to update Cumulus Linux on switches without NetQ installed, NetQ provides the LCM switch discovery feature. The feature browses your network to find all Cumulus Linux switches, with and without NetQ currently installed and determines the versions of Cumulus Linux and NetQ installed. The results of switch discovery are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure rather than in two steps. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
-
-If all your Cumulus Linux switches already have NetQ 2.4.x or later installed, you can upgrade them directly. Refer to {{<link title="#upgrade-cumulus-linux-on-switches-with-netq-agent-installed" text="Upgrade Cumulus Linux">}}.
+When you want to update Cumulus Linux on switches without NetQ installed, use the switch discovery feature. The feature browses your network to find all Cumulus Linux switches (with and without NetQ currently installed) and determines the versions of Cumulus Linux and NetQ installed. These results are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure rather than in two steps. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
 
 To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on them:
 
@@ -460,11 +430,9 @@ To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on
 {{<tab "NetQ UI" >}}
 
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} (Main Menu) and select **Upgrade Switches**, or click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/> (Switches) in the workbench header, then click **Manage switches**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in the workbench header, then click **Manage switches**.
 
 2. On the Switches card, click **Discover**.
-
-    {{<figure src="/images/netq/lcm-switches-card-discovery-selected-310.png" width="200">}}
 
 3. Enter a name for the scan.
 
@@ -500,8 +468,6 @@ If you decide to use a CSV file instead, the ranges you entered will remain if y
 
 {{<tab "CSV Import" >}}
 
-If you have a file of switches that you want to import, then it can be easier to use that, than to enter the IP address ranges manually.
-
 To import switches through a CSV file:
 
 1. Click **Browse**.
@@ -518,7 +484,7 @@ To import switches through a CSV file:
 
 <div style="padding-left: 18px;">
 {{<notice note>}}
-You must have an IP address in your file, but the hostname is optional and if the port is blank, NetQ uses switch port 22 by default.
+You must have an IP address in your file, but the hostname is optional. If the port is blank, NetQ uses switch port 22 by default.
 {{</notice>}}
 </div>
 
@@ -605,7 +571,7 @@ If you are disconnected while the job is in progress, it might appear as if noth
 
 {{<tab "NetQ CLI" >}}
 
-If you previously ran a discovery job, as described {{<link url="#prepare-for-upgrade" text="above">}}, you can show the results of that job by running the `netq lcm show discovery-job` command.
+If you previously ran a {{<link url="#prepare-for-upgrade" text="discovery job">}}, you can show the results of that job by running the `netq lcm show discovery-job` command.
 
 ```
 cumulus@switch:~$ netq lcm show discovery-job job_scan_921f0a40-5440-11eb-97a2-5b3ed2e556db

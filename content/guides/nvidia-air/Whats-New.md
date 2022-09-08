@@ -7,13 +7,18 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## August 2022
+## September 2022
 <!-- Air:WhatsNew -->
+## 82.2022.0908
+- Added Cumulus Linux 5.2.0 to dropdown in Builder
+- Fixed authentication issue impacting small subset of users
+<!-- Air:WhatsNew -->
+
+## August 2022
 ## 82.2022.0829
 - Added Cumulus Linux 5.2.0
 - Added NetQ 4.3.0
 - Updated out-of-band MAC address randomization
-<!-- Air:WhatsNew -->
 
 ### 82.2022.0815
 - Fixed a timing related bug that prevented sign-in in some cases

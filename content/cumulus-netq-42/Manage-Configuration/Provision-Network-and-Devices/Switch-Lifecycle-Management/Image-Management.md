@@ -142,7 +142,7 @@ For *NetQ* images:
 If you have already specified a default image, you must click <strong>Manage</strong> and then <strong>Missing</strong> to see the missing images.
     {{</notice>}}</div>
 
-3. Select one or all of the missing images and make note of the OS version, CPU architecture, and image type. Remember that you need both `netq-apps` and `neta-agent` for NetQ to perform the installation or upgrade.
+3. Select one or all of the missing images and make note of the OS version, CPU architecture, and image type. Remember that you need both `netq-apps` and `netq-agent` for NetQ to perform the installation or upgrade.
 
     {{<figure src="/images/netq/lcm-netq-images-missing-list-310.png" width="700">}}
 

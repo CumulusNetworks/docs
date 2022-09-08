@@ -87,6 +87,11 @@ pdfhidden: True
 | <a name="2812075"></a> [2812075](#2812075) <a name="2812075"></a> <br /> | When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together. | 5.0.0-5.2.0 | |
 | <a name="2748923"></a> [2748923](#2748923) <a name="2748923"></a> <br /> | If you include a dash (-) when configuring an interface name with NVUE, you see an error. NVUE does not support using a dash in interface names. | 4.4.0-4.4.4, 5.0.0-5.2.0 | |
 | <a name="2743186"></a> [2743186](#2743186) <a name="2743186"></a> <br /> | When you use MD5 passwords and you configure a non-default VRF before the default VRF in the <code>/etc/frr/frr.conf</code> file, numbered BGP sessions do not establish. | 3.7.15-3.7.16, 4.4.0-4.4.4, 5.0.0-5.2.0 | |
+| <a name="2736108"></a> [2736108](#2736108) <a name="2736108"></a> <br /> | When you change the VRRP advertisement interval on the master, the <code>master advertisement interval</code> field in the <code>show vrrp</code> command output does not show the updated value. | 4.4.0-4.4.4, 5.0.0-5.2.0 | |
+| <a name="2734103"></a> [2734103](#2734103) <a name="2734103"></a> <br /> | <code>ACL &#91;No More Resources&#93;</code> messages keep appearing and you can't reinstall the ACL. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
+| <a name="2705056"></a> [2705056](#2705056) <a name="2705056"></a> <br /> | SVIs do not inherit the pinned MAC address of the bridge. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
+| <a name="2701000"></a> [2701000](#2701000) <a name="2701000"></a> <br /> | A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF<br />To work around this issue, delete the DHCP lease file for eth0 with the <code>sudo rm /var/lib/dhcp/dhclient.eth0.leases</code> command. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
+| <a name="2684925"></a> [2684925](#2684925) <a name="2684925"></a> <br /> | The NVUE <code>nv show vrf default router bgp peer</code> command produces a 404 not found error. | 4.4.0-4.4.4, 5.0.0-5.2.0 | |
 
 ### Fixed Issues in 5.2.0
 |  Issue ID 	|   Description	|   Affects	|

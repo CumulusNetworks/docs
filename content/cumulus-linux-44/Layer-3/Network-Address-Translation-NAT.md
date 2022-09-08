@@ -191,11 +191,15 @@ The following *double NAT* rule translates both the source and destination IP ad
 - For incoming messages, NAT changes the inside global IP address 130.1.100.10 to the inside local IP address 172.16.10.2 and the outside global IP address 140.1.1.2 to the outside local IP address 26.26.26.26.
 
 ```
--t nat -A POSTROUTING -s 172.16.10.2 -p icmp -j SNAT --to-source 130.1.100.100 
--t nat -A PREROUTING -d 26.26.26.26 -p icmp -j DNAT --to-destination 140.1.1.2 
+-t nat -A POSTROUTING -s 172.16.10.2 -p icmp -j SNAT --to-source 130.1.100.100
+-t nat -A PREROUTING -d 130.1.100.100 -p icmp -j DNAT --to-destination 172.16.10.2
 -t nat -A POSTROUTING -s 140.1.1.2 -p icmp -j SNAT --to-source 26.26.26.26 
--t nat -A PREROUTING -d 130.1.100.100 -p icmp -j DNAT --to-destination 172.16.10.2 
+-t nat -A PREROUTING -d 26.26.26.26 -p icmp -j DNAT --to-destination 140.1.1.2 
 ```
+
+{{%notice note%}}
+When you configure a static SNAT rule for outgoing traffic, you must also configure a static DNAT rule for the reverse traffic so that traffic goes in both directions.
+{{%/notice%}}
 
 To delete a static NAT rule, remove the rule from the policy file in the  `/etc/cumulus/acl/policy.d` directory, then run the `sudo cl-acltool -i command`.
 

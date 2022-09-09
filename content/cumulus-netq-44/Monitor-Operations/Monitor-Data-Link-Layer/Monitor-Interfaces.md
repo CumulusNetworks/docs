@@ -5,9 +5,9 @@ weight: 880
 toc: 3
 ---
 
-You can monitor interface (link) health using the `netq show interfaces` command. You can view status of the links, whether they are operating over a VRF interface, the MTU of the link, and so forth. Using the `hostname` option enables you to view only the interfaces for a given device. View changes to interfaces using the `netq show events` command.
+Use the CLI to monitor interface (link) health using the `netq show interfaces` command.
 
-The syntax for these commands is:
+The syntax for interface commands is:
 
 ```
 netq show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan) [state <remote-interface-state>] [around <text-time>] [json]
@@ -17,9 +17,11 @@ netq [<hostname>] show events [level info | level error | level warning | level 
 
 ## View Status for All Interfaces
 
-Viewing the status of all interfaces at one time can be helpful when you are trying to compare the configuration or status of a set of links, or generally when changes occurred.
+Viewing the status of all interfaces at one time can be helpful when you are trying to compare the configuration or status of a set of links.
 
-This example shows all interfaces networkwide.
+{{<expand "show interfaces">}}
+
+The following example shows all interfaces networkwide:
 
 ```
 cumulus@switch:~$ netq show interfaces
@@ -57,12 +59,14 @@ leaf01            peerlink                  bond             up         default 
                                                                                         : leaf02:swp50
 ...
 ```
-
+{{</expand>}}
 ## View Interface Status for a Given Device
 
-You can choose to view the status of interfaces only on a specific device.
+View the status of interfaces on a specific device.
 
-This example shows all interfaces on the *spine01* device.
+{{<expand "spine01 show interfaces">}}
+
+The following example shows all interfaces on spine01:
 
 ```
 cumulus@switch:~$ netq spine01 show interfaces
@@ -94,12 +98,14 @@ spine01           swp4                      swp              up         default 
                                                                                         1
 cumulus@switch:~$ 
 ```
-
+{{</expand>}}
 ## View All Interfaces of a Given Type
 
-It can be can be useful to see the status of a particular type of interface.
+View the status of a particular type of interface.
 
-This example shows all bond interfaces that are down, and then those that are up.
+{{<expand "show interfaces type bond state">}}
+
+The following examples shows all bond interfaces that are alternately down and up:
 
 ```
 cumulus@switch:~$ netq show interfaces type bond state down
@@ -164,34 +170,40 @@ server05          uplink                    bond             up         default 
 server06          uplink                    bond             up         default         Slave: eth2 (LLDP: leaf04:swp3),    Mon Jan 11 05:35:03 2021
                                                                                         Slave: eth1 (LLDP: leaf03:swp3)
 ```
-
+{{</expand>}}
 ## View the Total Number of Interfaces
 
-For a quick view of the amount of interfaces currently operating on a device, use the `hostname` and `count` options together.
+To display the number of interfaces currently operating on a device, use the `hostname` and `count` options together.
 
-This example shows the count of interfaces on the *leaf03* switch.
+{{<expand "leaf03 show interfaces count">}}
+
+The following example shows the count of interfaces on the leaf03 switch:
 
 ```
 cumulus@switch:~$ netq leaf03 show interfaces count
 Count of matching link records: 28
 ```
-
+{{</expand>}}
 ## View the Total Number of a Given Interface Type
 
-It can be useful to see how many interfaces of a particular type you have on a device.
+View the number of interfaces of a particular type on a given device.
 
-This example shows the count of swp interfaces are on the *leaf03* switch.
+{{<expand "leaf03 show interfaces type swp count">}}
+
+The following example shows the count of swp interfaces are on the leaf03 switch:
 
 ```
 cumulus@switch:~$ netq leaf03 show interfaces type swp count
 Count of matching link records: 11
 ```
-
+{{</expand>}}
 ## View Changes to Interfaces
 
-If you suspect that an interface is not working as expected, seeing a drop in performance or a large number of dropped messages for example, you can view any changes made to interfaces networkwide.
+If you suspect that an interface is not working as expected (seeing a drop in performance or a large number of dropped messages, for example) you can view any changes made to interfaces networkwide.
 
-This example shows info level events for all interfaces in your network.
+{{<expand "show events level info type interfaces between now and 30d">}}
+
+The following example shows info-level events for all interfaces networkwide:
 
 ```
 cumulus@switch:~$ netq show events level info type interfaces between now and 30d
@@ -210,10 +222,14 @@ server02          link                     info             HostName server02 ch
                                                             m down to up Interface:eth2
 ...
 ```
-
+{{</expand>}}
 ## View Aliases for Interfaces
 
-You can see which interfaces have aliases.
+View which interfaces have aliases.
+
+{{<expand "show interfaces alias swp2">}}
+
+If you do not specify a switch port or host, the command returns all configured aliases.
 
 ```
 cumulus@switch:~$ netq show interfaces alias swp2
@@ -234,16 +250,17 @@ spine02           swp2                                                     up   
 spine03           swp2                                                     up      Mon Jan 11 05:56:35 2021
 spine04           swp2                                                     up      Mon Jan 11 05:56:35 2021
 ```
-
-If you do not specify a switch port or host, the command returns all configured aliases.
+{{</expand>}}
 
 ## Check for MTU Inconsistencies
 
 <!-- vale off -->
-The maximum transmission unit (MTU) determines the largest size packet or frame that can be transmitted across a given communication link. When the MTU is not configured to the same value on both ends of the link, communication problems can occur. With NetQ, you can verify that the MTU is correctly specified for each link using the `netq check mtu` command.
+The maximum transmission unit (MTU) determines the largest size packet or frame that can be transmitted across a given communication link. When the MTU is not configured to the same value on both ends of the link, communication problems can occur. Use the `netq check mtu` command to verify that the MTU is correctly specified for each link.
 <!-- vale on -->
 
-This example shows that four switches have inconsistently specified link MTUs. Now the network administrator or operator can reconfigure the switches and eliminate the communication issues associated with this misconfiguration.
+{{<expand "check mtu">}}
+
+The following example shows that four switches have inconsistently specified link MTUs. The network administrator or operator can reconfigure the switches and eliminate the communication issues associated with this misconfiguration.
 
 ```
 cumulus@switch:~$ netq check mtu
@@ -259,3 +276,4 @@ exit01            swp52                     1500   spine02           swp30      
 spine02           swp30                     9216   exit01            swp52                     1500     MTU Mismatch
 spine02           swp29                     9216   exit02            swp52                     1500     MTU Mismatch
 ```
+{{</expand>}}

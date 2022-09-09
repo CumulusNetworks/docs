@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3205700"></a> [3205700](#3205700) <a name="3205700"></a> <br />None | PCI calibration changes from a static to a dynamic mechanism. | 4.4.4, 5.2.0 | |
 | <a name="3202991"></a> [3202991](#3202991) <a name="3202991"></a> <br /> | Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM. | 5.0.1-5.2.0 | |
 | <a name="3202401"></a> [3202401](#3202401) <a name="3202401"></a> <br /> | The <code>ethtool -m</code> command and the NVUE <code>nv show interface <interface> pluggable</code> command do not show the VPD for optical modules and AOCs (OUI, vendor name, part number, or revision serial number). | 5.2.0 | |
 | <a name="3200958"></a> [3200958](#3200958) <a name="3200958"></a> <br /> | Switch fans run at very high speed but the temperature is normal. | 5.2.0 | |

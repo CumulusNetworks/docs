@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 910
 toc: 3
 ---
-A VLAN (Virtual Local Area Network) enables devices on one or more LANs to communicate as if they were on the same network, without being physically connected. The VLAN enables network administrators to partition a network for functional or security requirements without changing physical infrastructure. For an overview and how to configure VLANs in your network, refer to [Ethernet Bridging - VLANs]({{<ref "cumulus-linux-43/Layer-2/Ethernet-Bridging-VLANs">}}).
+A VLAN (Virtual Local Area Network) allows devices on one or more LANs to communicate as if they were on the same network, without being physically connected. The VLAN allows network administrators to partition a network for functional or security requirements without changing physical infrastructure. For an overview and how to configure VLANs in your network, refer to [Ethernet Bridging - VLANs]({{<ref "cumulus-linux-52/Layer-2/Ethernet-Bridging-VLANs">}}).
 
-With the NetQ CLI, you can view the operation of VLANs for one or all devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified timeframe. NetQ enables you to view basic VLAN information for your devices using the `netq show vlan` command. Additional show commands provide information about VLAN interfaces, MAC addresses associated with VLANs, and events.
+Use the CLI to view VLAN information with the `netq show vlan` command.
 
-The syntax for these commands is:
+The syntax for VLAN commands is:
 
 ```
 netq [<hostname>] show vlan [<1-4096>] [around <text-time>] [json]
@@ -34,7 +34,7 @@ When entering a time value, you must include a numeric value *and* the unit of m
 - **s**: seconds
 - **now**
 
-When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
+When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure. Use the <code>around</code> option to view information for a particular time.
 
 {{%/notice%}}
 
@@ -326,9 +326,11 @@ leaf04            vlan30-v0                 macvlan          up         BLUE    
 
 ## View All VLAN Events
 
-You can view all VLAN-related events using the `netq show events type vlan` command.
+View all VLAN-related events.
 
-This example shows that there have been no VLAN events in the last 24 hours or the last 30 days.
+{{<expand "show events type vlan">}}
+
+The following example shows that there have been no VLAN events in the last 24 hours or the last 30 days:
 
 ```
 cumulus@switch:~$ netq show events type vlan
@@ -337,3 +339,4 @@ No matching event records found
 cumulus@switch:~$ netq show events type vlan between now and 30d
 No matching event records found
 ```
+{{</expand>}}

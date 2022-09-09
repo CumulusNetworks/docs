@@ -59,7 +59,7 @@ You can view the IPv4 and IPv6 address information for all your devices, includi
 
 Each of these provides information for troubleshooting potential configuration and communication issues at the layer 3 level.
 
-### View IPv4 Address information for All Devices
+### View IPv4 Address Information for All Devices
 
 To view only IPv4 addresses, run `netq show ip addresses`. This example shows all IPv4 addresses in the reference topology.
 
@@ -94,9 +94,9 @@ Address                   Hostname          Interface                 VRF       
 ...
 ```
 
-### View IPv6 Address information for All Devices
+### View IPv6 Address Information for All Devices
 
-To view only IPv4 addresses, run `netq show ipv6 addresses`. This example shows all IPv6 addresses in the reference topology.
+To view only IPv6 addresses, run `netq show ipv6 addresses`. This example shows all IPv6 addresses in the reference topology.
 
 ```
 cumulus@switch:~$ netq show ipv6 addresses

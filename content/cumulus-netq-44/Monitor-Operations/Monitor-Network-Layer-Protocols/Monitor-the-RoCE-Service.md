@@ -5,11 +5,11 @@ weight: 980
 toc: 4
 ---
 
-*RDMA over Converged Ethernet* ({{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE">}})  is a network protocol that writes to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux and SONiC both support features that can enable lossless Ethernet for RoCE environments.
+RDMA over Converged Ethernet ({{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE">}})  is a network protocol that writes to compute or storage elements using remote direct memory access (RDMA) over an Ethernet network instead of using host CPUs. RoCE relies on congestion control and lossless Ethernet to operate. Cumulus Linux and SONiC both support features that can enable lossless Ethernet for RoCE environments.
 
-RoCE helps you obtain a converged network, where all services run over the Ethernet infrastructure, including InfiniBand apps.
+In NetQ, use either the UI or CLI to monitor RoCE in your network.
 
-You monitor RoCE in your network with the UI and with the following CLI commands:
+The syntax for RoCE commands is:
 
     netq [<hostname>] show roce-counters [<text-port>] tx | rx [roce | general] [around <text-time>] [json]
     netq [<hostname>] show roce-config [<text-port>] [around <text-time>] [json]
@@ -19,7 +19,9 @@ You monitor RoCE in your network with the UI and with the following CLI commands
 
 ## View the RoCE Configuration
 
-To view the RoCE configuration, run `netq show roce-config`:
+To view the RoCE configuration, run `netq show roce-config`.
+
+{{<expand "show roce-config">}}
 
 ```
 cumulus@switch:~$ netq show roce-config 
@@ -47,30 +49,26 @@ switch            swp42           Lossy      0,3          ECN      10432    1088
 switch            swp35           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
 ...
 ```
-
+{{</expand>}}
 ## View RoCE Counters
 
-Various RoCE counters are available for viewing for a given switch, including:
+You can view the following RoCE counters for a given switch through the UI or CLI:
 
 - Rx and Tx counters
-- General, CNP and RoCE-specific counters
+- General, CNP, and RoCE-specific counters
 - Counter pools
 - Port-specific counters
 
-You can also go back in time to view counters at a particular point in the past.
-
 ### View Rx Counters
-
-You can view RoCE Rx counters in both the UI and CLI.
 
 {{<tabs "View Rx counters">}}
 
 {{<tab "NetQ UI">}}
 
 1. To view Rx counters, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
-1. Switch to the full-screen card, then click **RoCE Counters**.
+1. Expand the card to the largest size, then select **RoCE Counters** from the side menu:
 
-{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" width="700">}}
+{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" alt="full-size switch card with RoCe Counters tab selected" width="700">}}
 
 {{</tab>}}
 
@@ -118,17 +116,15 @@ switch            swp63s2         0            0            0                  0
 
 ### View Tx Counters
 
-You can view RoCE Tx counters in both the UI and CLI.
-
 {{<tabs "View Tx counters">}}
 
 {{<tab "NetQ UI">}}
 
 1. To view Tx counters, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
-1. Switch to the full-screen card, then click **RoCE Counters**.
-1. Click **Tx** above the panel on the right.
+1. Expand the card to the largest size, then select **RoCE Counters** from the side menu.
+1. Select **Tx** from the toggle above the table:
 
-{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" width="700">}}
+{{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" alt="switch card with table displaying Rx and Tx RoCe toggle" width="700">}}
 
 {{</tab>}}
 
@@ -211,18 +207,16 @@ switch            104823                         104823                         
 
 {{<tab "NetQ UI">}}
 
-To view counters for a specific port:
-
 1. Open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
-1. Select a port on the left.
+1. Select a port from the list on the left:
 
-{{<figure src="/images/netq/roce-l3-card-4.0.0.png" width="500">}}
+{{<figure src="/images/netq/roce-l3-card-4.0.0.png" alt="switch card displaying list of ports" width="500">}}
 
 {{</tab>}}
 
 {{<tab "NetQ CLI">}}
 
-To view counters for a specific switch port, include the switch name with the command.
+To view counters for a specific switch port, include the switch name with the command:
 
 ```
 cumulus@switch:~$ netq show roce-counters swp1s1 rx general 
@@ -243,7 +237,7 @@ switch            swp1s1               1643392              154094520           
 
 {{<tab "NetQ UI">}}
 
-To view counters for a different time period in the past:
+To view counters for a time period in the past:
 
 1. Open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header and select a different time period.
@@ -252,7 +246,7 @@ To view counters for a different time period in the past:
 
 {{<tab "NetQ CLI">}}
 
-You can use the `around` keyword with any RoCE-related command to go back in time to view counters.
+Use `around` with any RoCE-related command to view counters from a previous time period:
 
 ```
 cumulus@switch:~$ netq show roce-counters swp1s1 rx general around 1h
@@ -269,7 +263,7 @@ switch            swp1s1               661                  61856               
 
 ## Disable RoCE Monitoring
 
-If you need to disable RoCE monitoring, do the following:
+To disable RoCE monitoring:
 
 1. Edit `/etc/netq/commands/cl4-netq-commands.yml` and comment out the following lines:
 
@@ -285,7 +279,7 @@ If you need to disable RoCE monitoring, do the following:
 
         cumulus@netq-ts:~$ sudo rm /var/run/netq/netq_commands.yml
 
-1. Restart the NetQ agent:
+1. Restart the NetQ Agent:
 
        cumulus@netq-ts:~$ netq config agent restart
 

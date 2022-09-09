@@ -931,3 +931,7 @@ This example shows changes to the `bgpd` service in the last 48 hours.
     leaf01            bgp          info     BGP session with peer spine-3 swp5. 1d:6h:55m:37s
                                             4 vrf DataVrf1082 state changed fro
                                             m failed to Established
+
+## Related Information
+
+- {{<link title="Monitor Switch Performance">}}

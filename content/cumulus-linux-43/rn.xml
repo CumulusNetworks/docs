@@ -869,12 +869,6 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <td>4.4.0-4.4.4</td>
 </tr>
 <tr>
-<td>2556500</td>
-<td>Cumulus Linux does not support bond members at 200G or greater.</td>
-<td>4.0.0-4.3.1</td>
-<td>4.4.0-4.4.4</td>
-</tr>
-<tr>
 <td>2556369</td>
 <td>If you use NCLU to configure an ACL for eth0, you can't designate it as an INPUT rule; the rule is automatically created as a FORWARD rule in the {{/etc/cumulus/acl/policy.d/50_nclu_acl.rules}} file.
 To work around this issue, manually create an ACL in the {{/etc/cumulus/acl/policy.d/}} file with "-A INPUT -i eth0".</td>
@@ -958,12 +952,6 @@ This error has no functional impact.</td>
 <td>If the RMAC of a layer 3 SVI changes, the {{show vrf vni}} command is not updated with the new value. However, the new RMAC is seen in the {{show evpn vni}} command and is present on self-originated EVPN routes.</td>
 <td>4.2.1-4.4.4</td>
 <td></td>
-</tr>
-<tr>
-<td>2554798</td>
-<td>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</td>
-<td>4.2.0-4.3.1</td>
-<td>4.4.0-4.4.4</td>
 </tr>
 <tr>
 <td>2554783</td>
@@ -2330,6 +2318,11 @@ Fixed: 1.3.8+dfsg-3+deb10u2</td>
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
+<td>2556500</td>
+<td>Cumulus Linux does not support bond members at 200G or greater.</td>
+<td>4.0.0-4.3.0</td>
+</tr>
+<tr>
 <td>2556474</td>
 <td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
 <td>4.0.0-4.3.0</td>
@@ -2350,6 +2343,11 @@ Fixed: 2.4.47+dfsg-3+deb10u5</td>
 <td>2556061</td>
 <td>On the Edgecore AS4610 switch, the historic CPU usage displayed in {{/run/sysmonitor/history}} sometimes shows as a negative value. </td>
 <td>3.7.12-3.7.15</td>
+</tr>
+<tr>
+<td>2554798</td>
+<td>On the Mellanox SN3700C switch, PIM multicast packets are duplicated at the egress VTEP.</td>
+<td>4.2.0-4.3.0</td>
 </tr>
 <tr>
 <td>2552212</td>
@@ -2772,13 +2770,6 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <tr>
 <td>2853630</td>
 <td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
 <td>4.3.0-4.4.4</td>
 <td></td>
 </tr>

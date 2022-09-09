@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3205701</td>
+<td>PCI calibration changes from a static to a dynamic mechanism.</td>
+<td>4.4.4, 5.2.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3145224</td>
 <td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
 

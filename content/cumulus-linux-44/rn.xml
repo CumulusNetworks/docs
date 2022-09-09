@@ -487,13 +487,6 @@ To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance
 <td></td>
 </tr>
 <tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
@@ -882,14 +875,6 @@ See /var/log/netd.log for more details.</td>
 To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.5</td>
 <td>5.0.0-5.2.0</td>
-</tr>
-<tr>
-<td>2596458</td>
-<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in the {{/etc/cumulus/switchd.conf}} file, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
-
-To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2574368</td>
@@ -2084,6 +2069,11 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Description </th>
 <th> Affects </th>
 </tr>
+<tr>
+<td>3205701</td>
+<td>PCI calibration changes from a static to a dynamic mechanism.</td>
+<td>4.4.4, 5.2.0</td>
+</tr>
 </table>
 <table name="Open Issues in 4.4.4">
 <tr>
@@ -2091,6 +2081,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3205701</td>
+<td>PCI calibration changes from a static to a dynamic mechanism.</td>
+<td>4.4.4, 5.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3195390</td>
@@ -2573,13 +2569,6 @@ To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance
 <td></td>
 </tr>
 <tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
@@ -3003,14 +2992,6 @@ See /var/log/netd.log for more details.</td>
 To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.4</td>
 <td>5.0.0-5.2.0</td>
-</tr>
-<tr>
-<td>2596458</td>
-<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in the {{/etc/cumulus/switchd.conf}} file, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
-
-To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
-<td>4.4.0-4.4.4</td>
-<td></td>
 </tr>
 <tr>
 <td>2574368</td>
@@ -4900,13 +4881,6 @@ To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance
 <td></td>
 </tr>
 <tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
@@ -5330,14 +5304,6 @@ See /var/log/netd.log for more details.</td>
 To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.4</td>
 <td>5.0.0-5.2.0</td>
-</tr>
-<tr>
-<td>2596458</td>
-<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in the {{/etc/cumulus/switchd.conf}} file, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
-
-To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
-<td>4.4.0-4.4.4</td>
-<td></td>
 </tr>
 <tr>
 <td>2574368</td>
@@ -7147,13 +7113,6 @@ To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance
 <td></td>
 </tr>
 <tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
@@ -7577,14 +7536,6 @@ See /var/log/netd.log for more details.</td>
 To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.4</td>
 <td>5.0.0-5.2.0</td>
-</tr>
-<tr>
-<td>2596458</td>
-<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in the {{/etc/cumulus/switchd.conf}} file, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
-
-To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
-<td>4.4.0-4.4.4</td>
-<td></td>
 </tr>
 <tr>
 <td>2574368</td>
@@ -9590,13 +9541,6 @@ To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance
 <td></td>
 </tr>
 <tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
@@ -10190,14 +10134,6 @@ See /var/log/netd.log for more details.</td>
 To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.4</td>
 <td>5.0.0-5.2.0</td>
-</tr>
-<tr>
-<td>2596458</td>
-<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in the {{/etc/cumulus/switchd.conf}} file, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
-
-To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
-<td>4.4.0-4.4.4</td>
-<td></td>
 </tr>
 <tr>
 <td>2574368</td>

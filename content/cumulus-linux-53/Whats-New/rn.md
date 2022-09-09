@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3205701"></a> [3205701](#3205701) <a name="3205701"></a> <br />None | PCI calibration changes from a static to a dynamic mechanism. | 4.4.4, 5.2.0-5.3.0 | |
 | <a name="3145224"></a> [3145224](#3145224) <a name="3145224"></a> <br /> | If you disable the NVUE service, the <code>/etc/cumulus/datapath/nvue_traffic.conf</code> file does not delete automatically, which prevents ECMP and LAG hash settings in the <code>/etc/cumulus/datapath/traffic.conf</code> file from taking effect. To work around this issue, delete the <code>nvue_traffic.conf</code> file with the <code>sudo rm /etc/cumulus/datapath/nvue_traffic.conf</code> command. | 5.2.0-5.3.0 | |
 | <a name="3145222"></a> [3145222](#3145222) <a name="3145222"></a> <br /> | The NVUE <code>nv show system forwarding --output json</code> command does not provide any output. To work around this issue, run the <code>nv show system forwarding</code> command. | 5.2.0-5.3.0 | |
 | <a name="3145204"></a> [3145204](#3145204) <a name="3145204"></a> <br /> | On the NVIDIA Spectum-1 switch, the <code>nv show system forwarding</code> command shows GTP hashing  output, which is not supported on this switch. | 5.2.0-5.3.0 | |

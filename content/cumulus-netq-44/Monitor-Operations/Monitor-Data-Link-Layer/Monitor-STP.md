@@ -5,10 +5,10 @@ weight: 900
 toc: 3
 ---
 
-You use the Spanning Tree Protocol (STP) in Ethernet-based networks to prevent communication loops when you have redundant paths on a bridge or switch. Loops cause excessive broadcast messages greatly impacting the network performance.
+Spanning Tree Protocol (STP) is used in Ethernet-based networks to prevent communication loops when there are redundant paths on a bridge or switch. Loops cause excessive broadcast messages, thereby impacting network performance.
 
 <!-- vale off -->
-With NetQ, you can view the STP topology on a bridge or switch to ensure no loops have been created using the `netq show stp topology` command. You can also view the topology information for a prior point in time to see if any changes occurred around then.
+Use the CLI to view the STP topology on a bridge or switch with the `netq show stp topology` command. 
 <!-- vale on -->
 
 The syntax for the show command is:
@@ -17,7 +17,7 @@ The syntax for the show command is:
 netq <hostname> show stp topology [around <text-time>] [json]
 ```
 
-This example shows the STP topology as viewed from the *spine1* switch.
+The following example shows the STP topology as viewed from the spine1 switch:
 
 ```
 cumulus@switch:~$ netq spine1 show stp topology

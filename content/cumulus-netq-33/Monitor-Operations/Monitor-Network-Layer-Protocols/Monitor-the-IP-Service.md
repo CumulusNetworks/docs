@@ -140,7 +140,7 @@ Address                   Hostname          Interface                 VRF       
 
 ### View IPv6 Address information for All Devices
 
-To view only IPv4 addresses, run `netq show ipv6 addresses`. This example shows all IPv6 addresses in the reference topology.
+To view only IPv6 addresses, run `netq show ipv6 addresses`. This example shows all IPv6 addresses in the reference topology.
 
 ```
 cumulus@switch:~$ netq show ipv6 addresses

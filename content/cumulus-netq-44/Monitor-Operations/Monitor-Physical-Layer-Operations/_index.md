@@ -4,7 +4,9 @@ author: NVIDIA
 weight: 850
 toc: 3
 ---
-Use the CLI to monitor OSI Layer 1 physical components on network devices, including interfaces, ports, links, and peers. You can monitor transceivers and cabling deployed per port (interface), per vendor, per part number and so forth. This information can help you:
+Use the CLI to monitor OSI Layer 1 physical components on network devices, including interfaces, ports, links, and peers. You can monitor transceivers and cabling deployed per port (interface), per vendor, per part number, and so forth. 
+
+This information can help you:
 
 - Determine which ports are empty versus which ones have cables plugged in to help validate expected connectivity.
 - Audit transceiver and cable components by vendor, helping you estimate replacement costs, repair costs, and overall maintenance costs.

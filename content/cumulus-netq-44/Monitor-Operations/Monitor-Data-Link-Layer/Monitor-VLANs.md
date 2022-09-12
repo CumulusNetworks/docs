@@ -42,7 +42,9 @@ When using the `between` option, you can enter the start time (`text-time`) and 
 
 You can view the configuration information for all VLANs in your network by running the `netq show vlan` command. It lists VLANs by device, and indicates any switch virtual interfaces (SVIs) configured and the last time this configuration changed.
 
-This example shows the VLANs configured across a network based on the NVIDIA reference architecture.
+{{<expand "show vlan">}}
+
+The following example shows the VLANs configured across a network based on the NVIDIA reference architecture.
 
 ```
 cumulus@switch:~$ netq show vlan
@@ -56,12 +58,14 @@ leaf02            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28
 leaf03            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
 leaf04            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
 ```
-
-## View ALL VLAN Information for a Given Device
+{{</expand>}}
+## View All VLAN Information for a Given Device
 
 You can view the configuration information for all VLANs running on a specific device using the `netq <hostname> show vlan` command. It lists VLANs running on the device, the ports used, whether an SVI is present, and the last time this configuration changed.
 
-This example shows the VLANs configured on the *leaf02* switch.
+{{<expand "leaf02 show vlan">}}
+
+The following example shows the VLANs configured on the leaf02 switch.
 
 ```
 cumulus@switch:~$ netq leaf02 show vlan
@@ -75,7 +79,7 @@ leaf02            10     bond1,vni10                         yes  Wed Oct 28 15:
 leaf02            4001   vniRED                              yes  Wed Oct 28 15:14:11 2020
 leaf02            4002   vniBLUE                             yes  Wed Oct 28 15:14:11 2020
 ```
-
+{{</expand>}}
 ## View Information for a Given VLAN
 
 You can view the configuration information for a particular VLAN using the `netq show vlan <vlan-id>` command. The ID must be a number between 1 and 4096.

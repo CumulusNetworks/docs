@@ -57,7 +57,7 @@ leaf03            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28
 leaf04            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
 ```
 
-## View ALL VLAN Information for a Given Device
+## View All VLAN Information for a Given Device
 
 You can view the configuration information for all VLANs running on a specific device using the `netq <hostname> show vlan` command. It lists VLANs running on the device, the ports used, whether an SVI is configured, and the last time this configuration was changed.
 

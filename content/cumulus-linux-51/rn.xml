@@ -149,6 +149,12 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 <td>5.2.0</td>
 </tr>
 <tr>
+<td>3135714</td>
+<td>The {{tacplus}} package does not create the correct tacacs0-15 users in the right groups. </td>
+<td>5.1.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3135070</td>
 <td>After you configure the NVIDIA SN2010 series switch for the first time with NVUE, you see the fan speed at 100 percent. To work around this issue, run the {{sudo systemctl restart hw-management.service}} command to restart the hardware management service.</td>
 <td>5.1.0</td>

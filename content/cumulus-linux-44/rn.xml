@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>3205701</td>
-<td>PCI calibration changes from a static to a dynamic mechanism.</td>
+<td>On the NVIDIA SN4700 and SN4600C switch, PCI calibration has been modified from a static to a dynamic mechanism.</td>
 <td>4.4.4, 5.2.0</td>
 <td></td>
 </tr>
@@ -22,6 +22,12 @@
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3190181</td>
+<td>When you remove a configuration from the {{/etc/frr/frr.conf}} file, the {{bgpd}} service crashes on the ToR.</td>
+<td>4.4.2-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -729,16 +735,16 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <td></td>
 </tr>
 <tr>
-<td>2734119</td>
-<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.4</td>
-<td>5.0.0-5.2.0</td>
-</tr>
-<tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2732605</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>4.3.0-4.4.4</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2732587</td>
@@ -916,6 +922,14 @@ See /var/log/netd.log for more details.</td>
 To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.4</td>
 <td>5.0.0-5.2.0</td>
+</tr>
+<tr>
+<td>2596458</td>
+<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in the {{/etc/cumulus/switchd.conf}} file, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
+
+To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2574368</td>
@@ -2244,6 +2258,12 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td></td>
 </tr>
 <tr>
+<td>3190181</td>
+<td>When you remove a configuration from the {{/etc/frr/frr.conf}} file, the {{bgpd}} service crashes on the ToR.</td>
+<td>4.4.2-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -3041,16 +3061,16 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <td></td>
 </tr>
 <tr>
-<td>2734119</td>
-<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.4</td>
-<td>5.0.0-5.2.0</td>
-</tr>
-<tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2732605</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>4.3.0-4.4.4</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2732587</td>
@@ -3228,6 +3248,14 @@ See /var/log/netd.log for more details.</td>
 To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.4</td>
 <td>5.0.0-5.2.0</td>
+</tr>
+<tr>
+<td>2596458</td>
+<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in the {{/etc/cumulus/switchd.conf}} file, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
+
+To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2574368</td>
@@ -4486,6 +4514,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td></td>
 </tr>
 <tr>
+<td>3190181</td>
+<td>When you remove a configuration from the {{/etc/frr/frr.conf}} file, the {{bgpd}} service crashes on the ToR.</td>
+<td>4.4.2-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -5273,16 +5307,16 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <td></td>
 </tr>
 <tr>
-<td>2734119</td>
-<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.4</td>
-<td>5.0.0-5.2.0</td>
-</tr>
-<tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2732605</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>4.3.0-4.4.4</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2732587</td>
@@ -5460,6 +5494,14 @@ See /var/log/netd.log for more details.</td>
 To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.4</td>
 <td>5.0.0-5.2.0</td>
+</tr>
+<tr>
+<td>2596458</td>
+<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in the {{/etc/cumulus/switchd.conf}} file, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
+
+To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2574368</td>
@@ -7840,12 +7882,6 @@ Fixed: 241-7~deb10u8</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2734119</td>
-<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.4</td>
-<td>5.0.0-5.2.0</td>
-</tr>
-<tr>
 <td>2734107</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-4.4.1</td>
@@ -7856,6 +7892,12 @@ Fixed: 241-7~deb10u8</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2732605</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>4.3.0-4.4.4</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2732587</td>
@@ -7946,8 +7988,8 @@ To work around this issue, use traditional route leaking with the {{import vrf}}
 <tr>
 <td>2706744</td>
 <td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2-4.4.4</td>
 </tr>
 <tr>
 <td>2705056</td>
@@ -8058,6 +8100,14 @@ See /var/log/netd.log for more details.</td>
 To recover from this state, flap the bond interface (not the physical swp) by running {{ifdown &lt;bond_name&gt; ; sleep 1 ; ifup &lt;bond_name&gt;}}.</td>
 <td>4.3.0-4.4.4</td>
 <td>5.0.0-5.2.0</td>
+</tr>
+<tr>
+<td>2596458</td>
+<td>When {{bridge.unreg_v6_mcast_prune = TRUE}} is configured in the {{/etc/cumulus/switchd.conf}} file, traffic destined to IPv6 link-local multicast addresses might not be flooded within the bridge.
+
+To work around this issue, disable pruning for IPv6 multicast by setting {{bridge.unreg_v6_mcast_prune = FALSE}} in the {{/etc/cumulus/switchd.conf}} file.</td>
+<td>4.4.0-4.4.4</td>
+<td></td>
 </tr>
 <tr>
 <td>2574368</td>

@@ -30,11 +30,11 @@ Although the traps are sent to an SNMPv2c receiver, the SNMPv3 username is still
 Follow the steps in {{<link url="Configure-SNMP/#configure-the-snmpv3-username">}} to define the username. You can refer to the {{<exlink url="http://www.net-snmp.org/docs/man/snmptrapd.conf.html" text="snmptrapd.conf(5) manual page">}} for more information.
 
 {{%notice note%}}
-
 If not already on the system, install the `snmptrapd` Debian package before you configure the username.
 
-    cumulus@switch:~$ sudo apt-get install snmptrapd
-
+```
+cumulus@switch:~$ sudo apt-get install snmptrapd
+```
 {{%/notice%}}
 
 ### Define Trap Receivers
@@ -44,7 +44,7 @@ The following configuration defines the trap receiver IP address for SNMPv1 and 
 {{< tabs "trap-destination" >}}
 {{< tab "NVUE Commands" >}}
 
-Cumulus Linux does not provide NVUE commands for SNMP configuration.
+Cumulus Linux does not provide NVUE commands for SNMP trap configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -80,7 +80,7 @@ The SNMP trap receiving daemon must have usernames, authentication passwords, an
 {{< tabs "traps-informs" >}}
 {{< tab "NVUE Commands" >}}
 
-Cumulus Linux does not provide NVUE commands for SNMP configuration.
+Cumulus Linux does not provide NVUE commands for SNMP trap configuration.
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -201,18 +201,20 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 Cumulus Linux no longer uses the LM-SENSORS MIB to monitor temperature.
 {{%/notice%}}
 
-### Configure Link Up/Down Notifications
+### Configure Link Up and Link Down Notifications
 
-The `linkUpDownNotifications` directive configures link up and link down notifications when the operational status of the link changes.
+You can configure the switch to trigger link up and link down notifications when the operational status of the link changes.
 
-{{%notice note%}}
-The default frequency for checking link up and link down is 60 seconds. To change the default frequency, see `man snmpd.conf`.
-{{%/notice%}}
+The following example commands enable the Event MIB tables to monitor the ifTable for network interfaces that come up every 15 seconds or go down every 10 seconds, and trigger a `linkUp` amd `linkDown` notification:
 
 {{< tabs "traps-linkupdown" >}}
 {{< tab "NVUE Commands" >}}
 
-Cumulus Linux does not provide NVUE commands for SNMP configuration.
+```
+cumulus@switch:~$ nv set service snmp-server trap-link-down check-frequency 10
+cumulus@switch:~$ nv set service snmp-server trap-link-up check-frequency 15
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -244,7 +246,9 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 ### Configure Free Memory Notifications
 
-You can monitor free memory with the following directives. The example below generates a trap when free memory drops below 1,000,000KB. The free memory trap also includes the amount of total real memory:
+You can monitor free memory and configure the switch to generate a trap when free memory drops below a certain size.
+
+The following example generates a trap when free memory drops below 1,000,000KB. The free memory trap also includes the amount of total real memory:
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -261,19 +265,22 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 ### Configure Processor Load Notifications
 
-To enable a trap when the CPU load average exceeds a configured threshold, run the following commands. You can only use integers or floating point numbers.
+To generate a trap when the CPU load average exceeds a certain threshold, run the following commands. You can only use integers or floating point numbers.
+
+The following example generates a trap when the 1 minute interval reaches 12%, the 5 minute interval reaches 10%, or the 15 minute interval reaches 5%.
 
 {{< tabs "traps-cpuload" >}}
 {{< tab "NVUE Commands" >}}
 
-Cumulus Linux does not provide NVUE commands for SNMP configuration.
+```
+cumulus@switch:~$ nv set service snmp-server trap-cpu-load-average one-minute 12 five-minute 10 fifteen-minute 5
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-Edit the `/etc/snmp/snmpd.conf` file and configure the CPU load settings.
-
-To monitor CPU load for 1, 5, or 15 minute intervals, use the `load` directive with the `monitor` directive. The following example generates a trap when the 1 minute interval reaches 12%, the 5 minute interval reaches 10%, or the 15 minute interval reaches 5%.
+Edit the `/etc/snmp/snmpd.conf` file and configure the CPU load settings. To monitor CPU load for 1, 5, or 15 minute intervals, use the `load` directive with the `monitor` directive.
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -311,17 +318,20 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 ### Configure Authentication Notifications
 
-To send SNMP trap notifications for every SNMP authentication failure, run the following commands.
+To generate SNMP trap notifications for every SNMP authentication failure, run the following commands.
 
 {{< tabs "traps-authfailurre" >}}
 {{< tab "NVUE Commands" >}}
 
-Cumulus Linux does not provide NVUE commands for SNMP configuration.
+```
+cumulus@switch:~$ nv set service snmp-server trap-snmp-auth-failures
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-To generate authentication failure traps, use the `authtrapenable` directive:
+In the `/etc/snmp/snmpd.conf` file, add the `authtrapenable` directive:
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf

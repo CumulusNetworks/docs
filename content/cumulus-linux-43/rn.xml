@@ -731,12 +731,6 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td></td>
 </tr>
 <tr>
-<td>2716829</td>
-<td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
-<td>4.3.0-4.4.1</td>
-<td>4.4.2-4.4.4</td>
-</tr>
-<tr>
 <td>2716822</td>
 <td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
@@ -763,6 +757,12 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
 <td>4.2.1-4.4.4</td>
 <td></td>
+</tr>
+<tr>
+<td>2706744</td>
+<td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2-4.4.4</td>
 </tr>
 <tr>
 <td>2701000</td>
@@ -833,17 +833,17 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td></td>
 </tr>
 <tr>
-<td>2684418</td>
-<td>If you configure items in a VRF that has been created, deleted, then re-created, {{staticd}} crashes.</td>
-<td>4.3.0</td>
-<td>4.4.0-4.4.4</td>
-</tr>
-<tr>
 <td>2682971</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1
 Fixed: 0.12.2+cl4.4.0u1</td>
 <td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.4</td>
+</tr>
+<tr>
+<td>2682792</td>
+<td>If you configure items in a VRF that has been created, deleted, then re-created, {{staticd}} crashes.</td>
+<td>4.3.0</td>
 <td>4.4.0-4.4.4</td>
 </tr>
 <tr>

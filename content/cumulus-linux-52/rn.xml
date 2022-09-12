@@ -25,6 +25,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3196774</td>
+<td>In an EVPN configuration, after closing a BGP session on an EVPN peer, the VTEP RMAC is deleted and the hosts loose reachability to each other.  To work around this issue, restart FRR or add a static RMAC entry to bridge FDB.</td>
+<td>5.2.0-5.2.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3195390</td>
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.1</td>
@@ -159,6 +165,12 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
 <td>5.2.0-5.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3135714</td>
+<td>The {{tacplus}} package does not create the correct tacacs0-15 users in the right groups. </td>
+<td>5.1.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -530,7 +542,7 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 </tr>
 <tr>
 <td>3205700</td>
-<td>PCI calibration changes from a static to a dynamic mechanism.</td>
+<td>On the NVIDIA SN4700 and SN4600C switch, PCI calibration has been modified from a static to a dynamic mechanism.</td>
 <td>4.4.4-5.2.0</td>
 </tr>
 </table>
@@ -543,7 +555,7 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 </tr>
 <tr>
 <td>3205700</td>
-<td>PCI calibration changes from a static to a dynamic mechanism.</td>
+<td>On the NVIDIA SN4700 and SN4600C switch, PCI calibration has been modified from a static to a dynamic mechanism.</td>
 <td>4.4.4, 5.2.0</td>
 <td></td>
 </tr>
@@ -562,6 +574,12 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 <tr>
 <td>3200958</td>
 <td>Switch fans run at very high speed but the temperature is normal.</td>
+<td>5.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3196774</td>
+<td>In an EVPN configuration, after closing a BGP session on an EVPN peer, the VTEP RMAC is deleted and the hosts loose reachability to each other.  To work around this issue, restart FRR or add a static RMAC entry to bridge FDB.</td>
 <td>5.2.0</td>
 <td></td>
 </tr>
@@ -700,6 +718,12 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 ethtool -s swp1 speed 100000 autoneg off lanes 2
 </td>
 <td>5.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3135714</td>
+<td>The {{tacplus}} package does not create the correct tacacs0-15 users in the right groups. </td>
+<td>5.1.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>

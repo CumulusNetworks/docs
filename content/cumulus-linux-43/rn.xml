@@ -453,12 +453,6 @@ To work around this issue, restart FRR with the {{sudo systemctl restart frr}} c
 <td>5.0.0-5.2.0</td>
 </tr>
 <tr>
-<td>2716829</td>
-<td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
-<td>4.3.0-4.4.1</td>
-<td>4.4.2-4.4.4</td>
-</tr>
-<tr>
 <td>2713888</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 
@@ -481,6 +475,12 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td></td>
 </tr>
 <tr>
+<td>2706744</td>
+<td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2-4.4.4</td>
+</tr>
+<tr>
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
@@ -491,17 +491,6 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 <td>2700767</td>
 <td>Following an event that causes the peerlink bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a peer IP mismatch. This behavior is seen when you use a MLAG peer IP linklocal configuration.</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2699399</td>
-<td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
-
-spine01# show ip bgp vrf all statistics 
-vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
-
-To workaround this issue, run the command against each VRF independently.</td>
-<td>3.7.15, 4.0.0-4.4.4</td>
 <td>3.7.16</td>
 </tr>
 <tr>
@@ -529,12 +518,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
 <td>4.0.0-5.0.1</td>
 <td>5.1.0-5.2.0</td>
-</tr>
-<tr>
-<td>2684418</td>
-<td>If you configure items in a VRF that has been created, deleted, then re-created, {{staticd}} crashes.</td>
-<td>4.3.0-4.3.1</td>
-<td>4.4.0-4.4.4</td>
 </tr>
 <tr>
 <td>2682971</td>
@@ -2252,6 +2235,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>3.7.14.2-4.3.0</td>
 </tr>
 <tr>
+<td>2699399</td>
+<td>When you run the vtysh {{show ip bgp vrf &lt;name&gt; &lt;afi&gt; &lt;safi&gt; statistics}} command, the {{bgpd}} service crashes if you use {{vrf all}}. For example:
+
+spine01# show ip bgp vrf all statistics 
+vtysh: error reading from bgpd: Success (0)Warning: closing connection to bgpd because of an I/O error!
+
+To workaround this issue, run the command against each VRF independently.</td>
+<td>3.7.15, 4.0.0-4.3.0</td>
+</tr>
+<tr>
 <td>2699378</td>
 <td>Following an event that causes the peer link bond MAC address to change, such as a slave port state change, MLAG interfaces might be suspended due to a {{peer-ip-mismatch}}.  This behavior is seen when you use a {{clagd-peer-ip linklocal}} configuration.</td>
 <td>4.3.0</td>
@@ -2265,6 +2258,11 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>2685584</td>
 <td>A host migrated to an 802.1x port within the same broadcast domain does not have the correct static FDB entry installed if a dynamic FDB entry for that MAC address exists from previous connectivity in the broadcast domain.</td>
 <td>4.2.1-4.3.0</td>
+</tr>
+<tr>
+<td>2682792</td>
+<td>If you configure items in a VRF that has been created, deleted, then re-created, {{staticd}} crashes.</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2668543</td>
@@ -3087,12 +3085,6 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td></td>
 </tr>
 <tr>
-<td>2716829</td>
-<td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
-<td>4.3.0-4.4.1</td>
-<td>4.4.2-4.4.4</td>
-</tr>
-<tr>
 <td>2716822</td>
 <td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
@@ -3119,6 +3111,12 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
 <td>4.2.1-4.4.4</td>
 <td></td>
+</tr>
+<tr>
+<td>2706744</td>
+<td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2-4.4.4</td>
 </tr>
 <tr>
 <td>2701000</td>
@@ -3189,17 +3187,17 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td></td>
 </tr>
 <tr>
-<td>2684418</td>
-<td>If you configure items in a VRF that has been created, deleted, then re-created, {{staticd}} crashes.</td>
-<td>4.3.0</td>
-<td>4.4.0-4.4.4</td>
-</tr>
-<tr>
 <td>2682971</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1
 Fixed: 0.12.2+cl4.4.0u1</td>
 <td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.4</td>
+</tr>
+<tr>
+<td>2682792</td>
+<td>If you configure items in a VRF that has been created, deleted, then re-created, {{staticd}} crashes.</td>
+<td>4.3.0</td>
 <td>4.4.0-4.4.4</td>
 </tr>
 <tr>

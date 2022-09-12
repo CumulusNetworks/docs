@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>3205701</td>
-<td>PCI calibration changes from a static to a dynamic mechanism.</td>
+<td>On the NVIDIA SN4700 and SN4600C switch, PCI calibration has been modified from a static to a dynamic mechanism.</td>
 <td>4.4.4, 5.2.0-5.3.0</td>
 <td></td>
 </tr>

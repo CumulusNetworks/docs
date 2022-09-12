@@ -205,10 +205,18 @@ Cumulus Linux no longer uses the LM-SENSORS MIB to monitor temperature.
 
 You can configure the switch to trigger link up and link down notifications when the operational status of the link changes.
 
-The following example commands enable the Event MIB tables to monitor the ifTable for network interfaces that come up every 15 seconds or go down every 10 seconds, and trigger a `linkUp` amd `linkDown` notification:
-
 {{< tabs "traps-linkupdown" >}}
 {{< tab "NVUE Commands" >}}
+
+The following example commands enable the Event MIB tables to monitor the ifTable for network interfaces that come up every 60 seconds or go down every 60 seconds, and trigger a `linkUp` amd `linkDown` notification. 60 seconds is the default interval.
+
+```
+cumulus@switch:~$ nv set service snmp-server trap-link-down
+cumulus@switch:~$ nv set service snmp-server trap-link-up
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands enable the Event MIB tables to monitor the ifTable for network interfaces that come up every 15 seconds or go down every 10 seconds, and trigger a `linkUp` amd `linkDown` notification.
 
 ```
 cumulus@switch:~$ nv set service snmp-server trap-link-down check-frequency 10

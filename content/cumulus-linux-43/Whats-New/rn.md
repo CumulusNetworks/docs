@@ -14,7 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3195390"></a> [3195390](#3195390) <a name="3195390"></a> <br />None | Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces. | 4.3.0-4.4.4 | |
+| <a name="3195390"></a> [3195390](#3195390) <a name="3195390"></a> <br />None | Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
 | <a name="3192808"></a> [3192808](#3192808) <a name="3192808"></a> <br />None | When the switch receives an LLDP frame from a Cisco router right after a <code>ptmd</code> restart, the <code>ptmd</code> service crashes. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
 | <a name="3185796"></a> [3185796](#3185796) <a name="3185796"></a> <br /> | When you enable ACL nonatomic update mode in the <code>/etc/cumulus/switchd.conf</code> file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other. | 4.3.0-4.4.4 | |
 | <a name="3138746"></a> [3138746](#3138746) <a name="3138746"></a> <br /> | The switch duplicates DHCP packets that pass through the VTEP. | 4.3.0-5.1.0 | 5.2.0|

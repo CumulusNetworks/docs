@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3202991</td>
+<td>Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM.</td>
+<td>5.0.1-5.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3195390</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
@@ -615,13 +627,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>3.7.16, 5.1.0-5.2.0</td>
 </tr>
 <tr>
-<td>2873053</td>
-<td>In an EVPN Multihoming configuration, when ES bond members go down, all software forwarded traffic destined to the access port, except for unicast ARP requests and replies, and unicast IPv6 NS and NA, is dropped and not forwarded through the VXLAN overlay. 
-To work around this issue, bring the host side bond admin down and up (ifdown/ifup) on the bond interface itself and not on its member port.</td>
-<td>5.0.0-5.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2867248</td>
 <td>The {{validate-ports -d}} command does not return the correct speeds for ports. Use the speeds specified in the {{/etc/cumulus/ports.conf}} file.</td>
 <td>5.0.0-5.1.0</td>
@@ -764,6 +769,12 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3195390</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -1217,13 +1228,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>3.7.16, 5.1.0-5.2.0</td>
 </tr>
 <tr>
-<td>2873053</td>
-<td>In an EVPN Multihoming configuration, when ES bond members go down, all software forwarded traffic destined to the access port, except for unicast ARP requests and replies, and unicast IPv6 NS and NA, is dropped and not forwarded through the VXLAN overlay. 
-To work around this issue, bring the host side bond admin down and up (ifdown/ifup) on the bond interface itself and not on its member port.</td>
-<td>5.0.0-5.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2867248</td>
 <td>The {{validate-ports -d}} command does not return the correct speeds for ports. Use the speeds specified in the {{/etc/cumulus/ports.conf}} file.</td>
 <td>5.0.0-5.1.0</td>
@@ -1363,11 +1367,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-3.7.15, 4.3.0-4.4.4</td>
-</tr>
-<tr>
-<td>2845647</td>
-<td> The {{mpls_enable = TRUE}} parameter in the {{/etc/cumulus/datapath/traffic.conf}} does not enable MPLS.</td>
-<td></td>
 </tr>
 <tr>
 <td>2845531</td>

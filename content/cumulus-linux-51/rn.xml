@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3202991</td>
+<td>Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM.</td>
+<td>5.0.1-5.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3195390</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
@@ -617,13 +629,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>2886476</td>
 <td>If you enable or disable the advertise primary IP address setting when originating EVPN default type-5 routes, the default route or prefix originated from one of the MLAG peers sends a null layer 3 VNI, which prevents the remote VTEP from installing the default route.</td>
-<td>5.0.0-5.2.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2873053</td>
-<td>In an EVPN Multihoming configuration, when ES bond members go down, all software forwarded traffic destined to the access port, except for unicast ARP requests and replies, and unicast IPv6 NS and NA, is dropped and not forwarded through the VXLAN overlay. 
-To work around this issue, bring the host side bond admin down and up (ifdown/ifup) on the bond interface itself and not on its member port.</td>
 <td>5.0.0-5.2.0</td>
 <td></td>
 </tr>

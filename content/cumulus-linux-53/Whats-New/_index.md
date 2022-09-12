@@ -16,12 +16,12 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 
 ### Platforms
 
-- {{<link url="Interface-Configuration-and-Management/#chassis-management" text="NVIDIA SN4800 (100G Spectrum-3)">}} generally available access
+- {{<link url="Interface-Configuration-and-Management/#chassis-management" text="NVIDIA SN4800 (100G Spectrum-3)">}} now generally available
 - All NVIDIA Spectrum-2 and Spectrum-3 switches support 1G
 
 ### New Features and Enhancements
 
-- Refactor port configuration
+<!-- - Refactor port configuration-->
 - PTP shaper for Spectrum-1
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - user management commands

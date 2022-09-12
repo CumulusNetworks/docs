@@ -44,7 +44,7 @@ You can view the configuration information for all VLANs in your network by runn
 
 {{<expand "show vlan">}}
 
-The following example shows the VLANs configured across a network based on the NVIDIA reference architecture.
+The following example shows the VLANs configured across a network based on the NVIDIA reference architecture:
 
 ```
 cumulus@switch:~$ netq show vlan
@@ -65,7 +65,7 @@ You can view the configuration information for all VLANs running on a specific d
 
 {{<expand "leaf02 show vlan">}}
 
-The following example shows the VLANs configured on the leaf02 switch.
+The following example shows the VLANs configured on the leaf02 switch:
 
 ```
 cumulus@switch:~$ netq leaf02 show vlan
@@ -84,7 +84,9 @@ leaf02            4002   vniBLUE                             yes  Wed Oct 28 15:
 
 You can view the configuration information for a particular VLAN using the `netq show vlan <vlan-id>` command. The ID must be a number between 1 and 4096.
 
-This example shows that vlan *10* is running on the two border and four leaf switches.
+{{<expand "show vlan 10">}}
+
+The following example shows that vlan 10 is running on the two border and four leaf switches:
 
 ```
 cumulus@switch~$ netq show vlan 10
@@ -98,13 +100,15 @@ leaf02            10     bond1,vni10                         yes  Wed Oct 28 15:
 leaf03            10     bond1,vni10                         yes  Wed Oct 28 15:20:29 2020
 leaf04            10     bond1,vni10                         yes  Wed Oct 28 15:20:29 2020
 ```
-
+{{</expand>}}
 ## View VLAN Information for a Time in the Past
 
-You can view the VLAN configuration information across the network or for a given device at a time in the past using the `around` option of the `netq show vlan` command. This can be helpful when you think changes might have occurred.
+You can view the VLAN configuration information across the network or for a given device at a time in the past using the `around` option of the `netq show vlan` command.
+
+{{<expand "show vlan around 30d">}}
 
 <!-- vale off -->
-This example shows the VLAN configuration in the last 24 hours and 30 days ago. Note that some SVIs have been removed.
+The following example shows the VLAN configuration in the last 24 hours and 30 days ago. Note that some SVIs have been removed.
 <!-- vale on -->
 
 ```
@@ -130,8 +134,9 @@ leaf02            1,10,20,30,4001-4002      10 20 30 4001-4002        Wed Oct 28
 leaf03            1,10,20,30,4001-4002      10 20 30 4001-4002        Wed Oct 28 15:25:43 2020
 leaf04            1,10,20,30,4001-4002      10 20 30 4001-4002        Wed Oct 28 15:25:43 2020
 ```
-
-This example shows the VLAN configuration on *leaf02* in the last 24 hours and one week ago. In this case, no changes are present.
+{{</expand>}}
+{{<expand "leaf02 show vlan around 7d">}}
+The following example shows the VLAN configuration on leaf02 in the last 24 hours and one week ago. In this case, no changes are present.
 
 ```
 cumulus@switch:~$ netq leaf02 show vlan
@@ -156,10 +161,12 @@ leaf02            10     bond1,vni10                         yes  Wed Oct 28 15:
 leaf02            4001   vniRED                              yes  Wed Oct 28 15:36:39 2020
 leaf02            4002   vniBLUE                             yes  Wed Oct 28 15:36:39 2020
 ```
-
+{{</expand>}}
 ## View VLAN Interface Information
 
 You can view the current or past state of the interfaces associated with VLANs using the `netq show interfaces` command. This provides the status of the interface, its specified MTU, whether it is running over a VRF, and the last time it changed.
+
+{{<expand "show interfaces type vlan">}}
 
 ```
 cumulus@switch:~$ netq show interfaces type vlan
@@ -199,23 +206,27 @@ leaf04            vlan30                    vlan             up         BLUE    
 leaf04            vlan10                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:29:06 2020
 leaf04            peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:29:06 2020
 ```
-
+{{</expand>}}
 ## View the Number of VLAN Interfaces Configured
 
 You can view the number of VLAN interfaces configured for a given device using the `netq show vlan` command with the `hostname` and `count` options.
 
-This example shows the count of VLAN interfaces on the *leaf02* switch in the last 24 hours.
+{{<expand "leaf02 show interfaces type vlan count">}}
+
+The following example shows the count of VLAN interfaces on the leaf02 switch in the last 24 hours.
 
 ```
 cumulus@switch:~$ netq leaf02 show interfaces type vlan count
 Count of matching link records: 6
 ```
-
+{{</expand>}}
 ### View MAC Addresses Associated with a VLAN
 
 You can determine the MAC addresses associated with a given VLAN using the `netq show macs vlan` command. The command also provides the hostnames of the devices, the egress port for the interface, whether the MAC address originated from the given device, whether it learns the MAC address from the peer (`remote=yes`), and the last time the configuration changed.
 
-This example shows the MAC addresses associated with VLAN *10*.
+{{<expand "show macs vlan 10">}}
+
+The following example shows the MAC addresses associated with VLAN 10:
 
 ```
 cumulus@switch:~$ netq show macs vlan 10
@@ -271,12 +282,14 @@ no     46:38:39:00:00:44  10     leaf01            vni10                        
 no     46:38:39:00:00:32  10     leaf01            bond1                          no     Tue Oct 27 22:28:42 2020
 yes    52:37:ca:35:d3:70  10     leaf01            vni10                          no     Tue Oct 27 22:28:42 2020
 ```
-
+{{</expand>}}
 ### View MAC Addresses Associated with an Egress Port
 
 You can filter information down to just the MAC addresses associated with a given VLAN on a device that use a particular egress port. Use the `netq <hostname> show macs` command with the `egress-port` and `vlan` options.
 
-This example shows MAC addresses associated with the *leaf02* switch and VLAN *10* that use the *bridge* port.
+{{<expand "leaf02 show macs egress-port bridge vlan 10">}}
+
+The following example shows MAC addresses associated with the leaf02 switch and VLAN 10 that use the bridge port.
 
 ```
 cumulus@netq-ts:~$ netq leaf02 show macs egress-port bridge vlan 10
@@ -286,10 +299,12 @@ Origin MAC Address        VLAN   Hostname          Egress Port                  
 yes    00:00:00:00:00:1a  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
 yes    44:38:39:00:00:37  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
 ```
+{{</expand>}}
+### View the MAC Addresses Associated with vRR Configurations
 
-### View the MAC Addresses Associated with VRR Configurations
+You can view all MAC addresses associated with your vRR (virtual route reflector) interface configuration using the `netq show interfaces type macvlan` command. This is useful for determining if the specified MAC address inside a VLAN is the same or different across your vRR configuration.
 
-You can view all MAC addresses associated with your VRR (virtual router reflector) interface configuration using the `netq show interfaces type macvlan` command. This is useful for determining if the specified MAC address inside a VLAN is the same or different across your VRR configuration.
+{{<expand "show interfaces type macvlan">}}
 
 ```
 cumulus@switch:~$ netq show interfaces type macvlan
@@ -327,6 +342,7 @@ leaf04            vlan20-v0                 macvlan          up         RED     
                                                                                         Mode: Private
 leaf04            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:29:06 2020
 ```
+{{</expand>}}
 
 ## View All VLAN Events
 

@@ -119,5 +119,5 @@ cumulus@switch:~$ sudo systemctl restart switchd.service
 You do not have to restart the `switchd` service when you update a network interface configuration (for example, when you edit the `/etc/network/interfaces` file).
 
 {{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration. NVIDIA recommends that you reboot the switch instead of restarting the `switchd` service to minimize traffic impact when redundant switches are present with MLAG.
 {{%/notice%}}

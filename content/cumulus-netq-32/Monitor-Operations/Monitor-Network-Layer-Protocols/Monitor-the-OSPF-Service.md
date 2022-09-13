@@ -19,7 +19,7 @@ With NetQ, you can monitor OSPF performance across the network:
     - Medium: view number and distribution of nodes running OSPF service, total sessions, unestablished sessions, and alarms
     - Large: view number and distribution of nodes running OSPF service, total sessions, unestablished sessions, and alarms, switches with the most established sessions/alarms
     - Full-screen: view and filter configuration and status for all switches, all sessions, and all alarms
-- `netq show evpn` command: view configuration and status for all devices, including interface, area, type, state, peer hostname and interface, and last time a change was made for each device
+- `netq show ospf` command: view configuration and status for all devices, including interface, area, type, state, peer hostname and interface, and last time a change was made for each device
 
 {{%notice note%}}
 When entering a time value, you must include a numeric value *and* the unit of measure:

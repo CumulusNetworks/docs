@@ -18,22 +18,6 @@ With NetQ, you can monitor EVPN performance across the network:
     - Large: view number of nodes running EVPN service, number of sessions, number of VNIs, switches with the most sessions, and alarms
     - Full-screen: view all switches, all sessions, and all alarms
 - `netq show evpn` command: view configuration and status for all devices, including associated VNI, VTEP address, import and export route (showing BGP ASN and VNI path), and last time a change occurred for each device running EVPN
-
-{{%notice note%}}
-
-When entering a time value in the `netq show evpn` command, you must include a numeric value *and* the unit of measure:
-
-- **w**: weeks
-- **d**: days
-- **h**: hours
-- **m**: minutes
-- **s**: seconds
-- **now**
-
-When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
-
-{{%/notice%}}
-
 ### View the EVPN Service Status
 
 You can view the configuration and status of your EVPN overlay across your network or for a particular device from the NetQ UI or the NetQ CLI. The example below shows the configuration and status for all devices, including the associated VNI, VTEP address, the import and export route (showing the BGP ASN and VNI path), and the last time a change occurred for each device running EVPN. Use the `hostname` option to view the configuration and status for a single device.

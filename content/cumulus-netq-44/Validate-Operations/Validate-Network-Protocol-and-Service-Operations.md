@@ -160,7 +160,7 @@ The associated Validation Result card is accessible from the full-screen Validat
 ### Create an On-demand Validation with Selected Tests
 <!-- vale on -->
 
-You can include or exclude one or more of the various checks performed during a validation. Refer to {{<link title="Validation Checks">}} for a description of the tests for each protocol or service.
+You can include or exclude one or more of the various checks performed during a validation. Refer to {{<link title="Validation Tests Reference">}} for a description of the tests for each protocol or service.
 
 {{<tabs "Selected Tests">}}
 
@@ -196,7 +196,7 @@ To create and run a request containing checks on one or more protocols or servic
 
 Using the `include <bgp-number-range-list>` and `exclude <bgp-number-range-list>` options of the `netq check` command, you can include or exclude one or more of the various checks performed during the validation.
 
-First determine the number of the tests you want to include or exclude. Refer to {{<link title="Validation Checks">}} for a description of these tests and to get the test numbers for the tests to include or exclude. You can also get the test numbers and descriptions when you run the `netq show unit-tests` command.
+First determine the number of the tests you want to include or exclude. Refer to {{<link title="Validation Tests Reference">}} for a description of these tests and to get the test numbers for the tests to include or exclude. You can also get the test numbers and descriptions when you run the `netq show unit-tests` command.
 
 Then run the `netq check` command.
 
@@ -1326,7 +1326,7 @@ To analyze the results:
 
 ### Manage Scheduled Validations
 
-You can modify any scheduled validation that you created or remove it altogether at any time. Default validations cannot be removed or modified, but {{<link title="Validation Checks#disabling-validation-checks" text="can be disabled.">}}
+You can modify any scheduled validation that you created or remove it altogether at any time. Default validations cannot be removed or modified, but {{<link title="Validation Tests Reference#disabling-validation-checks" text="can be disabled.">}}
 
 #### Modify a Scheduled Validation
 

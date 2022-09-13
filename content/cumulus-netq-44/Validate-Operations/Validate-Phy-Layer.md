@@ -6,11 +6,11 @@ toc: 3
 ---
 Beyond knowing what physical components are in the deployment, it is valuable to know that their configurations are correct and they operate correctly. NetQ enables you to confirm that peer connections are present, discover any misconfigured ports, peers, or unsupported modules, and monitor for link flaps.
 
-NetQ checks peer connections using LLDP. For DACs and AOCs, NetQ determines the peers using their serial numbers in the port EEPROMs, even if the link is not UP.
+NetQ uses {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="LLDP">}} (Link Layer Discovery Protocol) to collect port information. NetQ can also identify peer ports connected to DACs (Direct Attached Cables) and AOCs (Active Optical Cables) without using LLDP, even if the link is not UP.
 
 ## Confirm Peer Connections
 
-You can validate peer connections for all devices in your network or for a specific device or port. This example shows the peer hosts and their status for leaf03 switch.
+You can validate peer connections for all devices in your network or for a specific device or port. This example shows the peer hosts and their status for the leaf03 switch.
 
 ```
 cumulus@switch:~$ netq leaf03 show interfaces physical peer
@@ -26,17 +26,6 @@ leaf03            swp50                     leaf04            swp50             
 leaf03            swp51                     exit01            swp51                     up                                
 leaf03            swp52                                                                 down       Port cage empty                                
 ```
-
-This example shows the peer data for a specific interface port.
-
-```
-cumulus@switch:~$ netq leaf01 show interfaces physical swp47
-Matching cables records:
-Hostname          Interface                 Peer Hostname     Peer Interface            State      Message
------------------ ------------------------- ----------------- ------------------------- ---------- -----------------------------------
-leaf01            swp47                     leaf02            swp47                     up   
-```
-
 ## Discover Misconfigurations
 
 You can verify that the following configurations are the same on both sides of a peer interface:
@@ -46,7 +35,7 @@ You can verify that the following configurations are the same on both sides of a
 - Link speed
 - Auto-negotiation setting
 
-You use the `netq check interfaces` command to determine if any of the interfaces have any continuity errors. This command only checks the physical interfaces; it does not check bridges, bonds or other software constructs. You can check all interfaces at one time. It enables you to compare the current status of the interfaces, as well as their status at an earlier point in time. The command syntax is:
+Use the `netq check interfaces` command to determine if any of the interfaces have continuity errors. This command only checks the physical interfaces; it does not check bridges, bonds, or other software constructs. The command syntax is:
 
 ```
 netq check interfaces [around <text-time>] [json]
@@ -107,7 +96,7 @@ Checked Ports: 1, Failed Ports: 0, Unverified Ports: 0
 
 ### Find Mismatched Link Speeds
 
-This example checks for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 shows as *unspecified*.
+This example checks for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 shows as *unknown*.
 
 ```
 cumulus@switch:~$ netq check interfaces
@@ -143,7 +132,7 @@ server04          eth2                      leaf04            swp2              
 
 ## Identify Flapping Links
 
-You can also determine whether a link is flapping using the `netq check interfaces` command. If a link is flapping, NetQ indicates this in a message:
+You can also determine whether a link is flapping using the `netq check interfaces` command:
 
 ```
 cumulus@switch:~$ netq check interfaces

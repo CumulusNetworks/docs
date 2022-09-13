@@ -10,6 +10,10 @@ This document supports the Cumulus Linux 5.2 release, and lists new platforms, f
 - For a list of open and fixed issues in Cumulus Linux 5.2, see the {{<link title="Cumulus Linux 5.2 Release Notes" text="Cumulus Linux 5.2 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.2, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
+## What's New in Cumulus Linux 5.2.1
+<!-- vale on -->
+Cumulus Linux 5.2.1 provides bug fixes.
+<!-- vale off -->
 ## What's New in Cumulus Linux 5.2.0
 <!-- vale on -->
 Cumulus Linux 5.2.0 supports new platforms, provides bug fixes, and contains several new features and improvements.

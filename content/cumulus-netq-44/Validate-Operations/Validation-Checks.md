@@ -1,5 +1,5 @@
 ---
-title: Validation Checks
+title: Validation Tests Reference
 author: NVIDIA
 weight: 1005
 toc: 3

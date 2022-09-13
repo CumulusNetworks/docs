@@ -96,8 +96,6 @@ spine04           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed    
 
 {{</tabs>}}
 
-Refer to {{<link title="Validate Operations">}} for more information.
-
 ## Diagnose an Event after It Occurs
 
 NetQ lets users go back in time to replay the network state, see fabric-wide event change logs and root cause state deviations. The NetQ Telemetry Server maintains data collected by NetQ agents in a time-series database, making fabric-wide events available for analysis. This lets you replay and analyze networkwide events for better visibility and to correlate patterns, which aids in root-cause analysis and network configuration optimization.

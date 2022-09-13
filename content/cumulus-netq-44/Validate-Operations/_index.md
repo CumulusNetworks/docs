@@ -1,5 +1,5 @@
 ---
-title: Validate Operations
+title: Validation Checks
 author: NVIDIA
 weight: 1000
 toc: 2
@@ -39,7 +39,7 @@ For a general understanding of how well your network is operating, the Network H
 The NetQ CLI uses the `netq check` commands to validate the various elements of your network fabric, looking for inconsistencies in configuration across your fabric, connectivity faults, missing configurations, and so forth. You can run commands from any node in the network.
 ### View Default Validation Tests
 
-To view the list of tests run for a given protocol or service by default, use either `netq show unit-tests <protocol/service>` or perform a tab completion on `netq check <protocol/service> [include|exclude]`. Refer to {{<link title="Validation Checks">}} for a description of the individual tests.
+To view the list of tests run for a given protocol or service by default, use either `netq show unit-tests <protocol/service>` or perform a tab completion on `netq check <protocol/service> [include|exclude]`. Refer to {{<link title="Validation Tests Reference">}} for a description of the individual tests.
 
 ### Select the Tests to Run
 

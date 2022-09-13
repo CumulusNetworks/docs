@@ -1,5 +1,5 @@
 ---
-title: Validate Physical Layer Configuration
+title: Physical Layer Configurations
 author: NVIDIA
 weight: 0
 toc: 3

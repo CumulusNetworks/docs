@@ -35,21 +35,6 @@ netq [<hostname>] show mac-commentary <mac> vlan <1-4096> [between <text-time> a
 netq [<hostname>] show events [level info | level error | level warning | level debug] type macs [between <text-time> and <text-endtime>] [json]
 ```
 
-{{%notice note%}}
-
-When entering a time value, you must include a numeric value *and* the unit of measure:
-
-- **w**: weeks
-- **d**: days
-- **h**: hours
-- **m**: minutes
-- **s**: seconds
-- **now**
-
-When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
-
-{{%/notice%}}
-
 ## View MAC Addresses Networkwide
 
 You can view all MAC addresses across your network with the NetQ UI or the NetQ CLI.

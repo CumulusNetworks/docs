@@ -13,21 +13,6 @@ NetQ enables operators to view the overall health of the LLDP service on a netwo
 
 You can monitor LLDP performance across the network with a card or at the command line.
 
-{{%notice note%}}
-
-When entering a time value in the `netq show lldp` command, you must include a numeric value *and* the unit of measure:
-
-- **w**: weeks
-- **d**: days
-- **h**: hours
-- **m**: minutes
-- **s**: seconds
-- **now**
-
-When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
-
-{{%/notice%}}
-
 ### View Service Status Summary
 
 You can view a summary of the LLDP service from the NetQ UI or the NetQ CLI.
@@ -46,7 +31,7 @@ Open the small Network Services|All LLDP Sessions card. In this example, the num
 
 To view LLDP service status, run `netq show lldp`.
 
-This example shows the Cumulus reference topology, where LLDP runs on all border, firewall, leaf and spine switches, servers, including the out-of-band management server. You can view the host interface, peer hostname and interface, and last time a change was made for each session.
+This example shows the Cumulus reference topology, where LLDP runs on all border, firewall, leaf and spine switches, servers, including the out-of-band management server.
 
 ```
 cumulus@switch:~$ netq show lldp

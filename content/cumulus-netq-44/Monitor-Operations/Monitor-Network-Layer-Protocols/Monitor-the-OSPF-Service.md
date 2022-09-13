@@ -24,19 +24,6 @@ With NetQ, you can monitor OSPF performance across the network:
     - Full-screen: view and filter configuration and status for all switches, all sessions, and all alarms
 - `netq show evpn` command: view configuration and status for all devices, including interface, area, type, state, peer hostname and interface, and last time each device changed
 
-{{%notice note%}}
-When entering a time value, you must include a numeric value *and* the unit of measure:
-
-- **w**: weeks
-- **d**: days
-- **h**: hours
-- **m**: minutes
-- **s**: seconds
-- **now**
-
-For the `between` option, you can enter the start (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
-{{%/notice%}}
-
 ### View Service Status Summary
 
 You can view a summary of the OSPF service from the NetQ UI or the NetQ CLI.

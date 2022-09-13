@@ -40,31 +40,6 @@ If you use an IPv6 address, you must enter the complete, non-truncated address.
 
 {{</notice>}}
 
-## Additional NetQ CLI Considerations
-
-When creating and running traces using the NetQ CLI, consider the following items.
-
-### Time Values
-
-When entering a time value, you must include a numeric value *and* the unit of measure:
-
-- **w**: weeks
-- **d**: days
-- **h**: hours
-- **m**: minutes
-- **s**: seconds
-- **now**
-
-### Result Display Options
-
-Three output formats are available for the on-demand trace with results in a terminal window.
-
-- **JSON**: Lists results in a JSON file, good for exporting to other applications or software.
-- **Pretty**: Lines up results by paths in a pseudo-graphical manner to help visualize the multiple paths.
-- **Detail**: Displays results in a tabular format with a row per hop and a set of rows per path, useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. This is the default output when not specified.
-
-You can improve the readability of the output using color as well. Run `netq config add color` to turn color on. Run `netq config del color` to turn color off.
-
 ### Known Addresses
 
 The tracing function only knows about already learned addresses. If you find that a path is invalid or incomplete, you might need to ping the identified device so that its address becomes known.

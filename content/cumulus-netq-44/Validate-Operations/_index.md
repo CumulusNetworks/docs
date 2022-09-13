@@ -10,6 +10,7 @@ Validation support is available in the NetQ UI and the NetQ CLI for the followin
 
 | Item | NetQ UI | NetQ CLI |
 | --- | :---: | :---: |
+| Addresses | Yes | Yes |
 | Agents | Yes | Yes |
 | BGP | Yes | Yes |
 | Cumulus Linux version | No | Yes |
@@ -22,7 +23,6 @@ Validation support is available in the NetQ UI and the NetQ CLI for the followin
 | Sensors | Yes | Yes |
 | VLAN | Yes | Yes |
 | VXLAN | Yes | Yes |
-| Addresses | Yes | Yes |
 
 ## Validation with the NetQ UI
 
@@ -36,29 +36,7 @@ For a general understanding of how well your network is operating, the Network H
 
 ## Validation with the NetQ CLI
 
-The NetQ CLI uses the `netq check` commands to validate the various elements of your network fabric, looking for inconsistencies in configuration across your fabric, connectivity faults, missing configuration, and so forth, and then display the results for your assessment. You can run them from any node in the network.
-
-The NetQ CLI has many other validation features and considerations.
-
-### Set a Time Period
-
-You can run validations for a time in the past and output the results in JSON format if desired. The `around` option enables users to view the network state at an earlier time. The `around` option value requires an integer *plus* a unit of measure (UOM), with no space between them. The following are valid UOMs:
-
-| UOM | Command Value | Example|
-| --- | ------------- | -------|
-| days | <#>d | 3d |
-| hours | <#>h | 6h |
-| minutes | <#>m | 30m |
-| seconds | <#>s | 20s |
-
-{{%notice tip%}}
-If you want to go back in time by months or years, use the equivalent number of days.
-{{%/notice%}}
-
-### Colorize Outputs
-
-You can add color to validation outputs to help with readability. Green output indicates successful results and red output indicates results with failures, warnings, and errors. To colorize outputs, use the `netq config add color` command.
-
+The NetQ CLI uses the `netq check` commands to validate the various elements of your network fabric, looking for inconsistencies in configuration across your fabric, connectivity faults, missing configurations, and so forth. You can run commands from any node in the network.
 ### View Default Validation Tests
 
 To view the list of tests run for a given protocol or service by default, use either `netq show unit-tests <protocol/service>` or perform a tab completion on `netq check <protocol/service> [include|exclude]`. Refer to {{<link title="Validation Checks">}} for a description of the individual tests.
@@ -66,7 +44,7 @@ To view the list of tests run for a given protocol or service by default, use ei
 ### Select the Tests to Run
 
 <!-- vale off -->
-You can include or exclude one or more of the various tests performed during the validation. Each test is assigned a number, which is used to identify which tests to run. Refer to {{<link title="Validation Checks">}} for a description of the individual tests. By default, all tests are run. The `<protocol-number-range-list>` value is used with the `include` and `exclude` options  to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
+You can include or exclude one or more of the various tests performed during the validation. Each test is assigned a number, which is used to identify which tests to run. By default, all tests are run. The `<protocol-number-range-list>` value is used with the `include` and `exclude` options  to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
 <!-- vale on -->
 
 - include 1,3,5
@@ -202,7 +180,7 @@ netq-cli:
   
 Then run `netq config restart cli` to apply the change.
 
-If you update your scripts to work with the new version of the commands, just change the `old-check` value to *false* or remove it. Then restart the CLI.
+If you update your scripts to work with the new version of the commands, change the `old-check` value to *false* or remove it. Then restart the CLI.
 
 {{%notice tip%}}
 Use `netq check mlag` in place of `netq check clag` from NetQ 2.4 onward. `netq check clag` remains available for automation scripts, but you should begin migrating to `netq check mlag` to maintain compatibility with future NetQ releases.

@@ -18,7 +18,7 @@ With NetQ, you can monitor LLDP performance across the network:
     - Medium: view number of nodes running LLDP service, number of sessions, and number of alarms
     - Large: view number of nodes running LLDP service, number of sessions and alarms, number of sessions without neighbors, switches with the most established/unestablished sessions
     - Full-screen: view all switches, all sessions, and all alarms
-- `netq show evpn` command: view associated host interface, peer hostname and interface, and last time a change occurred for each session running LLDP
+- `netq show lldp` command: view associated host interface, peer hostname and interface, and last time a change occurred for each session running LLDP
 
 {{%notice note%}}
 

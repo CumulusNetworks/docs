@@ -25,10 +25,10 @@ With NetQ, you can monitor BGP performance across the network:
     - Medium: view number and distribution of nodes running BGP service, alarms, and with unestablished sessions
     - Large: view number and distribution of nodes running BGP service and those with unestablished sessions, and view nodes with the most established and unestablished BGP sessions
     - Full-screen: view all switches, all sessions, and all alarms
-- `netq show evpn` command: view associated neighbors, ASN (autonomous system number), peer ASN, receive IP or EVPN address prefixes, and VRF assignment for each node
+- `netq show bgp` command: view associated neighbors, ASN (autonomous system number), peer ASN, receive IP or EVPN address prefixes, and VRF assignment for each node
 
 {{<notice note>}}
-When entering a time value in the <code>netq show evpn</code> command, you must include a numeric value <em>and</em> the unit of measure:
+When entering a time value in the <code>netq show bgp</code> command, you must include a numeric value <em>and</em> the unit of measure:
 <ul>
 <li><strong>w</strong>: week(s)</li>
 <li><strong>d</strong>: day(s)</li>

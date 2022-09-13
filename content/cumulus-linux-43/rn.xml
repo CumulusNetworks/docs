@@ -86,6 +86,12 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
@@ -189,17 +195,17 @@ Fixed: 1.9.2-1+deb10u1</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2999253</td>
-<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
-This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
-<td>4.3.0-5.0.1</td>
-<td>5.1.0-5.2.0</td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2993469</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-5.0.1</td>
+<td>5.1.0-5.2.0</td>
 </tr>
 <tr>
 <td>2991501</td>
@@ -951,6 +957,12 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.4</td>
 </tr>
 <tr>
+<td>2645609</td>
+<td>The NCLU {{net show route vrf &lt;VRF&gt; summary}} and vtysh {{show [ip|ipv6] route vrf &lt;VRF&gt; summary}} commands do not return any output.</td>
+<td>4.3.0</td>
+<td>4.4.0-4.4.4</td>
+</tr>
+<tr>
 <td>2644071</td>
 <td>When you stop {{clagd}} on the MLAG primary switch (for example, when you reboot the switch), in rare conditions the MLAG secondary switch might fail to properly assert itself as the MLAG primary switch. To work around this issue, change the primary designation by configuring the {{clagd}} priorities to ensure that you only reboot a switch that is in the MLAG secondary role.</td>
 <td>3.7.15, 4.3.0</td>
@@ -974,12 +986,6 @@ ERROR: 'NoneType' object has no attribute 'conf_key_value_multiple_values'
 See /var/log/netd.log for more details.</td>
 <td>4.3.0-4.4.4</td>
 <td></td>
-</tr>
-<tr>
-<td>2638106</td>
-<td>The NCLU {{net show route vrf &lt;vrf&gt; summary}} and vtysh {{show ip route vrf &lt;vrf&gt; summary}} commands don't return any output.</td>
-<td>4.3.0</td>
-<td>4.4.0-4.4.4</td>
 </tr>
 <tr>
 <td>2633062</td>

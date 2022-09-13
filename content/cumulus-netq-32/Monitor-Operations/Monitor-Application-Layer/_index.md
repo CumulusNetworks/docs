@@ -120,7 +120,7 @@ If a device has difficulty remaining in time synchronization, you might want to 
 This example shows there have been no events in the last 24 hours.
 
 ```
-cumulus@switch:~$ netq show event type ntp
+cumulus@switch:~$ netq show events type ntp
 No matching event records found
 ```
 

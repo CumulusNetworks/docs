@@ -22,22 +22,6 @@ netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [ori
 
 netq [<hostname>] show events [level info | level error | level warning | level debug] type vlan [between <text-time> and <text-endtime>] [json]
 ```
-
-{{%notice note%}}
-
-When entering a time value, you must include a numeric value *and* the unit of measure:
-
-- **w**: weeks
-- **d**: days
-- **h**: hours
-- **m**: minutes
-- **s**: seconds
-- **now**
-
-When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure. Use the <code>around</code> option to view information for a particular time.
-
-{{%/notice%}}
-
 ## View VLAN Information for All Devices
 
 You can view the configuration information for all VLANs in your network by running the `netq show vlan` command. It lists VLANs by device, and indicates any switch virtual interfaces (SVIs) configured and the last time this configuration changed.

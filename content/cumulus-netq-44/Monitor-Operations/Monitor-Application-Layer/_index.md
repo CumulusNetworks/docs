@@ -6,9 +6,9 @@ toc: 3
 ---
 The only application layer protocol monitored by NetQ is NTP, the Network Time Protocol.
 
-It is important that the switches and hosts remain in time synchronization with the NetQ appliance or virtual machine to ensure collected data is properly captured and processed. You can use the `netq show ntp` command to view the time synchronization status for all devices or filter for devices that are either in synchronization or out of synchronization, currently or at a time in the past.
+You can use the `netq show ntp` command to view the time synchronization status for all devices or filter for devices that are either in synchronization or out of synchronization, currently or at a time in the past.
 
-The syntax for the show commands is:
+The syntax for the `show` commands is:
 
 ```
 netq [<hostname>] show ntp [out-of-sync|in-sync] [around <text-time>] [json]
@@ -19,7 +19,11 @@ netq [<hostname>] show events [level info|level error|level warning|level debug]
 
 You can view the current status of all devices regarding their time synchronization with a given NTP server, stratum, and application.
 
-This example shows the time synchronization status for all devices in the NVIDIA reference architecture. You can see that all border, leaf, and spine switches rely on the out-of-band management server running *ntpq* to provide their time and that they are all in time synchronization. The out-of-band management server uses the *titan.crash-ove* server running *ntpq* to obtain and maintain time synchronization. And the NetQ server uses the *eterna.binary.net* server running *chronyc* to obtain and maintain time synchronization. The firewall switches are not time synchronized, which is appropriate. The *Stratum* value indicates the number of hierarchical levels the switch or host is from reference clock.
+{{<expand "show ntp">}}
+
+The following  example shows the time synchronization status for all devices in the NVIDIA reference architecture. 
+
+All border, leaf, and spine switches rely on the out-of-band management server running *ntpq* to provide their time; they are all synchronized. The out-of-band management server uses the *titan.crash-ove* server running *ntpq* to obtain and maintain time synchronization. Meanwhile, the NetQ server uses the *eterna.binary.net* server running *chronyc* to obtain and maintain time synchronization. The firewall switches are not time synchronized (which is expected). The *Stratum* value indicates the number of hierarchical levels the switch or host is from the reference clock.
 
 ```
 cumulus@switch:~$ netq show ntp
@@ -49,14 +53,14 @@ spine02           yes      oob-mgmt-server   3       ntpq
 spine03           yes      oob-mgmt-server   3       ntpq
 spine04           yes      oob-mgmt-server   3       ntpq
 ```
-
+{{</expand>}}
 ## View Devices that are Out of Time Synchronization
 
-<!-- vale off -->
-When a device is out of time synchronization with the NetQ server, the collected data might be improperly processed. For example, the wrong timestamp could be applied to a piece of data, or that data might be included in an aggregated metric when is should have been included in the next bucket of the aggregated metric. This could make the presented data slightly off or give an incorrect impression.
-<!-- vale on -->
+When a device is out of time synchronization with the NetQ server, the collected data might be improperly processed. For example, the incorrect timestamp could be applied to a piece of data, or that data might be included in an aggregated metric when it should have been included in the next bucket of the aggregated metric. This could make the presented data slightly off or give an incorrect impression.
 
-This example shows all devices in the network that are out of time synchronization, and therefore need further investigation.
+{{<expand "show ntp out-of-sync">}}
+
+The following example shows all devices in the network that are out of time synchronization, and therefore need further investigation:
 
 ```
 cumulus@switch:~$ netq show ntp out-of-sync
@@ -65,12 +69,14 @@ Hostname          NTP Sync Current Server    Stratum NTP App
 ----------------- -------- ----------------- ------- ---------------------
 internet          no       -                 16      ntpq
 ```
-
+{{</expand>}}
 ## View Time Synchronization for a Given Device
 
-You might have a concern only with the behavior of a particular device. Checking for time synchronization is a common troubleshooting step to take.
+Include the hostname to view NTP status for a particular device.
 
-This example shows the time synchronization status for the *leaf01* switch.
+{{<expand "leaf01 show ntp">}}
+
+The following example shows the time synchronization status for the leaf01 switch:
 
 ```
 cumulus@switch:~$ netq leaf01 show ntp
@@ -79,12 +85,14 @@ Hostname          NTP Sync Current Server    Stratum NTP App
 ----------------- -------- ----------------- ------- ---------------------
 leaf01            yes      kilimanjaro       2       ntpq
 ```
-
+{{</expand>}}
 ## View NTP Status for a Time in the Past
 
 If you find a device that is out of time synchronization, you can use the `around` option to get an idea when the synchronization broke.
 
-This example shows the time synchronization status for all devices one week ago. Note that there are no errant devices in this example. You might try looking at the data for a few days ago. If there was an errant device a week ago, you might try looking farther back in time.
+{{<expand "show ntp 7d">}}
+
+The following example shows the time synchronization status for all devices one week ago; all devices are synchronized as expected.
 
 ```
 cumulus@switch:~$ netq show ntp 7d
@@ -114,21 +122,27 @@ spine02           yes      oob-mgmt-server   3       ntpq
 spine03           yes      oob-mgmt-server   3       ntpq
 spine04           yes      oob-mgmt-server   3       ntpq
 ```
-
+{{</expand>}}
 ## View NTP Events
 
 If a device has difficulty remaining in time synchronization, you might want to look to see if there are any related events.
 
-This example shows there have been no events in the last 24 hours.
+{{<expand "show events type ntp">}}
+
+The following example displays no events in the last 24 hours:
 
 ```
-cumulus@switch:~$ netq show event type ntp
+cumulus@switch:~$ netq show events type ntp
 No matching event records found
 ```
+{{</expand>}}
+{{<expand "show events type ntp between now and 7d">}}
 
-This example shows there have been no error NTP events in the last seven days.
+The following example shows no error NTP events in the last seven days:
 
 ```
 cumulus@switch:~$ netq show events type ntp between now and 7d
 No matching event records found
+
 ```
+{{</expand>}}

@@ -101,6 +101,21 @@ The command output presents results in color for many commands. Results with err
 
 All check and show commands have a default timeframe of now to one hour ago, unless you specify an approximate time using the `around` keyword or a range using the `between` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
 
+{{%notice note%}}
+
+When entering a time value, you must include a numeric value *and* the unit of measure:
+
+- **w**: weeks
+- **d**: days
+- **h**: hours
+- **m**: minutes
+- **s**: seconds
+- **now**
+
+When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure. Use the <code>around</code> option to view information for a particular time.
+
+{{%/notice%}}
+
 ### Command Prompts
 
 NetQ code examples use the following prompts:

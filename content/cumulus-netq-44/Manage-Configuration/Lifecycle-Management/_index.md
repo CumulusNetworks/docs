@@ -18,7 +18,6 @@ Using the NetQ UI or CLI, lifecycle management (LCM) allows you to:
 - Configure switch access credentials (required for installations and upgrades)
 - Manage Cumulus Linux switch inventory and roles
 - Create snapshots of the network state at various times
-- Upgrade NetQ (Agents and CLI) on Cumulus Linux switches running NetQ Agents
 - Install or upgrade NetQ (Agents and CLI) on Cumulus Linux switches
 - View a result history of upgrade attempts
 

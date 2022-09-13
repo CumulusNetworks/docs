@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3205701</td>
+<td>On the NVIDIA SN4700 and SN4600C switch, PCI calibration has been modified from a static to a dynamic mechanism.</td>
+<td>4.4.4, 5.2.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3195390</td>
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
@@ -16,6 +22,12 @@
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3190181</td>
+<td>When you remove a configuration from the {{/etc/frr/frr.conf}} file, the {{bgpd}} service crashes on the ToR.</td>
+<td>4.4.2-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -154,6 +166,12 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -487,13 +505,6 @@ To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance
 <td></td>
 </tr>
 <tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
@@ -726,20 +737,20 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <tr>
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
-<td>4.4.0-4.4.4</td>
+<td>4.4.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2734119</td>
-<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.4</td>
-<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2732605</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>4.3.0-4.4.4</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2732587</td>
@@ -811,14 +822,14 @@ To work around this issue, use traditional route leaking with the {{import vrf}}
 <tr>
 <td>2705056</td>
 <td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -875,7 +886,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
-<td>4.4.0-4.4.4</td>
+<td>4.4.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -883,12 +894,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.16, 4.0.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
-<td>2654804</td>
-<td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
-<td>4.4.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -2156,7 +2161,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -2256,6 +2261,12 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3190181</td>
+<td>When you remove a configuration from the {{/etc/frr/frr.conf}} file, the {{bgpd}} service crashes on the ToR.</td>
+<td>4.4.2-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -2376,6 +2387,12 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td></td>
 </tr>
 <tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3089165</td>
 <td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
 <td>4.2.1-4.4.3</td>
@@ -2404,13 +2421,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4, 5.2.0</td>
-</tr>
-<tr>
-<td>3078202</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -2820,13 +2830,6 @@ To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance
 <td></td>
 </tr>
 <tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
@@ -3059,20 +3062,20 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <tr>
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
-<td>4.4.0-4.4.4</td>
+<td>4.4.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2734119</td>
-<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.4</td>
-<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2732605</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>4.3.0-4.4.4</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2732587</td>
@@ -3144,14 +3147,14 @@ To work around this issue, use traditional route leaking with the {{import vrf}}
 <tr>
 <td>2705056</td>
 <td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3208,7 +3211,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
-<td>4.4.0-4.4.4</td>
+<td>4.4.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3216,12 +3219,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.16, 4.0.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
-<td>2654804</td>
-<td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
-<td>4.4.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4522,6 +4519,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td></td>
 </tr>
 <tr>
+<td>3190181</td>
+<td>When you remove a configuration from the {{/etc/frr/frr.conf}} file, the {{bgpd}} service crashes on the ToR.</td>
+<td>4.4.2-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -4615,6 +4618,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td></td>
 </tr>
 <tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3089165</td>
 <td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
 <td>4.2.1-4.4.3</td>
@@ -4637,13 +4646,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4, 5.2.0</td>
-</tr>
-<tr>
-<td>3078202</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -5073,13 +5075,6 @@ To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance
 <td></td>
 </tr>
 <tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
@@ -5312,20 +5307,20 @@ To work around this issue, manually restart WJH with the {{sudo systemctl restar
 <tr>
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
-<td>4.4.0-4.4.4</td>
+<td>4.4.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2734119</td>
-<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.4</td>
-<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2732605</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>4.3.0-4.4.4</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2732587</td>
@@ -5397,14 +5392,14 @@ To work around this issue, use traditional route leaking with the {{import vrf}}
 <tr>
 <td>2705056</td>
 <td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -5461,7 +5456,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
-<td>4.4.0-4.4.4</td>
+<td>4.4.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -5469,12 +5464,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.16, 4.0.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
-<td>2654804</td>
-<td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
-<td>4.4.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -7044,6 +7033,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td></td>
 </tr>
 <tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3089165</td>
 <td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
 <td>4.2.1-4.4.3</td>
@@ -7060,13 +7055,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-5.1.0</td>
 <td>5.2.0</td>
-</tr>
-<tr>
-<td>3078202</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -7522,13 +7510,6 @@ To work around this issue, run the {{net add bond &lt;name&gt; bond mode balance
 <td></td>
 </tr>
 <tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>2848219</td>
 <td>On Dell S3048 switches configured for 802.1x auth, you might see file descriptor exhaustion with Hostapd messages indicating that Cumulus Linux is unable to open {{/dev/urandom}} or write out the transient ACL files.
 To work around this issue, reboot the switch.</td>
@@ -7891,7 +7872,7 @@ Fixed: 1.17-3+deb10u2</td>
 <tr>
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
-<td>4.4.0-4.4.4</td>
+<td>4.4.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -7904,12 +7885,6 @@ Fixed: 241-7~deb10u8</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2734119</td>
-<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.4</td>
-<td>5.0.0-5.2.0</td>
-</tr>
-<tr>
 <td>2734107</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-4.4.1</td>
@@ -7918,8 +7893,14 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2732605</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>4.3.0-4.4.4</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>2732587</td>
@@ -8010,20 +7991,20 @@ To work around this issue, use traditional route leaking with the {{import vrf}}
 <tr>
 <td>2706744</td>
 <td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2-4.4.4</td>
 </tr>
 <tr>
 <td>2705056</td>
 <td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -8080,7 +8061,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <tr>
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
-<td>4.4.0-4.4.4</td>
+<td>4.4.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -8088,12 +8069,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>OpenSSH is vulnerable to CVE-2020-14145, as described in https://www.fzi.de/fileadmin/user_upload/2020-06-26-FSA-2020-2.pdf.  
 This is an information leak in algorithm negotiation that can allow man-in-the-middle attacks on initial connection attempts without a previously stored server host key on the client. If desired, mitigation using UpdateHostKeys and HostKeyAlgorithms is also given in that paper.</td>
 <td>3.7.14-3.7.16, 4.0.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
-<td>2654804</td>
-<td>On the NVIDIA SN4700a1 and SN4410 switches, splitting the cable to 2x100G does not work on the 200G DAC. 200G split as NRZ or PAM4 is not supported.</td>
-<td>4.4.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -9475,7 +9450,7 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
 </tr>
 <tr>
 <td>2638106</td>
-<td>The NCLU {{net show route vrf &lt;vrf&gt; summary}} and vtysh {{show ip route vrf &lt;vrf&gt; summary}} commands don't return any output.</td>
+<td>The NCLU {{net show route vrf &lt;VRF&gt; summary}} and vtysh {{show [ip|ipv6] route vrf &lt;VRF&gt; summary}} commands do not return any output.</td>
 <td>4.3.0</td>
 </tr>
 <tr>

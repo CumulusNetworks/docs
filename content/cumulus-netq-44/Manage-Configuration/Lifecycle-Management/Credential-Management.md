@@ -5,11 +5,11 @@ weight: 640
 toc: 4
 ---
 
-You must have switch access credentials to install and upgrade software on a switch. You can choose between basic authentication (SSH username/password) and SSH (Public/Private key) authentication. These credentials apply to all switches. If some of your switches have alternate access credentials, you must change them or modify the credential information before attempting installations or upgrades with the lifecycle management feature.
+You must have switch access credentials to install and upgrade software on a switch. You can choose between basic authentication (SSH username/password) and SSH (Public/Private key) authentication. These credentials apply to all switches. If some of your switches have alternate access credentials, you must change them or modify the credential information before attempting installations or upgrades via lifecycle management.
 
 ## Specify Switch Credentials
 
-Switch access credentials are not specified by default. You must add these.
+Switch access credentials are not specified by default and must be added.
 
 To specify access credentials:
 
@@ -19,17 +19,17 @@ To specify access credentials:
 
 1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>. Under **Admin**, select **Manage Switches**.
 
-2. Click the *Click here to add Switch access* link on the Access card.
+2. Click the *Click here to add Switch access* link on the Access card:
 
-    {{<figure src="/images/netq/lcm-access-card-no-auth-300.png" width="200">}}
+    {{<figure src="/images/netq/lcm-access-card-no-auth-300.png" alt="access card with highlighted link" width="200">}}
 
-3. Select the authentication method you want to use; **SSH** or **Basic Authentication**.
+3. Select the authentication method you want to use: **SSH** or **Basic Authentication**.
 
 {{<tabs "TabID183">}}
 
 {{<tab "Basic Authentication">}}
 
-Be sure to use credentials for a user account that has permission to configure switches.
+Be sure to use credentials for an account that has permission to configure switches.
 
 {{<notice tip>}}
 
@@ -41,9 +41,9 @@ The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinu
 
 2. Click **Save**.
 
-    The Access card now indicates your credential configuration.
+    The Access card now indicates your credential configuration:
 
-    {{<figure src="/images/netq/lcm-access-configured-300.png" width="200">}}
+    {{<figure src="/images/netq/lcm-access-configured-300.png" alt="access card displaying basic credential configuration" width="200">}}
 
 {{</tab>}}
 
@@ -53,7 +53,7 @@ The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinu
 You must have sudoer permission to properly configure switches when using the SSH key method.
 {{</notice>}}
 
-1. Create a pair of SSH private and public keys.
+1. Create a pair of SSH private and public keys:
 
     ```
     ssh-keygen -t rsa -C "<USER>"
@@ -64,17 +64,17 @@ You must have sudoer permission to properly configure switches when using the SS
     - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where you generated the SSH key pair for each switch
 
-3. Copy the SSH *private* key into the entry field in the Create Switch Access card.
+3. Copy the SSH *private* key into the entry field in the Create Switch Access card:
 
-    {{<figure src="/images/netq/lcm-access-create-SSH-300.png" width="250">}}
+    {{<figure src="/images/netq/lcm-access-create-SSH-300.png" alt="card displaying private key pasted into field" width="250">}}
 
     {{<notice note>}}
 For security, your private key is stored in an encrypted format, and only provided to internal processes while encrypted.
     {{</notice>}}
 
-The Access card now indicates your credential configuration.
+The Access card now indicates your credential configuration:
 
-{{<figure src="/images/netq/lcm-access-ssh-configured-300.png" width="200">}}
+{{<figure src="/images/netq/lcm-access-ssh-configured-300.png" alt="access card displaying SSH credential configuration" width="200">}}
 
 {{</tab>}}
 

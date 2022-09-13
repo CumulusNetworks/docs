@@ -101,6 +101,21 @@ The command output presents results in color for many commands. Results with err
 
 All check and show commands have a default timeframe of now to one hour ago, unless you specify an approximate time using the `around` keyword or a range using the `between` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
 
+{{%notice note%}}
+
+When entering a time value, you must include a numeric value *and* the unit of measure:
+
+- **w**: weeks
+- **d**: days
+- **h**: hours
+- **m**: minutes
+- **s**: seconds
+- **now**
+
+When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure. Use the <code>around</code> option to view information for a particular time.
+
+{{%/notice%}}
+
 ### Command Prompts
 
 NetQ code examples use the following prompts:
@@ -320,7 +335,7 @@ The `netq show` let you view details about the current or historical configurati
 - **dom**: Digital Optical Monitoring
 - **ethtool-stats**: Interface statistics
 - **events**: Display changes over time
-- **events-config**: Events configured for suppression
+- **events-config**: Event suppression configuration
 - **evpn**: EVPN status
 - **interface-stats**: Interface statistics
 - **interface-utilization**: Interface statistics plus utilization
@@ -336,7 +351,7 @@ The `netq show` let you view details about the current or historical configurati
 - **macs**: MAC table or address information
 - **mlag**: MLAG status (an alias for CLAG)
 - **neighbor-history**:  Neighbor history info for an IP address
-- **notification**: Send notifications to Slack or PagerDuty
+- **notification**: Notifications sent to various channels
 - **ntp**: NTP status
 - **opta-health**: Display health of apps on the OPTA
 - **opta-platform**: NetQ Appliance version information and uptime
@@ -350,7 +365,7 @@ The `netq show` let you view details about the current or historical configurati
 - **tca**: Threshold crossing alerts
 - **trace**: Control plane trace path across fabric
 - **unit-tests**: Show list of unit tests for `netq check`
-- **validation**: Schedule a validation check
+- **validation**: Scheduled validation check
 - **vlan**: VLAN status
 - **vxlan**: VXLAN data path status
 - **wjh-drop**: dropped packet data from NVIDIA&reg; Mellanox&reg; What Just Happened&reg;

@@ -86,6 +86,12 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
@@ -189,17 +195,17 @@ Fixed: 1.9.2-1+deb10u1</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
-<td>2999253</td>
-<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
-This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
-<td>4.3.0-5.0.1</td>
-<td>5.1.0-5.2.0</td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
+</tr>
+<tr>
+<td>2993469</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
+This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
+<td>4.3.0-5.0.1</td>
+<td>5.1.0-5.2.0</td>
 </tr>
 <tr>
 <td>2991501</td>
@@ -414,13 +420,6 @@ thermal thermal_zoneX: critical temperature reached (33 C), shutting down
 <tr>
 <td>2853630</td>
 <td>In an MLAG and VXLAN Active Active configuration, when you add a new VNI on the primary MLAG switch only, you see packet loss over the old VNI. </td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
-<td>2849529</td>
-<td>The NTP system clock is unable to synchronize with the NTP server.
-To work around this issue, use the {{chrony}} implementation of NTP instead of {{ntpd}}.  {{chrony}} synchronizes the system clock faster and with better accuracy.</td>
 <td>4.3.0-4.4.4</td>
 <td></td>
 </tr>
@@ -682,7 +681,7 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -738,12 +737,6 @@ This is a cosmetic software issue and not indicative of a hardware failure on th
 <td></td>
 </tr>
 <tr>
-<td>2716829</td>
-<td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
-<td>4.3.0-4.4.1</td>
-<td>4.4.2-4.4.4</td>
-</tr>
-<tr>
 <td>2716822</td>
 <td>The {{/etc/cumulus/ports.conf}} file on the Dell Z9264F-ON switch does not show that Cumulus Linux does not support the 2x10G SFP+ ports.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
@@ -772,10 +765,16 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td></td>
 </tr>
 <tr>
+<td>2706744</td>
+<td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
+<td>4.3.0-4.4.1</td>
+<td>4.4.2-4.4.4</td>
+</tr>
+<tr>
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -840,17 +839,17 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td></td>
 </tr>
 <tr>
-<td>2684418</td>
-<td>If you configure items in a VRF that has been created, deleted, then re-created, {{staticd}} crashes.</td>
-<td>4.3.0</td>
-<td>4.4.0-4.4.4</td>
-</tr>
-<tr>
 <td>2682971</td>
 <td>CVE-2020-12762: integer overflow in the json-c JSON library, which could result in denial of service or potentially the execution of arbitrary code if large malformed JSON files are processed.
 Vulnerable: 0.12.2+cl4u1
 Fixed: 0.12.2+cl4.4.0u1</td>
 <td>4.0.0-4.3.0</td>
+<td>4.4.0-4.4.4</td>
+</tr>
+<tr>
+<td>2682792</td>
+<td>If you configure items in a VRF that has been created, deleted, then re-created, {{staticd}} crashes.</td>
+<td>4.3.0</td>
 <td>4.4.0-4.4.4</td>
 </tr>
 <tr>
@@ -894,7 +893,7 @@ To work around this issue, start the MST service with the {{sudo mst start}} com
 <tr>
 <td>2668543</td>
 <td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.3.0-4.4.4, 5.0.0-5.2.0</td>
 <td></td>
 </tr>
 <tr>
@@ -958,6 +957,12 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>3.7.15-3.7.16, 4.4.0-4.4.4</td>
 </tr>
 <tr>
+<td>2645609</td>
+<td>The NCLU {{net show route vrf &lt;VRF&gt; summary}} and vtysh {{show [ip|ipv6] route vrf &lt;VRF&gt; summary}} commands do not return any output.</td>
+<td>4.3.0</td>
+<td>4.4.0-4.4.4</td>
+</tr>
+<tr>
 <td>2644071</td>
 <td>When you stop {{clagd}} on the MLAG primary switch (for example, when you reboot the switch), in rare conditions the MLAG secondary switch might fail to properly assert itself as the MLAG primary switch. To work around this issue, change the primary designation by configuring the {{clagd}} priorities to ensure that you only reboot a switch that is in the MLAG secondary role.</td>
 <td>3.7.15, 4.3.0</td>
@@ -981,12 +986,6 @@ ERROR: 'NoneType' object has no attribute 'conf_key_value_multiple_values'
 See /var/log/netd.log for more details.</td>
 <td>4.3.0-4.4.4</td>
 <td></td>
-</tr>
-<tr>
-<td>2638106</td>
-<td>The NCLU {{net show route vrf &lt;vrf&gt; summary}} and vtysh {{show ip route vrf &lt;vrf&gt; summary}} commands don't return any output.</td>
-<td>4.3.0</td>
-<td>4.4.0-4.4.4</td>
 </tr>
 <tr>
 <td>2633062</td>

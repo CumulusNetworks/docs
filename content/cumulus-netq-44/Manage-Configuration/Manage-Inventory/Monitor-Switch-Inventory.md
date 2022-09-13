@@ -16,8 +16,6 @@ The commands and cards available to obtain this type of information help you to 
 - What is the ACL and forwarding resources usage?
 <!-- vale on -->
 
-To monitor networkwide inventory, refer to {{<link title="Networkwide Inventory">}}.
-
 ## Access Switch Inventory Data
 
 The NetQ UI provides the Inventory | Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Switches card > **Open Cards**.
@@ -933,3 +931,7 @@ This example shows changes to the `bgpd` service in the last 48 hours.
     leaf01            bgp          info     BGP session with peer spine-3 swp5. 1d:6h:55m:37s
                                             4 vrf DataVrf1082 state changed fro
                                             m failed to Established
+
+## Related Information
+
+- {{<link title="Monitor Switch Performance">}}

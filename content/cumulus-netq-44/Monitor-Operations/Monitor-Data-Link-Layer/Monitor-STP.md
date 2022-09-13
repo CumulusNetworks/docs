@@ -16,6 +16,7 @@ The syntax for the show command is:
 ```
 netq <hostname> show stp topology [around <text-time>] [json]
 ```
+{{<expand "spine1 show stp topology">}}
 
 The following example shows the STP topology as viewed from the spine1 switch:
 
@@ -58,3 +59,4 @@ Root(spine2) -- spine2:sw_clag200 -- leaf2:EdgeIntf(sng_hst2) -- hsleaf21
 ```
 
 If you do not have a bridge in your configuration, the output indicates such.
+{{</expand>}}

@@ -3,6 +3,7 @@ title: NetQ UI Card Reference
 author: NVIDIA
 weight: 1120
 toc: 3
+pdfhidden: true
 ---
 
 This reference describes the cards available in the NetQ graphical user interface (NetQ UI). You can open cards using one of two methods:

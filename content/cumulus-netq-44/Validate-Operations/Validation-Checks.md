@@ -1,5 +1,5 @@
 ---
-title: Validation Checks
+title: Validation Tests Reference
 author: NVIDIA
 weight: 1005
 toc: 3
@@ -11,24 +11,25 @@ NetQ collects data that validates the health of your network fabric, devices, an
 
 Use the value in the Test Number column in the tables below with the NetQ CLI when you want to include or exclude specific tests with the `netq check` command. You can get the test numbers by running the `netq show unit-tests` command.
 
-## NetQ Agent Validation Tests
-
-NetQ Agent validation looks for an agent status of Rotten for each node in the network. A *Fresh* status indicates the Agent is running as expected. The Agent sends a heartbeat every 30 seconds, and if it does not send three consecutive heartbeats, its status changes to *Rotten*.
-
-| Test Number | Test Name | Description |
-| :---------: | --------- | ----------- |
-| 0 | Agent Health | Checks for nodes that have failed or lost communication |
 ## Addresses Validation Tests
 
-The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and check for duplicate /32 host routes in each VRF.
+The duplicate address detection tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory. It also checks for duplicate /32 host routes in each VRF.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | IPv4 Duplicate Addresses | Checks for duplicate IPv4 addresses |
 | 1 | IPv6 Duplicate Addresses | Checks for duplicate IPv6 addresses |
+
+## Agent Validation Tests
+
+NetQ Agent validation looks for an agent status of *rotten* for each node in the network. A *fresh* status indicates the agent is running as expected. The agent sends a 'heartbeat' every 30 seconds, and if it does not send three consecutive heartbeats, its status changes to *rotten*.
+
+| Test Number | Test Name | Description |
+| :---------: | --------- | ----------- |
+| 0 | Agent Health | Checks for nodes that have failed or lost communication |
 ## BGP Validation Tests
 
-The BGP validation tests look for indications of the session sanity (status and configuration).
+The BGP validation tests look for status and configuration anomalies.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -43,14 +44,14 @@ The BGP validation tests look for indications of the session sanity (status and 
 
 ## Cumulus Linux Version Tests
 
-The Cumulus Linux version tests looks for version consistency.
+The Cumulus Linux version test looks for version consistency.
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
 | 0 | Cumulus Linux Image Version | Checks the following: <ul><li>No version specified, checks that all switches in the network have consistent version</li><li><em>match-version</em> specified, checks that a switch's OS version is equals the specified version</li><li><em>min-version</em> specified, checks that a switch's OS version is equal to or greater than the specified version</li></ul> |
 
 ## EVPN Validation Tests
 
-The EVPN validation tests look for indications of the session sanity and configuration consistency.
+The EVPN validation tests look for status and configuration anomalies.
 <!-- vale off -->
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |
@@ -137,7 +138,7 @@ The RoCE validation tests look for consistent RoCE and QoS configurations across
 | 4 | ETS | Checks for consistency of Enhanced Transmission Selection settings |
 ## Sensor Validation Tests
 
-The sensor validation tests looks for chassis power supply, fan, and temperature sensors that are in a bad state.
+The sensor validation tests looks for chassis power supply, fan, and temperature sensors that are not operating as expected.
 
 | Test Number | Test Name | Description |
 | :---------: | --------- | ----------- |

@@ -25,16 +25,12 @@ To enable specific types of traps, create the following configurations in `/etc/
 
 ### Define Access Credentials
 <!-- vale off -->
-Although the traps are sent to an SNMPv2c receiver, the SNMPv3 username is still required to authorize the DisMan service. Starting with Net-SNMP 5.3, `snmptrapd` no longer accepts all traps by default. `snmptrapd` must be configured with authorized SNMPv1/v2c community strings and/or SNMPv3 users. Non-authorized traps/informs are dropped.
+Although the traps are sent to an SNMPv2c receiver, the SNMPv3 username is still required to authorize the DisMan service. Starting with Net-SNMP 5.3, `snmptrapd` no longer accepts all traps by default. You must configure `snmptrapd` with authorized SNMPv1 and v2c community strings and, or SNMPv3 users. Non-authorized traps and informs are dropped.
 <!-- vale on -->
 Follow the steps in {{<link url="Configure-SNMP/#configure-the-snmpv3-username">}} to define the username. You can refer to the {{<exlink url="http://www.net-snmp.org/docs/man/snmptrapd.conf.html" text="snmptrapd.conf(5) manual page">}} for more information.
 
 {{%notice note%}}
-If not already on the system, install the `snmptrapd` Debian package before you configure the username.
-
-```
-cumulus@switch:~$ sudo apt-get install snmptrapd
-```
+If not already on the system, install the `snmptrapd` Debian package with the `sudo apt-get install snmptrapd` command before you configure the username.
 {{%/notice%}}
 
 ### Define Trap Receivers
@@ -44,23 +40,24 @@ The following configuration defines the trap receiver IP address for SNMPv1 and 
 {{< tabs "trap-destination" >}}
 {{< tab "NVUE Commands" >}}
 
-Cumulus Linux does not provide NVUE commands for SNMP trap configuration.
+```
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf rocket community-password mymanagementvrfpassword version 1
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost-v6 community-password mynotsosecretpassword version 2c
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
 
-To define the IP address of the notification (or trap) receiver for either SNMPv1 traps or SNMPv2 traps, use the `trapsink` (for SNMPv1) `trap2sink` (for SNMPv2c). Specifying more than one sink directive generates multiple copies of each notification (in the appropriate formats). You must configure a trap server to receive and decode these trap messages (for example, `snmptrapd`). You can configure the address of the trap receiver with a different protocol and port but this is most often left out. The defaults are to use the well-known UDP packets and port 162. For example to use the localhost as the trap receiver:
+To define the IP address of the notification (or trap) receiver for either SNMPv1 traps or SNMPv2 traps, use the `trapsink` (SNMPv1) `trap2sink` (SNMPv2c). Specifying more than one sink directive generates multiple copies of each notification (in the appropriate formats). You must configure a trap server to receive and decode these trap messages (for example, `snmptrapd`). You can configure the address of the trap receiver with a different protocol and port but this is most often left out. The defaults are to use the well-known UDP packets and port 162.
 
 Edit the `/etc/snmp/snmpd.conf` file and configure the trap settings.
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
 ...
-# send SNMPv1 traps
-trapsink     localhost public
-
-# send SNMPv2c traps in the mgmt VRF
-#trap2sink 127.0.0.1@rocket public
+trap2sink [::1] mynotsosecretpassword
+trapsink 127.0.0.1@rocket mymanagementvrfpassword
 ...
 ```
 
@@ -75,12 +72,16 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 
 ### SNMPv3 Trap and Inform Messages
 
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages. You specify the level of authentication and encryption for SNMPv3 trap and inform messages with `-l` (`NoauthNoPriv, authNoPriv,` or `authPriv`).
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 {{< tabs "traps-informs" >}}
 {{< tab "NVUE Commands" >}}
 
-Cumulus Linux does not provide NVUE commands for SNMP trap configuration.
+```
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 md5password1 encrypt-aes myaessecret engine-id  0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv set service snmp-server trap-destination localhost vrf mgmt username mymgmtvrfusername auth-md5 md5password2 encrypt-aes myaessecret2 engine-id  0x80001f888070939b14a514da5a00000000 inform
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands" >}}
@@ -133,15 +134,19 @@ Restart the `snmpd` service to apply the changes.
 cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
+{{%notice note%}}
+There are no NVUE commands for this configuration.
+{{%/notice%}}
+
 ### Monitor Fans, Power Supplies, Temperature and Transformers
 
 An SNMP agent (`snmpd`) waits for incoming SNMP requests and responds to them. If the agent does not receive any requests, it does not start any actions. However, various commands can configure `snmpd` to send traps according to preconfigured settings (`load`, `file`, `proc`, `disk`, or `swap` commands), or customized `monitor` directives.
 
 See the `snmpd.conf` {{<exlink url="http://www.net-snmp.org/docs/man/snmpd.conf.html" text="man page">}} for details on the `monitor` directive.
 
-You can configure `snmpd` to monitor the operational status of either the Entity MIB or Entity-Sensor MIB by adding the `monitor` directive to the `snmpd.conf` file. After you know the OID, you can determine the operational status &mdash; which can be a value of *ok(1)*, *unavailable(2)* or *nonoperational(3)* &mdash; by adding a configuration like the following example to `/etc/snmp/snmpd.conf` and adjusting the values:
+You can configure `snmpd` to monitor the operational status of either the Entity MIB or Entity-Sensor MIB by adding the `monitor` directive to the `snmpd.conf` file. After you know the OID, you can determine the operational status, which can be a value of *ok(1)*, *unavailable(2)* or *nonoperational(3)*. Add a configuration like the following example to `/etc/snmp/snmpd.conf` and adjust the values:
 
-- Using the `entPhySensorOperStatus` integer:
+- Use the `entPhySensorOperStatus` integer:
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -153,7 +158,7 @@ monitor -I -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7.100011001 "Fan1 Not OK"  1.3.6.1.2
 monitor  -r 10  -o 1.3.6.1.2.1.47.1.1.1.1.7  "Sensor Status Failure"  1.3.6.1.2.1.99.1.1.1.5 > 1
 ```
 
-- Using the OID name. You can use the OID name if the `snmp-mibs-downloader` package is on the system (see {{<link url="#enable-mib-to-oid-translation" text="below">}}).
+- Use the OID name. You can use the OID name if the `snmp-mibs-downloader` package is on the system (see {{<link url="#enable-mib-to-oid-translation" text="below">}}).
 
 ```  
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -207,14 +212,6 @@ You can configure the switch to trigger link up and link down notifications when
 
 {{< tabs "traps-linkupdown" >}}
 {{< tab "NVUE Commands" >}}
-
-The following example commands enable the Event MIB tables to monitor the ifTable for network interfaces that come up every 60 seconds or go down every 60 seconds, and trigger a `linkUp` amd `linkDown` notification. 60 seconds is the default interval.
-
-```
-cumulus@switch:~$ nv set service snmp-server trap-link-down
-cumulus@switch:~$ nv set service snmp-server trap-link-up
-cumulus@switch:~$ nv config apply
-```
 
 The following example commands enable the Event MIB tables to monitor the ifTable for network interfaces that come up every 15 seconds or go down every 10 seconds, and trigger a `linkUp` amd `linkDown` notification.
 
@@ -271,6 +268,10 @@ Restart the `snmpd` service to apply the changes.
 cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
+{{%notice note%}}
+There is no NVUE command to configure free memory notifications.
+{{%/notice%}}
+
 ### Configure Processor Load Notifications
 
 To generate a trap when the CPU load average exceeds a certain threshold, run the following commands. You can only use integers or floating point numbers.
@@ -323,6 +324,10 @@ Restart the `snmpd` service to apply the changes.
 ```
 cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
+
+{{%notice note%}}
+There is no NVUE command to configure disk utilization notifications.
+{{%/notice%}}
 
 ### Configure Authentication Notifications
 

@@ -22,22 +22,6 @@ NetQ uses {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" 
 ```
 netq [<hostname>] show interfaces physical [<physical-port>] [empty|plugged] [peer] [vendor <module-vendor>|model <module-model>|module] [around <text-time>] [json]
 ```
-
-{{<notice note>}}
-
-When entering a time value, you must include a numeric value <em>and</em> the unit of measure:
-<ul>
-<li><strong>d</strong>: days</li>
-<li><strong>w</strong>: weeks</li>
-<li><strong>h</strong>: hours</li>
-<li><strong>m</strong>: minutes</li>
-<li><strong>s</strong>: seconds</li>
-<li><strong>now</strong></li>
-</ul>
-For the <code>between</code> option, you can enter the start (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not require the same unit of measure. Use the <code>around</code> option to view information for a particular time.
-
-{{</notice>}}
-
 ### View Detailed Cable Information for All Devices
 
 - View which cables connect to each interface port for all devices, including the module type, vendor, part number and performance characteristics. 

@@ -5,7 +5,7 @@ weight: 920
 toc: 4
 ---
 
-You use *Multi-Chassis Link Aggregation (MLAG)* to enable a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group or trunk) to connect those ports to different switches and operate as if they have a connection to a single, logical switch. This provides greater redundancy and greater system throughput. Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, NetQ supports active-active links from the dual-connected devices even though each switch connects to a different physical switch. For an overview and how to configure MLAG in your network, refer to {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG">}}.
+You use Multi-Chassis Link Aggregation (MLAG) to enable a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group or trunk) to connect those ports to different switches and operate as if they have a connection to a single, logical switch. This provides greater redundancy and greater system throughput. Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, NetQ supports active-active links from the dual-connected devices even though each switch connects to a different physical switch. For an overview and how to configure MLAG in your network, refer to {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG">}}.
 
 {{%notice note%}}
 
@@ -32,21 +32,6 @@ With NetQ, you can monitor MLAG performance across the network:
     - Large: view number of nodes running MLAG service, number of sessions and alarms, number of sessions with inactive backup IPs, switches with the most established/unestablished sessions, devices with the most alarms
     - Full-screen: view all switches, all sessions, and all alarms
 - `netq show mlag` command: view host, peer, system MAC address, state, information about the bonds, and last time each session running MLAG had a change
-
-{{%notice note%}}
-
-When entering a time value in the `netq show mlag` command, you must include a numeric value *and* the unit of measure:
-
-- **w**: weeks
-- **d**: days
-- **h**: hours
-- **m**: minutes
-- **s**: seconds
-- **now**
-
-When using the `between` option, you can enter the start time (`text-time`) and end time (`text-endtime`) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
-
-{{%/notice%}}
 
 ### View Service Status Summary
 

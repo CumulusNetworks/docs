@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3205701"></a> [3205701](#3205701) <a name="3205701"></a> <br />None | On the NVIDIA SN4700 and SN4600C switch, PCI calibration has been modified from a static to a dynamic mechanism. | 4.4.4, 5.2.0 | |
 | <a name="3195390"></a> [3195390](#3195390) <a name="3195390"></a> <br />None | Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
 | <a name="3192808"></a> [3192808](#3192808) <a name="3192808"></a> <br />None | When the switch receives an LLDP frame from a Cisco router right after a <code>ptmd</code> restart, the <code>ptmd</code> service crashes. | 4.3.0-4.4.4, 5.0.0-5.2.0 | |
 | <a name="3190181"></a> [3190181](#3190181) <a name="3190181"></a> <br /> | When you remove a configuration from the <code>/etc/frr/frr.conf</code> file, the <code>bgpd</code> service crashes on the ToR. | 4.4.2-4.4.4 | |

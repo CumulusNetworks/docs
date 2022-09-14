@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3205701</td>
-<td>On the NVIDIA SN4700 and SN4600C switch, PCI calibration has been modified from a static to a dynamic mechanism.</td>
-<td>4.4.4, 5.2.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3195390</td>
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.0</td>

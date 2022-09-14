@@ -211,7 +211,7 @@ The commands in this example configure:
 - EVPN as the control plane for VXLAN between BGP neighbors.
 - A single VXLAN device (vxlan48) on each leaf. VLAN 10 maps to VNI 10 and VLAN 20 to VNI 20. The VXLAN device is part of the default bridge `br_default`.
 - The anycast IP address 10.0.1.12 on leaf01 and leaf02, and 10.0.1.34 on leaf03 and leaf04.
-- Layer 2 bonds that link server01 to leaf01 and leaf02, and server03 to leaf03 and leaf04. The example shows the server01 and server03 `/etc/network/interfaces` file configuration.
+- Layer 2 bonds that link server01 to leaf01 and leaf02, and server04 to leaf03 and leaf04. The example shows the server01 and server04 `/etc/network/interfaces` file configuration.
 
 {{< tabs "TabID113 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1381,7 +1381,7 @@ address 172.16.20.101/24
 ```
 
 {{< /tab >}}
-{{< tab "server03 ">}}
+{{< tab "server04 ">}}
 
 ```
 auto lo
@@ -1752,15 +1752,12 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL501 - VXLAN Active-ActiveV2" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server03" >}}
+    {{< simulation name="Try It CL52 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
 The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
 To validate the configuration, run the commands shown in the troublshooting section above.
 
-{{%notice note%}}
-This simulation runs on Cumulus Linux 5.0. Cumulus Linux 5.1 configuration is coming soon.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

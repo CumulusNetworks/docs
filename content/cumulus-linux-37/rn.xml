@@ -31,6 +31,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
@@ -2404,6 +2410,12 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>

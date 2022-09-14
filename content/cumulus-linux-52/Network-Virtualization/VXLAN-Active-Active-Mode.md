@@ -203,7 +203,7 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 <!-- vale off -->
 ## Configuration Example
 
-{{< img src = "/images/cumulus-linux/vxlan-active-active-example.png" >}}
+{{< img src = "/images/cumulus-linux/vxlan-active-active-example52.png" >}}
 <!-- vale on -->
 The commands in this example configure:
 - MLAG between leaf01 and leaf02, and between leaf03 and leaf04.

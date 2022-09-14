@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3205701</td>
-<td>On the NVIDIA SN4700 and SN4600C switch, PCI calibration has been modified from a static to a dynamic mechanism.</td>
-<td>4.4.4, 5.2.0-5.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3145224</td>
 <td>If you disable the NVUE service, the {{/etc/cumulus/datapath/nvue_traffic.conf}} file does not delete automatically, which prevents ECMP and LAG hash settings in the {{/etc/cumulus/datapath/traffic.conf}} file from taking effect. 
 
@@ -56,6 +50,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>3122301</td>
 <td>On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames.</td>
+<td>5.2.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3115262</td>
+<td>The NVIDIA SN4800 switch currently supports only 100G, 50G, and 25G.</td>
 <td>5.2.0-5.3.0</td>
 <td></td>
 </tr>
@@ -264,12 +264,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
-<td>2812075</td>
-<td>When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together.</td>
-<td>5.0.0-5.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2748923</td>
 <td>If you include a dash (-) when configuring an interface name with NVUE, you see an error. NVUE does not support using a dash in interface names.</td>
 <td>4.4.0-4.4.4, 5.0.0-5.3.0</td>
@@ -314,6 +308,11 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 <th> Affects </th>
 </tr>
 <tr>
+<td>3188576</td>
+<td>IPv6 messages fill the {{/var/log/frr/frr.log}} files and {{logrotate]] is unable to clean up the old log files. As a result, a significant number of log files are never deleted, which fill up the file system.</td>
+<td>5.2.0</td>
+</tr>
+<tr>
 <td>3180043</td>
 <td>The EVPN Multihoming ESI configuration command {{nv set interface &lt;interface-id&gt; evpn multihoming segment identifier &lt;es-identifier&gt;}} does not work.</td>
 <td>5.1.0-5.2.0</td>
@@ -346,6 +345,12 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 <td>3135683</td>
 <td>On the Spectrum SN2201 switch, when a fan is obstructed with an object, the fan and system LEDs don't change.</td>
 <td>5.2.0</td>
+</tr>
+<tr>
+<td>3081232</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
+To work around this issue, disable, then enable the port.</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 </table>
 </tables>

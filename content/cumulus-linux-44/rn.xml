@@ -163,6 +163,12 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td></td>
 </tr>
 <tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.2.0</td>
@@ -2078,11 +2084,6 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
-<td>3205701</td>
-<td>On the NVIDIA SN4700 and SN4600C switch, PCI calibration has been modified from a static to a dynamic mechanism.</td>
-<td>4.4.4, 5.2.0</td>
-</tr>
-<tr>
 <td>2732605</td>
 <td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
 <td>4.3.0-4.4.4</td>
@@ -2094,12 +2095,6 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
-</tr>
-<tr>
-<td>3205701</td>
-<td>On the NVIDIA SN4700 and SN4600C switch, PCI calibration has been modified from a static to a dynamic mechanism.</td>
-<td>4.4.4, 5.2.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3195390</td>
@@ -2255,6 +2250,12 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4244,7 +4245,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>3078202</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3</td>
+<td>5.0.0-5.2.0</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -4470,6 +4471,12 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td></td>
 </tr>
 <tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3089165</td>
 <td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
 <td>4.2.1-4.4.3</td>
@@ -4498,13 +4505,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4, 5.2.0</td>
-</tr>
-<tr>
-<td>3078202</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -6702,6 +6702,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td></td>
 </tr>
 <tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3089165</td>
 <td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
 <td>4.2.1-4.4.3</td>
@@ -6724,13 +6730,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>On the NVIDIA SN3420 switch, the {{smonctl}} command output shows the maximum PSU temperature higher than the critical temperature.</td>
 <td>4.4.2-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4, 5.2.0</td>
-</tr>
-<tr>
-<td>3078202</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -9118,6 +9117,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td></td>
 </tr>
 <tr>
+<td>3093966</td>
+<td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3089165</td>
 <td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
 <td>4.2.1-4.4.3</td>
@@ -9134,13 +9139,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-5.1.0</td>
 <td>5.2.0</td>
-</tr>
-<tr>
-<td>3078202</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
-<td>4.4.0-4.4.3</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -11536,7 +11534,7 @@ Fixed: 9.11.5.P4+dfsg-5.1+deb10u5</td>
 </tr>
 <tr>
 <td>2638106</td>
-<td>The NCLU {{net show route vrf &lt;vrf&gt; summary}} and vtysh {{show ip route vrf &lt;vrf&gt; summary}} commands don't return any output.</td>
+<td>The NCLU {{net show route vrf &lt;VRF&gt; summary}} and vtysh {{show [ip|ipv6] route vrf &lt;VRF&gt; summary}} commands do not return any output.</td>
 <td>4.3.0</td>
 </tr>
 <tr>

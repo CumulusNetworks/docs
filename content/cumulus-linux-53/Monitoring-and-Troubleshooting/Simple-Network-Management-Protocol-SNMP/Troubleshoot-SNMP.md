@@ -5,7 +5,9 @@ weight: 1180
 toc: 4
 ---
 
-Use the following commands to troubleshoot potential SNMP issues:
+Use the following commands to troubleshoot potential SNMP issues.
+
+To see the current SNMP configuration status:
 
 ```
 cumulus@switch:~$ net show snmp-server status
@@ -23,15 +25,23 @@ Last Logs (with Errors)            -- Logs begin at Thu 2017-08-03 16:23:05 UTC,
 ---------------------------------  ------------------------------------------------------------------------------------
 ```
 
+To show a summary of the SNMP configuration settings on the switch:
+
 ```
-cumulus@switch:~$ net show configuration snmp-server
-snmp-server
-  listening-address 127.0.0.1
-  readonly-community public access default
-  readonly-community allpass access any
-  readonly-community temp2 access 1.1.1.1
-  readonly-community temp2 access 2.2.2.2
-  trap-destination 1.1.1.1 community-password public version 2c
-  trap-link-up check-frequency 10
-  trap-snmp-auth-failures
+cumulus@switch:~$ nv show service snmp-server
+                       applied  description
+---------------------  -------  -------------------------------------------------------------------
+enable                 on       Turn the feature 'on' or 'off'.  The default is 'off'.
+trap-cpu-load-average
+  [one-minute]         12       Collection of One Minute load average thresholds to send SNMP traps
+trap-link-down
+  check-frequency      10       Link up or link down checking frequency in seconds
+trap-link-up
+  check-frequency      15       Link up or link down checking frequency in seconds
+```
+
+To show the SNMP server listening address:
+
+```
+cumulus@switch:~$ nv show service snmp-server listening-address
 ```

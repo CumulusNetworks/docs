@@ -98,7 +98,7 @@ pdfhidden: True
 ### Fixed Issues in 5.2.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| <a name="3205700"></a> [3205700](#3205700) <a name="3205700"></a> <br /> | A firmware upgrade has been implemented to optimize the PCIe bus between the CPU and Spectrum ASIC on NVIDIA SN4700, SN4600, SN4600C, and SN4410 switches manufactured with {{0x26 1 17}} in EEPROM. | 4.4.4-5.2.0 | |
+| <a name="3205700"></a> [3205700](#3205700) <a name="3205700"></a> <br /> | A firmware upgrade has been implemented to optimize the PCIe bus between the CPU and Spectrum ASIC on NVIDIA SN4700, SN4600, SN4600C, and SN4410 switches manufactured with <code>0x26 1 17</code> in EEPROM. | 4.4.4-5.2.0 | |
 
 ## 5.2.0 Release Notes
 ### Open Issues in 5.2.0

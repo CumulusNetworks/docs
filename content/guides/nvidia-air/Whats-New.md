@@ -9,10 +9,13 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## September 2022
 <!-- Air:WhatsNew -->
+## 82.2022.09.19
+- Changes to facilitate future platform support
+<!-- Air:WhatsNew -->
+
 ## 82.2022.0912
 - Fixed a bug related to querying service information for simulations in an organization
 - Fixed a bug where Cumulus Linux nodes defaulted to a different image if the requested one was not found
-<!-- Air:WhatsNew -->
 
 ## 82.2022.0908
 - Added Cumulus Linux 5.2.0 to dropdown in Builder

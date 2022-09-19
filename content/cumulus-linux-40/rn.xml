@@ -1096,13 +1096,13 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>3120423</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-5.1.0</td>
-<td>5.2.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4, 5.2.0</td>
+<td>4.4.4, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3053063</td>
@@ -1121,19 +1121,19 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>3020254</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4, 5.2.0</td>
+<td>4.4.4, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.2.0, 5.2.0</td>
+<td>5.1.0-5.2.1, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
-<td>4.4.3-4.4.4, 5.1.0-5.2.0</td>
+<td>4.4.3-4.4.4, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2959067</td>
@@ -1145,7 +1145,7 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send. To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.2.0</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2893895</td>
@@ -1153,14 +1153,14 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 Vulnerable: &lt;= 2.8.90-1-cl4u5
 Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
 <td>4.0.0-4.3.0</td>
-<td>4.4.0-4.4.4, 5.1.0-5.2.0</td>
+<td>4.4.0-4.4.4, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2891255</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1
 Fixed: 2.6.20-0+deb10u2</td>
-<td>4.0.0-4.4.1, 5.0.0-5.2.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.2.1</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
@@ -1168,7 +1168,7 @@ Fixed: 2.6.20-0+deb10u2</td>
 <td>CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code.
 Vulnerable: 2.6.0+dfsg.1-1
 Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
-<td>4.0.0-4.4.1, 5.0.0-5.2.0</td>
+<td>4.0.0-4.4.1, 5.0.0-5.2.1</td>
 <td>4.4.2-4.4.4</td>
 </tr>
 <tr>
@@ -1198,7 +1198,7 @@ MemoryError
 <td>2840819</td>
 <td>CVE-2021-25219: The lame server cache in BIND, a DNS server implementation, can be abused by an attacker to significantly degrade resolver performance, resulting in denial of service (large delays for responses for client queries and DNS timeouts on client hosts).</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2-4.4.4, 5.0.0-5.2.0</td>
+<td>4.4.2-4.4.4, 5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2821869</td>
@@ -1221,7 +1221,7 @@ Traceback (most recent call last):
 MemoryError
 </td>
 <td>3.7.15-4.4.4</td>
-<td>5.0.0-5.2.0</td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2782033</td>
@@ -1238,7 +1238,7 @@ Fixed: 1.1.1d-0+deb10u7</td>
 <td>2754723</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
 <td>4.0.0-4.4.1</td>
-<td>4.4.2-4.4.4, 5.0.0-5.2.0</td>
+<td>4.4.2-4.4.4, 5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2754691</td>
@@ -1347,7 +1347,7 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.2.0</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2699399</td>
@@ -1417,7 +1417,7 @@ To work around this issue, configure the loopback interface in the desired OSPF 
 cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </td>
 <td>4.0.0-5.0.1</td>
-<td>5.1.0-5.2.0</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2682971</td>

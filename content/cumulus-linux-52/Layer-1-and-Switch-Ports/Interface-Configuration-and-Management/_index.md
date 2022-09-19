@@ -646,7 +646,7 @@ addon_scripts_support=1
 - `$METHOD` represents the address method; for example, loopback, DHCP, DHCP6, manual, static, and so on.
 - `$ADDRFAM` represents the address families associated with the interface in a comma-separated list; for example, `"inet,inet6"`.
 
-## Chassis Management
+<!--## Chassis Management
 
 Cumulius Linux supports the NVIDIA SN4800 switch.
 
@@ -691,7 +691,7 @@ Slot Card State
 8 MSN4800 Operational
 ```
 
-You can see all `chassismgrctl` command options with the `chassismgrctl -h` command.
+You can see all `chassismgrctl` command options with the `chassismgrctl -h` command.-->
 
 ## Troubleshooting
 

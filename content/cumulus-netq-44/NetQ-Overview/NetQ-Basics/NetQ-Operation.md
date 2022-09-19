@@ -17,17 +17,11 @@ The NetQ Agent interacts with the various components and software on switches an
 
 The NetQ Agent polls the user space applications for information about the performance of the various routing protocols and services that are running on the switch. Cumulus Linux supports BGP and OSPF routing protocols as well as static addressing through FRRouting (FRR). Cumulus Linux also supports LLDP and MSTP among other protocols, and a variety of services such as systemd and sensors. SONiC supports BGP and LLDP.
 
-For hosts, the NetQ Agent also polls for performance of containers managed with Kubernetes. All of this information is used to provide the current health of the network and verify it is configured and operating correctly.
-
-For example, if the NetQ Agent learns that an interface has gone down, a new BGP neighbor has been configured, or a container has moved, it provides that information to the NetQ Platform. That information can then be used to notify users of the operational state change through various channels. By default, data is logged in the database, but you can use the CLI (`netq show events`) or configure the Event Service in NetQ to send the information to a third-party notification application as well.
+For hosts, the NetQ Agent also polls for performance of containers managed with Kubernetes. This information is used to calculate the network's health and check if the network is configured and operating correctly.
 
 The NetQ Agent interacts with the Netlink communications between the Linux kernel and the user space, listening for changes to the network state, configurations, routes, and MAC addresses. NetQ sends notifications about these changes so that network operators and administrators can respond quickly when changes are not expected or favorable.
 
-For example, if a new route is added or a MAC address removed, the NetQ Agent records these changes and sends that information to the NetQ Platform. Based on the configuration of the Event Service, these changes can be sent to a variety of locations for end-user response.
-
 The NetQ Agent also interacts with the hardware platform to obtain performance information about various physical components, such as fans and power supplies, on the switch. The agent measures operational states and temperatures, along with cabling information to allow for proactive maintenance.
-
-For example, as thermal sensors in the switch indicate that it is becoming very warm, various levels of alarms are generated. These are then communicated through notifications according to the Event Service configuration.
 
 ## The NetQ Platform
 
@@ -40,7 +34,7 @@ After the collected data is sent to and stored in the NetQ database, you can:
 
 ### Validate Configurations
 
-The NetQ CLI lets you validate your network's health through two sets of commands: `netq check` and `netq show`. They extract the information from the Network Service component and Event service. The Network Service component is continually validating the connectivity and configuration of the devices and protocols running on the network. Using the `netq check` and `netq show` commands displays the status of the various components and services on a networkwide and complete software stack basis. For example, you can perform a networkwide check on all sessions of BGP with a single `netq check bgp` command. The command lists any devices that have misconfigurations or other operational errors in seconds. When errors or misconfigurations are present, using the `netq show bgp` command displays the BGP configuration on each device so that you can compare and contrast each device, looking for potential causes. `netq check` and `netq show` commands are available for numerous components and services as shown in the following table.
+The NetQ CLI lets you validate your network's health through two sets of commands: `netq check` and `netq show`. They extract the information from the network service component and event service. The network service component is continually validating the connectivity and configuration of the devices and protocols running on the network. Using the `netq check` and `netq show` commands displays the status of the various components and services on a networkwide and complete software stack basis. `netq check` and `netq show` commands are available for the following components and services:
 
 | Component or Service | Check | Show | Component or Service | Check | Show |
 | -------------------- | :---: | :---:| -------------------- | :---: | :---: |
@@ -56,38 +50,7 @@ The NetQ CLI lets you validate your network's health through two sets of command
 
 ### Monitor Communication Paths
 
-The trace engine validates the available communication paths between two network devices. The corresponding `netq trace` command enables you to view all of the paths between the two devices and if there are any breaks in the paths. This example shows two successful paths between server12 and leaf11, all with an MTU of 9152. The first command shows the output in path by path tabular mode. The second command shows the same output as a tree.
-
-    cumulus@switch:~$ netq trace 10.0.0.13 from 10.0.0.21
-    Number of Paths: 2
-    Number of Paths with Errors: 0
-    Number of Paths with Warnings: 0
-    Path MTU: 9152
-    Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
-    --- --- ----------- --------------- --------------- --------------- ---------------
-    1   1   server12                                                    bond1.1002
-        2   leaf12      swp8                            vlan1002        peerlink-1
-        3   leaf11      swp6            vlan1002                        vlan1002
-    --- --- ----------- --------------- --------------- --------------- ---------------
-    2   1   server12                                                    bond1.1002
-        2   leaf11      swp8                                            vlan1002
-    --- --- ----------- --------------- --------------- --------------- ---------------
-     
-     
-    cumulus@switch:~$ netq trace 10.0.0.13 from 10.0.0.21 pretty
-    Number of Paths: 2
-    Number of Paths with Errors: 0
-    Number of Paths with Warnings: 0
-    Path MTU: 9152
-     hostd-12 bond1.1002 -- swp8 leaf12 <vlan1002> peerlink-1 -- swp6 <vlan1002> leaf11 vlan1002
-              bond1.1002 -- swp8 leaf11 vlan1002
-
-The output shows that:
-
-  - Path 1 traverses the network from server12 out bond1.1002 into leaf12 interface swp8 out VLAN1002 peerlink-1 into VLAN1002 interface swp6 on leaf11
-  - Path 2 traverses the network from server12 out bond1.1002 into VLAN1002 interface swp8 on leaf11
-
-If the MTU does not match across the network, or any of the paths or parts of the paths have issues, that data appears in the summary at the top of the output and shown in red along the paths, giving you a starting point for troubleshooting.
+The trace engine validates the available communication paths between two network devices. The corresponding `netq trace` command enables you to view all of the paths between the two devices and if there are any breaks in the paths. For more information about trace requests, refer to {{<link title="Verify Network Connectivity" text="Verify Network Connectivity">}}.
 
 ### View Historical State and Configuration
 
@@ -150,11 +113,13 @@ An administrator can run the following commands from any switch in the network t
 
 ### Manage Network Events
 
-The NetQ notifier lets you capture and filter events for devices, components, protocols, and services. This is especially useful when an interface or routing protocol goes down and you want to get them back up and running as quickly as possible, preferably before anyone notices or complains. You can improve resolution time significantly by creating filters that focus on topics appropriate for a particular group of users. You can create filters for events related to BGP and MLAG session states, interfaces, links, NTP and other services, fans, power supplies, and physical sensor measurements.
+The NetQ notifier lets you capture and filter events for devices, components, protocols, and services. This is especially useful when an interface or routing protocol goes down and you want to get them back up and running as quickly as possible. You can improve resolution time significantly by creating filters that focus on topics appropriate for a particular group of users. You can create filters for events related to BGP and MLAG session states, interfaces, links, NTP and other services, fans, power supplies, and physical sensor measurements.
 
 For operators responsible for routing, you can create an integration with a notification application that notifies them of routing issues as they occur. The following is an example of a Slack message received on a *netq-notifier* channel indicating that the BGP session on switch *leaf04* interface *swp2* has gone down:
 
 {{<figure src="/images/netq/slack-msg-example.png" alt="example Slack message from netq notifier indicating session failures" width="500">}}
+
+For more information, refer to {{<link title="Events and Notifications" text="Events and Notifications">}}.
 
 ## Timestamps in NetQ
 
@@ -164,6 +129,7 @@ Interface state, IP addresses, routes, ARP/ND table (IP neighbor) entries and MA
 
 Data that is captured and saved based on polling has a timestamp according to when the information was *captured* rather than when the event *actually happened*, though NetQ compensates for this if the data extracted provides additional information to compute a more precise time of the event. For example, BGP uptime can be used to determine when the event actually happened in conjunction with the timestamp.
 
+<!--- 
 When retrieving the timestamp, command outputs display the time in three ways:
 
 - For non-JSON output when the timestamp represents the Last Changed time, time is displayed in actual date and time when the time change occurred
@@ -430,6 +396,8 @@ When retrieving the timestamp, command outputs display the time in three ways:
     }
 
 {{< /expand >}}
+
+--->
 {{%notice note%}}
 
 Restarting a NetQ Agent on a device does not update the timestamps for existing objects to reflect this new restart time. NetQ preserves their timestamps relative to the original start time of the Agent. A rare exception is if you reboot the device between the time it takes the Agent to stop and restart; in this case, the time is still relative to the start time of the Agent.

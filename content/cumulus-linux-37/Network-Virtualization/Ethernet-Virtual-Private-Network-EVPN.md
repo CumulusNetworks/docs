@@ -1207,6 +1207,10 @@ OpenStack, where virtual machines for a tenant are provisioned and shut
 down very dynamically, a new virtual machine can use the same IP address
 as an earlier virtual machine but with a different MAC address.
 
+{{%notice note%}}
+During mobility events, EVPN neighbor management relies on ARP and GARP to learn the new location for hosts and VMs. MAC learning is independent of this and happens in the hardware.
+{{%/notice%}}
+
 The support for extended mobility is enabled by default and does not
 require any additional configuration.
 

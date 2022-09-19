@@ -122,12 +122,6 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <td>4.1.0-4.3.0</td>
 </tr>
 <tr>
-<td>2663534</td>
-<td>Validation check filtering is only applied to errors in validation results and is not applied to warnings in validation results.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555854</td>
 <td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
 <td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
@@ -193,12 +187,6 @@ To work around this issue, run the following command on the NetQ telemetry serve
 &apos;netq install opta activate-job config-key EhVuZXRxLWVuZHBvaW50LWdhdGV3YXkYsagDIiw3T2sweW9kR3Y4Wk9sTHU3MkwrQTRjNkhhQkU3bVpBNVlZVjEvWWgyZGJBPQ==&apos;</td>
 <td>3.2.1-4.0.1</td>
 <td>4.1.0-4.3.0</td>
-</tr>
-<tr>
-<td>2663534</td>
-<td>Validation check filtering is only applied to errors in validation results and is not applied to warnings in validation results.</td>
-<td>4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2555854</td>

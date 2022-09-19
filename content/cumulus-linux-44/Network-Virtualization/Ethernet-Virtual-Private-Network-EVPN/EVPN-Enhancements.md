@@ -1158,6 +1158,10 @@ Cumulus Linux supports scenarios where the IP to MAC binding for a host or virtu
 
 Extended mobility not only supports virtual machine *moves*, but also where one virtual machine shuts down and you provision another on a different rack that uses the IP address or the MAC address of the previous virtual machine. For example, in an EVPN deployment with OpenStack, where virtual machines for a tenant are provision and shut down dynamically, a new virtual machine can use the same IP address as an earlier virtual machine but with a different MAC address.
 
+{{%notice note%}}
+During mobility events, EVPN neighbor management relies on ARP and GARP to learn the new location for hosts and VMs. MAC learning is independent of this and happens in the hardware.
+{{%/notice%}}
+
 Cumulus Linux enables extended mobility by default.
 
 To examine the sequence numbers for a host or virtual machine MAC address and IP address, run the NCLU `net show evpn mac vni <vni> mac <address>` command or the vtysh `show evpn mac vni <vni> mac <address>` command. For example:

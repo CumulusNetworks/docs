@@ -9,7 +9,7 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## September 2022
 <!-- Air:WhatsNew -->
-## 82.2022.09.19
+## 82.2022.0919
 - Changes to facilitate future platform support
 <!-- Air:WhatsNew -->
 

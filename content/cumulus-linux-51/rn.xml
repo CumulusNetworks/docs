@@ -159,12 +159,6 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
-<td>3128328</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3123965</td>
 <td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
 <td>4.4.0-5.1.0</td>

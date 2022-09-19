@@ -178,12 +178,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3128328</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3122301</td>
 <td>On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames.</td>
 <td>5.2.0-5.2.1</td>
@@ -720,12 +714,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>3135683</td>
 <td>On the Spectrum SN2201 switch, when a fan is obstructed with an object, the fan and system LEDs don't change.</td>
 <td>5.2.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3128328</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>

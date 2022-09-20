@@ -43,12 +43,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3188576</td>
 <td>IPv6 messages fill the {{/var/log/frr/frr.log}} files and {{logrotate]] is unable to clean up the old log files. As a result, a significant number of log files are never deleted, which fill up the file system.</td>
 <td>5.2.0-5.2.1</td>
@@ -82,12 +76,6 @@
 <td>3166746</td>
 <td>FRR does not install EVPN type-2 routes correctly after the specific operation that deletes and adds all non-uplink ports.  The routes show as rejected in the zebra RIB. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3163810</td>
-<td>On the NVIDIA SN4800 switch, after disabling a line card and then re-enabling the same line card, the ports do not come back online.</td>
-<td>5.2.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -184,12 +172,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3115262</td>
-<td>The NVIDIA SN4800 switch currently supports only 100G, 50G, and 25G.</td>
-<td>5.2.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3115242</td>
 <td>When you configure two VNIs in the same VLAN, ifupdown2  shows a {{vlan added to two or more VXLANS}} warning, which is only issued after the VNI is already added to the bridge. This leaves the new VNI in the PVID even if there is already an existing VNI configured in that PVID.</td>
 <td>5.1.0-5.2.1</td>
@@ -213,18 +195,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 To work around this issue, disable, then enable the port.</td>
 <td>5.0.0-5.2.1</td>
 <td>4.4.4</td>
-</tr>
-<tr>
-<td>3076843</td>
-<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3076479</td>
-<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3074929</td>
@@ -582,12 +552,6 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3188576</td>
 <td>IPv6 messages fill the {{/var/log/frr/frr.log}} files and {{logrotate]] is unable to clean up the old log files. As a result, a significant number of log files are never deleted, which fill up the file system.</td>
 <td>5.2.0-5.2.1</td>
@@ -621,12 +585,6 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 <td>3166746</td>
 <td>FRR does not install EVPN type-2 routes correctly after the specific operation that deletes and adds all non-uplink ports.  The routes show as rejected in the zebra RIB. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3163810</td>
-<td>On the NVIDIA SN4800 switch, after disabling a line card and then re-enabling the same line card, the ports do not come back online.</td>
-<td>5.2.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -723,12 +681,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3115262</td>
-<td>The NVIDIA SN4800 switch currently supports only 100G, 50G, and 25G.</td>
-<td>5.2.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3115242</td>
 <td>When you configure two VNIs in the same VLAN, ifupdown2  shows a {{vlan added to two or more VXLANS}} warning, which is only issued after the VNI is already added to the bridge. This leaves the new VNI in the PVID even if there is already an existing VNI configured in that PVID.</td>
 <td>5.1.0-5.2.1</td>
@@ -752,18 +704,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 To work around this issue, disable, then enable the port.</td>
 <td>5.0.0-5.2.1</td>
 <td>4.4.4</td>
-</tr>
-<tr>
-<td>3076843</td>
-<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3076479</td>
-<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3074929</td>
@@ -1203,21 +1143,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>4.4.3, 5.1.0</td>
 </tr>
 <tr>
-<td>3083927</td>
-<td>On the NVIDIA SN4800 switch, EEPROM data is not available for certain line cards.</td>
-<td></td>
-</tr>
-<tr>
-<td>3082619</td>
-<td>On the NVIDIA SN4800 switch, when you try to retrieve the port speed, you see error messages on the terminal. </td>
-<td>5.1.0</td>
-</tr>
-<tr>
-<td>3082463</td>
-<td>On the NVIDIA SN4800 switch,  the LED on the line cards does not match the CLI command output.</td>
-<td>5.1.0</td>
-</tr>
-<tr>
 <td>3077736</td>
 <td>When you run the NVUE command to change the minimum interval between received BFD control packets or the minimum interval for sending BFD control packets, the configuration apply fails.
 
@@ -1249,11 +1174,6 @@ cumulus@switch:~$ nv config apply
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
 </td>
 <td>5.0.1-5.1.0</td>
-</tr>
-<tr>
-<td>3073694</td>
-<td>On the NVIDIA SN4800 switch, under certain conditions, the line cards do not become operational. </td>
-<td></td>
 </tr>
 <tr>
 <td>3066664</td>
@@ -1358,21 +1278,6 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 <td>2952605</td>
 <td>After you install Cumulus Linux, then run the {{sudo smonctl}} command, the line card (gear box) sensors might not display at first, then take a few minutes to show the OK state. 
 This issue does not affect the operation of the switch.</td>
-<td></td>
-</tr>
-<tr>
-<td>2949658</td>
-<td>After multiple power cycles, ports on the SN4800 chassis might fail to come up. Avoid power cycles or any stress testing.</td>
-<td></td>
-</tr>
-<tr>
-<td>2941563</td>
-<td>On the NVIDIA SN4800 switch, the {{l1-show}} command does not display the vendor identifier.</td>
-<td></td>
-</tr>
-<tr>
-<td>2940101</td>
-<td>On the NVIDIA SN4800 switch, the {{chassismgrctl}} command does not disable the line card.</td>
 <td></td>
 </tr>
 <tr>

@@ -34,12 +34,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -101,7 +95,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3128328</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -2282,12 +2276,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -2339,7 +2327,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3128328</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4546,12 +4534,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -4603,7 +4585,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3128328</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -6973,12 +6955,6 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -7024,7 +7000,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3128328</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>

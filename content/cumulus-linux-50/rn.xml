@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3157240</td>
 <td>When you try to query REDECN counters with the {{mlxcmd}} utility on a bond member port with the following commands, syslog reports an error.
 

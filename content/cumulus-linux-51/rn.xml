@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3180043</td>
 <td>The EVPN Multihoming ESI configuration command {{nv set interface &lt;interface-id&gt; evpn multihoming segment identifier &lt;es-identifier&gt;}} does not work.</td>
 <td>5.1.0-5.2.1</td>
@@ -251,18 +245,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3082619</td>
-<td>On the NVIDIA SN4800 switch, when you try to retrieve the port speed, you see error messages on the terminal. </td>
-<td>5.1.0</td>
-<td>5.2.0-5.2.1</td>
-</tr>
-<tr>
-<td>3082463</td>
-<td>On the NVIDIA SN4800 switch,  the LED on the line cards does not match the CLI command output.</td>
-<td>5.1.0</td>
-<td>5.2.0-5.2.1</td>
-</tr>
-<tr>
 <td>3081232</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
@@ -291,18 +273,6 @@ cumulus@switch:~$ nv config apply
 <td>When a MAC address is moved to a new VTEP in an EVPN MAC mobility scenario using traditional bridges, there might be up to 30 seconds of convergence delay.</td>
 <td>5.0.1-5.1.0</td>
 <td>5.2.0-5.2.1</td>
-</tr>
-<tr>
-<td>3076843</td>
-<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3076479</td>
-<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3074929</td>

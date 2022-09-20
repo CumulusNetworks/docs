@@ -1181,11 +1181,10 @@ Maximum 200G ports: 64
 Maximum 400G ports: 32
 
 {{< /tab >}}
+{{< /tab >}}
+
+{{< /tab >}}
 {{< /tabs >}}
-
-<!--SN4800 is a modular chassis with up to 8 line cards. Each line card has 16x QSFP28 NRZ encoding 100G interfaces and supports all speeds down to 1G.
-
-This platform is avaliable only with 16x QSFP28 line cards without an option to breakout ports; you can install a maximum of 128x100G ports. -->
 
 {{%notice note%}}
 - You can use a single SFP (10/25/50G) transceiver in a QSFP (100/200/400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface> link speed <speed>` command. Do not configure this port as a breakout port.

@@ -40,8 +40,9 @@ Cumulus Linux 4.0 supports new platforms, provides bug fixes, and contains sever
 
 ### Unsupported Features
 
-- Lightweight network virtualization (LNV) is no longer available. See {{<link url="Migrating-from-LNV-to-EVPN" text="Migrating from LNV to EVPN">}}.
-- {{<link url="Virtual-Routing-and-Forwarding-VRF/#vrf-route-leaking" text="Static VRF route leaking">}} is not supported.
+- Lightweight network virtualization (LNV); see {{<link url="Migrating-from-LNV-to-EVPN" text="Migrating from LNV to EVPN">}}
+- Static VRF route leaking
+- Snapshots
 
 ### Unsupported Platforms
 

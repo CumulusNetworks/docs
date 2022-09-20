@@ -1183,6 +1183,9 @@ Maximum 400G ports: 32
 {{< /tab >}}
 {{< /tab >}}
 
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
 - You can use a single SFP (10/25/50G) transceiver in a QSFP (100/200/400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface> link speed <speed>` command. Do not configure this port as a breakout port.
 - If you break out a port, then reload the `switchd` service on a switch running in *nonatomic* ACL mode, temporary disruption to traffic occurs while the ACLs reinstall.

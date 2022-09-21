@@ -17,6 +17,17 @@ Use the SNMPv3 username instead of the read-only community name. The SNMPv3 user
 
 Before you can use SNMP, you need to enable and start the `snmpd` service.
 
+{{< tabs "20 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service snmp-server enable on
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 {{%notice note%}}
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
 {{%/notice%}}
@@ -43,7 +54,8 @@ If you intend to run this service within a {{<link url="Virtual-Routing-and-Forw
 
 3. Run the `sudo systemctl daemon-reload` command.
 
-After the service starts, you can use SNMP to manage various components on the switch.
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Configure the Listening IP Addresses
 

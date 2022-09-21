@@ -206,12 +206,6 @@ end vrf
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
-</tr>
-<tr>
 <td>3107606</td>
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
@@ -456,6 +450,12 @@ Failure during apply. Ignore? [y/N]
 
 Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, then run the {{nv config apply -y}} command.</td>
 <td>5.1.0-5.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3037829</td>
+<td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
+<td>5.0.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>

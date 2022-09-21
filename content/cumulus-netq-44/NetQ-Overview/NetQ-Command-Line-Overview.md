@@ -5,7 +5,7 @@ weight: 160
 toc: 4
 ---
 
-The NetQ CLI provides access to all network state and event information collected by the NetQ Agents. It behaves the same way most CLIs behave, with groups of commands used to display related information, the ability to use TAB completion when entering commands, and to get help for given commands and options. There are four categories of commands: check, show, config, and trace.
+The NetQ CLI provides access to all network state and event information collected by NetQ Agents. It behaves similarly to typical CLIs, with groups of commands that display related information, and help commands that provide additional information. There are four command categories: check, show, config, and trace.
 
 {{<notice note>}}
 
@@ -131,7 +131,7 @@ To use the NetQ CLI, the switches must be running the Cumulus Linux or SONiC ope
 
 ### Command Completion
 
-As you enter commands, you can get help with the valid keywords or options using the **Tab** key. For example, using Tab completion with `netq check` displays the possible objects for the command, and returns you to the command prompt to complete the command.
+As you enter commands, you can get help with the valid keywords or options using the **tab** key. For example, using tab completion with `netq check` displays the possible objects for the command, and returns you to the command prompt to complete the command:
 
 ```
 cumulus@switch:~$ netq check <<press Tab>>
@@ -153,7 +153,7 @@ cumulus@switch:~$ netq check
 
 ### Command Help
 
-As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering some of the `netq check` command. In the following example, you can see that there are no additional required parameters and you can use three optional parameters &mdash; `hostnames`, `vrf` and `around` &mdash; with a BGP check.
+As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering some of the `netq check` command. In the following example, you can see that there are no additional required parameters and you can use three optional parameters &mdash; `hostnames`, `vrf`, and `around` &mdash; with a BGP check:
 
 ```
 cumulus@switch:~$ netq check bgp help
@@ -176,11 +176,11 @@ cumulus@switch:~$ netq help verbose
 
 ### Command History
 
-The CLI stores commands issued within a session, which enables you to review and rerun commands that you already ran. At the command prompt, press the **Up Arrow** and **Down Arrow** keys to move back and forth through the list of commands previously entered. When you have found a given command, you can run the command by pressing **Enter**, just as you would if you had entered it manually. You can also modify the command before you run it.
+The CLI stores commands issued within a session, which lets you review and rerun commands that you already ran. At the command prompt, press the **Up Arrow** and **Down Arrow** keys to move back and forth through the list of commands previously entered. When you have found a given command, you can run the command by pressing **Enter**, just as you would if you had entered it manually. You can also modify the command before you run it.
 
 ## Command Categories
 
-While the CLI has a flat structure, the commands can be conceptually grouped into the following functional categories:
+While the CLI has a flat structure, NetQ commands are conceptually grouped into the following functional categories:
 
 - {{<link url="#validation-commands" text="Validation Commands">}}
 - {{<link url="#monitoring-commands" text="Monitoring Commands">}}
@@ -189,7 +189,7 @@ While the CLI has a flat structure, the commands can be conceptually grouped int
 
 ### Validation Commands
 
-The `netq` `check` commands validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. You can perform validation checks for the following:
+The `netq check` commands validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. You can perform validation checks for the following:
 
 <!-- vale off -->
 - **agents**: NetQ Agents operation on all switches and hosts
@@ -320,10 +320,10 @@ cumulus@switch:~$ netq check bgp json
 
 ### Monitoring Commands
 
-The `netq show` let you view details about the current or historical configuration and status of the various protocols or services. You can view the configuration and status for the following:
+The `netq show` commands let you view details about the current or historical configuration and status of various protocols and services. You can view the configuration and status for the following:
 
 <!-- vale off -->
-- **address-history**: Address history info for a IP address / prefix
+- **address-history**: Address history info for a IP address/prefix
 - **agents**: NetQ Agents status on switches and hosts
 - **bgp**: BGP status across the network fabric
 - **cl-btrfs-info**: BTRFS file system data for monitored Cumulus Linux switches
@@ -594,7 +594,7 @@ The following example shows how to add a Cumulus Linux installation image to the
 
 ### Trace Commands
 
-The `trace` commands lets you view the available paths between two nodes on the network currently and at a time in the past. You can perform a layer 2 or layer 3 trace, and view the output in one of three formats (*json*, *pretty*, and *detail*). JSON output provides the output in a JSON file format for ease of importing to other applications or software. Pretty output lines up the paths in a pseudo-graphical manner to help visualize multiple paths. Detail output is useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. The detail output displays a table with a row for each path.
+The `trace` commands lets you view the available paths between two nodes on the network currently and at a time in the past. You can perform a layer 2 or layer 3 trace, and view the output in one of three formats: JSON, pretty, and detail. JSON output provides the output in a JSON file format for ease of importing to other applications or software. Pretty output lines up the paths in a pseudo-graphical manner to help visualize multiple paths. Detail output is useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. The detail output displays a table with a row for each path.
 
 The trace command syntax is:
 

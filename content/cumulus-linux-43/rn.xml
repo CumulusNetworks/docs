@@ -69,8 +69,8 @@
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
+<td>4.3.0-4.4.4</td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>3098936</td>

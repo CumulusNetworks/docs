@@ -542,7 +542,7 @@ To install the NetQ Agent:
 2. Verify you have the correct version of the Agent.
 
     ```
-    root@rhel7:~# rpm -q -netq-agent
+    root@rhel7:~# rpm -qa | grep -i netq
     ```
 
     {{<netq-install/agent-version version="4.1.0" opsys="rh">}}

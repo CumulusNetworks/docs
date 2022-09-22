@@ -155,7 +155,7 @@ end vrf
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.2.1-4.4.4</td>
 <td>5.0.0-5.2.1</td>
 </tr>
 <tr>
@@ -2183,7 +2183,7 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
-<td>4.4.2-4.4.3, 5.0.1-5.2.1</td>
+<td>4.4.2-4.4.3, 5.0.1-5.1.0</td>
 </tr>
 <tr>
 <td>3041306</td>
@@ -2368,7 +2368,7 @@ end vrf
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.2.1-4.4.4</td>
 <td>5.0.0-5.2.1</td>
 </tr>
 <tr>
@@ -2478,8 +2478,8 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
-<td>4.4.2-4.4.3, 5.0.1-5.2.1</td>
-<td>4.4.4</td>
+<td>4.4.2-4.4.3, 5.0.1-5.1.0</td>
+<td>4.4.4, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3059135</td>
@@ -4609,7 +4609,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.2.1-4.4.4</td>
 <td>5.0.0-5.2.1</td>
 </tr>
 <tr>
@@ -4700,8 +4700,8 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
-<td>4.4.2-4.4.3, 5.0.1-5.2.1</td>
-<td>4.4.4</td>
+<td>4.4.2-4.4.3, 5.0.1-5.1.0</td>
+<td>4.4.4, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3059135</td>
@@ -7024,7 +7024,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.2.1-4.4.4</td>
 <td>5.0.0-5.2.1</td>
 </tr>
 <tr>

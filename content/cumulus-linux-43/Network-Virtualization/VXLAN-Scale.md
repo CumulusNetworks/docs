@@ -50,3 +50,7 @@ The equation now looks like this:
 <p style="text-align: center;">20 swps * 100 VXLANs + 10 swps * 100 VXLANs + 18 swps * X VXLANs = 14943</p>
 <p style="text-align: center;">18 * X = 11943</p>
 <p style="text-align: center;">663 = VXLANS (still configurable) for a total of <b>863</b></p>
+
+{{%notice note%}}
+For Cumulus Linux 4.3.1, in VXLAN deployments with 8500 VLANs across ports, the VLAN scale limit is validated with LACP Bypass disabled on Trident3 switches.
+{{%/notice%}}

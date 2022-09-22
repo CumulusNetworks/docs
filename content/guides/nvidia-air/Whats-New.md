@@ -9,9 +9,14 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## September 2022
 <!-- Air:WhatsNew -->
+## 82.2022.0922-013
+- Fixed an issue related to console access
+- Disabled poweroff on simulations using certain images
+- Updated support alias
+<!-- Air:WhatsNew -->
+
 ## 82.2022.0919
 - Changes to facilitate future platform support
-<!-- Air:WhatsNew -->
 
 ## 82.2022.0912
 - Fixed a bug related to querying service information for simulations in an organization

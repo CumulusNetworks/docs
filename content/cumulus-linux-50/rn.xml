@@ -208,7 +208,7 @@ cumulus@switch:~$ nv config apply
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
-<td>3060399</td>
+<td>3059566</td>
 <td>When you add an interface to a layer 3 bond, traffic does not forward and you see errors similar to the following:
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
@@ -1396,7 +1396,7 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-4.4.4</td>
+<td>4.2.1-4.4.4</td>
 </tr>
 <tr>
 <td>2873186</td>

@@ -29,6 +29,13 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td></td>
 </tr>
 <tr>
+<td>3168564</td>
+<td>In a large scale VXLAN configuration (for example if you have more than 8500 VLANs across ports), {{switchd}} might crash when you restart {{clagd}} or when all bonds go operationally down, then up.
+On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scale limit for VXLAN deployments with 8500 VLANs across ports with LACP bypass disabled.</td>
+<td>4.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3163845</td>
 <td>If bond slaves listed in the {{/etc/network/interfaces}} file are not in alphabetical order, the bond interface MAC address can change when you run {{ifreload}}. For example, if the bond slaves in the {{/etc/network/interfaces}} file are listed as {{swp32 swp31}}, the switch initially uses the MAC address for swp32 as the bond MAC address. An another {{ifreload}} can cause this to change to use the MAC address for swp31 as the bond MAC address, which can cause protocol issues, such as IPv6 link-local address changes.</td>
 <td>4.3.1-4.4.4</td>
@@ -2169,7 +2176,7 @@ Reboot the affected switches.</td>
 </tr>
 <tr>
 <td>2862214</td>
-<td>{switchd}} can cause a memory leak.</td>
+<td>VXLAN route updates during high frequency might cause {{switchd}} to leak memory.</td>
 <td>3.7.14.2-3.7.15</td>
 </tr>
 <tr>

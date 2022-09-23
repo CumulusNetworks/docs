@@ -29,6 +29,12 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td></td>
 </tr>
 <tr>
+<td>3163845</td>
+<td>If bond slaves listed in the {{/etc/network/interfaces}} file are not in alphabetical order, the bond interface MAC address can change when you run {{ifreload}}. For example, if the bond slaves in the {{/etc/network/interfaces}} file are listed as {{swp32 swp31}}, the switch initially uses the MAC address for swp32 as the bond MAC address. An another {{ifreload}} can cause this to change to use the MAC address for swp31 as the bond MAC address, which can cause protocol issues, such as IPv6 link-local address changes.</td>
+<td>4.3.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-5.1.0</td>
@@ -2075,6 +2081,11 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
 This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
 <td>4.3.0, 4.4.0-5.0.1</td>
+</tr>
+<tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-4.3.0</td>
 </tr>
 <tr>
 <td>2991501</td>

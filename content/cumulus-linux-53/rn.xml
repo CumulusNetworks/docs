@@ -42,20 +42,8 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3128328</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3122301</td>
 <td>On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames.</td>
-<td>5.2.0-5.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3115262</td>
-<td>The NVIDIA SN4800 switch currently supports only 100G, 50G, and 25G.</td>
 <td>5.2.0-5.3.0</td>
 <td></td>
 </tr>
@@ -78,32 +66,11 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3076843</td>
-<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
-<td>5.1.0-5.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3076479</td>
-<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
-<td>5.1.0-5.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3066280</td>
 <td> The python module pygments version 2.12.0 on the Cumulus Linux switch prevents NVUE from displaying colored output and produces an error or failure. The failure specifically identifies {{#ansidarkred}} as the problem color format. The error prevents any output from showing on the CLI.
 To work around this problem, downgrade the pygments module to version 2.3.1.</td>
 <td>5.0.1-5.3.0</td>
 <td></td>
-</tr>
-<tr>
-<td>3060399</td>
-<td>When you add an interface to a layer 3 bond, traffic does not forward and you see errors similar to the following:
-
-2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
-</td>
-<td>4.4.2-4.4.3, 5.0.1-5.3.0</td>
-<td>4.4.4</td>
 </tr>
 <tr>
 <td>3055283</td>
@@ -182,6 +149,12 @@ To work around this problem, downgrade the pygments module to version 2.3.1.</td
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.2, 5.0.0-5.3.0</td>
 <td>4.4.3-4.4.4</td>
+</tr>
+<tr>
+<td>2951110</td>
+<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.4, 5.0.0-5.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2939231</td>
@@ -308,24 +281,24 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 <th> Affects </th>
 </tr>
 <tr>
+<td>3192808</td>
+<td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
+<td>4.3.0-5.2.1</td>
+</tr>
+<tr>
 <td>3188576</td>
 <td>IPv6 messages fill the {{/var/log/frr/frr.log}} files and {{logrotate]] is unable to clean up the old log files. As a result, a significant number of log files are never deleted, which fill up the file system.</td>
-<td>5.2.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3180043</td>
 <td>The EVPN Multihoming ESI configuration command {{nv set interface &lt;interface-id&gt; evpn multihoming segment identifier &lt;es-identifier&gt;}} does not work.</td>
-<td>5.1.0-5.2.0</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3176318</td>
 <td>The NVUE {{nv set bridge domain br_default stp priority}} command does not change the STP priority.</td>
-<td>5.1.0-5.2.0</td>
-</tr>
-<tr>
-<td>3163810</td>
-<td>On the NVIDIA SN4800 switch, after disabling a line card and then re-enabling the same line card, the ports do not come back online.</td>
-<td>5.2.0</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3150208</td>
@@ -334,23 +307,33 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 switchd[11549]: hal.c:1378 CRIT No backends found
 
 To work around this issue, avoid restarting the {{switchd}} service in the ZTP script; reboot the switch instead.</td>
-<td>5.1.0-5.2.0</td>
+<td>5.1.0-5.2.1</td>
+</tr>
+<tr>
+<td>3139164</td>
+<td>NVUE does not allow you to set 2X/4X lanes. To work around this issue, set the appropriate lanes for forced speed with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example, {{ethtool -s swp1 speed 100000 autoneg off lanes 2}}.</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3138057</td>
 <td> When the next-hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
-<td>4.4.0-5.2.0</td>
+<td>4.4.0-5.2.1</td>
+</tr>
+<tr>
+<td>3135714</td>
+<td>The {{tacplus}} package does not create the correct tacacs0-15 users in the right groups. </td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3135683</td>
 <td>On the Spectrum SN2201 switch, when a fan is obstructed with an object, the fan and system LEDs don't change.</td>
-<td>5.2.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3081232</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
-<td>5.0.0-5.2.0</td>
+<td>5.0.0-5.2.1</td>
 </tr>
 </table>
 </tables>

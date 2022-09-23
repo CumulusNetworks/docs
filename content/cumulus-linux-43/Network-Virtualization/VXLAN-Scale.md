@@ -52,5 +52,5 @@ The equation now looks like this:
 <p style="text-align: center;">663 = VXLANS (still configurable) for a total of <b>863</b></p>
 
 {{%notice note%}}
-For Cumulus Linux 4.3.1, in VXLAN deployments with 8500 VLANs across ports, the VLAN scale limit is validated with LACP Bypass disabled on Trident3 switches.
+On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scale limit for VXLAN deployments with 8500 VLANs across ports with LACP bypass disabled.
 {{%/notice%}}

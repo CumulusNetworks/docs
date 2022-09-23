@@ -15,7 +15,7 @@ This document supports the Cumulus Linux 4.3 release, and lists new platforms an
 Cumulus Linux 4.3.1 provides bug fixes.
 
 {{%notice note%}}
-Cumulus Linux 4.3.1 is supported on Broadcom switches only. You **cannot** upgrade to Cumulus Linux 4.3.1 on Mellanox switches.
+Cumulus Linux 4.3.1 is supported on Broadcom switches only. You **cannot** upgrade to Cumulus Linux 4.3.1 on a Mellanox switch.
 {{%/notice%}}
 
 ## What's New in Cumulus Linux 4.3.0

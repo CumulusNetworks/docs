@@ -112,9 +112,8 @@ You can upgrade Cumulus Linux in one of two ways:
 Cumulus Linux also provides the Smart System Manager that enables you to upgrade an active switch with minimal disruption to the network. See {{<link url="Smart-System-Manager" text="Smart System Manager">}}.
 
 {{%notice note%}}
-
-Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
-
+- Cumulus Linux 4.3.1 is supported on Broadcom switches only. You **cannot** upgrade to Cumulus Linux **4.3.1** on a Mellanox switch.
+- Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
 ### Should I Install a Cumulus Linux Image or Upgrade Packages?

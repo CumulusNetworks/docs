@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3216759"></a> [3216759](#3216759) <a name="3216759"></a> <br />None | With the <code>ip-acl-heavy</code> TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly<br /><pre>hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources</pre>To work around this issue, change the TCAM profile to <code>acl-heavy</code> or <code>ip-acl-heavy</code> with ACL non-atomic mode. | 3.7.15-5.0.1 | 5.1.0-5.2.1|
 | <a name="3129819"></a> [3129819](#3129819) <a name="3129819"></a> <br /> | On the EdgeCore AS4610 switch, the <code>clagd</code> service loses communication after 198 days of uptime. | 3.7.15-3.7.16, 4.3.0-4.4.4 | |
 | <a name="3128328"></a> [3128328](#3128328) <a name="3128328"></a> <br /> | The <code>clagd</code> process uses 100 percent CPU and eventually crashes with an <code>Unable to allocate memory</code> error. | 3.7.16, 4.3.0-4.4.4 | |
 | <a name="3123556"></a> [3123556](#3123556) <a name="3123556"></a> <br /> | When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the <code>/etc/network/interfaces</code> file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it. | 3.7.15-5.1.0 | 5.2.0-5.2.1|
@@ -323,6 +324,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3216759"></a> [3216759](#3216759) <a name="3216759"></a> <br />None | With the <code>ip-acl-heavy</code> TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly<br /><pre>hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources</pre>To work around this issue, change the TCAM profile to <code>acl-heavy</code> or <code>ip-acl-heavy</code> with ACL non-atomic mode. | 3.7.15-3.7.16, 4.3.0-4.4.4 | |
 | <a name="3129819"></a> [3129819](#3129819) <a name="3129819"></a> <br /> | On the EdgeCore AS4610 switch, the <code>clagd</code> service loses communication after 198 days of uptime. | 3.7.15-3.7.16, 4.3.0-4.4.4 | |
 | <a name="3123556"></a> [3123556](#3123556) <a name="3123556"></a> <br /> | When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the <code>/etc/network/interfaces</code> file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it. | 3.7.15-5.1.0 | 5.2.0-5.2.1|
 | <a name="3098936"></a> [3098936](#3098936) <a name="3098936"></a> <br /> | When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs. | 3.7.12-3.7.16, 4.3.0-4.4.4 | |

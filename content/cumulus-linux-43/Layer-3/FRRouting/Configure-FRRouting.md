@@ -124,7 +124,15 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
 
     If integrated configuration file mode is disabled, remove all the configuration files (such as `zebra.conf` or `ospf6d.conf`) instead of `frr.conf`.
 
-3. {{<cl/restart-frr>}}
+3. Restart FRR with this command:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart frr.service
+   ```
+
+   {{%notice warning%}}
+   Restarting FRR restarts all the routing protocol daemons that are enabled and running. NVIDIA recommends that you reboot the switch instead of restarting the FRR service to minimize traffic impact when redundant switches are present with MLAG.
+   {{%/notice%}}
 
 ## Interface IP Addresses and VRFs
 

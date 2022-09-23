@@ -25,12 +25,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3180043</td>
 <td>The EVPN Multihoming ESI configuration command {{nv set interface &lt;interface-id&gt; evpn multihoming segment identifier &lt;es-identifier&gt;}} does not work.</td>
 <td>5.1.0-5.2.1</td>
@@ -212,12 +206,6 @@ end vrf
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
-</tr>
-<tr>
 <td>3107606</td>
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
@@ -251,18 +239,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>4.4.4</td>
 </tr>
 <tr>
-<td>3082619</td>
-<td>On the NVIDIA SN4800 switch, when you try to retrieve the port speed, you see error messages on the terminal. </td>
-<td>5.1.0</td>
-<td>5.2.0-5.2.1</td>
-</tr>
-<tr>
-<td>3082463</td>
-<td>On the NVIDIA SN4800 switch,  the LED on the line cards does not match the CLI command output.</td>
-<td>5.1.0</td>
-<td>5.2.0-5.2.1</td>
-</tr>
-<tr>
 <td>3081232</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
 To work around this issue, disable, then enable the port.</td>
@@ -291,18 +267,6 @@ cumulus@switch:~$ nv config apply
 <td>When a MAC address is moved to a new VTEP in an EVPN MAC mobility scenario using traditional bridges, there might be up to 30 seconds of convergence delay.</td>
 <td>5.0.1-5.1.0</td>
 <td>5.2.0-5.2.1</td>
-</tr>
-<tr>
-<td>3076843</td>
-<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3076479</td>
-<td>Auto-negotiation is not supported on the NVIDIA SN4800 switch.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3074929</td>
@@ -356,7 +320,7 @@ cumulus@switch:~$ nv config apply
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
-<td>3060399</td>
+<td>3059566</td>
 <td>When you add an interface to a layer 3 bond, traffic does not forward and you see errors similar to the following:
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
@@ -486,6 +450,12 @@ Failure during apply. Ignore? [y/N]
 
 Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, then run the {{nv config apply -y}} command.</td>
 <td>5.1.0-5.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3037829</td>
+<td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
+<td>5.0.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>

@@ -34,12 +34,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -101,7 +95,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3128328</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -161,8 +155,8 @@ end vrf
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
+<td>4.2.1-4.4.4</td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>3102128</td>
@@ -2189,7 +2183,7 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
-<td>4.4.2-4.4.3, 5.0.1-5.2.1</td>
+<td>4.4.2-4.4.3, 5.0.1-5.1.0</td>
 </tr>
 <tr>
 <td>3041306</td>
@@ -2282,12 +2276,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -2339,7 +2327,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3128328</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -2380,8 +2368,8 @@ end vrf
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
+<td>4.2.1-4.4.4</td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>3107615</td>
@@ -2490,8 +2478,8 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
-<td>4.4.2-4.4.3, 5.0.1-5.2.1</td>
-<td>4.4.4</td>
+<td>4.4.2-4.4.3, 5.0.1-5.1.0</td>
+<td>4.4.4, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3059135</td>
@@ -4546,12 +4534,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -4603,7 +4585,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3128328</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4627,8 +4609,8 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
+<td>4.2.1-4.4.4</td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>3107615</td>
@@ -4718,8 +4700,8 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
-<td>4.4.2-4.4.3, 5.0.1-5.2.1</td>
-<td>4.4.4</td>
+<td>4.4.2-4.4.3, 5.0.1-5.1.0</td>
+<td>4.4.4, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3059135</td>
@@ -6973,12 +6955,6 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td></td>
 </tr>
 <tr>
-<td>3191517</td>
-<td>When a switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
-<td>4.3.0-4.4.4, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3185796</td>
 <td>When you enable ACL nonatomic update mode in the {{/etc/cumulus/switchd.conf}} file, the switch starts dropping ICMPv6 neighbor advertisement packets, which leads to an outage because the attached hosts are unable to communicate with each other.</td>
 <td>4.3.0-4.4.4</td>
@@ -7024,7 +7000,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3128328</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -7048,8 +7024,8 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.3.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
+<td>4.2.1-4.4.4</td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>3107615</td>

@@ -253,7 +253,7 @@ To upgrade the switch using package upgrade to 4.3.0 and earlier:
 
 #### Upgrade to Cumulus Linux 4.3.1
 
-Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadcom switch to Cumulus Linux 4.3.1 from Cumulus Linux 4.0.0 or later, you can either run `apt update` and `apt upgrade` twice or manually edit the `sources.list` file, then run `apt update` and `apt upgrade` once.
+Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadcom switch to Cumulus Linux 4.3.1 from Cumulus Linux 4.0.0 or later, you must either run `apt update` and `apt upgrade` twice or manually edit the `sources.list` file, then run `apt update` and `apt upgrade` once. This ensures that the 4.3.1 package update is available only for Broadcom switches.
 
 {{< tabs "34 ">}}
 {{< tab "Run apt update and apt upgrade twice">}}

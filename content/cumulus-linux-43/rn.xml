@@ -7,6 +7,15 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3216915</td>
+<td>Cumulus Linux 4.3.1 is available for Broadcom switches only. Do not upgrade a Mellanox switch to Cumulus Linux 4.3.1.
+Upgrading Cumulus Linux 4.0.0 to Cumulus Linux 4.3.0 from {{CumulusLinux-4-latest}} with {{apt update}} and {{apt upgrade}} downloads and installs only the {{cumulus-newpackages-bcm}} package. This changes {{CumulusLinux-4-latest}} in the {{/etc/apt/sources}} list to {{CumulusLinux-4-latest-BCM}} after which, when you run {{apt update}} and {{apt upgrade}}, the switch upgrades to Cumulus Linux 4.3.1.
+
+For Mellanox switches, the above procedure does not upgrade to Cumulus Linux 4.3.1. However, if you start the upgrade from Cumulus Linux 4.0.0 to 4.2.1, the switch might upgrade to Cumulus Linux 4.3.0.</td>
+<td>4.3.1-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3216759</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 

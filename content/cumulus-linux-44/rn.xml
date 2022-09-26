@@ -278,6 +278,12 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>2991501</td>
 <td>When you poll TCP-MIB objects, the {{snmpd}} process slowly leaks memory. To work around this issue, restart the {{snmpd}} service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-5.0.1</td>
@@ -2389,6 +2395,12 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -4724,6 +4736,12 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2991501</td>
 <td>When you poll TCP-MIB objects, the {{snmpd}} process slowly leaks memory. To work around this issue, restart the {{snmpd}} service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-5.0.1</td>
@@ -6935,6 +6953,12 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -9315,6 +9339,12 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>

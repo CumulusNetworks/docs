@@ -255,6 +255,10 @@ To upgrade the switch using package upgrade to 4.3.0 and earlier:
 
 Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadcom switch to Cumulus Linux 4.3.1 from Cumulus Linux 4.0.0 or later, you must either run `apt update` and `apt upgrade` twice or manually edit the `sources.list` file, then run `apt update` and `apt upgrade` once. This ensures that the 4.3.1 package update is available only for Broadcom switches.
 
+{{%notice note%}}
+Mellanox switches do not support Cumulus Linux 4.3.1. When you run `apt update`, the `/etc/apt/sources.list` does not change. Cumulus Linux remains at 4.3.0 or upgrades to 4.3.0 if you are running an earlier release.
+{{%/notice%}}
+
 {{< tabs "34 ">}}
 {{< tab "Run apt update and apt upgrade twice">}}
 
@@ -272,7 +276,7 @@ Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadco
    cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
    ```
 
-4. Upgrade all the packages to the latest distribution.
+4. Upgrade all the packages to the latest distribution. You might be prompted to reboot the switch but this is not required until step 9.
 
    ```
    cumulus@switch:~$ sudo -E apt-get upgrade
@@ -305,8 +309,6 @@ Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadco
     ```
 
     If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
-
-   You might be prompted to reboot the switch but this is not required until step 9.
 
 5. Confirm that the distribution in `/etc/apt/sources.list` has changed from `CumulusLinux-4-latest` to `CumulusLinux-4-latest-BCM`:
 
@@ -343,10 +345,6 @@ Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadco
    ```
    cumulus@switch:~$ sudo reboot
    ```
-
-{{%notice note%}}
-Mellanox switches do not support Cumulus Linux 4.3.1. When you run `apt update`, the `/etc/apt/sources.list` does not change. Cumulus Linux remains at 4.3.0 or upgrades to 4.3.0 if you are running an earlier release.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Manually edit the sources.list file ">}}

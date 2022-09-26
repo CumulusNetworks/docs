@@ -112,8 +112,13 @@ You can upgrade Cumulus Linux in one of two ways:
 Cumulus Linux also provides the Smart System Manager that enables you to upgrade an active switch with minimal disruption to the network. See {{<link url="Smart-System-Manager" text="Smart System Manager">}}.
 
 {{%notice note%}}
-- Cumulus Linux 4.3.1 is supported on Broadcom switches only. You **cannot** upgrade to Cumulus Linux **4.3.1** on a Mellanox switch.
-- Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
+Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
+{{%/notice%}}
+
+{{%notice note%}}
+Cumulus Linux 4.3.1 is supported on Broadcom switches only. You cannot upgrade to Cumulus Linux 4.3.1 on a Mellanox switch.
+- NVIDIA does not provide a 4.3.1 image for Mellanox switches.
+- To upgrade Cumulus Linux from 4.0.0 or later to to 4.3.1 with `apt update`, see {{<link url="#package-pgrade-from-cumulus-linux-4.0.0-or-later-to-4.3.1-or-later" text="Package Upgrade from Cumulus Linux 4.0.0 or later to 4.3.1 or Later">}}.
 {{%/notice%}}
 
 ### Should I Install a Cumulus Linux Image or Upgrade Packages?
@@ -171,7 +176,99 @@ Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where y
 
 When you use package upgrade to upgrade your switch, configuration data stays in place while the packages are upgraded. If the new release updates a configuration file that you changed previously, you are prompted for the version you want to use or if you want to evaluate the differences.
 
-To upgrade the switch using package upgrade:
+#### Upgrade to Cumulus Linux 4.3.1
+
+Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadcom switch to Cumulus Linux 4.3.1 from Cumulus Linux 4.0.0 or later, you can either run `apt update` and `apt upgrade` twice or manually edit the `sources.list` file, then run `apt update` and `apt upgrade` once.
+
+{{< tabs "34 ">}}
+{{< tab "Run apt update and apt upgrade twice">}}
+
+1. Back up the configurations from the switch.
+
+2. Run `apt-get update` and `apt-get upgrade`:
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   cumulus@switch:~$ sudo -E apt-get upgrade
+   ```
+
+3. Confirm that the distribution in `/etc/apt/sources.list` has changed from `CumulusLinux-4-latest` to `CumulusLinux-4-latest-BCM`:
+
+   ```
+   deb      https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 
+   deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 
+   ```
+
+4. Run `apt-get update` and `apt-get upgrade` a second time:
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   cumulus@switch:~$ sudo -E apt-get upgrade
+   ```
+
+5. Confirm that the `/etc/lsb-release` file contains the target Cumulus Linux version (4.3.1).
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/lsb-release
+   DISTRIB_ID="Cumulus Linux"
+   DISTRIB_RELEASE=4.3.1
+   DISTRIB_DESCRIPTION="Cumulus Linux 4.3.1"
+   ```
+
+6. Reboot the switch:
+
+   ```
+   cumulus@switch:~$ sudo reboot
+   ```
+
+{{%notice note%}}
+Mellanox switches do not support Cumulus Linux 4.3.1. When you run `apt update`, the `/etc/apt/sources.list` does not change. Cumulus Linux remains at 4.3.0 or upgrades to 4.3.0 if you are running an earlier release.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Manually edit the sources.list file ">}}
+
+{{%notice info%}}
+Do not perform this procedure on a Mellanox switch; the switch will become unusable and you will have to reinstall the image. To verify that the switch ASIC is Broadcom, run the `dpkg -l | grep cumulus-newpackages-bcm` command.
+{{%/notice%}}
+
+1. Back up the configurations from the switch.
+
+2. In the `/etc/apt/sources.list` file and change the distributipn from `CumulusLinux-4-latest` to `CumulusLinux-4-latest-BCM`:
+
+   ```
+   deb      https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 
+   deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq
+   ```
+
+3. Run `apt-get update` and `apt-get upgrade`:
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   cumulus@switch:~$ sudo -E apt-get upgrade
+   ```
+
+4. Confirm that the `/etc/lsb-release` file contains the target Cumulus Linux version (4.3.1).
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/lsb-release
+   DISTRIB_ID="Cumulus Linux"
+   DISTRIB_RELEASE=4.3.1
+   DISTRIB_DESCRIPTION="Cumulus Linux 4.3.1"
+   ```
+
+5. Reboot the switch:
+
+   ```
+   cumulus@switch:~$ sudo reboot
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+#### Upgrade to Cumulus Linux 4.3.0 and Earlier
+
+To upgrade the switch using package upgrade to 4.3.0 and earlier:
 
 1. Back up the configurations from the switch.
 
@@ -246,7 +343,7 @@ To upgrade the switch using package upgrade:
 
 ### Upgrade Notes
 
-*Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 4.0.0 and run the `sudo -E apt-get upgrade` command on that switch, the packages are upgraded to the latest releases contained in the latest 4.y.z release.
+*Package upgrade* always updates to the latest available release available for the switch ASIC in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 4.0.0 and run the `sudo -E apt-get upgrade` command on that switch, the packages are upgraded to the latest releases contained in the latest 4.y.z release.
 
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 

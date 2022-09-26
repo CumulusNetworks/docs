@@ -60,6 +60,7 @@ pdfhidden: True
 ### Fixed Issues in 5.3.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="3202991"></a> [3202991](#3202991) <a name="3202991"></a> <br /> | Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM. | 5.0.1-5.2.1 | |
 | <a name="3192808"></a> [3192808](#3192808) <a name="3192808"></a> <br />None | When the switch receives an LLDP frame from a Cisco router right after a <code>ptmd</code> restart, the <code>ptmd</code> service crashes. | 4.3.0-5.2.1 | |
 | <a name="3188576"></a> [3188576](#3188576) <a name="3188576"></a> <br /> | IPv6 messages fill the <code>/var/log/frr/frr.log</code> files and <code>logrotate&#93;&#93; is unable to clean up the old log files. As a result, a significant number of log files are never deleted, which fill up the file system. | 5.2.0-5.2.1 | |
 | <a name="3180043"></a> [3180043](#3180043) <a name="3180043"></a> <br /> | The EVPN Multihoming ESI configuration command <code>nv set interface <interface-id> evpn multihoming segment identifier <es-identifier></code> does not work. | 5.1.0-5.2.1 | |

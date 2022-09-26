@@ -176,96 +176,6 @@ Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where y
 
 When you use package upgrade to upgrade your switch, configuration data stays in place while the packages are upgraded. If the new release updates a configuration file that you changed previously, you are prompted for the version you want to use or if you want to evaluate the differences.
 
-#### Upgrade to Cumulus Linux 4.3.1
-
-Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadcom switch to Cumulus Linux 4.3.1 from Cumulus Linux 4.0.0 or later, you can either run `apt update` and `apt upgrade` twice or manually edit the `sources.list` file, then run `apt update` and `apt upgrade` once.
-
-{{< tabs "34 ">}}
-{{< tab "Run apt update and apt upgrade twice">}}
-
-1. Back up the configurations from the switch.
-
-2. Run `apt-get update`, then `apt-get upgrade`:
-
-   ```
-   cumulus@switch:~$ sudo -E apt-get update
-   cumulus@switch:~$ sudo -E apt-get upgrade
-   ```
-
-3. Confirm that the distribution in `/etc/apt/sources.list` has changed from `CumulusLinux-4-latest` to `CumulusLinux-4-latest-BCM`:
-
-   ```
-   deb      https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 
-   deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 
-   ```
-
-4. Run `apt-get update`, then `apt-get upgrade` a second time:
-
-   ```
-   cumulus@switch:~$ sudo -E apt-get update
-   cumulus@switch:~$ sudo -E apt-get upgrade
-   ```
-
-5. Confirm that the `/etc/lsb-release` file contains the target Cumulus Linux version (4.3.1).
-
-   ```
-   cumulus@switch:~$ cat /etc/lsb-release
-   DISTRIB_ID="Cumulus Linux"
-   DISTRIB_RELEASE=4.3.1
-   DISTRIB_DESCRIPTION="Cumulus Linux 4.3.1"
-   ```
-
-6. Reboot the switch:
-
-   ```
-   cumulus@switch:~$ sudo reboot
-   ```
-
-{{%notice note%}}
-Mellanox switches do not support Cumulus Linux 4.3.1. When you run `apt update`, the `/etc/apt/sources.list` does not change. Cumulus Linux remains at 4.3.0 or upgrades to 4.3.0 if you are running an earlier release.
-{{%/notice%}}
-
-{{< /tab >}}
-{{< tab "Manually edit the sources.list file ">}}
-
-{{%notice info%}}
-Do not perform this procedure on a Mellanox switch; the switch will become unusable and you will have to reinstall the image. To verify that the switch ASIC is Broadcom, run the `dpkg -l | grep cumulus-newpackages-bcm` command.
-{{%/notice%}}
-
-1. Back up the configurations from the switch.
-
-2. In the `/etc/apt/sources.list` file, change the distribution from `CumulusLinux-4-latest` to `CumulusLinux-4-latest-BCM`:
-
-   ```
-   deb      https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 
-   deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq
-   ```
-
-3. Run `apt-get update`, then `apt-get upgrade`:
-
-   ```
-   cumulus@switch:~$ sudo -E apt-get update
-   cumulus@switch:~$ sudo -E apt-get upgrade
-   ```
-
-4. Confirm that the `/etc/lsb-release` file contains the target Cumulus Linux version (4.3.1).
-
-   ```
-   cumulus@switch:~$ cat /etc/lsb-release
-   DISTRIB_ID="Cumulus Linux"
-   DISTRIB_RELEASE=4.3.1
-   DISTRIB_DESCRIPTION="Cumulus Linux 4.3.1"
-   ```
-
-5. Reboot the switch:
-
-   ```
-   cumulus@switch:~$ sudo reboot
-   ```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 #### Upgrade to Cumulus Linux 4.3.0 and Earlier
 
 To upgrade the switch using package upgrade to 4.3.0 and earlier:
@@ -340,6 +250,183 @@ To upgrade the switch using package upgrade to 4.3.0 and earlier:
     ```
 
 6. Verify correct operation with the old configurations on the new version.
+
+#### Upgrade to Cumulus Linux 4.3.1
+
+Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadcom switch to Cumulus Linux 4.3.1 from Cumulus Linux 4.0.0 or later, you can either run `apt update` and `apt upgrade` twice or manually edit the `sources.list` file, then run `apt update` and `apt upgrade` once.
+
+{{< tabs "34 ">}}
+{{< tab "Run apt update and apt upgrade twice">}}
+
+1. Back up the configurations from the switch.
+
+2. Fetch the latest update metadata from the repository:
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   ```
+
+3. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded:
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
+   ```
+
+4. Upgrade all the packages to the latest distribution.
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get upgrade
+   ```
+
+   If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to this:
+
+    ```
+    Configuration file '/etc/frr/daemons'
+    ==> Modified (by you or by a script) since installation.
+    ==> Package distributor has shipped an updated version.
+    What would you like to do about it ? Your options are:
+    Y or I : install the package maintainer's version
+    N or O : keep your currently-installed version
+    D : show the differences between the versions
+    Z : start a shell to examine the situation
+    The default action is to keep your current version.
+    *** daemons (Y/I/N/O/D/Z) [default=N] ?
+
+    - To see the differences between the currently installed version and the
+    new version, type `D`- To keep the currently installed version, type `N`.
+    The new package version is installed with the suffix `_.dpkg-dist`
+    (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and
+    **before** you reboot, merge your changes with the changes from the newly
+    installed file.
+    - To install the new version, type `I`. Your currently installed version is
+    saved with the suffix `.dpkg-old`.
+    When the upgrade is complete, you can search for the files with the
+    `sudo find / -mount -type f -name '*.dpkg-*'` command.
+    ```
+
+    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
+
+   You might be prompted to reboot the switch but this is not required until step 9.
+
+5. Confirm that the distribution in `/etc/apt/sources.list` has changed from `CumulusLinux-4-latest` to `CumulusLinux-4-latest-BCM`:
+
+   ```
+   deb      https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 
+   deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 
+   ```
+
+6. Fetch the latest update metadata from the repository again:
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   ```
+
+7. Upgrade all the packages to the latest distribution again.
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get upgrade
+   ```
+
+   If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to one show in step 4.
+
+6. Confirm that the `/etc/lsb-release` file contains the target Cumulus Linux version (4.3.1).
+
+   ```
+   cumulus@switch:~$ cat /etc/lsb-release
+   DISTRIB_ID="Cumulus Linux"
+   DISTRIB_RELEASE=4.3.1
+   DISTRIB_DESCRIPTION="Cumulus Linux 4.3.1"
+   ```
+
+6. Reboot the switch to finalise the upgrade:
+
+   ```
+   cumulus@switch:~$ sudo reboot
+   ```
+
+{{%notice note%}}
+Mellanox switches do not support Cumulus Linux 4.3.1. When you run `apt update`, the `/etc/apt/sources.list` does not change. Cumulus Linux remains at 4.3.0 or upgrades to 4.3.0 if you are running an earlier release.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "Manually edit the sources.list file ">}}
+
+{{%notice info%}}
+Do not perform this procedure on a Mellanox switch; the switch will become unusable and you will have to reinstall the image. To verify that the switch ASIC is Broadcom, run the `dpkg -l | grep cumulus-newpackages-bcm` command.
+{{%/notice%}}
+
+1. Back up the configurations from the switch.
+
+2. In the `/etc/apt/sources.list` file, change the distribution from `CumulusLinux-4-latest` to `CumulusLinux-4-latest-BCM`:
+
+   ```
+   deb      https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 
+   deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq
+   ```
+
+3. Fetch the latest update metadata from the repository:
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get update
+   ```
+
+4. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded:
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get upgrade --dry-run
+   ```
+
+5. Upgrade all the packages to the latest distribution.
+
+   ```
+   cumulus@switch:~$ sudo -E apt-get upgrade
+   ```
+
+   If the upgrade process encounters changed configuration files that have new versions in the release to which you are upgrading, you see a message similar to this:
+
+    ```
+    Configuration file '/etc/frr/daemons'
+    ==> Modified (by you or by a script) since installation.
+    ==> Package distributor has shipped an updated version.
+    What would you like to do about it ? Your options are:
+    Y or I : install the package maintainer's version
+    N or O : keep your currently-installed version
+    D : show the differences between the versions
+    Z : start a shell to examine the situation
+    The default action is to keep your current version.
+    *** daemons (Y/I/N/O/D/Z) [default=N] ?
+
+    - To see the differences between the currently installed version and the
+    new version, type `D`- To keep the currently installed version, type `N`.
+    The new package version is installed with the suffix `_.dpkg-dist`
+    (for example, `/etc/frr/daemons.dpkg-dist`). When upgrade is complete and
+    **before** you reboot, merge your changes with the changes from the newly
+    installed file.
+    - To install the new version, type `I`. Your currently installed version is
+    saved with the suffix `.dpkg-old`.
+    When the upgrade is complete, you can search for the files with the
+    `sudo find / -mount -type f -name '*.dpkg-*'` command.
+    ```
+
+    If you see errors for expired GPG keys that prevent you from upgrading packages, follow the steps in [Upgrading Expired GPG Keys]({{<ref "/knowledge-base/Installing-and-Upgrading/Upgrading/Update-Expired-GPG-Keys" >}}).
+
+6. Confirm that the `/etc/lsb-release` file contains the target Cumulus Linux version (4.3.1).
+
+   ```
+   cumulus@switch:~$ cat /etc/lsb-release
+   DISTRIB_ID="Cumulus Linux"
+   DISTRIB_RELEASE=4.3.1
+   DISTRIB_DESCRIPTION="Cumulus Linux 4.3.1"
+   ```
+
+7. Reboot the switch to finalise the upgrade:
+
+   ```
+   cumulus@switch:~$ sudo reboot
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Upgrade Notes
 

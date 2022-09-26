@@ -234,7 +234,7 @@ Do not perform this procedure on a Mellanox switch; the switch will become unusa
 
 1. Back up the configurations from the switch.
 
-2. In the `/etc/apt/sources.list` file and change the distributipn from `CumulusLinux-4-latest` to `CumulusLinux-4-latest-BCM`:
+2. In the `/etc/apt/sources.list` file, change the distribution from `CumulusLinux-4-latest` to `CumulusLinux-4-latest-BCM`:
 
    ```
    deb      https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 

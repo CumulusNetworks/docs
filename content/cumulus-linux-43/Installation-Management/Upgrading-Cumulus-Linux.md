@@ -185,7 +185,7 @@ Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadco
 
 1. Back up the configurations from the switch.
 
-2. Run `apt-get update` and `apt-get upgrade`:
+2. Run `apt-get update`, then `apt-get upgrade`:
 
    ```
    cumulus@switch:~$ sudo -E apt-get update
@@ -199,7 +199,7 @@ Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadco
    deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq 
    ```
 
-4. Run `apt-get update` and `apt-get upgrade` a second time:
+4. Run `apt-get update`, then `apt-get upgrade` a second time:
 
    ```
    cumulus@switch:~$ sudo -E apt-get update
@@ -241,7 +241,7 @@ Do not perform this procedure on a Mellanox switch; the switch will become unusa
    deb-src  https://apt.cumulusnetworks.com/repo CumulusLinux-4-latest-BCM cumulus upstream netq
    ```
 
-3. Run `apt-get update` and `apt-get upgrade`:
+3. Run `apt-get update`, then `apt-get upgrade`:
 
    ```
    cumulus@switch:~$ sudo -E apt-get update

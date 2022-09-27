@@ -211,6 +211,12 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <td>5.1.0-5.2.1</td>
 </tr>
 <tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2991501</td>
 <td>When you poll TCP-MIB objects, the {{snmpd}} process slowly leaks memory. To work around this issue, restart the {{snmpd}} service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>4.2.1-5.0.1</td>

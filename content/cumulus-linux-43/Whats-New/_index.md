@@ -10,10 +10,20 @@ This document supports the Cumulus Linux 4.3 release, and lists new platforms an
 - For a list of open and fixed issues in Cumulus Linux 4.3, see the {{<link title="Cumulus Linux 4.3 Release Notes" text="Cumulus Linux 4.3 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.3, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
-## What's New in Cumulus Linux 4.3.0
-<!-- vale on -->
-Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains several new features and enhancements.
+## What's New in Cumulus Linux 4.3.1
 
+Cumulus Linux 4.3.1 provides bug fixes.
+
+{{%notice note%}}
+Cumulus Linux 4.3.1 is supported on Broadcom switches only. You cannot upgrade to Cumulus Linux 4.3.1 on a Mellanox switch.
+- NVIDIA does not provide a Cumulus Linux 4.3.1 image for Mellanox switches.
+- To upgrade a Broadcom switch to Cumulus Linux 4.3.1 with `apt upgrade`, see {{<link url="Upgrading-Cumulus-Linux/#upgrade-to-cumulus-linux-4.3.1" text=" Upgrade to Cumulus Linux 4.3.1">}}.
+{{%/notice%}}
+
+## What's New in Cumulus Linux 4.3.0
+
+Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains several new features and enhancements.
+<!-- vale on -->
 ### New Platforms
 
 - NVIDIA SN4700 (400G Spectrum-3)

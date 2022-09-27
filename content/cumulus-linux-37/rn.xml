@@ -118,6 +118,12 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td></td>
 </tr>
 <tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>2972538</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>3.7.15-3.7.16</td>
@@ -2494,6 +2500,12 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>

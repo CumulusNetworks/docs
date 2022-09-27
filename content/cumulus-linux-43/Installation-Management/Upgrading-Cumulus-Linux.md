@@ -176,9 +176,10 @@ Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where y
 
 When you use package upgrade to upgrade your switch, configuration data stays in place while the packages are upgraded. If the new release updates a configuration file that you changed previously, you are prompted for the version you want to use or if you want to evaluate the differences.
 
-#### Upgrade to Cumulus Linux 4.3.0 and Earlier
+Cumulus Linux 4.3.1 is supported on Broadcom switches only and requires a different upgrade procedure.
 
-To upgrade the switch using package upgrade to 4.3.0 and earlier:
+{{< tabs "179 ">}}
+{{< tab "Upgrade to Cumulus Linux 4.3.0 and Earlier">}}
 
 1. Back up the configurations from the switch.
 
@@ -251,15 +252,16 @@ To upgrade the switch using package upgrade to 4.3.0 and earlier:
 
 6. Verify correct operation with the old configurations on the new version.
 
-#### Upgrade to Cumulus Linux 4.3.1
+{{< /tab >}}
+{{< tab "Upgrade to Cumulus Linux 4.3.1 ">}}
 
-Cumulus Linux 4.3.1 is supported on Broadcom switches only. To upgrade a Broadcom switch to Cumulus Linux 4.3.1 from Cumulus Linux 4.0.0 or later, you must either run `apt update` and `apt upgrade` twice or manually edit the `sources.list` file, then run `apt update` and `apt upgrade` once. This ensures that the 4.3.1 package update is available only for Broadcom switches.
+To ensure that 4.3.1 package update is available only for Broadcom switches, you must either run `apt update` and `apt upgrade` twice *or* manually edit the `sources.list` file, then run `apt update` and `apt upgrade` once. Both procedures are below.
 
 {{%notice note%}}
-Mellanox switches do not support Cumulus Linux 4.3.1. When you run `apt update`, the `/etc/apt/sources.list` does not change. Cumulus Linux remains at 4.3.0 or upgrades to 4.3.0 if you are running an earlier release.
+Mellanox switches do not support Cumulus Linux 4.3.1. When you run `apt update` on a Mellanox switch, the `/etc/apt/sources.list` does not change. Cumulus Linux remains at 4.3.0 or upgrades to 4.3.0 if you are running an earlier release.
 {{%/notice%}}
 
-{{< tabs "34 ">}}
+{{< tabs "262 ">}}
 {{< tab "Run apt update and apt upgrade twice">}}
 
 1. Back up the configurations from the switch.
@@ -426,6 +428,9 @@ Do not perform this procedure on a Mellanox switch; the switch will become unusa
 {{< /tab >}}
 {{< /tabs >}}
 
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Upgrade Notes
 
 *Package upgrade* always updates to the latest available release available for the switch ASIC in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 4.0.0 and run the `sudo -E apt-get upgrade` command on that switch, the packages are upgraded to the latest releases contained in the latest 4.y.z release.
@@ -441,7 +446,7 @@ If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}
 
 You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
 
-{{%notice warning%}}
+{{%notice note%}}
 
 For networks with MLAG deployments, you can only upgrade to Cumulus Linux 4.3 from version 3.7.10 or later. If you are using a version of Cumulus Linux earlier than 3.7.10, you must upgrade to version 3.7.10 first, then upgrade to version 4.3. Version 3.7.10 is available on the
 {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}.

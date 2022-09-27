@@ -31,12 +31,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3195390</td>
-<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-4.4.4, 5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.1</td>
@@ -272,8 +266,8 @@ To work around this problem, downgrade the pygments module to version 2.3.1.</td
 <tr>
 <td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.2.1</td>
-<td>3.7.16, 4.4.4</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.1, 4.4.4</td>
 </tr>
 <tr>
 <td>3040174</td>
@@ -372,8 +366,8 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
-<td>3.7.16</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.4, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.1</td>
 </tr>
 <tr>
 <td>2895333</td>
@@ -470,15 +464,15 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2705056</td>
 <td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0-4.4.4, 5.0.0-5.2.1</td>
-<td></td>
+<td>4.3.0, 5.0.0-5.2.1</td>
+<td>4.3.1-4.4.4</td>
 </tr>
 <tr>
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.4, 5.0.0-5.2.1</td>
-<td></td>
+<td>4.3.0, 5.0.0-5.2.1</td>
+<td>4.3.1-4.4.4</td>
 </tr>
 <tr>
 <td>2684925</td>
@@ -537,12 +531,6 @@ To work around this issue, delete the DHCP lease file for eth0 with the {{sudo r
 <td></td>
 </tr>
 <tr>
-<td>3195390</td>
-<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-4.4.4, 5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.1</td>
@@ -778,8 +766,8 @@ To work around this problem, downgrade the pygments module to version 2.3.1.</td
 <tr>
 <td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0-4.4.3, 5.0.0-5.2.1</td>
-<td>3.7.16, 4.4.4</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.1, 4.4.4</td>
 </tr>
 <tr>
 <td>3040174</td>
@@ -878,8 +866,8 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
-<td>3.7.16</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.4, 5.0.0-5.2.1</td>
+<td>3.7.16, 4.3.1</td>
 </tr>
 <tr>
 <td>2895333</td>
@@ -976,15 +964,15 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2705056</td>
 <td>SVIs do not inherit the pinned MAC address of the bridge.</td>
-<td>4.3.0-4.4.4, 5.0.0-5.2.1</td>
-<td></td>
+<td>4.3.0, 5.0.0-5.2.1</td>
+<td>4.3.1-4.4.4</td>
 </tr>
 <tr>
 <td>2701000</td>
 <td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
 To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
-<td>4.3.0-4.4.4, 5.0.0-5.2.1</td>
-<td></td>
+<td>4.3.0, 5.0.0-5.2.1</td>
+<td>4.3.1-4.4.4</td>
 </tr>
 <tr>
 <td>2684925</td>
@@ -1076,7 +1064,7 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 <tr>
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
-<td>3.7.15-5.1.0</td>
+<td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
 </tr>
 <tr>
 <td>3119673</td>
@@ -1113,7 +1101,7 @@ end vrf
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
+<td>4.2.1-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>3102128</td>
@@ -1247,7 +1235,7 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 <tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
+<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
 </tr>
 <tr>
 <td>3016882</td>
@@ -1285,7 +1273,7 @@ This issue does not affect the operation of the switch.</td>
 <tr>
 <td>2831968</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
-<td>4.3.0-5.1.0</td>
+<td>4.3.0, 4.4.0-5.1.0</td>
 </tr>
 <tr>
 <td>2812075</td>

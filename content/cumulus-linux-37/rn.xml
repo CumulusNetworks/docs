@@ -7,6 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3216759</td>
+<td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
+
+hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
+
+To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
+<td>3.7.15-5.0.1</td>
+<td>5.1.0-5.2.1</td>
+</tr>
+<tr>
 <td>3129819</td>
 <td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
@@ -105,6 +115,12 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>
@@ -2388,6 +2404,16 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3216759</td>
+<td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
+
+hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources
+
+To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
+<td></td>
+</tr>
+<tr>
 <td>3129819</td>
 <td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
@@ -2474,6 +2500,12 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4, 5.0.0-5.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2991514</td>
+<td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>

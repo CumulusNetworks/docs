@@ -8,6 +8,10 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
+{{%notice note%}}
+Cumulus Linux 4.3.1 is supported on Broadcom switches only.
+{{%/notice%}}
+
 {{<rn_xls_link dir="cumulus-linux-43" >}}
 ## 4.3.1 Release Notes
 

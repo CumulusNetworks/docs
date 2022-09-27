@@ -17,9 +17,13 @@ Before you install Cumulus Linux, the switch can be in two different states:
 - No image is installed on the switch (the switch is only running ONIE).
 - Cumulus Linux is already installed on the switch but you want to use ONIE to reinstall Cumulus Linux or upgrade to a newer version.
 
+{{%notice note%}}
+Cumulus Linux 4.3.1 is supported on Broadcom switches only. You **cannot** upgrade to Cumulus Linux **4.3.1** on a Mellanox switch.
+{{%/notice%}}
+
 The sections below describe some of the different ways you can install the Cumulus Linux image, such as using a DHCP/web server, FTP, a local file, or a USB drive. Steps are provided for both installing directly from ONIE (if no image is installed on the switch) and from Cumulus Linux (if the image is already installed on the switch), where applicable. For additional methods to find and install the Cumulus Linux image, see the {{<exlink url="http://opencomputeproject.github.io/onie/design-spec/discovery.html" text="ONIE Design Specification">}}.
 
-You can download a Cumulus Linux image from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}.
+You can download a Cumulus Linux image from the {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="NVIDIA Enterprise support portal">}}. 
 
 {{%notice warning%}}
 

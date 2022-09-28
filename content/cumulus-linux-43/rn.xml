@@ -17,12 +17,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>5.1.0-5.2.1</td>
 </tr>
 <tr>
-<td>3195345</td>
-<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.4, 5.0.0-5.2.1</td>
@@ -2382,12 +2376,6 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.4</td>
-<td></td>
-</tr>
-<tr>
-<td>3195345</td>
-<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-4.4.4</td>
 <td></td>
 </tr>
 <tr>

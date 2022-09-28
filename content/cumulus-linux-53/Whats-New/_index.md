@@ -22,6 +22,7 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 
 <!-- - Refactor port configuration-->
 - PTP shaper for Spectrum-1
+- Port configuration changes
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="Configure-SNMP" text="SNMP Server">}} and {{<link url="Configure-SNMP-Traps" text="SNMP trap">}} commands
   - RoCE commands

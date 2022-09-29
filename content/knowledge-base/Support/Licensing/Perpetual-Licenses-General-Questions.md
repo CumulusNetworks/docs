@@ -4,10 +4,12 @@ author: Cumulus Networks
 weight: 612
 toc: 4
 ---
+## Cumulus Linux License Key
 
-## Affected Environments
+Cumulus Linux 4.3 and earlier uses a generic license key to enable the front-panel ports on the switch. You use the same license key for all your licensed Cumulus Linux switches. To retrieve the generic license key, see {{<link url="/Cumulus-Linux-License-Key" text="Cumulus Linux License Key">}}.
 
-- Cumulus Linux 4.3 and earlier; Cumulus Linux 4.4 and later no longer requires a license.
+Cumulus Linux 4.4 and later does **not** require a license key to enable the front-panel ports.
+
 <!-- vale off -->
 ## How can I evaluate Cumulus Linux?
 <!-- vale on -->
@@ -17,7 +19,7 @@ If you already have hardware from the HCL, fill out {{<exlink url="https://www.n
 
 ## How is Cumulus Linux licensed?
 
-Cumulus Linux is commercially available through a perpetual license model, giving you the right to use Cumulus Linux for the lifetime of the Open Networking hardware it runs on. NVIDIA provides a generic license, which you can download from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.
+Cumulus Linux is commercially available through a perpetual license model, giving you the right to use Cumulus Linux for the lifetime of the Open Networking hardware it runs on. <!--NVIDIA provides a generic license, which you can download from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise support portal">}}.-->
 <!-- vale off -->
 ## What do I receive when I purchase a Cumulus Linux license?
 <!-- vale on -->
@@ -57,7 +59,7 @@ Cumulus Linux subscriptions are not tied to the specific hardware acquired at t
 - The replacement switch has the same type of ASIC, such as Broadcom Tomahawk or NVIDIA Spectrum.
 - The license has the same term.
 
-Because Cumulus Linux subscriptions are not tied to hardware, you can stock extra switches that meet the above requirements as backups to quickly replace any failing hardware. For instance, if you purchase 2 Cumulus Linux, 10G, 1 year subscriptions, you can run Cumulus Linux on two switches concurrently. If one of the two switches you are using fails, you can install the Cumulus Linux license file that is on that failing hardware to one of your spare switches, so long as it meets the requirements specified above.
+Because Cumulus Linux subscriptions are not tied to hardware, you can stock extra switches that meet the above requirements as backups to quickly replace any failing hardware. For instance, if you purchase two Cumulus Linux, 10G, one year subscriptions, you can run Cumulus Linux on two switches concurrently. If one of the two switches you are using fails, you can install the Cumulus Linux license file that is on that failing hardware to one of your spare switches, so long as it meets the requirements specified above.
 <!-- vale off -->
 ## How do I know how many licenses I already have purchased and how do I find the expiration dates for my Software Updates and Support contracts?
 <!-- vale on -->

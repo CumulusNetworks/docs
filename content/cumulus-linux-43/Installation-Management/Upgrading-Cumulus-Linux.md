@@ -118,7 +118,7 @@ Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual 
 {{%notice note%}}
 Cumulus Linux 4.3.1 is supported on Broadcom switches only. You cannot upgrade to Cumulus Linux 4.3.1 on a Mellanox switch.
 - NVIDIA does not provide a 4.3.1 image for Mellanox switches.
-- To upgrade from Cumulus Linux 4.0.0 or later to 4.3.1 with `apt upgrade`, see {{<link url="Upgrading-Cumulus-Linux/#upgrade-to-cumulus-linux-4.3.1" text=" Upgrade to Cumulus Linux 4.3.1">}}.
+- To upgrade from Cumulus Linux 4.0.0 or later to 4.3.1 with `apt upgrade`, see {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text=" Upgrade to Cumulus Linux 4.3.1">}}.
 {{%/notice%}}
 
 ### Should I Install a Cumulus Linux Image or Upgrade Packages?

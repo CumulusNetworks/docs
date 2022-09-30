@@ -605,7 +605,7 @@ Cumulus Linux supports two levels of hierarchical traffic shaping: one at the eg
 
 You configure traffic shaping in the `shaping` section of the `qos_features.conf` file. Traffic shaping configuration supports [Port Groups](#using-port-groups) so that you can apply different shaping profiles to different ports.
 
-Cumulus Linux base the `egr_queue` value on the configured [egress queue](#egress-queues).
+Cumulus Linux bases the `egr_queue` value on the configured [egress queue](#egress-queues).
 
 This is an example traffic shaping configuration:
 
@@ -628,6 +628,48 @@ shaping.shaper_port_group.port.shaper = 900000
 </details>
 
 If you define a queue minimum shaping value of `0`, there is no bandwidth guarantee for this queue. The maximum queue shaping value must not exceed the interface shaping value defined by `port.shaper`. The `port.shaper` value must not exceed the physical interface speed.
+
+### PTP Shaping
+
+To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
+
+{{%notice note%}}
+PTP shaping is not supported on Spectrum-2 and later.
+{{%/notice%}}
+
+{{< tabs "TabID1387 ">}}
+{{< tab "NVUE Commands ">}}
+
+For each PTP-enabled port, run the `nv set interface <swp> qos egress-shaper ptp-shaper profile <profile-name>` command.
+
+```
+cumulus@switch:~$ nv set interface swp1 qos egress-shaper ptp-shaper profile ptp-profile
+cumulus@switch:~$ nv set interface swp2 qos egress-shaper ptp-shaper profile ptp-profile
+cumulus@switch:~$ nv set interface swp3 qos egress-shaper ptp-shaper profile ptp-profile
+cumulus@switch:~$ nv set interface swp5 qos egress-shaper ptp-shaper profile ptp-profile
+cumulus@switch:~$ nv config apply
+```
+
+The NVUE command adds the PTP shaping configuration for the specified ports to the `qos_features.conf` file. To see the profile settings, run the `nv show qos egress-shaper ptp-shaper profile <profile-name>` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `shaping` section of the `qos_features.conf` file, add the following:
+- A port group to use with traffic shaping settings.
+- The set of interfaces to which you want apply traffic shaping.
+- The minimum and maximum bandwidth value in kbps for internal COS group 0.
+- The maximum packet shaper rate at the interface level.
+
+```
+ptp_shaping.port_group_list = [ptp_shaper_port_group_speed_1G]
+ptp_shaping.shaper_port_group.port_set = swp1-swp3,swp5
+ptp_shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]
+ptp_shaping.shaper_port_group.port.shaper = 900000
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Policing
 

@@ -57,7 +57,7 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 </tr>
 <tr>
 <td>3138057</td>
-<td> When the next-hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td> When the next hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
@@ -1911,6 +1911,15 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3221470</td>
+<td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
+
+sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
+</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5, 5.2.0-5.2.1</td>
+</tr>
+<tr>
 <td>3216759</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 
@@ -1977,7 +1986,7 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 </tr>
 <tr>
 <td>3138057</td>
-<td> When the next-hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td> When the next hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
@@ -2005,12 +2014,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
 <td>3.7.16, 4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3123965</td>
-<td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3123556</td>
@@ -3886,8 +3889,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 </tr>
 <tr>
 <td>3078202</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up. To work around this issue, disable, then enable the port.</td>
 <td>5.0.0-5.2.1</td>
 </tr>
 <tr>
@@ -3979,6 +3981,15 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3221470</td>
+<td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
+
+sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
+</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5, 5.2.0-5.2.1</td>
+</tr>
+<tr>
 <td>3216759</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 
@@ -4023,7 +4034,7 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </tr>
 <tr>
 <td>3138057</td>
-<td> When the next-hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td> When the next hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
@@ -4051,12 +4062,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
 <td>3.7.16, 4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3123965</td>
-<td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3123556</td>
@@ -6044,6 +6049,15 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3221470</td>
+<td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
+
+sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
+</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5, 5.2.0-5.2.1</td>
+</tr>
+<tr>
 <td>3216759</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 
@@ -6088,7 +6102,7 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </tr>
 <tr>
 <td>3138057</td>
-<td> When the next-hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td> When the next hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
@@ -6116,12 +6130,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
 <td>3.7.16, 4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3123965</td>
-<td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3123556</td>
@@ -8275,6 +8283,15 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3221470</td>
+<td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
+
+sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
+</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5, 5.2.0-5.2.1</td>
+</tr>
+<tr>
 <td>3216759</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 
@@ -8304,7 +8321,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>3138057</td>
-<td> When the next-hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td> When the next hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
@@ -8332,12 +8349,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
 <td>3.7.16, 4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3123965</td>
-<td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
-<td>4.4.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3123556</td>

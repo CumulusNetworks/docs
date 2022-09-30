@@ -71,7 +71,7 @@ root@switch:~# sudo nano /etc/what-just-happened/what-just-happened.json
 
 ## Show Information about Dropped Packets
 
-You can run the following commands to show information about dropped packets:
+You can run the following commands to show information about dropped packets and diagnose problems.
 
 {{< tabs "TabID76 ">}}
 {{< tab "NVUE Commands ">}}

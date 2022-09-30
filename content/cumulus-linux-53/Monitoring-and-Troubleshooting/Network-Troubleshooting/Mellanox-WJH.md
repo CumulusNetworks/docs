@@ -17,6 +17,49 @@ cumulus@switch:~$ sudo systemctl start what-just-happened
 ```
 {{%/notice%}}
 
+## Configure WJH
+
+By default, WJH monitors all layer 1, layer 2, layer 3, ACL, buffer, and tunnel related issues. You can configure WJH to monitor specific types of dropped packets only.
+
+The following example configures WJH to only monitor forwarding (layer 2 and layer 3) packet drops:
+
+{{< tabs "TabID24 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv unset service wjh channel trigger l1
+cumulus@switch:~$ nv unset service wjh channel trigger buffer
+cumulus@switch:~$ nv unset service wjh channel trigger acl
+cumulus@switch:~$ nv unset service wjh channel trigger tunnel
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/what-just-happened/what-just-happened.json` file and remove the drop category value from inside the square brackets ([]). After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
+
+The following example configures WJH to only monitor forwarding (layer 2 and layer 3) packet drops:
+
+```
+root@switch:~# sudo nano /etc/what-just-happened/what-just-happened.json
+{
+  "what-just-happened": {
+    "channels": {
+      "forwarding": {
+        "drop_category_list": ["L2", "L3"]
+      },
+      "layer-1": {
+        "drop_category_list": []
+      }
+    }
+  }
+}
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Run WJH Commands
 
 You can run the following commands from the command line.

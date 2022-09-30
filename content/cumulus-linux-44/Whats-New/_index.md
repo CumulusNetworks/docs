@@ -9,7 +9,10 @@ This document supports the Cumulus Linux 4.4 release, and lists new platforms an
 - For a list of all the platforms supported in Cumulus Linux 4.4, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 4.4, see the {{<link title="Cumulus Linux 4.4 Release Notes" text="Cumulus Linux 4.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 4.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
-
+<!-- vale off -->
+## What's New in Cumulus Linux 4.4.5
+<!-- vale on -->
+Cumulus Linux 4.4.5 provides bug fixes.
 <!-- vale off -->
 ## What's New in Cumulus Linux 4.4.4
 <!-- vale on -->

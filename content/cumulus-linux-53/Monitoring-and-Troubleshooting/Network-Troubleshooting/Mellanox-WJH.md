@@ -51,6 +51,15 @@ root@switch:~# sudo nano /etc/what-just-happened/what-just-happened.json
       },
       "layer-1": {
         "drop_category_list": []
+      },
+      "buffer": {
+        "drop_category_list": []
+      },
+      "tunnel": {
+        "drop_category_list": []
+      },
+      "acl": {
+        "drop_category_list": []
       }
     }
   }
@@ -60,7 +69,19 @@ root@switch:~# sudo nano /etc/what-just-happened/what-just-happened.json
 {{< /tab >}}
 {{< /tabs >}}
 
-## Run WJH Commands
+## Show Information about Dropped Packets
+
+You can run the following commands to show information about dropped packets:
+
+{{< tabs "TabID76 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv show service wjh packet-buffer 
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 You can run the following commands from the command line.
 
@@ -72,14 +93,17 @@ You can run the following commands from the command line.
 | `what-just-happened poll --export --no_metadata` | Saves information about dropped packets due to forwarding-related issues into a file in PCAP format without metadata.<br><br> The `what-just-happened poll forwarding --export --no_metadata` command shows the same information.|
 | `what-just-happened dump` | Displays all diagnostic information on the command line. |
 
-Run the `what-just-happened -h` command to see all the WJH command options. (WJH only supports the forwarding *channel*.)
+Run the `what-just-happened -h` command to see all the WJH command options.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Command Examples
 
-The following example shows all dropped packets and the reason for the drop:
+To show all dropped packets and the reason for the drop, run the NVUE `nv show service wjh packet-buffer` command or the `what-just-happened poll` command.
 
 ```
-root@switch:~# what-just-happened poll
+root@switch:~# nv show service wjh packet-buffer
 #    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
                                                                                                                                    Group
 ---- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------

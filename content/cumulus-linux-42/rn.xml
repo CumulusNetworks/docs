@@ -155,6 +155,12 @@ Fixed: 1.9.2-1+deb10u1</td>
 <td>4.3.1-4.4.5</td>
 </tr>
 <tr>
+<td>2906967</td>
+<td>You can't have more than one VLAN subinterface on the same port on the same bridge.</td>
+<td>4.1.1-4.3.0</td>
+<td>4.3.1-4.4.5</td>
+</tr>
+<tr>
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.5</td>
@@ -3035,6 +3041,12 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>2932121</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5</td>
+</tr>
+<tr>
+<td>2906967</td>
+<td>You can't have more than one VLAN subinterface on the same port on the same bridge.</td>
+<td>4.1.1-4.3.0</td>
 <td>4.3.1-4.4.5</td>
 </tr>
 <tr>

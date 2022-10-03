@@ -48,7 +48,7 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 </tr>
 <tr>
 <td>3138057</td>
-<td> When the next-hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td> When the next hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
@@ -68,12 +68,6 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 <td>3131423</td>
 <td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
-</tr>
-<tr>
-<td>3123965</td>
-<td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
-<td>4.4.0-5.1.0</td>
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
@@ -146,8 +140,7 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 </tr>
 <tr>
 <td>3081232</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up. To work around this issue, disable, then enable the port.</td>
 <td>5.0.0-5.2.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -191,8 +184,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 </tr>
 <tr>
 <td>3066280</td>
-<td> The python module pygments version 2.12.0 on the Cumulus Linux switch prevents NVUE from displaying colored output and produces an error or failure. The failure specifically identifies {{#ansidarkred}} as the problem color format. The error prevents any output from showing on the CLI.
-To work around this problem, downgrade the pygments module to version 2.3.1.</td>
+<td> The python module pygments version 2.12.0 on the Cumulus Linux switch prevents NVUE from displaying colored output and produces an error or failure. The failure specifically identifies {{#ansidarkred}} as the problem color format. The error prevents any output from showing on the CLI. To work around this problem, downgrade the pygments module to version 2.3.1.</td>
 <td>5.0.1-5.2.1</td>
 <td></td>
 </tr>
@@ -500,8 +492,8 @@ Unrecoverable internal error
 <tr>
 <td>2939231</td>
 <td>If you use NVUE to configure selective route leaking to exclude certain prefixes, the route map fails to apply when you run the {{nv config apply}} command.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
+<td>5.0.0-5.0.1</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2933466</td>
@@ -669,7 +661,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 </tr>
 <tr>
 <td>2844778</td>
-<td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this problem, consider using the {{nv config patch &lt;yaml-file&gt;}} or {{nv config replace &lt;yaml-file&gt;}} commands to update large pieces of configuration at once.</td>
+<td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this issue, use the {{nv config patch &lt;yaml-file&gt;}}  command or the {{nv config replace &lt;yaml-file&gt;}} command to update large pieces of configuration at once.</td>
 <td>5.0.0-5.2.1</td>
 <td></td>
 </tr>
@@ -739,8 +731,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2701000</td>
-<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
-To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF. To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
 <td>4.3.0, 5.0.0-5.2.1</td>
 <td>4.3.1-4.4.5</td>
 </tr>
@@ -805,7 +796,7 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 </tr>
 <tr>
 <td>3138057</td>
-<td> When the next-hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
+<td> When the next hop interface for EVPN type 5 routes flaps, FRR might uninstall the routes and {{Route install failed}} appears in {{/var/log/frr/frr.log}}. To work around this problem, restart FRR with the {{sudo systemctl restart frr}} command.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
@@ -813,12 +804,6 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 <td>3131423</td>
 <td>During EVPN multihoming bond failover, ARP and ND redirection fails if you configure layer 2 VNIs and ES bonds before you configure the loopback IP address of the switch. To work around this issue, configure the loopback IP address, then restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.3.0-5.1.0</td>
-<td>5.2.0-5.2.1</td>
-</tr>
-<tr>
-<td>3123965</td>
-<td>Having resources in Garbage sometimes leads to under accounting of KVD resources in Resource Manager.</td>
-<td>4.4.0-5.1.0</td>
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
@@ -891,8 +876,7 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 </tr>
 <tr>
 <td>3081232</td>
-<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up.
-To work around this issue, disable, then enable the port.</td>
+<td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up. To work around this issue, disable, then enable the port.</td>
 <td>5.0.0-5.2.1</td>
 <td>4.4.4-4.4.5</td>
 </tr>
@@ -1113,8 +1097,8 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <tr>
 <td>2939231</td>
 <td>If you use NVUE to configure selective route leaking to exclude certain prefixes, the route map fails to apply when you run the {{nv config apply}} command.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
+<td>5.0.0-5.0.1</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2933466</td>
@@ -1289,7 +1273,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 </tr>
 <tr>
 <td>2844778</td>
-<td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this problem, consider using the {{nv config patch &lt;yaml-file&gt;}} or {{nv config replace &lt;yaml-file&gt;}} commands to update large pieces of configuration at once.</td>
+<td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this issue, use the {{nv config patch &lt;yaml-file&gt;}}  command or the {{nv config replace &lt;yaml-file&gt;}} command to update large pieces of configuration at once.</td>
 <td>5.0.0-5.2.1</td>
 <td></td>
 </tr>
@@ -1359,8 +1343,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 </tr>
 <tr>
 <td>2701000</td>
-<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF.
-To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
+<td>A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF. To work around this issue, delete the DHCP lease file for eth0 with the {{sudo rm /var/lib/dhcp/dhclient.eth0.leases}} command.</td>
 <td>4.3.0, 5.0.0-5.2.1</td>
 <td>4.3.1-4.4.5</td>
 </tr>

@@ -1104,8 +1104,8 @@ Maximum 50G ports: 128
 
 Maximum 100G ports: 128
 
-{< /tab >}}
-{< tab "200G ">}}
+{{< /tab >}}
+{{< tab "200G ">}}
 
 64x200G - 64xQSFP56 (native speed)
 
@@ -1182,13 +1182,6 @@ Maximum 400G ports: 32
 
 {{< /tab >}}
 {{< /tab >}}
-
-{{< /tabs >}}
-{{< tab "SN4800">}}
-
-SN4800 is a modular chassis with up to 8 line cards. Each line card has 16x QSFP28 NRZ encoding 100G interfaces and supports all speeds down to 1G.
-
-This platform is avaliable only with 16x QSFP28 line cards without an option to breakout ports; you can install a maximum of 128x100G ports. 
 
 {{< /tab >}}
 {{< /tabs >}}

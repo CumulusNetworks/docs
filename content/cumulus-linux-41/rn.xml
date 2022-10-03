@@ -97,6 +97,12 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>4.3.1-4.4.5</td>
 </tr>
 <tr>
+<td>2906967</td>
+<td>You can't have more than one VLAN subinterface on the same port on the same bridge.</td>
+<td>4.1.1-4.3.0</td>
+<td>4.3.1-4.4.5</td>
+</tr>
+<tr>
 <td>2899422</td>
 <td>Broadcom switches return a table full error when creating VXLAN gports, which causes {switchd}} to crash.</td>
 <td>3.7.15-4.3.0</td>

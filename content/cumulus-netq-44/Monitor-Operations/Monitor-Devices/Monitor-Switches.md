@@ -20,7 +20,7 @@ The NetQ UI provides several views that enable users to easily track the overall
 
 ### View Overall Health of a Switch
 
-When you want to view an overview of the current or past health of a particular switch, open the NetQ UI small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that might have been problematic in the recent past or that you have recently installed. The card displays events, a summary health score, and health trend.
+When you want to view an overview of the current or past health of a particular switch, open the small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that might have been problematic in the recent past or that you have recently installed. The card displays events, a summary health score, and health trend.
 
 To view the summary:
 
@@ -110,7 +110,6 @@ To view all alarms:
 
 3. Use the filter to look at alarms during a different time range.
 
-4. Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 {{</tab>}}
 
@@ -160,8 +159,6 @@ To view all interfaces:
 5. Verify they are of the correct kind for their intended function, shown in the **Type** column.
 
 6. Verify the correct VRF interface is assigned to an interface, shown in the **VRF** column.
-
-7. To return to the workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 {{</tab>}}
 
@@ -992,8 +989,6 @@ To view ACL resource utilization on a switch:
 
 <!-- insert img here; additional steps?-->
 
-4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -1070,8 +1065,6 @@ To view forwarding resources utilization on a switch:
 3. Click **Forwarding Resources**.
 
 <!-- insert img here; additional steps?-->
-
-4. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -1315,8 +1308,6 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 </table>
 </div>
 
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 #### Fan Health
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
@@ -1389,8 +1380,6 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 </tbody>
 </table>
 </div>
-
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 #### Temperature Information
 
@@ -1472,8 +1461,6 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 </tbody>
 </table>
 </div>
-
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -1807,8 +1794,6 @@ Digital optics module information is available regarding the performance degrada
 </tbody>
 </table>
 </div>
-
-6. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
 {{</tab>}}
 

@@ -111,8 +111,6 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
     {{<figure src="/images/netq/channels-slack-created-320.png" width="700">}}
 
-8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -190,8 +188,6 @@ You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
     {{<figure src="/images/netq/channels-pagerduty-created-320.png" width="700">}}
 
-8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -266,8 +262,6 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 <div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
 
     {{<figure src="/images/netq/channels-syslog-created-320.png" width="700">}}
-
-8. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
 {{</tab>}}
 
@@ -355,8 +349,6 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 <div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
 
     {{<figure src="/images/netq/channels-email-created-320.png" width="700">}}
-
-9. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}.
 
 {{</tab>}}
 
@@ -493,8 +485,6 @@ You can use the NetQ UI or the NetQ CLI to create a Generic channel.
 <div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
 
     {{<figure src="/images/netq/generic-created.png" width="700">}}
-
-9. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
 {{</tab>}}
 

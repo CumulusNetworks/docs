@@ -8,6 +8,8 @@ NetQ offers multiple ways to view your event status. The NetQ UI provides a grap
 
 Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Based Event Notifications">}} for information about configuring and managing these events.
 
+Note that in the UI, it can take several minutes for NetQ to process and accurately display network validation events. The delay is caused by events with multiple network dependencies. It takes between 5 and 10 minutes for NetQ to consolidate and display these events.
+
 ## Monitor All System and TCA Events Networkwide
 
 You can monitor all system and TCA events across the network with the NetQ UI and the NetQ CLI.

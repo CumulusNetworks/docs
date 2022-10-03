@@ -154,8 +154,6 @@ You can view the ASIC information for a switch from either the NetQ CLI or NetQ 
 
    {{<figure src="/images/netq/inventory-switch-asic-single-switch-filter-320.png" width="700">}}
 
-6. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -224,8 +222,6 @@ Motherboard/platform information is available from the NetQ UI and NetQ CLI.
 
    {{<figure src="/images/netq/inventory-switch-platform-single-switch-filter-320.png" width="700">}}
 
-7. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -278,8 +274,6 @@ CPU information is available from the NetQ UI and NetQ CLI.
    {{<figure src="/images/netq/inventory-switch-fullscr-cpu-filterbyhostname-320.png" width="300">}}
 
    {{<figure src="/images/netq/inventory-switch-cpu-single-switch-filter-320.png" width="700">}}
-
-6. To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner of the card.
 
 {{</tab>}}
 
@@ -346,8 +340,6 @@ Disk information is available from the NetQ UI and NetQ CLI.
 
    {{<figure src="/images/netq/inventory-switch-disk-single-switch-filter-320.png" width="700">}}
 
-6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -409,8 +401,6 @@ Memory information is available from the NetQ UI and NetQ CLI.
    {{<figure src="/images/netq/inventory-switch-fullscr-filterbyhostname-320.png" width="300">}}
 
    {{<figure src="/images/netq/inventory-switch-memory-single-switch-filter-320.png" width="700">}}
-
-6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -480,8 +470,6 @@ OS information is available from the NetQ UI and NetQ CLI.
    {{<figure src="/images/netq/inventory-switch-fullscr-os-filterbyhostname-320.png" width="300">}}
 
    {{<figure src="/images/netq/inventory-switch-os-single-switch-filter-320.png" width="700">}}
-
-6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 

@@ -454,7 +454,6 @@ Where to go next depends on what data you see, but a few options include:
     - By **Severity** to determine the most critical events.
     - By **Time** to find events that might have occurred at a particular time to try to correlate them with other system events.
 - Export the data to a file for use in another analytics tool by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
-- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 {{</tab>}}
 
@@ -505,8 +504,6 @@ To view all switch details:
 
 <div style="padding-left: 18px;">Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.</div>
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
-
 ### View Details for All MLAG Sessions
 
 You can view attributes of all MLAG sessions in your network
@@ -527,8 +524,6 @@ To view all session details:
     {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-allsess-tab-320.png" width="700">}}
 
 <div style="padding-left: 18px;">Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.</div>
-
-Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 {{</tab>}}
 
@@ -727,7 +722,6 @@ Where to go next depends on what data you see, but a few options include:
     - By **Single Bonds** to determine which interface sets are only connected to one of the switches.
     - By **Backup IP and Backup IP Active** to determine if the correct backup IP address is specified for the service.
 - Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
-- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 {{</tab>}}
 
@@ -782,4 +776,3 @@ Where to go next depends on what data you see, but a few options include:
     - By **Severity** to determine the most critical events.
     - By **Time** to find events that might have occurred at a particular time to try to correlate them with other system events.
 - Export the data to a file by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
-- Return to your workbench by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.

@@ -57,15 +57,11 @@ You can view all stored attributes for all switches in your network from either 
 
     {{<figure src="/images/netq/inventory-switch-fullscr-showall-tab-320.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 ### View All Hosts
 
 You can view all stored attributes for all hosts in your network. To view all host details, open the full screen Inventory|Devices card and click **All Hosts**.
 
 {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-320.png" width="700" >}}
-
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -290,8 +286,6 @@ ASIC information is available from the NetQ UI and NetQ CLI.
 
 8. Scroll to the right to view the above ASIC information.
 
-9. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "Inventory|Switches" >}}
@@ -313,8 +307,6 @@ ASIC information is available from the NetQ UI and NetQ CLI.
 5. Change to the full-screen card to view all of the available ASIC information. Note that if you are running CumulusVX switches, no detailed ASIC information is available.
 
     {{<figure src="/images/netq/inventory-switch-fullscr-asic-tab-320.png" width="700">}}
-
-6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -398,8 +390,6 @@ Motherboard and platform information is available from the NetQ UI and NetQ CLI.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-320.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "Inventory|Switches">}}
@@ -421,8 +411,6 @@ To return to your workbench, click <img src="https://icons.cumulusnetworks.com/0
 6. Click **Platform**.
 
     {{<figure src="/images/netq/inventory-switch-fullscr-platform-tab-320.png" width="700">}}
-
-7. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -502,8 +490,6 @@ CPU information is available from the NetQ UI and NetQ CLI.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-320.png" width="700" >}}
 
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "Inventory|Switches" >}}
@@ -521,8 +507,6 @@ CPU information is available from the NetQ UI and NetQ CLI.
 4. Click **CPU**.
 
     {{<figure src="/images/netq/inventory-switch-fullscr-cpu-tab-320.png" width="700" >}}
-
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -620,8 +604,6 @@ Disk information is available from the NetQ UI and NetQ CLI.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
 
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "Inventory|Switches" >}}
@@ -639,8 +621,6 @@ Disk information is available from the NetQ UI and NetQ CLI.
 4. Click **Disk**.
 
     {{<figure src="/images/netq/inventory-switch-fullscr-disk-tab-320.png" width="700">}}
-
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -704,8 +684,6 @@ Memory information is available from the NetQ UI and NetQ CLI.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
 
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "Inventory|Switches" >}}
@@ -723,8 +701,6 @@ Memory information is available from the NetQ UI and NetQ CLI.
 4. Click **Memory**.
 
     {{<figure src="/images/netq/inventory-switch-fullscr-memory-tab-320.png" width="700">}}
-
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -864,8 +840,6 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 </table>
 </div>
 
-3. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 #### Fan Information
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
@@ -930,8 +904,6 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 </tbody>
 </table>
 </div>
-
-3. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 #### Temperature Information
 
@@ -1005,8 +977,6 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 </tbody>
 </table>
 </div>
-
-3. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 
@@ -1584,8 +1554,6 @@ OS information is available from the NetQ UI and NetQ CLI.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-320.png" width="700" >}}
 
-11. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
-
 {{</tab>}}
 
 {{<tab "Inventory|Switches" >}}
@@ -1603,8 +1571,6 @@ OS information is available from the NetQ UI and NetQ CLI.
 4. Click **OS**.
 
     {{<figure src="/images/netq/inventory-switch-fullscr-os-tab-320.png" width="700">}}
-
-5. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner of the card.
 
 {{</tab>}}
 

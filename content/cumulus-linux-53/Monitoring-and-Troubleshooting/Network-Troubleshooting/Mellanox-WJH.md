@@ -6,7 +6,7 @@ toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-41" >}}).
-- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH monitors forwarding (layer 2, layer 3, and tunnel) related issues. Cumulus Linux enables the WJH service by default.
+- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH monitors layer 1, buffer, ACL, and forwarding (layer 2, layer 3, and tunnel), related issues. Cumulus Linux enables the WJH service by default.
 
   {{%notice note%}}
 When you enable the NVIDIA NetQ agent on the switch, the WJH service stops and does not run. If you disable the NVIDIA NetQ service and want to use WJH, run the following commands to enable and start the WJH service:
@@ -19,35 +19,80 @@ cumulus@switch:~$ sudo systemctl start what-just-happened
 
 ## Configure WJH
 
-By default, WJH monitors all layer 1, layer 2, layer 3, ACL, buffer, and tunnel related issues. You can configure WJH to monitor specific types of dropped packets only.
-
-The following example configures WJH to only monitor forwarding (layer 2 and layer 3) packet drops:
+By default, WJH monitors all forwarding (layer 2, layer 3, and tunnel) related issues. You can configure WJH to monitor specific types of dropped packets.
 
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
 
+The following example configures WJH to monitor layer 1, buffer, and ACL packet drops:
+
 ```
+cumulus@switch:~$ nv unset service wjh channel trigger forwarding
+cumulus@switch:~$ nv set service wjh channel trigger l1
+cumulus@switch:~$ nv set service wjh channel trigger buffer
+cumulus@switch:~$ nv set service wjh channel trigger acl
+cumulus@switch:~$ nv config apply
+```
+
+To configure WJH back to the default settings (forwarding related issues):
+
+```
+cumulus@switch:~$ nv set service wjh channel trigger forwarding
 cumulus@switch:~$ nv unset service wjh channel trigger l1
 cumulus@switch:~$ nv unset service wjh channel trigger buffer
 cumulus@switch:~$ nv unset service wjh channel trigger acl
-cumulus@switch:~$ nv unset service wjh channel trigger tunnel
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/what-just-happened/what-just-happened.json` file and remove the drop category value from inside the square brackets ([]). After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
+Edit the `/etc/what-just-happened/what-just-happened.json` file:
+- For each drop category you want to monitor, include the drop category value inside the square brackets ([]). 
+- For each drop category you do **not** want to monitor, remove the drop category value from inside the square brackets ([]).
 
-The following example configures WJH to only monitor forwarding (layer 2 and layer 3) packet drops:
+After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
+
+The following example configures WJH to monitor only layer 1, buffer, and ACL packet drops:
 
 ```
-root@switch:~# sudo nano /etc/what-just-happened/what-just-happened.json
+cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
 {
   "what-just-happened": {
     "channels": {
       "forwarding": {
-        "drop_category_list": ["L2", "L3"]
+        "drop_category_list": []
+      },
+      "layer-1": {
+        "drop_category_list": ["L1"]
+      },
+      "buffer": {
+        "drop_category_list": ["buffer"]
+      },
+      "tunnel": {
+        "drop_category_list": []
+      },
+      "acl": {
+        "drop_category_list": ["acl"]
+      }
+    }
+  }
+}
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart what-just-happened
+```
+
+The following example configures WJH to monitor only forwarding packet drops (the default setting):
+
+```
+cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
+{
+  "what-just-happened": {
+    "channels": {
+      "forwarding": {
+        "drop_category_list": ["L2", "L3", "tunnel"]
       },
       "layer-1": {
         "drop_category_list": []
@@ -64,6 +109,10 @@ root@switch:~# sudo nano /etc/what-just-happened/what-just-happened.json
     }
   }
 }
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart what-just-happened
 ```
 
 {{< /tab >}}

@@ -21,6 +21,9 @@ cumulus@switch:~$ sudo systemctl start what-just-happened
 
 By default, WJH monitors all forwarding (layer 2, layer 3, and tunnel) related issues. You can configure WJH to monitor specific types of dropped packets.
 
+{{< tabs "TabID24 ">}}
+{{< tab "NVUE Commands ">}}
+
 The following example configures WJH to monitor layer 1, buffer, and ACL packet drops:
 
 ```

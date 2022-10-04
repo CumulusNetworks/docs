@@ -18965,7 +18965,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection outbound-policy o
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\>
 
-Configures BGP peer groups settings.
+Configures BGP peer group settings.
 
 ### Usage
 
@@ -18996,7 +18996,7 @@ N/A
 | `description`           | Configures a description for the peer group.|
 | `enforce-first-as`      | If on, when BGP updates are received from EBGP peers, check that first AS matches peer's AS|
 | `multihop-ttl`          | Configures the maximum number of hops allowed for the peer group. When 'auto', the type of peer will determine the appropriate value (255 for iBGP and 1 for eBGP). This is the default.|
-| `nexthop-connected-check` | If 'on', it disables the check that a non-multihop EBGP peer should be directly connected and only announce connected next hops|
+| `nexthop-connected-check` | If on, it disables the check that a non-multihop EBGP peer should be directly connected and only announce connected next hops|
 | `passive-mode`          | Turns passive mode on or off. If on, the peers in the peer group do not initiate the BGP connection but wait for  an incoming connection.|
 | `password`              | Configures the password for the peer group.|
 | `remote-as`             | Configures the remote ASN for the peer group. If you specify `external`, an EBGP configuration but the actual ASN is immaterial. If specified as 'internal', it means an IBGP configuration.|
@@ -19702,7 +19702,7 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `ipv4-unicast`     | Configures the IPv4 unicast address family for the peer group. Always on, unless disabled globaly.|
+| `ipv4-unicast`     | Configures the IPv4 unicast address family for the peer group.|
 | `ipv6-unicast`     | Configures the IPv6 unicast address family for the peer group.|
 | `l2vpn-evpn`       | Configures the l2vpn EVPN address family for the peer group.|
 
@@ -19712,7 +19712,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast
 
-Peer IPv4 unicast address family.  Always on, unless disabled globaly.
+Configures the IPv4 unicast address family for the BGP peer group.
 
 ### Usage
 
@@ -19720,7 +19720,7 @@ Peer IPv4 unicast address family.  Always on, unless disabled globaly.
 
 ### Default Setting
 
-N/A
+`on`
 
 ### Identifiers
 
@@ -19733,20 +19733,20 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `community-advertise`   | Community advertise for address family.|
-| `attribute-mode`        | Attribute mod for address family.|
-| `aspath`                | Options for handling AS_PATH for prefixes from/to peer for the specified address family|
-| `prefix-limits`         | Limits on prefix from the peer for this address-family|
-| `default-route-origination`  | Default route origination|
-| `policy`                | Policies for ipv4 unicast|
-| `conditional-advertise` | Conditional advertise for address family.|
-| `enable`                | Turn the feature 'on' or 'off'. The default is 'on'.|
-| `add-path-tx`           | Used to enable transmission of additional paths; by default, only the best path is announced to peers|
-| `nexthop-setting`       | Control nexthop value of advertised routes. "auto" follows regular BGP next-hop determination rules. This is the default. "self" sets the next hop to ourselves for route advertisement, except for reflected routes.  "force" sets the next hop to ourselves for route advertisement including for reflected routes.|
-| `route-reflector-client` | Specifies if this peer is a client and we are its route reflector|
-| `route-server-client`   | Specifies if this peer is a client and we are its route server|
+| `community-advertise`   | Configures the BGP COMMUNITY attribute to advertise to the peer group.|
+| `attribute-mode`        | Configures the BGP attribute mode for the peer group.|
+| `aspath`                | Configures options for handling BGP AS_PATH for prefixes from or to the peer group.|
+| `prefix-limits`         | Configures prefix limits from peers in the peer group.|
+| `default-route-origination`  | Configures the default route origination for the peer group.|
+| `policy`                | Configures policies for the peer group.|
+| `conditional-advertise` | Configures BGP conditional advertisement so that you can advertise certain routes only if other routes either do or do not exist.|
+| `enable`                | Turns the IPv4 unicast address family for the BGP peer group on or off.|
+| `add-path-tx`           | Enables you to announce additional paths; by default, only the best path is announced to peers.|
+| `nexthop-setting`       | Configures the nexthop value of advertised routes. "auto" follows regular BGP next-hop determination rules. This is the default. "self" sets the next hop to ourselves for route advertisement, except for reflected routes.  "force" sets the next hop to ourselves for route advertisement including for reflected routes.|
+| `route-reflector-client` | Configures the node as a route reflector to the peers in the peer group, which are route reflector clients. |
+| `route-server-client`   | Configures |
 | `soft-reconfiguration`  | If 'on', it means that received routes from this peer  that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP Updates.|
-| `weight`                | Weight applied to routes received from peer; this is used in the BGP route selection algorithm|
+| `weight`                | Configures the weight applied to routes received from the peers in the peer group. The weight his is used in the BGP route selection algorithm. |
 
 ### Version History
 
@@ -19754,7 +19754,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise
 
-Community advertise for address family.
+Configures the BGP COMMUNITY attribute to advertise to the peer group.
 
 ### Usage
 

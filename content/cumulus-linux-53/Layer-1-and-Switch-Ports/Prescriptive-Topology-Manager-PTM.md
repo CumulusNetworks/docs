@@ -174,21 +174,35 @@ graph G {
 
 [BFD](## "Bidirectional Forwarding Detection") provides low overhead and rapid detection of failures in the paths between two network devices. It provides a unified mechanism for link detection over all media and protocol layers. Use BFD to detect failures for IPv4 and IPv6 single or multihop paths between any two network devices, including unidirectional path failure detection. For information about configuring BFD using PTM, see {{<link url="Bidirectional-Forwarding-Detection-BFD" text="BFD">}}.
 
-## Check Link State With FRR
+## Check Link State
 
-The FRR routing suite enables additional checks to ensure that routing adjacencies form only on links that have connectivity that conform to the specification that `ptmd` defines.
+You can enable PTM to perfom additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that `ptmd` defines.
 
 {{%notice note%}}
-You only need to do this to check link state; you do not need to enable PTM to determine BFD status.
+You only need to enable PTM to check link state. You do not need to enable PTM to determine BFD status.
 {{%/notice%}}
 
-When you enable the global `ptm-enable` option, every interface has an implied `ptm-enable` line in the configuration stanza in the `/etc/network/interfaces` file.
+{{< tabs "TabID185 ">}}
+{{< tab "NVUE Commands ">}}
 
-To enable the global `ptm-enable` option, run the following FRR command:
+```
+cumulus@switch:~$ nv set router ptm enable
+cumulus@switch:~$ nv config apply
+```
+
+To disable the check link state:
+
+```
+cumulus@switch:~$ nv unset router ptm enable
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
 
 ```
 cumulus@switch:~$ sudo vtysh
-
+...
 switch# configure terminal
 switch(config)# ptm-enable
 switch(config)# end
@@ -197,34 +211,25 @@ switch# exit
 cumulus@switch:~$
 ```
 
-To disable the checks, delete the `ptm-enable` parameter from the interface:
+To disable the check link state, set the `no ptm-enable` parameter:
 
 ```
 cumulus@switch:~$ sudo vtysh
+...
 switch# configure terminal
-switch(config)# interface swp51
-switch(config-if)# no ptm-enable
-switch(config-if)# end
+switch(config)# no ptm-enable
+switch(config)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
 ```
 
-If you need to reenable PTM for that interface:
+{{< /tab >}}
+{{< /tabs >}}
 
-```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# interface swp51
-switch(config-if)# ptm-enable
+When you enable PTM, every interface has an implied `ptm-enable` line in the `/etc/network/interfaces` file. The `zebra` daemon connects to `ptmd` over a Unix socket. When there is an interface status change, `ptmd` sends a notification to `zebra`, which maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag.
 
-switch(config-if)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-With PTM on an interface, the `zebra` daemon connects to `ptmd` over a Unix socket. Any time there is a change of status for an interface, `ptmd` sends notifications to `zebra`. Zebra maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag. To check the per-interface `ptm-status`, run the NVUE `nv show interface <interface>` command or the vtysh `show interface <interface>` command.
+To check PTM status on an interface, run the NVUE `nv show interface <interface>` command or the vtysh `show interface <interface>` command.
 
 ```
 cumulus@switch:~$ sudo vtysh

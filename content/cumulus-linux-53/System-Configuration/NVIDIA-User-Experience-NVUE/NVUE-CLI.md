@@ -85,6 +85,7 @@ You can list all the NVUE commands by running `nv list-commands`. See {{<link ur
 <!-- vale off -->
 At the command prompt, press the Up Arrow and Down Arrow keys to move back and forth through the list of commands you entered. When you find a given command, you can run the command by pressing Enter. Optionally, you can modify the command before you run it.
 <!-- vale on -->
+
 ## Command Categories
 
 The NVUE CLI has a flat structure; however, the commands are in three functional categories:
@@ -313,6 +314,18 @@ cumulus@switch:~$ sudo systemctl start nvue-startup.service
 ```
 
 When you apply a configuration with `nv config apply`, NVUE also writes to underlying Linux files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE. If you need to configure certain network settings manually or use automation such as Ansible to configure the switch, see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}} below.
+
+## Search for a Specific Configuration
+
+To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
+
+```
+cumulus@switch:~$ nv config find ptm
+- set:
+    router:
+      ptm:
+        enable: off
+```
 
 ## Configure NVUE to Ignore Linux Files
 

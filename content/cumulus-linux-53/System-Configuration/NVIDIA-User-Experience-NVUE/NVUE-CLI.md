@@ -11,7 +11,8 @@ The NVUE CLI has a flat structure as opposed to a modal structure. This means th
 NVUE commands all begin with `nv` and fall into one of three syntax categories:
 - Configuration (`nv set` and ` nv unset`)
 - Monitoring (`nv show`)
-- Configuration management (`nv config`).
+- Configuration management (`nv config`)
+- Action commands (`nv action`)
 
 ## Command Completion
 <!-- vale off -->
@@ -93,6 +94,7 @@ The NVUE CLI has a flat structure; however, the commands are in three functional
 - Configuration
 - Monitoring
 - Configuration Management
+- Action
 
 ### Configuration Commands
 
@@ -258,6 +260,15 @@ The NVUE configuration management commands manage and apply configurations.
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
 
 You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="Upgrading-Cumulus-Linux/#back-up-configuration-with-nvue" text="Upgrading Cumulus Linux">}}.
+
+### Action Commands
+
+The NVUE action commands reset counters for interfaces and remove conflicts from protodown MLAG bonds.
+
+| <div style="width:450px">Command | Description |
+| ------- | ----------- |
+|`nv action clear interface <interface> qos roce counters`  | Resets counters that the `nv show interface <interface> qos roce` command displays. |
+|`nv action clear interface <interface> bond mlag lacp-conflict`| Removes duplicate partner MAC address or partner MAC address mismatch conflicts from protodown MLAG bonds.|
 
 ### List All NVUE Commands
 

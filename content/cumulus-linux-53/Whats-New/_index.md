@@ -16,6 +16,7 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 
 ### Platforms
 
+- NVIDIA SN3750SX (5G Spectrum-2) available for early access
 - All NVIDIA Spectrum-2 and Spectrum-3 switches support 1G
 
 ### New Features and Enhancements

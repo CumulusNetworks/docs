@@ -19,7 +19,7 @@ cumulus@switch:~$ sudo systemctl start what-just-happened
 
 ## Configure WJH
 
-By default, WJH monitors all forwarding (layer 2, layer 3, and tunnel) related issues. You can configure WJH to monitor specific types of dropped packets.
+By default, WJH monitors all forwarding layer 2, layer 3, and tunnel related issues. You can configure WJH to monitor specific types of dropped packets.
 
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
@@ -27,20 +27,24 @@ By default, WJH monitors all forwarding (layer 2, layer 3, and tunnel) related i
 The following example configures WJH to monitor layer 1, buffer, and ACL packet drops:
 
 ```
-cumulus@switch:~$ nv unset service wjh channel trigger forwarding
-cumulus@switch:~$ nv set service wjh channel trigger l1
-cumulus@switch:~$ nv set service wjh channel trigger buffer
-cumulus@switch:~$ nv set service wjh channel trigger acl
+cumulus@switch:~$ nv unset service wjh channel forwarding trigger  l2
+cumulus@switch:~$ nv unset service wjh channel forwarding trigger  l3
+cumulus@switch:~$ nv unset service wjh channel forwarding trigger tunnel
+cumulus@switch:~$ nv set service wjh channel forwarding trigger l1
+cumulus@switch:~$ nv set service wjh channel forwarding trigger buffer
+cumulus@switch:~$ nv set service wjh channel forwarding trigger acl
 cumulus@switch:~$ nv config apply
 ```
 
-To configure WJH back to the default settings (forwarding related issues):
+To configure WJH back to the default settings (layer 2, layer 3, and tunnel related issues):
 
 ```
-cumulus@switch:~$ nv set service wjh channel trigger forwarding
-cumulus@switch:~$ nv unset service wjh channel trigger l1
-cumulus@switch:~$ nv unset service wjh channel trigger buffer
-cumulus@switch:~$ nv unset service wjh channel trigger acl
+cumulus@switch:~$ nv set service wjh channel forwarding trigger l2
+cumulus@switch:~$ nv set service wjh channel forwarding trigger l3
+cumulus@switch:~$ nv set service wjh channel forwarding trigger tunnel
+cumulus@switch:~$ nv unset service wjh channel forwarding trigger l1
+cumulus@switch:~$ nv unset service wjh channel forwarding trigger buffer
+cumulus@switch:~$ nv unset service wjh channel forwarding trigger acl
 cumulus@switch:~$ nv config apply
 ```
 
@@ -60,11 +64,14 @@ cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
 {
   "what-just-happened": {
     "channels": {
-      "forwarding": {
-        "drop_category_list": []
-      },
       "layer-1": {
         "drop_category_list": ["L1"]
+      },
+      "layer-2": {
+        "drop_category_list": []
+      },
+      "layer-3": {
+        "drop_category_list": []
       },
       "buffer": {
         "drop_category_list": ["buffer"]
@@ -84,18 +91,21 @@ cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
 cumulus@switch:~$ sudo systemctl restart what-just-happened
 ```
 
-The following example configures WJH to monitor only forwarding packet drops (the default setting):
+The following example configures WJH to monitor only layer 2 and layer 3 packet drops (the default setting):
 
 ```
 cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
 {
   "what-just-happened": {
     "channels": {
-      "forwarding": {
-        "drop_category_list": ["L2", "L3", "tunnel"]
-      },
       "layer-1": {
         "drop_category_list": []
+      },
+      "layer2": {
+        "drop_category_list": ["L2"]
+      },
+      "layer3": {
+        "drop_category_list": ["L3",]
       },
       "buffer": {
         "drop_category_list": []

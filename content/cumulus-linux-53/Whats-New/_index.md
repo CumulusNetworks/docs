@@ -33,7 +33,7 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
   - BGP phase 1 (additional commands)
   - routing phase 1 (additional route-map commands)
   - FRR Zebra Phase 1
-  - WJH commands
+  - {{<link title="What Just Happened (WJH)" text="WJH commands">}}
   - {{<link url="Prescriptive-Topology-Manager-PTM/#check-link-state" text="PTM enable command">}} to check link state
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - text obfuscation support

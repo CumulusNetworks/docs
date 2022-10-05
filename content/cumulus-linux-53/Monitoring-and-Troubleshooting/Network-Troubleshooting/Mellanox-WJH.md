@@ -6,7 +6,7 @@ toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-41" >}}).
-- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH monitors layer 1, buffer, ACL, and forwarding (layer 2, layer 3, and tunnel), related issues. Cumulus Linux enables the WJH service by default.
+- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, buffer, ACL, layer 2, layer 3, and tunnel related issues. Cumulus Linux enables the WJH service by default.
 
   {{%notice note%}}
 When you enable the NVIDIA NetQ agent on the switch, the WJH service stops and does not run. If you disable the NVIDIA NetQ service and want to use WJH, run the following commands to enable and start the WJH service:
@@ -19,7 +19,7 @@ cumulus@switch:~$ sudo systemctl start what-just-happened
 
 ## Configure WJH
 
-By default, WJH monitors all forwarding layer 2, layer 3, and tunnel related issues. You can configure WJH to monitor specific types of dropped packets.
+You can monitor layer 1, buffer, ACL, layer 2, layer 3, and tunnel packet drops. By default, WJH monitors layer 2, layer 3, and tunnel packet drops.
 
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
@@ -36,7 +36,7 @@ cumulus@switch:~$ nv set service wjh channel forwarding trigger acl
 cumulus@switch:~$ nv config apply
 ```
 
-To configure WJH back to the default settings (layer 2, layer 3, and tunnel related issues):
+To configure WJH back to the default settings (layer 2, layer 3, and tunnel packet drops):
 
 ```
 cumulus@switch:~$ nv set service wjh channel forwarding trigger l2

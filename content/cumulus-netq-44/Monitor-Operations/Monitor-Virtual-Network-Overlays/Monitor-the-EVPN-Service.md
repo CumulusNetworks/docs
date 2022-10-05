@@ -689,7 +689,6 @@ Where to go next depends on what data you see, but a few options include:
 - Open one of the other full screen tabs in this flow to focus on devices or sessions.
 - Sort by the **Message** or **Severity** to narrow your focus.
 - Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
-- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right to return to your workbench.
 
 {{</tab>}}
 
@@ -721,8 +720,6 @@ To view all switch and host details, open the full screen EVPN Service card, and
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-allswitches-tab-241.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right.
-
 ### View Details for All EVPN Sessions
 
 You can view attributes of all EVPN sessions in your network with the NetQ UI or NetQ CLI.
@@ -734,10 +731,6 @@ You can view attributes of all EVPN sessions in your network with the NetQ UI or
 To view all session details, open the full screen EVPN Service card, and click the **All Sessions** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-sessions-tab-241.png" width="700">}}
-
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right.
-
-Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.
 
 {{</tab>}}
 
@@ -896,8 +889,6 @@ To view all session details, open the full screen EVPN Session card and click th
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-allsess-tab-241.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right of the card.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -934,4 +925,3 @@ Where to go next depends on what data you see, but a few options include:
 - Open one of the other full screen tabs in this flow to focus on sessions.
 - Sort by the **Message** or **Severity** to narrow your focus.
 - Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
-- Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> at the top right to return to your workbench.

@@ -293,8 +293,6 @@ To view all device details, open the full screen OSPF Service card and click the
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-allswitches-tab-241.png" width="700">}}
 
-To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner.
-
 ### View Details for All OSPF Sessions
 
 You can view all stored attributes of all OSPF sessions in your network with the NetQ UI or the NetQ CLI.
@@ -306,10 +304,6 @@ You can view all stored attributes of all OSPF sessions in your network with the
 To view all session details, open the full screen Network Services|All OSPF Sessions card and click the **All Sessions** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-sessions-tab-222.png" width="700">}}
-
-To return to your workbench, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the top right corner.
-
-Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail. To return to original display of results, click the associated tab.
 
 {{</tab>}}
 
@@ -535,8 +529,6 @@ To view all session details:
 
     {{<figure src="/images/netq/ntwk-svcs-single-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
-6. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -589,5 +581,3 @@ To view all events:
 5. Hover over the card, and change to the full-screen card using the card size picker.
 
 6. Click the **All Events** tab.
-
-7. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.

@@ -538,8 +538,6 @@ Where to go next depends on what data you see, but a couple of options include:
 - Open one of the other full screen tabs in this flow to focus on devices or sessions
 - Export the data for use in another analytics tool, by clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> and providing a name for the data file.
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -601,8 +599,6 @@ To view all device details, open the full-screen Network Services|All BGP Sessio
 
 {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsw-tab-300.png" width="700">}}
 
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
-
 ### View Details for All BGP Sessions
 
 You can view attributes of all BGP sessions in your network with the NetQ UI or NetQ CLI.
@@ -616,8 +612,6 @@ To view all session details, open the full-screen Network Services|All BGP Sessi
 {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsess-tab-300.png" width="700">}}
 
 Use the icons above the table to select/deselect, filter, and export items in the list. Refer to {{<link url="Access-Data-with-Cards/#table-settings" text="Table Settings">}} for more detail.
-
-To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
 
 {{</tab>}}
 
@@ -882,8 +876,6 @@ To view all session details:
 
     {{<figure src="/images/netq/ntwk-svcs-single-bgp-fullscr-allsess-tab-320.png" width="700">}}
 
-7. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -928,5 +920,3 @@ To view all events:
 7. Click the **All Events** tab.
 
     {{<figure src="/images/netq/ntwk-svcs-fullscr-events-tab-320.png" width="700">}}
-
-8. To return to your workbench, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the top right corner.

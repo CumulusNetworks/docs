@@ -74,14 +74,22 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 *BGP dynamic neighbors* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
-After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group.
+After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group. You can also limit the number of dynamic peers. The default value is 100.
 
-The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 10.0.1.0/31.
+The following example commands configure BGP peering to remote neighbors within the address range 10.0.1.0/31 for the peer group SPINE and limit the number of dynamic peers to 5.
+
+{{%notice note%}}
+The peer group must already exist otherwise the configuration does not apply.
+{{%/notice%}}
 
 {{< tabs "96 ">}}
 {{< tab "NVUE Commands ">}}
 
-Cumulus Linux does not provide NVUE commands for this configuration.
+```
+cumulus@leaf01:~$ nv set vrf default router bgp dynamic-neighbor listen-range 10.0.1.0/24 peer-group SPINE
+cumulus@leaf01:~$ nv set vrf default router bgp dynamic-neighbor limit 5
+cumulus@leaf01:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -97,8 +105,6 @@ leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
 ```
-
-The `bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -1028,7 +1034,7 @@ leaf01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands configure leaf01 to advertise all paths learned from each <!-- vale off -->AS<!-- vale on --> to the BGP neighbor on swp50:
+The following example commands configure leaf01 to advertise all paths learned from each AS to the BGP neighbor on swp50:
 
 {{< tabs "928 ">}}
 {{< tab "NVUE Commands ">}}

@@ -137,6 +137,13 @@ You can run the following commands to show information about dropped packets and
 
 ```
 cumulus@switch:~$ nv show service wjh packet-buffer 
+#    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
+                                                                                                                                   Group
+---- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
+1    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
+2    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
+3    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
+4    21/06/16 12:02:42.069  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
 ```
 
 {{< /tab >}}
@@ -162,7 +169,7 @@ Run the `what-just-happened -h` command to see all the WJH command options.
 To show all dropped packets and the reason for the drop, run the NVUE `nv show service wjh packet-buffer` command or the `what-just-happened poll` command.
 
 ```
-root@switch:~# nv show service wjh packet-buffer
+cumulus@switch:~$ nv show service wjh packet-buffer
 #    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
                                                                                                                                    Group
 ---- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
@@ -175,7 +182,7 @@ root@switch:~# nv show service wjh packet-buffer
 The following example shows that packets drop five times because the source MAC address equals the destination MAC address:
 
 ```
-root@switch:~# what-just-happened poll --aggregate
+cumulus@switch:~$ what-just-happened poll --aggregate
 Sample Window : 2021/06/16 12:57:23.046 - 2021/06/16 14:46:17.701
 
 #  sPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Count  Severity  Drop reason - Recommended action
@@ -187,7 +194,7 @@ Sample Window : 2021/06/16 12:57:23.046 - 2021/06/16 14:46:17.701
 The following command saves dropped packets to a file in PCAP format
 
 ```
-root@switch:~# what-just-happened poll --export
+cumulus@switch:~$ what-just-happened poll --export
 PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 
 #    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action

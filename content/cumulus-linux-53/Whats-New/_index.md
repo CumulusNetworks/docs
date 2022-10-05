@@ -21,26 +21,23 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Features and Enhancements
 
-<!-- - Refactor port configuration-->
 - {{<link url="Quality-of-Service/#ptp-shaping" text="PTP shaper for Spectrum-1">}}
-- Port configuration changes
+- Improve port breakout and speed configuration in the `etc/cumulus/ports.conf ` file
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="Configure-SNMP" text="SNMP Server">}} and {{<link url="Configure-SNMP-Traps" text="SNMP trap">}} commands
   - RoCE commands
   - support for switchd knobs
-  - add memory and CPU utilization (more info in nv show platform hardware output)
-  - BGP phase 1 (additional commands)
-  - routing phase 1 (additional route-map commands)
-  - FRR Zebra Phase 1
-  - WJH commands
+  - Updated `nv show platform hardware` command output to include memory and CPU utilization information
+  - New BGP commands: {{<link url="Optional-BGP-Configuration/#bgp-dynamic-neighbors" text="BGP dynamic neighbor">}}, 
+  - New Route map commands:
+  - {{<link title="What Just Happened (WJH)" text="WJH commands">}}
   - {{<link url="Prescriptive-Topology-Manager-PTM/#check-link-state" text="PTM enable command">}} to check link state
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - text obfuscation support
   - hyphen support in ??
   - improved performance
-  - add username info to Action command
-  - change commands from enable on/off to set enable/unset enable
-  - New commands:
+  - Change commands from `enable on and enable off` to `set enable` and `unset enable` (`enable on and enable off` commands continue to be supported for backward compatability)
+  - New command list:
    {{< tabs "TabID34 ">}}
 {{< tab "show commands ">}}
 

@@ -26,6 +26,7 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 - Port configuration changes
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="Configure-SNMP" text="SNMP Server">}} and {{<link url="Configure-SNMP-Traps" text="SNMP trap">}} commands
+  - {{<link url="Optional-BGP-Configuration/#bgp-dynamic-neighbors" text="BGP dynamic neighbor">}} commands
   - RoCE commands
   - support for switchd knobs
   - add memory and CPU utilization (more info in nv show platform hardware output)

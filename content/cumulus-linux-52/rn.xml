@@ -412,12 +412,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
-<td>2847618</td>
-<td>When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2844778</td>
 <td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this issue, use the {{nv config patch &lt;yaml-file&gt;}}  command or the {{nv config replace &lt;yaml-file&gt;}} command to update large pieces of configuration at once.</td>
 <td>5.0.0-5.2.1</td>
@@ -445,12 +439,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2734103</td>
-<td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -903,12 +891,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
-<td>2847618</td>
-<td>When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2844778</td>
 <td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this issue, use the {{nv config patch &lt;yaml-file&gt;}}  command or the {{nv config replace &lt;yaml-file&gt;}} command to update large pieces of configuration at once.</td>
 <td>5.0.0-5.2.1</td>
@@ -936,12 +918,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2736108</td>
 <td>When you change the VRRP advertisement interval on the master, the {{master advertisement interval}} field in the {{show vrrp}} command output does not show the updated value.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2734103</td>
-<td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1264,6 +1240,11 @@ This issue does not affect the operation of the switch.</td>
 <td>2812075</td>
 <td>When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together.</td>
 <td>5.0.0-5.1.0</td>
+</tr>
+<tr>
+<td>2734103</td>
+<td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
+<td>4.3.0-5.1.0</td>
 </tr>
 </table>
 </tables>

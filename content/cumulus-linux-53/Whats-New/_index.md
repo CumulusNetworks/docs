@@ -23,7 +23,9 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 
 - {{<link url="Quality-of-Service/#ptp-shaping" text="PTP shaper for Spectrum-1">}}
 - Improve port breakout and speed configuration in the `etc/cumulus/ports.conf ` file
+- {{<link title="What Just Happened (WJH)" text="WJH">}} can monitor additional packet drops: Layer 1, ACL, and buffer
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
+  - Performance improvements
   - {{<link url="Configure-SNMP" text="SNMP Server">}} and {{<link url="Configure-SNMP-Traps" text="SNMP trap">}} commands
   - RoCE commands
   - support for switchd knobs
@@ -34,8 +36,7 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Prescriptive-Topology-Manager-PTM/#check-link-state" text="PTM enable command">}} to check link state
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - text obfuscation support
-  - hyphen support in ??
-  - improved performance
+  - You can use hyphens in names for hosts, route maps, ACLs, AS-Path lists, prefix lists, community lists, and VRFs.
   - Change commands from `enable on and enable off` to `set enable` and `unset enable` (`enable on and enable off` commands continue to be supported for backward compatability)
   - New command list:
    {{< tabs "TabID34 ">}}

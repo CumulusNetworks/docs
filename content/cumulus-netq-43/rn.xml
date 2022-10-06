@@ -44,6 +44,12 @@
 <td></td>
 </tr>
 <tr>
+<td>2605545</td>
+<td>Sort functionality is disabled when the number of records exceeds 10,000 entries in a full-screen, tabular view. </td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2555854</td>
 <td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
 <td>3.0.0-3.3.1, 4.0.0-4.3.0</td>

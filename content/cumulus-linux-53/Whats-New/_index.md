@@ -17,12 +17,10 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - NVIDIA SN3750SX (5G Spectrum-2) available for early access
-- All NVIDIA Spectrum-2 and Spectrum-3 switches support 1G
 
 ### New Features and Enhancements
 
 - {{<link url="Quality-of-Service/#ptp-shaping" text="PTP shaper for Spectrum-1">}}
-- Improve port breakout and speed configuration in the `etc/cumulus/ports.conf ` file
 - {{<link title="What Just Happened (WJH)" text="WJH">}} can monitor additional packet drops: Layer 1, ACL, and buffer
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - Performance improvements

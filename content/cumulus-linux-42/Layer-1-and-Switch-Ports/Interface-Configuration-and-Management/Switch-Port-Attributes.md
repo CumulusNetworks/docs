@@ -1452,5 +1452,3 @@ The Dell Z9264F-ON has 64x100G + 2x 10G SFP+ ports. The 2x 10G SFP+ ports are no
 ## Related Information
 
 - {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}
-- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
-- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" text="Linux Foundation - Bonds">}}

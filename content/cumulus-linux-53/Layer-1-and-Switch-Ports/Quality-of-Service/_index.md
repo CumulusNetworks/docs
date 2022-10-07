@@ -629,7 +629,7 @@ shaping.shaper_port_group.port.shaper = 900000
 
 If you define a queue minimum shaping value of `0`, there is no bandwidth guarantee for this queue. The maximum queue shaping value must not exceed the interface shaping value defined by `port.shaper`. The `port.shaper` value must not exceed the physical interface speed.
 
-### PTP Shaping
+<!--### PTP Shaping
 
 To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
 
@@ -670,7 +670,7 @@ ptp_shaping.shaper_port_group.port.shaper = 900000
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ### Policing
 
 Traffic policing prevents an interface from receiving more traffic than intended. You use policing to enforce a maximum transmission rate on an interface. The switch drops any traffic you send above the policing level.

@@ -85,4 +85,3 @@ When an unprivileged user runs a command, the command must include the `sudo` pr
 ## Related Information
 
 - {{<exlink url="https://wiki.debian.org/sudo" text="Debian wiki - sudo">}}
-- {{<exlink url="http://rubypond.com/blog/adding-yourself-to-the-sudoers-file" text="Adding Yourself to sudoers">}}

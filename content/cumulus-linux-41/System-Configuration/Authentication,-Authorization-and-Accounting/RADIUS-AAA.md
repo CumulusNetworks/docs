@@ -234,9 +234,3 @@ cumulus@switch:~$ sudo delgroup radius_users
 
 - If two or more RADIUS users are logged in simultaneously, a UID lookup only returns the user that logged in first. Any processes run by either user get attributed to both, and all files created by either user get attributed to the first name matched. This is similar to adding two local users to the password file with the same UID and GID, and is an inherent limitation of using the UID for the fixed user from the password file. The current algorithm returns the first name matching the UID from the mapping file; this might be the first or second user that logged in.
 - When you have both the TACACS+ and the RADIUS AAA client installed, RADIUS login is not attempted. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.
-
-## Related Information
-
-- {{<link url="TACACS" text="TACACS+ client">}}
-- {{<exlink url="https://github.com/CumulusNetworks/cldemo-radius" text="Cumulus Networks RADIUS demo on GitHub">}}
-- {{<exlink url="https://github.com/CumulusNetworks/cldemo-tacacs" text="Cumulus Network TACACS demo on GitHub">}}

@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 440
 toc: 4
 ---
-For {{<link url="Traditional-Bridge-Mode" text="traditional Linux bridges">}}, the kernel supports VLANs in the form of VLAN subinterfaces. When you enable bridging on multiple VLANs, you configure a bridge for each VLAN and create one or more VLAN subinterfaces for each member port on the bridge. This mode can pose scalability challenges with configuration size as well as boot time and run time state management when the number of ports times the number of VLANs becomes large.
+For traditional Linux bridges, the kernel supports VLANs in the form of VLAN subinterfaces. When you enable bridging on multiple VLANs, you configure a bridge for each VLAN and create one or more VLAN subinterfaces for each member port on the bridge. This mode can pose scalability challenges with configuration size as well as boot time and run time state management when the number of ports times the number of VLANs becomes large.
 
 {{%notice note%}}
 - Use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. 

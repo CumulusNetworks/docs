@@ -1085,11 +1085,3 @@ cumulus@switch:~$ sudo systemctl restart networking.service
 ## Related Information
 
 - {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}
-- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" text="Linux Foundation - Bonds">}}
-- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
-- man ifdown(8)
-- man ifquery(8)
-- man ifreload
-- man ifup(8)
-- man ifupdown-addons-interfaces(5)
-- man interfaces(5)

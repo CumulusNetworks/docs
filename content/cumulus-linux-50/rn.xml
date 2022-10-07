@@ -654,12 +654,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
-<td>2847618</td>
-<td>When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2844778</td>
 <td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this issue, use the {{nv config patch &lt;yaml-file&gt;}}  command or the {{nv config replace &lt;yaml-file&gt;}} command to update large pieces of configuration at once.</td>
 <td>5.0.0-5.2.1</td>
@@ -710,8 +704,8 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>4.3.0-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2713888</td>
@@ -1266,12 +1260,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
-<td>2847618</td>
-<td>When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2844778</td>
 <td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this issue, use the {{nv config patch &lt;yaml-file&gt;}}  command or the {{nv config replace &lt;yaml-file&gt;}} command to update large pieces of configuration at once.</td>
 <td>5.0.0-5.2.1</td>
@@ -1322,8 +1310,8 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>4.3.0-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2713888</td>
@@ -1385,6 +1373,11 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), {{clagd.service}} enters a failed state after a reboot or a {{switchd}} restart.
 To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports).</td>
 <td>3.7.12-3.7.15, 4.3.0, 4.4.2-4.4.5</td>
+</tr>
+<tr>
+<td>2847618</td>
+<td>When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow.</td>
+<td></td>
 </tr>
 <tr>
 <td>2845531</td>

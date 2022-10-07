@@ -1399,11 +1399,12 @@ List existing simulation nodes
 [<SimulationNode sim1 c51b49b6-94a7-4c93-950c-e7fa4883591>, <SimulationNode sim2 3134711d-015e-49fb-a6ca-68248a8d4aff>]
 ```
 
-
+<a name="air_sdk.organization.Organization"></a>
 ## Organization
 
 Manage an organization
 
+<a name="air_sdk.organization.Organization.delete"></a>
 ### delete
 Delete the organization. Once successful, the object should no longer be used and will raise
 [`AirDeletedObject`](#airerror) when referenced.
@@ -1411,21 +1412,82 @@ Delete the organization. Once successful, the object should no longer be used an
 **Raises**:
 
   [`AirUnexpectedresponse`](#airerror) - Delete failed
-  
-  ### json
-  Returns a JSON string representation of the organization
-  
-  ### refresh
-  Syncs the organization with all values returned by the API
-  
-  ### update
-  Update the organization with the provided data
-  
+
+<a name="air_sdk.organization.Organization.json"></a>  
+### json
+Returns a JSON string representation of the organization
+
+<a name="air_sdk.organization.Organization.refresh"></a>
+### refresh
+Syncs the organization with all values returned by the API
+
+<a name="air_sdk.organization.Organization.update"></a>
+### update
+Update the organization with the provided data
 
 **Arguments**:
 
 - `kwargs` _dict, optional_ - All optional keyword arguments are applied as key/value
   pairs in the request's JSON payload
+
+<a name="air_sdk.organization.Organization.add_member"></a>
+### add_member
+Add a new member to the organization
+
+**Arguments**:
+- `username` _str_ - The email address of the user to add
+- `roles` _list, optional_ - A list of roles to assign the user. Valid values are
+  'Organization Admin' or 'Organization Member'. If no roles list is provided,
+  'Organization Member' is used as the default role.
+
+**Example**:
+
+```
+>>> organization.add_member('user1@nvidia.com')
+>>> organization.add_member('user2@nvidia.com', roles=['Organization Admin'])
+```
+
+<a name="air_sdk.organization.Organization.add_members"></a>
+### add_members
+Add new members to the organization
+
+**Arguments**:
+- `members` _list_ - List of organization membership dicts in the format of
+  {'username': <email_address>, 'roles': [<role>]}.
+  'roles' is optional and defaults to ['Organization Member']
+  <role> can be a value of 'Organization Admin' or 'Organization Member'.
+
+**Example**:
+
+```
+>>> organization.add_members([{'username': 'user1@nvidia.com', 'roles': ['Organization Admin']}, {'username': 'user2@nvidia.com'}])
+```
+
+<a name="air_sdk.organization.Organization.remove_member"></a>
+### remove_member
+Remove a member from the organization
+
+**Arguments**:
+- `username` _str_ - The email address of the user to remove
+
+**Example**:
+
+```
+>>> organization.remove_member('user1@nvidia.com')
+```
+
+<a name="air_sdk.organization.Organization.remove_members"></a>
+### remove_members
+Remove multiple members from the organization
+
+**Arguments**:
+- `members` _list_ - Email addresses of the users to remove
+
+**Example**:
+
+```
+>>> organization.remove_members(['user1@nvidia.com', 'user2@nvidia.com'])
+```
 
 <a name="air_sdk.organization.OrganizationApi"></a>
 ## OrganizationApi
@@ -1499,7 +1561,11 @@ Create a new organization
 **Arguments**:
 
 - `name` _str_ - Organization name
-- `members` _list_ - List of member [`Account`](#account) objects or IDs
+- `members` _list, optional_ - List of organization membership dicts in the format of
+  {'username': <email_address>, 'roles': [<role>]}.
+  'roles' is optional and defaults to ['Organization Member']
+  <role> can be a value of 'Organization Admin' or 'Organization Member'.
+  If no member list is provided, the calling user's account will be set as the organization admin by default.
 - `kwargs` _dict, optional_ - All other optional keyword arguments are applied as key/value
   pairs in the request's JSON payload
   
@@ -1518,7 +1584,7 @@ Create a new organization
 **Example**:
 
 ```
->>> air.organizations.create(name='NVIDIA', members=[account, 'fa42f2ce-8494-4d4d-87fd-d9ebc18831bd'])
+>>> air.organizations.create(name='NVIDIA', members=[{'username': 'user1@nvidia.com', 'roles': ['Organization Admin']}, {'username': 'user2@nvidia.com'}])
 <Organization NVIDIA 01298e0c-4ef1-43ec-9675-93160eb29d9f>
 ```
 

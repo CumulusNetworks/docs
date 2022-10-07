@@ -387,8 +387,8 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>4.3.0-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2728207</td>
@@ -3056,8 +3056,8 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>4.3.0-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2730447</td>

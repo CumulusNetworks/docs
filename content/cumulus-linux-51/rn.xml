@@ -462,12 +462,6 @@ nv unset system forwarding ecmp-hash: error: unrecognized arguments: source-port
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
-<td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.2.1</td>
-<td>4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
@@ -505,22 +499,10 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 <td></td>
 </tr>
 <tr>
-<td>2991604</td>
-<td>The MLAG peer link conflict {{LACP Partner MAC same as system-mac}} is not currently supported.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>5.0.0-5.2.1</td>
 <td></td>
-</tr>
-<tr>
-<td>2968495</td>
-<td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
-<td>4.2.1-4.4.2, 5.0.0-5.2.1</td>
-<td>4.4.3-4.4.5</td>
 </tr>
 <tr>
 <td>2964279</td>
@@ -609,12 +591,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
-<td>2847618</td>
-<td>When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2844778</td>
 <td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this issue, use the {{nv config patch &lt;yaml-file&gt;}}  command or the {{nv config replace &lt;yaml-file&gt;}} command to update large pieces of configuration at once.</td>
 <td>5.0.0-5.2.1</td>
@@ -659,8 +635,8 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2734103</td>
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
-<td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>4.3.0-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2705056</td>

@@ -84,8 +84,3 @@ To configure a completely passwordless system, do not enter a
         the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide
         basis.
         Last login: Thu Sep 29 16:56:54 2016
-
-## Related Information
-
-  - {{<exlink url="https://debian-administration.org/article/152/Password-less_logins_with_OpenSSH" text="Debian Documentation - Password-less logins with OpenSSH">}}
-  - {{<exlink url="http://en.wikipedia.org/wiki/Secure_Shell" text="Wikipedia - Secure Shell (SSH)">}}

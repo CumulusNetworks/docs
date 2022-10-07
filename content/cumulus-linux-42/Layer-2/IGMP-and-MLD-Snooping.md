@@ -233,7 +233,6 @@ Mellanox Spectrum Switches do not support DIP-based multicast forwarding. Do not
 
 - {{<exlink url="http://en.wikipedia.org/wiki/IGMP_snooping" text="Wikipedia entry for IGMP snooping">}}
 - {{<exlink url="http://tools.ietf.org/rfc/rfc2236.txt" text="RFC 2236">}}
-- {{<exlink url="http://tools.ietf.org/search/rfc2710" text="RFC 2710">}}
 - {{<exlink url="http://tools.ietf.org/html/rfc3376" text="RFC 3376">}}
 - {{<exlink url="http://tools.ietf.org/html/rfc3810" text="RFC 3810">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc4541" text="RFC 4541">}}

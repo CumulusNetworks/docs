@@ -321,9 +321,3 @@ password file. The current algorithm returns the first name matching the UID fro
 mapping file; this might be the first or second user that logged in.
 
 - When you have both the TACACS+ and the RADIUS AAA client installed, RADIUS login is not attempted. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.
-
-## Related Information
-
-  - {{<link url="TACACS-Plus" text="TACACS+ client">}}
-  - {{<exlink url="https://github.com/CumulusNetworks/cldemo-radius" text="Cumulus Linux RADIUS demo on GitHub">}}
-  - {{<exlink url="https://github.com/CumulusNetworks/cldemo-tacacs" text="Cumulus Linux TACACS demo on GitHub">}}

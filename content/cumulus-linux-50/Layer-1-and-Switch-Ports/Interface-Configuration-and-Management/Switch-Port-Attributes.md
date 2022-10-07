@@ -183,7 +183,7 @@ For **25G DAC, 4x25G Breakouts DAC and 100G DAC cables**, the IEEE 802.3by speci
 The IEEE classification specifies various dB loss measurements and minimum achievable cable length. You can build longer and shorter cables if they comply to the dB loss and BER requirements.
 
 If a cable has a CA-25G-S classification and FEC is not on, the BER might be unacceptable in a production network. It is important to set the FEC according to the cable class (or better) to have acceptable bit error rates. See
-{{<link url="#determine-cable-class-of-100g-and-25g-dacs" text="Determining Cable Class">}} below.
+{{<link url="#cable-class-of-100g-and-25g-dacs" text="Determining Cable Class">}} below.
 
 You can check bit errors using `cl-netstat` (`RX_ERR` column) or `ethtool -S` (`HwIfInErrors` counter) after a large amount of traffic passes through the link. A non-zero value indicates bit errors.
 Expect error packets to be zero or extremely low compared to good packets. If a cable has an unacceptable rate of errors with FEC enabled, replace the cable.

@@ -87,4 +87,3 @@ When executed by an unprivileged user, the example commands below must be prefix
 ## Related Information
 
 - {{<exlink url="https://wiki.debian.org/sudo" text="Debian wiki - sudo">}}
-- {{<exlink url="http://rubypond.com/blog/adding-yourself-to-the-sudoers-file" text="Adding Yourself to sudoers">}}

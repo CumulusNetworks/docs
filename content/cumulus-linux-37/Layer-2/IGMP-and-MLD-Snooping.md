@@ -237,7 +237,6 @@ command. To show detailed router ports and group information, run the `bridge -d
 
 - {{<exlink url="http://en.wikipedia.org/wiki/IGMP_snooping" text="IGMP snooping - Wikipedia">}}
 - {{<exlink url="http://tools.ietf.org/rfc/rfc2236.txt" text="IETF RFC 2236">}}
-- {{<exlink url="http://tools.ietf.org/search/rfc2710" text="IETF RFC 2710">}}
 - {{<exlink url="http://tools.ietf.org/html/rfc3376" text="IETF RFC 3376">}}
 - {{<exlink url="http://tools.ietf.org/html/rfc3810" text="IETF RFC 3810">}}
 - {{<exlink url="https://tools.ietf.org/html/rfc4541" text="IETF RFC 4541">}}

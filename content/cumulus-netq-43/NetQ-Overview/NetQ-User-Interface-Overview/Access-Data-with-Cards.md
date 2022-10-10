@@ -187,9 +187,11 @@ To change the card size:
 3. Click the picker. The card changes to the selected size, and might move its location on the workbench.
 ### Table Settings
 
-You can manipulate the tabular data displayed in a full-screen card by filtering and sorting the columns. To reposition the columns, drag and drop them using your mouse. You can also export the data presented in the table.
+You can manipulate the tabular data displayed in a full-screen card by filtering and sorting the columns. Hover over the column header and select it to sort the column. The data is sorted in ascending or descending order: A-Z, Z-A, 1-n, or n-1. The number of rows that can be sorted is limited to 10,000.
 
-The following icons are common in the full-screen card view.
+To reposition the columns, drag and drop them using your mouse. You can also export the data presented in the table by selecting <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> .
+
+The following icons are common in the full-screen card view:
 
 | Icon | Action | Description |
 | ---- | ---- | ---- |

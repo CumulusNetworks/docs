@@ -512,11 +512,26 @@ ECN prevents packet drops in the network due to congestion by signaling hosts to
 
 You can configure Random Early Detection (RED) to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 
-To configure RED, change the value of `default_ecn_red_conf.red_enable` to `true`.
+To configure RED:
+
+{{< tabs "TabID517 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos congestion-control default_ecn_red traffic-class <queue> red enabled
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `Explicit Congestion Notification` section of the `/etc/cumulus/datapath/qos/qos_features.conf`, change the value of `default_ecn_red_conf.red_enable` to `true`.
 
  `default_ecn_red_conf.red_enable = true`
 
 {{<cl/qos-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Egress Queues
 
@@ -543,17 +558,49 @@ You can remap queues by changing the `.cos_` to the corresponding queue value. F
 
 Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection, which allows the switch to assign bandwidth to egress queues and then schedule the transmission of traffic from each queue. 802.1Qaz supports Priority Queuing.
 
-You configure the egress scheduling policy in the following section of the `qos_features.conf` file:
+{{< tabs "TabID546 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set qos egress-scheduler <profile-name> traffic-class <traffic class> mode strict|dwrr bw-percent <value>` command.
+- You must provide a profile name. In the example below, the profile name is `cl-eg-sched-prof`.
+- The `traffic-class` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `traffic-class 0` defines the bandwidth allocation for egress queue 0.
+- For each traffic class in the profile, you can either define the mode as `dwrr` or `strict`. In `dwrr` mode, you must define a bandwidth percent value between 1 and 100. In `strict` mode, there is no bandwidth reservation. The queue in strict mode always processes ahead of other queues.
+- The combined total of values you assign to must be less than or equal to 100.
+
+{{% notice note %}}
+Strict mode does not define a maximum bandwidth allocation. This can lead to starvation of other queues.
+{{% /notice %}}
 
 ```
-default_egress_sched.egr_queue_0.bw_percent = 12
-default_egress_sched.egr_queue_1.bw_percent = 13
-default_egress_sched.egr_queue_2.bw_percent = 12
-default_egress_sched.egr_queue_3.bw_percent = 13
-default_egress_sched.egr_queue_4.bw_percent = 12
-default_egress_sched.egr_queue_5.bw_percent = 13
-default_egress_sched.egr_queue_6.bw_percent = 12
-default_egress_sched.egr_queue_7.bw_percent = 13
+cumulus@switch:~$ nv set qos egress-scheduler cl-eg-sched-prof traffic-class 2,6 mode dwrr 
+cumulus@switch:~$ nv set qos egress-scheduler cl-eg-sched-prof traffic-class 2,6 bw-percent 30 
+cumulus@switch:~$ nv set qos egress-scheduler cl-eg-sched-prof traffic-class 3,4 mode dwrr
+cumulus@switch:~$ nv set qos egress-scheduler cl-eg-sched-prof traffic-class 3,4 bw-percent 20 
+cumulus@switch:~$ nv set qos egress-scheduler cl-eg-sched-prof traffic-class 0,1,5,7 mode strict
+cumulus@switch:~$ nv config apply
+```
+
+The above example commands apply the settings to all ports. To apply the settings to an interface (or group of interfaces), assign the egress-scheduler profile to the interface:
+
+```
+cumulus@switch:~$ nv set interface swp1 qos egress-scheduler profile cl-eg-sched-prof 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Configure the egress scheduling policy in the following section of the `qos_features.conf` file:
+
+```
+default_egress_sched.egr_queue_0.bw_percent = 0
+default_egress_sched.egr_queue_1.bw_percent = 0
+default_egress_sched.egr_queue_2.bw_percent = 30
+default_egress_sched.egr_queue_3.bw_percent = 20
+default_egress_sched.egr_queue_4.bw_percent = 20
+default_egress_sched.egr_queue_5.bw_percent = 0
+default_egress_sched.egr_queue_6.bw_percent = 30
+default_egress_sched.egr_queue_7.bw_percent = 0
 ```
 
 The `egr_queue_` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `default_egress_sched.egr_queue_0` defines the bandwidth allocation for egress queue 0.
@@ -586,6 +633,9 @@ Configured schedules apply on a per-interface basis. Using the `default_egress_s
 | `default_egress_sched.egr_queue_6.bw_percent` | `default_egress_sched.egr_queue_6.bw_percent = 12` | Define the bandwidth percentage for queue 6.|
 | `default_egress_sched.egr_queue_7.bw_percent` | `default_egress_sched.egr_queue_7.bw_percent = 13` | Define the bandwidth percentage for queue 7.|
 </details>
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Policing and Shaping
 

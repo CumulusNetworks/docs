@@ -82,9 +82,9 @@ The `dmesg` command applies until the next reboot.
 
 For more details about the `dmesg` command, run `man dmesg`.
 
-## Show General System Information
+## Show System Information
 
-Cumulus Linux provides commands to obtain general information about the switch and the version of Cumulus Linux you are running. Use these commands when performing system diagnostics, troubleshooting performance, or submitting a support request.
+Cumulus Linux provides commands to obtain system information and to show the version of Cumulus Linux you are running. Use these commands when performing system diagnostics, troubleshooting performance, or submitting a support request.
 
 To show information about the version of Cumulus Linux running on the switch, run the `nv show system` command:
 

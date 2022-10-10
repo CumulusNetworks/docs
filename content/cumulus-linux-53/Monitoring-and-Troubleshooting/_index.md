@@ -84,9 +84,9 @@ For more details about the `dmesg` command, run `man dmesg`.
 
 ## Show General System Information
 
-Two commands are helpful for getting general information about the switch and the version of Cumulus Linux you are running. These are helpful with system diagnostics and if you need to submit a support request.
+Cumulus Linux provides commands to obtain general information about the switch and the version of Cumulus Linux you are running. Use these commands when performing system diagnostics, troubleshooting performance, or submitting a support request.
 
-For information about the version of Cumulus Linux running on the switch, run the `nv show system` command:
+To show information about the version of Cumulus Linux running on the switch, run the `nv show system` command:
 
 ```
 cumulus@switch:~$ nv show system
@@ -98,7 +98,28 @@ uptime    6 days, 22:03:49                       system uptime
 timezone  Etc/UTC                                system time zone
 ```
 
-For general information about the switch, run the `nv show platform hardware` command:
+To show system memory information, run the `nv show system memory` command:
+
+```
+cumulus@switch:~$ nv show system memory
+Type      Buffers     Cache        Free         Total         Used         Utilization
+--------  ----------  -----------  -----------  ------------  -----------  -----------
+Physical  81661952 B  571834368 B  373276672 B  1813528576 B  786755584 B  79.4%
+Swap                               0 B          0 B           0 B          0.0%
+```
+
+To show system CPU information, run the `nv show system cpu` command:
+
+```
+cumulus@switch:~$ nv show system cpu
+             operational                    applied  pending  description
+-----------  -----------------------------  -------  -------  --------------------------------
+core-count   1                                                Core count
+model        QEMU Virtual CPU version 2.5+                    Model name
+utilization  11.8%                                            Utilization over 2 frames of top
+```
+
+To show general information about the switch, run the `nv show platform hardware` command:
 
 ```
 cumulus@switch:~$ nv show platform hardware

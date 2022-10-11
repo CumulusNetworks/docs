@@ -14,7 +14,7 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-4.4.4</td>
-<td>4.4.5, 5.1.0-5.3.0</td>
+<td>4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3129819</td>
@@ -32,7 +32,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
-<td>4.3.1, 5.2.0-5.3.0</td>
+<td>4.3.1, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3098936</td>
@@ -50,7 +50,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4-4.4.5, 5.2.0-5.3.0</td>
+<td>4.4.4-4.4.5, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3077737</td>
@@ -88,7 +88,7 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
-<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.3.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3017190</td>
@@ -109,12 +109,12 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td>3007564</td>
 <td>After you delete the last {{vxlan-remoteip}} configuration line from the {{/etc/network/interfaces}} file and run the {{ifreload -a}} command, the corresponding BUM flood entry is not removed.</td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.3.0, 5.2.0-5.3.0</td>
+<td>5.1.0-5.2.1, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.0</td>
+<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -139,7 +139,7 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td>2961008</td>
 <td>SNMP reports the same {{ifType}} of {{ethernetCsmacd(6)}} for loopback interfaces.</td>
 <td>3.7.15-4.4.2, 5.0.0-5.0.1</td>
-<td>4.4.3-4.4.5, 5.1.0-5.3.0</td>
+<td>4.4.3-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2959067</td>
@@ -150,7 +150,7 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
-<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.3.0</td>
+<td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -208,7 +208,7 @@ This example assumes no other static routes are present. Otherwise, you might ne
 <td>2896733</td>
 <td>Traffic failover in a multicast topology with redundancy has the mroute stuck in a prune state and PIM join messages continue to send. To work around this issue, run the vtysh {{clear ip mroute}} command.</td>
 <td>3.7.15-4.3.0, 5.0.0-5.0.1</td>
-<td>4.3.1-4.4.5, 5.1.0-5.3.0</td>
+<td>4.3.1-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2867058</td>
@@ -263,8 +263,8 @@ Reboot the affected switches.</td>
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-5.2.1</td>
-<td>5.3.0</td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2734107</td>
@@ -310,7 +310,7 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-5.0.1</td>
-<td>5.1.0-5.3.0</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2687332</td>
@@ -1798,7 +1798,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
-<td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.3.0</td>
+<td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2959454</td>
@@ -1894,7 +1894,7 @@ Fixed: 3.4.0-1+deb8u5</td>
 <tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.3.0</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2910862</td>
@@ -2318,7 +2318,7 @@ username cumulus nopassword
 <tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.3.0</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2668477</td>

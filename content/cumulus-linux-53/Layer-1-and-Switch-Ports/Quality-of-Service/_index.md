@@ -469,22 +469,59 @@ Unlike pause frames or PFC, ECN is an end-to-end flow control technology. Instea
 You use ECN with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section describes how to deploy PFC and ECN for RoCE environments.
 
 ECN operates by having a transit switch mark packets between two end-hosts.
-1. Transmitting host indicates it is ECN-capable by setting the ECN bits in the outgoing IP header to `01` or `10`
-2. If the buffer of a transit switch is greater than the configured `min_threshold_bytes`, the switch remarks the ECN bits to `11` indicating *Congestion Encountered* or *CE*.
+1. The transmitting host indicates it is ECN-capable by setting the ECN bits in the outgoing IP header to `01` or `10`
+2. If the buffer of a transit switch is greater than the configured minimum threshold of the buffer, the switch remarks the ECN bits to `11` indicating *Congestion Encountered* or *CE*.
 3. The receiving host marks any reply packets, like a TCP-ACK, as CE (`11`).
 4. The original transmitting host reduces its transmission rate.
-5. When the switch buffer congestion falls below the configured `min_threshold_bytes`, the switch stops remarking ECN bits, setting them back to `01` or `10`.
+5. When the switch buffer congestion falls below the configured minimum threshold of the buffer, the switch stops remarking ECN bits, setting them back to `01` or `10`.
 6. A receiving host reflects this new ECN marking in the next reply so that the transmitting host resumes sending at normal speeds.
 
-This is the default ECN configuration:
+You can configure the following ECN settings:
+- The minimum threshold of the buffer in bytes. Random ECN marking starts when buffer congestion crosses this threshold. The probability determines if ECN marking occurs. The default value is 150000.
+- The maximum threshold of the buffer in bytes. Cumulus Linux marks all ECN-capable packets when buffer congestion crosses this threshold.
+- The probability, in percent, that Cumulus Linux marks an ECN-capable packet when buffer congestion is between the minimum threshold and the maximum threshold. The default is 100 (marks all ECN-capable packets).
+
+ECN bit marking is on by default and Random Early Detection (RED) is off by default. You can change these settings.
+
+The following example commands change the default ECN settings (the `default_ecn_red_conf` profile) for egress queue (`traffic-class`) 0 to set the minimum threshold of the buffer to 40000 bytes, the maximum threshold of the buffer to 200000 bytes, and the probability to 10. The commands also enable Random Early Detection (RED).
+
+{{< tabs "TabID480 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos congestion-control default_ecn_red_conf traffic-class 0 min-threshold-bytes 40000
+cumulus@switch:~$ nv set qos congestion-control default_ecn_red_conf traffic-class 0 max-threshold-bytes 200000
+cumulus@switch:~$ nv set qos congestion-control default_ecn_red_conf traffic-class 0 probability 10
+cumulus@switch:~$ nv set qos congestion-control default_ecn_red_conf traffic-class 0 red enable
+cumulus@switch:~$ nv config apply
+```
+
+The above example commands apply the settings to all ports. To apply the settings to an interface (or group of interfaces), assign the ECN profile to the interface. The following example assigns the default ECN profile to swp1 and swp2.
+
+```
+cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control default_ecn_red_conf
+cumulus@switch:~$ nv config apply
+```
+
+To disable ECN bit marking in the default profile:
+
+```
+cumulus@switch:~$ nv set qos congestion-control default_ecn_red_conf traffic-class 0 ecn disable
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Configure ECN settings in the `Explicit Congestion Notification` section of the `/etc/cumulus/datapath/qos/qos_features.conf`.
 
 ```
 default_ecn_red_conf.egress_queue_list = [0]
 default_ecn_red_conf.ecn_enable = true
-default_ecn_red_conf.red_enable = false
-default_ecn_red_conf.min_threshold_bytes = 150000
-default_ecn_red_conf.max_threshold_bytes = 1500000
-default_ecn_red_conf.probability = 100
+default_ecn_red_conf.red_enable = true
+default_ecn_red_conf.min_threshold_bytes = 40000
+default_ecn_red_conf.max_threshold_bytes = 200000
+default_ecn_red_conf.probability = 10
 ```
 
 {{<cl/qos-switchd>}}
@@ -493,18 +530,33 @@ default_ecn_red_conf.probability = 100
 In Cumulus Linux 5.0 and later, default ECN configuration parameters start with `default_ecn_red_conf` instead of `default_ecn_conf`.
 {{% /notice %}}
 
-<details>
-<summary>All ECN configuration options</summary>
+ Using `default_ecn_red_conf` applies the settings to all ports. To customize the ECN settings for other interfaces, configure a port group; for example:
 
-|Configuration   |Example  |Explanation  |
-|-------------   |-------  |-----------  |
-|`default_ecn_red_conf.egress_queue_list`  |`default_ecn_red_conf.egress_queue_list` = [0] | The list of ECN enabled queues. By default a single queue exists. |
-|`default_ecn_red_conf.ecn_enable` |`default_ecn_red_conf.ecn_enable` = true  |Enable (`true`) or disable (`false`) ECN bit mmarking. |
-|`default_ecn_red_conf.min_threshold_bytes`|`default_ecn_red_conf.min_threshold_bytes` = 150000 |The minimum threshold of the buffer in bytes. Random ECN marking starts when buffer congestion crosses this threshold. The `default_ecn_red_conf.probability` value determines if ECN marking occurs. |
-|`default_ecn_red_conf.max_threshold_bytes`|`default_ecn_red_conf.max_threshold_bytes` = 1500000|The maximum threshold of the buffer in bytes. Cumulus Linux marks all ECN-capable packets when buffer congestion crosses this threshold.  |
-|`default_ecn_red_conf.probability` |`default_ecn_red_conf.probability` = 100  | The probability, in percent, that Cumulus Linux marks an ECN-capable packet when buffer congestion is between the `default_ecn_red_conf.min_threshold_bytes` and `default_ecn_red_conf.max_threshold_bytes`. The default is 100 (marks all ECN-capable packets).|
-|`default_ecn_red_conf.red_enable`  |`default_ecn_red_conf.red_enable` = false  | Enable or disable Random Early Detection. The default value is false. |
-</details>
+```
+ecn_red.port_group_list = [ecn_red_port_group] 
+ecn_red.ecn_red_port_group.egress_queue_list = [0] 
+ecn_red.ecn_red_port_group.port_set = swp1,swp2 
+ecn_red.ecn_red_port_group.ecn_enable = true 
+ecn_red.ecn_red_port_group.red_enable = true 
+ecn_red.ecn_red_port_group.min_threshold_bytes = 40000 
+ecn_red.ecn_red_port_group.max_threshold_bytes = 200000 
+ecn_red.ecn_red_port_group.probability = 1 
+```
+
+{{<cl/qos-switchd>}}
+
+To disable ECN marking, set `ecn_red.ecn_red_port_group.ecn_enable` to false:
+
+```
+...
+ecn_red.ecn_red_port_group.red_enable = false 
+...
+```
+
+{{<cl/qos-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Random Early Detection (RED)
 
@@ -512,11 +564,30 @@ ECN prevents packet drops in the network due to congestion by signaling hosts to
 
 You can configure Random Early Detection (RED) to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 
-To configure RED, change the value of `default_ecn_red_conf.red_enable` to `true`.
+To configure RED:
 
- `default_ecn_red_conf.red_enable = true`
+{{< tabs "TabID517 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos congestion-control default_ecn_red traffic-class 0 red enabled
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `Explicit Congestion Notification` section of the `/etc/cumulus/datapath/qos/qos_features.conf`, change the value of `default_ecn_red_conf.red_enable` to `true`.
+
+```
+...
+default_ecn_red_conf.red_enable = true
+...
+```
 
 {{<cl/qos-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Egress Queues
 
@@ -543,17 +614,49 @@ You can remap queues by changing the `.cos_` to the corresponding queue value. F
 
 Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection, which allows the switch to assign bandwidth to egress queues and then schedule the transmission of traffic from each queue. 802.1Qaz supports Priority Queuing.
 
-You configure the egress scheduling policy in the following section of the `qos_features.conf` file:
+{{< tabs "TabID546 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set qos egress-scheduler <profile-name> traffic-class <traffic class> mode strict|dwrr bw-percent <value>` command.
+- You must provide a profile name. In the example below, the profile name is `cl-eg-sched-prof`.
+- The `traffic-class` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `traffic-class 0` defines the bandwidth allocation for egress queue 0.
+- For each traffic class in the profile, you can either define the mode as `dwrr` or `strict`. In `dwrr` mode, you must define a bandwidth percent value between 1 and 100. In `strict` mode, there is no bandwidth reservation. The queue in strict mode always processes ahead of other queues.
+- The combined total of values you assign to must be less than or equal to 100.
+
+{{% notice note %}}
+Strict mode does not define a maximum bandwidth allocation. This can lead to starvation of other queues.
+{{% /notice %}}
 
 ```
-default_egress_sched.egr_queue_0.bw_percent = 12
-default_egress_sched.egr_queue_1.bw_percent = 13
-default_egress_sched.egr_queue_2.bw_percent = 12
-default_egress_sched.egr_queue_3.bw_percent = 13
-default_egress_sched.egr_queue_4.bw_percent = 12
-default_egress_sched.egr_queue_5.bw_percent = 13
-default_egress_sched.egr_queue_6.bw_percent = 12
-default_egress_sched.egr_queue_7.bw_percent = 13
+cumulus@switch:~$ nv set qos egress-scheduler cl-eg-sched-prof traffic-class 2,6 mode dwrr 
+cumulus@switch:~$ nv set qos egress-scheduler cl-eg-sched-prof traffic-class 2,6 bw-percent 30 
+cumulus@switch:~$ nv set qos egress-scheduler cl-eg-sched-prof traffic-class 3,4 mode dwrr
+cumulus@switch:~$ nv set qos egress-scheduler cl-eg-sched-prof traffic-class 3,4 bw-percent 20 
+cumulus@switch:~$ nv set qos egress-scheduler cl-eg-sched-prof traffic-class 0,1,5,7 mode strict
+cumulus@switch:~$ nv config apply
+```
+
+The above example commands apply the settings to all ports. To apply the settings to an interface (or group of interfaces), assign the egress-scheduler profile to the interface:
+
+```
+cumulus@switch:~$ nv set interface swp1 qos egress-scheduler profile cl-eg-sched-prof 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Configure the egress scheduling policy in the following section of the `qos_features.conf` file:
+
+```
+default_egress_sched.egr_queue_0.bw_percent = 0
+default_egress_sched.egr_queue_1.bw_percent = 0
+default_egress_sched.egr_queue_2.bw_percent = 30
+default_egress_sched.egr_queue_3.bw_percent = 20
+default_egress_sched.egr_queue_4.bw_percent = 20
+default_egress_sched.egr_queue_5.bw_percent = 0
+default_egress_sched.egr_queue_6.bw_percent = 30
+default_egress_sched.egr_queue_7.bw_percent = 0
 ```
 
 The `egr_queue_` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `default_egress_sched.egr_queue_0` defines the bandwidth allocation for egress queue 0.
@@ -586,6 +689,9 @@ Configured schedules apply on a per-interface basis. Using the `default_egress_s
 | `default_egress_sched.egr_queue_6.bw_percent` | `default_egress_sched.egr_queue_6.bw_percent = 12` | Define the bandwidth percentage for queue 6.|
 | `default_egress_sched.egr_queue_7.bw_percent` | `default_egress_sched.egr_queue_7.bw_percent = 13` | Define the bandwidth percentage for queue 7.|
 </details>
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Policing and Shaping
 

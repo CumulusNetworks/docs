@@ -654,6 +654,35 @@ address-family ipv4 unicast
 {{< /tab >}}
 {{< /tabs >}}
 
+## Update Source
+
+If you want to use a specific IP address when exchanging BGP updates with neighbor, run the following commands:
+
+{{< tabs "661 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 update-source 10.10.10.105
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# neighbor swp51 update-source 10.10.10.105
+switch(config-router-af)# end
+switch# write memory
+switch# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## ECMP
 
 BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has the information necessary to program the routing table and forward traffic for that prefix through all these peers. BGP typically chooses one best path for each prefix and installs that route in the forwarding table.
@@ -1460,6 +1489,35 @@ cumulus@spine01:~$ sudo vtysh
 spine01# configure terminal
 spine01(config)# router bgp 65101
 spine01(config-router)# distance bgp 150 110
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## BGP Neighbor Shutdown
+
+You can shut down all active BGP sessions with a neighbor and remove all associated routing information without removing its associated configuration. When shut down, the neighbor goes into an administratively idle state.
+
+{{< tabs "1504 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 shutdown on
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# neighbor swp51 shutdown
 spine01(config-router)# end
 spine01# write memory
 spine01# exit

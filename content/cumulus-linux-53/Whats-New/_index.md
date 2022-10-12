@@ -22,7 +22,7 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="Configure-SNMP" text="SNMP Server">}} and {{<link url="Configure-SNMP-Traps" text="SNMP trap">}} commands
-  - QoS commands
+  - {{<link url="Quality-of-Service" text="QoS commands">}}
   - New {{<link url="Monitoring-and-Troubleshooting/#show-general-system-information" text="nv show system commands">}}: `nv show system memory` and `nv show system cpu`
   <!-- - Updated `nv show platform hardware` command output to include memory and CPU utilization information-->
   - New BGP commands: {{<link url="Optional-BGP-Configuration/#bgp-dynamic-neighbors" text="BGP dynamic neighbor">}}, 

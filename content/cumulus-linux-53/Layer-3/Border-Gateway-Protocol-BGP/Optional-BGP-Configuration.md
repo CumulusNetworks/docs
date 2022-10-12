@@ -656,28 +656,28 @@ address-family ipv4 unicast
 
 ## Update Source
 
-If you want to use a specific IP address when exchanging BGP updates with neighbor, run the following commands:
+You can configure BGP to use a specific IP address when exchanging BGP updates with a neighbor. For example, in a numbered BGP configuration, you can set the source IP address to be the loopback address of the switch.
 
 {{< tabs "661 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 update-source 10.10.10.105
-cumulus@switch:~$ nv config apply
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 update-source 10.10.10.1
+cumulus@leaf01:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@leaf01:~$ sudo vtysh
 ...
-switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# neighbor swp51 update-source 10.10.10.105
-switch(config-router-af)# end
-switch# write memory
-switch# exit
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 update-source 10.10.10.1
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
 ```
 
 {{< /tab >}}
@@ -1509,6 +1509,8 @@ cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 shutdown on
 cumulus@leaf01:~$ nv config apply
 ```
 
+To bring BGP sessions with the neighbor back up, run the `nv set vrf default router bgp neighbor swp51 shutdown off` command.
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 
@@ -1522,6 +1524,8 @@ spine01(config-router)# end
 spine01# write memory
 spine01# exit
 ```
+
+To bring BGP sessions with the neighbor back up, run the `no neighbor swp51 shutdown` command.
 
 {{< /tab >}}
 {{< /tabs >}}

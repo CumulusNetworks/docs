@@ -262,12 +262,6 @@ cumulus@switch:~$ nv config apply
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
-<td>3074929</td>
-<td>On the on NVIDIA SN4700  switch, the {{sensors}} command is intermittently unable to read certain sensor attributes.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3074390</td>
 <td>You can not apply NVUE configurations when TACACS is enabled for user authentication. To work around this issue, add the {{nvue}} account to the {{exclude_users}} line in {{/etc/tacplus_nss.conf}}:
 

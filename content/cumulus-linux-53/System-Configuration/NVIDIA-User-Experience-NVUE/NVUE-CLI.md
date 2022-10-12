@@ -327,7 +327,7 @@ cumulus@switch:~$ sudo systemctl start nvue-startup.service
 
 When you apply a configuration with `nv config apply`, NVUE also writes to underlying Linux files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE. If you need to configure certain network settings manually or use automation such as Ansible to configure the switch, see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}} below.
 
-## Search for a Specific Configuration
+<!--## OUT of 5.3-Maybe in 5.4? Search for a Specific Configuration
 
 To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
 
@@ -338,7 +338,7 @@ cumulus@switch:~$ nv config find ptm
       ptm:
         enable: off
 ```
-
+-->
 ## Configure NVUE to Ignore Linux Files
 
 You can configure NVUE to ignore certain underlying Linux files when applying configuration changes. For example, if you push certain configuration to the switch using Ansible and Jinja2 file templates or you want to use custom configuration for a particular service such as PTP, you can ensure that NVUE never writes to those configuration files.

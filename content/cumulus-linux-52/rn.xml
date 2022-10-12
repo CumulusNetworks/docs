@@ -314,12 +314,6 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2959550</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2, 5.0.0-5.2.1</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.2.1</td>
@@ -360,12 +354,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
-<td>2886476</td>
-<td>If you enable or disable the advertise primary IP address setting when originating EVPN default type-5 routes, the default route or prefix originated from one of the MLAG peers sends a null layer 3 VNI, which prevents the remote VTEP from installing the default route.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2859015</td>
 <td>In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
 
@@ -403,12 +391,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2748923</td>
 <td>If you include a dash (-) when configuring an interface name with NVUE, you see an error. NVUE does not support using a dash in interface names.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2743186</td>
-<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -769,12 +751,6 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <td>3.7.16</td>
 </tr>
 <tr>
-<td>2959550</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2, 5.0.0-5.2.1</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2951110</td>
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.2.1</td>
@@ -815,12 +791,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
-<td>2886476</td>
-<td>If you enable or disable the advertise primary IP address setting when originating EVPN default type-5 routes, the default route or prefix originated from one of the MLAG peers sends a null layer 3 VNI, which prevents the remote VTEP from installing the default route.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2859015</td>
 <td>In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
 
@@ -858,12 +828,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2748923</td>
 <td>If you include a dash (-) when configuring an interface name with NVUE, you see an error. NVUE does not support using a dash in interface names.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
-<td>2743186</td>
-<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
 <td></td>
 </tr>
 <tr>
@@ -1179,6 +1143,11 @@ This issue does not affect the operation of the switch.</td>
 <td></td>
 </tr>
 <tr>
+<td>2886476</td>
+<td>If you enable or disable the advertise primary IP address setting when originating EVPN default type-5 routes, the default route or prefix originated from one of the MLAG peers sends a null layer 3 VNI, which prevents the remote VTEP from installing the default route.</td>
+<td>5.0.0-5.1.0</td>
+</tr>
+<tr>
 <td>2867248</td>
 <td>The {{validate-ports -d}} command does not return the correct speeds for ports. Use the speeds specified in the {{/etc/cumulus/ports.conf}} file.</td>
 <td>5.0.0-5.1.0</td>
@@ -1192,6 +1161,11 @@ This issue does not affect the operation of the switch.</td>
 <td>2812075</td>
 <td>When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together.</td>
 <td>5.0.0-5.1.0</td>
+</tr>
+<tr>
+<td>2743186</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>3.7.15-5.1.0</td>
 </tr>
 <tr>
 <td>2734103</td>

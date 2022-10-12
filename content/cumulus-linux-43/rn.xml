@@ -148,7 +148,7 @@ Fixed: 1.9.2-1+deb10u1</td>
 <tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
-<td>4.2.1-4.4.2, 5.0.0-5.2.1</td>
+<td>4.2.1-4.4.2</td>
 <td>4.4.3-4.4.5</td>
 </tr>
 <tr>
@@ -272,7 +272,7 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>2794766</td>
 <td>The Mellanox 3700C switch reports a slow memory leak in sx_sdk. Memory increases by about 240B/hour and does not free up.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2792616</td>
@@ -346,6 +346,12 @@ Vulnerable: 1.0.28-6
 Fixed: 1.0.28-6+deb10u1</td>
 <td>4.0.0-4.4.1</td>
 <td>4.4.2-4.4.5</td>
+</tr>
+<tr>
+<td>2743186</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2739690</td>

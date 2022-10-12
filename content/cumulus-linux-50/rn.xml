@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3228899</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
+<td>4.4.3-4.4.5, 5.1.0-5.2.1</td>
+</tr>
+<tr>
 <td>3209895</td>
 <td>When performing "tcpdump -i swpX" for an L3, IPv6 enabled port the switch will generate 4 IPv6 Router Advertisements when tcpdump is started, and when it finishes, for a total of 8 IPv6 RA packets transmitted.</td>
 <td>4.4.4-4.4.5, 5.0.1-5.2.1</td>
@@ -311,12 +317,6 @@ Failure during apply. Ignore? [y/N]
 <td>4.4.4-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
-<td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.2.1</td>
-<td>4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3021838</td>
 <td>PBR rules that you apply to interfaces in the default VRF install in the kernel with the action {{lookup local}}. As a result, packets that match this rule only perform a route lookup in the local table (which contains special routes for local IP addresses and broadcast addresses) but not in the main table (which contains unicast routes).  As a result, policy routing might be applied to traffic incorrectly.</td>
 <td>4.4.2-5.0.1</td>
@@ -436,22 +436,10 @@ Unrecoverable internal error
 <td></td>
 </tr>
 <tr>
-<td>2968495</td>
-<td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
-<td>4.2.1-4.4.2, 5.0.0-5.2.1</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.2.1</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2959550</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2, 5.0.0-5.2.1</td>
-<td>4.4.3-4.4.5</td>
 </tr>
 <tr>
 <td>2957968</td>
@@ -583,8 +571,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>2886476</td>
 <td>If you enable or disable the advertise primary IP address setting when originating EVPN default type-5 routes, the default route or prefix originated from one of the MLAG peers sends a null layer 3 VNI, which prevents the remote VTEP from installing the default route.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
+<td>5.0.0-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2885287</td>
@@ -692,8 +680,8 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2736108</td>
@@ -765,6 +753,12 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3228899</td>
+<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
+<td>4.4.3-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -940,12 +934,6 @@ export HOME
 <td>4.4.4-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
-<td>3021877</td>
-<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.2.1</td>
-<td>4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3021838</td>
 <td>PBR rules that you apply to interfaces in the default VRF install in the kernel with the action {{lookup local}}. As a result, packets that match this rule only perform a route lookup in the local table (which contains special routes for local IP addresses and broadcast addresses) but not in the main table (which contains unicast routes).  As a result, policy routing might be applied to traffic incorrectly.</td>
 <td>4.4.2-5.0.1</td>
@@ -1041,22 +1029,10 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td></td>
 </tr>
 <tr>
-<td>2968495</td>
-<td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
-<td>4.2.1-4.4.2, 5.0.0-5.2.1</td>
-<td>4.4.3-4.4.5</td>
-</tr>
-<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.2.1</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2959550</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2, 5.0.0-5.2.1</td>
-<td>4.4.3-4.4.5</td>
 </tr>
 <tr>
 <td>2957968</td>
@@ -1189,8 +1165,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>2886476</td>
 <td>If you enable or disable the advertise primary IP address setting when originating EVPN default type-5 routes, the default route or prefix originated from one of the MLAG peers sends a null layer 3 VNI, which prevents the remote VTEP from installing the default route.</td>
-<td>5.0.0-5.2.1</td>
-<td></td>
+<td>5.0.0-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2885287</td>
@@ -1298,8 +1274,8 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2736108</td>
@@ -1463,6 +1439,11 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
+<td>2794766</td>
+<td>The Mellanox 3700C switch reports a slow memory leak in sx_sdk. Memory increases by about 240B/hour and does not free up.</td>
+<td>4.3.0-4.4.5</td>
+</tr>
+<tr>
 <td>2792616</td>
 <td>If a neighbor entry (ARP or NDP) is used as a next hop of a route that is synchronized into hardware, the neighbor entry is not removed from hardware after the neighbor is no longer reachable.  As a result, routed traffic matching this prefix is incorrectly hardware forwarded through the stale neighbor information.</td>
 <td>4.3.0-4.4.5</td>
@@ -1560,6 +1541,11 @@ To recover from this state, flap the bond interface (not the physical swp) by ru
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
+</tr>
+<tr>
+<td>2555981</td>
+<td>In BGP, to enable an address family on a peer, you have to enable the address family  globally.</td>
+<td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2554783</td>

@@ -495,7 +495,7 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2794766</td>
 <td>The Mellanox 3700C switch reports a slow memory leak in sx_sdk. Memory increases by about 240B/hour and does not free up.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2792750</td>
@@ -566,8 +566,8 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2739402</td>
@@ -769,7 +769,7 @@ ERROR: Command not found
 <td>2555981</td>
 <td>In BGP, to enable an address family on a peer, you have to enable the address family  globally.</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2555873</td>
@@ -2453,7 +2453,7 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2794766</td>
 <td>The Mellanox 3700C switch reports a slow memory leak in sx_sdk. Memory increases by about 240B/hour and does not free up.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2792750</td>
@@ -2524,8 +2524,8 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2739402</td>
@@ -2745,7 +2745,7 @@ ERROR: Command not found
 <td>2555981</td>
 <td>In BGP, to enable an address family on a peer, you have to enable the address family  globally.</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2555873</td>
@@ -3939,7 +3939,7 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <tr>
 <td>3021877</td>
 <td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.2.1</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>3021698</td>

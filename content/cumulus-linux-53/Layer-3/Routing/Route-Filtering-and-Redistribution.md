@@ -107,65 +107,12 @@ match ip address prefix-list prefixlist1
 
 Route maps are routing policies that Cumulus Linux considers before the router examines the forwarding table. Each statement in a route map has a sequence number, and includes a series of match and set statements. The route map parses from the lowest sequence number to the highest, and stops when there is a match.
 
-Cumulus Linux supports the following match and set statements.
-
-{{< expand "Match Statements" >}}
-| <div style="width:250px">Match        | Description|
-| ------------ | ---------- |
-| `as-path-list` | Matches the specified AS path list.|
-| `interface` | Matches the specified interface. |
-| `ip-prefix-len`| Matches the specified prefix length.  |
-| `origin`| Matches the specified BGP origin. You can specify `egp`, `igp`, or `incomplete`. |
-| `type`| Matches the specified route type, such as IPv4 or IPv6.|
-| `community-list`| Matchest the specified community list. |
-| `ip-nexthop` | Matches the specified next hop. |
-| `ip-prefix-list`| Matches the specified prefix list.  |
-| `peer` | Matches the specified BGP neighbor. |
-| `evpn-default-route` | Matches the EVPN default route. |
-| `ip-nexthop-len` | Matches the specified next hop prefix length. |
-| `large-community-list` | Matches the specified large community list.|
-| `source-protocol` |Matches the specified source protocol, such as BGP, OSPF or static. |
-| `evpn-route-type` | Matches the specified EVPN route type. You can specify `macip`, `imet`, or `prefix`. |
-| `ip-nexthop-list` | Matches the specified next hop list.|
-| `local-preference` | Matches the specified local preference. |
-| `source-vrf` | Matches the specified source VRF. |
-| `evpn-vni`| Matches the specified EVPN VNI. |
-| `ip-nexthop-type`| Matches the specified next hop type.|
-| `metric`  | Matches the specified BGP metric. |
-| `tag` | Matches the specified tag value associated with the route. You can specify a vlaue between 1 and 4294967295.
-{{< /expand >}}
-
-{{< expand "Set Statements" >}}
-| <div style="width:250px">Set          | Description|
-| ------------ | ---------- |
-| `aggregator-as` | Sets the aggregator AS. |
-| `ext-community-rt` | Sets the BGP extended community RT.|
-| `label-index` | Sets the BGP label index.|
-| `originator-id` | Sets the originator ID.|
-| `as-path-exclude` | Sets BGP AS path exclude. |
-| `ext-community-soo` | Sets the BGP extended community Sight of Origin (SOO).|
-| `large-community` |Sets the BGP large community. |
-| `source-ip` | Sets the source IP.|
-| `as-path-prepend` | Sets the BGP AS path prepend attribute.|
-| `forwarding-address` | Sets the route forwarding address.|
-| `large-community-delete-list` | Sets the BGP large community delete list.|
-| `tag` | Sets a tag on the matched route. You can specify a value between 1 and 4294967295. |
-| `atomic-aggregate` | Sets the Atomic Aggregate attribute to inform BGP peers that the local router is using a less specific (aggregated) route to a destination. |
-| `ip-nexthop` | Sets the BGP next hop. |
-| `local-preference` | Sets the BGP local preference to `local_pref`. |
-| `weight`  | Sets the route’s weight.|
-| `community` | Sets the BGP community attribute.|
-| `ipv6-nexthop-global`  | Sets the IPv6 nexthop global attribute.|
-| `metric` | Sets the metric type. You can specify `type-1` or `type-2`.|
-| `community-delete-list`  | Sets the community delete list. |
-| `ipv6-nexthop-local`  |Sets the IPv6 nexthop local attribute. |
-| `metric-type` | Sets the BGP attribute MED to a specific value. You can specify `metric-minus` to subtract the specified value from the MED,  `metric-plus` to add the specified value to the MED, `rtt` to set the MED to the round trip time, `rtt-minus` to subtract the round trip time from the MED, or`rtt-plus` to add the round trip time to the MED. |
-| `ext-community-bw` | Sets the BGP extended community bw. |
-| `ipv6-nexthop-prefer-global` | For inbound routes with both a global and linklocal next hop available, use the global address.|
-| `origin` | Sets the BGP route origin.|
-{{< /expand >}}
+Cumulus Linux supports several match and set statements. For example, you can match on an interface, prefix length, next hop or BGP AS path list. You can set the BGP metric, local-preference on routes, source IP, or the tag on the matched route. For a list of supported match and set statements, see {{<link url="#match-and-set-statements" text="Match and Set Statements" >}} below.
 
 ### Configure a Route Map
+
+1. Specify one or more conditions that must match and, optionally, one or more set actions to set or modify attributes of the route. If a route map does not specify any matching conditions, it always matches.
+2. Specify the matching policy: permit (if the entry matches, carry out the set actions) or deny (if the entry matches, deny the route).
 
 The following example commands configure a route map that sets the metric to 50 for interface swp51:
 
@@ -207,14 +154,15 @@ route-map routemap1 permit 10
 {{< /tab >}}
 {{< /tabs >}}
 
-The following example commands configure a route map to match the prefixes defined in `prefixlist1` and set the nexth hop to 10.10.10.5.
+The following example commands configure a route map to match the prefixes defined in `prefixlist1` and set the nexth hop to 10.10.10.5:
 
-{{< tabs "TabID208 ">}}
+{{< tabs "TabID212 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 match ip-prefix-list prefixlist1
 cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 set ip-nexthop 10.10.10.5
+cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 action permit
 cumulus@switch:~$ nv config apply
 ```
 
@@ -246,9 +194,155 @@ route-map routemap1 permit 10
 {{< /tab >}}
 {{< /tabs >}}
 
+The following example commands configure a route map to set the local-preference on routes to 400:
+
+{{< tabs "TabID252 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set router policy route-map routemap2 rule 10 set local-preference 400
+cumulus@switch:~$ nv set router policy route-map routemap2 rule 10 action permit
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# route-map routemap2 permit 10
+switch(config-route-map)# set local-preference 400
+switch(config-route-map)# end
+switch# write memory
+switch# exit
+cumulus@switch:~$
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
+route-map routemap2 permit 10
+ set local-preference 400
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Match and Set Statements
+
+Cumulus Linux supports the following match and set statements.
+
+{{%notice note%}}
+You can use the following list of supported match and set statements with NVUE commands.
+{{%/notice%}}
+
+{{< tabs "TabID122 ">}}
+{{< tab "Match Statements ">}}
+
+| <div style="width:250px">Match        | Description|
+| ------------ | ---------- |
+| `as-path-list` | Matches the specified AS path list.|
+| `interface` | Matches the specified interface. |
+| `ip-prefix-len`| Matches the specified prefix length.  |
+| `origin`| Matches the specified BGP origin. You can specify `egp`, `igp`, or `incomplete`. |
+| `type`| Matches the specified route type, such as IPv4 or IPv6.|
+| `community-list`| Matchest the specified community list. |
+| `ip-nexthop` | Matches the specified next hop. |
+| `ip-prefix-list`| Matches the specified prefix list.  |
+| `peer` | Matches the specified BGP neighbor. |
+| `evpn-default-route` | Matches the EVPN default route. |
+| `ip-nexthop-len` | Matches the specified next hop prefix length. |
+| `large-community-list` | Matches the specified large community list.|
+| `source-protocol` |Matches the specified source protocol, such as BGP, OSPF or static. |
+| `evpn-route-type` | Matches the specified EVPN route type. You can specify `macip`, `imet`, or `prefix`. |
+| `ip-nexthop-list` | Matches the specified next hop list.|
+| `local-preference` | Matches the specified local preference. |
+| `source-vrf` | Matches the specified source VRF. |
+| `evpn-vni`| Matches the specified EVPN VNI. |
+| `ip-nexthop-type`| Matches the specified next hop type.|
+| `metric`  | Matches the specified BGP metric. |
+| `tag` | Matches the specified tag value associated with the route. You can specify a vlaue between 1 and 4294967295.
+
+{{< /tab >}}
+{{< tab "Set Statements ">}}
+
+| <div style="width:250px">Set          | Description|
+| ------------ | ---------- |
+| `aggregator-as` | Sets the aggregator AS. |
+| `ext-community-rt` | Sets the BGP extended community RT.|
+| `label-index` | Sets the BGP label index.|
+| `originator-id` | Sets the originator ID.|
+| `as-path-exclude` | Sets BGP AS path exclude. |
+| `ext-community-soo` | Sets the BGP extended community Sight of Origin (SOO).|
+| `large-community` |Sets the BGP large community. |
+| `source-ip` | Sets the source IP.|
+| `as-path-prepend` | Sets the BGP AS path prepend attribute.|
+| `forwarding-address` | Sets the route forwarding address.|
+| `large-community-delete-list` | Sets the BGP large community delete list.|
+| `tag` | Sets a tag on the matched route. You can specify a value between 1 and 4294967295. |
+| `atomic-aggregate` | Sets the Atomic Aggregate attribute to inform BGP peers that the local router is using a less specific (aggregated) route to a destination. |
+| `ip-nexthop` | Sets the BGP next hop. |
+| `local-preference` | Sets the BGP local preference to `local_pref`. |
+| `weight`  | Sets the route’s weight.|
+| `community` | Sets the BGP community attribute.|
+| `ipv6-nexthop-global`  | Sets the IPv6 nexthop global attribute.|
+| `metric` | Sets the metric type. You can specify `type-1` or `type-2`.|
+| `community-delete-list`  | Sets the community delete list. |
+| `ipv6-nexthop-local`  |Sets the IPv6 nexthop local attribute. |
+| `metric-type` | Sets the BGP attribute MED to a specific value. You can specify `metric-minus` to subtract the specified value from the MED,  `metric-plus` to add the specified value to the MED, `rtt` to set the MED to the round trip time, `rtt-minus` to subtract the round trip time from the MED, or`rtt-plus` to add the round trip time to the MED. |
+| `ext-community-bw` | Sets the BGP extended community bw. |
+| `ipv6-nexthop-prefer-global` | For inbound routes with both a global and linklocal next hop available, use the global address.|
+| `origin` | Sets the BGP route origin.|
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Apply a Route Map
 
 To apply the route map, you specify the routing protocol and the route map name.
+
+The following example commands apply the route map called routemap2 to BGP neighbor swp51:
+
+{{< tabs "TabID293 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound route-map routemap2
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@switch:~$ sudo vtysh
+switch# configure terminal
+switch(config)# router bgp 65101
+switch(config-router)# address-family ipv4 unicast 
+switch(config-router-af)# neighbor swp51 route-map routemap2 in
+switch(config-router-af)# end
+switch# wr mem
+Note: this version of vtysh never writes vtysh.conf
+Building Configuration...
+Integrated configuration saved to /etc/frr/frr.conf
+[OK]
+switch# exit
+cumulus@switch:mgmt:~$ 
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+cumulus@switch:~$ sudo cat /etc/frr/frr.conf
+...
+neighbor swp51 route-map routemap2 in
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The following example filters routes from Zebra (RIB) into the Linux kernel (FIB). The commands apply the route map called routemap1 to BGP routes in the RIB:
 
@@ -323,48 +417,13 @@ table-map routemap1
 {{< /tab >}}
 {{< /tabs >}}
 
-To apply an outbound route map to a route reflector client:
+{{%notice note%}}
+To apply an outbound route map to a route reflector client, you must run the NVUE `nv set vrf <vrf> router bgp route-reflection outbound-policy on` command or the vtysh `neighbor <neighbor> route-map SET_IBGP_ORIG out` command under the address family, before you apply the route map.
+{{%/notice%}}
 
-{{< tabs "TabID239 ">}}
-{{< tab "NVUE Commands ">}}
+### Route Map Description
 
-```
-cumulus@switch:~$ nv set vrf default router bgp route-reflection outbound-policy on
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "vtysh Commands ">}}
-
-```
-cumulus@switch:~$ sudo vtysh
-switch# configure terminal
-switch(config)# router bgp 65000
-switch(config-router)# bgp route-reflector allow-outbound-policy
-switch(config-router)# address-family ipv4 unicast
-switch(config-router-af)# neighbor 10.10.10.8 route-reflector-client
-switch(config-router-af)# neighbor 10.10.10.8 route-map SET_IBGP_ORIG out
-switch(config-router-af)# end
-switch# write memory
-switch# exit
-cumulus@switch:~$
-```
-
-The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
-
-```
-cumulus@switch:~$ sudo cat /etc/frr/frr.conf
-...
-router bgp 65000
- bgp route-reflector allow-outbound-policy
- address-family ipv4 unicast
-  neighbor 10.10.10.8 route-reflector-client
-  neighbor 10.10.10.8 route-map SET_IBGP_ORIG out
- exit-address-family
-```
-
-{{< /tab >}}
-{{< /tabs >}}
+To provide a description for a route map, run the NVUE `nv set router policy route-map <route-map> rule <rule> description` command.
 
 ## Route Redistribution
 

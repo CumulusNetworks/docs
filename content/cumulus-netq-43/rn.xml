@@ -7,6 +7,36 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3226405</td>
+<td>TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3216161</td>
+<td>In an OPTA clustered environment, NetQ agents might appear as rotten after upgrading to NetQ 4.3.0. To work around this issue, configure the {{spice: false}} parameter in {{/etc/netq/netq.yml}}.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3211317</td>
+<td>Upgrading Cumulus Linux with NetQ LCM fails when you upgrade a switch with the MLAG primary role.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3205778</td>
+<td>In some high scale environments, NetQ agents might appear as rotten during high load.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3157803</td>
+<td>The {{netq show}} commands to view MACs, IP addresses, neighbors, and routes might show a higher value compared to the corresponding entries in the NetQ UI. The {{netq show}} commands display additional values from the NetQ server or OPTA in addition to monitored devices in the NetQ inventory.</td>
+<td>4.2.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3053143</td>
 <td>The MLAG Session card might not show all MLAG events.</td>
 <td>4.2.0-4.3.0</td>

@@ -17,7 +17,7 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - NVIDIA SN3750SX (5G Spectrum-2) available for early access
-- NVIDIA SN2100 supports links to the Pensando (Naples) card.
+- NVIDIA SN2100 supports fast link up to the Pensando (Naples) card.
 
 ### New Features and Enhancements
 

@@ -170,9 +170,7 @@ cumulus@switch:$ net add bgp table-map routemap2
 ```
 
 {{%notice note%}}
-
 In NCLU, you can only set the community number in a route map. You cannot set other community options such as `no-export`, `no-advertise`, or `additive`.
-
 {{%/notice%}}
 
 ## Route Redistribution

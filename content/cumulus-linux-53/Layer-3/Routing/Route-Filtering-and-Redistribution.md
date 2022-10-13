@@ -273,7 +273,6 @@ You can use the following list of supported match and set statements with NVUE c
 | ------------ | ---------- |
 | `aggregator-as` | Sets the aggregator AS. |
 | `ext-community-rt` | Sets the BGP extended community RT.|
-| `label-index` | Sets the BGP label index.|
 | `originator-id` | Sets the originator ID.|
 | `as-path-exclude` | Sets BGP AS path exclude. |
 | `ext-community-soo` | Sets the BGP extended community Sight of Origin (SOO).|

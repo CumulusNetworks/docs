@@ -17,22 +17,24 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - NVIDIA SN3750SX (5G Spectrum-2) available for early access
+- NVIDIA SN2100 supports links to the Pensando (Naples) card.
 
 ### New Features and Enhancements
 
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="Configure-SNMP" text="SNMP Server">}} and {{<link url="Configure-SNMP-Traps" text="SNMP trap">}} commands
   - {{<link url="Quality-of-Service" text="QoS commands">}}
-  - New {{<link url="Monitoring-and-Troubleshooting/#show-general-system-information" text="nv show system commands">}}: `nv show system memory` and `nv show system cpu`
-  <!-- - Updated `nv show platform hardware` command output to include memory and CPU utilization information-->
+  - `switchd` commands.
+  - New {{<link url="Monitoring-and-Troubleshooting/#show-general-system-information" text="nv show system commands">}}: `nv show system memory` and `nv show system cpu`, and updated `nv show platform hardware` command output to include memory and CPU utilization information
   - New BGP commands: {{<link url="Optional-BGP-Configuration/#bgp-dynamic-neighbors" text="BGP dynamic neighbor">}}, {{<link url="Optional-BGP-Configuration/#update-source" text="update source">}}, {{<link url="Optional-BGP-Configuration/#bgp-neighbor-shutdown" text="BGP  neighbor shutdown">}}
   - New Route map commands:
   - {{<link title="What Just Happened (WJH)" text="WJH commands">}}
   - {{<link url="Prescriptive-Topology-Manager-PTM/#check-link-state" text="PTM enable command">}} to check link state
-  - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
-  - Obfuscated passwords to protect passwords from casual viewing
   - Performance improvements
-  <!--- Change commands from `enable on and enable off` to `set enable` and `unset enable` (`enable on and enable off` commands continue to be supported for backward compatability)-->
+  - Support for hyphens in hostnames, VRF, route map, next hop groups, prefix list, AS path list, community list, and ACL names
+  - Commands changed from `enable on` and `enable off` to `set enable` and `unset enable` (the `enable on` and `enable off` commands continue to be supported for backward compatability)
+  <!--- Obfuscated passwords to protect passwords from casual viewing-->
+  <!-- - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model-->
   - New command list:
    {{< tabs "TabID34 ">}}
 {{< tab "show commands ">}}

@@ -22,6 +22,12 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
+<td>3195345</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
@@ -1949,6 +1955,12 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td>A firmware upgrade has been implemented to optimize the PCIe bus between the CPU and Spectrum ASIC on NVIDIA SN4700, SN4600, SN4600C, and SN4410 switches manufactured with {{0x26 1 17}} in EEPROM. Affected switches will not boot properly without this firmware upgrade. To see the EEPROM value, run the {{onie-syseeprom}} command from ONIE or run the {{decode-syseeprom}} command from Cumulus Linux.</td>
 <td>4.4.4, 5.2.0</td>
 <td>4.4.5, 5.2.1</td>
+</tr>
+<tr>
+<td>3195345</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3192808</td>

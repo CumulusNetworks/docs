@@ -184,12 +184,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3074929</td>
-<td>On the on NVIDIA SN4700  switch, the {{sensors}} command is intermittently unable to read certain sensor attributes.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>4.4.4-4.4.5, 5.1.0-5.2.1</td>
@@ -619,12 +613,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up. To work around this issue, disable, then enable the port.</td>
 <td>5.0.0-5.2.1</td>
 <td>4.4.4-4.4.5</td>
-</tr>
-<tr>
-<td>3074929</td>
-<td>On the on NVIDIA SN4700  switch, the {{sensors}} command is intermittently unable to read certain sensor attributes.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3071652</td>

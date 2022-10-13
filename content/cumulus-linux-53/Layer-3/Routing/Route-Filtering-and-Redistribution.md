@@ -111,10 +111,14 @@ Cumulus Linux supports several match and set statements. For example, you can ma
 
 ### Configure a Route Map
 
+To configure a route map:
+
 1. Specify one or more conditions that must match and, optionally, one or more set actions to set or modify attributes of the route. If a route map does not specify any matching conditions, it always matches.
 2. Specify the matching policy: permit (if the entry matches, carry out the set actions) or deny (if the entry matches, deny the route).
 
-The following example commands configure a route map that sets the metric to 50 for interface swp51:
+To apply the route map, see {{<link url="#apply-a-route-map" text="Apply a Route Map" >}} below.
+
+The following example commands configure a route map that sets the BGP metric to 50 for interface swp51:
 
 {{< tabs "TabID73 ">}}
 {{< tab "NVUE Commands ">}}
@@ -236,7 +240,7 @@ route-map routemap2 permit 10
 Cumulus Linux supports the following match and set statements.
 
 {{%notice note%}}
-You can use the following list of supported match and set statements with NVUE commands.
+You can use the following list of supported match and set statements with NVUE commands. vtysh does not support some of these match and set statements.
 {{%/notice%}}
 
 {{< tabs "TabID122 ">}}
@@ -288,10 +292,10 @@ You can use the following list of supported match and set statements with NVUE c
 | `weight`  | Sets the route’s weight.|
 | `community` | Sets the BGP community attribute.|
 | `ipv6-nexthop-global`  | Sets the IPv6 nexthop global attribute.|
-| `metric` | Sets the metric type. You can specify `type-1` or `type-2`.|
+| `metric` |  Sets the BGP attribute MED to a specific value. You can specify `metric-minus` to subtract the specified value from the MED,  `metric-plus` to add the specified value to the MED, `rtt` to set the MED to the round trip time, `rtt-minus` to subtract the round trip time from the MED, or`rtt-plus` to add the round trip time to the MED.|
 | `community-delete-list`  | Sets the community delete list. |
 | `ipv6-nexthop-local`  |Sets the IPv6 nexthop local attribute. |
-| `metric-type` | Sets the BGP attribute MED to a specific value. You can specify `metric-minus` to subtract the specified value from the MED,  `metric-plus` to add the specified value to the MED, `rtt` to set the MED to the round trip time, `rtt-minus` to subtract the round trip time from the MED, or`rtt-plus` to add the round trip time to the MED. |
+| `metric-type` | Sets the metric type. You can specify `type-1` or `type-2`. |
 | `ext-community-bw` | Sets the BGP extended community bw. |
 | `ipv6-nexthop-prefer-global` | For inbound routes with both a global and linklocal next hop available, use the global address.|
 | `origin` | Sets the BGP route origin.|
@@ -423,6 +427,14 @@ To apply an outbound route map to a route reflector client, you must run the NVU
 ### Route Map Description
 
 To provide a description for a route map, run the NVUE `nv set router policy route-map <route-map> rule <rule> description` command.
+
+```
+cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 match interface swp51
+cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 set metric 50
+cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 action permit
+cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 description set-metric-swp51
+cumulus@switch:~$ nv config apply
+```
 
 ## Route Redistribution
 

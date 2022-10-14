@@ -1334,7 +1334,7 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 
 ### BGP Session Card
 
-This card displays performance and status information for a single BGP session. Card is opened from the full-screen Network Services|All BGP Sessions card.
+This card displays performance and status information for a single BGP session. Card is opened from the full-screen Network Services/All BGP Sessions card.
 
 The small BGP Session card displays:
 
@@ -1978,7 +1978,7 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 
 ### EVPN Session Card
 
-This card displays performance and status information for a single EVPN session. Card is opened from the full-screen Network Services|All EVPN Sessions card.
+This card displays performance and status information for a single EVPN session. Card is opened from the full-screen Network Services/All EVPN Sessions card.
 
 The small EVPN Session card displays:
 
@@ -2041,7 +2041,7 @@ The medium EVPN Session card displays:
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services|EVPN Session</td>
+<td>Network Services/EVPN Session</td>
 </tr>
 <tr class="even">
 <td>Summary bar</td>
@@ -2565,7 +2565,7 @@ The full screen LLDP Service card provides tabs for all switches, all sessions, 
 
 ### LLDP Session Card
 
-This card displays performance and status information for a single LLDP session. Card is opened from the full-screen Network Services|All LLDP Sessions card.
+This card displays performance and status information for a single LLDP session. Card is opened from the full-screen Network Services/All LLDP Sessions card.
 
 The small LLDP Session card displays:
 
@@ -3197,7 +3197,7 @@ sessions, and all alarms.
 
 ### MLAG Session Card
 
-This card displays performance and status information for a single MLAG session. Card is opened from the full-screen Network Services|All MLAG Sessions card.
+This card displays performance and status information for a single MLAG session. Card is opened from the full-screen Network Services/All MLAG Sessions card.
 
 The small MLAG Session card displays:
 
@@ -3839,7 +3839,7 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 
 ### OSPF Session Card
 
-This card displays performance and status information for a single OSPF session. Card is opened from the full-screen Network Services|All OSPF Sessions card.
+This card displays performance and status information for a single OSPF session. Card is opened from the full-screen Network Services/All OSPF Sessions card.
 
 The small OSPF Session card displays:
 

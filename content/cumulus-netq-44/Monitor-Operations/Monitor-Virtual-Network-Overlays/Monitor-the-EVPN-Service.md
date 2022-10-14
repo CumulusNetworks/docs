@@ -12,7 +12,7 @@ NetQ enables operators to view the health of the EVPN service on a networkwide a
 
 With NetQ, you can monitor EVPN performance across the network:
 
-- Network Services|All EVPN Sessions
+- Network Services/All EVPN Sessions
     - Small: view number of nodes running EVPN service and number of alarms
     - Medium: view number of nodes running EVPN service, number of sessions, and number of alarms
     - Large: view number of nodes running EVPN service, number of sessions, number of VNIs, switches with the most sessions, and alarms
@@ -26,7 +26,7 @@ You can view the configuration and status of your EVPN overlay across your netwo
 
 {{<tab "NetQ UI">}}
 
-Open the small Network Services|All EVPN Sessions card. In this example, the number of devices running the EVPN service is six (6) and the number and distribution of related critical severity alarms is zero (0).
+Open the small Network Services/All EVPN Sessions card. In this example, the number of devices running the EVPN service is six (6) and the number and distribution of related critical severity alarms is zero (0).
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-small-230.png" width="200" >}}
 
@@ -83,7 +83,7 @@ It is also useful to compare the number of nodes running EVPN with the alarms pr
 
 {{<tab "NetQ UI" >}}
 
-Open the medium Network Services|All EVPN Sessions card. In this example there are no alarms, but there are three (3) VNIs.
+Open the medium Network Services/All EVPN Sessions card. In this example there are no alarms, but there are three (3) VNIs.
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-medium-230.png" width="200">}}
 
@@ -148,7 +148,7 @@ It is useful to know the number sessions between devices and VNIs that are occur
 
 {{<tab "NetQ UI" >}}
 
-To view this distribution, open the large Network Services|All EVPN Services card and view the bottom chart on the left. In this example, there are 12 layer 3 EVPN sessions running on the three VNIs.
+To view this distribution, open the large Network Services/All EVPN Services card and view the bottom chart on the left. In this example, there are 12 layer 3 EVPN sessions running on the three VNIs.
 
 {{<figure src="/images/netq/ntwk-svcs-all-evpn-large-summary-tab-vni-chart-300.png" width="500">}}
 
@@ -203,7 +203,7 @@ leaf04            30         10.0.1.2         L2               Vlan 30        ye
 
 ### View Devices with the Most EVPN Sessions
 
-You can view the load from EVPN on your switches and hosts using the large Network Services|All EVPN Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what you expect based on your network design, and compare that with data from an earlier time to look for any differences.
+You can view the load from EVPN on your switches and hosts using the large Network Services/All EVPN Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what you expect based on your network design, and compare that with data from an earlier time to look for any differences.
 
 {{<tabs "TabID211" >}}
 
@@ -211,7 +211,7 @@ You can view the load from EVPN on your switches and hosts using the large Netwo
 
 To view switches and hosts with the most EVPN sessions:
 
-1. Open the large Network Services|All EVPN Sessions card.
+1. Open the large Network Services/All EVPN Sessions card.
 
 2. Select **Top Switches with Most Sessions** from the filter above the table.
 
@@ -221,7 +221,7 @@ To view switches and hosts with the most EVPN sessions:
 
 To compare this data with the same data at a previous time:
 
-1. Open another large Network Services|All EVPN Sessions card.
+1. Open another large Network Services/All EVPN Sessions card.
 
 2. Move the new card next to the original card if needed.
 
@@ -323,7 +323,7 @@ leaf04            30010      10.0.1.2         L2               -              no
 
 ### View Devices with the Most Layer 2 EVPN Sessions
 
-You can view the number layer 2 EVPN sessions on your switches and hosts using the large Network Services|All EVPN Sessions card and the NetQ CLI. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what you expect based on your network design, and compare that with data from an earlier time to look for any differences.
+You can view the number layer 2 EVPN sessions on your switches and hosts using the large Network Services/All EVPN Sessions card and the NetQ CLI. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what you expect based on your network design, and compare that with data from an earlier time to look for any differences.
 
 {{<tabs "TabID332" >}}
 
@@ -332,7 +332,7 @@ You can view the number layer 2 EVPN sessions on your switches and hosts using t
 To view switches and hosts with the most layer 2 EVPN sessions:
 
 <!-- vale off -->
-1. Open the large Network Services|All EVPN Sessions card.
+1. Open the large Network Services/All EVPN Sessions card.
 
 2. Select **Switches with Most L2 EVPN** from the filter above the table.  
 
@@ -343,7 +343,7 @@ To view switches and hosts with the most layer 2 EVPN sessions:
 
 To compare this data with the same data at a previous time:
 
-1. Open another large Network Services|All EVPN Sessions card.
+1. Open another large Network Services/All EVPN Sessions card.
 
 2. Move the new card next to the original card if needed.
 
@@ -445,7 +445,7 @@ leaf04            30010      10.0.1.2         L2               -              no
 
 ### View Devices with the Most Layer 3 EVPN Sessions
 
-You can view the number layer 3 EVPN sessions on your switches and hosts using the large Network Services|All EVPN Sessions card and the NetQ CLI. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what you expect based on your network design, and compare that with data from an earlier time to look for any differences.
+You can view the number layer 3 EVPN sessions on your switches and hosts using the large Network Services/All EVPN Sessions card and the NetQ CLI. This data enables you to see which switches are handling the most EVPN traffic currently, validate that is what you expect based on your network design, and compare that with data from an earlier time to look for any differences.
 
 {{<tabs "TabID453" >}}
 
@@ -454,7 +454,7 @@ You can view the number layer 3 EVPN sessions on your switches and hosts using t
 To view switches and hosts with the most layer 3 EVPN sessions:
 
 <!-- vale off -->
-1. Open the large Network Services|All EVPN Sessions card.
+1. Open the large Network Services/All EVPN Sessions card.
 
 2. Select **Switches with Most L3 EVPN** from the filter above the table.  
 
@@ -465,7 +465,7 @@ To view switches and hosts with the most layer 3 EVPN sessions:
 
 To compare this data with the same data at a previous time:
 
-1. Open another large Network Services|All EVPN Sessions card.
+1. Open another large Network Services/All EVPN Sessions card.
 
 2. Move the new card next to the original card if needed.
 
@@ -567,13 +567,13 @@ leaf04            30010      10.0.1.2         L2               -              no
 
 ### View the Status of EVPN for a Given VNI
 
-You can view the status of the EVPN service on a single VNI using the full-screen Network Services|All Sessions card or the NetQ CLI.
+You can view the status of the EVPN service on a single VNI using the full-screen Network Services/All Sessions card or the NetQ CLI.
 
 {{<tabs "TabID586" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Open the full-screen Network Services|All Sessions card.
+1. Open the full-screen Network Services/All Sessions card.
 
 2. Sort the table based on the VNI column.
 
@@ -620,7 +620,7 @@ You can view the switches sorted by the number of EVPN alarms and then use the S
 
 To view switches with the most EVPN alarms:
 
-1. Open the large Network Services|All EVPN Sessions card.
+1. Open the large Network Services/All EVPN Sessions card.
 
 2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/>.
 
@@ -670,7 +670,7 @@ torc-22           evpn         info     VNI 39 state changed from down to u 1d:8
 
 ### View All EVPN Events
 
-The Network Services|All EVPN Sessions card workflow and the `netq show events type evpn` command enable you to view all EVPN events in a designated time period.
+The Network Services/All EVPN Sessions card workflow and the `netq show events type evpn` command enable you to view all EVPN events in a designated time period.
 
 {{<tabs "View all EVPN events">}}
 
@@ -678,7 +678,7 @@ The Network Services|All EVPN Sessions card workflow and the `netq show events t
 
 To view all EVPN events:
 
-1. Open the full screen Network Services|All EVPN Sessions card.
+1. Open the full screen Network Services/All EVPN Sessions card.
 
 2. Click **All Alarms** tab in the navigation panel. By default, events sort by time, with most recent events listed first.
 
@@ -779,7 +779,7 @@ leaf04            30         10.0.1.2         L2               Vlan 30        ye
 
 With NetQ, you can monitor the performance of a single EVPN session using the NetQ UI or NetQ CLI.  
 
-- Network Services|EVPN Session
+- Network Services/EVPN Session
     - Small: view associated VNI name and total number of nodes with VNIs configured
     - Medium: view associated VNI name and type, total number and distribution of nodes with VNIs configured
     - Large: view total number and distribution of nodes with VNIs configured, total alarm and informational events, and associated VRF/VLAN
@@ -789,7 +789,7 @@ With NetQ, you can monitor the performance of a single EVPN session using the Ne
 For an overview and how to configure EVPN in your data center network, refer to {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/_index.md" text="Ethernet Virtual Private Network - EVPN">}}.
 
 {{<notice note>}}
-To access the single session cards, you must open the full-screen Network Services|All EVPN Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Card).
+To access the single session cards, you must open the full-screen Network Services/All EVPN Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Card).
 {{</notice>}}
 
 ### View Session Status Summary
@@ -802,7 +802,7 @@ You can view a summary of a given EVPN session from the NetQ UI or NetQ CLI.
 
 To view the summary:
 
-1. Open the Network Services|All EVPN Sessions card.
+1. Open the Network Services/All EVPN Sessions card.
 
 2. Change to the full-screen card using the card size picker.
 
@@ -840,12 +840,12 @@ leaf01            4001       10.0.1.1         L3               Vrf RED        ye
 
 ### View VTEP Count
 
-You can view the number of VTEPs (VXLAN Tunnel Endpoints) for a given EVPN session from the medium and large Network Services|EVPN Session cards.
+You can view the number of VTEPs (VXLAN Tunnel Endpoints) for a given EVPN session from the medium and large Network Services/EVPN Session cards.
 
 To view the count for a given EVPN session, on the *medium* EVPN Session
 card:
 
-1. Open the Network Services|All EVPN Sessions card.
+1. Open the Network Services/All EVPN Sessions card.
 
 2. Change to the full-screen card using the card size picker.
 
@@ -916,7 +916,7 @@ leaf04            20         10.0.1.2         L2               Vlan 20        ye
 
 You can view all alarm and info events for a given session with the NetQ UI.
 
-To view all events, open the full-screen Network Services|EVPN Session card and click the **All Events** tab.
+To view all events, open the full-screen Network Services/EVPN Session card and click the **All Events** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-events-tab-241.png" width="700">}}
 

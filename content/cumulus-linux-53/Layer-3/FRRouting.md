@@ -135,7 +135,7 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
    ```
 
    {{%notice warning%}}
-   Restarting FRR restarts all the routing protocol daemons that are enabled and running. NVIDIA recommends that you reboot the switch instead of restarting the FRR service to minimize traffic impact when redundant switches are present with MLAG.
+   Restarting FRR restarts all the routing protocol daemons that you enable and are running. NVIDIA recommends that you reboot the switch instead of restarting the FRR service to minimize traffic impact when redundant switches are present with MLAG.
    {{%/notice%}}
 
 ## Interface IP Addresses and VRFs

@@ -135,7 +135,7 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
 {{%notice note%}}
-There are no NVUE commands for this configuration.
+NVUE does not provide commands for this configuration.
 {{%/notice%}}
 
 ### Monitor Fans, Power Supplies, Temperature and Transformers
@@ -269,7 +269,7 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
 {{%notice note%}}
-There is no NVUE command to configure free memory notifications.
+NVUE does not provide commands to configure free memory notifications.
 {{%/notice%}}
 
 ### Configure Processor Load Notifications
@@ -326,7 +326,7 @@ cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
 
 {{%notice note%}}
-There is no NVUE command to configure disk utilization notifications.
+NVUE does not provide commands to configure disk utilization notifications.
 {{%/notice%}}
 
 ### Configure Authentication Notifications

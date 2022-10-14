@@ -4,7 +4,6 @@ author: NVIDIA
 weight: 980
 toc: 4
 ---
-EVPN (Ethernet Virtual Private Network) enables network administrators in the data center to deploy a virtual layer 2 bridge overlay on top of a layer 3 IP network, creating access, or a tunnel, between two locations. This connects devices in different layer 2 domains or sites running VXLANs and their associated underlays. For an overview and how to configure EVPN in your data center network, refer to {{<kb_link latest="cl" url="Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/_index.md" text="Ethernet Virtual Private Network-EVPN">}}.
 
 NetQ enables operators to view the health of the EVPN service on a networkwide and a per session basis, giving greater insight into all aspects of the service. You accomplish this through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show evpn` command.
 

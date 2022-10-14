@@ -24,7 +24,7 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="Configure-SNMP" text="SNMP Server">}} and {{<link url="Configure-SNMP-Traps" text="SNMP trap">}} commands
   - {{<link url="Quality-of-Service" text="QoS commands">}}
-  - `switchd` commands
+  - {{<link url="Configuring-switchd" text="switchd commands">}}
   - New {{<link url="Monitoring-and-Troubleshooting/#show-system-information" text="nv show system commands">}} include `nv show system memory` and `nv show system cpu`
   - New BGP commands include {{<link url="Optional-BGP-Configuration/#bgp-dynamic-neighbors" text="BGP dynamic neighbor">}}, {{<link url="Optional-BGP-Configuration/#update-source" text="BGP update source">}}, {{<link url="Optional-BGP-Configuration/#bgp-neighbor-shutdown" text="BGP  neighbor shutdown">}}
   - New route map {{<link url="Route-Filtering-and-Redistribution/#match-and-set-statements" text="match and set statements">}} enable you to match on an EVPN default route, and set the BGP community, metric, originator ID, and forwarding address

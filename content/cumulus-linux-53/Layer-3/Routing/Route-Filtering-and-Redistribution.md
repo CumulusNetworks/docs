@@ -257,18 +257,18 @@ You can use the following list of supported match and set statements with NVUE c
 | `ip-nexthop` | Matches the specified next hop. |
 | `ip-prefix-list`| Matches the specified prefix list.  |
 | `peer` | Matches the specified BGP neighbor. |
-| `evpn-default-route` | Matches the EVPN default route. |
+| `evpn-default-route` | Matches the EVPN default route. You can specify `on` or `off`.|
 | `ip-nexthop-len` | Matches the specified next hop prefix length. |
 | `large-community-list` | Matches the specified large community list.|
 | `source-protocol` |Matches the specified source protocol, such as BGP, OSPF or static. |
 | `evpn-route-type` | Matches the specified EVPN route type. You can specify `macip`, `imet`, or `prefix`. |
 | `ip-nexthop-list` | Matches the specified next hop list.|
-| `local-preference` | Matches the specified local preference. |
+| `local-preference` | Matches the specified local preference. You can specify a value between 0 and 4294967295. |
 | `source-vrf` | Matches the specified source VRF. |
 | `evpn-vni`| Matches the specified EVPN VNI. |
-| `ip-nexthop-type`| Matches the specified next hop type.|
+| `ip-nexthop-type`| Matches the specified next hop type, such as `blackhole`.|
 | `metric`  | Matches the specified BGP metric. |
-| `tag` | Matches the specified tag value associated with the route. You can specify a vlaue between 1 and 4294967295.
+| `tag` | Matches the specified tag value associated with the route. You can specify a value between 1 and 4294967295.
 
 {{< /tab >}}
 {{< tab "Set Statements ">}}
@@ -291,14 +291,14 @@ You can use the following list of supported match and set statements with NVUE c
 | `local-preference` | Sets the BGP local preference to `local_pref`. |
 | `weight`  | Sets the route’s weight.|
 | `community` | Sets the BGP community attribute.|
-| `ipv6-nexthop-global`  | Sets the IPv6 nexthop global attribute.|
-| `metric` |  Sets the BGP attribute MED to a specific value. You can specify `metric-minus` to subtract the specified value from the MED,  `metric-plus` to add the specified value to the MED, `rtt` to set the MED to the round trip time, `rtt-minus` to subtract the round trip time from the MED, or`rtt-plus` to add the round trip time to the MED.|
+| `ipv6-nexthop-global`  | Sets the IPv6 next hop global attribute.|
+| `metric` |  Sets the BGP attribute MED to a specific value. You can specify `metric-minus` to subtract the specified value from the MED,  `metric-plus` to add the specified value to the MED, `rtt` to set the MED to the round trip time, `rtt-minus` to subtract the round trip time from the MED, or `rtt-plus` to add the round trip time to the MED.|
 | `community-delete-list`  | Sets the community delete list. |
-| `ipv6-nexthop-local`  |Sets the IPv6 nexthop local attribute. |
+| `ipv6-nexthop-local`  |Sets the IPv6 next hop local attribute. |
 | `metric-type` | Sets the metric type. You can specify `type-1` or `type-2`. |
-| `ext-community-bw` | Sets the BGP extended community bw. |
-| `ipv6-nexthop-prefer-global` | For inbound routes with both a global and linklocal next hop available, use the global address.|
-| `origin` | Sets the BGP route origin.|
+| `ext-community-bw` | Sets the BGP extended community link bandwidth. |
+| `ipv6-nexthop-prefer-global` | Sets IPv6 inbound routes to use the global address when both a global and link-local next hop is available.|
+| `origin` | Sets the BGP route origin, such as eBGP or iBGP.|
 
 {{< /tab >}}
 {{< /tabs >}}

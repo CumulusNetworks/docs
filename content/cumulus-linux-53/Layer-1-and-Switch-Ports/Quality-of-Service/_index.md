@@ -47,28 +47,13 @@ NVUE reloads the `switchd.service` automatically. You do **not** have to run the
 
 When a frame or packet arrives on the switch, Cumulus Linux maps it to an *internal COS* value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
-You can define which values are `trusted`.
-
-{{< tabs "TabID52 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ 
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-In the `qos_features.conf` file, configure the `traffic.packet_priority_source_set` setting.
+You can define which values are trusted in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting.
 
 The `traffic.port_default_priority` setting accepts a value between 0 and 7 and defines the internal COS marking to use with the `port` value.
 
 If `traffic.packet_priority_source_set` is `cos` or `dscp`, you can map the ingress values to an internal COS value.
 
 {{<cl/qos-switchd>}}
-
-{{< /tab >}}
-{{< /tabs >}}
 
 The following table describes the default classifications for various frame and `packet_priority_source_set` configurations:
 
@@ -379,11 +364,11 @@ You can use pause frames for either receive (`rx`), transmit (`tx`), or both.
 {{% notice note %}}
 Cumulus Linux automatically enables or derives the following settings when link pause is on an interface with `link_pause.port_group_list`:
 
-* `link_pause.pause_port_group.rx_enable`
-* `link_pause.pause_port_group.tx_enable`
-* `link_pause.pause_port_group.port_buffer_bytes`
-* `link_pause.pause_port_group.xoff_size`
-* `link_pause.pause_port_group.xon_delta`
+- `link_pause.pause_port_group.rx_enable`
+- `link_pause.pause_port_group.tx_enable`
+- `link_pause.pause_port_group.port_buffer_bytes`
+- `link_pause.pause_port_group.xoff_size`
+- `link_pause.pause_port_group.xon_delta`
 
 To process pause frames, you must enable link pause on the specific interfaces.
 {{% /notice %}}
@@ -634,55 +619,52 @@ cos_egr_queue.cos_7.uc  = 7
 
 Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection, which allows the switch to assign bandwidth to egress queues and then schedule the transmission of traffic from each queue. 802.1Qaz supports Priority Queuing.
 
-Cumulus Linux uses a default egress schedule that applies to all ports, where the bandwidth allocated to egress queues 0,2,4,6 is 12 percent and the bandwidth allocated to egress queues 1,3,5,7 is 13 percent. You can customize the egress scheduler and apply it to specific ports.
+Cumulus Linux uses a default egress schedule that applies to all ports, where the bandwidth allocated to egress queues 0,2,4,6 is 12 percent and the bandwidth allocated to egress queues 1,3,5,7 is 13 percent. You can change the default egress schedule and apply it to specific ports, or create new profiles and assign different profiles to different egress ports; see {{<link url="#egress-scheduling" text="Egress scheduling for ports">}} below.
 
 {{< tabs "TabID546 ">}}
 {{< tab "NVUE Commands ">}}
 
-To customize the egress scheduler:
-- Each egress-scheduler command must include a profile name. In the example below, the profile name is `my-schedule-profile`.
-- The `traffic-class` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `traffic-class 2` defines the bandwidth allocation for egress queue 2.
-- For each egress queue, you can either define the mode as `dwrr` or `strict`. In `dwrr` mode, you must define a bandwidth percent value between 1 and 100. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues. The combined total of values you assign to `bw_percent` must be less than or equal to 100.
-- Apply the egress schedule profile to the ports. The example below applies the egress schedule to swp2.
+In the NVUE commands, the `traffic-class` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `traffic-class 2` defines the bandwidth allocation for egress queue 2.
+
+For each egress queue, you can either define the mode as `dwrr` or `strict`. In `dwrr` mode, you must define a bandwidth percent value between 1 and 100. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues. The combined total of values you assign to `bw_percent` must be less than or equal to 100.
+
+The following example custimizes the default egress schedule that applies to all ports. The commands change the bandwidth allocation for egress queues 0, 1, 5, and 7 to 0, bandwidth allocation for egress queues 2 and 6 to 30 percent and bandwidth allocation for egress queues 3 and 4 to 20 percent.
 
 {{% notice note %}}
 `strict` mode does not define a maximum bandwidth allocation. This can lead to starvation of other queues.
 {{% /notice %}}
 
 ```
-cumulus@switch:~$ nv set qos egress-scheduler my-schedule-profile traffic-class 2,6 mode dwrr 
-cumulus@switch:~$ nv set qos egress-scheduler my-schedule-profile traffic-class 2,6 bw-percent 30 
-cumulus@switch:~$ nv set qos egress-scheduler my-schedule-profile traffic-class 3,4 mode dwrr
-cumulus@switch:~$ nv set qos egress-scheduler my-schedule-profile traffic-class 3,4 bw-percent 20 
-cumulus@switch:~$ nv set qos egress-scheduler my-schedule-profile traffic-class 0,1,5,7 mode strict
-cumulus@switch:~$ nv set interface swp2 qos egress-scheduler profile my-schedule-profile 
+cumulus@switch:~$ nv set qos egress-scheduler default_egress_sched traffic-class 2,6 mode dwrr 
+cumulus@switch:~$ nv set qos egress-scheduler default_egress_sched traffic-class 2,6 bw-percent 30 
+cumulus@switch:~$ nv set qos egress-scheduler default_egress_sched traffic-class 3,4 mode dwrr
+cumulus@switch:~$ nv set qos egress-scheduler default_egress_sched traffic-class 3,4 bw-percent 20 
+cumulus@switch:~$ nv set qos egress-scheduler default_egress_sched traffic-class 0,1,5,7 mode strict
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Configure the egress scheduling policy in the egress scheduling section of the `qos_features.conf` file:
-- The `port_group_list` value specifies the egress schedule profile name. In the example below, the profile name is `my-schedule-profile`.
-- The `port_set` value defines the ports where you want to apply the custom egress schedule. The example below applies the egress schedule to swp2.
-- The `egr_queue_` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `egr_queue_0` defines the bandwidth allocation for egress queue 0.
-- The `bw_percent` value defines the bandwidth allocation you want to assign to an egress queue. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues. The combined total of values you assign to `bw_percent` must be less than or equal to 100.
+You configure the egress scheduling policy in the egress scheduling section of the `qos_features.conf` file.
+
+The `egr_queue_` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `egr_queue_0` defines the bandwidth allocation for egress queue 0.
+
+The `bw_percent` value defines the bandwidth allocation you want to assign to an egress queue. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues The combined total of values you assign to `bw_percent` must be less than or equal to 100.
   
 {{% notice note %}}
 Strict priority mode does not define a maximum bandwidth allocation, which can lead to starvation of other queues.
 {{% /notice %}}
 
 ```
-egress_sched.port_group_list = [my-schedule-profile]
-egress_sched.my-schedule-profile.port_set = swp2
-egress_sched.my-schedule-profile.egr_queue_0.bw_percent = 0
-egress_sched.my-schedule-profile.egr_queue_1.bw_percent = 0
-egress_sched.my-schedule-profile.egr_queue_2.bw_percent = 30
-egress_sched.my-schedule-profile.egr_queue_3.bw_percent = 20
-egress_sched.my-schedule-profile.egr_queue_4.bw_percent = 20
-egress_sched.my-schedule-profile.egr_queue_5.bw_percent = 0
-egress_sched.my-schedule-profile.egr_queue_6.bw_percent = 30
-egress_sched.my-schedule-profile.egr_queue_7.bw_percent = 0
+default_egress_sched.egr_queue_0.bw_percent = 0
+default_egress_sched.egr_queue_1.bw_percent = 0
+default_egress_sched.egr_queue_2.bw_percent = 30
+default_egress_sched.egr_queue_3.bw_percent = 20
+default_egress_sched.egr_queue_4.bw_percent = 20
+default_egress_sched.egr_queue_5.bw_percent = 0
+default_egress_sched.egr_queue_6.bw_percent = 30
+default_egress_sched.egr_queue_7.bw_percent = 0
 ```
 
 {{< /tab >}}
@@ -894,11 +876,34 @@ remark.list2.cos_3.priority_remark.8021p = [2]
 
 ### Egress Scheduling
 
-You can use port groups with egress scheduling weights to assign different profiles to different egress ports. You define these port groups with `egress_sched.port_group_list ` in the `qos_features.conf` file.
+You can use port groups with egress scheduling weights to assign different profiles to different egress ports.
 
-An `egress_sched.port_group_list` includes the names for the group settings. The name is a label for the configuration settings. For example, if an `egress_sched.port_group_list` includes `test`, Cumulus Linux configures the following `egress_sched.port_set` with `egress_sched.test.port_set`.
+In the following example, the profile (group list) `list2` applies to swp1, swp3, and swp18. `list2` only assigns weights to queues 2, 5, and 6, and schedules the other queues on a best-effort basis when there is no congestion in queues 2, 5, or 6. Profile `list1` applies to swp2 and assigns weights to all queues.
 
-The following is an example `egress_sched.group_list` configuration:
+
+{{< tabs "TabID884 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos egress-scheduler list2 traffic-class 2,5,6 mode dwrr 
+cumulus@switch:~$ nv set qos egress-scheduler list2 traffic-class 2,5 bw-percent 50 
+cumulus@switch:~$ nv set qos egress-scheduler list2 traffic-class 6 mode strict
+cumulus@switch:~$ nv set interface swp1,swp3,swp18 qos egress-scheduler profile list2
+cumulus@switch:~$ nv set qos egress-scheduler list1 traffic-class 0,3,4,5,6 mode dwrr 
+cumulus@switch:~$ nv set qos egress-scheduler list1 traffic-class 0,3,4,5,6 bw-percent 10 
+cumulus@switch:~$ nv set qos egress-scheduler list1 traffic-class 1 mode dwrr
+cumulus@switch:~$ nv set qos egress-scheduler list1 traffic-class 1 bw-percent 20 
+cumulus@switch:~$ nv set qos egress-scheduler list1 traffic-class 2 mode dwrr
+cumulus@switch:~$ nv set qos egress-scheduler list1 traffic-class 2 bw-percent 30 
+cumulus@switch:~$ nv set qos egress-scheduler list1 traffic-class 7 mode strict
+cumulus@switch:~$ nv set interface swp2 qos egress-scheduler profile list1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+You define port groups with `egress_sched.port_group_list` in the `qos_features.conf` file. An `egress_sched.port_group_list` includes the names for the group settings. The name is a label (profile) for the configuration settings.
 
 ```
 egress_sched.port_group_list = [list1,list2]
@@ -935,7 +940,8 @@ egress_sched.list2.egr_queue_6.bw_percent = 0
 | `egress_sched.list2.egr_queue_5.bw_percent` | `egress_sched.list2.egr_queue_5.bw_percent = 50` | Assigns the percentage of bandwidth to egress queue 5. In this example, `50`% of egress bandwidth. |
 | `egress_sched.list2.egr_queue_6.bw_percent` | `egress_sched.list2.egr_queue_6.bw_percent = 0` | Assigns the percentage of bandwidth to egress queue 6. In this example, `0` indicates a strict priority queue. |
 
-The above example only assigns weights to queues 2, 5, and 6 to the port group `list2` and schedules the other queues on a best-effort basis when there is no congestion in queues 2, 5, or 6.
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Syntax Checker
 

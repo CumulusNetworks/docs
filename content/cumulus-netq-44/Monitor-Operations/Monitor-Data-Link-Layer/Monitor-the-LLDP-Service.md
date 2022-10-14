@@ -21,7 +21,7 @@ You can view a summary of the LLDP service from the NetQ UI or the NetQ CLI.
 
 {{<tab "NetQ UI" >}}
 
-Open the small Network Services|All LLDP Sessions card. In this example, the number of devices running the LLDP service is 14 and no alarms are present.
+Open the small Network Services/All LLDP Sessions card. In this example, the number of devices running the LLDP service is 14 and no alarms are present.
 
 {{<figure src="/images/netq/ntwk-svcs-all-lldp-small-230.png" width="200" >}}
 
@@ -158,7 +158,7 @@ Nodes which have a large number of unestablished sessions might have a misconfig
 
 {{<tab "NetQ UI" >}}
 
-To view the distribution, open the medium Network Services|All LLDP Sessions card.
+To view the distribution, open the medium Network Services/All LLDP Sessions card.
 
 {{<figure src="/images/netq/ntwk-svcs-all-lldp-medium.png" width="200">}}
 
@@ -302,7 +302,7 @@ spine04           swp6                      border02          swp54             
 
 You can view the number of missing neighbors in any given time period and how that number has changed over time. This is a good indicator of link communication issues.
 
-To view the distribution, open the large Network Services|ALL LLDP Sessions card and view the bottom chart on the left, **Total Sessions with No Nbr**.
+To view the distribution, open the large Network Services/ALL LLDP Sessions card and view the bottom chart on the left, **Total Sessions with No Nbr**.
 
 {{<figure src="/images/netq/ntwk-svcs-all-lldp-large-summary-tab-no-nbr-highlight-230.png" width="500">}}
 
@@ -310,7 +310,7 @@ In this example, we see that 16 of the 52 sessions are consistently missing the 
 
 ### View Devices with the Most LLDP Sessions
 
-You can view the load from LLDP on your switches using the large Network Services|All LLDP Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most LLDP traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
+You can view the load from LLDP on your switches using the large Network Services/All LLDP Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most LLDP traffic currently, validate that is what is expected based on your network design, and compare that with data from an earlier time to look for any differences.
 
 {{<tabs "TabID336" >}}
 
@@ -318,7 +318,7 @@ You can view the load from LLDP on your switches using the large Network Service
 
 To view switches and hosts with the most LLDP sessions:
 
-1. Open the large Network Services|All LLDP Sessions card.
+1. Open the large Network Services/All LLDP Sessions card.
 
 2. Select **Switches with Most Sessions**.
 
@@ -476,7 +476,7 @@ You can identify switches and hosts experiencing difficulties establishing LLDP 
 
 To view switches with the most unestablished LLDP sessions:
 
-1. Open the large Network Services|All LLDP Sessions card.
+1. Open the large Network Services/All LLDP Sessions card.
 
 2. Select **Switches with Most Unestablished Sessions**.  
 
@@ -497,7 +497,7 @@ You can view the LLDP configuration information for a given device from the NetQ
 
 {{<tab "NetQ UI">}}
 
-1. Open the full-screen Network Services|All LLDP Sessions card.
+1. Open the full-screen Network Services/All LLDP Sessions card.
 
 2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by hostname.
 
@@ -548,7 +548,7 @@ With the NetQ UI, you can view the switches sorted by the number of LLDP alarms 
 
 To view switches with most LLDP alarms:
 
-1. Open the large Network Services|All LLDP Sessions card.
+1. Open the large Network Services/All LLDP Sessions card.
 
 2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/>.
 
@@ -675,7 +675,7 @@ leaf02            lldp                     info             LLDP Session with ho
 
 ### View All LLDP Events
 
-The Network Services|All LLDP Sessions card and the `netq show events type lldp` command let you view all LLDP events in a designated time period.
+The Network Services/All LLDP Sessions card and the `netq show events type lldp` command let you view all LLDP events in a designated time period.
 
 {{<tabs "View all LLDP events">}}
 
@@ -683,7 +683,7 @@ The Network Services|All LLDP Sessions card and the `netq show events type lldp`
 
 To view all LLDP events:
 
-1. Open the Network Services|All LLDP Sessions card.
+1. Open the Network Services/All LLDP Sessions card.
 
 2. Change to the full-screen card using the card size picker.
 
@@ -718,7 +718,7 @@ No matching event records found
 
 You can view attributes of all switches running LLDP in your network in the full-screen card.
 
-To view all switch details, open the Network Services|All LLDP Sessions card, and select **All Switches**.
+To view all switch details, open the Network Services/All LLDP Sessions card, and select **All Switches**.
 
 {{<figure src="/images/netq/ntwk-svcs-all-lldp-fullscr-allswitches-tab-241.png" width="700">}}
 
@@ -734,7 +734,7 @@ You can view attributes of all LLDP sessions in your network with the NetQ UI or
 
 To view all session details:
 
-1. Open the Network Services|All LLDP Sessions card.
+1. Open the Network Services/All LLDP Sessions card.
 
 2. Change to the full-screen card using the card size picker.
 
@@ -805,7 +805,7 @@ With NetQ, you can monitor the number of nodes running the LLDP service, view ne
 
 {{<notice note>}}
 
-To access the single session cards, you must open the full-screen Network Services|All LLDP Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} (Open Card).
+To access the single session cards, you must open the full-screen Network Services/All LLDP Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} (Open Card).
 
 {{</notice>}}
 
@@ -832,11 +832,11 @@ You can view information about a given LLDP session using the NetQ UI or NetQ CL
 
 {{<tab "NetQ UI" >}}
 
-A summary of the LLDP session is available from the Network Services|LLDP Session card, showing the node and its peer as well as current status.
+A summary of the LLDP session is available from the Network Services/LLDP Session card, showing the node and its peer as well as current status.
 
 To view the summary:
 
-1. Open the or add the Network Services|All LLDP Sessions card.
+1. Open the or add the Network Services/All LLDP Sessions card.
 
 2. Change to the full-screen card using the card size picker.
 
@@ -844,11 +844,11 @@ To view the summary:
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|LLDP Session card.
+5. Locate the medium Network Services/LLDP Session card.
 
     {{<figure src="/images/netq/ntwk-svcs-single-lldp-medium-summary-highlight-230.png" width="200">}}
 
-6. Optionally, open the small Network Services|LLDP Session card to keep track of the session health. 
+6. Optionally, open the small Network Services/LLDP Session card to keep track of the session health. 
 
     {{<figure src="/images/netq/ntwk-svcs-single-lldp-small-230.png" width="200">}}
 
@@ -876,9 +876,9 @@ leaf02            swp49                     leaf01            swp49             
 
 You can view the neighbor state for a given LLDP session from the medium and large LLDP Session cards. For a given time period, you can determine the stability of the LLDP session between two devices. If you experienced connectivity issues at a particular time, you can use these cards to help verify the state of the neighbor. If the neighbor was not alive more than it was alive, you can then investigate further into possible causes.
 
-You can view the neighbor states on either the medium or large Network Services|All LLDP Sessions cards. To view the neighbor availability for a given LLDP session on the large LLDP Session card:
+You can view the neighbor states on either the medium or large Network Services/All LLDP Sessions cards. To view the neighbor availability for a given LLDP session on the large LLDP Session card:
 
-1. Open a Network Services|LLDP Session card.
+1. Open a Network Services/LLDP Session card.
 
 2. Hover over the card, and change to the large card using the card size picker.
 
@@ -892,13 +892,13 @@ Each time a change is made to the configuration file for the LLDP service, NetQ 
 
 To view the configuration file changes:
 
-1. Open or add the full-screen Network Services|All LLDP Sessions card.
+1. Open or add the full-screen Network Services/All LLDP Sessions card.
 
 3. Click **All Sessions**.
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the Network Services|LLDP Session card and expand it to large.
+5. Locate the Network Services/LLDP Session card and expand it to large.
 
 7. Hover over the card and click <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> to open the **Configuration File Evolution** tab.
 
@@ -924,13 +924,13 @@ You can view attributes of all of the LLDP sessions for the devices participatin
 
 To view all session details:
 
-1. Open or add the full-screen Network Services|All LLDP Sessions card.
+1. Open or add the full-screen Network Services/All LLDP Sessions card.
 
 3. Click **All Sessions**.
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the Network Services|LLDP Session card and change to the full-screen card using the card size picker. The **All LLDP Sessions** tab is displayed by default.
+5. Locate the Network Services/LLDP Session card and change to the full-screen card using the card size picker. The **All LLDP Sessions** tab is displayed by default.
 
     {{<figure src="/images/netq/ntwk-svcs-single-lldp-fullscr-allsess-tab-241.png" width="700">}}
 

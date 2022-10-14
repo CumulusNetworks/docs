@@ -26,7 +26,7 @@ Any prior scripts or automation that use the older `netq show clag` command cont
 
 With NetQ, you can monitor MLAG performance across the network:
 
-- Network Services|All MLAG Sessions
+- Network Services/All MLAG Sessions
     - Small: view number of nodes running MLAG service and number and distribution of alarms
     - Medium: view number of nodes running MLAG service, number and distribution of sessions and alarms, number of sessions with inactive backup IPs, and number of bonds with single connections
     - Large: view number of nodes running MLAG service, number of sessions and alarms, number of sessions with inactive backup IPs, switches with the most established/unestablished sessions, devices with the most alarms
@@ -41,7 +41,7 @@ You can view a summary of the MLAG service from the NetQ UI or the NetQ CLI.
 
 {{<tab "NetQ UI" >}}
 
-To view the summary, open the small Network Services|All MLAG Sessions card. In this example, the number of devices running the MLAG service is 4 and no alarms are present.
+To view the summary, open the small Network Services/All MLAG Sessions card. In this example, the number of devices running the MLAG service is 4 and no alarms are present.
 
 {{<figure src="/images/netq/ntwk-svcs-all-mlag-small-230.png" width="200" >}}
 
@@ -81,7 +81,7 @@ Nodes with a large number of unestablished sessions might have a misconfiguratio
 
 {{<tab "NetQ UI" >}}
 
-To view the distribution, open the medium Network Services|All MLAG Sessions card.
+To view the distribution, open the medium Network Services/All MLAG Sessions card.
 
 {{<figure src="/images/netq/ntwk-svcs-all-mlag-medium-230.png" width="200" >}}
 
@@ -91,7 +91,7 @@ This example shows the following for the last 24 hours:
 - Four sessions were established and remained so
 - No MLAG-related alarms have occurred
 
-If there was a visual correlation between the alarms and sessions, you could dig a little deeper with the large Network Services|All MLAG Sessions card.
+If there was a visual correlation between the alarms and sessions, you could dig a little deeper with the large Network Services/All MLAG Sessions card.
 
 {{</tab>}}
 
@@ -133,7 +133,7 @@ You can determine whether there are any bonds in your MLAG configuration with on
 
 {{<tab "NetQ UI" >}}
 
-1. Open the medium Network Services|All MLAG Sessions card.
+1. Open the medium Network Services/All MLAG Sessions card.
 
     This example shows that four bonds have single links.
 
@@ -197,7 +197,7 @@ You can determine whether MLAG sessions have a backup IP address assigned and re
 
 {{<tab "NetQ UI" >}}
 
-1. Open the medium Network Services|All MLAG Sessions card.
+1. Open the medium Network Services/All MLAG Sessions card.
 
     This example shows that non of the bonds have single links.
 
@@ -245,7 +245,7 @@ You can view sessions with conflicted bonds (bonds that conflict with existing b
 
 To view these sessions:
 
-1. Open the Network Services|All MLAG Sessions card.
+1. Open the Network Services/All MLAG Sessions card.
 
 2. Hover over the card and change to the full-screen card using the card size picker.
 
@@ -255,7 +255,7 @@ To view these sessions:
 
 ### View Devices with the Most MLAG Sessions
 
-You can view the load from MLAG on your switches using the large Network Services|All MLAG Sessions card. This data enables you to see which switches are handling the most MLAG traffic currently, validate that is what you expect based on your network design, and compare that with data from an earlier time to look for any differences.
+You can view the load from MLAG on your switches using the large Network Services/All MLAG Sessions card. This data enables you to see which switches are handling the most MLAG traffic currently, validate that is what you expect based on your network design, and compare that with data from an earlier time to look for any differences.
 
 {{<tabs "TabID274" >}}
 
@@ -263,7 +263,7 @@ You can view the load from MLAG on your switches using the large Network Service
 
 To view switches and hosts with the most MLAG sessions:
 
-1. Open the large Network Services|All MLAG Sessions card.
+1. Open the large Network Services/All MLAG Sessions card.
 
 2. Select **Switches with Most Sessions** from the filter above the table.
 
@@ -273,7 +273,7 @@ To view switches and hosts with the most MLAG sessions:
 
 To compare this data with the same data at a previous time:
 
-1. Open another large Network Services|All MLAG Sessions card.
+1. Open another large Network Services/All MLAG Sessions card.
 
 2. Move the new card next to the original card if needed.
 
@@ -319,7 +319,7 @@ You can identify switches that are experiencing difficulties establishing MLAG s
 
 To view switches with the most unestablished MLAG sessions:
 
-1. Open the large Network Services|All MLAG Sessions card.
+1. Open the large Network Services/All MLAG Sessions card.
 
 2. Select **Switches with Most Unestablished Sessions** from the filter above the table.
 
@@ -340,7 +340,7 @@ You can view the MLAG configuration information for a given device from the NetQ
 
 {{<tab "NetQ UI" >}}
 
-1. Open the full-screen Network Services|All MLAG Sessions card.
+1. Open the full-screen Network Services/All MLAG Sessions card.
 
 2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by hostname.
 
@@ -385,7 +385,7 @@ With the NetQ UI, you can view the switches sorted by the number of MLAG alarms 
 
 To view switches with most MLAG alarms:
 
-1. Open the large Network Services|All MLAG Sessions card.
+1. Open the large Network Services/All MLAG Sessions card.
 
 2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/>.
 
@@ -429,7 +429,7 @@ border02          clag                     info             Peer state changed t
 
 ### View All MLAG Events
 
-The Network Services|All MLAG Sessions card workflow and the `netq show events type mlag` command enable you to view all MLAG events in a designated time period.
+The Network Services/All MLAG Sessions card workflow and the `netq show events type mlag` command enable you to view all MLAG events in a designated time period.
 
 {{<tabs "TabID446" >}}
 
@@ -437,7 +437,7 @@ The Network Services|All MLAG Sessions card workflow and the `netq show events t
 
 To view all MLAG events:
 
-1. Open the Network Services|All MLAG Sessions card.
+1. Open the Network Services/All MLAG Sessions card.
 
 2. Change to the full-screen card using the card size picker.
 
@@ -494,7 +494,7 @@ You can view attributes of all switches running MLAG in your network in the full
 
 To view all switch details:
 
-1. Open the Network Services|All MLAG Sessions card.
+1. Open the Network Services/All MLAG Sessions card.
 
 2. Change to the full-screen card using the card size picker.
 
@@ -515,7 +515,7 @@ with the NetQ UI or NetQ CLI.
 
 To view all session details:
 
-1. Open the Network Services|All MLAG Sessions card.
+1. Open the Network Services/All MLAG Sessions card.
 
 2. Change to the full-screen card using the card size picker.
 
@@ -557,7 +557,7 @@ With NetQ, you can monitor the number of nodes running the MLAG service, view sw
 
 {{%notice note%}}
 
-To access the single session cards, you must open the full-screen Network Services|All MLAG Sessions card, click the **All Sessions** tab, select the desired session, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} (Open Card).
+To access the single session cards, you must open the full-screen Network Services/All MLAG Sessions card, click the **All Sessions** tab, select the desired session, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} (Open Card).
 
 {{%/notice%}}
 
@@ -584,11 +584,11 @@ A summary of the MLAG session is available about a given MLAG session using the 
 
 {{<tab "NetQ UI" >}}
 
-A summary of the MLAG session is available from the Network Services|MLAG Session card workflow, showing the host and peer devices participating in the session, node role, peer role and state, the associated system MAC address, and the distribution of the MLAG session state.
+A summary of the MLAG session is available from the Network Services/MLAG Session card workflow, showing the host and peer devices participating in the session, node role, peer role and state, the associated system MAC address, and the distribution of the MLAG session state.
 
 To view the summary:
 
-1. Open or add the Network Services|All MLAG Sessions card.
+1. Open or add the Network Services/All MLAG Sessions card.
 
 2. Change to the full-screen card using the card size picker.
 
@@ -596,13 +596,13 @@ To view the summary:
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|MLAG Session card.
+5. Locate the medium Network Services/MLAG Session card.
 
     {{<img src="/images/netq/ntwk-svcs-single-mlag-medium-summ-highlighted-bad-230.png" width="200" >}} {{<img src="/images/netq/ntwk-svcs-single-mlag-medium-summ-highlighted-230.png" width="200" >}}
 
 <div style="padding-left: 18px;">In the left example, we see that the tor1 switch plays the secondary role in this session with the switch at 44:38:39:ff:01:01 and that there is an issue with this session. In the right example, we see that the leaf03 switch plays the primary role in this session with leaf04 and this session is in good health.</div>
 
-6. Optionally, open the small Network Services|MLAG Session card to keep track of the session health.
+6. Optionally, open the small Network Services/MLAG Session card to keep track of the session health.
 
     {{<figure src="/images/netq/ntwk-svcs-single-mlag-small-230.png" width="200">}}
 
@@ -633,7 +633,7 @@ You can view the peering state for a given MLAG session from the medium and larg
 
 To view the state transitions for a given MLAG session on the *medium* card:
 
-1. Open the or add the Network Services|All MLAG Sessions card.
+1. Open the or add the Network Services/All MLAG Sessions card.
 
 2. Change to the full-screen card using the card size picker.
 
@@ -641,7 +641,7 @@ To view the state transitions for a given MLAG session on the *medium* card:
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|MLAG Session card.
+5. Locate the medium Network Services/MLAG Session card.
 
     {{<figure src="/images/netq/ntwk-svcs-single-mlag-medium-chart-highlighted-230.png" width="200">}}
 
@@ -649,9 +649,9 @@ To view the state transitions for a given MLAG session on the *medium* card:
 
     From this card, you can also view the node role, peer role and state, and MLAG system MAC address which identify the session in more detail.
 
-To view the peering state transitions for a given MLAG session on the *large* Network Services|MLAG Session card:
+To view the peering state transitions for a given MLAG session on the *large* Network Services/MLAG Session card:
 
-1. Open a Network Services|MLAG Session card.
+1. Open a Network Services/MLAG Session card.
 
 2. Hover over the card, and change to the large card using the card size picker.
 
@@ -665,7 +665,7 @@ Each time a change is made to the configuration file for the MLAG service, NetQ 
 
 To view the configuration file changes:
 
-1. Open or add the Network Services|All MLAG Sessions card.
+1. Open or add the Network Services/All MLAG Sessions card.
 
 2. Switch to the full-screen card using the card size picker.
 
@@ -673,7 +673,7 @@ To view the configuration file changes:
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|MLAG Session card.
+5. Locate the medium Network Services/MLAG Session card.
 
 6. Hover over the card, and change to the large card using the card size picker.
 
@@ -701,7 +701,7 @@ You can view attributes of all of the MLAG sessions  for the devices participati
 
 To view all session details:
 
-1. Open or add the Network Services|All MLAG Sessions card.
+1. Open or add the Network Services/All MLAG Sessions card.
 
 2. Switch to the full-screen card using the card size picker.
 
@@ -709,7 +709,7 @@ To view all session details:
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|MLAG Session card.
+5. Locate the medium Network Services/MLAG Session card.
 
 6. Hover over the card, and change to the full-screen card using the card size picker. The **All MLAG Sessions** tab is displayed by default.
 
@@ -753,7 +753,7 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 You can view all alarm and info events for the two devices on this card.
 
-1. Open or add the Network Services|All MLAG Sessions card.
+1. Open or add the Network Services/All MLAG Sessions card.
 
 2. Switch to the full-screen card using the card size picker.
 
@@ -761,7 +761,7 @@ You can view all alarm and info events for the two devices on this card.
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|MLAG Session card.
+5. Locate the medium Network Services/MLAG Session card.
 
 6. Hover over the card, and change to the full-screen card using the card size picker.
 

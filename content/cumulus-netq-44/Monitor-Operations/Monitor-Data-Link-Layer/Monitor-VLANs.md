@@ -4,7 +4,6 @@ author: NVIDIA
 weight: 910
 toc: 3
 ---
-A VLAN (Virtual Local Area Network) allows devices on one or more LANs to communicate as if they were on the same network, without being physically connected. The VLAN allows network administrators to partition a network for functional or security requirements without changing physical infrastructure. For an overview and how to configure VLANs in your network, refer to [Ethernet Bridging - VLANs]({{<ref "cumulus-linux-52/Layer-2/Ethernet-Bridging-VLANs">}}).
 
 Use the CLI to view VLAN information with the `netq show vlan` command.
 

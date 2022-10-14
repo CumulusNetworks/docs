@@ -27,10 +27,10 @@ The NetQ Agent also interacts with the hardware platform to obtain performance i
 
 After the collected data is sent to and stored in the NetQ database, you can:
 
-  - Validate configurations and identify misconfigurations in your current network or in a previous deployment
-  - Monitor communication paths throughout the network
-  - Notify users of network issues
-  - Anticipate the impact of connectivity changes
+  - Validate configurations and identify misconfigurations in your current network or in a previous deployment.
+  - Monitor communication paths throughout the network.
+  - Notify users of network issues.
+  - Anticipate the impact of connectivity changes.
 
 ### Validate Configurations
 
@@ -40,7 +40,7 @@ The NetQ CLI lets you validate your network's health through two sets of command
 | -------------------- | :---: | :---:| -------------------- | :---: | :---: |
 | Agents | X | X | LLDP |  | X |
 | BGP | X | X | MACs |   | X |
-| CLAG (MLAG) | X | X | MTU | X |  |
+| MLAG (CLAG) | X | X | MTU | X |  |
 | Events |  | X | NTP | X | X |
 | EVPN | X | X | OSPF | X | X |
 | Interfaces | X | X | Sensors | X | X |
@@ -52,13 +52,13 @@ The NetQ CLI lets you validate your network's health through two sets of command
 
 The trace engine validates the available communication paths between two network devices. The corresponding `netq trace` command enables you to view all of the paths between the two devices and if there are any breaks in the paths. For more information about trace requests, refer to {{<link title="Verify Network Connectivity" text="Verify Network Connectivity">}}.
 
-### View Historical State and Configuration
+### View Historical State and Configuration Info
 
 You can run all check, show, and trace commands for current and past statuses. To investigate past issues, use the `netq check` command and look for configuration or operational issues around the time that NetQ timestamped event messages. Then use the `netq show` commands to view information about device configurations. You can also use the `netq trace` command to see what the connectivity looked like between any problematic nodes at a particular time. 
 
-The following diagram shows issues on spine01, leaf04, and server03: 
+For example, the following diagram shows issues on spine01, leaf04, and server03: 
 
-{{<figure src="/images/netq/netq-ops-historic-230.png" alt="network diagram displaying issues on spine01, leaf04, and server03" width="700">}}
+{{<figure src="/images/netq/netq-ops-historic-230.png" alt="network diagram displaying issues on spine01, leaf04, and server03" width="900">}}
 
 An administrator can run the following commands from any switch in the network to determine the cause of a BGP error on spine01:
 
@@ -115,7 +115,7 @@ An administrator can run the following commands from any switch in the network t
 
 The NetQ notifier lets you capture and filter events for devices, components, protocols, and services. This is especially useful when an interface or routing protocol goes down and you want to get them back up and running as quickly as possible. You can improve resolution time significantly by creating filters that focus on topics appropriate for a particular group of users. You can create filters for events related to BGP and MLAG session states, interfaces, links, NTP and other services, fans, power supplies, and physical sensor measurements.
 
-For operators responsible for routing, you can create an integration with a notification application that notifies them of routing issues as they occur. The following is an example of a Slack message received on a *netq-notifier* channel indicating that the BGP session on switch *leaf04* interface *swp2* has gone down:
+The following is an example of a Slack message received on a *netq-notifier* channel indicating that the BGP session on switch *leaf04* interface *swp2* has gone down:
 
 {{<figure src="/images/netq/slack-msg-example.png" alt="example Slack message from netq notifier indicating session failures" width="500">}}
 
@@ -123,7 +123,7 @@ For more information, refer to {{<link title="Events and Notifications" text="Ev
 
 ## Timestamps in NetQ
 
-Every event or entry in the NetQ database is stored with a timestamp that captures when an event was captured by the NetQ Agent on the switch or server. This timestamp is based on the switch or server time where the NetQ Agent is running, and is pushed in UTC format.
+Every event or entry in the NetQ database is stored with a timestamp that reports when an event was captured by the NetQ Agent on the switch or server. This timestamp is based on the switch or server time where the NetQ Agent is running, and is pushed in UTC format.
 
 Interface state, IP addresses, routes, ARP/ND table (IP neighbor) entries and MAC table entries carry a timestamp that represents the time an event occurred (such as when a route is deleted or an interface comes up).
 
@@ -409,7 +409,7 @@ Restarting a NetQ Agent on a device does not update the timestamps for existing 
 You can export data from the NetQ Platform in the CLI or UI:
 
 - In the CLI, use the `json` option to output command results to JSON format for parsing in other applications
-- In the UI, expand the cards to a tabular view and select export <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> 
+- In the UI, expand the cards to a full-screen, tabular view and select export <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> 
 
 ## Important File Locations
 

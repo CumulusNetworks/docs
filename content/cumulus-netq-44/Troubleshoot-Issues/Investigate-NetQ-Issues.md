@@ -5,23 +5,19 @@ weight: 1060
 toc: 4
 ---
 
-Monitoring of systems inevitably leads to the need to troubleshoot and resolve the issues found. In fact network management follows a common pattern as shown in this diagram.
+This page describes some of the tools and commands you can use to troubleshoot issues with the network and NetQ itself. Example scenarios include:
 
-{{<figure src="/images/netq/NQ-mgmt-wkflow.png">}}
-
-This topic describes some of the tools and commands you can use to troubleshoot issues with the network and NetQ itself. Some example scenarios are included here:
-
-- {{<link url="#browse-configuration-and-log-files" text="Viewing configuration and log files">}},
-- {{<link url="#check-netq-agent-health" text="Verifying NetQ Agent health">}},
-- {{<link url="#diagnose-an-event-after-it-occurs" text="Investigating recent events">}}, and
+- {{<link url="#browse-configuration-and-log-files" text="Viewing configuration and log files">}}
+- {{<link url="#check-netq-agent-health" text="Verifying NetQ Agent health">}}
+- {{<link url="#diagnose-an-event-after-it-occurs" text="Investigating recent events">}}
 - {{<link url="#use-netq-as-a-time-machine" text="Investigating events from the past">}}
-- {{<link url="#trace-paths-in-a-vrf" text="Running a trace">}}.
+- {{<link url="#trace-paths-in-a-vrf" text="Running a trace">}}
 
-Try looking at the specific protocol or service, or particular devices as well. If none of these produce a resolution, you can {{<link url="#generate-a-support-file" text="capture a log">}} to use in discussion with the NVIDIA support team.
+If you're unable to resolve the issue yourself, {{<link url="#generate-a-support-file" text="capture a log">}} to use in discussion with the NVIDIA support team.
 
 ## Browse Configuration and Log Files
 
-To aid in troubleshooting issues with NetQ, there are the following configuration and log files that can provide insight into the root cause of the issue:
+The following configuration and log files contain information that can help with troubleshooting:
 
 | File | Description |
 | ---- | ---- |
@@ -31,30 +27,28 @@ To aid in troubleshooting issues with NetQ, there are the following configuratio
 
 ## Check NetQ Agent Health
 
-Checking the health of the NetQ Agents is a good way to start troubleshooting NetQ on your network. If any agents are rotten, meaning three heartbeats in a row were not sent, then you can investigate the rotten node. Different views are offered with the NetQ UI and NetQ CLI.
+Checking the health of the NetQ Agents is a good way to start troubleshooting NetQ on your network. If any agents are rotten, meaning three heartbeats in a row were not sent, then you can investigate the rotten node.
 
 {{<tabs "TabID35" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Open the Validation Request card.
+1. Open the Validation Summary card.
 
-2. Select Default Validation AGENTS from the Validation dropdown.
+2. Review the system health category, which includes agent data.
 
-3. Click Run Now.
-
-     The On-demand Validation Result card for NetQ Agents is placed on your workbench.
-
-     {{<figure src="/images/netq/od-valid-result-agent-small-320.png" width="200">}}
+3. If necessary, run a {{<link title="Validate Network Protocol and Service Operations" text="validation check">}}. You can run a validation against historic data to pinpoint when issues occurred.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-In the example below, no NetQ Agents are rotten. If there were nodes with indications of failures, warnings, rotten state, you could use the `netq show agents` command to view more detail about the individual NetQ Agents:
+In the following example, all NetQ Agents are fresh. If there were nodes with failures, warnings, or rotten states, the `netq show agents` command can provide additional details about individual NetQ Agents. 
+
+Note that the `streaming` keyword returns results faster compared to traditional on-demand checks.
 
 ```
-cumulus@switch:$ netq check agents
+cumulus@switch:$ netq check agents streaming
 agent check result summary:
 
 Total nodes         : 21

@@ -42,7 +42,7 @@ To configure the display settings:
 
 5. Select **Save**.
 
-To reset the password for an account with an admin role, follow {{<link title="Add and Manage Accounts#Reset an Admin Password" text="these instructions">}}.
+To reset the password for an admin account, follow {{<link title="Add and Manage Accounts#Reset an Admin Password" text="these instructions">}}.
 
 ## Manage Your Workbenches
 

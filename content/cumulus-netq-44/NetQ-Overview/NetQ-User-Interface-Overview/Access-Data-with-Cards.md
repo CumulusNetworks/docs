@@ -5,13 +5,27 @@ weight: 140
 toc: 4
 ---
 
-<!-- vale off -->
 Cards present information about your network for monitoring and troubleshooting; each card describes a particular aspect of the network. Cards are collected onto a {{<link title="Focus Your Monitoring Using Workbenches" text="workbench">}} where all data relevant to a task or set of tasks is visible. You can add and remove cards from a workbench, increase or decrease their sizes, change the time period of the data shown on a card, and make copies of cards to show different levels of data at the same time.
-<!-- vale on -->
 
+## Available Cards
+
+Each card focuses on a particular aspect of your network. They include:
+
+- **Validation summary**: overview of your network's health
+- **Events**: system events and anomalies
+- **What Just Happened**: network issues and packet drops 
+- **Device groups**: distribution of device components
+- **Inventory/Devices**: info about all switches and hosts in the network
+- **Inventory/Switches**: info about the components on a given switch
+- **Inventory/DPU**: info about data processing units
+- **Inventory/Hosts**: info about hosts
+- **Trace request**: discovery workflow for paths between two devices in the network fabric
+- **MAC move commentary**: info about changes to a MAC address on a specific VLAN
+
+There are five additional network services cards for session monitoring, including **BGP**, **MLAG**, **EVPN**, **OSPF**, and **LLDP**.
 ## Card Sizes
 
-Cards are available in multiple sizes, from small to full screen. The level of the content on a card varies with the size of the card, with the highest level of information on the smallest card to the most detailed information on the full-screen card.
+Cards are available in 4 sizes. The granularity of the content on a card varies with the size of the card, with the highest level of information on the smallest card to the most detailed information on the full-screen card.
 
 ### Card Size Summary
 
@@ -35,12 +49,11 @@ Cards are available in multiple sizes, from small to full screen. The level of t
 <th>Primary Purpose</th>
 <td><ul>
 <li>Quick view of status, typically at the level of good or bad</li>
-<li>Enable quick actions, run a validation or trace for example</li>
 </ul></td>
 <td><ul>
 <li>View key performance parameters or statistics</li>
-<li>Perform an action</li>
-<li>Look for potential issues</li>
+<li>Perform quick actions</li>
+<li>Monitor for potential issues</li>
 </ul></td>
 <td><ul>
 <li>View detailed performance and statistics</li>
@@ -49,101 +62,39 @@ Cards are available in multiple sizes, from small to full screen. The level of t
 </ul></td>
 <td><ul>
 <li>View all attributes for given network aspect</li>
-<li>Free-form data analysis and visualization</li>
-<li>Export data to third-party tools</li>
+<li>Analyze and visualize detailed data</li>
+<li>Export and filter data</li>
 </ul></td>
 </tr>
 </tbody>
 </table>
 
-### Small Cards
-
-Small cards provide an overview of the performance or statistical value of a given aspect of your network. They typically include an icon to identify the aspect being monitored, summary performance or statistics in the form of a graph or counts, and an indication of any related events.
-
-{{<figure src="/images/netq/access-data-small-group-230.png" alt="a row of small cards" width="700">}}
-
-### Medium Cards
-
-Medium cards provide the key measurements for a given aspect of your network. They include the same content as the small cards with additional, relevant information, such as related events or components.
-
-{{<figure src="/images/netq/access-data-medium-group-230.png" alt="a row of medium cards" width="700">}}
-
-### Large Cards
-
-Large cards provide detailed information for monitoring specific components or functions of a given aspect of your network. This granular view can aid in isolating and resolving existing issues or preventing potential issues. These cards frequently display statistics or graphs that help visualize data.
-
-{{<figure src="/images/netq/card-inventory-switches-lg-400.png" alt="a large inventory card displaying information about switches" width="600">}}
-
-### Full-Screen Cards
-
-Full-screen cards show all available data about an aspect of your network. They typically display data in a tabular view that can be filtered and sorted. When relevant, they also display visualizations of that data.
-
-{{<figure src="/images/netq/card-inventory-switch-fs-400.png" alt="a full-screen inventory card displaying detailed information about switches in a table." width="700">}}
-
-## Card Interactions
-
-Each card focuses on a particular aspect of your network. They include:
-
-- **Validation summary**: networkwide view of network health
-- **Events**: information about all error and info events in the system
-- **What Just Happened**: information about network issues and packet drops 
-- **Device groups**: information about the distribution of device components
-- **Inventory|Devices**: information about all switches and hosts in the network
-- **Inventory|Switches**: information about the components on a given switch
-- **Inventory|DPU**: information about data processing units
-- **Inventory|Hosts**: information about hosts
-- **Trace request**: find available paths between two devices in the network fabric
-
-There are five additional network services cards for session monitoring, including **BGP**, **MLAG**, **EVPN**, **OSPF**, and **LLDP**.
+## Card Actions
 ### Add Cards to Your Workbench
-
-Follow the steps in this section to add cards to your workbench. To add individual switch cards, refer to {{<link url="#add-switch-cards-to-your-workbench" text="Add Switch Cards to Your Workbench">}}.
-
-To add one or more cards:
 
 1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the header.
 
-2. Locate the card you want to add to your workbench. Use the categories in the side navigation or **Search** to help narrow down your options.
+2. Locate and select the card(s) you want to add to your workbench.
 
-3. Click on each card you want to add to your workbench.
+3. When you have selected all of the cards you want to add to your workbench, select **Open cards**:
 
-4. When you have selected all of the cards you want to add to your workbench, you can confirm which cards have been selected by clicking the **Cards Selected** link. Modify your selection as needed.
+      {{<figure src="/images/netq/add-cards-to-workbench.png" alt="1 selected card to be added to a workbench" width="900">}}
 
-      {{<figure src="/images/netq/add-card-confirm-selection-300.png" alt="three selected card to be added to a workbench" width="700">}}
-
-5. Click **Open Cards** to add the selected cards, or **Cancel** to return to your workbench without adding any cards.
-
-The cards are placed at the end of the set of cards currently on the workbench. You might need to scroll down to see them. You can drag and drop the cards on the workbench to rearrange them.
+The cards are placed at the end of the set of cards currently on the workbench. You might need to scroll down to see them. Drag and drop the cards on the workbench to rearrange them.
 
 ### Add Switch Cards to Your Workbench
 
-You can add switch cards to a workbench through the Switches icon on the header or by searching for it through Global Search.
+You can add switch cards to a workbench through the Devices icon on the header or by searching for it in the Global Search field. To add a switch card from the header:
 
-To add a switch card using the icon:
+1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>, then select **Open a device card**.
 
-1.  Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>, then select **Open a device card**.
+2. Enter the first few letters of the switch's hostname.
 
-2. Begin entering the hostname of the switch you want to monitor.
+3. Select the device from the suggestions that appear:
 
-3. Select the device from the suggestions that appear.
+      {{<figure src="/images/netq/open-switch-card-suggest-400.png" alt="dropdown displaying switches" width="250">}}
 
-      {{<figure src="/images/netq/open-switch-card-suggest-400.png" width="250">}}
-
-      {{<notice tip>}}
-If you attempt to enter a hostname that is unknown to NetQ, a red border appears around the entry field and you are unable to select <strong>Add</strong>. Try checking for spelling errors. If you feel your entry is valid, but not an available choice, consult with your network administrator.
-      {{</notice>}}
-
-4. Click **Add** to add the switch card to your workbench, or **Cancel** to return to your workbench without adding the switch card.
-
-To open the switch card by searching:
-
-1. Click in **Global Search**.
-
-2. Begin typing the name of a switch.
-
-    {{<figure src="/images/netq/add-switch-card-thru-search-300.png" width="300">}}
-
-3. Select it from the options that appear.
+4. Choose the card's size, then select **Add**.
 
 ### Remove Cards from Your Workbench
 
@@ -151,11 +102,23 @@ To remove all the cards from your workbench, click the Clear icon in the header.
 
 1. Hover over the card you want to remove.
 2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18"/> (*More Actions* menu).
-3. Click **Remove**.
+3. Select **Remove**.
 
-    {{<figure src="/images/netq/remove-card-222.png" alt="" width="100">}}
+    {{<figure src="/images/netq/remove-this-card.png" alt="" width="140">}}
 
 The card is removed from the workbench, but not from the application.
+
+### Change the Size of the Card
+
+1. Hover over the top portion of the card until you see a rectangle. This is the size picker.
+
+2. Hover over the size picker and move the cursor right or left until the desired size option is highlighted.
+
+    {{<figure src="/images/netq/card-size-picker-222.png" alt="" width="200" >}}
+
+    One-quarter width opens a small card. One-half width opens a medium card. Three-quarters width opens a large card. Full width opens a full-screen card.
+
+3. Select the size. When the card changes to the selected size, it might move to a different area on the workbench.
 
 ### Change the Time Period for the Card Data
 
@@ -163,28 +126,17 @@ All cards have a default time period for the data shown on the card, typically t
 
 To change the time period for a card:
 
-1. Hover over the card and select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header.
+1. Hover over the top portion of the card and select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
 3. Select a time period from the dropdown list.
 
-    {{<figure src="/images/netq/time-picker-popup-222.png" alt="" width="200">}}
+    {{<figure src="/images/netq/time-series-options.png" alt="time options" width="200">}}
 
 {{<notice tip>}}
 Changing the time period in this manner only changes the time period for the given card.
 {{</notice>}}
 
-### Change the Size of the Card
 
-To change the card size:
-
-1. Hover over the card.
-2. Hover over the size picker and move the cursor to the right or left until the desired size option is highlighted.
-
-    {{<figure src="/images/netq/card-size-picker-222.png" alt="" width="200" >}}
-
-    One-quarter width opens a small card. One-half width opens a medium card. Three-quarters width opens a large card. Full width opens a full-screen card.
-
-3. Click the picker. The card changes to the selected size, and might move its location on the workbench.
 ### Table Settings
 
 You can manipulate the tabular data displayed in a full-screen card by filtering and sorting the columns. Hover over the column header and select it to sort the column. The data is sorted in ascending or descending order: A-Z, Z-A, 1-n, or n-1. The number of rows that can be sorted is limited to 10,000.
@@ -206,6 +158,6 @@ The following icons are common in the full-screen card view:
 | <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18"/> | Assign role | Opens role assignment options for switches. |
 | <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> | Export | Exports selected data into either a .csv or JSON-formatted file. |
 
-When there are numerous items in a table, NetQ loads up to 25 by default and provides the rest in additional table pages. Pagination is displayed under the table.
+When there are many items in a table, NetQ loads up to 25 rows by default and provides the rest in additional table pages, accessible through the pagination controls. Pagination is displayed under the table.
 
-{{<figure src="/images/netq/table-pagination-320.png" width="400">}}
+{{<figure src="/images/netq/pagination-controls.png" alt="" width="400">}}

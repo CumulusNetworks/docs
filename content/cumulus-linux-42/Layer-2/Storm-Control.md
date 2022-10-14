@@ -38,3 +38,14 @@ cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/
 cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
 cumulus@switch:~$ sudo sh -c 'echo 500 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
 ```
+
+To use the same command above on range of interfaces you can use a for-loop from the switch CLI using the below example.
+
+```
+cumulus@switch:mgmt:~$ for i in {1..5}; do
+> sudo sh -c "echo 400 > /cumulus/switchd/config/interface/swp$i/storm_control/broadcast"
+> sudo sh -c "echo 3000 > /cumulus/switchd/config/interface/swp$i/storm_control/multicast"
+> sudo sh -c "echo 500 > /cumulus/switchd/config/interface/swp$i/storm_control/unknown_unicast"
+> done
+cumulus@switch:mgmt:~$ 
+```

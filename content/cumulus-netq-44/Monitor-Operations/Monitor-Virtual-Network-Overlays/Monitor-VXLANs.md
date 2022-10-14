@@ -5,8 +5,6 @@ weight: 990
 toc: 3
 ---
 
-VXLANs provide a way to create a virtual network on top of layer 2 and layer 3 technologies. Organizations, such as data centers, use them because they require larger scale without additional infrastructure and more flexibility than is available with existing infrastructure equipment.
-
 A network administrator can view the performance and status of VXLANs, as well as validate overlay communication paths with the following commands:
 
 ```

@@ -90,7 +90,7 @@ Now that you have the plugin installed, you need to configure access to the NetQ
 
 5. Enter the URL used to access the database:
     - Cloud: *plugin.netq.nvidia.com*
-    - On-premises: *\<hostname-or-ipaddr-of-netq-appl-or-vm\>/plugin*
+    - On-premises: *http://\<hostname-or-ipaddr-of-netq-appl-or-vm\>/plugin*
     - Cumulus in the Cloud (CITC): *plugin.air.netq.nvidia.com*
 
 <!-- 7. Select which statistics you want to view from the **Module** dropdown; either *procdevstats* or *ethtool*. -->

@@ -32,14 +32,14 @@ The physical *network* hardware includes:
 - **Edge** server (optional): where the firewall is the demarcation point, peering can occur through the exit switch layer to Internet (PE) devices
 - **Internet** device: where provider edge (PE) equipment communicates at layer 3 with the network fabric
 
-The following figure shows an example of a Clos network fabric design for a data center using an OOB management network overlaid on top, where NetQ resides.The physical connections (shown as gray lines) between Spine 01 and four Leaf devices and two Exit devices, and Spine 02 and the same four Leaf devices and two Exit devices. Leaf 01 and Leaf 02 connect to each other over a peerlink and act as an MLAG pair for Server 01 and Server 02. Leaf 03 and Leaf 04 connect to each other over a peerlink and act as an MLAG pair for Server 03 and Server 04. The Edge connects to both Exit devices, and the Internet node connects to Exit 01.
+The following figure shows an example of a Clos network fabric design for a data center using an OOB management network overlaid on top, where NetQ resides. The physical connections (shown as gray lines) between Spine 01 and four Leaf devices and two Exit devices, and Spine 02 and the same four Leaf devices and two Exit devices. Leaf 01 and Leaf 02 connect to each other over a peerlink and act as an MLAG pair for Server 01 and Server 02. Leaf 03 and Leaf 04 connect to each other over a peerlink and act as an MLAG pair for Server 03 and Server 04. The Edge connects to both Exit devices, and the Internet node connects to Exit 01.
 
 {{<figure src="/images/netq/deploy-arch-dc-example-230.png" alt="diagram of a Clos network displaying connections between spine switches, leafs, servers, and exit switches." ewidth="700">}}
 
 The physical *management* hardware includes:
 
 - OOB management switch: aggregation switch that connects to all network devices through communications with the NetQ Agent on each node
-- NetQ Platform: hosts the telemetry software, database and user interfaces
+- NetQ Platform: hosts the telemetry software, database, and user interfaces
 
 These switches connect to each physical network device through a virtual network overlay, shown with purple lines.
 

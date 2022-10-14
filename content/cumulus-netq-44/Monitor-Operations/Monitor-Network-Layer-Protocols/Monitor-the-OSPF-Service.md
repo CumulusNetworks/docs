@@ -5,10 +5,6 @@ weight: 960
 toc: 4
 ---
 
-<!-- vale off -->
-OSPF maintains the view of the network topology conceptually as a directed graph. Each router represents a vertex in the graph. Each link between neighboring routers represents a unidirectional edge and has an associated weight (called cost) that is either automatically derived from its bandwidth or administratively assigned. Using the weighted topology graph, each router computes a shortest path tree (SPT) with itself as the root, and applies the results to build its forwarding table. For more information about OSPF operation and how to configure OSPF to run in your data center network, refer to {{<kb_link latest="cl" url="Layer-3/OSPF/Open-Shortest-Path-First-v2-OSPFv2.md" text="Open Shortest Path First - OSPF">}} or {{<kb_link latest="cl" url="Layer-3/OSPF/Open-Shortest-Path-First-v3-OSPFv3.md" text="Open Shortest Path First v3 - OSPFv3">}}.
-<!-- vale on -->
-
 If you have OSPF running on your switches and hosts, NetQ enables you to view the health of the OSPF service on a networkwide and a per session basis, giving greater insight into all aspects of the service. For each device, you can view its associated interfaces, areas, peers, state, and type of OSPF running (numbered or unnumbered). Additionally, you can view the information at an earlier point in time and filter against a particular device, interface, or area.
 
 You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show ospf` command.
@@ -17,7 +13,7 @@ You accomplish this in the NetQ UI through two card workflows, one for the servi
 
 With NetQ, you can monitor OSPF performance across the network:
 
-- Network Services|All OSPF Sessions
+- Network Services/All OSPF Sessions
     - Small: view number of nodes running OSPF service and number and distribution of alarms
     - Medium: view number and distribution of nodes running OSPF service, total sessions, unestablished sessions, and alarms
     - Large: view number and distribution of nodes running OSPF service, total sessions, unestablished sessions, and alarms, switches with the most established sessions/alarms
@@ -32,7 +28,7 @@ You can view a summary of the OSPF service from the NetQ UI or the NetQ CLI.
 
 {{<tab "NetQ UI" >}}
 
-To view the summary, open the Network Services|All OSPF Sessions card. In this example, the number of devices running the OSPF service is nine (9) and the number and distribution of related critical severity alarms is zero (0).
+To view the summary, open the Network Services/All OSPF Sessions card. In this example, the number of devices running the OSPF service is nine (9) and the number and distribution of related critical severity alarms is zero (0).
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-small-230.png" width="200">}}
 
@@ -83,7 +79,7 @@ It is useful to know the number of network nodes running the OSPF protocol over 
 
 {{<tab "NetQ UI" >}}
 
-To view these distributions, open the medium Network Services|All OSPF Sessions card. In this example, there are nine nodes running the service with a total of 40 sessions. This has not changed over the past 24 hours.
+To view these distributions, open the medium Network Services/All OSPF Sessions card. In this example, there are nine nodes running the service with a total of 40 sessions. This has not changed over the past 24 hours.
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-medium-230.png" width="200">}}
 
@@ -140,7 +136,7 @@ You can view the load from OSPF on your switches and hosts using the large Netwo
 
 To view switches and hosts with the most OSPF sessions:
 
-1. Open the large Network Services|All OSPF Sessions card.
+1. Open the large Network Services/All OSPF Sessions card.
 
 2. Select **Switches with Most Sessions** from the filter above the table.
 
@@ -205,7 +201,7 @@ You can identify switches and hosts that are experiencing difficulties establish
 
 To view switches with the most unestablished OSPF sessions:
 
-1. Open the large Network Services|All OSPF Sessions card.
+1. Open the large Network Services/All OSPF Sessions card.
 
 2. Select **Switches with Most Unestablished Sessions** from the filter above the table.
 
@@ -252,11 +248,11 @@ You can view all of the OSPF-related events in the network using the NetQ UI or 
 
 {{<tab "NetQ UI" >}}
 
-The Network Services|All OSPF Sessions card enables you to view all of the OSPF events in the designated time period.
+The Network Services/All OSPF Sessions card enables you to view all of the OSPF events in the designated time period.
 
 To view all OSPF events:
 
-1. Open the full-screen Network Services|All OSPF Sessions card.
+1. Open the full-screen Network Services/All OSPF Sessions card.
 
 2. Click **All Alarms** in the navigation panel. By default, events are listed in most recent to least recent order.
 
@@ -301,7 +297,7 @@ You can view all stored attributes of all OSPF sessions in your network with the
 
 {{<tab "NetQ UI" >}}
 
-To view all session details, open the full screen Network Services|All OSPF Sessions card and click the **All Sessions** tab.
+To view all session details, open the full screen Network Services/All OSPF Sessions card and click the **All Sessions** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-all-ospf-fullscr-sessions-tab-222.png" width="700">}}
 
@@ -344,7 +340,7 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 With NetQ, you can monitor the performance of a single OSPF session using the NetQ UI or the NetQ CLI.
 
-- Network Services|OSPF Session
+- Network Services/OSPF Session
     - Small: view devices participating in the session and summary status
     - Medium: view devices participating in the session, summary status,  session state changes, and key identifiers of the session
     - Large: view devices participating in the session, summary status, session state changes, event distribution and counts, attributes of the session, and the running OSPF configuration and changes to the configuration file
@@ -356,7 +352,7 @@ For an overview and how to configure OSPF to run in your data center network, re
 <!-- vale on -->
 
 {{<notice note>}}
-To access the single session cards, you must open the full screen Network Services|All OSPF Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Card).
+To access the single session cards, you must open the full screen Network Services/All OSPF Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Open Card).
 {{</notice>}}
 
 ### Granularity of Data Shown Based on Time Period
@@ -386,7 +382,7 @@ You can view a summary of a given OSPF session from the NetQ UI or NetQ CLI.
 
 To view the summary:
 
-1. Open the Network Services|All OSPF Sessions card.
+1. Open the Network Services/All OSPF Sessions card.
 
 2. Switch to the full-screen card using the card size picker.
 
@@ -453,7 +449,7 @@ You can view the state of a given OSPF session from the medium and large Network
 
 To view the state transitions for a given OSPF session, on the *medium* OSPF Session card:
 
-1. Open the Network Services|All OSPF Sessions card.
+1. Open the Network Services/All OSPF Sessions card.
 
 2. Switch to the full-screen card using the card size picker.
 
@@ -469,7 +465,7 @@ To view the state transitions for a given OSPF session, on the *medium* OSPF Ses
 
 To view the state transitions for a given OSPF session on the *large* OSPF Session card:
 
-1. Open a Network Services|OSPF Session card.
+1. Open a Network Services/OSPF Session card.
 
 2. Hover over the card, and change to the large card using the card size picker.
 
@@ -483,7 +479,7 @@ Each time a change is made to the configuration file for the OSPF service, NetQ 
 
 To view the configuration file changes:
 
-1. Open or add the Network Services|All OSPF Sessions card.
+1. Open or add the Network Services/All OSPF Sessions card.
 
 2. Switch to the full-screen card.
 
@@ -517,7 +513,7 @@ You can view attributes of all of the OSPF sessions for the devices participatin
 
 To view all session details:
 
-1. Open or add the Network Services|All OSPF Sessions card.
+1. Open or add the Network Services/All OSPF Sessions card.
 
 2. Switch to the full-screen card.
 
@@ -570,7 +566,7 @@ You can view all alarm and info events for the devices participating in a given 
 
 To view all events:
 
-1. Open or add the Network Services|All OSPF Sessions card.
+1. Open or add the Network Services/All OSPF Sessions card.
 
 2. Switch to the full-screen card.
 

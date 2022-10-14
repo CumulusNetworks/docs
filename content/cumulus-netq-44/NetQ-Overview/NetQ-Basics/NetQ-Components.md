@@ -42,8 +42,6 @@ for the following protocols:
   - Routing protocols: BGP, OSPF
   - Network virtualization: EVPN, VXLAN
 
-The NetQ Agent is supported on Cumulus Linux 3.7.12 and later and SONiC 202012 to 202106.
-
 ### Host Agents
 
 The NetQ Agents running on hosts gather the same information as that for switches, plus the following network data:
@@ -53,11 +51,9 @@ The NetQ Agents running on hosts gather the same information as that for switche
 
 The NetQ Agent obtains container information by listening to the Kubernetes orchestration tool.
 
-The NetQ Agent is supported on hosts running Ubuntu 16.04, Red Hat® Enterprise Linux 7, and CentOS 7 Operating Systems.
-
 ## NetQ Core
 
-The NetQ core performs the data collection, storage, and processing for delivery to various user interfaces. It consists of a collection of scalable components running entirely within a single server. The NetQ software queries this server, rather than individual devices, enabling greater system scalability. Each of these components is described briefly below.
+The NetQ core performs the data collection, storage, and processing for delivery to various user interfaces. It consists of a collection of scalable components running entirely within a single server. The NetQ software queries this server, rather than individual devices, enabling greater system scalability.
 
 ### Data Aggregation
 

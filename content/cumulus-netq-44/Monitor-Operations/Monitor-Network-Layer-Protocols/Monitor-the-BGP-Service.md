@@ -4,23 +4,13 @@ author: NVIDIA
 weight: 950
 toc: 4
 ---
-BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically, BGP:
-
-- Does not require the routing state to be periodically refreshed, unlike OSPF.
-- Is less chatty than its link-state siblings. For example, a link or node transition can result in a bestpath change, causing BGP to send updates.
-- Is multi-protocol and extensible.
-- Has many robust vendor implementations.
-- Is very mature as a protocol and comes with many years of operational experience.
-
-{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center. For an overview and how to configure BGP to run in your data center network, refer to {{<kb_link latest="cl" url="Layer-3/Border-Gateway-Protocol-BGP/_index.md" text="Border Gateway Protocol - BGP">}}.
-
 NetQ enables operators to view the health of the BGP service on a networkwide or per session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show bgp` command.
 
 ## Monitor the BGP Service Networkwide
 
 With NetQ, you can monitor BGP performance across the network:
 
-- Network Services|All BGP Sessions
+- Network Services/All BGP Sessions
     - Small: view number of nodes running BGP service and distribution and number of alarms
     - Medium: view number and distribution of nodes running BGP service, alarms, and with unestablished sessions
     - Large: view number and distribution of nodes running BGP service and those with unestablished sessions, and view nodes with the most established and unestablished BGP sessions
@@ -35,7 +25,7 @@ You can view a summary of BGP service with the NetQ UI or the NetQ CLI.
 
 {{<tab "NetQ UI" >}}
 
-To view the summary, open the small Network Services|All BGP Sessions card.
+To view the summary, open the small Network Services/All BGP Sessions card.
 
 {{<figure src="/images/netq/ntwk-svcs-all-bgp-small-300.png" width="200" >}}
 
@@ -122,11 +112,11 @@ It is also useful to compare the number of nodes running BGP with unestablished 
 
 {{<tab "NetQ UI" >}}
 
-To view these distributions, open the medium Network Services|All BGP Sessions card.
+To view these distributions, open the medium Network Services/All BGP Sessions card.
 
 {{<figure src="/images/netq/ntwk-svcs-all-bgp-medium-300.png" width="200" >}}
 
-In this example, we see that 10 nodes are running the BGP protocol, there are no nodes with unestablished sessions, and that 54 LLDP-related alarms have occurred in the last 24 hours. If a visual correlation between the alarms and unestablished sessions is apparent, you can dig a little deeper with the large Network Services|All BGP Sessions card.
+In this example, we see that 10 nodes are running the BGP protocol, there are no nodes with unestablished sessions, and that 54 LLDP-related alarms have occurred in the last 24 hours. If a visual correlation between the alarms and unestablished sessions is apparent, you can dig a little deeper with the large Network Services/All BGP Sessions card.
 
 {{</tab>}}
 
@@ -209,7 +199,7 @@ spine04           swp4(leaf04)                 default         65199      65102 
 
 ### View Devices with the Most BGP Sessions
 
-You can view the load from BGP on your switches and hosts using the large Network Services|All BGP Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most BGP sessions currently, validate your expectations based on your network design, and compare that with data from an earlier time to look for any differences.
+You can view the load from BGP on your switches and hosts using the large Network Services/All BGP Sessions card or the NetQ CLI. This data enables you to see which switches are handling the most BGP sessions currently, validate your expectations based on your network design, and compare that with data from an earlier time to look for any differences.
 
 {{<tabs "TabID228" >}}
 
@@ -217,7 +207,7 @@ You can view the load from BGP on your switches and hosts using the large Networ
 
 To view switches and hosts with the most BGP sessions:
 
-1. Open the large Network Services|ALL BGP Sessions card.
+1. Open the large Network Services/ALL BGP Sessions card.
 
 2. Select **Switches With Most Sessions** from the filter above the table.  
 
@@ -320,7 +310,7 @@ You can identify switches and hosts that are experiencing difficulties establish
 
 To view switches with the most unestablished BGP sessions:
 
-1. Open the large Network Services|All BGP Sessions card.
+1. Open the large Network Services/All BGP Sessions card.
 
 2. Select **Switches with Most Unestablished Sessions** from the filter above the table.  
 
@@ -345,7 +335,7 @@ You can view the BGP configuration information for a given device from the NetQ 
 
 {{<tab "NetQ UI" >}}
 
-1. Open the full-screen Network Services|All BGP Sessions card.
+1. Open the full-screen Network Services/All BGP Sessions card.
 
 2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by hostname.
 
@@ -389,7 +379,7 @@ You can view the BGP configuration information for a given ASN from the NetQ UI 
 
 {{<tab "NetQ UI" >}}
 
-1. Open the full-screen Network Services|All BGP Sessions card.
+1. Open the full-screen Network Services/All BGP Sessions card.
 
 2. Locate the **ASN** column.
 
@@ -448,7 +438,7 @@ With the NetQ UI, you can view the devices sorted by the number of BGP alarms an
 
 To view switches with the most BGP alarms:
 
-1. Open the large Network Services|All BGP Sessions card.
+1. Open the large Network Services/All BGP Sessions card.
 
 2. Hover over the header and click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/>.
 
@@ -513,7 +503,7 @@ leaf01            bgp          info     BGP session with peer spine01 @desc 2h:1
 
 ### View All BGP Events
 
-The Network Services|All BGP Sessions card workflow and the `netq show events type bgp` command enable you to view all BGP events in a designated time period.
+The Network Services/All BGP Sessions card workflow and the `netq show events type bgp` command enable you to view all BGP events in a designated time period.
 
 {{<tabs "TabID436" >}}
 
@@ -521,7 +511,7 @@ The Network Services|All BGP Sessions card workflow and the `netq show events ty
 
 To view all BGP events:
 
-1. Open the full-screen Network Services|All BGP Sessions card.
+1. Open the full-screen Network Services/All BGP Sessions card.
 
 2. Click **All Alarms** tab in the navigation panel.  
 
@@ -593,9 +583,9 @@ leaf01            bgp          info     BGP session with peer spine01 @desc 2h:1
 
 ### View Details for All Devices Running BGP
 
-You can view all stored attributes of all switches and hosts running BGP in your network in the full-screen Network Services|All BGP Sessions card in the NetQ UI.
+You can view all stored attributes of all switches and hosts running BGP in your network in the full-screen Network Services/All BGP Sessions card in the NetQ UI.
 
-To view all device details, open the full-screen Network Services|All BGP Sessions card and click the **All Switches** tab.
+To view all device details, open the full-screen Network Services/All BGP Sessions card and click the **All Switches** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsw-tab-300.png" width="700">}}
 
@@ -607,7 +597,7 @@ You can view attributes of all BGP sessions in your network with the NetQ UI or 
 
 {{<tab "NetQ UI" >}}
 
-To view all session details, open the full-screen Network Services|All BGP Sessions card and click the **All Sessions** tab.
+To view all session details, open the full-screen Network Services/All BGP Sessions card and click the **All Sessions** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-all-bgp-fullscr-allsess-tab-300.png" width="700">}}
 
@@ -691,7 +681,7 @@ spine04           swp4(leaf04)                 default         65199      65102 
 With NetQ, you can monitor a single session of the BGP service, view session state changes, and compare with alarms occurring at the same time, as well as monitor the running BGP configuration and changes to the configuration file. For an overview and how to configure BGP to run in your data center network, refer to {{<kb_link latest="cl" url="Layer-3/Border-Gateway-Protocol-BGP/_index.md" text="Border Gateway Protocol - BGP">}}.
 
 {{<notice note>}}
-To access the single session cards, you must open the full-screen Network Services|All BGP Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Card).
+To access the single session cards, you must open the full-screen Network Services/All BGP Sessions card, click the <strong>All Sessions</strong> tab, select the desired session, then click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18"/> (Open Card).
 {{</notice>}}
 
 {{%notice info%}}
@@ -723,11 +713,11 @@ You can view information about a given BGP session using the NetQ UI or NetQ CLI
 
 {{<tab "NetQ UI" >}}
 
-A summary of a BGP session is available from the Network Services|BGP Session card workflow, showing the node and its peer and current status.
+A summary of a BGP session is available from the Network Services/BGP Session card workflow, showing the node and its peer and current status.
 
 To view the summary:
 
-1. Open or add the Network Services|All BGP Sessions card.
+1. Open or add the Network Services/All BGP Sessions card.
 
 2. Switch to the full-screen card using the card size picker.
 
@@ -735,11 +725,11 @@ To view the summary:
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|BGP Session card.
+5. Locate the medium Network Services/BGP Session card.
 
     {{<figure src="/images/netq/ntwk-svcs-single-bgp-medium-session-status-highlight-230.png" width="200">}}
 
-6. Optionally, switch to the small Network Services|BGP Session card.  
+6. Optionally, switch to the small Network Services/BGP Session card.  
 
     {{<figure src="/images/netq/ntwk-svcs-single-bgp-small-230.png" width="200">}}
 
@@ -794,7 +784,7 @@ You can view the state of a given BGP session from the medium and large Network 
 
 To view the state transitions for a given BGP session, on the *medium* BGP Session card:
 
-1. Open or add the Network Services|All BGP Sessions card.
+1. Open or add the Network Services/All BGP Sessions card.
 
 2. Switch to the full-screen card using the card size picker.
 
@@ -802,7 +792,7 @@ To view the state transitions for a given BGP session, on the *medium* BGP Sessi
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|BGP Session card.
+5. Locate the medium Network Services/BGP Session card.
 
     {{<figure src="/images/netq/ntwk-svcs-single-bgp-medium-session-status-highlight-230.png" width="200">}}
 
@@ -812,7 +802,7 @@ To view the state transitions for a given BGP session, on the *medium* BGP Sessi
 
 To view the state transitions for a given BGP session on the *large* BGP Session card:
 
-1. Open a Network Services|BGP Session card.
+1. Open a Network Services/BGP Session card.
 
 2. Hover over the card, and change to the large card using the card size picker.
 
@@ -826,7 +816,7 @@ Each time a change is made to the configuration file for the BGP service, NetQ l
 
 To view the configuration file changes:
 
-1. Open or add the Network Services|All BGP Sessions card.
+1. Open or add the Network Services/All BGP Sessions card.
 
 2. Switch to the full-screen card using the card size picker.
 
@@ -834,7 +824,7 @@ To view the configuration file changes:
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|BGP Session card.
+5. Locate the medium Network Services/BGP Session card.
 
 6. Hover over the card, and change to the large card using the card size picker.
 
@@ -862,7 +852,7 @@ You can view attributes of all of the BGP sessions for the devices participating
 
 To view all session details:
 
-1. Open or add the Network Services|All BGP Sessions card.
+1. Open or add the Network Services/All BGP Sessions card.
 
 2. Switch to the full-screen card using the card size picker.
 
@@ -870,7 +860,7 @@ To view all session details:
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|BGP Session card.
+5. Locate the medium Network Services/BGP Session card.
 
 6. Hover over the card, and change to the full-screen card using the card size picker.
 
@@ -905,7 +895,7 @@ You can view all alarm and info events for the devices participating in a given 
 
 To view all events:
 
-1. Open or add the Network Services|All BGP Sessions card.
+1. Open or add the Network Services/All BGP Sessions card.
 
 2. Switch to the full-screen card using the card size picker.
 
@@ -913,7 +903,7 @@ To view all events:
 
 4. Select the session of interest, then click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg"  height="18" width="18">}} (Open Card).
 
-5. Locate the medium Network Services|BGP Session card.
+5. Locate the medium Network Services/BGP Session card.
 
 6. Hover over the card, and change to the full-screen card using the card size picker.
 

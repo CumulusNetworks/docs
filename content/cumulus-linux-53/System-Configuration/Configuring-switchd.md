@@ -73,9 +73,9 @@ cumulus@switch:~$ sudo tree /cumulus/switchd/
 
 ## Configure switchd Parameters
 
-You can control certain features associated with the `switchd` process. For example, you can set polling intervals, optimize ACL hardware resources for better utilization, configure log message levels, set the internal VLAN range, and configure default VXLAN encapsulation.
+You can control certain options associated with the `switchd` process. For example, you can set polling intervals, optimize ACL hardware resources for better utilization, configure log message levels, set the internal VLAN range, and configure default VXLAN encapsulation.
 
-You can run NVUE commands or manually edit the `/etc/cumulus/switchd.conf`; however, NVUE currently supports a small subset of the `switchd` configuration available in the `/etc/cumulus/switchd.conf` file.
+To configure `switchd` options, you either run NVUE commands or manually edit the `/etc/cumulus/switchd.conf`; however, NVUE currently supports a small subset of the `switchd` configuration available in the `/etc/cumulus/switchd.conf` file.
 
 {{< tabs "TabID115 ">}}
 {{< tab "NVUE Commands ">}}
@@ -89,7 +89,7 @@ You can run NVUE commands to set the following `switchd` options:
 - The route or neighbour preference.
 - The ACL mode (atomic or non-atomic).
 
-To set the statistic polling interval (in seconds) for physical intefaces:
+To set the statistic polling interval (in seconds) for physical interfaces:
 
 ```
 cumulus@switch:~$ nv set system counters polling-interval physical-interface 5

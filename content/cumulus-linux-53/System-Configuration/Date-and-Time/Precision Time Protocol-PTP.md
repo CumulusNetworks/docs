@@ -44,6 +44,10 @@ Basic PTP configuration requires you:
 - Enable PTP on the switch.
 - Configure PTP on at least one interface; this can be a layer 3 routed port, switch port, or trunk port. You do not need to specify which is a master interface and which is a slave interface; the PTP Best Master Clock Algorithm (BMCA) determines the master and slave.
 
+{{%notice note%}}
+If you configure PTP with Linux commands, you must also enable PTP timestamping; see step 1 of the Linux procedure below. NVUE enables PTP timestamping automatically; you do not have to run any NVUE commands to enable PTP timestamping.
+{{%/notice%}}
+
 The basic configuration shown below uses the *default* PTP settings:
 - The clock mode is Boundary. This is the only clock mode that Cumulus Linux supports.
 - {{<link url="#clock-domains" text="The PTP clock domain">}} is 0.
@@ -130,109 +134,118 @@ The configuration writes to the `/etc/ptp4l.conf` file.
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Enable and start the ptp4l and phc2sys services:
+1. Edit the `/etc/cumulus/switchd.d/ptp.conf` file to set the `ptp.timestamping` parameter to `TRUE`:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ptp.conf
+   ...
+   ptp.timestamping     TRUE
+   ...
+   ```
+
+2. Enable and start the ptp4l and phc2sys services:
 
     ```
     cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
     cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
     ```
 
-2. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
+3. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
 
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-...
-[global]
-#
-# Default Data Set
-#
-slaveOnly               0
-priority1               128
-priority2               128
-domainNumber            0
-
-twoStepFlag             1
-dscp_event              46
-dscp_general            46
-
-offset_from_master_min_threshold   -50
-offset_from_master_max_threshold   50
-mean_path_delay_threshold          200
-
-#
-# Run time options
-#
-logging_level           6
-path_trace_enabled      0
-use_syslog              1
-verbose                 0
-summary_interval        0
-
-#
-# servo parameters
-#
-pi_proportional_const          0.000000
-pi_integral_const              0.000000
-pi_proportional_scale          0.700000
-pi_proportional_exponent       -0.300000
-pi_proportional_norm_max       0.700000
-pi_integral_scale              0.300000
-pi_integral_exponent           0.400000
-pi_integral_norm_max           0.300000
-step_threshold                 0.000002
-first_step_threshold           0.000020
-max_frequency                  900000000
-sanity_freq_limit              0
-
-#
-# Default interface options
-#
-time_stamping                  software
-
-
-# Interfaces in which ptp should be enabled
-# these interfaces should be routed ports
-# if an interface does not have an ip address
-# the ptp4l will not work as expected.
-
-[swp1]
-udp_ttl                 1
-masterOnly              0
-delay_mechanism         E2E
-network_transport       UDPv4
-
-[swp2]
-udp_ttl                 1
-masterOnly              0
-delay_mechanism         E2E
-network_transport       UDPv4
-```
-
-For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
-
-```
-[swp1]
-l2_mode                 trunk
-vlan_intf               vlan10
-src_ip                  10.1.10.2
-udp_ttl                 1
-masterOnly              0
-delay_mechanism         E2E
-network_transport       UDPv4
-```
-
-For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and `src_ip` to the IP adress of the VLAN interface:
-
-```
-[swp2]
-l2_mode                 access
-vlan_intf               vlan10
-src_ip                  10.1.10.2
-udp_ttl                 1
-masterOnly              0
-delay_mechanism         E2E
-network_transport       UDPv4
-```
+   ```
+   cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+   ...
+   [global]
+   #
+   # Default Data Set
+   #
+   slaveOnly               0
+   priority1               128
+   priority2               128
+   domainNumber            0
+   
+   twoStepFlag             1
+   dscp_event              46
+   dscp_general            46
+   
+   offset_from_master_min_threshold   -50
+   offset_from_master_max_threshold   50
+   mean_path_delay_threshold          200
+   
+   #
+   # Run time options
+   #
+   logging_level           6
+   path_trace_enabled      0
+   use_syslog              1
+   verbose                 0
+   summary_interval        0
+   
+   #
+   # servo parameters
+   #
+   pi_proportional_const          0.000000
+   pi_integral_const              0.000000
+   pi_proportional_scale          0.700000
+   pi_proportional_exponent       -0.300000
+   pi_proportional_norm_max       0.700000
+   pi_integral_scale              0.300000
+   pi_integral_exponent           0.400000
+   pi_integral_norm_max           0.300000
+   step_threshold                 0.000002
+   first_step_threshold           0.000020
+   max_frequency                  900000000
+   sanity_freq_limit              0
+   
+   #
+   # Default interface options
+   #
+   time_stamping                  software
+   
+   
+   # Interfaces in which ptp should be enabled
+   # these interfaces should be routed ports
+   # if an interface does not have an ip address
+   # the ptp4l will not work as expected.
+   
+   [swp1]
+   udp_ttl                 1
+   masterOnly              0
+   delay_mechanism         E2E
+   network_transport       UDPv4
+   
+   [swp2]
+   udp_ttl                 1
+   masterOnly              0
+   delay_mechanism         E2E
+   network_transport       UDPv4
+   ```
+   
+   For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to    the IP adress of the VLAN interface:
+   
+   ```
+   [swp1]
+   l2_mode                 trunk
+   vlan_intf               vlan10
+   src_ip                  10.1.10.2
+   udp_ttl                 1
+   masterOnly              0
+   delay_mechanism         E2E
+   network_transport       UDPv4
+   ```
+   
+   For a switch port VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `access`, `vlan_intf` to the VLAN interface, and    `src_ip` to the IP adress of the VLAN interface:
+   
+   ```
+   [swp2]
+   l2_mode                 access
+   vlan_intf               vlan10
+   src_ip                  10.1.10.2
+   udp_ttl                 1
+   masterOnly              0
+   delay_mechanism         E2E
+   network_transport       UDPv4
+   ```
 
 4. Restart the `ptp4l` service:
 

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3232484</td>
+<td>VXLAN route updates during high frequency might cause {{switchd}} to leak memory.</td>
+<td>3.7.14.2-3.7.16</td>
+<td></td>
+</tr>
+<tr>
 <td>3216759</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 

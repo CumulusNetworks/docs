@@ -36,9 +36,9 @@ To decommission a switch or host:
 
 ## Decommission from the NetQ UI
 
-You can decommission a switch or host from the NetQ UI using the Inventory | Devices card. This stops and disables the NetQ Agent service on the device, and decommissions it from the NetQ database.
+You can decommission a switch or host from the NetQ UI using the Inventory/Devices card. This stops and disables the NetQ Agent service on the device, and decommissions it from the NetQ database.
 
-1. Expand the Inventory | Devices card to list the devices in the current inventory:
+1. Expand the Inventory/Devices card to list the devices in the current inventory:
 
 {{<figure src="/images/netq/inventory-devices-card.png" alt="inventory card displaying 12 hosts and 12 switches" width="200">}}
 

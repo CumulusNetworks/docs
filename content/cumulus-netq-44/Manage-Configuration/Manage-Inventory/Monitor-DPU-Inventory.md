@@ -15,7 +15,7 @@ In the UI, you can view your DPU inventory across the network or individually, i
 
 ## Access and View Host Inventory Data
 
-The Inventory | DPU card monitors the hardware- and software-component inventory on DPUs running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > Inventory > Inventory | DPU card > Open Cards.
+The Inventory/DPU card monitors the hardware- and software-component inventory on DPUs running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > Inventory > Inventory/ DPU card > Open Cards.
 
 {{<figure src="/images/netq/dpu-inventory-platform-l2-42.png" alt="DPU inventory card with chart" width="200">}}
 

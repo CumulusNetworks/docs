@@ -40,20 +40,35 @@ These conditions require modifications to the ASIC buffer which might result in 
 When you run the `reload switchd.service` command, Cumulus Linux always runs the [Syntax Checker](#syntax-checker) before applying changes.
 
 {{% notice note %}}
-NVUE reloads the `switchd.service`automatically. You do **not** have to run the `reload switchd.service` command to apply changes when configuring QoS with NVUE commands.
+NVUE reloads the `switchd.service` automatically. You do **not** have to run the `reload switchd.service` command to apply changes when configuring QoS with NVUE commands.
 {{% /notice %}}
 
 ## Classification
 
 When a frame or packet arrives on the switch, Cumulus Linux maps it to an *internal COS* value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
-You can define which values are `trusted` in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting.
+You can define which values are `trusted`.
+
+{{< tabs "TabID52 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ 
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `qos_features.conf` file, configure the `traffic.packet_priority_source_set` setting.
 
 The `traffic.port_default_priority` setting accepts a value between 0 and 7 and defines the internal COS marking to use with the `port` value.
 
 If `traffic.packet_priority_source_set` is `cos` or `dscp`, you can map the ingress values to an internal COS value.
 
 {{<cl/qos-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 The following table describes the default classifications for various frame and `packet_priority_source_set` configurations:
 

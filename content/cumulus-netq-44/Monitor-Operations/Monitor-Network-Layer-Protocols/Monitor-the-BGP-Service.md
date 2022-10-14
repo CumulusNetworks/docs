@@ -4,16 +4,6 @@ author: NVIDIA
 weight: 950
 toc: 4
 ---
-BGP is the routing protocol that runs the Internet. It is an increasingly popular protocol for use in the data center as it lends itself well to the rich interconnections in a Clos topology. Specifically, BGP:
-
-- Does not require the routing state to be periodically refreshed, unlike OSPF.
-- Is less chatty than its link-state siblings. For example, a link or node transition can result in a bestpath change, causing BGP to send updates.
-- Is multi-protocol and extensible.
-- Has many robust vendor implementations.
-- Is very mature as a protocol and comes with many years of operational experience.
-
-{{<exlink url="https://tools.ietf.org/html/rfc7938" text="RFC 7938">}} provides further details of the use of BGP within the data center. For an overview and how to configure BGP to run in your data center network, refer to {{<kb_link latest="cl" url="Layer-3/Border-Gateway-Protocol-BGP/_index.md" text="Border Gateway Protocol - BGP">}}.
-
 NetQ enables operators to view the health of the BGP service on a networkwide or per session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show bgp` command.
 
 ## Monitor the BGP Service Networkwide

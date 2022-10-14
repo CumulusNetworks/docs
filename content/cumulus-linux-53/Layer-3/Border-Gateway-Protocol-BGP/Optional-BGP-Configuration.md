@@ -1062,9 +1062,9 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale off -->
 The following example commands configure leaf01 to advertise all paths learned from each AS to the BGP neighbor on swp50:
-
+<!-- vale on -->
 {{< tabs "928 ">}}
 {{< tab "NVUE Commands ">}}
 

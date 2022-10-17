@@ -257,8 +257,8 @@ First, you need to decide what level of logging you want to configure. You can c
 
 | Logging Level | Description |
 | ------------- | ------------------ |
-| debug | Sends notifications for all debugging-related, informational, warning, and error messages. |
-| info | Sends notifications for informational, warning, and error messages (default). |
+| debug | Sends notifications for all debug, info, warning, and error messages. |
+| info | Sends notifications for info, warning, and error messages (default). |
 | warning | Sends notifications for warning and error messages. |
 | error | Sends notifications for errors messages. |
 
@@ -276,45 +276,23 @@ You can view the NetQ Agent log directly. Messages have the following structure:
 
 For example:
 
-{{<figure src="/images/netq/NetQAgentLogFormat.png" height="69" width="747">}}
+{{<figure src="/images/netq/NetQAgentLogFormat.png" alt="logging message anatomy, including timestamp, node, service, level, and message" height="69" width="747">}}
 
-This example shows a portion of a NetQ Agent log with debug level logging.
+To configure a logging level, follow these steps. This example sets the logging level to **debug**:
 
-    ...
-    2020-02-16T18:45:53.951124+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
-    2020-02-16T18:45:53.952035+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
-    2020-02-16T18:45:53.960152+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
-    2020-02-16T18:46:54.054160+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
-    2020-02-16T18:46:54.054509+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
-    2020-02-16T18:46:54.057273+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
-    2020-02-16T18:47:54.157985+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
-    2020-02-16T18:47:54.158857+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery Agent ID spine-1
-    2020-02-16T18:47:54.171170+00:00 spine-1 netq-agent[8600]: INFO: Received Discovery Response 0
-    2020-02-16T18:48:54.260903+00:00 spine-1 netq-agent[8600]: INFO: OPTA Discovery exhibit url switch.domain.com port 4786
-    ...
-
-To configure **debug**-level logging:
-
-1. Set the logging level to *debug.*
+1. Set the logging level:
 
     ```
     cumulus@switch:~$ netq config add agent loglevel debug
     ```
 
-2. Restart the NetQ Agent.
+2. Restart the NetQ Agent:
 
     ```
     cumulus@switch:~$ netq config restart agent
     ```
 
-3. Optionally, verify connection to the NetQ appliance or VM by viewing the `netq-agent.log` messages.
-
-To configure **warning**-level logging:
-
-```
-cumulus@switch:~$ netq config add agent loglevel warning
-cumulus@switch:~$ netq config restart agent
-```
+3. (Optional) Verify connection to the NetQ appliance or VM by viewing the `netq-agent.log` messages.
 
 #### Disable Agent Logging
 
@@ -456,35 +434,9 @@ ospf-interface-json            60  no        ['/usr/bin/vtysh', '-c', 'show ip o
 
 ### Reset to Default
 
-To quickly revert to the original command settings, run:
+To revert to the original command settings, run:
 
 ```
 cumulus@switch:~$ netq config agent factory-reset commands
 Netq Command factory reset successful
-
-cumulus@switch:~$ netq config show agent commands
- Service Key               Period  Active       Command
------------------------  --------  --------  ---------------------------------------------------------------------
-bgp-neighbors                  60  yes       ['/usr/bin/vtysh', '-c', 'show ip bgp vrf all neighbors json']
-evpn-vni                       60  yes       ['/usr/bin/vtysh', '-c', 'show bgp l2vpn evpn vni json']
-lldp-json                     120  yes       /usr/sbin/lldpctl -f json
-clagctl-json                   60  yes       /usr/bin/clagctl -j
-dpkg-query                  21600  yes       dpkg-query --show -f ${Package},${Version},${Status}\n
-ptmctl-json                   120  yes       /usr/bin/ptmctl -d -j
-mstpctl-bridge-json            60  yes       /sbin/mstpctl showall json
-ports                        3600  yes       Netq Predefined Command
-proc-net-dev                   30  yes       Netq Predefined Command
-agent_stats                   300  yes       Netq Predefined Command
-agent_util_stats               30  yes       Netq Predefined Command
-tcam-resource-json            120  yes       /usr/cumulus/bin/cl-resource-query -j
-btrfs-json                   1800  yes       /sbin/btrfs fi usage -b /
-config-mon-json               120  yes       Netq Predefined Command
-running-config-mon-json        30  yes       Netq Predefined Command
-cl-support-json               180  yes       Netq Predefined Command
-resource-util-json            120  yes       findmnt / -n -o FS-OPTIONS
-smonctl-json                   30  yes       /usr/sbin/smonctl -j
-sensors-json                   30  yes       sensors -u
-ssd-util-json               86400  yes       sudo /usr/sbin/smartctl -a /dev/sda
-ospf-neighbor-json             60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all neighbor detail json']
-ospf-interface-json            60  yes       ['/usr/bin/vtysh', '-c', 'show ip ospf vrf all interface json']
 ```

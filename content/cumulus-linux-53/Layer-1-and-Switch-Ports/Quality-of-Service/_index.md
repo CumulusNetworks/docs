@@ -22,6 +22,10 @@ Cumulus Linux uses two configuration files for QoS:
 Cumulus Linux 5.0 and later does not use the `traffic.conf` and `datapath.conf` files but uses the `qos_features.conf` and `qos_infra.conf` files instead. Review your existing QoS configuration to determine the changes you need to make.
 {{% /notice %}}
 
+{{% notice note %}}
+NVUE currently only provides commands to configure COS and DSCP marking, egress traffic scheduling, PFC, ECN, and lossless and lossy RoCE.
+{{% /notice %}}
+
 ## switchd and QoS
 
 When you run **Linux commands** to configure QoS, you must apply QoS changes to the ASIC with the following command:
@@ -47,7 +51,7 @@ NVUE reloads the `switchd.service` automatically. You do **not** have to run the
 
 When a frame or packet arrives on the switch, Cumulus Linux maps it to an *internal COS* value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
-You can define which values are trusted, COS or DSCP, or both.
+You can define which values are trusted, COS (l2) or DSCP (l3), or both.
 
 The following table describes the default classifications for various frame and switch priority configurations:
 
@@ -67,7 +71,7 @@ The following table describes the default classifications for various frame and 
 | pcp (802.1p) and dscp | No | Non-IP | Use the default priority setting. |
 | port | Either | Either | Ignore any existing markings and use the default priority setting. |
 
-In NVUE, you define which values are trusted with the `pcp` or `dscp` keyword in the command.
+In NVUE, you define which values are trusted with the `nv set qos mapping <profile> trust l1` command (COS) or the `nv set qos mapping <profile> trust l2` command (DSCP) .
 
 If you are using Linux commands to configure QoS, you define which values are trusted in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `cos` or `dscp`.
 
@@ -78,7 +82,7 @@ To trust ingress COS markings:
 {{< tabs "TabID97 ">}}
 {{< tab "NVUE Commands ">}}
 
-When COS is `trusted`, Cumulus Linux classifies these ingress COS values to internal COS values:
+When COS (l1) is `trusted`, Cumulus Linux classifies these ingress COS values to internal COS values:
 
 | Internal COS| Ingress COS|
 | ----------- | ---------- |

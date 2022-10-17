@@ -463,7 +463,7 @@ The use of <code>netq-latest</code> in these examples means that a <code>get</co
 
 ## Install NetQ Agent
 
-After completing the preparation steps, you can successfully install the agent onto your switch or host.
+After completing the preparation steps, install the agent onto your switch or host.
 
 {{<tabs "Install NetQ Agent">}}
 
@@ -498,7 +498,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
 
 {{<tab "SONiC">}}
 
-To install the NetQ Agent (this example uses Cumulus Linux but the steps are the same for SONiC):
+To install the NetQ Agent (the following example uses Cumulus Linux but the steps are the same for SONiC):
 
 1. Update the local `apt` repository, then install the NetQ software on the switch.
 
@@ -694,7 +694,7 @@ sudo apt-get update
 sudo apt-get install netq-opta
 ```
 
-After the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the premise management configuration. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First Time Log In - NetQ Cloud">}}.
+After the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the premises management configuration. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First-time Login for NetQ Cloud">}}.
 
 ```
 netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 
@@ -712,7 +712,7 @@ You can also add a proxy host separately with the following command:
 netq config add opta proxy-host <text-proxy-host> proxy-port <text-proxy-port>
 ```
 
-The final steps is configuring the local NetQ agent on the switch to connect to the local OPTA service. Configure the agent on the switch to connect to `localhost` with the following command:
+The final step is configuring the local NetQ Agent on the switch to connect to the local OPTA service. Configure the agent on the switch to connect to `localhost` with the following command:
 
 ```
 netq config add agent server localhost vrf mgmt

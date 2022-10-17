@@ -52,8 +52,6 @@ For example:
 
 {{<figure src="/images/netq/event-msg-format.png">}}
 
-You can integrate notification channels using the NetQ UI or the NetQ CLI.
-
 To set up the integrations, you must configure NetQ with at least one channel, one rule, and one filter. To refine what messages you want to view and where to send them, you can add additional rules and filters and set thresholds on supported event types. You can also configure a proxy server to receive, process, and forward the messages. This is accomplished using the NetQ UI and NetQ CLI in the following order:
 
 {{<figure src="/images/netq/notif-config-wkflow.png">}}
@@ -82,13 +80,11 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
+1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select **Notification Channels**:
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
 2. The **Slack** tab is displayed by default.
-
-    {{<figure src="/images/netq/channels-noslack-created-320.png" width="700">}}
 
 3. Add a channel.
 
@@ -99,23 +95,17 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
     {{<figure src="/images/netq/channels-add-slack-300.png" width="250">}}
 
-5. Create an *incoming webhook* as described in the documentation for your version of Slack. Then copy and paste it here.
+5. Create an incoming webhook as described in the {{<exlink url="https://api.slack.com/messaging/webhooks#create_a_webhook" text="Slack documentation">}} Then copy and paste it in the *Webhook URL* field.
 
 6. Click **Add**.
 
-7. To verify the channel configuration, click **Test**.
-
-    {{<figure src="/images/netq/channels-verify-slack-320.png" width="250">}}
-
-<div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
-
-    {{<figure src="/images/netq/channels-slack-created-320.png" width="700">}}
+7. (Optional) To verify the channel configuration, click **Test**.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-To create and verify the specification of a Slack channel, run:
+To create and verify a Slack channel, run:
 
 ```
 netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
@@ -159,13 +149,11 @@ You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
+1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select **Notification Channels**:
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
 2. Click **PagerDuty**.
-
-    {{<figure src="/images/netq/channels-nopagerduty-created-320.png" width="700">}}
 
 3. Add a channel.
 
@@ -180,19 +168,13 @@ You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
 6. Click **Add**.
 
-7. Verify it is correctly configured.
-
-    {{<figure src="/images/netq/channels-verify-pagerduty-320.png" width="250">}}
-
-<div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
-
-    {{<figure src="/images/netq/channels-pagerduty-created-320.png" width="700">}}
+7. (Optional) To verify the channel configuration, click **Test**.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-To create and verify the specification of a PagerDuty channel, run:
+To create and verify a PagerDuty channel, run:
 
 ```
 netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
@@ -228,19 +210,17 @@ This example shows the creation of a *pd-netq-events* channel and verifies the c
 <!-- vale off -->
 {{<tab "Syslog" >}}
 <!-- vale on -->
-You can use the NetQ UI or the NetQ CLI to create a Slack channel.
+You can use the NetQ UI or the NetQ CLI to create a syslog channel.
 
 {{<tabs "TabID261" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
+1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select **Notification Channels**:
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
 2. Click **Syslog**.
-
-    {{<figure src="/images/netq/channels-nosyslog-created-320.png" width="700">}}
 
 3. Add a channel.
 
@@ -251,23 +231,17 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
     {{<figure src="/images/netq/channels-add-syslog-300.png" width="250">}}
 
-5. Enter the IP address and port of the Syslog server.
+5. Enter the IP address and port of the syslog server.
 
 6. Click **Add**.
 
-7. To verify the channel configuration, click **Test**.
-
-    {{<figure src="/images/netq/channels-verify-syslog-320.png" width="250">}}
-
-<div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
-
-    {{<figure src="/images/netq/channels-syslog-created-320.png" width="700">}}
+7. (Optional) To verify the channel configuration, click **Test**.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-To create and verify the specification of a syslog channel, run:
+To create and verify a syslog channel, run:
 
 ```
 netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity warning | severity error | severity debug]
@@ -310,13 +284,11 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
+1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select **Notification Channels**:
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
 2. Click **Email**.
-
-    {{<figure src="/images/netq/channels-noemail-created-320.png" width="700">}}
 
 3. Add a channel.
 
@@ -342,13 +314,7 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
 7. Click **Add**.
 
-8. To verify the channel configuration, click **Test**.
-
-    {{<figure src="/images/netq/channels-verify-email-320.png" width="250">}}
-
-<div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
-
-    {{<figure src="/images/netq/channels-email-created-320.png" width="700">}}
+8. (Optional) To verify the channel configuration, click **Test**.
 
 {{</tab>}}
 
@@ -449,7 +415,7 @@ Successfully added/updated channel cloud-email
 
 {{<tab "Generic" >}}
 
-You can use the NetQ UI or the NetQ CLI to create a Generic channel.
+You can use the NetQ UI or the NetQ CLI to create a generic channel.
 
 {{<tabs "TabID470" >}}
 
@@ -460,8 +426,6 @@ You can use the NetQ UI or the NetQ CLI to create a Generic channel.
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
 2. Click **Generic**.
-
-    {{<figure src="/images/netq/generic-add-channel.png" width="700">}}
 
 3. Add a channel.
 
@@ -478,19 +442,13 @@ You can use the NetQ UI or the NetQ CLI to create a Generic channel.
 
 7. Click **Add**.
 
-8. To verify the channel configuration, click **Test**.
-
-    {{<figure src="/images/netq/generic-example-added.png" width="300">}}
-
-<div style="padding-left: 18px;">Otherwise, click <strong>Close</strong>.</div>
-
-    {{<figure src="/images/netq/generic-created.png" width="700">}}
+8. (Optional) To verify the channel configuration, click **Test**.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-To create and verify the specification of a Generic channel, run:
+To create and verify a generic channel, run:
 
 ```
 netq add notification channel generic <text-channel-name> webhook <text-webhook-url> [severity info | severity warning | severity error | severity debug] [use-ssl True | use-ssl False] [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>]
@@ -509,7 +467,7 @@ netq show notification channel [json]
 
 The second step is to create and verify a rule that accepts a set of events. You create rules for system events using the NetQ CLI.
 
-To create and verify the specification of a rule, run:
+To create and verify a rule, run:
 
 ```
 netq add notification rule <text-rule-name> key <text-rule-key> value <text-rule-value>
@@ -656,7 +614,7 @@ For example:
 
 {{<figure src="/images/netq/NetQ-PagerDuty-ex-output.png">}}
 
-To create and verify the specification of a PagerDuty channel, run:
+To create and verify a PagerDuty channel, run:
 
 ```
 netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
@@ -725,7 +683,7 @@ For example:
 
 {{<figure src="/images/netq/slack-ex-output.png">}}
 
-To create and verify the specification of a Slack channel, run:
+To create and verify a Slack channel, run:
 
 ```
 netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
@@ -793,7 +751,7 @@ This example shows the creation of a *slk-netq-events* channel and verifies the 
 <!-- vale off -->
 {{<tab "Syslog" >}}
 <!-- vale on -->
-To create and verify the specification of a syslog channel, run:
+To create and verify a syslog channel, run:
 
 ```
 netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity warning | severity error | severity debug]
@@ -952,7 +910,7 @@ This example creates an email channel named *cloud-email* that uses the NetQ SMT
 
 {{<tab "Generic" >}}
 <!-- vale on -->
-To create and verify the specification of a generic channel, run:
+To create and verify a generic channel, run:
 
 ```
 netq add notification channel generic <text-channel-name> webhook <text-webhook-url> [severity info | severity warning | severity error | severity debug] [use-ssl True | use-ssl False] [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>]
@@ -2288,15 +2246,9 @@ If you retire selected channels from a given notification application, you might
 
 To remove notification channels:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
+1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select **Notification Channels**.
 
-    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
-
-<div style="padding-left: 18px;">This opens the Channels view.</div>
-
-    {{<figure src="/images/netq/channels-slack-created-300.png" width="700">}}
-
-2. Click the tab for the type of channel you want to remove (Slack, PagerDuty, Syslog, Email).
+2. Select the tab for the type of channel you want to remove (Slack, PagerDuty, Syslog, Email).
 
 3. Select one or more channels.
 

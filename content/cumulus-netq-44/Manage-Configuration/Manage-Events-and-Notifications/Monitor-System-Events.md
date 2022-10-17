@@ -4,15 +4,13 @@ author: NVIDIA
 weight: 800
 toc: 4
 ---
-NetQ offers multiple ways to view your event status. The NetQ UI provides a graphical and tabular view and the NetQ CLI provides a tabular view of system and threshold-based (TCA) events. System events include events associated with network protocols and services operation, hardware and software status, and system services. TCA events include events associated with digital optics, ACL and forwarding resources, interface statistics, resource utilization, and sensors. You can view all events across the entire network or all events on a device. For each of these, you can filter your view of events based on event type, severity, and timeframe.
+You can monitor both system and threshold-based (TCA) events with the UI or CLI. System events include events associated with network protocols and services operation, hardware and software status, and system services. TCA events include events associated with digital optics, ACL and forwarding resources, interface statistics, resource utilization, and sensors. You can view all events across the entire network or all events on a device. For each of these, you can filter your view of events based on event type, severity, and timeframe.
 
 Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Based Event Notifications">}} for information about configuring and managing these events.
 
 Note that in the UI, it can take several minutes for NetQ to process and accurately display network validation events. The delay is caused by events with multiple network dependencies. It takes between 5 and 10 minutes for NetQ to consolidate and display these events.
 
 ## Monitor All System and TCA Events Networkwide
-
-You can monitor all system and TCA events across the network with the NetQ UI and the NetQ CLI.
 
 {{<tabs "TabID29" >}}
 
@@ -24,7 +22,7 @@ You can monitor all system and TCA events across the network with the NetQ UI an
 
     The dashboard presents a timeline of events alongside the devices that are causing the most events. You can filter events by type, including interface, network services, system, and threshold crossing events. The filter controls are located at the top of the screen.
 
-    {{<figure src="/images/netq/events-card-l4-42.png" width="700" alt="Events dashboard with networkwide error and info events.">}}
+    {{<figure src="/images/netq/events-card-l4-42.png" width="1000" alt="Events dashboard with networkwide error and info events.">}}
 
   If you are receiving too many event notifications, you can acknowledge events or create rules to suppress events from the dashboard. Refer to {{<link title="Configure System Event Notifications#suppress-events" text="Configure System Event Notifications">}} for information about event suppression.
 

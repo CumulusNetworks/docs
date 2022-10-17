@@ -47,35 +47,75 @@ NVUE reloads the `switchd.service` automatically. You do **not** have to run the
 
 When a frame or packet arrives on the switch, Cumulus Linux maps it to an *internal COS* value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
-You can define which values are trusted in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting.
+You can define which values are trusted, COS or DSCP, or both.
 
-The `traffic.port_default_priority` setting accepts a value between 0 and 7 and defines the internal COS marking to use with the `port` value.
+The following table describes the default classifications for various frame and switch priority configurations:
 
-If `traffic.packet_priority_source_set` is `cos` or `dscp`, you can map the ingress values to an internal COS value.
-
-{{<cl/qos-switchd>}}
-
-The following table describes the default classifications for various frame and `packet_priority_source_set` configurations:
-
-| `packet_priority_source_set` setting | VLAN Tagged? | IP or Non-IP | Result |
+| Setting | VLAN Tagged? | IP or Non-IP | Result |
 | ------------------------------------------ | ------ | ---- | ---- |
-| 802.1p | Yes | IP | Accept incoming 802.1p COS marking. |
-| 802.1p | Yes | Non-IP | Accept incoming 802.1p COS marking. |
-| 802.1p | No | IP | Use the `port_default_priority` setting. |
-| 802.1p | No | Non-IP | Use the `port_default_priority` setting. |
-| dscp | Yes | IP | Accept incoming DSCP IP header marking. |
-| dscp | Yes | Non-IP | Use the `port_default_priority` setting. |
-| dscp | No | IP | Accept incoming DSCP IP header marking. |
-| dscp | No | Non-IP | Use the `port_default_priority` setting. |
-| 802.1p, dscp | Yes | IP | Accept incoming DSCP IP header marking. |
-| 802.1p, dscp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
-| 802.1p, dscp | No | IP | Accept incoming DSCP IP header marking. |
-| 802.1p, dscp | No | Non-IP | Use the `port_default_priority` setting. |
-| port | Either | Either | Ignore any existing markings and use `port_default_priority` setting. |
+| pcp (802.1p) | Yes | IP | Accept incoming 802.1p COS marking. |
+| pcp (802.1p)| Yes | Non-IP | Accept incoming 802.1p COS marking. |
+| pcp (802.1p)| No | IP | Use the default priority setting. |
+| pcp (802.1p)| No | Non-IP | Use the default priority setting. |
+| dscp (802.1p)| Yes | IP | Accept incoming DSCP IP header marking. |
+| dscp (802.1p)| Yes | Non-IP | Use the default priority setting. |
+| dscp (802.1p)| No | IP | Accept incoming DSCP IP header marking. |
+| dscp (802.1p)| No | Non-IP | Use the default priority setting. |
+| pcp (802.1p) and dscp | Yes | IP | Accept incoming DSCP IP header marking. |
+| pcp (802.1p) and dscp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
+| pcp (802.1p) and dscp | No | IP | Accept incoming DSCP IP header marking. |
+| pcp (802.1p) and dscp | No | Non-IP | Use the default priority setting. |
+| port | Either | Either | Ignore any existing markings and use the default priority setting. |
+
+In NVUE, you define which values are trusted with the `pcp` or `dscp` keyword in the command.
+
+If you are using Linux commands to configure QoS, you define which values are trusted in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `cos` or `dscp`.
 
 ### Trust COS
 
-To trust ingress COS markings, set `traffic.packet_priority_source_set = [802.1p]`.
+To trust ingress COS markings:
+
+{{< tabs "TabID97 ">}}
+{{< tab "NVUE Commands ">}}
+
+When COS is `trusted`, Cumulus Linux classifies these ingress COS values to internal COS values:
+
+| Internal COS| Ingress COS|
+| ----------- | ---------- |
+|pcp 0 |switch priority 0|
+|pcp 1 |switch priority 1|
+|pcp 2 |switch priority 2|
+|pcp 3 |switch priority 3|
+|pcp 4 |switch priority 4|
+|pcp 5 |switch priority 5|
+|pcp 6 |switch priority 6|
+|pcp 7 |switch priority 7|
+
+The pcp number is the internal COS value; for example `pcp 0` defines the mapping for internal COS 0.  
+To map ingress COS 0 to internal COS 4, configure pcp 4 to switch priority 0.
+
+```
+cumulus@switch:~$ nv set qos mapping profile1 trust l2 
+cumulus@switch:~$ nv set qos mapping profile1 pcp 4 switch-priority 0 
+cumulus@switch:~$ nv config apply
+```
+
+You can map multiple ingress PCP values to the same internal COS value. For example, to map ingress PCP values 10, 21, and 36 to internal COS 0:
+
+```
+cumulus@switch:~$ nv set qos mapping profile1 trust l2 
+cumulus@switch:~$ nv set qos mapping profile1 pcp 0 switch-priority 10,21,36 
+cumulus@switch:~$ nv config apply
+```
+
+If you configure the trust to be `l2` but do not specify any PCP to SP mappings, Cumulus Linux uses the default values.
+
+You can configure additional settings using [Port Groups](#port-groups).
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Set `traffic.packet_priority_source_set = [802.1p]`.
 
 When COS is `trusted`, the following lines classify ingress COS values to internal COS values:
 
@@ -112,11 +152,57 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 ```
 
-You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups).
+
+{{<cl/qos-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Trust DSCP
 
-To trust ingress DSCP markings, configure `traffic.packet_priority_source_set = [dscp]`.
+To trust ingress DSCP markings:
+
+{{< tabs "TabID138 ">}}
+{{< tab "NVUE Commands ">}}
+
+If DSCP is `trusted`, Cumulus Linux classifies these ingress DSCP values to internal COS values:
+
+| Internal COS | Ingress DSCP |
+|------------- | ------------ |
+|dscp 0 |switch priority [0,1,2,3,4,5,6,7]|
+|dscp 1 |switch priority [8,9,10,11,12,13,14,15]|
+|dscp 2 |switch priority [16,17,18,19,20,21,22,23]|
+|dscp 3 |switch priority [24,25,26,27,28,29,30,31]|
+|dscp 4 |switch priority [32,33,34,35,36,37,38,39]|
+|dscp 5 |switch priority [40,41,42,43,44,45,46,47]|
+|dscp 6 |switch priority [48,49,50,51,52,53,54,55]|
+|dscp 7 |switch priority [56,57,58,59,60,61,62,63]|
+
+The dscp number is the internal COS value; for example dscp 0 defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4:
+
+```
+cumulus@switch:~$ nv set qos mapping profile1 trust l3 
+cumulus@switch:~$ nv set qos mapping profile1 dscp 4 switch-priority 22 
+cumulus@switch:~$ nv config apply
+```
+
+You can map multiple ingress DSCP values to the same internal COS value. For example, to map ingress DSCP values 10, 21, and 36 to internal COS 0:
+
+```
+cumulus@switch:~$ nv set qos mapping profile1 trust l3 
+cumulus@switch:~$ nv set qos mapping profile1 dscp 0 switch-priority 10,21,36
+cumulus@switch:~$ nv config apply
+```
+
+If you configure the trust to be `l3` but do not specify any DSCP to SP mappings, Cumulus Linux uses the default values.
+
+You can configure additional settings using [Port Groups](#port-groups).
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Configure `traffic.packet_priority_source_set = [dscp]`.
 
 If DSCP is `trusted`, the following lines classify ingress DSCP values to internal COS values:
 
@@ -157,15 +243,39 @@ traffic.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
 traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 ```
 
-You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups).
+
+{{<cl/qos-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Trust Port
 
-To assign all traffic to an internal COS queue regardless of the ingress marking, configure `traffic.packet_priority_source_set = [port]`.
+To assign all traffic to an internal COS queue regardless of the ingress marking:
+
+{{< tabs "TabID183 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos mapping profile1 trust port 
+cumulus@switch:~$ nv set qos mapping profile1 port-default-sp 3 
+cumulus@switch:~$ nv config apply
+```
+
+You can configure additional settings using [Port Groups](#port-groups).
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Configure `traffic.packet_priority_source_set = [port]`.
 
 The `traffic.port_default_priority` setting defines the COS value that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
 
 {{<cl/qos-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Mark and Remark Traffic
 
@@ -446,7 +556,7 @@ cumulus@switch:~$ nv config apply
 <details>
 <summary>All PFC commands</summary>
 
-| <div style="width:300px"Command | <div style="width:300px"Example | Description |
+| <div style="width:300px">Command | <div style="width:300px">Example | Description |
 | ------------- | ------- | ----------- |
 | `nv set qos pfc <profile> headroom <value>`  | `nv set qos pfc my_pfc_ports headroom 25000` | The amount of reserved buffer space for the set of ports defined in the port group list (reserved from the global shared buffer). |
 | `nv set qos pfc <profile> xoff-size <value>` | `nv set qos pfc my_pfc_ports xoff-size 10000` | Set the amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list, if sending pause frames is on. This example sends PFC pause frames after consuming 10000 bytes of reserved buffer.|
@@ -529,11 +639,11 @@ The following example commands create a custom ECN profile (`my_ecn_red_conf`) f
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set qos congestion-control my_ecn_red_conf traffic-class 1,2 min-threshold-bytes 40000 
-cumulus@switch:~$ nv set qos congestion-control my_ecn_red_conf traffic-class 1,2 max-threshold-bytes 200000 
-cumulus@switch:~$ nv set qos congestion-control my_ecn_red_conf traffic-class 1,2 probability 10
-cumulus@switch:~$ nv set qos congestion-control my_ecn_red_conf traffic-class 1,2 red enable
-cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control my_ecn_red_conf
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold-bytes 40000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold-bytes 200000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 probability 10
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 red enable
+cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control my-red-profile
 cumulus@switch:~$ nv config apply
 ```
 
@@ -805,19 +915,41 @@ For example, to configure a dual-rate, three-color policer, with a 3 Mbps CIR, 5
 
 ## Port Groups
 
-The `qos_features.conf` file supports *port groups* to apply similar QoS configurations to a set of ports. Cumulus Linux supports port groups for all features including [ECN](#explicit-congestion-notification-ecn) and [RED](#random-early-detection-red) .
+Cumulus Linux supports profiles (port groups) for all features including [ECN](#explicit-congestion-notification-ecn) and [RED](#random-early-detection-red). Profiles apply similar QoS configurations to a set of ports.
 
 {{% notice note %}}
-- Configurations with port groups override the global settings for the ingress ports in the port group.
-- Ports not in a port group use the global settings.
+- Configurations with a profile override the global settings for the ingress ports in the port group.
+- Ports not in a profile use the global settings.
 - You can add all ports to a `port_set` with the `allports` value.
 {{% /notice %}}
 
 ### Trust and Marking
 
+{{< tabs "TabID975 ">}}
+{{< tab "NVUE Commands ">}}
+
+A profile is a label for configuration settings. All NUE commands for QoS configuration must include a profile.
+
+The following example configures two profiles: `customer1` applies to swp1, swp4, and swp6, and `customer2` applies to swp5 and swp7:
+
+```
+cumulus@switch:~$ nv set qos mapping customer1 trust l3 
+cumulus@switch:~$ nv set qos mapping customer1 dscp 0 switch-priority 1-7
+cumulus@switch:~$ nv set interface swp1,swp4,swp6 qos mapping profile customer1
+cumulus@switch:~$ nv set qos mapping customer2 trust l2
+cumulus@switch:~$ nv set qos mapping customer2 pcp 1 switch-priority 4 
+cumulus@switch:~$ nv set interface swp5,swp7 qos mapping profile customer2
+cumulus@switch:~$ nv config apply
+```
+
+To apply a profile to all ports, use the `all` keyword. For example, `nv set interface all qos mapping profile customer1`.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 You define port groups with the `source.port_group_list` configuration in the `qos_features.conf` file.
 
-A `source.port_group_list` is one or more names used for group settings. The name is a label for configuration settings. For example, if a `source.port_group_list` includes `test`, Cumulus Linux configures the following `port_default_priority` with `source.test.port_default_priority`.
+A `source.port_group_list` is one or more names used for group settings. The name is a label for configuration settings. For example, if a `source.port_group_list` includes `customer1`, Cumulus Linux configures the following `port_default_priority` with `source.customer1.port_default_priority`.
 
 The following is an example `source.port_group_list` configuration.
 
@@ -846,6 +978,9 @@ source.customer2.cos_1.priority_source.8021p = [4]
 | `source.customer2.cos_0.priority_source` | `source.customer2.cos_1.priority_source.8021p = [4]` | Map the ingress COS values to an internal COS value for `customer2`. This example maps ingress COS value 4 to internal COS 1 . |
 
 {{<cl/qos-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Remarking
 
@@ -879,7 +1014,6 @@ remark.list2.cos_3.priority_remark.8021p = [2]
 You can use port groups with egress scheduling weights to assign different profiles to different egress ports.
 
 In the following example, the profile (group list) `list2` applies to swp1, swp3, and swp18. `list2` only assigns weights to queues 2, 5, and 6, and schedules the other queues on a best-effort basis when there is no congestion in queues 2, 5, or 6. Profile `list1` applies to swp2 and assigns weights to all queues.
-
 
 {{< tabs "TabID884 ">}}
 {{< tab "NVUE Commands ">}}

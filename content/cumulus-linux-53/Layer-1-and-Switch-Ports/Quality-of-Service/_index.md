@@ -47,67 +47,29 @@ NVUE reloads the `switchd.service` automatically. You do **not** have to run the
 
 When a frame or packet arrives on the switch, Cumulus Linux maps it to an *internal COS* value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
-To define which values are trusted:
-
-{{< tabs "TabID52 ">}}
-{{< tab "NVUE Commands ">}}
-
-You can define which values are trusted by specifying `pcp` or `dscp` in the NVUE commands. If the command contains `pcp` or `dscp`, you can map the ingress values to an internal COS value.
-
-```
-cumulus@switch:~$ nv set qos mapping profile1 trust l2
-cumulus@switch:~$ nv set qos mapping profile1 pcp 0 switch-priority 0
-```
+You can define which values are trusted, COS or DSCP, or both.
 
 The following table describes the default classifications for various frame and switch priority configurations:
 
 | Setting | VLAN Tagged? | IP or Non-IP | Result |
 | ------------------------------------------ | ------ | ---- | ---- |
-| pcp | Yes | IP | Accept incoming 802.1p COS marking. |
-| pcp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
-| pcp | No | IP | Use the default priority setting. |
-| pcp | No | Non-IP | Use the default priority setting. |
-| dscp | Yes | IP | Accept incoming DSCP IP header marking. |
-| dscp | Yes | Non-IP | Use the default priority setting. |
-| dscp | No | IP | Accept incoming DSCP IP header marking. |
-| dscp | No | Non-IP | Use the default priority setting. |
-| pcp and dscp | Yes | IP | Accept incoming DSCP IP header marking. |
-| pcp and dscp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
-| pcp and dscp | No | IP | Accept incoming DSCP IP header marking. |
-| pcp and dscp | No | Non-IP | Use the default priority setting. |
+| pcp (802.1p) | Yes | IP | Accept incoming 802.1p COS marking. |
+| pcp (802.1p)| Yes | Non-IP | Accept incoming 802.1p COS marking. |
+| pcp (802.1p)| No | IP | Use the default priority setting. |
+| pcp (802.1p)| No | Non-IP | Use the default priority setting. |
+| dscp (802.1p)| Yes | IP | Accept incoming DSCP IP header marking. |
+| dscp (802.1p)| Yes | Non-IP | Use the default priority setting. |
+| dscp (802.1p)| No | IP | Accept incoming DSCP IP header marking. |
+| dscp (802.1p)| No | Non-IP | Use the default priority setting. |
+| pcp (802.1p) and dscp | Yes | IP | Accept incoming DSCP IP header marking. |
+| pcp (802.1p) and dscp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
+| pcp (802.1p) and dscp | No | IP | Accept incoming DSCP IP header marking. |
+| pcp (802.1p) and dscp | No | Non-IP | Use the default priority setting. |
 | port | Either | Either | Ignore any existing markings and use the default priority setting. |
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
+In NVUE, you define which values are trusted with the `pcp` or `dscp` keyword in the command.
 
-You can define which values are trusted in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting.
-
-The `traffic.port_default_priority` setting accepts a value between 0 and 7 and defines the internal COS marking to use with the `port` value.
-
-If `traffic.packet_priority_source_set` is `cos` or `dscp`, you can map the ingress values to an internal COS value.
-
-{{<cl/qos-switchd>}}
-
-The following table describes the default classifications for various frame and `packet_priority_source_set` configurations:
-
-| `packet_priority_source_set` setting | VLAN Tagged? | IP or Non-IP | Result |
-| ------------------------------------------ | ------ | ---- | ---- |
-| 802.1p | Yes | IP | Accept incoming 802.1p COS marking. |
-| 802.1p | Yes | Non-IP | Accept incoming 802.1p COS marking. |
-| 802.1p | No | IP | Use the `port_default_priority` setting. |
-| 802.1p | No | Non-IP | Use the `port_default_priority` setting. |
-| dscp | Yes | IP | Accept incoming DSCP IP header marking. |
-| dscp | Yes | Non-IP | Use the `port_default_priority` setting. |
-| dscp | No | IP | Accept incoming DSCP IP header marking. |
-| dscp | No | Non-IP | Use the `port_default_priority` setting. |
-| 802.1p, dscp | Yes | IP | Accept incoming DSCP IP header marking. |
-| 802.1p, dscp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
-| 802.1p, dscp | No | IP | Accept incoming DSCP IP header marking. |
-| 802.1p, dscp | No | Non-IP | Use the `port_default_priority` setting. |
-| port | Either | Either | Ignore any existing markings and use the `port_default_priority` setting. |
-
-{{< /tab >}}
-{{< /tabs >}}
+If you are using Linux commands to configure QoS, you define which values are trusted in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `cos` or `dscp`.
 
 ### Trust COS
 
@@ -146,16 +108,9 @@ cumulus@switch:~$ nv set qos mapping profile1 pcp 0 switch-priority 10,21,36
 cumulus@switch:~$ nv config apply
 ```
 
-You can also choose not to use an internal COS value. This example does not use internal COS values 3 and 4.
+If you configure the trust to be `l2` but do not specify any PCP to SP mappings, Cumulus Linux uses the default values.
 
-```
-cumulus@switch:~$ nv set qos mapping profile1 trust l2 
-cumulus@switch:~$ nv set qos mapping profile1 pcp 3 switch-priority
-cumulus@switch:~$ nv set qos mapping profile1 pcp 4 switch-priority
-cumulus@switch:~$ nv config apply
-```
-
-You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups).
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -197,7 +152,9 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 ```
 
-You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups).
+
+{{<cl/qos-switchd>}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -238,16 +195,9 @@ cumulus@switch:~$ nv set qos mapping profile1 dscp 0 switch-priority 10,21,36
 cumulus@switch:~$ nv config apply
 ```
 
-You can also choose not to use an internal COS value. This example does not use internal COS values 3 and 4:
+If you configure the trust to be `l3` but do not specify any DSCP to SP mappings, Cumulus Linux uses the default values.
 
-```
-cumulus@switch:~$ nv set qos mapping profile1 trust l3 
-cumulus@switch:~$ nv set qos mapping profile1 dscp 3 switch-priority
-cumulus@switch:~$ nv set qos mapping profile1 dscp 4 switch-priority
-cumulus@switch:~$ nv config apply
-```
-
-You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups).
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -293,7 +243,9 @@ traffic.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
 traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 ```
 
-You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups).
+
+{{<cl/qos-switchd>}}
 
 {{< /tab >}}
 {{< /tabs >}}

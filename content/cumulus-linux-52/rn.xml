@@ -184,12 +184,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3074929</td>
-<td>On the on NVIDIA SN4700  switch, the {{sensors}} command is intermittently unable to read certain sensor attributes.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>4.4.4-4.4.5, 5.1.0-5.2.1</td>
@@ -621,12 +615,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3074929</td>
-<td>On the on NVIDIA SN4700  switch, the {{sensors}} command is intermittently unable to read certain sensor attributes.</td>
-<td>5.1.0-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>4.4.4-4.4.5, 5.1.0-5.2.1</td>
@@ -978,7 +966,7 @@ end vrf
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
-<td>4.2.1-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>3102128</td>

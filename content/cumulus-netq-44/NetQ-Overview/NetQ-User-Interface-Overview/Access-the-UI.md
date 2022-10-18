@@ -8,9 +8,6 @@ This page describes how to log in and out of NetQ.
 
 ## Log In to NetQ
 
-To log in to the UI:
-
-<!-- vale off -->
 1. Open a new Chrome or Firefox browser window or tab.
 2. Enter the following URL into the address bar:  
     - NetQ On-premises Appliance or VM: *https://\<hostname-or-ipaddress\>:443*  
@@ -27,7 +24,7 @@ To log in to the UI:
 
 {{<tabs "login">}}
 
-{{<tab "First Time Log In—NetQ Cloud">}}
+{{<tab "First-time Login for Cloud">}}
 
 Enter your username and password to log in. You can also log in with SSO if your company has enabled it.
 
@@ -41,9 +38,7 @@ Enter your username and password to log in. You can also log in with SSO if your
 
 5. Accept the Terms of Use after reading them.
 
-    The default NetQ Workbench opens, with your username and premises shown in the upper-right corner of the application.
-
-    {{<figure src="/images/netq/new-premise-username.png" alt="username and premises information in the UI header" width="300">}}
+    The default workbench opens, with your username and premises shown in the upper-right corner of the application.
 
 **SSO**
 
@@ -53,7 +48,7 @@ Enter your username and password to log in. You can also log in with SSO if your
 
 {{</tab>}}
 
-{{<tab "First Time Log In—On Premises">}}
+{{<tab "First-time Login for On-premises">}}
 
 1. Enter your username and password.
 
@@ -61,11 +56,11 @@ Enter your username and password to log in. You can also log in with SSO if your
 
 5. Click **Update and Accept** after reading the Terms of Use.
 
-    The default NetQ Workbench opens, with your username shown in the upper-right corner of the application.
+    The default workbench opens, with your username shown in the upper-right corner of the application.
 
 {{</tab>}}
 
-{{<tab "Log In After First Time">}}
+{{<tab "Subsequent Logins">}}
 
 1. Enter your username.
 
@@ -83,13 +78,10 @@ Any workbench can be set as the home workbench. Click <img src="https://icons.cu
 
 ## Log Out of NetQ
 
-To log out of the NetQ UI:
-
 1. Select  <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="profile" height="18" width="18"/> in the upper-right corner of the application.
 
 2. Select **Log Out**.  
 
-    {{<figure src="/images/netq/access-ui-logout-230.png" alt="" width="150">}}
-
 ## Related Information
 - {{<link title="Set User Preferences" text="Set User Preferences">}}
+- {{<link title="Add and Manage Accounts" text="Add and Manage Accounts">}}

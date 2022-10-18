@@ -18,7 +18,7 @@ The commands and cards available to obtain this type of information help you to 
 
 ## Access Switch Inventory Data
 
-The NetQ UI provides the Inventory | Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory|Switches card > **Open Cards**.
+The NetQ UI provides the Inventory/Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory/Switches card > **Open Cards**.
 
 {{<figure src="/images/netq/inventory-switches-disk-l2-42.png" width="200">}}
 
@@ -28,7 +28,7 @@ The CLI provides detailed switch inventory information through its `netq <hostna
 
 Component information for all of the switches in your network can be viewed from both the NetQ UI and NetQ CLI.
 
-- Inventory|Switches card:
+- Inventory/Switches card:
     - Small: view count of switches and distribution of switch status
     - Medium: view count of OS, ASIC, platform, CPU model, Disk, and memory types or versions across all switches
 - `netq show inventory` command:
@@ -62,7 +62,7 @@ NetQ monitors a number of switch components. For each component you can view the
 
 To view the distribution:
 
-1. Locate the Inventory|Switches card on your workbench.
+1. Locate the Inventory/Switches card on your workbench.
 
 2. From the medium or large card, view the distribution of hardware and software components across the network. On the medium card, drop down the selection menu to select the desired component.
 
@@ -136,7 +136,7 @@ You can view the ASIC information for a switch from either the NetQ CLI or NetQ 
 
 {{<tab "NetQ UI" >}}
 
-1. Locate the medium Inventory|Switches card on your workbench.
+1. Locate the medium Inventory/Switches card on your workbench.
 
 2. Change to the full-screen card and click **ASIC**.
 
@@ -192,7 +192,7 @@ netq-ts            Mellanox             Spectrum                       MT52132  
 
 Motherboard/platform information is available from the NetQ UI and NetQ CLI.
 
-- Inventory|Switches card
+- Inventory/Switches card
     - Medium/Large: view platform distribution across on all switches (graphic)
     - Full-screen: view platform vendor, model, manufacturing date, revision, serial number, MAC address, series for a switch (table)
 - `netq show inventory board` command
@@ -202,7 +202,7 @@ Motherboard/platform information is available from the NetQ UI and NetQ CLI.
 
 {{<tab "NetQ UI">}}
 
-1. Locate the medium Inventory|Switches card on your workbench.
+1. Locate the medium Inventory/Switches card on your workbench.
 
 2. Hover over the card, and change to the full-screen card using the size picker.
 
@@ -252,14 +252,14 @@ Use the `opta` option without the `hostname` option to view the motherboard data
 
 CPU information is available from the NetQ UI and NetQ CLI.
 
-- Inventory|Switches card: view CPU architecture, model, maximum operating frequency, the number of cores, and data on a switch (table)
+- Inventory/Switches card: view CPU architecture, model, maximum operating frequency, the number of cores, and data on a switch (table)
 - `netq show inventory cpu` command: view CPU architecture, model, maximum operating frequency, and the number of cores on a switch
 
 {{<tabs "TabID232" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Locate the Inventory|Switches card on your workbench.
+1. Locate the Inventory/Switches card on your workbench.
 
 2. Hover over the card, and change to the full-screen card using the size picker.
 
@@ -315,14 +315,14 @@ netq-ts           x86_64   Intel Xeon Processor (Skylake, N/A        8
 
 Disk information is available from the NetQ UI and NetQ CLI.
 
-- Inventory|Switches card: view disk vendor, size, revision, model, name, transport, and type on a switch (table)
+- Inventory/Switches card: view disk vendor, size, revision, model, name, transport, and type on a switch (table)
 - `netq show inventory disk` command: view disk name, type, transport, size, vendor, and model on all devices
 
 {{<tabs "TabID336" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Locate the Inventory|Switches card on your workbench.
+1. Locate the Inventory/Switches card on your workbench.
 
 2. Hover over the card, and change to the full-screen card using the size picker.
 
@@ -379,14 +379,14 @@ netq-ts           vda             disk             N/A                265G      
 
 Memory information is available from the NetQ UI and NetQ CLI.
 
-- Inventory|Switches card: view memory chip vendor, name, serial number, size, speed, and type on a switch (table)
+- Inventory/Switches card: view memory chip vendor, name, serial number, size, speed, and type on a switch (table)
 - `netq show inventory memory`: view memory chip name, type, size, speed, vendor, and serial number on all devices
 
 {{<tabs "TabID411" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Locate the medium Inventory|Switches card on your workbench.
+1. Locate the medium Inventory/Switches card on your workbench.
 
 2. Hover over the card, and change to the full-screen card using the size picker.
 
@@ -448,14 +448,14 @@ You can view software components deployed on a given switch in your network.
 
 OS information is available from the NetQ UI and NetQ CLI.
 
-- Inventory|Switches card: view OS vendor, version, and version ID on a switch (table)
+- Inventory/Switches card: view OS vendor, version, and version ID on a switch (table)
 - `netq show inventory os`: view OS name and version on a switch
 
 {{<tabs "TabID1099" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Locate the Inventory|Switches card on your workbench.
+1. Locate the Inventory/Switches card on your workbench.
 
 2. Hover over the card, and change to the full-screen card using the size picker.
 

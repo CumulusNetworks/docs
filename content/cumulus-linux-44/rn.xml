@@ -22,6 +22,12 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
+<td>3195345</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-5.0.1</td>
+<td>5.1.0-5.2.1</td>
+</tr>
+<tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
@@ -1951,6 +1957,12 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td>4.4.5, 5.2.1</td>
 </tr>
 <tr>
+<td>3195345</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-5.0.1</td>
+<td>5.1.0-5.2.1</td>
+</tr>
+<tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
@@ -3865,7 +3877,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
-<td>4.2.1-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>3089165</td>

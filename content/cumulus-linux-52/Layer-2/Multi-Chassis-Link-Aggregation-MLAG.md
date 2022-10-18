@@ -357,7 +357,7 @@ By default, the switch determines the role by comparing the MAC addresses of the
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set mlag priority 2084
+cumulus@leaf01:~$ nv set mlag priority 2048
 cumulus@leaf01:~$ nv config apply
 ```
 

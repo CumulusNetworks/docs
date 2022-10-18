@@ -202,7 +202,7 @@ The following table reflects the information in the full-screen Events card.
 
 The inventory cards are located on the default NetQ Workbench. They can also be added to user-created workbenches.
 
-### Inventory|Devices Card
+### Inventory/Devices Card
 
 The small Devices Inventory card displays:
 
@@ -256,7 +256,7 @@ The medium Devices Inventory card displays:
 </tr>
 <tr class="even">
 <td>Title</td>
-<td>Inventory | Devices</td>
+<td>Inventory/ Devices</td>
 </tr>
 <tr class="odd">
 <td><img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-3.svg" height="18" width="18"/></td>
@@ -301,7 +301,7 @@ The *Switches* tab displays:
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Inventory | Devices.</td>
+<td>Inventory/ Devices.</td>
 </tr>
 <tr class="even">
 <td>{{<img src="/images/netq/inventory-devices-large-total-number-icon-230.png" width="24" height="24">}}</td>
@@ -344,7 +344,7 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 <tbody>
 <tr class="odd">
 <td>Title</td>
-<td>Inventory | Devices | Switches.</td>
+<td>Inventory/ Devices | Switches.</td>
 </tr>
 <tr class="even">
 <td><img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/></td>
@@ -411,7 +411,7 @@ The full screen Devices Inventory card provides tabs for all switches and all ho
 </tbody>
 </table>
 
-### Inventory|Switch Card
+### Inventory/Switch Card
 
 Knowing what components are included on all of your switches aids in upgrade, compliance, and other planning tasks. Viewing this data is accomplished through the Switch Inventory card.
 
@@ -421,8 +421,8 @@ The small Switch Inventory card displays:
 
 | Item              | Description  |
 | ----------------- | ------------ |
-| <img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="22" width="22"/> | Indicates data is for switch inventory |
-| Count             | Total number of switches in the network inventory |
+| <img src="https://icons.cumulusnetworks.com/11-Content/04-Archives/archive-books.svg" height="22" width="22"/> | Indicates data is for switch Inventory/
+| Count             | Total number of switches in the network Inventory/
 | Chart             | Distribution of overall health status during the designated time period; fresh versus rotten |
 
 The medium Switch Inventory card displays:
@@ -1334,7 +1334,7 @@ The full screen BGP Service card provides tabs for all switches, all sessions, a
 
 ### BGP Session Card
 
-This card displays performance and status information for a single BGP session. Card is opened from the full-screen Network Services|All BGP Sessions card.
+This card displays performance and status information for a single BGP session. Card is opened from the full-screen Network Services/All BGP Sessions card.
 
 The small BGP Session card displays:
 
@@ -1978,7 +1978,7 @@ The full screen EVPN Service card provides tabs for all switches, all sessions, 
 
 ### EVPN Session Card
 
-This card displays performance and status information for a single EVPN session. Card is opened from the full-screen Network Services|All EVPN Sessions card.
+This card displays performance and status information for a single EVPN session. Card is opened from the full-screen Network Services/All EVPN Sessions card.
 
 The small EVPN Session card displays:
 
@@ -2041,7 +2041,7 @@ The medium EVPN Session card displays:
 </tr>
 <tr class="odd">
 <td>Title</td>
-<td>Network Services|EVPN Session</td>
+<td>Network Services/EVPN Session</td>
 </tr>
 <tr class="even">
 <td>Summary bar</td>
@@ -2565,7 +2565,7 @@ The full screen LLDP Service card provides tabs for all switches, all sessions, 
 
 ### LLDP Session Card
 
-This card displays performance and status information for a single LLDP session. Card is opened from the full-screen Network Services|All LLDP Sessions card.
+This card displays performance and status information for a single LLDP session. Card is opened from the full-screen Network Services/All LLDP Sessions card.
 
 The small LLDP Session card displays:
 
@@ -3197,7 +3197,7 @@ sessions, and all alarms.
 
 ### MLAG Session Card
 
-This card displays performance and status information for a single MLAG session. Card is opened from the full-screen Network Services|All MLAG Sessions card.
+This card displays performance and status information for a single MLAG session. Card is opened from the full-screen Network Services/All MLAG Sessions card.
 
 The small MLAG Session card displays:
 
@@ -3839,7 +3839,7 @@ The full screen OSPF Service card provides tabs for all switches, all sessions, 
 
 ### OSPF Session Card
 
-This card displays performance and status information for a single OSPF session. Card is opened from the full-screen Network Services|All OSPF Sessions card.
+This card displays performance and status information for a single OSPF session. Card is opened from the full-screen Network Services/All OSPF Sessions card.
 
 The small OSPF Session card displays:
 

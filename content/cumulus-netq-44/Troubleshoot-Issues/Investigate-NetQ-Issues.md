@@ -45,10 +45,8 @@ Checking the health of the NetQ Agents is a good way to start troubleshooting Ne
 
 In the following example, all NetQ Agents are fresh. If there were nodes with failures, warnings, or rotten states, the `netq show agents` command can provide additional details about individual NetQ Agents. 
 
-Note that the `streaming` keyword returns results faster compared to traditional on-demand checks.
-
 ```
-cumulus@switch:$ netq check agents streaming
+cumulus@switch:$ netq check agents
 agent check result summary:
 
 Total nodes         : 21

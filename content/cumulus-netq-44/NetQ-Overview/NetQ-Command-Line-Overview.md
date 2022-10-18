@@ -158,7 +158,7 @@ As you enter commands, you can get help with command syntax by entering `help` a
 ```
 cumulus@switch:~$ netq check bgp help
 Commands:
-    netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [check_filter_id <text-check-filter-id>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [streaming] [json | summary]
+    netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [check_filter_id <text-check-filter-id>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
    netq show unit-tests bgp [check_filter_id <text-check-filter-id>] [json]
 ```
 

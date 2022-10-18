@@ -104,11 +104,11 @@ cumulus@switch:~$ nv set qos mapping default-global pcp 4 switch-priority 0
 cumulus@switch:~$ nv config apply
 ```
 
-You can map multiple ingress PCP values to the same internal COS value. For example, to map ingress PCP values 10, 21, and 36 to internal COS 0:
+You can map multiple ingress COS values to the same internal COS value. For example, to map ingress COS values 2, 3, and 4 to internal COS 0:
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust l2 
-cumulus@switch:~$ nv set qos mapping default-global pcp 0 switch-priority 10,21,36 
+cumulus@switch:~$ nv set qos mapping default-global pcp 2,3,4 switch-priority 0
 cumulus@switch:~$ nv config apply
 ```
 
@@ -136,6 +136,10 @@ traffic.cos_7.priority_source.8021p = [7]
 
 The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0.  
 To map ingress COS 0 to internal COS 4, configure the `traffic.cos_4.priority_source.8021p` setting.
+
+```
+traffic.cos_0.priority_source.8021p = [4]
+```
 
 You can map multiple ingress COS values to the same internal value. For example, to map ingress COS values 0, 1, and 2 to internal COS 0:
 
@@ -195,7 +199,7 @@ You can map multiple ingress DSCP values to the same internal COS value. For exa
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust l3 
-cumulus@switch:~$ nv set qos mapping default-global dscp 0 switch-priority 10,21,36
+cumulus@switch:~$ nv set qos mapping default-global dscp 10,21,36 switch-priority 0
 cumulus@switch:~$ nv config apply
 ```
 
@@ -227,6 +231,10 @@ You must uncomment them for them to take effect.
 {{% /notice %}}
 
 The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4, configure the `traffic.cos_4.priority_source.dscp` setting.
+
+```
+traffic.cos_0.priority_source.dscp = [21,22]
+```
 
 You can map multiple ingress DSCP values to the same internal COS value. For example, to map ingress DSCP values 10, 21, and 36 to internal COS 0:
 

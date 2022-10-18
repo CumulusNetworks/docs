@@ -174,7 +174,7 @@ To trust ingress DSCP markings:
 {{< tabs "TabID138 ">}}
 {{< tab "NVUE Commands ">}}
 
-If DSCP is `trusted`, Cumulus Linux classifies these ingress DSCP values to internal COS values:
+If DSCP (l3) is `trusted`, Cumulus Linux classifies these ingress DSCP values to internal COS values:
 
 | Internal COS | Ingress DSCP |
 |------------- | ------------ |
@@ -187,7 +187,9 @@ If DSCP is `trusted`, Cumulus Linux classifies these ingress DSCP values to inte
 |dscp 6 |switch priority [48,49,50,51,52,53,54,55]|
 |dscp 7 |switch priority [56,57,58,59,60,61,62,63]|
 
-The dscp number is the internal COS value; for example dscp 0 defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4:
+The dscp number is the internal COS value; for example dscp 0 defines the mapping for internal COS 0. 
+
+To change the default profile to map ingress DSCP 22 to internal COS 4:
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust l3 
@@ -195,7 +197,7 @@ cumulus@switch:~$ nv set qos mapping default-global dscp 4 switch-priority 22
 cumulus@switch:~$ nv config apply
 ```
 
-You can map multiple ingress DSCP values to the same internal COS value. For example, to map ingress DSCP values 10, 21, and 36 to internal COS 0 in the default profile:
+You can map multiple ingress DSCP values to the same internal COS value. For example, to change the default profile to map ingress DSCP values 10, 21, and 36 to internal COS 0:
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust l3 
@@ -484,6 +486,8 @@ You configure pause frames on a per-direction, per-interface basis under the `li
 Setting `link_pause.pause_port_group.rx_enable = true` receives pause frames to stop the switch from transmitting when requested.
 Setting `link_pause.pause_port_group.tx_enable = true` sends pause frames to request neighboring devices to stop transmitting.
 You can use pause frames for either receive (`rx`), transmit (`tx`), or both.
+
+NVUE does not currently provide commands to configure pause frames.
 
 {{% notice note %}}
 Cumulus Linux automatically enables or derives the following settings when link pause is on an interface with `link_pause.port_group_list`:

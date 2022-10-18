@@ -1385,7 +1385,7 @@ You can remove a user-defined scheduled validation at any time using the NetQ UI
 1. Determine the name of the scheduled validation you want to remove. Run:
 
     ```
-    netq show validation summary [name <text-validation-name>] type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) [around <text-time-hr>] [json]
+    netq show validation summary [name <text-validation-name>] type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) [around <text-time-hr>] [json]
     ```
 
     This example shows all scheduled validations for BGP.

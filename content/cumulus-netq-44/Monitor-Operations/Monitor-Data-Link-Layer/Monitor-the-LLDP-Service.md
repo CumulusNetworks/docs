@@ -695,10 +695,10 @@ To view all LLDP events:
 
 {{<tab "NetQ CLI">}}
 
-To view all LLDP alarms, run:
+To view all LLDP events, run:
 
 ```
-netq show events [level info | level error | level warning | level debug] type lldp [between <text-time> and <text-endtime>] [json]
+netq show events [severity info | severity error ] type lldp [between <text-time> and <text-endtime>] [json]
 ```
 
 Use the `level` option to set the severity of the events to show. Use the `between` option to show events within a given time range.

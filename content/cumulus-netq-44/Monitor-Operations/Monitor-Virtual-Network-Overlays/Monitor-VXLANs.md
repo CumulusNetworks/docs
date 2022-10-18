@@ -11,7 +11,7 @@ A network administrator can view the performance and status of VXLANs, as well a
 netq [<hostname>] show vxlan [vni <text-vni>] [around <text-time>] [json]
 netq show interfaces type vxlan [state <remote-interface-state>] [around <text-time>] [json]
 netq <hostname> show interfaces type vxlan [state <remote-interface-state>] [around <text-time>] [count] [json]
-netq [<hostname>] show events [level info|level error|level warning|level critical|level debug] type vxlan [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] type vxlan [between <text-time> and <text-endtime>] [json]
 ```
 
 ## View All VXLANs in Your Network

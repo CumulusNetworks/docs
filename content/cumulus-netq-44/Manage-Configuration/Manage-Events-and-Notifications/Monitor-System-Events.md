@@ -294,7 +294,7 @@ System event severities include info, error, warning, or debug. TCA event severi
 To view all system events of a given severity, run:
 
 ```
-netq show events (level info | level error | level warning | level debug) [between <text-time> and <text-endtime>] [json]
+netq show events [severity info | severity error ] [between <text-time> and <text-endtime>] [json]
 ```
 
 This example shows all events with error severity between now and 24 hours ago.
@@ -354,7 +354,7 @@ You can view system and TCA events by their severity on a given device with the 
 To view all system events for a given severity on a device, run:
 
 ```
-netq <hostname> show events (level info | level error | level warning | level debug)  [between <text-time> and <text-endtime>] [json]
+netq <hostname> show events [severity info | severity error ]  [between <text-time> and <text-endtime>] [json]
 ```
 
 This example shows all *error* severity events on the *leaf01* switch between now and 24 hours ago.

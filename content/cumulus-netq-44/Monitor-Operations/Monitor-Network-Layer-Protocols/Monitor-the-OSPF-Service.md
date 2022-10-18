@@ -268,7 +268,7 @@ Where to go next depends on what data you see, but a couple of options include:
 To view OSPF events, run:
 
 ```
-netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type ospf [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] type ospf [between <text-time> and <text-endtime>] [json]
 ```
 
 For example:

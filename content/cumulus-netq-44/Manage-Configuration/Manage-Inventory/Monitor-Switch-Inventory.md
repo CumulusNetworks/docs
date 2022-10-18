@@ -681,7 +681,7 @@ You can narrow your focus in several ways:
 
 ## Monitor Software Services
 
-Cumulus Linux, SONiC and NetQ run many services to deliver the various features of these products. You can monitor their status using the `netq show services` command. This section describes services related to system-level operation. For monitoring other services, such as those related to routing, see those topics. NetQ automatically monitors the following services:
+Cumulus Linux, SONiC, and NetQ run many services to deliver the various features of these products. You can monitor their status using the `netq show services` command. This section describes services related to system-level operation. For monitoring other services, such as those related to routing, see those topics. NetQ automatically monitors the following services:
 
 - **aclinit**: `aclinit` service
 - **acltool**: `acltool` service
@@ -726,7 +726,7 @@ The CLI syntax for viewing the status of services is:
 ```
 netq [<hostname>] show services [<service-name>] [vrf <vrf>] [active|monitored] [around <text-time>] [json]
 netq [<hostname>] show services [<service-name>] [vrf <vrf>] status (ok|warning|error|fail) [around <text-time>] [json]
-netq [<hostname>] show events [level info | level error | level warning | level debug] type services [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] type services [between <text-time> and <text-endtime>] [json]
 ```
 
 ### View All Services on All Devices

@@ -12,7 +12,7 @@ The syntax for interface commands is:
 ```
 netq show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan) [state <remote-interface-state>] [around <text-time>] [json]
 netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan) [state <remote-interface-state>] [around <text-time>] [count] [json]
-netq [<hostname>] show events [level info | level error | level warning | level critical | level debug] type interfaces [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] type interfaces [between <text-time> and <text-endtime>] [json]
 ```
 
 ## View Status for All Interfaces

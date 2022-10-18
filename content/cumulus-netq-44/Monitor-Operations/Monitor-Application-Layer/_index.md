@@ -12,7 +12,7 @@ The syntax for the `show` commands is:
 
 ```
 netq [<hostname>] show ntp [out-of-sync|in-sync] [around <text-time>] [json]
-netq [<hostname>] show events [level info|level error|level warning|level debug] type ntp [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] type ntp [between <text-time> and <text-endtime>] [json]
 ```
 
 ## View Current Time Synchronization Status

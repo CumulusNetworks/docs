@@ -19,7 +19,7 @@ netq show macs [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
 netq <hostname> show macs [<mac>] [vlan <1-4096>] [origin | count] [around <text-time>] [json]
 netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
 
-netq [<hostname>] show events [level info | level error | level warning | level debug] type vlan [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] type vlan [between <text-time> and <text-endtime>] [json]
 ```
 ## View VLAN Information for All Devices
 

@@ -66,6 +66,10 @@ To configure optional settings, such as the PTP profile, domain, priority, and D
 
 The NVUE `nv set service ptp` commands require an instance number (1 in the example command below) for management purposes.
 
+{{%notice warning%}}
+When you enable the PTP service with the `nv set service ptp <instance> enable on` command, NVUE restarts the `switchd` service, which causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
+
 {{< tabs "TabID68 ">}}
 {{< tab "Layer 3 Routed Port ">}}
 
@@ -143,14 +147,24 @@ The configuration writes to the `/etc/ptp4l.conf` file.
    ...
    ```
 
-2. Enable and start the ptp4l and phc2sys services:
+2. Restart the `switchd` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart switchd.service
+   ```
+
+   {{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
+
+3. Enable and start the ptp4l and phc2sys services:
 
     ```
     cumulus@switch:~$ sudo systemctl enable ptp4l.service phc2sys.service
     cumulus@switch:~$ sudo systemctl start ptp4l.service phc2sys.service
     ```
 
-3. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
+4. Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to configure the interfaces on the switch that you want to use for PTP.
 
    ```
    cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -247,7 +261,7 @@ The configuration writes to the `/etc/ptp4l.conf` file.
    network_transport       UDPv4
    ```
 
-4. Restart the `ptp4l` service:
+5. Restart the `ptp4l` service:
 
     ```
     cumulus@switch:~$ sudo systemctl restart ptp4l.service

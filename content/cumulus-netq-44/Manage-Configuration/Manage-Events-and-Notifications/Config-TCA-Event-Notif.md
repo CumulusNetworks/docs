@@ -677,17 +677,17 @@ You cannot change the name of a TCA rule using the NetQ CLI because the rules do
 
 ### Change the Severity of a TCA Rule
 
-TCA rules are either informational or critical.
+TCA rules are categorized as either informational or error.
 
 In the NetQ UI, you must delete the rule and re-create it specifying the new severity. Refer to {{<link title="Configure Threshold-Based Event Notifications/#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="Configure Threshold-Based Event Notifications/#create-a-tca-rule" text="Create a TCA Rule">}}.
 
 In the NetQ CLI, to change the severity, run:
 
 ```
-netq add tca tca_id <text-tca-id-anchor> (severity info | severity critical)
+netq add tca tca_id <text-tca-id-anchor> (severity info | severity error)
 ```
 
-This example changes the severity of the maximum CPU utilization 1 rule from critical to info:
+This example changes the severity of the maximum CPU utilization 1 rule from error to info:
 
 ```
 cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 severity info

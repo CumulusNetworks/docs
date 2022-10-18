@@ -30,7 +30,7 @@ Notifications are generated for the following types of events:
 | System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li><li>Lifecycle Management status</li></ul> |
 | System Hardware | <ul><li>Physical resources status</li><li>BTRFS status</li><li>SSD utilization status</li></ul> |
 
-*\* This type of event can only be viewed in the CLI with this release.*
+*\* CLI only*
 
 Event filters are based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold. Refer to the {{<link title="System Event Messages Reference">}} for descriptions and examples of these events.
 
@@ -45,7 +45,7 @@ Messages have the following structure:
 | timestamp    | Date and time event occurred  |
 | opid         | Identifier of the service or process that generated the event |
 | hostname     | Hostname of network device where event occurred |
-| severity     | Severity level in which the given event is classified; *debug*, *error*, *info*, or *warning* |
+| severity     | Severity level in which the given event is classified: *error* or *info* |
 | message      | Text description of event  |
 
 For example:
@@ -108,7 +108,7 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 To create and verify a Slack channel, run:
 
 ```
-netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
+netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity error] [tag <text-slack-tag>]
 netq show notification channel [json]
 ```
 
@@ -177,7 +177,7 @@ You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 To create and verify a PagerDuty channel, run:
 
 ```
-netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
+netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity error]
 netq show notification channel [json]
 ```
 
@@ -244,7 +244,7 @@ You can use the NetQ UI or the NetQ CLI to create a syslog channel.
 To create and verify a syslog channel, run:
 
 ```
-netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity warning | severity error | severity debug]
+netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity error ]
 netq show notification channel [json]
 ```
 
@@ -306,7 +306,7 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 6. The first time you configure an email channel, you must also specify the SMTP server information:
 
     - **Host**: hostname or IP address of the SMTP server
-    - **Port**: port of the SMTP server; typically 587
+    - **Port**: port of the SMTP server (typically 587)
     - **User ID/Password**: your administrative credentials
     - **From**: email address that indicates who sent the event messages
 
@@ -323,7 +323,7 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 To create and verify the specification of an email channel, run:
 
 ```
-netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity warning | severity error | severity debug]
+netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity error ]
 netq add notification channel email <text-channel-name> to <text-email-toids>
 netq show notification channel [json]
 ```
@@ -339,7 +339,7 @@ For an **on-premises** deployment:
 3. Create the notification channel using this form of the CLI command:
 
     ```
-    netq add notification channel email <text-channel-name> to <text-email-toids>  [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity warning | severity error | severity debug]
+    netq add notification channel email <text-channel-name> to <text-email-toids>  [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity error ]
     ```
 
 <div style="padding-left: 18px;">For example:
@@ -451,7 +451,7 @@ You can use the NetQ UI or the NetQ CLI to create a generic channel.
 To create and verify a generic channel, run:
 
 ```
-netq add notification channel generic <text-channel-name> webhook <text-webhook-url> [severity info | severity warning | severity error | severity debug] [use-ssl True | use-ssl False] [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>]
+netq add notification channel generic <text-channel-name> webhook <text-webhook-url> [severity info | severity error ] [use-ssl True | use-ssl False] [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>]
 netq show notification channel [json]
 ```
 
@@ -617,7 +617,7 @@ For example:
 To create and verify a PagerDuty channel, run:
 
 ```
-netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info|severity warning|severity error|severity debug]
+netq add notification channel pagerduty <text-channel-name> integration-key <text-integration-key> [severity info | severity error]
 netq show notification channel [json]
 ```
 
@@ -645,7 +645,7 @@ where:
 </tr>
 <tr>
 <td>severity &lt;level&gt;</td>
-<td>(Optional) The log level to set, which can be one of <em>info</em>, <em>warning</em>, <em>error</em>, or <em>debug</em>. The severity defaults to <em>info</em> if unspecified.</td>
+<td>(Optional) The log level, either <em>info</em> or <em>error</em>. The severity defaults to <em>info</em> if unspecified.</td>
 </tr>
 </tbody>
 </table>
@@ -686,7 +686,7 @@ For example:
 To create and verify a Slack channel, run:
 
 ```
-netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity warning|severity error|severity debug] [tag <text-slack-tag>]
+netq add notification channel slack <text-channel-name> webhook <text-webhook-url> [severity info|severity error] [tag <text-slack-tag>]
 netq show notification channel [json]
 ```
 
@@ -714,7 +714,7 @@ where:
 </tr>
 <tr class="odd">
 <td>severity &lt;level&gt;</td>
-<td>The log level to set, which can be one of <em>error, warning, info,</em> or <em>debug</em>. The severity defaults to <em>info</em>.</td>
+<td>The log level, either <em>info</em> or <em>error</em>. The severity defaults to <em>info</em> if unspecified.</td>
 </tr>
 <tr class="even">
 <td>tag &lt;text-slack-tag&gt;</td>
@@ -730,7 +730,7 @@ This example shows the creation of a *slk-netq-events* channel and verifies the 
 2. Create the channel.
 
     ```
-    cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext severity warning tag @netq-ops
+    cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext severity error tag @netq-ops
     Successfully added/updated channel slk-netq-events
     ```
 
@@ -741,7 +741,7 @@ This example shows the creation of a *slk-netq-events* channel and verifies the 
     Matching config_notify records:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
-    slk-netq-events slack            warning          tag: @netq-ops,
+    slk-netq-events slack            error            tag: @netq-ops,
                                                       webhook: https://hooks.s
                                                       lack.com/services/text/m
                                                       oretext/evenmoretext
@@ -754,7 +754,7 @@ This example shows the creation of a *slk-netq-events* channel and verifies the 
 To create and verify a syslog channel, run:
 
 ```
-netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity warning | severity error | severity debug]
+netq add notification channel syslog <text-channel-name> hostname <text-syslog-hostname> port <text-syslog-port> [severity info | severity error ]
 netq show notification channel [json]
 ```
 where:
@@ -785,7 +785,7 @@ where:
 </tr>
 <tr class="even">
 <td>severity &lt;level&gt;</td>
-<td>The log level to set, which can be one of <em>error, warning, info,</em> or <em>debug</em>. The severity defaults to <em>info</em>.</td>
+<td>The log level, either <em>info</em> or <em>error</em>. The severity defaults to <em>info</em> if unspecified.</td>
 </tr>
 </tbody>
 </table>
@@ -825,7 +825,7 @@ The configuration is different depending on whether you are using the on-premise
 To create an email notification channel for an on-premises deployment, run:
 
 ```
-netq add notification channel email <text-channel-name> to <text-email-toids> [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity warning | severity error | severity debug]
+netq add notification channel email <text-channel-name> to <text-email-toids>  [smtpserver <text-email-hostname>] [smtpport <text-email-port>] [login <text-email-id>] [password <text-email-password>] [severity info | severity error ]
 ```
 
 This example creates an email channel named *onprem-email* that uses the *smtpserver* on port *587* to send messages to those persons with access to the *smtphostlogin* account.
@@ -837,7 +837,7 @@ This example creates an email channel named *onprem-email* that uses the *smtpse
 3. Create the notification channel.
 
     ```
-    cumulus@switch:~$ netq add notification channel email onprem-email to netq-notifications@domain.com smtpserver smtp.domain.com smtpport 587 login smtphostlogin@domain.com password MyPassword123 severity warning
+    cumulus@switch:~$ netq add notification channel email onprem-email to netq-notifications@domain.com smtpserver smtp.domain.com smtpport 587 login smtphostlogin@domain.com password MyPassword123 severity error
     Successfully added/updated channel onprem-email
     ```
 
@@ -848,7 +848,7 @@ This example creates an email channel named *onprem-email* that uses the *smtpse
     Matching config_notify records:
     Name            Type             Severity         Channel Info
     --------------- ---------------- ---------------- ------------------------
-    onprem-email    email            warning          password: MyPassword123,
+    onprem-email    email            error            password: MyPassword123,
                                                       port: 587,
                                                       isEncrypted: True,
                                                       host: smtp.domain.com,
@@ -869,7 +869,7 @@ In cloud deployments as the NetQ cloud service uses the NetQ SMTP server to push
 To create an email notification channel for a cloud deployment, run:
 
 ```
-netq add notification channel email <text-channel-name> to <text-email-toids> [severity info | severity warning | severity error | severity debug]
+netq add notification channel email <text-channel-name> to <text-email-toids> [severity info | severity error]
 netq show notification channel [json]
 ```
 
@@ -913,7 +913,7 @@ This example creates an email channel named *cloud-email* that uses the NetQ SMT
 To create and verify a generic channel, run:
 
 ```
-netq add notification channel generic <text-channel-name> webhook <text-webhook-url> [severity info | severity warning | severity error | severity debug] [use-ssl True | use-ssl False] [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>]
+netq add notification channel generic <text-channel-name> webhook <text-webhook-url> [severity info | severity error ] [use-ssl True | use-ssl False] [auth-type basic-auth generic-username <text-generic-username> generic-password <text-generic-password> | auth-type api-key key-name <text-api-key-name> key-value <text-api-key-value>
 netq show notification channel [json]
 ```
 where:
@@ -940,7 +940,7 @@ where:
 </tr>
 <tr class="even">
 <td>severity &lt;level&gt;</td>
-<td>The log level to set, which can be one of <em>error, warning, info,</em> or <em>debug</em>. The severity defaults to <em>info</em>.</td>
+<td>The log level, either <em>info</em> or <em>error</em>. The severity defaults to <em>info</em> if unspecified.</td>
 </tr>
 <tr class="odd">
 <td>use-ssl [True | False]</td>
@@ -1480,20 +1480,6 @@ Create an interface rule based on port:
 Use the `netq show notification` command to view the rules on your
 platform.
 
-    cumulus@switch:~$ netq show notification rule
-     
-    Matching config_notify records:
-    Name            Rule Key         Rule Value
-    --------------- ---------------- --------------------
-    bgpHostname     hostname         spine-01
-    evpnVni         vni              42
-    fecSupport      new_supported_fe supported
-                    c
-    overTemp        new_s_crit       24
-    svcStatus       new_status       down
-    swp52           port             swp52
-    sysconf         configdiff       updated
-
 ### Create Filters
 
 You can limit or direct event messages using filters. Filters are created based on rules you define and each filter contains one or more rules. When a message matches the rule, it is sent to the indicated destination. Before you can create filters, you need to have already defined rules and configured channels.
@@ -1557,25 +1543,9 @@ filter, do not specify a channel. To list the filter first, use the
 Use the `netq show notification` command to view the filters on your
 platform.
 
-    cumulus@switch:~$ netq show notification filter
-    Matching config_notify records:
-    Name            Order      Severity         Channels         Rules
-    --------------- ---------- ---------------- ---------------- ----------
-    swp52Drop       1          error            NetqDefaultChann swp52
-                                                el
-    bgpSpine        2          info             pd-netq-events   bgpHostnam
-                                                                 e
-    vni42           3          warning          pd-netq-events   evpnVni
-    configChange    4          info             slk-netq-events  sysconf
-    newFEC          5          info             slk-netq-events  fecSupport
-    svcDown         6          critical         slk-netq-events  svcStatus
-    critTemp        7          critical         onprem-email     overTemp
-
 #### Reorder Filters
 
-In the `netq show notification filter` command above, the drop-based filter is listed first and the critical events filters are listed last. Because NetQ processes notifications based on the filters’ order, reordering the events so that the critical events appear higher up in the list makes sense. To reorder the critical events filters, use the `before` and `after` options.
-
-For example, to put the two critical event filters just below the drop filter:
+To reorder the events filters, use the `before` and `after` options. For example, to put two critical event filters just below a drop filter:
 
 ```
 cumulus@switch:~$ netq add notification filter critTemp after swp52Drop
@@ -1590,23 +1560,8 @@ You do not need to reenter all the severity, channel, and rule information for e
 
 {{</notice>}}
 
-Run the `netq show notification` command again to verify the changes:
+Run the `netq show notification` command again to verify the changes.
 
-```
-cumulus@switch:~$ netq show notification filter
-Matching config_notify records:
-Name            Order      Severity         Channels         Rules
---------------- ---------- ---------------- ---------------- ----------
-swp52Drop       1          error            NetqDefaultChann swp52
-                                            el
-critTemp        2          critical         onprem-email     overTemp
-svcDown         3          critical         slk-netq-events  svcStatus
-bgpSpine        4          info             pd-netq-events   bgpHostnam
-                                                                e
-vni42           5          warning          pd-netq-events   evpnVni
-configChange    6          info             slk-netq-events  sysconf
-newFEC          7          info             slk-netq-events  fecSupport
-```
 
 ### Suppress Events
 
@@ -1916,9 +1871,9 @@ This example creates a notification integration with a PagerDuty channel called 
     bgpSpine        1          info             pd-netq-events   bgpHostnam
                                                                  e
 
-### Create a Notification for Warnings on a Given EVPN VNI
+### Create a Notification for Errors on a Given EVPN VNI
 
-This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *evpnVni* and a filter called *3vni42* for any warning messages from VNI 42 on the EVPN overlay network. The result is that any event messages from VNI 42 with a severity level of 'warning' are filtered to the *pd-netq-events* channel.
+This example creates a notification integration with a PagerDuty channel called *pd-netq-events*. It then creates a rule *evpnVni* and a filter called *3vni42* for any error messages from VNI 42 on the EVPN overlay network. The result is that any event messages from VNI 42 with a severity level of 'error' are filtered to the *pd-netq-events* channel.
 
     cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key 1234567890
     Successfully added/updated channel pd-netq-events
@@ -1949,7 +1904,7 @@ This example creates a notification integration with a PagerDuty channel called 
     --------------- ---------- ---------------- ---------------- ----------
     bgpSpine        1          info             pd-netq-events   bgpHostnam
                                                                  e
-    vni42           2          warning          pd-netq-events   evpnVni
+    vni42           2          error            pd-netq-events   evpnVni
 
 ### Create a Notification for Configuration File Changes
 
@@ -1986,7 +1941,7 @@ This example creates a notification integration with a Slack channel called *slk
     --------------- ---------- ---------------- ---------------- ----------
     bgpSpine        1          info             pd-netq-events   bgpHostnam
                                                                  e
-    vni42           2          warning          pd-netq-events   evpnVni
+    vni42           2          error            pd-netq-events   evpnVni
     configChange    3          info             slk-netq-events  sysconf
 
 ### Create a Notification for When a Service Goes Down
@@ -2025,7 +1980,7 @@ This example creates a notification integration with a Slack channel called *slk
     --------------- ---------- ---------------- ---------------- ----------
     bgpSpine        1          info             pd-netq-events   bgpHostnam
                                                                  e
-    vni42           2          warning          pd-netq-events   evpnVni
+    vni42           2          error            pd-netq-events   evpnVni
     configChange    3          info             slk-netq-events  sysconf
     svcDown         4          error            slk-netq-events  svcStatus
 
@@ -2068,7 +2023,7 @@ This example creates a notification integration with a Slack channel called *slk
                                                 el
     bgpSpine        2          info             pd-netq-events   bgpHostnam
                                                                  e
-    vni42           3          warning          pd-netq-events   evpnVni
+    vni42           3          error            pd-netq-events   evpnVni
     configChange    4          info             slk-netq-events  sysconf
     svcDown         5          error            slk-netq-events  svcStatus
 
@@ -2117,118 +2072,17 @@ swp52Drop       1          error            NetqDefaultChann swp52
                                             el
 bgpSpine        2          info             pd-netq-events   bgpHostnam
                                                              e
-vni42           3          warning          pd-netq-events   evpnVni
+vni42           3          error            pd-netq-events   evpnVni
 configChange    4          info             slk-netq-events  sysconf
-svcDown         5          critical         slk-netq-events  svcStatus
-critTemp        6          critical         pd-netq-events   switchLeaf
+svcDown         5          error            slk-netq-events  svcStatus
+critTemp        6          error            pd-netq-events   switchLeaf
                                                              04
                                                              overTemp
 ```
 
 ### View Notification Configurations in JSON Format
 
-You can view configured integrations using the `netq show notification` commands. To view the channels, filters, and rules, run the three flavors of the command. Include the `json` option to display JSON-formatted output.
-
-For example:
-
-    cumulus@switch:~$ netq show notification channel json
-    {
-        "config_notify":[
-            {
-                "type":"slack",
-                "name":"slk-netq-events",
-                "channelInfo":"webhook:https://hooks.slack.com/services/text/moretext/evenmoretext",
-                "severity":"info"
-            },
-            {
-                "type":"pagerduty",
-                "name":"pd-netq-events",
-                "channelInfo":"integration-key: 1234567890",
-                "severity":"info"
-        }
-        ],
-        "truncatedResult":false
-    }
-     
-    cumulus@switch:~$ netq show notification rule json
-    {
-        "config_notify":[
-            {
-                "ruleKey":"hostname",
-                "ruleValue":"spine-01",
-                "name":"bgpHostname"
-            },
-            {
-                "ruleKey":"vni",
-                "ruleValue":42,
-                "name":"evpnVni"
-            },
-            {
-                "ruleKey":"new_supported_fec",
-                "ruleValue":"supported",
-                "name":"fecSupport"
-            },
-            {
-                "ruleKey":"new_s_crit",
-                "ruleValue":24,
-                "name":"overTemp"
-            },
-            {
-                "ruleKey":"new_status",
-                "ruleValue":"down",
-                "name":"svcStatus"
-            },
-            {
-                "ruleKey":"configdiff",
-                "ruleValue":"updated",
-                "name":"sysconf"
-        }
-        ],
-        "truncatedResult":false
-    }
-     
-    cumulus@switch:~$ netq show notification filter json
-    {
-        "config_notify":[
-            {
-                "channels":"pd-netq-events",
-                "rules":"overTemp",
-                "name":"1critTemp",
-                "severity":"critical"
-            },
-            {
-                "channels":"pd-netq-events",
-                "rules":"evpnVni",
-                "name":"3vni42",
-                "severity":"warning"
-            },
-            {
-                "channels":"pd-netq-events",
-                "rules":"bgpHostname",
-                "name":"4bgpSpine",
-                "severity":"info"
-            },
-            {
-                "channels":"slk-netq-events",
-                "rules":"sysconf",
-                "name":"configChange",
-                "severity":"info"
-            },
-            {
-                "channels":"slk-netq-events",
-                "rules":"fecSupport",
-                "name":"newFEC",
-                "severity":"info"
-            },
-            {
-                "channels":"slk-netq-events",
-                "rules":"svcStatus",
-                "name":"svcDown",
-                "severity":"critical"
-        }
-        ],
-        "truncatedResult":false
-    }
+You can view configured integrations using the `netq show notification` commands. To view the channels, filters, and rules in JSON-formatted output, include the `json` option. For example, `netq show notification channel json`.
 
 ## Manage NetQ Event Notification Integrations
 
@@ -2238,7 +2092,7 @@ For integrations with threshold-based event notifications, refer to {{<link titl
 
 ### Remove an Event Notification Channel
 
-If you retire selected channels from a given notification application, you might want to remove them from NetQ as well. You can remove channels if they are not part of an existing notification configuration using the NetQ UI or the NetQ CLI.
+You can remove channels if they are not part of an existing notification configuration.
 
 {{<tabs "TabID1908" >}}
 
@@ -2312,39 +2166,12 @@ sysconf         configdiff       updated
 
 ### Delete an Event Notification Filter
 
-You might find after some experience with a given filter that you want to edit or remove the filter to better meet your current needs. You can remove filters if they are not part of an existing notification configuration using the NetQ CLI.
-
-To remove notification filters, run:
+To delete notification filters, run:
 
 ```
 netq del notification filter <text-filter-name-anchor>
 ```
 
-This example removes a filter named *bgpSpine* and verifies it is no longer in
-the configuration:
-
-```
-cumulus@switch:~$ netq del notification filter bgpSpine
-
-cumulus@switch:~$ netq show notification filter
-Matching config_notify records:
-Name            Order      Severity         Channels         Rules
---------------- ---------- ---------------- ---------------- ----------
-swp52Drop       1          error            NetqDefaultChann swp52
-                                            el
-vni42           2          warning          pd-netq-events   evpnVni
-configChange    3          info             slk-netq-events  sysconf
-svcDown         4          critical         slk-netq-events  svcStatus
-critTemp        5          critical         pd-netq-events   switchLeaf
-                                                                04
-                                                                overTemp
-```
-
 ### Delete an Event Notification Proxy
 
 You can remove the proxy server by running the `netq del notification proxy` command. This changes the NetQ behavior to send events directly to the notification channels.
-
-```
-cumulus@switch:~$ netq del notification proxy
-Successfully overwrote notifier proxy to null
-```

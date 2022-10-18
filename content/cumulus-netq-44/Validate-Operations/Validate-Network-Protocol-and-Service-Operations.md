@@ -140,7 +140,7 @@ Validations that support the `streaming` keyword can query real time streaming i
 To create a request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation type (bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) [alert-on-failure]
+netq add validation type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) [alert-on-failure]
 ```
 
 This example shows the creation of an on-demand BGP validation.
@@ -1218,7 +1218,7 @@ Sometimes it is useful to run validations on more than one protocol simultaneous
 To create a scheduled request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation name <text-new-validation-name> type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) interval <text-time-min>
+netq add validation name <text-new-validation-name> type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) interval <text-time-min> [alert-on-failure]
 ```
 
 This example shows the creation of a BGP validation run every 15 minutes for debugging.

@@ -32,7 +32,7 @@ netq <hostname> show macs [<mac>] [vlan <1-4096>] [origin | count] [around <text
 netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
 netq [<hostname>] show mac-history <mac> [vlan <1-4096>] [diff] [between <text-time> and <text-endtime>] [listby <text-list-by>] [json]
 netq [<hostname>] show mac-commentary <mac> vlan <1-4096> [between <text-time> and <text-endtime>] [json]
-netq [<hostname>] show events [severity info | severity error ] type macs [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] message_type macs [between <text-time> and <text-endtime>] [json]
 ```
 
 ## View MAC Addresses Networkwide

@@ -97,7 +97,7 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 To upgrade the NetQ Agent on one or more switches, run:
 
 ```
-netq-image name <text-job-name> [netq-version <text-netq-version>] [upgrade-cli True | upgrade-cli False] hostnames <text-switch-hostnames> [config_profile <text-config-profile>]
+netq-image job-name <text-job-name> [netq-version <text-netq-version>] [upgrade-cli True | upgrade-cli False] hostnames <text-switch-hostnames> [config_profile <text-config-profile>]
 ```
 
 The following example creates a NetQ Agent upgrade job called *upgrade-cl430-nq330*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.1.0.

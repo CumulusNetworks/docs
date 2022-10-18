@@ -12,7 +12,7 @@ The syntax for the `show` commands is:
 
 ```
 netq [<hostname>] show ntp [out-of-sync|in-sync] [around <text-time>] [json]
-netq [<hostname>] show events [severity info | severity error ] type ntp [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] message_type ntp [between <text-time> and <text-endtime>] [json]
 ```
 
 ## View Current Time Synchronization Status
@@ -132,7 +132,7 @@ If a device has difficulty remaining in time synchronization, you might want to 
 The following example displays no events in the last 24 hours:
 
 ```
-cumulus@switch:~$ netq show events type ntp
+cumulus@switch:~$ netq show events message_type ntp
 No matching event records found
 ```
 {{</expand>}}
@@ -141,7 +141,7 @@ No matching event records found
 The following example shows no error NTP events in the last seven days:
 
 ```
-cumulus@switch:~$ netq show events type ntp between now and 7d
+cumulus@switch:~$ netq show events message_type ntp between now and 7d
 No matching event records found
 
 ```

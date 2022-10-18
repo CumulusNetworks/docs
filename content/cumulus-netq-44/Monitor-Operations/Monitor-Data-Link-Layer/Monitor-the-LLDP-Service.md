@@ -567,19 +567,19 @@ Where to go next depends on what data you see, but a few options include:
 
 {{<tab "NetQ CLI">}}
 
-To view the switches and hosts with the most LLDP alarms and informational events, run the `netq show events` command with the `type` option set to *lldp*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
+To view the switches and hosts with the most LLDP events, run the `netq show events` command with the `message_type` option set to *lldp*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
 
 This example shows that no LLDP events have occurred in the last 24 hours.
 
 ```
-cumulus@switch:~$ netq show events type lldp
+cumulus@switch:~$ netq show events message_type lldp
 No matching event records found
 ```
 
 This example shows all LLDP events between now and 30 days ago, a total of 21 info events.
 
 ```
-cumulus@switch:~$ netq show events type lldp between now and 30d
+cumulus@switch:~$ netq show events message_type lldp between now and 30d
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
@@ -675,7 +675,7 @@ leaf02            lldp                     info             LLDP Session with ho
 
 ### View All LLDP Events
 
-The Network Services/All LLDP Sessions card and the `netq show events type lldp` command let you view all LLDP events in a designated time period.
+The Network Services/All LLDP Sessions card and the `netq show events message_type lldp` command let you view all LLDP events in a designated time period.
 
 {{<tabs "View all LLDP events">}}
 
@@ -698,15 +698,12 @@ To view all LLDP events:
 To view all LLDP events, run:
 
 ```
-netq show events [severity info | severity error ] type lldp [between <text-time> and <text-endtime>] [json]
+netq show events [severity info | severity error ] message_type lldp [between <text-time> and <text-endtime>] [json]
 ```
-
-Use the `level` option to set the severity of the events to show. Use the `between` option to show events within a given time range.
-
 This example shows that no LLDP events have occurred in the last three days.
 
 ```
-cumulus@switch:~$ netq show events type lldp between now and 3d
+cumulus@switch:~$ netq show events message_type lldp between now and 3d
 No matching event records found
 ```
 

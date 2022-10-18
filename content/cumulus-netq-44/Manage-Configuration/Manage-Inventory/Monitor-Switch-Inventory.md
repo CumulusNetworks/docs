@@ -726,7 +726,7 @@ The CLI syntax for viewing the status of services is:
 ```
 netq [<hostname>] show services [<service-name>] [vrf <vrf>] [active|monitored] [around <text-time>] [json]
 netq [<hostname>] show services [<service-name>] [vrf <vrf>] status (ok|warning|error|fail) [around <text-time>] [json]
-netq [<hostname>] show events [severity info | severity error ] type services [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] message_type services [between <text-time> and <text-endtime>] [json]
 ```
 
 ### View All Services on All Devices
@@ -894,7 +894,7 @@ To view changes over a given time period, use the `netq show events` command. Fo
 
 This example shows changes to the `bgpd` service in the last 48 hours.
 
-    cumulus@switch:/$ netq show events type bgp between now and 48h
+    cumulus@switch:/$ netq show events message_type bgp between now and 48h
     Matching events records:
     Hostname          Message Type Severity Message                             Timestamp
     ----------------- ------------ -------- ----------------------------------- -------------------------

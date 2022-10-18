@@ -268,14 +268,13 @@ Where to go next depends on what data you see, but a couple of options include:
 To view OSPF events, run:
 
 ```
-netq [<hostname>] show events [severity info | severity error ] type ospf [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] message_type ospf [between <text-time> and <text-endtime>] [json]
 ```
 
 For example:
 
-- To view all OSPF events, run `netq show events type ospf`.
-- To view only critical OSPF events, run `netq show events level critical type ospf`.
-- To view all OSPF events in the past three days, run `netq show events type ospf between now and 3d`.
+- To view all OSPF events, run `netq show events message_type ospf`.
+- To view all OSPF events in the past three days, run `netq show events message_type ospf between now and 3d`.
 
 {{</tab>}}
 

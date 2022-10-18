@@ -12,7 +12,7 @@ The syntax for interface commands is:
 ```
 netq show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan) [state <remote-interface-state>] [around <text-time>] [json]
 netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan) [state <remote-interface-state>] [around <text-time>] [count] [json]
-netq [<hostname>] show events [severity info | severity error ] type interfaces [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] message_type interfaces [between <text-time> and <text-endtime>] [json]
 ```
 
 ## View Status for All Interfaces
@@ -195,32 +195,6 @@ The following example shows the count of swp interfaces are on the leaf03 switch
 ```
 cumulus@switch:~$ netq leaf03 show interfaces type swp count
 Count of matching link records: 11
-```
-{{</expand>}}
-## View Changes to Interfaces
-
-If you suspect that an interface is not working as expected (seeing a drop in performance or a large number of dropped messages, for example) you can view any changes made to interfaces networkwide.
-
-{{<expand "show events level info type interfaces between now and 30d">}}
-
-The following example shows info-level events for all interfaces networkwide:
-
-```
-cumulus@switch:~$ netq show events level info type interfaces between now and 30d
-Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-server03          link                     info             HostName server03 changed state fro 3d:12h:8m:28s
-                                                            m down to up Interface:eth2
-server03          link                     info             HostName server03 changed state fro 3d:12h:8m:28s
-                                                            m down to up Interface:eth1
-server01          link                     info             HostName server01 changed state fro 3d:12h:8m:30s
-                                                            m down to up Interface:eth2
-server01          link                     info             HostName server01 changed state fro 3d:12h:8m:30s
-                                                            m down to up Interface:eth1
-server02          link                     info             HostName server02 changed state fro 3d:12h:8m:34s
-                                                            m down to up Interface:eth2
-...
 ```
 {{</expand>}}
 ## View Aliases for Interfaces

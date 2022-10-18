@@ -45,12 +45,12 @@ leaf04            104001     EVPN   10.0.0.134       4001                       
 ```
 {{</expand>}}
 
-{{<expand "show events type vxlan between now and 24h">}}
+{{<expand "show events message_type vxlan between now and 24h">}}
 
 This example shows the events and configuration changes that occurred on the VXLANs in your network in the last 24 hours. In this case, the change involved adding the EVPN configuration to each of the devices in the last 24 hours:
 
 ```
-cumulus@switch:~$ netq show events type vxlan between now and 24h
+cumulus@switch:~$ netq show events message_type vxlan between now and 24h
 Matching vxlan records:
 Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    DB State   Last Changed
                                 ol

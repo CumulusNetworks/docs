@@ -120,20 +120,11 @@ You need the following items to perform the certificate installation:
         secretName: netq-gui-ingress-tls
       ```
 
-    After saving your changes, retrieve the current swagger-ui pod name and delete it to restart the service:
+    After saving your changes, delete the current swagger-ui pod to restart the service:
 
       ```
-      # kubectl get pods | grep swagger-ui
-      # kubectl delete pod <pod from the above command>
-      ```
-
-    Example:
-
-      ```
-      cumulus@netq:~$ kubectl get pods | grep swagger-ui
-      swagger-ui-deploy-69cfff7b45-z7spv                  1/1     Running   0          23h
-      cumulus@netq:~$ kubectl delete pod swagger-ui-deploy-69cfff7b45-z7spv
-      pod "swagger-ui-deploy-69cfff7b45-z7spv" deleted
+      cumulus@netq-ts:~$ kubectl delete pod -l app=swagger-ui
+      pod "swagger-ui-deploy-69cfff7b45-cj6r6" deleted
       ```
 
 {{</tab>}}

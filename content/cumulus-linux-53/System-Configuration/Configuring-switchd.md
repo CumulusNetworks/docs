@@ -4,43 +4,43 @@ author: NVIDIA
 weight: 240
 toc: 3
 ---
-`switchd` is the daemon at the heart of Cumulus Linux. It communicates between the switch and Cumulus Linux, and all the applications running on Cumulus Linux.
-
-Cumulus Linux stores `switchd` configuration in the `/etc/cumulus/switchd.conf` file.
+The `switchd` service enables the switch to communicate with Cumulus Linux and all the applications running on Cumulus Linux.
 
 ## Configure switchd Parameters
 
-You can control certain options associated with the `switchd` process. For example, you can set polling intervals, optimize ACL hardware resources for better utilization, configure log message levels, set the internal VLAN range, and configure default VXLAN encapsulation.
+You can control certain options associated with the `switchd` process. For example, you can set polling intervals, optimize ACL hardware resources for better utilization, configure log message levels, set the internal VLAN range, and configure VXLAN encapsulation and decapsulation.
 
-To configure `switchd` options, you either run NVUE commands or manually edit the `/etc/cumulus/switchd.conf`; however, NVUE currently supports a subset of the `switchd` configuration available in the `/etc/cumulus/switchd.conf` file.
+To configure `switchd` options, you either run NVUE commands or manually edit the `/etc/cumulus/switchd.conf` file.
+
+{{%notice note%}}
+NVUE currently only supports a subset of the `switchd` configuration available in the `/etc/cumulus/switchd.conf` file.
+{{%/notice%}}
 
 {{< tabs "TabID115 ">}}
 {{< tab "NVUE Commands ">}}
 
 You can run NVUE commands to set the following `switchd` options:
-- The statistic polling interval for physical intefaces.
-- The statistic polling interval for logical interfaces.
-- The log level you want to enable for debugging the data plane programming related code.
-- The DSCP action and value for encapsulation in VXLAN outer headers.
-- The DSCP action  and value for decapsulation in VXLAN outer headers.
+- The statistic polling interval for both physical interfaces and logical interfaces.
+- The log level to debug the data plane programming related code.
+- The DSCP action and value for encapsulation and the DSCP action for decapsulation in VXLAN outer headers.
 - The route or neighbour preference.
 - The ACL mode (atomic or non-atomic).
 
 To set the statistic polling interval (in seconds) for physical interfaces:
 
 ```
-cumulus@switch:~$ nv set system counters polling-interval physical-interface 5
+cumulus@switch:~$ nv set system counter polling-interval physical-interface 5
 cumulus@switch:~$ nv config apply
 ```
 
 To set the statistic polling interval (in seconds) for logical interfaces:
 
 ```
-cumulus@switch:~$ nv set system counters polling-interval logical-interface 5
+cumulus@switch:~$ nv set system counter polling-interval logical-interface 5
 cumulus@switch:~$ nv config apply
 ```
 
-To set the log level (debug, info, notice, warning, or err) you want to enable for debugging the data plane programming related code:
+To set the log level (debug, info, notice, warning, or err) for debugging the data plane programming related code:
 
 ```
 cumulus@switch:~$ nv set system forwarding programming log-level warning
@@ -54,17 +54,17 @@ cumulus@switch:~$ nv set nve vxlan encapsulation dscp action copy
 cumulus@switch:~$ nv config apply
 ```
 
-To set the DSCP value for encapsulation in VXLAN outer headers for the action:
+To set the DSCP value for encapsulation in VXLAN outer headers:
 
 ```
-cumulus@switch:~$ nv set nve vxlan encapsulation dscp value
+cumulus@switch:~$ nv set nve vxlan encapsulation dscp value af12
 cumulus@switch:~$ nv config apply
 ```
 
 To set the DSCP action (copy, preserve, or derive) for decapsulation in VXLAN outer headers:
 
 ```
-cumulus@switch:~$ nv set nve vxlan decapsulation-dscp-action preserve
+cumulus@switch:~$ nv set nve vxlan decapsulation dscp action preserve
 cumulus@switch:~$ nv config apply
 ```
 
@@ -75,11 +75,10 @@ cumulus@switch:~$ nv set system forwarding host-route-preference route-and-neigh
 cumulus@switch:~$ nv config apply
 ```
 
-To set the ACL mode for ACLs (atomic or non-atomic) and enable the mode:
+To set the ACL mode (atomic or non-atomic):
 
 ```
 cumulus@switch:~$ nv set system acl mode atomic 
-cumulus@switch:~$ nv set system acl mode enable on
 cumulus@switch:~$ nv config apply
 ```
 

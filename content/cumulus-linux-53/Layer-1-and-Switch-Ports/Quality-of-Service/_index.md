@@ -19,7 +19,7 @@ Cumulus Linux uses two configuration files for QoS:
 - `/etc/mlx/datapath/qos/qos_infra.conf` includes all platform specific configurations, such as buffer allocations and [Alpha values](https://community.mellanox.com/s/article/understanding-the-alpha-parameter-in-the-buffer-configuration-of-mellanox-spectrum-switches).
 
 {{% notice note %}}
-Cumulus Linux 5.0 and later does not use the `traffic.conf` and `datapath.conf` files but uses the `qos_features.conf` and `qos_infra.conf` files instead. Review your existing QoS configuration to determine the changes you need to make.
+Cumulus Linux 5.0 and later does not use the `traffic.conf` and `datapath.conf` files but uses the `qos_features.conf` and `qos_infra.conf` files instead. Before upgrading Cumulus Linux, review your existing QoS configuration to determine the changes you need to make.
 {{% /notice %}}
 
 {{% notice note %}}
@@ -51,7 +51,7 @@ NVUE reloads the `switchd.service` automatically. You do **not** have to run the
 
 When a frame or packet arrives on the switch, Cumulus Linux maps it to an *internal COS* value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
-You can define which values are trusted, COS (l2) or DSCP (l3), or both.
+You can define which values are `trusted`, COS, DSCP, or both.
 
 The following table describes the default classifications for various frame and switch priority configurations:
 
@@ -71,9 +71,9 @@ The following table describes the default classifications for various frame and 
 | pcp (802.1p) and dscp | No | Non-IP | Use the default priority setting. |
 | port | Either | Either | Ignore any existing markings and use the default priority setting. |
 
-In NVUE, you define which values are trusted with the `nv set qos mapping <profile> trust l1` command (COS) or the `nv set qos mapping <profile> trust l2` command (DSCP) .
+In NVUE, you define which values are `trusted` with the `nv set qos mapping <profile> trust l2` command (COS) or the `nv set qos mapping <profile> trust l3` command (DSCP) .
 
-If you are using Linux commands to configure QoS, you define which values are trusted in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `cos` or `dscp`.
+If you are using Linux commands to configure QoS, you define which values are `trusted` in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `cos` or `dscp`.
 
 ### Trust COS
 
@@ -82,7 +82,7 @@ To trust ingress COS markings:
 {{< tabs "TabID97 ">}}
 {{< tab "NVUE Commands ">}}
 
-When COS (l1) is `trusted`, Cumulus Linux classifies these ingress COS values to internal COS values:
+When COS (`l2`) is `trusted`, Cumulus Linux classifies these ingress COS values to internal COS values:
 
 | Internal COS| Ingress COS|
 | ----------- | ---------- |
@@ -114,7 +114,7 @@ cumulus@switch:~$ nv config apply
 
 If you configure the trust to be `l2` but do not specify any PCP to SP mappings, Cumulus Linux uses the default values.
 
-You can configure additional settings using [Port Groups](#port-groups).
+To configure additional settings, such as apply a COS profile to specific interfaces, see [Port Groups](#port-groups).
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -174,7 +174,7 @@ To trust ingress DSCP markings:
 {{< tabs "TabID138 ">}}
 {{< tab "NVUE Commands ">}}
 
-If DSCP (l3) is `trusted`, Cumulus Linux classifies these ingress DSCP values to internal COS values:
+If DSCP (`l3`) is `trusted`, Cumulus Linux classifies these ingress DSCP values to internal COS values:
 
 | Internal COS | Ingress DSCP |
 |------------- | ------------ |
@@ -207,7 +207,7 @@ cumulus@switch:~$ nv config apply
 
 If you configure the trust to be `l3` but do not specify any DSCP to SP mappings, Cumulus Linux uses the default values.
 
-You can configure additional settings using [Port Groups](#port-groups).
+To configure additional settings, such as apply a DSCP profile to specific interfaces, see  [Port Groups](#port-groups).
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -277,7 +277,7 @@ cumulus@switch:~$ nv set qos mapping default-global port-default-sp 3
 cumulus@switch:~$ nv config apply
 ```
 
-You can configure additional settings using [Port Groups](#port-groups).
+The above commands define the COS value that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -563,7 +563,7 @@ cumulus@switch:~$ nv set interface swp1-4,swp6 qos pfc profile my_pfc_ports
 cumulus@switch:~$ nv config apply
 ```
 
-The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1, disables PFC frame receive, and sets the buffer limit that triggers PFC frame transmition to stop to 1500, the buffer limit that triggers PFC frame transmition to start to 1000, the amount of reserved buffer space to 2000, and the cable length to 50:
+The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit that triggers PFC frame transmition to stop to 1500, the buffer limit that triggers PFC frame transmition to start to 1000, the amount of reserved buffer space to 2000, and the cable length to 50:
 
 ```
 cumulus@switch:~$ nv set qos pfc my_pfc_ports2 switch-priority 0 

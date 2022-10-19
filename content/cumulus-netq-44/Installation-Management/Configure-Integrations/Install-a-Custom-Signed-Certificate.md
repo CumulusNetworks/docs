@@ -92,7 +92,49 @@ Install a certificate using the NetQ CLI:
     ingress.extensions/netq-gui-ingress-external configured
     ```
     
-    A message like the one here appears if your ingress rule is successfully configured.
+    A message like the one above appears if your ingress rule is successfully configured.
+
+1. Configure the NetQ API to use the new certificate.
+
+    Edit the `netq-swagger-ingress-external` service:
+
+      ```
+      kubectl edit ingress netq-swagger-ingress-external
+      ```
+
+    Add The `tls:` section in the `spec:` stanza, referencing your configured hostname and the `netq-gui-ingress-tls` secretName:
+
+      ```
+      spec:
+      rules:
+      - host: <hostname>
+        http:
+        paths:
+        - backend:
+          serviceName: swagger-ui
+          servicePort: 8080
+          path: /swagger(/|$)(.*)
+      tls:
+      - hosts:
+        - <hostname>
+        secretName: netq-gui-ingress-tls
+      ```
+
+    After saving your changes, retrieve the current swagger-ui pod name and delete it to restart the service:
+
+      ```
+      # kubectl get pods | grep swagger-ui
+      # kubectl delete pod <pod from the above command>
+      ```
+
+    Example:
+
+      ```
+      cumulus@netq:~$ kubectl get pods | grep swagger-ui
+      swagger-ui-deploy-69cfff7b45-z7spv                  1/1     Running   0          23h
+      cumulus@netq:~$ kubectl delete pod swagger-ui-deploy-69cfff7b45-z7spv
+      pod "swagger-ui-deploy-69cfff7b45-z7spv" deleted
+      ```
 
 {{</tab>}}
 

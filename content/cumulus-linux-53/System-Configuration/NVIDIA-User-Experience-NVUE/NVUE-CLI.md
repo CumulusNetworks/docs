@@ -11,7 +11,8 @@ The NVUE CLI has a flat structure as opposed to a modal structure. This means th
 NVUE commands all begin with `nv` and fall into one of three syntax categories:
 - Configuration (`nv set` and ` nv unset`)
 - Monitoring (`nv show`)
-- Configuration management (`nv config`).
+- Configuration management (`nv config`)
+- Action commands (`nv action`)
 
 ## Command Completion
 <!-- vale off -->
@@ -85,6 +86,7 @@ You can list all the NVUE commands by running `nv list-commands`. See {{<link ur
 <!-- vale off -->
 At the command prompt, press the Up Arrow and Down Arrow keys to move back and forth through the list of commands you entered. When you find a given command, you can run the command by pressing Enter. Optionally, you can modify the command before you run it.
 <!-- vale on -->
+
 ## Command Categories
 
 The NVUE CLI has a flat structure; however, the commands are in three functional categories:
@@ -92,6 +94,7 @@ The NVUE CLI has a flat structure; however, the commands are in three functional
 - Configuration
 - Monitoring
 - Configuration Management
+- Action
 
 ### Configuration Commands
 
@@ -121,6 +124,7 @@ The NVUE monitoring commands show various parts of the network configuration. Fo
 | <div style="width:300px">Command Group | Description |
 | ------- | ----------- |
 | `nv show acl` | Shows ACL configuration. |
+| `nv show action`| Shows information about the action commands that reset counters and remove conflicts.|
 | `nv show bridge` | Shows bridge domain configuration.|
 | `nv show evpn` |Shows EVPN configuration. |
 | `nv show interface` |Shows interface configuration. |
@@ -258,6 +262,15 @@ The NVUE configuration management commands manage and apply configurations.
 
 You can use the NVUE configuration management commands to back up and restore configuration when you upgrade Cumulus Linux on the switch. Refer to {{<link url="Upgrading-Cumulus-Linux/#back-up-configuration-with-nvue" text="Upgrading Cumulus Linux">}}.
 
+### Action Commands
+
+The NVUE action commands reset counters for interfaces and remove conflicts from protodown MLAG bonds.
+
+| <div style="width:450px">Command | Description |
+| ------- | ----------- |
+|`nv action clear interface <interface> qos roce counters`  | Resets counters that the `nv show interface <interface> qos roce` command displays. |
+|`nv action clear interface <interface> bond mlag lacp-conflict`| Removes duplicate partner MAC address or partner MAC address mismatch conflicts from protodown MLAG bonds.|
+
 ### List All NVUE Commands
 
 To show the full list of NVUE commands, run `nv list-commands`. For example:
@@ -314,6 +327,18 @@ cumulus@switch:~$ sudo systemctl start nvue-startup.service
 
 When you apply a configuration with `nv config apply`, NVUE also writes to underlying Linux files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE. If you need to configure certain network settings manually or use automation such as Ansible to configure the switch, see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}} below.
 
+<!--## OUT of 5.3-Maybe in 5.4? Search for a Specific Configuration
+
+To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
+
+```
+cumulus@switch:~$ nv config find ptm
+- set:
+    router:
+      ptm:
+        enable: off
+```
+-->
 ## Configure NVUE to Ignore Linux Files
 
 You can configure NVUE to ignore certain underlying Linux files when applying configuration changes. For example, if you push certain configuration to the switch using Ansible and Jinja2 file templates or you want to use custom configuration for a particular service such as PTP, you can ensure that NVUE never writes to those configuration files.

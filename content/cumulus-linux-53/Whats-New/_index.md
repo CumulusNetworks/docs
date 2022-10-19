@@ -16,29 +16,26 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 
 ### Platforms
 
-- {{<link url="Interface-Configuration-and-Management/#chassis-management" text="NVIDIA SN4800 (100G Spectrum-3)">}} generally available access
-- All NVIDIA Spectrum-2 and Spectrum-3 switches support 1G
+- NVIDIA SN3750SX (5G Spectrum-2) available for early access
 
 ### New Features and Enhancements
 
-- Refactor port configuration
-- PTP shaper for Spectrum-1
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
-  - user management commands
-  - SNMP server and SNMP trap commands
-  - RoCE commands
-  - support for switchd knobs
-  - add memory and CPU utilization (more info in nv show platform hardware output)
-  - BGP phase 1 (additional commands)
-  - routing phase 1 (additional route-map commands)
-  - FRR Zebra Phase 1
-  - WJH commands
-  - text obfuscation support
-  - hyphen support in ??
-  - improved performance
-  - add username info to Action command
-  - change commands from enable on/off to set enable/unset enable
-  - New commands:
+  - {{<link url="Configure-SNMP" text="SNMP Server">}} and {{<link url="Configure-SNMP-Traps" text="SNMP trap">}} commands
+  - {{<link url="Quality-of-Service" text="QoS commands">}}
+  - {{<link url="Configuring-switchd" text="switchd commands">}}
+  - New {{<link url="Monitoring-and-Troubleshooting/#show-system-information" text="nv show system commands">}} include `nv show system memory` and `nv show system cpu`
+  - New BGP commands include {{<link url="Optional-BGP-Configuration/#bgp-dynamic-neighbors" text="BGP dynamic neighbor">}}, {{<link url="Optional-BGP-Configuration/#update-source" text="BGP update source">}}, {{<link url="Optional-BGP-Configuration/#bgp-neighbor-shutdown" text="BGP  neighbor shutdown">}}
+  - New route map {{<link url="Route-Filtering-and-Redistribution/#match-and-set-statements" text="match and set statements">}} enable you to match on an EVPN default route, and set the BGP community, metric, originator ID, and forwarding address
+  - {{<link title="What Just Happened (WJH)" text="WJH commands">}}
+  - {{<link url="Prescriptive-Topology-Manager-PTM/#check-link-state" text="PTM enable command">}} to check link state
+  - Performance improvements
+  - Support for hyphens in hostnames, VRF, route map, next hop groups, prefix list, AS path list, community list, and ACL names
+  - Fast link up command (`nv set interface <interface-id> link fast-linkup on`) to support fast link up to the Pensando (Naples) card - NVIDIA SN2100.
+  <!--- Commands changed from `enable on` and `enable off` to `set enable` and `unset enable` (the `enable on` and `enable off` commands continue to be supported for backward compatability)-->
+  <!--- Obfuscated passwords to protect passwords from casual viewing-->
+  <!-- - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model-->
+  - New command list:
    {{< tabs "TabID34 ">}}
 {{< tab "show commands ">}}
 

@@ -5,32 +5,27 @@ weight: 1150
 toc: 3
 ---
 
-SNMP is an IETF standards-based network management architecture and protocol. Cumulus Linux uses the open source Net-SNMP agent `snmpd` version 5.8.1.pre1, which provides support for most of the common industry-wide {{<link url="#management-information-base-mib" text="MIBs">}}, including interface counters and TCP/UDP IP stack data. The version in Cumulus Linux adds custom MIBs and pass-through and {{<link url="Configure-SNMP#pass-persist-scripts" text="pass-persist scripts">}}.
+SNMP is an IETF standards-based network management architecture and protocol. Cumulus Linux uses the open source Net-SNMP agent `snmpd`, which provides support for most of the common industry-wide {{<link url="#management-information-base-mib" text="MIBs">}}, including interface counters, and TCP and UDP IP stack data. The SNMP version in Cumulus Linux adds custom MIBs and pass-through, and {{<link url="Configure-SNMP#pass-persist-scripts" text="pass-persist scripts">}}.
 
 ## SNMP Components
 
-The main components of SNMP in Cumulus Linux are:
+The main components of SNMP in Cumulus Linux include:
 
-- SNMP network management system (NMS)
+- The SNMP network management system (NMS)
 - SNMP agents
 - The MIBs (management information bases)
 
 ### SNMP Network Management System
 
-An SNMP network management system (NMS) is a system configured to poll SNMP agents (such as Cumulus Linux switches or routers) that can send query requests to SNMP agents with the correct credentials. The managers poll the agents and the agents respond with the data. There are a variety of command line tools for polling, including `snmpget`, `snmpgetnext`, `snmpwalk`, `snmpbulkget`, and `snmpbulkwalk`. SNMP agents can also send unsolicited traps and inform messages to the NMS based on predefined criteria, like link changes.
+An SNMP network management system (NMS) is a system configured to poll SNMP agents (such as Cumulus Linux switches or routers), which respond with data. A variety of command line tools exist to poll agents, such as `snmpget`, `snmpgetnext`, `snmpwalk`, `snmpbulkget`, and `snmpbulkwalk`. SNMP agents can also send unsolicited traps and inform messages to the NMS based on predefined criteria, such as link changes.
 
 ### SNMP Agent
 
-The SNMP agent (the `snmpd` daemon) running on a Cumulus Linux switch gathers information about the local system and stores the data in a *management information base*, or MIB. Parts of the MIB tree are available and provided to incoming requests originating from an NMS host that has authenticated with the correct credentials. You can configure the Cumulus Linux switch with usernames and credentials to provide authenticated and encrypted responses to NMS requests. The `snmpd` agent can also proxy requests and act as a *master agent* to sub-agents running on other daemons, like for FRR or LLDP.
+The SNMP agent (`snmpd`) running on a Cumulus Linux switch gathers information about the local system and stores the data in a MIB. Parts of the MIB tree are available and provided to incoming requests originating from an NMS host that has authenticated with the correct credentials. You can configure the Cumulus Linux switch with usernames and credentials to provide authenticated and encrypted responses to NMS requests. The `snmpd` agent can also proxy requests and act as a *master agent* to sub-agents running on other daemons, such as FRR or LLDP.
 
 ### Management Information Base (MIB)
 
-The MIB is a database for the `snmpd` daemon that runs on the agent. MIBs adhere to IETF standards but are flexible enough to allow vendor-specific additions. Cumulus Linux includes custom enterprise MIB tables in a set of text files on the switch; the files are in `/usr/share/snmp/mibs/` and their names all start with *Cumulus*. They include:
-
-- Cumulus-Counters-MIB.txt
-- Cumulus-POE-MIB.txt
-- Cumulus-Resource-Query-MIB.txt
-- Cumulus-Snmp-MIB.txt
+The MIB is a database for the `snmpd` service that runs on the agent. MIBs adhere to IETF standards but are flexible enough to allow vendor-specific additions. Cumulus Linux includes custom enterprise MIB tables in a set of text files on the switch; the files are in `/usr/share/snmp/mibs/` and their names all start with *Cumulus*; for example, Cumulus-Counters-MIB.txt.
 
 The MIB is a top-down hierarchical tree. Each branch that forks off has both an identifying number (starting with 1) and an identifying string that is unique for that level of the hierarchy. You can use the strings and numbers interchangeably. The parent IDs (numbers or strings) combine, starting with the most general to form an address for the MIB object. A dot in this notation represents each junction in the hierarchy so that the address is a series of ID strings or numbers separated by dots. This entire address is an object identifier (OID).
 <!-- vale off -->

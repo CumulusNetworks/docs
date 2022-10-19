@@ -183,7 +183,7 @@ For **25G DAC, 4x25G Breakouts DAC and 100G DAC cables**, the IEEE 802.3by speci
 The IEEE classification specifies various dB loss measurements and minimum achievable cable length. You can build longer and shorter cables if they comply to the dB loss and BER requirements.
 
 If a cable has a CA-25G-S classification and FEC is not on, the BER might be unacceptable in a production network. It is important to set the FEC according to the cable class (or better) to have acceptable bit error rates. See
-{{<link url="#determine-cable-class-of-100g-and-25g-dacs" text="Determining Cable Class">}} below.
+{{<link url="#cable-class-of-100g-and-25g-dacs" text="Determining Cable Class">}} below.
 
 You can check bit errors using `cl-netstat` (`RX_ERR` column) or `ethtool -S` (`HwIfInErrors` counter) after a large amount of traffic passes through the link. A non-zero value indicates bit errors.
 Expect error packets to be zero or extremely low compared to good packets. If a cable has an unacceptable rate of errors with FEC enabled, replace the cable.
@@ -1104,8 +1104,8 @@ Maximum 50G ports: 128
 
 Maximum 100G ports: 128
 
-{< /tab >}}
-{< tab "200G ">}}
+{{< /tab >}}
+{{< tab "200G ">}}
 
 64x200G - 64xQSFP56 (native speed)
 
@@ -1182,13 +1182,6 @@ Maximum 400G ports: 32
 
 {{< /tab >}}
 {{< /tab >}}
-
-{{< /tabs >}}
-{{< tab "SN4800">}}
-
-SN4800 is a modular chassis with up to 8 line cards. Each line card has 16x QSFP28 NRZ encoding 100G interfaces and supports all speeds down to 1G.
-
-This platform is avaliable only with 16x QSFP28 line cards without an option to breakout ports; you can install a maximum of 128x100G ports. 
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1475,5 +1468,3 @@ The NVIDIA Spectrum-2 (25G) switch only supports RS FEC.
 ## Related Information
 
 - {{<exlink url="http://wiki.debian.org/NetworkConfiguration" text="Debian - Network Configuration">}}
-- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/vlan" text="Linux Foundation - VLANs">}}
-- {{<exlink url="http://www.linuxfoundation.org/collaborate/workgroups/networking/bonding" text="Linux Foundation - Bonds">}}

@@ -13,13 +13,20 @@ By default, the SNMP configuration has a listening address of localhost (127.0.0
 
 Use the SNMPv3 username instead of the read-only community name. The SNMPv3 username does not expose the user credentials and can encrypt packet contents. However, SNMPv1 and SNMPv2c environments require read-only community passwords so that the `snmpd` daemon can respond to requests. The read-only community string enables you to poll various MIB objects on the device.
 
-{{%notice note%}}
-The NVUE commands for configuring SNMP are available for early access.
-{{%/notice%}}
-
 ## Start the SNMP Service
 
 Before you can use SNMP, you need to enable and start the `snmpd` service.
+
+{{< tabs "20 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service snmp-server enable on
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 {{%notice note%}}
 If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
@@ -47,7 +54,8 @@ If you intend to run this service within a {{<link url="Virtual-Routing-and-Forw
 
 3. Run the `sudo systemctl daemon-reload` command.
 
-After the service starts, you can use SNMP to manage various components on the switch.
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Configure the Listening IP Addresses
 
@@ -148,8 +156,6 @@ agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
 
 NVIDIA recommends you use an SNMPv3 username and password instead of the read-only community; SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
 
-You add SNMPv3 usernames, together with plain text authentication and encryption pass phrases, to the `/etc/snmp/snmpd.conf` file.
-
 {{%notice note%}}
 The default `snmpd.conf` file contains the default user `_snmptrapusernameX`. You cannot use this username for authentication. SNMP traps require this username.
 {{%/notice%}}
@@ -191,7 +197,7 @@ cumulus@switch:~$ nv set service snmp-server username testuserauth auth-md5 myau
 cumulus@switch:~$ nv config apply
 ```
 
-You can restrict a user to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you must install it with the latest Debian `snmp-mibs-downloader` package.
+You can restrict a user to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
 
 ```
 cumulus@switch:~$ nv set service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes myaessecret oid 1.3.6.1.2.1.1
@@ -273,7 +279,7 @@ rwuser user999
 {{%notice tip%}}
 The following example shows a more advanced but slightly more secure method of configuring SNMPv3 users without creating `cleartext` passwords:
 
-1. Install the `net-snmp-config` script that is in `libsnmp-dev` package:
+1. Install the `net-snmp-config` script that is in the `libsnmp-dev` package:
 
    ```
    cumulus@switch:~$ sudo -E apt-get update
@@ -424,7 +430,7 @@ You can configure system settings for the SNMPv2 MIB. The following example comm
 {{< tabs "sys-settings" >}}
 {{< tab "NVUE Commands" >}}
 
-For example, to set the system physical location for the node in the SNMPv2-MIB system table:
+To set the system physical location for the node in the SNMPv2-MIB system table:
 
 ```
 cumulus@switch:~$ nv set service snmp-server system-location My private bunker
@@ -532,9 +538,9 @@ To verify the configuration, run `snmpwalk`. For example, if you have a running 
 ```
 cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14
 ```
-
+<!-- vale off -->
 ### Enable the .1.3.6.1.2.1 Range
-
+<!-- vale on -->
 The `snmpd.conf` file in Cumulus Linux does not include certain MIBs by default. This results in some default views on common network tools (like `librenms`) to return less than optimal data. To include more MIBs, enable the complete .1.3.6.1.2.1 range. The default SNMPv3 configuration includes:
 
 - ENTITY-MIB

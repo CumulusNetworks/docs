@@ -248,7 +248,6 @@ spine01# exit
 {{< /tabs >}}
 
 {{%notice note%}}
-- You can either configure RP mappings for different multicast groups (as shown above) or use a prefix list to specify the RP to group mapping. You cannot use both methods at the same time.
 - NVIDIA recommends that you do not use a spine switch as an RP when using eBGP in a Clos network. See the [PIM Overview knowledge-base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
 - zebra does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or run the vtysh `ip nht resolve-via-default` configuration command to resolve the next hop for the RP through the default route.
 {{%/notice%}}
@@ -1953,7 +1952,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL51 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
+    {{< simulation name="Try It CL52 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
 This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 

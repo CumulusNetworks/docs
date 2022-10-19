@@ -6,7 +6,7 @@ toc: 4
 ---
 
 Below are the MIBs that Cumulus Linux supports, as well as suggested uses for them. The `/usr/share/snmp/mibs/Cumulus-Snmp-MIB.txt` file defines the overall Cumulus Linux MIB.
-
+<!-- vale off -->
 | <div style="width:250px">MIB Name | Suggested Uses |
 | -------- | -------------- |
 | {{<mib_link url="mibs/BGP4-MIB.txt" text="BGP4-MIB">}}<br>{{<mib_link url="mibs/OSPFv2-MIB.txt" text="OSPFv2-MIB">}}<br>{{<mib_link url="mibs/OSPFv3-MIB.txt" text="OSPFv3-MIB">}}<br>{{<mib_link url="mibs/RIPv2-MIB.txt" text="RIPv2-MIB">}} | You can enable FRR SNMP support to provide support for OSPF-MIB (RFC-1850), OSPFV3-MIB (RFC-5643), and BGP4-MIB (RFC-1657). |
@@ -37,57 +37,45 @@ Below are the MIBs that Cumulus Linux supports, as well as suggested uses for th
 | {{<mib_link url="mibs/TCP-MIB.txt" text="TCP-MIB">}} | TCP-related information. |
 | {{<mib_link url="mibs/UCD-SNMP-MIB.txt" text="UCD-SNMP-MIB">}} | System memory, load, CPU, disk IO. |
 | {{<mib_link url="mibs/UDP-MIB.txt" text="UDP-MIB">}} | UDP-related information. |
-
+<!-- vale on -->
 ## List All Installed MIBs
 
 Due to licensing restrictions, Cumulus Linux does not install all MIBs. For the MIBs that Cumulus Linux does not install, you must add the "non-free" archive to `/etc/apt/sources.list`. To see which MIBs are on your switch, run `ls /usr/share/snmp/mibs/`.
 
-To install more MIBs, you need to install `snmp-mibs-downloader` and then either remove or comment out the "non-free" repository in `/etc/apt/sources.list`. Refer to {{<link url="Configure-SNMP-Traps/#enable-mib-to-oid-translation" text="Enable MIB-to-OID Translation">}}.
-
+To install more MIBs, install `snmp-mibs-downloader`, then either remove or comment out the "non-free" repository in `/etc/apt/sources.list`. Refer to {{<link url="Configure-SNMP-Traps/#enable-mib-to-oid-translation" text="Enable MIB-to-OID Translation">}}.
+<!-- vale off -->
 {{<expand "Installed MIBs">}}
 
-    cumulus@switch:~$ ls /usr/share/snmp/mibs/
-    AGENTX-MIB.txt                       NET-SNMP-PASS-MIB.txt
-    BRIDGE-MIB.txt                       NET-SNMP-PERIODIC-NOTIFY-MIB.txt
-    Cumulus-Counters-MIB.txt             NET-SNMP-SYSTEM-MIB.txt
-    Cumulus-POE-MIB.txt                  NET-SNMP-TC.txt
-    Cumulus-Resource-Query-MIB.txt       NET-SNMP-VACM-MIB.txt
-    Cumulus-Snmp-MIB.txt                 NETWORK-SERVICES-MIB.txt
-    DISMAN-EVENT-MIB.txt                 NOTIFICATION-LOG-MIB.txt
-    DISMAN-EXPRESSION-MIB.txt            RFC1155-SMI.txt
-    DISMAN-NSLOOKUP-MIB.txt              RFC1213-MIB.txt
-    DISMAN-PING-MIB.txt                  RFC-1215.txt
-    DISMAN-SCHEDULE-MIB.txt              RMON-MIB.txt
-    DISMAN-SCRIPT-MIB.txt                SCTP-MIB.txt
-    DISMAN-TRACEROUTE-MIB.txt            SMUX-MIB.txt
-    EtherLike-MIB.txt                    SNMP-COMMUNITY-MIB.txt
-    GNOME-SMI.txt                        SNMP-FRAMEWORK-MIB.txt
-    HCNUM-TC.txt                         SNMP-MPD-MIB.txt
-    HOST-RESOURCES-MIB.txt               SNMP-NOTIFICATION-MIB.txt
-    HOST-RESOURCES-TYPES.txt             SNMP-PROXY-MIB.txt
-    iana                                 SNMP-TARGET-MIB.txt
-    IANA-ADDRESS-FAMILY-NUMBERS-MIB.txt  SNMP-TLS-TM-MIB.txt
-    IANAifType-MIB.txt                   SNMP-TSM-MIB.txt
-    IANA-LANGUAGE-MIB.txt                SNMP-USER-BASED-SM-MIB.txt
-    IANA-RTPROTO-MIB.txt                 SNMP-USM-AES-MIB.txt
-    ietf                                 SNMP-USM-DH-OBJECTS-MIB.txt
-    IF-INVERTED-STACK-MIB.txt            SNMP-USM-HMAC-SHA2-MIB.txt
-    IF-MIB.txt                           SNMPv2-CONF.txt
-    INET-ADDRESS-MIB.txt                 SNMPv2-MIB.txt
-    IP-FORWARD-MIB.txt                   SNMPv2-SMI.txt
-    IP-MIB.txt                           SNMPv2-TC.txt
-    IPV6-FLOW-LABEL-MIB.txt              SNMPv2-TM.txt
-    IPV6-ICMP-MIB.txt                    SNMP-VIEW-BASED-ACM-MIB.txt
-    IPV6-MIB.txt                         TCP-MIB.txt
-    IPV6-TCP-MIB.txt                     TRANSPORT-ADDRESS-MIB.txt
-    IPV6-TC.txt                          TUNNEL-MIB.txt
-    IPV6-UDP-MIB.txt                     UCD-DEMO-MIB.txt
-    LM-SENSORS-MIB.txt                   UCD-DISKIO-MIB.txt
-    MTA-MIB.txt                          UCD-DLMOD-MIB.txt
-    NET-SNMP-AGENT-MIB.txt               UCD-IPFILTER-MIB.txt
-    NET-SNMP-EXAMPLES-MIB.txt            UCD-IPFWACC-MIB.txt
-    NET-SNMP-EXTEND-MIB.txt              UCD-SNMP-MIB-OLD.txt
-    NET-SNMP-MIB.txt                     UCD-SNMP-MIB.txt
-    NET-SNMP-MONITOR-MIB.txt             UDP-MIB.txt
+cumulus@switch:~$ ls /usr/share/snmp/mibs/
+AGENTX-MIB.txt                       IP-MIB.txt                        SNMP-MPD-MIB.txt
+BRIDGE-MIB.txt                       IPV6-FLOW-LABEL-MIB.txt           SNMP-NOTIFICATION-MIB.txt
+Cumulus-BGPVRF-MIB.txt               IPV6-ICMP-MIB.txt                 SNMP-PROXY-MIB.txt
+Cumulus-Counters-MIB.txt             IPV6-MIB.txt                      SNMP-TARGET-MIB.txt
+Cumulus-POE-MIB.txt                  IPV6-TCP-MIB.txt                  SNMP-TLS-TM-MIB.txt
+Cumulus-Resource-Query-MIB.txt       IPV6-TC.txt                       SNMP-TSM-MIB.txt
+Cumulus-Sensor-MIB.txt               IPV6-UDP-MIB.txt                  SNMP-USER-BASED-SM-MIB.txt
+Cumulus-Snmp-MIB.txt                 LM-SENSORS-MIB.txt                SNMP-USM-AES-MIB.txt
+Cumulus-Status-MIB.txt               MTA-MIB.txt                       SNMP-USM-DH-OBJECTS-MIB.txt
+DISMAN-EVENT-MIB.txt                 NET-SNMP-AGENT-MIB.txt            SNMP-USM-HMAC-SHA2-MIB.txt
+DISMAN-EXPRESSION-MIB.txt            NET-SNMP-EXAMPLES-MIB.txt         SNMPv2-CONF.txt
+DISMAN-NSLOOKUP-MIB.txt              NET-SNMP-EXTEND-MIB.txt           SNMPv2-MIB.txt
+DISMAN-PING-MIB.txt                  NET-SNMP-MIB.txt                  SNMPv2-SMI.txt
+DISMAN-SCHEDULE-MIB.txt              NET-SNMP-MONITOR-MIB.txt          SNMPv2-TC.txt
+DISMAN-SCRIPT-MIB.txt                NET-SNMP-PASS-MIB.txt             SNMPv2-TM.txt
+DISMAN-TRACEROUTE-MIB.txt            NET-SNMP-PERIODIC-NOTIFY-MIB.txt  SNMP-VIEW-BASED-ACM-MIB.txt
+EtherLike-MIB.txt                    NET-SNMP-SYSTEM-MIB.txt           TCP-MIB.txt
+GNOME-SMI.txt                        NET-SNMP-TC.txt                   TRANSPORT-ADDRESS-MIB.txt
+HCNUM-TC.txt                         NET-SNMP-VACM-MIB.txt             TUNNEL-MIB.txt
+HOST-RESOURCES-MIB.txt               NETWORK-SERVICES-MIB.txt          UCD-DEMO-MIB.txt
+HOST-RESOURCES-TYPES.txt             NOTIFICATION-LOG-MIB.txt          UCD-DISKIO-MIB.txt
+IANA-ADDRESS-FAMILY-NUMBERS-MIB.txt  RFC1155-SMI.txt                   UCD-DLMOD-MIB.txt
+IANAifType-MIB.txt                   RFC1213-MIB.txt                   UCD-IPFILTER-MIB.txt
+IANA-LANGUAGE-MIB.txt                RFC-1215.txt                      UCD-IPFWACC-MIB.txt
+IANA-RTPROTO-MIB.txt                 RMON-MIB.txt                      UCD-SNMP-MIB-OLD.txt
+IF-INVERTED-STACK-MIB.txt            SCTP-MIB.txt                      UCD-SNMP-MIB.txt
+IF-MIB.txt                           SMUX-MIB.txt                      UDP-MIB.txt
+INET-ADDRESS-MIB.txt                 SNMP-COMMUNITY-MIB.txt
+IP-FORWARD-MIB.txt                   SNMP-FRAMEWORK-MIB.txt
 
 {{</expand>}}
+<!-- vale on -->

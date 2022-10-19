@@ -74,14 +74,22 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 *BGP dynamic neighbors* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
-After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group.
+After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group. You can also limit the number of dynamic peers. The default value is 100.
 
-The following example commands create the peer group SPINE and configure BGP peering to remote neighbors within the address range 10.0.1.0/31.
+The following example commands configure BGP peering to remote neighbors within the address range 10.0.1.0/31 for the peer group SPINE and limit the number of dynamic peers to 5.
+
+{{%notice note%}}
+The peer group must already exist otherwise the configuration does not apply.
+{{%/notice%}}
 
 {{< tabs "96 ">}}
 {{< tab "NVUE Commands ">}}
 
-Cumulus Linux does not provide NVUE commands for this configuration.
+```
+cumulus@leaf01:~$ nv set vrf default router bgp dynamic-neighbor listen-range 10.0.1.0/24 peer-group SPINE
+cumulus@leaf01:~$ nv set vrf default router bgp dynamic-neighbor limit 5
+cumulus@leaf01:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
@@ -97,8 +105,6 @@ leaf01# write memory
 leaf01# exit
 cumulus@leaf01:~$
 ```
-
-The `bgp listen limit` command limits the number of dynamic peers. The default value is *100*.
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
@@ -648,6 +654,35 @@ address-family ipv4 unicast
 {{< /tab >}}
 {{< /tabs >}}
 
+## Update Source
+
+You can configure BGP to use a specific IP address when exchanging BGP updates with a neighbor. For example, in a numbered BGP configuration, you can set the source IP address to be the loopback address of the switch.
+
+{{< tabs "661 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 update-source 10.10.10.1
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# neighbor swp51 update-source 10.10.10.1
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## ECMP
 
 BGP supports equal-cost multipathing ({{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP" text="ECMP">}}). If a BGP node hears a certain prefix from multiple peers, it has the information necessary to program the routing table and forward traffic for that prefix through all these peers. BGP typically chooses one best path for each prefix and installs that route in the forwarding table.
@@ -1027,9 +1062,9 @@ leaf01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-
-The following example commands configure leaf01 to advertise all paths learned from each <!-- vale off -->AS<!-- vale on --> to the BGP neighbor on swp50:
-
+<!-- vale off -->
+The following example commands configure leaf01 to advertise all paths learned from each AS to the BGP neighbor on swp50:
+<!-- vale on -->
 {{< tabs "928 ">}}
 {{< tab "NVUE Commands ">}}
 
@@ -1458,6 +1493,39 @@ spine01(config-router)# end
 spine01# write memory
 spine01# exit
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## BGP Neighbor Shutdown
+
+You can shut down all active BGP sessions with a neighbor and remove all associated routing information without removing its associated configuration. When shut down, the neighbor goes into an administratively idle state.
+
+{{< tabs "1504 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 shutdown on
+cumulus@leaf01:~$ nv config apply
+```
+
+To bring BGP sessions with the neighbor back up, run the `nv set vrf default router bgp neighbor swp51 shutdown off` command.
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# neighbor swp51 shutdown
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
+```
+
+To bring BGP sessions with the neighbor back up, run the `no neighbor swp51 shutdown` command.
 
 {{< /tab >}}
 {{< /tabs >}}

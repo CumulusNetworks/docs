@@ -226,4 +226,3 @@ To reset the counters that the `nv show interface <interface> qos roce` command 
 ## Related Information
 
 - {{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org
-- {{<exlink url="https://community.mellanox.com/s/article/understanding-rocev2-congestion-management" text="RoCEv2 congestion management">}} - community.mellanox.com

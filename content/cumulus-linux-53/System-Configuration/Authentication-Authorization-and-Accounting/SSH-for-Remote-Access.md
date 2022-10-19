@@ -76,7 +76,3 @@ To configure the system without a password, do not enter a passphrase when promp
     the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide basis.
     Last login: Thu Sep 29 16:56:54 2016
     ```
-
-## Related Information
-
-{{<exlink url="https://debian-administration.org/article/152/Password-less_logins_with_OpenSSH" text="Debian Documentation - Password-less logins with OpenSSH">}}

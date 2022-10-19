@@ -73,7 +73,7 @@ The following table describes the default classifications for various frame and 
 
 In NVUE, you define which values are `trusted` with the `nv set qos mapping <profile> trust l2` command (COS) or the `nv set qos mapping <profile> trust l3` command (DSCP) .
 
-If you are using Linux commands to configure QoS, you define which values are `trusted` in the `qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `cos` or `dscp`.
+If you are using Linux commands to configure QoS, you define which values are `trusted` in the `/etc/cumulus/datapath/qos/qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `cos` or `dscp`.
 
 ### Trust COS
 
@@ -121,7 +121,7 @@ To configure additional settings, such as apply a COS profile to specific interf
 
 Set `traffic.packet_priority_source_set = [802.1p]`.
 
-When COS is `trusted`, the following lines classify ingress COS values to internal COS values:
+When COS (8021p) is `trusted`, the following lines classify ingress COS values to internal COS values:
 
 ```
 traffic.cos_0.priority_source.8021p = [0]
@@ -134,8 +134,9 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 ```
 
-The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0.  
-To map ingress COS 0 to internal COS 4, configure the `traffic.cos_4.priority_source.8021p` setting.
+The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0.
+
+To map ingress COS 0 to internal COS 4, configure the `traffic.cos_4.priority_source.8021p` setting in the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
 traffic.cos_0.priority_source.8021p = [4]
@@ -187,13 +188,13 @@ If DSCP (`l3`) is `trusted`, Cumulus Linux classifies these ingress DSCP values 
 |dscp 6 |switch priority [48,49,50,51,52,53,54,55]|
 |dscp 7 |switch priority [56,57,58,59,60,61,62,63]|
 
-The dscp number is the internal COS value; for example dscp 0 defines the mapping for internal COS 0. 
+The dscp number is the internal COS value; for example dscp 0 defines the mapping for internal COS 0.
 
 To change the default profile to map ingress DSCP 22 to internal COS 4:
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust l3 
-cumulus@switch:~$ nv set qos mapping default-global dscp 4 switch-priority 22 
+cumulus@switch:~$ nv set qos mapping default-global dscp 22 switch-priority 4 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -235,7 +236,7 @@ You must uncomment them for them to take effect.
 The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4, configure the `traffic.cos_4.priority_source.dscp` setting.
 
 ```
-traffic.cos_0.priority_source.dscp = [21,22]
+traffic.cos_4.priority_source.dscp = [22]
 ```
 
 You can map multiple ingress DSCP values to the same internal COS value. For example, to map ingress DSCP values 10, 21, and 36 to internal COS 0:

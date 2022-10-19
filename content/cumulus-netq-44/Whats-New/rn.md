@@ -8,8 +8,6 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-
-
 {{<rn_xls_link dir="cumulus-netq-44" >}}
 ## 4.4.0 Release Notes
 ### Open Issues in 4.4.0

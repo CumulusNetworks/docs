@@ -8,8 +8,6 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-
-
 {{<rn_xls_link dir="cumulus-netq-33" >}}
 ## 3.3.1 Release Notes
 ### Open Issues in 3.3.1

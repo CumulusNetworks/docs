@@ -8,74 +8,11 @@ toc: 3
 
 Cumulus Linux stores `switchd` configuration in the `/etc/cumulus/switchd.conf` file.
 
-<!--## The switchd File System
-
-`switchd` also exports a file system, mounted on `/cumulus/switchd`, that presents all the `switchd` configuration options as a series of files arranged in a tree structure. To show the contents, run the `tree /cumulus/switchd` command. The following example shows output for a switch with one switch port configured:
-
-```
-cumulus@switch:~$ sudo tree /cumulus/switchd/
-/cumulus/switchd/
-├── clear
-│   └── stats
-│       ├── vlan
-│       └── vxlan
-├── config
-│   ├── acl
-│   │   ├── flow_based_mirroring
-│   │   ├── non_atomic_update_mode
-│   │   ├── optimize_hw
-│   │   └── vxlan_tnl_arp_punt_disable
-│   ├── arp
-│   │   ├── drop_during_failed_state
-│   │   └── next_hops
-│   ├── bridge
-│   │   ├── broadcast_frame_to_cpu
-│   │   └── optimized_mcast_flood
-│   ├── buf_util
-│   │   ├── measure_interval
-│   │   └── poll_interval
-│   ├── coalesce
-│   │   ├── offset
-│   │   ├── reducer
-│   │   └── timeout
-│   ├── disable_internal_hw_err_restart
-│   ├── disable_internal_parity_restart
-│   ├── hal
-│   │   └── bcm
-│   │       ├── l3
-│   │       │   └── per_vlan_router_mac_lookup_for_vrrp
-│   │       ├── linkscan_interval
-│   │       ├── logging
-│   │       │   └── l3mc
-│   │       ├── per_vlan_router_mac_lookup
-│   │       └── vxlan_support
-│   ├── ignore_non_swps
-│   ├── interface
-│   │   ├── swp1
-│   │   │   ├── ethtool_mode
-│   │   │   ├── interface_mode
-│   │   │   ├── port_security
-│   │   │   │   ├── enable
-│   │   │   │   ├── mac_limit
-│   │   │   │   ├── static_mac
-│   │   │   │   ├── sticky_aging
-│   │   │   │   ├── sticky_mac
-│   │   │   │   ├── sticky_timeout
-│   │   │   │   ├── violation_mode
-│   │   │   │   └── violation_timeout
-│   │   │   └── storm_control
-│   │   │       ├── broadcast
-│   │   │       ├── multicast
-│   │   │       └── unknown_unicast
-...
-```
--->
-
 ## Configure switchd Parameters
 
 You can control certain options associated with the `switchd` process. For example, you can set polling intervals, optimize ACL hardware resources for better utilization, configure log message levels, set the internal VLAN range, and configure default VXLAN encapsulation.
 
-To configure `switchd` options, you either run NVUE commands or manually edit the `/etc/cumulus/switchd.conf`; however, NVUE currently supports a small subset of the `switchd` configuration available in the `/etc/cumulus/switchd.conf` file.
+To configure `switchd` options, you either run NVUE commands or manually edit the `/etc/cumulus/switchd.conf`; however, NVUE currently supports a subset of the `switchd` configuration available in the `/etc/cumulus/switchd.conf` file.
 
 {{< tabs "TabID115 ">}}
 {{< tab "NVUE Commands ">}}

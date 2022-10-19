@@ -96,19 +96,19 @@ When COS (l1) is `trusted`, Cumulus Linux classifies these ingress COS values to
 |pcp 7 |switch priority 7|
 
 The pcp number is the internal COS value; for example `pcp 0` defines the mapping for internal COS 0.  
-To map ingress COS 0 to internal COS 4, configure pcp 4 to switch priority 0.
+To change the default profile to map ingress COS 0 to internal COS 4, configure pcp 4 to switch priority 0.
 
 ```
-cumulus@switch:~$ nv set qos mapping profile1 trust l2 
-cumulus@switch:~$ nv set qos mapping profile1 pcp 4 switch-priority 0 
+cumulus@switch:~$ nv set qos mapping default-global trust l2
+cumulus@switch:~$ nv set qos mapping default-global pcp 4 switch-priority 0 
 cumulus@switch:~$ nv config apply
 ```
 
-You can map multiple ingress PCP values to the same internal COS value. For example, to map ingress PCP values 10, 21, and 36 to internal COS 0:
+You can map multiple ingress COS values to the same internal COS value. For example, to map ingress COS values 2, 3, and 4 to internal COS 0:
 
 ```
-cumulus@switch:~$ nv set qos mapping profile1 trust l2 
-cumulus@switch:~$ nv set qos mapping profile1 pcp 0 switch-priority 10,21,36 
+cumulus@switch:~$ nv set qos mapping default-global trust l2 
+cumulus@switch:~$ nv set qos mapping default-global pcp 2,3,4 switch-priority 0
 cumulus@switch:~$ nv config apply
 ```
 
@@ -136,6 +136,10 @@ traffic.cos_7.priority_source.8021p = [7]
 
 The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0.  
 To map ingress COS 0 to internal COS 4, configure the `traffic.cos_4.priority_source.8021p` setting.
+
+```
+traffic.cos_0.priority_source.8021p = [4]
+```
 
 You can map multiple ingress COS values to the same internal value. For example, to map ingress COS values 0, 1, and 2 to internal COS 0:
 
@@ -170,7 +174,7 @@ To trust ingress DSCP markings:
 {{< tabs "TabID138 ">}}
 {{< tab "NVUE Commands ">}}
 
-If DSCP is `trusted`, Cumulus Linux classifies these ingress DSCP values to internal COS values:
+If DSCP (l3) is `trusted`, Cumulus Linux classifies these ingress DSCP values to internal COS values:
 
 | Internal COS | Ingress DSCP |
 |------------- | ------------ |
@@ -183,19 +187,21 @@ If DSCP is `trusted`, Cumulus Linux classifies these ingress DSCP values to inte
 |dscp 6 |switch priority [48,49,50,51,52,53,54,55]|
 |dscp 7 |switch priority [56,57,58,59,60,61,62,63]|
 
-The dscp number is the internal COS value; for example dscp 0 defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4:
+The dscp number is the internal COS value; for example dscp 0 defines the mapping for internal COS 0. 
+
+To change the default profile to map ingress DSCP 22 to internal COS 4:
 
 ```
-cumulus@switch:~$ nv set qos mapping profile1 trust l3 
-cumulus@switch:~$ nv set qos mapping profile1 dscp 4 switch-priority 22 
+cumulus@switch:~$ nv set qos mapping default-global trust l3 
+cumulus@switch:~$ nv set qos mapping default-global dscp 4 switch-priority 22 
 cumulus@switch:~$ nv config apply
 ```
 
-You can map multiple ingress DSCP values to the same internal COS value. For example, to map ingress DSCP values 10, 21, and 36 to internal COS 0:
+You can map multiple ingress DSCP values to the same internal COS value. For example, to change the default profile to map ingress DSCP values 10, 21, and 36 to internal COS 0:
 
 ```
-cumulus@switch:~$ nv set qos mapping profile1 trust l3 
-cumulus@switch:~$ nv set qos mapping profile1 dscp 0 switch-priority 10,21,36
+cumulus@switch:~$ nv set qos mapping default-global trust l3 
+cumulus@switch:~$ nv set qos mapping default-global dscp 10,21,36 switch-priority 0
 cumulus@switch:~$ nv config apply
 ```
 
@@ -227,6 +233,10 @@ You must uncomment them for them to take effect.
 {{% /notice %}}
 
 The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4, configure the `traffic.cos_4.priority_source.dscp` setting.
+
+```
+traffic.cos_0.priority_source.dscp = [21,22]
+```
 
 You can map multiple ingress DSCP values to the same internal COS value. For example, to map ingress DSCP values 10, 21, and 36 to internal COS 0:
 
@@ -262,8 +272,8 @@ To assign all traffic to an internal COS queue regardless of the ingress marking
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set qos mapping profile1 trust port 
-cumulus@switch:~$ nv set qos mapping profile1 port-default-sp 3 
+cumulus@switch:~$ nv set qos mapping default-global trust port 
+cumulus@switch:~$ nv set qos mapping default-global port-default-sp 3 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -287,6 +297,8 @@ You can mark or remark traffic in two ways:
 
  * Use [iptables](#iptables) to match packets and set COS or DSCP values.
  * Use ingress COS or DSCP to remark an existing COS or DSCP value to a new value.
+
+NVUE does not currently provide commands to  mark or remark traffic.
 
 ### iptables
 
@@ -475,6 +487,8 @@ Setting `link_pause.pause_port_group.rx_enable = true` receives pause frames to 
 Setting `link_pause.pause_port_group.tx_enable = true` sends pause frames to request neighboring devices to stop transmitting.
 You can use pause frames for either receive (`rx`), transmit (`tx`), or both.
 
+NVUE does not currently provide commands to configure pause frames.
+
 {{% notice note %}}
 Cumulus Linux automatically enables or derives the following settings when link pause is on an interface with `link_pause.port_group_list`:
 
@@ -544,15 +558,21 @@ To set priority flow control on a group of ports, you use a profile to define th
 The following example applies a PFC profile called `my_pfc_ports` for egress queue 3 and 5 on swp1, swp2, swp3, swp4, and swp6.
 
 ```
-cumulus@switch:~$ nv set qos pfc my_pfc_ports cos 3,5
-cumulus@switch:~$ nv set interface swp1-swp4,swp6 qos pfc profile my_pfc_ports
+cumulus@switch:~$ nv set qos pfc my_pfc_ports switch-priority 3,5
+cumulus@switch:~$ nv set interface swp1-4,swp6 qos pfc profile my_pfc_ports
 cumulus@switch:~$ nv config apply
 ```
 
-The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1, disables PFC frame receive, and sets the xoff-size to 1500, the xon-size to 3000, the headroom to 2000, and the cable length to 50:
+The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1, disables PFC frame receive, and sets the buffer limit that triggers PFC frame transmition to stop to 1500, the buffer limit that triggers PFC frame transmition to start to 1000, the amount of reserved buffer space to 2000, and the cable length to 50:
 
 ```
-cumulus@switch:~$ nv set qos pfc my_pfc_ports2 cos 0 xoff-size 1500 xon-size 3000 tx enable rx disable headroom 2000 cable-length 50
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 switch-priority 0 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 xoff-threshold 1500 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 xon-threshold 1000 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 tx enable 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 rx disable 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 port-buffer 2000 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 cable-length 50
 cumulus@switch:~$ nv set interface swp1 qos pfc profile my_pfc_ports2
 cumulus@switch:~$ nv config apply
 ```
@@ -562,9 +582,9 @@ cumulus@switch:~$ nv config apply
 
 | <div style="width:300px">Command | <div style="width:300px">Example | Description |
 | ------------- | ------- | ----------- |
-| `nv set qos pfc <profile> headroom <value>`  | `nv set qos pfc my_pfc_ports headroom 25000` | The amount of reserved buffer space for the set of ports defined in the port group list (reserved from the global shared buffer). |
-| `nv set qos pfc <profile> xoff-size <value>` | `nv set qos pfc my_pfc_ports xoff-size 10000` | Set the amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list, if sending pause frames is on. This example sends PFC pause frames after consuming 10000 bytes of reserved buffer.|
-| `nv set qos pfc <profile> xon_size <value>` | `nv set qos pfc my_pfc_ports xon-size 2000` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops, if sending pause frames is on. This example the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before PFC pause frames stop. |
+| `nv set qos pfc <profile> port-buffer <value>`  | `nv set qos pfc my_pfc_ports port-buffer 25000` | The amount of reserved buffer space for the set of ports defined in the port group list (reserved from the global shared buffer). |
+| `nv set qos pfc <profile> xoff-threshold <value>` | `nv set qos pfc my_pfc_ports xoff-threshold 20000` | Set the amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list, if sending pause frames is on. This example sends PFC pause frames after consuming 20000 bytes of reserved buffer.|
+| `nv set qos pfc <profile> xon-threshold <value>` | `nv set qos pfc my_pfc_ports xon-threshold 1000` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops, if sending pause frames is on. This example the buffer congestion must reduce by 1000 bytes (to 8000 bytes) before PFC pause frames stop. |
 | `nv set qos pfc <profile> rx enable`|`disable` | `nv set qos pfc my_pfc_ports rx disable` | Enable or disable sending PFC pause frames. The default value is enable. This example disables sending PFC pause frames. |
 | `nv set qos pfc <profile> tx enable`|`disable` | `nv set qos pfc my_pfc_ports tx disable` | Enable or disable receiving PFC pause frames. You do not need to define the COS values for `rx enable`. The switch receives any COS value. The default value is enable. This example disables receiving PFC pause frames. |
 | `nv set qos pfc <profile> cable-length <value>` | `nv set qos pfc my_pfc_ports cable-length 5` | The length, in meters, of the cable that attaches to the ports. Cumulus Linux uses this value internally to determine the latency between generating a PFC pause frame and receiving the PFC pause frame. The default is `10` meters. In this example, the cable is `5` meters.|
@@ -585,7 +605,7 @@ pfc.my_pfc_ports2.port_set = swp1
 
 {{<cl/qos-switchd>}}
 
-The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands also disable PFC frame receive, and set the xoff-size to 1500, the xon-size to 3000, the headroom to 2000, and the cable length to 10:
+The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands also disable PFC frame receive, and set the xoff-size to 1500, the xon-size to 1000, the headroom to 2000, and the cable length to 10:
 
 ```
 pfc.port_group_list = [my_pfc_ports2]
@@ -593,7 +613,7 @@ pfc.my_pfc_ports2.cos_list = [0]
 pfc.my_pfc_ports2.port_set = swp1
 pfc.my_pfc_ports2.port_buffer_bytes = 2000
 pfc.my_pfc_ports2.xoff_size = 1500
-pfc.my_pfc_ports2.xon_delta = 3000
+pfc.my_pfc_ports2.xon_delta = 1000
 pfc.my_pfc_ports2.tx_enable = true
 pfc.my_pfc_ports2.rx_enable = false
 pfc.my_pfc_ports2.cable_length = 10
@@ -637,10 +657,21 @@ Cumulus Linux enables ECN by default on egress queue 0 for all ports with the fo
 - A probability of 100 percent that Cumulus Linux marks an ECN-capable packet when buffer congestion is between the minimum threshold and the maximum threshold.
 - Random Early Detection (RED) disabled. ECN prevents packet drops in the network due to congestion by signaling hosts to transmit less. However, if congestion continues after ECN marking, packets drop after the switch buffer is full. By default, Cumulus Linux tail-drops packets when the buffer is full. You can enable RED to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 
-The following example commands create a custom ECN profile (`my_ecn_red_conf`) for egress queue (`traffic-class`) 1 and 2, with a minimum buffer threshold of 40000 bytes, maximum buffer threshold of 200000 bytes, and a probability of 10. The commands also enable RED and apply the ECN profile to swp1 and swp2.
+The following example commands change the default ECN profile and create a custom ECN profile.
 
 {{< tabs "TabID480 ">}}
 {{< tab "NVUE Commands ">}}
+
+To change the default profile to enable ECN on egress queue 4, 5, and 7 for all ports, and set the minimum buffer threshold to 40000, maximum buffer threshold to 200000, and enable RED:
+
+```
+cumulus@switch:~$ nv set qos congestion-control default-profile traffic-class 4,5,7 min-threshold-bytes 40000 
+cumulus@switch:~$ nv set qos congestion-control default-profile traffic-class 4,5,7 max-threshold-bytes 200000 
+cumulus@switch:~$ nv set qos congestion-control default-profile traffic-class 4,5,7 red enable
+cumulus@switch:~$ nv config apply
+```
+
+To create a custom ECN profile called `my-red-profile` for egress queue (`traffic-class`) 1 and 2, with a minimum buffer threshold of 40000 bytes, maximum buffer threshold of 200000 bytes, and a probability of 10. The commands also enable RED and apply the ECN profile to swp1 and swp2.
 
 ```
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold-bytes 40000 
@@ -654,23 +685,35 @@ cumulus@switch:~$ nv config apply
 You can disable ECN bit marking for an ECN profile. The following example disables ECN bit marking in the default profile.
 
 ```
-cumulus@switch:~$ nv set qos congestion-control default_ecn_red_conf traffic-class 0 ecn disable
+cumulus@switch:~$ nv set qos congestion-control default-profile traffic-class 0 ecn disable
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Add a new ECN profile to the `Explicit Congestion Notification` section of the `/etc/cumulus/datapath/qos/qos_features.conf`.
+To change the default profile to enable ECN on egress queue 4, 5, and 7 for all ports, and set the minimum buffer threshold to 40000, maximum buffer threshold to 200000, and enable RED:
 
 ```
-ecn_red.port_group_list = [my_ecn_red_conf] 
-my_ecn_red_conf.egress_queue_list = [1,2]
-my_ecn_red_conf.ecn_enable = true
-my_ecn_red_conf.red_enable = true
-my_ecn_red_conf.min_threshold_bytes = 40000
-my_ecn_red_conf.max_threshold_bytes = 200000
-my_ecn_red_conf.probability = 10
+default_ecn_red_conf.egress_queue_list = [4,5,7]
+default_ecn_red_conf.ecn_enable = true
+default_ecn_red_conf.red_enable = true
+default_ecn_red_conf.min_threshold_bytes = 40000
+default_ecn_red_conf.max_threshold_bytes = 200000
+default_ecn_red_conf.probability = 100
+```
+
+To create a custom ECN profile called `my-red-profile` for egress queue 1 and 2, with a minimum buffer threshold of 40000 bytes, maximum buffer threshold of 200000 bytes, and a probability of 10. The commands also enable RED and apply the ECN profile to swp1 and swp2.
+
+```
+ecn_red.port_group_list = [my-red-profile] 
+my-red-profile.egress_queue_list = [1,2]
+my-red-profile.port_set = swp1,swp2
+my-red-profile.ecn_enable = true
+my-red-profile.red_enable = true
+my-red-profile.min_threshold_bytes = 40000
+my-red-profile.max_threshold_bytes = 200000
+my-red-profile.probability = 10
 ```
 
 {{<cl/qos-switchd>}}
@@ -749,11 +792,11 @@ The following example custimizes the default egress schedule that applies to all
 {{% /notice %}}
 
 ```
-cumulus@switch:~$ nv set qos egress-scheduler default_egress_sched traffic-class 2,6 mode dwrr 
-cumulus@switch:~$ nv set qos egress-scheduler default_egress_sched traffic-class 2,6 bw-percent 30 
-cumulus@switch:~$ nv set qos egress-scheduler default_egress_sched traffic-class 3,4 mode dwrr
-cumulus@switch:~$ nv set qos egress-scheduler default_egress_sched traffic-class 3,4 bw-percent 20 
-cumulus@switch:~$ nv set qos egress-scheduler default_egress_sched traffic-class 0,1,5,7 mode strict
+cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 2,6 mode dwrr 
+cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 2,6 bw-percent 30 
+cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 3,4 mode dwrr
+cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 3,4 bw-percent 20 
+cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 0,1,5,7 mode strict
 cumulus@switch:~$ nv config apply
 ```
 
@@ -769,6 +812,8 @@ The `bw_percent` value defines the bandwidth allocation you want to assign to an
 {{% notice note %}}
 Strict priority mode does not define a maximum bandwidth allocation, which can lead to starvation of other queues.
 {{% /notice %}}
+
+The following example custimizes the default egress schedule that applies to all ports. The example sets the bandwidth allocation for egress queues 0, 1, 5, and 7 to 0, bandwidth allocation for egress queues 2 and 6 to 30 percent and bandwidth allocation for egress queues 3 and 4 to 20 percent.
 
 ```
 default_egress_sched.egr_queue_0.bw_percent = 0

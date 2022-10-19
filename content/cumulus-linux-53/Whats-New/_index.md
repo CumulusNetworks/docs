@@ -17,7 +17,6 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - NVIDIA SN3750SX (5G Spectrum-2) available for early access
-- NVIDIA SN2100 supports fast link up to the Pensando (Naples) card.
 
 ### New Features and Enhancements
 
@@ -32,6 +31,7 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Prescriptive-Topology-Manager-PTM/#check-link-state" text="PTM enable command">}} to check link state
   - Performance improvements
   - Support for hyphens in hostnames, VRF, route map, next hop groups, prefix list, AS path list, community list, and ACL names
+  - Fast link up command (`nv set interface <interface-id> link fast-linkup on`) to support fast link up to the Pensando (Naples) card - NVIDIA SN2100.
   <!--- Commands changed from `enable on` and `enable off` to `set enable` and `unset enable` (the `enable on` and `enable off` commands continue to be supported for backward compatability)-->
   <!--- Obfuscated passwords to protect passwords from casual viewing-->
   <!-- - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model-->

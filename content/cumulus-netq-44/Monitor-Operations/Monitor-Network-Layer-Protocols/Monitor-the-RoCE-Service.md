@@ -12,8 +12,8 @@ The syntax for RoCE commands is:
     netq [<hostname>] show roce-counters [<text-port>] tx | rx [roce | general] [around <text-time>] [json]
     netq [<hostname>] show roce-config [<text-port>] [around <text-time>] [json]
     netq [<hostname>] show roce-counters pool [json]
-    netq [<hostname>] show events tca_roce
-    netq [<hostname>] show events roceconfig
+    netq [<hostname>] show events [message_type tca_roce]
+    netq [<hostname>] show events [message_type roceconfig]
 
 ## View the RoCE Configuration
 

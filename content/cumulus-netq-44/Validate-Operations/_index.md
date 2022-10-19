@@ -20,6 +20,7 @@ Validation support is available in the NetQ UI and the NetQ CLI for the followin
 | MTU | Yes | Yes |
 | NTP | Yes | Yes |
 | OSPF | Yes | Yes |
+| RoCE | Yes | Yes |
 | Sensors | Yes | Yes |
 | VLAN | Yes | Yes |
 | VXLAN | Yes | Yes |

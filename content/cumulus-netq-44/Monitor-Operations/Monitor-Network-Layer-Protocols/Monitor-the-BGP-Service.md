@@ -458,12 +458,12 @@ Where to go next depends on what data you see, but a few options include:
 
 {{<tab "NetQ CLI" >}}
 
-To view the switches and hosts with the most BGP alarms and informational events, run the `netq show events` command with the `type` option set to *bgp*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
+To view the switches and hosts with the most BGP events, run the `netq show events` command with the `message_type` option set to *bgp*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
 
 This example shows all BGP events between now and five days ago.
 
 ```
-cumulus@switch:~$ netq show events type bgp between now and 5d
+cumulus@switch:~$ netq show events message_type bgp between now and 5d
 Matching bgp records:
 Hostname          Message Type Severity Message                             Timestamp
 ----------------- ------------ -------- ----------------------------------- -------------------------
@@ -503,7 +503,7 @@ leaf01            bgp          info     BGP session with peer spine01 @desc 2h:1
 
 ### View All BGP Events
 
-The Network Services/All BGP Sessions card workflow and the `netq show events type bgp` command enable you to view all BGP events in a designated time period.
+The Network Services/All BGP Sessions card workflow and the `netq show events message_type bgp` command lets you view all BGP events in a designated time period.
 
 {{<tabs "TabID436" >}}
 
@@ -535,15 +535,13 @@ Where to go next depends on what data you see, but a couple of options include:
 To view all BGP alarms, run:
 
 ```
-netq show events [level info | level error | level warning | level debug] type bgp [between <text-time> and <text-endtime>] [json]
+netq show events [severity info | severity error ] message_type bgp [between <text-time> and <text-endtime>] [json]
 ```
-
-Use the `level` option to set the severity of the events to show. Use the `between` option to show events within a given time range.
 
 This example shows informational BGP events in the past five days.
 
 ```
-cumulus@switch:~$ netq show events type bgp between now and 5d
+cumulus@switch:~$ netq show events message_type bgp between now and 5d
 Matching bgp records:
 Hostname          Message Type Severity Message                             Timestamp
 ----------------- ------------ -------- ----------------------------------- -------------------------

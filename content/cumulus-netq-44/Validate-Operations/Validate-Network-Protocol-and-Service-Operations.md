@@ -72,18 +72,18 @@ To create and run a request containing checks on a single protocol or service al
 
 ```
 netq check addresses [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <addr-number-range-list> | exclude <addr-number-range-list>] [around <text-time>] [json | summary]
-netq check agents [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [streaming] [json]
-netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [check_filter_id <text-check-filter-id>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [streaming] [json | summary]
+netq check agents [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <agents-number-range-list> | exclude <agents-number-range-list>] [around <text-time>] [json]
+netq check bgp [label <text-label-name> | hostnames <text-list-hostnames>] [vrf <vrf>] [check_filter_id <text-check-filter-id>] [include <bgp-number-range-list> | exclude <bgp-number-range-list>] [around <text-time>] [json | summary]
 netq check cl-version [label <text-label-name> | hostnames <text-list-hostnames>] [match-version <cl-ver> | min-version <cl-ver>] [check_filter_id <text-check-filter-id>] [include <version-number-range-list> | exclude <version-number-range-list>] [around <text-time>] [json | summary]
-netq check clag [label <text-label-name> | hostnames <text-list-hostnames> ] [check_filter_id <text-check-filter-id>] [include <clag-number-range-list> | exclude <clag-number-range-list>] [around <text-time>] [streaming] [json | summary]
-netq check evpn [mac-consistency] [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json | summary]
-netq check interfaces [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <interface-number-range-list> | exclude <interface-number-range-list>] [around <text-time>] [streaming] [json | summary]
-netq check mlag [label <text-label-name> | hostnames <text-list-hostnames> ] [check_filter_id <text-check-filter-id>] [include <mlag-number-range-list> | exclude <mlag-number-range-list>] [around <text-time>] [streaming] [json | summary]
-netq check mtu [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [check_filter_id <text-check-filter-id>] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [streaming] [json | summary]
-netq check ntp [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [streaming] [json | summary]
+netq check clag [label <text-label-name> | hostnames <text-list-hostnames> ] [check_filter_id <text-check-filter-id>] [include <clag-number-range-list> | exclude <clag-number-range-list>] [around <text-time>] [json | summary]
+netq check evpn [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <evpn-number-range-list> | exclude <evpn-number-range-list>] [around <text-time>] [json | summary]
+netq check interfaces [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <interfaces-number-range-list> | exclude <interfaces-number-range-list>] [around <text-time>] [json | summary]
+netq check mlag [label <text-label-name> | hostnames <text-list-hostnames> ] [check_filter_id <text-check-filter-id>] [include <mlag-number-range-list> | exclude <mlag-number-range-list>] [around <text-time>] [json | summary]
+netq check mtu [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [check_filter_id <text-check-filter-id>] [include <mtu-number-range-list> | exclude <mtu-number-range-list>] [around <text-time>] [json | summary]
+netq check ntp [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <ntp-number-range-list> | exclude <ntp-number-range-list>] [around <text-time>] [json | summary]
 netq check ospf [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <ospf-number-range-list> | exclude <ospf-number-range-list>] [around <text-time>] [json | summary]
-netq check roce [streaming] hostnames <text-list-hostnames> check_filter_id <text-check-filter-id> exclude <roce-number-range-list> around <text-time> [json|summary]
-netq check sensors [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [streaming] [json | summary]
+netq check roce [streaming] [hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <roce-number-range-list> | exclude <roce-number-range-list>] [around <text-time>] [json | summary]
+netq check sensors [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <sensors-number-range-list> | exclude <sensors-number-range-list>] [around <text-time>] [json | summary]
 netq check vlan [label <text-label-name> | hostnames <text-list-hostnames>] [unverified] [check_filter_id <text-check-filter-id>] [include <vlan-number-range-list> | exclude <vlan-number-range-list>] [around <text-time>] [json | summary]
 netq check vxlan [label <text-label-name> | hostnames <text-list-hostnames>] [check_filter_id <text-check-filter-id>] [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>] [around <text-time>] [json | summary]
 ```
@@ -117,22 +117,6 @@ Vrf Consistency Test             : passed
 L3 VNI RMAC Test                 : skipped
 ```
 
-{{%notice note%}}
-Validations that support the `streaming` keyword can query real time streaming information to return results faster compared to traditional on-demand checks. The following netq checks support a streaming query:
-
-- netq check agents
-- netq check bgp
-- netq check evpn
-- netq check interfaces
-- netq check mlag
-- netq check mtu
-- netq check ntp
-- netq check roce
-- netq check sensors
-- netq check vlan
-- netq check vxlan
-{{%/notice%}}
-
 {{</tab>}}
 
 {{<tab "netq add validation">}}
@@ -140,7 +124,7 @@ Validations that support the `streaming` keyword can query real time streaming i
 To create a request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation type (bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) [alert-on-failure]
+netq add validation type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) [alert-on-failure]
 ```
 
 This example shows the creation of an on-demand BGP validation.
@@ -304,9 +288,7 @@ You can have more than one card open for a given protocol or service, so be sure
 
 3. Hover over the charts to view the total number of warnings or failures and what percentage of the total results that represents for both devices and sessions.
 
-4. To get more information about the errors reported, hover over the right side of the test and click **More Details**.
-
-   {{<figure src="/images/netq/validation-result-error-details-bgp-4.0.0.png" width="700">}}
+4. To view additional information about the errors reported, hover over the right side of the test and click **More Details**.
 
 5. To view all data available for all on-demand validation results for a given protocol, click **Show All Results** to switch to the full screen card.
 
@@ -332,23 +314,6 @@ The results of the `netq add validation` command are displayed in the terminal w
 #### On-Demand CLI Validation Examples
 
 This section provides CLI validation examples for a variety of protocols and elements.
-
-{{%notice note%}}
-Validations that support the `streaming` keyword can query real time streaming information to return results faster compared to traditional on-demand checks. The following netq checks support a streaming query:
-
-- netq check agents
-- netq check bgp
-- netq check evpn
-- netq check interfaces
-- netq check mlag
-- netq check mtu
-- netq check ntp
-- netq check roce
-- netq check sensors
-- netq check vlan
-- netq check vxlan
-{{%/notice%}}
-
 
 {{<tabs "CLI Examples">}}
 
@@ -382,7 +347,7 @@ Refer to {{<link url="Validation-Checks/#netq-agent-validation-tests" text="NetQ
 The default validation confirms that the NetQ Agent is running on all monitored nodes and provides a summary of the validation results. This example shows the results of a fully successful validation.
 
 ```
-cumulus@switch:~$ netq check agents streaming
+cumulus@switch:~$ netq check agents
 agent check result summary:
 
 Checked nodes       : 13
@@ -403,7 +368,7 @@ Refer to {{<link url="Validation-Checks/#netq-agent-validation-tests" text="NetQ
 The default validation runs a networkwide BGP connectivity and configuration check on all nodes running the BGP service:
 
 ```
-cumulus@switch:~$ netq check bgp streaming
+cumulus@switch:~$ netq check bgp
 bgp check result summary:
 
 Checked nodes       : 8
@@ -600,7 +565,7 @@ Refer to {{<link url="Validation-Checks/#cumulus-linux-version-tests" text="Cumu
 The default validation runs a networkwide EVPN connectivity and configuration check on all nodes running the EVPN service. This example shows results for a fully successful validation.
 
 ```
-cumulus@switch:~$ netq check evpn streaming
+cumulus@switch:~$ netq check evpn
 evpn check result summary:
 
 Checked nodes       : 6
@@ -755,7 +720,7 @@ Vrf Consistency Test             : skipped
 The default validation runs a networkwide connectivity and configuration check on all interfaces. This example shows results for a fully successful validation.
 
 ```
-cumulus@switch:~$ netq check interfaces streaming
+cumulus@switch:~$ netq check interfaces
 interface check result summary:
 
 Checked nodes       : 12
@@ -821,7 +786,7 @@ Refer to {{<link url="Validation-Checks#interface-validation-tests" text="Interf
 The default validate verifies that all corresponding interface links have matching MTUs. This example shows no mismatches.
 
 ```
-cumulus@switch:~$ netq check mtu streaming
+cumulus@switch:~$ netq check mtu
 mtu check result summary:
 
 Checked nodes       : 12
@@ -849,7 +814,7 @@ Refer to {{<link url="Validation-Checks/#link-mtu-validation-tests" text="Link M
 The default validation runs a networkwide MLAG connectivity and configuration check on all nodes running the MLAG service. This example shows results for a fully successful validation.
 
 ```
-cumulus@switch:~$ netq check mlag streaming
+cumulus@switch:~$ netq check mlag
 mlag check result summary:
 
 Checked nodes       : 4
@@ -993,7 +958,7 @@ The default validation checks for synchronization of the NTP server with all nod
 This example shows that *server04* has an error.
 
 ```
-cumulus@switch:~$ netq check ntp streaming
+cumulus@switch:~$ netq check ntp
 ntp check result summary:
 
 Checked nodes       : 12
@@ -1020,7 +985,7 @@ Refer to {{<link url="Validation-Checks#ntp-validation-tests" text="NTP Validati
 
 {{<tab "OSPF">}}
 
-The default validation runs a networkwide OSPF connectivity and configuration check on all nodes running the OSPF service. This example shows results several errors in the Timers and Interface MTU tests.
+The default validation runs a networkwide OSPF connectivity and configuration check on all nodes running the OSPF service. This example shows errors in the timers and interface MTU tests.
 
 ```
 cumulus@switch:~# netq check ospf
@@ -1059,7 +1024,7 @@ The RoCE validation tests look for consistent RoCE and QoS configurations across
 
 
 ```
-cumulus@switch:mgmt:~$ netq check roce streaming
+cumulus@switch:mgmt:~$ netq check roce
 roce check result summary:
 
 Total nodes         : 12
@@ -1142,7 +1107,7 @@ Refer to {{<link url="Validation-Checks/#vlan-validation-tests" text="VLAN Valid
 Validate the VXLAN configuration and that they are operating properly:
 
 ```
-cumulus@switch:~$ netq check vxlan streaming
+cumulus@switch:~$ netq check vxlan
 vxlan check result summary:
 
 Checked nodes       : 6
@@ -1218,7 +1183,7 @@ Sometimes it is useful to run validations on more than one protocol simultaneous
 To create a scheduled request containing checks on a single protocol or service in the NetQ CLI, run:
 
 ```
-netq add validation name <text-new-validation-name> type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) interval <text-time-min>
+netq add validation name <text-new-validation-name> type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) interval <text-time-min> [alert-on-failure]
 ```
 
 This example shows the creation of a BGP validation run every 15 minutes for debugging.
@@ -1382,10 +1347,10 @@ You can remove a user-defined scheduled validation at any time using the NetQ UI
 
 {{<tab "NetQ CLI">}}
 
-1. Determine the name of the scheduled validation you want to remove. Run:
+1. Determine the name of the scheduled validation you want to remove:
 
     ```
-    netq show validation summary [name <text-validation-name>] type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan) [around <text-time-hr>] [json]
+    netq show validation summary [name <text-validation-name>] type (ntp | interfaces | license | sensors | evpn | vxlan | agents | mlag | vlan | bgp | mtu | ospf | roce | addr) [around <text-time-hr>] [json]
     ```
 
     This example shows all scheduled validations for BGP.
@@ -1425,7 +1390,7 @@ You can remove a user-defined scheduled validation at any time using the NetQ UI
     Successfully deleted validation Bgp15m
     ```
 
-3. Repeat these steps for additional scheduled validations you want to remove.
+3. Repeat these steps to remove additional scheduled validations.
 
 {{</tab>}}
 

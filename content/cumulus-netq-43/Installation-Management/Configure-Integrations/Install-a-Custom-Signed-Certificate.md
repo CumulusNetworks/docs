@@ -22,7 +22,7 @@ You need the following items to perform the certificate installation:
 
   You can verify this by running the `netq show opta-health` command.
 
-## Install a certificate using the CLI
+## Install a Certificate using the CLI
 
 {{<tabs "Install Cert">}}
 
@@ -102,7 +102,7 @@ You need the following items to perform the certificate installation:
       kubectl edit ingress netq-swagger-ingress-external
       ```
 
-    Add The `tls:` section in the `spec:` stanza, referencing your configured hostname and the `netq-gui-ingress-tls` secretName:
+    Add the `tls:` section in the `spec:` stanza, referencing your configured hostname and the `netq-gui-ingress-tls` secretName:
 
       ```
       spec:

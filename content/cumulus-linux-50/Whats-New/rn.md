@@ -8,8 +8,6 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-
-
 {{<rn_xls_link dir="cumulus-linux-50" >}}
 ## 5.0.1 Release Notes
 ### Open Issues in 5.0.1

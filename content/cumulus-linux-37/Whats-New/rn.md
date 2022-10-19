@@ -8,8 +8,6 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-
-
 {{<rn_xls_link dir="cumulus-linux-37" >}}
 ## 3.7.16 Release Notes
 ### Open Issues in 3.7.16

@@ -4,6 +4,7 @@ on: [push, pull_request]
 
 jobs:
   check_urls:
+    if: ${{ false }}  # disable for now in rn-stage
     runs-on: ubuntu-latest
     steps:
     - name: Checkout git repo

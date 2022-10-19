@@ -4,15 +4,13 @@ author: NVIDIA
 weight: 800
 toc: 4
 ---
-NetQ offers multiple ways to view your event status. The NetQ UI provides a graphical and tabular view and the NetQ CLI provides a tabular view of system and threshold-based (TCA) events. System events include events associated with network protocols and services operation, hardware and software status, and system services. TCA events include events associated with digital optics, ACL and forwarding resources, interface statistics, resource utilization, and sensors. You can view all events across the entire network or all events on a device. For each of these, you can filter your view of events based on event type, severity, and timeframe.
+You can monitor both system and threshold-based (TCA) events with the UI or CLI. System events include events associated with network protocols and services operation, hardware and software status, and system services. TCA events include events associated with digital optics, ACL and forwarding resources, interface statistics, resource utilization, and sensors. You can view all events across the entire network or all events on a device. For each of these, you can filter your view of events based on event type, severity, and timeframe.
 
 Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Based Event Notifications">}} for information about configuring and managing these events.
 
 Note that in the UI, it can take several minutes for NetQ to process and accurately display network validation events. The delay is caused by events with multiple network dependencies. It takes between 5 and 10 minutes for NetQ to consolidate and display these events.
 
 ## Monitor All System and TCA Events Networkwide
-
-You can monitor all system and TCA events across the network with the NetQ UI and the NetQ CLI.
 
 {{<tabs "TabID29" >}}
 
@@ -24,7 +22,7 @@ You can monitor all system and TCA events across the network with the NetQ UI an
 
     The dashboard presents a timeline of events alongside the devices that are causing the most events. You can filter events by type, including interface, network services, system, and threshold crossing events. The filter controls are located at the top of the screen.
 
-    {{<figure src="/images/netq/events-card-l4-42.png" width="700" alt="Events dashboard with networkwide error and info events.">}}
+    {{<figure src="/images/netq/events-card-l4-42.png" width="1000" alt="Events dashboard with networkwide error and info events.">}}
 
   If you are receiving too many event notifications, you can acknowledge events or create rules to suppress events from the dashboard. Refer to {{<link title="Configure System Event Notifications#suppress-events" text="Configure System Event Notifications">}} for information about event suppression.
 
@@ -187,34 +185,8 @@ You can view all system  and TCA events of a given type on a networkwide basis u
 To view all system events for a given network protocol or service, run:
 
 ```
-netq show events (type agents|bgp|btrfsinfo|clag|clsupport|configdiff|evpn|interfaces|interfaces-physical|lcm|lldp|macs|mtu|ntp|os|ospf|roceconfig|sensors|services|tca_roce|trace|vlan|vxlan) [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] [message_type link | message_type interfaces | message_type evpn | message_type bgp | message_type vxlan | message_type vlan | message_type ntp | message_type ospf | message_type lldp | message_type roceconfig | message_type mlag | message_type agent | message_type node | message_type mtu | message_type license | message_type sensor | message_type port | message_type configdiff  | message_type services | message_type clsupport | message_type runningconfigdiff | message_type resource | message_type btrfsinfo  | message_type ssdutil | message_type lcm | message_type ptm | message_type trace | message_type cable | message_type tca_resource | message_type tca_sensors | message_type tca_procdevstats | message_type tca_dom | message_type tca_link | message_type tca_ethtool | message_type tca_wjh | message_type tca_roce | message_type tca_bgp | message_type tca_ecmp ] [between <text-time> and <text-endtime>] [json]
 ```
-
-This example shows all services events between now and 30 days ago.
-
-```
-cumulus@switch:~$ netq show events type services between now and 30d
-Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-spine03           services                 error            Service netqd status changed from a Mon Aug 10 19:55:52 2020
-                                                            ctive to inactive
-spine04           services                 error            Service netqd status changed from a Mon Aug 10 19:55:51 2020
-                                                            ctive to inactive
-spine02           services                 error            Service netqd status changed from a Mon Aug 10 19:55:50 2020
-                                                            ctive to inactive
-spine03           services                 info             Service netqd status changed from i Mon Aug 10 19:55:38 2020
-                                                            nactive to active
-spine04           services                 info             Service netqd status changed from i Mon Aug 10 19:55:37 2020
-                                                            nactive to active
-spine02           services                 info             Service netqd status changed from i Mon Aug 10 19:55:35 2020
-
-```
-
-{{<notice tip>}}
-You can enter a severity using the <code>level</code> option to further narrow the output.
-{{</notice>}}
-
 {{</tab>}}
 
 {{</tabs>}}
@@ -244,26 +216,8 @@ You can view all system and TCA events of a given type on a given device using t
 To view all system events for a given network protocol or service, run:
 
 ```
-netq <hostname> show events (type agents|bgp|btrfsinfo|clag|clsupport|configdiff|evpn|interfaces|interfaces-physical|lcm|lldp|macs|mtu|ntp|os|ospf|roceconfig|sensors|services|tca_roce|trace|vlan|vxlan) [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] [message_type link | message_type interfaces | message_type evpn | message_type bgp | message_type vxlan | message_type vlan | message_type ntp | message_type ospf | message_type lldp | message_type roceconfig | message_type mlag | message_type agent | message_type node | message_type mtu | message_type license | message_type sensor | message_type port | message_type configdiff  | message_type services | message_type clsupport | message_type runningconfigdiff | message_type resource | message_type btrfsinfo  | message_type ssdutil | message_type lcm | message_type ptm | message_type trace | message_type cable | message_type tca_resource | message_type tca_sensors | message_type tca_procdevstats | message_type tca_dom | message_type tca_link | message_type tca_ethtool | message_type tca_wjh | message_type tca_roce | message_type tca_bgp | message_type tca_ecmp ] [between <text-time> and <text-endtime>] [json]
 ```
-
-
-This example shows all *services* events on the *spine03* switch between now and 30 days ago.
-
-```
-cumulus@switch:~$ netq spine03 show events type services between now and 30d
-Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-spine03           services                 error            Service netqd status changed from a Mon Aug 10 19:55:52 2020
-                                                            ctive to inactive
-spine03           services                 info             Service netqd status changed from i Mon Aug 10 19:55:38 2020
-                                                            nactive to active
-```
-
-{{<notice tip>}}
-You can enter a severity using the <code>level</code> option to further narrow the output.
-{{</notice>}}
 
 {{</tab>}}
 
@@ -296,36 +250,8 @@ System event severities include info, error, warning, or debug. TCA event severi
 To view all system events of a given severity, run:
 
 ```
-netq show events (level info | level error | level warning | level debug) [between <text-time> and <text-endtime>] [json]
+netq show events [severity info | severity error ] [between <text-time> and <text-endtime>] [json]
 ```
-
-This example shows all events with error severity between now and 24 hours ago.
-
-```
-cumulus@switch:~$ netq show events level error
-Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-leaf02            btrfsinfo                error         data storage efficiency : space lef Tue Sep  8 21:32:32 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf01            btrfsinfo                error         data storage efficiency : space lef Tue Sep  8 21:13:28 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf02            btrfsinfo                error         data storage efficiency : space lef Tue Sep  8 21:02:31 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf01            btrfsinfo                error         data storage efficiency : space lef Tue Sep  8 20:43:27 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-```
-
-{{<notice tip>}}
-You can use the <code>type</code> and <code>between</code> options to further narrow the output.
-{{</notice>}}
 
 {{</tab>}}
 
@@ -356,28 +282,8 @@ You can view system and TCA events by their severity on a given device with the 
 To view all system events for a given severity on a device, run:
 
 ```
-netq <hostname> show events (level info | level error | level warning | level debug)  [between <text-time> and <text-endtime>] [json]
+netq <hostname> show events [severity info | severity error ]  [between <text-time> and <text-endtime>] [json]
 ```
-
-This example shows all *error* severity events on the *leaf01* switch between now and 24 hours ago.
-
-```
-cumulus@switch:~$ netq leaf01 show events level error
-Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 18:44:49 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  9 18:14:48 2020
-                                                            t after allocation greater than chu
-                                                            nk size 0.57 GB
-
-```
-
-{{<notice tip>}}
-You can use the <code>type</code> or <code>between</code> options to further narrow the output.
-{{</notice>}}
 
 {{</tab>}}
 

@@ -22,7 +22,7 @@ To create a snapshot:
 
     The **Choose options** field includes all the elements and services that may run on the network. All are selected by default. Click any element to remove it from the snapshot. Nodes and services are included in all snapshots.
 
-    The **Notes** field is optional. Here you can add descriptive text to remind you of the snapshot's purpose.
+    The **Notes** field is optional. You can add a note to remind you of the snapshot's purpose.
 
 3. Select **Finish**. The card now appears on your workbench.
 
@@ -46,7 +46,7 @@ If the snapshot cards are already on your workbench, place the cards side-by-sid
 
 For each network element with changes, a visualization displays the differences between the two snapshots. Green represents additions, red represents subtractions, and orange represents updates. 
 
-In the following example, Snapshot 3 and Snapshot 4 are being compared. Snapshot 3 has a BGP count of 212, while Snapshot 4 has a BGP count of 186. The comparison also shows 98 BGP updates.
+In the following example, Snapshot 3 and Snapshot 4 are being compared. Snapshot 3 has a BGP count of 212 and Snapshot 4 has a BGP count of 186. The comparison also shows 98 BGP updates.
 
 {{<figure src="/images/netq/snapshot-comparison.png" alt="comparison data displayed for two snapshots" width="700">}}
 

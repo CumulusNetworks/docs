@@ -92,44 +92,26 @@ From a performance perspective, this example shows that five interfaces are down
 
 At some point in the lifecycle of a switch, you are likely to want more detail about how the switch is configured and what software is running on it. The NetQ UI and the NetQ CLI can provide this information.
 
-### View All Switch Alarms
-
-You can focus on all *critical* alarms for a given switch using the NetQ UI or NetQ CLI.
+### View All Switch Events
 
 {{<tabs "TabID101" >}}
 
 {{<tab "NetQ UI" >}}
 
-To view all alarms:
+To view all events:
 
-1. Open the full-screen Switch card and click **Alarms**.
+1. Open the full-screen Switch card and click **Events**.
 
-    {{<figure src="/images/netq/dev-switch-fullscr-alarms-tab-310.png" width="700">}}
-
-2. Use the filter to sort by message type.
-
-3. Use the filter to look at alarms during a different time range.
-
+2. Use the filters to sort by message type or time range.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-To view all critical alarms on the switch, run:
+To view all events on the switch, run:
 
 ```
-netq <hostname> show events level critical [between <text-time> and <text-endtime>] [json]
-```
-
-This example shows the critical alarms on *spine01* in the last two months.
-
-```
-cumulus@switch:~$ netq spine01 show events level critical between now and 60d
-Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-spine01           agent                    critical         Netq-agent rebooted at (Mon Aug 10  Mon Aug 10 19:55:19 2020
-                                                            19:55:07 UTC 2020)
+netq [<hostname>] show events [severity info | severity error ] [between <text-time> and <text-endtime>] [json]
 ```
 
 {{</tab>}}

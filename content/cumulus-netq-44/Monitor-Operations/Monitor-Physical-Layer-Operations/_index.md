@@ -216,7 +216,7 @@ leaf02            swp52                     up         1G         off     QSFP+ 
 The following example illustrates each of these scenarios for all devices in the network:
 
 ```
-cumulus@switch:~$ netq show events type interfaces-physical between now and 30d
+cumulus@switch:~$ netq show events message_type interfaces-physical between now and 30d
 Matching cables records:
 Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
 ----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
@@ -261,7 +261,7 @@ leaf01            swp51                     up         1G         off     SFP   
 leaf01            swp52                     down       1G         off     SFP       CISCO-AGILENT        QFBR-5766LP      Thu Feb  7 18:34:20 2019
 ...
 
-cumulus@switch:~$ netq show events type interfaces-physical between 0s and 5h
+cumulus@switch:~$ netq show events message_type interfaces-physical between 0s and 5h
 No matching cables records found
 ```
 {{</expand>}}

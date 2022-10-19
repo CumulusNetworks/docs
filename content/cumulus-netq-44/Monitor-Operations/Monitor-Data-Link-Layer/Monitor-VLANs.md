@@ -19,7 +19,7 @@ netq show macs [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
 netq <hostname> show macs [<mac>] [vlan <1-4096>] [origin | count] [around <text-time>] [json]
 netq <hostname> show macs egress-port <egress-port> [<mac>] [vlan <1-4096>] [origin] [around <text-time>] [json]
 
-netq [<hostname>] show events [level info | level error | level warning | level debug] type vlan [between <text-time> and <text-endtime>] [json]
+netq [<hostname>] show events [severity info | severity error ] message_type vlan [between <text-time> and <text-endtime>] [json]
 ```
 ## View VLAN Information for All Devices
 
@@ -336,10 +336,10 @@ View all VLAN-related events.
 The following example shows that there have been no VLAN events in the last 24 hours or the last 30 days:
 
 ```
-cumulus@switch:~$ netq show events type vlan
+cumulus@switch:~$ netq show events message_type vlan
 No matching event records found
 
-cumulus@switch:~$ netq show events type vlan between now and 30d
+cumulus@switch:~$ netq show events message_type vlan between now and 30d
 No matching event records found
 ```
 {{</expand>}}

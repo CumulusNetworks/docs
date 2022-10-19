@@ -575,7 +575,7 @@ module wjh-drop-types {
 <!-- vale on -->
 ### Supported Features
 
-In this release, the gNMI Agent supports *capability* and *stream subscribe* requests for WJH events.
+The gNMI Agent currently supports *capability* and *stream subscribe* requests for WJH events.
 
 
 ### WJH Drop Reasons
@@ -671,10 +671,6 @@ The data NetQ sends to the gNMI Agent is in the form of WJH drop reasons. The re
 | 504 | WRED | Warning | Monitor network congestion |
 | 505 | Port TC congestion threshold crossed | Notice | Monitor network congestion |
 | 506 | Packet latency threshold crossed | Notice | Monitor network congestion |
-
-### Related Information
-
-{{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}
 
 ### gNMI Client Requests
 
@@ -813,3 +809,6 @@ gnmi_client -target_addr 10.209.37.121:9339 -xpath "/interfaces/interface[name=s
    }
 }
 ```
+## Related Information
+
+{{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}

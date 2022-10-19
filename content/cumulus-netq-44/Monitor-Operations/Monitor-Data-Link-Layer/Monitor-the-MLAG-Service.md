@@ -404,19 +404,19 @@ Where to go next depends on what data you see, but a few options include:
 
 {{<tab "NetQ CLI" >}}
 
-To view the switches and hosts with the most MLAG alarms and informational events, run the `netq show events` command with the `type` option set to *clag*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
+To view the switches and hosts with the most MLAG alarms and informational events, run the `netq show events` command with the `message_type` option set to *clag*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
 
 This example shows that no MLAG events have occurred in the last 24 hours. Note that this command still uses the *clag* nomenclature.
 
 ```
-cumulus@switch:~$ netq show events type clag
+cumulus@switch:~$ netq show events message_type clag
 No matching event records found
 ```
 
 This example shows all MLAG events between now and 30 days ago, a total of 1 info event.
 
 ```
-cumulus@switch:~$ netq show events type clag between now and 30d
+cumulus@switch:~$ netq show events message_type clag between now and 30d
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------
@@ -429,7 +429,7 @@ border02          clag                     info             Peer state changed t
 
 ### View All MLAG Events
 
-The Network Services/All MLAG Sessions card workflow and the `netq show events type mlag` command enable you to view all MLAG events in a designated time period.
+The Network Services/All MLAG Sessions card workflow and the `netq show events message_type mlag` command enable you to view all MLAG events in a designated time period.
 
 {{<tabs "TabID446" >}}
 
@@ -462,22 +462,20 @@ Where to go next depends on what data you see, but a few options include:
 To view all MLAG alarms, run:
 
 ```
-netq show events [level info | level error | level warning | level debug] type clag [between <text-time> and <text-endtime>] [json]
+netq show events [severity info | severity error ] message_type clag [between <text-time> and <text-endtime>] [json]
 ```
-
-Use the `level` option to set the severity of the events to show. Use the `between` option to show events within a given time range.
 
 This example shows that no MLAG events have occurred in the last three days.
 
 ```
-cumulus@switch:~$ netq show events type clag between now and 3d
+cumulus@switch:~$ netq show events messsage_type clag between now and 3d
 No matching event records found
 ```
 
 This example shows that one MLAG event occurred in the last 30 days.
 
 ```
-cumulus@switch:~$ netq show events type clag between now and 30d
+cumulus@switch:~$ netq show events message_type clag between now and 30d
 Matching events records:
 Hostname          Message Type             Severity         Message                             Timestamp
 ----------------- ------------------------ ---------------- ----------------------------------- -------------------------

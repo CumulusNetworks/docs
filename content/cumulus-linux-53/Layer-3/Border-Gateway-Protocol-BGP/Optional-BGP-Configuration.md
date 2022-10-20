@@ -72,11 +72,11 @@ leaf01(config-router)# neighbor swp51 interface peer-group SPINE
 
 ## BGP Dynamic Neighbors
 
-*BGP dynamic neighbors* provides BGP peering to a group of remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
+*BGP dynamic neighbors* provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
 
 After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group. You can also limit the number of dynamic peers. The default value is 100.
 
-The following example commands configure BGP peering to remote neighbors within the address range 10.0.1.0/31 for the peer group SPINE and limit the number of dynamic peers to 5.
+The following example commands configure BGP peering to remote neighbors within the address range 10.0.1.0/24 for the peer group SPINE and limit the number of dynamic peers to 5.
 
 {{%notice note%}}
 The peer group must already exist otherwise the configuration does not apply.

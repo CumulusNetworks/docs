@@ -39,17 +39,17 @@ Unlike the `restart` command, the `reload switchd.service` command does not impa
 - [Pause Frames](#pause-frames).
 - [Priority Flow Control](#priority-flow-control-pfc).
 
-These conditions require modifications to the ASIC buffer which might result in momentary packet loss.
+These conditions require modifications to the ASIC buffer, which might result in momentary packet loss.
 
 When you run the `reload switchd.service` command, Cumulus Linux always runs the [Syntax Checker](#syntax-checker) before applying changes.
 
 {{% notice note %}}
-NVUE reloads the `switchd.service` automatically. You do **not** have to run the `reload switchd.service` command to apply changes when configuring QoS with NVUE commands.
+NVUE reloads the `switchd` service automatically. You do **not** have to run the `reload switchd.service` command to apply changes when configuring QoS with NVUE commands.
 {{% /notice %}}
 
 ## Classification
 
-When a frame or packet arrives on the switch, Cumulus Linux maps it to an *internal COS* value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
+When a frame or packet arrives on the switch, Cumulus Linux maps it to an *internal COS* (switch priority) value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
 You can define which values are `trusted`, COS, DSCP, or both.
 
@@ -57,23 +57,22 @@ The following table describes the default classifications for various frame and 
 
 | Setting | VLAN Tagged? | IP or Non-IP | Result |
 | ------------------------------------------ | ------ | ---- | ---- |
-| pcp (802.1p) | Yes | IP | Accept incoming 802.1p COS marking. |
-| pcp (802.1p)| Yes | Non-IP | Accept incoming 802.1p COS marking. |
-| pcp (802.1p)| No | IP | Use the default priority setting. |
-| pcp (802.1p)| No | Non-IP | Use the default priority setting. |
-| dscp (802.1p)| Yes | IP | Accept incoming DSCP IP header marking. |
-| dscp (802.1p)| Yes | Non-IP | Use the default priority setting. |
-| dscp (802.1p)| No | IP | Accept incoming DSCP IP header marking. |
-| dscp (802.1p)| No | Non-IP | Use the default priority setting. |
-| pcp (802.1p) and dscp | Yes | IP | Accept incoming DSCP IP header marking. |
-| pcp (802.1p) and dscp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
-| pcp (802.1p) and dscp | No | IP | Accept incoming DSCP IP header marking. |
-| pcp (802.1p) and dscp | No | Non-IP | Use the default priority setting. |
+| PCP (802.1p) | Yes | IP | Accept incoming 802.1p COS marking. |
+| PCP (802.1p)| Yes | Non-IP | Accept incoming 802.1p COS marking. |
+| PCP (802.1p)| No | IP | Use the default priority setting. |
+| PCP (802.1p)| No | Non-IP | Use the default priority setting. |
+| DSCP | Yes | IP | Accept incoming DSCP IP header marking. |
+| DSCP | Yes | Non-IP | Use the default priority setting. |
+| DSCP | No | IP | Accept incoming DSCP IP header marking. |
+| DSCP | No | Non-IP | Use the default priority setting. |
+| PCP (802.1p) and dscp | Yes | IP | Accept incoming DSCP IP header marking. |
+| PCP (802.1p) and dscp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
+| PCP (802.1p) and dscp | No | IP | Accept incoming DSCP IP header marking. |
+| PCP (802.1p) and dscp | No | Non-IP | Use the default priority setting. |
 | port | Either | Either | Ignore any existing markings and use the default priority setting. |
 
-In NVUE, you define which values are `trusted` with the `nv set qos mapping <profile> trust l2` command (COS) or the `nv set qos mapping <profile> trust l3` command (DSCP) .
-
-If you are using Linux commands to configure QoS, you define which values are `trusted` in the `/etc/cumulus/datapath/qos/qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `cos` or `dscp`.
+- If you use NVUE to configure QoS, you define which values are `trusted` with the `nv set qos mapping <profile> trust l2` command (COS) or the `nv set qos mapping <profile> trust l3` command (DSCP) .
+- If you use Linux commands to configure QoS, you define which values are `trusted` in the `/etc/cumulus/datapath/qos/qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `cos` or `dscp`.
 
 ### Trust COS
 
@@ -82,29 +81,30 @@ To trust ingress COS markings:
 {{< tabs "TabID97 ">}}
 {{< tab "NVUE Commands ">}}
 
-When COS (`l2`) is `trusted`, Cumulus Linux classifies these ingress COS values to internal COS values:
+When COS (`l2`) is `trusted`, Cumulus Linux classifies these ingress COS values to switch priority values:
 
-| Internal COS| Ingress COS|
+|Switch Priority |Ingress COS (PCP) |
 | ----------- | ---------- |
-|pcp 0 |switch priority 0|
-|pcp 1 |switch priority 1|
-|pcp 2 |switch priority 2|
-|pcp 3 |switch priority 3|
-|pcp 4 |switch priority 4|
-|pcp 5 |switch priority 5|
-|pcp 6 |switch priority 6|
-|pcp 7 |switch priority 7|
+|0 |0|
+|1 |1|
+|2 |2|
+|3 |3|
+|4 |4|
+|5 |5|
+|6 |6|
+|7 |7|
 
-The pcp number is the internal COS value; for example `pcp 0` defines the mapping for internal COS 0.  
-To change the default profile to map ingress COS 0 to internal COS 4, configure pcp 4 to switch priority 0.
+The PCP number is the ingress COS; for example PCP 0 maps to switch priority 0.
+
+To change the default profile to map PCP 0 to switch priority 4, configure PCP 0 to switch priority 4.
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust l2
-cumulus@switch:~$ nv set qos mapping default-global pcp 4 switch-priority 0 
+cumulus@switch:~$ nv set qos mapping default-global pcp 0 switch-priority 4 
 cumulus@switch:~$ nv config apply
 ```
 
-You can map multiple ingress COS values to the same internal COS value. For example, to map ingress COS values 2, 3, and 4 to internal COS 0:
+You can map multiple PCP values to the same switch priority value. For example, to map PCP values 2, 3, and 4 to switch priority 0:
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust l2 
@@ -112,16 +112,16 @@ cumulus@switch:~$ nv set qos mapping default-global pcp 2,3,4 switch-priority 0
 cumulus@switch:~$ nv config apply
 ```
 
-If you configure the trust to be `l2` but do not specify any PCP to SP mappings, Cumulus Linux uses the default values.
+If you configure the trust to be `l2` but do not specify any PCP to switch priority mappings, Cumulus Linux uses the default values.
 
-To configure additional settings, such as apply a COS profile to specific interfaces, see [Port Groups](#port-groups).
+To configure additional settings, such as apply a custom COS profile to specific interfaces, see [Port Groups](#port-groups).
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Set `traffic.packet_priority_source_set = [802.1p]`.
 
-When COS (8021p) is `trusted`, the following lines classify ingress COS values to internal COS values:
+When COS (8021p) is `trusted`, the following lines classify ingress COS values to switch priority (internal COS) values:
 
 ```
 traffic.cos_0.priority_source.8021p = [0]
@@ -134,21 +134,21 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 ```
 
-The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0.
+The `traffic.cos_` number is the switch priority value; for example ingress COS 0 maps to switch priority 0.
 
-To map ingress COS 0 to internal COS 4, configure the `traffic.cos_4.priority_source.8021p` setting in the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+To map ingress COS 4 to switch priority 0, configure the `traffic.cos_0.priority_source.8021p` setting in the `/etc/cumulus/datapath/qos/qos_features.conf` file to 4.
 
 ```
 traffic.cos_0.priority_source.8021p = [4]
 ```
 
-You can map multiple ingress COS values to the same internal value. For example, to map ingress COS values 0, 1, and 2 to internal COS 0:
+You can map multiple ingress COS values to the same switch priority value. For example, to map ingress COS values 0, 1, and 2 to switch priority 0:
 
 ```
 traffic.cos_0.priority_source.8021p = [0, 1, 2]
 ```
 
-You can also choose not to use an internal COS value. This example does not use internal COS values 3 and 4.
+You can also choose not to use a switch priority value. This example does not use switch priority values 3 and 4.
 
 ```
 traffic.cos_0.priority_source.8021p = [0]
@@ -161,7 +161,7 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 ```
 
-You can configure additional settings using [Port Groups](#port-groups).
+To configure additional settings, such as apply a custom COS profile to specific interfaces, see [Port Groups](#port-groups).
 
 {{<cl/qos-switchd>}}
 
@@ -175,22 +175,22 @@ To trust ingress DSCP markings:
 {{< tabs "TabID138 ">}}
 {{< tab "NVUE Commands ">}}
 
-If DSCP (`l3`) is `trusted`, Cumulus Linux classifies these ingress DSCP values to internal COS values:
+If DSCP (`l3`) is `trusted`, Cumulus Linux classifies these ingress DSCP values to switch priority values:
 
-| Internal COS | Ingress DSCP |
+| Switch Priority | Ingress DSCP |
 |------------- | ------------ |
-|dscp 0 |switch priority [0,1,2,3,4,5,6,7]|
-|dscp 1 |switch priority [8,9,10,11,12,13,14,15]|
-|dscp 2 |switch priority [16,17,18,19,20,21,22,23]|
-|dscp 3 |switch priority [24,25,26,27,28,29,30,31]|
-|dscp 4 |switch priority [32,33,34,35,36,37,38,39]|
-|dscp 5 |switch priority [40,41,42,43,44,45,46,47]|
-|dscp 6 |switch priority [48,49,50,51,52,53,54,55]|
-|dscp 7 |switch priority [56,57,58,59,60,61,62,63]|
+| 0 | [0,1,2,3,4,5,6,7]|
+| 1 | [8,9,10,11,12,13,14,15]|
+| 2 | [16,17,18,19,20,21,22,23]|
+| 3 | [24,25,26,27,28,29,30,31]|
+| 4 | [32,33,34,35,36,37,38,39]|
+| 5 | [40,41,42,43,44,45,46,47]|
+| 6 | [48,49,50,51,52,53,54,55]|
+| 7 | [56,57,58,59,60,61,62,63]|
 
-The dscp number is the internal COS value; for example dscp 0 defines the mapping for internal COS 0.
+The DSCP number is the ingress DSCP value; for example DSCP 0 through 7 maps to switch priority 0.
 
-To change the default profile to map ingress DSCP 22 to internal COS 4:
+To change the default profile to map ingress DSCP 22 to switch priority 4:
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust l3 
@@ -198,7 +198,7 @@ cumulus@switch:~$ nv set qos mapping default-global dscp 22 switch-priority 4
 cumulus@switch:~$ nv config apply
 ```
 
-You can map multiple ingress DSCP values to the same internal COS value. For example, to change the default profile to map ingress DSCP values 10, 21, and 36 to internal COS 0:
+You can map multiple ingress DSCP values to the same switch priority value. For example, to change the default profile to map ingress DSCP values 10, 21, and 36 to switch priority 0:
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust l3 
@@ -206,16 +206,16 @@ cumulus@switch:~$ nv set qos mapping default-global dscp 10,21,36 switch-priorit
 cumulus@switch:~$ nv config apply
 ```
 
-If you configure the trust to be `l3` but do not specify any DSCP to SP mappings, Cumulus Linux uses the default values.
+If you configure the trust to be `l3` but do not specify any DSCP to switch priority mappings, Cumulus Linux uses the default values.
 
-To configure additional settings, such as apply a DSCP profile to specific interfaces, see  [Port Groups](#port-groups).
+To configure additional settings, such as apply a custom DSCP profile to specific interfaces, see [Port Groups](#port-groups).
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Configure `traffic.packet_priority_source_set = [dscp]`.
 
-If DSCP is `trusted`, the following lines classify ingress DSCP values to internal COS values:
+If DSCP is `trusted`, the following lines classify ingress DSCP values to switch priority (internal COS) values:
 
 ```
 traffic.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
@@ -233,19 +233,19 @@ The `#` in the configuration file is a comment. By default, the file comments ou
 You must uncomment them for them to take effect.  
 {{% /notice %}}
 
-The `traffic.cos_` number is the internal COS value; for example `traffic.cos_0` defines the mapping for internal COS 0. To map ingress DSCP 22 to internal COS 4, configure the `traffic.cos_4.priority_source.dscp` setting.
+The `traffic.cos_` number is the switch priority value; for example DSCP values 0 through 7 map to switch priority 0. To map ingress DSCP 22 to switch priority 4, configure the `traffic.cos_4.priority_source.dscp` setting.
 
 ```
 traffic.cos_4.priority_source.dscp = [22]
 ```
 
-You can map multiple ingress DSCP values to the same internal COS value. For example, to map ingress DSCP values 10, 21, and 36 to internal COS 0:
+You can map multiple ingress DSCP values to the same switch priority value. For example, to map ingress DSCP values 10, 21, and 36 to switch priority 0:
 
 ```
 traffic.cos_0.priority_source.dscp = [10,21,36]
 ```
 
-You can also choose not to use an internal COS value. This example does not use internal COS values 3 and 4:
+You can also choose not to use an switch priority value. This example does not use switch priority values 3 and 4:
 
 ```
 traffic.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
@@ -258,7 +258,7 @@ traffic.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
 traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 ```
 
-You can configure additional settings using [Port Groups](#port-groups).
+To configure additional settings, such as apply a custom DSCP profile to specific interfaces, see [Port Groups](#port-groups).
 
 {{<cl/qos-switchd>}}
 
@@ -267,7 +267,7 @@ You can configure additional settings using [Port Groups](#port-groups).
 
 ### Trust Port
 
-To assign all traffic to an internal COS queue regardless of the ingress marking:
+To assign all traffic to a switch priority regardless of the ingress marking:
 
 {{< tabs "TabID183 ">}}
 {{< tab "NVUE Commands ">}}
@@ -278,14 +278,14 @@ cumulus@switch:~$ nv set qos mapping default-global port-default-sp 3
 cumulus@switch:~$ nv config apply
 ```
 
-The above commands define the COS value that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
+The above commands define the switch priority that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Configure `traffic.packet_priority_source_set = [port]`.
 
-The `traffic.port_default_priority` setting defines the COS value that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
+The `traffic.port_default_priority` setting defines the switch priority that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
 
 {{<cl/qos-switchd>}}
 
@@ -339,7 +339,7 @@ For example, to set traffic leaving interface `swp5` to COS value `4`:
 You must use `iptables` (for IPv4 traffic) or `ip6tables` (for IPv6 traffic) to match and mark layer 3 traffic.
 
 You can match traffic with any supported iptable or ip6tables rule.
-To set the new COS or DSCP value when traffic is matches, use `-A FORWARD -o <interface> -j SETQOS [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
+To set the new COS or DSCP value when traffic matches, use `-A FORWARD -o <interface> -j SETQOS [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
 
 The configured action always has the following conditions:
 - The rule is always configured as part of the `FORWARD` chain.
@@ -367,11 +367,6 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 ```
 -A FORWARD -o swp11 -j SETQOS --set-dscp-class cs6
 ```
-
-<!--
-You can put the rule in either the *mangle* table or the default *filter* table; the mangle table and filter table are put into separate TCAM slices in the hardware.
-To put the rule in the mangle table, include `-t mangle`; to put the rule in the filter table, omit `-t mangle`.
--->
 
 ### Ingress COS or DSCP for Marking
 
@@ -522,16 +517,16 @@ Unless NVIDIA support or engineering asks you to, do not change these values.
 <details>
 <summary>All Link Pause configuration options</summary>
 
-|Configuration  |Example |Description |
-|-------------  |-------  |-----------   |
-|`link_pause.port_group_list` |`link_pause.port_group_list = [my_pause_ports]`  |Creates a port group to use with pause frame settings. In this example, the group is `my_pause_ports`. |
-|`link_pause.my_pause_ports.port_set` |`link_pause.my_pause_ports.port_set = swp1-swp4,swp6`| Define the set of interfaces to apply pause frame configuration. In this example, ports swp1, swp2, swp3, swp4 and swp6 have pause frame on. |
-|`link_pause.my_pause_ports.port_buffer_bytes`|`link_pause.my_pause_ports.port_buffer_bytes = 25000`|The amount of reserved buffer space for the set of ports in the port group list (reserved from the global shared buffer). |
-|`link_pause.my_pause_ports.xoff_size`  |`link_pause.my_pause_ports.xoff_size = 10000` | Set the amount of reserved buffer to consume before thew switch sends a pause frame out of the set of interfaces in the port group list when transmitting pause frames is on. In this example, after you consume 10000 bytes of reserved buffer, the switch sends pause frames. |
-|`link_pause.my_pause_ports.xon_delta` |`link_pause.my_pause_ports.xon_delta = 2000`  |The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending pause frame stops, if transmitting pause frames is on. In this example, the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before pause frame stops.  |
-|`link_pause.my_pause_ports.rx_enable` |`link_pause.my_pause_ports.tx_enable = true` |Enable (`true`) or disable (`false`) sending pause frames. The default value is `true`. In this example, sending pause frames is on. |
-|`link_pause.my_pause_ports.tx_enable`   |`link_pause.my_pause_ports.rx_enable = true`  |Enable (`true`) or disable (`false`) the switch to receive pause frames. The default value is `true`. In this example, the receiving pause frames is on. |
-|`link_pause.my_pause_ports.cable_length` |`link_pause.pause_port_group.cable_length = 5` | The length, in meters, of the cable that attaches to the port in the port group list. Cumulus Linux uses this value internally to determine the latency between generating a pause frame and receiving the pause frame. The default is `100` meters. In this example, the attached cable is `5` meters.|
+|Configuration |Description |
+|------------- |----------- |
+|`link_pause.port_group_list` |Creates a port group to use with pause frame settings.<br>In the following example, the group is `my_pause_ports`:<br>`link_pause.port_group_list = [my_pause_ports]`  |
+|`link_pause.my_pause_ports.port_set` | Define the set of interfaces to apply pause frame configuration.<br>In the following example, ports swp1, swp2, swp3, swp4 and swp6 have pause frame on:<br>`link_pause.my_pause_ports.port_set = swp1-swp4,swp6` |
+|`link_pause.my_pause_ports.port_buffer_bytes`|The amount of reserved buffer space for the set of ports in the port group list (reserved from the global shared buffer).<br>The following example sets the amount of reserved buffer space to 25000:<br>`link_pause.my_pause_ports.port_buffer_bytes = 25000` |
+|`link_pause.my_pause_ports.xoff_size`  | Set the amount of reserved buffer to consume before thew switch sends a pause frame out of the set of interfaces in the port group list when transmitting pause frames is on.<br>In the following example, after you consume 10000 bytes of reserved buffer, the switch sends pause frames:<br>`link_pause.my_pause_ports.xoff_size = 10000` |
+|`link_pause.my_pause_ports.xon_delta` |The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending pause frame stops, if transmitting pause frames is on.<br>In the following example, the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before pause frame stops:<br>`link_pause.my_pause_ports.xon_delta = 2000` |
+|`link_pause.my_pause_ports.rx_enable` |Enable (`true`) or disable (`false`) sending pause frames. The default value is `true`.<br>In the following example, sending pause frames is on:<br>`link_pause.my_pause_ports.tx_enable = true`  |
+|`link_pause.my_pause_ports.tx_enable`  |Enable (`true`) or disable (`false`) the switch to receive pause frames. The default value is `true`.<br>In the following example, the receiving pause frames is on:<br>`link_pause.my_pause_ports.rx_enable = true` |
+|`link_pause.my_pause_ports.cable_length` | The length, in meters, of the cable that attaches to the port in the port group list. Cumulus Linux uses this value internally to determine the latency between generating a pause frame and receiving the pause frame. The default is `100` meters.<br>In the following example, the attached cable is `5` meters:<br>`link_pause.pause_port_group.cable_length = 5`|
 </details>
 
 ### Priority Flow Control (PFC)
@@ -581,14 +576,14 @@ cumulus@switch:~$ nv config apply
 <details>
 <summary>All PFC commands</summary>
 
-| <div style="width:300px">Command | <div style="width:300px">Example | Description |
-| ------------- | ------- | ----------- |
-| `nv set qos pfc <profile> port-buffer <value>`  | `nv set qos pfc my_pfc_ports port-buffer 25000` | The amount of reserved buffer space for the set of ports defined in the port group list (reserved from the global shared buffer). |
-| `nv set qos pfc <profile> xoff-threshold <value>` | `nv set qos pfc my_pfc_ports xoff-threshold 20000` | Set the amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list, if sending pause frames is on. This example sends PFC pause frames after consuming 20000 bytes of reserved buffer.|
-| `nv set qos pfc <profile> xon-threshold <value>` | `nv set qos pfc my_pfc_ports xon-threshold 1000` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops, if sending pause frames is on. This example the buffer congestion must reduce by 1000 bytes (to 8000 bytes) before PFC pause frames stop. |
-| `nv set qos pfc <profile> rx enable`|`disable` | `nv set qos pfc my_pfc_ports rx disable` | Enable or disable sending PFC pause frames. The default value is enable. This example disables sending PFC pause frames. |
-| `nv set qos pfc <profile> tx enable`|`disable` | `nv set qos pfc my_pfc_ports tx disable` | Enable or disable receiving PFC pause frames. You do not need to define the COS values for `rx enable`. The switch receives any COS value. The default value is enable. This example disables receiving PFC pause frames. |
-| `nv set qos pfc <profile> cable-length <value>` | `nv set qos pfc my_pfc_ports cable-length 5` | The length, in meters, of the cable that attaches to the ports. Cumulus Linux uses this value internally to determine the latency between generating a PFC pause frame and receiving the PFC pause frame. The default is `10` meters. In this example, the cable is `5` meters.|
+| <div style="width:450px">Command | Description |
+| ------------- | ----------- |
+| `nv set qos pfc <profile> port-buffer <value>` | The amount of reserved buffer space for the set of ports defined in the port group list (reserved from the global shared buffer).<br>The following example sets the amount of reserved buffer space to 25000:<br>`nv set qos pfc my_pfc_ports port-buffer 25000` |
+| `nv set qos pfc <profile> xoff-threshold <value>` | The amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list, if sending pause frames is on.<br>The following example sends PFC pause frames after consuming 20000 bytes of reserved buffer:<br>`nv set qos pfc my_pfc_ports xoff-threshold 20000` |
+| `nv set qos pfc <profile> xon-threshold <value>` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops, if sending pause frames is on.<br>In the following example, the buffer congestion must reduce by 1000 bytes (to 8000 bytes) before PFC pause frames stop:<br>`nv set qos pfc my_pfc_ports xon-threshold 1000`|
+| `nv set qos pfc <profile> rx enable`<br>`nv set qos pfc <profile> rx disable` | Enable or disable sending PFC pause frames. The default value is enable.<br>The following example disables sending PFC pause frames:<br>`nv set qos pfc my_pfc_ports rx disable`  |
+| `nv set qos pfc <profile> tx enable`<br>`nv set qos pfc <profile> tx disable` | Enable or disable receiving PFC pause frames. You do not need to define the COS values for `rx enable`. The switch receives any COS value. The default value is enable.<br>The following example disables receiving PFC pause frames:<br>`nv set qos pfc my_pfc_ports tx disable` |
+| `nv set qos pfc <profile> cable-length <value>` | The length, in meters, of the cable that attaches to the ports. Cumulus Linux uses this value internally to determine the latency between generating a PFC pause frame and receiving the PFC pause frame. The default is `10` meters.<br>The following example sets the cable length to `5` meters:<br>`nv set qos pfc my_pfc_ports cable-length 5`|
 </details>
 
 {{< /tab >}}
@@ -625,14 +620,14 @@ pfc.my_pfc_ports2.cable_length = 10
 <details>
 <summary>All PFC configuration options</summary>
 
-| Configuration | Example | Description |
-| ------------- | ------- | ----------- |
-| `pfc.my_pfc_ports.port_buffer_bytes` | `pfc.my_pfc_ports.port_buffer_bytes = 25000` | The amount of reserved buffer space for the set of ports defined in the port group list (reserved from the global shared buffer). |
-| `pfc.my_pfc_ports.xoff_size` | `pfc.my_pfc_ports.xoff_size = 10000` | Set the amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list, if sending pause frames is on. This example sends PFC pause frames after consuming 10000 bytes of reserved buffer.|
-| `pfc.my_pfc_ports.xon_delta` | `pfc.my_pfc_ports.xon_delta = 2000` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops, if sending pause frames is on. This example the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before PFC pause frames stop. |
-| `pfc.my_pfc_ports.rx_enable` | `pfc.my_pfc_ports.tx_enable = true` | Enable (`true`) or disable (`false`) sending PFC pause frames. The default value is `true`. This example enables sending PFC pause frames. |
-| `pfc.my_pfc_ports.tx_enable` | `pfc.my_pfc_ports.rx_enable = true` | Enable (`true`) or disable (`false`) receiving PFC pause frames. You do not need to define the COS values for `rx_enable`. The switch receives any COS value. The default value is `true`. This example enables receiving PFC pause frames. |
-| `pfc.my_pfc_ports.cable_length` | `pfc.my_pfc_ports.cable_length = 5` | The length, in meters, of the cable that attaches to the port in the port group list. Cumulus Linux uses this value internally to determine the latency between generating a PFC pause frame and receiving the PFC pause frame. The default is `10` meters. In this example, the cable is `5` meters.|
+| Configuration | Description |
+| ------------- | ------- |
+| `pfc.my_pfc_ports.port_buffer_bytes` | The amount of reserved buffer space for the set of ports defined in the port group list (reserved from the global shared buffer).<br>The following example sets the amount of reserved buffer space to 25000:<br>`pfc.my_pfc_ports.port_buffer_bytes = 25000`  |
+| `pfc.my_pfc_ports.xoff_size` | Set the amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list, if sending pause frames is on.<br>The following example sends PFC pause frames after consuming 10000 bytes of reserved buffer:<br>`pfc.my_pfc_ports.xoff_size = 10000`|
+| `pfc.my_pfc_ports.xon_delta` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops, if sending pause frames is on.<br>The following example the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before PFC pause frames stop:<br>`pfc.my_pfc_ports.xon_delta = 2000`|
+| `pfc.my_pfc_ports.rx_enable` | Enable (`true`) or disable (`false`) sending PFC pause frames. The default value is `true`.<br>The following example enables sending PFC pause frames:<br>`pfc.my_pfc_ports.tx_enable = true` |
+| `pfc.my_pfc_ports.tx_enable` | Enable (`true`) or disable (`false`) receiving PFC pause frames. You do not need to define the COS values for `rx_enable`. The switch receives any COS value. The default value is `true`.<br>The following example enables receiving PFC pause frames:<br> `pfc.my_pfc_ports.rx_enable = true` |
+| `pfc.my_pfc_ports.cable_length` | The length, in meters, of the cable that attaches to the port in the port group list. Cumulus Linux uses this value internally to determine the latency between generating a PFC pause frame and receiving the PFC pause frame. The default is `10` meters<br>In this example, the cable is `5` meters:<br> `pfc.my_pfc_ports.cable_length = 5`|
 </details>
 
 {{< /tab >}}
@@ -862,12 +857,12 @@ shaping.shaper_port_group.port.shaper = 900000
 <details>
 <summary>All Shaping configuration options</summary>
 
-|Configuration  |Example  |Explanation|
-|----    |----   |---  |
-|`shaping.port_group_list` |`shaping.port_group_list = [shaper_port_group]` | Creates a port group to use with traffic shaping settings. In this example, the group is `shaper_port_group` |
-|`shaping.shaper_port_group.port_set  `  |`shaping.shaper_port_group.port_set = swp1-swp3,swp5`   | Define the set of interfaces to which you want  apply traffic shaping. This example enables traffic shaping on swp1, swp2, swp3 and swp5.   |
-|`shaping.shaper_port_group.egr_queue_0.shaper`|`shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]`| Applies a minimum and maximum bandwidth value in kbps for internal COS group 0. In this example, internal COS 0 always has at least `50000` kbps of bandwidth with a maximum of `100000` kbps.  |
-|`shaping.shaper_port_group.port.shaper`  |`shaping.shaper_port_group.port.shaper = 900000`  | Applies the maximum packet shaper rate at the interface level. In this example, swp1, swp2, swp3, and swp5 do not transmit greater than `900000` kbps.          |
+|Configuration  |Description|
+|-------------  |---------- |
+|`shaping.port_group_list`  | Creates a port group to use with traffic shaping settings.<br>In the following example, the group is `shaper_port_group`:<br>`shaping.port_group_list = [shaper_port_group]` |
+|`shaping.shaper_port_group.port_set` | Define the set of interfaces to which you want apply traffic shaping.<br>The following example enables traffic shaping on swp1, swp2, swp3 and swp5:<br>`shaping.shaper_port_group.port_set = swp1-swp3,swp5` |
+|`shaping.shaper_port_group.egr_queue_0.shaper`| Applies a minimum and maximum bandwidth value in kbps for internal COS group 0.<br>In the following example, internal COS 0 always has at least `50000` kbps of bandwidth with a maximum of `100000` kbps:<br>`shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]` |
+|`shaping.shaper_port_group.port.shaper` | Applies the maximum packet shaper rate at the interface level.<br>In the following example, swp1, swp2, swp3, and swp5 do not transmit greater than `900000` kbps:<br>`shaping.shaper_port_group.port.shaper = 900000`|
 </details>
 
 If you define a queue minimum shaping value of `0`, there is no bandwidth guarantee for this queue. The maximum queue shaping value must not exceed the interface shaping value defined by `port.shaper`. The `port.shaper` value must not exceed the physical interface speed.
@@ -1015,17 +1010,17 @@ source.customer2.port_default_priority = 0
 source.customer2.cos_1.priority_source.8021p = [4]
 ```
 
-| Configuration  | Example | Description  |
-| -------------  | ------- | -----------  |
-| `source.port_group_list`  | `source.port_group_list = [customer1,customer2]` | Defines the names of the port groups you want to use (`customer1` and `customer2)`.  |
-| `source.customer1.packet_priority_source_set` | `source.customer1.packet_priority_source_set = [dscp]` | Defines the ingress marking trust. In this example, ingress DSCP values are for group `customer1`. |
-| `source.customer1.port_set` | `source.customer1.port_set = swp1-swp4,swp6` | The set of ports to which to apply the ingress marking trust policy. In this example, ports swp1, swp2, swp3, swp4, and swp6 are for `customer1`. |
-| `source.customer1.port_default_priority` | `source.customer1.port_default_priority = 0` | Define the default internal COS marking for unmarked or untrusted traffic. In this example, Cumulus Linux marks unmarked traffic or layer 2 traffic for `customer1` ports with internal COS 0. |
-| `source.customer1.cos_0.priority_source` | `source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]` | Map the ingress DSCP values to an internal COS value for `customer1`. In this example, the set of DSCP values from 0 through 7 map to internal COS 0.  |
-| `source.customer2.packet_priority_source_set` | `source.packet_priority_source_set = [cos]` | Defines the ingress marking trust for `customer2`. In this example, COS is `trusted`. |
-| `source.customer2.port_set`  | `source.customer2.port_set = swp5,swp7` | The set of ports to which to apply the ingress marking trust policy. In this example, ports swp5 and swp7 apply for `customer2`. |
-| `source.customer2.port_default_priority` | `source.customer2.port_default_priority = 0` | Define the default internal COS marking for unmarked or untrusted traffic. In this example, Cumulus Linux marks unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports with internal COS 0. |
-| `source.customer2.cos_0.priority_source` | `source.customer2.cos_1.priority_source.8021p = [4]` | Map the ingress COS values to an internal COS value for `customer2`. This example maps ingress COS value 4 to internal COS 1 . |
+| Configuration | Description  |
+| ------------- | -----------  |
+| `source.port_group_list` | Defines the names of the port groups you want to use.<br>The following example defines `customer1` and `customer2`:<br>`source.port_group_list = [customer1,customer2]`  |
+| `source.customer1.packet_priority_source_set` | Defines the ingress marking trust.<br>In the following example, ingress DSCP values are for group `customer1`:<br>`source.customer1.packet_priority_source_set = [dscp]` |
+| `source.customer1.port_set` | The set of ports to which to apply the ingress marking trust policy.<br>In the following example, ports swp1, swp2, swp3, swp4, and swp6 are for `customer1`:<br>`source.customer1.port_set = swp1-swp4,swp6` |
+| `source.customer1.port_default_priority` | Define the default internal COS marking for unmarked or untrusted traffic.<br>In the following example, Cumulus Linux marks unmarked traffic or layer 2 traffic for `customer1` ports with internal COS 0:<br>`source.customer1.port_default_priority = 0` |
+| `source.customer1.cos_0.priority_source`  | Map the ingress DSCP values to an internal COS value for `customer1`.<br>In the following example, the set of DSCP values from 0 through 7 map to internal COS 0:<br>`source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]` |
+| `source.customer2.packet_priority_source_set` | Defines the ingress marking trust for `customer2`.<br>In the following example, COS is `trusted`:<br>`source.packet_priority_source_set = [cos]`  |
+| `source.customer2.port_set` | The set of ports to which to apply the ingress marking trust policy.<br>In the following example, ports swp5 and swp7 apply for `customer2`:<br>`source.customer2.port_set = swp5,swp7` |
+| `source.customer2.port_default_priority` | Define the default internal COS marking for unmarked or untrusted traffic.<br>In the following example, Cumulus Linux marks unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports with internal COS 0:<br>`source.customer2.port_default_priority = 0` |
+| `source.customer2.cos_0.priority_source` | Map the ingress COS values to an internal COS value for `customer2`.<br>The following example maps ingress COS value 4 to internal COS 1:<br>`source.customer2.cos_1.priority_source.8021p = [4]` |
 
 {{<cl/qos-switchd>}}
 
@@ -1049,15 +1044,15 @@ remark.list2.port_set = swp9,swp10
 remark.list2.cos_3.priority_remark.8021p = [2]
 ```
 
-|Configuration |Example |Explanation |
-|------------- |------- |----------- |
-|`remark.port_group_list` |`remark.port_group_list = [list1,list2]` |Defines the names of the port groups to use (`list1` and `list2`).|
-|`remark.list1.packet_priority_remark_set` |`remark.list1.packet_priority_remark_set = [dscp]`| Defines the egress marking to apply, `802.1p` or `dscp`. This example rewrites the egress DSCP marking. |
-|`remark.list1.port_set` |`remark.list1.port_set = swp1-swp3,swp6` | The set of _ingress_ ports that receives frames or packets that has remarking, regardless of egress interface. This example remarks the egress DSCP values of traffic arriving on ports swp1, swp2, swp3 and swp6.|
-|`remark.list1.cos_3.priority_remark.dscp` |`remark.list1.cos_3.priority_remark.dscp = [24]` | The egress DSCP value to write to the packet according to the internal COS value. In this example, traffic in internal COS 3 sets the egress DSCP to 24.  |
-|`remark.list2.packet_priority_remark_set` |`remark.list2.packet_priority_remark_set = [802.1p]` | Defines the egress marking to apply, `cos` or `dscp`. This example rewrites the egress COS marking.  |
-|`remark.list2.port_set`  |`remark.list2.port_set = swp9,swp10` | The set of _ingress_ ports that receives frames or packets with remarking, regardless of egress interface. This example remarks the egress COS values for traffic arriving on ports swp9 and swp10.  |
-|`remark.list2.cos_4.priority_remark.8021p`|`remark.list1.cos_3.priority_remark.8021p = [2]` | The egress COS value to write to the frame according to the internal COS value. In this example, traffic in internal COS 4 sets the egress COS 2. |
+|Configuration |Description |
+|------------- |----------- |
+|`remark.port_group_list` |Defines the names of the port groups to use (`list1` and `list2`).<br>The following example defines port groups list1 and list2:<br>`remark.port_group_list = [list1,list2]`|
+|`remark.list1.packet_priority_remark_set` | Defines the egress marking to apply, `802.1p` or `dscp`.<br>The following example rewrites the egress DSCP marking:<br>`remark.list1.packet_priority_remark_set = [dscp]` |
+|`remark.list1.port_set` | The set of _ingress_ ports that receives frames or packets that has remarking, regardless of egress interface.<br>The following example remarks the egress DSCP values of traffic arriving on ports swp1, swp2, swp3 and swp6:<br>`remark.list1.port_set = swp1-swp3,swp6`|
+|`remark.list1.cos_3.priority_remark.dscp`  | The egress DSCP value to write to the packet according to the internal COS value.<br>In the following example, traffic in internal COS 3 sets the egress DSCP to 24:<br>`remark.list1.cos_3.priority_remark.dscp = [24]`  |
+|`remark.list2.packet_priority_remark_set` | Defines the egress marking to apply, `cos` or `dscp`.<br>The following example rewrites the egress COS marking:<br>`remark.list2.packet_priority_remark_set = [802.1p]` |
+|`remark.list2.port_set` | The set of _ingress_ ports that receives frames or packets with remarking, regardless of egress interface.<br>The following example remarks the egress COS values for traffic arriving on ports swp9 and swp10:<br>`remark.list2.port_set = swp9,swp10` |
+|`remark.list2.cos_4.priority_remark.8021p` | The egress COS value to write to the frame according to the internal COS value.<br>In the following example, traffic in internal COS 4 sets the egress COS 2:<br>`remark.list1.cos_3.priority_remark.8021p = [2]` |
 
 ### Egress Scheduling
 
@@ -1107,22 +1102,22 @@ egress_sched.list2.egr_queue_5.bw_percent = 50
 egress_sched.list2.egr_queue_6.bw_percent = 0
 ```
 
-|Configuration |Example |Explanation |
-|------------- |------- |----------- |
-| `egress_sched.port_group_list` | `egress_sched.port_group_list = [list1,list2]` |  Defines the names of the port groups to use (`list1` and `list2`). |
-| `egress_sched.list1.port_set` | `egress_sched.list1.port_set = swp2` | Assigns a port to a port group. In this example, `swp2` is now part of port group `list1`.       |
-| `egress_sched.list1.egr_queue_0.bw_percent` | `egress_sched.list1.egr_queue_0.bw_percent = 10` | Assigns the percentage of bandwidth to egress queue 0. In this example, `10`% of egress bandwidth.    |
-| `egress_sched.list1.egr_queue_1.bw_percent` | `egress_sched.list1.egr_queue_1.bw_percent = 20` | Assigns the percentage of bandwidth to egress queue 1. In this example, `20`% of egress bandwidth.       |
-| `egress_sched.list1.egr_queue_2.bw_percent` | `egress_sched.list1.egr_queue_2.bw_percent = 30` | Assigns the percentage of bandwidth to egress queue 2. In this example, `13`% of egress bandwidth.       |
-| `egress_sched.list1.egr_queue_3.bw_percent` | `egress_sched.list1.egr_queue_3.bw_percent = 10` | Assigns the percentage of bandwidth to egress queue 3. In this example, `10`% of egress bandwidth.       |
-| `egress_sched.list1.egr_queue_4.bw_percent` | `egress_sched.list1.egr_queue_4.bw_percent = 10` | Assigns the percentage of bandwidth to egress queue 4. In this example, `10`% of egress bandwidth.       |
-| `egress_sched.list1.egr_queue_5.bw_percent` | `egress_sched.list1.egr_queue_5.bw_percent = 10` | Assigns the percentage of bandwidth to egress queue 5. In this example, `10`% of egress bandwidth.       |
-| `egress_sched.list1.egr_queue_6.bw_percent` | `egress_sched.list1.egr_queue_6.bw_percent = 10` | Assigns the percentage of bandwidth to egress queue 6. In this example, `10`% of egress bandwidth.       |
-| `egress_sched.list1.egr_queue_7.bw_percent` | `egress_sched.list1.egr_queue_7.bw_percent = 0` |  Assigns the percentage of bandwidth to egress queue 7. In this example, `0` indicates a strict priority queue.      |
-| `egress_sched.list2.port_set` | `egress_sched.list2.port_set = [swp1,swp3,swp18]` |   Assigns ports `swp1`, `swp3` and `swp18` to port group `list2`.     |
-| `egress_sched.list2.egr_queue_2.bw_percent` | `egress_sched.list2.egr_queue_2.bw_percent = 50` | Assigns the percentage of bandwidth to egress queue 2. In this example, `50`% of egress bandwidth.      |
-| `egress_sched.list2.egr_queue_5.bw_percent` | `egress_sched.list2.egr_queue_5.bw_percent = 50` | Assigns the percentage of bandwidth to egress queue 5. In this example, `50`% of egress bandwidth. |
-| `egress_sched.list2.egr_queue_6.bw_percent` | `egress_sched.list2.egr_queue_6.bw_percent = 0` | Assigns the percentage of bandwidth to egress queue 6. In this example, `0` indicates a strict priority queue. |
+|Configuration |Description |
+|-------------  |----------- |
+| `egress_sched.port_group_list` |  Defines the names of the port groups to use.<br>The following example define port groups list1 snd list2:<br>`egress_sched.port_group_list = [list1,list2]` |
+| `egress_sched.list1.port_set` | Assigns a port to a port group.<br>In the following example, `swp2` is now part of port group `list1`:<br>`egress_sched.list1.port_set = swp2`  |
+| `egress_sched.list1.egr_queue_0.bw_percent` | Assigns the percentage of bandwidth to egress queue 0.<br>In this example, `10`% of egress bandwidth:<br>`egress_sched.list1.egr_queue_0.bw_percent = 10` |
+| `egress_sched.list1.egr_queue_1.bw_percent`  | Assigns the percentage of bandwidth to egress queue 1.<br>In the following example, `20`% of egress bandwidth:<br>`egress_sched.list1.egr_queue_1.bw_percent = 20`  |
+| `egress_sched.list1.egr_queue_2.bw_percent` | Assigns the percentage of bandwidth to egress queue 2.<br>In the following example, `13`% of egress bandwidth:<br>`egress_sched.list1.egr_queue_2.bw_percent = 30`|
+| `egress_sched.list1.egr_queue_3.bw_percent` | Assigns the percentage of bandwidth to egress queue 3.<br>In the following example, `10`% of egress bandwidth:<br>`egress_sched.list1.egr_queue_3.bw_percent = 10`     |
+| `egress_sched.list1.egr_queue_4.bw_percent` | Assigns the percentage of bandwidth to egress queue 4.<br>In the following example, `10`% of egress bandwidth:<br>`egress_sched.list1.egr_queue_4.bw_percent = 10`|
+| `egress_sched.list1.egr_queue_5.bw_percent` | Assigns the percentage of bandwidth to egress queue 5.<br>In the following example, `10`% of egress bandwidth:<br>`egress_sched.list1.egr_queue_5.bw_percent = 10` |
+| `egress_sched.list1.egr_queue_6.bw_percent` | Assigns the percentage of bandwidth to egress queue 6.<br>In this example, `10`% of egress bandwidth:<br>`egress_sched.list1.egr_queue_6.bw_percent = 10` |
+| `egress_sched.list1.egr_queue_7.bw_percent` |  Assigns the percentage of bandwidth to egress queue 7.<br>In the following example, `0` indicates a strict priority queue:<br>`egress_sched.list1.egr_queue_7.bw_percent = 0`|
+| `egress_sched.list2.port_set` | Assigns the ports.<br>The following example assigns `swp1`, `swp3` and `swp18` to port group `list2`:<br>`egress_sched.list2.port_set = [swp1,swp3,swp18]`  |
+| `egress_sched.list2.egr_queue_2.bw_percent` | Assigns the percentage of bandwidth to egress queue 2.<br>In the following example, `50`% of egress bandwidth:<br>`egress_sched.list2.egr_queue_2.bw_percent = 50`  |
+| `egress_sched.list2.egr_queue_5.bw_percent`  | Assigns the percentage of bandwidth to egress queue 5.<br>In the following example, `50`% of egress bandwidth:<br>`egress_sched.list2.egr_queue_5.bw_percent = 50` |
+| `egress_sched.list2.egr_queue_6.bw_percent`  | Assigns the percentage of bandwidth to egress queue 6.<br>In the following example, `0` indicates a strict priority queue:<br>`egress_sched.list2.egr_queue_6.bw_percent = 0` |
 
 {{< /tab >}}
 {{< /tabs >}}

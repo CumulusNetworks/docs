@@ -662,7 +662,7 @@ You can configure BGP to use a specific IP address when exchanging BGP updates w
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp neighbor swp51 update-source 10.10.10.1
+cumulus@leaf01:~$ nv set vrf default router bgp neighbor 10.10.10.10 update-source 10.10.10.1
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -674,10 +674,21 @@ cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
 leaf01(config)# router bgp 65101
-leaf01(config-router)# neighbor swp51 update-source 10.10.10.1
+leaf01(config-router)# neighbor 10.10.10.10 update-source 10.10.10.1
 leaf01(config-router-af)# end
 leaf01# write memory
 leaf01# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65101
+ bgp router-id 10.10.10.1
+ neighbor 10.10.10.10 remote-as 65000
+ neighbor 10.10.10.10 update-source 10.10.10.1
+ ...
 ```
 
 {{< /tab >}}
@@ -1523,6 +1534,16 @@ spine01(config-router)# neighbor swp51 shutdown
 spine01(config-router)# end
 spine01# write memory
 spine01# exit
+```
+
+The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+...
+router bgp 65199
+  ...
+  neighbor swp51 shutdown
+...
 ```
 
 To bring BGP sessions with the neighbor back up, run the `no neighbor swp51 shutdown` command.

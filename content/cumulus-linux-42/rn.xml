@@ -17,10 +17,17 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>4.4.5</td>
 </tr>
 <tr>
-<td>3120423</td>
+<td>3135801</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>4.0.0-4.3.0, 4.4.0-4.4.5</td>
+<td>3.7.16, 4.3.1</td>
+</tr>
+<tr>
+<td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
-<td>3.7.15-5.1.0</td>
-<td>5.2.0-5.2.1</td>
+<td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
+<td>4.3.1, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3108491</td>
@@ -41,12 +48,11 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3068962</td>
-<td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
-
-To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
-<td>4.2.1-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4-4.4.5, 5.2.0-5.2.1</td>
+<td>3077737</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
+To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5, 4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3066704</td>
@@ -62,13 +68,6 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td></td>
 </tr>
 <tr>
-<td>3053063</td>
-<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
-To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
-<td>3.7.15-4.4.3</td>
-<td>4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3046023</td>
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-5.1.0</td>
@@ -81,10 +80,10 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3020254</td>
+<td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4-4.4.5, 5.2.0-5.2.1</td>
+<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3007564</td>
@@ -115,7 +114,7 @@ Fixed: 1.9.2-1+deb10u1</td>
 <tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
-<td>4.2.1-4.4.2, 5.0.0-5.2.1</td>
+<td>4.2.1-4.4.2</td>
 <td>4.4.3-4.4.5</td>
 </tr>
 <tr>
@@ -143,10 +142,22 @@ Fixed: 1.9.2-1+deb10u1</td>
 <td>4.3.1-4.4.5</td>
 </tr>
 <tr>
-<td>2943222</td>
+<td>2943443</td>
 <td>Cumulus Linux lets you add more than one VXLAN interface to same VLAN on the same bridge. This is an invalid configuration as certain Cumulus Linux components, such as {{switchd}}, expect a single VNI for a given bridge or VLAN.</td>
-<td>3.7.15, 4.2.1-5.0.1</td>
-<td>3.7.16, 5.1.0-5.2.1</td>
+<td>3.7.15, 4.2.1-4.3.0, 4.4.2-5.0.1</td>
+<td>3.7.16, 4.3.1, 5.1.0-5.2.1</td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
+<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.2.1</td>
+</tr>
+<tr>
+<td>2940052</td>
+<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
+<td>3.7.15, 4.2.1-4.3.0</td>
+<td>3.7.16, 4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2932121</td>
@@ -203,10 +214,10 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
-<td>2875337</td>
+<td>2875338</td>
 <td>In a scaled EVPN-MLAG configuration (observed with 400 or more VNIs and 20K or more MAC addresses – the actual scale might vary), when the peer link flaps causing all VNIs to come up at the same time, there might be high CPU utilization on the system for several minutes and the FRR service might restart. After FRR restarts or the CPU utilization settles down, the system functions normally.</td>
-<td>4.2.1-5.0.1</td>
-<td>3.7.16, 5.1.0-5.2.1</td>
+<td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
+<td>3.7.16, 4.3.1, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2875296</td>
@@ -219,12 +230,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>On the Dell Z9264F-ON switch, interfaces that use the QSFP28 module remain down after you restart {{switchd}}.</td>
 <td>3.7.15-4.3.0</td>
 <td>4.3.1-4.4.5</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.5</td>
-<td>3.7.16, 5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -328,10 +333,10 @@ Fixed: 1.1.1d-0+deb10u7</td>
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
-<td>2754723</td>
+<td>2755615</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
-<td>4.0.0-4.4.1</td>
-<td>4.4.2-4.4.5, 5.0.0-5.2.1</td>
+<td>4.0.0-4.3.0, 4.4.0-4.4.1</td>
+<td>4.3.1, 4.4.2-4.4.5, 5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2754691</td>
@@ -370,6 +375,12 @@ Fixed: 1.0.28-6+deb10u1</td>
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
+<td>2743186</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
+</tr>
+<tr>
 <td>2739690</td>
 <td>CVE-2021-22918: An out-of-bounds read was discovered in the uv__idna_to_ascii() function of Libuv, an asynchronous event notification library, which could result in denial of service or information disclosure.
 Vulnerable: 1.24.1-1
@@ -386,16 +397,10 @@ Fixed: 1.17-3+deb10u2</td>
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
-<td>2738625</td>
-<td>When you configure the switch with the minimum reserved VLAN of 150 and the internal VLANs are exhausted, the MLAG peer does not  forward the VLAN.</td>
-<td>3.7.15, 4.2.1-4.4.5</td>
-<td>3.7.16</td>
-</tr>
-<tr>
-<td>2736260</td>
+<td>2736265</td>
 <td>After an apt upgrade, the OPTIONS configuration line in {{/etc/default/isc-dhcp-relay}} might be removed. To work around this issue, reconfigure the desired options in the file after the upgrade completes.</td>
-<td>3.7.12-3.7.15, 4.2.1-4.3.1</td>
-<td>3.7.16, 4.4.0-4.4.5</td>
+<td>3.7.12-3.7.15, 4.2.1-4.3.0</td>
+<td>3.7.16, 4.3.1-4.4.5, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2734122</td>
@@ -437,6 +442,14 @@ Fixed: 241-7~deb10u8</td>
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
+<td>2728138</td>
+<td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
+Fixed: 2.4.47+dfsg-3+deb10u5</td>
+<td>4.0.0-4.3.0</td>
+<td>4.3.1-4.4.5, 4.4.0-4.4.5</td>
+</tr>
+<tr>
 <td>2728134</td>
 <td>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
@@ -471,13 +484,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
 <td>4.2.1-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>2705160</td>
-<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
-When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
-<td>4.0.0-4.4.5</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2699399</td>
@@ -579,6 +585,12 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
+<td>2677049</td>
+<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
+<td>4.0.0-4.3.0</td>
+<td>4.3.1-4.4.5, 4.4.0-4.4.5</td>
+</tr>
+<tr>
 <td>2671667</td>
 <td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could
 result in denial of service and potentially the execution of arbitrary code.
@@ -641,6 +653,12 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
 <td>3.7.15-4.3.1</td>
 <td>4.4.0-4.4.5</td>
+</tr>
+<tr>
+<td>2648587</td>
+<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15-3.7.16, 4.3.1-4.4.5, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2644053</td>
@@ -750,6 +768,12 @@ Fixed: 4.1.0+git191117-2~deb10u2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
+<td>2578845</td>
+<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
+<td>3.7.11-3.7.14, 4.1.1-4.3.0</td>
+<td>3.7.14.2-3.7.16, 4.3.1-4.4.5, 4.4.0-4.4.5</td>
+</tr>
+<tr>
 <td>2574368</td>
 <td>When you run the NCLU {{net add bgp maximum-paths ibgp}} command, FRR restarts unexpectedly.
 To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/frr/frr.conf}} file directly, then run {{systemctl reload frr}}.</td>
@@ -850,24 +874,10 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <td>4.3.1-4.4.5, 4.4.0-4.4.5</td>
 </tr>
 <tr>
-<td>2556474</td>
-<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
-<td>4.0.0-4.3.1</td>
-<td>4.4.0-4.4.5</td>
-</tr>
-<tr>
 <td>2556462</td>
 <td> When you remove a fan tray, {{smonctl}} and {{sensors}} display different information about the removed fans.</td>
 <td>4.2.1-4.3.0</td>
 <td>4.3.1-4.4.5</td>
-</tr>
-<tr>
-<td>2556456</td>
-<td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
-Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
-Fixed: 2.4.47+dfsg-3+deb10u5</td>
-<td>4.0.0-4.3.1</td>
-<td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2556369</td>
@@ -1552,12 +1562,6 @@ To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td></td>
 </tr>
 <tr>
-<td>2552212</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.3.1</td>
-<td>3.7.14.2-3.7.16, 4.4.0-4.4.5</td>
-</tr>
-<tr>
 <td>2551873</td>
 <td>If you have an existing community list of any type, redefining the same sequence number results in the entire community list being deleted.
 To work around this issue, delete the community list sequence before trying to adjust it.</td>
@@ -1706,12 +1710,6 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <td>ACLs with SPAN target and in-interface as bond member are not supported on Spectrum-based switches </td>
 <td>4.2.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>2550601</td>
-<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.1</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2550444</td>
@@ -2964,16 +2962,30 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>4.4.5</td>
 </tr>
 <tr>
-<td>3120423</td>
+<td>3135801</td>
+<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
+When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
+<td>4.0.0-4.3.0, 4.4.0-4.4.5</td>
+<td>3.7.16, 4.3.1</td>
+</tr>
+<tr>
+<td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
-<td>3.7.15-5.1.0</td>
-<td>5.2.0-5.2.1</td>
+<td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
+<td>4.3.1, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
 <td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
 <td>4.4.4-4.4.5, 5.2.0-5.2.1</td>
+</tr>
+<tr>
+<td>3077737</td>
+<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
+To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
+<td>3.7.15-4.3.0</td>
+<td>4.3.1-4.4.5, 4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3066704</td>
@@ -2983,23 +2995,16 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>4.3.1-4.4.5</td>
 </tr>
 <tr>
-<td>3053063</td>
-<td>The {{update-ports.service}} fails because a blank space in the comment lines of the {{/etc/cumulus/ports.conf}} file causes parsing errors.
-To work around this issue, remove the blank spaces in the commented lines, then restart the {{update-ports}} and {{switchd}} services.</td>
-<td>3.7.15-4.4.3</td>
-<td>4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3021879</td>
 <td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
 <td>3.7.12-4.4.3</td>
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
-<td>3020254</td>
+<td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
-<td>3.7.15-4.4.3, 5.0.0-5.1.0</td>
-<td>4.4.4-4.4.5, 5.2.0-5.2.1</td>
+<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3007564</td>
@@ -3036,6 +3041,12 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <td>On the EdgeCore AS4610-54T switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>3.7.15-4.3.0</td>
 <td>4.3.1-4.4.5</td>
+</tr>
+<tr>
+<td>2940063</td>
+<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
+<td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
+<td>3.7.16, 4.3.1-4.4.5, 5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2932121</td>
@@ -3090,12 +3101,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td>On the Dell Z9264F-ON switch, interfaces that use the QSFP28 module remain down after you restart {{switchd}}.</td>
 <td>3.7.15-4.3.0</td>
 <td>4.3.1-4.4.5</td>
-</tr>
-<tr>
-<td>2866097</td>
-<td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
-<td>3.7.12-3.7.15, 4.1.1-4.4.5</td>
-<td>3.7.16, 5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2866084</td>
@@ -3187,10 +3192,10 @@ Fixed: 1.1.1d-0+deb10u7</td>
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
-<td>2754723</td>
+<td>2755615</td>
 <td>When {{route_preferred_over_neigh}} is set to {{FALSE}} in the {{/etc/cumulus/switchd.conf}} file, host routes (/32 or /128) are used for forwarding in hardware instead of a local neighbor entry.</td>
-<td>4.0.0-4.4.1</td>
-<td>4.4.2-4.4.5, 5.0.0-5.2.1</td>
+<td>4.0.0-4.3.0, 4.4.0-4.4.1</td>
+<td>4.3.1, 4.4.2-4.4.5, 5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2754691</td>
@@ -3227,6 +3232,12 @@ Vulnerable: 1.0.28-6
 Fixed: 1.0.28-6+deb10u1</td>
 <td>4.0.0-4.4.1</td>
 <td>4.4.2-4.4.5</td>
+</tr>
+<tr>
+<td>2743186</td>
+<td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2739690</td>
@@ -3284,6 +3295,14 @@ Fixed: 241-7~deb10u8</td>
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
+<td>2728138</td>
+<td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
+Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
+Fixed: 2.4.47+dfsg-3+deb10u5</td>
+<td>4.0.0-4.3.0</td>
+<td>4.3.1-4.4.5, 4.4.0-4.4.5</td>
+</tr>
+<tr>
 <td>2728134</td>
 <td>CVE-2021-27212: A vulnerability in the Certificate List Exact Assertion validation was discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of this flaw to cause a denial of service (slapd daemon crash) via specially crafted packets.
 Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u5
@@ -3306,13 +3325,6 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-5.0.1</td>
 <td>5.1.0-5.2.1</td>
-</tr>
-<tr>
-<td>2705160</td>
-<td>Zebra rejects MAC IP updates from BGP when the MAC mobility sequence number that BGP sends is lower than the sequence number known to zebra.
-When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow timing conditions during convergence or after rebooting an MLAG pair one VTEP at a time),  zebra rejects these updates and maintains a stale state. If the stale information that zebra uses points to the wrong VTEP address, traffic goes to the wrong VTEP and might drop.</td>
-<td>4.0.0-4.4.5</td>
-<td>3.7.16</td>
 </tr>
 <tr>
 <td>2699399</td>
@@ -3408,6 +3420,12 @@ Fixed: 4.3.1-6-cl3.7.16u1</td>
 <td>3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
+<td>2677049</td>
+<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
+<td>4.0.0-4.3.0</td>
+<td>4.3.1-4.4.5, 4.4.0-4.4.5</td>
+</tr>
+<tr>
 <td>2671667</td>
 <td>CVE-2021-23017: off-by-one in Nginx, a high-performance web and reverse proxy server, which could
 result in denial of service and potentially the execution of arbitrary code.
@@ -3470,6 +3488,12 @@ Fixed: 2.40.1-6+deb10u1</td>
 <td>If you try to use more than one percent of {{max-ecmp-nexthops}}, you get an error indicating a failure.</td>
 <td>3.7.15-4.3.1</td>
 <td>4.4.0-4.4.5</td>
+</tr>
+<tr>
+<td>2648587</td>
+<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
+<td>3.7.8-3.7.14.2, 4.0.0-4.3.0</td>
+<td>3.7.15-3.7.16, 4.3.1-4.4.5, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2644053</td>
@@ -3579,6 +3603,12 @@ Fixed: 4.1.0+git191117-2~deb10u2</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
+<td>2578845</td>
+<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
+<td>3.7.11-3.7.14, 4.1.1-4.3.0</td>
+<td>3.7.14.2-3.7.16, 4.3.1-4.4.5, 4.4.0-4.4.5</td>
+</tr>
+<tr>
 <td>2574368</td>
 <td>When you run the NCLU {{net add bgp maximum-paths ibgp}} command, FRR restarts unexpectedly.
 To work around this issue, either use the {{vtysh}} commands or edit the {{/etc/frr/frr.conf}} file directly, then run {{systemctl reload frr}}.</td>
@@ -3666,20 +3696,6 @@ Fixed: 1.3.8+dfsg-3+deb10u1</td>
 <td>Cumulus Linux does not support bond members at 200G or greater.</td>
 <td>4.0.0-4.3.0</td>
 <td>4.3.1-4.4.5, 4.4.0-4.4.5</td>
-</tr>
-<tr>
-<td>2556474</td>
-<td>CVE-2020-25681 CVE-2020-25682 CVE-2020-25683 CVE-2020-25684 CVE-2020-25685 CVE-2020-25686 CVE-2020-25687: Several vulnerabilities in dnsmasq, a small caching DNS proxy and DHCP/TFTP server, could result in denial of service, cache poisoning or the execution of arbitrary code.</td>
-<td>4.0.0-4.3.1</td>
-<td>4.4.0-4.4.5</td>
-</tr>
-<tr>
-<td>2556456</td>
-<td>CVE-2020-36221, CVE-2020-36222, CVE-2020-36223, CVE-2020-36224, CVE-2020-36225, CVE-2020-36226, CVE-2020-36227, CVE-2020-36228, CVE-2020-36229, CVE-2020-36230:  Several vulnerabilities were discovered in OpenLDAP, a free implementation of the Lightweight Directory Access Protocol. An unauthenticated remote attacker can take advantage of these flaws to cause a denial of service (slapd daemon crash, infinite loops) via specially crafted packets.
-Vulnerable: &lt;= 2.4.47+dfsg-3+deb10u4
-Fixed: 2.4.47+dfsg-3+deb10u5</td>
-<td>4.0.0-4.3.1</td>
-<td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2556279</td>
@@ -4236,12 +4252,6 @@ To disable scp completely, use {{/bin/chmod 0 /usr/bin/scp}} .</td>
 <td></td>
 </tr>
 <tr>
-<td>2552212</td>
-<td>The Mellanox SN2700 and SN2410 switch intermittently reports PSU fan state changes with {{Unable to read from device/fan1_input/pwm1}} syslog messages.</td>
-<td>3.7.11-3.7.14, 4.1.1-4.3.1</td>
-<td>3.7.14.2-3.7.16, 4.4.0-4.4.5</td>
-</tr>
-<tr>
 <td>2552204</td>
 <td>If the MAC address of an SVI changes, {{clagd}} does not update its permanent neighbor entry for the local interface, and it does not report the change to its MLAG peer. This leaves the MLAG peer in a state where its permanent neighbor for the MLAG peer's SVI IP address continues to use the old MAC address, which causes routed traffic over this SVI to be dropped.
 To work around this issue, ifdown/ifup the SVI when a MAC address changes.</td>
@@ -4533,12 +4543,6 @@ To work around this issue, do not enslave the subinterface of a VXLAN layer 3 up
 <td>A VRRP role change over the EVPN network causes excessive BGP updates and connectivity issues to VIP for about one minute.</td>
 <td>4.1.1-4.4.5</td>
 <td>3.7.14-3.7.16</td>
-</tr>
-<tr>
-<td>2550601</td>
-<td>The received PVST BPDU for a VLAN is flooded even though the ingress port doesn't have the VLAN tagged.</td>
-<td>3.7.8-3.7.14.2, 4.0.0-4.3.1</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2550478</td>

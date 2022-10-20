@@ -240,7 +240,7 @@ route-map routemap2 permit 10
 Cumulus Linux supports the following match and set statements.
 
 {{%notice note%}}
-You can use the following list of supported match and set statements with NVUE commands. vtysh does not support some of these match and set statements.
+You can use the following list of supported match and set statements with NVUE commands. For a list of the match and set statements that vtysh supports, see the {{<exlink url="https://docs.frrouting.org/en/latest/routemap.html?highlight=match" text="FRRouting User Guide">}}.
 {{%/notice%}}
 
 {{< tabs "TabID122 ">}}
@@ -277,11 +277,11 @@ You can use the following list of supported match and set statements with NVUE c
 | ------------ | ---------- |
 | `aggregator-as` | Sets the aggregator AS. |
 | `ext-community-rt` | Sets the BGP extended community RT.|
-| `originator-id` | Sets the originator ID.|
-| `as-path-exclude` | Sets BGP AS path exclude. |
+| `originator-id` | Sets the originator ID so that BGP choses the preferred path. |
+| `as-path-exclude` | Sets BGP AS path exclude attribute to avoid considering the AS path during best path route selection. |
 | `ext-community-soo` | Sets the BGP extended community Sight of Origin (SOO).|
 | `large-community` |Sets the BGP large community. |
-| `source-ip` | Sets the source IP.|
+| `source-ip` | Sets the source IP address.|
 | `as-path-prepend` | Sets the BGP AS path prepend attribute.|
 | `forwarding-address` | Sets the route forwarding address.|
 | `large-community-delete-list` | Sets the BGP large community delete list.|
@@ -293,7 +293,7 @@ You can use the following list of supported match and set statements with NVUE c
 | `community` | Sets the BGP community attribute.|
 | `ipv6-nexthop-global`  | Sets the IPv6 next hop global attribute.|
 | `metric` |  Sets the BGP attribute MED to a specific value. You can specify `metric-minus` to subtract the specified value from the MED,  `metric-plus` to add the specified value to the MED, `rtt` to set the MED to the round trip time, `rtt-minus` to subtract the round trip time from the MED, or `rtt-plus` to add the round trip time to the MED.|
-| `community-delete-list`  | Sets the community delete list. |
+| `community-delete-list`  | Sets the BGP community delete list. |
 | `ipv6-nexthop-local`  |Sets the IPv6 next hop local attribute. |
 | `metric-type` | Sets the metric type. You can specify `type-1` or `type-2`. |
 | `ext-community-bw` | Sets the BGP extended community link bandwidth. |

@@ -109,19 +109,17 @@ To configure the NetQ Agent to filter WJH drops:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in a workbench header.
 
-1. Click **Configuration Management**.
+2. Select **NetQ Agent Configurations**.
 
-   {{<img src="/images/netq/lcm-dashboard-config-mgmt-tab-330.png" width="600px">}}
+3. On the NetQ Configurations card, click **Add Config**.
 
-1. On the NetQ Configurations card, click **Add Config**.
+4. Click **Enable** to enable WJH, then click **Customize**:
 
-1. Click **Enable** to enable WJH, then click **Customize**.
+   {{<img src="/images/netq/netq-configuration-profile-updated.png" alt="modal describing WJH event capture options" width="500px">}}
 
-   {{<img src="/images/netq/lcm-netq-config-profile-create-wjh-custom-330.png" width="400px">}}
+5. By default, WJH includes all drop reasons and severities. Uncheck any drop reasons or severity you *do not* want to use to generate WJH events, then click **Done**.
 
-1. By default, WJH includes all drop reasons and severities. Uncheck any drop reasons or severity you *do not* want to use to generate WJH events, then click **Done**.
-
-1. Click **Add** to save the configuration profile, or click **Close** to discard it.
+6. Click **Add** to save the configuration profile, or click **Close** to discard it.
 
 {{</tab>}}
 

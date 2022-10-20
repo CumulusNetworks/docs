@@ -227,9 +227,7 @@ cumulus@switch:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-When you enable PTM, every interface has an implied `ptm-enable` line in the `/etc/network/interfaces` file. The `zebra` daemon connects to `ptmd` over a Unix socket. When there is an interface status change, `ptmd` sends a notification to `zebra`, which maintains a `ptm-status` flag per interface and evaluates routing adjacency based on this flag.
-
-To check PTM status on an interface, run the NVUE `nv show interface <interface>` command or the vtysh `show interface <interface>` command.
+To check PTM status on an interface, run the vtysh `show interface <interface>` command.
 
 ```
 cumulus@switch:~$ sudo vtysh

@@ -639,12 +639,12 @@ Where to go next depends on what data you see, but a few options include:
 
 {{<tab "NetQ CLI">}}
 
-To view the switches with the most EVPN alarms and informational events, run the `netq show events` command with the `type` option set to *evpn*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
+To view the switches with the most EVPN alarms and informational events, run the `netq show events` command with the `message_type` option set to *evpn*, and optionally the `between` option set to display the events within a given time range. Count the events associated with each switch.
 
 This example shows the events that have occurred in the last 48 hours.
 
 ```
-cumulus@switch:/$ netq show events type evpn between now and 48h
+cumulus@switch:/$ netq show events message_type evpn between now and 48h
 Matching events records:
 Hostname          Message Type Severity Message                             Timestamp
 ----------------- ------------ -------- ----------------------------------- -------------------------
@@ -669,7 +669,7 @@ torc-22           evpn         info     VNI 39 state changed from down to u 1d:8
 
 ### View All EVPN Events
 
-The Network Services/All EVPN Sessions card workflow and the `netq show events type evpn` command enable you to view all EVPN events in a designated time period.
+The Network Services/All EVPN Sessions card workflow and the `netq show events message_type evpn` command enable you to view all EVPN events in a designated time period.
 
 {{<tabs "View all EVPN events">}}
 
@@ -693,18 +693,16 @@ Where to go next depends on what data you see, but a few options include:
 
 {{<tab "NetQ CLI">}}
 
-To view all EVPN alarms, run:
+To view all EVPN events, run:
 
 ```
-netq show events [level info | level error | level warning | level debug] type evpn [between <text-time> and <text-endtime>] [json]
+netq show events [severity info | severity error ] message_type evpn [between <text-time> and <text-endtime>] [json]
 ```
-
-Use the level option to set the severity of the events to show. Use the `between` option to show events within a given time range.
 
 This example shows error EVPN events in the past three days.
 
 ```
-cumulus@switch:~$ netq show events level error type evpn between now and 3d
+cumulus@switch:~$ netq show events severity error message_type evpn between now and 3d
 ```
 
 {{</tab>}}

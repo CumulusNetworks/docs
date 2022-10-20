@@ -126,7 +126,7 @@ When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd`
 
 ## Restart switchd
 
-Whenever you modify a `switchd` hardware configuration file (for example, you update any `*.conf` file that requires making a change to the switching hardware, like `/etc/cumulus/datapath/traffic.conf`), you must restart the `switchd` service for the change to take effect:
+When you modify certain settings in `switchd` hardware configuration files (for example, you update a `*.conf` file that requires making a change to the switching hardware), you must restart the `switchd` service for the change to take effect:
 
 ```
 cumulus@switch:~$ sudo systemctl restart switchd.service

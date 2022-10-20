@@ -433,21 +433,21 @@ You can configure system settings for the SNMPv2 MIB. The following example comm
 To set the system physical location for the node in the SNMPv2-MIB system table:
 
 ```
-cumulus@switch:~$ nv set service snmp-server system-location My private bunker
+cumulus@switch:~$ nv set service snmp-server system-location my-private-bunker
 cumulus@switch:~$ nv config apply
 ```
 
 To set the username and email address of the contact person for this managed node:
 
 ```
-cumulus@switch:~$ nv set service snmp-server system-contact user X at myemail@example.com
+cumulus@switch:~$ nv set service snmp-server system-contact myemail@example.com
 cumulus@switch:~$ nv config apply
 ```
 
 To set an administratively assigned name for the managed node, run the following command. Typically, this is the fully qualified domain name of the node.
 
 ```
-cumulus@switch:~$ nv set service snmp-server system-name CumulusBox number 1,543,567
+cumulus@switch:~$ nv set service snmp-server system-name CumulusBox-1,543,567
 cumulus@switch:~$ nv config apply
 ```
 
@@ -459,9 +459,9 @@ Edit the `/etc/snmp/snmpd.conf` file and add the following configuration:
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
 ...
-syscontact user X at myemail@example.com
-syslocation My private bunker
-sysname CumulusBox number 1,543,567
+syscontact myemail@example.com
+syslocation My-private-bunker
+sysname CumulusBox-1,543,567
 ...
 ```
 
@@ -603,7 +603,7 @@ The following example configuration:
 ```
 cumulus@switch:~$ nv set service snmp-server listening-address all
 cumulus@switch:~$ nv set service snmp-server readonly-community tempPassword access any
-cumulus@switch:~$ nv set service snmp-server trap-destination 1.1.1.1 community-password mypass version 2c
+cumulus@switch:~$ nv set service snmp-server trap-destination 1.1.1.1 community-password mypassword version 2c
 cumulus@switch:~$ nv set service snmp-server trap-link-up check-frequency 15
 cumulus@switch:~$ nv set service snmp-server trap-link-down check-frequency 10
 cumulus@switch:~$ nv set service snmp-server trap-snmp-auth-failures
@@ -643,7 +643,7 @@ rouser _snmptrapusernameX
 +syslocation leaf01
 sysobjectid 1.3.6.1.4.1.40310
 sysservices 72
-+trap2sink 1.1.1.1 mypass
++trap2sink 1.1.1.1 mypassword
 ```
 
 {{< /tab >}}

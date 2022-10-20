@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 810
 toc: 4
 ---
-The *What Just Happened* (WJH) feature, available on NVIDIA switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. You must have Cumulus Linux 4.4.0 or later, SONiC 202012 or later, and NetQ 2.4.0 or later to use this feature.
+The *What Just Happened* (WJH) feature, available on NVIDIA switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. You must have Cumulus Linux 4.4.0 or later, SONiC 202012 or 202106 and NetQ 2.4.0 or later to use this feature.
 
 For a list of supported WJH events, refer to the {{<link title="WJH Event Messages Reference">}}.
 

@@ -4,7 +4,7 @@ author: Cumulus Networks
 weight: 810
 toc: 4
 ---
-The *What Just Happened* (WJH) feature, available on NVIDIA switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. You must have Cumulus Linux 4.0.0 or later, SONiC 202012 or later, and NetQ 2.4.0 or later to use this feature.
+The *What Just Happened* (WJH) feature, available on NVIDIA switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. You must have Cumulus Linux 4.4.0 or later, SONiC 202012 or later, and NetQ 2.4.0 or later to use this feature.
 
 For a list of supported WJH events, refer to the {{<link title="WJH Event Messages Reference">}}.
 
@@ -24,7 +24,7 @@ Using WJH in combination with NetQ helps you identify losses anywhere in the fab
 
 {{%notice info%}}
 
-By default, Cumulus Linux 4.0.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and CLI to the latest release.
+By default, Cumulus Linux 4.4.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and CLI to the latest release.
 
 ```
 cumulus@<hostname>:~$ sudo apt-get update
@@ -39,7 +39,7 @@ cumulus@<hostname>:~$ sudo netq config restart cli
 ## Configure the WJH Feature
 
 <!-- vale off -->
-WJH is enabled by default on NVIDIA switches and Cumulus Linux 4.0.0 requires no configuration; however, you must enable the NetQ Agent to collect the data.
+WJH is enabled by default on NVIDIA switches and Cumulus Linux 4.4.0 requires no configuration; however, you must enable the NetQ Agent to collect the data.
 <!-- vale on -->
 
 To enable WJH in NetQ on any switch or server:

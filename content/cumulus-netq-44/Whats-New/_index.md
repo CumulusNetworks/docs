@@ -11,7 +11,16 @@ This page summarizes new feature and improvements for the NetQ {{<version>}} rel
 <!-- vale off -->
 ## What's New in NetQ 4.4.0
 <!-- vale on -->
-This release provides bug fixes and security enhancements.
+This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. It also includes extensive security enhancements and bug fixes. NVIDIA recommends upgrading to this release to improve devices' software security and reliabilty. Additional updates include:
+
+Command line updates: 
+
+- `netq check` validation commands now incorporate the `streaming` keyword automatically. This returns results more quickly.
+- `netq show events` commands have an updated syntax: `type` is now `message_type` and `level` is now `severity`. These commands are updated in their respective categories in this User Guide.
+
+User Guide updates:
+
+- New section defining {{<link title="Accounts and Roles" text="NetQ admin and user roles">}}
 
 ## Upgrade Paths
 

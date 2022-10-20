@@ -16,12 +16,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
-<td>3209895</td>
-<td>When performing "tcpdump -i swpX" for an L3, IPv6 enabled port the switch will generate 4 IPv6 Router Advertisements when tcpdump is started, and when it finishes, for a total of 8 IPv6 RA packets transmitted.</td>
-<td>4.4.4-4.4.5, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3195345</td>
 <td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
 <td>4.3.0-5.0.1</td>
@@ -1942,12 +1936,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 Packet size is larger than router interface MTU – Validate the router interface MTU configuration
 </td>
 <td>4.4.2-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3209895</td>
-<td>When performing "tcpdump -i swpX" for an L3, IPv6 enabled port the switch will generate 4 IPv6 Router Advertisements when tcpdump is started, and when it finishes, for a total of 8 IPv6 RA packets transmitted.</td>
-<td>4.4.4-4.4.5, 5.0.1-5.2.1</td>
 <td></td>
 </tr>
 <tr>

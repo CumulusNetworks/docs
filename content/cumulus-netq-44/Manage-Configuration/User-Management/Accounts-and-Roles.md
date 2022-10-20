@@ -6,7 +6,7 @@ toc: 2
 ---
 NetQ accounts are assigned one of two roles: admin or user.
 
-Accounts with admin privileges can access a management dashboard in the UI. From this dashboard, admins can:
+Accounts with admin privileges can perform the same actions as user accounts. Additionally, admins can access a management dashboard in the UI. From this dashboard, admins can:
 
 - Create, edit, and delete NetQ accounts.
 - Manage login policies, including SSO and LDAP authentication.

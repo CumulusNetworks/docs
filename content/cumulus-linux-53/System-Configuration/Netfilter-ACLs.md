@@ -141,7 +141,7 @@ The incremental nonatomic update operation follows this order:
 5. If there are isufficient resources to hold both the new rule set and old rule set, Cumulus Linux tries the regular nonatomic mode, which interrupts network traffic.
 6. If the regular nonatomic update fails, Cumulus Linux reverts back to the previous rules.
 
-To always start `switchd` with nonatomic updates:
+To always reload `switchd` with nonatomic updates:
 
 1. Edit `/etc/cumulus/switchd.conf`.
 2. Add the following line to the file:
@@ -150,9 +150,7 @@ To always start `switchd` with nonatomic updates:
     acl.non_atomic_update_mode = TRUE
     ```
 
-3. {{%link url="Configuring-switchd#restart-switchd" text="Restart `switchd`"%}}:
-
-   {{<cl/restart-switchd>}}
+3. Reload `switchd` with the `sudo systemctl reload switchd.service` command for the changes to take effect. The reload does **not** interrupt network services.
 
 {{%notice note%}}
 During regular *non-incremental nonatomic updates*, traffic stops, then continues after all the new configuration is in the hardware.

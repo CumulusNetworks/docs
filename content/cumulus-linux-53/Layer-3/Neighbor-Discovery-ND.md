@@ -353,6 +353,10 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery home-agent li
 cumulus@leaf01:mgmt:~$ nv config apply
 ```
 
+{{%notice note%}}
+When you run the above commands, NVUE adds the `ipv6 nd home-agent-config-flag` line under the interface stanza in the `/etc/network/interfaces` file in addition to the `ipv6 nd home-agent-preference` and `ipv6 nd home-agent-lifetime` lines.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "vtysh Commands ">}}
 

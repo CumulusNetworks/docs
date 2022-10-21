@@ -6,7 +6,7 @@ subsection: true
 toc: 1
 ---
 
-This page summarizes new feature and improvements for the NetQ {{<version>}} release. For a complete list of open and fixed issues, see the {{<link title="NVIDIA NetQ 4.4 Release Notes" text="release notes">}}.
+This page summarizes new features and improvements for the NetQ {{<version>}} release. For a complete list of open and fixed issues, see the {{<link title="NVIDIA NetQ 4.4 Release Notes" text="release notes">}}.
 
 <!-- vale off -->
 ## What's New in NetQ 4.4.0
@@ -27,7 +27,7 @@ User Guide updates:
 You can upgrade to NetQ 4.4.0 directly from versions 4.0.0 or later. Upgrades from NetQ v3 releases require a fresh installation or an incremental upgrade to version 4.0.0 first.
 ## Compatible Agent Versions
 
-NetQ 4.3.0 is compatible with NetQ Agent versions 4.2.0 and above. You can install NetQ Agents on switches and servers running:
+NetQ 4.4.0 is compatible with NetQ Agent versions 4.3.0 and above. You can install NetQ Agents on switches and servers running:
 
 - Cumulus Linux 3.7.12 and later
 - SONiC 202012 to 202106

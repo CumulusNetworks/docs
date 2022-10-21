@@ -81,12 +81,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
-<td>3128328</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
@@ -2007,12 +2001,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>3129819</td>
 <td>On the EdgeCore AS4610 switch, the {{clagd}} service loses communication after 198 days of uptime.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3128328</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>

@@ -20,8 +20,12 @@ NVUE currently only supports a subset of the `switchd` configuration available i
 {{< tab "NVUE Commands ">}}
 
 You can run NVUE commands to set the following `switchd` options:
-- The statistic polling interval for physical interfaces. You can specify a value between 1 and 10. The default setting is 2 seconds.
-- The statistic polling interval for logical interfaces. You can specify a value between 1 and 10. The default setting is 5 seconds.
+- The statistic polling interval for physical interfaces and for logical interfaces. For both settings, you can specify a value between 1 and 10. The default setting for physical interfaces is 2 seconds and the default setting for logical interfaces is 5 seconds.
+  
+   {{%notice note%}}
+A low setting, such as 1 might affect system performance.
+{{%/notice%}}
+
 - The log level to debug the data plane programming related code. You can specify `debug`, `info`, `notice`, `warning`, or `error`. The default setting is `info`. NVIDIA recommends that you do not set the log level to debug in a production environment.
 - The DSCP action and value for encapsulation. You can set the DSCP action to `copy` (to copy the value from the IP header of the packet), `set` (to specify a specific value), or `derive` (to obtain the value from the switch priority). The default action is `derive`. Only specify a value if the action is set.
 - The DSCP action for decapsulation in VXLAN outer headers. You can specify `copy` (to copy the value from the IP header of the packet), `preserve` (to keep the inner DSCP value), or `derive` (to obtain the value from the switch priority). The default action is `derive`.

@@ -8,37 +8,60 @@ Storm control provides protection against excessive inbound BUM (broadcast, unkn
 
 ## Configure Storm Control
 
-To configure storm control for physical ports, edit the `/etc/cumulus/switchd.conf` file. For example, to enable broadcast storm control for swp1 at 400 packets per second (pps), multicast storm control at 3000 pps, and unknown unicast at 500 pps, edit the `/etc/cumulus/switchd.conf` file and uncomment the `storm_control.broadcast`, `storm_control.multicast`, and `storm_control.unknown_unicast` lines:
+To configure storm control settings, you can either run NVUE commands or manually edit the `/etc/cumulus/switchd.conf` file.
+
+The following command example enables broadcast storm control for swp4 at 400 packets per second (pps), multicast storm control at 3000 pps, and unknown unicast at 2000 pps.
+
+{{< tabs "TabID15 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set interface swp4 storm-control broadcast 400
+cumulus@switch:~$ nv set interface swp4 storm-control multicast 3000
+cumulus@switch:~$ nv set interface swp4 storm-control unknown_unicast 2000
+cumulus@switch:~$ nv config apply
+```
+
+{{%notice note%}}
+The storm control settings require a `switchd` reload. Before applying the settings, NVUE indicates that a reload is required and prompts you for confirmation. When the `switchd` service reloads, there is no interruption to network services.
+{{%/notice%}}
+
+A value of 0 disables the setting on the interface. The following example command disables multicast storm control on swp4:
+
+```
+cumulus@switch:~$ nv set interface swp4 storm-control multicast 0
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.conf` file and uncomment the `storm_control.broadcast`, `storm_control.multicast`, and `storm_control.unknown_unicast` lines:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
 # Storm Control setting on a port, in pps, 0 means disable
-interface.swp1.storm_control.broadcast = 400
-interface.swp1.storm_control.multicast = 3000
-interface.swp1.storm_control.unknown_unicast = 500
+interface.swp4.storm_control.broadcast = 400
+interface.swp4.storm_control.multicast = 3000
+interface.swp4.storm_control.unknown_unicast = 2000
 ...
 ```
 
-When you update the `/etc/cumulus/switchd.conf` file, you must restart `switchd` for the changes to take effect.
-<!-- vale off -->
-{{<cl/restart-switchd>}}
-<!-- vale on -->
-You can also run the following commands. The configuration below takes effect, but does not persist if you reboot the switch. For a persistent configuration, edit the `/etc/cumulus/switchd.conf` file, as described above.
+When you change the storm control settings, you must reload `switchd` with the `sudo systemctl reload switchd.service` command for the changes to take effect. The reload does not interrupt network services.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Show Storm Control Settings
+
+To show the current storm control settings for a layer 2 interface, run the `nv show interface <interface> storm-control` command.
 
 ```
-cumulus@switch:~$ sudo sh -c 'echo 400 > /cumulus/switchd/config/interface/swp1/storm_control/broadcast'
-cumulus@switch:~$ sudo sh -c 'echo 3000 > /cumulus/switchd/config/interface/swp1/storm_control/multicast'
-cumulus@switch:~$ sudo sh -c 'echo 500 > /cumulus/switchd/config/interface/swp1/storm_control/unknown_unicast'
-```
-
-To use the same command above on range of interfaces you can use a for-loop from the switch CLI using the below example.
-
-```
-cumulus@switch:mgmt:~$ for i in {1..5}; do
-> sudo sh -c "echo 400 > /cumulus/switchd/config/interface/swp$i/storm_control/broadcast"
-> sudo sh -c "echo 3000 > /cumulus/switchd/config/interface/swp$i/storm_control/multicast"
-> sudo sh -c "echo 500 > /cumulus/switchd/config/interface/swp$i/storm_control/unknown_unicast"
-> done
-cumulus@switch:mgmt:~$ 
+cumulus@switch:~$ nv show interface swp4 storm-control
+                 applied  description
+---------------  -------  ----------------------------------------------------------
+broadcast        400      Configure storm control for broadcast traffic in pps
+multicast        3000     Configure storm control for multicast traffic in pps
+unknown-unicast  2000      Configure storm control for unknown unicast traffic in pps
 ```

@@ -27,7 +27,7 @@ A low setting, such as 1 might affect system performance.
 {{%/notice%}}
 
 - The log level to debug the data plane programming related code. You can specify `debug`, `info`, `notice`, `warning`, or `error`. The default setting is `info`. NVIDIA recommends that you do not set the log level to debug in a production environment.
-- The DSCP action and value for encapsulation. You can set the DSCP action to `copy` (to copy the value from the IP header of the packet), `set` (to specify a specific value), or `derive` (to obtain the value from the switch priority). The default action is `derive`. Only specify a value if the action is set.
+- The DSCP action and value for encapsulation. You can set the DSCP action to `copy` (to copy the value from the IP header of the packet), `set` (to specify a specific value), or `derive` (to obtain the value from the switch priority). The default action is `derive`. Only specify a value if the action is `set`.
 - The DSCP action for decapsulation in VXLAN outer headers. You can specify `copy` (to copy the value from the IP header of the packet), `preserve` (to keep the inner DSCP value), or `derive` (to obtain the value from the switch priority). The default action is `derive`.
 - The preference between a route and neighbor with the same IP address and mask. You can specify `route`, `neighbor`, or `route-and-neighbour`. The default setting is `route`.
 - The ACL mode (atomic or non-atomic). The default setting is `atomic`.
@@ -38,11 +38,11 @@ Certain `switchd` settings require a `switchd` restart or reload. Before applyin
 - When the `switchd` service reloads, there is **no** interruption to network services.
 {{%/notice%}}
 
-The following command example sets both the statistic polling interval for logical interfaces and physical interfaces to 5 seconds:
+The following command example sets both the statistic polling interval for logical interfaces and physical interfaces to 6 seconds:
 
 ```
-cumulus@switch:~$ nv set system counter polling-interval logical-interface 5
-cumulus@switch:~$ nv set system counter polling-interval physical-interface 5
+cumulus@switch:~$ nv set system counter polling-interval logical-interface 6
+cumulus@switch:~$ nv set system counter polling-interval physical-interface 6
 cumulus@switch:~$ nv config apply
 ```
 
@@ -168,13 +168,13 @@ You can run the following NVUE commands to show the current `switchd` configurat
 |`nv show nve vxlan decapsulation dscp` | Shows the DSCP action for the outer header in VXLAN decapsulation.|
 |`nv show system acl ` | Shows the ACL mode (atomic or non-atomic). |
 
-The following example command shows that the polling interval setting for logical interface counters is 5 seconds:
+The following example command shows that the polling interval setting for logical interface counters is 6 seconds:
 
 ```
 cumulus@switch:~$ nv show system counter polling-interval
                    applied  description
 -----------------  -------  -----------------------------------------------------
-logical-interface  0:00:05  Config polling-interval for logical interface(in sec)
+logical-interface  0:00:06  Config polling-interval for logical interface(in sec)
 ```
 
 The following example command shows that the log level setting for data plane programming logs is `warning`:

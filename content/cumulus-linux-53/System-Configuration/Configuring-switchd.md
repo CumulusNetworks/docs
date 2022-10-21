@@ -6,7 +6,7 @@ toc: 3
 ---
 The `switchd` service enables the switch to communicate with Cumulus Linux and all the applications running on Cumulus Linux.
 
-## Configure switchd Parameters
+## Configure switchd Settings
 
 You can control certain options associated with the `switchd` process. For example, you can set polling intervals, optimize ACL hardware resources for better utilization, configure log message levels, set the internal VLAN range, and configure VXLAN encapsulation and decapsulation.
 
@@ -21,56 +21,50 @@ NVUE currently only supports a subset of the `switchd` configuration available i
 
 You can run NVUE commands to set the following `switchd` options:
 - The statistic polling interval for physical interfaces. You can specify a value between 1 and 10. The default setting is 2 seconds.
-- The statistic polling interval for logical interfaces. You can specify a value between 1 and 10. The default setting is 2 seconds.
-- The log level to debug the data plane programming related code. You can specify debug, info, notice, warning, or error. The default setting is info. NVIDIA recommends that you do not set the log level to debug in a production environment.
-- The DSCP action and value for encapsulation. You can specify copy, set, or derive for the DSCP action. The default action is derive.
-- The DSCP action for decapsulation in VXLAN outer headers. You can specify copy, preserve, or derive. The default action is derive.
-- The route or neighbour preference. You can specify route, neighbor, or route and neighbour. The default setting is route.
-- The ACL mode (atomic or non-atomic). The default setting is atomic mode.
+- The statistic polling interval for logical interfaces. You can specify a value between 1 and 10. The default setting is 5 seconds.
+- The log level to debug the data plane programming related code. You can specify `debug`, `info`, `notice`, `warning`, or `error`. The default setting is `info`. NVIDIA recommends that you do not set the log level to debug in a production environment.
+- The DSCP action and value for encapsulation. You can set the DSCP action to `copy` (to copy the value from the IP header of the packet), `set` (to specify a specific value), or `derive` (to obtain the value from the switch priority). The default action is `derive`. Only specify a value if the action is set.
+- The DSCP action for decapsulation in VXLAN outer headers. You can specify `copy` (to copy the value from the IP header of the packet), `preserve` (to keep the inner DSCP value), or `derive` (to obtain the value from the switch priority). The default action is `derive`.
+- The preference between a route and neighbor with the same IP address and mask. You can specify `route`, `neighbor`, or `route-and-neighbour`. The default setting is `route`.
+- The ACL mode (atomic or non-atomic). The default setting is `atomic`.
 
-The following command example sets the statistic polling interval for physical interfaces to 5 seconds:
+{{%notice warning%}}
+Certain `switchd` settings require a `switchd` restart or reload. Before applying the settings, NVUE indicates if a restart or reload is required and prompts you for confirmation.  
+- When the `switchd` service restarts, in addition to resetting the switch hardware configuration, all network ports reset.
+- When the `switchd` service reloads, there is **no** interruption to network services.
+{{%/notice%}}
+
+The following command example sets both the statistic polling interval for logical interfaces and physical interfaces to 5 seconds:
 
 ```
+cumulus@switch:~$ nv set system counter polling-interval logical-interface 5
 cumulus@switch:~$ nv set system counter polling-interval physical-interface 5
 cumulus@switch:~$ nv config apply
 ```
 
-The following command example sets the statistic polling interval for logical interfaces to 5 seconds:
-
-```
-cumulus@switch:~$ nv set system counter polling-interval logical-interface 5
-cumulus@switch:~$ nv config apply
-```
-
-The following command example sets the log level for debugging the data plane programming related code to warning:
+The following command example sets the log level for debugging the data plane programming related code to `warning`:
 
 ```
 cumulus@switch:~$ nv set system forwarding programming log-level warning
 cumulus@switch:~$ nv config apply
 ```
 
-The following command example sets the DSCP action for encapsulation in VXLAN outer headers to copy:
+The following command example sets the DSCP action for encapsulation in VXLAN outer headers to `set` and the value to `af12`:
 
 ```
-cumulus@switch:~$ nv set nve vxlan encapsulation dscp action copy
-cumulus@switch:~$ nv config apply
-```
-
-The following command example sets the DSCP value for encapsulation in VXLAN outer headers to af12:
-
-```
+cumulus@switch:~$ nv set nve vxlan encapsulation dscp action set
 cumulus@switch:~$ nv set nve vxlan encapsulation dscp value af12
 cumulus@switch:~$ nv config apply
 ```
 
-The following command example sets the DSCP action for decapsulation in VXLAN outer headers to preserve:
+The following command example sets the DSCP action for decapsulation in VXLAN outer headers to `preserve`:
 
 ```
 cumulus@switch:~$ nv set nve vxlan decapsulation dscp action preserve
 cumulus@switch:~$ nv config apply
 ```
 
-The following command example sets the route or neighbour preference to route and neighbour:
+The following command example sets the route or neighbour preference to both route and neighbour:
 
 ```
 cumulus@switch:~$ nv set system forwarding host-route-preference route-and-neighbour
@@ -87,14 +81,15 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To configure the `switchd` parameters, edit the `/etc/cumulus/switchd.conf` file. Change the setting and uncomment the line if needed.
+To configure the `switchd` parameters, edit the `/etc/cumulus/switchd.conf` file. Change the setting and uncomment the line if needed. The `switchd.conf` file contains comments with a description for each setting.
+
+The following example shows the first few lines of the `/etc/cumulus/switchd.conf` file.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 #
 # /etc/cumulus/switchd.conf - switchd configuration file
 #
-
 # Statistic poll interval (in msec)
 #stats.poll_interval = 2000
 
@@ -109,9 +104,6 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 
 # Enable Flow based mirroring.
 #acl.flow_based_mirroring = TRUE
-
-# Enable non atomic acl update
-acl.non_atomic_update_mode = FALSE
 ...
 ```
 
@@ -159,3 +151,52 @@ When you update the following settings in the `/etc/cumulus/switchd.conf` file, 
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Show switchd Settings
+
+You can run the following NVUE commands to show the current `switchd` configuration settings.
+
+| <div style="width:350px">Command | Description |
+| ------- | ----------- |
+|`nv show system counter polling-interval` | Shows the polling interval for physical and logical interface counters in seconds. |
+|`nv show system forwarding programming` | Shows the log level for data plane programming logs. |
+|`nv show nve vxlan encapsulation dscp` | Shows the DSCP action and value (if the action is `set`) for the outer header in VXLAN encapsulation.|
+|`nv show nve vxlan decapsulation dscp` | Shows the DSCP action for the outer header in VXLAN decapsulation.|
+|`nv show system acl ` | Shows the ACL mode (atomic or non-atomic). |
+
+The following example command shows that the polling interval setting for logical interface counters is 5 seconds:
+
+```
+cumulus@switch:~$ nv show system counter polling-interval
+                   applied  description
+-----------------  -------  -----------------------------------------------------
+logical-interface  0:00:05  Config polling-interval for logical interface(in sec)
+```
+
+The following example command shows that the log level setting for data plane programming logs is `warning`:
+
+```
+cumulus@switch:~$ nv show system forwarding programming
+           applied  description
+---------  -------  -------------------
+log-level  warning  configure Log-level
+```
+
+The following example command shows that the DSCP action setting for the outer header in VXLAN encapsulation is `set` and the value is `af12`.
+
+```
+cumulus@switch:~$ nv show nve vxlan encapsulation dscp
+        operational  applied  description
+------  -----------  -------  --------------------------------------------------
+action  set          set      DSCP encapsulation action
+value   af12         af12     Configured DSCP value to put in outer Vxlan packet
+```
+
+The following command example shows that ACL mode is `atomic`:
+
+```
+cumulus@switch:~$ nv show system acl
+      applied  description
+----  -------  -----------------------------------------
+mode  atomic   configure Atomic or Non-Atomic ACL update
+```

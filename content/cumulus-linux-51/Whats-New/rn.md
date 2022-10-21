@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3209895"></a> [3209895](#3209895) <a name="3209895"></a> <br /> | When performing "tcpdump -i swpX" for an L3, IPv6 enabled port the switch will generate 4 IPv6 Router Advertisements when tcpdump is started, and when it finishes, for a total of 8 IPv6 RA packets transmitted. | 4.4.4-4.4.5, 5.0.1-5.2.1 | |
 | <a name="3202991"></a> [3202991](#3202991) <a name="3202991"></a> <br /> | Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM. | 5.0.1-5.2.1 | |
 | <a name="3192808"></a> [3192808](#3192808) <a name="3192808"></a> <br />None | When the switch receives an LLDP frame from a Cisco router right after a <code>ptmd</code> restart, the <code>ptmd</code> service crashes. | 4.3.0-4.4.5, 5.0.0-5.2.1 | |
 | <a name="3180043"></a> [3180043](#3180043) <a name="3180043"></a> <br /> | The EVPN Multihoming ESI configuration command <code>nv set interface <interface-id> evpn multihoming segment identifier <es-identifier></code> does not work. | 5.1.0-5.2.1 | |

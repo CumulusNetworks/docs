@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3209895</td>
-<td>When performing "tcpdump -i swpX" for an L3, IPv6 enabled port the switch will generate 4 IPv6 Router Advertisements when tcpdump is started, and when it finishes, for a total of 8 IPv6 RA packets transmitted.</td>
-<td>4.4.4-4.4.5, 5.0.1-5.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3174706</td>
 <td>When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped.</td>
 <td>5.1.0-5.3.0</td>
@@ -108,6 +102,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>3047747</td>
+<td>When you change the split port speed from explicitly defined to auto-negotiation, the port speed remains stuck on the previously configured value.</td>
+<td>5.1.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3045369</td>
 <td>NVUE does not support orphaned data or pre-provisioned data. For example, if you remove a port breakout but the breakout interfaces (such as swp1s0-3) have configured data. To work around this issue, do not configure breakout interfaces until you configure and apply the breakout with the {{nv set interface &lt;interface&gt; link breakout &lt;breakout&gt;}} and {{nv config apply}} commands.</td>
 <td>5.2.0-5.3.0</td>
@@ -132,6 +132,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>3.7.16, 4.3.1, 4.4.4-4.4.5</td>
 </tr>
 <tr>
+<td>3037829</td>
+<td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
+<td>5.0.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3015393</td>
 <td>The NVUE {{nv show interface &lt;tunnel-name&gt;}} command shows the operational state of the tunnel as down even though the tunnel is up, and encapsulation and decapsulation occurs correctly.</td>
 <td>5.1.0-5.3.0</td>
@@ -141,6 +147,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>2972540</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>

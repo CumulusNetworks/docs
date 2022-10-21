@@ -31,6 +31,7 @@ A low setting, such as 1 might affect system performance.
 - The DSCP action for decapsulation in VXLAN outer headers. You can specify `copy` (to copy the value from the IP header of the packet), `preserve` (to keep the inner DSCP value), or `derive` (to obtain the value from the switch priority). The default action is `derive`.
 - The preference between a route and neighbor with the same IP address and mask. You can specify `route`, `neighbor`, or `route-and-neighbour`. The default setting is `route`.
 - The ACL mode (atomic or non-atomic). The default setting is `atomic`.
+- The reserved VLAN range. The default setting is 3725-3999.
 
 {{%notice warning%}}
 Certain `switchd` settings require a `switchd` restart or reload. Before applying the settings, NVUE indicates if a restart or reload is required and prompts you for confirmation.  
@@ -79,6 +80,13 @@ The following command example sets the ACL mode to non-atomic:
 
 ```
 cumulus@switch:~$ nv set system acl mode non-atomic 
+cumulus@switch:~$ nv config apply
+```
+
+The following command example sets the reserved VLAN range between 4064 and 4094:
+
+```
+cumulus@switch:~$ nv set system global reserved vlan internal range 4064-4094
 cumulus@switch:~$ nv config apply
 ```
 
@@ -144,6 +152,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 - `link_flap_threshold`
 - `res_warn_msg_int`
 - `res_usage_warn_threshold`
+- `resv_vlan_range`
 
 When you update the following settings in the `/etc/cumulus/switchd.conf` file, you must reload `switchd` with the `sudo systemctl reload switchd.service` command for the changes to take effect. The reload does **not** interrupt network services.
 
@@ -167,6 +176,7 @@ You can run the following NVUE commands to show the current `switchd` configurat
 |`nv show nve vxlan encapsulation dscp` | Shows the DSCP action and value (if the action is `set`) for the outer header in VXLAN encapsulation.|
 |`nv show nve vxlan decapsulation dscp` | Shows the DSCP action for the outer header in VXLAN decapsulation.|
 |`nv show system acl ` | Shows the ACL mode (atomic or non-atomic). |
+|`nv show system global reserved vlan internal` | Shows the reserved VLAN range.|
 
 The following example command shows that the polling interval setting for logical interface counters is 6 seconds:
 
@@ -203,4 +213,13 @@ cumulus@switch:~$ nv show system acl
       applied  description
 ----  -------  -----------------------------------------
 mode  atomic   configure Atomic or Non-Atomic ACL update
+```
+
+The following command example shows that the reserved VLAN range is between 4064 and 4094:
+
+```
+cumulus@switch:~$ nv show system global reserved vlan internal
+       operational  applied    description
+-----  -----------  ---------  -------------------
+range  4064-4094    4064-4094  Reserved Vlan range
 ```

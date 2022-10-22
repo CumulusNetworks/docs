@@ -267,10 +267,12 @@ To configure additional settings, such as apply a custom DSCP profile to specifi
 
 ### Trust Port
 
-To assign all traffic to a switch priority regardless of the ingress marking:
+You can assign all traffic to a switch priority regardless of the ingress marking.
 
 {{< tabs "TabID183 ">}}
 {{< tab "NVUE Commands ">}}
+
+The following commands assign all traffic to switch priority 3.
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust port 
@@ -278,7 +280,7 @@ cumulus@switch:~$ nv set qos mapping default-global port-default-sp 3
 cumulus@switch:~$ nv config apply
 ```
 
-The above commands define the switch priority that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
+You can configure additional settings using [Port Groups](#port-groups).
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -294,12 +296,14 @@ The `traffic.port_default_priority` setting defines the switch priority that all
 
 ## Mark and Remark Traffic
 
+{{%notice note%}}
+NVUE does not currently provide commands to mark or remark traffic.
+{{%/notice%}}
+
 You can mark or remark traffic in two ways:
 
  * Use [iptables](#iptables) to match packets and set COS or DSCP values.
  * Use ingress COS or DSCP to remark an existing COS or DSCP value to a new value.
-
-NVUE does not currently provide commands to  mark or remark traffic.
 
 ### iptables
 
@@ -468,10 +472,14 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 
 ### Pause Frames
 
+{{%notice note%}}
+NVUE does not currently provide commands to configure pause frames.
+{{%/notice%}}
+
 Pause frames are an older congestion control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames start and stop depending on how congested the buffer is. The value that determines when pause frames start is the `xoff` value (transmit off). When the buffer congestion reaches the `xoff` point, the switch sends a pause frame to one or more neighbors. When congestion drops below the `xon` point (transmit on), the switch sends an updated pause frame so that the neighbor resumes sending traffic.
 
 {{% notice note %}}
-Use Priority Flow Control (PFC) instead of pause frames.
+NVIDIA recommends that you use Priority Flow Control (PFC) instead of pause frames.
 {{% /notice  %}}
 
 {{% notice note %}}
@@ -482,8 +490,6 @@ You configure pause frames on a per-direction, per-interface basis under the `li
 Setting `link_pause.pause_port_group.rx_enable = true` receives pause frames to stop the switch from transmitting when requested.
 Setting `link_pause.pause_port_group.tx_enable = true` sends pause frames to request neighboring devices to stop transmitting.
 You can use pause frames for either receive (`rx`), transmit (`tx`), or both.
-
-NVUE does not currently provide commands to configure pause frames.
 
 {{% notice note %}}
 Cumulus Linux automatically enables or derives the following settings when link pause is on an interface with `link_pause.port_group_list`:
@@ -826,6 +832,10 @@ default_egress_sched.egr_queue_7.bw_percent = 0
 {{< /tabs >}}
 
 ## Policing and Shaping
+
+{{%notice note%}}
+NVUE does not currently provide commands to configure traffic shaping and policing.
+{{%/notice%}}
 
 Traffic shaping and policing control the rate at which the switch sends or receives traffic on a network to prevent congestion.
 

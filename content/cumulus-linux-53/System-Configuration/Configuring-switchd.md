@@ -20,10 +20,12 @@ NVUE currently only supports a subset of the `switchd` configuration available i
 {{< tab "NVUE Commands ">}}
 
 You can run NVUE commands to set the following `switchd` options:
-- The statistic polling interval for physical interfaces and for logical interfaces. For both settings, you can specify a value between 1 and 10. The default setting for physical interfaces is 2 seconds and the default setting for logical interfaces is 5 seconds.
+- The statistic polling interval for physical interfaces and for logical interfaces. 
+  - For physical interfaces, you can specify a value between 1 and 10. The default setting is 2 seconds
+  - For logical interfaces, you can specify a value between 1 and 30. The default setting is 5 seconds.
   
    {{%notice note%}}
-A low setting, such as 1 might affect system performance.
+A low setting, such as 1, might affect system performance.
 {{%/notice%}}
 
 - The log level to debug the data plane programming related code. You can specify `debug`, `info`, `notice`, `warning`, or `error`. The default setting is `info`. NVIDIA recommends that you do not set the log level to debug in a production environment.

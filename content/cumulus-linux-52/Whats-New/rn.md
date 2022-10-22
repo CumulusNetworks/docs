@@ -14,7 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3205859"></a> [3205859](#3205859) <a name="3205859"></a> <br /> | Switch fans run at very high speed but the temperature is normal. | 5.2.0-5.2.1 | |
+| <a name="3205859"></a> [3205859](#3205859) <a name="3205859"></a> <br /> | On the NVIDIA SN3700 and SN4600 switch, the fans run at very high speed but the temperature sensor readings are within an acceptable range. | 5.2.0-5.2.1 | |
 | <a name="3202991"></a> [3202991](#3202991) <a name="3202991"></a> <br /> | Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM. | 5.0.1-5.2.1 | |
 | <a name="3202401"></a> [3202401](#3202401) <a name="3202401"></a> <br /> | The <code>ethtool -m</code> command and the NVUE <code>nv show interface <interface> pluggable</code> command do not show the VPD for optical modules and AOCs (OUI, vendor name, part number, or revision serial number). | 5.2.0-5.2.1 | |
 | <a name="3196774"></a> [3196774](#3196774) <a name="3196774"></a> <br /> | In an EVPN configuration, after closing a BGP session on an EVPN peer, the VTEP RMAC is deleted and the hosts loose reachability to each other.  To work around this issue, restart FRR or add a static RMAC entry to bridge FDB. | 5.2.0-5.2.1 | |
@@ -86,7 +86,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3205859"></a> [3205859](#3205859) <a name="3205859"></a> <br /> | Switch fans run at very high speed but the temperature is normal. | 5.2.0-5.2.1 | |
+| <a name="3205859"></a> [3205859](#3205859) <a name="3205859"></a> <br /> | On the NVIDIA SN3700 and SN4600 switch, the fans run at very high speed but the temperature sensor readings are within an acceptable range. | 5.2.0-5.2.1 | |
 | <a name="3205700"></a> [3205700](#3205700) <a name="3205700"></a> <br />None | A firmware upgrade has been implemented to optimize the PCIe bus between the CPU and Spectrum ASIC on NVIDIA SN4700, SN4600, SN4600C, and SN4410 switches manufactured with <code>0x26 1 17</code> in EEPROM. Affected switches will not boot properly without this firmware upgrade. To see the EEPROM value, run the <code>onie-syseeprom</code> command from ONIE or run the <code>decode-syseeprom</code> command from Cumulus Linux. | 4.4.4, 5.2.0-5.2.1 | 4.4.5|
 | <a name="3202991"></a> [3202991](#3202991) <a name="3202991"></a> <br /> | Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM. | 5.0.1-5.2.1 | |
 | <a name="3202401"></a> [3202401](#3202401) <a name="3202401"></a> <br /> | The <code>ethtool -m</code> command and the NVUE <code>nv show interface <interface> pluggable</code> command do not show the VPD for optical modules and AOCs (OUI, vendor name, part number, or revision serial number). | 5.2.0-5.2.1 | |

@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>3205859</td>
-<td>Switch fans run at very high speed but the temperature is normal.</td>
+<td>On the NVIDIA SN3700 and SN4600 switch, the fans run at very high speed but the temperature sensor readings are within an acceptable range.</td>
 <td>5.2.0-5.2.1</td>
 <td></td>
 </tr>
@@ -427,7 +427,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 </tr>
 <tr>
 <td>3205859</td>
-<td>Switch fans run at very high speed but the temperature is normal.</td>
+<td>On the NVIDIA SN3700 and SN4600 switch, the fans run at very high speed but the temperature sensor readings are within an acceptable range.</td>
 <td>5.2.0-5.2.1</td>
 <td></td>
 </tr>

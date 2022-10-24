@@ -30,6 +30,9 @@ pdfhidden: True
 | <a name="3205778"></a> [3205778](#3205778) <a name="3205778"></a> <br /> | In some high scale environments, NetQ agents might appear as rotten during high load. | 4.3.0 | |
 | <a name="3157803"></a> [3157803](#3157803) <a name="3157803"></a> <br /> | The <code>netq show</code> commands to view MACs, IP addresses, neighbors, and routes might show a higher value compared to the corresponding entries in the NetQ UI. The <code>netq show</code> commands display additional values from the NetQ server or OPTA in addition to monitored devices in the NetQ inventory. | 4.2.0-4.3.0 | |
 | <a name="3141723"></a> [3141723](#3141723) <a name="3141723"></a> <br /> | When you edit a TCA rule, an error will prevent the rule from updating. To work around this problem, delete the existing rule and create a new one. |  | |
+| <a name="3140425"></a> [3140425](#3140425) <a name="3140425"></a> <br /> | LCM NetQ install or upgrade will silently fail if a target switch's hostname is still set to the default (<code>cumulus</code> for Cumulus Linux or <code>sonic} for SONiC). |  | |
+| <a name="3131311"></a> [3131311](#3131311) <a name="3131311"></a> <br /> | Sensor validation checks might still reflect a failure in NetQ after the sensor failure has recovered. | 4.2.0-4.3.0 | |
+| <a name="3085064"></a> [3085064](#3085064) <a name="3085064"></a> <br /> | When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI. | 4.1.0-4.3.0 | |
 | <a name="3053143"></a> [3053143](#3053143) <a name="3053143"></a> <br /> | The MLAG Session card might not show all MLAG events. | 4.2.0-4.3.0 | |
 | <a name="2605545"></a> [2605545](#2605545) <a name="2605545"></a> <br /> | Sort functionality is disabled when the number of records exceeds 10,000 entries in a full-screen, tabular view.  | 4.3.0 | |
 

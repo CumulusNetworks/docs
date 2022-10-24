@@ -59,7 +59,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="3211054"></a> [3211054](#3211054) <a name="3211054"></a> <br /> | On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:<br /><pre><br />Packet size is larger than router interface MTU – Validate the router interface MTU configuration<br /></pre> | 4.4.2-5.2.1 | |
-| <a name="3205859"></a> [3205859](#3205859) <a name="3205859"></a> <br /> | Switch fans run at very high speed but the temperature is normal. | 5.2.0-5.2.1 | |
+| <a name="3205859"></a> [3205859](#3205859) <a name="3205859"></a> <br /> | On the NVIDIA SN3700 and SN4600 switch, the fans run at very high speed but the temperature sensor readings are within an acceptable range. | 5.2.0-5.2.1 | |
 | <a name="3202991"></a> [3202991](#3202991) <a name="3202991"></a> <br /> | Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM. | 5.0.1-5.2.1 | |
 | <a name="3202401"></a> [3202401](#3202401) <a name="3202401"></a> <br /> | The <code>ethtool -m</code> command and the NVUE <code>nv show interface <interface> pluggable</code> command do not show the VPD for optical modules and AOCs (OUI, vendor name, part number, or revision serial number). | 5.2.0-5.2.1 | |
 | <a name="3196774"></a> [3196774](#3196774) <a name="3196774"></a> <br /> | In an EVPN configuration, after closing a BGP session on an EVPN peer, the VTEP RMAC is deleted and the hosts loose reachability to each other.  To work around this issue, restart FRR or add a static RMAC entry to bridge FDB. | 5.2.0-5.2.1 | |

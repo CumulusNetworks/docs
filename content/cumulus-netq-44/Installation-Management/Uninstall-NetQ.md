@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 560
 toc: 3
 ---
-You can remove the NetQ software from your system server and switches when necessary.
+This page outlines how to remove the NetQ software from your system server and switches.
 
 ## Remove the NetQ Agent and CLI
 
@@ -12,7 +12,7 @@ You can remove the NetQ software from your system server and switches when neces
 
 {{<tab "Cumulus Linux Switch or Ubuntu Host">}}
 
-Use the `apt-get purge` command to remove the NetQ Agent or CLI package from a Cumulus Linux switch or an Ubuntu host.
+Use the `apt-get purge` command to remove the NetQ Agent or CLI package from a Cumulus Linux switch or an Ubuntu host:
 
 ```
 cumulus@switch:~$ sudo apt-get update
@@ -58,7 +58,7 @@ dpkg-query: no packages found matching netq-apps
 
 {{<tab "RHEL7 or CentOS Host">}}
 
-Use the `yum remove` command to remove the NetQ agent or CLI package from a RHEL7 or CentOS host.
+Use the `yum remove` command to remove the NetQ agent or CLI package from a RHEL7 or CentOS host:
 
 ```
 root@rhel7:~# sudo yum remove netq-agent netq-apps
@@ -110,22 +110,20 @@ First remove the data collected to free up used disk space. Then remove the soft
 
 1. Log on to the NetQ system server.
 
-2. Remove the data.
+2. Remove the data:
 
   ```
   netq bootstrap reset purge-db
   ```
 
-3. Remove the software.
-
-  Use the `apt-get purge` command.
+3. Remove the software with `apt-get purge`:
 
   ```
   cumulus@switch:~$ sudo apt-get update
   cumulus@switch:~$ sudo apt-get purge netq-agent netq-apps
   ```
 
-4. Verify the removal of the packages from the switch.
+4. Verify the removal of the packages from the switch:
 
   ```
   cumulus@switch:~$ dpkg-query -l netq-agent
@@ -142,8 +140,8 @@ First remove the data collected to free up used disk space. Then remove the soft
 
 Delete a virtual machine from the host computer using one of the following methods:
 
-- Right-click the name of the virtual machine in the **Favorites** list, then select **Delete from Disk**
-- Select the virtual machine and choose **VM** > **Delete from disk**
+- Right-click the name of the virtual machine in the **Favorites** list, then select **Delete from Disk**.
+- Select the virtual machine and choose **VM** > **Delete from disk**.
 
 {{</tab>}}
 

@@ -11,7 +11,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale off -->
 ## What's New in NetQ 4.4.0
 <!-- vale on -->
-This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. It also includes extensive security enhancements and bug fixes. NVIDIA recommends upgrading to this release to improve devices' software security and reliabilty. Additional updates include:
+This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. It also includes extensive security enhancements and bug fixes. NVIDIA recommends upgrading to this release to improve software security and reliability. Additional updates include:
 
 Command line updates: 
 

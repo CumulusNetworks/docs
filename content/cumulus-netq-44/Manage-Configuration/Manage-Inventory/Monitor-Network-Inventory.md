@@ -130,9 +130,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
    - Total number of switches with that type of component deployed compared to the total number of switches
    - Percentage of this type as compared to all component types
 
-   {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-400.png" width="650">}}
-
-   Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in light gray here).
+   {{<figure src="/images/netq/large-switches-inventory-devices.png" width="650">}}
 
 {{</tab>}}
 
@@ -152,7 +150,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
    - Total number of switches with that type of component deployed compared to the total number of switches
    - Percentage of this type with respect to all component types
 
-4. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+4. Expand the card to display the same information separated by hardware and software:
 
    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="500">}}
 
@@ -174,7 +172,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
    - Total number of switches with that type of component deployed compared to the total number of switches
    - Percentage of this type with respect to all component types
 
-4. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+4. Expand the card to display the same information separated by hardware and software:
 
    {{<figure src="/images/netq/inventory-hosts-l3-42.png" width="600">}}
 
@@ -196,7 +194,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
    - Total number of switches with that type of component deployed compared to the total number of switches
    - Percentage of this type with respect to all component types
 
-4. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+4. Expand the card to display the same information separated by hardware and software:
 
    {{<figure src="/images/netq/dpu-inventory-l3-42.png" width="600">}}
 
@@ -210,7 +208,7 @@ To view switch components, run:
 netq show inventory brief [json]
 ```
 
-This example shows the operating systems (Cumulus Linux and Ubuntu), CPU architecture (all x86_64), ASIC (virtual), and ports (N/A because Cumulus VX is virtual) for each device in the network. You can manually count the number of each of these, or export to a spreadsheet tool to sort and filter the list.
+This example shows the operating systems (Cumulus Linux and Ubuntu), CPU architecture (all x86_64), ASIC (virtual), and ports (N/A because Cumulus VX is virtual) for each device in the network.
 
 ```
 cumulus@switch:~$ netq show inventory brief
@@ -263,25 +261,11 @@ ASIC information is available from the NetQ UI and NetQ CLI.
 
 2. Hover over the card, and change to the large size card using the size picker.
 
-3. Click a segment of the ASIC graph in the component distribution charts.
+3. Click a segment of the ASIC graph in the component distribution charts. Select **Filter ASIC**:
 
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-asic-component-filter-320.png" width="500">}}
+    {{<figure src="/images/netq/filter-asic-large.png" width="500">}}
 
-4. Select the first option from the popup, *Filter ASIC*. The card data is filtered to show only the components associated with selected component type. A filter tag appears next to the total number of switches indicating the filter criteria.
-
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-filter-asic-320.png" width="500">}}
-
-5. Hover over the segments to view the related components.
-
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-agent-320.png" width="500">}}
-
-6. To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
-
-7. Hover over the card, and change to the full-screen card using the size picker.
-
-    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
-
-8. Scroll to the right to view the above ASIC information.
+4. Alternately, expand the card to full screen to view ASIC information as a column in a table.
 
 {{</tab>}}
 

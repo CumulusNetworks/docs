@@ -19735,7 +19735,7 @@ Configures the IPv4 unicast address family for the BGP peer group.
 | ---------  | -------------- |
 | `community-advertise`   | Configures the BGP COMMUNITY attribute to advertise to the peer group.|
 | `attribute-mode`        | Configures the BGP attribute mode for the peer group.|
-| `aspath`                | Configures options for handling BGP AS_PATH for prefixes from or to the peer group.|
+| `aspath`                | Configures options for handling the BGP AS_PATH for prefixes from or to the peer group.|
 | `prefix-limits`         | Configures prefix limits from peers in the peer group.|
 | `default-route-origination`  | Configures the default route origination for the peer group.|
 | `policy`                | Configures policies for the peer group.|
@@ -19744,9 +19744,9 @@ Configures the IPv4 unicast address family for the BGP peer group.
 | `add-path-tx`           | Enables you to announce additional paths; by default, only the best path is announced to peers.|
 | `nexthop-setting`       | Configures the nexthop value of advertised routes. "auto" follows regular BGP next-hop determination rules. This is the default. "self" sets the next hop to ourselves for route advertisement, except for reflected routes.  "force" sets the next hop to ourselves for route advertisement including for reflected routes.|
 | `route-reflector-client` | Configures the node as a route reflector to the peers in the peer group, which are route reflector clients. |
-| `route-server-client`   | Configures |
-| `soft-reconfiguration`  | If 'on', it means that received routes from this peer  that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP Updates.|
-| `weight`                | Configures the weight applied to routes received from the peers in the peer group. The weight his is used in the BGP route selection algorithm. |
+| `route-server-client`   | Configures the route server client.|
+| `soft-reconfiguration`  | Configures the switch to store received routes from a peer rejected by inbound policy. This configuration allows policy changes to take effect without any BGP update exchanges.|
+| `weight`                | Configures the weight applied to routes received from the peers in the peer group. The BGP route selection algorithm uses the weight to select routes. |
 
 ### Version History
 
@@ -19775,9 +19775,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `extended`         | If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.|
-| `large`            | If 'on', it means we can announce the LARGE_COMMUNITIES attribute to this peer, otherwise we cannot.|
-| `regular`          | If 'on', it means we can announce the COMMUNITIES attribute to this peer, otherwise we cannot.|
+| `extended`         | Configures the switch to announce the EXT_COMMUNITIES attribute to the peer group.|
+| `large`            | Configures the switch to announce the LARGE_COMMUNITIES attribute to the peer group.|
+| `regular`          | Configures the switch to announce the COMMUNITIES attribute to the peer group.|
 
 ### Version History
 
@@ -19785,7 +19785,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod
 
-Attribute mod for address family.
+Configures the BGP attribute mode for the peer group.
 
 ### Usage
 
@@ -19806,8 +19806,8 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `aspath`           | If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.|
-| `med`              | If 'on', it means follow normal BGP procedures in the generation of MED attribute for this peer; if 'off' it means do not change the MED when sending an Update to this peer.|
+| `aspath`           | Configures BGP to follow normal BGP procedures when generating the AS_PATH attribute for this peer group.|
+| `med`              | Configures BGP to follow normal BGP procedures in the generation of MED attribute for this peer; if 'off' it means do not change the MED when sending an Update to this peer.|
 | `nexthop`          | If 'on', it means follow normal BGP procedures in the generation of NEXT_HOP attribute for this peer; if 'off' it means do not change the NEXT_HOP when sending an Update to this peer.|
 
 ### Version History

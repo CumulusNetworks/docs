@@ -735,21 +735,21 @@ default_ecn_red_conf.ecn_enable = false
 
 ## Egress Queues
 
-Cumulus Linux supports eight egress queues to provide different classes of service. By default internal COS values map directly to the matching egress queue. For example, internal COS value 0 maps to egress queue 0.
+Cumulus Linux supports eight egress queues to provide different classes of service. By default switch priority values map directly to the matching egress queue. For example, switch priority value 0 maps to egress queue 0.
 
-You can remap queues by changing the COS value to the corresponding queue value. You can map multiple internal COS values to a single egress queue.
+You can remap queues by changing the switch priority value to the corresponding queue value. You can map multiple switch priority values to a single egress queue.
 
 {{% notice note %}}
 You do not have to assign all egress queues.
 {{% /notice %}}
 
-The following command examples assign internal COS 2 to queue 7:
+The following command examples assign switch priority 2 to egress queue 7:
 
 {{< tabs "TabID580 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set qos egr_queue_mapping default-global switch_priority 2 traffic-class 7
+cumulus@switch:~$ nv set qos egress-queue-mapping default-global switch-priority 2 traffic-class 7
 cumulus@switch:~$ nv config apply
 ```
 

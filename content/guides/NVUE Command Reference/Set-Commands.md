@@ -19650,7 +19650,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers connection-retry 30
 ```
 
-## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers route-advertisement (1-600|none|auto)
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers route-advertisement
 
 Configures the time between route advertisements (BGP updates). After making a new best path decision for a prefix, BGP can insert a delay before advertising the new results to a peer. This delay rate limits the amount of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. You can specify a value between 1 and 65535. If you specify `none` route advertisements are delayed and batched. If you specify `auto`, the global value is used.
 
@@ -19775,21 +19775,108 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `extended`         | Configures the switch to announce the EXT_COMMUNITIES attribute to the peer group.|
-| `large`            | Configures the switch to announce the LARGE_COMMUNITIES attribute to the peer group.|
-| `regular`          | Configures the switch to announce the COMMUNITIES attribute to the peer group.|
+| `extended`         | Configures BGP to announce the EXT_COMMUNITIES attribute to the peer group.|
+| `large`            | Configures BGP to announce the LARGE_COMMUNITIES attribute to the peer group.|
+| `regular`          | Configures BGP to announce the COMMUNITIES attribute to the peer group.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise regular
+
+Configures BGP to announce the COMMUNITIES attribute to the peer group. You can specify `on` or `off`.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise regular [options] (on|off)`
+
+### Default Setting
+
+`on`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise regular off
+```
+
+### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise extended
+
+Configures BGP to announce the EXT_COMMUNITIES attribute to the peer group. You can specify `on` or `off`.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise extended [options] (on|off)`
+
+### Default Setting
+
+`on`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise extended off
+```
+
+### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise large
+
+Configures BGP to announce the LARGE_COMMUNITIES attribute to the peer group. You can specify `on` or `off`.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast community-advertise large [options] (on|off)`
+
+### Default Setting
+
+`on`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise large off
+```
+
+### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod
 
 Configures the BGP attribute mode for the peer group.
 
 ### Usage
 
-`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options] [<attribute> ...]`
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod [options]`
 
 ### Default Setting
 
@@ -19806,17 +19893,104 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `aspath`           | Configures BGP to follow normal BGP procedures when generating the AS_PATH attribute for this peer group.|
-| `med`              | Configures BGP to follow normal BGP procedures in the generation of MED attribute for this peer; if 'off' it means do not change the MED when sending an Update to this peer.|
-| `nexthop`          | If 'on', it means follow normal BGP procedures in the generation of NEXT_HOP attribute for this peer; if 'off' it means do not change the NEXT_HOP when sending an Update to this peer.|
+| `aspath`           | Configures BGP to follow normal BGP procedures when generating the AS_PATH attribute for the specified peer group.|
+| `med`              | Configures BGP to follow normal BGP procedures when generating the MED attribute for the specified peer group. If you set this attribute to `off`, BGP does not change the MED when sending an update to the peer group.|
+| `nexthop`          | Configures BGP to follow normal BGP procedures when generating the NEXT_HOP attribute for the specified peer group. If you set this attribute to `off`, BGP does not change NEXT_HOP when sending an update to the peer group.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod aspath
+
+Configures BGP to follow normal BGP procedures when generating the AS_PATH attribute for the specified peer group. You can specify `on` or `off`.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod attribute-mod aspath [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod aspath on
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod med
+
+Configures BGP to follow normal BGP procedures when generating the MED attribute for the specified peer group. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change the MED when sending an update to the peer group.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod attribute-mod med [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod med on
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod nexthop
+
+Configures BGP to follow normal BGP procedures when generating the NEXT_HOP attribute for the specified peer group. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change NEXT_HOP when sending an update to the peer group.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod attribute-mod nexthop [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod nexthop on
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath
 
-Options for handling AS_PATH for prefixes from/to peer for the specified address family
+Configures options for handling the BGP AS_PATH for prefixes from or to the specified peer group.
 
 ### Usage
 
@@ -19837,9 +20011,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `allow-my-asn`     | If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system|
-| `private-as`       | If 'none', no specific action is taken. This is the default. If set to 'remove', any private ASNs in the Update to the peer are removed. If set to 'replace' any private ASNs in the Update to the peer are replaced with the ASN of the local system.|
-| `replace-peer-as`  | If on, if the AS_PATH in an outgoing Update contains the  peer's ASN, it is replaced with the local system's ASN|
+| `allow-my-asn`   | Configures BGP to accept a received AS_PATH that contains the ASN of the local system.|
+| `private-as`     | Configures BGP to remove any private ASNs or replace any private ASNs with the ASN of the local system in the update to the peer group.|
+| `replace-peer-as`| Configures BGP to replace the ASN of the peer with the local system's ASN if the AS_PATH in an outgoing update contains the peer's ASN.|
 
 ### Version History
 
@@ -19847,7 +20021,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath allow-my-asn
 
-If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+Configures BGP to accept a received AS_PATH that contains the ASN of the local system.
 
 ### Usage
 
@@ -19868,9 +20042,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`           | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `occurrences`      | Indicates max number of occurrences of the local system's AS number in the received AS_PATH|
-| `origin`           | If on, a received AS_PATH containing the ASN of the local system is allowed, but only if it is the originating AS|
+| `enable`           | Turn the feature `on` or `off`. The default is 'off'.|
+| `occurrences`      | Configures the maximum number of occurrences of the local system's AS number allowed in the received AS_PATH.|
+| `origin`           | Allows a received AS_PATH that contains the ASN of the local system only if it is the originating AS.|
 
 ### Version History
 
@@ -19878,7 +20052,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath allow-my-asn occurrences
 
-Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+Configures the maximum number of occurrences of the local system's AS number allowed in the received AS_PATH. You can specify a value between 1 and 10.
 
 ### Usage
 
@@ -19902,12 +20076,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath allow-my-asn occurrences 6
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits
 
-Limits on prefix from the peer for this address-family
+Configures prefix limits from peers in the peer group.
 
 ### Usage
 
@@ -19928,17 +20102,11 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `inbound`   | Limits on inbound prefix from the peer for this address-family|
+| `inbound`   | Configures limits on the inbound prefix from the peers in the specified peer group.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set
-```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits inbound
 
@@ -19963,10 +20131,10 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `maximum`            | Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit|
-| `reestablish-wait`   | Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing. This would typically be 2-3 seconds.|
+| `maximum`            | Configures the maximum number of prefixes that BGP can receive from the peers in the peer group. By default, there is no limit. |
+| `reestablish-wait`   | Configures the time in seconds to wait before establishing the BGP session again with the peers in the peer group. Defaults to 'auto', which will use standard BGP timers and processing. This would typically be 2-3 seconds.|
 | `warning-only`       | If 'on', it means to only generate a warning syslog if the number of received prefixes exceeds the limit, do not bring down the BGP session.|
-| `warning-threshold`  | Percentage of the maximum at which a warning syslog is generated.|
+| `warning-threshold`  | Configures the percentage of the maximum at which the switch generates a warning syslog.|
 
 ### Version History
 
@@ -19974,7 +20142,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits inbound warning-threshold
 
-Percentage of the maximum at which a warning syslog is generated.
+Configures the percentage of the maximum at which the switch generates a warning syslog. You can set a value between 1 and 100.
 
 ### Usage
 
@@ -19998,12 +20166,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound warning-threshold 4
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits inbound reestablish-wait
 
-Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
+Configures the time in seconds to wait before establishing the BGP session again with the peers in the peer group. You can specify a value between 1-4294967295. A value of `auto`, uses standard BGP timers and processing, between 2 and 3 seconds.
 
 ### Usage
 
@@ -20011,7 +20179,7 @@ Specifes the time in seconds to wait before establishing the BGP session again w
 
 ### Default Setting
 
-N/A
+`auto`
 
 ### Identifiers
 
@@ -20027,7 +20195,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound reestablish-wait 3000000000
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast default-route-origination

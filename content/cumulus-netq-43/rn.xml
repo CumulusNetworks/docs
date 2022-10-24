@@ -37,6 +37,18 @@
 <td></td>
 </tr>
 <tr>
+<td>3131311</td>
+<td>Sensor validation checks might still reflect a failure in NetQ after the sensor failure has recovered.</td>
+<td>4.2.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3085064</td>
+<td>When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI.</td>
+<td>4.1.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3053143</td>
 <td>The MLAG Session card might not show all MLAG events.</td>
 <td>4.2.0-4.3.0</td>

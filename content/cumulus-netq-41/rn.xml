@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3085064</td>
+<td>When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI.</td>
+<td>4.1.0-4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
 <td>4.1.0-4.3.0</td>
@@ -196,6 +202,12 @@ CVE-2021-45105: Apache Log4j2 versions 2.0-alpha1 through 2.16.0 (excluding 2.12
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3085064</td>
+<td>When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI.</td>
+<td>4.1.0-4.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3015875</td>

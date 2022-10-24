@@ -23,7 +23,7 @@ Cumulus Linux 5.0 and later does not use the `traffic.conf` and `datapath.conf` 
 {{% /notice %}}
 
 {{% notice note %}}
-NVUE currently only provides commands to configure COS and DSCP marking, egress traffic scheduling, PFC, ECN, and lossless and lossy RoCE.
+NVUE currently only provides commands to configure COS and DSCP marking, egress queue mapping, egress traffic scheduling, PFC, ECN, and lossless and lossy RoCE.
 {{% /notice %}}
 
 ## switchd and QoS
@@ -442,6 +442,18 @@ Cumulus Linux supports the following congestion control mechanisms:
 
 Before configuring pause frames or PFC, set buffer pools and limits for lossless flows.
 
+{{< tabs "TabID445 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set qos traffic-pool pool1 memory-percent 50
+cumulus@switch:~$ nv set qos traffic-pool pool1 switch-priority 1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 Edit the following lines in the `/etc/mlx/datapath/qos/qos_infra.conf` file:
 
 1. Modify the existing `ingress_service_pool.0.percent` and `egress_service_pool.0.percent` buffer allocation. Change the existing ingress setting to `ingress_service_pool.0.percent = 50`. Change the existing egress setting to `egress_service_pool.0.percent = 50`.
@@ -469,6 +481,9 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 ```
 
 {{<cl/qos-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Pause Frames
 

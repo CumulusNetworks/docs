@@ -598,7 +598,7 @@ iface br1
 
 ## Fast Linkup
 
-Cumulus Linux supports fast linkup on interfaces on NVIDIA Spectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as the 100G Pensando network interface cards.
+Cumulus Linux supports fast linkup on interfaces on NVIDIA Spectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards.
 
 {{%notice note%}}
 You must configure both sides of the connection with the same speed and FEC settings.
@@ -626,7 +626,7 @@ interface.swp1.enable_port_short_tuning=TRUE
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 

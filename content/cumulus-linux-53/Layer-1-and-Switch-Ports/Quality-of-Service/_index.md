@@ -165,10 +165,9 @@ To configure additional settings, such as apply a custom COS profile to specific
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the switchd service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
-
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -267,7 +266,7 @@ To configure additional settings, such as apply a custom DSCP profile to specifi
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
@@ -300,7 +299,7 @@ The `traffic.port_default_priority` setting defines the switch priority that all
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
@@ -419,7 +418,7 @@ traffic.cos_2.priority_remark.8021p = [3]
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
@@ -447,7 +446,7 @@ You can configure additional settings using [Port Groups](#port-groups).
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
@@ -509,7 +508,7 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
@@ -560,11 +559,7 @@ link_pause.my_pause_ports.port_set = swp1-swp4,swp6
 Pause frame buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
 
 Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
-
-Unless NVIDIA support or engineering asks you to, do not change these values.
 {{% /notice %}}
-
-
 
 <details>
 <summary>All Link Pause configuration options</summary>
@@ -609,7 +604,7 @@ cumulus@switch:~$ nv set interface swp1-4,swp6 qos pfc profile my_pfc_ports
 cumulus@switch:~$ nv config apply
 ```
 
-The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit that triggers PFC frame transmition to stop to 1500, the buffer limit that triggers PFC frame transmition to start to 1000, the amount of reserved buffer space to 2000, and the cable length to 50:
+The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit (in bytes) that triggers PFC frame transmission to stop to 1500, the buffer limit that triggers PFC frame transmission to start to 1000, the amount of reserved buffer space to 2000, and the cable length to 50:
 
 ```
 cumulus@switch:~$ nv set qos pfc my_pfc_ports2 switch-priority 0 
@@ -651,7 +646,7 @@ pfc.my_pfc_ports2.port_set = swp1
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
@@ -671,7 +666,7 @@ pfc.my_pfc_ports2.cable_length = 10
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
@@ -772,7 +767,7 @@ my-red-profile.probability = 10
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
@@ -786,7 +781,7 @@ default_ecn_red_conf.ecn_enable = false
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
@@ -1094,7 +1089,7 @@ source.customer2.cos_1.priority_source.8021p = [4]
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 
@@ -1271,7 +1266,7 @@ egress_buffer.cos_2.mc.dynamic_quota = ALPHA_8
 
 Restart `switchd` with the `sudo systemctl restart switchd.service` command.
 
-{{%notice important%}}
+{{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
 {{%/notice%}}
 

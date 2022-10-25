@@ -23,7 +23,7 @@ Cumulus Linux 5.0 and later does not use the `traffic.conf` and `datapath.conf` 
 {{% /notice %}}
 
 {{% notice note %}}
-NVUE currently only provides commands to configure COS and DSCP marking, egress queue mapping, egress traffic scheduling, PFC, ECN, and lossless and lossy RoCE.
+NVUE currently only provides commands to configure COS and DSCP marking, egress queue mapping, egress traffic scheduling, PFC, ECN, traffic pools, and lossless and lossy RoCE.
 {{% /notice %}}
 
 ## switchd and QoS
@@ -163,7 +163,11 @@ traffic.cos_7.priority_source.8021p = [7]
 
 To configure additional settings, such as apply a custom COS profile to specific interfaces, see [Port Groups](#port-groups).
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the switchd service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -260,7 +264,11 @@ traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 
 To configure additional settings, such as apply a custom DSCP profile to specific interfaces, see [Port Groups](#port-groups).
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -289,7 +297,11 @@ Configure `traffic.packet_priority_source_set = [port]`.
 
 The `traffic.port_default_priority` setting defines the switch priority that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -404,7 +416,11 @@ traffic.cos_1.priority_remark.8021p = [3]
 traffic.cos_2.priority_remark.8021p = [3]
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 #### Remark DSCP
 
@@ -426,7 +442,13 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups). 
+
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 ## Flow Control
 
@@ -440,16 +462,20 @@ Cumulus Linux supports the following congestion control mechanisms:
 
 ### Flow Control Buffers
 
-Before configuring pause frames or PFC, set buffer pools and limits for lossless flows.
+Before configuring pause frames or PFC, configure the buffer pool memory allocated for lossless and lossy flows. The following example sets each to fifty percent:
 
 {{< tabs "TabID445 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set qos traffic-pool pool1 memory-percent 50
-cumulus@switch:~$ nv set qos traffic-pool pool1 switch-priority 1
+cumulus@switch:~$ nv set qos traffic-pool default-lossless memory-percent 50
+cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 50
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+Cumulus Linux allocates 100% of the buffer memory to the default-lossy traffic pool by default. The total memory allocation across pools must not exceed 100%.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -480,7 +506,11 @@ flow_control.egress_buffer.reserved = 0
 flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -529,11 +559,7 @@ link_pause.my_pause_ports.port_set = swp1-swp4,swp6
 Pause frame buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
 
 Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
-
-Unless NVIDIA support or engineering asks you to, do not change these values.
 {{% /notice %}}
-
-{{<cl/qos-switchd>}}
 
 <details>
 <summary>All Link Pause configuration options</summary>
@@ -563,8 +589,6 @@ Before configuring PFC, first modify the switch buffer allocation according to {
 {{% notice warning %}}
 PFC buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This attempts to incorporate the delay between signaling congestion and receiving the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (called the interface delay) introduce as well as the distance between end points (cable length).  
 Incorrect cable length settings cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
-
-Unless directed by NVIDIA support or engineering, do not change these values.
 {{% /notice %}}
 
 To set priority flow control on a group of ports, you use a profile to define the egress queues that support sending PFC pause frames and define the set of interfaces to which you want to apply PFC pause frame configuration. Cumulus Linux automatically enables PFC frame transmit and PFC frame receive, and derives all other PFC settings, such as the buffer limits that trigger PFC frames transmit to start and stop, the amount of reserved buffer space, and the cable length.
@@ -580,7 +604,7 @@ cumulus@switch:~$ nv set interface swp1-4,swp6 qos pfc profile my_pfc_ports
 cumulus@switch:~$ nv config apply
 ```
 
-The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit that triggers PFC frame transmition to stop to 1500, the buffer limit that triggers PFC frame transmition to start to 1000, the amount of reserved buffer space to 2000, and the cable length to 50:
+The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit (in bytes) that triggers PFC frame transmission to stop to 1500, the buffer limit that triggers PFC frame transmission to start to 1000, the amount of reserved buffer space to 2000, and the cable length to 50:
 
 ```
 cumulus@switch:~$ nv set qos pfc my_pfc_ports2 switch-priority 0 
@@ -620,7 +644,11 @@ pfc.my_pfc_ports2.cos_list = [0]
 pfc.my_pfc_ports2.port_set = swp1
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands also disable PFC frame receive, and set the xoff-size to 1500, the xon-size to 1000, the headroom to 2000, and the cable length to 10:
 
@@ -636,7 +664,11 @@ pfc.my_pfc_ports2.rx_enable = false
 pfc.my_pfc_ports2.cable_length = 10
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 <details>
 <summary>All PFC configuration options</summary>
@@ -733,7 +765,11 @@ my-red-profile.max_threshold_bytes = 200000
 my-red-profile.probability = 10
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 To disable ECN bit marking for an ECN profile, set `ecn_enable` to false. The following example disables ECN bit marking in the default profile.
 
@@ -743,7 +779,11 @@ default_ecn_red_conf.ecn_enable = false
 ...
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1047,7 +1087,11 @@ source.customer2.cos_1.priority_source.8021p = [4]
 | `source.customer2.port_default_priority` | Define the default internal COS marking for unmarked or untrusted traffic.<br>In the following example, Cumulus Linux marks unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports with internal COS 0:<br>`source.customer2.port_default_priority = 0` |
 | `source.customer2.cos_0.priority_source` | Map the ingress COS values to an internal COS value for `customer2`.<br>The following example maps ingress COS value 4 to internal COS 1:<br>`source.customer2.cos_1.priority_source.8021p = [4]` |
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1146,6 +1190,90 @@ egress_sched.list2.egr_queue_6.bw_percent = 0
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Traffic Pools
+
+Cumulus Linux supports adjusting the following traffic pools:
+
+|Traffic Pool |Description |
+|------------- |----------- |
+| `default-lossy` | The default traffic pool for all switch priorities. |
+| `default-lossless` | The traffic pool for lossless traffic when you enable {{<link title="#Flow Control Buffers" text="flow control">}}. |
+| `mc-lossy` | The traffic pool for multicast traffic. |
+| `roce-lossy` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossy mode. |
+| `roce-lossless` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossless mode. |
+
+You configure a traffic pool by associating switch priorities and defining the buffer memory percentages allocated to the pools. The following example associates switch priority 2 and allocates a memory percentage of 30 for the `mc-lossy` pool:
+
+{{< tabs "TabID1166 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set qos traffic-pool default-lossy switch-priority 0,1,3,4,5,6,7
+cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 70
+cumulus@switch:~$ nv set qos traffic-pool mc-lossy switch-priority 2
+cumulus@switch:~$ nv set qos traffic-pool mc-lossy memory-percent 30
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Configure the following settings in the `/etc/mlx/datapath/qos/qos_infra.conf` file:
+
+```
+traffic.priority_group_list = [service2,bulk]
+
+priority_group.service2.cos_list = [2]
+priority_group.bulk.cos_list = [0,1,3,4,5,6,7]
+
+priority_group.service2.id = 2
+
+priority_group.service2.service_pool = 2
+
+ingress_service_pool.2.percent = 30
+ingress_service_pool.0.percent = 70
+
+port.service_pool.2.ingress_buffer.reserved = 10240
+
+ingress_service_pool.2.mode = 1
+
+port.service_pool.2.ingress_buffer.dynamic_quota = ALPHA_8
+
+priority_group.service2.ingress_buffer.dynamic_quota = ALPHA_8
+
+egress_buffer.egr_queue_2.uc.service_pool = 2
+
+egress_service_pool.2.percent = 30
+egress_service_pool.0.percent = 70
+
+port.service_pool.2.egress_buffer.uc.reserved = 0
+
+egress_buffer.cos_2.mc.service_pool = 2
+
+egress_buffer.egr_queue_2.uc.reserved = 1024
+
+port.egress_buffer.mc.reserved = 10240
+port.egress_buffer.mc.shared_size = 2097152
+egress_service_pool.2.mode = 1
+
+port.service_pool.2.egress_buffer.uc.dynamic_quota = ALPHA_8
+
+egress_buffer.egr_queue_2.uc.dynamic_quota = ALPHA_8
+
+egress_buffer.cos_2.mc.dynamic_quota = ALPHA_8
+```
+
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+For additional `default-lossless` and RoCE pool examples, see {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}} and {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}}.
 
 ## Syntax Checker
 

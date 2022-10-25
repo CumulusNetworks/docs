@@ -23,7 +23,7 @@ Cumulus Linux 5.0 and later does not use the `traffic.conf` and `datapath.conf` 
 {{% /notice %}}
 
 {{% notice note %}}
-NVUE currently only provides commands to configure COS and DSCP marking, egress queue mapping, egress traffic scheduling, PFC, ECN, and lossless and lossy RoCE.
+NVUE currently only provides commands to configure COS and DSCP marking, egress queue mapping, egress traffic scheduling, PFC, ECN, traffic pools, and lossless and lossy RoCE.
 {{% /notice %}}
 
 ## switchd and QoS
@@ -163,7 +163,12 @@ traffic.cos_7.priority_source.8021p = [7]
 
 To configure additional settings, such as apply a custom COS profile to specific interfaces, see [Port Groups](#port-groups).
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the switchd service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
+
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -260,7 +265,11 @@ traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 
 To configure additional settings, such as apply a custom DSCP profile to specific interfaces, see [Port Groups](#port-groups).
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -289,7 +298,11 @@ Configure `traffic.packet_priority_source_set = [port]`.
 
 The `traffic.port_default_priority` setting defines the switch priority that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -404,7 +417,11 @@ traffic.cos_1.priority_remark.8021p = [3]
 traffic.cos_2.priority_remark.8021p = [3]
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 #### Remark DSCP
 
@@ -426,7 +443,13 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups). 
+
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 ## Flow Control
 
@@ -484,7 +507,11 @@ flow_control.egress_buffer.reserved = 0
 flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -537,7 +564,7 @@ Incorrect cable length settings can cause wasted buffer space (triggering conges
 Unless NVIDIA support or engineering asks you to, do not change these values.
 {{% /notice %}}
 
-{{<cl/qos-switchd>}}
+
 
 <details>
 <summary>All Link Pause configuration options</summary>
@@ -622,7 +649,11 @@ pfc.my_pfc_ports2.cos_list = [0]
 pfc.my_pfc_ports2.port_set = swp1
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands also disable PFC frame receive, and set the xoff-size to 1500, the xon-size to 1000, the headroom to 2000, and the cable length to 10:
 
@@ -638,7 +669,11 @@ pfc.my_pfc_ports2.rx_enable = false
 pfc.my_pfc_ports2.cable_length = 10
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 <details>
 <summary>All PFC configuration options</summary>
@@ -735,7 +770,11 @@ my-red-profile.max_threshold_bytes = 200000
 my-red-profile.probability = 10
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 To disable ECN bit marking for an ECN profile, set `ecn_enable` to false. The following example disables ECN bit marking in the default profile.
 
@@ -745,7 +784,11 @@ default_ecn_red_conf.ecn_enable = false
 ...
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1049,7 +1092,11 @@ source.customer2.cos_1.priority_source.8021p = [4]
 | `source.customer2.port_default_priority` | Define the default internal COS marking for unmarked or untrusted traffic.<br>In the following example, Cumulus Linux marks unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports with internal COS 0:<br>`source.customer2.port_default_priority = 0` |
 | `source.customer2.cos_0.priority_source` | Map the ingress COS values to an internal COS value for `customer2`.<br>The following example maps ingress COS value 4 to internal COS 1:<br>`source.customer2.cos_1.priority_source.8021p = [4]` |
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1222,7 +1269,11 @@ egress_buffer.egr_queue_2.uc.dynamic_quota = ALPHA_8
 egress_buffer.cos_2.mc.dynamic_quota = ALPHA_8
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice important%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

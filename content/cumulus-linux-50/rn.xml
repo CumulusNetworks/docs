@@ -13,12 +13,6 @@
 <td>4.4.3-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
-<td>3209895</td>
-<td>When performing "tcpdump -i swpX" for an L3, IPv6 enabled port the switch will generate 4 IPv6 Router Advertisements when tcpdump is started, and when it finishes, for a total of 8 IPv6 RA packets transmitted.</td>
-<td>4.4.4-4.4.5, 5.0.1-5.2.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3202991</td>
 <td>Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM.</td>
 <td>5.0.1-5.2.1</td>

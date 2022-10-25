@@ -440,16 +440,20 @@ Cumulus Linux supports the following congestion control mechanisms:
 
 ### Flow Control Buffers
 
-Before configuring pause frames or PFC, set buffer pools and limits for lossless flows.
+Before configuring pause frames or PFC, configure the buffer pool memory allocated for lossless and lossy flows. The following example sets each to fifty percent:
 
 {{< tabs "TabID445 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set qos traffic-pool pool1 memory-percent 50
-cumulus@switch:~$ nv set qos traffic-pool pool1 switch-priority 1
+cumulus@switch:~$ nv set qos traffic-pool default-lossless memory-percent 50
+cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 50
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+Cumulus Linux allocates 100% of the buffer memory to the default-lossy traffic pool by default. The total memory allocation across pools must not exceed 100%.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -563,8 +567,6 @@ Before configuring PFC, first modify the switch buffer allocation according to {
 {{% notice warning %}}
 PFC buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This attempts to incorporate the delay between signaling congestion and receiving the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (called the interface delay) introduce as well as the distance between end points (cable length).  
 Incorrect cable length settings cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
-
-Unless directed by NVIDIA support or engineering, do not change these values.
 {{% /notice %}}
 
 To set priority flow control on a group of ports, you use a profile to define the egress queues that support sending PFC pause frames and define the set of interfaces to which you want to apply PFC pause frame configuration. Cumulus Linux automatically enables PFC frame transmit and PFC frame receive, and derives all other PFC settings, such as the buffer limits that trigger PFC frames transmit to start and stop, the amount of reserved buffer space, and the cable length.
@@ -1146,6 +1148,86 @@ egress_sched.list2.egr_queue_6.bw_percent = 0
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Traffic Pools
+
+Cumulus Linux supports adjusting the following traffic pools:
+
+|Traffic Pool |Description |
+|------------- |----------- |
+| `default-lossy` | The default traffic pool for all switch priorities. |
+| `default-lossless` | The traffic pool for lossless traffic when you enable {{<link title="#Flow Control Buffers" text="flow control">}}. |
+| `mc-lossy` | The traffic pool for multicast traffic. |
+| `roce-lossy` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossy mode. |
+| `roce-lossless` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossless mode. |
+
+You configure a traffic pool by associating switch priorities and defining the buffer memory percentages allocated to the pools. The following example associates switch priority 2 and allocates a memory percentage of 30 for the `mc-lossy` pool:
+
+{{< tabs "TabID1166 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set qos traffic-pool default-lossy switch-priority 0,1,3,4,5,6,7
+cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 70
+cumulus@switch:~$ nv set qos traffic-pool mc-lossy switch-priority 2
+cumulus@switch:~$ nv set qos traffic-pool mc-lossy memory-percent 30
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Configure the following settings in the `/etc/mlx/datapath/qos/qos_infra.conf` file:
+
+```
+traffic.priority_group_list = [service2,bulk]
+
+priority_group.service2.cos_list = [2]
+priority_group.bulk.cos_list = [0,1,3,4,5,6,7]
+
+priority_group.service2.id = 2
+
+priority_group.service2.service_pool = 2
+
+ingress_service_pool.2.percent = 30
+ingress_service_pool.0.percent = 70
+
+port.service_pool.2.ingress_buffer.reserved = 10240
+
+ingress_service_pool.2.mode = 1
+
+port.service_pool.2.ingress_buffer.dynamic_quota = ALPHA_8
+
+priority_group.service2.ingress_buffer.dynamic_quota = ALPHA_8
+
+egress_buffer.egr_queue_2.uc.service_pool = 2
+
+egress_service_pool.2.percent = 30
+egress_service_pool.0.percent = 70
+
+port.service_pool.2.egress_buffer.uc.reserved = 0
+
+egress_buffer.cos_2.mc.service_pool = 2
+
+egress_buffer.egr_queue_2.uc.reserved = 1024
+
+port.egress_buffer.mc.reserved = 10240
+port.egress_buffer.mc.shared_size = 2097152
+egress_service_pool.2.mode = 1
+
+port.service_pool.2.egress_buffer.uc.dynamic_quota = ALPHA_8
+
+egress_buffer.egr_queue_2.uc.dynamic_quota = ALPHA_8
+
+egress_buffer.cos_2.mc.dynamic_quota = ALPHA_8
+```
+
+{{<cl/qos-switchd>}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+For additional `default-lossless` and RoCE pool examples, see {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}} and {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}}.
 
 ## Syntax Checker
 

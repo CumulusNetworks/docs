@@ -4,10 +4,10 @@ author: NVIDIA
 weight: 1155
 toc: 4
 ---
-The most basic SNMP configuration requires you to specify:
-
-- One or more IP addresses on which the SNMP agent listens.
-- Either a username (for SNMPv3) or a read-only community string (a password, for SNMPv1 or SNMPv2c).
+The most basic SNMP configuration requires you to:
+- Enable and start the `snmpd` service.
+- Specify one or more IP addresses on which the SNMP agent listens.
+- Specify either a username (for SNMPv3) or a read-only community string (a password, for SNMPv1 or SNMPv2c).
 
 By default, the SNMP configuration has a listening address of localhost (127.0.0.1), which allows the agent (the `snmpd` service) to respond to SNMP requests originating on the switch itself. This is a secure method that allows checking the SNMP configuration without exposing the switch to outside attacks. For an external SNMP [NMS](## "Network Management Software") to poll a Cumulus Linux switch, you must configure the `snmpd` service running on the switch to listen to one or more IP addresses on interfaces that have a link state UP.
 
@@ -15,7 +15,7 @@ Use the SNMPv3 username instead of the read-only community name. The SNMPv3 user
 
 ## Basic Configuration
 
-Before you can use SNMP, you need to enable and start the `snmpd` service and configure a listening address.
+Before you can use SNMP, you need to enable and start the `snmpd` service, and configure a listening address.
 
 {{< tabs "20 ">}}
 {{< tab "NVUE Commands ">}}

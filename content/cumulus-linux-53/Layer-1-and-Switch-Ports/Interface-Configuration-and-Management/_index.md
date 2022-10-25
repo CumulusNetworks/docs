@@ -598,7 +598,7 @@ iface br1
 
 ## Fast Linkup
 
-Cumulus Linux supports fast linkup on interfaces on NVIDIA Sectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as the 100G Pensando network interface cards.
+Cumulus Linux supports fast linkup on interfaces on NVIDIA Spectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as the 100G Pensando network interface cards.
 
 {{%notice note%}}
 You must configure both sides of the connection with the same speed and FEC settings.

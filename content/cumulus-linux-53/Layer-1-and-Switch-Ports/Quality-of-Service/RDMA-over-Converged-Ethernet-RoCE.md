@@ -223,7 +223,6 @@ tx-stats
 
 To reset the counters that the `nv show interface <interface> qos roce` command displays, run the `nv action clear interface <interface> qos roce counters` command.
 
-
 ## Change RoCE Configuration
 
 You can adjust RoCE settings using NVUE after RoCE is enabled. To change the memory allocation for RoCE lossless mode to 60 percent:

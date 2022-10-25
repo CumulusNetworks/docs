@@ -452,7 +452,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-Cumulus Linux allocates 100% of buffer memory to the default-lossy traffic pool by default. The total memory allocation across pools can not exceed 100%.
+Cumulus Linux allocates 100% of the buffer memory to the default-lossy traffic pool by default. The total memory allocation across pools must not exceed 100%.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -1155,11 +1155,11 @@ Cumulus Linux supports adjusting the following traffic pools:
 
 |Traffic Pool |Description |
 |------------- |----------- |
-| default-lossy | The default traffic pool for all switch priorities |
-| default-lossless | The traffic pool for lossless traffic when {{<link title="#Flow Control Buffers" text="flow control">}} is enabled. |
-| mc-lossy | The traffic pool for multicast traffic |
-| roce-lossy | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossy mode |
-| roce-lossless | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossless mode |
+| `default-lossy` | The default traffic pool for all switch priorities. |
+| `default-lossless` | The traffic pool for lossless traffic when you enable {{<link title="#Flow Control Buffers" text="flow control">}}. |
+| `mc-lossy` | The traffic pool for multicast traffic. |
+| `roce-lossy` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossy mode. |
+| `roce-lossless` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossless mode. |
 
 You configure a traffic pool by associating switch priorities and defining the buffer memory percentages allocated to the pools. The following example associates switch priority 2 and allocates a memory percentage of 30 for the `mc-lossy` pool:
 
@@ -1172,11 +1172,9 @@ cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 70
 cumulus@switch:~$ nv set qos traffic-pool mc-lossy switch-priority 2
 cumulus@switch:~$ nv set qos traffic-pool mc-lossy memory-percent 30
 cumulus@switch:~$ nv config apply
-
 ```
 
 {{< /tab >}}
-
 {{< tab "Linux Commands ">}}
 
 Configure the following settings in the `/etc/mlx/datapath/qos/qos_infra.conf` file:
@@ -1223,12 +1221,14 @@ egress_buffer.egr_queue_2.uc.dynamic_quota = ALPHA_8
 
 egress_buffer.cos_2.mc.dynamic_quota = ALPHA_8
 ```
+
 {{<cl/qos-switchd>}}
 
 {{< /tab >}}
 {{< /tabs >}}
 
-For additional examples for the `default-lossless` and RoCE pools, see {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}} and {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}}.
+For additional `default-lossless` and RoCE pool examples, see {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}} and {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}}.
+
 ## Syntax Checker
 
 Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.

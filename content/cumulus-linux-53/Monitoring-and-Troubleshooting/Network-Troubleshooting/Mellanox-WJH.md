@@ -34,7 +34,7 @@ cumulus@switch:~$ sudo systemctl start what-just-happened
 
 ## Configure WJH
 
-WJH can monitor layer 1, layer 2, layer 3, tunnel, acl and buffer packet drops. You can choose which packet drops you want to monitor by creating channels.
+WJH can monitor layer 1, layer 2, layer 3, tunnel, acl and buffer packet drops. You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories you want to monitor.
 
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}

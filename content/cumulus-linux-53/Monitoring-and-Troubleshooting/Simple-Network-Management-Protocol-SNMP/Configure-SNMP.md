@@ -13,15 +13,16 @@ By default, the SNMP configuration has a listening address of localhost (127.0.0
 
 Use the SNMPv3 username instead of the read-only community name. The SNMPv3 username does not expose the user credentials and can encrypt packet contents. However, SNMPv1 and SNMPv2c environments require read-only community passwords so that the `snmpd` daemon can respond to requests. The read-only community string enables you to poll various MIB objects on the device.
 
-## Start the SNMP Service
+## Basic Configuration
 
-Before you can use SNMP, you need to enable and start the `snmpd` service.
+Before you can use SNMP, you need to enable and start the `snmpd` service and configure a listening address.
 
 {{< tabs "20 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set service snmp-server enable on
+cumulus@switch:~$ nv set service snmp-server listening-address localhost
 cumulus@switch:~$ nv config apply
 ```
 
@@ -52,12 +53,22 @@ If you intend to run this service within a {{<link url="Virtual-Routing-and-Forw
    RestartSec=60
    ```
 
-3. Run the `sudo systemctl daemon-reload` command.
+3. Edit the `/etc/snmp/snmpd.conf` file and add the IP address, protocol and port for `snmpd` to listen for incoming requests. You can use multiple lines to define multiple listening addresses or use a comma-separated list on a single line.
+
+```
+cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
+...
+agentAddress 192.168.200.11@mgmt
+agentAddress udp:66.66.66.66:161,udp:77.77.77.77:161,udp6:[2001::1]:161
+...
+```
+
+4. Run the `sudo systemctl daemon-reload` command.
 
 {{< /tab >}}
 {{< /tabs >}}
 
-### Configure the Listening IP Addresses
+### Listening IP Addresses
 
 For security reasons, the listening address is the localhost by default so that the SNMP agent only responds to requests originating on the switch itself. You can also configure listening only on the IPv6 localhost address. When using IPv6 addresses or localhost, you can use a `readonly-community-v6` for SNMPv1 and SNMPv2c requests. For SNMPv3 requests, you can use the `username` command to restrict access. See {{<link url="#configure-the-snmpv3-username" text="Configure the SNMPv3 Username">}} below.
 
@@ -470,19 +481,11 @@ sysname CumulusBox-1,543,567
 
 ## Enable SNMP Support for FRR
 
-SNMP supports routing MIBs in {{<link url="FRRouting" text="FRR">}}. To enable SNMP support for FRR, you need to configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR.
+SNMP supports routing MIBs in {{<link url="FRRouting" text="FRR">}}. If you are running Linux commands to configure the switch, you need to configure {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR.
 
-The default `/etc/snmp/snmpd.conf` configuration already enables AgentX and sets the correct permissions.
+The NVUE `nv set service snmp-server enable on` command automatically configures {{<exlink url="http://www.net-snmp.org/docs/README.agentx.html" text="AgentX">}} (ASX) access in FRR; you do not need to run any additional commands.
 
-Enabling FRR includes support for BGP. However, if you plan to use the BGP4 MIB, be sure to provide access to the MIB tree 1.3.6.1.2.1.15.
-
-{{%notice tip%}}
-If you plan on using the OSPFv2 MIB, provide access to 1.3.6.1.2.1.14 and to 1.3.6.1.2.1.191 for the OSPv3 MIB.
-{{%/notice%}}
-
-To enable SNMP support for FRR:
-
-1. Configure AgentX access in FRR:
+1. Enable AgentX:
 
    ```
    cumulus@switch:~$ sudo vtysh
@@ -494,46 +497,13 @@ To enable SNMP support for FRR:
    switch# exit
    ```
 
-2. Edit the `/etc/frr/daemons` file and add a line similar to the following to configure the appropriate routing daemon; the example below uses `bgpd`, the BGP daemon.
-
-   ```
-   cumulus@switch:~$ sudo nano /etc/frr/daemons
-   bgpd_options=" -M snmp -A 127.0.0.1"
-   ```
-
-3. Restart FRR.
-
-   ```
-   cumulus@switch:~$ sudo systemctl restart frr.service
-   ```
-
-4. Update the SNMP configuration to enable FRR to respond to SNMP requests. Edit the `/etc/snmp/snmpd.conf` file and verify that the following configuration exists:
-
-   ```
-   cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
-   agentxsocket /var/agentx/master
-   agentxperms 777 777 snmp snmp
-   master agentx
-   ```
-
-   {{%notice note%}}
-Make sure that the `/var/agentx` directory is world-readable and world-searchable (octal mode 755).
-
-```
-cumulus@switch:~$ ls -la /var/
-...
-drwxr-xr-x  2 root root  4096 Nov 11 12:06 agentx
-...
-```
-   {{%/notice%}}
-
-5. Optionally, you might need to expose various MIBs:
+2. If your SNMP view restricts MIB access, expose the following MIBs for the protocols you are using:
 
     - For the BGP4 MIB, allow access to `1.3.6.1.2.1.15`
     - For the OSPF MIB, allow access to `1.3.6.1.2.1.14`
     - For the OSPFV3 MIB, allow access to `1.3.6.1.2.1.191`
 
-To verify the configuration, run `snmpwalk`. For example, if you have a running OSPF configuration with routes, you can check this OSPF-MIB first from the switch itself with:
+To verify the configuration, you can run `snmpwalk`.
 
 ```
 cumulus@switch:~$ sudo snmpwalk -v2c -cpublic localhost 1.3.6.1.2.1.14

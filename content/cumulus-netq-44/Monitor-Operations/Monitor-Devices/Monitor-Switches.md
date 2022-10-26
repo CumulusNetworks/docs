@@ -14,97 +14,39 @@ Three categories of performance metrics are available for switches:
 
 For inventory information for all switches (ASIC, platform, CPU, memory, disk, and OS), refer to {{<link title="Switch Inventory">}}.
 
-## View Overall Health
+## View Switch Metrics and Attributes
 
-The NetQ UI provides several views that enable users to easily track the overall health of switch, some high-level metrics, and attributes of the switch.
+To view events, metrics, and attributes per switch, open the Switch card:
 
-### View Overall Health of a Switch
-
-When you want to view an overview of the current or past health of a particular switch, open the small Switch card. It is unlikely that you would have this card open for every switch in your network at the same time, but it is useful for tracking selected switches that might have been problematic in the recent past or that you have recently installed. The card displays events, a summary health score, and health trend.
-
-To view the summary:
-
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices), then click **Open a device card**.
-
-    {{<figure src="/images/netq/add-switch-card-modal-310.png" width="250">}}
+1. Select {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in the header, then click **Open a device card**.
 
 2. Begin typing the hostname of the switch you are interested in. Select it from the suggested matches when it appears.
 
-    {{<figure src="/images/netq/add-switch-card-auto-suggest-310.png" width="250">}}
-
-3. Select *Small* from the card size dropdown.
-
-    {{<figure src="/images/netq/add-switch-card-choose-size-320.png" width="250">}}
-
-4. Click **Add**.
-
-    {{<figure src="/images/netq/dev-switch-small-card-230.png" width="200">}}
-
-    This example shows the *leaf01* switch has had very few alarms overall, but the number is trending upward, with a total count of 24 alarms currently.
-
-### View High-Level Health Metrics
-
-When you are monitoring switches that have been problematic or are newly installed, you might want to view more than a summary. Instead, seeing key performance metrics can help you determine where issues might be occurring or how new devices are functioning in the network.
-
-To view the key metrics, use the NetQ UI to open the medium Switch card. The card shows you the overall switch health score and the scores for the key metrics that comprise that score. The key metric scores are based on the number of alarms attributed to the following activities on the switch:
-
-- Network services, such as BGP, EVPN, MLAG, NTP, and so forth
-- Interface performance
-- System performance
-
-Locate or open the relevant Switch card:
-
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices), then click **Open a device card**.
-
-2. Begin typing the hostname of the device you are interested in. Select it from the suggested matches when it appears.
+    {{<figure src="/images/netq/open-device-card-switch.png" alt="dropdown displaying switches" width="250">}}
 
 3. Click **Add**.
 
-{{<figure src="/images/netq/dev-switch-medium-alarms-charts-231.png" width="420">}}
-
-Also included on the card is the total alarm count for all of these metrics. You can view the key performance metrics as numerical scores or as line charts over time, by clicking **Alarms** or **Charts** at the top of the card.
-
-### View Switch Attributes
-
-For a quick look at the key attributes of a particular switch, open the large Switch card.
-
-Locate or open the relevant Switch card:
-
-- Hover over the card, then change to the large card using the card size picker.
-
-OR
-
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices), then click **Open a devices card**.
-
-2. Begin typing the hostname of the device you are interested in. Select it from the suggested matches when it appears.
-
-3. Select *Large* from the card size dropdown.
-
-4. Click **Add**.
+4. Adjust the card's size to view information at different levels of granularity. 
 
 Attributes are displayed as the default tab on the large Switch card. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces and NetQ Agent on the switch.
 
-{{<figure src="/images/netq/dev-switch-large-attributes-tab-230.png" width="500">}}
+{{<figure src="/images/netq/switch-card-size-large.png" alt="large switch card displaying attributes" width="500">}}
 
-From a performance perspective, this example shows that five interfaces are down and the NetQ Agent is communicating with the NetQ appliance or VM. Investigate the interfaces (refer to {{<link title="#view-interface-statistics-and-utilization" text="interface statistics">}}).
+Hover over the top of the card, then select the appropriate icon to view utilization info, interface statistics, digital optics info, and RoCe metrics. The following card shows interface statistics:
 
-## System Configuration
+{{<figure src="/images/netq/interface-stats-large-card.png" alt="large switch card displaying attributes" width="500">}}
 
-At some point in the lifecycle of a switch, you are likely to want more detail about how the switch is configured and what software is running on it. The NetQ UI and the NetQ CLI can provide this information.
 
+## View System Configuration in the UI
+
+To view utilization and configuration information in the NetQ UI, open a Switch card, then expand it to the full-screen view. From here, you can filter, sort, and view information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, software packages, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, and digital optics. 
+
+{{<figure src="/images/netq/swtich-interfaces-stats.png" width="900">}}
+
+## View System Configuration in the CLI
 ### View All Switch Events
 
 {{<tabs "TabID101" >}}
-
-{{<tab "NetQ UI" >}}
-
-To view all events:
-
-1. Open the full-screen Switch card and click **Events**.
-
-2. Use the filters to sort by message type or time range.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
@@ -123,26 +65,6 @@ netq [<hostname>] show events [severity info | severity error ] [between <text-t
 You can view all configured interfaces on a switch in one place making it easier to see inconsistencies in the configuration, quickly see when changes occurred, and the operational status.
 
 {{<tabs "TabID146" >}}
-
-{{<tab "NetQ UI" >}}
-
-To view all interfaces:
-
-1. Open the full-screen Switch card and click **All Interfaces**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-interfaces-tab-241.png" width="700">}}
-
-2. Look for interfaces that are down, shown in the **State** column.
-
-3. Look for recent changes to the interfaces, shown in the **Last Changed** column.
-
-4. View details about each interface, shown in the **Details** column.
-
-5. Verify they are of the correct kind for their intended function, shown in the **Type** column.
-
-6. Verify the correct VRF interface is assigned to an interface, shown in the **VRF** column.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
@@ -228,21 +150,7 @@ spine01           swp4                      swp              up         default 
 
 ### View All MAC Addresses on a Switch
 
-You can view all MAC address currently used by a switch using the NetQ UI or the NetQ CLI.
-
 {{<tabs "TabID256" >}}
-
-{{<tab "NetQ UI" >}}
-
-1. Open the full-screen switch card for the switch of interest.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-macaddr-tab-331.png" width="500">}}
-
-2. Review the addresses.
-
-3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by MAC address, VLAN, origin, or alternate time range.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
@@ -345,23 +253,7 @@ yes    00:00:00:00:00:1c  30     leaf01            bridge                       
 
 ### View All VLANs on a Switch
 
-You can view all VLANs running on a given switch using the NetQ UI or NetQ CLI.
-
 {{<tabs "TabID375" >}}
-
-{{<tab "NetQ UI" >}}
-
-To view all VLANs on a switch:
-
-1. Open the full-screen Switch card and click **VLANs**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-vlans-tab-331.png" width="700">}}
-
-2. Review the VLANs.
-
-3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by interface name or type.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
@@ -408,23 +300,7 @@ No matching link records found
 
 ### View All IP Routes on a Switch
 
-You can view all IP routes currently used by a switch using the NetQ UI or the NetQ CLI.
-
 {{<tabs "TabID440" >}}
-
-{{<tab "NetQ UI" >}}
-
-To view all IP routes on a switch:
-
-1. Open the full-screen Switch card and click **IP Routes**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-iproutes-tab-320.png" width="700">}}
-
-2. By default all IP routes are listed. Click **IPv6** or **IPv4** to restrict the list to only those routes.
-
-3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by VRF or view a different time period.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
@@ -491,23 +367,7 @@ no     default         10.10.10.1/32                  spine01           169.254.
 
 ### View All IP Neighbors on a Switch
 
-You can view all IP neighbors currently known by a switch using the NetQ UI or the NetQ CLI.
-
 {{<tabs "View all IP neighbors">}}
-
-{{<tab "NetQ UI">}}
-
-To view all IP neighbors on a switch:
-
-1. Open the full-screen Switch card and click **IP Neighbors**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-ipneigh-tab-331.png" width="700">}}
-
-2. By default all IP routes are listed. Click **IPv6** or **IPv4** to restrict the list to only those routes.
-
-3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by VRF or view a different time period.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI">}}
 
@@ -569,23 +429,7 @@ IP Address                Hostname          Interface                 MAC Addres
 
 ### View All IP Addresses on a Switch
 
-You can view all IP addresses currently known by a switch using the NetQ UI or the NetQ CLI.
-
 {{<tabs "View all IP addresses">}}
-
-{{<tab "NetQ UI">}}
-
-To view all IP addresses on a switch:
-
-1. Open the full-screen Switch card and click **IP Addresses**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-ipaddr-tab-331.png" width="700">}}
-
-2. By default all IP addresses are listed. Click **IPv6** or **IPv4** to restrict the list to only those addresses.
-
-3. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to filter by interface or VRF, or view a different time period.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI">}}
 
@@ -648,31 +492,11 @@ Address                   Hostname          Interface                 VRF       
 
 ### View All Software Packages
 
-If you are having an issue with a particular switch, you might want to verify all installed software and whether it needs updating.
-
-You can view all the software installed on a given switch using the NetQ UI or NetQ CLI to quickly validate versions and total software installed.
-
 {{<tabs "View all packages">}}
-
-{{<tab "NetQ UI">}}
-
-To view all software packages:
-
-1. Open the full-screen Switch card and click **Installed Packages**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-pkgs-tab-241.png" width="700">}}
-
-2. Look for packages of interest and their version and status. Sort by a particular parameter by clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18"/>.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-filter-by-pkgname-241.png" width="300">}}
-
-3. Optionally, export the list by selecting all or specific packages, then clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI">}}
 
-To view package information for a switch, run:
+To view software package information for a switch, run:
 
 ```
 netq <hostname> show cl-pkg-info [<text-package-name>] [around <text-time>] [json]
@@ -735,6 +559,95 @@ spine01           ntp                      1:4.2.8p10-cl3u2     Cumulus Linux 3.
 
 {{</tabs>}}
 
+### View SSD Utilization
+
+For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. NetQ generates an event for drives that drop below 10% health, or have more than a 2% loss of health in 24 hours, indicating the need to rebalance the drive.
+
+{{<tabs "View SSD utilization" >}}
+
+{{<tab "NetQ CLI">}}
+
+To view SDD utilization, run:
+
+```
+netq <hostname> show cl-ssd-util [around <text-time>] [json]
+```
+
+This example shows the utilization for *spine02* which has this type of SSD.
+
+```
+cumulus@switch:~$ netq spine02 show cl-ssd-util
+Hostname        Remaining PE Cycle (%)  Current PE Cycles executed      Total PE Cycles supported       SSD Model               Last Changed
+spine02         80                      576                             2880                            M.2 (S42) 3ME3          Thu Oct 31 00:15:06 2019
+```
+
+This output indicates that this drive is in a good state overall with 80% of its PE cycles remaining. Use the `around` option to view this information around a particular time in the past.
+
+{{</tab>}}
+
+{{</tabs>}}
+
+### View Forwarding Resource Utilization
+
+{{<tabs "TabID1052" >}}
+
+{{<tab "NetQ CLI" >}}
+
+To view forwarding resources utilization on a switch, run:
+
+```
+netq <hostname> show cl-resource forwarding [around <text-time>] [json]
+```
+
+Use the `around` option to show this information for a time in the past.
+
+This example shows the forwarding resources used by the *spine02* switch.
+
+```
+cumulus@switch:~$ netq spine02 show cl-resource forwarding
+Matching cl_resource records:
+Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+spine02           9,16384(0%)          0,0(0%)              290,131072(0%)       173,20480(0%)        54,16330(0%)         26,32768(0%)         0,8192(0%)           Mon Jan 13 03:34:11 2020
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
+### View ACL Resource Utilization
+
+You can monitor the incoming and outgoing access control lists (ACLs) configured on a switch.
+
+Both the Switch card and `netq show cl-resource acl` command display the ingress/egress IPv4/IPv6 filter/mangle, ingress 802.1x filter, ingress mirror, ingress/egress PBR IPv4/IPv6 filter/mangle, ACL Regions, 18B/32B/54B Rules Key, and layer 4 port range checker.
+
+{{<tabs "TabID1338" >}}
+
+{{<tab "NetQ CLI" >}}
+
+To view ACL resource utilization on a switch, run:
+
+```
+netq <hostname> show cl-resource acl [ingress | egress] [around <text-time>] [json]
+```
+
+Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs. Use the `around` option to show this information for a time in the past.
+
+This example shows the ACL resources available and currently used by the *leaf01* switch.
+
+```
+cumulus@switch:~$ netq leaf01 show cl-resource acl
+Matching cl_resource records:
+Hostname          In IPv4 filter       In IPv4 Mangle       In IPv6 filter       In IPv6 Mangle       In 8021x filter      In Mirror            In PBR IPv4 filter   In PBR IPv6 filter   Eg IPv4 filter       Eg IPv4 Mangle       Eg IPv6 filter       Eg IPv6 Mangle       ACL Regions          18B Rules Key        32B Rules Key        54B Rules Key        L4 Port range Checke Last Updated
+                                                                                                                                                                                                                                                                                                                                                                  rs
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+leaf01            36,512(7%)           0,0(0%)              30,768(3%)           0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              29,256(11%)          0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              2,24(8%)             Mon Jan 13 03:34:11 2020
+```
+
+{{</tab>}}
+
+{{</tabs>}}
+
 ## Utilization Statistics
 
 Utilization statistics provide a view into the operation of a switch. They indicate whether resources are becoming dangerously close to their maximum capacity or a user-defined threshold. Depending on the function of the switch, the acceptable thresholds can vary. You can use the NetQ UI or the NetQ CLI to access the utilization statistics.
@@ -744,30 +657,6 @@ Utilization statistics provide a view into the operation of a switch. They indic
 You can view the current utilization of CPU, memory, and disk resources to determine whether a switch is reaching its maximum load and compare its performance with other switches.
 
 {{<tabs "TabID763" >}}
-
-{{<tab "NetQ UI" >}}
-
-To view the compute resources utilization:
-
-1. Open the large Switch card.
-
-2. Hover over the card and click <img src="https://icons.cumulusnetworks.com/06-Business-Products/12-Analytics/analytics-bars.svg" height="18" width="18"/>.
-
-<!-- vale off -->
-3. The card is divided into two sections, displaying hardware-related performance through a series of charts.
-<!-- vale on-->
-
-    {{<figure src="/images/netq/dev-switch-large-utilization-tab-230.png" width="500">}}
-
-4. Look at the hardware performance charts.
-
-    Are there any that are reaching critical usage levels? Is usage high at a particular time of day?
-
-5. Change the time period. Is the performance about the same? Better? Worse? The results can guide your decisions about upgrade options.
-
-6. Open the large Switch card for a comparable switch. Is the performance similar?
-
-{{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
@@ -840,36 +729,7 @@ NetQ Agents collect performance statistics every 30 seconds for the physical int
     - rx\_util, tx\_util
     - port speed
 
-You can view these statistics and utilization data using the NetQ UI or the NetQ CLI.
-
 {{<tabs "TabID858" >}}
-
-{{<tab "NetQ UI" >}}
-
-1. Locate the switch card of interest on your workbench and change to the large size card if needed. Otherwise, open the relevant switch card:
-
-    1. Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" width="18" height="18">}} (Switches), and then select **Open a switch card**.
-
-    2. Begin typing the name of the switch of interest, and select when it appears in the suggestions list.
-
-    3. Select the *Large* card size.
-
-    4. Click **Add**.
-
-2. Hover over the card and click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/07-Data-Transfer/data-transfer-square-diagonal.svg" width="18" height="18">}} to open the Interface Stats tab.
-
-    {{<figure src="/images/netq/dev-switch-large-interfaces-tab-230.png" width="500">}}
-
-3. Select an interface from the list, scrolling down until you find it. By default the interfaces are sorted by Name, but you might find it easier to sort by the highest transmit or receive utilization using the filter above the list.
-
-    The charts update according to your selection. Scroll up and down to view the individual statistics. Look for high usage, a large number of drops or errors.
-
-What you view next depends on what you see, but a couple of possibilities include:
-
-- Open the full screen card to view details about all of the interfaces on the switch.
-- Open another switch card to compare performance on a similar interface.
-
-{{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
@@ -951,194 +811,9 @@ border01          swp54                     2461                 0              
 
 {{</tabs>}}
 
-### View ACL Resource Utilization
 
-You can monitor the incoming and outgoing access control lists (ACLs) configured on a switch. This ACL resource information is available from the NetQ UI and NetQ CLI.
 
-Both the Switch card and `netq show cl-resource acl` command display the ingress/egress IPv4/IPv6 filter/mangle, ingress 802.1x filter, ingress mirror, ingress/egress PBR IPv4/IPv6 filter/mangle, ACL Regions, 18B/32B/54B Rules Key, and layer 4 port range checker.
 
-{{<tabs "TabID1338" >}}
-
-{{<tab "NetQ UI" >}}
-
-To view ACL resource utilization on a switch:
-
-1. Open the Switch card for a switch by searching in the **Global Search** field.
-
-2. Hover over the card and change to the full-screen card using the size picker.
-
-3. Click **ACL Resources**.
-
-<!-- insert img here; additional steps?-->
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
-To view ACL resource utilization on a switch, run:
-
-```
-netq <hostname> show cl-resource acl [ingress | egress] [around <text-time>] [json]
-```
-
-Use the `egress` or `ingress` options to show only the outgoing or incoming ACLs. Use the `around` option to show this information for a time in the past.
-
-This example shows the ACL resources available and currently used by the *leaf01* switch.
-
-```
-cumulus@switch:~$ netq leaf01 show cl-resource acl
-Matching cl_resource records:
-Hostname          In IPv4 filter       In IPv4 Mangle       In IPv6 filter       In IPv6 Mangle       In 8021x filter      In Mirror            In PBR IPv4 filter   In PBR IPv6 filter   Eg IPv4 filter       Eg IPv4 Mangle       Eg IPv6 filter       Eg IPv6 Mangle       ACL Regions          18B Rules Key        32B Rules Key        54B Rules Key        L4 Port range Checke Last Updated
-                                                                                                                                                                                                                                                                                                                                                                  rs
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-leaf01            36,512(7%)           0,0(0%)              30,768(3%)           0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              29,256(11%)          0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              2,24(8%)             Mon Jan 13 03:34:11 2020
-```
-
-You can also view this same information in JSON format.
-
-```
-cumulus@switch:~$ netq leaf01 show cl-resource acl json
-{
-    "cl_resource": [
-        {
-            "egIpv4Filter": "29,256(11%)",
-            "egIpv4Mangle": "0,0(0%)",
-            "inIpv6Filter": "30,768(3%)",
-            "egIpv6Mangle": "0,0(0%)",
-            "inIpv4Mangle": "0,0(0%)",
-            "hostname": "leaf01",
-            "inMirror": "0,0(0%)",
-            "egIpv6Filter": "0,0(0%)",
-            "lastUpdated": 1578886451.885,
-            "54bRulesKey": "0,0(0%)",
-            "aclRegions": "0,0(0%)",
-            "in8021XFilter": "0,0(0%)",
-            "inIpv4Filter": "36,512(7%)",
-            "inPbrIpv6Filter": "0,0(0%)",
-            "18bRulesKey": "0,0(0%)",
-            "l4PortRangeCheckers": "2,24(8%)",
-            "inIpv6Mangle": "0,0(0%)",
-            "32bRulesKey": "0,0(0%)",
-            "inPbrIpv4Filter": "0,0(0%)"
-	}
-    ],
-    "truncatedResult":false
-}
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-### View Forwarding Resource Utilization
-
-You can monitor the amount of forwarding resources used by a switch, currently or at a time in the past using the NetQ UI and NetQ CLI.
-
-{{<tabs "TabID1052" >}}
-
-{{<tab "NetQ UI" >}}
-
-To view forwarding resources utilization on a switch:
-
-1. Open the Switch card for a switch by searching in the **Global Search** field.
-
-2. Hover over the card and change to the full-screen card using the size picker.
-
-3. Click **Forwarding Resources**.
-
-<!-- insert img here; additional steps?-->
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
-To view forwarding resources utilization on a switch, run:
-
-```
-netq <hostname> show cl-resource forwarding [around <text-time>] [json]
-```
-
-Use the `around` option to show this information for a time in the past.
-
-This example shows the forwarding resources used by the *spine02* switch.
-
-```
-cumulus@switch:~$ netq spine02 show cl-resource forwarding
-Matching cl_resource records:
-Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
------------------ -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-spine02           9,16384(0%)          0,0(0%)              290,131072(0%)       173,20480(0%)        54,16330(0%)         26,32768(0%)         0,8192(0%)           Mon Jan 13 03:34:11 2020
-```
-
-You can also view this same information in JSON format.
-
-```
-cumulus@switch:~$ netq spine02 show cl-resource forwarding  json
-{
-    "cl_resource": [
-        {
-            "macEntries": "26,32768(0%)",
-            "ecmpNexthops": "54,16330(0%)",
-            "ipv4HostEntries": "9,16384(0%)",
-            "hostname": "spine02",
-            "lastUpdated": 1578886451.884,
-            "ipv4RouteEntries": "290,131072(0%)",
-            "ipv6HostEntries": "0,0(0%)",
-            "ipv6RouteEntries": "173,20480(0%)",
-            "totalMcastRoutes": "0,8192(0%)"
-	}
-    ],
-    "truncatedResult":false
-}
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-### View SSD Utilization
-
-For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on-demand. NetQ generates an alarm for drives that drop below 10% health, or have more than a two percent loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time enables you to see any downward trend or instability of the drive before you receive an alarm.
-
-{{<tabs "View SSD utilization" >}}
-
-{{<tab "NetQ UI">}}
-
-To view SSD utilization:
-
-1. Open the full screen Switch card and click **SSD Utilization**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-ssd-tab-241.png" width="700">}}
-
-2. View the average PE Cycles value for a given drive. Is it higher than usual?
-
-3. View the Health value for a given drive. Is it lower than  usual? Less than 10%?
-
-Consider adding the switch cards that are suspect to a workbench for easy tracking.
-
-{{</tab>}}
-
-{{<tab "NetQ CLI">}}
-
-To view SDD utilization, run:
-
-```
-netq <hostname> show cl-ssd-util [around <text-time>] [json]
-```
-
-This example shows the utilization for *spine02* which has this type of SSD.
-
-```
-cumulus@switch:~$ netq spine02 show cl-ssd-util
-Hostname        Remaining PE Cycle (%)  Current PE Cycles executed      Total PE Cycles supported       SSD Model               Last Changed
-spine02         80                      576                             2880                            M.2 (S42) 3ME3          Thu Oct 31 00:15:06 2019
-```
-
-This output indicates that this drive is in a good state overall with 80% of its PE cycles remaining. Use the `around` option to view this information around a particular time in the past.
-
-{{</tab>}}
-
-{{</tabs>}}
 
 ### View Disk Storage After BTRFS Allocation
 
@@ -1148,28 +823,9 @@ For details about when to perform a recommended rebalance, refer to [When to Reb
 
 {{<tabs "TabID414" >}}
 
-{{<tab "NetQ UI" >}}
-
-To view the disk state:
-
-1. Open the full-screen Switch card for a switch of interest:
-
-     - Type the switch name in the Global Search entry field, then use the card size picker to open the full-screen card, *or* 
-     - Click {{<img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="24" width="24">}} (Switches), select **Open a switch card**, enter the switch name and select the full-screen card size.
-
-2. Click **BTRFS Utilization**.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-btrfs-util-tab-241.png" width="700">}}
-
-3. Look for the **Rebalance Recommended** column.
-
-    If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the table to determine if you are getting close to needing a rebalance, and come back to view this table at a later time.
-
-{{</tab>}}
-
 {{<tab "NetQ CLI" >}}
 
-To view the disk utilization and whether a rebalance is recommended, run:
+To view the disk utilization and check whether a rebalance is recommended, run:
 
 ```
 netq show cl-btrfs-util [around <text-time>] [json]
@@ -1188,8 +844,6 @@ leaf01            37.79 %              3.58 GB              588.5 MB            
 ```
 
 Look for the **Rebalance Recommended** column. If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the output to determine if you are getting close to needing a rebalance, and come back to view this data at a later time.
-
-Optionally, use the `around` option to view the information for a particular time in the past.
 
 {{</tab>}}
 
@@ -1222,8 +876,6 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 #### Power Supply Unit Health
 
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
-
-    {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
 
 2. The PSU tab is displayed by default.
 
@@ -1305,63 +957,6 @@ Sensor information is available from the NetQ UI and NetQ CLI.
    {{<figure src="/images/netq/main-menu-sensors-filterbyhostname-320.png" width="300">}}
 
     {{<figure src="/images/netq/main-menu-ntwk-sensors-fan-single-switch-filter-320.png" width="700">}}
-
-<div style="padding-left: 18px;">
-<table>
-<thead>
-<tr>
-<th>Fan Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hostname</td>
-<td>Name of the switch or host where the fan is installed</td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>Date and time the data was captured</td>
-</tr>
-<tr>
-<td>Message Type</td>
-<td>Type of sensor message; always <em>Fan</em> in this table</td>
-</tr>
-<tr>
-<td>Description</td>
-<td>User specified description of the fan</td>
-</tr>
-<tr>
-<td>Speed (RPM)</td>
-<td>Revolution rate of the fan (revolutions per minute)</td>
-</tr>
-<tr>
-<td>Max</td>
-<td>Maximum speed (RPM)</td>
-</tr>
-<tr>
-<td>Min</td>
-<td>Minimum speed (RPM)</td>
-</tr>
-<tr>
-<td>Message</td>
-<td>Message</td>
-</tr>
-<tr>
-<td>Sensor Name</td>
-<td>User-defined name for the fan</td>
-</tr>
-<tr>
-<td>Previous State</td>
-<td>State of the fan when data was captured in previous window</td>
-</tr>
-<tr>
-<td>State</td>
-<td>State of the fan when data was last captured</td>
-</tr>
-</tbody>
-</table>
-</div>
 
 #### Temperature Information
 
@@ -1647,135 +1242,23 @@ leaf01            psu2temp1       psu2 temp sensor                    ok        
 
 Digital optics module information is available regarding the performance degradation or complete outage of any digital optics modules on a switch using the NetQ UI and NetQ CLI.
 
-- Switch card:
-    - Large: view trends of laser bias current, laser output power, received signal average optical power, and module temperature/voltage for given interface (graphics)
-    - Full screen: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage (table)
 - Digital Optics card: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage (table)
 - `netq show dom type` command: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage
 
 {{<tabs "TabID925" >}}
 
-{{<tab "Switch card" >}}
-
-1. Open a switch card by searching for a switch by hostname in **Global Search**.
-
-2. Hover over the card and change to the large card using the card size picker.
-
-3. Hover over card and click {{<img src="/images/netq/dom.svg" width="18" height="18">}}.
-
-4. Select the interface of interest.
-
-    Click the interface name if visible in the list on the left, scroll down the list to find it, or search for interface.
-
-5. Choose the digital optical monitoring (DOM) parameter of interest from the dropdown. The card updates according to your selections.
-
-    {{<figure src="/images/netq/dev-switch-large-dom-tab-320.png" width="500">}}
-
-6. Choose alternate interfaces and DOM parameters to view other charts.
-
-7. Hover over the card and change to the full-screen card using the card size picker.
-
-8. Click **Digital Optics**.
-
-9. Click the DOM parameter at the top.
-
-    {{<figure src="/images/netq/dev-switch-fullscr-dom-tab-320.png" width="500">}}
-
-10. Review the laser parameter values by interface and channel. Review the module parameters by interface.
-
-{{</tab>}}
-
 {{<tab "DOM card" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Digital Optics** in the **Network** heading.
-
-    {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> menu, then click **Digital Optics**.
 
 2. The **Laser Rx Power** tab is displayed by default.
-
-    {{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-310.png" width="700">}}
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} to quickly locate a switch that does not appear on the first page of the switch list.
 
 4. Enter the hostname of the switch you want to view, and optionally an interface, then click **Apply**.
 
-   {{<figure src="/images/netq/main-menu-dom-filterbyhostname-320.png" width="300">}}
-
-   {{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-single-switch-filter-320.png" width="700">}}
-
 5. Click another tab to view other optical parameters for a switch. Filter for the switch on each tab.
 
-<div style="padding-left: 18px;">
-<table>
-<thead>
-<tr>
-<th>Laser Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hostname</td>
-<td>Name of the switch or host where the digital optics module resides</td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>Date and time the data was captured</td>
-</tr>
-<tr>
-<td>If Name</td>
-<td>Name of interface where the digital optics module is installed</td>
-</tr>
-<tr>
-<td>Units</td>
-<td>Measurement unit for the power (mW) or current (mA)</td>
-</tr>
-<tr>
-<td>Channel 1&ndash;8</td>
-<td>Value of the power or current on each channel where the digital optics module is transmitting</td>
-</tr>
-</tbody>
-</table>
-
-<table>
-<thead>
-<tr>
-<th>Module Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hostname</td>
-<td>Name of the switch or host where the digital optics module resides</td>
-</tr>
-<tr>
-<td>Timestamp</td>
-<td>Date and time the data was captured</td>
-</tr>
-<tr>
-<td>If Name</td>
-<td>Name of interface where the digital optics module is installed</td>
-</tr>
-<tr>
-<td>Degree C</td>
-<td>Current module temperature, measured in degrees Celsius</td>
-</tr>
-<tr>
-<td>Degree F</td>
-<td>Current module temperature, measured in degrees Fahrenheit</td>
-</tr>
-<tr>
-<td>Units</td>
-<td>Measurement unit for module voltage; Volts</td>
-</tr>
-<tr>
-<td>Value</td>
-<td>Current module voltage</td>
-</tr>
-</tbody>
-</table>
-</div>
 
 {{</tab>}}
 

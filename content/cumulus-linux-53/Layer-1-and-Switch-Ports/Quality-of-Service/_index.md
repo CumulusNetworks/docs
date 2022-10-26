@@ -157,13 +157,9 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 ```
 
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
+
 To configure additional settings, such as apply a custom COS profile to specific interfaces, see [Port Groups](#port-groups).
-
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the switchd service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -258,13 +254,9 @@ traffic.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
 traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 ```
 
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
+
 To configure additional settings, such as apply a custom DSCP profile to specific interfaces, see [Port Groups](#port-groups).
-
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -293,11 +285,7 @@ Configure `traffic.packet_priority_source_set = [port]`.
 
 The `traffic.port_default_priority` setting defines the switch priority that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -390,7 +378,7 @@ This configuration allows an internal COS value to determine the egress COS or D
 traffic.packet_priority_remark_set = [dscp]
 ```
 
-You can remark both COS and DSCP with `traffic.packet_priority_remark_set = [cos,dscp]`.
+You can remark both COS and DSCP with `traffic.packet_priority_remark_set = [802.1p,dscp]`.
 
 #### Remark COS
 
@@ -412,11 +400,7 @@ traffic.cos_1.priority_remark.8021p = [3]
 traffic.cos_2.priority_remark.8021p = [3]
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 #### Remark DSCP
 
@@ -438,13 +422,9 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-You can configure additional settings using [Port Groups](#port-groups). 
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
+You can configure additional settings using [Port Groups](#port-groups).
 
 ## Flow Control
 
@@ -502,11 +482,7 @@ flow_control.egress_buffer.reserved = 0
 flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -587,7 +563,9 @@ PFC buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This atte
 Incorrect cable length settings cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
 {{% /notice %}}
 
-To set priority flow control on a group of ports, you use a profile to define the egress queues that support sending PFC pause frames and define the set of interfaces to which you want to apply PFC pause frame configuration. Cumulus Linux automatically enables PFC frame transmit and PFC frame receive, and derives all other PFC settings, such as the buffer limits that trigger PFC frames transmit to start and stop, the amount of reserved buffer space, and the cable length.
+To apply PFC settings on all ports modify the `default-global` PFC profile which inherently applies the configurations to all the ports.
+
+To set priority flow control on a group of ports, you create a profile to define the egress queues that support sending PFC pause frames and define the set of interfaces to which you want to apply PFC pause frame configuration. Cumulus Linux automatically enables PFC frame transmit and PFC frame receive, and derives all other PFC settings, such as the buffer limits that trigger PFC frames transmit to start and stop, the amount of reserved buffer space, and the cable length.
 
 {{< tabs "TabID436 ">}}
 {{< tab "NVUE Commands ">}}
@@ -600,7 +578,7 @@ cumulus@switch:~$ nv set interface swp1-4,swp6 qos pfc profile my_pfc_ports
 cumulus@switch:~$ nv config apply
 ```
 
-The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit (in bytes) that triggers PFC frame transmission to stop to 1500, the buffer limit that triggers PFC frame transmission to start to 1000, the amount of reserved buffer space to 2000, and the cable length to 50:
+The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit that triggers PFC frame transmission to stop to 1500 bytes and to start to 1000 bytes. The commands also set the amount of reserved buffer space to 2000 bytes, and the cable length to 50 meters:
 
 ```
 cumulus@switch:~$ nv set qos pfc my_pfc_ports2 switch-priority 0 
@@ -619,7 +597,7 @@ cumulus@switch:~$ nv config apply
 
 | <div style="width:450px">Command | Description |
 | ------------- | ----------- |
-| `nv set qos pfc <profile> port-buffer <value>` | The amount of reserved buffer space for the set of ports defined in the port group list (reserved from the global shared buffer).<br>The following example sets the amount of reserved buffer space to 25000:<br>`nv set qos pfc my_pfc_ports port-buffer 25000` |
+| `nv set qos pfc <profile> port-buffer <value>` | The amount of reserved buffer space for the set of ports defined in the port group list (reserved from the global shared buffer).<br>The following example sets the amount of reserved buffer space to 25000 bytes:<br>`nv set qos pfc my_pfc_ports port-buffer 25000` |
 | `nv set qos pfc <profile> xoff-threshold <value>` | The amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list, if sending pause frames is on.<br>The following example sends PFC pause frames after consuming 20000 bytes of reserved buffer:<br>`nv set qos pfc my_pfc_ports xoff-threshold 20000` |
 | `nv set qos pfc <profile> xon-threshold <value>` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops, if sending pause frames is on.<br>In the following example, the buffer congestion must reduce by 1000 bytes (to 8000 bytes) before PFC pause frames stop:<br>`nv set qos pfc my_pfc_ports xon-threshold 1000`|
 | `nv set qos pfc <profile> rx enable`<br>`nv set qos pfc <profile> rx disable` | Enable or disable sending PFC pause frames. The default value is enable.<br>The following example disables sending PFC pause frames:<br>`nv set qos pfc my_pfc_ports rx disable`  |
@@ -640,13 +618,9 @@ pfc.my_pfc_ports2.cos_list = [0]
 pfc.my_pfc_ports2.port_set = swp1
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
-
-The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands also disable PFC frame receive, and set the xoff-size to 1500, the xon-size to 1000, the headroom to 2000, and the cable length to 10:
+The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands also disable PFC frame receive, and set the xoff-size to 1500 bytes, the xon-size to 1000 bytes, the headroom to 2000 bytes, and the cable length to 10 meters:
 
 ```
 pfc.port_group_list = [my_pfc_ports2]
@@ -660,11 +634,7 @@ pfc.my_pfc_ports2.rx_enable = false
 pfc.my_pfc_ports2.cable_length = 10
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 <details>
 <summary>All PFC configuration options</summary>
@@ -696,7 +666,7 @@ ECN operates by having a transit switch mark packets between two end-hosts.
 5. When the switch buffer congestion falls below the configured minimum threshold of the buffer, the switch stops remarking ECN bits, setting them back to `01` or `10`.
 6. A receiving host reflects this new ECN marking in the next reply so that the transmitting host resumes sending at normal speeds.
 
-Cumulus Linux enables ECN by default on egress queue 0 for all ports with the following settings:
+The default profile (`default-global`) enables ECN by default on egress queue 0 for all ports with the following settings:
 - A minimum buffer threshold of 150000 bytes. Random ECN marking starts when buffer congestion crosses this threshold. The probability determines if ECN marking occurs.
 - A maximum buffer threshold of 1500000 bytes. Cumulus Linux marks all ECN-capable packets when buffer congestion crosses this threshold.
 - A probability of 100 percent that Cumulus Linux marks an ECN-capable packet when buffer congestion is between the minimum threshold and the maximum threshold.
@@ -710,9 +680,9 @@ The following example commands change the default ECN profile and create a custo
 To change the default profile to enable ECN on egress queue 4, 5, and 7 for all ports, and set the minimum buffer threshold to 40000, maximum buffer threshold to 200000, and enable RED:
 
 ```
-cumulus@switch:~$ nv set qos congestion-control default-profile traffic-class 4,5,7 min-threshold-bytes 40000 
-cumulus@switch:~$ nv set qos congestion-control default-profile traffic-class 4,5,7 max-threshold-bytes 200000 
-cumulus@switch:~$ nv set qos congestion-control default-profile traffic-class 4,5,7 red enable
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 min-threshold-bytes 40000 
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 max-threshold-bytes 200000 
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 red enable
 cumulus@switch:~$ nv config apply
 ```
 
@@ -730,7 +700,7 @@ cumulus@switch:~$ nv config apply
 You can disable ECN bit marking for an ECN profile. The following example disables ECN bit marking in the default profile.
 
 ```
-cumulus@switch:~$ nv set qos congestion-control default-profile traffic-class 0 ecn disable
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 0 ecn disable
 cumulus@switch:~$ nv config apply
 ```
 
@@ -761,11 +731,7 @@ my-red-profile.max_threshold_bytes = 200000
 my-red-profile.probability = 10
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 To disable ECN bit marking for an ECN profile, set `ecn_enable` to false. The following example disables ECN bit marking in the default profile.
 
@@ -774,12 +740,6 @@ To disable ECN bit marking for an ECN profile, set `ecn_enable` to false. The fo
 default_ecn_red_conf.ecn_enable = false 
 ...
 ```
-
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -825,11 +785,11 @@ cos_egr_queue.cos_7.uc  = 7
 {{< /tab >}}
 {{< /tabs >}}
 
-## Egress Schedules
+## Egress Scheduler
 
 Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection, which allows the switch to assign bandwidth to egress queues and then schedule the transmission of traffic from each queue. 802.1Qaz supports Priority Queuing.
 
-Cumulus Linux uses a default egress schedule that applies to all ports, where the bandwidth allocated to egress queues 0,2,4,6 is 12 percent and the bandwidth allocated to egress queues 1,3,5,7 is 13 percent. You can change the default egress schedule and apply it to specific ports, or create new profiles and assign different profiles to different egress ports; see {{<link url="#egress-scheduling" text="Egress scheduling for ports">}} below.
+Cumulus Linux uses a default egress scheduler that applies to all ports, where the bandwidth allocated to egress queues 0,2,4,6 is 12 percent and the bandwidth allocated to egress queues 1,3,5,7 is 13 percent. You can change the default egress scheduler and apply it to specific ports, or create new profiles and assign different profiles to different egress ports; see {{<link url="#egress-scheduling" text="Egress scheduling for ports">}} below.
 
 {{< tabs "TabID546 ">}}
 {{< tab "NVUE Commands ">}}
@@ -838,7 +798,7 @@ In the NVUE commands, the `traffic-class` value defines the [egress queue](#egre
 
 For each egress queue, you can either define the mode as `dwrr` or `strict`. In `dwrr` mode, you must define a bandwidth percent value between 1 and 100. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues. The combined total of values you assign to `bw_percent` must be less than or equal to 100.
 
-The following example custimizes the default egress schedule that applies to all ports. The commands change the bandwidth allocation for egress queues 0, 1, 5, and 7 to 0, bandwidth allocation for egress queues 2 and 6 to 30 percent and bandwidth allocation for egress queues 3 and 4 to 20 percent.
+The following example custimizes the default egress scheduler that applies to all ports. The commands change the bandwidth allocation for egress queues 0, 1, 5, and 7 to strict, bandwidth allocation for egress queues 2 and 6 to 30 percent and bandwidth allocation for egress queues 3 and 4 to 20 percent.
 
 {{% notice note %}}
 `strict` mode does not define a maximum bandwidth allocation. This can lead to starvation of other queues.
@@ -866,7 +826,7 @@ The `bw_percent` value defines the bandwidth allocation you want to assign to an
 Strict priority mode does not define a maximum bandwidth allocation, which can lead to starvation of other queues.
 {{% /notice %}}
 
-The following example custimizes the default egress schedule that applies to all ports. The example sets the bandwidth allocation for egress queues 0, 1, 5, and 7 to 0, bandwidth allocation for egress queues 2 and 6 to 30 percent and bandwidth allocation for egress queues 3 and 4 to 20 percent.
+The following example custimizes the default egress scheduler that applies to all ports. The example sets the bandwidth allocation for egress queues 0, 1, 5, and 7 to 0 (strict), bandwidth allocation for egress queues 2 and 6 to 30 percent and bandwidth allocation for egress queues 3 and 4 to 20 percent.
 
 ```
 default_egress_sched.egr_queue_0.bw_percent = 0
@@ -1026,7 +986,7 @@ Cumulus Linux supports profiles (port groups) for all features including [ECN](#
 {{% notice note %}}
 - Configurations with a profile override the global settings for the ingress ports in the port group.
 - Ports not in a profile use the global settings.
-- You can add all ports to a `port_set` with the `allports` value.
+- To apply a profile to all ports, use the global profile, `default-global`.
 {{% /notice %}}
 
 ### Trust and Marking
@@ -1048,8 +1008,6 @@ cumulus@switch:~$ nv set interface swp5,swp7 qos mapping profile customer2
 cumulus@switch:~$ nv config apply
 ```
 
-To apply a profile to all ports, use the `all` keyword. For example, `nv set interface all qos mapping profile customer1`.
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -1064,7 +1022,7 @@ source.port_group_list = [customer1,customer2]
 source.customer1.packet_priority_source_set = [dscp]
 source.customer1.port_set = swp1-swp4,swp6
 source.customer1.port_default_priority = 0
-source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]
+source.customer1.cos_0.priority_source.dscp = [0-7]
 source.customer2.packet_priority_source_set = [cos]
 source.customer2.port_set = swp5,swp7
 source.customer2.port_default_priority = 0
@@ -1083,11 +1041,7 @@ source.customer2.cos_1.priority_source.8021p = [4]
 | `source.customer2.port_default_priority` | Define the default internal COS marking for unmarked or untrusted traffic.<br>In the following example, Cumulus Linux marks unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports with internal COS 0:<br>`source.customer2.port_default_priority = 0` |
 | `source.customer2.cos_0.priority_source` | Map the ingress COS values to an internal COS value for `customer2`.<br>The following example maps ingress COS value 4 to internal COS 1:<br>`source.customer2.cos_1.priority_source.8021p = [4]` |
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1835,7 +1789,9 @@ You must apply breakout port configuration before QoS configuration on the break
 
 ### QoS Settings on Bond Member Interfaces
 
-If you apply QoS settings on bond member interfaces instead of the logical bond interface, the members must share identical QoS configuration. If the configuration is not identical between bond interfaces, the bond inherits the `_last_ interface` you apply to the bond.
+If you use Linux commands to apply QoS settings on bond member interfaces instead of the logical bond interface, the members must share identical QoS configuration. If the configuration is not identical between bond interfaces, the bond inherits the `_last_ interface` you apply to the bond.
+
+NVUE commands reject QoS configurations on bond member interfaces; you must apply all QoS configuration on logical bond interfaces.
 
 If QoS settings do not match, `switchd reload` fails; however, `switchd restart` does not fail.
 <!-- vale off -->

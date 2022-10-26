@@ -237,7 +237,7 @@ To change the switch priority for RoCE lossy mode to 4 and allocate a memory all
 
 ```
 cumulus@switch:mgmt:~$ nv set qos traffic-pool roce-lossy switch-priority 4
-cumulus@switch:mgmt:~$ nv set qos traffic-pool default-lossy switch-priority 0,1,2,3,5,6,7
+cumulus@switch:mgmt:~$ nv set qos traffic-pool default-lossy switch-priority 0-3,5-7
 cumulus@switch:mgmt:~$ nv set qos traffic-pool roce-lossy memory-percent 60
 cumulus@switch:mgmt:~$ nv set qos traffic-pool default-lossy memory-percent 40
 cumulus@switch:mgmt:~$ nv config apply

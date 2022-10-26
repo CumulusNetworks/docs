@@ -303,18 +303,20 @@ cumulus@leaf04:mgmt:~$ nv config save
 {{< /tabs >}}
 
 <!-- vale off -->
-### MLAG Interfaces Configuration - Active-Active LACP LAG N-VDS Uplink Profile
+### N-VDS Active-Active LACP LAG Uplink Profile
 <!-- vale on -->
 
 If you use the recommended active-active LAG (LACP) N-VDS uplink profile, you must bond the switch downlink interfaces for ESXi into MLAG ports (LACP bonds).
 
 Then, add the bond interface into the default bridge `br_default` and set its stp and lacp parameters. This action also automatically set the MLAG bond as trunk port (VLAN tagging) with all VLANs allowed.
 
+For more information on how to assign VLANs to trunk ports, see [VLAN-aware Bridge Mode]({{<ref "/cumulus-linux-52/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode" >}}) and [Traditional Bridge Mode]({{<ref "/cumulus-linux-52/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode" >}}).
+
 {{%notice info%}}
 <!-- vale off -->
-For active-standby ESXi connectivity, do not configure MLAG. Follow the instructions under the [Switch Ports Configuration - Non-LAG N-VDS Uplink Profile](#esxi-downlink-ports-configuration---activestandby-n-vds-uplink) section.  
+For active-standby (or non-LAG active-active) ESXi connectivity, do not configure MLAG ports and do not use the active-active LACP LAG uplink profile for the Overlay Transport Zone on N-VDS. 
 <!-- vale on -->
-Do not use the active-active LACP LAG uplink profile for the Overlay Transport Zone on N-VDS.
+Follow the instructions under the [N-VDS Non-LAG Uplink Profile](#n-vds-non-lag-uplink-profile) section to configure the switchports.  
 {{%/notice %}}
 
 {{< tabs "TABID0213 ">}}
@@ -376,13 +378,11 @@ cumulus@leaf04:mgmt:~$ nv config save
 {{< /tab >}}
 {{< /tabs >}}
 
-For more information on how to assign VLANs to trunk ports, see [VLAN-aware Bridge Mode]({{<ref "/cumulus-linux-52/Layer-2/Ethernet-Bridging-VLANs/VLAN-aware-Bridge-Mode" >}}) and [Traditional Bridge Mode]({{<ref "/cumulus-linux-52/Layer-2/Ethernet-Bridging-VLANs/Traditional-Bridge-Mode" >}}).
-
 <!-- vale off -->
-### Switch Ports Configuration - Non-LAG N-VDS Uplink Profile
+### N-VDS Non-LAG Uplink Profile
 <!-- vale on -->
 
-If you use active-standby or active-active, non-LAG N-VDS uplink profiles, you must keep the switch downlink interfaces for ESXi configured as regular ports; do not use any MLAG port configurations. You must add them to the default bridge `br_default`, they are automaticaly will be set as trunk ports.
+If you use active-standby or active-active, non-LAG N-VDS uplink profiles, you must keep the switch downlink interfaces for ESXi configured as regular switchports; do not use any MLAG port configurations. You must add them to the default bridge `br_default`, they are automaticaly will be set as trunk ports.
 
 {{< tabs "TABID0112213 ">}}
 {{< tab "leaf01 ">}}
@@ -417,7 +417,7 @@ cumulus@leaf04:mgmt:~$ nv config save
 
 ### MLAG Configuration Verification
 
-You can use the `nv show mlag` command to verify MLAG configurations and use `net show clag` or the Linux `clagctl` command to see the MLAG interfaces information. In this example `esxi01` and `esxi03` are the MLAG interfaces connected to ESXi hosts.
+Use the `nv show mlag` command to verify MLAG configurations and `net show clag` or `clagctl` commands to see the MLAG interfaces information. In this example `esxi01` and `esxi03` are the MLAG bond interfaces connected to ESXi hosts.
 
 {{< tabs "TABID012 ">}}
 {{< tab "leaf01 ">}}
@@ -570,24 +570,27 @@ Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Dow
 {{< /tab >}}
 {{< /tabs >}}
 
-{{%notice note%}}
-
-Non-LAG N-VDS uplink profiles do not show the **MLAG ports** in MLAG show output. The lack of MLAG ports does not mean that MLAG is not functional. MLAG is mandatory for using VRR &mdash; also known as enhanced VRRP, which you need for the non-LAG uplink profiles.
+{{%notice info%}}
+<!-- vale off -->
+In Non-LAG N-VDS uplink profiles scenarios, MLAG ports **will not** appear in the show output. The lack of MLAG ports does not mean that MLAG is not functional. 
+<!-- vale on -->
+MLAG is mandatory for using VRR &mdash; also known as enhanced VRRP, which you need for the non-LAG uplink profiles as well.
 
 {{%/notice %}}
 
 ### VRR Configuration
 
-You can have the ESXi TEP IP addresses on the same or different subnets. The VMware best practice configuration for the TEP IP pool is to assign different subnet for each physical rack.
+You can set the ESXi TEP IP addresses on the same or different subnets. The VMware best practice configuration for the TEP IP pool is to assign different subnet for each physical rack for simplicity.
+
 VRR on the ToR switches provides redundant, active-active TEP subnet's default gateways to the ESXi servers.
 
 {{%notice note%}}
 
-VMware requires a VLAN per each type of traffic, for example, storage, vSAN, vMotion, or Overlay (TEP) traffic. This use case focuses only on the overlay VM to VM traffic and switches configurations.
+VMware requires a VLAN per each type of traffic, for example, storage, vSAN, vMotion, or Overlay (TEP) traffic. Thus, SVI and VRR instances must be configured for each of them. In this example, we show only the overlay VM-to-VM communication, so only TEP VLAN and SVI/VRR are shown in switch configurations.
 
 {{%/notice %}}
 
-The VLAN ID is a local parameter and not shared between the hypervisors. For deployment simplicity, use the same VLAN ID for all TEP devices used in both racks.
+The VLAN ID is a local parameter and not shared between the hypervisors. For deployment simplicity, use the same VLAN ID for all TEP devices used in across racks.
 
 {{< tabs "101231231210 ">}}
 {{< tab " leaf01 ">}}
@@ -638,7 +641,7 @@ cumulus@leaf04:mgmt:~$ nv config save
 
 ### VRR Configuration Verification
 
-The `nv show interface` output displays the SVI and VRR interfaces as `vlanXXX` and `vlanXXX-v0`.
+Use the `nv show interface` command to check the status of the SVI and VRR. In this output SVI and VRR interfaces are shown as `vlanXXX` and `vlanXXX-v0`.
 
 {{< tabs "101231d23f10 ">}}
 {{< tab " leaf01 ">}}
@@ -725,7 +728,13 @@ Interface         MTU    Speed  State  Remote Host      Remote Port        Type 
 
 ### BGP Underlay Network Configuration
 
-All underlay IP fabric BGP peerings in this guide use eBGP as the basis for the configuration. The example configurations use Cumulus Linux [Auto BGP]({{<ref "/cumulus-linux-52/Layer-3/Border-Gateway-Protocol-BGP/#auto-bgp" >}}) and [BGP Unnumbered]({{<ref "/cumulus-linux-52/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered" >}}) configurations. The auto BGP `leaf` or `spine` keywords are only used to configure the ASN. The configuration files and `nv show` commands display the AS number.
+All underlay IP fabric BGP peerings in this guide use eBGP as the basis for the configuration. For simple and easy BGP configuration, use the Cumulus Linux [Auto BGP]({{<ref "/cumulus-linux-52/Layer-3/Border-Gateway-Protocol-BGP/#auto-bgp" >}}) and [BGP Unnumbered]({{<ref "/cumulus-linux-52/Layer-3/Border-Gateway-Protocol-BGP/#bgp-unnumbered" >}}) configurations. 
+
+{{%notice note%}}
+
+The auto BGP `leaf` or `spine` keywords are only used to configure the ASN. The configuration files and `nv show` commands display the AS number.
+
+{{%/notice %}}
 
 {{%notice note%}}
 
@@ -1008,7 +1017,7 @@ leaf04# exit
 
 ### BGP Peerings and Route Advertisement Verification
 
-To verify BGP peerings, use the `net show bgp summary` command in NVUE, or `show ip bgp summary` in `vtysh`
+Use the `net show bgp summary` command in NVUE, or `show ip bgp summary` in `vtysh` to verify BGP peerings status and information.
 
 {{< tabs "TABID1431 ">}}
 {{< tab "leaf01 ">}}
@@ -1246,7 +1255,7 @@ This section describes two traffic flow examples:
 
 ### Layer 2 Virtualized Traffic
 
-ESXi assigns both VMs to the same VMware logical segment, placing them into the same subnet. Each segment has its own unique virtual network identifier (VNI) assigned by NSX-T. It adds this VNI into the Geneve packet header on the source TEP. The destination TEP identifies which segment the traffic belongs to based on this VNI. All segments that share the same Overlay Transport Zone, use the same TEP addresses to establish the tunnels. It is possible to have more than one Overlay TZ on the N-VDS, but for this case, you need to configure more VLANs and advertise them on the underlay switches. This scenario uses only one Overlay TZ (one TEP VLAN).
+ESXi assigns both VMs to the same VMware logical segment, placing them into the same subnet. Each segment has its own unique virtual network identifier (VNI) assigned by NSX-T. It adds this VNI into the Geneve packet header on the source TEP. The destination TEP identifies which segment the traffic belongs to based on this VNI. All segments that share the same Overlay Transport Zone, use the same TEP addresses to establish the tunnels. It is possible to have more than one Overlay TZ on the N-VDS, but for this case, you need to configure more TEP VLANs and advertise them on the underlay switches. This scenario uses only one Overlay TZ (one TEP VLAN).
 
 {{<figure src="images/guides/cumulus-nsxt/Pure_L2_VNI.jpg">}}
 
@@ -1297,11 +1306,11 @@ VM1 `172.16.0.1` on ESXi01 sends traffic to VM4 `172.16.1.4` on ESXi03:
 
 This use case covers VMware virtualized environment with the need to connect to a bare metal (BM) server. This could the when the virtualized environment deployed as part of an already existing fabric (brownfield) and VMs need to communicate with a legacy or any other server which doesn't run VMs (not part of the virtualized world).
 
-In cases where VMs needs to communicate with non-NSX (bare metal) servers an [NSX Edge](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.0/installation/GUID-5EF2998C-4867-4DA6-B1C6-8A6F8EBCC411.html) deployment is required. The NSX Edge is a gateway between the virtualized Geneve overlay and the outside physical underlay. It acts as TEP device and as underlay router by establishing BGP (or OSPF) peering with the underlay fabric to route traffic in and out of the virtualized environment.
+In cases where VMs needs to communicate with non-NSX (bare metal) servers an [NSX Edge](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/installation/GUID-5EF2998C-4867-4DA6-B1C6-8A6F8EBCC411.html) deployment is required. The NSX Edge is a gateway between the virtualized Geneve overlay and the outside physical underlay. It acts as TEP device and as underlay router by establishing BGP (or OSPF) peering with the underlay fabric to route traffic in and out of the virtualized environment.
 
 {{%notice note%}}
 
-There is an option for VM to bare metal communication using Geneve encapsulation that is described in the [NSX Edge on Bare Metal](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/installation/GUID-21E4C80B-5900-433A-BEA2-EA41FBE690FE.html). This is beyond the scope of this guide.
+There is an option for VM to bare metal communication using Geneve encapsulation that is described in the [NSX Edge on Bare Metal](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/installation/GUID-21E4C80B-5900-433A-BEA2-EA41FBE690FE.html). This is beyond the scope of this guide.
 
 {{%/notice %}}
 
@@ -2481,7 +2490,7 @@ cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table
 
 {{<figure src="images/guides/cumulus-nsxt/T1_vxlan.jpg">}}
 
-The NSX traffic will be unchanged from the scenarios described earlier. Reference the [Layer 2](#layer-2-virtualized-environment) or [Layer 3](#layer-3-virtualized-environment) examples for details. Traffic destined outside of the NSX fabric will follow the same traffic flow as described in the [Virtualized and Bare Metal](#virtualized-and-bare-metal-server-environment) section.
+The NSX traffic will be unchanged from the scenarios described earlier. Reference the [Layer 2](#layer-2-virtualized-traffic) or [Layer 3](#layer-3-virtualized-traffic) virtulized traffic examples for details. Traffic destined outside of the NSX fabric will follow the same traffic flow as described in the [Virtualized and Bare Metal](#virtualized-and-bare-metal-server-environment) section.
 
 With VXLAN in the network fabric, Geneve traffic from ESXi TEP is encapsulated again into VXLAN packets on the leaf switch using the local loopback IP addresses as the tunnel sources and the remote VXLAN anycast IP as the destination.  
 When the remote leaf receives the VXLAN packet, it is decapsulated and fowared to the ESXi host where the Geneve packet is decapsulated and forwared to the correct local VM.

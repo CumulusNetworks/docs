@@ -370,7 +370,7 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 
 ### Ingress COS or DSCP for Marking
 
-To remark COS or DSCP values, modify the `traffic.packet_priority_remark_set` value in the `qos_features.conf` file.
+To remark COS or DSCP values, modify the `traffic.packet_priority_remark_set` value in the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 This configuration allows an internal COS value to determine the egress COS or DSCP value. For example, to enable the remarking of only DSCP values:
 
@@ -400,7 +400,7 @@ traffic.cos_1.priority_remark.8021p = [3]
 traffic.cos_2.priority_remark.8021p = [3]
 ```
 
-Reload `switchd` with the `sudo systemctl reload switchd.service` command.
+Be sure to reload `switchd` with the `sudo systemctl reload switchd.service` command after making changes to the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 #### Remark DSCP
 
@@ -422,9 +422,30 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-Reload `switchd` with the `sudo systemctl reload switchd.service` command.
+Be sure to reload `switchd` with the `sudo systemctl reload switchd.service` command after making changes to the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
-You can configure additional settings using [Port Groups](#port-groups).
+#### Example Configuration
+
+To change the marked value on a packet, the ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. Therefore, to remark COS or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
+
+In the following example configuration, only packets that *ingress* on swp1 and *egress* on swp2 change the marked value of the packet. Packets that ingress on other ports and egress on swp2 do **not** change the marked value of the packet. The commands map internal COS 0 and internal COS 1 to external DSCP 37.
+
+```
+remark.port_group_list = [remark_port_group1,remark_port_group2]
+remark.remark_port_group1.packet_priority_remark_set = [dscp]
+remark.remark_port_group1.port_set = swp1
+remark.remark_port_group2.packet_priority_remark_set = []
+remark.remark_port_group2.port_set = swp2
+remark.remark_port_group2.cos_0.priority_remark.dscp = [37]
+remark.remark_port_group2.cos_1.priority_remark.dscp = [37]
+```
+
+You can remap multiple internal COS values to the same external COS value. For example, to map internal COS 1 and internal COS 2 to external COS 3:
+
+```
+remark.remark_port_group.cos_1.priority_remark.8021p = [3]
+remark.remark_port_group.cos_2.priority_remark.8021p = [3]
+```
 
 ## Flow Control
 

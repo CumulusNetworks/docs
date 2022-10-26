@@ -127,6 +127,6 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 9. Repeat Steps 4-9 for each additional worker node (NetQ On-premises Appliance).
 
-10. The final step is to install and activate the NetQ software using the the CLI:
+10. The final step is to install and activate the NetQ software using the CLI:
 
 {{<netq-install/install-with-cli version="4.3" deployment="onprem-cluster">}}

@@ -35,6 +35,6 @@ Follow these steps to setup and configure your VM on a single server in a cloud 
 
     {{<netq-install/set-hostname>}}
 
-The final step is to install and activate the NetQ software using the the CLI:
+The final step is to install and activate the NetQ software using the CLI:
 
 - {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}

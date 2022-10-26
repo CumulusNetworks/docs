@@ -21,7 +21,7 @@ cumulus@switch:~$ sudo systemctl restart nginx
 You can run the cURL commands from the command line. Use the username and password for the switch. For example:
 
 ```
-cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/cue_v1/interface
+cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/interface
 {
   "eth0": {
     "ip": {
@@ -221,4 +221,4 @@ $ curl -u 'cumulus:cumulus' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"
 
 ## NVUE REST API Documentation
 
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-51/api/index.html" text="NVUE API documentation.">}}
+For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-52/api/index.html" text="NVUE API documentation.">}}

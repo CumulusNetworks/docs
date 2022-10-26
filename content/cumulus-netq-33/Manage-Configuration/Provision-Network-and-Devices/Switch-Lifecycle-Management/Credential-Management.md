@@ -64,7 +64,7 @@ You must have sudoer permission to properly configure switches when using the SS
 
 2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
-    - Manually copy the the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
+    - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
 
 3. Copy the SSH *private* key into the text box in the Create Switch Access card.
@@ -113,7 +113,7 @@ You must have sudoer permission to properly configure switches when using the SS
 
 2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
-    - Manually copy the the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
+    - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
 
 3. Add these credentials to the switch.
@@ -219,7 +219,7 @@ You must have sudoer permission to properly configure switches when using the SS
 
 2. Copy the SSH *public* key to each switch that you want to upgrade using one of the following methods:
 
-    - Manually copy the the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
+    - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where the SSH key pair was generated for each switch
 
 3. Add these new credentials to the switch.

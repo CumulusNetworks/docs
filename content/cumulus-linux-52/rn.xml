@@ -970,7 +970,7 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <tr>
 <td>3084007</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>4.4.3, 5.1.0</td>
+<td>4.4.3</td>
 </tr>
 <tr>
 <td>3077736</td>

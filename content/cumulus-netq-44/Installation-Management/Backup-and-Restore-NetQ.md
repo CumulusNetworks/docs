@@ -21,7 +21,7 @@ If you select the rollback option during the lifecycle management upgrade proces
 
 To manually create a backup:
 
-1. Run the backup script to create a backup file in `/opt/<backup-directory>` being sure to replace the `backup-directory` option with the name of the directory you want to use for the backup file.
+1. Run the backup script to create a backup file in `/opt/<backup-directory>`. Replace `backup-directory` with the name of the directory you want to use for the backup file.
 
    ```
    cumulus@switch:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
@@ -62,11 +62,11 @@ To create a scheduled backup, add `./backuprestore.sh --backup --localdir /opt/<
 
 ## Restore Your NetQ Data
 
-You can restore NetQ data using the backup file you created in {{<link url="#back-up-your-netq-data" text="Back Up Your NetQ Data">}}. You can restore your instance to the same NetQ Platform or NetQ Appliance or to a new platform or appliance. You do not need to stop the server where the backup file resides to perform the restoration, but logins to the NetQ UI fail during the restoration process. The restore option of the backup script copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. You should not see any data loss as a result of a restore operation.
+Restore NetQ data with the backup file you created in the steps above. You can restore your instance to the same NetQ Platform or NetQ Appliance or to a new platform or appliance. You do not need to stop the server where the backup file resides to perform the restoration, but logins to the NetQ UI fail during the restoration process. The restore option of the backup script copies the data from the backup file to the database, decompresses it, verifies the restoration, and starts all necessary services. You should not see any data loss as a result of a restore operation.
 
 To restore NetQ on the same hardware where the backup file resides:
 
-Run the restore script being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
+Run the restore script. Replace `backup-directory` with the name of the directory where the backup file resides.
 
 ```
 cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
@@ -105,7 +105,7 @@ To restore NetQ on new hardware:
 
 1. Copy the backup file from `/opt/<backup-directory>` on the older hardware to the backup directory on the new hardware.
 
-2. Run the restore script on the new hardware, being sure to replace the `backup-directory` option with the name of the directory where the backup file resides.
+2. Run the restore script on the new hardware. Replace `backup-directory` with the name of the directory where the backup file resides.
 
    ```
    cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>

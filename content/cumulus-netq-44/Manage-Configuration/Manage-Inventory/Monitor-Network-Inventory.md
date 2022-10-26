@@ -5,14 +5,13 @@ weight: 730
 toc: 4
 ---
 
-With the NetQ UI and CLI, a user can monitor the inventory on a networkwide basis for all switches and hosts, or all switches. Inventory includes such items as the number of each device and its operating system. Additional details are available about the hardware and software components on individual switches, such as the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. This is extremely useful for understanding the dependence on various vendors and versions when planning upgrades or evaluating the scope of any other required changes.
-
+With the NetQ UI and CLI, a user can monitor the inventory on a networkwide basis for all switches and hosts, or all switches. Inventory includes such items as the number of each device and its operating system. Additional details are available about the hardware and software components on individual switches, such as the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information.
 The commands and cards available to obtain this type of information help you to answer questions such as:
 
 <!-- vale off -->
-- What switches are being monitored in the network?
-- What is the distribution of ASICs, CPUs, Agents, and so forth across my network?
-- Are NetQ agents running on all of my switches?
+- Which switches are being monitored in the network?
+- What is the distribution of ASICs, CPUs, agents, and so forth across my network?
+- Are NetQ Agents running on all of my switches?
 - What hardware is installed on my switches?
 - What software is installed on my switches?
 <!-- vale on -->
@@ -21,9 +20,9 @@ To monitor the inventory of a given switch or DPU, refer to {{<link title="Switc
 
 ## Access Networkwide Inventory Data
 
-The NetQ UI provides the Inventory/Devices card for monitoring networkwide inventory information for all switches, hosts and DPUs. Individual device summary cards provide a more detailed view of inventory information for all switches, hosts, and DPUs on a networkwide basis.
+The NetQ UI provides the Inventory/Devices card for monitoring networkwide inventory information for all switches, hosts, and DPUs. Individual device summary cards provide a more detailed view of inventory information for all switches, hosts, and DPUs on a networkwide basis.
 
-Access these card from the NetQ Workbench, or add them to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory/Devices card, or Inventory/Switches card, Inventory/Hosts card, or Inventory/DPUs card > **Open Cards**.
+Access these card from the NetQ Workbench, or add them to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory/Devices card, or Inventory/Switches card, Inventory/Hosts card, or Inventory/DPU card > **Open Cards**.
 
 {{<img src="/images/netq/inventory-devices-l2-42.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switches-os-l2-42.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-hosts-l2-42.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/dpu-inventory-platform-l2-42.png" width="200">}}
 
@@ -39,29 +38,27 @@ You can view all devices in your network from either the NetQ UI or NetQ CLI.
 
 ### View the Number of Each Device Type in Your Network
 
-You can view the number of switches and hosts deployed in your network. As you grow your network this can be useful for validating the addition of devices as scheduled.
-
 To view the quantity of devices in your network, locate or open the small or medium Inventory/Devices card. The medium-sized card provides operating system distribution across the network in addition to the device count. Hover over items in the chart’s outer circle to view operating system distribution, and hover over items in the chart’s inner circle to view device counts.
 
-{{<figure src="/images/netq/inventory-devices-l1-42.png" width="200">}}
-{{<figure src="/images/netq/inventory-devices-l2-42.png" width="200">}}
+{{<figure src="/images/netq/inventory-devices-l1-42.png" alt="small inventory card displaying 13 switches and 10 hosts" width="200">}}
+{{<figure src="/images/netq/inventory-devices-l2-42.png" alt="medium inventory card displaying 15 switches and 10 hosts as a chart" width="200">}}
 
 ### View All Switches
 
-You can view all stored attributes for all switches in your network from either inventory card:
-- Open the full-screen Inventory/Devices card and click **All Switches**
+You can view all stored attributes for all switches in your network from either the Inventory/Devices or Inventory/Switches cards:
+- Open the full-screen Inventory/Devices card and select **Ethernet switches**:
 
-    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-320.png" width="700">}}
+    {{<figure src="/images/netq/inventory-devices-switches.png" alt="full-screen inventory/devices card displaying a list of switches" width="900">}}
 
-- Open the full-screen Inventory/Switches card and click **Show All**
+- Open the full-screen Inventory/Switches card and select **Show All**:
 
-    {{<figure src="/images/netq/inventory-switch-fullscr-showall-tab-320.png" width="700">}}
+    {{<figure src="/images/netq/inventory-switches-show-all.png" alt="full-screen inventory/switches card displaying a list of switches" width="900">}}
 
-### View All Hosts
+### View Hosts
 
-You can view all stored attributes for all hosts in your network. To view all host details, open the full screen Inventory/Devices card and click **All Hosts**.
+You can view all stored attributes for all hosts in your network. To view all host details, open the full screen Inventory/Devices card and select **Hosts**.
 
-{{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-320.png" width="700" >}}
+{{<figure src="/images/netq/inventory-devices-hosts.png" alt="full-screen inventory/devices card displaying a list of hosts" width="900" >}}
 
 {{</tab>}}
 
@@ -73,7 +70,7 @@ To view a list of devices in your network, run:
 netq show inventory brief [json]
 ```
 
-This example shows that there are four spine switches, three leaf switches, two border switches, two firewall switches, seven hosts (servers), and an out-of-band management server in this network. For each of these you see the type of switch, operating system, CPU and ASIC.
+This example shows that there are four spine switches, three leaf switches, two border switches, two firewall switches, seven hosts (servers), and an out-of-band management server in this network. Each entry displays the type of switch, operating system, CPU, and ASIC.
 
 ```
 cumulus@switch:~$ netq show inventory brief
@@ -133,9 +130,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
    - Total number of switches with that type of component deployed compared to the total number of switches
    - Percentage of this type as compared to all component types
 
-   {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-400.png" width="650">}}
-
-   Additionally, sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in light gray here).
+   {{<figure src="/images/netq/large-switches-inventory-devices.png" width="650">}}
 
 {{</tab>}}
 
@@ -155,7 +150,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
    - Total number of switches with that type of component deployed compared to the total number of switches
    - Percentage of this type with respect to all component types
 
-4. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+4. Expand the card to display the same information separated by hardware and software:
 
    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="500">}}
 
@@ -177,7 +172,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
    - Total number of switches with that type of component deployed compared to the total number of switches
    - Percentage of this type with respect to all component types
 
-4. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+4. Expand the card to display the same information separated by hardware and software:
 
    {{<figure src="/images/netq/inventory-hosts-l3-42.png" width="600">}}
 
@@ -199,7 +194,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
    - Total number of switches with that type of component deployed compared to the total number of switches
    - Percentage of this type with respect to all component types
 
-4. Change to the large size card. The same information is shown separated by hardware and software, and sympathetic highlighting is used to show the related component types relevant to the highlighted segment and the number of unique component types associated with this type (shown in blue here).
+4. Expand the card to display the same information separated by hardware and software:
 
    {{<figure src="/images/netq/dpu-inventory-l3-42.png" width="600">}}
 
@@ -213,7 +208,7 @@ To view switch components, run:
 netq show inventory brief [json]
 ```
 
-This example shows the operating systems (Cumulus Linux and Ubuntu), CPU architecture (all x86_64), ASIC (virtual), and ports (N/A because Cumulus VX is virtual) for each device in the network. You can manually count the number of each of these, or export to a spreadsheet tool to sort and filter the list.
+This example shows the operating systems (Cumulus Linux and Ubuntu), CPU architecture (all x86_64), ASIC (virtual), and ports (N/A because Cumulus VX is virtual) for each device in the network.
 
 ```
 cumulus@switch:~$ netq show inventory brief
@@ -266,25 +261,11 @@ ASIC information is available from the NetQ UI and NetQ CLI.
 
 2. Hover over the card, and change to the large size card using the size picker.
 
-3. Click a segment of the ASIC graph in the component distribution charts.
+3. Click a segment of the ASIC graph in the component distribution charts. Select **Filter ASIC**:
 
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-asic-component-filter-320.png" width="500">}}
+    {{<figure src="/images/netq/filter-asic-large.png" width="500">}}
 
-4. Select the first option from the popup, *Filter ASIC*. The card data is filtered to show only the components associated with selected component type. A filter tag appears next to the total number of switches indicating the filter criteria.
-
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-filter-asic-320.png" width="500">}}
-
-5. Hover over the segments to view the related components.
-
-    {{<figure src="/images/netq/inventory-devices-large-switches-tab-component-highlight-agent-320.png" width="500">}}
-
-6. To return to the full complement of components, click the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
-
-7. Hover over the card, and change to the full-screen card using the size picker.
-
-    {{<figure src="/images/netq/inventory-devices-fullscr-allswitches-tab-241.png" width="700">}}
-
-8. Scroll to the right to view the above ASIC information.
+4. Alternately, expand the card to full screen to view ASIC information as a column in a table.
 
 {{</tab>}}
 

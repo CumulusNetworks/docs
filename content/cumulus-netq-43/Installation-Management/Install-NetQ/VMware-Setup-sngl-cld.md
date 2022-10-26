@@ -35,6 +35,6 @@ Follow these steps to setup and configure your VM for a cloud deployment:
 
     {{<netq-install/set-hostname>}}
 
-8. The final step is to install and activate the NetQ software using the the CLI:
+8. The final step is to install and activate the NetQ software using the CLI:
 
 {{<netq-install/install-with-cli version="4.3" deployment="cloud-single">}}

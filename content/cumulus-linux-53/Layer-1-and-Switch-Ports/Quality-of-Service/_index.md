@@ -22,10 +22,6 @@ Cumulus Linux uses two configuration files for QoS:
 Cumulus Linux 5.0 and later does not use the `traffic.conf` and `datapath.conf` files but uses the `qos_features.conf` and `qos_infra.conf` files instead. Before upgrading Cumulus Linux, review your existing QoS configuration to determine the changes you need to make.
 {{% /notice %}}
 
-{{% notice note %}}
-NVUE currently only provides commands to configure COS and DSCP marking, egress queue mapping, egress traffic scheduling, PFC, ECN, and lossless and lossy RoCE.
-{{% /notice %}}
-
 ## switchd and QoS
 
 When you run **Linux commands** to configure QoS, you must apply QoS changes to the ASIC with the following command:
@@ -49,9 +45,9 @@ NVUE reloads the `switchd` service automatically. You do **not** have to run the
 
 ## Classification
 
-When a frame or packet arrives on the switch, Cumulus Linux maps it to an *internal COS* (switch priority) value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
+When a frame or packet arrives on the switch, Cumulus Linux maps it to an internal COS (switch priority) value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
-You can define which values are `trusted`, COS, DSCP, or both.
+You can define which values are `trusted`: COS, DSCP, or both.
 
 The following table describes the default classifications for various frame and switch priority configurations:
 
@@ -163,7 +159,11 @@ traffic.cos_7.priority_source.8021p = [7]
 
 To configure additional settings, such as apply a custom COS profile to specific interfaces, see [Port Groups](#port-groups).
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the switchd service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -260,7 +260,11 @@ traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 
 To configure additional settings, such as apply a custom DSCP profile to specific interfaces, see [Port Groups](#port-groups).
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -289,7 +293,11 @@ Configure `traffic.packet_priority_source_set = [port]`.
 
 The `traffic.port_default_priority` setting defines the switch priority that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -404,7 +412,11 @@ traffic.cos_1.priority_remark.8021p = [3]
 traffic.cos_2.priority_remark.8021p = [3]
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 #### Remark DSCP
 
@@ -426,7 +438,13 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-You can configure additional settings using [Port Groups](#port-groups). {{<cl/qos-switchd>}}
+You can configure additional settings using [Port Groups](#port-groups). 
+
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 ## Flow Control
 
@@ -434,22 +452,26 @@ Congestion control prevents traffic loss during times of congestion and helps id
 
 Cumulus Linux supports the following congestion control mechanisms:
 
-- Pause Frames (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion. Pause frames are generally not recommended due to their scope of impact.
+- Pause Frames (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion.
 - Priority Flow Control (PFC), which is an upgrade of Pause Frames that IEEE 802.1bb defines, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value to pause, while other COS values or queues continue transmitting.
 - Explicit Congestion Notification (ECN). Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
 ### Flow Control Buffers
 
-Before configuring pause frames or PFC, set buffer pools and limits for lossless flows.
+Before configuring pause frames or PFC, configure the buffer pool memory allocated for lossless and lossy flows. The following example sets each to fifty percent:
 
 {{< tabs "TabID445 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set qos traffic-pool pool1 memory-percent 50
-cumulus@switch:~$ nv set qos traffic-pool pool1 switch-priority 1
+cumulus@switch:~$ nv set qos traffic-pool default-lossless memory-percent 50
+cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 50
 cumulus@switch:~$ nv config apply
 ```
+
+{{%notice note%}}
+Cumulus Linux allocates 100% of the buffer memory to the default-lossy traffic pool by default. The total memory allocation across pools must not exceed 100%.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -480,7 +502,11 @@ flow_control.egress_buffer.reserved = 0
 flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -529,11 +555,7 @@ link_pause.my_pause_ports.port_set = swp1-swp4,swp6
 Pause frame buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
 
 Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
-
-Unless NVIDIA support or engineering asks you to, do not change these values.
 {{% /notice %}}
-
-{{<cl/qos-switchd>}}
 
 <details>
 <summary>All Link Pause configuration options</summary>
@@ -563,8 +585,6 @@ Before configuring PFC, first modify the switch buffer allocation according to {
 {{% notice warning %}}
 PFC buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This attempts to incorporate the delay between signaling congestion and receiving the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (called the interface delay) introduce as well as the distance between end points (cable length).  
 Incorrect cable length settings cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
-
-Unless directed by NVIDIA support or engineering, do not change these values.
 {{% /notice %}}
 
 To set priority flow control on a group of ports, you use a profile to define the egress queues that support sending PFC pause frames and define the set of interfaces to which you want to apply PFC pause frame configuration. Cumulus Linux automatically enables PFC frame transmit and PFC frame receive, and derives all other PFC settings, such as the buffer limits that trigger PFC frames transmit to start and stop, the amount of reserved buffer space, and the cable length.
@@ -580,7 +600,7 @@ cumulus@switch:~$ nv set interface swp1-4,swp6 qos pfc profile my_pfc_ports
 cumulus@switch:~$ nv config apply
 ```
 
-The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit that triggers PFC frame transmition to stop to 1500, the buffer limit that triggers PFC frame transmition to start to 1000, the amount of reserved buffer space to 2000, and the cable length to 50:
+The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit (in bytes) that triggers PFC frame transmission to stop to 1500, the buffer limit that triggers PFC frame transmission to start to 1000, the amount of reserved buffer space to 2000, and the cable length to 50:
 
 ```
 cumulus@switch:~$ nv set qos pfc my_pfc_ports2 switch-priority 0 
@@ -620,7 +640,11 @@ pfc.my_pfc_ports2.cos_list = [0]
 pfc.my_pfc_ports2.port_set = swp1
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands also disable PFC frame receive, and set the xoff-size to 1500, the xon-size to 1000, the headroom to 2000, and the cable length to 10:
 
@@ -636,7 +660,11 @@ pfc.my_pfc_ports2.rx_enable = false
 pfc.my_pfc_ports2.cable_length = 10
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 <details>
 <summary>All PFC configuration options</summary>
@@ -733,7 +761,11 @@ my-red-profile.max_threshold_bytes = 200000
 my-red-profile.probability = 10
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 To disable ECN bit marking for an ECN profile, set `ecn_enable` to false. The following example disables ECN bit marking in the default profile.
 
@@ -743,7 +775,11 @@ default_ecn_red_conf.ecn_enable = false
 ...
 ```
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1047,7 +1083,11 @@ source.customer2.cos_1.priority_source.8021p = [4]
 | `source.customer2.port_default_priority` | Define the default internal COS marking for unmarked or untrusted traffic.<br>In the following example, Cumulus Linux marks unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports with internal COS 0:<br>`source.customer2.port_default_priority = 0` |
 | `source.customer2.cos_0.priority_source` | Map the ingress COS values to an internal COS value for `customer2`.<br>The following example maps ingress COS value 4 to internal COS 1:<br>`source.customer2.cos_1.priority_source.8021p = [4]` |
 
-{{<cl/qos-switchd>}}
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -1147,6 +1187,90 @@ egress_sched.list2.egr_queue_6.bw_percent = 0
 {{< /tab >}}
 {{< /tabs >}}
 
+## Traffic Pools
+
+Cumulus Linux supports adjusting the following traffic pools:
+
+|Traffic Pool |Description |
+|------------- |----------- |
+| `default-lossy` | The default traffic pool for all switch priorities. |
+| `default-lossless` | The traffic pool for lossless traffic when you enable {{<link title="#Flow Control Buffers" text="flow control">}}. |
+| `mc-lossy` | The traffic pool for multicast traffic. |
+| `roce-lossy` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossy mode. |
+| `roce-lossless` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossless mode. |
+
+You configure a traffic pool by associating switch priorities and defining the buffer memory percentages allocated to the pools. The following example associates switch priority 2 and allocates a memory percentage of 30 for the `mc-lossy` pool:
+
+{{< tabs "TabID1166 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set qos traffic-pool default-lossy switch-priority 0,1,3,4,5,6,7
+cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 70
+cumulus@switch:~$ nv set qos traffic-pool mc-lossy switch-priority 2
+cumulus@switch:~$ nv set qos traffic-pool mc-lossy memory-percent 30
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Configure the following settings in the `/etc/mlx/datapath/qos/qos_infra.conf` file:
+
+```
+traffic.priority_group_list = [service2,bulk]
+
+priority_group.service2.cos_list = [2]
+priority_group.bulk.cos_list = [0,1,3,4,5,6,7]
+
+priority_group.service2.id = 2
+
+priority_group.service2.service_pool = 2
+
+ingress_service_pool.2.percent = 30
+ingress_service_pool.0.percent = 70
+
+port.service_pool.2.ingress_buffer.reserved = 10240
+
+ingress_service_pool.2.mode = 1
+
+port.service_pool.2.ingress_buffer.dynamic_quota = ALPHA_8
+
+priority_group.service2.ingress_buffer.dynamic_quota = ALPHA_8
+
+egress_buffer.egr_queue_2.uc.service_pool = 2
+
+egress_service_pool.2.percent = 30
+egress_service_pool.0.percent = 70
+
+port.service_pool.2.egress_buffer.uc.reserved = 0
+
+egress_buffer.cos_2.mc.service_pool = 2
+
+egress_buffer.egr_queue_2.uc.reserved = 1024
+
+port.egress_buffer.mc.reserved = 10240
+port.egress_buffer.mc.shared_size = 2097152
+egress_service_pool.2.mode = 1
+
+port.service_pool.2.egress_buffer.uc.dynamic_quota = ALPHA_8
+
+egress_buffer.egr_queue_2.uc.dynamic_quota = ALPHA_8
+
+egress_buffer.cos_2.mc.dynamic_quota = ALPHA_8
+```
+
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+For additional `default-lossless` and RoCE pool examples, see {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}} and {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}}.
+
 ## Syntax Checker
 
 Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.
@@ -1207,10 +1331,17 @@ cumulus@switch:~$ cl-consistency-check --datapath-syntax-check -t /path/test-tra
 <summary>qos_features.conf</summary>
 
 ```
-#
 # /etc/cumulus/datapath/qos/qos_features.conf
-# Copyright (C) 2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
 #
+# Copyright © 2021 NVIDIA CORPORATION & AFFILIATES. ALL RIGHTS RESERVED.
+#
+# This software product is a proprietary product of Nvidia Corporation and its affiliates
+# (the "Company") and all right, title, and interest in and to the software
+# product, including all associated intellectual property rights, are and
+# shall remain exclusively with the Company.
+#
+# This software product is governed by the End User License Agreement
+# provided with the software product. 
 
 # packet header field used to determine the packet priority level
 # fields include {802.1p, dscp, port}
@@ -1220,7 +1351,6 @@ traffic.port_default_priority      = 0
 # packet priority source values assigned to each internal cos value
 # internal cos values {cos_0..cos_7}
 # (internal cos 3 has been reserved for CPU-generated traffic)
-#
 # 802.1p values = {0..7}
 traffic.cos_0.priority_source.8021p = [0]
 traffic.cos_1.priority_source.8021p = [1]
@@ -1240,7 +1370,6 @@ traffic.cos_7.priority_source.8021p = [7]
 #traffic.cos_5.priority_source.dscp = [40,41,42,43,44,45,46,47]
 #traffic.cos_6.priority_source.dscp = [48,49,50,51,52,53,54,55]
 #traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
-
 # remark packet priority value
 # fields include {802.1p, dscp}
 traffic.packet_priority_remark_set = []
@@ -1248,7 +1377,6 @@ traffic.packet_priority_remark_set = []
 # packet priority remark values assigned from each internal cos value
 # internal cos values {cos_0..cos_7}
 # (internal cos 3 has been reserved for CPU-generated traffic)
-#
 # 802.1p values = {0..7}
 #traffic.cos_0.priority_remark.8021p = [0]
 #traffic.cos_1.priority_remark.8021p = [1]
@@ -1314,7 +1442,6 @@ traffic.packet_priority_remark_set = []
 #pfc.pfc_port_group.xon_delta = 2000
 #pfc.pfc_port_group.tx_enable = true
 #pfc.pfc_port_group.rx_enable = true
-#
 #Specify cable length in mts
 #pfc.pfc_port_group.cable_length = 10
 
@@ -1336,7 +1463,6 @@ traffic.packet_priority_remark_set = []
 # link_pause.pause_port_group.xon_delta = 2000
 # link_pause.pause_port_group.rx_enable = true
 # link_pause.pause_port_group.tx_enable = true
-#
 # Specify cable length in mts
 # link_pause.pause_port_group.cable_length = 10
 
@@ -1347,16 +1473,7 @@ traffic.packet_priority_remark_set = []
 # -- for each port group in the list
 #    -- populate the port set, e.g.
 #       swp1-swp4,swp8,swp50s0-swp50s3
-# -- to enable RED requires the latest qos_features.conf
-#ecn_red.port_group_list = [ecn_red_port_group]
-#ecn_red.ecn_red_port_group.egress_queue_list = []
-#ecn_red.ecn_red_port_group.port_set = swp1-swp4,swp6
-#ecn_red.ecn_red_port_group.ecn_enable = true
-#ecn_red.ecn_red_port_group.red_enable = false
-#ecn_red.ecn_red_port_group.min_threshold_bytes = 40000
-#ecn_red.ecn_red_port_group.max_threshold_bytes = 200000
-#ecn_red.ecn_red_port_group.probability = 100
-
+# -- to enable RED requires the latest traffic.conf
 #Default ECN configuration on TC0
 default_ecn_red_conf.egress_queue_list = [0]
 default_ecn_red_conf.ecn_enable = true
@@ -1364,6 +1481,15 @@ default_ecn_red_conf.red_enable = false
 default_ecn_red_conf.min_threshold_bytes = 150000
 default_ecn_red_conf.max_threshold_bytes = 1500000
 default_ecn_red_conf.probability = 100
+
+#ecn_red.port_group_list = [ecn_red_port_group]
+#ecn_red.ecn_red_port_group.egress_queue_list = [1]
+#ecn_red.ecn_red_port_group.port_set = allports
+#ecn_red.ecn_red_port_group.ecn_enable = true
+#ecn_red.ecn_red_port_group.red_enable = false
+#ecn_red.ecn_red_port_group.min_threshold_bytes = 40000
+#ecn_red.ecn_red_port_group.max_threshold_bytes = 200000
+#ecn_red.ecn_red_port_group.probability = 100
 
 # Hierarchical traffic shaping
 # to configure shaping at 2 levels:
@@ -1387,11 +1513,12 @@ default_ecn_red_conf.probability = 100
 # shaping.shaper_port_group.egr_queue_7.shaper = [57000, 450000]
 # shaping.shaper_port_group.port.shaper = 900000
 
-# default egress scheduling weight per egress queue 
+# default egress scheduling weight per egress queue
 # To be applied to all the ports if port_group profile not configured
-# If you do not specify any bw_percent of egress_queues, those egress queues 
+# If you do not specify any bw_percent of egress_queues, those egress queues
 # will assume DWRR weight 0 - no egress scheduling for those queues
 # '0' indicates strict priority
+
 default_egress_sched.egr_queue_0.bw_percent = 12
 default_egress_sched.egr_queue_1.bw_percent = 13
 default_egress_sched.egr_queue_2.bw_percent = 12
@@ -1401,8 +1528,8 @@ default_egress_sched.egr_queue_5.bw_percent = 13
 default_egress_sched.egr_queue_6.bw_percent = 12
 default_egress_sched.egr_queue_7.bw_percent = 13
 
-# port_group profile for egress scheduling weight per egress queue 
-# If you do not specify any bw_percent of egress_queues, those egress queues 
+# port_group profile for egress scheduling weight per egress queue
+# If you do not specify any bw_percent of egress_queues, those egress queues
 # will assume DWRR weight 0 - no egress scheduling for those queues
 # '0' indicates strict priority
 #egress_sched.port_group_list = [sched_port_group1]
@@ -1426,11 +1553,19 @@ default_egress_sched.egr_queue_7.bw_percent = 13
 <summary>qos_infra.conf</summary>
 
 ```
-### qos_infra.conf
 #
-# Default qos_infra configuration for Mellanox Spectrum chip
-# Copyright (C) 2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
+# Default qos-infra configuration for Mellanox Spectrum chip
 #
+# Copyright © 2021 NVIDIA CORPORATION & AFFILIATES. ALL RIGHTS RESERVED.
+#
+# This software product is a proprietary product of Nvidia Corporation and its affiliates
+# (the "Company") and all right, title, and interest in and to the software
+# product, including all associated intellectual property rights, are and
+# shall remain exclusively with the Company.
+#
+# This software product is governed by the End User License Agreement
+# provided with the software product. 
+
 # scheduling algorithm: algorithm values = {dwrr}
 scheduling.algorithm = dwrr
 
@@ -1461,7 +1596,6 @@ priority_group.bulk.service_pool = 0
 #flow_control.ingress_service_pool = 0
 
 # --- ingress buffer space allocations ---
-#
 # total buffer
 #  - ingress minimum buffer allocations
 #  - ingress service pool buffer allocations
@@ -1472,13 +1606,13 @@ priority_group.bulk.service_pool = 0
 # ingress service pool buffer allocation: percent of total buffer
 # If a service pool has no priority groups, the buffer is added
 # to the shared buffer space.
-ingress_service_pool.0.percent = 100.0
-# all priority groups
+ingress_service_pool.0.percent = 100
 
 # Ingress buffer port.pool buffer : size in bytes
 #port.service_pool.0.ingress_buffer.reserved = 10240
 #port.service_pool.0.ingress_buffer.shared_size = 9000
 #port.management.ingress_buffer.reserved = 0
+
 
 # priority group minimum buffer allocation: size in bytes
 # priority group shared buffer allocation: shared buffer size in bytes
@@ -1489,7 +1623,7 @@ ingress_service_pool.0.percent = 100.0
 
 # ---- ingress dynamic buffering settings
 # To enable ingress static pool, set the mode to 0
-#ingress_service_pool.0.mode = 0
+ingress_service_pool.0.mode = 1
 
 # The ALPHA defines the max% of buffers (quota) available on a
 # per ingress port OR ipool, Ingress PG, Egress TC, Egress port OR epool.
@@ -1522,21 +1656,20 @@ ingress_service_pool.0.percent = 100.0
 #port.service_pool.0.ingress_buffer.dynamic_quota = ALPHA_8
 #port.management.ingress_buffer.dynamic_quota = ALPHA_8
 
+
 # Ingress buffer dynamic buffering alpha for lossless PGs (if any; Default: ALPHA_1)
 #flow_control.ingress_buffer.dynamic_quota = ALPHA_1
 
 # Ingress buffer per-PG dynamic buffering alpha (Default: ALPHA_8)
-#priority_group.bulk.ingress_buffer.dynamic_quota      = ALPHA_8
+#priority_group.bulk.ingress_buffer.dynamic_quota = ALPHA_8
 
 # --- egress buffer space allocations ---
-#
 # total egress buffer
 #  - minimum buffer allocations
 #  = total service pool buffer size
-#
 # service pool assigned for lossless PGs
 #flow_control.egress_service_pool = 0
-#
+
 # service pool assigned for egress queues
 egress_buffer.egr_queue_0.uc.service_pool = 0
 egress_buffer.egr_queue_1.uc.service_pool = 0
@@ -1546,11 +1679,10 @@ egress_buffer.egr_queue_4.uc.service_pool = 0
 egress_buffer.egr_queue_5.uc.service_pool = 0
 egress_buffer.egr_queue_6.uc.service_pool = 0
 egress_buffer.egr_queue_7.uc.service_pool = 0
-#
+
 # Service pool buffer allocation: percent of total
 # buffer size.
-egress_service_pool.0.percent = 100.0
-# all priority groups, UC and MC
+egress_service_pool.0.percent = 100
 
 # Egress buffer port.pool buffer : size in bytes
 #port.service_pool.0.egress_buffer.uc.reserved = 10240
@@ -1562,9 +1694,7 @@ egress_service_pool.0.percent = 100.0
 # Unlimited egress buffers not supported on Spectrum.
 #priority_group.bulk.unlimited_egress_buffer     = false
 
-#
 # if a priority group has no cos values assigned to it, the buffers will not be allocated
-#
 
 # Service pool mapping for MC.SP region
 egress_buffer.cos_0.mc.service_pool = 0
@@ -1575,7 +1705,6 @@ egress_buffer.cos_4.mc.service_pool = 0
 egress_buffer.cos_5.mc.service_pool = 0
 egress_buffer.cos_6.mc.service_pool = 0
 egress_buffer.cos_7.mc.service_pool = 0
-#
 # Reserved and static shared buffer allocation for MC.SP region: size in bytes
 #egress_buffer.cos_0.mc.reserved = 10240
 #egress_buffer.cos_1.mc.reserved = 10240
@@ -1585,7 +1714,6 @@ egress_buffer.cos_7.mc.service_pool = 0
 #egress_buffer.cos_5.mc.reserved = 10240
 #egress_buffer.cos_6.mc.reserved = 10240
 #egress_buffer.cos_7.mc.reserved = 10240
-#
 #egress_buffer.cos_0.mc.shared_size = 40
 #egress_buffer.cos_1.mc.shared_size = 40
 #egress_buffer.cos_2.mc.shared_size =  5
@@ -1606,14 +1734,14 @@ egress_buffer.cos_7.mc.service_pool = 0
 #egress_buffer.egr_queue_7.uc.shared_size   = 30
 
 # Minimum buffer allocation for ePort.TC region: size in bytes
-#egress_buffer.egr_queue_0.uc.reserved  = 1024
-#egress_buffer.egr_queue_1.uc.reserved  = 1024
-#egress_buffer.egr_queue_2.uc.reserved  = 1024
-#egress_buffer.egr_queue_3.uc.reserved  = 1024
-#egress_buffer.egr_queue_4.uc.reserved  = 1024
-#egress_buffer.egr_queue_5.uc.reserved  = 1024
-#egress_buffer.egr_queue_6.uc.reserved  = 1024
-#egress_buffer.egr_queue_7.uc.reserved  = 1024
+#egress_buffer.egr_queue_0.uc.reserved = 1024
+#egress_buffer.egr_queue_1.uc.reserved = 1024
+#egress_buffer.egr_queue_2.uc.reserved = 1024
+#egress_buffer.egr_queue_3.uc.reserved = 1024
+#egress_buffer.egr_queue_4.uc.reserved = 1024
+#egress_buffer.egr_queue_5.uc.reserved = 1024
+#egress_buffer.egr_queue_6.uc.reserved = 1024
+#egress_buffer.egr_queue_7.uc.reserved = 1024
 
 # Reserved Egress buffer for TCs mapped to lossless SPs
 #flow_control.egress_buffer.reserved = 0
@@ -1624,30 +1752,30 @@ egress_buffer.cos_7.mc.service_pool = 0
 #port.egress_buffer.mc.shared_size = 92160
 
 # To enable egress static pool, set the mode to 0
-#egress_service_pool.0.mode = 0
- 
+egress_service_pool.0.mode = 1
+
 # Egress dynamic buffer pool configuration
 # Replace the shared_size parameter with the dynamic_quota=n/ALPHA_x,
 # where ‘n’ should be the configuration value for alpha.
 # 		‘ALPHA_x’ should be string representation for alpha.
 # Pls note : Same alpha configuration values can be used as mentioned in Ingress Dynamic Buffering section above
-#
 # Egress buffer per-port dynamic buffering quota (alpha ; Default: ALPHA_16)
 #port.service_pool.0.egress_buffer.uc.dynamic_quota = ALPHA_16
 #port.management.egress_buffer.dynamic_quota = ALPHA_8
 
+
 # Egress buffer per-egress-queue dynamic buffering quota (alpha) for lossless egress queues (Default: ALPHA_INFINITY)
-#flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
+#flow_control.egress_buffer.dynamic_quota = ALPHA_1
 
 # Egress buffer per-egress-queue dynamic buffering quota (alpha) for unicast (Default: ALPHA_8)
-#egress_buffer.egr_queue_0.uc.dynamic_quota    = ALPHA_2
-#egress_buffer.egr_queue_1.uc.dynamic_quota = ALPHA_4
-#egress_buffer.egr_queue_2.uc.dynamic_quota = ALPHA_1
-#egress_buffer.egr_queue_3.uc.dynamic_quota = ALPHA_1_2
-#egress_buffer.egr_queue_4.uc.dynamic_quota = ALPHA_1_4
-#egress_buffer.egr_queue_5.uc.dynamic_quota = ALPHA_1_8
-#egress_buffer.egr_queue_6.uc.dynamic_quota = ALPHA_1_16
-#egress_buffer.egr_queue_7.uc.dynamic_quota = ALPHA_1_32
+#egress_buffer.egr_queue_0.uc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_1.uc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_2.uc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_3.uc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_4.uc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_5.uc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_6.uc.dynamic_quota = ALPHA_8
+#egress_buffer.egr_queue_7.uc.dynamic_quota = ALPHA_8
 
 # Egress buffer per-egress-queue dynamic buffering quota (alpha) for multicast (Default: ALPHA_INFINITY)
 #egress_buffer.egr_queue_0.mc.dynamic_quota    = ALPHA_2
@@ -1661,12 +1789,12 @@ egress_buffer.cos_7.mc.service_pool = 0
 
 # These parameters can be assigned to the virtual Multicast port as well (Default: ALPHA_1_4)
 #egress_buffer.cos_0.mc.dynamic_quota = ALPHA_1_4
-#egress_buffer.cos_1.mc.dynamic_quota = ALPHA_8
-#egress_buffer.cos_2.mc.dynamic_quota = ALPHA_4
-#egress_buffer.cos_3.mc.dynamic_quota = ALPHA_2
-#egress_buffer.cos_4.mc.dynamic_quota = ALPHA_1_8
-#egress_buffer.cos_5.mc.dynamic_quota = ALPHA_1
-#egress_buffer.cos_6.mc.dynamic_quota = ALPHA_1_2
+#egress_buffer.cos_1.mc.dynamic_quota = ALPHA_1_4
+#egress_buffer.cos_2.mc.dynamic_quota = ALPHA_1_4
+#egress_buffer.cos_3.mc.dynamic_quota = ALPHA_1_4
+#egress_buffer.cos_4.mc.dynamic_quota = ALPHA_1_4
+#egress_buffer.cos_5.mc.dynamic_quota = ALPHA_1_4
+#egress_buffer.cos_6.mc.dynamic_quota = ALPHA_1_4
 #egress_buffer.cos_7.mc.dynamic_quota = ALPHA_1_4
 
 # internal cos values mapped to egress queues
@@ -1693,6 +1821,7 @@ cos_egr_queue.cos_6.uc  = 6
 cos_egr_queue.cos_6.cpu = 6
 
 cos_egr_queue.cos_7.uc  = 7
+cos_egr_queue.cos_7.cpu = 7
 ```
 </details>
 

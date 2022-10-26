@@ -596,6 +596,43 @@ iface br1
 {{< /tab >}}
 {{< /tabs >}}
 
+## Fast Linkup
+
+Cumulus Linux supports fast linkup on interfaces on NVIDIA Spectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards.
+
+{{%notice note%}}
+You must configure both sides of the connection with the same speed and FEC settings.
+{{%/notice%}}
+
+{{< tabs "TabID607 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 link fast-linkup on
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/switchd.conf` file and add the `interface.<interface>.enable_media_depended_linkup_flow=TRUE` and `interface.<interface>.enable_port_short_tuning=TRUE` settings for the interfaces on which you want to enable fast linkup. The following example enables fast linkup on swp1:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+...
+interface.swp1.enable_media_depended_linkup_flow=TRUE
+interface.swp1.enable_port_short_tuning=TRUE
+```
+
+Restart `switchd` with the `sudo systemctl restart switchd.service` command.
+
+{{%notice warning%}}
+Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
+{{%/notice%}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Mako Templates
 
 `ifupdown2` supports {{<exlink url="http://www.makotemplates.org/" text="Mako-style templates">}}. The Mako template engine processes the `interfaces` file before parsing.
@@ -645,53 +682,6 @@ addon_scripts_support=1
 - `$LOGICAL` represents the logical name (configuration name) of the interface.
 - `$METHOD` represents the address method; for example, loopback, DHCP, DHCP6, manual, static, and so on.
 - `$ADDRFAM` represents the address families associated with the interface in a comma-separated list; for example, `"inet,inet6"`.
-
-## Chassis Management
-
-Cumulius Linux supports the NVIDIA SN4800 switch.
-
-{{%notice note%}}
-- Cumulus Linux only supports 100G port speed and does not support 1G, 10G, 40G, 50G, and breakout ports.
-- Do not remove and reinsert line cards after you power on the switch.
-- NVUE `nv set` and `nv config` commands are not available. You must configure the switch with Linux commands and by editing the configuration files manually. However, you can use the NVUE `nv show` commands to display configuration information.
-{{%/notice%}}
-
-To display platform information, such as hardware sensors, run the `smonctl` command or the NVUE `nv show platform` commands.
-
-To enable and disable line cards on the switch, run the `chassismgrctl` command. The following example enables the line card in slot 2:
-
-```
-cumulus@leaf01:mgmt:~$ chassismgrctl -l 2 -e enable
-```
-
-{{%notice note%}}
-It takes a few minutes for line cards to come online.
-{{%/notice%}}
-
-The following example disables the line card in slot 4:
-
-```
-cumulus@leaf01:mgmt:~$ chassismgrctl -l 4 -e disable
-```
-
-To display a summary of the line card states on the switch, run the `chassismgrctl -l all -summary` command:
-
-```
-cumulus@leaf01:mgmt:~$ chassismgrctl -l all -summary
---------------------------------------------------------
-Slot Card State
---------------------------------------------------------
-1 MSN4800 Operational
-2 MSN4800 Operational
-3 MSN4800 Operation
-4 MSN4800 Operational
-5 MSN4800 Operational
-6 MSN4800 Operational
-7 MSN4800 Operational
-8 MSN4800 Operational
-```
-
-You can see all `chassismgrctl` command options with the `chassismgrctl -h` command.
 
 ## Troubleshooting
 

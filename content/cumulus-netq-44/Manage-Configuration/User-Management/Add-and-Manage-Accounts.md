@@ -6,7 +6,7 @@ toc: 2
 ---
 Sign in to NetQ as an admin to view and manage accounts. If you want to change individual preferences, visit {{<link title="Set User Preferences" text="Set User Preferences">}}.
 
-Navigate to the the NetQ management dashboard to complete the tasks outlined in this section. To get there, expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> on the NetQ dashboard and under **Admin**, select **Management**.
+Navigate to the NetQ management dashboard to complete the tasks outlined in this section. To get there, expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> on the NetQ dashboard and under **Admin**, select **Management**.
 
 ## Add an Account
 

@@ -9,7 +9,7 @@ The Validation Summary card in the NetQ UI lets you view the overall health of y
 
 ## View Network Health Summary
 
-You can view a very simple summary of your network health including the the distribution of validation check results across your network.
+You can view a very simple summary of your network health including the distribution of validation check results across your network.
 
 To view this summary:
 

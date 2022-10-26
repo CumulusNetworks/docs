@@ -31,8 +31,7 @@ Component information for all of the switches in your network can be viewed from
 - Inventory/Switches card:
     - Small: view count of switches and distribution of switch status
     - Medium: view count of OS, ASIC, platform, CPU model, Disk, and memory types or versions across all switches
-- `netq show inventory` command:
-    -View ASIC, CPU, disk, OS, and ports on all switches
+- `netq show inventory` command: view ASIC, CPU, disk, OS, and ports on all switches
 
 {{<tabs "TabID25" >}}
 
@@ -764,75 +763,6 @@ leaf02            bgpd                 2867  default         yes     yes    yes 
 leaf02            clagd                n/a   default         yes     no     yes       n/a              1d:6h:43m:31s             Fri Feb 15 17:28:53 2019
 leaf02            ledmgrd              1856  default         yes     yes    no        ok               1d:6h:43m:55s             Fri Feb 15 17:28:28 2019
 leaf02            lldpd                2646  default         yes     yes    yes       ok               1d:6h:43m:30s             Fri Feb 15 17:28:53 2019
-...
-```
-
-You can also view services information in JSON format:
-
-```
-cumulus@switch:~$ netq show services json
-{
-    "services":[
-        {
-            "status":"ok",
-            "uptime":1550251734.0,
-            "monitored":"yes",
-            "service":"ntp",
-            "lastChanged":1550251734.4790000916,
-            "pid":"8478",
-            "hostname":"leaf01",
-            "enabled":"yes",
-            "vrf":"mgmt",
-            "active":"yes"
-        },
-        {
-            "status":"ok",
-            "uptime":1550251704.0,
-            "monitored":"no",
-            "service":"ssh",
-            "lastChanged":1550251704.0929999352,
-            "pid":"2106",
-            "hostname":"leaf01",
-            "enabled":"yes",
-        "vrf":"default",
-        "active":"yes"
-    },
-    {
-        "status":"ok",
-        "uptime":1550251736.0,
-        "monitored":"yes",
-        "service":"lldpd",
-        "lastChanged":1550251736.5160000324,
-        "pid":"2651",
-        "hostname":"leaf01",
-        "enabled":"yes",
-        "vrf":"default",
-        "active":"yes"
-    },
-    {
-        "status":"ok",
-        "uptime":1550251704.0,
-        "monitored":"yes",
-        "service":"bgpd",
-        "lastChanged":1550251704.1040000916,
-        "pid":"2872",
-        "hostname":"leaf01",
-        "enabled":"yes",
-        "vrf":"default",
-        "active":"yes"
-    },
-    {
-        "status":"ok",
-        "uptime":1550251704.0,
-        "monitored":"no",
-        "service":"neighmgrd",
-        "lastChanged":1550251704.0969998837,
-        "pid":"1986",
-        "hostname":"leaf01",
-        "enabled":"yes",
-        "vrf":"default",
-        "active":"yes"
-    },
 ...
 ```
 

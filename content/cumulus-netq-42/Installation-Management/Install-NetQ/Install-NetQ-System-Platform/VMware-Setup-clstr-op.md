@@ -61,6 +61,6 @@ Make a note of the private IP address you assign to the worker node. You need it
 
 14. Repeat Steps 10 through 13 for each additional worker node you want in your cluster.
 
-The final step is to install and activate the NetQ software using the the CLI:
+The final step is to install and activate the NetQ software using the CLI:
 
 - {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}

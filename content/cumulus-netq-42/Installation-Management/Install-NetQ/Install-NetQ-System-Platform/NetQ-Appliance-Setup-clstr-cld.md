@@ -128,6 +128,6 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 9. Repeat Steps 4-8 for each additional worker NetQ Cloud Appliance.
 
-The final step is to install and activate the NetQ software using the the CLI:
+The final step is to install and activate the NetQ software using the CLI:
 
 - {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}

@@ -13,12 +13,6 @@
 <td>4.1.0-4.3.0</td>
 </tr>
 <tr>
-<td>2555854</td>
-<td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2551641</td>
 <td>Infra: NetQ VM installation fails if the designated disk size is greater than 2TB. To work around this issue, specify the disk for cloud deployments to be between 256GB and 2TB SSD, and for on-premises deployments to be between 32 GB and 2TB.</td>
 <td>2.4.0-3.1.1</td>
@@ -78,12 +72,6 @@ systemctl restart netqd.service
 <td>Performing an upgrade using the lifecycle management feature fails intermittently when SSH key switch access authorization is used. To work around this issue, use basic authentication or retry an upgrade job that uses SSH key authorization.</td>
 <td>3.0.0-3.0.1</td>
 <td>3.1.0-3.3.1</td>
-</tr>
-<tr>
-<td>2549649</td>
-<td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2549344</td>

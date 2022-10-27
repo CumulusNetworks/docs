@@ -27,6 +27,8 @@ trap-link-up
 [username]           user999
 ```
 
+To show a summary of the SNMP configuration settings in json format, run the `nv show service snmp-server  --output json --applied` command.
+
 To show the SNMP trap CPU load average, run the `nv show service snmp-server trap-cpu-load-average` command.
 
 To show SNMP trap authentication failures, run the `nv show service snmp-server trap-snmp-auth-failures` command.

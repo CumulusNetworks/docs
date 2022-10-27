@@ -33,22 +33,10 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <td>3.3.0-3.3.1</td>
 </tr>
 <tr>
-<td>2555854</td>
-<td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2553453</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2549649</td>
-<td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2549319</td>
@@ -146,12 +134,6 @@ netq-cli:
 <td>4.1.0-4.3.0</td>
 </tr>
 <tr>
-<td>2555854</td>
-<td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2553951</td>
 <td>Infra: In an on-premises deployment, the Kafka change logs can fill the NetQ appliance or VM disk space rapidly on systems with a large number of MAC or neighbor entries. If the disk usage exceeds 90%, the NetQ service is partially or completely disrupted. To workaround this issue, reduce the retention setting for log cleanup to 30 minutes by running the following script on your NetQ appliance/VM or the master server in a clustered arrangement:
 {code}
@@ -221,12 +203,6 @@ netq-cli:
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2549649</td>
-<td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2549319</td>

@@ -45,12 +45,6 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2549649</td>
-<td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2549319</td>
 <td>NetQ UI: The legend and segment colors on Switches and Upgrade History card graphs sometimes do not match. These cards appear on the lifecycle management dashboard (Manage Switch Assets view). Hover over graph to view the correct values.</td>
 <td>3.0.0-3.3.1</td>
@@ -492,12 +486,6 @@ Save the file.</td>
 <td>The {{netqd}} daemon logs a traceback to _/var/log/netqd.log_ when the OPTA server is unreachable and {{netq show}} commands are run.</td>
 <td>3.1.0-3.3.1</td>
 <td>4.0.0-4.3.0</td>
-</tr>
-<tr>
-<td>2549649</td>
-<td>NetQ UI: Warnings might appear during the post-upgrade phase for a Cumulus Linux switch upgrade job. They are caused by services that have not yet been restored by the time the job is complete. Cumulus Networks recommend waiting five minutes, creating a network snapshot, then comparing that to the pre-upgrade snapshot. If the comparison shows no differences for the services, the warnings can be ignored. If there are differences, then troubleshooting the relevant service(s) is recommended.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2549319</td>

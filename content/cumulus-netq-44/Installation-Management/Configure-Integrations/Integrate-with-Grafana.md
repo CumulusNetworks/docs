@@ -222,7 +222,7 @@ The following example shows a dashboard with two hostnames, two interfaces, and 
 
 ## Analyze the Data
 
-When you have configured the dashboard, you can start analyzing the data. You can explore the data by modifying the viewing paramters in one of several ways using the dashboard tool set:
+When you have configured the dashboard, you can start analyzing the data. You can explore the data by modifying the viewing parameters in one of several ways using the dashboard tool set:
 
 {{<figure src="/images/netq/grafana-dashboard-tools-230.png" width="600">}}
 

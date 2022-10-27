@@ -1287,7 +1287,7 @@ To analyze the results:
 
     - Return to the validation jobs list by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" width="14" height="14">}}.
 
-    Comparing various results can give you a clue as to why certain devices are experiencing more warnings or failures. For  example, more failures occurred between certain times or on a particular device.
+    Comparing various results can give you a clue as to why certain devices are experiencing more warnings or failures. For example, more failures occurred between certain times or on a particular device.
 
 ### Manage Scheduled Validations
 
@@ -1299,7 +1299,7 @@ At some point you might want to change the schedule or validation types that are
 
 {{%notice info%}}
 
-When you update a scheduled request, the results for all future runs of the validation will be different than the results of previous runs of the validation.
+When you update a scheduled request, the results for all future runs of the validation will be different from the results of previous runs of the validation.
 
 {{%/notice%}}
 

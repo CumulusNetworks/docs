@@ -370,22 +370,22 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 
 ### Ingress COS or DSCP for Marking
 
-To remark COS or DSCP values, modify the `traffic.packet_priority_remark_set` value in the `/etc/cumulus/datapath/qos/qos_features.conf` file.
-
-This configuration allows an internal COS value to determine the egress COS or DSCP value. For example, to enable the remarking of only DSCP values:
+To enable remarking of COS, DSCP or both COS and DSCP values, modify the `traffic.packet_priority_remark_set` value to `[8021p]`, `[dscp]` or `[8021p,dscp]` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. For example, to enable the remarking of only COS values:
 
 ```
-traffic.packet_priority_remark_set = [dscp]
+traffic.packet_priority_remark_set = [8021p]
 ```
 
-You can remark both COS and DSCP with `traffic.packet_priority_remark_set = [802.1p,dscp]`.
-
-#### Remark COS
-
-You remark COS with the `priority_remark.8021p` setting in the `qos_features.conf` file. The internal `cos_` value determines the egress 802.1p COS remarking. For example, to remark internal COS 0 to egress COS 4:
+You remark COS or DSCP with the `priority_remark.8021p` or `priority_remark.dscp` setting. The internal `cos_` value determines the egress 802.1p COS or DSCP remarking. For example, to remark internal COS 0 to egress COS 4:
 
 ```
 traffic.cos_0.priority_remark.8021p = [4]
+```
+
+To remark internal COS 0 to egress DSCP 22:
+
+```
+traffic.cos_0.priority_remark.dscp = [22]
 ```
 
 {{% notice note %}}
@@ -393,59 +393,21 @@ The `#` in the configuration file is a comment. The file comments out the `traff
 You must uncomment them to set the configuration.
 {{% /notice %}}
 
-You can remap multiple internal COS values to the same external COS value. For example, to map internal COS 1 and internal COS 2 to external COS 3:
+You can remap multiple internal COS values to the same external COS or DSCP value. For example, to map internal COS 1 and internal COS 2 to external COS 3:
 
 ```
 traffic.cos_1.priority_remark.8021p = [3]
 traffic.cos_2.priority_remark.8021p = [3]
 ```
 
-Be sure to reload `switchd` with the `sudo systemctl reload switchd.service` command after making changes to the `/etc/cumulus/datapath/qos/qos_features.conf` file.
-
-#### Remark DSCP
-
-You remark DSCP with the `priority_remark.dscp` component of the `qos_features.conf` file. The internal `cos_` value determines the egress DSCP remark. For example, to remark internal COS 0 to egress DSCP 22:
-
-```
-traffic.cos_0.priority_remark.dscp = [22]
-```
-
-{{% notice note %}}
-The `#` in the configuration file is a comment. The file comments out the `traffic.cos_*.priority_remark.dscp` lines by default.  
-You must uncomment them to set the configuration.
-{{% /notice %}}
-
-You can remap multiple internal COS values to the same external DSCP value. For example, to map internal COS 1 and internal COS 2 to external DSCP 40:
+To map internal COS 1 and internal COS 2 to external DSCP 40:
 
 ```
 traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-Be sure to reload `switchd` with the `sudo systemctl reload switchd.service` command after making changes to the `/etc/cumulus/datapath/qos/qos_features.conf` file.
-
-#### Example Configuration
-
-To change the marked value on a packet, the ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. Therefore, to remark COS or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
-
-In the following example configuration, only packets that *ingress* on swp1 and *egress* on swp2 change the marked value of the packet. Packets that ingress on other ports and egress on swp2 do **not** change the marked value of the packet. The commands map internal COS 0 and internal COS 1 to external DSCP 37.
-
-```
-remark.port_group_list = [remark_port_group1,remark_port_group2]
-remark.remark_port_group1.packet_priority_remark_set = [dscp]
-remark.remark_port_group1.port_set = swp1
-remark.remark_port_group2.packet_priority_remark_set = []
-remark.remark_port_group2.port_set = swp2
-remark.remark_port_group2.cos_0.priority_remark.dscp = [37]
-remark.remark_port_group2.cos_1.priority_remark.dscp = [37]
-```
-
-You can remap multiple internal COS values to the same external COS value. For example, to map internal COS 1 and internal COS 2 to external COS 3:
-
-```
-remark.remark_port_group.cos_1.priority_remark.8021p = [3]
-remark.remark_port_group.cos_2.priority_remark.8021p = [3]
-```
+To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. Therefore, to remark COS or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port. To see the full configuration for ingress COS or DSCP marking, see [Port Groups - Remarking](#remarking).
 
 ## Flow Control
 
@@ -718,6 +680,8 @@ cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control my-red-profi
 cumulus@switch:~$ nv config apply
 ```
 
+Cumulus Linux also supports ECN configuration for individual egress queues per port. For example, you can configure two profiles with different egress queues and threshold settings that apply to the same port.
+
 You can disable ECN bit marking for an ECN profile. The following example disables ECN bit marking in the default profile.
 
 ```
@@ -753,6 +717,8 @@ my-red-profile.probability = 10
 ```
 
 Reload `switchd` with the `sudo systemctl reload switchd.service` command.
+
+Cumulus Linux also supports ECN configuration for individual egress queues per port. For example, you can configure two port groups with different egress queues and threshold settings that apply to the same port.
 
 To disable ECN bit marking for an ECN profile, set `ecn_enable` to false. The following example disables ECN bit marking in the default profile.
 
@@ -1069,30 +1035,19 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 ### Remarking
 
-You can also use port groups to remark COS or DSCP on egress according to the internal COS value. You define these port groups with `remark.port_group_list` in the `qos_features.conf` file.
+You use port groups to remark COS or DSCP on egress according to the internal COS value. You define these port groups with `remark.port_group_list` in the `qos_features.conf` file. The name is a label for configuration settings.
 
-A `remark.port_group_list` includes the names for the group settings. The name is a label for configuration settings. For example, if a `remark.port_group_list` includes `test`, Cumulus Linux configures the following `remark.port_set` with `remark.test.port_set`.
-
-The following is an example `remark.group_list` configuration.
+In the following example configuration, only packets that *ingress* on swp1 and *egress* on swp2 change the marked value of the packet. Packets that ingress on other ports and egress on swp2 do **not** change the marked value of the packet. The commands map internal COS 0 and internal COS 1 to external DSCP 37.
 
 ```
-remark.port_group_list = [list1,list2]
-remark.list1.port_set = swp1-swp3,swp6
-remark.list1.cos_3.priority_remark.dscp = [24]
-remark.list2.packet_priority_remark_set = [802.1p]
-remark.list2.port_set = swp9,swp10
-remark.list2.cos_3.priority_remark.8021p = [2]
+remark.port_group_list = [remark_port_group1,remark_port_group2]
+remark.remark_port_group1.packet_priority_remark_set = [dscp]
+remark.remark_port_group1.port_set = swp1
+remark.remark_port_group2.packet_priority_remark_set = []
+remark.remark_port_group2.port_set = swp2
+remark.remark_port_group2.cos_0.priority_remark.dscp = [37]
+remark.remark_port_group2.cos_1.priority_remark.dscp = [37]
 ```
-
-|Configuration |Description |
-|------------- |----------- |
-|`remark.port_group_list` |Defines the names of the port groups to use (`list1` and `list2`).<br>The following example defines port groups list1 and list2:<br>`remark.port_group_list = [list1,list2]`|
-|`remark.list1.packet_priority_remark_set` | Defines the egress marking to apply, `802.1p` or `dscp`.<br>The following example rewrites the egress DSCP marking:<br>`remark.list1.packet_priority_remark_set = [dscp]` |
-|`remark.list1.port_set` | The set of _ingress_ ports that receives frames or packets that has remarking, regardless of egress interface.<br>The following example remarks the egress DSCP values of traffic arriving on ports swp1, swp2, swp3 and swp6:<br>`remark.list1.port_set = swp1-swp3,swp6`|
-|`remark.list1.cos_3.priority_remark.dscp`  | The egress DSCP value to write to the packet according to the internal COS value.<br>In the following example, traffic in internal COS 3 sets the egress DSCP to 24:<br>`remark.list1.cos_3.priority_remark.dscp = [24]`  |
-|`remark.list2.packet_priority_remark_set` | Defines the egress marking to apply, `cos` or `dscp`.<br>The following example rewrites the egress COS marking:<br>`remark.list2.packet_priority_remark_set = [802.1p]` |
-|`remark.list2.port_set` | The set of _ingress_ ports that receives frames or packets with remarking, regardless of egress interface.<br>The following example remarks the egress COS values for traffic arriving on ports swp9 and swp10:<br>`remark.list2.port_set = swp9,swp10` |
-|`remark.list2.cos_4.priority_remark.8021p` | The egress COS value to write to the frame according to the internal COS value.<br>In the following example, traffic in internal COS 4 sets the egress COS 2:<br>`remark.list1.cos_3.priority_remark.8021p = [2]` |
 
 ### Egress Scheduling
 

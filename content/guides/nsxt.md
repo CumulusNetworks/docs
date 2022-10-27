@@ -10,13 +10,20 @@ NSX-T supports various type of environments like multi-hypervisor, bare metal wo
 
 A VMware virtualized environment requires all virtual and physical elements such as ESXi hypervisors and NSX Edges to communicate to one another over an underlay IP fabric. NVIDIA Spectrum switches provides best-in-class underlay hardware leveraging the Spectrum ASIC providing speeds of 1 to 400Gbps. With NVIDIA Cumulus Linux OS software, the underlying fabric configuration can be easily provisioned to ensure VMware NSX-T proper operations.
 
-This configuration guide examines a few of the most common use cases of VMware NSX-T deployments and shows the required underlay switches configurations of Cumulus Linux.  
+This guide shows the physical infrastructure configuration required for a few of the most common use cases of VMware NSX-T deployments. The underlay fabric configuration is based on Cumulus Linux 5.X using the NVIDIA User Experience ([NVUE](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-52/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-CLI/)) CLI.
+
+{{%notice note%}}
+
+We focus only on the VM-to-VM and VM-to-BM user traffic. Thus, other networks such as management, vMotion, and others are not covered in the configuration.
+
+{{%/notice%}}
 
 This guide describes the following scenarios:
 
 - [Pure Virtualized Environment](#pure-virtualized-environment)
 - [Virtualized and Bare Metal Server Environment](#virtualized-and-bare-metal-server-environment)
 - [Virtualized Environment Over EVPN Fabric](#virtualized-environment-over-evpn-fabric)
+- [Virtualized Environment Over EVPN Fabric with an External Network (EVPN Type-5 Routes)](#virtualized-environment-over-evpn-fabric-with-an-external-network-evpn-type-5-routes)
 
 To accomplish the above scenarios, we use the following features and protocols:
 
@@ -28,7 +35,14 @@ To accomplish the above scenarios, we use the following features and protocols:
 
 {{%notice note%}}
 
-NSX-T configuration is not covered in this guide. For more information regarding VMware NSX-T specific design, installation and configuration check - [VMware NSX-T Reference Design](https://nsx.techzone.vmware.com/resource/nsx-t-reference-design-guide-3-0), [NSX-T Data Center Installation Guide](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/installation/GUID-3E0C4CEC-D593-4395-84C4-150CD6285963.html), and [NSX-T Data Center Administration Guide](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/administration/GUID-FBFD577B-745C-4658-B713-A3016D18CB9A.html).
+NSX-T configuration is not covered in this guide. Check out the this [How-to](https://docs.nvidia.com/networking/pages/releaseview.action?pageId=71022743#Howto:InstallandConfigureanNSXTwithNVIDIANetworkFabric.-Network) guide for some examples.
+
+For more information regarding VMware NSX-T specific design, installation and configuration check the following resources:
+
+- [NSX-T Reference Design](https://nsx.techzone.vmware.com/resource/nsx-t-reference-design-guide-3-0)
+- [NSX-T Physical Infrastructure of the Data Center](https://nsx.techzone.vmware.com/resource/nsx-t-reference-design-guide-3-0#_Physical_Infrastructure_of_1) 
+- [NSX-T Data Center Installation Guide](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/installation/GUID-3E0C4CEC-D593-4395-84C4-150CD6285963.html)
+- [NSX-T Data Center Administration Guide](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/administration/GUID-FBFD577B-745C-4658-B713-A3016D18CB9A.html).
 
 {{%/notice %}}
 
@@ -314,7 +328,7 @@ For more information on how to assign VLANs to trunk ports, see [VLAN-aware Brid
 
 {{%notice info%}}
 <!-- vale off -->
-For active-standby (or non-LAG active-active) ESXi connectivity, do not configure MLAG ports and do not use the active-active LACP LAG uplink profile for the Overlay Transport Zone on N-VDS. 
+For active-standby (or active-active non-LAG) ESXi connectivity, do not configure MLAG ports and do not use the active-active LACP LAG uplink profile for the Overlay Transport Zone on N-VDS. 
 <!-- vale on -->
 Follow the instructions under the [N-VDS Non-LAG Uplink Profile](#n-vds-non-lag-uplink-profile) section to configure the switchports.  
 {{%/notice %}}
@@ -472,7 +486,7 @@ priority        2000                     1000               Mlag Priority
 backup-active   False                                       Mlag Backup Status
 backup-reason                                               Mlag Backup Reason
 local-id        44:38:39:00:00:5a                           Mlag Local Unique Id
-local-role      primary                                     Mlag Local Role
+local-role      secondary                                   Mlag Local Role
 peer-alive      True                                        Mlag Peer Alive Status
 peer-id         44:38:39:00:00:59                           Mlag Peer Unique Id
 peer-interface  peerlink.4094                               Mlag Peerlink Interface
@@ -546,7 +560,7 @@ priority        2000                     1000               Mlag Priority
 backup-active   False                                       Mlag Backup Status
 backup-reason                                               Mlag Backup Reason
 local-id        44:38:39:00:00:5e                           Mlag Local Unique Id
-local-role      primary                                     Mlag Local Role
+local-role      secondary                                   Mlag Local Role
 peer-alive      True                                        Mlag Peer Alive Status
 peer-id         44:38:39:00:00:5d                           Mlag Peer Unique Id
 peer-interface  peerlink.4094                               Mlag Peerlink Interface
@@ -580,7 +594,7 @@ MLAG is mandatory for using VRR &mdash; also known as enhanced VRRP, which you n
 
 ### VRR Configuration
 
-You can set the ESXi TEP IP addresses on the same or different subnets. The VMware best practice configuration for the TEP IP pool is to assign different subnet for each physical rack for simplicity.
+You can set the ESXi TEP IP addresses on the same or different subnets. The VMware best practice configuration for the TEP IP pool is to assign different subnets for each physical rack for simplicity.
 
 VRR on the ToR switches provides redundant, active-active TEP subnet's default gateways to the ESXi servers.
 
@@ -590,7 +604,15 @@ VMware requires a VLAN per each type of traffic, for example, storage, vSAN, vMo
 
 {{%/notice %}}
 
-The VLAN ID is a local parameter and not shared between the hypervisors. For deployment simplicity, use the same VLAN ID for all TEP devices used in across racks.
+{{%notice info%}}
+
+As this guide shows how to handle the virtualized traffic only, all configuration examples are based on the `default` VRF. In many cases, different VMware networks (traffic types) will be separated by different VRFs (e.g. Mgmt. network in `vrfX` and TEP network in `vrfY`). In this case, you should create custom VRFs for each, insert the SVIs into them and make the needed [BGP Underlay Network Configuration](http://localhost:1313/guides/nsxt/#bgp-underlay-network-configuration).
+
+Check out [Virtual Routing and Forwarding - VRF](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-52/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF/) documentation and its [BGP](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-52/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF/#bgp) section for more information.
+
+{{%/notice %}}
+
+The VLAN ID is a local parameter and not shared between the hypervisors. For deployment simplicity, use the same VLAN ID for all TEP devices used in across racks. We use `VLAN 100` for our deploymet.
 
 {{< tabs "101231231210 ">}}
 {{< tab " leaf01 ">}}
@@ -1247,7 +1269,7 @@ B>* 10.2.2.0/24 [20/0] via fe80::4638:39ff:fe00:14, swp3, weight 1, 00:09:24
 
 ### Traffic Flow
 
-ESXi hypervisors can reach each TEP addresses and build Geneve tunnels for the overlay VM-to-VM traffic.
+ESXi hypervisors can reach each TEP address and build Geneve tunnels for the overlay VM-to-VM traffic.
 
 This section describes two traffic flow examples:
 - [Layer 2 Virtualized Traffic](#layer-2-virtualized-traffic)
@@ -1269,8 +1291,8 @@ The new encapsulated packet's source IP address is the local TEP IP `10.1.1.1`, 
 
 ### Layer 3 Virtualized Traffic
 
-This scenario examines two segments (logical switches) with two VMs assigned to each. A unique VNI is assigned to each segment.  
-For communication between segments, or as VMware calls it "east-west traffic" traffic, the traffic must be routed using a Tier 1 Gateway (T1 Router). The T1 Router is a logical distributed router which exists in each ESXi hypervisors and connects to each of the logical segments. It is the segment's default gateway and routes traffic between different segments.
+This scenario examines two segments (logical switches) with two VMs assigned to each. A unique VNI is assigned to each segment.
+For communication between segments, or as VMware calls it “east-west traffic” traffic, the traffic must be routed using a Tier 1 Gateway (T1 Router). The T1 Router is a logical distributed router that exists in each ESXi hypervisor and connects to each of the logical segments. It is the segment’s default gateway and routes traffic between different segments.
 
 {{%notice info%}}
 
@@ -1304,9 +1326,9 @@ VM1 `172.16.0.1` on ESXi01 sends traffic to VM4 `172.16.1.4` on ESXi03:
 
 # Virtualized and Bare Metal Server Environment
 
-This use case covers VMware virtualized environment with the need to connect to a bare metal (BM) server. This could the when the virtualized environment deployed as part of an already existing fabric (brownfield) and VMs need to communicate with a legacy or any other server which doesn't run VMs (not part of the virtualized world).
+This use case covers VMware virtualized environment with the need to connect to a bare metal (BM) server. This could the when the virtualized environment is deployed as part of an already existing fabric (brownfield) and VMs need to communicate with a legacy or any other server which doesn’t run VMs (not part of the virtualized world).
 
-In cases where VMs needs to communicate with non-NSX (bare metal) servers an [NSX Edge](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/installation/GUID-5EF2998C-4867-4DA6-B1C6-8A6F8EBCC411.html) deployment is required. The NSX Edge is a gateway between the virtualized Geneve overlay and the outside physical underlay. It acts as TEP device and as underlay router by establishing BGP (or OSPF) peering with the underlay fabric to route traffic in and out of the virtualized environment.
+In cases where VMs needs to communicate with non-NSX (bare metal) servers an [NSX Edge](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.2/installation/GUID-5EF2998C-4867-4DA6-B1C6-8A6F8EBCC411.html) deployment is required. The NSX Edge is a gateway between the virtualized Geneve overlay and the outside physical underlay. It acts as a TEP device and as an underlay router by establishing BGP (or OSPF) peering with the underlay fabric to route traffic in and out of the virtualized environment.
 
 {{%notice note%}}
 
@@ -1326,7 +1348,7 @@ Only the required changes to support an NSX Edge device are described below.
 
 ### VRR Configuration
 
-NSX Edge uses two additional virtual uplinks (VLANs) to communicate with the physical world. One VLAN is used to provide connectivity to the underlay physical network while the second VLAN connects to the virtual overlay network. NSX Edge nodes do not support LACP bonding. To provide load balancing each VLAN will be configured over a single link to a single top of rack switch.
+NSX Edge uses two additional virtual uplinks (VLANs) to communicate with the physical world. One VLAN is used to provide connectivity to the underlay physical network while the second VLAN connects to the virtual overlay network. NSX Edge nodes do not support LACP bonding. To provide load balancing each VLAN will be configured over a single link to a single top-of-rack switch.
 
 {{% notice note %}}
 The following example utilizes Subinterfaces.  
@@ -1343,7 +1365,7 @@ cumulus@leaf03:mgmt:~$ nv set interface vlan100 ip vrr mac-address 00:00:00:01:0
 cumulus@leaf03:mgmt:~$ nv set bridge domain br_default vlan 200                            ### BM VLAN
 cumulus@leaf03:mgmt:~$ nv set interface vlan200 ip address 192.168.0.252/24                ### BM SVI
 cumulus@leaf03:mgmt:~$ nv set interface vlan200 ip vrr address 192.168.0.254/24            ### BM VRR IP (GW)
-cumulus@leaf03:mgmt:~$ nv set interface vlan200 ip vrr mac-address00:00:00:19:21:68        ### BM VRR MAC (GW)
+cumulus@leaf03:mgmt:~$ nv set interface vlan200 ip vrr mac-address 00:00:00:19:21:68       ### BM VRR MAC (GW)
 cumulus@leaf03:mgmt:~$ nv set interface swp1.30 type sub                                   ### Edge VLAN30 subinterface
 cumulus@leaf03:mgmt:~$ nv set interface swp1.30 ip address 10.30.0.254/24                  ### Edge VLAN30 subinterface SVI
 cumulus@leaf03:mgmt:~$ nv config apply -y
@@ -1503,7 +1525,7 @@ leaf04# exit
 
 ### BGP Peerings and Route Advertisement Verification
 
-To verify all BGP peerings established correctly, use the `net show bgp summary` command in NVUE, or `show ip bgp summary` in `vtysh`.
+To verify all BGP peerings are established correctly, use the `net show bgp summary` command in NVUE, or `show ip bgp summary` in `vtysh`.
 
 The numbered BGP peering to the Edge Node should appear in BGP neighbor list.
 
@@ -1550,13 +1572,13 @@ Total number of neighbors 3
 
 ### Traffic Flow
 
-This scenario examines a VM assigned to a logical segment, `VLAN100`, in the virtualized network, a bare metal server in `VLAN200`, in the underlay network, and NSX Edge VM located on ESXi03 host. The Edge VM is the gateway between the virtual and the physical networks ("north-south" traffic in VMware terminology) and uses two logical uplinks in VLANs `30` and `31` which has BGP peering to the underlay leaf switches to route VM to bare metal traffic.
+This scenario examines a VM assigned to a logical segment, `VLAN100`, in the virtualized network, a bare metal server in `VLAN200`, in the underlay network, and NSX Edge VM located on the ESXi03 host. The Edge VM is the gateway between the virtual and the physical networks (“north-south” traffic in VMware terminology). It uses two logical uplinks in VLANs 30 and 31, which have BGP peering to the underlay leaf switches to route VM to bare metal traffic.
 
-This diagram also has both tier 0 and tier 1 routers. The T0 router has BGP peerings with the leaf switches and advertises the Overlay network routes. The T1 router is the gateway for virtual hosts.  
+This diagram also has both tier 0 and tier 1 routers. The T0 router has BGP peerings with the leaf switches and advertises the Overlay network routes. The T1 router is the gateway for virtual hosts.
 
-T0 router has logical downlink to T1, and two logical uplinks to the leaf switches in the physical world through `VLAN30` and `VLAN31`.
+The T0 router has a logical downlink to T1 and two logical uplinks to the leaf switches in the physical world through `VLAN30` and `VLAN31`.
 
-The T1 router has a logical downlink into the virtual segment, and a logical uplink to the T0 router.
+The T1 router has a logical downlink into the virtual segment and a logical uplink to the T0 router.
 
 {{%notice note%}}
 
@@ -1587,9 +1609,10 @@ As an example traffic flow, VM1 at `172.16.0.1` on ESXi01 sends traffic to the b
 
 ### EVPN Underlay Fabric
 
-The previous examples discussed deploying NSX on a pure IP fabric. Modern datacenters are often designed using [EVPN]({{<ref "/cumulus-linux-52/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN" >}}) to support multi-tenancy and layer 2 extension without VMware NSX. When NSX is deployed over an EVPN fabric it works in an identical fashion as when it is deployed in a pure IP fabric. NSX operates independently from the EVPN
+The previous examples discussed deploying NSX on a pure IP fabric. Modern data centers are often designed using [EVPN]({{<ref "/cumulus-linux-52/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN" >}}) to support multi-tenancy and layer 2 extension without VMware NSX. When NSX is deployed over an EVPN fabric it works identically as when it is deployed in a pure IP fabric. NSX operates independently from the EVPN
 
-When using an EVPN underlay fabric, the NSX generated Geneve packets are encapsulated into VXLAN packets on the leaf switches and transmitted over the network. When using an EVPN deployment, the simplies deployment option is to configure all TEP addresses in the same subnet and use VXLAN layer 2 extension to provide TEP to TEP connectivity.
+
+When using an EVPN underlay fabric, the NSX-generated Geneve packets are encapsulated into VXLAN packets on the leaf switches and transmitted over the network. When using an EVPN deployment, the simple deployment option is to configure all TEP addresses in the same subnet and use the VXLAN layer 2 extension to provide TEP to TEP connectivity.
 
 {{%notice note%}}
 
@@ -1603,11 +1626,11 @@ Switches configuration below based on layer 2 bridging with [VXLAN Active-active
 
 When all TEP IP addresses exist within the same subnet, the TEP VLAN default-gateway is not required.
 
-A VXLAN tunnel (VNI) must be configured to map the TEP VLAN to the VXLAN VNI to provide connectivity across the underlay network.
+For the VXLAN encapsulated traffic to reach the appropriate VLAN on the other side, TEP VLAN must be mapped to the same VNI on all ToR switches connected to the ESXi hosts where the virtualized traffic might be sent.
 
-VXLAN Tunnel Endpoints (VTEPs) use local loopback IP address as the tunnel source and destination. Loopback interfaces must be configured on all leaf switches and then advertised via BGP into the underlay. When using MLAG, this is referred to as VXLAN active-active and `clag vxlan-anycast-ip` must be configured. This causes the MLAG peers to have the same VTEP IP address which is used as the inbound VXLAN tunnel destination. Spine switches do not require any VXLAN specific configuration but must enable the BGP `l2vpn evpn` address family with the leaf peers.
+VXLAN Tunnel Endpoints (VTEPs) use local loopback IP addresses as the tunnel source and destination. Loopback interfaces with unique IP addresses must be configured on all leaf switches and then advertised via BGP into the underlay network. When using MLAG, this is referred to as VXLAN active-active and MLAG anycast-IP must be configured using the `nve vxlan mlag shared-address` command. This causes the MLAG peers to have the same VTEP IP address which is used as the inbound VXLAN tunnel destination. 
 
-### MLAG and VXLAN-EVPN Configuration
+Spine switches do not require any VXLAN specific configuration but must enable the BGP `l2vpn-evpn` address family with the leaf peers to advertise EVPN routes.
 
 ### EVPN MLAG Configuration
 
@@ -1625,7 +1648,7 @@ Each leaf requires a unique Loopback IP to be advertised into the underlay netwo
 The control-plane is based on BGP EVPN advertisements.  
 
 The `nve vxlan mlag shared-address` must be configured on the NVE interface on both MLAG-peers so that they can be identified as one in the virtualized network.
-The VLAN (`100`) assigned to the MLAG bond must be mapped to the same VNI on all Top-of-Rack (ToR) switches.
+The VLAN (`VLAN 100` in our example) assigned to the MLAG bond must be mapped to the same VNI on all ToR switches.
 
 To configure the Loopback IPs, NVE interface and VLAN-to-VNI mapping:
 
@@ -1705,7 +1728,11 @@ cumulus@leaf04:mgmt:~$ nv config save
 Configure EVPN control plane to advertise L2 information over the layer 3 fabric. Set all BGP neighbors to use `l2vpn-evpn` address-family.
 
 {{%notice info%}}
-Prior configuring EVPN, make sure to configure the underlay fabric connectivity. Use the previous [BGP Configuration](#bgp-configuration) in the [Pure Virtualized Environment](#pure-virtualized-environment) section.
+Prior to configuring EVPN, make sure to configure the underlay fabric connectivity. Use the previous [BGP Configuration](#bgp-configuration) in the [Pure Virtualized Environment](#pure-virtualized-environment) section.
+{{% /notice %}}
+
+{{%notice note%}}
+In the case of multiple VRFs, this configuration must be done for each VRF. 
 {{% /notice %}}
 
 {{< tabs "101ad3d ">}}
@@ -1885,98 +1912,94 @@ You accomplish this by using the `redistribute connected` command described earl
 
 ### VXLAN-EVPN Configuration Verification
 
-You can verify NVE configuration using the `nv show interface` command shows the created VXLAN interfaces seen below as `vxlanXXX` (which are in layer 2 access mode), and MLAG bond interfaces `esxi01` and `esxi03` of LACP `802.3ad` type bonds. The loopback interface appears at `lo` and lists both the uniquely configured loopback IP as well as the assigned VXLAN anycast address.
+You can verify NVE configuration using the `nv show nve` command that shows the created NVE interface, its operational state, tunnel source and mlag-shared addresses.
 
 {{< tabs "101tr210 ">}}
 {{< tab " leaf01 ">}}
 ```
-cumulus@leaf01:mgmt:~$ nv show interface
-Interface         MTU    Speed  State  Remote Host      Remote Port        Type      Summary
-----------------  -----  -----  -----  ---------------  -----------------  --------  -----------------------------
-+ esxi01          9216   1G     up                                         bond
-+ eth0            1500   1G     up     oob-mgmt-switch  swp10              eth       IP Address: 192.168.200.11/24
-+ lo              65536         up                                         loopback  IP Address:       10.0.1.1/32
-  lo                                                                                 IP Address:     10.10.10.1/32  lo                                                                                 IP Address:       127.0.0.1/8
-  lo                                                                                 IP Address:           ::1/128
-+ peerlink        9216   2G     up                                         bond
-+ peerlink.4094   9216          up                                         sub
-+ swp1            9216   1G     up     esxi01           44:38:39:00:00:32  swp
-+ swp49           9216   1G     up     leaf02           swp49              swp
-+ swp50           9216   1G     up     leaf02           swp50              swp
-+ swp51           9216   1G     up     spine01          swp1               swp
-+ swp52           9216   1G     up     spine02          swp1               swp
-+ vlan100         9216          up                                         svi       IP Address:     10.1.1.252/24
-+ vlan100-v0      9216          up                                         svi       IP Address:     10.1.1.254/24
+cumulus@leaf01:mgmt:~$ nv show nve
+                            operational  applied     description
+--------------------------  -----------  ----------  ----------------------------------------------------------------------
+vxlan
+  enable                    on           on          Turn the feature 'on' or 'off'.  The default is 'off'.
+  arp-nd-suppress           on           on          Controls dynamic MAC learning over VXLAN tunnels based on received...
+  mac-learning              off          off         Controls dynamic MAC learning over VXLAN tunnels based on received...
+  mtu                       9216         9216        interface mtu
+  port                      4789         4789        UDP port for VXLAN frames
+  flooding
+    enable                  on           on          Turn the feature 'on' or 'off'.  The default is 'off'.
+    [head-end-replication]  evpn         evpn        BUM traffic is replicated and individual copies sent to remote dest...
+  mlag
+    shared-address          10.0.1.1     10.0.1.1    shared anycast address for MLAG peers
+  source
+    address                 10.10.10.1   10.10.10.1  IP addresses of this node's VTEP or 'auto'.  If 'auto', use the pri...
 ```
 {{< /tab >}}
 {{< tab " leaf02 ">}}
 ```
-cumulus@leaf02:mgmt:~$ nv show interface
-Interface         MTU    Speed  State  Remote Host      Remote Port        Type      Summary
-----------------  -----  -----  -----  ---------------  -----------------  --------  -----------------------------
-+ esxi01          9216   1G     up                                         bond
-+ eth0            1500   1G     up     oob-mgmt-switch  swp10              eth       IP Address: 192.168.200.12/24
-+ lo              65536         up                                         loopback  IP Address:       10.0.1.1/32
-  lo                                                                                 IP Address:     10.10.10.2/32  lo                                                                                 IP Address:       127.0.0.1/8
-  lo                                                                                 IP Address:           ::1/128
-+ peerlink        9216   2G     up                                         bond
-+ peerlink.4094   9216          up                                         sub
-+ swp1            9216   1G     up     esxi01           44:38:39:00:00:38  swp
-+ swp49           9216   1G     up     leaf01           swp49              swp
-+ swp50           9216   1G     up     leaf01           swp50              swp
-+ swp51           9216   1G     up     spine01          swp2               swp
-+ swp52           9216   1G     up     spine02          swp2               swp
-+ vlan100         9216          up                                         svi       IP Address:     10.1.1.253/24
-+ vlan100-v0      9216          up                                         svi       IP Address:     10.1.1.254/24
+cumulus@leaf02:mgmt:~$ nv show nve
+                            operational  applied     description
+--------------------------  -----------  ----------  ----------------------------------------------------------------------
+vxlan
+  enable                    on           on          Turn the feature 'on' or 'off'.  The default is 'off'.
+  arp-nd-suppress           on           on          Controls dynamic MAC learning over VXLAN tunnels based on received...
+  mac-learning              off          off         Controls dynamic MAC learning over VXLAN tunnels based on received...
+  mtu                       9216         9216        interface mtu
+  port                      4789         4789        UDP port for VXLAN frames
+  flooding
+    enable                  on           on          Turn the feature 'on' or 'off'.  The default is 'off'.
+    [head-end-replication]  evpn         evpn        BUM traffic is replicated and individual copies sent to remote dest...
+  mlag
+    shared-address          10.0.1.1     10.0.1.1    shared anycast address for MLAG peers
+  source
+    address                 10.10.10.2   10.10.10.2  IP addresses of this node's VTEP or 'auto'.  If 'auto', use the pri...
 ```
 {{< /tab >}}
 {{< tab " leaf03 ">}}
 ```
-cumulus@leaf03:mgmt:~$ nv show interface
-Interface         MTU    Speed  State  Remote Host      Remote Port        Type      Summary
-----------------  -----  -----  -----  ---------------  -----------------  --------  -----------------------------
-+ esxi03          9216   1G     up                                         bond
-+ eth0            1500   1G     up     oob-mgmt-switch  swp12              eth       IP Address: 192.168.200.13/24
-+ lo              65536         up                                         loopback  IP Address:       10.0.1.2/32
-  lo                                                                                 IP Address:     10.10.10.3/32  lo                                                                                 IP Address:       127.0.0.1/8
-  lo                                                                                 IP Address:           ::1/128
-+ peerlink        9216   2G     up                                         bond
-+ peerlink.4094   9216          up                                         sub
-+ swp1            9216   1G     up     esxi03           44:38:39:00:00:3e  swp
-+ swp49           9216   1G     up     leaf04           swp49              swp
-+ swp50           9216   1G     up     leaf04           swp50              swp
-+ swp51           9216   1G     up     spine01          swp3               swp
-+ swp52           9216   1G     up     spine02          swp3               swp
-+ vlan100         9216          up                                         svi       IP Address:     10.2.2.252/24
-+ vlan100-v0      9216          up                                         svi       IP Address:     10.2.2.254/24
+cumulus@leaf03:mgmt:~$ nv show nve
+                            operational  applied     description
+--------------------------  -----------  ----------  ----------------------------------------------------------------------
+vxlan
+  enable                    on           on          Turn the feature 'on' or 'off'.  The default is 'off'.
+  arp-nd-suppress           on           on          Controls dynamic MAC learning over VXLAN tunnels based on received...
+  mac-learning              off          off         Controls dynamic MAC learning over VXLAN tunnels based on received...
+  mtu                       9216         9216        interface mtu
+  port                      4789         4789        UDP port for VXLAN frames
+  flooding
+    enable                  on           on          Turn the feature 'on' or 'off'.  The default is 'off'.
+    [head-end-replication]  evpn         evpn        BUM traffic is replicated and individual copies sent to remote dest...
+  mlag
+    shared-address          10.0.1.2     10.0.1.2    shared anycast address for MLAG peers
+  source
+    address                 10.10.10.3   10.10.10.3  IP addresses of this node's VTEP or 'auto'.  If 'auto', use the pri...
 ```
 {{< /tab >}}
 {{< tab " leaf04 ">}}
 ```
-cumulus@leaf04:mgmt:~$ nv show interface
-Interface         MTU    Speed  State  Remote Host      Remote Port        Type      Summary
-----------------  -----  -----  -----  ---------------  -----------------  --------  -----------------------------
-+ esxi03          9216   1G     up                                         bond
-+ eth0            1500   1G     up     oob-mgmt-switch  swp13              eth       IP Address: 192.168.200.14/24
-+ lo              65536         up                                         loopback  IP Address:       10.0.1.2/32
-  lo                                                                                 IP Address:     10.10.10.4/32  lo                                                                                 IP Address:       127.0.0.1/8
-  lo                                                                                 IP Address:           ::1/128
-+ peerlink        9216   2G     up                                         bond
-+ peerlink.4094   9216          up                                         sub
-+ swp1            9216   1G     up     esxi03           44:38:39:00:00:44  swp
-+ swp49           9216   1G     up     leaf03           swp49              swp
-+ swp50           9216   1G     up     leaf03           swp50              swp
-+ swp51           9216   1G     up     spine01          swp4               swp
-+ swp52           9216   1G     up     spine02          swp4               swp
-+ vlan100         9216          up                                         svi       IP Address:     10.2.2.253/24
-+ vlan100-v0      9216          up                                         svi       IP Address:     10.2.2.254/24
+cumulus@leaf04:mgmt:~$ nv show nve
+                            operational  applied     description
+--------------------------  -----------  ----------  ----------------------------------------------------------------------
+vxlan
+  enable                    on           on          Turn the feature 'on' or 'off'.  The default is 'off'.
+  arp-nd-suppress           on           on          Controls dynamic MAC learning over VXLAN tunnels based on received...
+  mac-learning              off          off         Controls dynamic MAC learning over VXLAN tunnels based on received...
+  mtu                       9216         9216        interface mtu
+  port                      4789         4789        UDP port for VXLAN frames
+  flooding
+    enable                  on           on          Turn the feature 'on' or 'off'.  The default is 'off'.
+    [head-end-replication]  evpn         evpn        BUM traffic is replicated and individual copies sent to remote dest...
+  mlag
+    shared-address          10.0.1.2     10.0.1.2    shared anycast address for MLAG peers
+  source
+    address                 10.10.10.4   10.10.10.4  IP addresses of this node's VTEP or 'auto'.  If 'auto', use the pri...
 ```
 {{< /tab >}}
 {{< /tabs >}}
 
 ### MLAG and VXLAN Interfaces Configuration Verification
 
-You define VXLAN interfaces as active-active on both MLAG peers. You can view them with the other MLAG bonds by running `net show clag`.
+When NVE interface set with mlag-shared address, it is active-active on both MLAG peers. You can view it alongside the other MLAG bonds by running `net show clag`.
 
 {{< tabs "10aqtr210 ">}}
 {{< tab " leaf01 ">}}
@@ -1994,7 +2017,7 @@ CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
           esxi01   esxi01             1         -                      -
-        vxlan100   vxlan100           -         -                      -
+         vxlan48   vxlan48            -         -                      -
 ```
 {{< /tab >}}
 {{< tab " leaf02 ">}}
@@ -2012,7 +2035,7 @@ CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
           esxi01   esxi01             1         -                      -
-        vxlan100   vxlan100           -         -                      -
+         vxlan48   vxlan48            -         -                      -
 ```
 {{< /tab >}}
 {{< tab " leaf03 ">}}
@@ -2030,7 +2053,7 @@ CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
           esxi03   esxi03             1         -                      -
-        vxlan100   vxlan100           -         -                      -
+         vxlan48   vxlan48            -         -                      -
 ```
 {{< /tab >}}
 {{< tab " leaf04 ">}}
@@ -2048,7 +2071,7 @@ CLAG Interfaces
 Our Interface      Peer Interface     CLAG Id   Conflicts              Proto-Down Reason
 ----------------   ----------------   -------   --------------------   -----------------
           esxi03   esxi03             1         -                      -
-        vxlan100   vxlan100           -         -                      -
+         vxlan48   vxlan48            -         -                      -
 ```
 {{< /tab >}}
 {{< /tabs >}}
@@ -2493,19 +2516,34 @@ cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table
 The NSX traffic will be unchanged from the scenarios described earlier. Reference the [Layer 2](#layer-2-virtualized-traffic) or [Layer 3](#layer-3-virtualized-traffic) virtulized traffic examples for details. Traffic destined outside of the NSX fabric will follow the same traffic flow as described in the [Virtualized and Bare Metal](#virtualized-and-bare-metal-server-environment) section.
 
 With VXLAN in the network fabric, Geneve traffic from ESXi TEP is encapsulated again into VXLAN packets on the leaf switch using the local loopback IP addresses as the tunnel sources and the remote VXLAN anycast IP as the destination.  
-When the remote leaf receives the VXLAN packet, it is decapsulated and fowared to the ESXi host where the Geneve packet is decapsulated and forwared to the correct local VM.
-<!--
-## EVPN Underlay Fabric With an External Network (EVPN Type-5 Routes)
+When the remote leaf receives the VXLAN packet, it is decapsulated and fowared to the correct ESXi (same VNI) host where the Geneve packet is decapsulated and forwared to the correct local VM.
+
+# Virtualized Environment Over EVPN Fabric with an External Network (EVPN Type-5 Routes)
 
 {{<figure src="images/guides/cumulus-nsxt/edge_type5.jpg">}}
 
-There are cases when virtualized traffic is destined to external networks (as we saw in BM scenario), but outside of the EVPN domain. To answer that need, NSX Edge can act as VXLAN-VTEP with BGP-EVPN control-plane. By that, it receives EVPN Type-5 external routs which are used for external traffic routing in EVPN fabrics. 
+There are cases when virtualized traffic is destined for external networks (as we saw in the BM scenario) but outside the EVPN domain. NSX Edge can act as VXLAN-VTEP with a BGP-EVPN control-plane to answer that need. By that, it receives EVPN Type-5 external routes, which are used for external traffic routing in EVPN fabrics. 
 
-As mentioned, Edge VM establishes IPv4 BGP peerings with its ToR switches. On top of that, EVPN peerings are set and EVPN control-plane is built. In the above diagram, Edge VM located on ESXi03 hypervisor. It establishes BGP-EVPN peerings with his local leaf03 and leaf04 switches. Those leaf switches, which are called "Border Leafs" (EVPN fabric gateway to external networks), are part of the underlay EVPN fabric, and have EVPN type-5 route to the external server. This route is then populated also to the Edge VM.
+{{%notice note%}}
 
-Edge VM also acts as VXLAN-VTEP, and for that it uses its own loopback interface (which also must be advertised into BGP) as VXLAN tunnel source. By that, it acts the same as the physical switches in VXLAN/EVPN environment.
+This guide does not cover the configuration commands for this scenario. Check out previous sections and the [Prefix-based Routing](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-52/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Inter-subnet-Routing/#prefix-based-routing) documentation to learn how to handle EVPN Type-5 routes.
 
-Traffic flow from VM1 on ESXi01 to Edge is like the regular virtualized environment over EVPN fabric [Traffic Flow](#traffic-flow-2). In the current case of external server, which is the traffic destination, the difference is in the Edge actions afterwards. Instead of decapsulating the Geneve header received from the other TEP and sending regular IP traffic to the underlay fabric, it encapsulates the traffic into VXLAN packet. Then, the packet sent to its destination VTEP, which is determined by the next-hop of the EVPN type-5 route. In our diagram, packet's destination VTEP are the local ToR switches, which will decapsulate the VXLAN header and send it out of the EVPN domain as regular IP packet.
+{{%/notice %}}
 
-That way, virtualized traffic destined to EVPN external networks is sent over EVPN underlay fabric.
--->
+{{%notice note%}}
+
+In these cases, you will probably use VRFs. Check out [Virtual Routing and Forwarding - VRF](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-52/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF/) documentation and its [BGP](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-52/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF/#bgp) section for more information and configuration examples.
+
+{{%/notice %}}
+
+Edge VM establishes IPv4 BGP peerings with its ToR switches. On top of that, EVPN address-family peerings are set, and the EVPN control-plane is built. 
+
+In the above diagram, Edge VM is located on the ESXi03 hypervisor. It establishes BGP-EVPN peerings with his local leaf03 and leaf04 switches. Those leaf switches, which are called "Border Leafs" (EVPN fabric gateway to external networks), are part of the underlay EVPN fabric and have an EVPN type-5 route to the external server. This route is then populated also to the Edge VM.
+
+Edge VM also acts as VXLAN-VTEP, and for that, it uses its loopback interface (which also must be advertised into BGP) as a VXLAN tunnel source. By that, it acts the same as the physical switches in the VXLAN-EVPN environment.
+
+### Traffic Flow
+
+Traffic flow from VM1 on ESXi01 to Edge is like the regular virtualized environment over EVPN fabric [Traffic Flow](#traffic-flow-2). 
+
+In the current case of traffic sent to an external server, which is the traffic destination, the difference is in the Edge actions afterward. Instead of decapsulating the Geneve header received from the other TEP and sending regular IP traffic to the underlay fabric, it encapsulates the traffic into the VXLAN packet. Then, the packet is sent to its destination VTEP, which is determined by the next-hop of the EVPN type-5 route. In our diagram, the packet's destination VTEP is the local ToR switches, which will decapsulate the VXLAN header and send it out of the EVPN domain as a regular IP packet.

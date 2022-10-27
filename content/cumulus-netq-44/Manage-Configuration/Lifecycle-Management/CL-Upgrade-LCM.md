@@ -114,7 +114,7 @@ If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetw
 
     By default, NetQ takes a network snapshot before the upgrade and then one after the upgrade is complete. It also performs a roll back to the original Cumulus Linux version on any server which fails to upgrade.
 
-    You can exclude selected services and protocols from the snapshots. By default, node and services are included, but you can deselect any of the other items. Click on one to remove it; click again to include it. This is helpful when you are not running a particular protocol or you have concerns about the amount of time it will take to run the snapshot. Note that removing services or protocols from the job might produce non-equivalent results compared with prior snapshots.
+    You can exclude selected services and protocols from the snapshots. By default, node and services are included, but you can deselect any of the other items. Click on one to remove it; click again to include it. This is helpful when you are not running a particular protocol, or you have concerns about the amount of time it will take to run the snapshot. Note that removing services or protocols from the job might produce non-equivalent results compared with prior snapshots.
 
     While these options provide a smoother upgrade process and are highly recommended, you have the option to disable these options by clicking **No** next to one or both options.
 

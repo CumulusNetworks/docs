@@ -13,12 +13,6 @@
 <td>4.1.0-4.3.0</td>
 </tr>
 <tr>
-<td>2555854</td>
-<td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2551641</td>
 <td>Infra: NetQ VM installation fails if the designated disk size is greater than 2TB. To work around this issue, specify the disk for cloud deployments to be between 256GB and 2TB SSD, and for on-premises deployments to be between 32 GB and 2TB.</td>
 <td>2.4.0-3.1.1</td>

@@ -6,43 +6,40 @@ toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-41" >}}).
-- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, tunnel, ACL, and buffer related issues.
+- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, and tunnel related issues.
 
 ## Configure WJH
 
-WJH can monitor layer 1, layer 2, layer 3, tunnel, acl and buffer packet drops. You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories you want to monitor.
+WJH can monitor layer 1, layer 2, layer 3, and tunnel packet drops. You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories you want to monitor.
 
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures three separate channels:
+The following example configures two separate channels:
 - The `forwarding` channel monitors layer 2, layer 3, and tunnel packet drops.
-- The `acl-and-buffer` channel monitors ACL and buffer packet drops.
 - The `layer-one` channel monitors layer 1 packet drops.
 
 ```
 cumulus@switch:~$ nv set service wjh channel forwarding trigger l2
 cumulus@switch:~$ nv set service wjh channel forwarding trigger l3
 cumulus@switch:~$ nv set service wjh channel forwarding trigger tunnel
-cumulus@switch:~$ nv set service wjh channel acl-and-buffer trigger acl
-cumulus@switch:~$ nv set service wjh channel acl-and-buffer trigger buffer
 cumulus@switch:~$ nv set service wjh channel layer-one trigger l1
 cumulus@switch:~$ nv config apply
 ```
 
 You can stop monitoring specific packet drops by unsetting the channel or unsetting a category in the channel list.
 
-To stop monitoring all packet drop categories listed in the `forwarding` channel (layer, 2, layer 3, and tunnel) and remove the channel:
+To stop monitoring tunnel drop categories listed in the `forwarding` channel:
 
 ```
-cumulus@switch:~$ nv unset service wjh channel forwarding
+cumulus@switch:~$ nv unset service wjh channel forwarding trigger tunnel
 cumulus@switch:~$ nv config apply
 ```
 
-To stop monitoring ACL packet drops in the `acl-and-buffer` channel:
+To stop monitoring layer 1 packet drops and remove the `layer-one` channel:
 
 ```
-cumulus@switch:~$ nv unset service wjh channel acl-and-buffer trigger acl
+cumulus@switch:~$ nv unset service wjh channel layer-one trigger l1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -55,9 +52,8 @@ Edit the `/etc/what-just-happened/what-just-happened.json` file:
 
 After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
 
-The following example configures three separate channels:
+The following example configures two separate channels:
 - The `forwarding` channel monitors layer 2, layer 3, and tunnel packet drops.
-- The `acl-and-buffer` channel monitors ACL and buffer packet drops.
 - The `layer-one` channel monitors layer 1 packet drops.
 
 ```
@@ -65,22 +61,16 @@ cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
 {
     "what-just-happened": {
         "channels": {
-            "acl-and-buffer": {
-                "drop_category_list": [
-                    "buffer",
-                    "acl"
-                ]
-            },
-            "layer-one": {
-                "drop_category_list": [
-                    "l1"
-                ]
-            },
             "forwarding": {
                 "drop_category_list": [
                     "l2",
                     "l3",
                     "tunnel"
+                ]
+            },
+            "layer-one": {
+                "drop_category_list": [
+                    "l1"
                 ]
             }
         }
@@ -122,10 +112,10 @@ You can run the following commands from the command line.
 
 | <div style="width:450px">Command  | Description |
 | -------  | ----------- |
-| `what-just-happened poll` | Shows information about layer 1, layer 2, layer 3, and tunnel packet drops. The output includes the reason for the drop and the recommended action to take.<br><br>The `what-just-happened poll forwarding` command shows the same information. |
-| `what-just-happened poll --aggregate` | Shows information about dropped packets aggregated by the reason for the drop. This command also shows the number of times the dropped packet occurs.<br><br>The `what-just-happened poll forwarding --aggregate` command shows the same information. |
-| `what-just-happened poll --export` | Saves information about dropped packets to a file in PCAP format.<br><br>The `what-just-happened poll forwarding --export` command shows the same information. |
-| `what-just-happened poll --export --no_metadata` | Saves information about dropped packets to a file in PCAP format without metadata.<br><br> The `what-just-happened poll forwarding --export --no_metadata` command shows the same information.|
+| `what-just-happened poll` | Shows information about packet drops. The output includes the reason for the drop and the recommended action to take.<br><br>The `what-just-happened poll <channel>` command shows the same information. |
+| `what-just-happened poll --aggregate` | Shows information about dropped packets aggregated by the reason for the drop. This command also shows the number of times the dropped packet occurs.<br><br>The `what-just-happened poll <channel> --aggregate` command shows the same information. |
+| `what-just-happened poll --export` | Saves information about dropped packets to a file in PCAP format.<br><br>The `what-just-happened poll <channel> --export` command shows the same information. |
+| `what-just-happened poll --export --no_metadata` | Saves information about dropped packets to a file in PCAP format without metadata.<br><br> The `what-just-happened poll <channel> --export --no_metadata` command shows the same information.|
 | `what-just-happened dump` | Displays all diagnostic information on the command line. |
 
 Run the `what-just-happened -h` command to see all the WJH command options.

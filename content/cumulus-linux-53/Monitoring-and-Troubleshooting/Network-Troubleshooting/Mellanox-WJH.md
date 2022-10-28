@@ -29,10 +29,10 @@ cumulus@switch:~$ nv config apply
 
 You can stop monitoring specific packet drops by unsetting the channel or unsetting a category in the channel list.
 
-To stop monitoring tunnel drop categories listed in the `forwarding` channel:
+To stop monitoring layer 2 packet drops listed in the `forwarding` channel:
 
 ```
-cumulus@switch:~$ nv unset service wjh channel forwarding trigger tunnel
+cumulus@switch:~$ nv unset service wjh channel forwarding trigger l2
 cumulus@switch:~$ nv config apply
 ```
 

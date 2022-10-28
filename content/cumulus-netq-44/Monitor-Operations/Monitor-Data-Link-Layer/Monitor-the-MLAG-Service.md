@@ -23,16 +23,6 @@ Any prior scripts or automation that use the older `netq show clag` command cont
 {{%/notice%}}
 
 ## Monitor the MLAG Service Networkwide
-
-With NetQ, you can monitor MLAG performance across the network:
-
-- Network Services/All MLAG Sessions
-    - Small: view number of nodes running MLAG service and number and distribution of alarms
-    - Medium: view number of nodes running MLAG service, number and distribution of sessions and alarms, number of sessions with inactive backup IPs, and number of bonds with single connections
-    - Large: view number of nodes running MLAG service, number of sessions and alarms, number of sessions with inactive backup IPs, switches with the most established/unestablished sessions, devices with the most alarms
-    - Full-screen: view all switches, all sessions, and all alarms
-- `netq show mlag` command: view host, peer, system MAC address, state, information about the bonds, and last time each session running MLAG had a change
-
 ### View Service Status Summary
 
 You can view a summary of the MLAG service from the NetQ UI or the NetQ CLI.

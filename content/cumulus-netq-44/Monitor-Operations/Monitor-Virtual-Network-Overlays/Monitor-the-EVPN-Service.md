@@ -6,17 +6,7 @@ toc: 4
 ---
 
 NetQ enables operators to view the health of the EVPN service on a networkwide and a per-session basis, giving greater insight into all aspects of the service. You accomplish this through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show evpn` command.
-
 ## Monitor the EVPN Service Networkwide
-
-With NetQ, you can monitor EVPN performance across the network:
-
-- Network Services/All EVPN Sessions
-    - Small: view number of nodes running EVPN service and number of alarms
-    - Medium: view number of nodes running EVPN service, number of sessions, and number of alarms
-    - Large: view number of nodes running EVPN service, number of sessions, number of VNIs, switches with the most sessions, and alarms
-    - Full-screen: view all switches, all sessions, and all alarms
-- `netq show evpn` command: view configuration and status for all devices, including associated VNI, VTEP address, import and export route (showing BGP ASN and VNI path), and last time a change occurred for each device running EVPN
 ### View the EVPN Service Status
 
 You can view the configuration and status of your EVPN overlay across your network or for a particular device from the NetQ UI or the NetQ CLI. 

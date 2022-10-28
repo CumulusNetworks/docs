@@ -568,8 +568,6 @@ To view differences between configurations, run the `nv config diff` command.
 
 To view differences between two detached pending configurations, run the `nv config diff` <<TAB>> command to list all the current detached pending configurations, then run the `nv config diff` command with the pending configurations you want to diff.
 
-To view differences between the applied configuration and the startup configuration:
-
 ```
 cumulus@switch:~$ nv config diff <<press Tab>>
 1        2        3        4        5        6        applied  empty    startup

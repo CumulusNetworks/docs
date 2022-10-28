@@ -3863,7 +3863,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 <tr>
 <td>3089148</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>4.4.3, 5.1.0</td>
+<td>4.4.3</td>
 </tr>
 <tr>
 <td>3083265</td>

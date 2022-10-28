@@ -6,7 +6,7 @@ subsection: true
 toc: 1
 ---
 
-This page summarizes new feature and improvements for the NetQ {{<version>}} release. For a complete list of open and fixed issues, see the {{<link title="NVIDIA NetQ 4.2 Release Notes" text="release notes">}}.
+This page summarizes new features and improvements for the NetQ {{<version>}} release. For a complete list of open and fixed issues, see the {{<link title="NVIDIA NetQ 4.2 Release Notes" text="release notes">}}.
 
 <!-- vale off -->
 ## What's New in NetQ 4.2.0

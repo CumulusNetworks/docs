@@ -7,12 +7,16 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## September 2022
+## October 2022
 <!-- Air:WhatsNew -->
+### 82.2022.1027
+- Updated Air API & Python SDK Docs to include examples: https://docs.nvidia.com/networking-ethernet-software/guides/nvidia-air/Air-Python-SDK/
+<!-- Air:WhatsNew -->
+  
+## September 2022
 ### 82.2022.0929-013
 - Added new metadata fields for Images
 - Fixed an incorrect redirect URL for autoprovisioned simulations
-<!-- Air:WhatsNew -->
 
 ### 82.2022.0922-013
 - Fixed an issue related to console access

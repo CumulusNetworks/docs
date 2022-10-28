@@ -38,9 +38,11 @@ You can type a question mark (`?`) after a command to display required informati
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state ?
-   (down|up)    The state of the interface
+    [Enter]               
+    down                   The interface is not ready
+    up                     The interface is ready
 cumulus@switch:~$ nv set interface swp1 link mtu ?
-   552-9216     interface mtu
+    <arg>                  (integer:552 - 9216)
 cumulus@switch:~$ nv set interface swp1 link speed ?
    (auto|10M|100M|1G|10G|25G|40G|50G|100G|200G|400G)    Link speed
 ```
@@ -49,7 +51,7 @@ NVUE also indicates if you need to provide specific values for the command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain ?
-   <domain-id>    Bridge domains on this interface
+    <domain-id>            Domain (bridge-name)
 ```
 
 ## Command Abbreviation
@@ -75,13 +77,21 @@ Usage:
   nv set interface [options] <interface-id> ...
 
 Description:
-  Interfaces
+  interface             Update all interfaces
 
 Identifiers:
-  <interface-id>    Interface
+  <interface-id>        Interface (interface-name)
+
+Output Options:
+  -o <format>, --output <format>
+                        Supported formats: json, yaml, auto, constable, end-table, commands (default:auto)
+  --color (on|off|auto)
+                        Toggle coloring of output (default: auto)
+  --paginate (on|off|auto)
+                        Whether to send output to a pager (default: off)
 
 General Options:
-  -h, --help        Show help.
+  -h, --help            Show help.
 ```
 
 ## Command List
@@ -147,8 +157,8 @@ The following example shows the `nv show router` commands after pressing the TAB
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router <<TAB>>
-adaptive-routing  igmp              ospf              pim               vrr               
-bgp               nexthop-group     pbr               policy            vrrp 
+adaptive-routing  igmp              ospf              pim               ptm               vrrp              
+bgp               nexthop-group     pbr               policy            vrr               
 
 cumulus@leaf01:mgmt:~$ nv show router bgp
                                 operational  applied  pending      description

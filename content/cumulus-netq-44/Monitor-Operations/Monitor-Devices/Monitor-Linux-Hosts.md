@@ -56,7 +56,7 @@ leaf01            swp3                      server03          mac:44:38:39:00:00
 
 ```
 
-To get the routing table for a server:
+To get the routing table for a server, run:
 
 ```
 cumulus@host:~$ netq server01 show ip route

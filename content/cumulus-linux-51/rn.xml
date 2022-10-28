@@ -213,12 +213,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td></td>
 </tr>
 <tr>
-<td>3084007</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>4.4.3, 5.1.0-5.2.1</td>
-<td>4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3081232</td>
 <td>On the NVIDIA Spectrum 1 switch, when a port goes down, it might not come back up. To work around this issue, disable, then enable the port.</td>
 <td>5.0.0-5.2.1</td>
@@ -723,6 +717,11 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>3008388</td>
 <td>When you set {{vlan-bridge-binding on}} for a VLAN interface, the VLAN interface status does not change to down even when all bridge member ports are down.  </td>
 <td>4.4.3-5.0.1</td>
+</tr>
+<tr>
+<td>3008057</td>
+<td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
+<td>4.4.2-4.4.3</td>
 </tr>
 <tr>
 <td>3007020</td>

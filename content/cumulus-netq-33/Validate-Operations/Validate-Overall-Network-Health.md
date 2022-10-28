@@ -58,7 +58,7 @@ It is useful to know which devices are experiencing the most issues with their s
 
 {{<figure src="/images/netq/ntwk-health-large-table-options-222.png" width="300">}}
 
-Devices with the highest number of issues are listed at the top. Scroll down to view those with fewer issues. To further investigate the critical devices, open the the Switch card or Events|Alarm and Events|Info cards and filter on the indicated switches.
+Devices with the highest number of issues are listed at the top. Scroll down to view those with fewer issues. To further investigate the critical devices, open the Switch card or Events|Alarm and Events|Info cards and filter on the indicated switches.
 
 ### View Devices with Recent System Issues
 

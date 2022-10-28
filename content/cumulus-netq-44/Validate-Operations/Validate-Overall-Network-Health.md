@@ -11,15 +11,15 @@ The Validation Summary card in the NetQ UI lets you view the overall health of y
 
 Overall network health in the NetQ UI is a calculated average of several key health metrics: system, network services, and interface health.
 
-System health represents the NetQ Agent and sensor health validations. In all cases, validation is performed on the agents. If you are monitoring platform sensors, the validation checks include these as well.
+**System health** represents the NetQ Agent and sensor health validations. In all cases, validation is performed on the agents. If you are monitoring platform sensors, the validation checks include these as well.
 
-Network services health represents the individual network protocol and services validations. In all cases, validation is performed on NTP. If you are running BGP, EVPN, MLAG, OSPF, or VXLAN protocols the validation checks include these as well.
+**Network service health** represents the individual network protocol and services validations. In all cases, validation is performed on NTP. If you are running BGP, EVPN, MLAG, OSPF, or VXLAN protocols the validation checks include these as well.
 
-Interface health represents the interfaces, VLAN, and link MTU validations.
+**Interface health** represents the interfaces, VLAN, and link MTU validations.
 
-To view these key metrics:
+To view network health metrics:
 
-1. Open or locate the Validation Summary card on your workbench.
+1. Open or locate the medium Validation Summary card on your workbench.
 
 2. Each metric displays a distribution of the validation results for each category. Hover over the individual categories to view detailed metrics for specific validation checks.  
 
@@ -71,7 +71,7 @@ To view details about your network's health:
 
 To view devices with the most issues, select **Most failures** from the filter above the table on the right.
 
-{{<figure src="/images/netq/validation-summary-most-failures-42.png" width="300">}}
+{{<figure src="/images/netq/validation-summary-most-failures-42.png" alt="filter displaying two hostnames with multiple failures" width="300">}}
 
 Devices with the most issues are listed at the top. To further investigate critical devices, click on the hostname to open the device card, or use the Events card and filter on the indicated switches.
 
@@ -83,7 +83,7 @@ To view devices with recent issues, select **Recent failures** from the filter a
 
 You can focus the data in the table on the right by unselecting one or more services. Select the checkbox next to the service you want to remove from the data. In this example, we have unchecked MTU.
 
-{{<figure src="/images/netq/validation-summary-l3-int-health-uncheck-mtu-42.png" width="500">}}
+{{<figure src="/images/netq/validation-summary-l3-int-health-uncheck-mtu-42.png" alt="medicum card displaying interface health" width="500">}}
 
 Unselecting the service temporarily removes the data related to that service from the table.
 
@@ -93,7 +93,7 @@ From the relevant tab (System Health, Network Service Health, or Interface Healt
 
 The following example shows the EVPN chart:
 
-{{<figure src="/images/netq/validation-summary-failed-validation-expanded-42.png" alt="EVPN validation data" width="700">}}
+{{<figure src="/images/netq/full-screen-evpn-validation.png" alt="EVPN validation data" width="900">}}
 
 ## View All Network Protocol and Service Validation Results
 
@@ -101,15 +101,11 @@ The Validation Summary card workflow lets you view all of the results of all val
 
 To view all the validation results:
 
-1. Open or locate the Validation Summary card on your workbench.
+1. Open or locate the full-screen Validation Summary card on your workbench.
 
-2. Change to the large card using the card size picker.
+2. Look for patterns in the data. For example, when did nodes, sessions, links, ports, or devices start failing validation? Was it at a specific time? Was it when you starting running the service on more nodes? Did sessions fail, but nodes were fine?
 
-3. Click *\<network protocol or service name\>* tab in the navigation panel.
-
-4. Look for patterns in the data. For example, when did nodes, sessions, links, ports, or devices start failing validation? Was it at a specific time? Was it when you starting running the service on more nodes? Did sessions fail, but nodes were fine?
-
-    {{<figure src="/images/netq/validation-summary-l4-failed-42.png" width="700">}}
+    {{<figure src="/images/netq/validation-summary-l4-failed-42.png" alt="fullscreen validation summary card displaying BGP metrics" width="900">}}
 
 Where to go next depends on what data you see, but a few options include:
 

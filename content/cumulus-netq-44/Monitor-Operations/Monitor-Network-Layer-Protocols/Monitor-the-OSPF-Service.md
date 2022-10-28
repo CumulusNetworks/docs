@@ -10,16 +10,6 @@ If you have OSPF running on your switches and hosts, NetQ enables you to view th
 You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show ospf` command.
 
 ## Monitor the OSPF Service Networkwide
-
-With NetQ, you can monitor OSPF performance across the network:
-
-- Network Services/All OSPF Sessions
-    - Small: view number of nodes running OSPF service and number and distribution of alarms
-    - Medium: view number and distribution of nodes running OSPF service, total sessions, unestablished sessions, and alarms
-    - Large: view number and distribution of nodes running OSPF service, total sessions, unestablished sessions, and alarms, switches with the most established sessions/alarms
-    - Full-screen: view and filter configuration and status for all switches, all sessions, and all alarms
-- `netq show ospf` command: view configuration and status for all devices, including interface, area, type, state, peer hostname and interface, and last time each device changed
-
 ### View Service Status Summary
 
 You can view a summary of the OSPF service from the NetQ UI or the NetQ CLI.

@@ -4,24 +4,7 @@ author: NVIDIA
 weight: 1030
 toc: 2
 ---
-You can verify the connectivity between two devices in both an ad-hoc fashion and by defining connectivity checks to occur on a scheduled basis. NetQ provides three NetQ UI card workflows and several NetQ CLI trace commands to view connectivity:
-
-- Trace Request card
-    - Run a trace or schedule a new one
-    - View a preview of all scheduled traces
-- On-demand Trace Results card
-    - View source and destination devices, status, paths found, and number/distribution of MTU and hops
-    - View job configuration
-- Scheduled Trace Results card
-    - View source and destination devices, status, distribution of paths, bad nodes, MTU and hops
-    - View job configuration
-- `netq trace` command
-    - Create and run a trace on demand
-    - View source and destination devices, status, paths found, MTU, and hops in terminal window
-- `netq add trace` command
-    - Create an on-demand or scheduled trace
-    - View On-demand and Scheduled Trace Results cards
-
+You can verify the connectivity between two devices in both an ad-hoc fashion and by defining connectivity checks to occur on a scheduled basis.
 ## Specifying Source and Destination Values
 
 When specifying traces, the following options are available for the source and destination values:

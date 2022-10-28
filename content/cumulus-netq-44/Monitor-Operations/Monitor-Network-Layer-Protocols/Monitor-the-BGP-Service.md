@@ -7,16 +7,6 @@ toc: 4
 NetQ enables operators to view the health of the BGP service on a networkwide or per session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show bgp` command.
 
 ## Monitor the BGP Service Networkwide
-
-With NetQ, you can monitor BGP performance across the network:
-
-- Network Services/All BGP Sessions
-    - Small: view number of nodes running BGP service and distribution and number of alarms
-    - Medium: view number and distribution of nodes running BGP service, alarms, and with unestablished sessions
-    - Large: view number and distribution of nodes running BGP service and those with unestablished sessions, and view nodes with the most established and unestablished BGP sessions
-    - Full-screen: view all switches, all sessions, and all alarms
-- `netq show bgp` command: view associated neighbors, ASN (autonomous system number), peer ASN, receive IP or EVPN address prefixes, and VRF assignment for each node
-
 ### View Service Status Summary
 
 You can view a summary of BGP service with the NetQ UI or the NetQ CLI.

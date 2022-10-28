@@ -6,7 +6,7 @@ weight: 999
 type: nojsscroll
 ---
 
-This project provides a Python SDK for interacting with the NVIDIA Air API (https://air.nvidia.com/api/).
+This project provides a Python SDK for interacting with the [NVIDIA Air API](https://air.nvidia.com/api/).
 
 ## SDK Usage
 ### Prerequisite for the SDK

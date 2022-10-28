@@ -7,42 +7,9 @@ toc: 3
 
 The Validation Summary card in the NetQ UI lets you view the overall health of your network at a glance, giving you a high-level understanding of how well your network is operating. Successful validation results determine overall network health shown in this card.
 
-## View Network Health Summary
-
-You can view a very simple summary of your network health including the distribution of validation check results across your network.
-
-To view this summary:
-
-1. Open or locate the Validation Summary card on your workbench.
-
-2. Change to the small card using the card size picker.
-
-    {{<figure src="/images/netq/validation-summary-l1-42.png" alt="validation summary card displaying 11 of 11 system checks are successful" width="200">}}
-
-    In this example, all validation checks are successful.
 ## View Key Metrics of Network Health
 
-Overall network health in the NetQ UI is a calculated average of several key health metrics: interface, system, and network services health.
-
-To view these key metrics:
-
-1. Open or locate the Validation Summary card on your workbench.
-
-2. Change to the medium card if needed.
-
-    Each metric is shown with a distribution of the validation results for each category. Hover over the individual categories to view detailed metrics for specific validation checks.
-
-    {{<figure src="/images/netq/validation-summary-l2-net-svcs-fail-42.png" width="200">}}
-
-    In this example, the health of each of the interface and system health are good, but network service health shows some validation failures.
-
-## View Network Health
-
-Network health is divided into three categories: 
-
-- System health
-- Network service health
-- Interface health
+Overall network health in the NetQ UI is a calculated average of several key health metrics: system, network services, and interface health.
 
 System health represents the NetQ Agent and sensor health validations. In all cases, validation is performed on the agents. If you are monitoring platform sensors, the validation checks include these as well.
 
@@ -50,11 +17,21 @@ Network services health represents the individual network protocol and services 
 
 Interface health represents the interfaces, VLAN, and link MTU validations.
 
-To view details about your network's health:
+To view these key metrics:
 
 1. Open or locate the Validation Summary card on your workbench.
 
-2. Change to the large card using the card size picker.
+2. Each metric displays a distribution of the validation results for each category. Hover over the individual categories to view detailed metrics for specific validation checks.  
+
+   In this example, system health is good, but network services and interface health display validation failures:
+
+    {{<figure src="/images/netq/updated-validation-summary-card.png" alt="medium validation summary card displaying high-level health metrics" width="200">}}
+
+## View Detailed Network Health
+
+To view details about your network's health:
+
+1. Open or locate the large Validation Summary card on your workbench.
 
 {{<tabs "View System Health">}}
 
@@ -64,7 +41,7 @@ To view details about your network's health:
 
    {{<figure src="/images/netq/validation-summary-l3-sys-health-42.png" width="500">}}
 
-   The health of agents and sensors is represented on the left side of the card. Hover over the chart for each type of validation to see detailed results. The right side of the card provides a listing of devices with failures related to agents and sensors.
+   The health of agents and sensors is represented on the left side of the card. Hover over the chart for each type of validation to see detailed results. The right side of the card displays devices with failures related to agents and sensors.
 
 {{</tab>}}
 
@@ -74,7 +51,7 @@ To view details about your network's health:
 
    {{<figure src="/images/netq/validation-summary-l3-net-health-42.png" width="500">}}
 
-   The health of each network protocol or service is represented on the left side of the card. Hover over the chart for each type of validation to see detailed results. The right side of the card provides a listing of devices with failures related to these protocols and services.
+   The health of each network protocol or service is represented on the left side of the card. Hover over the chart for each type of validation to see detailed results. The right side of the card displays devices with failures related to these protocols and services.
 
 {{</tab>}}
 
@@ -84,15 +61,13 @@ To view details about your network's health:
 
    {{<figure src="/images/netq/validation-summary-l3-int-health-42.png" width="500">}}
 
-   The health of interfaces, VLANs, and link MTUs is represented on the left side of the card. Hover over the chart for each type of validation to see detailed results. The right side of the card provides a listing of devices with failures related to interfaces, VLANs, and link MTUs.
+   The health of interfaces, VLANs, and link MTUs is represented on the left side of the card. Hover over the chart for each type of validation to see detailed results. The right side of the card displays devices with failures related to interfaces, VLANs, and link MTUs.
 
 {{</tab>}}
 
 {{</tabs>}}
 
 ### View Devices with the Most Issues
-
-It is useful to know which devices are experiencing the most issues with their system services, network services, or interfaces in general, as this can help focus troubleshooting efforts toward selected devices versus the service itself.
 
 To view devices with the most issues, select **Most failures** from the filter above the table on the right.
 

@@ -5,7 +5,7 @@ weight: 980
 toc: 4
 ---
 
-NetQ enables operators to view the health of the EVPN service on a networkwide and a per session basis, giving greater insight into all aspects of the service. You accomplish this through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show evpn` command.
+NetQ enables operators to view the health of the EVPN service on a networkwide and a per-session basis, giving greater insight into all aspects of the service. You accomplish this through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show evpn` command.
 
 ## Monitor the EVPN Service Networkwide
 
@@ -19,7 +19,7 @@ With NetQ, you can monitor EVPN performance across the network:
 - `netq show evpn` command: view configuration and status for all devices, including associated VNI, VTEP address, import and export route (showing BGP ASN and VNI path), and last time a change occurred for each device running EVPN
 ### View the EVPN Service Status
 
-You can view the configuration and status of your EVPN overlay across your network or for a particular device from the NetQ UI or the NetQ CLI. The example below shows the configuration and status for all devices, including the associated VNI, VTEP address, the import and export route (showing the BGP ASN and VNI path), and the last time a change occurred for each device running EVPN. Use the `hostname` option to view the configuration and status for a single device.
+You can view the configuration and status of your EVPN overlay across your network or for a particular device from the NetQ UI or the NetQ CLI. 
 
 {{<tabs "EVPN summary">}}
 
@@ -33,7 +33,7 @@ Open the small Network Services/All EVPN Sessions card. In this example, the num
 
 {{<tab "NetQ CLI">}}
 
-To view EVPN service status, run `netq show evpn`.
+To view EVPN service status, run `netq show evpn`. The example below shows the configuration and status for all devices, including the associated VNI, VTEP address, the import and export route (showing the BGP ASN and VNI path), and the last time a change occurred for each device running EVPN. Use the `hostname` option to view the configuration and status for a single device.
 
 This example shows the Cumulus reference topology, where EVPN runs on all border and leaf switches. Each session is represented by a single row.
 
@@ -242,7 +242,7 @@ You can now see whether there are significant differences between this time and 
 
 To determine the devices with the most sessions, run `netq show evpn`. Then count the sessions on each device.
 
-In this example, border01 and border02 each have 2 sessions. The leaf01-04 switches each have 5 sessions. Therefore the leaf switches have the most sessions.
+In this example, border01 and border02 each have 2 sessions. The leaf01-04 switches each have 5 sessions. Therefore, the leaf switches have the most sessions.
 
 ```
 cumulus@switch:~$ netq show evpn
@@ -273,47 +273,6 @@ leaf04            4002       10.0.1.2         L3               Vrf BLUE       ye
 leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct  7 00:50:09 2020
 leaf04            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Wed Oct  7 00:50:09 2020
 leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
-```
-
-To compare this with a time in the past, run `netq show evpn `.
-
-In this example, there are significant changes from the output above, indicating a significant reconfiguration.
-
-```
-cumulus@netq-ts:~$ netq show evpn around 14d
-Matching evpn records:
-Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
------------------ ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
-border01          3004001    10.0.1.254       L3               -              no        65254:3004001    65254:3004001    Mon Sep 28 11:00:44 2020
-border01          30030      10.0.1.254       L2               -              no        65254:30030      65254:30030      Mon Sep 28 11:00:44 2020
-border01          30020      10.0.1.254       L2               -              no        65254:30020      65254:30020      Mon Sep 28 11:00:44 2020
-border01          3004002    10.0.1.254       L3               -              no        65254:3004002    65254:3004002    Mon Sep 28 11:00:44 2020
-border01          30010      10.0.1.254       L2               -              no        65254:30010      65254:30010      Mon Sep 28 11:00:44 2020
-border02          30030      10.0.1.254       L2               -              no        65254:30030      65254:30030      Mon Sep 28 11:00:32 2020
-border02          3004001    10.0.1.254       L3               -              no        65254:3004001    65254:3004001    Mon Sep 28 11:00:32 2020
-border02          30010      10.0.1.254       L2               -              no        65254:30010      65254:30010      Mon Sep 28 11:00:32 2020
-border02          30020      10.0.1.254       L2               -              no        65254:30020      65254:30020      Mon Sep 28 11:00:32 2020
-border02          3004002    10.0.1.254       L3               -              no        65254:3004002    65254:3004002    Mon Sep 28 11:00:32 2020
-leaf01            30030      10.0.1.1         L2               -              no        65101:30030      65101:30030      Mon Sep 28 10:57:33 2020
-leaf01            3004001    10.0.1.1         L3               -              no        65101:3004001    65101:3004001    Mon Sep 28 10:57:33 2020
-leaf01            30010      10.0.1.1         L2               -              no        65101:30010      65101:30010      Mon Sep 28 10:57:33 2020
-leaf01            3004002    10.0.1.1         L3               -              no        65101:3004002    65101:3004002    Mon Sep 28 10:57:33 2020
-leaf01            30020      10.0.1.1         L2               -              no        65101:30020      65101:30020      Mon Sep 28 10:57:33 2020
-leaf02            30010      10.0.1.1         L2               -              no        65101:30010      65101:30010      Mon Sep 28 11:00:14 2020
-leaf02            30030      10.0.1.1         L2               -              no        65101:30030      65101:30030      Mon Sep 28 11:00:14 2020
-leaf02            3004001    10.0.1.1         L3               -              no        65101:3004001    65101:3004001    Mon Sep 28 11:00:14 2020
-leaf02            30020      10.0.1.1         L2               -              no        65101:30020      65101:30020      Mon Sep 28 11:00:14 2020
-leaf02            3004002    10.0.1.1         L3               -              no        65101:3004002    65101:3004002    Mon Sep 28 11:00:14 2020
-leaf03            30010      10.0.1.2         L2               -              no        65102:30010      65102:30010      Mon Sep 28 11:04:47 2020
-leaf03            30030      10.0.1.2         L2               -              no        65102:30030      65102:30030      Mon Sep 28 11:04:47 2020
-leaf03            30020      10.0.1.2         L2               -              no        65102:30020      65102:30020      Mon Sep 28 11:04:47 2020
-leaf03            3004001    10.0.1.2         L3               -              no        65102:3004001    65102:3004001    Mon Sep 28 11:04:47 2020
-leaf03            3004002    10.0.1.2         L3               -              no        65102:3004002    65102:3004002    Mon Sep 28 11:04:47 2020
-leaf04            30020      10.0.1.2         L2               -              no        65102:30020      65102:30020      Mon Sep 28 11:00:59 2020
-leaf04            3004001    10.0.1.2         L3               -              no        65102:3004001    65102:3004001    Mon Sep 28 11:00:59 2020
-leaf04            30030      10.0.1.2         L2               -              no        65102:30030      65102:30030      Mon Sep 28 11:00:59 2020
-leaf04            3004002    10.0.1.2         L3               -              no        65102:3004002    65102:3004002    Mon Sep 28 11:00:59 2020
-leaf04            30010      10.0.1.2         L2               -              no        65102:30010      65102:30010      Mon Sep 28 11:00:59 2020
 ```
 
 {{</tab>}}
@@ -399,45 +358,6 @@ leaf04            30         10.0.1.2         L2               Vlan 30        ye
 
 To compare this with a time in the past, run `netq show evpn around`.
 
-In this example, border01 and border02 each have three layer 2 sessions. Leaf01-04 also have three layer 2 sessions. Therefore no switch has any more layer 2 sessions than any other running the EVPN service 14 days ago.
-
-```
-cumulus@netq-ts:~$ netq show evpn around 14d
-Matching evpn records:
-Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
------------------ ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
-border01          3004001    10.0.1.254       L3               -              no        65254:3004001    65254:3004001    Mon Sep 28 11:00:44 2020
-border01          30030      10.0.1.254       L2               -              no        65254:30030      65254:30030      Mon Sep 28 11:00:44 2020
-border01          30020      10.0.1.254       L2               -              no        65254:30020      65254:30020      Mon Sep 28 11:00:44 2020
-border01          3004002    10.0.1.254       L3               -              no        65254:3004002    65254:3004002    Mon Sep 28 11:00:44 2020
-border01          30010      10.0.1.254       L2               -              no        65254:30010      65254:30010      Mon Sep 28 11:00:44 2020
-border02          30030      10.0.1.254       L2               -              no        65254:30030      65254:30030      Mon Sep 28 11:00:32 2020
-border02          3004001    10.0.1.254       L3               -              no        65254:3004001    65254:3004001    Mon Sep 28 11:00:32 2020
-border02          30010      10.0.1.254       L2               -              no        65254:30010      65254:30010      Mon Sep 28 11:00:32 2020
-border02          30020      10.0.1.254       L2               -              no        65254:30020      65254:30020      Mon Sep 28 11:00:32 2020
-border02          3004002    10.0.1.254       L3               -              no        65254:3004002    65254:3004002    Mon Sep 28 11:00:32 2020
-leaf01            30030      10.0.1.1         L2               -              no        65101:30030      65101:30030      Mon Sep 28 10:57:33 2020
-leaf01            3004001    10.0.1.1         L3               -              no        65101:3004001    65101:3004001    Mon Sep 28 10:57:33 2020
-leaf01            30010      10.0.1.1         L2               -              no        65101:30010      65101:30010      Mon Sep 28 10:57:33 2020
-leaf01            3004002    10.0.1.1         L3               -              no        65101:3004002    65101:3004002    Mon Sep 28 10:57:33 2020
-leaf01            30020      10.0.1.1         L2               -              no        65101:30020      65101:30020      Mon Sep 28 10:57:33 2020
-leaf02            30010      10.0.1.1         L2               -              no        65101:30010      65101:30010      Mon Sep 28 11:00:14 2020
-leaf02            30030      10.0.1.1         L2               -              no        65101:30030      65101:30030      Mon Sep 28 11:00:14 2020
-leaf02            3004001    10.0.1.1         L3               -              no        65101:3004001    65101:3004001    Mon Sep 28 11:00:14 2020
-leaf02            30020      10.0.1.1         L2               -              no        65101:30020      65101:30020      Mon Sep 28 11:00:14 2020
-leaf02            3004002    10.0.1.1         L3               -              no        65101:3004002    65101:3004002    Mon Sep 28 11:00:14 2020
-leaf03            30010      10.0.1.2         L2               -              no        65102:30010      65102:30010      Mon Sep 28 11:04:47 2020
-leaf03            30030      10.0.1.2         L2               -              no        65102:30030      65102:30030      Mon Sep 28 11:04:47 2020
-leaf03            30020      10.0.1.2         L2               -              no        65102:30020      65102:30020      Mon Sep 28 11:04:47 2020
-leaf03            3004001    10.0.1.2         L3               -              no        65102:3004001    65102:3004001    Mon Sep 28 11:04:47 2020
-leaf03            3004002    10.0.1.2         L3               -              no        65102:3004002    65102:3004002    Mon Sep 28 11:04:47 2020
-leaf04            30020      10.0.1.2         L2               -              no        65102:30020      65102:30020      Mon Sep 28 11:00:59 2020
-leaf04            3004001    10.0.1.2         L3               -              no        65102:3004001    65102:3004001    Mon Sep 28 11:00:59 2020
-leaf04            30030      10.0.1.2         L2               -              no        65102:30030      65102:30030      Mon Sep 28 11:00:59 2020
-leaf04            3004002    10.0.1.2         L3               -              no        65102:3004002    65102:3004002    Mon Sep 28 11:00:59 2020
-leaf04            30010      10.0.1.2         L2               -              no        65102:30010      65102:30010      Mon Sep 28 11:00:59 2020
-```
-
 {{</tab>}}
 
 {{</tabs>}}
@@ -517,47 +437,6 @@ leaf04            4002       10.0.1.2         L3               Vrf BLUE       ye
 leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct  7 00:50:09 2020
 leaf04            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Wed Oct  7 00:50:09 2020
 leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
-```
-
-To compare this with a time in the past, run `netq show evpn around`.
-
-In this example, border01 and border02 each have two layer 3 sessions. Leaf01-04 also have two layer 3 sessions. Therefore no switch has any more layer 3 sessions than any other running the EVPN service 14 days ago.
-
-```
-cumulus@netq-ts:~$ netq show evpn around 14d
-Matching evpn records:
-Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
------------------ ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
-border01          3004001    10.0.1.254       L3               -              no        65254:3004001    65254:3004001    Mon Sep 28 11:00:44 2020
-border01          30030      10.0.1.254       L2               -              no        65254:30030      65254:30030      Mon Sep 28 11:00:44 2020
-border01          30020      10.0.1.254       L2               -              no        65254:30020      65254:30020      Mon Sep 28 11:00:44 2020
-border01          3004002    10.0.1.254       L3               -              no        65254:3004002    65254:3004002    Mon Sep 28 11:00:44 2020
-border01          30010      10.0.1.254       L2               -              no        65254:30010      65254:30010      Mon Sep 28 11:00:44 2020
-border02          30030      10.0.1.254       L2               -              no        65254:30030      65254:30030      Mon Sep 28 11:00:32 2020
-border02          3004001    10.0.1.254       L3               -              no        65254:3004001    65254:3004001    Mon Sep 28 11:00:32 2020
-border02          30010      10.0.1.254       L2               -              no        65254:30010      65254:30010      Mon Sep 28 11:00:32 2020
-border02          30020      10.0.1.254       L2               -              no        65254:30020      65254:30020      Mon Sep 28 11:00:32 2020
-border02          3004002    10.0.1.254       L3               -              no        65254:3004002    65254:3004002    Mon Sep 28 11:00:32 2020
-leaf01            30030      10.0.1.1         L2               -              no        65101:30030      65101:30030      Mon Sep 28 10:57:33 2020
-leaf01            3004001    10.0.1.1         L3               -              no        65101:3004001    65101:3004001    Mon Sep 28 10:57:33 2020
-leaf01            30010      10.0.1.1         L2               -              no        65101:30010      65101:30010      Mon Sep 28 10:57:33 2020
-leaf01            3004002    10.0.1.1         L3               -              no        65101:3004002    65101:3004002    Mon Sep 28 10:57:33 2020
-leaf01            30020      10.0.1.1         L2               -              no        65101:30020      65101:30020      Mon Sep 28 10:57:33 2020
-leaf02            30010      10.0.1.1         L2               -              no        65101:30010      65101:30010      Mon Sep 28 11:00:14 2020
-leaf02            30030      10.0.1.1         L2               -              no        65101:30030      65101:30030      Mon Sep 28 11:00:14 2020
-leaf02            3004001    10.0.1.1         L3               -              no        65101:3004001    65101:3004001    Mon Sep 28 11:00:14 2020
-leaf02            30020      10.0.1.1         L2               -              no        65101:30020      65101:30020      Mon Sep 28 11:00:14 2020
-leaf02            3004002    10.0.1.1         L3               -              no        65101:3004002    65101:3004002    Mon Sep 28 11:00:14 2020
-leaf03            30010      10.0.1.2         L2               -              no        65102:30010      65102:30010      Mon Sep 28 11:04:47 2020
-leaf03            30030      10.0.1.2         L2               -              no        65102:30030      65102:30030      Mon Sep 28 11:04:47 2020
-leaf03            30020      10.0.1.2         L2               -              no        65102:30020      65102:30020      Mon Sep 28 11:04:47 2020
-leaf03            3004001    10.0.1.2         L3               -              no        65102:3004001    65102:3004001    Mon Sep 28 11:04:47 2020
-leaf03            3004002    10.0.1.2         L3               -              no        65102:3004002    65102:3004002    Mon Sep 28 11:04:47 2020
-leaf04            30020      10.0.1.2         L2               -              no        65102:30020      65102:30020      Mon Sep 28 11:00:59 2020
-leaf04            3004001    10.0.1.2         L3               -              no        65102:3004001    65102:3004001    Mon Sep 28 11:00:59 2020
-leaf04            30030      10.0.1.2         L2               -              no        65102:30030      65102:30030      Mon Sep 28 11:00:59 2020
-leaf04            3004002    10.0.1.2         L3               -              no        65102:3004002    65102:3004002    Mon Sep 28 11:00:59 2020
-leaf04            30010      10.0.1.2         L2               -              no        65102:30010      65102:30010      Mon Sep 28 11:00:59 2020
 ```
 
 {{</tab>}}
@@ -682,12 +561,6 @@ To view all EVPN events:
 2. Click **All Alarms** tab in the navigation panel. By default, events sort by time, with most recent events listed first.
 
     {{<figure src="/images/netq/ntwk-svcs-all-evpn-fullscr-alarms-tab-241.png" width="700">}}
-
-Where to go next depends on what data you see, but a few options include:
-
-- Open one of the other full screen tabs in this flow to focus on devices or sessions.
-- Sort by the **Message** or **Severity** to narrow your focus.
-- Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
 
 {{</tab>}}
 
@@ -911,14 +784,8 @@ leaf04            20         10.0.1.2         L2               Vlan 20        ye
 
 ### View All Session Events
 
-You can view all alarm and info events for a given session with the NetQ UI.
+You can view all error and info events for a given session with the NetQ UI.
 
 To view all events, open the full-screen Network Services/EVPN Session card and click the **All Events** tab.
 
 {{<figure src="/images/netq/ntwk-svcs-single-evpn-fullscr-events-tab-241.png" width="700">}}
-
-Where to go next depends on what data you see, but a few options include:
-
-- Open one of the other full screen tabs in this flow to focus on sessions.
-- Sort by the **Message** or **Severity** to narrow your focus.
-- Export the data for use in another analytics tool, by selecting all or some of the events and clicking <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.

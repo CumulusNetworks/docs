@@ -55,8 +55,6 @@ While not recommended, you can implement NetQ within your data network. In this 
 
 ## High Availability Deployment
 
-<!-- vale off -->
-NetQ supports a high availability deployment for users who prefer a solution in which the collected data and processing provided by the NetQ Platform remains available through alternate equipment should the platform fail for any reason. In this configuration, three NetQ Platforms are deployed, with one as the master and two as workers (or replicas). Data from the NetQ Agents is sent to all three switches so that if the master NetQ Platform fails, one of the replicas automatically becomes the master and continues to store and provide the telemetry data. The following example is based on an OOB-management configuration, and modified to support high availability for NetQ.
-<!-- vale on -->
+NetQ supports a high availability deployment for users who prefer a solution in which the collected data and processing provided by the NetQ Platform remains available through alternate equipment should the platform fail for any reason. In this configuration, three NetQ Platforms are deployed, with one as the master and two as workers (or replicas). NetQ Agents send data to all three switches so that if the master NetQ Platform fails, one of the replicas automatically becomes the master and continues to store and provide the telemetry data. The following example is based on an OOB-management configuration, and modified to support high availability for NetQ.
 
 {{<figure src="/images/netq/deploy-arch-ha-example-240.png" alt="diagram of a high availability deployment with one master and two worker NetQ platforms." ewidth="700">}}

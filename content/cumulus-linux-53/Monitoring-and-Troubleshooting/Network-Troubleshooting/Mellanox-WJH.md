@@ -10,7 +10,7 @@ toc: 4
 
 ## Configure WJH
 
-WJH can monitor layer 1, layer 2, layer 3, and tunnel packet drops. You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories you want to monitor.
+You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, and tunnel) you want to monitor.
 
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
@@ -20,26 +20,24 @@ The following example configures two separate channels:
 - The `layer-one` channel monitors layer 1 packet drops.
 
 ```
-cumulus@switch:~$ nv set service wjh channel forwarding trigger l2
-cumulus@switch:~$ nv set service wjh channel forwarding trigger l3
-cumulus@switch:~$ nv set service wjh channel forwarding trigger tunnel
-cumulus@switch:~$ nv set service wjh channel layer-one trigger l1
+cumulus@switch:~$ nv set system wjh channel forwarding trigger l2
+cumulus@switch:~$ nv set system wjh channel forwarding trigger l3
+cumulus@switch:~$ nv set system wjh channel forwarding trigger tunnel
+cumulus@switch:~$ nv set system wjh channel layer-one trigger l1
 cumulus@switch:~$ nv config apply
 ```
 
-You can stop monitoring specific packet drops by unsetting the channel or unsetting a category in the channel list.
-
-To stop monitoring layer 2 packet drops listed in the `forwarding` channel:
+You can stop monitoring specific packet drops by unsetting a category in the channel list. The following command example stops monitoring layer 2 packet drops that are in a channel called `forwarding`:
 
 ```
-cumulus@switch:~$ nv unset service wjh channel forwarding trigger l2
+cumulus@switch:~$ nv unset system wjh channel forwarding trigger l2
 cumulus@switch:~$ nv config apply
 ```
 
-To stop monitoring layer 1 packet drops and remove the `layer-one` channel:
+To remove a channel, run the `nv unset system wjh channel <channel>` command. The following command example removes the `layer-one` channel:
 
 ```
-cumulus@switch:~$ nv unset service wjh channel layer-one trigger l1
+cumulus@switch:~$ nv unset system wjh channel layer-one 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -78,7 +76,7 @@ cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
 }
 ```
 
-After you configure which packet drops to monitor, you must restart the `what-just-happened` service:
+Restart the `what-just-happened` service:
 
 ```
 cumulus@switch:~$ sudo systemctl restart what-just-happened
@@ -94,16 +92,9 @@ You can run the following commands to show information about dropped packets and
 {{< tabs "TabID76 ">}}
 {{< tab "NVUE Commands ">}}
 
-```
-cumulus@switch:~$ nv show service wjh packet-buffer 
-#    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
-                                                                                                                                   Group
----- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
-1    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
-2    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
-3    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
-4    21/06/16 12:02:42.069  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
-```
+- To show information about packet drops for all the channels you configure, run the `nv show system wjh packet-buffer ` command. The command output includes the reason for the drop and the recommended action to take.
+- To show the configuration on the switch for a channel, run the `nv show system wjh channel <channel>` command. For example, `nv show system wjh channel forwarding`.
+- To show the configuration on the switch for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command. For example, `nv show system wjh channel forwarding trigger`.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -112,10 +103,10 @@ You can run the following commands from the command line.
 
 | <div style="width:450px">Command  | Description |
 | -------  | ----------- |
-| `what-just-happened poll` | Shows information about packet drops. The output includes the reason for the drop and the recommended action to take.<br><br>The `what-just-happened poll <channel>` command shows the same information. |
-| `what-just-happened poll --aggregate` | Shows information about dropped packets aggregated by the reason for the drop. This command also shows the number of times the dropped packet occurs.<br><br>The `what-just-happened poll <channel> --aggregate` command shows the same information. |
-| `what-just-happened poll --export` | Saves information about dropped packets to a file in PCAP format.<br><br>The `what-just-happened poll <channel> --export` command shows the same information. |
-| `what-just-happened poll --export --no_metadata` | Saves information about dropped packets to a file in PCAP format without metadata.<br><br> The `what-just-happened poll <channel> --export --no_metadata` command shows the same information.|
+| `what-just-happened poll` | Shows information about packet drops for all the channels you configure. The output includes the reason for the drop and the recommended action to take.<br><br>The `what-just-happened poll <channel>` command shows information for the channel you specify. |
+| `what-just-happened poll --aggregate` | Shows information about dropped packets aggregated by the reason for the drop. This command also shows the number of times the dropped packet occurs.<br><br>The `what-just-happened poll <channel> --aggregate` command shows information for the channel you specify. |
+| `what-just-happened poll --export` | Saves information about dropped packets to a file in PCAP format.<br><br>The `what-just-happened poll <channel> --export` command shows information for the channel you specify. |
+| `what-just-happened poll --export --no_metadata` | Saves information about dropped packets to a file in PCAP format without metadata.<br><br> The `what-just-happened poll <channel> --export --no_metadata` command shows information for the channel you specify.|
 | `what-just-happened dump` | Displays all diagnostic information on the command line. |
 
 Run the `what-just-happened -h` command to see all the WJH command options.
@@ -123,12 +114,12 @@ Run the `what-just-happened -h` command to see all the WJH command options.
 {{< /tab >}}
 {{< /tabs >}}
 
-## Command Examples
+### Command Examples
 
-To show all dropped packets and the reason for the drop, run the NVUE `nv show service wjh packet-buffer` command or the `what-just-happened poll` command.
+To show all dropped packets and the reason for the drop, run the NVUE `nv show system wjh packet-buffer` command or the `what-just-happened poll` command.
 
 ```
-cumulus@switch:~$ nv show service wjh packet-buffer
+cumulus@switch:~$ what-just-happened poll
 #    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
                                                                                                                                    Group
 ---- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
@@ -179,7 +170,7 @@ When you enable the NVIDIA NetQ agent on the switch, the WJH service stops and d
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set service wjh enable on
+cumulus@switch:~$ nv set system wjh enable on
 cumulus@switch:~$ nv config apply
 ```
 

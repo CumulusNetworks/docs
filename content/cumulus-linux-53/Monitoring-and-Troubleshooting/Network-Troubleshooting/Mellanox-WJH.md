@@ -27,7 +27,7 @@ cumulus@switch:~$ nv set system wjh channel layer-one trigger l1
 cumulus@switch:~$ nv config apply
 ```
 
-You can stop monitoring specific packet drops by unsetting a category in the channel list. The following command example stops monitoring layer 2 packet drops that are in a channel called `forwarding`:
+You can stop monitoring specific packet drops by unsetting a category in the channel list. The following command example stops monitoring layer 2 packet drops that are in the `forwarding` channel:
 
 ```
 cumulus@switch:~$ nv unset system wjh channel forwarding trigger l2
@@ -92,9 +92,11 @@ You can run the following commands to show information about dropped packets and
 {{< tabs "TabID76 ">}}
 {{< tab "NVUE Commands ">}}
 
-- To show information about packet drops for all the channels you configure, run the `nv show system wjh packet-buffer ` command. The command output includes the reason for the drop and the recommended action to take.
-- To show the configuration on the switch for a channel, run the `nv show system wjh channel <channel>` command. For example, `nv show system wjh channel forwarding`.
-- To show the configuration on the switch for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command. For example, `nv show system wjh channel forwarding trigger`.
+To show information about packet drops for all the channels you configure, run the `nv show system wjh packet-buffer ` command. The command output includes the reason for the drop and the recommended action to take.
+
+You can also show the WJH configuration on the switch:
+- To show the configuration for a channel, run the `nv show system wjh channel <channel>` command. For example, `nv show system wjh channel forwarding`.
+- To show the configuration for packet drop categories in a channel, run the `nv show system wjh channel <channel> trigger` command. For example, `nv show system wjh channel forwarding trigger`.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

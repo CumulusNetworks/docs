@@ -571,7 +571,29 @@ To view differences between two detached pending configurations, run the `nv con
 To view differences between the applied configuration and the startup configuration:
 
 ```
+cumulus@switch:~$ nv config diff <<press Tab>>
+1        2        3        4        5        6        applied  empty    startup
+```
+
+```
+cumulus@switch:~$ nv config diff 2 3
+- unset:
+    system:
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2:
+```
+
+To view differences between the applied configuration and the startup configuration:
+
+```
 cumulus@switch:~$ nv config diff applied startup
+- unset:
+    interface:
+    system:
+      wjh:
 ```
 
 ### Replace and Patch a Pending Configuration

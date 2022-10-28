@@ -27,12 +27,6 @@ To work around this issue, run the following command on the NetQ telemetry serve
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
-<td>2555854</td>
-<td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2555197</td>
 <td>NetQ CLI: Occasionally, when a command response contains a large number of objects to be displayed the NetQ CLI does not display all results in the console. When this occurs, view all results using the {{json}} format option.</td>
 <td>3.3.0-3.3.1</td>
@@ -450,12 +444,6 @@ misc:
 Save the file.</td>
 <td>3.3.0</td>
 <td>3.3.1</td>
-</tr>
-<tr>
-<td>2555854</td>
-<td>NetQ Agent: If a NetQ Agent is downgraded to the 3.0.0 version from any higher release, the default commands file present in the _/etc/netq/commands/_ also needs to be updated to prevent the NetQ Agent from becoming rotten.</td>
-<td>3.0.0-3.3.1, 4.0.0-4.3.0</td>
-<td></td>
 </tr>
 <tr>
 <td>2555848</td>

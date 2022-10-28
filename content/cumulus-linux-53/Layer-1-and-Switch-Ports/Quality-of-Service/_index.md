@@ -92,7 +92,7 @@ When COS (`l2`) is `trusted`, Cumulus Linux classifies these ingress COS values 
 
 The PCP number is the ingress COS; for example PCP 0 maps to switch priority 0.
 
-To change the default profile to map PCP 0 to switch priority 4, configure PCP 0 to switch priority 4.
+To change the default profile to map PCP 0 to switch priority 4:
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust l2
@@ -132,7 +132,7 @@ traffic.cos_7.priority_source.8021p = [7]
 
 The `traffic.cos_` number is the switch priority value; for example ingress COS 0 maps to switch priority 0.
 
-To map ingress COS 4 to switch priority 0, configure the `traffic.cos_0.priority_source.8021p` setting in the `/etc/cumulus/datapath/qos/qos_features.conf` file to 4.
+To map ingress COS 4 to switch priority 0, configure the `traffic.cos_0.priority_source.8021p` setting  to 4 in the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
 traffic.cos_0.priority_source.8021p = [4]
@@ -389,8 +389,7 @@ traffic.cos_0.priority_remark.dscp = [22]
 ```
 
 {{% notice note %}}
-The `#` in the configuration file is a comment. The file comments out the `traffic.cos_*.priority_remark.8021p` lines by default.  
-You must uncomment them to set the configuration.
+The `#` in the configuration file is a comment. The file comments out the `traffic.cos_*.priority_remark.8021p` and the `traffic.cos_*.priority_remark.dscp` lines by default. You must uncomment them to set the configuration.
 {{% /notice %}}
 
 You can remap multiple internal COS values to the same external COS or DSCP value. For example, to map internal COS 1 and internal COS 2 to external COS 3:
@@ -1036,6 +1035,8 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 ### Remarking
 
 You use port groups to remark COS or DSCP on egress according to the internal COS value. You define these port groups with `remark.port_group_list` in the `qos_features.conf` file. The name is a label for configuration settings.
+
+To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark COS or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
 
 In the following example configuration, only packets that *ingress* on swp1 and *egress* on swp2 change the marked value of the packet. Packets that ingress on other ports and egress on swp2 do **not** change the marked value of the packet. The commands map internal COS 0 and internal COS 1 to external DSCP 37.
 

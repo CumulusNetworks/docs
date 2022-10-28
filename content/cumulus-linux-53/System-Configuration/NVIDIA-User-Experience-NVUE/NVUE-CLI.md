@@ -554,19 +554,28 @@ To view differences between two detached pending configurations, run the `nv con
 
 ```
 cumulus@switch:~$ nv config diff <<press Tab>>
-applied                                     changeset/cumulus/2021-06-11_18.35.06_FPKP
-changeset/cumulus/2021-06-11_16.16.41_FPKK  empty
-changeset/cumulus/2021-06-11_17.05.12_FPKN  startup
+1        2        3        4        5        6        applied  empty    startup
 ```
 
 ```
-cumulus@switch:~$ nv config diff changeset/cumulus/2021-06-11_18.35.06_FPKP changeset/cumulus/2021-06-11_17.05.12_FPKN
+cumulus@switch:~$ nv config diff 2 3
+- unset:
+    system:
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2:
 ```
 
-To view differences between a detached pending configuration and the applied configuration:
+To view differences between the applied configuration and the startup configuration:
 
 ```
-cumulus@switch:~$ nv config diff changeset/cumulus/2021-06-11_18.35.06_FPKP applied
+cumulus@switch:~$ nv config diff applied startup
+- unset:
+    interface:
+    system:
+      wjh:
 ```
 
 ### Replace and Patch a Pending Configuration

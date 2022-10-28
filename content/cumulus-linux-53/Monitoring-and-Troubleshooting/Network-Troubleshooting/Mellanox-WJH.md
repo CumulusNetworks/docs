@@ -6,31 +6,7 @@ toc: 4
 ---
 *What Just Happened* (WJH) provides real time visibility into network problems and has two components:
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-41" >}}).
-- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, tunnel, ACL, and buffer related issues. Cumulus Linux enables the WJH service by default.
-
-  {{%notice note%}}
-When you enable the NVIDIA NetQ agent on the switch, the WJH service stops and does not run. If you disable the NVIDIA NetQ service and want to use WJH, run the following commands to enable and start the WJH service:
-
-{{< tabs "TabID14 ">}}
-{{< tab "NVUE Commands">}}
-
-```
-cumulus@switch:~$ nv set service wjh enable on
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-```
-cumulus@switch:~$ sudo systemctl enable what-just-happened
-cumulus@switch:~$ sudo systemctl start what-just-happened
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%/notice%}}
+- The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, tunnel, ACL, and buffer related issues.
 
 ## Configure WJH
 
@@ -56,14 +32,14 @@ cumulus@switch:~$ nv config apply
 
 You can stop monitoring specific packet drops by unsetting the channel or unsetting a category in the channel list.
 
-To stop monitoring all packet drop categories listed in the `forwarding` channel (layer, 2, layer 3, and tunnel):
+To stop monitoring all packet drop categories listed in the `forwarding` channel (layer, 2, layer 3, and tunnel) and remove the channel:
 
 ```
 cumulus@switch:~$ nv unset service wjh channel forwarding
 cumulus@switch:~$ nv config apply
 ```
 
-To stop monitoring acl packet drops in the `acl-and-buffer` channel:
+To stop monitoring ACL packet drops in the `acl-and-buffer` channel:
 
 ```
 cumulus@switch:~$ nv unset service wjh channel acl-and-buffer trigger acl
@@ -79,49 +55,10 @@ Edit the `/etc/what-just-happened/what-just-happened.json` file:
 
 After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
 
-The following example configures a channel called `layer1` to monitor layer 1 packet drops:
-
-```
-cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
-{
-    "what-just-happened": {
-        "channels": {
-            "layer-one": {
-                "drop_category_list": [
-                    "l1"
-                ]
-            }
-        }
-    }
-}
-```
-
-The following example configures a channel called `forwarding` to monitor layer 2, layer 3, and tunnel packet drops in addition to the layer1 channel:
-
-```
-cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
-{
-    "what-just-happened": {
-        "channels": {
-            "forwarding": {
-                "drop_category_list": [
-                    "l1",
-                    "l2",
-                    "l3",
-                    "tunnel"
-                ]
-            },
-            "layer-one": {
-                "drop_category_list": [
-                    "l1"
-                ]
-            }
-        }
-    }
-}
-```
-
-The following example configures a channel called `acl-and-buffer` to monitor acl and buffer packet drops:
+The following example configures three separate channels:
+- The `forwarding` channel monitors layer 2, layer 3, and tunnel packet drops.
+- The `acl-and-buffer` channel monitors ACL and buffer packet drops.
+- The `layer-one` channel monitors layer 1 packet drops.
 
 ```
 cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
@@ -130,8 +67,20 @@ cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
         "channels": {
             "acl-and-buffer": {
                 "drop_category_list": [
-                    "acl",
-                    "buffer"
+                    "buffer",
+                    "acl"
+                ]
+            },
+            "layer-one": {
+                "drop_category_list": [
+                    "l1"
+                ]
+            },
+            "forwarding": {
+                "drop_category_list": [
+                    "l2",
+                    "l3",
+                    "tunnel"
                 ]
             }
         }
@@ -228,4 +177,29 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 
 ## Considerations
 
+### Cumulus Linux and Docker
+
 WJH runs in a Docker container. By default, when Docker starts, it creates a bridge called `docker0`. However, for compatibility reasons Cumulus Linux disables the `docker0` bridge in the `/etc/docker/daemon.json` file with the attribute `"bridge: none"`.
+
+### WJH and the NVIDIA NetQ Agent
+
+When you enable the NVIDIA NetQ agent on the switch, the WJH service stops and does not run. If you disable the NVIDIA NetQ service and want to use WJH, run the following commands to enable and start the WJH service:
+
+{{< tabs "TabID14 ">}}
+{{< tab "NVUE Commands">}}
+
+```
+cumulus@switch:~$ nv set service wjh enable on
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo systemctl enable what-just-happened
+cumulus@switch:~$ sudo systemctl start what-just-happened
+```
+
+{{< /tab >}}
+{{< /tabs >}}

@@ -370,7 +370,7 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 
 ### Ingress COS or DSCP for Marking
 
-To enable remarking of COS, DSCP or both COS and DSCP values, modify the `traffic.packet_priority_remark_set` value to `[8021p]`, `[dscp]` or `[8021p,dscp]` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. For example, to enable the remarking of only COS values:
+To enable global remarking of COS, DSCP or both COS and DSCP values, modify the `traffic.packet_priority_remark_set` value to `[8021p]`, `[dscp]` or `[8021p,dscp]` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. For example, to enable the remarking of only COS values:
 
 ```
 traffic.packet_priority_remark_set = [8021p]
@@ -406,7 +406,7 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. Therefore, to remark COS or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port. To see the full configuration for ingress COS or DSCP marking, see [Port Groups - Remarking](#remarking).
+To configure additional settings, such as apply a custom profile to specific interfaces, see [Port Groups](#remarking).
 
 ## Flow Control
 
@@ -1034,7 +1034,7 @@ Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 ### Remarking
 
-You use port groups to remark COS or DSCP on egress according to the internal COS value. You define these port groups with `remark.port_group_list` in the `qos_features.conf` file. The name is a label for configuration settings.
+You can use port groups to remark COS or DSCP on egress according to the internal COS value. You define these port groups with `remark.port_group_list` in the `qos_features.conf` file. The name is a label for configuration settings.
 
 To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark COS or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
 

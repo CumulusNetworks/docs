@@ -38,9 +38,11 @@ You can type a question mark (`?`) after a command to display required informati
 
 ```
 cumulus@switch:~$ nv set interface swp1 link state ?
-   (down|up)    The state of the interface
+    [Enter]               
+    down                   The interface is not ready
+    up                     The interface is ready
 cumulus@switch:~$ nv set interface swp1 link mtu ?
-   552-9216     interface mtu
+    <arg>                  (integer:552 - 9216)
 cumulus@switch:~$ nv set interface swp1 link speed ?
    (auto|10M|100M|1G|10G|25G|40G|50G|100G|200G|400G)    Link speed
 ```
@@ -49,7 +51,7 @@ NVUE also indicates if you need to provide specific values for the command:
 
 ```
 cumulus@switch:~$ nv set interface swp1 bridge domain ?
-   <domain-id>    Bridge domains on this interface
+    <domain-id>            Domain (bridge-name)
 ```
 
 ## Command Abbreviation
@@ -75,13 +77,21 @@ Usage:
   nv set interface [options] <interface-id> ...
 
 Description:
-  Interfaces
+  interface             Update all interfaces
 
 Identifiers:
-  <interface-id>    Interface
+  <interface-id>        Interface (interface-name)
+
+Output Options:
+  -o <format>, --output <format>
+                        Supported formats: json, yaml, auto, constable, end-table, commands (default:auto)
+  --color (on|off|auto)
+                        Toggle coloring of output (default: auto)
+  --paginate (on|off|auto)
+                        Whether to send output to a pager (default: off)
 
 General Options:
-  -h, --help        Show help.
+  -h, --help            Show help.
 ```
 
 ## Command List
@@ -147,8 +157,8 @@ The following example shows the `nv show router` commands after pressing the TAB
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router <<TAB>>
-adaptive-routing  igmp              ospf              pim               vrr               
-bgp               nexthop-group     pbr               policy            vrrp 
+adaptive-routing  igmp              ospf              pim               ptm               vrrp              
+bgp               nexthop-group     pbr               policy            vrr               
 
 cumulus@leaf01:mgmt:~$ nv show router bgp
                                 operational  applied  pending      description
@@ -283,15 +293,21 @@ To show the full list of NVUE commands, run `nv list-commands`. For example:
 
 ```
 cumulus@switch:~$ nv list-commands
-nv show router
-nv show router nexthop-group
-nv show router nexthop-group <nexthop-group-id>
-nv show router nexthop-group <nexthop-group-id> via
-nv show router nexthop-group <nexthop-group-id> via <via-id>
-nv show router pbr
-nv show router pbr map
-nv show router pbr map <pbr-map-id>
-nv show router pbr map <pbr-map-id> rule
+nv show platform
+nv show platform capabilities
+nv show platform hardware
+nv show platform hardware component
+nv show platform hardware component <component-id>
+nv show platform hardware component <component-id> linecard
+nv show platform hardware component <component-id> port
+nv show platform hardware component <component-id> port <port-id>
+nv show platform hardware component <component-id> port <port-id> breakout-mode
+nv show platform hardware component <component-id> port <port-id> breakout-mode <mode-id>
+nv show platform environment
+nv show platform environment fan
+nv show platform environment fan <fan-id>
+nv show platform environment sensor
+nv show platform environment sensor <sensor-id>
 ...
 ```
 
@@ -302,11 +318,14 @@ cumulus@switch:~$ nv list-commands interface
 nv show interface
 nv show interface <interface-id>
 nv show interface <interface-id> pluggable
-nv show interface <interface-id> router
-nv show interface <interface-id> router pbr
-nv show interface <interface-id> router pbr map
-nv show interface <interface-id> router pbr map <pbr-map-id>
-nv show interface <interface-id> router ospf
+nv show interface <interface-id> ip
+nv show interface <interface-id> ip address
+nv show interface <interface-id> ip address <ip-prefix-id>
+nv show interface <interface-id> ip neighbor
+nv show interface <interface-id> ip neighbor ipv4
+nv show interface <interface-id> ip neighbor ipv4 <neighbor-id>
+nv show interface <interface-id> ip neighbor ipv6
+nv show interface <interface-id> ip neighbor ipv6 <neighbor-id>
 ...
 ```
 <!-- vale off -->
@@ -314,8 +333,8 @@ Use the Tab key to get help for the command lists you want to see. For example, 
 <!-- vale on -->
 ```
 cumulus@switch:~$ nv list-commands interface swp1 <<press Tab>>
-acl        bridge     ip         lldp       ptp        router     
-bond       evpn       link       pluggable  qos        tunnel
+acl            bridge         ip             lldp           ptp            router         tunnel
+bond           evpn           link           pluggable      qos            storm-control  
 ```
 
 ## NVUE Configuration File
@@ -480,9 +499,6 @@ arptables             ARP table administration                                  
 atftp                 advanced TFTP client                                            atftp                  0.7.git20120829-3.               
 atftpd                advanced TFTP server                                            atftpd                 0.7.git20120829-3.2~deb10u1 
 auditd                User space tools for security auditing                          auditd                 1:2.8.4-3              
-base-files            Debian base system miscellaneous files                          base-files             10.3+deb10u9                 
-base-passwd           Debian base system master password and group files              base-passwd            3.5.46 
-bash                  GNU Bourne Again SHell                                          bash                   5.0-4
 ...
 ```
 
@@ -550,23 +566,32 @@ cumulus@switch:~$ nv config detach
 
 To view differences between configurations, run the `nv config diff` command.
 
-To view differences between two detached pending configurations, run the `nv config diff` <<TAB>> command to list all the current detached pending configurations, then run the `nv config diff` command with the pending configurations you want to diff:
+To view differences between two detached pending configurations, run the `nv config diff` <<TAB>> command to list all the current detached pending configurations, then run the `nv config diff` command with the pending configurations you want to diff.
 
 ```
 cumulus@switch:~$ nv config diff <<press Tab>>
-applied                                     changeset/cumulus/2021-06-11_18.35.06_FPKP
-changeset/cumulus/2021-06-11_16.16.41_FPKK  empty
-changeset/cumulus/2021-06-11_17.05.12_FPKN  startup
+1        2        3        4        5        6        applied  empty    startup
 ```
 
 ```
-cumulus@switch:~$ nv config diff changeset/cumulus/2021-06-11_18.35.06_FPKP changeset/cumulus/2021-06-11_17.05.12_FPKN
+cumulus@switch:~$ nv config diff 2 3
+- unset:
+    system:
+      wjh:
+        channel:
+          forwarding:
+            trigger:
+              l2:
 ```
 
-To view differences between a detached pending configuration and the applied configuration:
+To view differences between the applied configuration and the startup configuration:
 
 ```
-cumulus@switch:~$ nv config diff changeset/cumulus/2021-06-11_18.35.06_FPKP applied
+cumulus@switch:~$ nv config diff applied startup
+- unset:
+    interface:
+    system:
+      wjh:
 ```
 
 ### Replace and Patch a Pending Configuration

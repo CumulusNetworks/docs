@@ -18,7 +18,7 @@ The following command example enables broadcast storm control for swp4 at 400 pa
 ```
 cumulus@switch:~$ nv set interface swp4 storm-control broadcast 400
 cumulus@switch:~$ nv set interface swp4 storm-control multicast 3000
-cumulus@switch:~$ nv set interface swp4 storm-control unknown_unicast 2000
+cumulus@switch:~$ nv set interface swp4 storm-control unknown-unicast 2000
 cumulus@switch:~$ nv config apply
 ```
 
@@ -26,10 +26,10 @@ cumulus@switch:~$ nv config apply
 The storm control settings require a `switchd` reload. Before applying the settings, NVUE indicates that a reload is required and prompts you for confirmation. When the `switchd` service reloads, there is no interruption to network services.
 {{%/notice%}}
 
-A value of 0 disables the setting on the interface. The following example command disables multicast storm control on swp4:
+The following example command disables multicast storm control on swp4:
 
 ```
-cumulus@switch:~$ nv set interface swp4 storm-control multicast 0
+cumulus@switch:~$ nv unset interface swp4 storm-control multicast
 cumulus@switch:~$ nv config apply
 ```
 
@@ -41,7 +41,7 @@ Edit the `/etc/cumulus/switchd.conf` file and uncomment the `storm_control.broad
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
-# Storm Control setting on a port, in pps, 0 means disable
+# Storm Control setting on a port, in pps
 interface.swp4.storm_control.broadcast = 400
 interface.swp4.storm_control.multicast = 3000
 interface.swp4.storm_control.unknown_unicast = 2000

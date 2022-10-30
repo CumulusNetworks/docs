@@ -13,9 +13,7 @@ A VMware virtualized environment requires all virtual and physical elements such
 This guide shows the physical infrastructure configuration required for a few of the most common use cases of VMware NSX-T deployments. The underlay fabric configuration is based on Cumulus Linux 5.X using the NVIDIA User Experience ([NVUE](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-52/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-CLI/)) CLI.
 
 {{%notice note%}}
-
 We focus only on the VM-to-VM and VM-to-BM user traffic. Thus, other networks such as management, vMotion, and others are not covered in the configuration.
-
 {{%/notice%}}
 
 This guide describes the following scenarios:

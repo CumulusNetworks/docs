@@ -21,7 +21,7 @@ You can view the current status of all devices regarding their time synchronizat
 
 {{<expand "show ntp">}}
 
-The following  example shows the time synchronization status for all devices in the NVIDIA reference architecture. 
+The following example shows the time synchronization status for all devices in the NVIDIA reference architecture. 
 
 All border, leaf, and spine switches rely on the out-of-band management server running *ntpq* to provide their time; they are all synchronized. The out-of-band management server uses the *titan.crash-ove* server running *ntpq* to obtain and maintain time synchronization. Meanwhile, the NetQ server uses the *eterna.binary.net* server running *chronyc* to obtain and maintain time synchronization. The firewall switches are not time synchronized (which is expected). The *Stratum* value indicates the number of hierarchical levels the switch or host is from the reference clock.
 

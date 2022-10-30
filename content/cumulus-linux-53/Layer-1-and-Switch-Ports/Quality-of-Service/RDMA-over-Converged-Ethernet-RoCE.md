@@ -223,6 +223,26 @@ tx-stats
 
 To reset the counters that the `nv show interface <interface> qos roce` command displays, run the `nv action clear interface <interface> qos roce counters` command.
 
+## Change RoCE Configuration
+
+You can adjust RoCE settings using NVUE after RoCE is enabled. To change the memory allocation for RoCE lossless mode to 60 percent:
+
+```
+cumulus@switch:mgmt:~$ nv set qos traffic-pool default-lossy memory-percent 40
+cumulus@switch:mgmt:~$ nv set qos traffic-pool roce-lossless memory-percent 60
+cumulus@switch:mgmt:~$ nv config apply
+```
+
+To change the switch priority for RoCE lossy mode to 4 and allocate a memory allocation of 60 percent to the RoCE lossy traffic pool:
+
+```
+cumulus@switch:mgmt:~$ nv set qos traffic-pool roce-lossy switch-priority 4
+cumulus@switch:mgmt:~$ nv set qos traffic-pool default-lossy switch-priority 0-3,5-7
+cumulus@switch:mgmt:~$ nv set qos traffic-pool roce-lossy memory-percent 60
+cumulus@switch:mgmt:~$ nv set qos traffic-pool default-lossy memory-percent 40
+cumulus@switch:mgmt:~$ nv config apply
+```
+
 ## Related Information
 
 - {{<exlink url="http://www.roceinitiative.org/roce-introduction/" text="RoCE introduction">}} - roceinitiative.org

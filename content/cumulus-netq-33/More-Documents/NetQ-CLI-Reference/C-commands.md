@@ -2961,7 +2961,7 @@ None
 
 ## netq config restart
 
-Restart the NetQ Agent or CLI daemons on a switch. This is used after making changes to the the NetQ Agent or CLI configurations.
+Restart the NetQ Agent or CLI daemons on a switch. This is used after making changes to the NetQ Agent or CLI configurations.
 
 ### Syntax
 

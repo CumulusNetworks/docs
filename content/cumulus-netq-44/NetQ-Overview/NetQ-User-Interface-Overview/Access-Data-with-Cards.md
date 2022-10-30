@@ -76,7 +76,7 @@ Cards are available in 4 sizes. The granularity of the content on a card varies 
 
 2. Locate and select the card(s) you want to add to your workbench.
 
-3. When you have selected all of the cards you want to add to your workbench, select **Open cards**:
+3. When you have selected the cards you want to add to your workbench, select **Open cards**:
 
       {{<figure src="/images/netq/add-cards-to-workbench.png" alt="1 selected card to be added to a workbench" width="900">}}
 

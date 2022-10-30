@@ -22,16 +22,15 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="Configure-SNMP" text="SNMP Server">}} and {{<link url="Configure-SNMP-Traps" text="SNMP trap">}} commands
-  - {{<link url="Quality-of-Service" text="QoS commands">}}
-  - {{<link url="Configuring-switchd" text="switchd commands">}}
+  - {{<link url="Quality-of-Service" text="QoS commands">}} to configure COS and DSCP marking, egress queue mapping, egress traffic scheduling, PFC, ECN, and traffic pools
+  - {{<link url="Configuring-switchd" text="switchd commands">}} to configure the statistic polling interval for physical and logical interfaces, log level for debugging, DSCP settings for encapsulation and decapsulation, host route preference, ACL mode, and reserved VLAN range
   - New {{<link url="Monitoring-and-Troubleshooting/#show-system-information" text="nv show system commands">}} include `nv show system memory` and `nv show system cpu`
   - New BGP commands include {{<link url="Optional-BGP-Configuration/#bgp-dynamic-neighbors" text="BGP dynamic neighbor">}}, {{<link url="Optional-BGP-Configuration/#update-source" text="BGP update source">}}, {{<link url="Optional-BGP-Configuration/#bgp-neighbor-shutdown" text="BGP  neighbor shutdown">}}
   - New route map {{<link url="Route-Filtering-and-Redistribution/#match-and-set-statements" text="match and set statements">}} enable you to match on an EVPN default route, and set the BGP community, metric, originator ID, and forwarding address
   - {{<link title="What Just Happened (WJH)" text="WJH commands">}}
   - {{<link url="Prescriptive-Topology-Manager-PTM/#check-link-state" text="PTM enable command">}} to check link state
-  - Performance improvements
   - Support for hyphens in hostnames, VRF, route map, next hop groups, prefix list, AS path list, community list, and ACL names
-  - Fast link up command (`nv set interface <interface-id> link fast-linkup on`) to support fast link up to the Pensando (Naples) card - NVIDIA SN2100.
+  - {{<link url="Interface-Configuration-and-Management/#fast-linkup" text="Fast link up command">}} (`nv set interface <interface-id> link fast-linkup on`) to support fast link up on Spectrum1 switches
   <!--- Commands changed from `enable on` and `enable off` to `set enable` and `unset enable` (the `enable on` and `enable off` commands continue to be supported for backward compatability)-->
   <!--- Obfuscated passwords to protect passwords from casual viewing-->
   <!-- - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model-->

@@ -99,6 +99,6 @@ Now that the appliance is up and running, verify that the software is available 
 
     {{<netq-install/verify-cmd deployment="cloud">}}
 
-The final step is to install and activate the NetQ software using the the CLI:
+The final step is to install and activate the NetQ software using the CLI:
 
 - {{<link title="Install NetQ Using the CLI" text="Use the CLI">}}

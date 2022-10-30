@@ -1,52 +1,36 @@
 ---
 product: NVIDIA Air
-title: Air Python SDK
+title: Air API & Python SDK
 author: NVIDIA
 weight: 999
 type: nojsscroll
 ---
 
-This project provides a Python SDK for interacting with the NVIDIA Air API (https://air.nvidia.com/api/).
+This project provides a Python SDK for interacting with the [NVIDIA Air API](https://air.nvidia.com/api/).
 
+## SDK Usage
+### Prerequisite for the SDK
 
-## Prerequisite
-
-The SDK requires python 3.7 or later. The safest way to install the SDK is to set up a virtual environment in python3.7:
-
-```
-apt-get install python3.7
-```
+The SDK requires python 3.7 or later. The safest way to install the SDK is to set up a virtual environment in python3.7. For example:
 
 ```
-python3.7 -m pip install virtualenv
+$ apt-get install python3.7
+$ python3.7 -m pip install virtualenv
+$ python3.7 -m virtualenv venv37
+$ . venv37/bin/activate
 ```
 
-```
-python3.7 -m virtualenv venv37
-```
-
-```
-. venv37/bin/activate
-```
-
-## Installation
+### Installation of the SDK
 
 To install the SDK, use pip:
 
 ```
-python3 -m pip install air-sdk
-```
-
-## Usage
-
-```
->>> from air_sdk import AirApi
->>> air = AirApi(username='<user>', password='<password>')
+$ python3 -m pip install air-sdk
 ```
 
 ## Authentication Options
 
-Using the API requires the use of either an API token, a username/password, or a bearer token.
+Authentication requires the use of either an API token, a username/password, or a bearer token.
 
 ### API token
 
@@ -54,13 +38,34 @@ To use an API token, one must first be generated. The easiest way to do this is 
 
 Once a token is generated:
 
+{{< tabs "TabID5555 ">}}
+{{< tab "SDK ">}}
+
 ```
 >>> air = AirApi(username='<username>', password='<api_token>')
 ```
 
+{{< /tab >}}
+{{< tab "cURL">}}
+The API requires the use of the API Token to generate a bearer token:
+```
+curl --request POST 'https://air.nvidia.com/api/v1/login/' --form 'username="<user>"' --form 'password="<api_token>"'
+```
+The bearer token that is returned is used for authentication going forward:
+```
+curl --location --request <http_request>' \
+--header 'Authorization: Bearer <bearer_token>'
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+
+<details>
+  <summary>Other Authentication Options</summary> 
+
 ### Username/Password
 
-To use a username/password, an administrator of NVIDIA Air must provision a service account. Once the administrator provides the username and password:
+Username/Password authentication is only valid for Air Service Accounts, which can only be created by NVIDIA Air administrators. Once the administrator provides the username and password:
 
 ```
 >>> air = AirApi(username='<username>', password='<password>')
@@ -68,47 +73,448 @@ To use a username/password, an administrator of NVIDIA Air must provision a serv
 
 ### Bearer token
 
-Generally, it's recommended to use an [API Token](#api-token) over a bearer token. However, a bearer token might be used for testing or quick-and-dirty operations that might not need a long term API token. To use a bearer token, the calling user must have a nvidia.com account and have previously approved access for NVIDIA Air. Once a token is obtained:
+For SDK use it's recommended to use an [API Token](#api-token) over a bearer token. However, a bearer token might be used for testing or quick-and-dirty operations that might not need a long term API token. To use a bearer token, the calling user must have a nvidia.com account and have previously approved access for NVIDIA Air. Once a token is obtained:
 
+{{< tabs "TabID5593 ">}}
+{{< tab "SDK ">}}
 ```
 >>> air = AirApi(bearer_token='<bearer_token>')
 ```
+{{< /tab >}}
+{{< tab "cURL ">}}
+Authenticate using the bearer token and get a list of all simulations:
+```
+curl --location --request GET 'https://air.nvidia.com/api/v1/simulation/' \
+--header 'Authorization: Bearer <bearer_token>'
+```
+{{< /tab >}}
+{{< /tabs >}}
 
-### Interacting with the API
+</details>
 
-The SDK provides various helper methods for interacting with the API. For example:
+## Examples
+
+### List All Simulations
+
+The SDK provides various helper methods for interacting with the API. The example below shows how to list all Simulations with the SDK and with the API using cURL:
+
+
+{{< tabs "TabID5463 ">}}
+{{< tab "SDK ">}}
 
 ```
 >>> air.simulations.list()
 [<Simulation sim1 c51b49b6-94a7-4c93-950c-e7fa4883591>, <Simulation sim2 3134711d-015e-49fb-a6ca-68248a8d4aff>]
->>> sim1 = air.simulations.get('c51b49b6-94a7-4c93-950c-e7fa4883591')
->>> sim1.title = 'My Sim'
->>> sim1.store()
 ```
+
+{{< /tab >}}
+{{< tab "cURL">}}
+
+```
+curl --request GET 'https://air.nvidia.com/api/v1/simulation/' \
+--header 'Authorization: Bearer <bearer_token>' 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Get a specific Simulation: 
+
+To get a Simulation with ID c51b49b6-94a7-4c93-950c-e7fa4883591:
+
+{{< tabs "TabID5388 ">}}
+{{< tab "SDK ">}}
+
+```
+>>> sim1 = air.simulations.get('c51b49b6-94a7-4c93-950c-e7fa4883591')
+>>> print(sim1.title)
+My Sim
+```
+
+{{< /tab >}}
+{{< tab "cURL">}}
+
+```
+curl --request GET 'https://air.nvidia.com/api/v1/simulation/?id=c51b49b6-94a7-4c93-950c-e7fa4883591' \
+--header 'Authorization: Bearer <bearer_token>'
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Create a Simulation 
+Create a Simulation Using a custom Topology and custom Organization
+
+Example topology.dot file:
+```
+graph "sample_topology" {
+  "cumulus0" [ memory="1024" os="cumulus-vx-4.4.0" cpu="1"]
+  "cumulus1" [ memory="1024" os="cumulus-vx-4.4.0" cpu="1"]
+    "cumulus0":"swp1" -- "cumulus1":"swp1"
+    "cumulus0":"swp2" -- "cumulus1":"swp2"
+}
+```
+Create the Topology, Organization, and Simulation, then start the Simulation:
+
+{{< tabs "TabID55113 ">}}
+{{< tab "SDK ">}}
+
+```
+>>> from air_sdk import AirApi
+>>> user = 'user@nvidia.com'
+>>> api_token = 'fake_api_token'
+>>> air = AirApi(username=user, password=api_token)
+>>> dot_file_path = '/Users/alexag/topology.dot'
+>>> topology = air.topologies.create(dot=dot_file_path)
+>>> org_name = 'My Organization'
+>>> org = air.organizations.create(name=org_name, members=[{'username': f'{user}', 'roles': ['Organization Admin']}])
+>>> sim_title = 'My Simulation'
+>>> simulation = air.simulations.create(topology=topology, title=sim_title, organization=org)
+>>> simulation.start()
+```
+{{< /tab >}}
+{{< tab "cURL ">}}
+Create the Organization:
+```
+curl --location --request POST 'https://air.nvidia.com/api/v1/organization/' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "name": "My Organization",
+  "members": [
+    {
+        "username": "user@nvidia.com"
+    }
+  ]
+}'
+```
+Note - Organization creation is currently only supported for NVIDIA users. 
+
+
+Create the Topology:
+```
+curl --location --request POST 'https://air.nvidia.com/api/v1/topology/' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "test_topo",
+    "organization": "https://air.nvidia.com/api/v1/organization/63227c22-366c-4416-af25-73bbed6eacff/",
+    "dot": "graph 'sample_topo' {\n  'cumulus0' [ memory='1024' os='cumulus-vx-4.4.0' cpu='1']\n  'cumulus1' [ memory='1024' os='cumulus-vx-4.4.0' cpu='1']\n    'cumulus0':'swp1' -- 'cumulus1':'swp1'\n    'cumulus0':'swp2' -- 'cumulus1':'swp2'\n}\n"
+  }'
+```
+
+Create the Simulation:
+```
+curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "topology": "<topology_uuid>",
+  "name": "user@nvidia.com",
+  "expires": "true",
+  "sleep": "true",
+  "title": "My Simulation",
+  "organization": "<organization_uuid>"
+}'
+```
+Start the Simulation:
+```
+curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/<simulation_uuid>/control/' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "action": "load",
+  "start": true
+}'
+```
+{{< /tab >}}
+{{< /tabs >}}
+
+### Delete a Simulation
+{{< tabs "TabID55289 ">}}
+{{< tab "SDK ">}}
+
+```
+>>> from air_sdk import AirAPI
+>>> air = AirApi(username='<user>', password='<api_token>')
+>>> simulation = air.simulations.get('<simulation_uuid>')
+>>> simulation.delete()
+```
+
+{{< /tab >}}
+{{< tab "cURL">}}
+
+Find the Simulation:
+```
+curl --request GET 'https://air.nvidia.com/api/v1/simulation/?id=<simulation_uuid>' \
+--header 'Authorization: Bearer <bearer_token>'
+```
+Delete the Simulation:
+```
+curl --request POST 'https://air.nvidia.com/api/v1/simulation/<simulation_uuid>/control/' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "action": "destroy",
+}'
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Enable SSH Service
+Wake up a sleeping Simulation and enable SSH to the oob-mgmt-server
+
+Find, and load the Simulation:
+{{< tabs "TabID55195 ">}}
+{{< tab "SDK ">}}
+
+```
+>>> from air_sdk import AirAPI
+>>> air = AirApi(username='<user>', password='<api_token>')
+>>> simulation = air.simulations.get('<simulation_uuid>')
+>>> simulation.load()
+```
+
+{{< /tab >}}
+{{< tab "cURL">}}
+Load the Simulation:
+```
+curl --request POST 'https://air.nvidia.com/api/v1/simulation/<simulation_id>/control/' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "action": "load",
+  "start": true
+}'
+```
+Note - The Simulation id will be used again later. 
+
+{{< /tab >}}
+{{< /tabs >}}
+
+Enable ssh to the oob-mgmt-server's management port and print the command to ssh to the device:
+{{< tabs "TabID55217 ">}}
+{{< tab "SDK ">}}
+
+```
+>>> service_name = 'oob-mgmt-server SSH'
+>>> interface = 'oob-mgmt-server:eth0'
+>>> dest_port = 22
+>>> service = air.services.create(name=service_name, interface=interface, simulation=simulation, dest_port=dest_port)
+>>> print(f'ssh -p {service.src_port} {service.os_default_username}@{service.host}')
+ssh -p 15738 ubuntu@worker.air.nvidia.com
+```
+
+{{< /tab >}}
+{{< tab "cURL">}}
+
+In order to enable SSH to a Node's Interface, the API requires the specific Simulation-Interface object's uuid or resource url to be provided. Assume for this example the simulation_id is 47c91cdd-93d2-42b7-9c94-1580a9e49a88 and the Simulation-Interface is eth0 on the oob-mgmt-server Node.
+
+To find the Simulation Interface uuid, first find the Node object:
+```
+curl --request GET 'https://air.nvidia.com/api/v1/node/?name=oob-mgmt-server&simulation=47c91cdd-93d2-42b7-9c94-1580a9e49a88' \
+--header 'Authorization: Bearer <bearer_token>' 
+```
+This will return a list containing one Node. The Node will have a list of interfaces. For example:
+```
+[{
+    "url": "https://air.nvidia.com/api/v1/node/f2b54dc7-2ec0-40de-b04f-8a2b8655814a/",
+    "id": "f2b54dc7-2ec0-40de-b04f-8a2b8655814a",
+    "name": "oob-mgmt-server",
+    "os": "https://air.nvidia.com/api/v1/image/40000000-0000-0000-8050-000000000001/",
+    "interfaces": [
+        {
+            "url": "https://air.nvidia.com/api/v1/interface/fc92eb67-0abb-4a36-8458-2ecf5cc8ec75/",
+            "id": "fc92eb67-0abb-4a36-8458-2ecf5cc8ec75", <--------
+            "name": "eth0",
+            "mac_address": "04:ca:04:5a:6c:17",
+            "outbound": true,
+            "index": 5
+        }
+    ],
+    "topology": "https://air.nvidia.com/api/v1/topology/0fbdfdef-c284-4287-85aa-1499fef18a3b/"
+}]
+```
+Find the Interface id and use it to resolve the Simulation-Interface:
+```
+curl --request GET 'https://air.nvidia.com/api/v1/simulation-interface/?original=fc92eb67-0abb-4a36-8458-2ecf5cc8ec75' \
+--header 'Authorization: Bearer <bearer_token>'
+```
+```
+[{
+    "url": "https://air.nvidia.com/api/v1/simulation-interface/bc084dc3-b009-430e-a49a-0699362f955a/",
+    "id": "bc084dc3-b009-430e-a49a-0699362f955a", <--------
+    "node": "https://air.nvidia.com/api/v1/simulation-node/fbfe474d-44ba-4ff5-b933-658a33857c96/",
+    "original": "https://air.nvidia.com/api/v1/interface/fc92eb67-0abb-4a36-8458-2ecf5cc8ec75/",
+    "link_up": false,
+    "services": [
+        "https://air.nvidia.com/api/v1/service/af474fff-4bc9-4590-9f68-0cd3c3b021da/"
+    ],
+    ...
+}]
+```
+
+Finally, use the Simulation-Interface's ID in the interface param and the Simulation id to create the ssh Service:
+```
+curl --request POST 'https://air.nvidia.com/api/v1/service/' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "name": "oob-mgmt-server SSH",
+  "simulation": "47c91cdd-93d2-42b7-9c94-1580a9e49a88",
+  "interface": "bc084dc3-b009-430e-a49a-0699362f955a",
+  "dest_port": 22
+}'
+```
+The response will be something like the following:
+```{
+    "url": "https://air.nvidia.com/api/v1/service/af474fff-4bc9-4590-9f68-0cd3c3b021da/",
+    "id": "af474fff-4bc9-4590-9f68-0cd3c3b021da",
+    "name": "oob-mgmt-server SSH",
+    "simulation": "https://air.nvidia.com/api/v1/simulation/47c91cdd-93d2-42b7-9c94-1580a9e49a88/",
+    "interface": "https://air.nvidia.com/api/v1/simulation-interface/bc084dc3-b009-430e-a49a-0699362f955a/",
+    "dest_port": 22,
+    "src_port": 15502, <--------
+    "link": "",
+    "service_type": "other",
+    "node_name": "oob-mgmt-server",
+    "interface_name": "eth0",
+    "host": "worker.air.nvidia.com", <--------
+    "os_default_username": "ubuntu" <--------
+}
+```
+The SSH command can be generated using the following template: 
+```
+ssh -p <src_port> <os_default_username>@<host>
+```
+Which produces a command similar to:
+```
+ssh -p 15502 ubuntu@worker.air.nvidia.com
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Upload Image and Create a Topology
+Upload a custom Image and create a Topology using that Image
+
+Note - Image upload is currently only supported for NVIDIA users. 
+
+Upload and create the Image object:
+{{< tabs "TabID55242 ">}}
+{{< tab "SDK ">}}
+
+```
+>>> from air_sdk import AirAPI
+>>> user = 'user@nvidia.com'
+>>> api_token = 'fake_api_token'
+>>> air = AirApi(username=user, password=api_token)
+>>> image_name = 'My Image'
+>>> filename = '/Users/user/my_image.qcow2'
+>>> agent_enabled = False
+>>> base = False
+>>> default_username = 'admin'
+>>> default_password = 'admin'
+>>> organization = '<organization_uuid>'
+>>> image = air.images.create(name=image_name, base=base, filename=filename, agent_enabled=agent_enabled, default_username=default_username, default_password=default_password, organization=org)
+```
+
+{{< /tab >}}
+{{< tab "cURL">}}
+
+Create the Image object:
+```
+curl --request POST 'https://air.nvidia.com/api/v1/image/' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "name": "<image_name>",
+  "base": "false",
+  "agent_enabled": "false",
+  "cpu_arch": "x86",
+  "default_username": "admin",
+  "organization": "<organization_id>",
+  "simx": "false",
+  "provider": "VM"
+}'
+```
+The response will contain an Image upload URL:
+```
+{
+    "url": "https://air.nvidia.co,/api/v1/image/3d9a34e6-fd64-47bc-a65d-8a30f9f3ddc7/",
+    "id": "3d9a34e6-fd64-47bc-a65d-8a30f9f3ddc7",
+    ...
+    "upload_url": "https://air.nvidia.com/api/v1/image/3d9a34e6-fd64-47bc-a65d-8a30f9f3ddc7/upload/", <--------
+    ...
+}
+```
+Use the provided upload_url to upload a local Image file to Air:
+```
+curl --request PUT 'https://air.nvidia.com/api/v1/image/3d9a34e6-fd64-47bc-a65d-8a30f9f3ddc7/upload/?filename=/Users/admin/fake_image.qcow2' \
+--header 'Authorization: Bearer <bearer_token>'
+```
+
+
+{{< /tab >}}
+{{< /tabs >}}
+
+
+Use the Created Image in a custom Topology:
+{{< tabs "TabID55269 ">}}
+{{< tab "SDK ">}}
+
+```
+>>> topology_name = 'My Topology'
+>>> node_name = 'server01'
+>>> dot_graph = f'graph \"{topology_name}\" {{ \"{node_name}\" [ os=\"{image_name}\"] }}'
+>>> topology = air.topologies.create(dot=dot_graph)
+```
+
+{{< /tab >}}
+{{< tab "cURL">}}
+
+```
+curl --request POST 'https://air.nvidia.com/api/v1/topology/' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "My Topology",
+    "organization": "https://air.nvidia.com/api/v1/organization/63227c22-366c-4416-af25-73bbed6eacff/",
+    "dot": "graph 'sample_topo' {\n  'cumulus0' [ memory='1024' os='<image_uuid>' cpu='1']\n  'cumulus1' [ memory='1024' os='<image_uuid>' cpu='1']\n    'cumulus0':'swp1' -- 'cumulus1':'swp1'\n    'cumulus0':'swp2' -- 'cumulus1':'swp2'\n}\n"
+  }'
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Developing
 
 Contributions to the SDK are very welcome. All code must pass linting and unit testing before it will be merged.
 
-### Requirements
+#### Requirements
 
 ```
 python3 -m pip install -r requirements-dev.txt
 ```
 
-### Linting
+#### Linting
 
 ```
 pylint **/*.py
 ```
 
-### Unit testing
+#### Unit testing
 
 ```
 ./unit_test.sh
 ```
 
-### Generating docs
+#### Generating docs
 
 ```
 pydoc-markdown

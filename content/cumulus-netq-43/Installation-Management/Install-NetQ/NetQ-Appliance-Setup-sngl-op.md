@@ -101,6 +101,6 @@ Now that the appliance is up and running, verify that the software is available 
 
     {{<netq-install/verify-cmd deployment="onprem">}}
 
-4. The final step is to install and activate the NetQ software using the the CLI:
+4. The final step is to install and activate the NetQ software using the CLI:
 
 {{<netq-install/install-with-cli version="4.3" deployment="onprem-single">}}

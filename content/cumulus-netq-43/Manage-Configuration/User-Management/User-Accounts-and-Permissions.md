@@ -8,7 +8,7 @@ Sign in to NetQ as an admin to view and manage users' accounts. If you are a use
 
 ## NetQ Management Workbench
 
-Navigate to the the NetQ Management dashboard to complete the tasks outlined in this section. To get there, expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> on the NetQ dashboard and select **Management**.
+Navigate to the NetQ Management dashboard to complete the tasks outlined in this section. To get there, expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> on the NetQ dashboard and select **Management**.
 
 {{<figure src="/images/netq/netq-mgmt-wb-cloud-330.png" width="700"caption="Cloud NetQ Management Dashboard">}}
 

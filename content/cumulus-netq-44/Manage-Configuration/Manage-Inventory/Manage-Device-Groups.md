@@ -4,13 +4,13 @@ author: NVIDIA
 weight: 755
 ---
 
-Device Groups allow you to create a label for a subset of devices in the inventory. You can configure {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="validation checks">}} to run on select devices by referencing group names.
+Device groups allow you to create a label for a subset of devices in the inventory. You can configure {{<link title="Validate Network Protocol and Service Operations#validate-device-groups" text="validation checks">}} to run on select devices by referencing group names.
 
 ## Create a Device Group
 
 To create a device group, add the Device Groups card to your workbench. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> to navigate to the **Device Groups** section and click **Open Cards** after selecting the **Device groups** card:
 
-{{<figure src="/images/netq/open-device-group-card.png" width="700">}}
+{{<figure src="/images/netq/device-groups-add-card.png" width="700">}}
 
 The Device groups card will now be displayed on your workbench. Click **Create New Group** to create a new device group:
 
@@ -18,11 +18,11 @@ The Device groups card will now be displayed on your workbench. Click **Create N
 
 The Create New Group wizard will be displayed. To finish creating a new group:
 
-1. Set the name of the group of devices
+1. Set the name of the group of devices.
 
-2. Declare a hostname-based rule to define which devices in the inventory should be added to the group
+2. Declare a hostname-based rule to define which devices in the inventory should be added to the group.
 
-3. Confirm the expected matched devices appear in the inventory, and click **Create device group**
+3. Confirm the expected matched devices appear in the inventory, and click **Create device group**.
 
 The following example shows a group name of "exit group" matching any device in the inventory with "exit" in the hostname:
 

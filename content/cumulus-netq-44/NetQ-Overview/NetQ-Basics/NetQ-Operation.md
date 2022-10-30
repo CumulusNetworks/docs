@@ -123,7 +123,7 @@ For more information, refer to {{<link title="Events and Notifications" text="Ev
 
 ## Timestamps in NetQ
 
-Every event or entry in the NetQ database is stored with a timestamp that reports when an event was captured by the NetQ Agent on the switch or server. This timestamp is based on the switch or server time where the NetQ Agent is running, and is pushed in UTC format.
+Every event or entry in the NetQ database is stored with a timestamp that reports when the NetQ Agent captured an event on the switch or server. This timestamp is based on the switch or server time where the NetQ Agent is running, and is pushed in UTC format.
 
 Interface state, IP addresses, routes, ARP/ND table (IP neighbor) entries and MAC table entries carry a timestamp that represents the time an event occurred (such as when a route is deleted or an interface comes up).
 

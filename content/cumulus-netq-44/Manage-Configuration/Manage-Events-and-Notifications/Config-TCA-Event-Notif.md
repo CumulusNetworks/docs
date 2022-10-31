@@ -338,10 +338,6 @@ To create a TCA rule:
 
 11. Click **Finish**. The rules may take several minutes to appear in the UI.
 
-This example shows two interface statistics rules. The rule on the left triggers an informational event when the total received bytes exceeds the upper threshold of 5 M on any switches. The rule on the right triggers an alarm event when any switch exceeds the total received broadcast bytes af 560 K, indicating a broadcast storm. Note that the cards indicate both rules are currently active.
-
-{{<figure src="/images/netq/tca-create-rule-ifstats-examples-330.png" width="700">}}
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -528,8 +524,6 @@ To modify the threshold:
     {{<figure src="/images/netq/tca-edit-rule-300.png" width="200">}}
 
 3. Enter a new threshold value.
-
-    {{<figure src="/images/netq/tca-edit-rule-example-300.png" width="500">}}
 
 4. Click **Update Rule**.
 

@@ -9,10 +9,12 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## October 2022
 <!-- Air:WhatsNew -->
+### 82.2022.1031
+- Updated {{<exlink url="https://air.nvidia.com/api/" text="Swagger documentation for Air API">}}
+<!-- Air:WhatsNew -->
 ### 82.2022.1027
 - Updated Air API & Python SDK Docs to include examples: https://docs.nvidia.com/networking-ethernet-software/guides/nvidia-air/Air-Python-SDK/
-<!-- Air:WhatsNew -->
-  
+
 ## September 2022
 ### 82.2022.0929-013
 - Added new metadata fields for Images

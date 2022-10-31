@@ -43,13 +43,13 @@ You can view all MAC addresses across your network with the NetQ UI or the NetQ 
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
-2. Click **MACs** under the **Network** heading.
+2. Under the **Network** heading, select **MACs**.
 
-    {{<figure src="/images/netq/main-menu-ntwk-macs-320.png" width="700">}}
+    {{<figure src="/images/netq/mac-table.png" alt="table listing all devices and their associated MAC addresses" width="700">}}
 
-Page through the listing or sort by MAC address.
+You can filter and sort the table entries.
 
 {{</tab>}}
 
@@ -86,25 +86,19 @@ yes    ce:93:1d:e3:08:1b  4002   border01          vniBLUE                      
 
 ## View MAC Addresses for a Given Device
 
-You can view all MAC addresses on a given device with the NetQ UI or the NetQ CLI.
-
 {{<tabs "TabID98" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
-2. Click **MACs** under the **Network** heading.
+2. Under the **Network** heading, select **MACs**.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname:
+
+    {{<figure src="/images/netq/mac-filter-hostname.png" alt="filter dialog prompting user to enter a hostname" width="400">}}
 
 4. Click **Apply**.
-
-    This example shows all MAC address for the *leaf03* switch.
-
-    {{<figure src="/images/netq/main-menu-ntwk-macs-by-hostname-320.png" width="700">}}
-
-Page through the listing.
 
 {{</tab>}}
 
@@ -169,27 +163,19 @@ no     46:38:39:00:00:40  20     leaf03            bond2                        
 
 ## View MAC Addresses Associated with a VLAN
 
-You can determine the MAC addresses associated with a given VLAN with the NetQ UI or NetQ CLI.
-
 {{<tabs "TabID185" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
-2. Click **MACs** under the **Network** heading.
+2. Under the **Network** heading, select **MACs**.
 
 3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a VLAN ID.
 
 4. Click **Apply**.
 
-    This example shows all MAC address for VLAN *10*.
-
-    {{<figure src="/images/netq/main-menu-ntwk-macs-by-vlan-320.png" width="700">}}
-
-Page through the listing.
-
-5. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and add the additional hostname filter to view the MAC addresses for a VLAN on a particular device.
+5. (Optional) Select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and add the additional hostname filter to view the MAC addresses for a VLAN on a particular device.
 
 {{</tab>}}
 
@@ -283,25 +269,18 @@ yes    4a:32:30:8c:13:08  10     leaf02            vni10                        
 
 ## View MAC Addresses Associated with an Egress Port
 
-You can the MAC addresses that use a particular egress port with the NetQ UI and the NetQ CLI.
-
 {{<tabs "TabID301" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
-2. Click **MACs** under the **Network** heading.
+2. Under the **Network** heading, select **MACs**.
 
-3. Toggle between A-Z or Z-A order of the egress port used by a MAC address by clicking the **Egress Port** header.
+3. Locate the **Egress Port** column. Hover over the column header and select it to sort A-Z or Z-A order of the egress port used by a MAC address.
 
-    This example shows the MAC addresses sorted in A-Z order.
+4. (Optional) Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname to view the MAC addresses on a particular device.
 
-    {{<figure src="/images/netq/main-menu-ntwk-macs-by-egressport-320.png" width="700">}}
-
-4. Optionally, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname to view the MAC addresses on a particular device.
-
-    This filters the list down to only the MAC addresses for a given device. Then, toggle between A-Z or Z-A order of the egress port used by a MAC address by clicking the **Egress Port** header.
 
 {{</tab>}}
 
@@ -577,38 +556,21 @@ You can get more descriptive information about changes to a given MAC address on
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+To view MAC address commentary:
 
-2. Click **MACs** under the **Network** heading.
+1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
-   {{<figure src="/images/netq/main-menu-ntwk-macs-320.png" width="700">}}
+2. Under the **Network** heading, select **MACs**.
 
-3. Select a MAC address for the switch and VLAN of interest from the table.
+3. Select the checkbox next to one of the entries, then select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Open card** above the table.
 
-4. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (**Open Card**).
+4. Choose a time range, then click **Continue**.
 
-5. The card is added to the workbench indicated. If you want to place it on a different workbench, select it from the dropdown list.
+5. You can scroll through the list to see comments related to the MAC address moves and changes:
 
-6. Choose the time range to view; either:
+   {{<figure src="/images/netq/mac-move-commentary-card.png" alt="MAC move commentary card displaying 7 results from the past 24 hours" width="500">}}
 
-    - A time starting from now and going back in time for 6 hr, 12 hrs, 24 hrs, a week, a month, or a quarter, or
-    - Click **Custom**, and choose the specific start and end times
-
-    Then click **Continue**.
-
-   {{<figure src="/images/netq/main-menu-ntwk-macs-move-commentary-time-range-330.png" width="400">}}
-
-7. Scroll through the list on the right to see comments related to the MAC address moves and changes.
-
-   {{<figure src="/images/netq/main-menu-ntwk-macs-move-commentary-330.png" width="400">}}
-
-8. Optionally, you can filter the list by a given device:
-
-    1. Hover over the MAC move commentary card.
-    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}}, and begin entering the device name. Complete the name or select it from the suggestions that appear as you type.
-    3. Click **Done**.
-
-        {{<figure src="/images/netq/main-menu-ntwk-macs-move-commentary-filter-330.png" width="500">}}
+8. (Optional) From here, you can filter the list by a given device by selecting {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}} **Filters**. 
 
 <div style="padding-left: 18px;">A red dot on the filter icon indicates that filtering is active. To remove the filter, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" width="18" height="18">}} again, then click <strong>Clear Filter</strong>.</div>
 

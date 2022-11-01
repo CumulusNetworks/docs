@@ -508,7 +508,7 @@ To generate AuthKeys:
 
 2. Enter your username and password.
 
-3. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and under **Admin**, select **Management**.
+3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, and under **Admin**, select **Management**.
 
     {{<figure src="/images/netq/main-menu-admin-mgmt-selected-410.png" alt="" width="300">}}
 
@@ -583,7 +583,7 @@ To generate AuthKeys:
 
 2. Enter your username and password.
 
-3. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and under **Admin**, select **Management**.
+3. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, and under **Admin**, select **Management**.
 
     {{<figure src="/images/netq/main-menu-admin-mgmt-selected-410.png" width="300">}}
 

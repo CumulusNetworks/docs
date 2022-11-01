@@ -294,7 +294,7 @@ The hostname, reason/port down reason, ingress port, and drop type scope paramet
 
 To create a TCA rule:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu.
 
 2. Under **Notifications**, select **Threshold Crossing Rules**.
 

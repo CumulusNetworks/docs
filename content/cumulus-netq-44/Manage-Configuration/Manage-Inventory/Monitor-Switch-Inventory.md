@@ -21,7 +21,7 @@ The CLI provides detailed switch inventory information through its `netq <hostna
 
 ### View the Number of Types of Any Component Deployed
 
-For each of the components monitored on a switch, NetQ displays the variety of those component by way of a count.
+For each of the components monitored on a switch, NetQ displays a unique count. 
 
 To view this count for all of the components on the switch:
 

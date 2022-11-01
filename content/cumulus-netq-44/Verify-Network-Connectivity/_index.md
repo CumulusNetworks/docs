@@ -25,7 +25,7 @@ If you use an IPv6 address, you must enter the complete, non-truncated address.
 
 ### Known Addresses
 
-The tracing function only knows about previously learned addresses. If you find that a path is invalid or incomplete, you might need to ping the identified device so that its address becomes known.
+The tracing function only knows about previously learned addresses. If you find that a path is invalid or incomplete, ping the identified device so that its address becomes known.
 
 <!-- vale off -->
 ## Create On-demand Traces
@@ -45,9 +45,9 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 1. Determine the IP addresses of the two devices you want to trace.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Addresses** under the **Network** section.
+    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then select **IP addresses**.
 
-    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
+    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} Filter and enter a hostname.
 
     3. Make note of the relevant address.
 
@@ -55,14 +55,14 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 2. Open the Trace Request card.
 
-    - On new workbench: Click in the **Global Search** field. Type *trace*. Click the card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
+    - On a new workbench: Type *trace* in the **Global search** field and select the card.
+    - On a current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} Card, then select and open the **Trace** card.
 
 3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
 
 4. In the **Destination** field, enter the IP address of the device where you want to end the trace.  
 
-    {{<figure src="/images/netq/trace-request-large-l3-novrf-ex-320.png" width="500">}}
+    {{<figure src="/images/netq/new-trace-request-card.png" width="500">}}
 
 <div style="padding-left: 18px;"><div class="notices tip"><p>If you mistype an address, you must double-click it, or backspace over the error, and retype the address. You cannot select the address by dragging over it as this action attempts to move the card to another location.</p></div></div>
 
@@ -145,40 +145,17 @@ Running job None src 10.10.10.1 dst 10.10.10.63
 ### Create a Layer 3 On-demand Trace Through a Given VRF
 <!-- vale on -->
 
-You can guide a layer 3 trace through a particular VRF interface using the NetQ UI or the NetQ CLI.
-
 {{<tabs "TabID264" >}}
 
 {{<tab "On-demand Trace Request" >}}
 
 To create the trace request:
 
-1. Determine the IP addresses of the two devices you want to trace.
-
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Addresses** under the **Network** section.
-
-    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
-
-    3. Make note of the relevant address and VRF.
-
-    4. Filter the list again for the other hostname, and make note of its address.
-
-2. Open the Trace Request card.
-
-    - On new workbench: Click the **Global Search** entry field. Type *trace*. Click the card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
-
-    {{<figure src="/images/netq/trace-request-large-310.png" width="500">}}
-
-3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
-
-4. In the **Destination** field, enter the IP address of the device where you want to end the trace.
+Follow steps 1 through 4 as outlined in the {{<link url="#Create a Layer 3 On-demand Trace Request" text="previous section">}}.
 
 5. In the **VRF** field, enter the identifier for the VRF associated with these devices.
 
-    {{<figure src="/images/netq/trace-request-large-l3wVRF-example-320.png" width="500" >}}
-
-6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench.
+6. Click **Run now**. A corresponding Trace Results card is opened on your workbench.
 
 {{</tab>}}
 
@@ -364,30 +341,9 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 To create a layer 2 trace request:
 
-1. Determine the IP or MAC address of the source device and the MAC address of the destination device.
-
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Neighbors** under the **Network** section.
-
-    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter destination hostname.
-
-    3. Make note of the MAC address and VLAN ID.
-
-    4. Filter the list again for the source hostname, and make note of its IP address.
-
-2. Open the Trace Request card.
-
-    - On new workbench: Click in the **Global Search** field. Type *trace*. Click the card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
-
-    {{<figure src="/images/netq/trace-request-large-310.png" width="500">}}
-
-3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
-
-4. In the **Destination** field, enter the MAC address for where you want to end the trace.
+Follow steps 1 through 4 as outlined in the {{<link url="#Create a Layer 3 On-demand Trace Request" text="previous section">}}.
 
 5. In the **VLAN ID** field, enter the identifier for the VLAN associated with the destination.
-
-    {{<figure src="/images/netq/trace-request-large-l2vlan-example-320.png" width="500">}}
 
 6. Click **Run Now**. A corresponding Trace Results card is opened on your workbench.
 
@@ -608,28 +564,11 @@ After you have started an on-demand trace or run the `netq add trace` command, t
 
 After you click **Run Now**, the corresponding results card opens on your workbench. While it is working on the trace, a notice appears on the card indicating it is running.
 
-{{<figure src="/images/netq/od-trace-result-medium-l3-running-320.png" width="200">}}
-
 After it is finished, the results are displayed. The following results use the example previously outlined:
 
 {{<figure src="/images/netq/od-trace-result-medium-320.png" width="200">}}
 
-In this example, we see that the trace was successful. 12 paths were found between the devices, some with three hops and some four hops and with an overall MTU of 9216. Because there is a difference between the minimum and maximum number of hops, you could view the large results card for additional information (including errors or warnings):
-
-{{<figure src="/images/netq/od-trace-result-large-summary-tab-320.png" width="500">}}
-
-{{</tab>}}
-
-{{</tabs>}}
-### View Detailed On-demand Trace Results
-
-You can dig deeper into the results of a trace in the NetQ UI, viewing the interfaces, ports, tunnels, VLANs, etc. for each available path.
-
-{{<tabs "TabID728" >}}
-
-{{<tab "Trace Request card" >}}
-
-To view additional details, locate the On-demand Trace Results card for the trace of interest.
+To view additional information:
 
 1. Expand the card to its largest size and double-click a trace to open the detailed view:
 
@@ -652,7 +591,6 @@ Note that in our example, paths 9-12 have only three hops because they do not tr
 {{</tab>}}
 
 {{</tabs>}}
-
 ## Create Scheduled Traces
 
 There might be paths through your network that you consider critical or particularly important to your everyday operations. In these cases, it might be useful to create one or more traces to periodically confirm that at least one path is available between the relevant two devices. You can create scheduled traces at layer 2 or layer 3 in your network, from the NetQ UI and the NetQ CLI.
@@ -665,46 +603,19 @@ There might be paths through your network that you consider critical or particul
 
 To schedule a trace:
 
-1. Determine the IP addresses of the two devices to be traced.
-
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Addresses** under the **Network** section.
-
-    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
-
-    3. Make note of the relevant address.
-
-    4. Filter the list again for the other hostname, and make note of its address.
-
-2. Open the Trace Request card.
-
-    - On new workbench: Click in the **Global Search** box. Type *trace*. Click on card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
-
-    {{<figure src="/images/netq/trace-request-large-310.png" width="500">}}
-
-3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
-
-4. In the **Destination** field, enter IP address of the device where you want to end the trace.
+Follow steps 1 through 4 as outlined in the {{<link url="#Create a Layer 3 On-demand Trace Request" text="previous section">}}.
 
 5. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
     {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
 
-6. Accept the default starting time, or click in the **Starting** field to specify the day you want the trace to run for the first time. Then click **Next**.
+6. Accept the default starting time, or click in the **Starting** field to specify the day you want the trace to run for the first time.
 
-7. Select the time you want the trace to run for the first time.
+7. Verify your entries are correct, then click **Save As new**.
 
-    {{<figure src="/images/netq/time-selection-222.png" width="200">}}
+8. Provide a name for the trace. **Note**: This name must be unique for a given user.
 
-8. Verify your entries are correct, then click **Save As New**.
-
-    This example shows the creation of a scheduled trace between leaf01 (source, 10.10.10.1) and border01 (destination, 10.10.10.63) at 5:00 am each day with the first run occurring on November 5, 2020.
-
-    {{<figure src="/images/netq/trace-request-large-l3noVrf-example-320.png" width="500">}}
-
-9. Provide a name for the trace. **Note**: This name must be unique for a given user.
-
-10. Click **Save**.
+9. Click **Save**.
 
     You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule.
 
@@ -739,23 +650,7 @@ View the results in the NetQ UI.
 
 To schedule a trace from the NetQ UI:
 
-1. Determine the IP addresses of the two devices you want to trace.
-
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Addresses** under the **Network** section.
-
-    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
-
-    3. Make note of the relevant address.
-
-    4. Filter the list again for the other hostname, and make note of its address.
-
-2. Open the Trace Request card.
-
-    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
-
-3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
-
-4. In the **Destination** field, enter IP address of the device where you want to end the trace.
+Follow steps 1 through 4 as outlined in the {{<link url="#Create a Layer 3 On-demand Trace Request" text="previous section">}}.
 
 5. Enter a **VRF** interface if you are using anything other than the default VRF.
 
@@ -763,28 +658,15 @@ To schedule a trace from the NetQ UI:
 
     {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
 
-7. Accept the default starting time, or click in the **Starting** field to specify the day you want the trace to run for the first time. Then click **Next**.
+6. Accept the default starting time, or click in the **Starting** field to specify the day you want the trace to run for the first time.
 
-8. Click the time you want the trace to run for the first time.
+7. Verify your entries are correct, then click **Save As new**.
 
-    {{<figure src="/images/netq/time-selection-222.png" width="200">}}
+8. Provide a name for the trace. **Note**: This name must be unique for a given user.
 
-9. Click **OK**.
-
-    This example shows the creation of a scheduled trace between server01 (source, 10.1.10.101) and server02 (destination, 10.1.10.104) that is run on an hourly basis as of November 5, 2020.
-
-    {{<figure src="/images/netq/trace-request-large-sched-l3wVrf-ex-320.png" width="500">}}
-
-10. Verify your entries are correct, then click **Save As New**.
-
-11. Provide a name for the trace. **Note**: This name must be unique for a given user.
-
-    {{<figure src="/images/netq/save-trace-name-modal.png" width="250">}}
-
-12. Click **Save**.
+9. Click **Save**.
 
     You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -816,26 +698,7 @@ View the results in the NetQ UI.
 
 To schedule a layer 2 trace:
 
-1. Determine the IP or MAC address of the source device and the MAC address of the destination device.
-
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Neighbors** under the **Network** section.
-
-    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter destination hostname.
-
-    3. Make note of the MAC address and VLAN ID.
-
-    4. Filter the list again for the source hostname, and make note of its IP or MAC address.
-
-2. Open the Trace Request card.
-
-    - On new workbench: Click in the **Global Search** field. Type *trace*. Click the card name.
-    - On current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click the card. Click **Open Cards**.
-
-    {{<figure src="/images/netq/trace-request-large-310.png" width="500">}}
-
-3. In the **Source** field, enter the hostname, IP or MAC address of the device where you want to start the trace.
-
-4. In the **Destination** field, enter the MAC address of the device where you want to end the trace.
+Follow steps 1 through 4 as outlined in the {{<link url="#Create a Layer 3 On-demand Trace Request" text="previous section">}}.
 
 5. In the **VLAN** field, enter the VLAN ID associated with the destination device.
 
@@ -843,25 +706,13 @@ To schedule a layer 2 trace:
 
     {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
 
-7. Accept the default starting time, or click in the **Starting** field to specify the day you want the trace to run for the first time. Then click **Next**.
+7. Accept the default starting time, or click in the **Starting** field to specify the day you want the trace to run for the first time.
 
-8. Click the time you want the trace to run for the first time.
+8. Verify your entries are correct, then click **Save As new**.
 
-    {{<figure src="/images/netq/time-selection-222.png" width="200">}}
+9. Provide a name for the trace. **Note**: This name must be unique for a given user.
 
-9. Click **OK**.
-
-    This example shows the creation of a scheduled trace between server01 (source, 44:38:39:00:00:32) and server04 (destination, 44:38:39:00:00:3e) on VLAN 10 that is run every three hours as of November 5, 2020 at 11 p.m.
-
-    {{<figure src="/images/netq/trace-request-large-sched-l2vlan-ex-320.png" width="500">}}
-
-10. Verify your entries are correct, then click **Save As New**.
-
-11. Provide a name for the trace. **Note**: This name must be unique for a given user.
-
-    {{<figure src="/images/netq/save-trace-name-modal.png" width="250">}}
-
-12. Click **Save**.
+10. Click **Save**.
 
     You can now run this trace on demand by selecting it from the dropdown list, or wait for it to run on its defined schedule.
 
@@ -888,9 +739,7 @@ View the results in the NetQ UI.
 
 {{</tabs>}}
 
-### Run a Scheduled Trace on Demand
-
-You can run a scheduled trace on demand from the small, medium, or large Trace Request cards.
+### Run a Scheduled Trace On-demand
 
 To run a scheduled trace now:
 
@@ -1068,9 +917,7 @@ To modify a scheduled trace:
 
 1. Open the Trace Request card.
 
-2. Select the trace from the **New Trace Request** dropdown.
-
-    {{<figure src="/images/netq/sch-trace-list-dropdown-320.png" width="250">}}
+2. Select the trace from the **New trace request** dropdown.
 
 3. Edit the schedule, VLAN, or VRF and select **Update**.
 
@@ -1080,13 +927,9 @@ To modify a scheduled trace:
 
     1. Click the *change name* link.
 
-    2. Edit the name.
+    2. Edit the name, then click **Update**.
 
-        {{<figure src="/images/netq/sch-trace-change-name-320.png" width="250">}}
-
-    3. Click **Update**.
-
-    4. Click **Yes** to complete the changes, or repeat these steps until you have the name you want.
+    3. Click **Yes** to complete the changes, or repeat these steps until you have the name you want.
 
     The validation can now be selected from the New Trace listing and run immediately using **Go** or **Run Now**, or you can wait for it to run the first time according to the schedule you specified.
 

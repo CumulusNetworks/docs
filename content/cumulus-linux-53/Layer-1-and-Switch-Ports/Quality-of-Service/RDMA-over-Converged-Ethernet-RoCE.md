@@ -233,7 +233,7 @@ cumulus@switch:mgmt:~$ nv set qos traffic-pool roce-lossless memory-percent 60
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
-To change the memory allocation of the RoCE lossy traffic pool to 60 percent and remap switch priority 4 to RoCE lossy traffic: :
+To change the memory allocation of the RoCE lossy traffic pool to 60 percent and remap switch priority 4 to RoCE lossy traffic:
 
 ```
 cumulus@switch:mgmt:~$ nv set qos traffic-pool default-lossy switch-priority 0-3,5-7

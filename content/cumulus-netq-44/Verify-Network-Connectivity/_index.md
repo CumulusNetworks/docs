@@ -45,7 +45,7 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 1. Determine the IP addresses of the two devices you want to trace.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Addresses** under the **Network** section.
+    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Addresses** under the **Network** section.
 
     2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
 
@@ -155,7 +155,7 @@ To create the trace request:
 
 1. Determine the IP addresses of the two devices you want to trace.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Addresses** under the **Network** section.
+    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Addresses** under the **Network** section.
 
     2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
 
@@ -366,7 +366,7 @@ To create a layer 2 trace request:
 
 1. Determine the IP or MAC address of the source device and the MAC address of the destination device.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Neighbors** under the **Network** section.
+    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Neighbors** under the **Network** section.
 
     2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter destination hostname.
 
@@ -667,7 +667,7 @@ To schedule a trace:
 
 1. Determine the IP addresses of the two devices to be traced.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Addresses** under the **Network** section.
+    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Addresses** under the **Network** section.
 
     2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
 
@@ -741,7 +741,7 @@ To schedule a trace from the NetQ UI:
 
 1. Determine the IP addresses of the two devices you want to trace.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Addresses** under the **Network** section.
+    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Addresses** under the **Network** section.
 
     2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter a hostname.
 
@@ -818,7 +818,7 @@ To schedule a layer 2 trace:
 
 1. Determine the IP or MAC address of the source device and the MAC address of the destination device.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu), then **IP Neighbors** under the **Network** section.
+    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **IP Neighbors** under the **Network** section.
 
     2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} and enter destination hostname.
 

@@ -16,7 +16,7 @@ Note that in the UI, it can take several minutes for NetQ to process and accurat
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
 2. In the side navigation under **Network**, click **Events**.
 
@@ -117,7 +117,7 @@ You can monitor all system and TCA events on a given device with the NetQ UI and
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
 2. In the side navigation under **Network**, click **Events**.
 
@@ -170,7 +170,7 @@ You can view all system  and TCA events of a given type on a networkwide basis u
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
 2. In the side navigation under **Network**, click **Events**.
 
@@ -199,7 +199,7 @@ You can view all system and TCA events of a given type on a given device using t
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
 2. In the side navigation under **Network**, click **Events**.
 
@@ -235,7 +235,7 @@ System event severities include info, error, warning, or debug. TCA event severi
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
 2. In the side navigation under **Network**, click **Events**.
 
@@ -265,7 +265,7 @@ You can view system and TCA events by their severity on a given device with the 
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
 2. In the side navigation under **Network**, click **Events**.
 
@@ -297,7 +297,7 @@ You can monitor all system and TCA events across the network currently or for a 
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 
 2. In the side navigation under **Network**, click **Events**.
 

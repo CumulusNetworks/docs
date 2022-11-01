@@ -1595,7 +1595,7 @@ You can suppress events using the NetQ UI or NetQ CLI.
 
 To suppress events using the NetQ UI:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 2. In the side navigation under **Network**, click **Events**.
 3. In the table, navigate to the column labeled **Suppress Events**.
 4. Hover over the row and select **Suppress events** to create parameters for the suppression rule. You can configure individual suppression rules or you can create a group rule that suppresses events for all message types.
@@ -1682,7 +1682,7 @@ You can remove event suppression configurations using the NetQ UI or NetQ CLI.
 
 To remove suppressed event configurations:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 2. In the side navigation under **Network**, click **Events**.
 3. Select **Show suppression rules** at the top of the page.
 4. Navigate to the rule you would like to delete. Click the three-dot menu and select **Delete**. If you'd like to pause the rule instead of deleting it, click **Disable**.
@@ -1710,7 +1710,7 @@ You can view suppressed events using the NetQ UI or NetQ CLI.
 
 To view suppressed events:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 2. In the side navigation under **Network**, click **Events**.
 3. Select **Show suppression rules** at the top of the page.
 

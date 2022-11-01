@@ -760,7 +760,7 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 
 #### Power Supply Unit Information
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors** in the **Network** heading.
 
     {{<figure src="/images/netq/main-menu-admin-400.png" width="200">}}
 
@@ -823,7 +823,7 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 
 #### Fan Information
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors** in the **Network** heading.
 
 2. Click **Fan**.
 
@@ -888,7 +888,7 @@ Sensor information is available from the NetQ UI and NetQ CLI.
 
 #### Temperature Information
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Sensors** in the **Network** heading.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors** in the **Network** heading.
 
 2. Click **Temperature**.
 
@@ -1356,7 +1356,7 @@ Digital optics information is available from any digital optics modules in the s
 
 Use the filter option to view laser power and bias current for a given interface and channel on a switch, and temperature and voltage for a given module. Select the relevant tab to view the data.
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> (main menu), then click **Digital Optics** in the **Network** heading.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Digital Optics** in the **Network** heading.
 
     {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
 

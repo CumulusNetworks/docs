@@ -189,7 +189,7 @@ You can expand the card to see a detailed summary of WJH data:
 
    {{<figure src="/images/netq/WJH-expanded-card.png" alt="expanded what just happened card displaying devices with the most drops" width="600">}}
 
-Expanding the card to its largest size will open the advanced WJH dashboard. You can also access this dashboard by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu) and selecting **What Just Happened** under the **Network** column:
+Expanding the card to its largest size will open the advanced WJH dashboard. You can also access this dashboard by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu and selecting **What Just Happened** under the **Network** column:
 
    {{<figure src="/images/netq/WJH-advanced-view.png" alt="fully expanded what just happened card with detailed drop information" width="800">}}
 

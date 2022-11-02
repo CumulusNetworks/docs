@@ -28,15 +28,13 @@ The NetQ CLI provides detailed network inventory information through its `netq s
 
 ## View Networkwide Inventory Summary
 
-You can view all devices in your network from either the NetQ UI or NetQ CLI.
-
 {{<tabs "View worldwide inventory summary">}}
 
 {{<tab "NetQ UI">}}
 
 ### View the Number of Each Device Type in Your Network
 
-To view the quantity of devices in your network, locate or open the small or medium Inventory/Devices card. The medium-sized card provides operating system distribution across the network in addition to the device count. Hover over items in the chart’s outer circle to view operating system distribution, and hover over items in the chart’s inner circle to view device counts.
+To view the quantity of devices in your network, open the Inventory/Devices card. The medium-sized card displays operating system distribution across the network in addition to the device count. Hover over items in the chart’s outer circle to view operating system distribution, and hover over items in the chart’s inner circle to view device counts.
 
 {{<figure src="/images/netq/inventory-devices-l1-42.png" alt="small inventory card displaying 13 switches and 10 hosts" width="200">}}
 {{<figure src="/images/netq/inventory-devices-l2-42.png" alt="medium inventory card displaying 15 switches and 10 hosts as a chart" width="200">}}
@@ -240,17 +238,6 @@ spine04           VX                   CL              x86_64   VX              
 
 ### View ASIC Information
 
-ASIC information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Devices card
-    - Large: view ASIC distribution across all switches (graphic)
-    - Full-screen: view ASIC vendor, model, model ID, ports, core bandwidth across all devices (table)
-- Inventory/Switches card
-    - Medium/Large: view ASIC distribution across all switches (graphic)
-    - Full-screen: view ASIC vendor, model, model ID, ports, core bandwidth and data across all switches (table)
-- `netq show inventory asic` command
-    - View ASIC vendor, model, model ID, core bandwidth, and ports on all devices
-
 {{<tabs "TabID158" >}}
 
 {{<tab "Inventory/Devices">}}
@@ -340,16 +327,6 @@ mlx-2700-11       NVIDIA               Spectrum                       MT52132   
 {{</tabs>}}
 
 ### View Motherboard/Platform Information
-
-Motherboard and platform information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Devices card
-    - Full-screen: view platform vendor, model, manufacturing date, revision, serial number, MAC address, series across all devices (table)
-- Inventory/Switches card
-    - Medium/Large: view platform distribution across on all switches (graphic)
-    - Full-screen: view platform vendor, model, manufacturing date, revision, serial number, MAC address, series across all switches (table)
-- `netq show inventory board` command
-    - View motherboard vendor, model, base MAC address, serial number, part number, revision, and manufacturing date on all devices
 
 {{<tabs "TabID266" >}}
 
@@ -442,16 +419,6 @@ st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:2
 {{</tabs>}}
 
 ### View CPU Information
-
-CPU information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Devices card
-    - Full-screen: view CPU architecture, model, maximum operating frequency, and the number of cores on all devices (table)
-- Inventory/Switches card
-    - Medium/Large: view CPU distribution across on all switches (graphic)
-    - Full-screen: view CPU architecture, model, maximum operating frequency, the number of cores, and data on all switches (table)
-- `netq show inventory cpu` command
-    - View CPU architecture, model, maximum operating frequency, and the number of cores on all devices
 
 {{<tabs "TabID304" >}}
 
@@ -557,16 +524,6 @@ spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
 
 ### View Disk Information
 
-Disk information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Devices card
-    - Full-screen: view the size of the disk on all devices (table)
-- Inventory/Switches card
-    - Medium/Large: view Disk distribution across on all switches (graphic)
-    - Full-screen: view disk vendor, size, revision, model, name, transport, and type on all switches (table)
-- `netq show inventory disk` command
-    - View disk name, type, transport, size, vendor, and model on all devices
-
 {{<tabs "TabID591" >}}
 
 {{<tab "Inventory/Devices" >}}
@@ -636,16 +593,6 @@ spine02           vda             disk             N/A                6G        
 {{</tabs>}}
 
 ### View Memory Information
-
-Memory information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Devices card
-    -  Full-screen: view the size of the memory on all devices (table)
-- Inventory/Switches card
-    - Medium/Large: view the memory size distribution across all switches (graphic)
-    - Full-screen: view memory chip vendor, name, serial number, size, speed, and type on all switches (table)
-- `netq show inventory memory`
-    - View memory chip name, type, size, speed, vendor, and serial number on all devices
 
 {{<tabs "TabID480" >}}
 
@@ -745,22 +692,13 @@ spine02           DIMM 0          RAM              1024 MB    Unknown    QEMU   
 
 Fan, power supply unit (PSU), and temperature sensors are available to provide additional data about the NetQ system operation.
 
-Sensor information is available from the NetQ UI and NetQ CLI.
-
-- PSU Sensor card: view sensor name, current/previous state, input/output power, and input/output voltage on all devices (table)
-- Fan Sensor card: view sensor name, description, current/maximum/minimum speed, and current/previous state on all devices (table)
-- Temperature Sensor card: view sensor name, description, minimum/maximum threshold, current/critical(maximum)/lower critical (minimum) threshold, and current/previous state on all devices (table)
-- `netq show sensors`: view sensor name, description, current state, and time when data was last changed on all devices for all or one sensor type
-
 {{<tabs "TabID758" >}}
 
 {{<tab "NetQ UI" >}}
 
 #### Power Supply Unit Information
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors** in the **Network** heading.
-
-    {{<figure src="/images/netq/main-menu-admin-400.png" width="200">}}
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors**.
 
 2. The PSU tab is displayed by default.
 
@@ -1343,20 +1281,13 @@ spine04           psu2temp1       psu2 temp sensor                    ok        
 
 ### View Digital Optics Information
 
-Digital optics information is available from any digital optics modules in the system using the NetQ UI and NetQ CLI.
-
-- Digital Optics card: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage (table)
-- `netq show dom type` command: view laser bias current, laser output power, received signal average optical power, and module temperature/voltage
-
 {{<tabs "TabID1227" >}}
 
 {{<tab "NetQ UI" >}}
 
 Use the filter option to view laser power and bias current for a given interface and channel on a switch, and temperature and voltage for a given module. Select the relevant tab to view the data.
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Digital Optics** in the **Network** heading.
-
-    {{<figure src="/images/netq/main-menu-admin-network-selected-310.png" width="700">}}
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Digital Optics**.
 
 2. The **Laser Rx Power** tab is displayed by default.
 
@@ -1478,20 +1409,6 @@ spine01           swp56      module_temperature   {‘degree_c’: 78,     {‘d
 You can view software components deployed on all switches and hosts, or on all the switches in your network.
 
 ### View the Operating Systems Information
-
-Knowing what operating systems (OSs) you have deployed across your network is useful for upgrade planning and understanding your relative dependence on a given OS in your network.
-
-OS information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Devices card
-    - Medium: view the distribution of OSs and versions across all devices
-    - Large: view the distribution of OSs and versions across all switches
-    - Full-screen: view OS vendor, version, and version ID on all devices (table)
-- Inventory/Switches card
-    - Medium/Large: view the distribution of OSs and versions across all switches (graphic)
-    - Full-screen: view OS vendor, version, and version ID on all on all switches (table)
-- `netq show inventory os`
-    - View OS name and version on all devices
 
 {{<tabs "TabID1079" >}}
 
@@ -1777,59 +1694,6 @@ act-5712-09       40,512(7%)           0,0(0%)              30,768(3%)          
 mlx-2700-04       0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              4,400(1%)            2,2256(0%)           0,1024(0%)           2,1024(0%)           0,0(0%)              Tue Aug 18 20:19:08 2020
 ```
 
-The same information can be output to JSON format:
-
-```
-cumulus@noc-pr:~$ netq show cl-resource acl json
-{
-    "cl_resource":[
-        {
-            "egIpv6Mangle":"0,0(0%)",
-            "egIpv6Filter":"0,0(0%)",
-            "inIpv6Mangle":"0,0(0%)",
-            "egIpv4Mangle":"0,0(0%)",
-            "egIpv4Filter":"32,256(12%)",
-            "inIpv4Mangle":"0,0(0%)",
-            "in8021XFilter":"0,0(0%)",
-            "inPbrIpv4Filter":"0,0(0%)",
-            "inPbrIpv6Filter":"0,0(0%)",
-            "l4PortRangeCheckers":"2,24(8%)",
-            "lastUpdated":1597782039.632999897,
-            "inMirror":"0,0(0%)",
-            "hostname":"act-5712-09",
-            "54bRulesKey":"0,0(0%)",
-            "18bRulesKey":"0,0(0%)",
-            "32bRulesKey":"0,0(0%)",
-            "inIpv6Filter":"30,768(3%)",
-            "aclRegions":"0,0(0%)",
-            "inIpv4Filter":"40,512(7%)"
-        },
-        {
-            "egIpv6Mangle":"0,0(0%)",
-            "egIpv6Filter":"0,0(0%)",
-            "inIpv6Mangle":"0,0(0%)",
-            "egIpv4Mangle":"0,0(0%)",
-            "egIpv4Filter":"0,0(0%)",
-            "inIpv4Mangle":"0,0(0%)",
-            "in8021XFilter":"0,0(0%)",
-            "inPbrIpv4Filter":"0,0(0%)",
-            "inPbrIpv6Filter":"0,0(0%)",
-            "l4PortRangeCheckers":"0,0(0%)",
-            "lastUpdated":1597781948.3259999752,
-            "inMirror":"0,0(0%)",
-            "hostname":"mlx-2700-04",
-            "54bRulesKey":"2,1024(0%)",
-            "18bRulesKey":"2,2256(0%)",
-            "32bRulesKey":"0,1024(0%)",
-            "inIpv6Filter":"0,0(0%)",
-            "aclRegions":"4,400(1%)",
-            "inIpv4Filter":"0,0(0%)"
-	}
-    ],
-    "truncatedResult":false
-}
-```
-
 ### View Forwarding Resources
 
 With the NetQ CLI, you can monitor the amount of forwarding resources used by all devices, currently or at a time in the past.
@@ -1854,17 +1718,6 @@ mlx-2700-04       0,32768(0%)          0,16384(0%)          0,65536(0%)         
 ```
 
 ### View NetQ Agents
-
-NetQ Agent information is available from the NetQ UI and NetQ CLI.
-
-- Agents list
-    - Full-screen: view NetQ Agent version across all devices (table)
-- Inventory/Switches card
-    - Medium: view the number of unique versions of the NetQ Agent running on all devices
-    - Large: view the number of unique versions of the NetQ Agent running on all devices and the associated OS
-    - Full-screen: view NetQ Agent status and version across all devices
-- `netq show agents`
-    - View NetQ Agent status, uptime, and version across all devices
 
 {{<tabs "TabID1549" >}}
 

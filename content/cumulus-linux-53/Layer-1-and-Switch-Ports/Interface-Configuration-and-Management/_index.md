@@ -624,11 +624,7 @@ interface.swp1.enable_media_depended_linkup_flow=TRUE
 interface.swp1.enable_port_short_tuning=TRUE
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
+Reload `switchd` with the `sudo systemctl reload switchd.service` command.
 
 {{< /tab >}}
 {{< /tabs >}}

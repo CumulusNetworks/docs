@@ -20,9 +20,9 @@ To monitor the inventory of a given switch or DPU, refer to {{<link title="Switc
 
 ## Access Networkwide Inventory Data
 
-The NetQ UI provides the Inventory/Devices card for monitoring networkwide inventory information for all switches, hosts, and DPUs. Individual device summary cards provide a more detailed view of inventory information for all switches, hosts, and DPUs on a networkwide basis.
+The Inventory/Devices card displays networkwide inventory information for all switches, hosts, and DPUs.
 
-{{<img src="/images/netq/inventory-devices-l2-42.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switches-os-l2-42.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-hosts-l2-42.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/dpu-inventory-platform-l2-42.png" width="200">}}
+{{<img src="/images/netq/inventory-devices-l2-42.png" width="200">}}
 
 The NetQ CLI provides detailed network inventory information through its `netq show inventory` command.
 
@@ -41,14 +41,10 @@ To view the quantity of devices in your network, open the Inventory/Devices card
 
 ### View All Switches
 
-You can view all stored attributes for all switches in your network from either the Inventory/Devices or Inventory/Switches cards:
+You can view all stored attributes for all switches in your network from either the Inventory/Devices card:
 - Open the full-screen Inventory/Devices card and select **Ethernet switches**:
 
     {{<figure src="/images/netq/inventory-devices-switches.png" alt="full-screen inventory/devices card displaying a list of switches" width="900">}}
-
-- Open the full-screen Inventory/Switches card and select **Show All**:
-
-    {{<figure src="/images/netq/inventory-switches-show-all.png" alt="full-screen inventory/switches card displaying a list of switches" width="900">}}
 
 ### View Hosts
 
@@ -123,28 +119,6 @@ It can be useful to know the quantity and ratio of many components deployed in y
    - Percentage of this type as compared to all component types
 
    {{<figure src="/images/netq/large-switches-inventory-devices.png" width="650">}}
-
-{{</tab>}}
-
-{{<tab "Inventory/Switches">}}
-
-1. Locate the Inventory/Switches card on your workbench.
-
-2. Select a specific component from the dropdown menu.
-
-    {{<figure src="/images/netq/inventory-switch-medium-dropdown-400.png" width="200">}}
-
-3. Hover over any of the segments in the distribution chart to highlight a specific component.
-
-   When you <em>hover</em>, a tooltip appears displaying:
-
-   - Name or value of the component type, such as the version number or status
-   - Total number of switches with that type of component deployed compared to the total number of switches
-   - Percentage of this type with respect to all component types
-
-4. Expand the card to display the same information separated by hardware and software:
-
-   {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="500">}}
 
 {{</tab>}}
 
@@ -228,28 +202,6 @@ spine04           VX                   CL              x86_64   VX              
 
 {{</tab>}}
 
-{{<tab "Inventory/Switches" >}}
-
-1. Locate the Inventory/Switches card on your workbench.
-
-2. Hover over a segment of the ASIC graph in the distribution chart.
-
-    The same information is available on the summary tab of the large size card.
-
-    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="700">}}
-
-3. Hover over the card header and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/08-Microprocessor-Chips/computer-chip-core.svg" height="14" width="14"/> to view the ASIC vendor and model distribution.
-
-4. Hover over charts to view the name of the ASIC vendors or models, how many switches have that vendor or model deployed, and the percentage of this number compared to the total number of switches.
-
-    {{<figure src="/images/netq/inventory-switch-large-asic-tab-230.png" width="700">}}
-
-5. Change to the full-screen card to view all of the available ASIC information. Note that if you are running CumulusVX switches, no detailed ASIC information is available.
-
-    {{<figure src="/images/netq/inventory-switch-fullscr-asic-tab-320.png" width="700">}}
-
-{{</tab>}}
-
 {{<tab "netq show inventory" >}}
 
 To view information about the ASIC installed on your devices, run:
@@ -322,28 +274,6 @@ mlx-2700-11       NVIDIA               Spectrum                       MT52132   
 
 {{</tab>}}
 
-{{<tab "Inventory/Switches">}}
-
-1. Locate the Inventory/Switches card on your workbench.
-
-2. Hover over the card, and change to the large card using the size picker.
-
-3. Hover over the header and click {{<img src="/images/netq/platform-icon.png" height="14" width="14">}}.
-
-    {{<figure src="/images/netq/inventory-switch-large-platform-tab.png" width="500">}}
-
-4. Hover over a segment in the Vendor or Platform graphic to view how many switches deploy the specified vendor or platform.
-
-    Context sensitive highlighting is also employed here, such that when you select a vendor, the corresponding platforms are also highlighted; and vice versa.
-
-5. Click either **Show All** link to open the full-screen card.
-
-6. Click **Platform**.
-
-    {{<figure src="/images/netq/inventory-switch-fullscr-platform-tab-320.png" width="700">}}
-
-{{</tab>}}
-
 {{<tab "netq show inventory" >}}
 
 To view a list of motherboards installed in your switches and hosts, run:
@@ -409,24 +339,6 @@ st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:2
 4. Click **All Hosts** to view the CPU information for your host servers.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-320.png" width="700" >}}
-
-{{</tab>}}
-
-{{<tab "Inventory/Switches" >}}
-
-1. Locate the Inventory/Switches card on your workbench.
-
-2. Hover over a segment of the CPU graph in the distribution chart.
-
-    The same information is available on the summary tab of the large size card.
-
-    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="700">}}
-
-3. Hover over the card, and change to the full-screen card using the size picker.
-
-4. Click **CPU**.
-
-    {{<figure src="/images/netq/inventory-switch-fullscr-cpu-tab-320.png" width="700" >}}
 
 {{</tab>}}
 
@@ -583,24 +495,6 @@ spine02           vda             disk             N/A                6G        
 4. Click **All Hosts** to view the memory size for all host servers.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
-
-{{</tab>}}
-
-{{<tab "Inventory/Switches" >}}
-
-1. Locate the medium Inventory/Switches card on your workbench.
-
-2. Hover over a segment of the memory graph in the distribution chart.
-
-    The same information is available on the summary tab of the large size card.
-
-    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="700">}}
-
-3. Hover over the card, and change to the full-screen card using the size picker.
-
-4. Click **Memory**.
-
-    {{<figure src="/images/netq/inventory-switch-fullscr-memory-tab-320.png" width="700">}}
 
 {{</tab>}}
 
@@ -1426,24 +1320,6 @@ You can view software components deployed on all switches and hosts, or on all t
 
 {{</tab>}}
 
-{{<tab "Inventory/Switches" >}}
-
-1. Locate the Inventory/Switches card on your workbench.
-
-2. Hover over a segment of the OS graph in the distribution chart.
-
-    The same information is available on the summary tab of the large size card.
-
-    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="700">}}
-
-3. Hover over the card, and change to the full-screen card using the size picker.
-
-4. Click **OS**.
-
-    {{<figure src="/images/netq/inventory-switch-fullscr-os-tab-320.png" width="700">}}
-
-{{</tab>}}
-
 {{<tab "netq show inventory" >}}
 
 To view OS information for your switches and host servers, run:
@@ -1750,44 +1626,6 @@ To view the NetQ Agents on all switches and hosts:
 </tbody>
 </table>
 </div>
-
-{{</tab>}}
-
-{{<tab "Inventory/Switches" >}}
-
-It is recommended that when you upgrade NetQ that you also upgrade the NetQ Agents. You can determine if you have covered all of your agents using the medium or large Switch Inventory card. To view the NetQ Agent distribution by version:
-
-1. Open the medium Switch Inventory card.
-
-2. View the number in the **Unique** column next to Agent.
-
-    {{<figure src="/images/netq/inventory-switch-medium-agent-highlight-230.png" width="200">}}
-
-3. If the number is greater than one, you have multiple NetQ Agent versions deployed.
-
-4. If you have multiple versions, hover over the Agent chart to view the count of switches using each version.
-
-5. For more detail, switch to the large Switch Inventory card.
-
-6. Hover over the card and click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/12-CD-Rom/cd.svg" height="20" width="20"/> to open the **Software** tab.  
-
-    {{<figure src="/images/netq/inventory-switch-large-software-tab-230.png" width="500">}}
-
-7. Hover over the chart on the right to view the number of switches using the various versions of the NetQ Agent.
-
-8. Hover over the Operating System chart to see which NetQ Agent versions are being run on each OS.  
-
-    {{<figure src="/images/netq/inventory-switch-large-software-tab-os-highlight-230.png" width="500">}}
-
-9. Click either chart to focus on a particular OS or agent version.
-
-10. To return to the full view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> in the filter tag.
-
-11. Filter the data on the card by switches that are having trouble communicating, by selecting *Rotten Switches* from the dropdown above the charts.
-
-12. Open the full screen Inventory/Switches card. The **Show All** tab is displayed by default, and shows the NetQ Agent status and version for all devices.
-
-    {{<figure src="/images/netq/inventory-switch-fullscr-show-all-tab-241.png" width="700">}}
 
 {{</tab>}}
 

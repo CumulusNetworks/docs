@@ -98,7 +98,7 @@ uptime    6 days, 22:03:49                       system uptime
 timezone  Etc/UTC                                system time zone
 ```
 
-To show system memory information, run the `nv show system memory` command:
+To show system memory information in bytes, run the `nv show system memory` command:
 
 ```
 cumulus@switch:~$ nv show system memory

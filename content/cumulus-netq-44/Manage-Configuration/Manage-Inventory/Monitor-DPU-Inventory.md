@@ -1,7 +1,7 @@
 ---
 title: DPU Inventory
 author: NVIDIA
-weight: 755
+weight: 760
 toc: 4
 ---
 

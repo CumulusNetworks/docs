@@ -1,7 +1,7 @@
 ---
 title: Host Inventory
 author: NVIDIA
-weight: 757
+weight: 750
 toc: 4
 ---
 

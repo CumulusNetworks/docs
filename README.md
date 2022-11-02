@@ -30,7 +30,7 @@ This repository contains the documentation hosted at docs.nvidia.com/networking-
 
 If you would like to contribute to the site, please fork and submit a pull request. Commit your changes to the `stage` branch.
 
-The docs team reviews the pull request and, if accepted, publishes.
+The docs team reviews the pull request and, if accepted, publishes the content.
 
 ## Content with Hugo
 Hugo uses Markdown for all site content. Content pages are in the /content folder.
@@ -46,8 +46,8 @@ create a subdirectory, for example, 'MySection', then add a \_index.md file. All
 ### Organization
 
 The `weight` parameter in the front matter determines the page ordering. Hugo arranges lower weights first, and is relative per section.
-Pages using `draft: true` in the front matter
-Use `hugo server -D` to include drafts.
+Pages set to `draft: true` in the front matter do not show when the local server is running.
+Use `hugo server -D` to include drafts and display them locally.
 
 ## Theme
 

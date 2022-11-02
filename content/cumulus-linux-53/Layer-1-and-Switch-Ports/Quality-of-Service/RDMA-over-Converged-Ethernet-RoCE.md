@@ -233,14 +233,28 @@ cumulus@switch:mgmt:~$ nv set qos traffic-pool roce-lossless memory-percent 60
 cumulus@switch:mgmt:~$ nv config apply
 ```
 
-To change the switch priority for RoCE lossy mode to 4 and allocate a memory allocation of 60 percent to the RoCE lossy traffic pool:
+To change the memory allocation of the RoCE lossy traffic pool to 60 percent and remap switch priority 4 to RoCE lossy traffic:
 
 ```
-cumulus@switch:mgmt:~$ nv set qos traffic-pool roce-lossy switch-priority 4
 cumulus@switch:mgmt:~$ nv set qos traffic-pool default-lossy switch-priority 0-3,5-7
 cumulus@switch:mgmt:~$ nv set qos traffic-pool roce-lossy memory-percent 60
 cumulus@switch:mgmt:~$ nv set qos traffic-pool default-lossy memory-percent 40
+cumulus@switch:mgmt:~$ nv set qos traffic-pool roce-lossy switch-priority 4
+cumulus@switch:mgmt:~$ nv set qos egress-queue-mapping default-global switch-priority 4 traffic-class 3
+cumulus@switch:mgmt:~$ nv set qos egress-queue-mapping default-global switch-priority 3 traffic-class 0
+cumulus@switch:mgmt:~$ nv set qos mapping default-global trust both
+cumulus@switch:mgmt:~$ nv set qos mapping default-global dscp 26 switch-priority 4
 cumulus@switch:mgmt:~$ nv config apply
+```
+
+To change the RoCE lossless switch priority from switch priority 3 to switch priority 2:
+
+```
+cumulus@switch:mgmt:~$ nv set qos pfc default-global switch-priority 2
+cumulus@switch:mgmt:~$ nv set qos egress-queue-mapping default-global switch-priority 2 traffic-class 3
+cumulus@switch:mgmt:~$ nv set qos egress-queue-mapping default-global switch-priority 3 traffic-class 0
+cumulus@switch:mgmt:~$ nv set qos mapping default-global trust both
+cumulus@switch:mgmt:~$ nv set qos mapping default-global dscp 26 switch-priority 2
 ```
 
 ## Related Information

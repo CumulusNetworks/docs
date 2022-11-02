@@ -5,7 +5,7 @@ weight: 730
 toc: 4
 ---
 
-With the NetQ UI and CLI, a user can monitor the inventory on a networkwide basis for all switches and hosts, or all switches. Inventory includes such items as the number of each device and its operating system. Additional details are available about the hardware and software components on individual switches, such as the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information.
+With the NetQ UI and CLI, a user can monitor the inventory on a networkwide basis for all switches, hosts, and DPUs. Inventory includes such items as the number of each device and its operating system. Additional details are available about the hardware and software components on individual switches, such as the motherboard, ASIC, microprocessor, disk, memory, fan and power supply information.
 The commands and cards available to obtain this type of information help you to answer questions such as:
 
 <!-- vale off -->

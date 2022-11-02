@@ -68,7 +68,7 @@ The following table describes the default classifications for various frame and 
 | port | Either | Either | Ignore any existing markings and use the default priority setting. |
 
 - If you use NVUE to configure QoS, you define which values are `trusted` with the `nv set qos mapping <profile> trust l2` command (COS) or the `nv set qos mapping <profile> trust l3` command (DSCP) .
-- If you use Linux commands to configure QoS, you define which values are `trusted` in the `/etc/cumulus/datapath/qos/qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `8021p` or `dscp`.
+- If you use Linux commands to configure QoS, you define which values are `trusted` in the `/etc/cumulus/datapath/qos/qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `802.1p` or `dscp`.
 
 ### Trust COS
 
@@ -973,7 +973,7 @@ source.customer2.cos_1.priority_source.8021p = [4]
 | `source.customer1.port_set` | The set of ports to which to apply the ingress marking trust policy.<br>In the following example, ports swp1, swp2, swp3, swp4, and swp6 are for `customer1`:<br>`source.customer1.port_set = swp1-swp4,swp6` |
 | `source.customer1.port_default_priority` | Define the default internal COS marking for unmarked or untrusted traffic.<br>In the following example, Cumulus Linux marks unmarked traffic or layer 2 traffic for `customer1` ports with internal COS 0:<br>`source.customer1.port_default_priority = 0` |
 | `source.customer1.cos_0.priority_source`  | Map the ingress DSCP values to an internal COS value for `customer1`.<br>In the following example, the set of DSCP values from 0 through 7 map to internal COS 0:<br>`source.customer1.cos_0.priority_source.dscp = [0,1,2,3,4,5,6,7]` |
-| `source.customer2.packet_priority_source_set` | Defines the ingress marking trust for `customer2`.<br>In the following example, COS is `trusted`:<br>`source.packet_priority_source_set = [cos]`  |
+| `source.customer2.packet_priority_source_set` | Defines the ingress marking trust for `customer2`.<br>In the following example, 802.1p is `trusted`:<br>`source.packet_priority_source_set = [802.1p]`  |
 | `source.customer2.port_set` | The set of ports to which to apply the ingress marking trust policy.<br>In the following example, ports swp5 and swp7 apply for `customer2`:<br>`source.customer2.port_set = swp5,swp7` |
 | `source.customer2.port_default_priority` | Define the default internal COS marking for unmarked or untrusted traffic.<br>In the following example, Cumulus Linux marks unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports with internal COS 0:<br>`source.customer2.port_default_priority = 0` |
 | `source.customer2.cos_0.priority_source` | Map the ingress COS values to an internal COS value for `customer2`.<br>The following example maps ingress COS value 4 to internal COS 1:<br>`source.customer2.cos_1.priority_source.8021p = [4]` |

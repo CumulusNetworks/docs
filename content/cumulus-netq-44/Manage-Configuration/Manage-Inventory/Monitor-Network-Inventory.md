@@ -122,28 +122,6 @@ It can be useful to know the quantity and ratio of many components deployed in y
 
 {{</tab>}}
 
-{{<tab "Inventory/Hosts">}}
-
-1. Locate the Inventory/Hosts card on your workbench.
-
-2. Select a specific component from the dropdown menu.
-
-    {{<img src="/images/netq/inventory-hosts-l2-42.png" width="200">}}
-
-3. Hover over any of the segments in the distribution chart to highlight a specific component.
-
-   When you <em>hover</em>, a tooltip appears displaying:
-
-   - Name or value of the component type, such as the version number or status
-   - Total number of switches with that type of component deployed compared to the total number of switches
-   - Percentage of this type with respect to all component types
-
-4. Expand the card to display the same information separated by hardware and software:
-
-   {{<figure src="/images/netq/inventory-hosts-l3-42.png" width="600">}}
-
-{{</tab>}}
-
 {{<tab "netq show inventory">}}
 
 To view switch components, run:
@@ -425,24 +403,6 @@ spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
 4. Click **All Hosts** to view the total disk size of all host servers.
 
     {{<figure src="/images/netq/inventory-devices-fullscr-allhosts-tab-241.png" width="700" >}}
-
-{{</tab>}}
-
-{{<tab "Inventory/Switches" >}}
-
-1. Locate the Inventory/Switches card on your workbench.
-
-2. Hover over a segment of the disk graph in the distribution chart.
-
-    The same information is available on the summary tab of the large size card.
-
-    {{<figure src="/images/netq/inventory-switch-large-sympathetic-highlight-400.png" width="700">}}
-
-3. Hover over the card, and change to the full-screen card using the size picker.
-
-4. Click **Disk**.
-
-    {{<figure src="/images/netq/inventory-switch-fullscr-disk-tab-320.png" width="700">}}
 
 {{</tab>}}
 

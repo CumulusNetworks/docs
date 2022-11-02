@@ -104,11 +104,7 @@ You can view hardware components deployed on all switches and hosts, or on all s
 
 ### View Components Summary
 
-It can be useful to know the quantity and ratio of many components deployed in your network to determine the scope of upgrade tasks, balance vendor reliance, or for detailed troubleshooting. Hardware and software component summary information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Devices card: view ASIC, NetQ Agent version, OS, and platform information on all devices
-- Inventory/Switches card: view  ASIC, CPU, disk, NetQ Agent version, OS, and platform information on all switches
-- `netq show inventory` command: view ASIC, CPU, disk, OS, and ports on all devices
+It can be useful to know the quantity and ratio of many components deployed in your network to determine the scope of upgrade tasks, balance vendor reliance, or for detailed troubleshooting.
 
 {{<tabs "View component summary">}}
 
@@ -171,28 +167,6 @@ It can be useful to know the quantity and ratio of many components deployed in y
 4. Expand the card to display the same information separated by hardware and software:
 
    {{<figure src="/images/netq/inventory-hosts-l3-42.png" width="600">}}
-
-{{</tab>}}
-
-{{<tab "Inventory/DPUs">}}
-
-1. Locate the Inventory/Switches card on your workbench.
-
-2. Select a specific component from the dropdown menu.
-
-    {{<figure src="/images/netq/dpu-inventory-platform-l2-42.png" width="200">}}
-
-3. Hover over any of the segments in the distribution chart to highlight a specific component.
-
-   When you <em>hover</em>, a tooltip appears displaying:
-
-   - Name or value of the component type, such as the version number or status
-   - Total number of switches with that type of component deployed compared to the total number of switches
-   - Percentage of this type with respect to all component types
-
-4. Expand the card to display the same information separated by hardware and software:
-
-   {{<figure src="/images/netq/dpu-inventory-l3-42.png" width="600">}}
 
 {{</tab>}}
 

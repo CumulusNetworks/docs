@@ -174,7 +174,7 @@ cumulus@switch:~$ netq leaf01 show macs count
 Count of matching mac records: 55
 ```
 
-This example show the addresses on the *bridge* egress port on the *leaf01* switch:
+This example shows the addresses on the *bridge* egress port on the *leaf01* switch:
 
 ```
 cumulus@switch:~$ netq leaf01 show macs egress-port bridge

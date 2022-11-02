@@ -582,7 +582,7 @@ To see MAC address commentary, use the `netq show mac-commentary` command. The f
 
 #### MAC Address Configured Locally
 
-In this example, the 46:38:39:00:00:44 MAC address was configured on the VlanA-1 interface of multiple switches so we see the MAC configured commentary on all of those switches.
+In this example, the 46:38:39:00:00:44 MAC address was configured on the VlanA-1 interface of multiple switches, so we see the MAC configured commentary on each of them.
 
 ```
 cumulus@server-01:~$ netq show mac-commentary 46:38:39:00:00:44 between now and 1hr 

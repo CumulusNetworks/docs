@@ -141,14 +141,6 @@ netq-ts            Mellanox             Spectrum                       MT52132  
 
 ### View Motherboard Information for a Switch
 
-Motherboard/platform information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Switches card
-    - Medium/Large: view platform distribution across on all switches (graphic)
-    - Full-screen: view platform vendor, model, manufacturing date, revision, serial number, MAC address, series for a switch (table)
-- `netq show inventory board` command
-    - View motherboard vendor, model, base MAC address, serial number, part number, revision, and manufacturing date on a switch
-
 {{<tabs "TabID164" >}}
 
 {{<tab "NetQ UI">}}
@@ -200,11 +192,6 @@ Use the `opta` option without the `hostname` option to view the motherboard data
 {{</tabs>}}
 
 ### View CPU Information for a Switch
-
-CPU information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Switches card: view CPU architecture, model, maximum operating frequency, the number of cores, and data on a switch (table)
-- `netq show inventory cpu` command: view CPU architecture, model, maximum operating frequency, and the number of cores on a switch
 
 {{<tabs "TabID232" >}}
 
@@ -263,11 +250,6 @@ netq-ts           x86_64   Intel Xeon Processor (Skylake, N/A        8
 {{</tabs>}}
 
 ### View Disk Information for a Switch
-
-Disk information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Switches card: view disk vendor, size, revision, model, name, transport, and type on a switch (table)
-- `netq show inventory disk` command: view disk name, type, transport, size, vendor, and model on all devices
 
 {{<tabs "TabID336" >}}
 
@@ -392,15 +374,7 @@ netq-ts           DIMM 3          RAM              16384 MB   Unknown    QEMU   
 {{</tabs>}}
 
 ## View Switch Software Inventory
-
-You can view software components deployed on a given switch in your network.
-
 ### View Operating System Information for a Switch
-
-OS information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Switches card: view OS vendor, version, and version ID on a switch (table)
-- `netq show inventory os`: view OS name and version on a switch
 
 {{<tabs "TabID1099" >}}
 
@@ -641,7 +615,7 @@ Cumulus Linux, SONiC, and NetQ run many services to deliver the various features
 - **chrony**:  `chrony` service
 - **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
 - **cumulus-chassis-ssh**: cumulus-chassis-ssh
-- **cumulus-chassisd**:  cumulus-chassisd
+- **cumulus-chassisd**: cumulus-chassisd
 - **database**: database
 - **dhcp_relay**: DHCP relay service
 - **docker**: Docker container service

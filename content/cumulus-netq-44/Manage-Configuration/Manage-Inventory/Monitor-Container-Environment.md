@@ -8,7 +8,7 @@ The NetQ Agent monitors many aspects of containers on your network by integratin
 
 - **Identity**: Every container's IP and MAC address, name, image, and more. NetQ can locate containers across the fabric based on a container's name, image, IP or MAC address, and protocol and port pair.
 - **Port mapping on a network**: Protocol and ports exposed by a container. NetQ can identify containers exposing a specific protocol and port pair on a network.
-- **Connectivity**: Information about network connectivity for a container, including adjacency and identifying  a top of rack switch's effects on containers.
+- **Connectivity**: Information about network connectivity for a container, including adjacency and identifying a top of rack switch's effects on containers.
 
 This topic assumes a reasonable familiarity with Kubernetes terminology and architecture.
 
@@ -20,7 +20,7 @@ The NetQ Kubernetes integration enables network administrators to:
 
 <!-- vale off -->
 - Identify and locate pods, deployment, replica-set and services deployed within the network using IP, name, label, and so forth.
-- Track network connectivity of all pods of a service, deployment and replica set.
+- Track network connectivity of all pods of a service, deployment, and replica set.
 - Locate what pods have been deployed adjacent to a top of rack (ToR) switch.
 - Check the impact on a pod, services, replica set or deployment by a specific ToR switch.
 <!-- vale on -->
@@ -66,7 +66,7 @@ To enable NetQ Agent monitoring of the containers using the Kubernetes API, you 
 
 1. Install and configure the NetQ Agent and CLI on the master node.
 
-     Follow the steps outlined in {{<link url="Install-NetQ-Agents">}} and  {{<link url="Install-NetQ-CLI">}}.
+     Follow the steps outlined in {{<link url="Install-NetQ-Agents">}} and {{<link url="Install-NetQ-CLI">}}.
 
 2. Enable Kubernetes monitoring by the NetQ Agent on the master node.
 
@@ -373,7 +373,7 @@ You can filter this information to focus on pods on a particular node:
 
 ## View Kubernetes Node Information
 
-You can view detailed information about a node, including their role in the cluster,  pod CIDR and kubelet status. This example shows all the nodes in the cluster with *server11* as the master. Note that *server11* acts as a worker node along with the other nodes in the cluster, *server12*, *server13*, *server22*, *server23*, and *server24*.
+You can view detailed information about a node, including their role in the cluster, pod CIDR and kubelet status. This example shows all the nodes in the cluster with *server11* as the master. Note that *server11* acts as a worker node along with the other nodes in the cluster, *server12*, *server13*, *server22*, *server23*, and *server24*.
 
     cumulus@host:~$ netq server11 show kubernetes node
     Matching kube_cluster records:
@@ -522,7 +522,7 @@ You can search for information about your Kubernetes clusters using labels. A la
 
 You can view the connectivity graph of a Kubernetes pod, seeing its replica set, deployment or service level. The connectivity graph starts with the server where you deployed the pod, and shows the peer for each server interface. This data appears in a similar manner as the `netq trace` command, showing the interface name, the outbound port on that interface, and the inbound port on the peer.
 
-In this example shows connectivity at the deployment level, where the *nginx-8586cf59-wjwgp* replica is in a pod on the *server22* node. It has four possible commumication paths, through interfaces *swp1-4* out varying ports to peer interfaces *swp7* and *swp20* on *torc-21*, *torc-22*, *edge01* and *edge02* nodes. Similarly, it shows the connections for two additional `nginx` replicas.
+In this example shows connectivity at the deployment level, where the *nginx-8586cf59-wjwgp* replica is in a pod on the *server22* node. It has four possible communication paths, through interfaces *swp1-4* out varying ports to peer interfaces *swp7* and *swp20* on *torc-21*, *torc-22*, *edge01* and *edge02* nodes. Similarly, it shows the connections for two additional `nginx` replicas.
 
     cumulus@host:~$ netq server11 show kubernetes deployment name nginx connectivity
     nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-21
@@ -538,7 +538,7 @@ In this example shows connectivity at the deployment level, where the *nginx-858
 
 ## View Kubernetes Services Information
 
-You can show details about the Kubernetes services in a cluster, including service name, labels associated with the service, type of service, associated IP address, an external address if a public service, and ports used. This example show the services available in the Kubernetes cluster:
+You can show details about the Kubernetes services in a cluster, including service name, labels associated with the service, type of service, associated IP address, an external address if a public service, and ports used. This example shows the services available in the Kubernetes cluster:
 
     cumulus@host:~$ netq show kubernetes service
     Matching kube_service records:
@@ -582,7 +582,7 @@ To see the connectivity of a given Kubernetes service, include the connectivity 
 
 ### View the Impact of Connectivity Loss for a Service
 
-You can preview the impact on the service availabilty based on the loss of particular node using the `impact` option. The output is color coded (not shown in the example below) so you can clearly see the impact: green shows no impact, yellow shows partial impact, and red shows full impact.
+You can preview the impact on the service availability based on the loss of particular node using the `impact` option. The output is color coded (not shown in the example below) so you can clearly see the impact: green shows no impact, yellow shows partial impact, and red shows full impact.
 
     cumulus@host:~$ netq server11 show impact kubernetes service name calico-etcd
     calico-etcd -- calico-etcd-pfg9r -- server11:swp1:torbond1 -- swp6:hostbond2:torc-11
@@ -651,11 +651,11 @@ You can determine the impact on the Kubernetes deployment in the event a host or
 
 If you need to perform maintenance on the Kubernetes cluster itself, use the following commands to bring the cluster down and then back up.
 
-1. If you need, get the list of all the nodes in the Kubernetes cluster:
+1. Display the list of all the nodes in the Kubernetes cluster:
 
        cumulus@host:~$ kubectl get nodes 
 
-1. Have Kubernetes to drain the node so that the pods running on it are gracefully scheduled elsewhere:
+1. Tell Kubernetes to drain the node so that the pods running on it are gracefully scheduled elsewhere:
 
        cumulus@host:~$ kubectl drain <node name> 
 

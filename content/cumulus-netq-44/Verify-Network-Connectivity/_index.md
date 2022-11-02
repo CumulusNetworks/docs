@@ -802,7 +802,7 @@ To view the results:
 
 8. If there are a large number of warnings or failures, view the associated messages by selecting **Failures** or **Warning** in the filter above the table. This might help narrow the failures down to a particular device or small set of devices that you can investigate further.
 
-9. Look for a consistent number of paths, MTU, hops in the small charts under the heat map. Changes over time here might correlate with the     messages and give you a clue to any specific issues. Note if the number of bad nodes changes over time. Devices that become unreachable are often the cause of trace failures.
+9. Look for a consistent number of paths, MTU, hops in the small charts under the heat map. Changes over time here might correlate with events. Note if the number of bad nodes changes over time. Devices that become unreachable are often the cause of trace failures.
 
 10. View the available paths for each run, by selecting **Paths** in the filter above the table.
 

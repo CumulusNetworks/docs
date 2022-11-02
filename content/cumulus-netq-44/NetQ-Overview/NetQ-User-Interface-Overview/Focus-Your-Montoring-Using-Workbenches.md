@@ -53,7 +53,7 @@ To create a duplicate of an existing workbench:
 
 ### Remove a Workbench
 
-Admin accounts can remove any workbench, except for the default NetQ Workbench. Users accounts can only remove workbenches they have created.
+Admin accounts can remove any workbench, except for the default NetQ Workbench. User accounts can only remove workbenches they have created.
 
 To remove a workbench:
 

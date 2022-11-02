@@ -114,7 +114,7 @@ It can be useful to know the quantity and ratio of many components deployed in y
 
 2. Hover over the card, and change to the large size card using the size picker.
 
-   By default the Switches tab shows the total number of switches, ASIC vendors, OS versions, NetQ Agent versions, and specific platforms deployed across all your switches.
+   By default, the Switches tab shows the total number of switches, ASIC vendors, OS versions, NetQ Agent versions, and specific platforms deployed across all your switches.
 
    You can hover over any of the segments in a component distribution chart to highlight a specific type of the given component. When you *hover*, a tooltip appears displaying:
 

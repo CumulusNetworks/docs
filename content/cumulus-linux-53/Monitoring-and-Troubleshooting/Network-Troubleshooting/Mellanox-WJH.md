@@ -8,6 +8,8 @@ toc: 4
 - The WJH agent enables you to stream detailed and contextual telemetry for off-switch analysis with tools, such as [NVIDIA NetQ]({{<ref "/cumulus-netq-41" >}}).
 - The WJH service (`what-just-happened`) enables you to diagnose network problems by looking at dropped packets. WJH can monitor layer 1, layer 2, layer 3, and tunnel related issues.
 
+<!--The WJH service is enabled and running by default.-->
+
 ## Configure WJH
 
 You can choose which packet drops you want to monitor by creating channels and setting the packet drop categories (layer 1, layer 2, layer 3, and tunnel) you want to monitor.
@@ -46,7 +48,7 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/what-just-happened/what-just-happened.json` file:
 - For each drop category you want to monitor, include the drop category value inside the square brackets ([]). 
-- For each drop category you do **not** want to monitor, remove the drop category value from inside the square brackets ([]).
+- For each drop category you do **not** want to monitor, remove the drop category value from inside the square brackets.
 
 After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
 
@@ -107,8 +109,8 @@ You can run the following commands from the command line.
 | -------  | ----------- |
 | `what-just-happened poll` | Shows information about packet drops for all the channels you configure. The output includes the reason for the drop and the recommended action to take.<br><br>The `what-just-happened poll <channel>` command shows information for the channel you specify. |
 | `what-just-happened poll --aggregate` | Shows information about dropped packets aggregated by the reason for the drop. This command also shows the number of times the dropped packet occurs.<br><br>The `what-just-happened poll <channel> --aggregate` command shows information for the channel you specify. |
-| `what-just-happened poll --export` | Saves information about dropped packets to a file in PCAP format.<br><br>The `what-just-happened poll <channel> --export` command shows information for the channel you specify. |
-| `what-just-happened poll --export --no_metadata` | Saves information about dropped packets to a file in PCAP format without metadata.<br><br> The `what-just-happened poll <channel> --export --no_metadata` command shows information for the channel you specify.|
+| `what-just-happened poll --export` | Saves information about dropped packets to a file in PCAP format.<br><br>The `what-just-happened poll <channel> --export` command saves information for the channel you specify. |
+| `what-just-happened poll --export --no_metadata` | Saves information about dropped packets to a file in PCAP format without metadata.<br><br> The `what-just-happened poll <channel> --export --no_metadata` command saves information for the channel you specify.|
 | `what-just-happened dump` | Displays all diagnostic information on the command line. |
 
 Run the `what-just-happened -h` command to see all the WJH command options.
@@ -120,15 +122,17 @@ Run the `what-just-happened -h` command to see all the WJH command options.
 
 To show all dropped packets and the reason for the drop, run the NVUE `nv show system wjh packet-buffer` command or the `what-just-happened poll` command.
 
+The following example shows information about layer 1 packet drops:
+
 ```
-cumulus@switch:~$ what-just-happened poll
-#    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action
-                                                                                                                                   Group
----- ---------------------- ------ ------ ----- ------------------ ------------------ -------- ------------ ------------ --------- ------ --------- -----------------------------------------------
-1    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
-2    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
-3    21/06/16 12:02:42.052  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
-4    21/06/16 12:02:42.069  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
+cumulus@switch:~$ nv show system wjh packet-buffer
+#   dMAC  dPort  Dst IP:Port  EthType  Drop group  IP Proto  Drop reason - Recommended action                         Severity  sMAC  sPort    Src IP:Port  Timestamp              VLAN
+--  ----  -----  -----------  -------  ----------  --------  -------------------------------------------------------  --------  ----  -------  -----------  ---------------------  ----
+1   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp17    N/A          22/11/03 01:00:35.458  N/A
+2   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp18    N/A          22/11/03 01:00:35.458  N/A
+3   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp19    N/A          22/11/03 01:00:35.458  N/A
+4   N/A   N/A    N/A          N/A      L1          N/A       Generic L1 event - Check layer 1 aggregated information  Warn      N/A   swp20    N/A          22/11/03 01:00:35.458  N/A
+
 ```
 
 The following example shows that packets drop five times because the source MAC address equals the destination MAC address:

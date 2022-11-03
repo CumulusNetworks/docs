@@ -1471,6 +1471,9 @@ This simulation starts with the example BGP configuration. The demo is pre-confi
 
 To validate the configuration, run the commands listed in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/Troubleshooting/" text="Troubleshooting">}} section.
 
+{{%notice note%}}
+This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation will be available soon.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

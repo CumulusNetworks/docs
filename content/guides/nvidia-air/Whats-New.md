@@ -7,11 +7,16 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## October 2022
+## November 2022
 <!-- Air:WhatsNew -->
+### 82.2022.1103-013
+- Fixed display of long organization names
+<!-- Air:WhatsNew -->
+
+## October 2022
 ### 82.2022.1031
 - Updated {{<exlink url="https://air.nvidia.com/api/" text="Swagger documentation for Air API">}}
-<!-- Air:WhatsNew -->
+
 ### 82.2022.1027
 - Updated Air API & Python SDK Docs to include examples: https://docs.nvidia.com/networking-ethernet-software/guides/nvidia-air/Air-Python-SDK/
 

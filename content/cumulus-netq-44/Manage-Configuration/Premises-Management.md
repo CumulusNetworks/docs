@@ -34,7 +34,7 @@ In this deployment model, each NetQ deployment can be installed separately. The 
 
 To configure a these premises so that their data can be viewed from one premises:
 
-1. On the workbench, under **Premises**, click {{<img src="/images/netq/Down.svg" width="14">}}.
+1. In the workbench header, select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown.
 
 2. Select **Manage Premises**, then **External Premises**.
 
@@ -62,7 +62,7 @@ In this deployment model, the data is stored and can be viewed only from the Net
 
 <div class="notices note"><p>The primary NetQ premises must be installed before the secondary premises can be added. For the secondary premises, create the premises here, then install them.</p></div>
 
-1. On the workbench, under **Premises**, click {{<img src="/images/netq/Down.svg" width="14">}}.
+1. In the workbench header, select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown.
 
 2. Click **Manage Premises**. Your primary premises (*OPID0*) is shown by default.
 
@@ -90,11 +90,9 @@ In this deployment model, the data is stored and can be viewed only from the Net
 
 To rename an existing premises:
 
-1. On the workbench, under **Premises**, click {{<img src="/images/netq/Down.svg" width="14">}}, then **Manage Premises**.
+1. In the workbench header, select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown, then **Manage premises**.
 
-1. To rename an external premises, click **External Premises**.
-
-1. On the right side of the screen, select a premises to rename, then click {{<img src="/images/old_doc_images/pencil-2.png" width="16">}}.
+1. Select a premises to rename, then click {{<img src="/images/old_doc_images/pencil-2.png" width="16">}} Edit.
 
 1. Enter the new name for the premises, then click **Done**.
 
@@ -108,8 +106,8 @@ To view the physical server or VM configuration:
 
 2. Under **Admin**, select **Management**.
 
-3. Locate the System Server Info card.
+3. Locate the System Server Info card:
 
-    {{<figure src="/images/netq/netq-mgmt-sys-server-info-card-300.png" width="500">}}
+    {{<figure src="/images/netq/system-server-info-card.png" alt="system server info card displaying appliance version, IP address, OS version, and NetQ version" width="500">}}
 
     If no data is present on this card, it is likely that the NetQ Agent on your server or VM is not running properly or the underlying streaming services are impaired.

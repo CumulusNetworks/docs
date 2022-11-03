@@ -794,6 +794,10 @@ mac-id                          none               Override anycast-id
 state        up                 up                 The state of the interface
 ```
 
+{{%notice note%}}
+This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation will be available soon.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< /tabs >}}
 

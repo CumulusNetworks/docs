@@ -47,14 +47,14 @@ NVUE reloads the `switchd` service automatically. You do **not** have to run the
 
 When a frame or packet arrives on the switch, Cumulus Linux maps it to an internal COS (switch priority) value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
 
-You can define which values are `trusted`: COS, DSCP, or both.
+You can define which values are `trusted`: 802.1p, DSCP, or both.
 
 The following table describes the default classifications for various frame and switch priority configurations:
 
 | Setting | VLAN Tagged? | IP or Non-IP | Result |
 | ------------------------------------------ | ------ | ---- | ---- |
-| PCP (802.1p) | Yes | IP | Accept incoming 802.1p COS marking. |
-| PCP (802.1p)| Yes | Non-IP | Accept incoming 802.1p COS marking. |
+| PCP (802.1p) | Yes | IP | Accept incoming 802.1p marking. |
+| PCP (802.1p)| Yes | Non-IP | Accept incoming 802.1p  marking. |
 | PCP (802.1p)| No | IP | Use the default priority setting. |
 | PCP (802.1p)| No | Non-IP | Use the default priority setting. |
 | DSCP | Yes | IP | Accept incoming DSCP IP header marking. |
@@ -62,24 +62,24 @@ The following table describes the default classifications for various frame and 
 | DSCP | No | IP | Accept incoming DSCP IP header marking. |
 | DSCP | No | Non-IP | Use the default priority setting. |
 | PCP (802.1p) and dscp | Yes | IP | Accept incoming DSCP IP header marking. |
-| PCP (802.1p) and dscp | Yes | Non-IP | Accept incoming 802.1p COS marking. |
+| PCP (802.1p) and dscp | Yes | Non-IP | Accept incoming 802.1p marking. |
 | PCP (802.1p) and dscp | No | IP | Accept incoming DSCP IP header marking. |
 | PCP (802.1p) and dscp | No | Non-IP | Use the default priority setting. |
 | port | Either | Either | Ignore any existing markings and use the default priority setting. |
 
-- If you use NVUE to configure QoS, you define which values are `trusted` with the `nv set qos mapping <profile> trust l2` command (COS) or the `nv set qos mapping <profile> trust l3` command (DSCP) .
+- If you use NVUE to configure QoS, you define which values are `trusted` with the `nv set qos mapping <profile> trust l2` command (802.1p) or the `nv set qos mapping <profile> trust l3` command (DSCP) .
 - If you use Linux commands to configure QoS, you define which values are `trusted` in the `/etc/cumulus/datapath/qos/qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `802.1p` or `dscp`.
 
-### Trust COS
+### Trust 802.1p Marking
 
-To trust ingress COS markings:
+To trust 802.1p markings:
 
 {{< tabs "TabID97 ">}}
 {{< tab "NVUE Commands ">}}
 
-When COS (`l2`) is `trusted`, Cumulus Linux classifies these ingress COS values to switch priority values:
+When 802.1p (`l2`) is `trusted`, Cumulus Linux classifies these ingress COS values to switch priority values:
 
-|Switch Priority |Ingress COS (PCP) |
+|Switch Priority |802.1p (PCP) |
 | ----------- | ---------- |
 |0 |0|
 |1 |1|
@@ -90,7 +90,7 @@ When COS (`l2`) is `trusted`, Cumulus Linux classifies these ingress COS values 
 |6 |6|
 |7 |7|
 
-The PCP number is the ingress COS; for example PCP 0 maps to switch priority 0.
+The PCP number is the incoming 802.1p marking; for example PCP 0 maps to switch priority 0.
 
 To change the default profile to map PCP 0 to switch priority 4:
 
@@ -115,7 +115,7 @@ If you configure the trust to be `l2` but do not specify any PCP to switch prior
 
 Set `traffic.packet_priority_source_set = [802.1p]`.
 
-When COS (8021p) is `trusted`, the following lines classify ingress COS values to switch priority (internal COS) values:
+When 802.1p marking is `trusted`, the following lines classify ingress 802.1p values to switch priority (internal COS) values:
 
 ```
 traffic.cos_0.priority_source.8021p = [0]
@@ -128,15 +128,15 @@ traffic.cos_6.priority_source.8021p = [6]
 traffic.cos_7.priority_source.8021p = [7]
 ```
 
-The `traffic.cos_` number is the switch priority value; for example ingress COS 0 maps to switch priority 0.
+The `traffic.cos_` number is the switch priority value; for example 802.1p 0 maps to switch priority 0.
 
-To map ingress COS 4 to switch priority 0, configure the `traffic.cos_0.priority_source.8021p` setting  to 4 in the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+To map 802.1p 4 to switch priority 0, configure the `traffic.cos_0.priority_source.8021p` setting to 4 in the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
 traffic.cos_0.priority_source.8021p = [4]
 ```
 
-You can map multiple ingress COS values to the same switch priority value. For example, to map ingress COS values 0, 1, and 2 to switch priority 0:
+You can map multiple values to the same switch priority value. For example, to map 802.1p values 0, 1, and 2 to switch priority 0:
 
 ```
 traffic.cos_0.priority_source.8021p = [0, 1, 2]
@@ -158,7 +158,7 @@ traffic.cos_7.priority_source.8021p = [7]
 {{< /tab >}}
 {{< /tabs >}}
 
-To configure additional settings, such as apply a custom COS profile to specific interfaces, see [Port Groups](#port-groups).
+To configure additional settings, such as apply a custom profile to specific interfaces, see [Port Groups](#port-groups).
 
 ### Trust DSCP
 
@@ -288,8 +288,8 @@ NVUE does not currently provide commands to mark or remark traffic.
 
 You can mark or remark traffic in two ways:
 
- * Use [iptables](#iptables) to match packets and set COS or DSCP values.
- * Use ingress COS or DSCP to remark an existing COS or DSCP value to a new value.
+ * Use [iptables](#iptables) to match packets and set 802.1p COS or DSCP values.
+ * Use ingress COS or DSCP to remark an existing 802.1p COS or DSCP value to a new value.
 
 ### iptables
 
@@ -306,7 +306,7 @@ For more information on configuring and applying ACLs, refer to {{<link title="N
 
 You must use `ebtables` to match and mark layer 2 bridged traffic. You can match traffic with any supported ebtables rule.  
 
-To set the new COS value when traffic matches, use `-A FORWARD -o <interface> -j setqos --set-cos <value>`.
+To set the new 802.1p COS value when traffic matches, use `-A FORWARD -o <interface> -j setqos --set-cos <value>`.
 
 {{% notice info %}}
 You can only set COS on a *per-egress interface* basis. Cumulus Linux does not support `ebtables` based matching on ingress.
@@ -316,9 +316,9 @@ The configured action always has the following conditions:
 - The rule is always part of the `FORWARD` chain.
 - The interface (`<interface>`) is a physical swp port.
 - The *jump* action is always `setqos` (lowercase).
-- The `--set-cos` value is a COS value between 0 and 7.
+- The `--set-cos` value is a 802.1p COS value between 0 and 7.
 
-For example, to set traffic leaving interface `swp5` to COS value `4`:
+For example, to set traffic leaving interface `swp5` to 802.1p COS value `4`:
 
 ```
 -A FORWARD -o swp5 -j setqos --set-cos 4
@@ -358,21 +358,21 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 -A FORWARD -o swp11 -j SETQOS --set-dscp-class cs6
 ```
 
-### Ingress COS or DSCP for Marking
+### 802.1p or DSCP for Marking
 
-To enable global remarking of COS, DSCP or both COS and DSCP values, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. For example, to enable the remarking of only COS values:
+To enable global remarking of 802.1p, DSCP or both 802.1p and DSCP values, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. For example, to enable the remarking of only 802.1p values:
 
 ```
 traffic.packet_priority_remark_set = [802.1p]
 ```
 
-You remark COS or DSCP with the `priority_remark.8021p` or `priority_remark.dscp` setting. The internal `cos_` value determines the egress 802.1p COS or DSCP remarking. For example, to remark internal COS 0 to egress COS 4:
+You remark 802.1p or DSCP with the `priority_remark.8021p` or `priority_remark.dscp` setting. The switch priority (internal `cos_`) value determines the egress 802.1p or DSCP remarking. For example, to remark switch priority 0 to egress 802.1p 4:
 
 ```
 traffic.cos_0.priority_remark.8021p = [4]
 ```
 
-To remark internal COS 0 to egress DSCP 22:
+To remark switch priority 0 to egress DSCP 22:
 
 ```
 traffic.cos_0.priority_remark.dscp = [22]
@@ -382,14 +382,14 @@ traffic.cos_0.priority_remark.dscp = [22]
 The `#` in the configuration file is a comment. The file comments out the `traffic.cos_*.priority_remark.8021p` and the `traffic.cos_*.priority_remark.dscp` lines by default. You must uncomment them to set the configuration.
 {{% /notice %}}
 
-You can remap multiple internal COS values to the same external COS or DSCP value. For example, to map internal COS 1 and internal COS 2 to external COS 3:
+You can remap multiple switch priority values to the same external 802.1p or DSCP value. For example, to map switch priority 1 and 2 to 802.1p 3:
 
 ```
 traffic.cos_1.priority_remark.8021p = [3]
 traffic.cos_2.priority_remark.8021p = [3]
 ```
 
-To map internal COS 1 and internal COS 2 to external DSCP 40:
+To map switch priority 1 and 2 to DSCP 40:
 
 ```
 traffic.cos_1.priority_remark.dscp = [40]
@@ -520,7 +520,7 @@ Incorrect cable length settings can cause wasted buffer space (triggering conges
 
 ### Priority Flow Control (PFC)
 
-Priority flow control extends the capabilities of pause frames by the frames for a specific COS value instead of stopping all traffic on a link. If a switch supports PFC and receives a PFC pause frame for a given COS value, the switch stops transmitting frames from that queue, but continues transmitting frames for other queues.
+Priority flow control extends the capabilities of pause frames by the frames for a specific 802.1p value instead of stopping all traffic on a link. If a switch supports PFC and receives a PFC pause frame for a given 802.1p value, the switch stops transmitting frames from that queue, but continues transmitting frames for other queues.
 
 You typically use PFC with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section provides information to specifically deploy PFC and ECN for RoCE environments.
 
@@ -983,11 +983,11 @@ source.customer2.cos_1.priority_source.8021p = [4]
 
 ### Remarking
 
-You can use port groups to remark COS or DSCP on egress according to the internal COS value. You define these port groups with `remark.port_group_list` in the `qos_features.conf` file. The name is a label for configuration settings.
+You can use port groups to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value. You define these port groups with `remark.port_group_list` in the `qos_features.conf` file. The name is a label for configuration settings.
 
-To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark COS or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
+To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark 802.1p or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
 
-In the following example configuration, only packets that *ingress* on swp1 and *egress* on swp2 change the marked value of the packet. Packets that ingress on other ports and egress on swp2 do **not** change the marked value of the packet. The commands map internal COS 0 and internal COS 1 to external DSCP 37.
+In the following example configuration, only packets that *ingress* on swp1 and *egress* on swp2 change the marked value of the packet. Packets that ingress on other ports and egress on swp2 do **not** change the marked value of the packet. The commands map switch priority 0 and 1 to egress DSCP 37.
 
 ```
 remark.port_group_list = [remark_port_group1,remark_port_group2]
@@ -1081,6 +1081,19 @@ cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold-bytes 200000 
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 probability 10
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 red enable
+cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control my-red-profile
+cumulus@switch:~$ nv config apply
+```
+
+You can configure different thresholds and probability values for different traffic classes in a custom profile:
+
+```
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold-bytes 40000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 max-threshold-bytes 200000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 probability 10
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 min-threshold-bytes 30000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 max-threshold-bytes 150000 
+cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 4 probability 80
 cumulus@switch:~$ nv set interface swp1,swp2 qos congestion-control my-red-profile
 cumulus@switch:~$ nv config apply
 ```

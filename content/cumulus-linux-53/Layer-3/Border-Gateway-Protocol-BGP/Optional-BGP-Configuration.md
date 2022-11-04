@@ -16,10 +16,6 @@ If the peer you want to add to a group already exists in the BGP configuration, 
 
 The following example commands create a peer group called SPINE that includes two external peers.
 
-{{%notice note%}}
-NVUE does not support hyphens (-) in BGP peer group names.
-{{%/notice%}}
-
 {{< tabs "21 ">}}
 {{< tab "NVUE Commands ">}}
 

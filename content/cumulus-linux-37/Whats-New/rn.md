@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3232484"></a> [3232484](#3232484) <a name="3232484"></a> <br />None | VXLAN route updates during high frequency might cause <code>switchd</code> to leak memory. | 3.7.14.2-3.7.16 | |
 | <a name="3216759"></a> [3216759](#3216759) <a name="3216759"></a> <br />None | With the <code>ip-acl-heavy</code> TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly<br /><pre>hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7387 create failed: No More Resources</pre>To work around this issue, change the TCAM profile to <code>acl-heavy</code> or <code>ip-acl-heavy</code> with ACL non-atomic mode. | 3.7.15-4.4.4 | 4.4.5, 5.1.0-5.2.1|
 | <a name="3129819"></a> [3129819](#3129819) <a name="3129819"></a> <br /> | On the EdgeCore AS4610 switch, the <code>clagd</code> service loses communication after 198 days of uptime. | 3.7.15-3.7.16, 4.3.0-4.4.5 | |
 | <a name="3128328"></a> [3128328](#3128328) <a name="3128328"></a> <br /> | The <code>clagd</code> process uses 100 percent CPU and eventually crashes with an <code>Unable to allocate memory</code> error. | 3.7.16 | |

@@ -111,8 +111,6 @@ leaf01            btrfsinfo                error            data storage efficie
 
 ## Monitor All System and TCA Events on a Device
 
-You can monitor all system and TCA events on a given device with the NetQ UI and the NetQ CLI.
-
 {{<tabs "TabID126" >}}
 
 {{<tab "NetQ UI" >}}
@@ -164,8 +162,6 @@ No matching event records found
 
 ## Monitor System and TCA Events Networkwide by Type
 
-You can view all system  and TCA events of a given type on a networkwide basis using the NetQ UI and the NetQ CLI.
-
 {{<tabs "TabID187" >}}
 
 {{<tab "NetQ UI" >}}
@@ -192,8 +188,6 @@ netq [<hostname>] show events [severity info | severity error ] [message_type li
 {{</tabs>}}
 
 ## Monitor System and TCA Events on a Device by Type
-
-You can view all system and TCA events of a given type on a given device using the NetQ UI and the NetQ CLI.
 
 {{<tabs "TabID250" >}}
 
@@ -224,8 +218,6 @@ netq [<hostname>] show events [severity info | severity error ] [message_type li
 {{</tabs>}}
 
 ## Monitor System and TCA Events Networkwide by Severity
-
-You can view system and TCA events by their severity on a networkwide basis with the NetQ UI and the NetQ CLI.
 
 {{<notice tip>}}
 System event severities include info, error, warning, or debug. TCA event severities include info or error.
@@ -259,8 +251,6 @@ netq show events [severity info | severity error ] [between <text-time> and <tex
 
 ## Monitor System and TCA Events on a Device by Severity
 
-You can view system and TCA events by their severity on a given device with the NetQ UI and the NetQ CLI.
-
 {{<tabs "TabID545" >}}
 
 {{<tab "NetQ UI" >}}
@@ -290,8 +280,6 @@ netq <hostname> show events [severity info | severity error ]  [between <text-ti
 {{</tabs>}}
 
 ## Monitor System and TCA Events Networkwide by Time
-
-You can monitor all system and TCA events across the network currently or for a time in the past with the NetQ UI and the NetQ CLI.
 
 {{<tabs "TabID706" >}}
 

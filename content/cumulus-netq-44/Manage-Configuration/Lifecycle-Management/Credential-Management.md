@@ -17,7 +17,7 @@ To specify access credentials:
 
 {{<tab "NetQ UI">}}
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>. Under **Admin**, select **Manage Switches**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**.
 
 2. Click the *Click here to add Switch access* link on the Access card:
 

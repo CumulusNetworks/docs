@@ -15,10 +15,10 @@ This release includes several performance and infrastructure improvements that m
 
 Command line updates: 
 
-- `netq check` validation commands now incorporate the `streaming` keyword automatically. This returns results more quickly.
-- `netq show events` commands have an updated syntax: `type` is now `message_type` and `level` is now `severity`. These commands are updated in their respective categories in this User Guide.
+- `netq check` validation commands are now streaming checks by default.
+- `netq show events` commands have an updated syntax: `type` is now `message_type` and `level` is now `severity`. These commands are updated in their respective categories in this user guide.
 
-User Guide updates:
+User guide updates:
 
 - New section defining {{<link title="Accounts and Roles" text="NetQ admin and user roles">}}
 

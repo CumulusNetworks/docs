@@ -1,7 +1,7 @@
 ---
 title: Host Inventory
 author: NVIDIA
-weight: 757
+weight: 750
 toc: 4
 ---
 
@@ -23,5 +23,5 @@ To display detailed information as a table, expand the card to its largest size:
 
 ## Related Information
 
-To monitor host hardware resource utilization, see {{<link title="Monitor Linux Hosts">}}.
+To monitor host hardware resource utilization, see {{<link title="Monitor Hosts">}}.
 

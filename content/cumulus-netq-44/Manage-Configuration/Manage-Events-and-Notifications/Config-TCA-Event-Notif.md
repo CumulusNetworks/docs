@@ -294,7 +294,7 @@ The hostname, reason/port down reason, ingress port, and drop type scope paramet
 
 To create a TCA rule:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main Menu.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu.
 
 2. Under **Notifications**, select **Threshold Crossing Rules**.
 
@@ -337,10 +337,6 @@ To create a TCA rule:
     Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure System Event Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify TCA Rules">}}.
 
 11. Click **Finish**. The rules may take several minutes to appear in the UI.
-
-This example shows two interface statistics rules. The rule on the left triggers an informational event when the total received bytes exceeds the upper threshold of 5 M on any switches. The rule on the right triggers an alarm event when any switch exceeds the total received broadcast bytes af 560 K, indicating a broadcast storm. Note that the cards indicate both rules are currently active.
-
-{{<figure src="/images/netq/tca-create-rule-ifstats-examples-330.png" width="700">}}
 
 {{</tab>}}
 
@@ -528,8 +524,6 @@ To modify the threshold:
     {{<figure src="/images/netq/tca-edit-rule-300.png" width="200">}}
 
 3. Enter a new threshold value.
-
-    {{<figure src="/images/netq/tca-edit-rule-example-300.png" width="500">}}
 
 4. Click **Update Rule**.
 

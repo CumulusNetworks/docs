@@ -80,7 +80,7 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select **Notification Channels**:
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**:
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
@@ -149,7 +149,7 @@ You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select **Notification Channels**:
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**:
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
@@ -216,7 +216,7 @@ You can use the NetQ UI or the NetQ CLI to create a syslog channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select **Notification Channels**:
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**:
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
@@ -284,7 +284,7 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select **Notification Channels**:
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**:
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
@@ -421,7 +421,7 @@ You can use the NetQ UI or the NetQ CLI to create a generic channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>, and then click **Notification Channels** in the **Notifications** section.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, and then click **Notification Channels** in the **Notifications** section.
 
     {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
 
@@ -1565,7 +1565,7 @@ Run the `netq show notification` command again to verify the changes.
 
 ### Suppress Events
 
-NetQ can generate many network events. You can create rules to suppress events so that they do not appear using either the Events card or the CLI. Suppressing events is particularly useful for reducing the number of event notifications attributable to known issues or false alarms.
+NetQ can generate many network events. You can create rules to suppress events so that they do not appear. Suppressing events is particularly useful for reducing the number of event notifications attributable to known issues or false alarms.
 
 You can set time parameters to suppress events in a given time period. If you do not configure time parameters, the event is suppressed for two years. If you are testing a new network configuration, a switch may generate many messages. Creating a suppression rule that applies over a short time frame can be useful for silencing messages to limit distractions.
 
@@ -1595,7 +1595,7 @@ You can suppress events using the NetQ UI or NetQ CLI.
 
 To suppress events using the NetQ UI:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 2. In the side navigation under **Network**, click **Events**.
 3. In the table, navigate to the column labeled **Suppress Events**.
 4. Hover over the row and select **Suppress events** to create parameters for the suppression rule. You can configure individual suppression rules or you can create a group rule that suppresses events for all message types.
@@ -1682,7 +1682,7 @@ You can remove event suppression configurations using the NetQ UI or NetQ CLI.
 
 To remove suppressed event configurations:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 2. In the side navigation under **Network**, click **Events**.
 3. Select **Show suppression rules** at the top of the page.
 4. Navigate to the rule you would like to delete. Click the three-dot menu and select **Delete**. If you'd like to pause the rule instead of deleting it, click **Disable**.
@@ -1710,7 +1710,7 @@ You can view suppressed events using the NetQ UI or NetQ CLI.
 
 To view suppressed events:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu).
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu.
 2. In the side navigation under **Network**, click **Events**.
 3. Select **Show suppression rules** at the top of the page.
 
@@ -2080,10 +2080,6 @@ critTemp        6          error            pd-netq-events   switchLeaf
                                                              overTemp
 ```
 
-### View Notification Configurations in JSON Format
-
-You can view configured integrations using the `netq show notification` commands. To view the channels, filters, and rules in JSON-formatted output, include the `json` option. For example, `netq show notification channel json`.
-
 ## Manage NetQ Event Notification Integrations
 
 You might need to modify event notification configurations at some point in the lifecycle of your deployment. You can add channels, rules, filters, and a proxy at any time. You can remove channels, rules, and filters if they are not part of an existing notification configuration.
@@ -2100,7 +2096,7 @@ You can remove channels if they are not part of an existing notification configu
 
 To remove notification channels:
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> and select **Notification Channels**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**.
 
 2. Select the tab for the type of channel you want to remove (Slack, PagerDuty, Syslog, Email).
 

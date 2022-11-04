@@ -1,5 +1,5 @@
 ---
-title: Monitor Switch Performance
+title: Monitor Switches
 author: NVIDIA
 weight: 830
 toc: 4
@@ -18,7 +18,7 @@ For switch inventory information (ASIC, platform, CPU, memory, disk, and OS), re
 
 To view events, metrics, and attributes per switch, open the Switch card:
 
-1. Select {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in the header, then click **Open a device card**.
+1. Select {{<img src="/images/netq/devices.svg" height="18" width="18">}} Devices in the header, then click **Open a device card**.
 
 2. Begin typing the switch's hostname and select it from the list:
 
@@ -174,7 +174,7 @@ cumulus@switch:~$ netq leaf01 show macs count
 Count of matching mac records: 55
 ```
 
-This example show the addresses on the *bridge* egress port on the *leaf01* switch:
+This example shows the addresses on the *bridge* egress port on the *leaf01* switch:
 
 ```
 cumulus@switch:~$ netq leaf01 show macs egress-port bridge

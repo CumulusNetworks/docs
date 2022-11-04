@@ -1,5 +1,5 @@
 ---
-title: Monitor Linux Hosts
+title: Monitor Hosts
 author: NVIDIA
 weight: 840
 toc: 3

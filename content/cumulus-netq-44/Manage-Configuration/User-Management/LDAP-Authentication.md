@@ -184,7 +184,7 @@ LDAP user passwords are not stored in the NetQ database and are always authentic
 
 You can remove LDAP users in the same manner as local users.
 
-1. Expand the  menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
+1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/>. Under **Admin**, select **Management**.
 
 2. Locate the User Accounts card, and click **Manage**.
 

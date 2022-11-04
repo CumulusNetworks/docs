@@ -17,7 +17,7 @@ With the NetQ UI, you can monitor hardware resources of individual data processi
 
 For an overview of the current or past health of DPU hardware resources, open the DPU device card. To open a DPU device card:
 
-1. Click {{<img src="/images/netq/devices.svg" alt="empty device card" height="18" width="18">}} (Devices) in the header, then click **Open a device card**.
+1. Click {{<img src="/images/netq/devices.svg" alt="empty device card" height="18" width="18">}} Devices in the header, then click **Open a device card**.
 
 {{<figure src="/images/netq/open-device-card-42.png" width="250">}}
 

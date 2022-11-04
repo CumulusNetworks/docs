@@ -4,34 +4,18 @@ author: NVIDIA
 weight: 740
 toc: 4
 ---
-With the NetQ UI and NetQ CLI, you can monitor your inventory of switches across the network or individually. A user can monitor such items as operating system, motherboard, ASIC, microprocessor, disk, memory, fan and power supply information. Being able to monitor this inventory aids in upgrades, compliance, and other planning tasks.
+With the NetQ UI and NetQ CLI, you can monitor your inventory of switches across the network or individually. A user can view operating system, motherboard, ASIC, microprocessor, disk, memory, fan, and power supply information. This information is relevant for upgrades, compliance, and other planning tasks.
 
-The commands and cards available to obtain this type of information help you to answer questions such as:
-
-<!-- vale off -->
-- What hardware is installed on my switch?
-- How many transmit and receive packets have been dropped?
-- How healthy are the fans and power supply?
-- What software is installed on my switch?
-- What is the ACL and forwarding resources usage?
-<!-- vale on -->
-
+For switch performance information, refer to {{<link title="Monitor Switches">}}.
 ## Access Switch Inventory Data
 
-The NetQ UI provides the Inventory/Switches card for monitoring the hardware and software component inventory on switches running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > **Inventory**  > Inventory/Switches card > **Open Cards**.
+Add the Inventory/Switches card to your workbench to monitor the hardware and software component inventory on switches running NetQ in your network. Select the dropdown to view additional inventory information.
 
-{{<figure src="/images/netq/inventory-switches-disk-l2-42.png" width="200">}}
+{{<img src="/images/netq/inventory-switches-updated.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switches-dropdown.png" width="200">}}
 
 The CLI provides detailed switch inventory information through its `netq <hostname> show inventory` command.
 
 ## View Switch Inventory Summary
-
-Component information for all of the switches in your network can be viewed from both the NetQ UI and NetQ CLI.
-
-- Inventory/Switches card:
-    - Small: view count of switches and distribution of switch status
-    - Medium: view count of OS, ASIC, platform, CPU model, Disk, and memory types or versions across all switches
-- `netq show inventory` command: view ASIC, CPU, disk, OS, and ports on all switches
 
 {{<tabs "TabID25" >}}
 
@@ -39,55 +23,23 @@ Component information for all of the switches in your network can be viewed from
 
 ### View the Number of Types of Any Component Deployed
 
-For each of the components monitored on a switch, NetQ displays the variety of those component by way of a count. For example, if you have four operating systems running on your switches, say Cumulus Linux, SONiC, Ubuntu and RHEL, NetQ indicates a total unique count of three OSs. If you only use Cumulus Linux, then the count shows as one.
+For each of the components monitored on a switch, NetQ displays a unique count. 
 
 To view this count for all of the components on the switch:
 
-1. Open the medium Switch Inventory card.
+1. Open the large Switch Inventory card.
 
-    {{<figure src="/images/netq/inventory-switches-os-l2-42.png" width="200">}}
+    {{<figure src="/images/netq/switch-inventory-large-update.png" width="600">}}
 
 2. Note the number in the **Unique** column for each component.
 
-    In the above example, there are four different disk sizes deployed, four different OSs running, four different ASIC vendors and models deployed, and so forth.
+By default, the card displays data for **fresh** switches. Select **Rotten switches** from the dropdown to display information for switches that are in a down state. Hover over any of the segments in the distribution chart to highlight a specific component.
 
-3. Scroll down to see additional components.
-
-By default, the data is shown for switches with a fresh communication status. You can choose to look at the data for switches in the rotten state instead. For example, if you wanted to see if there was any correlation to a version of OS to the switch having a rotten status, you could select **Rotten Switches** from the dropdown at the top of the card and see if they all use the same OS (count would be 1). It might not be the cause of the lack of communication, but you get the idea.
-
-### View the Distribution of Any Component Deployed
-
-NetQ monitors a number of switch components. For each component you can view the distribution of versions or models or vendors deployed across your network for that component.
-
-To view the distribution:
-
-1. Locate the Inventory/Switches card on your workbench.
-
-2. From the medium or large card, view the distribution of hardware and software components across the network. On the medium card, drop down the selection menu to select the desired component.
-
-    {{<figure src="/images/netq/inventory-switches-disk-l2-42.png" width="200">}}
-
-    {{<figure src="/images/netq/inventory-switches-l3-42.png" width="500">}}
-
-3. Hover over any of the segments in the distribution chart to highlight a specific component. Scroll down to view additional components.
-
-   When you <em>hover</em>, a tooltip appears displaying:
+   When you hover, a tooltip appears displaying:
    
    - Name or value of the component type, such as the version number or status
    - Total number of switches with that type of component deployed compared to the total number of switches
    - Percentage of this type with respect to all component types
-
-   On the large Switch Inventory card, hovering also highlights the related components for the selected component.
-
-4. Choose *Rotten Switches* from the dropdown to see which, if any, switches are currently not communicating with NetQ.
-
-    {{<figure src="/images/netq/inventory-switches-fresh-dropdown-42.png" width="500">}}
-
-5. Return to your fresh switches, then hover over the card header and change to the small size card using the size picker.
-
-    {{<figure src="/images/netq/inventory-switches-small-l1-42.png" width="150">}}
-
-<div style="padding-left: 18px;">Here you can see the total switch count and the distribution of those that are communicating well with the NetQ appliance or VM and those that are not. In this example, there are a total of 13 switches and they are all fresh (communicating well).</div>
 
 {{</tab>}}
 
@@ -189,14 +141,6 @@ netq-ts            Mellanox             Spectrum                       MT52132  
 
 ### View Motherboard Information for a Switch
 
-Motherboard/platform information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Switches card
-    - Medium/Large: view platform distribution across on all switches (graphic)
-    - Full-screen: view platform vendor, model, manufacturing date, revision, serial number, MAC address, series for a switch (table)
-- `netq show inventory board` command
-    - View motherboard vendor, model, base MAC address, serial number, part number, revision, and manufacturing date on a switch
-
 {{<tabs "TabID164" >}}
 
 {{<tab "NetQ UI">}}
@@ -248,11 +192,6 @@ Use the `opta` option without the `hostname` option to view the motherboard data
 {{</tabs>}}
 
 ### View CPU Information for a Switch
-
-CPU information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Switches card: view CPU architecture, model, maximum operating frequency, the number of cores, and data on a switch (table)
-- `netq show inventory cpu` command: view CPU architecture, model, maximum operating frequency, and the number of cores on a switch
 
 {{<tabs "TabID232" >}}
 
@@ -311,11 +250,6 @@ netq-ts           x86_64   Intel Xeon Processor (Skylake, N/A        8
 {{</tabs>}}
 
 ### View Disk Information for a Switch
-
-Disk information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Switches card: view disk vendor, size, revision, model, name, transport, and type on a switch (table)
-- `netq show inventory disk` command: view disk name, type, transport, size, vendor, and model on all devices
 
 {{<tabs "TabID336" >}}
 
@@ -440,15 +374,7 @@ netq-ts           DIMM 3          RAM              16384 MB   Unknown    QEMU   
 {{</tabs>}}
 
 ## View Switch Software Inventory
-
-You can view software components deployed on a given switch in your network.
-
 ### View Operating System Information for a Switch
-
-OS information is available from the NetQ UI and NetQ CLI.
-
-- Inventory/Switches card: view OS vendor, version, and version ID on a switch (table)
-- `netq show inventory os`: view OS name and version on a switch
 
 {{<tabs "TabID1099" >}}
 
@@ -640,7 +566,7 @@ act-5712-09       3.1.0                bcm                  x86_64              
 
 ### Validate NetQ Agents are Running
 
-You can confirm that NetQ Agents are running on switches and hosts (if installed) using the `netq show agents` command. Viewing the **Status** column of the output indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information includes the agent status &mdash; whether it is time synchronized, how long it has been up, and the last time its state changed.
+You can confirm that NetQ Agents are running on switches and hosts (if installed) using the `netq show agents` command. The **Status** indicates whether the agent is up and current, labelled *Fresh*, or down and stale, labelled *Rotten*. Additional information includes the agent status &mdash; whether it is time synchronized, how long it has been up, and the last time its state changed.
 
 This example shows NetQ Agent state on all devices.
 
@@ -689,7 +615,7 @@ Cumulus Linux, SONiC, and NetQ run many services to deliver the various features
 - **chrony**:  `chrony` service
 - **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
 - **cumulus-chassis-ssh**: cumulus-chassis-ssh
-- **cumulus-chassisd**:  cumulus-chassisd
+- **cumulus-chassisd**: cumulus-chassisd
 - **database**: database
 - **dhcp_relay**: DHCP relay service
 - **docker**: Docker container service
@@ -799,25 +725,6 @@ This example shows how to view the status of the NTP service across the network.
     leaf21            ntp                  9367  mgmt            yes     yes    yes       ok               1d:6h:49m:5s              Fri Feb 15 17:32:30 2019
     leaf22            ntp                  9403  mgmt            yes     yes    yes       ok               1d:6h:52m:57s             Fri Feb 15 17:28:38 2019
 
-This example shows the status of the BGP daemon.
-
-    cumulus@switch:~$ netq show services bgpd
-    Matching services records:
-    Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
-    ----------------- -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
-    exit01            bgpd                 2872  default         yes     yes    yes       ok               1d:6h:54m:37s             Fri Feb 15 17:28:24 2019
-    exit02            bgpd                 2867  default         yes     yes    yes       ok               1d:6h:54m:33s             Fri Feb 15 17:28:28 2019
-    firewall01        bgpd                 21766 default         yes     yes    yes       ok               1d:6h:54m:54s             Fri Feb 15 17:28:07 2019
-    spine01           bgpd                 2953  default         yes     yes    yes       ok               1d:6h:55m:27s             Fri Feb 15 17:27:34 2019
-    spine02           bgpd                 2948  default         yes     yes    yes       ok               1d:6h:55m:23s             Fri Feb 15 17:27:38 2019
-    spine03           bgpd                 2953  default         yes     yes    yes       ok               1d:6h:55m:18s             Fri Feb 15 17:27:43 2019
-    leaf01            bgpd                 3221  default         yes     yes    yes       ok               1d:6h:54m:48s             Fri Feb 15 17:28:13 2019
-    leaf02            bgpd                 3177  default         yes     yes    yes       ok               1d:6h:54m:42s             Fri Feb 15 17:28:19 2019
-    leaf11            bgpd                 3521  default         yes     yes    yes       ok               1d:6h:51m:18s             Fri Feb 15 17:31:43 2019
-    leaf12            bgpd                 3527  default         yes     yes    yes       ok               1d:6h:51m:6s              Fri Feb 15 17:31:55 2019
-    leaf21            bgpd                 3512  default         yes     yes    yes       ok               1d:6h:51m:1s              Fri Feb 15 17:32:00 2019
-    leaf22            bgpd                 3536  default         yes     yes    yes       ok               1d:6h:54m:54s             Fri Feb 15 17:28:07 2019
-
 ### View Events Related to a Given Service
 
 To view changes over a given time period, use the `netq show events` command. For more detailed information about events, refer to {{<link title="Events and Notifications">}}.
@@ -852,4 +759,4 @@ This example shows changes to the `bgpd` service in the last 48 hours.
 
 ## Related Information
 
-- {{<link title="Monitor Switch Performance">}}
+- {{<link title="Monitor Switches">}}

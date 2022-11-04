@@ -6,21 +6,24 @@ toc: 4
 ---
 The NetQ UI contains two main areas:
 
-- **Application Header** (1): Contains the main menu, NetQ version, recent actions history, search capabilities, quick health status chart, local time zone, premises list, and user account information.
-- **Workbench** (2): Contains a task bar and content cards (with status and configuration information about your network and its various components).
+- **Application Header**: Contains the main menu, NetQ version, search, validation summary, local time zone, premises list, and account information.
+{{<figure src="/images/netq/application-header.png" alt="">}}
 
-{{<figure src="/images/netq/app-layout-cumulus-wb-areas-highlighted-400.png">}}
+
+- **Workbench**: Contains a task bar and content cards (with status and configuration information about your network and its various components).
+
+{{<figure src="/images/netq/workbench-main-body.png" alt="workbench displaying task bar and 5 cards" width="1200">}}
 
 ## Main Menu
 
-Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the main menu which provides navigation to:
+Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu to navigate to:
 
 | Header | Menu |
 | ------ | ---- |
-| <ul><li><strong>Search</strong>: a search bar to quickly find an item on the main menu</li><li><strong>Favorites</strong>: contains link to the user-defined favorite workbenches; <em>Home</em> points to the NetQ Workbench until reset by a user</li><li><strong>Workbenches</strong>: contains links to all workbenches</li><li><strong>Network</strong>: contains links to tabular data about various network elements and the What Just Happened feature</li><li><strong>Notifications</strong>: contains link to threshold-based event rules and notification channel specifications</li><li><strong>Admin</strong>: contains links to application management and lifecycle management features (only visible to users with Admin access role)</li></ul> | {{<figure src="/images/netq/main-menu-admin-400.png" width="300">}} |
+| <ul><li><strong>Search</strong>: a search bar to quickly find an item on the main menu</li><li><strong>Favorites</strong>: contains link to the user-defined favorite workbenches; <em>Home</em> points to the NetQ Workbench until reset by a user</li><li><strong>Workbenches</strong>: contains links to all workbenches</li><li><strong>Network</strong>: contains links to tabular data about various network elements and the What Just Happened feature</li><li><strong>Notifications</strong>: contains link to threshold-based event rules and notification channel specifications</li><li><strong>Admin</strong>: contains links to application management and lifecycle management features (only visible to users with Admin access role)</li></ul> | {{<figure src="/images/netq/side-nav-menu.png" alt="" width="300">}} |
 ## Search
 
-The Global Search field in the UI header enables you to search for devices and cards. It behaves like most searches and can help you quickly find device information.
+You can search for devices and cards in the Global Search field in the header. It behaves like most searches and can help you quickly find device information.
 
 ## NVIDIA Logo
 

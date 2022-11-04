@@ -105,7 +105,7 @@ View the status of a particular type of interface.
 
 {{<expand "show interfaces type bond state">}}
 
-The following examples shows all bond interfaces that are alternately down and up:
+The following example shows all bond interfaces that are alternately down and up:
 
 ```
 cumulus@switch:~$ netq show interfaces type bond state down

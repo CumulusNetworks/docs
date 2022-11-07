@@ -22,9 +22,9 @@ Note that in the UI, it can take several minutes for NetQ to process and accurat
 
     The dashboard presents a timeline of events alongside the devices that are causing the most events. You can filter events by type, including interface, network services, system, and threshold crossing events. The filter controls are located at the top of the screen.
 
-    {{<figure src="/images/netq/events-card-l4-42.png" width="1000" alt="Events dashboard with networkwide error and info events.">}}
+    {{<figure src="/images/netq/events-card-l4-42.png" width="1200" alt="Events dashboard with networkwide error and info events.">}}
 
-  If you are receiving too many event notifications, you can acknowledge events or create rules to suppress events from the dashboard. Refer to {{<link title="Configure System Event Notifications#suppress-events" text="Configure System Event Notifications">}} for information about event suppression.
+ If you are receiving too many event notifications, you can acknowledge events or create rules to suppress events. Select **Show suppression rules** in the top-right corner to view rules that prevent NetQ from displaying an event message. Refer to {{<link title="Configure System Event Notifications#suppress-events" text="Configure System Event Notifications">}} for information about event suppression.
 
   Events are also generated when streaming {{<link title="Validate Overall Network Health" text="validation checks">}} detect a failure. If an event is generated from a failed validation check, it will be marked resolved automatically the next time the check runs successfully.
 

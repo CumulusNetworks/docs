@@ -9,9 +9,12 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## November 2022
 <!-- Air:WhatsNew -->
+### 82.2022.1107-011
+- Removed link to Cumulus Networks Slack
+<!-- Air:WhatsNew -->
+
 ### 82.2022.1103-013
 - Fixed display of long organization names
-<!-- Air:WhatsNew -->
 
 ## October 2022
 ### 82.2022.1031

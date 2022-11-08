@@ -45,6 +45,11 @@
 <th> Affects </th>
 </tr>
 <tr>
+<td>3254224</td>
+<td>In a What Just Happened table, column titles might appear as long strings of text. To fix this issue, select the ‘reset columns’ icon at the upper-right corner of the application. </td>
+<td></td>
+</tr>
+<tr>
 <td>3244553</td>
 <td>The What Just Happened (WJH) feature does not work with the NetQ agent on SONiC switches.</td>
 <td></td>

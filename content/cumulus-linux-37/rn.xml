@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3232484</td>
-<td>VXLAN route updates during high frequency might cause {{switchd}} to leak memory.</td>
-<td>3.7.14.2-3.7.16</td>
-<td></td>
-</tr>
-<tr>
 <td>3216759</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 
@@ -39,6 +33,12 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
 <td>4.3.1, 5.2.0-5.2.1</td>
+</tr>
+<tr>
+<td>3119615</td>
+<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3098936</td>

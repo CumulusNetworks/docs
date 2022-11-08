@@ -14,7 +14,7 @@ BGP *unnumbered* simplifies configuration. NVIDIA recommends you use BGP unnumbe
 
 To configure BGP numbered on a BGP node, you need to:
 - Assign an [ASN](## "Autonomous System Number") to identify this BGP node. In a two-tier leaf and spine configuration, you can use {{<link title="Border Gateway Protocol - BGP#auto-bgp" text="auto BGP">}}, where Cumulus Linux assigns an ASN automatically.
-- Assign a router ID, which is a 32-bit value and is typically the address of the loopback interface on the switch.
+- If necessary, specify a router ID. NVUE automatically assigns the loopback address of the switch to be the router ID. FRR automatically assigns the router ID to be the loopback address or the highest IPv4 address for the interface. If you do not have a loopback address configured or want to use a specific router ID, set the router ID globally or per VRF.
 - Specify where to distribute routing information by providing the IP address and ASN of the neighbor.
   - For BGP numbered, this is the IP address of the interface between the two peers; the interface must be a layer 3 access port.
   - The ASN can be a number, or `internal` for a neighbor in the same AS or `external` for a neighbor in a different AS.
@@ -42,7 +42,7 @@ To configure BGP numbered on a BGP node, you need to:
 
        The auto BGP `leaf` keyword is only used to configure the ASN. The configuration files and `nv show` commands display the AS number.
 
-2. Assign the router ID.
+2. BGP automatically assigns the loopback address of the switch to be the router ID. If you do not have a loopback address configured or you do not want to use the loopback address as the router ID, you must assign the router ID either globally with the `nv set router bgp router-id` command or in a VRF with the `nv set vrf <vrf> router bgp router-id` command.
 
    ```
    cumulus@leaf01:~$ nv set router bgp router-id 10.10.10.1
@@ -125,7 +125,7 @@ cumulus@leaf01:~$ sudo cat /etc/nvue.d/startup.yaml
 
       The auto BGP `spine` keyword is only used to configure the ASN. The configuration files and `nv show` commands display the AS number.
 
-2. Assign the router ID.
+2. BGP automatically assigns the loopback address of the switch to be the router ID. If you do not have a loopback address configured or you do not want to use the loopback address as the router ID, you must assign the router ID either globally with the `nv set router bgp router-id` command or in a VRF with the `nv set vrf <vrf> router bgp router-id` command.
 
     ```
     cumulus@spine01:~$ nv set router bgp router-id 10.10.10.101
@@ -198,7 +198,9 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 1. Enable the `bgpd` daemon as described in {{<link title="FRRouting">}}.
 
-2. Identify the BGP node by assigning an ASN and the router ID:
+2. Identify the BGP node by assigning an ASN and, if necessary, the router ID.
+
+   BGP automatically assigns the router ID using the loopback address or the highest IPv4 address for the interface. If you want to assign a specific IPv4 address for the router ID, add the router ID globally or per VRF.
 
     ```
     cumulus@leaf01:~$ sudo vtysh
@@ -251,7 +253,9 @@ cumulus@spine01:~$ sudo cat /etc/nvue.d/startup.yaml
 
 1. Enable the `bgpd` daemon as described in {{<link title="FRRouting">}}.
 
-2. Identify the BGP node by assigning an ASN and the router ID:
+2. Identify the BGP node by assigning an ASN and, if necessary, the router ID.
+
+   BGP automatically assigns the router ID using the loopback address or the highest IPv4 address for the interface. If you want to assign a specific IPv4 address for the router ID, add the router ID globally or per VRF.
 
     ```
     cumulus@spine01:~$ sudo vtysh

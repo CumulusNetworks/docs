@@ -1585,7 +1585,7 @@ You can suppress events for the following types of messages:
 
 {{<notice info>}} 
 
-NetQ suppresses BGP, EVPN, link, and sensor-related events by default in the UI. You can {{<link url="#delete-an-event-suppression-rule" text="disable this rule">}} if you'd prefer to receive these event notifications.
+NetQ suppresses BGP, EVPN, link, and sensor-related events with a severity level of "info" by default in the UI. You can {{<link url="#delete-an-event-suppression-rule" text="disable this rule">}} if you'd prefer to receive these event notifications.
 
 {{</notice>}}
 

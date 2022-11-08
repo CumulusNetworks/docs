@@ -102,7 +102,7 @@ To rename an existing premises:
 
 To view the physical server or VM configuration:
 
-1. Click menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu"> Menu.
 
 2. Under **Admin**, select **Management**.
 

@@ -80,9 +80,7 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**:
-
-    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**.
 
 2. The **Slack** tab is displayed by default.
 
@@ -149,9 +147,7 @@ You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**:
-
-    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**.
 
 2. Click **PagerDuty**.
 
@@ -216,9 +212,7 @@ You can use the NetQ UI or the NetQ CLI to create a syslog channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**:
-
-    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**.
 
 2. Click **Syslog**.
 
@@ -284,9 +278,7 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**:
-
-    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**.
 
 2. Click **Email**.
 
@@ -421,9 +413,7 @@ You can use the NetQ UI or the NetQ CLI to create a generic channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, and then click **Notification Channels** in the **Notifications** section.
-
-    {{<figure src="/images/netq/select-notification-channels.png" width="300">}}
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Notification Channels**.
 
 2. Click **Generic**.
 

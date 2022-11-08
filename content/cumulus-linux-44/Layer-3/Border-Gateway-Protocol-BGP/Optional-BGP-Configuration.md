@@ -1056,9 +1056,10 @@ cumulus@leaf01:~$ nv config apply
 
 ## Suppress Route Advertisement
 <!-- vale off -->
-{{%notice note%}}
-Suppress Route Advertisement is an early access feature.
+{{%notice warning%}}
+Suppress route advertisement is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. This feature is not currently intended to run in production and is not supported through NVIDIA networking support.
 {{%/notice%}}
+
 <!-- vale on -->
 You can configure BGP to wait for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
 

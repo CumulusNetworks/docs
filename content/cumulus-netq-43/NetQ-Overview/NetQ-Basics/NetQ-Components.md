@@ -53,7 +53,7 @@ The NetQ Agents running on hosts gather the same information as that for switche
 
 The NetQ Agent obtains container information by listening to the Kubernetes orchestration tool.
 
-The NetQ Agent is supported on hosts running Ubuntu 16.04, Red Hat® Enterprise Linux 7, and CentOS 7 Operating Systems.
+The NetQ Agent is supported on hosts running Ubuntu 16.04, Red Hat® Enterprise Linux 7, and CentOS 7.
 
 ## NetQ Core
 

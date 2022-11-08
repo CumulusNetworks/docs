@@ -1585,7 +1585,7 @@ You can suppress events for the following types of messages:
 
 {{<notice info>}} 
 
-NetQ suppresses BGP, EVPN, link, and sensor-related events by default in the UI. You can {{<link url="#delete-an-event-suppression-rule" text="delete this rule">}} if you'd prefer to receive these event notifications.
+NetQ suppresses BGP, EVPN, link, and sensor-related events by default in the UI. You can {{<link url="#delete-an-event-suppression-rule" text="disable this rule">}} if you'd prefer to receive these event notifications.
 
 {{</notice>}}
 
@@ -1674,7 +1674,9 @@ netq add events-config events_config_name mybtrfs message_type ospf scope '[{"sc
 {{</tab>}}
 
 {{</tabs>}}
-#### Delete an Event Suppression Rule
+#### Delete or Disable an Event Suppression Rule
+
+You can delete or disable suppression rules. After you delete a rule, event notifications will resume. Disabling suppression rules pauses those rules, allowing you to receive event notifications temporarily. 
 
 {{<tabs "TabID1776" >}}
 
@@ -1684,7 +1686,7 @@ To remove suppressed event configurations:
 
 1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **Events**.
 2. Select **Show suppression rules** at the top of the page.
-3. Toggle between the **Single** and **All** tabs to view the suppression rules. Navigate to the rule you would like to delete.
+3. Toggle between the **Single** and **All** tabs to view the suppression rules. Navigate to the rule you would like to delete or disable.
 4. Click the three-dot menu and select **Delete**. If you'd like to pause the rule instead of deleting it, click **Disable**.
 
 {{</tab>}}

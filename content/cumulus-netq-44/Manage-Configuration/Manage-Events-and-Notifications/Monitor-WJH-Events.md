@@ -6,16 +6,14 @@ toc: 4
 ---
 The *What Just Happened* (WJH) feature, available on NVIDIA Spectrum switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. 
 
-You must have Cumulus Linux 4.4.0 or later to use this feature. SONiC is not supported.
-
 For a list of supported WJH events, refer to the {{<link title="WJH Event Messages Reference">}}.
 
-To use a gNMI client to export WJH data to a collector, refer to {{<link title="gNMI Streaming#collect-wjh-data-using-gnmi" text="Collect WJH Data Using gNMI.">}}
+To use a gNMI client to export WJH data to a collector, refer to {{<link title="gNMI Streaming#collect-wjh-data-using-gnmi" text="Collect WJH Data with gNMI.">}}
 
 
 {{<notice info>}}
 
-WJH is only supported on NVIDIA Spectrum switches. WJH latency and congestion threshold configuration is supported on NVIDIA Spectrum 2 switches and above.
+WJH is only supported on NVIDIA Spectrum switches. WJH latency and congestion monitoring is supported on NVIDIA Spectrum 2 switches and above. WJH requires Cumulus Linux 4.4.0 or later. SONiC is not supported.
 
 {{</notice>}}
 
@@ -26,7 +24,7 @@ Using WJH in combination with NetQ helps you identify losses anywhere in the fab
 
 {{%notice info%}}
 
-By default, Cumulus Linux 4.4.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and CLI to the latest release.
+By default, Cumulus Linux 4.4.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and CLI to the latest release:
 
 ```
 cumulus@<hostname>:~$ sudo apt-get update
@@ -102,7 +100,7 @@ For a complete list of drop types and reasons, refer to the {{<link title="WJH E
 
 To configure the NetQ Agent to filter WJH drops:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in a workbench header.
+1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} Upgrade in a workbench header.
 
 2. Select **NetQ Agent Configurations**.
 
@@ -112,7 +110,7 @@ To configure the NetQ Agent to filter WJH drops:
 
    {{<img src="/images/netq/netq-configuration-profile-updated.png" alt="modal describing WJH event capture options" width="500px">}}
 
-5. By default, WJH includes all drop reasons and severities. Uncheck any drop reasons or severity you *do not* want to use to generate WJH events, then click **Done**.
+5. By default, WJH includes all drop reasons and severities. Uncheck any drop reasons or severity you *do not* want to generate WJH events, then click **Done**.
 
 6. Click **Add** to save the configuration profile, or click **Close** to discard it.
 

@@ -14,7 +14,7 @@ Other vendors refer to the Cumulus Linux implementation of MLAG as MLAG, MC-LAG 
 
 {{%/notice%}}
 
-NetQ enables operators to view the health of the MLAG service on a networkwide and a per session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show mlag` command.
+NetQ enables operators to view the health of the MLAG service on a networkwide and a per-session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show mlag` command.
 
 {{%notice tip%}}
 
@@ -133,7 +133,7 @@ You can determine whether there are any bonds in your MLAG configuration with on
 
 3. Click the **All Sessions** tab.
 
-4. Browse the sessions looking for either a blank value in the **Dual Bonds** column, or with one or more bonds listed in the **Single Bonds** column, to determine whether or not the devices participating in these sessions are incorrectly configured.
+4. Browse the sessions looking for either a blank value in the **Dual Bonds** column, or with one or more bonds listed in the **Single Bonds** column, to determine whether the devices participating in these sessions are incorrectly configured.
 
 5. Optionally, change the time period of the data on either size card to determine when the configuration might have changed from a dual to a single bond.
 
@@ -189,7 +189,7 @@ You can determine whether MLAG sessions have a backup IP address assigned and re
 
 1. Open the medium Network Services/All MLAG Sessions card.
 
-    This example shows that non of the bonds have single links.
+    This example shows that none of the bonds have single links.
 
     {{<figure src="/images/netq/ntwk-svcs-all-mlag-medium-bkupIP-320.png" width="200">}}
 
@@ -283,7 +283,7 @@ To compare this data with the same data at a previous time:
 
 To determine the devices with the most sessions, run `netq show mlag`. Then count the sessions on each device.
 
-In this example, there are two sessions between border01 and border02, two sessions between leaf01 and leaf02, and two session between leaf03 and leaf04. Therefore, no devices has more sessions that any other.
+In this example, there are two sessions between border01 and border02, two sessions between leaf01 and leaf02, and two sessions between leaf03 and leaf04. Therefore, no devices has more sessions that any other.
 
 ```
 cumulus@switch:~$ netq show mlag
@@ -319,7 +319,7 @@ To view switches with the most unestablished MLAG sessions:
 
 Where to go next depends on what data you see, but a few options include:
 
-- Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switch Performance">}}.
+- Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
 - Click **Show All Sessions** to investigate all MLAG sessions with events in the full-screen card.
 
 ### View MLAG Configuration Information for a Given Device

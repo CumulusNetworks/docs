@@ -45,7 +45,7 @@ To view the list of tests run for a given protocol or service by default, use ei
 ### Select the Tests to Run
 
 <!-- vale off -->
-You can include or exclude one or more of the various tests performed during the validation. Each test is assigned a number, which is used to identify which tests to run. By default, all tests are run. The `<protocol-number-range-list>` value is used with the `include` and `exclude` options  to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
+You can include or exclude one or more of the various tests performed during the validation. Each test is assigned a number, which is used to identify which tests to run. By default, all tests are run. The `<protocol-number-range-list>` value is used with the `include` and `exclude` options to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
 <!-- vale on -->
 
 - include 1,3,5

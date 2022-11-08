@@ -96,7 +96,7 @@ Role assignment is optional, but recommended. Using roles can prevent switches f
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>. Under **Admin**, select **Manage Switches**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**.
 
 2. On the Switches card, click **Manage**.
 
@@ -148,7 +148,7 @@ netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>. Under **Admin**, select **Manage Switches**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**.
 
 2. On the Switches card, click **Manage**. The assigned role appears in the table's **Role** column.
 

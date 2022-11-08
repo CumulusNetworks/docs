@@ -6,16 +6,16 @@ toc: 4
 ---
 The *What Just Happened* (WJH) feature, available on NVIDIA Spectrum switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. 
 
-You must have Cumulus Linux 4.4.0 or later and NetQ 4.2.0 or later to use this feature. SONiC is not supported.
+You must have Cumulus Linux 4.4.0 or later to use this feature. SONiC is not supported.
 
 For a list of supported WJH events, refer to the {{<link title="WJH Event Messages Reference">}}.
 
 To use a gNMI client to export WJH data to a collector, refer to {{<link title="gNMI Streaming#collect-wjh-data-using-gnmi" text="Collect WJH Data Using gNMI.">}}
 
 
-{{<notice tip>}}
+{{<notice info>}}
 
-WJH is only supported on NVIDIA Spectrum switches.
+WJH is only supported on NVIDIA Spectrum switches. WJH latency and congestion threshold configuration is supported on NVIDIA Spectrum 2 switches and above.
 
 {{</notice>}}
 
@@ -68,13 +68,6 @@ Using <em>wjh_dump.py</em> on an NVIDIA platform that is running Cumulus Linux a
 
 ## Configure Latency and Congestion Thresholds
 
-{{%notice note%}}
-
-WJH latency and congestion threshold configuration is supported on NVIDIA Spectrum 2 switches and above.
-
-{{%/notice%}}
-
-
 WJH latency and congestion metrics depend on threshold settings to trigger the events. WJH measures packet latency as the time spent inside a single system (switch). When specified, WJH triggers events when measured values cross high thresholds and events are suppressed when values are below low thresholds. 
 
 To configure these thresholds, run:
@@ -99,7 +92,7 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 
 ## Configure Filters
 
-You can filter the WJH events at the NetQ Agent before the NetQ system processes it. You perform filtering on a drop-type basis. You can filter the drop type further by specifying one or more drop reasons or severity. Filter events by creating a NetQ configuration profile in the NetQ UI or using the `netq config add agent wjh-drop-filter` command in the NetQ CLI.
+You can filter WJH events by drop type at the NetQ Agent before the NetQ system processes it. You can filter the drop type further by specifying one or more drop reasons or severity. Filter events by creating a NetQ configuration profile in the NetQ UI or using the `netq config add agent wjh-drop-filter` command in the NetQ CLI.
 
 For a complete list of drop types and reasons, refer to the {{<link title="WJH Event Messages Reference">}}.
 
@@ -189,7 +182,7 @@ You can expand the card to see a detailed summary of WJH data:
 
    {{<figure src="/images/netq/WJH-expanded-card.png" alt="expanded what just happened card displaying devices with the most drops" width="600">}}
 
-Expanding the card to its largest size will open the advanced WJH dashboard. You can also access this dashboard by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} (main menu) and selecting **What Just Happened** under the **Network** column:
+Expanding the card to its largest size will open the advanced WJH dashboard. You can also access this dashboard by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu and selecting **What Just Happened** under the **Network** column:
 
    {{<figure src="/images/netq/WJH-advanced-view.png" alt="fully expanded what just happened card with detailed drop information" width="800">}}
 

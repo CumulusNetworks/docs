@@ -36,7 +36,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in the workbench header, then click **Manage switches**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} Devices in the workbench header, then click **Manage switches**.
 
 2. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
@@ -77,7 +77,7 @@ After you complete the preparation steps, upgrade Cumulus Linux:
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in any workbench header, then select **Manage switches**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} Devices in any workbench header, then select **Manage switches**.
 
 2. Locate the Switches card and click **Manage**.
 
@@ -430,7 +430,7 @@ To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on
 {{<tab "NetQ UI" >}}
 
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} (Devices) in the workbench header, then click **Manage switches**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} Devices in the workbench header, then click **Manage switches**.
 
 2. On the Switches card, click **Discover**.
 

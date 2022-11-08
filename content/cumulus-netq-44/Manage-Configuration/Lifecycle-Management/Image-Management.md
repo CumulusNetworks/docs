@@ -16,7 +16,7 @@ To upload missing **network OS** images:
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>. Under **Admin**, select **Manage Switches**. Select the **Image Management** tab.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**. Select the **Image Management** tab.
 
 2. On the Cumulus Linux Images card, select *View # missing CL images* to see which images you need.
 
@@ -81,7 +81,7 @@ To upload missing **NetQ** images:
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>. Under **Admin**, select **Manage Switches**. Select the **Image Management** tab.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**. Select the **Image Management** tab.
 
 2. On the NetQ Images card, select *View # missing NetQ images* to see which images you need.
 
@@ -240,7 +240,7 @@ After you upgrade all your switches beyond a particular release, you can remove 
 
 {{<tab "NetQ UI">}}
 
-1. Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/>. Under **Admin**, select **Manage Switches**. Select the **Image Management** tab. 
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**. Select the **Image Management** tab. 
 
 2. Click **Manage** on the Cumulus Linux Images or NetQ Images card.
 

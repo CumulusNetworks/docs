@@ -7,7 +7,7 @@ toc: 4
 
 Network devices use LLDP to advertise their identity, capabilities, and neighbors on a LAN. You can view this information for one or more devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified time period. For an overview and how to configure LLDP in your network, refer to {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="Link Layer Discovery Protocol">}}.
 
-NetQ enables operators to view the overall health of the LLDP service on a networkwide and a per session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show lldp` command.
+NetQ enables operators to view the overall health of the LLDP service on a networkwide and a per-session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session and in the NetQ CLI with the `netq show lldp` command.
 
 ## Monitor the LLDP Service Networkwide
 
@@ -486,7 +486,7 @@ To view switches with the most unestablished LLDP sessions:
 
 Where to go next depends on what data you see, but a few options include:
 
-- Changing the time period and comparing the data with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switch Performance">}}.
+- Changing the time period and comparing the data with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
 - Selecting **Show All Sessions** to investigate all LLDP sessions with events in the full screen card.
 
 ### View LLDP Configuration Information for a Given Device

@@ -807,7 +807,7 @@ RoCE ETS mode Test             : passed
 
 {{<tab "Sensors">}}
 
-Hardware platforms have a number sensors to provide environmental data about the switches. Knowing these are all within range is a good check point for maintenance.
+Hardware platforms have a number of sensors that provide environmental data about the switches. Knowing these are all within range is a good check point for maintenance.
 
 For example, if you had a temporary HVAC failure and you have concerns that some of your nodes are beginning to overheat, you can run this validation to determine if any switches have already reached the maximum temperature threshold.
 

@@ -22,6 +22,7 @@ pdfhidden: True
 ### Fixed Issues in 4.4.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="3254224"></a> [3254224](#3254224) <a name="3254224"></a> <br /> | In a What Just Happened table, column titles might appear as long strings of text. To fix this issue, select the ‘reset columns’ icon at the upper-right corner of the application.  |  | |
 | <a name="3244553"></a> [3244553](#3244553) <a name="3244553"></a> <br /> | The What Just Happened (WJH) feature does not work with the NetQ agent on SONiC switches. |  | |
 | <a name="3226405"></a> [3226405](#3226405) <a name="3226405"></a> <br /> | TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled. | 4.3.0 | |
 | <a name="3216161"></a> [3216161](#3216161) <a name="3216161"></a> <br /> | In an OPTA clustered environment, NetQ agents might appear as rotten after upgrading to NetQ 4.3.0. To work around this issue, configure the <code>spice: false</code> parameter in <code>/etc/netq/netq.yml</code>. | 4.3.0 | |

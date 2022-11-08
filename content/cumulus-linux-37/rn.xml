@@ -35,6 +35,12 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>4.3.1, 5.2.0-5.2.1</td>
 </tr>
 <tr>
+<td>3119615</td>
+<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
+</tr>
+<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-4.3.0, 4.4.0-4.4.5</td>

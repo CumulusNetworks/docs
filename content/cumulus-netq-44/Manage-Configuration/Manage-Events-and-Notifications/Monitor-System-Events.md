@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 800
 toc: 4
 ---
-You can monitor both system and threshold-based (TCA) events with the UI or CLI. System events include events associated with network protocols and services operation, hardware and software status, and system services. TCA events include events associated with digital optics, ACL and forwarding resources, interface statistics, resource utilization, and sensors. You can view all events across the entire network or all events on a device. For each of these, you can filter your view of events based on event type, severity, and timeframe.
+You can monitor both system and threshold-based (TCA) events with the UI or CLI. System events include events associated with network protocols and services operation, hardware and software status, and system services. TCA events include events associated with digital optics, ACL and forwarding resources, interface statistics, resource utilization, and sensors. You can view all events across the entire network or all events on a device, then filter your view of events based on event type, severity, and timeframe.
 
 Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Based Event Notifications">}} for information about configuring and managing these events.
 

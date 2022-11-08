@@ -18,6 +18,10 @@ Cumulus Linux 5.3.0 supports new platforms, provides bug fixes, and contains sev
 
 - NVIDIA SN3750-SX (5G Spectrum-2) available for early access
 
+{{%notice warning%}}
+The NVIDIA SN3750-SX switch is available for [early access]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. Do not use this switch in production; it is not supported through NVIDIA networking support.
+{{%/notice%}}
+
 ### New Features and Enhancements
 
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:

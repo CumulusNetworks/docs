@@ -514,13 +514,13 @@ To create a custom profile:
 - Update any of the profile settings you want to change (`announce-interval`, `delay-req-interval`, `priority1`, `sync-interval`, `announce-timeout`, `domain`, `priority2`, `transport`, `delay-mechanism`, `local-priority`).
 - Set the custom profile to be the current profile.
 
-The following example commands create a custom profile called CUSTOM1 based on the predifined profile ITU 8275-1. The commands set the `domain` to 3 and the `announce-timeout` to 5, then set `CUSTOM1` to be the current profile:
+The following example commands create a custom profile called CUSTOM1 based on the predifined profile ITU 8275-1. The commands set the `domain` to 28 and the `announce-timeout` to 3, then set `CUSTOM1` to be the current profile:
 
 ```
 cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 
 cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 profile-type itu-g-8275-1  
-cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 domain 19
-cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 announce-timeout 5
+cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 domain 28
+cumulus@switch:~$  nv set service ptp 1 profile CUSTOM1 announce-timeout 3
 cumulus@switch:~$  nv set service ptp 1 current-profile CUSTOM1
 cumulus@switch:~$  nv config apply
 ```
@@ -528,7 +528,7 @@ cumulus@switch:~$  nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-The following example `/etc/ptp4l.conf` file creates a custom profile based on the predifined profile ITU 8275-1 and sets the `domain` to 3 and the `announce-timeout` to 5.
+The following example `/etc/ptp4l.conf` file creates a custom profile based on the predifined profile ITU 8275-1 and sets the `domain` to 28 and the `announce-timeout` to 3.
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -539,7 +539,7 @@ cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 slaveOnly                      0
 priority1                      128
 priority2                      128
-domainNumber                   3
+domainNumber                   28
 
 twoStepFlag                    1
 dscp_event                     46
@@ -1598,9 +1598,10 @@ acceptable-master                       off         Determines if acceptable mas
 delay-mechanism            end-to-end   end-to-end  Mode in which PTP message is transmitted.
 forced-master              off          off         Configures PTP interfaces to forced master state.
 instance                                1           PTP instance number.
-message-mode                            multicast   Mode in which PTP delay message is transmitted.
+mixed-multicast-unicast                 off         Enables Multicast for Announce, Sync and Followup and Unicast for D...
 transport                  ipv4         ipv4        Transport method for the PTP messages.
 ttl                        1            1           Maximum number of hops the PTP messages can make before it gets dro...
+unicast-request-duration                300         The service time in seconds to be requested during discovery.
 timers
   announce-interval        0            0           Mean time interval between successive Announce messages.  It's spec...
   announce-timeout         3            3           The number of announceIntervals that have to pass without receipt o...
@@ -1697,6 +1698,12 @@ nv show service ptp
 nv show service ptp <instance-id>
 nv show service ptp <instance-id> acceptable-master
 nv show service ptp <instance-id> acceptable-master <clock-id>
+nv show service ptp <instance-id> unicast-master
+nv show service ptp <instance-id> unicast-master <table-id>
+nv show service ptp <instance-id> unicast-master <table-id> address
+nv show service ptp <instance-id> unicast-master <table-id> address <ip-mac-address-id>
+nv show service ptp <instance-id> profile
+nv show service ptp <instance-id> profile <profile-id>
 nv show service ptp <instance-id> monitor
 nv show service ptp <instance-id> monitor timestamp-log
 nv show service ptp <instance-id> monitor violations
@@ -1826,40 +1833,24 @@ time_stamping           hardware
 # the ptp4l will not work as expected.
 
 [swp1]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv4
 
 [swp2]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv4
 
 [swp3]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv4
 
 [swp4]
-logAnnounceInterval     0
-logSyncInterval         -3
-logMinDelayReqInterval  -3
-announceReceiptTimeout  3
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E

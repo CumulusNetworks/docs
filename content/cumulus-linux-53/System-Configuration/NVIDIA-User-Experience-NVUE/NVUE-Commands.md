@@ -1269,7 +1269,6 @@ nv set service ptp <instance-id> monitor max-violation-log-entries 8-128
 nv set service ptp <instance-id> monitor violation-log-interval 0-259200
 nv set service ptp <instance-id> enable (on|off)
 nv set service ptp <instance-id> current-profile <value>
-nv set service ptp <instance-id> two-step (on|off)
 nv set service ptp <instance-id> priority1 <value>
 nv set service ptp <instance-id> priority2 <value>
 nv set service ptp <instance-id> domain 0-127
@@ -2753,7 +2752,6 @@ nv unset service ptp <instance-id> monitor max-violation-log-entries
 nv unset service ptp <instance-id> monitor violation-log-interval
 nv unset service ptp <instance-id> enable
 nv unset service ptp <instance-id> current-profile
-nv unset service ptp <instance-id> two-step
 nv unset service ptp <instance-id> priority1
 nv unset service ptp <instance-id> priority2
 nv unset service ptp <instance-id> domain

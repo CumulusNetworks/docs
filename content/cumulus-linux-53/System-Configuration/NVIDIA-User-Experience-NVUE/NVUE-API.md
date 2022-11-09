@@ -82,7 +82,11 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
    }
    ```
 
-4. Apply the changes using a PATCH to the revision changeset. You must use the full key value for the revision and replace `/`​ with `%2F`​ in the list:
+4. Apply the changes using a PATCH to the revision changeset.
+
+   {{%notice note%}}
+You must use the full key value for the revision and replace `/`​ with `%2F`​ in the list.
+{{%/notice%}}
 
    ```
    $ curl -u 'cumulus:cumulus' -d '{"state":"apply"}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K

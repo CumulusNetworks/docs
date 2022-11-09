@@ -33,10 +33,9 @@ MLAG has these requirements:
 
 - There must be a direct connection between the two peer switches implementing MLAG (S1 and S2). This is typically a bond for increased reliability and bandwidth.
 - There must be only two peer switches in one MLAG configuration, but you can have multiple configurations in a network for *switch-to-switch MLAG* (see below).
-- The peer switches implementing MLAG must be running Cumulus Linux version 2.5 or later.
 - You must specify a unique `clag-id` for every dual-connected bond on each peer switch; the value must be between 1 and 65535 and must be the same on both peer switches in order for the bond to be considered *dual-connected*.
 - The dual-connected devices (servers or switches) can use LACP (IEEE 802.3ad or 802.1ax) to form the {{<link url="Bonding-Link-Aggregation" text="bond">}}. In this case, the peer switches must also use LACP.
-- Both switches in the MLAG pair must be running the same release of Cumulus Linux.
+- Both switches in the MLAG pair must be identical; they must both be the same model of switch and run the same Cumulus Linux release.
 - Cumulus Linux does not support MLAG with 802.1X; the switch cannot synchronize 802.1X authenticated MAC addresses over the peerlink.
 
   {{%notice tip%}}

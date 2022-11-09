@@ -25,6 +25,8 @@ User guide updates:
 ## Upgrade Paths
 
 You can upgrade to NetQ 4.4.0 directly from versions 4.0.0 or later. Upgrades from NetQ v3 releases require a fresh installation or an incremental upgrade to version 4.0.0 first.
+
+NetQ no longer supports the Admin UI for installation and upgrades. Follow the {{<link title="Installation Management" text="updated instructions">}} according to your deployment model.
 ## Compatible Agent Versions
 
 NetQ 4.4.0 is compatible with NetQ Agent versions 4.3.0 and above. You can install NetQ Agents on switches and servers running:

@@ -1,3 +1,42 @@
+{{- if eq (.Get "version") "4.4.0" -}}
+
+You should see version 4.4.0 and update 40 in the results.
+
+{{- if eq (.Get "opsys") "cl" -}}
+
+<ul>
+    <li>Cumulus Linux 3.7.x</li>
+        <ul>
+            <li>netq-agent_<strong>4.4.0</strong>-cl3u<strong>40</strong>~1666942953.97ef4c9_armel.deb</li>
+            <li>netq-agent_<strong>4.4.0</strong>-cl3u<strong>40</strong>~1667493479.97ef4c9_amd64.deb</li>
+        </ul>
+    <li>Cumulus Linux 4.0.0 and later</li>
+        <ul>
+            <li>netq-agent_<strong>4.4.0</strong>-cl4u<strong>40</strong>~1667496902.97ef4c9d_armel.deb</li>
+            <li>netq-agent_<strong>4.4.0</strong>-cl4u<strong>40</strong>~1667493586.97ef4c9d_amd64.deb</li>
+        </ul>
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "ub" -}}
+
+<ul>
+    <li>netq-agent_<strong>4.4.0</strong>-ub18.04u<strong>40</strong>~1667493385.97ef4c9_amd64.deb</li>    
+</ul>
+
+{{ end }}
+
+{{- if eq (.Get "opsys") "rh" -}}
+
+<ul>
+    <li>netq-agent-<strong>4.4.0</strong>-rh7u<strong>40</strong>~1667495055.97ef4c9.x86_64.rpm</li>
+</ul>
+
+{{ end }}
+
+{{ end }}
+
 {{- if eq (.Get "version") "4.3.0" -}}
 
 You should see version 4.3.0 and update 39 in the results.

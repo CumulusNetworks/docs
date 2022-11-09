@@ -4,6 +4,11 @@ author: NVIDIA
 weight: 570
 toc: 4
 ---
+{{%notice warning%}}
+In Cumulus Linux 4.2.0, EVPN multihoming is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. This feature is not currently intended to run in production and is not supported through NVIDIA networking support.
+
+In Cumulus Linux 4.2.1, EVPN multihoming is generally available. You can run this feature in production and it is supported through NVIDIA networking support.
+{{%/notice%}}
 
 *EVPN multihoming* (EVPN-MH) provides support for all-active server redundancy. It is a standards-based replacement for MLAG in data centers deploying Clos topologies. Replacing MLAG:
 

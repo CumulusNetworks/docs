@@ -505,8 +505,9 @@ Cumulus Linux supports the following PTP message modes:
 - *Mixed*, where Sync and Announce messages are multicast messages but Delay Request and Response messages are unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
 <!-- vale off -->
    {{%notice warning%}}
-Mixed mode is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
+Mixed mode is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. This feature is not currently intended to run in production and is not supported through NVIDIA networking support.
 {{%/notice%}}
+
 <!-- vale on -->
 Multicast mode is the default setting. To set the message mode to *mixed* on an interface:
 
@@ -560,8 +561,9 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ### TTL for a PTP Message
 <!-- vale off -->
 {{%notice warning%}}
-TTL for a PTP message is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
+TTL for a PTP message is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. This feature is not currently intended to run in production and is not supported through NVIDIA networking support.
 {{%/notice%}}
+
 <!-- vale on -->
 To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
 
@@ -784,7 +786,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 By default, Cumulus Linux enables PTP in the default VRF and in any VRFs you create. To isolate traffic to a specific VRF, disable PTP on any other VRFs.
 <!-- vale off -->
 {{%notice warning%}}
-PTP in a VRF other than the default is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
+PTP in a VRF other than the default is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. This feature is not currently intended to run in production and is not supported through NVIDIA networking support.
 {{%/notice%}}
 <!-- vale on -->
 {{< tabs "TabID777 ">}}

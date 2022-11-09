@@ -477,13 +477,7 @@ The following example SPAN configuration mirrors all packets received on swp1, a
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/port-mirror.conf
-# Copyright (C) 2020 Cumulus Networks, Inc. All rights reserved
-#
-# This software is subject to the Cumulus Networks End User License Agreement
-# available at the following locations:
-#
-# Internet: https://cumulusnetworks.com/downloads/eula/latest/view/
-# Cumulus Linux systems: /usr/share/cumulus/EULA.txt
+...
 #
 # [session_n]
 # session-id = n

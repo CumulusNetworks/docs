@@ -443,13 +443,15 @@ The following example SPAN configuration mirrors all packets received on swp1, a
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/port-mirror.conf
-# Copyright (C) 2020 Cumulus Networks, Inc. All rights reserved
+Copyright © 2021 NVIDIA CORPORATION & AFFILIATES. ALL RIGHTS RESERVED.
 #
-# This software is subject to the Cumulus Networks End User License Agreement
-# available at the following locations:
+# This software product is a proprietary product of Nvidia Corporation and its affiliates
+# (the "Company") and all right, title, and interest in and to the software
+# product, including all associated intellectual property rights, are and
+# shall remain exclusively with the Company.
 #
-# Internet: https://cumulusnetworks.com/downloads/eula/latest/view/
-# Cumulus Linux systems: /usr/share/cumulus/EULA.txt
+# This software product is governed by the End User License Agreement
+# provided with the software product.
 #
 # [session_n]
 # session-id = n

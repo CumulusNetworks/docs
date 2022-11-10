@@ -101,6 +101,15 @@ cumulus@switch:~$ nv config apply
 
 If you configure the trust to be `l2` but do not specify any PCP to switch priority mappings, Cumulus Linux uses the default values.
 
+To show the ingress 802.1p mapping for the default profile, run the `nv show qos mapping default-global pcp` command. To show the PCP mapping for a specific switch priority in the default profile, run the `nv show qos mapping default-global pcp <value>` command. The following example shows that PCP 0 is mapped to switch priority 4:
+
+```
+cumulus@switch:~$ nv show qos mapping default-global pcp 0
+                 operational  applied  description
+---------------  -----------  -------  ------------------------
+switch-priority  4            4        Internal Switch Priority
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -191,6 +200,15 @@ cumulus@switch:~$ nv config apply
 
 If you configure the trust to be `l3` but do not specify any DSCP to switch priority mappings, Cumulus Linux uses the default values.
 
+To show the DSCP mapping in the default profile, run the `nv show qos mapping default-global dscp` command. To show the DSCP mapping for a specific switch priority in the default profile, run the `nv show qos mapping default-global dscp <value>` command. The following example shows that DSCP 22 is mapped to switch priority 4:
+
+```
+cumulus@switch:~$ nv show qos mapping default-global dscp 22
+                 operational  applied  description
+---------------  -----------  -------  ------------------------
+switch-priority  4            4        Internal Switch Priority
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -257,6 +275,16 @@ The following commands assign all traffic to switch priority 3 regardless of the
 cumulus@switch:~$ nv set qos mapping default-global trust port 
 cumulus@switch:~$ nv set qos mapping default-global port-default-sp 3 
 cumulus@switch:~$ nv config apply
+```
+
+To show the switch priority setting in the default profile for all traffic regardless of the ingress marking, run the `nv show qos mapping default-global` command:
+
+```
+cumulus@switch:~$ nv show qos mapping default-global
+                 operational  applied  description
+---------------  -----------  -------  ----------------------------
+port-default-sp  3            3        Port Default Switch Priority
+trust            port         port     Port Trust configuration
 ```
 
 {{< /tab >}}
@@ -546,6 +574,21 @@ cumulus@switch:~$ nv set qos pfc default-global cable-length 50
 cumulus@switch:~$ nv config apply
 ```
 
+To show the PFC settings for the default profile, run the `nv show qos pfc default-global` command:
+
+```
+cumulus@switch:~$ nv show qos pfc default-global
+                   operational  applied  description
+-----------------  -----------  -------  --------------------------------
+cable-length       50           50       Cable Length (in meters)
+port-buffer        2000 B       2000 B   Port Buffer (in bytes)
+rx                 disable      disable  PFC Rx State
+tx                 enable       enable   PFC Tx State
+xoff-threshold     1500 B       1500 B   Xoff Threshold (in bytes)
+xon-threshold      1000 B       1000 B   Xon Threshold (in bytes)
+[switch-priority]  0            0        Collection of switch priorities.
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -594,8 +637,8 @@ The following example commands change the default ECN profile that applies to al
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 min-threshold-bytes 40000 
-cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 max-threshold-bytes 200000 
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 min-threshold 40000
+cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 max-threshold 200000 
 cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 4,5,7 red enable
 cumulus@switch:~$ nv config apply
 ```
@@ -605,6 +648,35 @@ The following example disables ECN bit marking in the default profile for all po
 ```
 cumulus@switch:~$ nv set qos congestion-control default-global traffic-class 0 ecn disable
 cumulus@switch:~$ nv config apply
+```
+
+To show the ECN settings for the default profile, run the `nv show qos congestion-control default-global` command:
+
+```
+cumulus@switch:~$ nv show qos congestion-control default-global
+    operational  applied  description
+--  -----------  -------  -----------
+
+ECN Configurations
+=====================
+    traffic-class  ECN     RED     Min Th   Max Th    Probability
+    -------------  ------  ------  -------  --------  -----------
+    4              enable  enable  40000 B  200000 B  100
+    5              enable  enable  40000 B  200000 B  100
+    7              enable  enable  40000 B  200000 B  100
+```
+
+To show the ECN settings in the default profile for a specific egress queue, run the `nv show qos congestion-control default-global traffic-class <value>` command:
+
+```
+cumulus@switch:~$ nv show qos congestion-control default-global traffic-class 4 
+               operational  applied   description
+-------------  -----------  --------  -----------------------------------
+ecn            enable       enable    Early Congestion Notification State
+max-threshold  200000 B     200000 B  Maximum Threshold (in bytes)
+min-threshold  40000 B      40000 B   Minimum Threshold (in bytes)
+probability    100          100       Probability
+red            enable       enable    Random Early Detection State
 ```
 
 {{< /tab >}}
@@ -654,28 +726,9 @@ cumulus@switch:~$ nv set qos egress-queue-mapping default-global switch-priority
 cumulus@switch:~$ nv config apply
 ```
 
-Cumulus Linux only supports the `default-global` profile.
+NVUE only supports the `default-global` profile.
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-You configure egress queues in the `qos_infra.conf` file.
-
-```
-cos_egr_queue.cos_0.uc  = 0
-cos_egr_queue.cos_1.uc  = 1
-cos_egr_queue.cos_2.uc  = 7
-cos_egr_queue.cos_3.uc  = 3
-cos_egr_queue.cos_4.uc  = 4
-cos_egr_queue.cos_5.uc  = 5
-cos_egr_queue.cos_6.uc  = 6
-cos_egr_queue.cos_7.uc  = 7
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To show the egress queue mapping configuration on the switch, run the NVUE `nv show qos egress-queue-mapping default-global` command:
+To show the egress queue mapping configuration for the default profile, run the `nv show qos egress-queue-mapping default-global` command:
 
 ```
 cumulus@switch:~$ nv show qos egress-queue-mapping default-global
@@ -696,7 +749,7 @@ SP->TC mapping configuration
     7                7
 ```
 
-To show the egress queue mapping for a specific switch priority, run the NVUE `nv show qos egress-queue-mapping default-global switch-priority <value>` command. The following example command shows that switch priority 2 is assigned to egress queue 7.
+To show the egress queue mapping for a specific switch priority in the default profile, run the `nv show qos egress-queue-mapping default-global switch-priority <value>` command. The following example command shows that switch priority 2 is assigned to egress queue 7.
 
 ```
 cumulus@switch:~$ nv show qos egress-queue-mapping default-global switch-priority 2
@@ -704,6 +757,25 @@ cumulus@switch:~$ nv show qos egress-queue-mapping default-global switch-priorit
 -------------  -----------  -------  -------------
 traffic-class  7            7        Traffic Class
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+You configure egress queues in the `qos_infra.conf` file.
+
+```
+cos_egr_queue.cos_0.uc  = 0
+cos_egr_queue.cos_1.uc  = 1
+cos_egr_queue.cos_2.uc  = 7
+cos_egr_queue.cos_3.uc  = 3
+cos_egr_queue.cos_4.uc  = 4
+cos_egr_queue.cos_5.uc  = 5
+cos_egr_queue.cos_6.uc  = 6
+cos_egr_queue.cos_7.uc  = 7
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Egress Scheduler
 
@@ -726,6 +798,27 @@ cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 3,4 m
 cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 3,4 bw-percent 20 
 cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 0,1,5,7 mode strict
 cumulus@switch:~$ nv config apply
+```
+
+To show the egress scheduling policy for the default profile, run the `nv show qos egress-scheduler default-global` command:
+
+```
+cumulus@switch:~$ nv show qos egress-scheduler default-global
+    operational  applied  description
+--  -----------  -------  -----------
+
+TC->DWRR weight configuration
+================================
+    traffic-class  mode    bw-percent
+    -------------  ------  ----------
+    0              strict
+    1              strict
+    2              dwrr    30
+    3              dwrr    20
+    4              dwrr    20
+    5              strict
+    6              dwrr    30
+    7              strict
 ```
 
 {{< /tab >}}

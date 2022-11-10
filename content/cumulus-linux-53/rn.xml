@@ -145,12 +145,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3041307</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.3.0</td>
-<td>3.7.16, 4.3.1, 4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3037829</td>
 <td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
 <td>5.0.0-5.3.0</td>

@@ -397,12 +397,6 @@ Failure during apply. Ignore? [y/N]
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
-<td>3041307</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
-<td>3.7.16, 4.3.1, 4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3040174</td>
 <td>When you configure EVPN multihoming with NVUE on a switch with the Spectrum-a1 ASIC, you must configure the following snippet to enable EVPN multihoming in hardware. This is not required for Spectrum-2 or Spectrum-3 switches.
 
@@ -651,6 +645,11 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>3055255</td>
 <td>When you run the NVUE {{nv show interface}} command, a watchdog timeout might occur and the {{nvued}} service fails.</td>
 <td>5.0.1</td>
+</tr>
+<tr>
+<td>3041307</td>
+<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>3040080</td>

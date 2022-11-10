@@ -3914,7 +3914,7 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 <tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>3031228</td>
@@ -4009,6 +4009,12 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
+<td>3195345</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-5.0.1</td>
+<td>5.1.0-5.2.1</td>
+</tr>
+<tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
@@ -4058,16 +4064,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
-<td>3128328</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
 <td>4.3.1, 5.2.0-5.2.1</td>
+</tr>
+<tr>
+<td>3119615</td>
+<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3117340</td>
@@ -4103,7 +4109,7 @@ end vrf
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
-<td>4.2.1-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.0-4.4.3</td>
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.2.1</td>
 </tr>
 <tr>
@@ -4134,7 +4140,7 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <tr>
 <td>3089148</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>4.4.3, 5.1.0</td>
+<td>4.4.3</td>
 <td>4.4.4-4.4.5, 5.2.0-5.2.1</td>
 </tr>
 <tr>
@@ -4216,8 +4222,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td>3.7.16, 4.3.1</td>
+<td>3.7.15, 4.3.0, 4.4.0-5.0.1</td>
+<td>3.7.16, 4.3.1, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3032234</td>
@@ -4252,8 +4258,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3021877</td>
 <td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.2.1</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.2-4.4.3</td>
+<td>4.4.4-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3021838</td>
@@ -4590,7 +4596,7 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2794766</td>
 <td>The Mellanox 3700C switch reports a slow memory leak in sx_sdk. Memory increases by about 240B/hour and does not free up.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2792750</td>
@@ -4661,8 +4667,8 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2739402</td>
@@ -4882,7 +4888,7 @@ ERROR: Command not found
 <td>2555981</td>
 <td>In BGP, to enable an address family on a peer, you have to enable the address family  globally.</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2555873</td>
@@ -6000,7 +6006,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
-<td>4.2.1-4.4.2, 5.0.0-5.2.1</td>
+<td>4.2.1-4.4.2</td>
 </tr>
 <tr>
 <td>2961079</td>
@@ -6024,7 +6030,7 @@ Fixed: 2.5.5-3+deb10u4</td>
 <tr>
 <td>2959550</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2, 5.0.0-5.2.1</td>
+<td>4.4.0-4.4.2, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2949513</td>
@@ -6077,6 +6083,12 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td></td>
 </tr>
 <tr>
+<td>3195345</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-5.0.1</td>
+<td>5.1.0-5.2.1</td>
+</tr>
+<tr>
 <td>3192808</td>
 <td>When the switch receives an LLDP frame from a Cisco router right after a {{ptmd}} restart, the {{ptmd}} service crashes.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.2.1</td>
@@ -6126,16 +6138,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
-<td>3128328</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
 <td>4.3.1, 5.2.0-5.2.1</td>
+</tr>
+<tr>
+<td>3119615</td>
+<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3117340</td>
@@ -6154,7 +6166,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
-<td>4.2.1-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.0-4.4.3</td>
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.2.1</td>
 </tr>
 <tr>
@@ -6248,8 +6260,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td>3.7.16, 4.3.1</td>
+<td>3.7.15, 4.3.0, 4.4.0-5.0.1</td>
+<td>3.7.16, 4.3.1, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3032234</td>
@@ -6272,8 +6284,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3021877</td>
 <td>After you configure a new VLAN on a bond, traffic might stop forwarding on the bond interface.  This issue occurs only when you specify {{bridge-vids}} on the bond. This issue does not occur  when you configure VLANs only on the bridge interface and let the bond get the {{bridge-vids}} applied from the bridge.</td>
-<td>4.4.2-4.4.3, 5.0.0-5.2.1</td>
-<td>4.4.4-4.4.5</td>
+<td>4.4.2-4.4.3</td>
+<td>4.4.4-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3021838</td>
@@ -6335,7 +6347,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
-<td>4.2.1-4.4.2, 5.0.0-5.2.1</td>
+<td>4.2.1-4.4.2</td>
 <td>4.4.3-4.4.5</td>
 </tr>
 <tr>
@@ -6381,8 +6393,8 @@ Fixed: 2.5.5-3+deb10u4</td>
 <tr>
 <td>2959550</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2, 5.0.0-5.2.1</td>
-<td>4.4.3-4.4.5</td>
+<td>4.4.0-5.0.1</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2959067</td>
@@ -6642,7 +6654,7 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2794766</td>
 <td>The Mellanox 3700C switch reports a slow memory leak in sx_sdk. Memory increases by about 240B/hour and does not free up.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2792750</td>
@@ -6713,8 +6725,8 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2739402</td>
@@ -6934,7 +6946,7 @@ ERROR: Command not found
 <td>2555981</td>
 <td>In BGP, to enable an address family on a peer, you have to enable the address family  globally.</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2555873</td>
@@ -8274,6 +8286,11 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td>In an EVPN multihoming configuration, the VTEP continues to advertise a stale route after an extended MAC mobility event.</td>
 <td>4.3.0-4.4.1</td>
 </tr>
+<tr>
+<td>2705056</td>
+<td>SVIs do not inherit the pinned MAC address of the bridge.</td>
+<td>4.3.0, 5.0.0-5.2.1</td>
+</tr>
 </table>
 <table name="Open Issues in 4.4.0">
 <tr>
@@ -8300,6 +8317,12 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-4.4.4</td>
 <td>4.4.5</td>
+</tr>
+<tr>
+<td>3195345</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-5.0.1</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -8345,16 +8368,16 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td></td>
 </tr>
 <tr>
-<td>3128328</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>3.7.16, 4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3123556</td>
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
 <td>4.3.1, 5.2.0-5.2.1</td>
+</tr>
+<tr>
+<td>3119615</td>
+<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3117340</td>
@@ -8373,7 +8396,7 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
-<td>4.2.1-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
+<td>4.4.0-4.4.3</td>
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.2.1</td>
 </tr>
 <tr>
@@ -8452,8 +8475,8 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <tr>
 <td>3041306</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td>3.7.16, 4.3.1</td>
+<td>3.7.15, 4.3.0, 4.4.0-5.0.1</td>
+<td>3.7.16, 4.3.1, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3021879</td>
@@ -8509,7 +8532,7 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <tr>
 <td>2968495</td>
 <td>If {{switchd}} requires more time to update port or bond configuration after the port or bond flaps, the {{systemd}} watchdog times out. As result, {{systemd}} might assume that {{switchd}} is unresponsive and restarts it.</td>
-<td>4.2.1-4.4.2, 5.0.0-5.2.1</td>
+<td>4.2.1-4.4.2</td>
 <td>4.4.3-4.4.5</td>
 </tr>
 <tr>
@@ -8543,8 +8566,8 @@ Fixed: 2.5.5-3+deb10u4</td>
 <tr>
 <td>2959550</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2, 5.0.0-5.2.1</td>
-<td>4.4.3-4.4.5</td>
+<td>4.4.0-5.0.1</td>
+<td>5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2959067</td>
@@ -8903,7 +8926,7 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>2794766</td>
 <td>The Mellanox 3700C switch reports a slow memory leak in sx_sdk. Memory increases by about 240B/hour and does not free up.</td>
 <td>4.3.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2792750</td>
@@ -9035,8 +9058,8 @@ Fixed: 1.0.28-6+deb10u1</td>
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2739690</td>
@@ -9318,7 +9341,7 @@ ERROR: Command not found
 <td>2555981</td>
 <td>In BGP, to enable an address family on a peer, you have to enable the address family  globally.</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
+<td>5.0.0-5.2.1</td>
 </tr>
 <tr>
 <td>2555873</td>

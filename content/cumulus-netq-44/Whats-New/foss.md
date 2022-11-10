@@ -1,9 +1,9 @@
 ---
-title: NetQ 4.3 Open Source Packages
+title: NetQ 4.4 Open Source Packages
 author: Cumulus Networks
 weight: -30
 product: Cumulus NetQ
-version: "4.3"
+version: "4.4"
 toc: 1
 pdfhidden: True
 ---

@@ -301,7 +301,7 @@ deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb bionic netq-latest
 {{</tabs>}}
 
     {{<notice note>}}
-The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.3</code> &mdash; use that instead.
+The use of <code>netq-latest</code> in these examples means that a <code>get</code> to the repository always retrieves the latest version of NetQ, even for a major version update. If you want to keep the repository on a specific version &mdash; such as <code>netq-4.4</code> &mdash; use that instead.
     {{</notice>}}
 
 ## Install NetQ CLI
@@ -333,7 +333,7 @@ Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.3
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.4
 ...
 ```
 
@@ -352,7 +352,7 @@ To add the repository, uncomment or add the following line in `/etc/apt/sources.
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.3
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.4
 ...
 ```
 
@@ -377,7 +377,7 @@ You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLin
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.3" opsys="cl">}}
+{{<netq-install/cli-version version="4.4" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -397,7 +397,7 @@ To obtain the NetQ CLI package:
 
        admin@switch:~$ sudo nano /etc/apt/sources.list
        ...
-       deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb buster netq-4.3
+       deb [arch=amd64] https://apps3.cumulusnetworks.com/repos/deb buster netq-4.4
        ...
 
 2. Update the local `apt` repository and install the software on the switch.
@@ -411,9 +411,9 @@ To obtain the NetQ CLI package:
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    You should see version 4.3.0 and update 39 in the results. For example:
+    You should see version 4.4.0 and update 40 in the results. For example:
 
-    - netq-apps_<strong>4.3.0</strong>-deb10u<strong>39</strong>~1659299370.34aa65d5_amd64.deb	
+    - netq-apps_<strong>4.4.0</strong>-deb10u<strong>40</strong>~1667495784.97ef4c9d_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -480,7 +480,7 @@ To obtain the NetQ CLI package:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.3" opsys="ub">}}
+{{<netq-install/cli-version version="4.4" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 

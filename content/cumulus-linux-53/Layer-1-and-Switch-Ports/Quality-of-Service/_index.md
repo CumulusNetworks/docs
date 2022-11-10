@@ -30,7 +30,7 @@ When you run **Linux commands** to configure QoS, you must apply QoS changes to 
 cumulus@switch:~$ sudo systemctl reload switchd.service
 ```
 
-Unlike the `restart` command, the `reload switchd.service` command does not impact traffic forwarding except when the `qos_infra.conf` file changes, when you [pause frames](#pause-frames) or control [priority flow](#priority-flow-control-pfc), which require modifications to the ASIC buffer and might result in momentary packet loss.
+Unlike the `restart` command, the `reload switchd.service` command does not impact traffic forwarding except when the `qos_infra.conf` file changes, or when the switch [pauses frames](#pause-frames) or controls [priority flow](#priority-flow-control-pfc), which require modifications to the ASIC buffer and might result in momentary packet loss.
 
 NVUE reloads the `switchd` service automatically. You do **not** have to run the `reload switchd.service` command to apply changes when configuring QoS with NVUE commands.
 
@@ -63,12 +63,12 @@ The following table describes the default classifications for various frame and 
 
 ### Trust 802.1p Marking
 
-To trust 802.1p markings:
+To trust 802.1p marking:
 
 {{< tabs "TabID97 ">}}
 {{< tab "NVUE Commands ">}}
 
-When 802.1p (`l2`) is `trusted`, Cumulus Linux classifies these ingress COS values to switch priority values:
+When 802.1p (`l2`) is `trusted`, Cumulus Linux classifies these ingress 802.1p values to switch priority values:
 
 |Switch Priority |802.1p (PCP) |
 | ----------- | ---------- |
@@ -259,17 +259,17 @@ cumulus@switch:~$ nv set qos mapping default-global port-default-sp 3
 cumulus@switch:~$ nv config apply
 ```
 
-You can configure additional settings using [Port Groups](#port-groups).
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 In the `/etc/cumulus/datapath/qos/qos_features.conf` file, configure `traffic.packet_priority_source_set = [port]`.
 
-The `traffic.port_default_priority` setting defines the switch priority that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
+The `traffic.port_default_priority` setting defines the switch priority that all traffic uses.
 
 {{< /tab >}}
 {{< /tabs >}}
+
+You can configure additional settings using [Port Groups](#port-groups).
 
 ## Mark and Remark Traffic
 
@@ -500,10 +500,10 @@ Incorrect cable length settings can cause wasted buffer space (triggering conges
 |Configuration |Description |
 |------------- |----------- |
 |`link_pause.port_group_list` |The port group (label) to use with pause frame settings.<br>In the following example, the group is `my_pause_ports`:<br>`link_pause.port_group_list = [my_pause_ports]`  |
-|`link_pause.my_pause_ports.port_set` | The set of interfaces on which to apply pause frame configuration.<br>In the following example, ports swp1, swp2, swp3, swp4 and swp6 have pause frame on:<br>`link_pause.my_pause_ports.port_set = swp1-swp4,swp6` |
-|`link_pause.my_pause_ports.port_buffer_bytes`|The amount of reserved buffer space for the set of ports in the port group list (reserved from the global shared buffer).<br>The following example sets the amount of reserved buffer space to 25000:<br>`link_pause.my_pause_ports.port_buffer_bytes = 25000` |
-|`link_pause.my_pause_ports.xoff_size`  | The amount of reserved buffer to consume before thew switch sends a pause frame out of the set of interfaces in the port group list when transmitting pause frames is on.<br>In the following example, after you consume 10000 bytes of reserved buffer, the switch sends pause frames:<br>`link_pause.my_pause_ports.xoff_size = 10000` |
-|`link_pause.my_pause_ports.xon_delta` |The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending pause frame stops, if transmitting pause frames is on.<br>In the following example, the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before pause frame stops:<br>`link_pause.my_pause_ports.xon_delta = 2000` |
+|`link_pause.my_pause_ports.port_set` | The set of interfaces on which to apply pause frame configuration.<br>In the following example, swp1, swp2, swp3, swp4 and swp6 have pause frame on:<br>`link_pause.my_pause_ports.port_set = swp1-swp4,swp6` |
+|`link_pause.my_pause_ports.port_buffer_bytes`|The amount of reserved buffer space for the set of ports in the port group list (reserved from the global shared buffer).<br>The following example sets the amount of reserved buffer space to 25000 bytes:<br>`link_pause.my_pause_ports.port_buffer_bytes = 25000` |
+|`link_pause.my_pause_ports.xoff_size`  | The amount of reserved buffer to consume before the switch sends a pause frame out of the set of interfaces in the port group list.<br>In the following example, after you consume 10000 bytes of reserved buffer, the switch sends pause frames:<br>`link_pause.my_pause_ports.xoff_size = 10000` |
+|`link_pause.my_pause_ports.xon_delta` |The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending pause frame stops.<br>In the following example, the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before pause frame stops:<br>`link_pause.my_pause_ports.xon_delta = 2000` |
 |`link_pause.my_pause_ports.rx_enable` |Enables (`true`) or disables (`false`) sending pause frames. The default value is `true`.<br>In the following example, sending pause frames is on:<br>`link_pause.my_pause_ports.tx_enable = true`  |
 |`link_pause.my_pause_ports.tx_enable`  |Enables (`true`) or disables (`false`) the switch to receive pause frames. The default value is `true`.<br>In the following example, the receiving pause frames is on:<br>`link_pause.my_pause_ports.rx_enable = true` |
 |`link_pause.my_pause_ports.cable_length` | The length, in meters, of the cable that attaches to the port in the port group list. Cumulus Linux uses this value internally to determine the latency between generating a pause frame and receiving the pause frame. The default is `100` meters.<br>In the following example, the attached cable is `5` meters:<br>`link_pause.pause_port_group.cable_length = 5`|
@@ -520,19 +520,19 @@ Before configuring PFC, first modify the switch buffer allocation according to {
 {{% /notice %}}
 
 {{% notice warning %}}
-PFC buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This attempts to incorporate the delay between signaling congestion and receiving the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (called the interface delay) introduce as well as the distance between end points (cable length).  
+PFC buffer calculation is a complex topic defined in IEEE 802.1Q-2012, which attempts to incorporate the delay between signaling congestion and receiving the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (called the interface delay) introduce as well as the distance between end points (cable length).  
 Incorrect cable length settings cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
 {{% /notice %}}
 
-To apply PFC settings on all ports, modify the default PFC profile (`default-global`), which inherently applies the configurations to all the ports.
+To apply PFC settings on all ports, modify the default PFC profile (`default-global`).
 
-The following example commands modify the default profile and configure:
+The following example modifies the default profile and configures:
 - PFC on egress queue 0.
 - The buffer limit that triggers PFC frame transmission to stop to 1500 bytes and to start to 1000 bytes.
 - The amount of reserved buffer space to 2000 bytes.
 - The cable length to 50 meters.
 
-{{< tabs "TabID436 ">}}
+{{< tabs "TabID535 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -566,15 +566,15 @@ pfc.default-global.cable_length = 50
 {{< /tab >}}
 {{< /tabs >}}
 
-To apply a custom profile to specific interfaces, see [Port Groups](#ecn).
+To apply a custom profile to specific interfaces, see [Port Groups](#pfc).
 
 ### Explicit Congestion Notification (ECN)
 
-Unlike pause frames or PFC, ECN is an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end-hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
+Unlike pause frames or PFC, ECN is an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
 
 You use ECN with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section describes how to deploy PFC and ECN for RoCE environments.
 
-ECN operates by having a transit switch mark packets between two end-hosts.
+ECN operates by having a transit switch that marks packets between two end hosts.
 1. The transmitting host indicates it is ECN-capable by setting the ECN bits in the outgoing IP header to `01` or `10`
 2. If the buffer of a transit switch is greater than the configured minimum threshold of the buffer, the switch remarks the ECN bits to `11` indicating *Congestion Encountered* or *CE*.
 3. The receiving host marks any reply packets, like a TCP-ACK, as CE (`11`).
@@ -588,7 +588,7 @@ The default profile (`default-global`) enables ECN by default on egress queue 0 
 - A probability of 100 percent that Cumulus Linux marks an ECN-capable packet when buffer congestion is between the minimum threshold and the maximum threshold.
 - Random Early Detection (RED) disabled. ECN prevents packet drops in the network due to congestion by signaling hosts to transmit less. However, if congestion continues after ECN marking, packets drop after the switch buffer is full. By default, Cumulus Linux tail-drops packets when the buffer is full. You can enable RED to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
 
-The following example commands change the default ECN profile that applies to all ports. The commands enable ECN on egress queue 4, 5, and 7, set the minimum buffer threshold to 40000, the maximum buffer threshold to 200000, and enable RED.
+The following example commands change the default ECN profile that applies to all ports. The commands enable ECN on egress queue 4, 5, and 7, set the minimum buffer threshold to 40000 and the maximum buffer threshold to 200000, and enable RED.
 
 {{< tabs "TabID480 ">}}
 {{< tab "NVUE Commands ">}}
@@ -733,7 +733,7 @@ cumulus@switch:~$ nv config apply
 
 You configure the egress scheduling policy in the `egress scheduling` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 - The `egr_queue_` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `egr_queue_0` defines the bandwidth allocation for egress queue 0.
-- The `bw_percent` value defines the bandwidth allocation you want to assign to an egress queue. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues The combined total of values you assign to `bw_percent` must be less than or equal to 100.
+- The `bw_percent` value defines the bandwidth allocation you want to assign to an egress queue. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues. The combined total of values you assign to `bw_percent` must be less than or equal to 100.
 
 ```
 default_egress_sched.egr_queue_0.bw_percent = 0
@@ -879,10 +879,10 @@ Cumulus Linux supports the following iptable flags with a dual-rate policer.
 | iptables Flag | Description |
 | ---  | --- |
 | `--set-color-mode [blind \| aware]` |The policing mode: single-rate (`blind`) or dual-rate (`aware`). The default is `aware`. |
-| `--set-cir <kbps>` | Committed information rate (CIR) in kilobits per second. |
-| `--set-cbs <kbytes>` | Committed burst size (CBS) in kilobytes. |
-| `--set-pir <kbps>` |  Peak information rate (PIR) in kilobits per second. |
-| `--set-ebs <kbytes>` | Excess burst size (EBS) in kilobytes. |
+| `--set-cir <kbps>` | The committed information rate (CIR) in kilobits per second. |
+| `--set-cbs <kbytes>` | The committed burst size (CBS) in kilobytes. |
+| `--set-pir <kbps>` |  The peak information rate (PIR) in kilobits per second. |
+| `--set-ebs <kbytes>` | The excess burst size (EBS) in kilobytes. |
 | `--set-conform-action-dscp <dscp value>` | The numerical DSCP value to mark for traffic that conforms to the policer rate. |
 | `--set-exceed-action-dscp <dscp value>` | The numerical DSCP value to mark for traffic that exceeds the policer rate. |
 | `--set-violate-action-dscp <dscp value>` | The numerical DSCP value to mark for traffic that violates the policer rate. |
@@ -1047,7 +1047,7 @@ egress_sched.list2.egr_queue_6.bw_percent = 0
 
 To set priority flow control on a group of ports, you create a profile to define the egress queues that support sending PFC pause frames and define the set of interfaces to which you want to apply PFC pause frame configuration. Cumulus Linux automatically enables PFC frame transmit and PFC frame receive, and derives all other PFC settings, such as the buffer limits that trigger PFC frames transmit to start and stop, the amount of reserved buffer space, and the cable length.
 
-{{< tabs "TabID436 ">}}
+{{< tabs "TabID1050 ">}}
 {{< tab "NVUE Commands ">}}
 
 The following example applies a PFC profile called `my_pfc_ports` for egress queue 3 and 5 on swp1, swp2, swp3, swp4, and swp6.
@@ -1078,7 +1078,7 @@ cumulus@switch:~$ nv config apply
 | <div style="width:450px">Command | Description |
 | ------------- | ----------- |
 | `nv set qos pfc <profile> port-buffer <value>` | The amount of reserved buffer space (from the global shared buffer) for the interfaces defined in the port group list .<br>The following example sets the amount of reserved buffer space to 25000 bytes:<br>`nv set qos pfc my_pfc_ports port-buffer 25000` |
-| `nv set qos pfc <profile> xoff-threshold <value>` | The amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list.<br>The following example sends PFC pause frames after consuming 20000 bytes of reserved buffer:<br>`nv set qos pfc my_pfc_ports xoff-threshold 20000` |
+| `nv set qos pfc <profile> xoff-threshold <value>` | The amount of reserved buffer that the switch must consume before sending a PFC pause frame out of the set of interfaces in the port group list.<br>The following example sends PFC pause frames after consuming 20000 bytes of reserved buffer:<br>`nv set qos pfc my_pfc_ports xoff-threshold 20000` |
 | `nv set qos pfc <profile> xon-threshold <value>` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops.<br>In the following example, the buffer congestion must reduce by 1000 bytes (to 8000 bytes) before PFC pause frames stop:<br>`nv set qos pfc my_pfc_ports xon-threshold 1000`|
 | `nv set qos pfc <profile> rx enable`<br>`nv set qos pfc <profile> rx disable` | Enables or disables sending PFC pause frames. The default value is enable.<br>The following example disables sending PFC pause frames:<br>`nv set qos pfc my_pfc_ports rx disable`  |
 | `nv set qos pfc <profile> tx enable`<br>`nv set qos pfc <profile> tx disable` | Enables or disables receiving PFC pause frames. You do not need to define the COS values for `rx enable`. The switch receives any COS value. The default value is enable.<br>The following example disables receiving PFC pause frames:<br>`nv set qos pfc my_pfc_ports tx disable` |

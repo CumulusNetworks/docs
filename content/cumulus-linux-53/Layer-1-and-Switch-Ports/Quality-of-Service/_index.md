@@ -104,7 +104,7 @@ If you configure the trust to be `l2` but do not specify any PCP to switch prior
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Set `traffic.packet_priority_source_set = [802.1p]`.
+In the `/etc/cumulus/datapath/qos/qos_features.conf` file, set `traffic.packet_priority_source_set = [802.1p]`.
 
 When 802.1p marking is `trusted`, the following lines classify ingress 802.1p values to switch priority (internal COS) values:
 
@@ -121,7 +121,7 @@ traffic.cos_7.priority_source.8021p = [7]
 
 The `traffic.cos_` number is the switch priority value; for example 802.1p 0 maps to switch priority 0.
 
-To map 802.1p 4 to switch priority 0, configure the `traffic.cos_0.priority_source.8021p` setting to 4 in the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+To map 802.1p 4 to switch priority 0, configure the `traffic.cos_0.priority_source.8021p` setting to 4.
 
 ```
 traffic.cos_0.priority_source.8021p = [4]
@@ -149,7 +149,7 @@ traffic.cos_7.priority_source.8021p = [7]
 {{< /tab >}}
 {{< /tabs >}}
 
-To configure additional settings, such as apply a custom profile to specific interfaces, see [Port Groups](#port-groups).
+To apply a custom profile to specific interfaces, see [Port Groups](#port-groups).
 
 ### Trust DSCP
 
@@ -194,7 +194,7 @@ If you configure the trust to be `l3` but do not specify any DSCP to switch prio
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Configure `traffic.packet_priority_source_set = [dscp]`.
+In the `/etc/cumulus/datapath/qos/qos_features.conf` file, configure `traffic.packet_priority_source_set = [dscp]`.
 
 If DSCP is `trusted`, the following lines classify ingress DSCP values to switch priority (internal COS) values:
 
@@ -242,7 +242,7 @@ traffic.cos_7.priority_source.dscp = [56,57,58,59,60,61,62,63]
 {{< /tab >}}
 {{< /tabs >}}
 
-To configure additional settings, such as apply a custom DSCP profile to specific interfaces, see [Port Groups](#port-groups).
+To apply a custom DSCP profile to specific interfaces, see [Port Groups](#port-groups).
 
 ### Trust Port
 
@@ -264,7 +264,7 @@ You can configure additional settings using [Port Groups](#port-groups).
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Configure `traffic.packet_priority_source_set = [port]`.
+In the `/etc/cumulus/datapath/qos/qos_features.conf` file, configure `traffic.packet_priority_source_set = [port]`.
 
 The `traffic.port_default_priority` setting defines the switch priority that all traffic uses. You can configure additional settings using [Port Groups](#port-groups).
 
@@ -387,7 +387,7 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
-To configure additional settings, such as apply a custom profile to specific interfaces, see [Port Groups](#remarking).
+To apply a custom profile to specific interfaces, see [Port Groups](#remarking).
 
 ## Flow Control
 
@@ -513,7 +513,7 @@ Incorrect cable length settings can cause wasted buffer space (triggering conges
 
 Priority flow control extends the capabilities of pause frames by the frames for a specific 802.1p value instead of stopping all traffic on a link. If a switch supports PFC and receives a PFC pause frame for a given 802.1p value, the switch stops transmitting frames from that queue, but continues transmitting frames for other queues.
 
-You typically use PFC with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section provides information to specifically deploy PFC and ECN for RoCE environments.
+You use PFC with {{<link title="RDMA over Converged Ethernet - RoCE" text="RDMA over Converged Ethernet - RoCE">}}. The RoCE section provides information to specifically deploy PFC and ECN for RoCE environments.
 
 {{% notice note %}}
 Before configuring PFC, first modify the switch buffer allocation according to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
@@ -524,90 +524,49 @@ PFC buffer calculation is a complex topic defined in IEEE 802.1Q-2012. This atte
 Incorrect cable length settings cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
 {{% /notice %}}
 
-To apply PFC settings on all ports, modify the `default-global` PFC profile, which inherently applies the configurations to all the ports.
+To apply PFC settings on all ports, modify the default PFC profile (`default-global`), which inherently applies the configurations to all the ports.
 
-To set priority flow control on a group of ports, you create a profile to define the egress queues that support sending PFC pause frames and define the set of interfaces to which you want to apply PFC pause frame configuration. Cumulus Linux automatically enables PFC frame transmit and PFC frame receive, and derives all other PFC settings, such as the buffer limits that trigger PFC frames transmit to start and stop, the amount of reserved buffer space, and the cable length.
+The following example commands modify the default profile and configure:
+- PFC on egress queue 0.
+- The buffer limit that triggers PFC frame transmission to stop to 1500 bytes and to start to 1000 bytes.
+- The amount of reserved buffer space to 2000 bytes.
+- The cable length to 50 meters.
 
 {{< tabs "TabID436 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example applies a PFC profile called `my_pfc_ports` for egress queue 3 and 5 on swp1, swp2, swp3, swp4, and swp6.
-
 ```
-cumulus@switch:~$ nv set qos pfc my_pfc_ports switch-priority 3,5
-cumulus@switch:~$ nv set interface swp1-4,swp6 qos pfc profile my_pfc_ports
+cumulus@switch:~$ nv set qos pfc default-global switch-priority 0 
+cumulus@switch:~$ nv set qos pfc default-global xoff-threshold 1500 
+cumulus@switch:~$ nv set qos pfc default-global xon-threshold 1000 
+cumulus@switch:~$ nv set qos pfc default-global tx enable 
+cumulus@switch:~$ nv set qos pfc default-global rx disable 
+cumulus@switch:~$ nv set qos pfc default-global port-buffer 2000 
+cumulus@switch:~$ nv set qos pfc default-global cable-length 50
 cumulus@switch:~$ nv config apply
 ```
-
-The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit that triggers PFC frame transmission to stop to 1500 bytes and to start to 1000 bytes. The commands also set the amount of reserved buffer space to 2000 bytes, and the cable length to 50 meters:
-
-```
-cumulus@switch:~$ nv set qos pfc my_pfc_ports2 switch-priority 0 
-cumulus@switch:~$ nv set qos pfc my_pfc_ports2 xoff-threshold 1500 
-cumulus@switch:~$ nv set qos pfc my_pfc_ports2 xon-threshold 1000 
-cumulus@switch:~$ nv set qos pfc my_pfc_ports2 tx enable 
-cumulus@switch:~$ nv set qos pfc my_pfc_ports2 rx disable 
-cumulus@switch:~$ nv set qos pfc my_pfc_ports2 port-buffer 2000 
-cumulus@switch:~$ nv set qos pfc my_pfc_ports2 cable-length 50
-cumulus@switch:~$ nv set interface swp1 qos pfc profile my_pfc_ports2
-cumulus@switch:~$ nv config apply
-```
-
-<details>
-<summary>All PFC commands</summary>
-
-| <div style="width:450px">Command | Description |
-| ------------- | ----------- |
-| `nv set qos pfc <profile> port-buffer <value>` | The amount of reserved buffer space (from the global shared buffer) for the interfaces defined in the port group list .<br>The following example sets the amount of reserved buffer space to 25000 bytes:<br>`nv set qos pfc my_pfc_ports port-buffer 25000` |
-| `nv set qos pfc <profile> xoff-threshold <value>` | The amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list.<br>The following example sends PFC pause frames after consuming 20000 bytes of reserved buffer:<br>`nv set qos pfc my_pfc_ports xoff-threshold 20000` |
-| `nv set qos pfc <profile> xon-threshold <value>` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops.<br>In the following example, the buffer congestion must reduce by 1000 bytes (to 8000 bytes) before PFC pause frames stop:<br>`nv set qos pfc my_pfc_ports xon-threshold 1000`|
-| `nv set qos pfc <profile> rx enable`<br>`nv set qos pfc <profile> rx disable` | Enables or disables sending PFC pause frames. The default value is enable.<br>The following example disables sending PFC pause frames:<br>`nv set qos pfc my_pfc_ports rx disable`  |
-| `nv set qos pfc <profile> tx enable`<br>`nv set qos pfc <profile> tx disable` | Enables or disables receiving PFC pause frames. You do not need to define the COS values for `rx enable`. The switch receives any COS value. The default value is enable.<br>The following example disables receiving PFC pause frames:<br>`nv set qos pfc my_pfc_ports tx disable` |
-| `nv set qos pfc <profile> cable-length <value>` | The length, in meters, of the cable that attaches to the ports. Cumulus Linux uses this value internally to determine the latency between generating a PFC pause frame and receiving the PFC pause frame. The default is `10` meters.<br>The following example sets the cable length to `5` meters:<br>`nv set qos pfc my_pfc_ports cable-length 5`|
-</details>
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Configure PFC settings in the `pfc` section of the `qos_features.conf` file.
-
-The following example applies a PFC profile called `my_pfc_ports` for egress queue 3 and 5 on swp1, swp2, swp3, swp4, and swp6.
+Edit the `priority flow control` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
-pfc.port_group_list = [my_pfc_ports2]
-pfc.my_pfc_ports2.cos_list = [0]
-pfc.my_pfc_ports2.port_set = swp1
+pfc.port_group_list = [default-global]
+pfc.default-global.port_set = allports
+pfc.default-global.cos_list = [0]
+pfc.default-global.port_buffer_bytes = 2000
+pfc.default-global.xoff_size = 1500
+pfc.default-global.xon_delta = 500
+pfc.default-global.tx_enable = true
+pfc.default-global.rx_enable = false
+pfc.default-global.cable_length = 50
 ```
-
-The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands also disable PFC frame receive, and set the xoff-size to 1500 bytes, the xon-size to 1000 bytes, the headroom to 2000 bytes, and the cable length to 10 meters:
-
-```
-pfc.port_group_list = [my_pfc_ports2]
-pfc.my_pfc_ports2.cos_list = [0]
-pfc.my_pfc_ports2.port_set = swp1
-pfc.my_pfc_ports2.port_buffer_bytes = 2000
-pfc.my_pfc_ports2.xoff_size = 1500
-pfc.my_pfc_ports2.xon_delta = 1000
-pfc.my_pfc_ports2.tx_enable = true
-pfc.my_pfc_ports2.rx_enable = false
-pfc.my_pfc_ports2.cable_length = 10
-```
-
-<details>
-<summary>All PFC configuration options</summary>
-
-| Configuration | Description |
-| ------------- | ------- |
-| `pfc.my_pfc_ports.port_buffer_bytes` | The amount of reserved buffer space (from the global shared buffer) for the interfaces defined in the port group list.<br>The following example sets the amount of reserved buffer space to 25000 bytes:<br>`pfc.my_pfc_ports.port_buffer_bytes = 25000`  |
-| `pfc.my_pfc_ports.xoff_size` | The amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list.<br>The following example sends PFC pause frames after consuming 10000 bytes of reserved buffer:<br>`pfc.my_pfc_ports.xoff_size = 10000`|
-| `pfc.my_pfc_ports.xon_delta` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops.<br>The following example the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before PFC pause frames stop:<br>`pfc.my_pfc_ports.xon_delta = 2000`|
-| `pfc.my_pfc_ports.rx_enable` | Enables (`true`) or disables (`false`) sending PFC pause frames. The default value is `true`.<br>The following example enables sending PFC pause frames:<br>`pfc.my_pfc_ports.tx_enable = true` |
-| `pfc.my_pfc_ports.tx_enable` | Enables (`true`) or disables (`false`) receiving PFC pause frames. You do not need to define the COS values for `rx_enable`. The switch receives any COS value. The default value is `true`.<br>The following example enables receiving PFC pause frames:<br> `pfc.my_pfc_ports.rx_enable = true` |
-| `pfc.my_pfc_ports.cable_length` | The length, in meters, of the cable that attaches to the port in the port group list. Cumulus Linux uses this value internally to determine the latency between generating a PFC pause frame and receiving the PFC pause frame. The default is `10` meters<br>In this example, the cable is `5` meters:<br> `pfc.my_pfc_ports.cable_length = 5`|
-</details>
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To apply a custom profile to specific interfaces, see [Port Groups](#ecn).
 
 ### Explicit Congestion Notification (ECN)
 
@@ -651,6 +610,8 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
+Edit the `Explicit Congestion Notification` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+
 ```
 default_ecn_red_conf.egress_queue_list = [4,5,7]
 default_ecn_red_conf.ecn_enable = true
@@ -671,7 +632,7 @@ default_ecn_red_conf.ecn_enable = false
 {{< /tab >}}
 {{< /tabs >}}
 
-To configure additional settings, such as apply a custom ECN profile to specific interfaces, see [Port Groups](#ecn).
+To apply a custom ECN profile to specific interfaces, see [Port Groups](#ecn).
 
 ## Egress Queues
 
@@ -714,13 +675,43 @@ cos_egr_queue.cos_7.uc  = 7
 {{< /tab >}}
 {{< /tabs >}}
 
+To show the egress queue mapping configuration on the switch, run the NVUE `nv show qos egress-queue-mapping default-global` command:
+
+```
+cumulus@switch:~$ nv show qos egress-queue-mapping default-global
+    operational  applied  description
+--  -----------  -------  -----------
+
+SP->TC mapping configuration
+===============================
+    switch-priority  traffic-class
+    ---------------  -------------
+    0                0
+    1                1
+    2                7
+    3                3
+    4                4
+    5                5
+    6                6
+    7                7
+```
+
+To show the egress queue mapping for a specific switch priority, run the NVUE `nv show qos egress-queue-mapping default-global switch-priority <value>` command. The following example command shows that switch priority 2 is assigned to egress queue 7.
+
+```
+cumulus@switch:~$ nv show qos egress-queue-mapping default-global switch-priority 2
+               operational  applied  description
+-------------  -----------  -------  -------------
+traffic-class  7            7        Traffic Class
+```
+
 ## Egress Scheduler
 
 Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection, which allows the switch to assign bandwidth to egress queues and then schedule the transmission of traffic from each queue. 802.1Qaz supports Priority Queuing.
 
 Cumulus Linux provides a default egress scheduler that applies to all ports, where the bandwidth allocated to egress queues 0,2,4,6 is 12 percent and the bandwidth allocated to egress queues 1,3,5,7 is 13 percent. You can also apply a custom egress scheduler for specific ports; see [Port Groups](#egress-scheduling).
 
-The following example commands change the bandwidth allocation for egress queues 0, 1, 5, and 7 to strict, bandwidth allocation for egress queues 2 and 6 to 30 percent and bandwidth allocation for egress queues 3 and 4 to 20 percent.
+The following example modifies the default profile. The commands change the bandwidth allocation for egress queues 0, 1, 5, and 7 to strict, bandwidth allocation for egress queues 2 and 6 to 30 percent and bandwidth allocation for egress queues 3 and 4 to 20 percent.
 
 {{< tabs "TabID546 ">}}
 {{< tab "NVUE Commands ">}}
@@ -740,7 +731,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-You configure the egress scheduling policy in the egress scheduling section of the `qos_features.conf` file.
+You configure the egress scheduling policy in the `egress scheduling` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 - The `egr_queue_` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `egr_queue_0` defines the bandwidth allocation for egress queue 0.
 - The `bw_percent` value defines the bandwidth allocation you want to assign to an egress queue. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues The combined total of values you assign to `bw_percent` must be less than or equal to 100.
 
@@ -762,7 +753,7 @@ default_egress_sched.egr_queue_7.bw_percent = 0
 `strict` mode does not define a maximum bandwidth allocation. This can lead to starvation of other queues.
 {{% /notice %}}
 
-To configure additional settings, such as apply a custom egress scheduler for specific ports, see [Port Groups](#egress-scheduling).
+To apply a custom egress scheduler for specific ports, see [Port Groups](#egress-scheduling).
 
 ## Policing and Shaping
 
@@ -968,7 +959,7 @@ source.customer2.cos_1.priority_source.8021p = [4]
 
 ### Remarking
 
-You can use port groups to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value. You define these port groups with `remark.port_group_list` in the `qos_features.conf` file. The name is a label for configuration settings.
+You can use port groups to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value. You define these port groups with `remark.port_group_list` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. The name is a label for configuration settings.
 
 To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark 802.1p or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
 
@@ -1012,7 +1003,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-You define port groups with `egress_sched.port_group_list` in the `qos_features.conf` file. An `egress_sched.port_group_list` includes the names for the group settings. The name is a label (profile) for the configuration settings.
+You define port groups with `egress_sched.port_group_list` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. An `egress_sched.port_group_list` includes the names for the group settings. The name is a label (profile) for the configuration settings.
 
 ```
 egress_sched.port_group_list = [list1,list2]
@@ -1052,14 +1043,99 @@ egress_sched.list2.egr_queue_6.bw_percent = 0
 {{< /tab >}}
 {{< /tabs >}}
 
+### PFC
+
+To set priority flow control on a group of ports, you create a profile to define the egress queues that support sending PFC pause frames and define the set of interfaces to which you want to apply PFC pause frame configuration. Cumulus Linux automatically enables PFC frame transmit and PFC frame receive, and derives all other PFC settings, such as the buffer limits that trigger PFC frames transmit to start and stop, the amount of reserved buffer space, and the cable length.
+
+{{< tabs "TabID436 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example applies a PFC profile called `my_pfc_ports` for egress queue 3 and 5 on swp1, swp2, swp3, swp4, and swp6.
+
+```
+cumulus@switch:~$ nv set qos pfc my_pfc_ports switch-priority 3,5
+cumulus@switch:~$ nv set interface swp1-4,swp6 qos pfc profile my_pfc_ports
+cumulus@switch:~$ nv config apply
+```
+
+The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands disable PFC frame receive, and set the buffer limit that triggers PFC frame transmission to stop to 1500 bytes and to start to 1000 bytes. The commands also set the amount of reserved buffer space to 2000 bytes, and the cable length to 50 meters:
+
+```
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 switch-priority 0 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 xoff-threshold 1500 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 xon-threshold 1000 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 tx enable 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 rx disable 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 port-buffer 2000 
+cumulus@switch:~$ nv set qos pfc my_pfc_ports2 cable-length 50
+cumulus@switch:~$ nv set interface swp1 qos pfc profile my_pfc_ports2
+cumulus@switch:~$ nv config apply
+```
+
+<details>
+<summary>All PFC commands</summary>
+
+| <div style="width:450px">Command | Description |
+| ------------- | ----------- |
+| `nv set qos pfc <profile> port-buffer <value>` | The amount of reserved buffer space (from the global shared buffer) for the interfaces defined in the port group list .<br>The following example sets the amount of reserved buffer space to 25000 bytes:<br>`nv set qos pfc my_pfc_ports port-buffer 25000` |
+| `nv set qos pfc <profile> xoff-threshold <value>` | The amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list.<br>The following example sends PFC pause frames after consuming 20000 bytes of reserved buffer:<br>`nv set qos pfc my_pfc_ports xoff-threshold 20000` |
+| `nv set qos pfc <profile> xon-threshold <value>` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops.<br>In the following example, the buffer congestion must reduce by 1000 bytes (to 8000 bytes) before PFC pause frames stop:<br>`nv set qos pfc my_pfc_ports xon-threshold 1000`|
+| `nv set qos pfc <profile> rx enable`<br>`nv set qos pfc <profile> rx disable` | Enables or disables sending PFC pause frames. The default value is enable.<br>The following example disables sending PFC pause frames:<br>`nv set qos pfc my_pfc_ports rx disable`  |
+| `nv set qos pfc <profile> tx enable`<br>`nv set qos pfc <profile> tx disable` | Enables or disables receiving PFC pause frames. You do not need to define the COS values for `rx enable`. The switch receives any COS value. The default value is enable.<br>The following example disables receiving PFC pause frames:<br>`nv set qos pfc my_pfc_ports tx disable` |
+| `nv set qos pfc <profile> cable-length <value>` | The length, in meters, of the cable that attaches to the ports. Cumulus Linux uses this value internally to determine the latency between generating a PFC pause frame and receiving the PFC pause frame. The default is `10` meters.<br>The following example sets the cable length to `5` meters:<br>`nv set qos pfc my_pfc_ports cable-length 5`|
+</details>
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `priority flow control` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+
+The following example applies a PFC profile called `my_pfc_ports` for egress queue 3 and 5 on swp1, swp2, swp3, swp4, and swp6.
+
+```
+pfc.port_group_list = [my_pfc_ports2]
+pfc.my_pfc_ports2.cos_list = [0]
+pfc.my_pfc_ports2.port_set = swp1
+```
+
+The following example applies a PFC profile called `my_pfc_ports2` for egress queue 0 on swp1. The commands also disable PFC frame receive, and set the xoff-size to 1500 bytes, the xon-size to 1000 bytes, the headroom to 2000 bytes, and the cable length to 10 meters:
+
+```
+pfc.port_group_list = [my_pfc_ports2]
+pfc.my_pfc_ports2.cos_list = [0]
+pfc.my_pfc_ports2.port_set = swp1
+pfc.my_pfc_ports2.port_buffer_bytes = 2000
+pfc.my_pfc_ports2.xoff_size = 1500
+pfc.my_pfc_ports2.xon_delta = 1000
+pfc.my_pfc_ports2.tx_enable = true
+pfc.my_pfc_ports2.rx_enable = false
+pfc.my_pfc_ports2.cable_length = 10
+```
+
+<details>
+<summary>All PFC configuration options</summary>
+
+| Configuration | Description |
+| ------------- | ------- |
+| `pfc.my_pfc_ports.port_buffer_bytes` | The amount of reserved buffer space (from the global shared buffer) for the interfaces defined in the port group list.<br>The following example sets the amount of reserved buffer space to 25000 bytes:<br>`pfc.my_pfc_ports.port_buffer_bytes = 25000`  |
+| `pfc.my_pfc_ports.xoff_size` | The amount of reserved buffer that the switch must consume before sending a PFC pause frame out the set of interfaces in the port group list.<br>The following example sends PFC pause frames after consuming 10000 bytes of reserved buffer:<br>`pfc.my_pfc_ports.xoff_size = 10000`|
+| `pfc.my_pfc_ports.xon_delta` | The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending PFC pause frames stops.<br>The following example the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before PFC pause frames stop:<br>`pfc.my_pfc_ports.xon_delta = 2000`|
+| `pfc.my_pfc_ports.rx_enable` | Enables (`true`) or disables (`false`) sending PFC pause frames. The default value is `true`.<br>The following example enables sending PFC pause frames:<br>`pfc.my_pfc_ports.tx_enable = true` |
+| `pfc.my_pfc_ports.tx_enable` | Enables (`true`) or disables (`false`) receiving PFC pause frames. You do not need to define the COS values for `rx_enable`. The switch receives any COS value. The default value is `true`.<br>The following example enables receiving PFC pause frames:<br> `pfc.my_pfc_ports.rx_enable = true` |
+| `pfc.my_pfc_ports.cable_length` | The length, in meters, of the cable that attaches to the port in the port group list. Cumulus Linux uses this value internally to determine the latency between generating a PFC pause frame and receiving the PFC pause frame. The default is `10` meters<br>In this example, the cable is `5` meters:<br> `pfc.my_pfc_ports.cable_length = 5`|
+</details>
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### ECN
 
-You can use port groups with ECN to assign different profiles to different ports.
+You can create ECN profiles and assign them to different ports.
 
 {{< tabs "TabID1114 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example creates a custom ECN profile called `my-red-profile` for egress queue (`traffic-class`) 1 and 2, with a minimum buffer threshold of 40000 bytes, maximum buffer threshold of 200000 bytes, and a probability of 10. The commands also enable RED and apply the ECN profile to swp1 and swp2.
+The following example creates a custom ECN profile called `my-red-profile` for egress queue (`traffic-class`) 1 and 2. The commands set the minimum buffer threshold to 40000 bytes, maximum buffer threshold to 200000 bytes, and the probability to 10. The commands also enable RED and apply the ECN profile to swp1 and swp2.
 
 ```
 cumulus@switch:~$ nv set qos congestion-control my-red-profile traffic-class 1,2 min-threshold-bytes 40000 
@@ -1093,6 +1169,8 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+Edit the `Explicit Congestion Notification` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 The following example creates a custom ECN profile called `my-red-profile` for egress queue 1 and 2, with a minimum buffer threshold of 40000 bytes, maximum buffer threshold of 200000 bytes, and a probability of 10. The commands also enable RED and apply the ECN profile to swp1 and swp2.
 

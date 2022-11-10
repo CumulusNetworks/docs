@@ -251,7 +251,7 @@ You can assign all traffic to a switch priority regardless of the ingress markin
 {{< tabs "TabID183 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following commands assign all traffic to switch priority 3.
+The following commands assign all traffic to switch priority 3 regardless of the ingress marking.
 
 ```
 cumulus@switch:~$ nv set qos mapping default-global trust port 
@@ -269,7 +269,7 @@ The `traffic.port_default_priority` setting defines the switch priority that all
 {{< /tab >}}
 {{< /tabs >}}
 
-You can configure additional settings using [Port Groups](#port-groups).
+To apply a custom profile to specific interfaces, see [Port Groups](#port-groups).
 
 ## Mark and Remark Traffic
 
@@ -921,14 +921,21 @@ cumulus@switch:~$ nv set interface swp5,swp7 qos mapping profile customer2
 cumulus@switch:~$ nv config apply
 ```
 
+The following example configures the profile `customports`, which assigns traffic on swp1, swp2, and swp3 to switch priority 4 regardless of the ingress marking.
+
+```
+cumulus@switch:~$ nv set qos mapping customports trust port 
+cumulus@switch:~$ nv set qos mapping customports port-default-sp 4
+cumulus@switch:~$ nv set interface swp1,swp2,swp3 qos mapping profile customports
+cumulus@switch:~$ nv config apply
+```
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-You define port groups with the `source.port_group_list` configuration in the `qos_features.conf` file.
+You define profiles with the `source.port_group_list` configuration in the `qos_features.conf` file. A `source.port_group_list` is one or more names used for a group of settings.
 
-A `source.port_group_list` is one or more names used for group settings. For example, if a `source.port_group_list` includes `customer1`, Cumulus Linux configures the following `port_default_priority` with `source.customer1.port_default_priority`.
-
-The following is an example `source.port_group_list` configuration.
+The following example configures two profiles. `customer1` applies to swp1, swp4, and swp6. `customer2` applies to swp5 and swp7.
 
 ```
 source.port_group_list = [customer1,customer2]
@@ -944,7 +951,7 @@ source.customer2.cos_1.priority_source.8021p = [4]
 
 | Configuration | Description  |
 | ------------- | -----------  |
-| `source.port_group_list` | The names of the port groups you want to use.<br>The following example defines `customer1` and `customer2`:<br>`source.port_group_list = [customer1,customer2]`  |
+| `source.port_group_list` | The names of the port groups (profiles) you want to use.<br>The following example defines `customer1` and `customer2`:<br>`source.port_group_list = [customer1,customer2]`  |
 | `source.customer1.packet_priority_source_set` | The ingress marking trust.<br>In the following example, ingress DSCP values are for group `customer1`:<br>`source.customer1.packet_priority_source_set = [dscp]` |
 | `source.customer1.port_set` | The set of ports on which to apply the ingress marking trust policy.<br>In the following example, ports swp1, swp2, swp3, swp4, and swp6 are for `customer1`:<br>`source.customer1.port_set = swp1-swp4,swp6` |
 | `source.customer1.port_default_priority` | The default switch priority marking for unmarked or untrusted traffic.<br>In the following example, Cumulus Linux marks unmarked traffic or layer 2 traffic for `customer1` ports with switch priority 0:<br>`source.customer1.port_default_priority = 0` |
@@ -954,12 +961,21 @@ source.customer2.cos_1.priority_source.8021p = [4]
 | `source.customer2.port_default_priority` | The default switch priority marking for unmarked or untrusted traffic.<br>In the following example, Cumulus Linux marks unmarked tagged layer 2 traffic or unmarked VLAN tagged traffic for `customer1` ports with switch priority 0:<br>`source.customer2.port_default_priority = 0` |
 | `source.customer2.cos_0.priority_source` | The switch priority value to an ingress 802.1p value mapping for `customer2`.<br>The following example maps ingress 802.1p value 4 to switch priority 1:<br>`source.customer2.cos_1.priority_source.8021p = [4]` |
 
+The following example configures the profile `customports`, which assigns traffic on swp1, swp2, and swp3 to switch priority 4 regardless of the ingress marking.
+
+```
+source.port_group_list = [customports]
+source.customports.packet_priority_source_set = [port]
+source.customports.port_default_priority = 4
+source.customports.port_set = swp1,swp2,swp3
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
 ### Remarking
 
-You can use port groups to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value. You define these port groups with `remark.port_group_list` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. The name is a label for configuration settings.
+You can use profiles to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value. You define these profiles with `remark.port_group_list` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. The name is a label for configuration settings.
 
 To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark 802.1p or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
 
@@ -979,7 +995,7 @@ remark.remark_port_group2.cos_1.priority_remark.dscp = [37]
 
 You can use port groups with egress scheduling weights to assign different profiles to different egress ports.
 
-In the following example, the profile (group list) `list2` applies to swp1, swp3, and swp18. `list2` only assigns weights to queues 2, 5, and 6, and schedules the other queues on a best-effort basis when there is no congestion in queues 2, 5, or 6. Profile `list1` applies to swp2 and assigns weights to all queues.
+In the following example, the profile `list2` applies to swp1, swp3, and swp18. `list2` only assigns weights to queues 2, 5, and 6, and schedules the other queues on a best-effort basis when there is no congestion in queues 2, 5, or 6. `list1` applies to swp2 and assigns weights to all queues.
 
 {{< tabs "TabID884 ">}}
 {{< tab "NVUE Commands ">}}

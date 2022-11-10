@@ -225,7 +225,7 @@ To reset the counters that the `nv show interface <interface> qos roce` command 
 
 ## Change RoCE Configuration
 
-You can adjust RoCE settings using NVUE after RoCE is enabled. To change the memory allocation for RoCE lossless mode to 60 percent:
+You can adjust RoCE settings using NVUE after you enable RoCE. To change the memory allocation for RoCE lossless mode to 60 percent:
 
 ```
 cumulus@switch:mgmt:~$ nv set qos traffic-pool default-lossy memory-percent 40

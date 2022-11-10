@@ -23,7 +23,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-The storm control settings require a `switchd` reload. Before applying the settings, NVUE indicates that a reload is required and prompts you for confirmation. When the `switchd` service reloads, there is no interruption to network services.
+The storm control settings require a `switchd` reload. Before applying the settings, NVUE indicates if it requires a `switchd` reload and prompts you for confirmation. When the `switchd` service reloads, there is no interruption to network services.
 {{%/notice%}}
 
 The following example command disables multicast storm control on swp4:

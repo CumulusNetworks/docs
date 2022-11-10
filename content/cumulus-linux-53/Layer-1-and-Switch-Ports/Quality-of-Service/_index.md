@@ -60,9 +60,9 @@ The following table describes the default classifications for various frame and 
 
 - If you use NVUE to configure QoS, you define which values are `trusted` with the `nv set qos mapping <profile> trust l2` command (802.1p) or the `nv set qos mapping <profile> trust l3` command (DSCP) .
 - If you use Linux commands to configure QoS, you define which values are `trusted` in the `/etc/cumulus/datapath/qos/qos_features.conf` file by configuring the `traffic.packet_priority_source_set` setting to `802.1p` or `dscp`.
-
+<!-- vale off -->
 ### Trust 802.1p Marking
-
+<!-- vale on -->
 To trust 802.1p marking:
 
 {{< tabs "TabID97 ">}}
@@ -101,7 +101,7 @@ cumulus@switch:~$ nv config apply
 
 If you configure the trust to be `l2` but do not specify any PCP to switch priority mappings, Cumulus Linux uses the default values.
 
-To show the ingress 802.1p mapping for the default profile, run the `nv show qos mapping default-global pcp` command. To show the PCP mapping for a specific switch priority in the default profile, run the `nv show qos mapping default-global pcp <value>` command. The following example shows that PCP 0 is mapped to switch priority 4:
+To show the ingress 802.1p mapping for the default profile, run the `nv show qos mapping default-global pcp` command. To show the PCP mapping for a specific switch priority in the default profile, run the `nv show qos mapping default-global pcp <value>` command. The following example shows that PCP 0 maps to switch priority 4:
 
 ```
 cumulus@switch:~$ nv show qos mapping default-global pcp 0
@@ -200,7 +200,7 @@ cumulus@switch:~$ nv config apply
 
 If you configure the trust to be `l3` but do not specify any DSCP to switch priority mappings, Cumulus Linux uses the default values.
 
-To show the DSCP mapping in the default profile, run the `nv show qos mapping default-global dscp` command. To show the DSCP mapping for a specific switch priority in the default profile, run the `nv show qos mapping default-global dscp <value>` command. The following example shows that DSCP 22 is mapped to switch priority 4:
+To show the DSCP mapping in the default profile, run the `nv show qos mapping default-global dscp` command. To show the DSCP mapping for a specific switch priority in the default profile, run the `nv show qos mapping default-global dscp <value>` command. The following example shows that DSCP 22 maps to switch priority 4:
 
 ```
 cumulus@switch:~$ nv show qos mapping default-global dscp 22
@@ -376,9 +376,9 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 ```
 -A FORWARD -o swp11 -j SETQOS --set-dscp-class cs6
 ```
-
+<!-- vale off -->
 ### 802.1p or DSCP for Marking
-
+<!-- vale on -->
 To enable global remarking of 802.1p, DSCP or both 802.1p and DSCP values, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. For example, to enable the remarking of only 802.1p values:
 
 ```
@@ -749,7 +749,7 @@ SP->TC mapping configuration
     7                7
 ```
 
-To show the egress queue mapping for a specific switch priority in the default profile, run the `nv show qos egress-queue-mapping default-global switch-priority <value>` command. The following example command shows that switch priority 2 is assigned to egress queue 7.
+To show the egress queue mapping for a specific switch priority in the default profile, run the `nv show qos egress-queue-mapping default-global switch-priority <value>` command. The following example command shows that switch priority 2 maps to egress queue 7.
 
 ```
 cumulus@switch:~$ nv show qos egress-queue-mapping default-global switch-priority 2

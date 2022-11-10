@@ -275,8 +275,8 @@ Failure during apply. Ignore? [y/N]
 <tr>
 <td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
-<td>3.7.16, 4.3.1, 4.4.4-4.4.5</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16, 4.3.1, 4.4.4-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3040080</td>
@@ -908,8 +908,8 @@ export HOME
 <tr>
 <td>3041307</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
-<td>3.7.16, 4.3.1, 4.4.4-4.4.5</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.0.1</td>
+<td>3.7.16, 4.3.1, 4.4.4-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>3040080</td>

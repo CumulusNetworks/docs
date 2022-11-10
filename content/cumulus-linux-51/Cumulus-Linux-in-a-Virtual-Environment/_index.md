@@ -34,6 +34,7 @@ Due to hardware specific implementations, virtual environments do **not** suppor
 |{{<link title="What Just Happened (WJH)" >}}| <font color="red">No</font> |
 |{{<link url="Network-Address-Translation-NAT" >}}| <font color="red">No</font> |
 |{{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#adaptive-routing" text="Adaptive Routing" >}}| <font color="red">No</font> |
+|{{<link url="Storm-Control" text="Storm control ">}}|<font color="red">No</font>|
 
 <!--
 | Feature | In a Virtual Environment | In a Virtual Environment with Emulated ASIC |

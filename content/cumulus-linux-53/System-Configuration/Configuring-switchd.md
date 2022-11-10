@@ -36,7 +36,7 @@ A low setting, such as 1, might affect system performance.
 - The reserved VLAN range. The default setting is 3725-3999.
 
 {{%notice warning%}}
-Certain `switchd` settings require a `switchd` restart or reload. Before applying the settings, NVUE indicates if a restart or reload is required and prompts you for confirmation.  
+Certain `switchd` settings require a `switchd` restart or reload. Before applying the settings, NVUE indicates if it requires a `switchd` restart or reload and prompts you for confirmation.  
 - When the `switchd` service restarts, in addition to resetting the switch hardware configuration, all network ports reset.
 - When the `switchd` service reloads, there is **no** interruption to network services.
 {{%/notice%}}

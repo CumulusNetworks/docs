@@ -239,15 +239,9 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3042944</td>
-<td>Currently, the {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
+<td>The {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
 <td>5.1.0-5.2.1</td>
 <td></td>
-</tr>
-<tr>
-<td>3041307</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
-<td>3.7.16, 4.3.1, 4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3040174</td>
@@ -664,15 +658,9 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3042944</td>
-<td>Currently, the {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
+<td>The {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
 <td>5.1.0-5.2.1</td>
 <td></td>
-</tr>
-<tr>
-<td>3041307</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
-<td>3.7.16, 4.3.1, 4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3040174</td>

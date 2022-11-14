@@ -183,7 +183,7 @@ For each event type, you can filter rules according to the following parameters:
 
 ### Specify the Scope
 
-A rule's scope can be the entire complement of monitored devices or a subset. You define scopes as regular expressions, which is how they appear in NetQ. Each event has a set of attributes you can use to apply the rule to a subset of all devices. The definition and display is slightly different between the NetQ UI and the NetQ CLI, but the results are the same.
+A rule's scope can include all monitored devices or a subset. You define scopes as regular expressions, which is how they appear in NetQ. Each event has a set of attributes you can use to apply the rule to a subset of all devices. The definition and display is slightly different between the NetQ UI and the NetQ CLI, but the results are the same.
 
 {{<tabs "TabID2234" >}}
 
@@ -210,7 +210,7 @@ In this example, three attributes are available. For one or more of these attrib
 | Set of interfaces | ifname  | Starts with | \<partial-interface-name\> such as *swp* or *eth* |
 | Set of sensors | s_name | Starts with | \<partial-sensor-name\> such as *fan*, *temp*, or *psu* |
 
-Refer to {{<link title="WJH Event Messages Reference">}} for WJH drop types and reasons. Leaving an attribute value blank defaults to *all*; all hostnames, interfaces, sensors, forwarding resources, ACL resources, and so forth.
+Refer to {{<link title="WJH Event Messages Reference">}} for WJH drop types and reasons. Leaving an attribute value blank defaults to *all*: all hostnames, interfaces, sensors, forwarding resources, ACL resources, and so forth.
 
 Each attribute is displayed on the rule card as a regular expression equivalent to your choices above:
 
@@ -294,49 +294,39 @@ The hostname, reason/port down reason, ingress port, and drop type scope paramet
 
 To create a TCA rule:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and navigate to **Threshold Crossing Rules**.
 
-2. Under **Notifications**, select **Threshold Crossing Rules**.
+2. Select the event type for the rule you want to create.
 
-3. Select the event type for the rule you want to create.
+3. Click **Create a rule**. Enter a name for the rule and assign a severity, then click **Next**.
 
-4. Click **Create a Rule**. Enter a name for the rule and assign a severity. Verify the event type, then click **Next**.
+    {{<figure src="/images/netq/create-tca-rule.png" alt="" width="600">}}
 
-    {{<figure src="/images/netq/tca-create-rule-details-tab-320.png" width="400">}}
+4. Select the attribute you want to monitor. The listed attributes change depending on the type of event you chose in the previous step.
 
-5. On the **Choose Attribute** step, select the attribute you want to monitor. The listed attributes change depending on the type of event you chose in the previous step:
+5. Click **Next**.
 
-    {{<figure src="/images/netq/tca-create-rule-attribute-tab-320.png" width="400">}}
+6. On the **Set threshold** step, enter a threshold value.
 
-6. Click **Next**.
+    {{<figure src="/images/netq/set-threshold-fan.png" alt="" width="600">}}
 
-7. On the **Set Threshold** step, enter a threshold value.
+<div style="padding-left: 18px;">For digital optics, you can choose to use the thresholds defined by the optics vendor (default) or specify your own.</div>
 
-    {{<figure src="/images/netq/tca-create-rule-threshold-tab-320.png" width="400">}}
-
-<div style="padding-left: 18px;">For Digital Optics, you can choose to use the thresholds defined by the optics vendor (default) or specify your own.</div>
-
-    {{<figure src="/images/netq/tca-create-rule-threshold-tab-dom-vendor-320.png" width="350">}}
-
-    {{<figure src="/images/netq/tca-create-rule-threshold-tab-dom-userdefined-320.png" width="350">}}
-
-8. Define the scope of the rule.
+7. Define the scope of the rule.
 
     - If you want to restrict the rule based on a particular parameter, enter values for one or more of the available attributes. For What Just Happened rules, select a reason from the available list.
 
-    - If you want the rule to apply to all devices, click the scope toggle.
+    - If you want the rule to apply to across the network, select the **Apply rule to entire network** toggle.
 
-    {{<figure src="/images/netq/tca-create-rule-apply-filters-330.png" width="450">}}
+    {{<figure src="/images/netq/tca-create-rule-apply-filters-330.png" alt="" width="450">}}
 
-    {{<figure src="/images/netq/tca-create-rule-apply-toggle-330.png" width="450">}}
+8. Click **Next**.
 
-9. Click **Next**.
-
-10. (Optional) Select a notification channel where you want the events to be sent.
+9. (Optional) Select a notification channel where you want the events to be sent.
 
     Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure System Event Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify TCA Rules">}}.
 
-11. Click **Finish**. The rules may take several minutes to appear in the UI.
+10. Click **Finish**. The rules may take several minutes to appear in the UI.
 
 {{</tab>}}
 
@@ -382,7 +372,7 @@ For a Slack channel, the event messages should be similar to this:
 
 In addition to defining a scope for TCA rule, you can also set a severity of either info or error. To add a severity to a rule, use the `severity` option.
 
-For example, if you want to add a error severity to the CPU utilization rule you created earlier:
+For example, if you want to add an error severity to the CPU utilization rule you created earlier:
 
 ```
 cumulus@switch:~$ netq add tca event_id TCA_CPU_UTILIZATION_UPPER scope '*' severity error channel tca_slack_resources threshold 95
@@ -443,23 +433,17 @@ Now you have four rules created (the original one, plus these three new ones) al
 <!-- vale on -->
 ### View TCA Rules
 
-You can view all the threshold-crossing event rules you have created in the NetQ UI or the NetQ CLI.
-
 {{<tabs "View TCA rules">}}
 
 {{<tab "NetQ UI">}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}}.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and navigate to **Threshold Crossing Rules**.
 
-2. Under **Notifications**, select **Threshold Crossing Rules**.
-
-    The UI displays a card for each rule:
-
-    {{<figure src="/images/netq/tca-create-rule-ifstats-examples-330.png" width="500">}}
+2. The UI displays a card for each rule.
 
 After creating a rule, you can use the filters that appear above the rule cards to filter by status, severity, channel, and/or events.
 
-{{<figure src="/images/netq/tca-rules-filter-330.png" width="500">}}
+{{<figure src="/images/netq/tca-rules-filter-330.png" alt="" width="500">}}
 
 {{</tab>}}
 
@@ -509,7 +493,7 @@ TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname inf
 
 ### Change the Threshold on a TCA Rule
 
-After receiving notifications based on a rule, you might find that you want to increase or decrease the threshold value to limit or increase the number of events you receive.
+After receiving notifications based on a rule, you might want to increase or decrease the threshold value to limit or increase the number of events you receive.
 
 {{<tabs "Change TCA rule threshold">}}
 
@@ -517,15 +501,13 @@ After receiving notifications based on a rule, you might find that you want to i
 
 To modify the threshold:
 
-1. Locate the rule you want to modify and hover over the card.
+1. Locate the rule you want to modify and hover over the top of the card.
 
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
+2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> Edit.
 
-    {{<figure src="/images/netq/tca-edit-rule-300.png" width="200">}}
+    {{<figure src="/images/netq/edit-tca-card.png" alt="" width="200">}}
 
-3. Enter a new threshold value.
-
-4. Click **Update Rule**.
+3. Enter a new threshold value, then select **Update rule**.
 
 {{</tab>}}
 
@@ -557,21 +539,17 @@ After receiving notifications based on a rule, you might find that you want to n
 
 To modify the scope:
 
-1. Locate the rule you want to modify and hover over the card.
+1. Locate the rule you want to modify and hover over the top of the card.
 
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
-
-    {{<figure src="/images/netq/tca-edit-rule-300.png" width="200">}}
+2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> Edit.
 
 3. Change the scope, applying the rule to all devices or broadening or narrowing the scope. Refer to {{<link title="#Specify the Scope" text="Specify the Scope">}} for details.
 
-    {{<figure src="/images/netq/tca-edit-rule-example-300.png" width="500">}}
-
-<div style="padding-left: 18px;">In this example, the scope is across the entire network. Toggle the scope and select one or more hosts on which to apply this rule.</div>
+4. Select the toggle or define one or more hosts on which to apply this rule.
 
     {{<figure src="/images/netq/tca-create-rule-apply-toggle-241.png" width="450">}}
 
-4. Click **Update Rule**.
+4. Click **Update rule**.
 
 {{</tab>}}
 
@@ -607,27 +585,19 @@ TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"hostname^leaf inf
 
 ### Change, Add, or Remove the Channels on a TCA Rule
 
-You can change the channels associated with a TCA rule, add more channels to receive the same events, or remove channels that you no longer want to receive the associated events.
-
 {{<tabs "TabID2638" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Locate the rule you want to modify and hover over the card.
+1. Locate the rule you want to modify and hover over the top of the card.
 
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/>.
+2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> Edit.
 
-    {{<figure src="/images/netq/tca-edit-rule-300.png" width="200">}}
-
-3. Click **Channels**.
-
-    {{<figure src="/images/netq/tca-edit-rule-channels-320.png" width="500">}}
+3. Select the **Channels** tab.
 
 4. Select one or more channels.
 
-    Click a channel to select it. Click again to unselect a channel.
-
-5. Click **Update Rule**.
+5. Click **Update rule**.
 
 {{</tab>}}
 
@@ -710,19 +680,15 @@ To suppress a rule for a designated amount of time, you must change the state of
 
 2. Click **Disable**.
 
-    {{<figure src="/images/netq/tca-suppress-rule-300.png" width="300">}}
-
-3. Click in the **Date/Time** field to set when you want the rule to be *automatically reenabled*.
+3. Click in the **Date/Time** field to set when you want the rule to be *reenabled*.
 
 4. Click **Disable**.
 
-    {{<figure src="/images/netq/tca-suppress-rule-example-300.png" width="200">}}
-
 <div style="padding-left: 18px;">Note the changes in the card:
 <ul>
-<li>The state is now marked as <em>Inactive</em>,  but remains green</li>
-<li>The date and time that the rule will be enabled is noted in the <strong>Suppressed</strong> field</li>
-<li>The <strong>Disable</strong> option has changed to <strong>Disable Forever</strong>. Refer to {{<link title="#Disable a TCA Rule" text="Disable a TCA Rule">}} for information about this change.</li>
+<li>The state changes to <em>Snoozed</em></li>
+<li>The <strong>Suppressed</strong> field displays the date and time at which the rule will be reenabled.</li>
+<li>The <strong>Disable</strong> button changes to <strong>Disable forever</strong>.</li>
 </div>
 
 {{</tab>}}
@@ -812,9 +778,7 @@ To delete a rule:
 
 1. Locate the rule you want to remove and hover over the card.
 
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
-
-    {{<figure src="/images/netq/tca-delete-rule-300.png" width="200">}}
+2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> in the card's top-right corner.
 
 {{</tab>}}
 

@@ -2324,7 +2324,7 @@ username cumulus nopassword
 <tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
+<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2668477</td>
@@ -2430,6 +2430,12 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>When you configure an interface in FRR to send IPv6 RAs before you configure the interface in the {{/etc/network/interfaces}} file, the switch does not process IPv6 RAs. To work around this issue, remove the interface configuration in FRR and reapply it.</td>
 <td>3.7.15-4.3.0, 4.4.0-5.1.0</td>
 <td>4.3.1, 5.2.0-5.2.1</td>
+</tr>
+<tr>
+<td>3119615</td>
+<td>In an MLAG topology, if you admin down a single connected interface, any dynamic MAC addresses on the peer link are flushed, then added back momentarily, which creates a disruption in traffic. </td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3098936</td>
@@ -3145,8 +3151,8 @@ Fixed: 2.8.9dev1-2+deb8u2</td>
 <tr>
 <td>2743186</td>
 <td>When you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
-<td>3.7.15-3.7.16, 4.4.0-4.4.5, 5.0.0-5.2.1</td>
-<td></td>
+<td>3.7.15-5.1.0</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>2743132</td>
@@ -3418,8 +3424,8 @@ username cumulus nopassword
 <tr>
 <td>2668483</td>
 <td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.2.1</td>
-<td>4.3.1, 4.4.4-4.4.5</td>
+<td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.0.1</td>
+<td>4.3.1, 4.4.4-4.4.5, 5.1.0-5.2.1</td>
 </tr>
 <tr>
 <td>2668477</td>

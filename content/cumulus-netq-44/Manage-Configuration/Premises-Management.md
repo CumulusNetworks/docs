@@ -60,7 +60,7 @@ To configure a these premises so that their data can be viewed from one premises
 
 In this deployment model, the data is stored and can be viewed only from the NetQ UI at the primary premises.
 
-<div class="notices note"><p>The primary NetQ premises must be installed before the secondary premises can be added. For the secondary premises, create the premises here, then install them.</p></div>
+<div class="notices note"><p>The primary NetQ premises must be installed and operational before the secondary premises can be added. </p></div>
 
 1. In the workbench header, select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown.
 
@@ -96,13 +96,11 @@ To rename an existing premises:
 
 1. Enter the new name for the premises, then click **Done**.
 
-   {{<figure src="/images/netq/premises-rename-4.0.0.png" width="400">}}
-
 ## System Server Information
 
 To view the physical server or VM configuration:
 
-1. Click menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu"> Menu.
 
 2. Under **Admin**, select **Management**.
 

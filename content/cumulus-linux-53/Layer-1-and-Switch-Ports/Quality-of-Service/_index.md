@@ -1378,12 +1378,6 @@ egress_buffer.egr_queue_2.uc.dynamic_quota = ALPHA_8
 egress_buffer.cos_2.mc.dynamic_quota = ALPHA_8
 ```
 
-Restart `switchd` with the `sudo systemctl restart switchd.service` command.
-
-{{%notice warning%}}
-Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.
-{{%/notice%}}
-
 {{< /tab >}}
 {{< /tabs >}}
 

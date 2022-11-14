@@ -140,7 +140,7 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 </tr>
 <tr>
 <td>3042944</td>
-<td>Currently, the {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
+<td>The {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
 <td>5.1.0-5.3.0</td>
 <td></td>
 </tr>

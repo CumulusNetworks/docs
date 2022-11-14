@@ -24,6 +24,9 @@ You can add additional user accounts as needed. Like the *cumulus* account, thes
 ```
 cumulus@switch:~$ sudo adduser NEWUSERNAME sudo
 ```
+{{%notice note%}}
+Cumulus Linux has a built in service account called `nvue` that the NVUE object model uses. This account has no logon priveleges and  generates a strong password dynamically when the `nvued` service starts. Do not modify this account as it might stop NVUE from working.
+{{%/notice%}}
 
 To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 

@@ -379,7 +379,7 @@ export HOME
 </tr>
 <tr>
 <td>3042944</td>
-<td>Currently, the {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
+<td>The {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
 <td>5.1.0-5.2.1</td>
 <td></td>
 </tr>

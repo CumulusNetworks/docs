@@ -4,14 +4,7 @@ author: NVIDIA
 weight: 125
 toc: 3
 ---
-The NVUE service (`nvued`) supports the REST APIs.
-
-You can use the following HTTP methods:
-
-- `patch` to create new object instances and set attribute values.
-- `delete` to delete object instances and unset attribute values (change a value back to the default setting).
-- `get` to retrieve object instances and attributes.
-- `post` to create a new pending revision or run a one time operation, such as reboot the switch.
+In addition to the CLI, NVUE supports a REST API.
 
 ## Access the API
 
@@ -141,12 +134,12 @@ When you unset a change, you must still use the `PATCH` action. The value indica
 ## Patch Operations
 
 To change configuration settings with the REST API, you can either perform:
-- A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node of `/nvue_v1`. 
-- A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. This patch operation is more common than a root patch as you can control individual resources.
+- A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. 
+- A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
 
-You typically perform a *root patch* to push all configurations down to the switch at once in bulk. For example, when you use a centralized configuration engine (such as an SDN controller or an NMS) to always push down the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running numerous specific NVUE PATCH APIs to set or unset objects requires a number of round trips to the switch that include HTTP connection setup, payload and response marshalling costs, management network utilization, and so on.
+You typically perform a *root patch* to push all configurations to the switch at once in bulk. For example, if you use a centralized configuration engine (such as an SDN controller or a network management system) to push the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running numerous specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
 
-The following python example uses the requests library to exercise the REST API. The `full_config_example()` method sets the system pre-login message, enables BGP globally and a changes a few other configuration settings in a single operation. The API end-point goes to the root node `/nvue_v1`. The `bridge_config_example()` method performs a targeted API request to `/nvue_v1/bridge/domain/{domain-id}` to set the `vlan-vni-offset` attribute.
+In the following python example, the `full_config_example()` method sets the system pre-login message, enables BGP globally, and a changes a few other configuration settings in a single bulk operation. The API end-point goes to the root node `/nvue_v1`. The `bridge_config_example()` method performs a targeted API request to `/nvue_v1/bridge/domain/{domain-id}` to set the `vlan-vni-offset` attribute.
 
 {{< expand "Example Python Script" >}}
 

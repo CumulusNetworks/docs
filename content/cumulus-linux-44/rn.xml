@@ -45,7 +45,7 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 </tr>
 <tr>
 <td>3150317</td>
-<td>During a host failure where link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a linkstate change.</td>
+<td>During a host failure, where a link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a link state change.</td>
 <td>4.4.2-4.4.6, 5.1.0-5.2.1</td>
 <td></td>
 </tr>

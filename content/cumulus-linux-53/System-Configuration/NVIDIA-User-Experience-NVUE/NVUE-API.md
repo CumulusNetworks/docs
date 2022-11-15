@@ -4,7 +4,14 @@ author: NVIDIA
 weight: 125
 toc: 3
 ---
-This section provides information about using the NVUE API.
+The NVUE service (`nvued`) supports the REST APIs.
+
+You can use the following HTTP methods:
+
+- `patch` to create new object instances and set attribute values.
+- `delete` to delete object instances and unset attribute values (change a value back to the default setting).
+- `get` to retrieve object instances and attributes.
+- `post` to create a new pending revision or run a one time operation, such as reboot the switch.
 
 ## Access the API
 
@@ -130,6 +137,252 @@ $ curl -u 'cumulus:cumulus' -d '{"vlan100":null}' -H 'Content-Type: application/
 ```
 
 When you unset a change, you must still use the `PATCH` action. The value indicates removal of the entry. The data is `{"vlan100":null}` with the PATCH action.
+
+## Patch Operations
+
+To change configuration settings with the REST API, you can either perform:
+- A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node of `/nvue_v1`. 
+- A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. This patch operation is more common than a root patch as you can control individual resources.
+
+You typically perform a *root patch* to push all configurations down to the switch at once in bulk. For example, when you use a centralized configuration engine (such as an SDN controller or an NMS) to always push down the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running numerous specific NVUE PATCH APIs to set or unset objects requires a number of round trips to the switch that include HTTP connection setup, payload and response marshalling costs, management network utilization, and so on.
+
+The following python example uses the requests library to exercise the REST API. The `full_config_example()` method sets the system pre-login message, enables BGP globally and a changes a few other configuration settings in a single operation. The API end-point goes to the root node `/nvue_v1`. The `bridge_config_example()` method performs a targeted API request to `/nvue_v1/bridge/domain/{domain-id}` to set the `vlan-vni-offset` attribute.
+
+{{< expand "Example Python Script" >}}
+
+```
+#!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import json
+import time
+
+auth = HTTPBasicAuth(username="vagrant", password="vagrant")
+nvue_end_point = "https://127.0.0.1:8765/nvue_v1"
+mime_header = {"Content-Type": "application/json"}
+
+DUMMY_SLEEP = 5  # In seconds
+POLL_APPLIED = 1  # in seconds
+RETRIES = 10
+
+def print_request(r: requests.Request):
+    print("=======Request=======")
+    print("URL:", r.url)
+    print("Headers:", r.headers)
+    print("Body:", r.body)
+
+def print_response(r: requests.Response):
+    print("=======Response=======")
+    print("Headers:", r.headers)
+    print("Body:", json.dumps(r.json(), indent=2))
+
+def sanity():
+    # Basic retrieval to check connectivity
+    r = requests.get(url=nvue_end_point + "/system",
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+def create_nvue_changest():
+    r = requests.post(url=nvue_end_point + "/revision",
+                      auth=auth,
+                      verify=False)
+    print_request(r.request)
+    print_response(r)
+    response = r.json()
+    changeset = response.popitem()[0]
+    return changeset
+
+def apply_nvue_changeset(changeset):
+    # apply_payload = {"state": "apply"}
+    apply_payload = {"state": "apply", "auto-prompt": {"ays": "ays_yes"}}
+    url = nvue_end_point + "/revision/" + requests.utils.quote(changeset,
+                                                               safe="")
+    r = requests.patch(url=url,
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(apply_payload),
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+def full_config_example():
+    # Create an NVUE changeset
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+
+    # https://www.asciiart.eu/comics/batman
+    pre_login_message = u"""
+                   ,.ood888888888888boo.,
+              .od888P^""            ""^Y888bo.
+          .od8P''   ..oood88888888booo.    ``Y8bo.
+       .odP'"  .ood8888888888888888888888boo.  "`Ybo.
+     .d8'   od8'd888888888f`8888't888888888b`8bo   `Yb.
+    d8'  od8^   8888888888[  `'  ]8888888888   ^8bo  `8b
+  .8P  d88'     8888888888P      Y8888888888     `88b  Y8.
+ d8' .d8'       `Y88888888'      `88888888P'       `8b. `8b
+.8P .88P            """"            """"            Y88. Y8.
+88  888                                              888  88
+88  888                                              888  88
+88  888.        ..                        ..        .888  88
+`8b `88b,     d8888b.od8bo.      .od8bo.d8888b     ,d88' d8'
+ Y8. `Y88.    8888888888888b    d8888888888888    .88P' .8P
+  `8b  Y88b.  `88888888888888  88888888888888'  .d88P  d8'
+    Y8.  ^Y88bod8888888888888..8888888888888bod88P^  .8P
+     `Y8.   ^Y888888888888888LS888888888888888P^   .8P'
+       `^Yb.,  `^^Y8888888888888888888888P^^'  ,.dP^'
+          `^Y8b..   ``^^^Y88888888P^^^'    ..d8P^'
+              `^Y888bo.,            ,.od888P^'
+                   "`^^Y888888888888P^^'"
+"""
+
+    # https://www.asciiart.eu/comics/superman
+    post_login_message = u'''
+        _____________________________________________
+      //:::::::::::::::::::::::::::::::::::::::::::::\\
+    //:::_______:::::::::________::::::::::_____:::::::\\
+  //:::_/   _-"":::_--"""        """--_::::\_  ):::::::::\\
+ //:::/    /:::::_"                    "-_:::\/:::::|^\:::\\
+//:::/   /~::::::I__                      \:::::::::|  \:::\\
+\\:::\   (::::::::::""""---___________     "--------"  /::://
+ \\:::\  |::::::::::::::::::::::::::::""""==____      /::://
+  \\:::"\/::::::::::::::::::::::::::::::::::::::\   /~::://
+    \\:::::::::::::::::::::::::::::::::::::::::::)/~::://
+      \\::::\""""""------_____::::::::::::::::::::::://
+        \\:::"\               """""-----_____:::::://
+          \\:::"\    __----__                )::://
+            \\:::"\/~::::::::~\_         __/~:://
+              \\::::::::::::::::""----""":::://
+                \\::::::::::::::::::::::::://
+                  \\:::\^""--._.--""^/::://
+                    \\::"\         /":://
+                      \\::"\     /":://
+                        \\::"\_/":://
+                          \\::::://
+                            \\_//
+                              "
+'''
+
+    # Prepare payload which configures a few
+    # different switch configurations
+    payload = {
+        "interface":{
+            "eth0":{
+                "description": "management port"
+            }
+        },
+        "router":{
+            "bgp":{
+                "enable":"on"
+            }
+        },
+        "system":{
+            "message":{
+                "pre-login": pre_login_message,
+                "post-login": post_login_message
+            },
+            "timezone": "Europe/Paris",
+            "config": {
+               "snippet": {
+                   "test-flexible-snippet": {
+                       "file": "/tmp/blah",
+                       "content": "NVIDIA rocks"
+                   },
+                   "frr.conf": "hello world"
+               }
+            }
+        },
+        "service": {
+            "ntp": {
+                "mgmt": {
+                    "listen": "eth0"
+                }
+            }
+        }
+    }
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + "/",  # Root patch
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the staged changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def bridge_config_example(domain_id):
+    # Create an NVUE changeset
+    changeset = create_nvue_changest()
+    print("Using NVUE Changeset: '{}'".format(changeset))
+    payload = {
+        "vlan-vni-offset": 1000
+    }
+
+    # Stage the change
+    query_string = {"rev": changeset}
+    r = requests.patch(url=nvue_end_point + f"/bridge/domain/{domain_id}",
+                       auth=auth,
+                       verify=False,
+                       data=json.dumps(payload),
+                       params=query_string,
+                       headers=mime_header)
+    print_request(r.request)
+    print_response(r)
+
+    # Apply the staged changeset
+    apply_nvue_changeset(changeset)
+
+    # Check if the changeset was applied
+    is_config_applied(changeset)
+
+def message_get():
+    # Get the system pre-login/post-login
+    # message that was configured.
+    r = requests.get(url=nvue_end_point + "/system/message",
+                     auth=auth,
+                     verify=False)
+    print_request(r.request)
+    print_response(r)
+
+def is_config_applied(changeset) -> bool:
+    # Check if the configuration was indeed applied
+    global RETRIES
+    global POLL_APPLIED
+    retries = RETRIES
+    while retries > 0:
+        r = requests.get(url=nvue_end_point + "/revision/" + requests.utils.quote(changeset, safe=""),
+                         auth=auth,
+                         verify=False)
+        response = r.json()
+        print(response)
+
+        if response["state"] == "applied":
+            return True
+        retries -= 1
+        time.sleep(POLL_APPLIED)
+
+    return False
+
+if __name__ == "__main__":
+    sanity()
+    time.sleep(DUMMY_SLEEP)
+    full_config_example()
+    time.sleep(DUMMY_SLEEP)
+    bridge_config_example("br_default")
+    time.sleep(DUMMY_SLEEP)
+    message_get()
+```
+
+{{< /expand >}}
 
 ## Access the NVUE REST API from a Front Panel Port
 

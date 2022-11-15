@@ -32,6 +32,7 @@ The NVIDIA SN3750-SX switch is available for [early access]({{<ref "/knowledge-b
   - New BGP commands include {{<link url="Optional-BGP-Configuration/#bgp-dynamic-neighbors" text="BGP dynamic neighbor">}}, {{<link url="Optional-BGP-Configuration/#update-source" text="BGP update source">}}, {{<link url="Optional-BGP-Configuration/#bgp-neighbor-shutdown" text="BGP  neighbor shutdown">}}
   - New route map {{<link url="Route-Filtering-and-Redistribution/#match-and-set-statements" text="match and set statements">}} enable you to match on an EVPN default route, and set the BGP community, metric, originator ID, and forwarding address
   - {{<link title="What Just Happened (WJH)" text="WJH commands">}}
+  - {{<link url="Storm-Control" text="Storm Control commands">}}
   - {{<link url="Prescriptive-Topology-Manager-PTM/#check-link-state" text="PTM enable command">}} to check link state
   - Support for hyphens in hostnames, VRF, route map, next hop groups, prefix list, AS path list, community list, and ACL names
   - {{<link url="Interface-Configuration-and-Management/#fast-linkup" text="Fast link up command">}} (`nv set interface <interface-id> link fast-linkup on`) to support fast link up between Spectrum1 switches and certain optic network interface cards that require links to come up fast

@@ -1732,7 +1732,7 @@ This simulation starts with the example downstream VNI configuration. To simplif
 To validate the configuration, run the verification commands shown below.
 
 {{%notice note%}}
-This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation will be available soon.
+This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation is coming soon.
 {{%/notice%}}
 
 {{< /tab >}}

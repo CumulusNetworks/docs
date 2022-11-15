@@ -1759,7 +1759,7 @@ The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networki
 To validate the configuration, run the commands shown in the troublshooting section above.
 
 {{%notice note%}}
-This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation will be available soon.
+This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation is coming soon.
 {{%/notice%}}
 
 {{< /tab >}}

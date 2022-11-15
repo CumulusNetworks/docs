@@ -15,15 +15,15 @@ You can choose which packet drops you want to monitor by creating channels and s
 {{< tabs "TabID24 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example configures two separate channels:
+The following example configures two separate channels (these are the default settings):
 - The `forwarding` channel monitors layer 2, layer 3, and tunnel packet drops.
-- The `layer-one` channel monitors layer 1 packet drops.
+- The `layer-1` channel monitors layer 1 packet drops.
 
 ```
 cumulus@switch:~$ nv set system wjh channel forwarding trigger l2
 cumulus@switch:~$ nv set system wjh channel forwarding trigger l3
 cumulus@switch:~$ nv set system wjh channel forwarding trigger tunnel
-cumulus@switch:~$ nv set system wjh channel layer-one trigger l1
+cumulus@switch:~$ nv set system wjh channel layer-1 trigger l1
 cumulus@switch:~$ nv config apply
 ```
 
@@ -34,10 +34,10 @@ cumulus@switch:~$ nv unset system wjh channel forwarding trigger l2
 cumulus@switch:~$ nv config apply
 ```
 
-To remove a channel, run the `nv unset system wjh channel <channel>` command. The following command example removes the `layer-one` channel:
+To remove a channel, run the `nv unset system wjh channel <channel>` command. The following command example removes the `layer-1` channel:
 
 ```
-cumulus@switch:~$ nv unset system wjh channel layer-one 
+cumulus@switch:~$ nv unset system wjh channel layer-1 
 cumulus@switch:~$ nv config apply
 ```
 
@@ -50,9 +50,9 @@ Edit the `/etc/what-just-happened/what-just-happened.json` file:
 
 After you edit the file, you must restart the WJH service with the `sudo systemctl restart what-just-happened` command.
 
-The following example configures two separate channels:
+The following example configures two separate channels (these are the default settings):
 - The `forwarding` channel monitors layer 2, layer 3, and tunnel packet drops.
-- The `layer-one` channel monitors layer 1 packet drops.
+- The `layer-1` channel monitors layer 1 packet drops.
 
 ```
 cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
@@ -66,7 +66,7 @@ cumulus@switch:~$ sudo nano /etc/what-just-happened/what-just-happened.json
                     "tunnel"
                 ]
             },
-            "layer-one": {
+            "layer-1": {
                 "drop_category_list": [
                     "l1"
                 ]

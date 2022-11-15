@@ -839,7 +839,7 @@ This simulation starts with the example GRE configuration. The demo is pre-confi
 To validate the configuration, run the commands listed in the troubleshooting section.
 
 {{%notice note%}}
-This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation will be available soon.
+This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation is coming soon.
 {{%/notice%}}
 
 {{< /tab >}}

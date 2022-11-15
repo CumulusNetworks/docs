@@ -139,12 +139,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3042944</td>
-<td>The {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
-<td>5.1.0-5.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3037829</td>
 <td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
 <td>5.0.0-5.3.0</td>

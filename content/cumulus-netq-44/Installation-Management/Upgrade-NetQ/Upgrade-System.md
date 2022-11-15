@@ -138,6 +138,6 @@ netq upgrade bundle /mnt/installables/NetQ-4.4.0-opta.tgz
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
     BOOTSTRAP_VERSION=4.4.0
-    APPLIANCE_MANIFEST_HASH=97ef4c9d
+    APPLIANCE_MANIFEST_HASH=d552ed2f70b56e31aad8f35cab9383af4b2fe61abe55939b19b491b4e480d737
     APPLIANCE_VERSION=4.4.0
     ```

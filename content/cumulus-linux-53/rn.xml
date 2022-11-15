@@ -304,7 +304,7 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </tr>
 <tr>
 <td>3196774</td>
-<td>In an EVPN configuration, after closing a BGP session on an EVPN peer, the VTEP RMAC is deleted and the hosts loose reachability to each other.  To work around this issue, restart FRR or add a static RMAC entry to bridge FDB.</td>
+<td>In an EVPN configuration, after closing a BGP session on an EVPN peer, the VTEP RMAC is deleted and the hosts lose reachability to each other.  To work around this issue, restart FRR or add a static RMAC entry to bridge FDB.</td>
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
@@ -339,7 +339,7 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </tr>
 <tr>
 <td>3150317</td>
-<td>During a host failure where link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a linkstate change.</td>
+<td>During a host failure, where a link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a link state change.</td>
 <td>4.4.2-5.2.1</td>
 </tr>
 <tr>

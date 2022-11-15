@@ -6,7 +6,7 @@ toc: 3
 ---
 In addition to the CLI, NVUE supports a REST API.
 
-## Access the API
+## Access the NVUE API
 
 To access the NVUE API, run these commands on the switch:
 
@@ -15,6 +15,30 @@ cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
 cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
+
+## Access the NVUE API from a Front Panel Port
+
+To access the NVUE REST API from a front panel port (swp) on the switch:
+
+1. Ensure that the `nvue.conf` file is present in the `/etc/nginx/sites-enabled` directory.
+
+   Either copy the packaged template file `nvue.conf` from the `/etc/nginx/sites-available` directory to the `/etc/nginx/sites-enabled` directory or create a symbolic link.
+
+2. Edit the `nvue.conf` file and add the `listen` directive with the IPv4 or IPv6 address of the swp interface you want to use.
+
+   The default `nvue.conf` file includes a single `listen localhost:8765 ssl;` entry. Add an entry for each swp interface with its IP address. Make sure to use an accessible HTTP (TCP) port (subject to any ACL/firewall rules). For information on the NGINX `listen` directive, see {{<exlink url="http://nginx.org/en/docs/http/ngx_http_core_module.html#listen" text="the NGINX documentation" >}}.
+
+3. Restart the `nginx` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl reload-or-restart nginx
+   ```
+
+{{%notice note%}}
+- The swp interfaces must be part of the default VRF on the Cumulus Linux switch or virtual appliance.
+- To access the REST API from the switch running `curl` locally, invoke the REST API client from the default VRF from the Cumulus Linux shell by prefixing the command with `ip vrf exec default curl`.
+- To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
+{{%/notice%}}
 
 ## Run cURL Commands
 
@@ -48,7 +72,7 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
 ...
 ```
 
-## Set a Configuration Change
+### Set a Configuration Change
 
 To make a configuration change with the NVUE API:
 
@@ -121,7 +145,7 @@ You must use the full key value for the revision and replace `/`â€‹ with `%2F`â€
    }
    ```
 
-## Unset a Configuration Change
+### Unset a Configuration Change
 
 To unset a change, use the `null` value to the key. For example, to delete `vlan100` from a switch, use the following syntax:
 
@@ -131,13 +155,13 @@ $ curl -u 'cumulus:cumulus' -d '{"vlan100":null}' -H 'Content-Type: application/
 
 When you unset a change, you must still use the `PATCH` action. The value indicates removal of the entry. The data is `{"vlan100":null}` with the PATCH action.
 
-## Patch Operations
+## Patch Operations with Python
 
 To change configuration settings with the REST API, you can either perform:
 - A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. 
 - A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
 
-You typically perform a *root patch* to push all configurations to the switch at once in bulk. For example, if you use a centralized configuration engine (such as an SDN controller or a network management system) to push the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running numerous specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
+You typically perform a *root patch* to push all configurations to the switch in bulk. For example, if you use a centralized configuration engine (such as an SDN controller or a network management system) to push the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running numerous specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
 
 In the following python example, the `full_config_example()` method sets the system pre-login message, enables BGP globally, and a changes a few other configuration settings in a single bulk operation. The API end-point goes to the root node `/nvue_v1`. The `bridge_config_example()` method performs a targeted API request to `/nvue_v1/bridge/domain/{domain-id}` to set the `vlan-vni-offset` attribute.
 
@@ -376,30 +400,6 @@ if __name__ == "__main__":
 ```
 
 {{< /expand >}}
-
-## Access the NVUE REST API from a Front Panel Port
-
-To access the NVUE REST API from a front panel port (swp) on the switch:
-
-1. Ensure that the `nvue.conf` file is present in the `/etc/nginx/sites-enabled` directory.
-
-   Either copy the packaged template file `nvue.conf` from the `/etc/nginx/sites-available` directory to the `/etc/nginx/sites-enabled` directory or create a symbolic link.
-
-2. Edit the `nvue.conf` file and add the `listen` directive with the IPv4 or IPv6 address of the swp interface you want to use.
-
-   The default `nvue.conf` file includes a single `listen localhost:8765 ssl;` entry. Add an entry for each swp interface with its IP address. Make sure to use an accessible HTTP (TCP) port (subject to any ACL/firewall rules). For information on the NGINX `listen` directive, see {{<exlink url="http://nginx.org/en/docs/http/ngx_http_core_module.html#listen" text="the NGINX documentation" >}}.
-
-3. Restart the `nginx` service:
-
-   ```
-   cumulus@switch:~$ sudo systemctl reload-or-restart nginx
-   ```
-
-{{%notice note%}}
-- The swp interfaces must be part of the default VRF on the Cumulus Linux switch or virtual appliance.
-- To access the REST API from the switch running `curl` locally, invoke the REST API client from the default VRF from the Cumulus Linux shell by prefixing the command with `ip vrf exec default curl`.
-- To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
-{{%/notice%}}
 
 ## Troubleshoot Configuration Changes
 

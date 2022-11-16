@@ -1,0 +1,1 @@
+libnetsnmptrapd40 has no copyright file

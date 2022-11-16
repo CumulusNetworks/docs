@@ -1,5 +1,5 @@
 ---
-title: Cumulus Linux 5.3 Open Source Packages
+title: Cumulus Linux 5.3 Packages
 author: Cumulus Networks
 weight: -30
 product: Cumulus Linux

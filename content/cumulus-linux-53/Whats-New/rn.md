@@ -1,5 +1,5 @@
 ---
-title: NVIDIA Cumulus Linux 5.3 Release Notes
+title: Cumulus Linux 5.3 Release Notes
 author: Cumulus Networks
 weight: -30
 product: Cumulus Linux

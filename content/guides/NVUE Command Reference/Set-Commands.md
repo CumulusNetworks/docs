@@ -19681,7 +19681,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers ro
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family
 
-Configures address family settings for the peer group.
+Configures the address family settings for the peer group.
 
 ### Usage
 
@@ -21034,7 +21034,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound aspath-list none
 
-AS-Path filter list to apply to Updates received from this peer
+Configures the AS path filter list you want to apply to updates received from the peers in the peer group.
 
 ### Usage
 
@@ -21084,10 +21084,10 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| route-map        | Route map to apply to Updates to be sent to this peer
-| unsuppress-map   | Route map used to unsuppress routes selectively when advertising to this peer; these are routes that have been suppressed due to aggregation configuration.
-| aspath-list      | AS-Path filter list to apply to Updates sent to this peer
-| prefix-list      | Prefix list to apply to Updates to be sent to this peer
+| route-map        |Configures the route map you want to apply to updates to be sent to the peers in the peer group.|
+| unsuppress-map   | Configures the route map used to unsuppress routes selectively when advertising to the peers in the peer group; these are routes that have been suppressed due to aggregation configuration.
+| aspath-list      | Configures the AS path filter list you want to apply to updates sent to the peers in the peer group.|
+| prefix-list      | Configures the prefix list you want to apply to updates to be sent to the peers in the peer group.|
 
 ### Version History
 
@@ -21095,11 +21095,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound aspath-list none
 
-AS-Path filter list to apply to Updates sent to this peer
+Configures the AS path filter list you want to apply to updates sent to the peers in the peer group.
 
 ### Usage
 
-`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list [options] none`
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound aspath-list [options] (none|<generic-name>)`
 
 ### Default Setting
 
@@ -21119,7 +21119,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound aspath-filter myaspathlist
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath

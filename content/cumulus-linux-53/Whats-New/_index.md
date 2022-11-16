@@ -29,7 +29,7 @@ The NVIDIA SN3750-SX switch is available for [early access]({{<ref "/knowledge-b
   - {{<link url="Quality-of-Service" text="QoS commands">}} to configure COS and DSCP marking, egress queue mapping, egress traffic scheduling, PFC, ECN, and traffic pools
   - {{<link url="Configuring-switchd" text="switchd commands">}} to configure the statistic polling interval for physical and logical interfaces, log level for debugging, DSCP settings for encapsulation and decapsulation, host route preference, ACL mode, and reserved VLAN range
   - New {{<link url="Monitoring-and-Troubleshooting/#show-system-information" text="nv show system commands">}} include `nv show system memory` and `nv show system cpu`
-  - New BGP commands include {{<link url="Optional-BGP-Configuration/#bgp-dynamic-neighbors" text="BGP dynamic neighbor">}}, {{<link url="Optional-BGP-Configuration/#update-source" text="BGP update source">}}, {{<link url="Optional-BGP-Configuration/#bgp-neighbor-shutdown" text="BGP  neighbor shutdown">}}
+  - New BGP configuration commands include {{<link url="Optional-BGP-Configuration/#bgp-dynamic-neighbors" text="BGP dynamic neighbor">}}, {{<link url="Optional-BGP-Configuration/#update-source" text="BGP update source">}}, {{<link url="Optional-BGP-Configuration/#bgp-neighbor-shutdown" text="BGP  neighbor shutdown">}}
   - New route map {{<link url="Route-Filtering-and-Redistribution/#match-and-set-statements" text="match and set statements">}} enable you to match on an EVPN default route, and set the BGP community, metric, originator ID, and forwarding address
   - {{<link title="What Just Happened (WJH)" text="WJH commands">}}
   - {{<link url="Storm-Control" text="Storm Control commands">}}

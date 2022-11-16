@@ -13,7 +13,7 @@ To use a gNMI client to export WJH data to a collector, refer to {{<link title="
 
 {{<notice info>}}
 
-WJH is only supported on NVIDIA Spectrum switches. WJH latency and congestion monitoring is supported on NVIDIA Spectrum 2 switches and above. WJH requires Cumulus Linux 4.4.0 or later. SONiC is not supported.
+WJH is only supported on NVIDIA Spectrum switches. WJH latency and congestion monitoring is supported on NVIDIA Spectrum 2 switches and above. WJH requires Cumulus Linux 4.4.0 or later. SONiC only supports collection of WJH data with gNMI.
 
 {{</notice>}}
 

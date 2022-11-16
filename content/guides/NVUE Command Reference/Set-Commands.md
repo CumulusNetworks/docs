@@ -20931,7 +20931,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-f
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast
 
-Peer IPv6 unicast address family.
+Configures the BGP peer group IPv6 unicast address family.
 
 ### Usage
 
@@ -20952,20 +20952,20 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `policy`                | Policies for ipv4 unicast|
-| `aspath`                | Options for handling AS_PATH for prefixes from/to peer for the specified address family|
-| `prefix-limits`         | Limits on prefix from the peer for this address-family|
-| `default-route-origination`  | Default route origination|
-| `community-advertise`   | Community advertise for address family.|
-| `attribute-mode`         |Attribute mod for address family.|
-| `conditional-advertise` |Conditional advertise for address family.|
-| `enable`               | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `add-path-tx`           | Used to enable transmission of additional paths; by default, only the best path is announced to peers|
-| `nexthop-setting`       | Control nexthop value of advertised routes. "auto" follows regular BGP next-hop determination rules. This  is the default. "self" sets the next hop to ourselves for route advertisement, except for reflected routes. "force" sets the next hop to ourselves for route  advertisement including for reflected routes.|
-| `route-reflector-client`|  Specifies if this peer is a client and we are its route reflector|
-| `route-server-client`   | Specifies if this peer is a client and we are its route server|
-| `soft-reconfiguration`  | If 'on', it means that received routes from this peer that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP Updates.|
-| `weight`                | Weight applied to routes received from peer; this is used in the BGP route selection algorithm|
+| `policy`                | Configures policies for the IPv6 unicast address family.|
+| `aspath`                | Configures options for handling the AS path for prefixes between peers in the peer group for the IPv6 address family.|
+| `prefix-limits`         | Configures limits on prefixes from the peers in the peer group for the IPv6 unicast address-family.|
+| `default-route-origination`  | Configures default route origination.|
+| `community-advertise`   | Configures community advertisement for the IPv6 unicast address family.|
+| `attribute-mode`         | Configures the attribute mode for the IPv6 unicast address family.|
+| `conditional-advertise` | Configures conditional advertisement for the IPv6 unicast  address family.|
+| `enable`               | Turns the IPv6 unicast address family on or off.|
+| `add-path-tx`           | Configures transmission of additional paths; by default, only the best path is announced to peers in the peer group.|
+| `nexthop-setting`       | Configures the nexthop value of advertised routes.|
+| `route-reflector-client`|  Configures the peers in the peer group to be clients and this switch its route reflector.|
+| `route-server-client`   | Configures the peer in the peer group to be clients and this switch its route server.|
+| `soft-reconfiguration`  | Configures BGP to store received routes from the peers in the peer group that are rejected by inbound policy. This allows policy changes to take effect without any exchange of BGP updates.|
+| `weight`                | Configures the weight applied to routes received from peers in the peer group; this is used in the BGP route selection algorithm.|
 
 ### Version History
 
@@ -20973,7 +20973,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy
 
-Policies for ipv6 unicast
+Configures policies for the IPv6 unicast address family.
 
 ### Usage
 
@@ -20994,8 +20994,8 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `inbound`          | Outbound unicast policy|
-| `outbound`         | Outbound unicast policy|
+| `inbound`          | Configures the inbound unicast policy.|
+| `outbound`         | Configures the outbound unicast policy.|
 
 ### Version History
 
@@ -21003,7 +21003,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound
 
-Outbound unicast policy
+Configures the inbound unicast policy.
 
 ### Usage
 
@@ -21024,9 +21024,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `route-map`        | Route map to apply to Updates received from this peer|
-| `aspath-list`      | AS-Path filter list to apply to Updates received from this peer|
-| `prefix-list`      | Prefix list to apply to Updates received from this peer|
+| `route-map`        | Configures the route map you want to apply to updates received from the peers in the peer group.|
+| `aspath-list`      | Configures the AS path filter list you want to apply to updates received from the peers in the peer group.|
+| `prefix-list`      | Configures the prefix list you want to apply to updates received from the peers in the peer group.|
 
 ### Version History
 

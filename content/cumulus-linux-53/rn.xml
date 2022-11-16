@@ -7,9 +7,28 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3209895</td>
-<td>When performing "tcpdump -i swpX" for an L3, IPv6 enabled port the switch will generate 4 IPv6 Router Advertisements when tcpdump is started, and when it finishes, for a total of 8 IPv6 RA packets transmitted.</td>
-<td>4.4.4-4.4.5, 5.0.1-5.3.0</td>
+<td>3174706</td>
+<td>When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped.</td>
+<td>5.1.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3172504</td>
+<td>When you connect the NVIDIA SN4600C switch to a Spectrum 1 or Spectrum-3 switch with a 40GbE passive copper cable (Part Number: MC2210126-005) on edge ports 1-4 and 61-64, there is an Effective BER of 1E-12 in PHY.</td>
+<td>5.2.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3147782</td>
+<td>You cannot use NVUE to configure an SNMP view to include a subtree beginning with a period. For example:
+
+
+$ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
+Error: GET /nvue_v1/service/snmp-server/viewname/cumulusOnly/included?pointers=%5B%22%2Fparameters%22%2C+%22%2Fpatch%2FrequestBody%2Fcontent%2Fapplication~1json%2Fschema%22%2C+%22%2Fpatch%2Fparameters%22%2C+%22%2Fpatch%2Fresponses%2F200%2Flinks%22%5D responded with 404 NOT FOUND
+
+
+To work around this problem, reference the OID without the preceding period ( {{.}} ) in the command.</td>
+<td>5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -66,9 +85,21 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>3071652</td>
+<td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
+<td>4.4.4-4.4.5, 5.1.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3066280</td>
 <td> The python module pygments version 2.12.0 on the Cumulus Linux switch prevents NVUE from displaying colored output and produces an error or failure. The failure specifically identifies {{#ansidarkred}} as the problem color format. The error prevents any output from showing on the CLI. To work around this problem, downgrade the pygments module to version 2.3.1.</td>
 <td>5.0.1-5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3061656</td>
+<td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
+<td>5.1.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -90,6 +121,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>3047747</td>
+<td>When you change the split port speed from explicitly defined to auto-negotiation, the port speed remains stuck on the previously configured value.</td>
+<td>5.1.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3045369</td>
 <td>NVUE does not support orphaned data or pre-provisioned data. For example, if you remove a port breakout but the breakout interfaces (such as swp1s0-3) have configured data. To work around this issue, do not configure breakout interfaces until you configure and apply the breakout with the {{nv set interface &lt;interface&gt; link breakout &lt;breakout&gt;}} and {{nv config apply}} commands.</td>
 <td>5.2.0-5.3.0</td>
@@ -102,16 +139,16 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3042944</td>
-<td>Currently, the {{cl-ecmpcalc}} command does not support GTP teid as an input parameter.</td>
-<td>5.1.0-5.3.0</td>
+<td>3037829</td>
+<td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
+<td>5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3041307</td>
-<td>If you update the MAC address of an SVI using {{ifreload}} and {{hwaddress}}, the kernel maintains a stale permanent fdb entry for the old MAC address.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.3, 5.0.0-5.3.0</td>
-<td>3.7.16, 4.3.1, 4.4.4-4.4.5</td>
+<td>3015393</td>
+<td>The NVUE {{nv show interface &lt;tunnel-name&gt;}} command shows the operational state of the tunnel as down even though the tunnel is up, and encapsulation and decapsulation occurs correctly.</td>
+<td>5.1.0-5.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2993471</td>
@@ -120,16 +157,16 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>2972540</td>
+<td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
+<td>5.0.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2964279</td>
 <td>When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU {{net show evpn vni detail}} command output shows duplicate layer 2 VNIs under a layer 3 VNI. </td>
 <td>3.7.15, 4.4.2-4.4.5, 5.0.0-5.3.0</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2959550</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.2, 5.0.0-5.3.0</td>
-<td>4.4.3-4.4.5</td>
 </tr>
 <tr>
 <td>2951110</td>
@@ -237,8 +274,16 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Affects </th>
 </tr>
 <tr>
+<td>3211054</td>
+<td>On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:
+
+Packet size is larger than router interface MTU – Validate the router interface MTU configuration
+</td>
+<td>4.4.2-5.2.1</td>
+</tr>
+<tr>
 <td>3205859</td>
-<td>Switch fans run at very high speed but the temperature is normal.</td>
+<td>On the NVIDIA SN3700 and SN4600 switch, the fans run at very high speed but the temperature sensor readings are within an acceptable range.</td>
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
@@ -253,7 +298,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 </tr>
 <tr>
 <td>3196774</td>
-<td>In an EVPN configuration, after closing a BGP session on an EVPN peer, the VTEP RMAC is deleted and the hosts loose reachability to each other.  To work around this issue, restart FRR or add a static RMAC entry to bridge FDB.</td>
+<td>In an EVPN configuration, after closing a BGP session on an EVPN peer, the VTEP RMAC is deleted and the hosts lose reachability to each other.  To work around this issue, restart FRR or add a static RMAC entry to bridge FDB.</td>
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
@@ -285,6 +330,11 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>3159756</td>
 <td>When adding a member port to a bond you sometimes see an error. The error occurs if you configure a port as double tagged, then you remove the double tagged configuration and add the port as a bond member. You might not see the error as it depends on timing of interface events during double tagged interface creation. To work around this issue, remove the bond configuration and add it back again.</td>
 <td>5.2.0-5.2.1</td>
+</tr>
+<tr>
+<td>3150317</td>
+<td>During a host failure, where a link remains up but LACP stops being sent, the EVPN multihoming ES bond goes into bypass mode active without a link state change.</td>
+<td>4.4.2-5.2.1</td>
 </tr>
 <tr>
 <td>3150208</td>
@@ -323,6 +373,27 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 <tr>
 <td>3053015</td>
 <td>Spectrum-2 and Spectrum-3 switches do not support 1G speed with Cumulus Linux.</td>
+<td>5.1.0-5.2.1</td>
+</tr>
+<tr>
+<td>3040174</td>
+<td>When you configure EVPN multihoming with NVUE on a switch with the Spectrum-a1 ASIC, you must configure the following snippet to enable EVPN multihoming in hardware. This is not required for Spectrum-2 or Spectrum-3 switches.
+
+- set:
+    system:
+      config:
+        snippet:
+          switchd:
+            file: "/etc/cumulus/switchd.conf"
+            content: |
+              evpn.multihoming.enable=TRUE
+            permissions: "0644"
+            services:
+              schedule:
+                service: switchd
+                action: restart
+
+Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, then run the {{nv config apply -y}} command.</td>
 <td>5.1.0-5.2.1</td>
 </tr>
 <tr>

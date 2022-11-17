@@ -21329,6 +21329,64 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast allow-my-asn occurrences 5
 ```
 
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath replace-peer-as
+
+Configures BGP to replace the AS path in an outgoing update that contains the ASN of the peer with the ASN of the local system.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath replace-peer-as [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath replace-peer-as on
+```
+
+## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath private-as
+
+Configures what action to take with private ASNs. You can specify`none` to take no action, `remove`, to remove any private ASNs in the update to the peer, or `replace` to replace any private ASNs in the update to the peer with the ASN of the local system.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath private-as [options] (none|remove|replace)`
+
+### Default Setting
+
+`none`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath private-as replace
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits
 
 Limits on prefix from the peer for this address-family
@@ -21339,7 +21397,7 @@ Limits on prefix from the peer for this address-family
 
 ### Default Setting
 
-N/A
+`none`
 
 ### Identifiers
 

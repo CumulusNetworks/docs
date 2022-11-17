@@ -21242,7 +21242,7 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
-## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn enable
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn enable
 
 Turns `allow-my-asn` on or off. When on, allows a received AS path to contain the ASN of the local system.
 
@@ -21271,7 +21271,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast allow-my-asn enable on
 ```
 
-## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn origin
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn origin
 
 Configures BGP to allow a received AS path to contain the ASN of the local system only if it is the originating AS.
 
@@ -21358,7 +21358,7 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath replace-peer-as on
 ```
 
-## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath private-as
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath private-as
 
 Configures what action to take with private ASNs. You can specify`none` to take no action, `remove`, to remove any private ASNs in the update to the peer, or `replace` to replace any private ASNs in the update to the peer with the ASN of the local system.
 
@@ -21389,7 +21389,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-f
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits
 
-Limits on prefix from the peer for this address-family
+Configures prefix limits from peers in the peer group for IPv6.
 
 ### Usage
 
@@ -21410,7 +21410,7 @@ Limits on prefix from the peer for this address-family
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `inbound` |  Limits on inbound prefix from the peer for this address-family |
+| `inbound` |  Configures limits on the inbound prefix from the peers in the specified peer group. |
 
 ### Version History
 
@@ -21418,7 +21418,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound
 
-Limits on inbound prefix from the peer for this address-family
+Configures limits on the inbound prefix from the peers in the specified peer group. 
 
 ### Usage
 
@@ -21439,18 +21439,47 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `maximum`            | Limit on number of prefixes of specific address-family that can be received from the peer. By default, there is no limit|
-| `reestablish-wait`   | Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing. This would typically be 2-3 seconds.|
-| `warning-only`       | If 'on', it means to only generate a warning syslog if the number of received prefixes exceeds the limit, do not bring down the BGP session.|
-| `warning-threshold`  | Percentage of the maximum at which a warning syslog is generated.|
+| `maximum`            | Configures the maximum number of prefixes that BGP can receive from the peers in the peer group. By default, there is no limit.|
+| `reestablish-wait`   | Configures the time in seconds to wait before establishing the BGP session again with the peers in the peer group.|
+| `warning-only`       | Turns on syslog warning generation only and does not bring down the BGP session if the number of received prefixes exceeds the limit.|
+| `warning-threshold`  | Configures the percentage of the maximum at which the switch generates a syslog warning.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound maximum
+
+Configures the maximum number of prefixes that BGP can receive from the peers in the peer group. By default, there is no limit.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound maximum [options] (0-4294967295|none)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound maximum 50000
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound warning-threshold
 
-Percentage of the maximum at which a warning syslog is generated.
+Configures the percentage of the maximum at which the switch generates a syslog warning. You can specify a value between 1 and 100.
 
 ### Usage
 
@@ -21471,9 +21500,44 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound warning-threshold 50
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound warning-only
+
+Turns on syslog warning generation only and does not bring down the BGP session if the number of received prefixes exceeds the limit.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound warning-only [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound warning-only on
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound reestablish-wait
 
-Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
+Configures the time in seconds to wait before establishing the BGP session again with the peers in the peer group. You can specify a value between 1-4294967295.
 
 ### Usage
 
@@ -21497,7 +21561,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound reestablish-wait 5000
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination

@@ -20432,7 +20432,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-f
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound
 
-Outbound unicast policy
+Configures the outbound IPv4 unicast policy for the peer group.
 
 ### Usage
 
@@ -21032,6 +21032,64 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound route-map
+
+Configures the route map you want to apply to updates received from the peers in the peer group.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound route-map [options] (none|<generic-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound route-map routemap1
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound prefix-list
+
+Configures the prefix list you want to apply to updates received from the peers in the peer group.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound prefix-list [options] (none|<generic-name>)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound prefix-list myprefixlist
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound aspath-list none
 
 Configures the AS path filter list you want to apply to updates received from the peers in the peer group.
@@ -21058,12 +21116,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound aspath-list MYASPATHLIST
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound
 
-Outbound unicast policy
+Configures the outbound IPv6 unicast policy for the peer group.
 
 ### Usage
 
@@ -21084,10 +21142,10 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| route-map        |Configures the route map you want to apply to updates to be sent to the peers in the peer group.|
-| unsuppress-map   | Configures the route map used to unsuppress routes selectively when advertising to the peers in the peer group; these are routes that have been suppressed due to aggregation configuration.
-| aspath-list      | Configures the AS path filter list you want to apply to updates sent to the peers in the peer group.|
-| prefix-list      | Configures the prefix list you want to apply to updates to be sent to the peers in the peer group.|
+| `route-map`        |Configures the route map you want to apply to updates to be sent to the peers in the peer group.|
+| `unsuppress-map`   | Configures the route map used to unsuppress routes selectively when advertising to the peers in the peer group; these are routes that have been suppressed due to aggregation configuration.
+| `aspath-list`      | Configures the AS path filter list you want to apply to updates sent to the peers in the peer group.|
+| `prefix-list`      | Configures the prefix list you want to apply to updates to be sent to the peers in the peer group.|
 
 ### Version History
 
@@ -21124,7 +21182,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-f
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath
 
-Options for handling AS_PATH for prefixes from/to peer for the specified address family
+Configures the AS path filter list you want to apply to updates sent to the peers in the peer group.
 
 ### Usage
 
@@ -21145,9 +21203,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `allow-my-asn`     | If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system|
-| `private-as`       | If 'none', no specific action is taken. This is the default. If set to 'remove', any private ASNs in the Update to the peer are removed. If set to 'replace' any private ASNs in the Update to the peer are replaced with the ASN of the local system.|
-| `replace-peer-as`  | If on, if the AS_PATH in an outgoing Update contains the peer's ASN, it is replaced with the local system's ASN |
+| `allow-my-asn`     | Configures BGP to allow a received AS path to contain the ASN of the local system.|
+| `private-as`       | Configures what action to take with private ASNs. If 'none', no specific action is taken. This is the default. If set to 'remove', any private ASNs in the Update to the peer are removed. If set to 'replace' any private ASNs in the Update to the peer are replaced with the ASN of the local system.|
+| `replace-peer-as`  | Turns `replace-peer-as` on or off.  When on, if the AS path in an outgoing update contains the ASN of the peer, BGP replaces it with the ASN of the local system.|
 
 ### Version History
 
@@ -21155,7 +21213,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn
 
-If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+Configures BGP to allow a received AS path to contain the ASN of the local system.
 
 ### Usage
 
@@ -21176,17 +21234,75 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`           | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `occurrences`      | Indicates max number of occurrences of the local system's AS number in the received AS_PATH|
-| `origin`           | If on, a received AS_PATH containing the ASN of the local system is allowed, but only if it is the originating AS|
+| `enable`           | Turns `allow-my-asn` on or off.|
+| `occurrences`      | Configures the maximum number of times the AS number of the local system can be in the received AS path.|
+| `origin`           | Configures BGP to allow a received AS path to contain the ASN of the local system only if it is the originating AS.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn enable
+
+Turns `allow-my-asn` on or off. When on, allows a received AS path to contain the ASN of the local system.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn enable [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast allow-my-asn enable on
+```
+
+## nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn origin
+
+Configures BGP to allow a received AS path to contain the ASN of the local system only if it is the originating AS.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast aspath allow-my-asn origin [options] (on|off)`
+
+### Default Setting
+
+N/A
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast allow-my-asn origin on
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn occurrences
 
-Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+Configures the maximum number of times the AS number of the local system can be in the received AS path.
 
 ### Usage
 
@@ -21210,7 +21326,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast allow-my-asn occurrences 5
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits

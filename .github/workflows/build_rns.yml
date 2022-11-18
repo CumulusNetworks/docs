@@ -1,9 +1,9 @@
 name: 'Release Note Publisher'
-
+## Currently DISABLED in stage - to re-enable, change the branches value back to "stage"
 on:
   push:
     branches:
-      - stage
+      - rn-stage
 
 jobs:
   release-notes:

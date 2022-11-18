@@ -21566,7 +21566,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-f
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination
 
-Default route origination
+Configures default route origination.
 
 ### Usage
 
@@ -21587,16 +21587,74 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`           | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `policy`           | Optional route-map policy to control the conditions under which the default route is originated.|
+| `enable`           | Turns default route origination on or off.|
+| `policy`           | Configures the optional route map policy to control the conditions under which the default route is originated.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination enable
+
+Turns default route origination on or off.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination enable on
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination policy
+
+Configures the optional route map policy to control the conditions under which the default route is originated.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast default-route-origination policy [options] (none|<generic-name>)`
+
+### Default Setting
+
+`none`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination policy mypolicy
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise
 
-Community advertise for address family.
+Configures the BGP COMMUNITY attribute to advertise to the peer group for the IPv6 address family.
 
 ### Usage
 
@@ -21617,17 +21675,104 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `extended`         | If 'on', it means we can announce the EXT_COMMUNITIES attribute to this peer, otherwise we cannot.|
-| `large`            | If 'on', it means we can announce the LARGE_COMMUNITIES attribute to this peer, otherwise we cannot.|
-| `regular`          | If 'on', it means we can announce the COMMUNITIES attribute to this peer, otherwise we cannot.|
+| `extended`         | Configures BGP to announce the EXT_COMMUNITIES attribute to the peer group.|
+| `large`            | Configures BGP to announce the LARGE_COMMUNITIES attribute to the peer group.|
+| `regular`          | Configures BGP to announce the COMMUNITIES attribute to the peer group.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise regular
+
+Configures BGP to announce the COMMUNITIES attribute to the peer group.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise regular [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise regular on
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise extended
+
+Configures BGP to announce the EXT_COMMUNITIES attribute to the peer group.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise extended [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise extended on
+```
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise large
+
+Configures BGP to announce the LARGE_COMMUNITIES attribute to the peer group.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast community-advertise large [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise large on
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod
 
-Attribute mod for address family.
+Configures the BGP attribute mode for the peer group for IPv6.
 
 ### Usage
 
@@ -21648,9 +21793,9 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `aspath`           | If 'on', it means follow normal BGP procedures in the generation of AS_PATH attribute for this peer; if 'off' it means do not change the AS_PATH when sending an Update to this peer.|
-| `med`              | If 'on', it means follow normal BGP procedures in the generation of MED attribute for this peer; if 'off' it means do not change the MED when sending an Update to this peer.|
-| `nexthop`          | If 'on', it means follow normal BGP procedures in the generation of NEXT_HOP attribute for this peer; if 'off' it means do not change the NEXT_HOP when sending an Update to this peer.|
+| `aspath`           | Configures BGP to follow normal BGP procedures when generating the `AS_PATH` attribute for the specified peer group.|
+| `med`              | Configures BGP to follow normal BGP procedures when generating the MED attribute for the specified peer group. If you set this attribute to off, BGP does not change the MED when sending an update to the peer group.|
+| `nexthop`          | Configures BGP to follow normal BGP procedures when generating the NEXT_HOP attribute for the specified peer group. If you set this attribute to off, BGP does not change NEXT_HOP when sending an update to the peer group.|
 
 ### Version History
 

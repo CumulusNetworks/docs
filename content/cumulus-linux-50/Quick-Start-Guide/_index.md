@@ -395,3 +395,7 @@ If you run NVUE Commands to configure the switch, run the `nv config save` comma
 cumulus@switch:~$ nv config save
 ```
 {{%/notice%}}
+
+You are now ready to configure the switch according to your needs. This guide provides separate sections that describe how to configure {{<link url="System-Configuration" text="system">}}, {{<link url="Layer-1-and-Switch-Ports" text="layer 1">}}, {{<link url="Layer-2" text="layer 2">}}, {{<link url="Layer-3" text="layer 3">}}, and {{<link url="Network-Virtualization" text="network virtualization">}} settings. Each section includes example configurations and pre-built demos.
+
+For a deep dive into the NVUE object model that provides a CLI to simplify configuration, see {{<link url="NVUE-Commands" text="NVUE">}}.

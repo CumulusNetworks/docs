@@ -4,6 +4,11 @@ author: NVIDIA
 weight: 100
 toc: 2
 ---
-This section describes how to configure your Cumulus Linux switch. You can set the date and time, configure authentication, authorization, and accounting and control the traffic entering your network with access control lists (ACLs).
-
-This section also describes the services and daemons that Cumulus Linux uses, and describes how to configure `switchd`, the daemon at the heart of Cumulus Linux.
+This section describes how to configure the following system settings:
+- {{<link url="Date-and-Time" text="Date and time">}}
+- {{<link url="Authentication-Authorization-and-Accounting" text="Authentication, authorization, and accounting">}} 
+- {{<link url="Netfilter-ACLs" text="Access Control Lists">}} (ACLs)
+- {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and daemons">}}
+- {{<link url="Configuring-switchd" text="switchd">}}
+- {{<link url="In-Service-System-Upgrade-ISSU" text="In Service System Upgrade">}} (ISSU)
+- {{<link url="NVIDIA-User-Experience-NVUE" text="NVIDIA User Experience">}} (NVUE)

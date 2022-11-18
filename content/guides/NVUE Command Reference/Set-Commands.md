@@ -20636,7 +20636,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise advertise-map on
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise enable on
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise advertise-map \<instance-name\>
@@ -21803,7 +21803,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise
 
-Conditional advertise for address family.
+Configures BGP conditional advertisement, which lets you advertise certain routes only if other routes either do or do not exist. BGP conditional advertisement is typically used in multihomed networks where BGP advertises some prefixes to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
 
 ### Usage
 
@@ -21824,18 +21824,47 @@ N/A
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `enable`           | Turn the feature 'on' or 'off'. The default is 'off'.|
-| `advertise-map`    | route-map contains prefix-list which has list of routes/prefixes to operate on.|
-| `exist-map`        | route-map contains the conditional routes/prefixes in prefix-list.|
-| `non-exist-map`    | route-map contains the negative conditional routes/prefixes in prefix-list.|
+| `enable`           | Turns BGP conditional advertisement on or off.|
+| `advertise-map`    | Configures the route map that contains the prefix list with the list of routes or prefixes you want to advertise.|
+| `exist-map`        | Configures the route map that contains the prefix list with the conditional routes or prefixes.|
+| `non-exist-map`    | Configures the route map that contains the prefix list with the negative conditional routes or prefixes.|
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise enable
+
+Turns BGP conditional advertisement on or off for IPv6.
+
+### Usage
+
+`nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast conditional-advertise enable [options] (on|off)`
+
+### Default Setting
+
+`off`
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise enable on
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise advertise-map \<instance-name\>
 
-route-map contains prefix-list which has list of routes/prefixes to operate on.
+Configures the route map that contains the prefix list with the list of routes or prefixes you want to advertise.
 
 ### Usage
 
@@ -21859,12 +21888,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise advertise-map myadvertise
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise exist-map \<instance-name\>
 
-route-map contains the conditional routes/prefixes in prefix-list.
+Configures the route map that contains the prefix list with the conditional routes or prefixes.
 
 ### Usage
 
@@ -21885,9 +21914,15 @@ N/A
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise exist-map EXIST  
+```
+
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise non-exist-map \<instance-name\>
 
-route-map contains the negative conditional routes/prefixes in prefix-list.
+Configures the route map that contains the prefix list with the negative conditional routes or prefixes.
 
 ### Usage
 
@@ -21911,7 +21946,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise non-exist-map NONEXIST 
 ```
 
 ## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast weight

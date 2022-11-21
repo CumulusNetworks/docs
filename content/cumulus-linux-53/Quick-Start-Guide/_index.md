@@ -36,8 +36,8 @@ These steps describe a flexible unattended installation method; you do not need 
 {{%/notice%}}
 
 After installing Cumulus Linux, you are ready to:
-- Log in to Cumulus Linux on the switch.
-- Configure Cumulus Linux. This quick start guide provides instructions on configuring switch ports and a loopback interface.
+- Log in to Cumulus Linux on the switch and change the default credentials.
+- Configure Cumulus Linux. This quick start guide provides instructions on changing the hostname of the switch, setting the date and time, and configuring switch ports and a loopback interface.
 
 ## Get Started
 
@@ -181,11 +181,12 @@ Programs that are already running (including log files) and logged in users, do 
 
 ### Verify the System Time
 
-Verify that the date and time on the switch are correct, and {{<link url="Setting-the-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch does not synchronize with Puppet and returns errors after you restart `switchd`:
+Verify that the date and time on the switch are correct with thwe Linux `date` command, and {{<link url="Setting-the-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch does not synchronize with Puppet and returns errors after you restart `switchd`.
 
-```
-Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload' recommended.
-```
+### NTP and PTP
+
+- NTP starts at boot by default on the switch and the NTP configuration includes default servers. To customize NTP, see {{<link url="Network-Time-Protocol-NTP" text="NTP">}}.
+- PTP is off by default on the switch. To configure PTP, see {{<link url="Precision-Time-Protocol-PTP" text="PTP">}}.
 
 ## Configure Breakout Ports with Splitter Cables
 
@@ -401,6 +402,11 @@ If you run NVUE Commands to configure the switch, run the `nv config save` comma
 cumulus@switch:~$ nv config save
 ```
 {{%/notice%}}
+
+## Show Platform and System Settings
+
+- To show the hostname of the switch, the time zone, and the version of Cumulus Linux running on the switch, run the NVUE `nv show system` command.
+- To show switch platform information, such as the ASIC model, CPU, hard disk drive size, hardware RAM, and port layout, run the NVUE `nv show platform hardware` command.
 
 ## Next Steps
 

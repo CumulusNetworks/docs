@@ -299,7 +299,7 @@ All QSFP28 (100GbE) ports can be split into 4xSFP28 (4x25GbE) or 2xQSFP28 (2x50G
 {{< /tab >}}
 {{< tab "SN2201">}}
 
-{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn2201_split.png">}}
+{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn2201_splitt.png">}}
 
 This platform has 4 QSFP28 (NRZ) splittable ports.
 

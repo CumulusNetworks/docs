@@ -578,6 +578,51 @@ Maximum 100G ports: 4
 {{< /tab >}}
 
 {{< /tabs >}}
+{{< tab "SN2100">}}
+
+16x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
+
+All QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
+
+{{< tabs "2100_ports ">}}
+{{< tab "10G ">}}
+
+64x 10G - 16x QSFP28 break out into 4x 25G and set to 10G
+
+Maximum 10G ports: 64
+
+{{< /tab >}}
+{{< tab "25G ">}}
+
+64x 25G - 16x QSFP28 break out into 4x 25G
+
+Maximum 25G ports: 64
+
+{{< /tab >}}
+{{< tab "40G ">}}
+
+16x 40G - 4x QSFP28 set to 40G
+
+Maximum 40G ports: 16
+
+{{< /tab >}}
+{{< tab "50G ">}}
+
+32x 50G - 16x QSFP28 break out into 2x 50G
+
+Maximum 50G ports: 32
+
+{{< /tab >}}
+{{< tab "100G ">}}
+
+16x 100G - 16x QSFP28 (native speed)
+
+Maximum 100G ports: 16
+
+{{< /tab >}}
+{{< /tab >}}
+
+{{< /tabs >}}
 {{< tab "SN2201">}}
 
 48x 1GBase-T ports (RJ45 up to 100m CAT5E/6) and 4x QSFP28 100G interfaces (only support NRZ encoding). You can set all speeds down to 1G.
@@ -626,51 +671,6 @@ Maximum 50G ports: 8
 4x 100G - 4x QSFP28 (native speed)
 
 Maximum 100G ports: 4
-
-{{< /tab >}}
-{{< /tab >}}
-
-{{< /tabs >}}
-{{< tab "SN2100">}}
-
-16x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
-
-All QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
-
-{{< tabs "2100_ports ">}}
-{{< tab "10G ">}}
-
-64x 10G - 16x QSFP28 break out into 4x 25G and set to 10G
-
-Maximum 10G ports: 64
-
-{{< /tab >}}
-{{< tab "25G ">}}
-
-64x 25G - 16x QSFP28 break out into 4x 25G
-
-Maximum 25G ports: 64
-
-{{< /tab >}}
-{{< tab "40G ">}}
-
-16x 40G - 4x QSFP28 set to 40G
-
-Maximum 40G ports: 16
-
-{{< /tab >}}
-{{< tab "50G ">}}
-
-32x 50G - 16x QSFP28 break out into 2x 50G
-
-Maximum 50G ports: 32
-
-{{< /tab >}}
-{{< tab "100G ">}}
-
-16x 100G - 16x QSFP28 (native speed)
-
-Maximum 100G ports: 16
 
 {{< /tab >}}
 {{< /tab >}}

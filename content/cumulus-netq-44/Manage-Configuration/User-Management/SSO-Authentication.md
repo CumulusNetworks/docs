@@ -13,7 +13,7 @@ You can create local accounts with default access roles by enabling SSO. After e
 
 To integrate your authentication server:
 
-1. Expand the menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} on the NetQ dashboard.
+1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} Menu on the NetQ dashboard.
 
 2. Under **Admin**, select **Management**. Locate the SSO Configuration card and select **Manage**.
 

@@ -81,7 +81,7 @@ To make a configuration change with the NVUE API:
    ```
    $ curl -u 'cumulus:cumulus' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
    {
-     "4: {
+     "4": {
        "state": "pending",
        "transition": {
          "issue": {},
@@ -91,6 +91,7 @@ To make a configuration change with the NVUE API:
    }
 
    ```
+
    {{%notice note%}}
 To allow the `cumulus` user access to the NVUE API, you must change the default password for the `cumulus` user.
 {{%/notice%}}
@@ -429,7 +430,7 @@ $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
 The staged configuration is missing `router-id`:
 
 ```
-$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=changeset%2Fcumulus%2F2021-11-02_13.57.25_5Z1H
+$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=4
 {
   "autonomous-system": 65999,
   "enable": "on"

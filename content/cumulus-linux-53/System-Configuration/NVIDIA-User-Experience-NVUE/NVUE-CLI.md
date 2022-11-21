@@ -203,12 +203,12 @@ The following example shows *pending* BGP graceful restart configuration:
 
 ```
 cumulus@switch:~$ nv show router bgp graceful-restart --pending
-                             pending_20210128_212626_4WSY  description
-----------------------------  ----------------------------  ----------------------------------------------------------------------
-mode                          helper-only                   Role of router during graceful restart. helper-only, router is in h...
-path-selection-deferral-time  360                           Used by the restarter as an upper-bounds for waiting for peeringes...
-restart-time                  120                           Amount of time taken to restart by router. It is advertised to the...
-stale-routes-time             360                           Specifies an upper-bounds on how long we retain routes from a resta...
+                              4                  description
+----------------------------  -----------------  ----------------------------------------------------------------------
+mode                          helper-only        Role of router during graceful restart. helper-only, router is in h...
+path-selection-deferral-time  360                Used by the restarter as an upper-bounds for waiting for peeringes...
+restart-time                  120                Amount of time taken to restart by router. It is advertised to the...
+stale-routes-time             360                Specifies an upper-bounds on how long we retain routes from a resta...
 ```
 
 ### Net Show commands
@@ -266,7 +266,7 @@ The NVUE configuration management commands manage and apply configurations.
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
 | `nv config apply` | Applies the pending configuration to become the applied configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}Cumulus Linux applies but does not save the configuration; the configuration does not persist after a reboot.{{%/notice%}}You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.|
-| `nv config detach` | Detaches the configuration from the current pending configuration. Cumulus Linux names the detached configuration `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`|
+| `nv config detach` | Detaches the configuration from the current pending configuration and uses an integer to identify it; for example, `4`. To list all the current detached pending configurations, run `nv config diff <<press Tab>`.|
 | `nv config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration or the detached configuration and the pending configuration.|
 | `nv config history <nvue-file>` | Shows the apply history for the revision. |
 | `nv config patch <nvue-file>` | Updates the pending configuration with the specified YAML configuration file. |

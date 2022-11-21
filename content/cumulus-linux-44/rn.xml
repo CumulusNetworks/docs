@@ -671,13 +671,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td></td>
 </tr>
 <tr>
-<td>2710927</td>
-<td>With downstream VNI, if you route leak between VRFs across different VTEPs when the same originating and target VRFs exist on both the route receiver and the route originator, you might experience traffic loss. For example, if you route leak from VRF RED on VTEP1 to VRF BLUE and GREEN on VTEP2 and VRFs RED, BLUE, and GREEN are configured both on VTEP1 and VTEP2.
-To work around this issue, use traditional route leaking with the {{import vrf}} command instead of the {{route-target import asn:vni}} command used with downstream VNI.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2710208</td>
 <td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
 <td>4.2.1-4.4.5</td>
@@ -2644,13 +2637,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>2711533</td>
 <td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
 <td>4.2.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>2710927</td>
-<td>With downstream VNI, if you route leak between VRFs across different VTEPs when the same originating and target VRFs exist on both the route receiver and the route originator, you might experience traffic loss. For example, if you route leak from VRF RED on VTEP1 to VRF BLUE and GREEN on VTEP2 and VRFs RED, BLUE, and GREEN are configured both on VTEP1 and VTEP2.
-To work around this issue, use traditional route leaking with the {{import vrf}} command instead of the {{route-target import asn:vni}} command used with downstream VNI.</td>
-<td>4.4.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4790,13 +4776,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td></td>
 </tr>
 <tr>
-<td>2710927</td>
-<td>With downstream VNI, if you route leak between VRFs across different VTEPs when the same originating and target VRFs exist on both the route receiver and the route originator, you might experience traffic loss. For example, if you route leak from VRF RED on VTEP1 to VRF BLUE and GREEN on VTEP2 and VRFs RED, BLUE, and GREEN are configured both on VTEP1 and VTEP2.
-To work around this issue, use traditional route leaking with the {{import vrf}} command instead of the {{route-target import asn:vni}} command used with downstream VNI.</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2710208</td>
 <td>The {{net show bgp neighbor}} command output shows the BFD status as UP even when the BGP neighbor is not established, such as when the interface is down.</td>
 <td>4.2.1-4.4.5</td>
@@ -6845,13 +6824,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>2711533</td>
 <td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
 <td>4.2.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>2710927</td>
-<td>With downstream VNI, if you route leak between VRFs across different VTEPs when the same originating and target VRFs exist on both the route receiver and the route originator, you might experience traffic loss. For example, if you route leak from VRF RED on VTEP1 to VRF BLUE and GREEN on VTEP2 and VRFs RED, BLUE, and GREEN are configured both on VTEP1 and VTEP2.
-To work around this issue, use traditional route leaking with the {{import vrf}} command instead of the {{route-target import asn:vni}} command used with downstream VNI.</td>
-<td>4.4.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -9234,13 +9206,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>2711533</td>
 <td>On the AS7326-56X switch, the link lights for 25G ports configured to work at 1G do not illuminate.</td>
 <td>4.2.1-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>2710927</td>
-<td>With downstream VNI, if you route leak between VRFs across different VTEPs when the same originating and target VRFs exist on both the route receiver and the route originator, you might experience traffic loss. For example, if you route leak from VRF RED on VTEP1 to VRF BLUE and GREEN on VTEP2 and VRFs RED, BLUE, and GREEN are configured both on VTEP1 and VTEP2.
-To work around this issue, use traditional route leaking with the {{import vrf}} command instead of the {{route-target import asn:vni}} command used with downstream VNI.</td>
-<td>4.4.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>

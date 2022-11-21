@@ -81,7 +81,7 @@ To make a configuration change with the NVUE API:
    ```
    $ curl -u 'cumulus:cumulus' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
    {
-     "changeset/cumulus/2021-11-02_16.09.18_5Z1K": {
+     "4: {
        "state": "pending",
        "transition": {
          "issue": {},
@@ -95,12 +95,12 @@ To make a configuration change with the NVUE API:
 To allow the `cumulus` user access to the NVUE API, you must change the default password for the `cumulus` user.
 {{%/notice%}}
 
-2. Record the revision ID. In the above example, the revision ID is `"changeset/cumulus/2021-11-02_16.09.18_5Z1K"`
+2. Record the revision ID. In the above example, the revision ID is `"4"`
 
 3. Make the change using a PATCH and link it to the revision ID:
 
    ```
-   $ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=changeset/cumulus/2021-11-02_16.09.18_5Z1K
+   $ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=4
    {
      "99.99.99.99/32": {}
    }
@@ -108,12 +108,8 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
 
 4. Apply the changes using a PATCH to the revision changeset.
 
-   {{%notice note%}}
-You must use the full key value for the revision and replace `/`​ with `%2F`​ in the list.
-{{%/notice%}}
-
    ```
-   $ curl -u 'cumulus:cumulus' -d '{"state":"apply"}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
+   $ curl -u 'cumulus:cumulus' -d '{"state":"apply"}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/4
    {
      "state": "apply",
      "transition": {
@@ -126,7 +122,7 @@ You must use the full key value for the revision and replace `/`​ with `%2F`�
 5. Review the status of the apply and the configuration:
 
    ```
-   cumulus@leaf01:mgmt:~$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
+   cumulus@leaf01:mgmt:~$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
    {
      "state": "applied",
      "transition": {
@@ -150,7 +146,7 @@ You must use the full key value for the revision and replace `/`​ with `%2F`�
 To unset a change, use the `null` value to the key. For example, to delete `vlan100` from a switch, use the following syntax:
 
 ```
-$ curl -u 'cumulus:cumulus' -d '{"vlan100":null}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset/cumulus/2021-11-29_11.46.23_6C7T
+$ curl -u 'cumulus:cumulus' -d '{"vlan100":null}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=4
 ```
 
 When you unset a change, you must still use the `PATCH` action. The value indicates removal of the entry. The data is `{"vlan100":null}` with the PATCH action.
@@ -410,7 +406,7 @@ When a configuration change fails, you see an error in the change request.
 If you stage a configuration but it fails because of a dependency, the failure shows the reason. In the following example, the change fails because the BGP router ID is not set:
 
 ```
-$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_13.57.25_5Z1H
+$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
 {
   "state": "invalid",
   "transition": {
@@ -445,9 +441,9 @@ $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/vrf/defaul
 In some cases, such as the first push with NVUE or if you change a file manually instead of using NVUE, you see a warning prompt and the apply fails:
 
 ```
-$ curl -u 'cumulus:cumulus' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
+$ curl -u 'cumulus:cumulus' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/4
 {
-  "changeset/cumulus/2021-11-02_16.09.18_5Z1K": {
+  "4": {
     "state": "ays_fail",
     "transition": {
       "issue": {
@@ -466,7 +462,7 @@ $ curl -u 'cumulus:cumulus' --insecure -X GET https://127.0.0.1:8765/nvue_v1/rev
 To resolve this issue, include `"auto-prompt":{"ays": "ays_yes"}` to the configuration apply:
 
 ```
-$ curl -u 'cumulus:cumulus' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2021-11-02_16.09.18_5Z1K
+$ curl -u 'cumulus:cumulus' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/4
 ```
 
 ## NVUE REST API Documentation

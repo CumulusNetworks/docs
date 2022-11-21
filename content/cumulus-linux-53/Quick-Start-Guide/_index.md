@@ -181,7 +181,22 @@ Programs that are already running (including log files) and logged in users, do 
 
 ### Verify the System Time
 
-Verify that the date and time on the switch are correct with thwe Linux `date` command, and {{<link url="Setting-the-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch does not synchronize with Puppet and returns errors after you restart `switchd`.
+Verify that the date and time on the switch are correct with the Linux `date` command:
+
+```
+cumulus@switch:~$ date
+Mon 21 Nov 2022 06:30:37 PM UTC
+```
+
+If the date and time is incorrect, the switch does not synchronize with Puppet and returns errors after you restart `switchd`.
+
+To set the software clock according to the configured time zone, run the Linux `sudo date -s` command; for example:
+
+```
+cumulus@switch:~$ sudo date -s "Tue Jan 26 00:37:13 2021"
+```
+
+For more information about setting the system time, see {{<link url="Setting-the-Date-and-Time" text="Setting the Date and Time">}} .
 
 ### NTP and PTP
 
@@ -406,7 +421,7 @@ cumulus@switch:~$ nv config save
 ## Show Platform and System Settings
 
 - To show the hostname of the switch, the time zone, and the version of Cumulus Linux running on the switch, run the NVUE `nv show system` command.
-- To show switch platform information, such as the ASIC model, CPU, hard disk drive size, hardware RAM, and port layout, run the NVUE `nv show platform hardware` command.
+- To show switch platform information, such as the ASIC model, CPU, hard disk drive size, RAM size, and port layout, run the NVUE `nv show platform hardware` command.
 
 ## Next Steps
 

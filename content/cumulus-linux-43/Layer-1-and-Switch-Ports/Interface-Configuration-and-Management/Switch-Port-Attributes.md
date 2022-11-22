@@ -465,7 +465,7 @@ When in doubt, consult the manufacturer directly to determine the cable classifi
 
 ### Spectrum ASIC FEC Behavior
 
-The firmware in a Spectrum ASIC applies an FEC configuration to 25G and 100G cables based on the cable type and whether the peer switch also has a Spectrum ASIC.
+The firmware in a Spectrum ASIC applies FEC configuration to 25G and 100G cables based on the cable type and whether the peer switch also has a Spectrum ASIC.
 
 When the link is between two switches with Spectrum ASICs:
 

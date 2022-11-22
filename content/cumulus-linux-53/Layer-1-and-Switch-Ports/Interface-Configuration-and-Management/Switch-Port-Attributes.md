@@ -283,15 +283,17 @@ The following sections describe how to show the current FEC mode, and how to ena
 
 ### Show the Current FEC Mode
 
-On a Spectrum switch, the `--show-fec` output shows you the current active state of FEC **only if the link is up**; if the FEC modes matches that of the neighbor. If the link is not up, the value displays *None*, which is not valid.
-
-To show the FEC mode on a switch port, run the `ethtool --show-fec <interface>` command.
+To show the FEC mode on a switch port, run the NVUE `nv show interface <interface> link` command.
 
 ```
-cumulus@switch:~$ sudo ethtool --show-fec swp1
-FEC parameters for swp1:
-Configured FEC encodings: Auto
-Active FEC encoding: Off
+cumulus@switch:~$ nv show interface swp1 link
+                  operational   applied  pending  description
+----------------  ------------  -------  -------  ----------------------------------------------------------------------
+auto-negotiate    off           on       on       Link speed and characteristic auto negotiation
+breakout                        1x       1x       sub-divide or disable ports (only valid on plug interfaces)
+duplex            full          full     full     Link duplex
+fec                             auto     auto     Link forward error correction mechanism
+...
 ```
 
 ### Enable or Disable FEC
@@ -430,7 +432,7 @@ A runtime configuration is non-persistent. The configuration you create does not
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the FEC and auto-negotiation settings for an interface:
+To show the FEC and auto-negotiation settings for an interface, either run the NVUE `nv show interface <interface> link` command or the Linux `sudo ethtool swp1 | egrep 'FEC|auto'` command:
 
 ```
 cumulus@switch:~$ sudo ethtool swp1 | egrep 'FEC|auto'
@@ -1248,7 +1250,7 @@ Maximum 400G ports: 32
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
   These restrictions do *not* apply to a 2x50G breakout configuration or to the NVIDIA SN2100 and SN2010 switch.
-- Switches with the Spectrum 2 and Spectrum 3 ASIC have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum 2 and Spectrum 3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
+- Spectrum-2 and Spectrum-3 switches have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum-2 and Spectrum-3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
 
     ```
     1=4x25G

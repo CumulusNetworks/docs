@@ -1,15 +1,1 @@
-<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><style type="text/css"> .check-circle-out-0 {
-      fill: none;
-      stroke: currentColor;
-      stroke-linecap: round;
-      stroke-miterlimit: 10;
-    }
-
-    .check-circle-out-1 {
-      fill: none;
-      stroke: currentColor;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-miterlimit: 10;
-    }
-</style><path class="check-circle-out-0 checkmark-circle" d="M23,12c0,6.1-4.9,11-11,11S1,18.1,1,12S5.9,1,12,1"/><polyline class="check-circle-out-1 checkmark-check" points="6.2,9.4 11.3,15.4 22.8,3.8 "/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="checkmark" viewBox="0 0 24 24"><style type="text/css">.check-circle-out-0,.check-circle-out-1{fill:none;stroke:currentColor;stroke-linecap:round;stroke-miterlimit:10}.check-circle-out-1{stroke-linejoin:round}</style><path d="M23,12c0,6.1-4.9,11-11,11S1,18.1,1,12S5.9,1,12,1" class="check-circle-out-0 checkmark-circle"/><polyline points="6.2 9.4 11.3 15.4 22.8 3.8" class="check-circle-out-1 checkmark-check"/></svg>

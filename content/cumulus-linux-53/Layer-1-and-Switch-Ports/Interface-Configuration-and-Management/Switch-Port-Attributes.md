@@ -638,6 +638,7 @@ All 4x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 Maximum 10/100MBase-T ports: 48
 Maximum 1GBase-T ports: 48
 Maximum 1G ports: 16
+{{< /tab >}}
 {{< tab "10G ">}}
 
 - 16x 10G - 4x QSFP28 configured as 4x25G breakouts and set to 10G

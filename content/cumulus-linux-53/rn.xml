@@ -312,6 +312,17 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>
+<td>3187408</td>
+<td>Certain NUE commands produce an {{Invalid Command}} error. For example:
+
+cumulus@switch:~$ nv set vrf default router bgp peer-group SPINE password CumulusLinux!
+Invalid Command: set vrf default router bgp peer-group SPINE password CumulusLinux!
+cumulus@switch:~$ nv set router policy route-map GLOBAL rule 10 description global
+Invalid Command: set router policy route-map GLOBAL rule 10 description global
+</td>
+<td>5.2.0-5.2.1</td>
+</tr>
+<tr>
 <td>3180043</td>
 <td>The EVPN Multihoming ESI configuration command {{nv set interface &lt;interface-id&gt; evpn multihoming segment identifier &lt;es-identifier&gt;}} does not work.</td>
 <td>5.1.0-5.2.1</td>

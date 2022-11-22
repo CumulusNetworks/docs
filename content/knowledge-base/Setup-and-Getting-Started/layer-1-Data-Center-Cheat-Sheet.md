@@ -255,19 +255,6 @@ Maximum Ports Power Support
 - QSFP56-DD Ports 1-32 up to 12.0W (in C2P airflow models)
 
 {{< /tab >}}
-{{< tab "SN4800 ">}}
-
-{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4800.png">}}
-
-Spectrum-3 4RU Modular Spine/Super-Spine
-- Switching Capacity: 25.6Tbps (8.4Bpps)
-- Ports: 128x100GbE QSFP28 (NRZ) / 64x200GbE QSFP56 (PAM4) / 32x400GbE QSFP56-DD (PAM4)
-
-Maximum Ports Power Support 
-- QSFP28 Ports 2,4-12,14,16 on each card up to 3.5W
-- QSFP28 Ports 1,3,13,15 on each card up to 5.0W
-  
-{{< /tab >}}
 {{< /tab >}}
 
 {{< /tabs >}}

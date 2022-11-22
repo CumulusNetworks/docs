@@ -79,7 +79,7 @@ To make a configuration change with the NVUE API:
 1. Create a new revision ID using a POST:
 
    ```
-   $ curl -u 'cumulus:cumulus' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
+   $ curl -u 'cumulus:CumulusLinux!' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
    {
      "4": {
        "state": "pending",
@@ -101,7 +101,7 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
 3. Make the change using a PATCH and link it to the revision ID:
 
    ```
-   $ curl -u 'cumulus:cumulus' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=4
+   $ curl -u 'cumulus:CumulusLinux!' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=4
    {
      "99.99.99.99/32": {}
    }
@@ -110,7 +110,7 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
 4. Apply the changes using a PATCH to the revision changeset.
 
    ```
-   $ curl -u 'cumulus:cumulus' -d '{"state":"apply"}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/4
+   $ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply"}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/4
    {
      "state": "apply",
      "transition": {
@@ -123,7 +123,7 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
 5. Review the status of the apply and the configuration:
 
    ```
-   cumulus@leaf01:mgmt:~$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
+   cumulus@leaf01:mgmt:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
    {
      "state": "applied",
      "transition": {
@@ -134,7 +134,7 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
    ```
 
    ```
-   $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address
+   $ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address
    {
      "127.0.0.1/8": {},
      "99.99.99.99/32": {},
@@ -142,12 +142,18 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
    }
    ```
 
+6. To collect the applied configuration:
+
+   ```
+   $ curl -u 'cumulus:CumulusLinux!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/?rev=applied&filled=false"
+   ```
+
 ### Unset a Configuration Change
 
 To unset a change, use the `null` value to the key. For example, to delete `vlan100` from a switch, use the following syntax:
 
 ```
-$ curl -u 'cumulus:cumulus' -d '{"vlan100":null}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface/rev=4
+$ curl -u 'cumulus:CumulusLinux!' -d '{"vlan100":null}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface/rev=4
 ```
 
 When you unset a change, you must still use the `PATCH` action. The value indicates removal of the entry. The data is `{"vlan100":null}` with the PATCH action.
@@ -407,7 +413,7 @@ When a configuration change fails, you see an error in the change request.
 If you stage a configuration but it fails because of a dependency, the failure shows the reason. In the following example, the change fails because the BGP router ID is not set:
 
 ```
-$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
+$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
 {
   "state": "invalid",
   "transition": {
@@ -430,7 +436,7 @@ $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
 The staged configuration is missing `router-id`:
 
 ```
-$ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=4
+$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=4
 {
   "autonomous-system": 65999,
   "enable": "on"
@@ -442,7 +448,7 @@ $ curl -u 'cumulus:cumulus' --insecure https://127.0.0.1:8765/nvue_v1/vrf/defaul
 In some cases, such as the first push with NVUE or if you change a file manually instead of using NVUE, you see a warning prompt and the apply fails:
 
 ```
-$ curl -u 'cumulus:cumulus' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/4
+$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/4
 {
   "4": {
     "state": "ays_fail",
@@ -463,7 +469,7 @@ $ curl -u 'cumulus:cumulus' --insecure -X GET https://127.0.0.1:8765/nvue_v1/rev
 To resolve this issue, include `"auto-prompt":{"ays": "ays_yes"}` to the configuration apply:
 
 ```
-$ curl -u 'cumulus:cumulus' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/4
+$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/4
 ```
 
 ## NVUE REST API Documentation

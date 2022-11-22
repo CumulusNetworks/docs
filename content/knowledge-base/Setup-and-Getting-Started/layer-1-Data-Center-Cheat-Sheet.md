@@ -111,20 +111,20 @@ Maximum Ports Power Support
 - QSFP28 Ports 3-14 up to 3.5W
 
 {{< /tab >}}
-{< tab "SN2201 ">}}
+{{< tab "SN2201 ">}}
 
-{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn2201.png">}}
+{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn2201.png">}}
 
 Spectrum 1RU 1GBase-T Management Switch
 - Switching Capacity: 448GBps
 - Ports: 48x1GBase-T* RJ45 up to 100m (CAT5E/6) + 4x100GbE QSFP28 (NRZ)
 
+*Supports 10/100MBase-T
+
 Maximum Ports Power Support 
 - QSFP28 Ports 49-52 up to 5W
 
-*Supports 10/100MBase-T
-
-{< /tab >}}
+{{< /tab >}}
 {{< tab "SN2410 ">}}
 
 {{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn2410.png">}}

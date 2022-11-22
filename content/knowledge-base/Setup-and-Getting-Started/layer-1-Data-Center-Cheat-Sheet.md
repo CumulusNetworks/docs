@@ -111,20 +111,20 @@ Maximum Ports Power Support
 - QSFP28 Ports 3-14 up to 3.5W
 
 {{< /tab >}}
-{< tab "SN2201 ">}}
+{{< tab "SN2201 ">}}
 
-{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn2201.png">}}
+{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn2201.png">}}
 
 Spectrum 1RU 1GBase-T Management Switch
 - Switching Capacity: 448GBps
 - Ports: 48x1GBase-T* RJ45 up to 100m (CAT5E/6) + 4x100GbE QSFP28 (NRZ)
 
+*Supports 10/100MBase-T
+
 Maximum Ports Power Support 
 - QSFP28 Ports 49-52 up to 5W
 
-*Supports 10/100MBase-T
-
-{< /tab >}}
+{{< /tab >}}
 {{< tab "SN2410 ">}}
 
 {{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn2410.png">}}
@@ -254,19 +254,6 @@ Spectrum-3 1RU Spine/Super-Spine
 Maximum Ports Power Support 
 - QSFP56-DD Ports 1-32 up to 12.0W (in C2P airflow models)
 
-{{< /tab >}}
-{{< tab "SN4800 ">}}
-
-{{<figure src="images/knowledge-base/L1-Cheat-Sheet/sn4800.png">}}
-
-Spectrum-3 4RU Modular Spine/Super-Spine
-- Switching Capacity: 25.6Tbps (8.4Bpps)
-- Ports: 128x100GbE QSFP28 (NRZ) / 64x200GbE QSFP56 (PAM4) / 32x400GbE QSFP56-DD (PAM4)
-
-Maximum Ports Power Support 
-- QSFP28 Ports 2,4-12,14,16 on each card up to 3.5W
-- QSFP28 Ports 1,3,13,15 on each card up to 5.0W
-  
 {{< /tab >}}
 {{< /tab >}}
 

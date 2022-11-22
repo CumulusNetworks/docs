@@ -471,4 +471,4 @@ $ curl -u 'cumulus:cumulus' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"
 
 ## NVUE REST API Documentation
 
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-52/api/index.html" text="NVUE API documentation.">}}
+For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-53/api/index.html" text="NVUE API documentation.">}}

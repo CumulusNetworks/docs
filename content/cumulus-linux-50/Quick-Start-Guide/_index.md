@@ -36,8 +36,8 @@ These steps describe a flexible unattended installation method; you do not need 
 {{%/notice%}}
 
 After installing Cumulus Linux, you are ready to:
-- Log in to Cumulus Linux on the switch.
-- Configure Cumulus Linux. This quick start guide provides instructions on configuring switch ports and a loopback interface.
+- Log in to Cumulus Linux on the switch and change the default credentials.
+- Configure Cumulus Linux. This quick start guide provides instructions on changing the hostname of the switch, setting the date and time, and configuring switch ports and a loopback interface.
 
 ## Get Started
 
@@ -175,11 +175,22 @@ Programs that are already running (including log files) and logged in users, do 
 
 ### Verify the System Time
 
-Verify that the date and time on the switch are correct, and {{<link url="Setting-the-Date-and-Time" text="correct the date and time">}} if necessary. If the date and time is incorrect, the switch does not synchronize with Puppet and returns errors after you restart `switchd`:
+Verify that the date and time on the switch are correct with the Linux `date` command:
 
 ```
-Warning: Unit file of switchd.service changed on disk, 'systemctl daemon-reload' recommended.
+cumulus@switch:~$ date
+Mon 21 Nov 2022 06:30:37 PM UTC
 ```
+
+If the date and time are incorrect, the switch does not synchronize with automation tools, such as Puppet, and returns errors after you restart `switchd`.
+
+To set the software clock according to the configured time zone, run the Linux `sudo date -s` command; for example:
+
+```
+cumulus@switch:~$ sudo date -s "Tue Jan 26 00:37:13 2021"
+```
+
+For more information about setting the system time, see {{<link url="Setting-the-Date-and-Time" text="Setting the Date and Time">}}.
 
 ## Configure Breakout Ports with Splitter Cables
 
@@ -395,6 +406,11 @@ If you run NVUE Commands to configure the switch, run the `nv config save` comma
 cumulus@switch:~$ nv config save
 ```
 {{%/notice%}}
+
+## Show Platform and System Settings
+
+- To show the hostname of the switch, the time zone, and the version of Cumulus Linux running on the switch, run the NVUE `nv show system` command.
+- To show switch platform information, such as the platform model, RAM, serial number, and system MAC address, run the NVUE `nv show platform hardware` command.
 
 ## Next Steps
 

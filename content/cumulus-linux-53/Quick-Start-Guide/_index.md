@@ -13,12 +13,6 @@ This guide assumes you have intermediate-level Linux knowledge. You need to be f
 
 You must have access to a Linux or UNIX shell. If you are running Windows, use a Linux environment like {{<exlink url="http://www.cygwin.com/" text="Cygwin">}} as your command line tool for interacting with Cumulus Linux.
 
-You can choose to configure Cumulus Linux either with the NVUE CLI **or** with Linux commands (you can run vtysh or edit configuration files manually). This guide provides separate procedures for NVUE commands and Linux commands.
-
-{{%notice note%}}
-Do **not** run both NVUE configuration commands and Linux commands to configure the switch. NVUE replaces certain configuration in the files, and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet.
-{{%/notice%}}
-
 ## Install Cumulus Linux
 
 To install Cumulus Linux, you use {{<exlink url="https://opencomputeproject.github.io/onie" text="ONIE">}} (Open Network Install Environment), an extension to the traditional U-Boot software that allows for automatic discovery of a network installer image. This facilitates the ecosystem model of procuring switches with an operating system choice, such as Cumulus Linux. The easiest way to install Cumulus Linux with ONIE is with local HTTP discovery:
@@ -188,7 +182,7 @@ cumulus@switch:~$ date
 Mon 21 Nov 2022 06:30:37 PM UTC
 ```
 
-If the date and time is incorrect, the switch does not synchronize with automation tools, such as Puppet, and returns errors after you restart `switchd`.
+If the date and time are incorrect, the switch does not synchronize with automation tools, such as Puppet, and returns errors after you restart `switchd`.
 
 To set the software clock according to the configured time zone, run the Linux `sudo date -s` command; for example:
 

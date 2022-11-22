@@ -22,11 +22,8 @@ Cumulus Linux 4.3.1 is supported on Broadcom switches only. You cannot upgrade t
 
 ## What's New in Cumulus Linux 4.3.0
 
-Cumulus Linux 4.3.0 supports new platforms, provides bug fixes, and contains several new features and enhancements.
+Cumulus Linux 4.3.0 provides bug fixes, and contains several new features and enhancements.
 <!-- vale on -->
-### New Platforms
-
-- NVIDIA SN4700 (400G Spectrum-3)
 
 ### New Features and Enhancements
 

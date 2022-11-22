@@ -23,9 +23,9 @@ Do **not** run both NVUE configuration commands and Linux commands to configure 
 
 To install Cumulus Linux, you use {{<exlink url="https://opencomputeproject.github.io/onie" text="ONIE">}} (Open Network Install Environment), an extension to the traditional U-Boot software that allows for automatic discovery of a network installer image. This facilitates the ecosystem model of procuring switches with an operating system choice, such as Cumulus Linux. The easiest way to install Cumulus Linux with ONIE is with local HTTP discovery:
 
-1. If your host (laptop or server) is IPv6-enabled, make sure it is running a web server. If your host is IPv4-enabled, make sure it is running DHCP in addition to a web server.
+1. Make sure your host (laptop or server) is running DHCP in addition to a web server.
 
-2. {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="Download">}} the Cumulus Linux installation file to the root directory of the web server. Rename this file `onie-installer`.
+2. {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="Download">}} the Cumulus Linux installation file to the root directory of the web server and rename the downloaded file to `onie-installer`.
 
 3. Connect your host using an Ethernet cable to the management Ethernet port of the switch.
 

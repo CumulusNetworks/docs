@@ -55,7 +55,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
+<td>3.7.16-4.4.3</td>
 <td>4.4.4-4.4.5, 5.2.0-5.3.0</td>
 </tr>
 <tr>

@@ -13,12 +13,6 @@ This guide assumes you have intermediate-level Linux knowledge. You need to be f
 
 You must have access to a Linux or UNIX shell. If you are running Windows, use a Linux environment like {{<exlink url="http://www.cygwin.com/" text="Cygwin">}} as your command line tool for interacting with Cumulus Linux.
 
-You can choose to configure Cumulus Linux either with the NVUE CLI **or** with Linux commands (you can run vtysh or edit configuration files manually). This guide provides separate procedures for NVUE commands and Linux commands.
-
-{{%notice note%}}
-Do **not** run both NVUE configuration commands and Linux commands to configure the switch. NVUE replaces certain configuration in the files, and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet.
-{{%/notice%}}
-
 ## Install Cumulus Linux
 
 To install Cumulus Linux, you use {{<exlink url="https://opencomputeproject.github.io/onie" text="ONIE">}} (Open Network Install Environment), an extension to the traditional U-Boot software that allows for automatic discovery of a network installer image. This facilitates the ecosystem model of procuring switches with an operating system choice, such as Cumulus Linux. The easiest way to install Cumulus Linux with ONIE is with local HTTP discovery:
@@ -42,6 +36,12 @@ After installing Cumulus Linux, you are ready to:
 ## Get Started
 
 When starting Cumulus Linux for the first time, the management port makes a DHCPv4 request. To determine the IP address of the switch, you can cross reference the MAC address of the switch with your DHCP server. The MAC address is typically located on the side of the switch or on the <!-- vale off -->box<!-- vale on --> in which the unit ships.
+
+{{%notice warning%}}
+You can choose to configure Cumulus Linux either with NVUE commands **or** Linux commands (with vtysh or by manually editing configuration files). Do **not** run both NVUE configuration commands (such as `nv set`, `nv unset`, `nv action`, and `nv config`) and Linux commands to configure the switch. NVUE commands replace the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, and remove any configuration you add manually or with automation tools like Ansible, Chef, or Puppet.
+
+If you choose to configure Cumulus Linux with NVUE, you can configure features that do not yet support the NVUE Object Model by creating snippets. See {{<link url="NVUE-Snippets" text="NVUE Snippets">}}.
+{{%/notice%}}
 
 ### Login Credentials
 
@@ -182,7 +182,7 @@ cumulus@switch:~$ date
 Mon 21 Nov 2022 06:30:37 PM UTC
 ```
 
-If the date and time is incorrect, the switch does not synchronize with automation tools, such as Puppet, and returns errors after you restart `switchd`.
+If the date and time are incorrect, the switch does not synchronize with automation tools, such as Puppet, and returns errors after you restart `switchd`.
 
 To set the software clock according to the configured time zone, run the Linux `sudo date -s` command; for example:
 

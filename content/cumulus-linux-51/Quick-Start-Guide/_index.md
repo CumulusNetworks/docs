@@ -182,7 +182,7 @@ cumulus@switch:~$ date
 Mon 21 Nov 2022 06:30:37 PM UTC
 ```
 
-If the date and time is incorrect, the switch does not synchronize with automation tools, such as Puppet, and returns errors after you restart `switchd`.
+If the date and time are incorrect, the switch does not synchronize with automation tools, such as Puppet, and returns errors after you restart `switchd`.
 
 To set the software clock according to the configured time zone, run the Linux `sudo date -s` command; for example:
 

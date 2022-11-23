@@ -1400,25 +1400,24 @@ To show high-level interface statistics, run the `nv show interface <interface>`
 
 ```
 cumulus@switch:~$ nv show interface swp1
-
-    Name    MAC                Speed      MTU  Mode
---  ------  -----------------  -------  -----  ---------
-UP  swp1    44:38:39:00:00:04  1G        1500  Access/L2
-
-Vlans in disabled State
--------------------------
-br0
-
-Counters      TX    RX
-----------  ----  ----
-errors         0     0
-unicast        0     0
-broadcast      0     0
-multicast      0     0
-
-LLDP
-------  ----  ---------------------------
-swp1    ====  44:38:39:00:00:03(server01)
+                  operational        applied  description
+----------------- -----------------  -------  ----------------------------------------------------------------------
+type              swp                swp      The type of interface
+[acl]                                         Interface ACL rules
+evpn
+  multihoming
+    uplink                           off      Enable evpn multihoming tracking to prevent traffic loss due to NVE...
+ip
+  vrf                                default  Virtual routing and forwarding
+  [gateway]                          default ipv4 and ipv6 gateways
+  igmp
+    enable                           off      Turn the feature 'on' or 'off'.  The default is 'off'.
+  ipv4
+    forward                          on       Enable or disable forwarding.
+  ipv6
+    enable                           on       Turn the feature 'on' or 'off'.  The default is 'on'.
+    forward                          on       Enable or disable forwarding.
+...
 ```
 
 To show low-level interface statistics, run the following `ethtool` command:

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3269607</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3216759</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 
@@ -15,12 +21,6 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-4.4.4</td>
 <td>4.4.5</td>
-</tr>
-<tr>
-<td>3195345</td>
-<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-5.0.1</td>
-<td>5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>3191517</td>
@@ -85,7 +85,7 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <tr>
 <td>3093863</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
+<td>3.7.16-4.4.3</td>
 <td>4.4.4-4.4.5, 5.2.0-5.3.0</td>
 </tr>
 <tr>
@@ -451,8 +451,8 @@ Fixed: 241-7~deb10u8</td>
 <tr>
 <td>2734119</td>
 <td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.4</td>
-<td>4.4.5, 5.0.0-5.3.0</td>
+<td>4.3.0-4.4.5</td>
+<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>2734107</td>
@@ -2029,7 +2029,12 @@ For Mellanox switches, the above procedure does not upgrade to Cumulus Linux 4.3
 <tr>
 <td>3110729</td>
 <td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3-5.0.1</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>3089474</td>
+<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>3068962</td>
@@ -2074,7 +2079,7 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <tr>
 <td>2991501</td>
 <td>When you poll TCP-MIB objects, the {{snmpd}} process slowly leaks memory. To work around this issue, restart the {{snmpd}} service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2949512</td>

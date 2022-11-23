@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3235368</td>
+<td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
+<td>4.4.4-5.2.1</td>
+<td>5.3.0</td>
+</tr>
+<tr>
 <td>3211054</td>
 <td>On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:
 
@@ -433,6 +439,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3235368</td>
+<td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
+<td>4.4.4-5.2.1</td>
+<td>5.3.0</td>
 </tr>
 <tr>
 <td>3211054</td>
@@ -930,7 +942,7 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
-<td>4.4.0-4.4.4</td>
+<td>4.4.0-5.1.0</td>
 </tr>
 <tr>
 <td>3123556</td>
@@ -988,12 +1000,17 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <tr>
 <td>3085285</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
+<td>3.7.16-4.4.3</td>
 </tr>
 <tr>
 <td>3084007</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>4.4.3</td>
+<td>4.3.0</td>
+</tr>
+<tr>
+<td>3082662</td>
+<td>{{syslog}} writes {{phcsync phc_ctl set clock time}} messages continuously every minute even when {{supervisord}} is not running, which prevents critical information from being logged.</td>
+<td>5.1.0</td>
 </tr>
 <tr>
 <td>3077736</td>

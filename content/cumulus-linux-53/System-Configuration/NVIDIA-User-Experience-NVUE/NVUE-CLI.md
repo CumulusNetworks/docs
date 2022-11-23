@@ -195,7 +195,7 @@ Additional options are available for the `nv show` commands. For example, you ca
 | `--output`        | Shows command output in table format (auto), `json` format or `yaml` format. For example:<br>`nv show --ouptut auto interface bond1`<br>`nv show --output json interface bond1`<br>`nv show --ouptut yaml interface bond1` |
 | `--paginate`      | Paginates the output. For example, `nv show --paginate on interface bond1`. |
 | `--pending`       | Shows configuration that is `set` and `unset` but not yet applied or saved. For example, `nv show --pending interface bond1`.|
-| `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev changeset/cumulus/2021-06-11_16.16.41_FPKK interface bond1`. |
+| `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev 1`. |
 | `--startup`  | Shows configuration saved with the `nv config save` command. This is the configuration after the switch boots. |
 | `--view` | Shows these different views: brief, lldp, mac, pluggables, and small. This option is available for the `nv show interface` command only. For example, the `nv show interface --view=small` command shows a list of the interfaces on the switch and the `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port. |
 
@@ -203,12 +203,12 @@ The following example shows *pending* BGP graceful restart configuration:
 
 ```
 cumulus@switch:~$ nv show router bgp graceful-restart --pending
-                             pending_20210128_212626_4WSY  description
-----------------------------  ----------------------------  ----------------------------------------------------------------------
-mode                          helper-only                   Role of router during graceful restart. helper-only, router is in h...
-path-selection-deferral-time  360                           Used by the restarter as an upper-bounds for waiting for peeringes...
-restart-time                  120                           Amount of time taken to restart by router. It is advertised to the...
-stale-routes-time             360                           Specifies an upper-bounds on how long we retain routes from a resta...
+                              4                  description
+----------------------------  -----------------  ----------------------------------------------------------------------
+mode                          helper-only        Role of router during graceful restart. helper-only, router is in h...
+path-selection-deferral-time  360                Used by the restarter as an upper-bounds for waiting for peeringes...
+restart-time                  120                Amount of time taken to restart by router. It is advertised to the...
+stale-routes-time             360                Specifies an upper-bounds on how long we retain routes from a resta...
 ```
 
 ### Net Show commands
@@ -266,7 +266,7 @@ The NVUE configuration management commands manage and apply configurations.
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
 | `nv config apply` | Applies the pending configuration to become the applied configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}Cumulus Linux applies but does not save the configuration; the configuration does not persist after a reboot.{{%/notice%}}You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.|
-| `nv config detach` | Detaches the configuration from the current pending configuration. Cumulus Linux names the detached configuration `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`|
+| `nv config detach` | Detaches the configuration from the current pending configuration and uses an integer to identify it; for example, `4`. To list all the current detached pending configurations, run `nv config diff <<press Tab>`.|
 | `nv config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration or the detached configuration and the pending configuration.|
 | `nv config history <nvue-file>` | Shows the apply history for the revision. |
 | `nv config patch <nvue-file>` | Updates the pending configuration with the specified YAML configuration file. |
@@ -555,7 +555,7 @@ cumulus@switch:~$ nv config save
 
 ### Detach a Pending Configuration
 
-The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. Cumulus Linux saves the detached configuration to a file `changeset/cumulus/<date>_<time>_xxxx` that includes a timestamp with extra characters to distinguish it from other pending configurations; for example, `changeset/cumulus/2021-06-11_18.35.06_FPKP`.
+The following example configures the IP address of the loopback interface, then detaches the configuration from the current pending configuration. Cumulus Linux saves the detached configuration to a file with a numerical value to distinguish it from other pending configurations.
 
 ```
 cumulus@switch:~$ nv set interface lo ip address 10.10.10.1/32

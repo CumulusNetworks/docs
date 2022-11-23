@@ -755,7 +755,7 @@ cumulus@switch$ ip link show swp1
 
 Even though `ifupdown2` supports the inclusion of multiple `iface` stanzas for the same interface, use a single `iface` stanza for each interface. If you must specify more than one `iface` stanza; for example, if the configuration for a single interface comes from many places, like a template or a sourced file, make sure the stanzas do not specify the same interface attributes. Otherwise, you see unexpected behavior.
 
-In the following example, swp1 is in two file: `/etc/network/interfaces` and `/etc/network/interfaces.d/speed_settings`. `ifupdown2` parses this configuration because the same attributes are not in multiple `iface` stanzas.
+In the following example, swp1 is in two files: `/etc/network/interfaces` and `/etc/network/interfaces.d/speed_settings`. `ifupdown2` parses this configuration because the same attributes are not in multiple `iface` stanzas.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces

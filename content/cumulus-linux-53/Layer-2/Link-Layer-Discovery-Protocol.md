@@ -12,7 +12,7 @@ The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system
 
 ## Configure LLDP Timers
 
-You can configure the frequency of LLDP updates (between 10 and 300 seconds) and the amount of time to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.
+You can configure the frequency of LLDP updates (between 10 and 300 seconds) and the amount of time (between 1 and 10 seconds) to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.
 
 The following example commands configure the frequency of LLDP updates to 100 and the hold time to 3.
 

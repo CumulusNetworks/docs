@@ -25,8 +25,8 @@ Using the NetQ UI or CLI, lifecycle management (LCM) allows you to:
 
 To access LCM, open the Manage Switch Assets page in one of the following ways:
 
-- Expand the menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}}, then select **Manage switches**
-- Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in a workbench header
+- Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18">}} Menu, then select **Manage switches**
+- Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} Upgrade in a workbench header
 - Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} Devices in a workbench header, then select **Manage switches**
 
 The Manage Switch Assets view provides access to switch management, image management, NetQ Agent configurations, and job history.

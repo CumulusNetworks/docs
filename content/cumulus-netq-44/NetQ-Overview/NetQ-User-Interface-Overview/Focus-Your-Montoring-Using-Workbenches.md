@@ -76,7 +76,7 @@ There are several options for opening workbenches:
         - Search by workbench name
         - Click **All My WB** to open all workbenches and select it from the list
 - Open through the main menu
-    - Expand the menu <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18"/> and select the workbench from the **Favorites** or **Workbenches** sections
+    - Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18"/> Menu and select the workbench from the **Favorites** or **Workbenches** sections
 - Open through the NVIDIA logo
     - Click the logo in the header to open your favorite workbench
 

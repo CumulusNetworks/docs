@@ -37,14 +37,6 @@ netq decommission <hostname-to-decommission>
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -83,14 +75,6 @@ netq del events-config
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
 
 ### Sample Usage
 
@@ -156,14 +140,6 @@ netq del notification rule <text-rule-name-anchor>
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced |
 
 ### Sample Usage
 
@@ -253,14 +229,6 @@ netq del tca
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -299,14 +267,6 @@ netq del trace
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
 
 ### Sample Usage
 
@@ -364,15 +324,6 @@ netq del validation
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -411,14 +362,6 @@ netq help verbose
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<text-keywords\> | Display syntax for commands with these keywords |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 1.x | Introduced |
 
 ### Sample Usage
 

@@ -65,16 +65,6 @@ None
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic validation: all devices, all tests, currently
@@ -179,16 +169,6 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic validation: All devices, all tests, currently
@@ -257,16 +237,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -384,16 +354,6 @@ None
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -532,17 +492,6 @@ the same |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 2.2.0 | Added `mac-consistency` option. Removed `hostname` and `vni` options. |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic validation: All devices, all tests, currently
@@ -629,17 +578,6 @@ None
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 2.1.0 | Removed host and peer options (`physical-hostname`, `physical-port`, `peer-physical-hostname`, `peer-physical-port`) and `unverified` option |
-| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -761,17 +699,6 @@ None
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic validation: All devices, all tests, currently
@@ -905,16 +832,6 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic validation: All devices, all tests, currently
@@ -1042,16 +959,6 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic validation: All devices, all tests, currently
@@ -1130,16 +1037,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -1235,16 +1132,6 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic validation: All devices, all tests, currently
@@ -1321,16 +1208,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -1425,16 +1302,6 @@ None
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added `hostnames` option |
-| 2.4.0 | Added `include` and `exclude` options; output changed to include individual test status |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic validation: All devices, all tests, currently
@@ -1490,14 +1357,6 @@ netq config add agent cluster-servers
 | port | \<text-opta-port\> | Use the port with this name on each switch to receive data; default is port 31980 |
 | vrf | \<text-vrf-names\> | Use the VRF with this name on each switch to receive data; default VRF is *default* |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 Configure cluster with default port and VRF
@@ -1546,14 +1405,6 @@ netq config add agent command
 | command | \<text-cmd-text\> | Run this executable command for the NetQ Agent command with the designated service key |
 | enable | True, False | Enable (True) or disable (False) the NetQ Agent command with the designated service key |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Introduced |
-
 ### Sample Usage
 
 Modify polling frequency for a command
@@ -1600,14 +1451,6 @@ None
 | ---- | ---- | ---- |
 | NA | \<text-limit-number\> | Set the threshold for the maximum percentage of CPU resources that the NetQ Agent can use |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Introduced |
-
 ### Sample Usage
 
 Set CPU usage limit by NetQ Agent to 60 percent
@@ -1650,14 +1493,6 @@ None
 | ---- | ---- | ---- |
 | NA | \<text-frr-docker-name\> | Collect statistics about the FRR docker container with this name pattern, used by `grep` |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 Configure NetQ Agent to collect FRR statistics
@@ -1698,14 +1533,6 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | poll-period | \<text-duration-period\> | Collect statistics about kubernetes containers at this frequency, in seconds |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
 
 ### Sample Usage
 
@@ -1765,14 +1592,6 @@ None
 | ---- | ---- | ---- |
 | NA | debug, error, info, warning | Log NetQ Agent events with this severity |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 Configure NetQ Agent to log only errors
@@ -1821,14 +1640,6 @@ netq config add agent opta-discovery-servers
 | vrf | \<text-vrf-name\> | Look for Cumulus Linux switches with the specified IP addresses that use the VRF with this name. When unspecified, the command uses the *default* VRF. |
 | port | \<text-discovery-server-port\> | Look for Cumulus Linux switches with the specified IP addresses that use this port. When unspecified, the command uses port 31980. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Introduced |
-
 ### Sample Usage
 
 Configure a range of IP addresses to search for switches without NetQ
@@ -1866,14 +1677,6 @@ netq config add agent sensors
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
 
 ### Sample Usage
 
@@ -1921,14 +1724,6 @@ netq config add agent server
 | port | \<text-opta-port\> | Use this port on the appliance or VM to receive NetQ Agent data and API requests |
 | vrf | \<text-vrf-name\> | Use this VRF on the appliance or VM to receive NetQ Agent data and API requests |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced |
-
 ### Sample Usage
 
 Configure destination server with default port and VRF
@@ -1968,14 +1763,6 @@ netq config add agent stats
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2013,14 +1800,6 @@ netq config add agent wjh
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Introduced |
 
 ### Sample Usage
 
@@ -2070,14 +1849,6 @@ netq config add agent wjh-drop-filter
 | ---- | ---- | ---- |
 | drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. When you desire more than one drop reason, you should format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
 | severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. When you desire more than one severity, you should format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Introduced |
 
 ### Sample Usage
 
@@ -2129,15 +1900,6 @@ netq config add agent wjh-threshold
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Introduced |
-
 ### Sample Usage
 
 Create latency thresholds for Class *3* traffic on port *swp1* where the upper threshold is *10* and the lower threshold is *1*.
@@ -2197,18 +1959,6 @@ netq config add cli server
 | vrf | \<text-vrf-name\> | Use this VRF for communication with the telemetry server (NetQ appliance, VM, or cloud gateway). This should be the same VRF where you set the routing tables for connectivity to the telemetry server. Typically this is the management VRF. |
 | port | \<text-gateway-port\> | Use this port for communication with the telemetry server (NetQ appliance, VM, or cloud gateway). The default port is 32708 for on-premises deployments and 443  for cloud deployments. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.3.1 | Dropped second form of command |
-| 2.3.0 | Split command into two: the first for when you want to specify the premises (syntax as shown above), the second for when you want to use the first premises in your list of premises (same syntax minus the premises option). |
-| 2.2.2 | Changed `premise` argument to `premises`. |
-| 2.2.0 | Added `access-key`, `secret-key`, and `premise` as required arguments for cloud deployments. Added `vrf` and `port` options. |
-| 2.1.x | Introduced |
-
 ### Sample Usage
 
 On-premises
@@ -2255,14 +2005,6 @@ netq config add color
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2295,14 +2037,6 @@ netq config agent factory-reset commands
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Introduced |
 
 ### Sample Usage
 
@@ -2337,14 +2071,6 @@ netq config del agent cluster-servers
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -2381,14 +2107,6 @@ netq config del agent cpu-limit
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Introduced |
 
 ### Sample Usage
 
@@ -2428,14 +2146,6 @@ netq config del agent frr-monitor
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2472,14 +2182,6 @@ netq config del agent kubernetes-monitor
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
 
 ### Sample Usage
 
@@ -2518,14 +2220,6 @@ netq config del agent loglevel
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2563,14 +2257,6 @@ netq config del agent sensors
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2605,15 +2291,6 @@ netq config del agent server
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2649,15 +2326,6 @@ netq config del agent stats
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2692,15 +2360,6 @@ netq config del agent wjh
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2747,14 +2406,6 @@ netq config del agent wjh-drop-filter
 | drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. When you desire more than one drop reason, you should format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
 | severity | \<text-drop-severity-list\> | Delete WJH event filter with these severities. When you desire more than one severity, you should format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2798,14 +2449,6 @@ netq config del agent wjh-threshold
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2844,14 +2487,6 @@ netq config del cli server
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2886,14 +2521,6 @@ netq config del color
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2924,14 +2551,6 @@ None
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -2969,14 +2588,6 @@ netq config restart cli
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 ```
@@ -3013,15 +2624,6 @@ netq config select cli
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -3054,15 +2656,6 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced |
-
 ### Sample Usage
 
 Standard output
@@ -3150,14 +2743,6 @@ netq config show agent commands
 | service-key | \<text-service-key-anchor\> | View the configuration of the NetQ Agent command with this service key (name) |
 | json | NA | View the configuration information for the specified NetQ Agent commands in JSON format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Introduced |
-
 ### Sample Usage
 
 Show configuration for all commands
@@ -3225,14 +2810,6 @@ netq config show agent cpu-limit
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Introduced |
-
 ### Sample Usage
 
 Unlimited
@@ -3286,14 +2863,6 @@ netq config show agent frr-monitor
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
 
 ### Sample Usage
 
@@ -3350,14 +2919,6 @@ netq config show agent kubernetes-monitor
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -3403,14 +2964,6 @@ netq config show agent loglevel
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 Configure NetQ Agent to log only errors
@@ -3452,14 +3005,6 @@ netq config show agent sensors
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
 
 ### Sample Usage
 
@@ -3506,14 +3051,6 @@ netq config show agent stats
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
 
 ### Sample Usage
 
@@ -3566,14 +3103,6 @@ netq config show agent wjh
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -3613,14 +3142,6 @@ netq config show agent wjh-threshold
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -3655,14 +3176,6 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced |
 
 ### Sample Usage
 
@@ -3720,14 +3233,6 @@ None
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -3769,14 +3274,6 @@ None
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -3809,15 +3306,6 @@ None
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -3854,15 +3342,6 @@ None
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -3895,14 +3374,6 @@ None
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| Before 2.1.2 | Introduced |
 
 ### Sample Usage
 

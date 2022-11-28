@@ -34,15 +34,6 @@ netq lcm add
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Changed `image` keyword to `cl-image` |
-| 3.0.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -87,15 +78,6 @@ netq lcm add
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Made `username` a required argument |
-| 3.0.0 | Introduced |
 
 ### Sample Usage
 
@@ -142,14 +124,6 @@ netq lcm add
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -186,15 +160,6 @@ netq lcm add
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Changed value of `netq-image` keyword from \<text-image-name\> to \<text-netq-image-name\> |
-| 3.1.0 | Introduced |
 
 ### Sample Usage
 
@@ -235,14 +200,6 @@ netq lcm add
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -277,15 +234,6 @@ netq lcm del
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Renamed `image` option to `cl-image` |
-| 3.0.0 | Introduced |
 
 ### Sample Usage
 
@@ -333,14 +281,6 @@ netq lcm del
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -374,15 +314,6 @@ netq lcm del
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Renamed `image` option to `netq-image` |
-| 3.0.0 | Introduced |
 
 ### Sample Usage
 
@@ -435,14 +366,6 @@ netq lcm discover
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -484,15 +407,6 @@ netq lcm show cl-images
 | ---- | ---- | ---- |
 | NA | \<text-image-id\> | Only display Cumulus Linux image with this identifier |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Renamed `images` argument to `cl-images` |
-| 3.0.0 | Introduced |
 
 ### Sample Usage
 
@@ -561,14 +475,6 @@ netq lcm show credentials
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -622,14 +528,6 @@ netq lcm show default-version
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Introduced |
 
 ### Sample Usage
 
@@ -689,14 +587,6 @@ netq lcm show
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -753,14 +643,6 @@ netq lcm show netq-config
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -811,15 +693,6 @@ netq lcm show netq-images
 | ---- | ---- | ---- |
 | NA | \<text-netq-image-id\> | Only display  the NetQ image with this identifier |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Renamed `images` argument to `netq-images` |
-| 3.0.0 | Introduced |
 
 ### Sample Usage
 
@@ -898,15 +771,6 @@ netq lcm show status
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Added ability to view NetQ job status with the change of the `images` argument to `cl-images` and `netq-images` |
-| 3.0.0 | Introduced |
 
 ### Sample Usage
 
@@ -1054,15 +918,6 @@ netq lcm show switches
 | netq-version | \<text-netq-version\> | Only display switches running this version of NetQ |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Renamed the `version` option to `cl-version` and added `netq-version` option to enable filtering by NetQ version |
-| 3.0.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -1132,15 +987,6 @@ netq lcm show upgrade-jobs
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.3.0 | Added the `cl-image` and `netq-image` options to enable display of Cumulus Linux or NetQ upgrade job history |
-| 3.0.0 | Introduced |
 
 ### Sample Usage
 

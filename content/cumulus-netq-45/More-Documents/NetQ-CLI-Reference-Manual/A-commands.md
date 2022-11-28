@@ -7,8 +7,6 @@ right_toc_levels: 1
 pdfhidden: true
 ---
 
-This topic includes all commands that begin with `netq a*` and `netq b*`.
-
 <!-- vale off -->
 ## netq add events-config
 <!-- vale on -->
@@ -46,14 +44,6 @@ None
 | scope | \<text-events-scope-anchor\> | Rule, in the form of a regular expression, indicating which devices, subset of devices or attributes to suppress |
 | is_active | true, false | Enables or disables configuration |
 | suppress_until | \<text-suppress-until\> | Amount of time, in seconds, to suppress the specified events |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
 
 ### Sample Usage
 
@@ -136,15 +126,6 @@ netq add notification channel syslog
 | severity | info, warning, error, debug | Only send notifications with this severity. Default severity is info. |
 | tag | \<text-slack-tag\> | Short text appended to a Slack notification to highlight particular channels or people. You must prepend the tag value with the @ sign. For example, *@netq-info* or *@net-admin*. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Added Email channel type |
-| 2.1.2 | Introduced. Replaced `netq config ts add notifier channel`.  |
-
 ### Sample Usage
 
 Create an email channel
@@ -224,14 +205,6 @@ netq add notification filter
 | before | \<text-filter-name-anchor\> | Insert this filter before the filter with this name. |
 | after | \<text-filter-name-anchor\> | Insert this filter after the filter with this name. |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced. Replaced `netq config ts add notifier filter`. |
-
 ### Sample Usage
 
 Create filter and assign to Email channel
@@ -286,15 +259,6 @@ netq add notification rule
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced. Replaced `netq config ts add notifier rule`. |
-
 ### Sample Usage
 
 Create rule to send all interface events
@@ -344,14 +308,6 @@ netq add notification proxy
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | port | \<text-proxy-port\> | Send notifications to the port on the proxy server with this name |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced |
 
 ### Sample Usage
 
@@ -425,15 +381,6 @@ netq add tca tca_id
 | channel | \<text-channel-name-anchor\>| Send the events to the channel with this name |
 | channel drop | \<text-drop-channel-name\> | Stop sending events to the channel with this name |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Added `threshold_type` option. Changed order of `tca_id` and `scope` options. |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 Basic threshold-based event notification
@@ -494,14 +441,6 @@ netq add trace <ip>
 | vlan | 1-4096 | Create a layer 2 trace through this VLAN |
 | vrf | \<vrf\> | Create a layer 2 or 3 trace through this VRF |
 | alert-on-failure | NA | Generate an event when the trace fails |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
 
 ### Sample Usage
 
@@ -571,14 +510,6 @@ netq add trace name
 | vrf | \<vrf\> | Create a layer 2 or 3 trace through this VRF |
 | alert-on-failure | NA | Generate an event when the trace fails |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
 ### Sample Usage
 
 Layer 3 trace
@@ -632,14 +563,6 @@ netq add validation
 | ---- | ---- | ---- |
 | alert-on-failure | NA | Reserved |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
 ### Sample Usage
 
 BGP validation; all devices, all tests, on a regular basis
@@ -680,14 +603,6 @@ netq add validation
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | alert-on-failure | NA | Reserved |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
 
 ### Sample Usage
 
@@ -742,17 +657,6 @@ netq bootstrap worker
 | pod-ip-range | \<<text-master-ip\> | Change the IP address range to this range for Flannel container environments when you have a conflict. NetQ overrides the default Flannel address range (10.1.0.0/16) with 10.244.0.0/16. |
 | password | \<text-password\> | Passphrase for access to the worker node |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Added `pod-ip-range` option to master form of command |
-| 3.1.0 | Added `password` option to worker form of command |
-| 2.4.1 | Added `ip-addr` option |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 Bootstrap single server or master server in a server cluster
@@ -795,15 +699,6 @@ None
 | ---- | ---- | ---- |
 | keep-db | NA | Save existing data before resetting the node. Only applies to deployments with local databases. |
 | purge-db | NA | Discard existing data when resetting the node. Only applies to deployments with local databases. |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Added `keep-db` and `purge-db` options |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -852,14 +747,6 @@ netq bootstrap master upgrade
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 

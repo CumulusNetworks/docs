@@ -67,14 +67,6 @@ When entering a time value with the <code>between</code> option, you must includ
 You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.
 {{</notice>}}
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
 ### Sample Usage
 
 Basic show: all devices, all VLANs, in last 24 hours
@@ -154,14 +146,6 @@ None
 | opta | NA | Filter output for the NetQ Agent installed on the appliance or VM |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
 ### Sample Usage
 
@@ -292,14 +276,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
 ### Sample Usage
 
 Basic show: all devices, all states, currently
@@ -427,14 +403,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.3.1 | Introduced |
-
 ### Sample Usage
 
 Basic show: all devices in last 24 hours
@@ -481,14 +449,6 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -561,14 +521,6 @@ None
 | NA | \<text-package-name\> | Only display results for the software package with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.3.1 | Introduced |
 
 ### Sample Usage
 
@@ -659,14 +611,6 @@ netq [<hostname>] show cl-resource forwarding
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 Basic show: All devices, all ACLS
@@ -712,14 +656,6 @@ None
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.3.1 | Introduced |
 
 ### Sample Usage
 
@@ -770,14 +706,6 @@ None
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
 ### Sample Usage
 
@@ -851,15 +779,6 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
 | channel_id | \<text-channel-id\> | Only display laser results for the channel with this ID |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Renamed `module_temperature` keyword to `module_temp` |
-| 3.1.0 | Introduced |
 
 ### Sample Usage
 
@@ -950,15 +869,6 @@ netq <hostname> show interface-stats
 | extended | NA | Display additional statistics; does not include statistics presented with standard output |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | The `port`, `rx` and `tx` options changed from optional to required. Removed the `min` option. Added the `extended` option. |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -1085,17 +995,6 @@ None
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Added `type lcm` option |
-| 3.0.0 | Removed `type lnv` option |
-| 2.3.1 | Added `type btrfsinfo` option |
-| 2.1.x | Introduced; replaced `netq show changes` command |
-
 ### Sample Usage
 
 Show all events in the last 3 days
@@ -1207,15 +1106,6 @@ None
 | show-filter-conditions | NA | Only display results for sessions using the VNI with this name |
 | message_type | \<text-message-type-anchor\> | Only display results for configurations with this type. Values include <!-- vale off -->*agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*.<!-- vale on --> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
-
 ### Sample Usage
 
 Show a given event suppression configuration
@@ -1370,14 +1260,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
 ### Sample Usage
 
 Basic show: all devices, all VNIs, currently
@@ -1481,15 +1363,6 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | count | NA | Display the total number of interface on the specified switch or host. You must specify the `hostname` option. |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
 ### Sample Usage
 
 Basic show: all devices, all interface types, currently
@@ -1599,15 +1472,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.2.1 | Introduced |
-| 2.2.0 | Early access |
-
 ### Sample Usage
 
 Show all statistics
@@ -1709,15 +1573,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 <!-- vale on -->
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Changed `interface-utils` keyword to `interface-utilization` |
-| 2.3.0 | Introduced |
 
 ### Sample Usage
 
@@ -1838,16 +1693,6 @@ netq [<hostname>] show inventory os
 | opta | NA | Only display results for the NetQ appliance or VM (not other switches or hosts) |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 4.0.0 | Removed license commands and options |
-| 2.1.2 | Added `status` keyword to license form of command |
-| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -2007,15 +1852,6 @@ netq show ipv6 addresses
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
-| 2.1.2 | Removed `changes` and `between` options |
-
 ### Sample Usage
 
 Show all IP address on the *spine01* switch
@@ -2133,15 +1969,6 @@ netq <hostname> show ipv6 neighbors
 | NA | \<mac\> | Only display results for switches and hosts with this MAC address |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
-| 2.1.2 | Removed `changes` and `between` options |
 
 ### Sample Usage
 
@@ -2274,15 +2101,6 @@ netq show ipv6 routes
 | count | NA | Display the count of routes for a given switch or host |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.0.0 | Added ability to display all addresses in a subnet or supernet or the layer 3 gateway of an address with `subnet`, `supernet`, and `gateway` options |
-| 2.1.2 | Removed `changes` and `between` options |
-
 ### Sample Usage
 
 Show all IPv4 routes
@@ -2353,14 +2171,6 @@ netq show job-status <text-opta-ip>
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 1.x | Introduced |
 
 ### Sample Usage
 
@@ -2525,15 +2335,6 @@ netq [<hostname>] show kubernetes service
 | service-external-ip | \<kube-service-external-ip\> | Only display results for the service with this external IP address |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Show health of clusters
@@ -2668,14 +2469,6 @@ netq <hostname> show impact kubernetes deployment
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Show impact on service availability based on the loss of particular node
@@ -2754,14 +2547,6 @@ None
 | NA | \<remote-physical-interface\> | Only display results for sessions using the interface port with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
 ### Sample Usage
 
@@ -2851,14 +2636,6 @@ netq [<hostname>] show mac-commentary
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Introduced |
-
 ### Sample Usage
 
 ```
@@ -2918,14 +2695,6 @@ netq [<hostname>] show mac-history
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | listby | \<text-list-by\> | Display output in groups based on the specified output field |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.3.1 | Introduced |
 
 ### Sample Usage
 
@@ -3021,14 +2790,6 @@ netq <hostname> show macs
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-|  | Introduced before 2.1 |
-
 ### Sample Usage
 
 Basic show: all addresses, all switches, all VLANs, all egress ports
@@ -3114,14 +2875,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
 ### Sample Usage
 
 Basic show: all devices, all states, currently
@@ -3193,14 +2946,6 @@ None
 | listby | \<text-list-by\> | Display results by the specified attribute. Attributes include the interface name or index, VRF name, remote status, MAC address, if the address is an IPv6 address, and hostname. |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.2.0 | Introduced |
-
 ### Sample Usage
 
 Basic show: all addresses, all switches, all VLANs, all egress ports
@@ -3260,15 +3005,6 @@ netq show notification
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.2.x | Added `proxy` keyword |
-| 2.1.2 | Introduced. Replaced the `netq config ts add notifier` command. |
 
 ### Sample Usage
 
@@ -3387,14 +3123,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic show: all devices, all states, currently
@@ -3458,14 +3186,6 @@ None
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Introduced |
-
 ### Sample Usage
 
 On-premises appliance or VM
@@ -3521,15 +3241,6 @@ None
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.3.1 | Modified keyword name from `platform` to `opta-platform` |
-| 2.3.0 | Introduced as `netq show platform` |
-
 ### Sample Usage
 
 ```
@@ -3582,14 +3293,6 @@ None
 | area | \<area-id\> | Only display results for devices in this routing domain |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
 ### Sample Usage
 
@@ -3662,14 +3365,6 @@ None
 | release-id | \<text-release-id\> | Only display results for the Cumulus Linux release with this ID; x.y.z format |
 | package-name | \<text-package-name\> | Only display results for the software package with this name |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -3744,14 +3439,6 @@ netq [<hostname>] show resource-util
 | memory | NA | Display utilization for memory on one or more devices |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -3891,15 +3578,6 @@ netq [<hostname>] show sensors
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic show: all devices, all states, currently
@@ -4028,14 +3706,6 @@ netq [<hostname>] show services
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 Basic show: All services, all switches and hosts
@@ -4160,14 +3830,6 @@ None
 | tca_id | \<text-tca-id-anchor\> | Only display results for the configuration with this ID/name |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 Show all TCA event configurations
@@ -4248,14 +3910,6 @@ netq show trace summary
 | name | \<text-trace-name\> | Only display summary results or configuration settings for the trace with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -4360,15 +4014,6 @@ netq show unit-tests vxlan [json]
 | ---- | ---- | ---- |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Swapped the order of the `unit-tests` keyword and the protocol or service name |
-| 2.3.1 | Introduced |
-
 ### Sample Usage
 
 Show tests for BGP
@@ -4415,14 +4060,6 @@ None
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
 | type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
 
 ### Sample Usage
 
@@ -4495,14 +4132,6 @@ netq show validation summary
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
 | around | \<text-time-hr\> | Show summary status for this time in the past. You must specify the value in hours and include the *h* time unit. Default is 24 hours. |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
 
 ### Sample Usage
 
@@ -4599,14 +4228,6 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
-
 ### Sample Usage
 
 Basic show: all devices, all states, currently
@@ -4681,14 +4302,6 @@ None
 | <!-- vale off -->vni | \<text-vni\><!-- vale on --> | Only display results for the VNI with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
 ### Sample Usage
 
@@ -4821,14 +4434,6 @@ netq [<hostname>] show wjh-drop <text-drop-type>
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `changes` option. Use `netq show events` command instead. |
 
 ### Sample Usage
 

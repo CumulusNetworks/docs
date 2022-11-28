@@ -47,14 +47,6 @@ netq install cluster activate-job
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 <!-- Add output/results -->
@@ -104,17 +96,6 @@ netq install cluster full
 | ---- | ---- | ---- |
 | conifg-key | \<text-opta-key\> | Use this unique key to install the server cluster |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Added `ip-addr` argument |
-| 2.4.0 | Added `cluster` and `full` arguments. Removed `download`, `file`, and `force` options. |
-| 2.2.2 | Added `download` options |
-| Before 2.2.1 | Introduced |
-
 ### Sample Usage
 
 <!-- Add output/results -->
@@ -155,14 +136,6 @@ netq install cluster init-job
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -210,14 +183,6 @@ netq install cluster join-workers
 | ---- | ---- | ---- |
 | NA | \<text-worker-node-02\> | IP address of server to configure as the second worker node in this server cluster |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 <!-- Add output/results -->
@@ -258,14 +223,6 @@ netq install cluster infra-job
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -312,14 +269,6 @@ netq install cluster install-job
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 <!-- Add output/results -->
@@ -360,14 +309,6 @@ netq install opta activate-job
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Introduced |
 
 ### Sample Usage
 
@@ -425,17 +366,6 @@ netq install opta cluster full
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a proxy host |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Added `ip-addr` argument, `proxy-host` and `proxy-port` options |
-| 2.4.0 | Added `cluster` and `full` arguments. Removed `download`, `file`, and `force` options. |
-| 2.2.2 | Added `download` options |
-| Before 2.2.1 | Introduced |
-
 ### Sample Usage
 
 <!-- Add output/results -->
@@ -486,14 +416,6 @@ netq install opta standalone full
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a proxy host |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 <!-- Add output/results -->
@@ -527,14 +449,6 @@ netq install patch
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Introduced |
 
 ### Sample Usage
 
@@ -574,15 +488,6 @@ netq install standalone activate-job
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Replaced `netq update opta config-key` |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -630,17 +535,6 @@ netq install standalone full
 | ---- | ---- | ---- |
 | conifg-key | \<text-opta-key\> | Use this unique key to activate the software |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Added `ip-addr` argument |
-| 2.4.0 | Added `standalone` and `full` arguments. Removed `download`, `file`, and `force` options. |
-| 2.2.2 | Added `download` options |
-| Before 2.2.1 | Introduced |
-
 ### Sample Usage
 
 <!-- Add output/results -->
@@ -681,14 +575,6 @@ netq install standalone infra-job
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 <!-- Add output/results -->
@@ -728,14 +614,6 @@ netq install standalone init-job
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
 
 ### Sample Usage
 
@@ -781,14 +659,6 @@ netq install standalone install-job
 
 None
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.0 | Introduced |
-
 ### Sample Usage
 
 <!-- Add output/results -->
@@ -829,14 +699,6 @@ netq install update-settings
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 3.1.0 | Introduced |
 
 ### Sample Usage
 

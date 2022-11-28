@@ -68,15 +68,6 @@ netq trace
 | detail | NA | Display results in a tabular format with a row per hop and a set of rows per path, useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. This is the default output when not specified. |
 | pretty | NA | Display results lined up by paths in a pseudo-graphical manner to help visualize the multiple paths |
 
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.1.2 | Removed `bidir` option |
-| 1.x | Introduced |
-
 ### Sample Usage
 
 ```
@@ -199,14 +190,6 @@ netq upgrade bundle <text-bundle-url>
 ### Options
 
 None
-
-### Command History
-
-A release appears here if there were changes to the command; otherwise it is not listed.
-
-| Release | Description |
-| ---- | ---- |
-| 2.4.1 | Introduced; replaced `netq upgrade opta config-key` and `netq upgrade opta tarball` |
 
 ### Sample Usage
 

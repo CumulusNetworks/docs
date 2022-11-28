@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 125
 toc: 3
 ---
-In addition to the CLI, NVUE supports a REST API.
+In addition to the CLI, NVUE supports a REST API. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL or a web browser.
 
 ## Access the NVUE API
 
@@ -40,12 +40,20 @@ To access the NVUE REST API from a front panel port (swp) on the switch:
 - To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
 {{%/notice%}}
 
+## Transport Layer Security
+
+You secure all traffic in transport using TLSv1.2 by default. Cumulus Linux contains a self-signed certificate and private key used server-side in this application so that it works out of the box; however, NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format.
+
+For step by step documentation on generating self-signed certificates and keys, and installing them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
+
+After installing the certificates and keys, edit the `/etc/nginx/sites-available/nvue.conf` file to set the `ssl_certificate` and `ssl_certificate_key` values to your keys.
+
 ## Run cURL Commands
 
 You can run the cURL commands from the command line. Use the username and password for the switch. For example:
 
 ```
-cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/interface
+$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/interface
 {
   "eth0": {
     "ip": {
@@ -123,7 +131,7 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
 5. Review the status of the apply and the configuration:
 
    ```
-   cumulus@leaf01:mgmt:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
+   $ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
    {
      "state": "applied",
      "transition": {
@@ -475,3 +483,8 @@ $ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-prompt":{"ays": "ay
 ## NVUE REST API Documentation
 
 For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-53/api/index.html" text="NVUE API documentation.">}}
+
+## Related Information
+
+- {{<exlink url="https://docs.nginx.com/" text="NGINX documentaion">}}
+- {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}

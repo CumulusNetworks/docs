@@ -1246,7 +1246,7 @@ mlx-2700-04       0,32768(0%)          0,16384(0%)          0,65536(0%)         
 
 To view the NetQ Agents on all switches and hosts:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> to open the Main menu.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu.
 
 2. Select **Agents** from the **Network** column.
 

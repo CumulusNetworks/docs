@@ -78,7 +78,7 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 This list is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
 - Verify the missing switches are reachable using `ping`
-- Verify the NetQ Agent is fresh and version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click **Agents** or run `netq show agents`)
+- Verify the NetQ Agent is fresh and version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} Menu, then click **Agents** or run `netq show agents`)
 - {{<link title="Install NetQ Agents" text="Install NetQ on the switch">}}
 - {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
 

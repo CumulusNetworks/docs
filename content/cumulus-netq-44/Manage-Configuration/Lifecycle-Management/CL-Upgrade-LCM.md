@@ -276,7 +276,7 @@ On successful completion, you can:
 
 - View the changes on the Switches card of the LCM dashboard.
 
-    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then **Upgrade Switches**.
+    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} Menu, then **Upgrade Switches**.
 
     {{<figure src="/images/netq/lcm-switches-card-after-upgrade-300.png" width="200">}}
 

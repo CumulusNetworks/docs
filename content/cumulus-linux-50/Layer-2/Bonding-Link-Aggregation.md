@@ -121,7 +121,6 @@ cumulus@switch:~$ ifreload -a
 - By default, the bond uses IEEE 802.3ad link aggregation mode. To configure the bond in balance-xor mode, see {{<link url="#configure-bond-options" text="Configuration Parameters">}} below.
 - If the bond is *not* going to be part of a bridge, you must specify an IP address.
 - Make sure the name of the bond adheres to Linux interface naming conventions and is unique within the switch.
-- Cumulus Linux does not support bond members at 200G or greater.
 {{%/notice%}}
 
 When you start networking, the switch creates bond0 as MASTER and interfaces swp1 thru swp4 come up in SLAVE mode:

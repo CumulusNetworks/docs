@@ -7,6 +7,27 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3269607</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3235368</td>
+<td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
+<td>4.4.4-5.2.1</td>
+<td>5.3.0</td>
+</tr>
+<tr>
+<td>3221470</td>
+<td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
+
+sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
+</td>
+<td>4.4.0-5.1.0</td>
+<td>5.2.0-5.3.0</td>
+</tr>
+<tr>
 <td>3211054</td>
 <td>On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:
 
@@ -14,12 +35,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </td>
 <td>4.4.2-5.2.1</td>
 <td>5.3.0</td>
-</tr>
-<tr>
-<td>3195345</td>
-<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-5.0.1</td>
-<td>5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -127,12 +142,6 @@ end vrf
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
 <td>4.4.4-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3110729</td>
-<td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3-5.0.1</td>
-<td>4.3.1, 5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>3108491</td>
@@ -257,12 +266,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2991501</td>
-<td>When you poll TCP-MIB objects, the {{snmpd}} process slowly leaks memory. To work around this issue, restart the {{snmpd}} service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>2971159</td>
@@ -628,6 +631,12 @@ To work around this issue, do not disable EVPN Advertise Primary IP Address, whi
 <td>{{ACL [No More Resources]}} messages keep appearing and you can't reinstall the ACL.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.3.0</td>
+</tr>
+<tr>
+<td>2732605</td>
+<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
+<td>4.3.0-4.4.5</td>
+<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>2732587</td>
@@ -1919,22 +1928,9 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
-<td>3221470</td>
-<td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
-
-sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
-</td>
-<td>4.4.0-4.4.4</td>
-</tr>
-<tr>
 <td>3205701</td>
 <td>A firmware upgrade has been implemented to optimize the PCIe bus between the CPU and Spectrum ASIC on NVIDIA SN4700, SN4600, SN4600C, and SN4410 switches manufactured with {{0x26 1 17}} in EEPROM. Affected switches will not boot properly without this firmware upgrade. To see the EEPROM value, run the {{onie-syseeprom}} command from ONIE or run the {{decode-syseeprom}} command from Cumulus Linux.</td>
 <td>4.4.4, 5.2.0</td>
-</tr>
-<tr>
-<td>2732605</td>
-<td>The ESI line in the {{show bgp l2vpn evpn route}} command output always shows VNI: 0. This is a cosmetic software issue.</td>
-<td>4.3.0-4.4.4</td>
 </tr>
 </table>
 <table name="Open Issues in 4.4.4">
@@ -1945,13 +1941,25 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3269607</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3235368</td>
+<td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
+<td>4.4.4-5.2.1</td>
+<td>5.3.0</td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5, 5.2.0-5.3.0</td>
+<td>4.4.0-5.1.0</td>
+<td>5.2.0-5.3.0</td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -1977,12 +1985,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <td>A firmware upgrade has been implemented to optimize the PCIe bus between the CPU and Spectrum ASIC on NVIDIA SN4700, SN4600, SN4600C, and SN4410 switches manufactured with {{0x26 1 17}} in EEPROM. Affected switches will not boot properly without this firmware upgrade. To see the EEPROM value, run the {{onie-syseeprom}} command from ONIE or run the {{decode-syseeprom}} command from Cumulus Linux.</td>
 <td>4.4.4, 5.2.0</td>
 <td>4.4.5, 5.2.1-5.3.0</td>
-</tr>
-<tr>
-<td>3195345</td>
-<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-5.0.1</td>
-<td>5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -2090,12 +2092,6 @@ end vrf
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
 <td>4.4.4-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3110729</td>
-<td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3-5.0.1</td>
-<td>4.3.1, 5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>3108491</td>
@@ -2220,12 +2216,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2991501</td>
-<td>When you poll TCP-MIB objects, the {{snmpd}} process slowly leaks memory. To work around this issue, restart the {{snmpd}} service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>2971159</td>
@@ -3902,12 +3892,12 @@ To work around this issue, on the web server hosting the image, create an empty 
 <tr>
 <td>3089148</td>
 <td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>4.4.3</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>3083265</td>
 <td>The snmpd process will slowly leak memory when you poll TCP-MIB objects. To work around this issue, restart the snmpd service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>3.7.16-4.4.3, 5.0.0-5.1.0</td>
+<td>3.7.16-4.4.3</td>
 </tr>
 <tr>
 <td>3082583</td>
@@ -3937,6 +3927,11 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 2022-05-02T13:14:40.118597+00:00 cumulus sx_sdk: ROUTER: Failed to delete router interface(27) ref count isn’t 0, err= Resource is in use.
 </td>
 <td>4.4.2-4.4.3, 5.0.1-5.1.0</td>
+</tr>
+<tr>
+<td>3058604</td>
+<td>When you change the time with NTP or manually, the clagd service stops.</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>3041306</td>
@@ -4008,13 +4003,19 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3269607</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5, 5.2.0-5.3.0</td>
+<td>4.4.0-5.1.0</td>
+<td>5.2.0-5.3.0</td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -4034,12 +4035,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </td>
 <td>4.4.2-5.2.1</td>
 <td>5.3.0</td>
-</tr>
-<tr>
-<td>3195345</td>
-<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-5.0.1</td>
-<td>5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -4120,12 +4115,6 @@ end vrf
 <td>5.2.0-5.3.0</td>
 </tr>
 <tr>
-<td>3110729</td>
-<td>When you change the time with NTP or manually, the clagd service stops.</td>
-<td>4.4.3-5.0.1</td>
-<td>4.3.1, 5.1.0-5.3.0</td>
-</tr>
-<tr>
 <td>3108491</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
@@ -4163,12 +4152,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>A slow memory leak might occur in {{switchd}}} if the route fails to install in hardware when hardware resources are exhausted.</td>
 <td>4.2.1-4.4.3</td>
 <td>4.4.4-4.4.5</td>
-</tr>
-<tr>
-<td>3089148</td>
-<td>The {{clagd}} process uses 100 percent CPU and eventually crashes with an {{Unable to allocate memory}} error.</td>
-<td>4.4.3</td>
-<td>4.4.4-4.4.5, 5.2.0-5.3.0</td>
 </tr>
 <tr>
 <td>3084027</td>
@@ -4350,12 +4333,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2991501</td>
-<td>When you poll TCP-MIB objects, the {{snmpd}} process slowly leaks memory. To work around this issue, restart the {{snmpd}} service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>2971159</td>
@@ -6075,13 +6052,19 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3269607</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5, 5.2.0-5.3.0</td>
+<td>4.4.0-5.1.0</td>
+<td>5.2.0-5.3.0</td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -6101,12 +6084,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </td>
 <td>4.4.2-5.2.1</td>
 <td>5.3.0</td>
-</tr>
-<tr>
-<td>3195345</td>
-<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-5.0.1</td>
-<td>5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -6357,12 +6334,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2991501</td>
-<td>When you poll TCP-MIB objects, the {{snmpd}} process slowly leaks memory. To work around this issue, restart the {{snmpd}} service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>2968495</td>
@@ -8313,13 +8284,19 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3269607</td>
+<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
 sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 </td>
-<td>4.4.0-4.4.4</td>
-<td>4.4.5, 5.2.0-5.3.0</td>
+<td>4.4.0-5.1.0</td>
+<td>5.2.0-5.3.0</td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -8330,12 +8307,6 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-4.4.4</td>
 <td>4.4.5</td>
-</tr>
-<tr>
-<td>3195345</td>
-<td>Communication between single-connected MLAG hosts on different switches fails because packets received by single-connected MLAG hosts are not forwarded over the peer link. To work around this issue, when adding a switch to an MLAG pair, enable all the interfaces.</td>
-<td>4.3.0-5.0.1</td>
-<td>5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -8535,12 +8506,6 @@ This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml 
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2991501</td>
-<td>When you poll TCP-MIB objects, the {{snmpd}} process slowly leaks memory. To work around this issue, restart the {{snmpd}} service to free memory with the {{systemctl restart snmpd}} command.</td>
-<td>4.2.1-4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.3.0</td>
 </tr>
 <tr>
 <td>2968495</td>

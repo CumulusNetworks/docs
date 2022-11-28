@@ -58,6 +58,7 @@ pdfhidden: True
 ### Fixed Issues in 5.3.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="3235368"></a> [3235368](#3235368) <a name="3235368"></a> <br /> | When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the <code>net commit</code> command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run <code>net commit</code> after each command. | 4.4.4-5.2.1 | |
 | <a name="3211054"></a> [3211054](#3211054) <a name="3211054"></a> <br /> | On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:<br /><pre><br />Packet size is larger than router interface MTU – Validate the router interface MTU configuration<br /></pre> | 4.4.2-5.2.1 | |
 | <a name="3205859"></a> [3205859](#3205859) <a name="3205859"></a> <br /> | On the NVIDIA SN3700 and SN4600 switch, the fans run at very high speed but the temperature sensor readings are within an acceptable range. | 5.2.0-5.2.1 | |
 | <a name="3202991"></a> [3202991](#3202991) <a name="3202991"></a> <br /> | Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM. | 5.0.1-5.2.1 | |

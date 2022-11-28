@@ -46,7 +46,7 @@ You secure all traffic in transport using TLSv1.2 by default. Cumulus Linux cont
 
 For step by step documentation on generating self-signed certificates and keys, and installing them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
-After installing the certificates and keys, edit the `/etc/nginx/sites-available/nvue.conf` file to set the `ssl_certificate` and `ssl_certificate_key` values to your keys.
+After installing the certificates and keys, edit the `/etc/nginx/sites-available/nvue.conf` file to set the `ssl_certificate` and `ssl_certificate_key` values to your keys, then restart NGINX with the `sudo systemctl restart nginx` command.
 
 ## Run cURL Commands
 

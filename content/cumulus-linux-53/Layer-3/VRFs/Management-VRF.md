@@ -242,9 +242,15 @@ route-map REDISTRIBUTE-CONNECTED permit 1000
 {{< /tab >}}
 {{< /tabs >}}
 
-## SSH within a Management VRF Context
+## SSH and the Management VRF
 
-If you SSH to the switch through a switch port, SSH works as expected. If you need to SSH from the device out of a switch port, use the `ip vrf exec default ssh <switch-port-ip-address>` command. For example:
+### Limit SSH to the Management VRF
+
+To limit SSH to listen on only the management VRF or to a specific IP address on the management VRF, see {{<link url="SSH-for-Remote-Access/#ssh-and-vrfs" text="SSH and VRFs">}}.
+
+### SSH Out of a Switch Port
+
+If you SSH to the switch through a switch port, SSH works as expected. If you need to SSH from the switch out of a switch port, use the `ip vrf exec default ssh <switch-port-ip-address>` command. For example:
 
 ```
 cumulus@switch:~$ sudo ip vrf exec default ssh 10.23.23.2 10.3.3.3

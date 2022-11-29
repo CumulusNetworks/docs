@@ -79,7 +79,7 @@ To configure the system without a password, do not enter a passphrase when promp
 
 ## SSH and VRFs
 
-The SSH service runs in the default VRF on the switch but listens on all interfaces in any VRF. To limit SSH to listen on just one VRF, you need to bind the SSH service to that VRF.
+The SSH service runs in the default VRF on the switch but listens on all interfaces in all VRFs. To limit SSH to listen on just one VRF, you need to bind the SSH service to that VRF.
 
 The following example configures SSH to listen only on the management VRF:
 
@@ -90,7 +90,7 @@ cumulus@switch:~$ sudo systemctl start ssh@mgmt.service
 cumulus@switch:~$ sudo systemctl enable ssh@mgmt.service
 ```
 
-To configure SSH to listen to only one IP address in a VRF, you need to bind the service to that VRF (as above), then set the `ListenAddress` parameter in the `/etc/ssh/sshd_config` file to the IP address in that VRF.
+To configure SSH to listen to only one IP address or a subnet in a VRF, you need to bind the service to that VRF (as above), then set the `ListenAddress` parameter in the `/etc/ssh/sshd_config` file to the IP address or subnet in that VRF.
 
 ```
 cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
@@ -98,6 +98,6 @@ cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
 
 #Port 22
 #AddressFamily any
-ListenAddress 127.0.0.1/8
+ListenAddress 10.10.10.6
 #ListenAddress ::
 ```

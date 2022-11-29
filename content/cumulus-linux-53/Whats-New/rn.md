@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3244955"></a> [3244955](#3244955) <a name="3244955"></a> <br /> | ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries. | 5.2.0-5.3.0 | |
 | <a name="3174706"></a> [3174706](#3174706) <a name="3174706"></a> <br /> | When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped. | 5.1.0-5.3.0 | |
 | <a name="3172504"></a> [3172504](#3172504) <a name="3172504"></a> <br /> | When you connect the NVIDIA SN4600C switch to a Spectrum 1 or Spectrum-3 switch with a 40GbE passive copper cable (Part Number: MC2210126-005) on edge ports 1-4 and 61-64, there is an Effective BER of 1E-12 in PHY. | 5.2.0-5.3.0 | |
 | <a name="3147782"></a> [3147782](#3147782) <a name="3147782"></a> <br /> | You cannot use NVUE to configure an SNMP view to include a subtree beginning with a period. For example:<pre>$ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310Error: GET /nvue_v1/service/snmp-server/viewname/cumulusOnly/included?pointers=%5B%22%2Fparameters%22%2C+%22%2Fpatch%2FrequestBody%2Fcontent%2Fapplication~1json%2Fschema%22%2C+%22%2Fpatch%2Fparameters%22%2C+%22%2Fpatch%2Fresponses%2F200%2Flinks%22%5D responded with 404 NOT FOUND</pre>To work around this problem, reference the OID without the preceding period ( <code>.</code> ) in the command. | 5.3.0 | |

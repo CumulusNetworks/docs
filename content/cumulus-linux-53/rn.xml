@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3244955</td>
+<td>ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries.</td>
+<td>5.2.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3174706</td>
 <td>When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped.</td>
 <td>5.1.0-5.3.0</td>

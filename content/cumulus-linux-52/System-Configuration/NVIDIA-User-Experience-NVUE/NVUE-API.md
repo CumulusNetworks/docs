@@ -16,6 +16,30 @@ cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 i
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
 
+## Access the NVUE REST API from a Front Panel Port
+
+To access the NVUE REST API from a front panel port (swp) on the switch:
+
+1. Ensure that the `nvue.conf` file is present in the `/etc/nginx/sites-enabled` directory.
+
+   Either copy the packaged template file `nvue.conf` from the `/etc/nginx/sites-available` directory to the `/etc/nginx/sites-enabled` directory or create a symbolic link.
+
+2. Edit the `nvue.conf` file and add the `listen` directive with the IPv4 or IPv6 address of the swp interface you want to use.
+
+   The default `nvue.conf` file includes a single `listen localhost:8765 ssl;` entry. Add an entry for each swp interface with its IP address. Make sure to use an accessible HTTP (TCP) port (subject to any ACL/firewall rules). For information on the NGINX `listen` directive, see {{<exlink url="http://nginx.org/en/docs/http/ngx_http_core_module.html#listen" text="the NGINX documentation" >}}.
+
+3. Restart the `nginx` service:
+
+   ```
+   cumulus@switch:~$ sudo systemctl reload-or-restart nginx
+   ```
+
+{{%notice note%}}
+- The swp interfaces must be part of the default VRF on the Cumulus Linux switch or virtual appliance.
+- To access the REST API from the switch running `curl` locally, invoke the REST API client from the default VRF from the Cumulus Linux shell by prefixing the command with `ip vrf exec default curl`.
+- To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
+{{%/notice%}}
+
 ## Transport Layer Security
 
 Cumulus Linux contains a self-signed certificate and private key used server-side in this application so that it works out of the box; however, NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format.
@@ -134,30 +158,6 @@ cumulus@switch:~$ curl -u 'cumulus:cumulus' -d '{"vlan100":null}' -H 'Content-Ty
 ```
 
 When you unset a change, you must still use the `PATCH` action. The value indicates removal of the entry. The data is `{"vlan100":null}` with the PATCH action.
-
-## Access the NVUE REST API from a Front Panel Port
-
-To access the NVUE REST API from a front panel port (swp) on the switch:
-
-1. Ensure that the `nvue.conf` file is present in the `/etc/nginx/sites-enabled` directory.
-
-   Either copy the packaged template file `nvue.conf` from the `/etc/nginx/sites-available` directory to the `/etc/nginx/sites-enabled` directory or create a symbolic link.
-
-2. Edit the `nvue.conf` file and add the `listen` directive with the IPv4 or IPv6 address of the swp interface you want to use.
-
-   The default `nvue.conf` file includes a single `listen localhost:8765 ssl;` entry. Add an entry for each swp interface with its IP address. Make sure to use an accessible HTTP (TCP) port (subject to any ACL/firewall rules). For information on the NGINX `listen` directive, see {{<exlink url="http://nginx.org/en/docs/http/ngx_http_core_module.html#listen" text="the NGINX documentation" >}}.
-
-3. Restart the `nginx` service:
-
-   ```
-   cumulus@switch:~$ sudo systemctl reload-or-restart nginx
-   ```
-
-{{%notice note%}}
-- The swp interfaces must be part of the default VRF on the Cumulus Linux switch or virtual appliance.
-- To access the REST API from the switch running `curl` locally, invoke the REST API client from the default VRF from the Cumulus Linux shell by prefixing the command with `ip vrf exec default curl`.
-- To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
-{{%/notice%}}
 
 ## Troubleshoot Configuration Changes
 

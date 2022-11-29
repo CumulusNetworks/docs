@@ -1,0 +1,53 @@
+---
+title: NVIDIA Cumulus Linux 5.4 Release Notes
+author: Cumulus Networks
+weight: -30
+product: Cumulus Linux
+version: "5.4"
+toc: 1
+type: rn
+pdfhidden: True
+---
+
+
+{{<rn_xls_link dir="cumulus-linux-54" >}}
+## 5.4.0 Release Notes
+### Open Issues in 5.4.0
+
+|  Issue ID 	|   Description	|   Affects	|   Fixed |
+|---	        |---	        |---	    |---	                |
+| <a name="3135952"></a> [3135952](#3135952) <a name="3135952"></a> <br /> | PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the <code>ethtool -s swpX speed <port_speed> autoneg off lanes <no_of_lanes></code> command. For example: <pre>ethtool -s swp1 speed 100000 autoneg off lanes 2</pre> | 5.2.0-5.4.0 | |
+| <a name="3122301"></a> [3122301](#3122301) <a name="3122301"></a> <br /> | On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames. | 5.2.0-5.4.0 | |
+| <a name="3115242"></a> [3115242](#3115242) <a name="3115242"></a> <br /> | When you configure two VNIs in the same VLAN, ifupdown2  shows a <code>vlan added to two or more VXLANS</code> warning, which is only issued after the VNI is already added to the bridge. This leaves the new VNI in the PVID even if there is already an existing VNI configured in that PVID. | 5.1.0-5.4.0 | |
+| <a name="3103821"></a> [3103821](#3103821) <a name="3103821"></a> <br /> | On the NVIDIA SN4700 switch, inserting and removing the PSU might cause loss of frames. | 5.2.0-5.4.0 | |
+| <a name="3084027"></a> [3084027](#3084027) <a name="3084027"></a> <br /> | Under a high load, you might see ingress drop counters increase. The drops are classified as <code>HwIfInDiscards</code> in ethtool and shown as <code>ingress_general</code> in hardware. | 4.3.0-4.4.5, 5.0.0-5.4.0 | |
+| <a name="3066280"></a> [3066280](#3066280) <a name="3066280"></a> <br /> |  The python module pygments version 2.12.0 on the Cumulus Linux switch prevents NVUE from displaying colored output and produces an error or failure. The failure specifically identifies <code>#ansidarkred</code> as the problem color format. The error prevents any output from showing on the CLI. To work around this problem, downgrade the pygments module to version 2.3.1. | 5.0.1-5.4.0 | |
+| <a name="3061656"></a> [3061656](#3061656) <a name="3061656"></a> <br /> | When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds. | 5.1.0-5.4.0 | |
+| <a name="3053197"></a> [3053197](#3053197) <a name="3053197"></a> <br /> | The <code>cl-resource-query</code> command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the <code>switchd.log</code> file contains ECMP resource errors with routes and next hops failing to install. | 4.2.1-4.4.5, 5.0.0-5.4.0 | |
+| <a name="3053094"></a> [3053094](#3053094) <a name="3053094"></a> <br /> | When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds. | 5.1.0-5.4.0 | |
+| <a name="3045369"></a> [3045369](#3045369) <a name="3045369"></a> <br /> | NVUE does not support orphaned data or pre-provisioned data. For example, if you remove a port breakout but the breakout interfaces (such as swp1s0-3) have configured data. To work around this issue, do not configure breakout interfaces until you configure and apply the breakout with the <code>nv set interface <interface> link breakout <breakout></code> and <code>nv config apply</code> commands. | 5.2.0-5.4.0 | |
+| <a name="3045310"></a> [3045310](#3045310) <a name="3045310"></a> <br /> | When GTP Hashing is set to <code>true</code>, after more than two warm boots <code>switchd</code> fails and a cl-support file is generated. | 5.1.0-5.4.0 | |
+| <a name="2993471"></a> [2993471](#2993471) <a name="2993471"></a> <br /> | When <code>switchd</code> restarts, the port watch daemon (<code>portwd</code>) attempts to send requests to <code>switchd</code> before <code>switchd</code> is ready. As a result, <code>portwd</code> goes into a failed state because there is no response from <code>switchd</code>. | 3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.4.0 | |
+| <a name="2964279"></a> [2964279](#2964279) <a name="2964279"></a> <br /> | When a VNI flaps, an incorrect list of layer 2 VNIs are associated with a layer 3 VNI. The NCLU <code>net show evpn vni detail</code> command output shows duplicate layer 2 VNIs under a layer 3 VNI.  | 3.7.15, 4.4.2-4.4.5, 5.0.0-5.4.0 | 3.7.16|
+| <a name="2951110"></a> [2951110](#2951110) <a name="2951110"></a> <br /> | The <code>net show time ntp servers</code> command does not show any output with management VRF. | 3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0 | |
+| <a name="2923737"></a> [2923737](#2923737) <a name="2923737"></a> <br /> | When <code>switchd</code> restarts, the port watch daemon (<code>portwd</code>) attempts to send requests to <code>switchd</code> before <code>switchd</code> is ready. As a result, <code>portwd</code> goes into a failed state because there is no response from <code>switchd</code>. | 3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.4.0 | 3.7.16, 4.3.1|
+| <a name="2895333"></a> [2895333](#2895333) <a name="2895333"></a> <br /> | If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry. | 4.4.0-4.4.1, 5.0.0-5.4.0 | 4.4.2-4.4.5|
+| <a name="2891255"></a> [2891255](#2891255) <a name="2891255"></a> <br /> | CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file<br />Vulnerable: <= 2.6.20-0+deb10u1Fixed: 2.6.20-0+deb10u2 | 4.0.0-4.4.1, 5.0.0-5.4.0 | 4.4.2-4.4.5|
+| <a name="2890681"></a> [2890681](#2890681) <a name="2890681"></a> <br /> | CVE-2021-42771: relative path traversal in Babel, a set of tools for internationalising Python applications, could result in the execution of arbitrary code<br />Vulnerable: 2.6.0+dfsg.1-1Fixed: 2.6.0+dfsg.1-1+deb10u1 | 4.0.0-4.4.1, 5.0.0-5.4.0 | 4.4.2-4.4.5|
+| <a name="2859015"></a> [2859015](#2859015) <a name="2859015"></a> <br /> | In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:<pre>warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other<br /></pre> | 5.0.0-5.4.0 | |
+| <a name="2847919"></a> [2847919](#2847919) <a name="2847919"></a> <br /> | Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only<br />To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API. | 5.0.0-5.4.0 | |
+| <a name="2847755"></a> [2847755](#2847755) <a name="2847755"></a> <br /> | When you use NCLU to remove the configuration for a peer that is a member of a group but also has other peer-specific configuration, you must remove the peer-specific configuration before you delete the peer in a separate NCLU commit. | 5.0.0-5.4.0 | |
+| <a name="2844778"></a> [2844778](#2844778) <a name="2844778"></a> <br /> | When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this issue, use the <code>nv config patch <yaml-file></code>  command or the <code>nv config replace <yaml-file></code> command to update large pieces of configuration at once. | 5.0.0-5.4.0 | |
+| <a name="2823307"></a> [2823307](#2823307) <a name="2823307"></a> <br /> | Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration.  | 5.0.0-5.4.0 | |
+| <a name="2748923"></a> [2748923](#2748923) <a name="2748923"></a> <br /> | If you include a dash (-) when configuring an interface name with NVUE, you see an error. NVUE does not support using a dash in interface names. | 4.4.0-4.4.5, 5.0.0-5.4.0 | |
+| <a name="2736108"></a> [2736108](#2736108) <a name="2736108"></a> <br /> | When you change the VRRP advertisement interval on the master, the <code>master advertisement interval</code> field in the <code>show vrrp</code> command output does not show the updated value. | 4.4.0-4.4.5, 5.0.0-5.4.0 | |
+| <a name="2705056"></a> [2705056](#2705056) <a name="2705056"></a> <br /> | SVIs do not inherit the pinned MAC address of the bridge. | 4.3.0, 5.0.0-5.4.0 | 4.3.1-4.4.5|
+| <a name="2701000"></a> [2701000](#2701000) <a name="2701000"></a> <br /> | A default route learned from DHCP on eth0 in the management VRF might install in the default VRF if eth0 is disconnected and the original next hop is reachable in the default VRF. To work around this issue, delete the DHCP lease file for eth0 with the <code>sudo rm /var/lib/dhcp/dhclient.eth0.leases</code> command. | 4.3.0, 5.0.0-5.4.0 | 4.3.1-4.4.5|
+| <a name="2684925"></a> [2684925](#2684925) <a name="2684925"></a> <br /> | The NVUE <code>nv show vrf default router bgp peer</code> command produces a 404 not found error. | 4.4.0-4.4.5, 5.0.0-5.4.0 | |
+
+### Fixed Issues in 5.4.0
+|  Issue ID 	|   Description	|   Affects	|
+|---	        |---	        |---	    |
+| <a name="3244955"></a> [3244955](#3244955) <a name="3244955"></a> <br /> | ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries. | 5.2.0-5.3.0 | |
+| <a name="3145222"></a> [3145222](#3145222) <a name="3145222"></a> <br /> | The NVUE <code>nv show system forwarding --output json</code> command does not provide any output. To work around this issue, run the <code>nv show system forwarding</code> command. | 5.2.0-5.3.0 | |
+

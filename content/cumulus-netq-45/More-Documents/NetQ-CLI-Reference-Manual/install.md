@@ -1,5 +1,5 @@
 ---
-title: I through K Commands
+title: install
 author: NVIDIA
 weight: 1104
 toc: 3
@@ -7,13 +7,9 @@ right_toc_levels: 1
 pdfhidden: true
 ---
 
-This topic includes all commands that begin with `netq i*`, `netq j*`, and `netq k*`.
-
-**About Installation Commands**
-
 You can install NetQ with a single command or you can perform the individual steps using multiple commands. Generally, using the single command option is *strongly recommended*. However, the individual commands can be useful for troubleshooting the installation process when it fails. You might need to {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="create a support ticket">}} to take full advantage of the individual commands.
 
-You can use these commands only after bootstrapping the physical server or VM. Refer to {{<link title="A and B Commands/#netq-bootstrap" text="netq bootstrap">}}.
+You can use these commands only after bootstrapping the physical server or VM. Refer to {{<link title="bootstrap" text="netq bootstrap">}}.
 
 {{<figure src="/images/netq/cliref-install-onprem-single-server-330.png" width="500" caption="On-premises single server">}}
 
@@ -711,5 +707,3 @@ cumulus@<hostname>:~$ netq install update-settings DEFAULT_TASK_TIMEOUT_IN_MILLI
 ### Related Commands
 
 None
-
-- - -

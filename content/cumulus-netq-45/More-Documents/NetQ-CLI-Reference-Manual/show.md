@@ -1,5 +1,5 @@
 ---
-title: S Commands
+title: show
 author: Cumulus Networks
 weight: 1106
 toc: 3
@@ -7,8 +7,6 @@ right_toc_levels: 1
 pdfhidden: true
 ---
 <!-- vale NVIDIA.HeadingTitles = NO -->
-This topic includes all commands that begin with `netq s*`.
-
 <!-- vale off -->
 ## netq show address-history
 <!-- vale on -->
@@ -882,7 +880,7 @@ Hostname          Interface                 HwIfOutOctets        HwIfOutUcastPkt
 leaf01            swp50                     8749                 0                    44                   0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:57 2020
 ```
 
-Shoe the additional statistics
+Display additional statistics
 
 ```
 cumulus@switch:~$ netq leaf01 show ethtool-stats port swp50 rx extended

@@ -246,7 +246,7 @@ route-map REDISTRIBUTE-CONNECTED permit 1000
 
 ### Limit SSH to the Management VRF
 
-To limit SSH to listen on only the management VRF or to a specific IP address on the management VRF, see {{<link url="https://ania-stage.dao6mistqkn0c.amplifyapp.com/networking-ethernet-software/cumulus-linux-53/System-Configuration/Authentication-Authorization-and-Accounting/SSH-for-Remote-Access/#ssh-and-vrfs" text="SSH and VRFs">}}.
+To limit SSH to listen on only the management VRF or to a specific IP address on the management VRF, see {{<link url="SSH-for-Remote-Access/#ssh-and-vrfs" text="SSH and VRFs">}}.
 
 ### SSH Out of a Switch Port
 

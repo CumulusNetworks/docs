@@ -248,7 +248,7 @@ route-map REDISTRIBUTE-CONNECTED permit 1000
 - If you SSH to the switch through a switch port, SSH works as expected. If you need to SSH from the switch out of a switch port, use the `ip vrf exec default ssh <switch-port-ip-address>` command. For example:
 
   ```
-  cumulus@switch:~$ sudo ip vrf exec default ssh 10.23.23.2 10.3.3.3
+  cumulus@switch:~$ sudo ip vrf exec default ssh 10.3.3.3
   ```
 
 ## View the Routing Tables

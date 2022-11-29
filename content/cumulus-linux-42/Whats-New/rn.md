@@ -8,8 +8,6 @@ toc: 1
 type: rn
 pdfhidden: True
 ---
-
-
 {{<rn_xls_link dir="cumulus-linux-42" >}}
 ## 4.2.1 Release Notes
 ### Open Issues in 4.2.1

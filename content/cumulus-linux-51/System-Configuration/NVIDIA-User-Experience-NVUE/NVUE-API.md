@@ -16,6 +16,14 @@ cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 i
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
 
+## Transport Layer Security
+
+Cumulus Linux contains a self-signed certificate and private key used server-side in this application so that it works out of the box; however, NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format.
+
+For step by step documentation on generating self-signed certificates and keys, and installing them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
+
+After installing the certificates and keys, edit the `/etc/nginx/sites-available/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys, then restart NGINX with the `sudo systemctl restart nginx` command.
+
 ## Run cURL Commands
 
 You can run the cURL commands from the command line. Use the username and password for the switch. For example:
@@ -222,3 +230,8 @@ $ curl -u 'cumulus:cumulus' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"
 ## NVUE REST API Documentation
 
 For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-51/api/index.html" text="NVUE API documentation.">}}
+
+## Related Information
+
+- {{<exlink url="https://docs.nginx.com/" text="NGINX documentaion">}}
+- {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}

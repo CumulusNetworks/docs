@@ -9,19 +9,19 @@ pdfhidden: true
 
 ## netq trace
 
-Verifies network connectivity on-demand between two devices at layer 2 or layer 3. Results appear in the terminal window.
+Verifies network connectivity between two devices at layer 2 or layer 3. Results appear in the terminal window.
 
 {{<notice tip>}}
 
-The tracing function only knows about already learned addresses. If you find that a path is invalid or incomplete, you should ping the identified device so that its address becomes known.
+The tracing function only knows about already learned addresses. If you find that a path is invalid or incomplete, ping the identified device so that its address becomes known.
 
 {{</notice>}}
 
-You can improve the readability of the output using color. Run `netq config add color` to turn color on. Run `netq config del color` to turn color off.
+You can improve the readability of the output using color. Run `netq config add color` to turn color on or `netq config del color` to turn it off.
 
 ### Syntax
 
-Three forms of this command are available; one for layer 3 and two for layer 2 traces.
+Three forms of this command are available: one for layer 3 and two for layer 2 traces.
 
 ```
 netq trace
@@ -30,22 +30,24 @@ netq trace
 	[vrf <vrf>]
 	[around <text-time>]
 	[json|detail|pretty]
-    [debug]
-
+        [debug]
+```
+```
 netq trace
 	(<mac> vlan <1-4096>)
 	from (<src-hostname>|<ip-src>)
 	[vrf <vrf>]
 	[around <text-time>]
 	[json|detail|pretty]
-    [debug]
-	
+        [debug]
+```
+```	
 netq trace
 	(<mac> vlan <1-4096>)
 	from <mac-src>
 	[around <text-time>]
 	[json|detail|pretty]
-    [debug]
+        [debug]
 ```
 
 ### Required Arguments
@@ -65,7 +67,7 @@ netq trace
 | ---- | ---- | ---- |
 | vrf | \<vrf\> | Only use paths through this VRF |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display results in JSON file format instead of default on-screen text format |
+| json | NA | Display results in JSON format |
 | detail | NA | Display results in a tabular format with a row per hop and a set of rows per path, useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. This is the default output when not specified. |
 | pretty | NA | Display results lined up by paths in a pseudo-graphical manner to help visualize the multiple paths |
 | debug | NA | Log all events |

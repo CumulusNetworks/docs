@@ -52,10 +52,10 @@ The following table describes the default classifications for various frame and 
 | DSCP | Yes | Non-IP | Use the default priority setting. |
 | DSCP | No | IP | Accept incoming DSCP IP header marking. |
 | DSCP | No | Non-IP | Use the default priority setting. |
-| PCP (802.1p) and dscp | Yes | IP | Accept incoming DSCP IP header marking. |
-| PCP (802.1p) and dscp | Yes | Non-IP | Accept incoming 802.1p marking. |
-| PCP (802.1p) and dscp | No | IP | Accept incoming DSCP IP header marking. |
-| PCP (802.1p) and dscp | No | Non-IP | Use the default priority setting. |
+| PCP (802.1p) and DSCP | Yes | IP | Accept incoming DSCP IP header marking. |
+| PCP (802.1p) and DSCP | Yes | Non-IP | Accept incoming 802.1p marking. |
+| PCP (802.1p) and DSCP | No | IP | Accept incoming DSCP IP header marking. |
+| PCP (802.1p) and DSCP | No | Non-IP | Use the default priority setting. |
 | port | Either | Either | Ignore any existing markings and use the default priority setting. |
 
 - If you use NVUE to configure QoS, you define which values are `trusted` with the `nv set qos mapping <profile> trust l2` command (802.1p) or the `nv set qos mapping <profile> trust l3` command (DSCP) .

@@ -599,8 +599,9 @@ The `trace` commands lets you view the available paths between two nodes on the 
 The trace command syntax is:
 
 ```
-netq trace <mac> [vlan <1-4096>] from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
+netq trace (<mac> vlan <1-4096>) from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
 netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
+netq trace (<mac> vlan <1-4096>) from <mac-src> [around <text-time>] [json|detail|pretty] [debug]
 ```
 
 {{< expand "Example trace command with pretty output" >}}

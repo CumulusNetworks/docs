@@ -30,6 +30,7 @@ netq trace
 	[vrf <vrf>]
 	[around <text-time>]
 	[json|detail|pretty]
+    [debug]
 
 netq trace
 	(<mac> vlan <1-4096>)
@@ -37,12 +38,14 @@ netq trace
 	[vrf <vrf>]
 	[around <text-time>]
 	[json|detail|pretty]
+    [debug]
 	
 netq trace
 	(<mac> vlan <1-4096>)
 	from <mac-src>
 	[around <text-time>]
 	[json|detail|pretty]
+    [debug]
 ```
 
 ### Required Arguments
@@ -65,6 +68,7 @@ netq trace
 | json | NA | Display results in JSON file format instead of default on-screen text format |
 | detail | NA | Display results in a tabular format with a row per hop and a set of rows per path, useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. This is the default output when not specified. |
 | pretty | NA | Display results lined up by paths in a pseudo-graphical manner to help visualize the multiple paths |
+| debug | NA | Log all events |
 
 ### Sample Usage
 

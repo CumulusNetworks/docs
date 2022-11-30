@@ -77,7 +77,7 @@ Use the `netq trace` command to view the results in the terminal window. Use the
 To create a layer 3 on-demand trace and see the results in the terminal window, run:
 
 ```
-netq trace <ip> from (<src-hostname>|<ip-src>) [json|detail|pretty]
+netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
 ```
 
 Note the syntax requires the *destination* device address first and then the *source* device address or hostname.
@@ -166,7 +166,7 @@ Use the `netq trace` command to view the results in the terminal window. Use the
 To create a layer 3 on-demand trace through a given VRF and see the results in the terminal window, run:
 
 ```
-netq trace <ip> from (<src-hostname>|<ip-src>) vrf <vrf> [json|detail|pretty]
+netq trace <ip> from (<src-hostname>|<ip-src>) [vrf <vrf>] [around <text-time>] [json|detail|pretty] [debug]
 ```
 
 Note the syntax requires the *destination* device address first and then the *source* device address or hostname.
@@ -356,7 +356,7 @@ Use the `netq trace` command to view on-demand trace results in the terminal win
 To create a layer 2 on-demand trace and see the results in the terminal window, run:
 
 ```
-netq trace (<mac> vlan <1-4096>) from <mac-src> [json|detail|pretty]
+netq trace (<mac> vlan <1-4096>) from <mac-src> [around <text-time>] [json|detail|pretty] [debug]
 ```
 
 Note the syntax requires the *destination* device address first and then the *source* device address or hostname.

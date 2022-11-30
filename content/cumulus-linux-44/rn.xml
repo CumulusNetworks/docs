@@ -338,7 +338,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.6</td>
+<td>4.4.0-4.4.6, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -2233,7 +2233,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4177,7 +4177,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6294,7 +6294,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -8333,7 +8333,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -10475,7 +10475,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>

@@ -28,10 +28,8 @@
 <td>3147782</td>
 <td>You cannot use NVUE to configure an SNMP view to include a subtree beginning with a period. For example:
 
-
 $ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
 Error: GET /nvue_v1/service/snmp-server/viewname/cumulusOnly/included?pointers=%5B%22%2Fparameters%22%2C+%22%2Fpatch%2FrequestBody%2Fcontent%2Fapplication~1json%2Fschema%22%2C+%22%2Fpatch%2Fparameters%22%2C+%22%2Fpatch%2Fresponses%2F200%2Flinks%22%5D responded with 404 NOT FOUND
-
 
 To work around this problem, reference the OID without the preceding period ( {{.}} ) in the command.</td>
 <td>5.3.0</td>
@@ -185,6 +183,14 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td>3.7.16, 4.3.1</td>
+</tr>
+<tr>
+<td>2904450</td>
+<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
+
+</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2895333</td>

@@ -512,6 +512,14 @@ If possible, NVUE recovers user configuration and saves it in the {{/etc/nvue.d}
 <td>3.7.16, 4.3.1</td>
 </tr>
 <tr>
+<td>2904450</td>
+<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
+
+</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2895333</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-4.4.1, 5.0.0-5.3.0</td>

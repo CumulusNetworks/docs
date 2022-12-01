@@ -26296,7 +26296,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set acl \<acl-id\>
 
-An ACL is used for matching packets and take actions
+Configures an Access Control List (ACL) to match packets and take actions.
 
 ### Usage
 
@@ -26310,14 +26310,14 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
+| `<acl-id>` |   The ACL name. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `rule`       | acl rule |
-| `type`       | acl type |
+| `rule`       | Configures the ACL rule. |
+| `type`       | Configures the ACL type. |
 
 ### Version History
 
@@ -26325,7 +26325,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set acl \<acl-id\> rule \<rule-id\>
 
-ACL Matching criteria and action rule
+Configues the ACL matching criteria and the action rule.
 
 ### Usage
 
@@ -26339,15 +26339,15 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `match`    |   ACL match criteria |
-| `action`    |  ACL action |
+| `match`    |   Configures the ACL match criteria. |
+| `action`    |  Configures the ACL action. |
 
 ### Version History
 
@@ -26369,15 +26369,15 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `ip`    | IPv4 and IPv6 match |
-| `mac`   | MAC match |
+| `ip`    | Configures an IPv4 or IPv6 address match. |
+| `mac`   | Configures a MAC address match. |
 
 ### Version History
 
@@ -26385,7 +26385,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match ip
 
-An ACL IPv4/IPv6 match
+Configures an IPv4 or IPv6 address match.
 
 ### Usage
 
@@ -26399,24 +26399,24 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `source-port`  | source port |
-| `dest-port`    | destination port |
-| `fragment`     | Fragment packets |
-| `ecn`          | ECN protocol packet match |
-| `tcp`          | TCP protocol packet match |
-| `dest-ip`      | Destination IP address |
-| `dscp`         | DSCP |
-| `icmp-type`    | ICMP message type |
-| `icmpv6-type`  | ICMPv6 message type |
-| `protocol`     | IP protocol |
-| `source-ip`    | Source IP address |
+| `source-port`  | Configures the source port match. |
+| `dest-port`    | Configures the destination port match.|
+| `fragment`     | Configures IP fragment packet match. |
+| `ecn`          | Configures ECT bit match. |
+| `tcp`          | Configures TCP protocol packet match. |
+| `dest-ip`      | Configures the destination IP address match.|
+| `dscp`         | Configures the DSCP value match.|
+| `icmp-type`    | Configures the ICMP message type match.|
+| `icmpv6-type`  | Configures the ICMPv6 message type match.|
+| `protocol`     | Configures the IP protocol match.|
+| `source-ip`    | Configures the source IP address match.|
 
 ### Version History
 
@@ -26424,7 +26424,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match ip source-port \<ip-port-id\>
 
-L4 port
+Configures the source port match.
 
 ### Usage
 
@@ -26438,9 +26438,9 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
-| `<ip-port-id>` |  IP port ID |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+| `<ip-port-id>` |  The IP port number. |
 
 ### Version History
 
@@ -26449,12 +26449,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 22
 ```
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\>
 
- L4 port
+Configures the destination port match.
 
 ### Usage
 
@@ -26468,9 +26468,9 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
-| `<ip-port-id>` |  IP port ID |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+| `<ip-port-id>` |  The IP port number. |
 
 ### Version History
 
@@ -26479,12 +26479,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
 ```
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match ip fragment
 
-State details
+Configures IP fragment packet match.
 
 ### Usage
 
@@ -26498,8 +26498,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26508,12 +26508,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip fragment 
 ```
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match ip ecn
 
-ECN
+Configures ECN bit match.
 
 ### Usage
 
@@ -26527,15 +26527,15 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `flags`    |   ECN protocol flags |
-| `ip-ect`    |  IP ECT |
+| `flags`    |   Configures the ECN protocol flag match. |
+| `ip-ect`    |  Configures IP ECT match. |
 
 ### Version History
 
@@ -26543,7 +26543,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match ip ecn ip-ect
 
-IP ECT
+Configures the ACL to match on the ECT bit. The ECT codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1.
 
 ### Usage
 
@@ -26557,8 +26557,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26572,7 +26572,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match ip tcp
 
-L4 port
+Configures the TCP protocol packet match.
 
 ### Usage
 
@@ -26586,16 +26586,16 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `flags`       | TCP protocol flags |
-| `mask`        | TCP protocol flag mask |
-| `state`       | TCP state |
+| `flags`       | Configures the TCP protocol flags you want to match. |
+| `mask`        | Configures the TCP protocol flag mask you want to match.|
+| `state`       | Configures the TCP state you want to match.|
 
 ### Version History
 
@@ -26603,7 +26603,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match ip tcp state established
 
-TCP state
+Configures the TCP state you want to match.
 
 ### Usage
 
@@ -26617,8 +26617,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26632,7 +26632,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match mac
 
-An ACL MAC match
+Configures the MAC address you want to match.
 
 ### Usage
 
@@ -26646,19 +26646,19 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `dest-mac`        | Destination MAC address|
-| `dest-mac-mask`   | Destination MAC address mask|
-| `protocol`        | MAC protocol|
-| `Source-mac`      | Source MAC address|
-| `source-mac-mask` | Source MAC address mask|
-| `vlan`            | VLAN ID|
+| `dest-mac`        | Configures the destination MAC address to match.|
+| `dest-mac-mask`   | Configures the destination MAC address mask to match.|
+| `protocol`        | Configures the MAC protocol to match.|
+| `Source-mac`      | Configures the source MAC address to match.|
+| `source-mac-mask` | Configures the source MAC address mask to match.|
+| `vlan`            | Configures the VLAN ID to match.|
 
 ### Version History
 
@@ -26666,7 +26666,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match mac source-mac-mask \<mac\>
 
-Source MAC address mask
+Configure the source MAC address mask you want to match.
 
 ### Usage
 
@@ -26680,8 +26680,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26695,7 +26695,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match mac dest-mac-mask \<mac\>
 
-Destination MAC address mask
+Configures the destination MAC address mask to match.
 
 ### Usage
 
@@ -26709,8 +26709,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26724,7 +26724,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match mac vlan
 
-VLAN ID
+Configures the VLAN ID to match.
 
 ### Usage
 
@@ -26738,8 +26738,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26753,7 +26753,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action
 
-ACL rule action
+Configures the ACL rule action.
 
 ### Usage
 
@@ -26767,20 +26767,20 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `permit`      | Permit action |
-| `deny`        | Deny action |
-| `log`         | Provides ACL logging facility |
-| `set`         | Modify the packet with appropriate values |
-| `erspan`      | ERSPAN session |
-| `police`      | policing of packets/bytes |
-| `span`        | SPAN session |
+| `permit`      | Configures a permit action to permit packets. |
+| `deny`        | Configures a deny action to deny packets. |
+| `log`         | Configures ACL logging. |
+| `set`         | Configures a set action to modify the packet. |
+| `erspan`      | Configures an ERSPAN session. |
+| `police`      | Configures policing of packets or bytes. |
+| `span`        | Configures a SPAN session |
 
 ### Version History
 
@@ -26788,7 +26788,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action permit
 
-Permit packets
+Configures a permit action to permit packets.
 
 ### Usage
 
@@ -26802,8 +26802,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26812,12 +26812,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action permit
 ```
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action deny
 
-deny packets
+Configures a deny action to deny packets.
 
 ### Usage
 
@@ -26831,8 +26831,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26841,12 +26841,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action deny
 ```
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action log
 
-log packets
+Configures ACL logging.
 
 ### Usage
 
@@ -26860,8 +26860,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26870,12 +26870,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action log
 ```
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action set
 
-Set action for packets
+Configures a set action to modify the packet.
 
 ### Usage
 
@@ -26889,16 +26889,16 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `class`       | Sets the class value for classification of the packet|
-| `cos`         | Set the CoS value|
-| `dscp`        | Sets/Modifies the DSCP value in the packet|
+| `class`       | Modifies the class value for packet classification.|
+| `cos`         | Modifies the CoS value. |
+| `dscp`        | Modifies the DSCP value in the packet.|
 
 ### Version History
 
@@ -26906,7 +26906,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action set class
 
-Sets the class value for classification of the packet
+Modifies the class value for packet classification.
 
 ### Usage
 
@@ -26920,8 +26920,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26930,12 +26930,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set class 3
 ```
 
 ## nv set acl \<acl-id\> rule\<rule-id\> action set cos
 
-Set the CoS value
+Modifies the CoS value in the packet.
 
 ### Usage
 
@@ -26947,10 +26947,10 @@ N/A
 
 ### Identifiers
 
-| Identifier |  Description   |
+ Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -26959,12 +26959,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set cos 6
 ```
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action erspan
 
-ERSPAN session
+Configures an ERSPAN session.
 
 ### Usage
 
@@ -26976,18 +26976,18 @@ N/A
 
 ### Identifiers
 
-| Identifier |  Description   |
+ Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Attributes
 
 | Atrribute |  Description   |
 | ---------  | -------------- |
-| `dest-ip`     | Destination IP address|
-| `source-ip`   | Source IP address|
-| `ttl`         | Time to Live|
+| `dest-ip`     | Configfures the destination IP address.|
+| `source-ip`   | Configfures the source IP address.|
+| `ttl`         | Configfures the Time to Live (TTL).|
 
 ### Version History
 
@@ -26995,11 +26995,11 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action erspan ttl
 
-Time to Live
+Configfures the Time to Live (TTL).
 
 ### Usage
 
-`nv set acl <acl-id> rule <rule-id> action erspan ttl [options] 1-2`55`
+`nv set acl <acl-id> rule <rule-id> action erspan ttl [options] 1-255`
 
 ### Default Setting
 
@@ -27007,10 +27007,10 @@ N/A
 
 ### Identifiers
 
-| Identifier |  Description   |
+ Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -27019,7 +27019,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action erspan ttl 200
 ```
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action police
@@ -27034,10 +27034,10 @@ N/A
 
 ### Identifiers
 
-| Identifier |  Description   |
+ Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Attributes
 
@@ -27057,7 +27057,7 @@ Policing burst value
 
 ### Usage
 
-`nv set acl <acl-id> rule <rule-id> action police burst [options] 1-2`147483647`
+`nv set acl <acl-id> rule <rule-id> action police burst [options] 1-2147483647`
 
 ### Default Setting
 
@@ -27065,10 +27065,10 @@ N/A
 
 ### Identifiers
 
-| Identifier |  Description   |
+ Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |  ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -27082,11 +27082,11 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action police rate
 
-Policing rate value
+Configures the policing rate. You can specify a value between 1 and 2147483647.
 
 ### Usage
 
-`nv set acl <acl-id> rule <rule-id> action police rate [options] 1-2`147483647`
+`nv set acl <acl-id> rule <rule-id> action police rate [options] 1-2147483647`
 
 ### Default Setting
 
@@ -27094,10 +27094,10 @@ N/A
 
 ### Identifiers
 
-| Identifier |  Description   |
+ Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |    ACL ID |
-| `<rule-id>` |   ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -27106,12 +27106,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl SPAN rule 10 action police rate 2000
 ```
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action span \<interface-name\>
 
-SPAN session
+Configures the SPAN session.
 
 ### Usage
 
@@ -27125,8 +27125,8 @@ N/A
 
 | Identifier |  Description   |
 | ---------  | -------------- |
-| `<acl-id>` |   ACL ID |
-| `<rule-id>` |   ACL rule number |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -27135,5 +27135,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set acl SPAN rule 10 action span swp1
 ```

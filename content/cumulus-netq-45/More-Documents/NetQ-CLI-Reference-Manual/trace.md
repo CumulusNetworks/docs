@@ -169,5 +169,5 @@ Id  Hop Hostname    InPort          InTun, RtrIf    OutRtrIf, Tun   OutPort
 
 ### Related Commands
 
-- netq add trace
+- ```netq add trace```
 

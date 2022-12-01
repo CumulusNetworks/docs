@@ -294,7 +294,7 @@ The following table shows the default parameter values for the predefined profil
 | Local priority | NA | 128  |
 | Transport | UDPv4 (UDPv6 supported) |802.3 |
 | Transmission | Multicast (unicast supported) | Multicast |
-| [BMCA](## "Best Master Clock Algorythm") | IEEE 1588 | G.8275.x |
+| <span style="background-color:#F5F5DC">[BMCA](## "Best Master Clock Algorythm")</span> | IEEE 1588 | G.8275.x |
 
 The switch has a predefined default profile of each profile type, one for IEEE1588 and one for ITU8275.1.
 You can configure the switch to use a predefined profile or you can create a custom profile. You can change the profile settings of the predfined profiles, such as the announce rate, sync rate, domain, priority, transport, and so on. These changes conform to the ranges and allowed values of the profile type. You can also configure these parameters for individual PTP interfaces. When you configure parameters for an individual interface, the configuration takes precedence over the profile configuration. The interface is not part of the profile.

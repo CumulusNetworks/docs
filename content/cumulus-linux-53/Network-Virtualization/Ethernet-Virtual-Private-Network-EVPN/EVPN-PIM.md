@@ -4,9 +4,9 @@ author: NVIDIA
 weight: 580
 toc: 4
 ---
-Without EVPN and [PIM-SM](## "Sparse Mode"), [HER](## "Head End Replication") is the default way to replicate BUM traffic to remote VTEPs, where the ingress VTEP generates the same number of copies as VTEPs for each overlay BUM packet. In certain deployments, this is not optimal.
+Without EVPN and <span style="background-color:#F5F5DC">[PIM-SM](## "Sparse Mode")</span>, <span style="background-color:#F5F5DC">[HER](## "Head End Replication")</span> is the default way to replicate BUM traffic to remote VTEPs, where the ingress VTEP generates the same number of copies as VTEPs for each overlay BUM packet. In certain deployments, this is not optimal.
 
-The following example shows a EVPN-PIM configuration, where underlay multicast distributes BUM traffic. An [MDT](## "multicast Distribution Tree") optimizes the flow of overlay BUM traffic in the underlay network.
+The following example shows a EVPN-PIM configuration, where underlay multicast distributes BUM traffic. An <span style="background-color:#F5F5DC">[MDT](## "multicast Distribution Tree")</span> optimizes the flow of overlay BUM traffic in the underlay network.
 
 {{< img src = "/images/cumulus-linux/evpn-pim.png" >}}
 
@@ -18,9 +18,9 @@ For PIM-SM, type-3 routes do not result in any forwarding entries. Cumulus Linux
 
 To configure multicast VXLAN tunnels, you need to configure PIM-SM in the underlay:
 
-- Enable [PIM-SM](## "Sparse Mode") on the appropriate layer 3 interfaces.
+- Enable <span style="background-color:#F5F5DC">[PIM-SM](## "Sparse Mode")</span> on the appropriate layer 3 interfaces.
 - Configure static RP on all the PIM routers.
-- Configure [MSDP](## "Multicast Source Discovery Protocol") on the [RPs](## "Rendezvous Points") for RP redundancy.
+- Configure <span style="background-color:#F5F5DC">[MSDP](## "Multicast Source Discovery Protocol")</span> on the <span style="background-color:#F5F5DC">[RPs](## "Rendezvous Points")</span> for RP redundancy.
 
 For the configuration steps to configure PIM-SM in the underlay, refer to {{<link url="Protocol-Independent-Multicast-PIM">}}.
 

@@ -11,9 +11,7 @@ pdfhidden: true
 ## netq lcm add cl-image
 <!-- vale on -->
 
-Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade.
-
-Obtain the images from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=Cumulus%20Linux" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade. For detailed instructions, see {{<link title="Upgrade Cumulus Linux Using LCM">}}.
 
 ### Syntax
 
@@ -40,16 +38,16 @@ cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-ml
 
 ### Related Commands
 
-- netq lcm show cl-images
-- netq lcm upgrade cl-image
-- netq lcm del cl-image
-- netq lcm add netq-image
+- ```netq lcm show cl-images```
+- ```netq lcm upgrade cl-image```
+- ```netq lcm del cl-image```
+- ```netq lcm add netq-image```
 
 - - -
 
 ## netq lcm add credentials
 
-Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. You can define set of credentials. Choose between basic SSH authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to properly configure switches when using the SSH Key method.
+Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. You can define set of credentials. Choose between basic SSH authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to properly configure switches when using the SSH key method.
 
 {{<notice tip>}}
 The default credentials for Cumulus Linux have changed from <!-- vale off -->cumulus/CumulusLinux!<!-- vale on --> to cumulus/cumulus for releases 4.2 and later. For details, read <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/">Cumulus Linux User Accounts</a>.
@@ -85,8 +83,8 @@ cumulus@switch:~$ netq lcm add credentials username cumulus password cumulus
 
 ### Related Commands
 
-- netq lcm show credentials
-- netq lcm del credentials
+- ```netq lcm show credentials```
+- ```netq lcm del credentials```
 
 - - -
 
@@ -98,7 +96,7 @@ Configures or changes the Cumulus Linux or NetQ version to use automatically dur
 
 ### Syntax
 
-Two forms of this command are available; one for Cumulus Linux and the other for NetQ.
+Two forms of this command are available: one for Cumulus Linux and the other for NetQ.
 
 ```
 netq lcm add 
@@ -125,22 +123,20 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add default-version cl-images 4.2.0
+cumulus@switch:~$ netq lcm add default-version cl-images 5.3.0
 
-cumulus@switch:~$ netq lcm add default-version netq-images 4.0.0
+cumulus@switch:~$ netq lcm add default-version netq-images 4.4.0
 ```
 
 ### Related Commands
 
-- netq lcm show default-version
+- ```netq lcm show default-version```
 
 - - -
 
 ## netq lcm add netq-image
 
-Adds a NetQ image (.deb package) to the lifecycle management repository. Images must match the version, architecture, and operating system for the switches you want to upgrade. For each version of NetQ, you must add the `netq-agent` and `netq-apps` packages.
-
-Obtain the images from the {{<exlink url="https://cumulusnetworks.com/downloads/#product=NetQ" text="Cumulus Downloads">}} page or {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Adds a NetQ image (.deb package) to the lifecycle management repository. Images must match the version, architecture, and operating system for the switches you want to upgrade. For each version of NetQ, you must add the `netq-agent` and `netq-apps` packages. For more information, see {{<link title="NetQ and Network OS Images">}}.
 
 ### Syntax
 
@@ -168,10 +164,10 @@ cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.0.0-ub18
 
 ### Related Commands
 
-- netq lcm show netq-images
-- netq lcm upgrade netq-image
-- netq lcm del netq-image
-- netq lcm add cl-image
+- ```netq lcm show netq-images```
+- ```netq lcm upgrade netq-image```
+- ```netq lcm del netq-image```
+- ```netq lcm add cl-image```
 
 - - -
 
@@ -252,9 +248,9 @@ cumulus@switch:~$ netq lcm del cl-image image_cc97be3955042ca41857c4d0fe95296bce
 
 ### Related Commands
 
-- netq lcm add cl-image
-- netq lcm show cl-images
-- netq lcm upgrade cl-image
+- ```netq lcm add cl-image```
+- ```netq lcm show cl-images```
+- ```netq lcm upgrade cl-image```
 
 - - -
 
@@ -287,8 +283,8 @@ cumulus@switch:~$ netq lcm del credentials
 
 ### Related Commands
 
-- netq lcm add credentials
-- netq lcm show credentials
+- ```netq lcm add credentials```
+- ```netq lcm show credentials```
 
 - - -
 
@@ -336,9 +332,9 @@ cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494
 
 ### Related Commands
 
-- netq lcm add netq-image
-- netq lcm show netq-images
-- netq lcm upgrade netq-image
+- ```netq lcm add netq-image```
+- ```netq lcm show netq-images```
+- ```netq lcm upgrade netq-image```
 
 - - -
 
@@ -373,17 +369,13 @@ NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556d
 
 ### Related Commands
 
-- netq lcm show discovery-job
+- ```netq lcm show discovery-job```
 
 - - -
 
 ## netq lcm show cl-images
 
 Displays all Cumulus Linux images in the lifecycle management repository. 
-
-{{<notice tip>}}
-The <code>json</code> option is useful when you are looking to capture the image identifier because it is not broken into pieces within a table column.
-{{</notice>}}
 
 ### Syntax
 
@@ -404,22 +396,9 @@ netq lcm show cl-images
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<text-image-id\> | Only display Cumulus Linux image with this identifier |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
-
-```
-cumulus@switch:~$ netq lcm show cl-images
-ID                        Name            CL Version  CPU      ASIC            Last Changed
-------------------------- --------------- ----------- -------- --------------- -------------------------
-image_cc97be3955042ca4185 cumulus-linux-4 4.2.0       x86_64   VX              Tue Jan  5 22:10:59 2021
-7c4d0fe95296bcea3e372b437 .2.0-vx-amd64-1
-a535a4ad23ca300d52c3      594775435.dirty
-                          zc24426ca.bin
-image_b80c410e165ea232cbe cumulus-linux-4 4.2.1       x86_64   VX              Wed Jan 20 16:46:29 2021
-b67fd82fea79f05734cd0a32f .2.1-vx-amd64.b
-81c148971214bd98b2e0      in
-```
 
 ```
 cumulus@switch:~$ netq lcm show cl-images json
@@ -445,8 +424,8 @@ cumulus@switch:~$ netq lcm show cl-images json
 
 ### Related Commands
 
-- netq lcm add cl-images
-- netq lcm del cl-images
+- ```netq lcm add cl-images```
+- ```netq lcm del cl-images```
 
 - - -
 
@@ -471,7 +450,7 @@ netq lcm show credentials
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
@@ -491,8 +470,8 @@ SSH              <your-SSH-key>                                   Tue Apr 28 19:
 
 ### Related Commands
 
-- netq lcm add credentials
-- netq lcm del credentials
+- ```netq lcm add credentials```
+- ```netq lcm del credentials```
 
 - - -
 
@@ -525,7 +504,7 @@ netq lcm show default-version
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
@@ -537,33 +516,18 @@ image_b80c410e165ea232cbe cumulus-linux-4 4.2.1       x86_64   VX              T
 b67fd82fea79f05734cd0a32f .2.1-vx-amd64.b
 81c148971214bd98b2e0      in
 ```
-
-```
-cumulus@switch:~$ netq lcm show default-version netq-images
-ID                        Name            NetQ Version  CL Version  CPU      Image Type           Last Changed
-------------------------- --------------- ------------- ----------- -------- -------------------- -------------------------
-image_d23a9e006641c675ed9 netq-agent_4.0. 4.0.0         cl4u32      x86_64   NETQ_AGENT           Tue Jan  5 22:23:50 2021
-e152948a9d1589404e8b83958 0-cl4u32_160939
-d53eb0ce7698512e7001      1187.7df4e1d2_a
-                          md64.deb
-image_68db386683c796d8642 netq-apps_4.0.0 4.0.0         cl4u32      x86_64   NETQ_CLI             Tue Jan  5 22:23:54 2021
-2f2172c103494fef7a820d003 -cl4u32_1609391
-de71647315c5d774f834      187.7df4e1d2_am
-                          d64.deb
-```
-
 ### Related Commands
 
-- netq lcm add default-version
-- netq lcm del default-version
-- netq lcm add cl-image
-- netq lcm add netq-image
+- ```netq lcm add default-version```
+- ```netq lcm del default-version```
+- ```netq lcm add cl-image```
+- ```netq lcm add netq-image```
 
 - - -
 
 ## netq lcm show discovery-job
 
-Displays the results of a switch discovery job, including a summary of the job itself and information about any switches discovered, including hostname, IP address, MAC address, CPU, Cumulus Linux and NetQ versions, configuration profile, discovery status and upgrade status.
+Displays the results of a switch discovery job, including a summary of the job itself and information about any switches discovered, including hostname, IP address, MAC address, CPU, Cumulus Linux and NetQ versions, configuration profile, discovery status, and upgrade status.
 
 ### Syntax
 
@@ -583,7 +547,7 @@ netq lcm show
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
@@ -614,7 +578,7 @@ fw2               192.168.200.62            44:38:39:00:01:8E  x86_64   4.2.0   
 
 ### Related Commands
 
-- netq lcm discover
+- ```netq lcm discover```
 
 - - -
 
@@ -639,7 +603,7 @@ netq lcm show netq-config
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
@@ -667,10 +631,6 @@ None
 
 Displays all NetQ images in the lifecycle management repository.
 
-{{<notice tip>}}
-The <code>json</code> option is useful when you are looking to capture the image identifier because it is not broken into pieces within a table column.
-{{</notice>}}
-
 ### Syntax
 
 ```
@@ -689,24 +649,10 @@ netq lcm show netq-images
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-netq-image-id\> | Only display  the NetQ image with this identifier |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| NA | \<text-netq-image-id\> | Only display the NetQ image with this identifier |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
-
-```
-cumulus@switch:~$ netq lcm show netq-images 
-ID                        Name            NetQ Version  CL Version  CPU      Image Type           Last Changed
-------------------------- --------------- ------------- ----------- -------- -------------------- -------------------------
-image_d23a9e006641c675ed9 netq-agent_4.0. 4.0.0         cl4u32      x86_64   NETQ_AGENT           Tue Jan  5 22:23:50 2021
-e152948a9d1589404e8b83958 0-cl4u32_160939
-d53eb0ce7698512e7001      1187.7df4e1d2_a
-                          md64.deb
-image_68db386683c796d8642 netq-apps_4.0.0 4.0.0         cl4u32      x86_64   NETQ_CLI             Tue Jan  5 22:23:54 2021
-2f2172c103494fef7a820d003 -cl4u32_1609391
-de71647315c5d774f834      187.7df4e1d2_am
-                          d64.deb
-```
 
 ```
 cumulus@switch:~$ netq lcm show netq-images json
@@ -734,8 +680,8 @@ cumulus@switch:~$ netq lcm show netq-images json
 
 ### Related Commands
 
-- netq lcm add netq-images
-- netq lcm del netq-images
+- ```netq lcm add netq-images```
+- ```netq lcm del netq-images```
 
 - - -
 
@@ -745,7 +691,7 @@ Displays status of Cumulus Linux or NetQ image upgrade jobs.
 
 ### Syntax
 
-Two forms of this command are available; one to display Cumulus Linux job status and one to display NetQ job status. Use the `netq lcm show upgrade-jobs` to obtain the job identifier.
+Two forms of this command are available: one for Cumulus Linux and one for NetQ. Run `netq lcm show upgrade-jobs` to obtain the job identifier.
 
 ```
 netq lcm show status
@@ -768,7 +714,7 @@ netq lcm show status
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
@@ -799,91 +745,9 @@ Hostname    CL Version    Backup Status    Backup Start Time         Restore Sta
 ----------  ------------  ---------------  ------------------------  ------------------  --------------------  ------------------  --------------------
 leaf01      4.2.0         FAILED           Wed Jan 20 19:30:12 2021  SKIPPED_ON_FAILURE  N/A                   SKIPPED_ON_FAILURE  N/A
 ```
-
-```
-cumulus@switch:~$ netq lcm show upgrade-jobs netq-image json
-[
-    {
-        "jobId": "job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7",
-        "name": "Leaf01-02 to NetQ330",
-        "netqVersion": "4.0.0",
-        "overallStatus": "FAILED",
-        "pre-checkStatus": "COMPLETED",
-        "warnings": [],
-        "errors": [],
-        "startTime": 1611863290557.0
-    }
-]
-
-cumulus@switch:~$ netq lcm show status netq-image job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7
-NetQ Upgrade FAILED
-
-Upgrade Summary
----------------
-Start Time: 2021-01-28 19:48:10.557000
-End Time: 2021-01-28 19:48:17.972000
-Upgrade CLI: True
-NetQ Version: 4.0.0
-Pre Check Status COMPLETED
-Precheck Task switch_precheck COMPLETED
-	Warnings: []
-	Errors: []
-Precheck Task version_precheck COMPLETED
-	Warnings: []
-	Errors: []
-Precheck Task config_precheck COMPLETED
-	Warnings: []
-	Errors: []
-
-
-Hostname          CL Version  NetQ Version  Prev NetQ Ver Config Profile               Status           Warnings         Errors       Start Time
-                                            sion
------------------ ----------- ------------- ------------- ---------------------------- ---------------- ---------------- ------------ --------------------------
-leaf01            4.2.1       4.0.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
-                                                                                                                         e at Invalid
-                                                                                                                         /incorrect u
-                                                                                                                         sername/pass
-                                                                                                                         word. Skippi
-                                                                                                                         ng remaining
-                                                                                                                         10 retries t
-                                                                                                                         o prevent ac
-                                                                                                                         count lockou
-                                                                                                                         t: Warning:
-                                                                                                                         Permanently
-                                                                                                                         added '192.1
-                                                                                                                         68.200.11' (
-                                                                                                                         ECDSA) to th
-                                                                                                                         e list of kn
-                                                                                                                         own hosts.\r
-                                                                                                                         \nPermission
-                                                                                                                         denied,
-                                                                                                                         please try a
-                                                                                                                         gain."]
-leaf02            4.2.1       4.0.0         3.2.1         ['NetQ default config']      FAILED           []               ["Unreachabl Thu Jan 28 19:48:10 2021
-                                                                                                                         e at Invalid
-                                                                                                                         /incorrect u
-                                                                                                                         sername/pass
-                                                                                                                         word. Skippi
-                                                                                                                         ng remaining
-                                                                                                                         10 retries t
-                                                                                                                         o prevent ac
-                                                                                                                         count lockou
-                                                                                                                         t: Warning:
-                                                                                                                         Permanently
-                                                                                                                         added '192.1
-                                                                                                                         68.200.12' (
-                                                                                                                         ECDSA) to th
-                                                                                                                         e list of kn
-                                                                                                                         own hosts.\r
-                                                                                                                         \nPermission
-                                                                                                                         denied,
-                                                                                                                         please try a
-                                                                                                                         gain."]
-```
-
 ### Related Commands
 
-- netq lcm show upgrade-jobs
+- ```netq lcm show upgrade-jobs```
 
 - - -
 
@@ -914,28 +778,9 @@ netq lcm show switches
 | ---- | ---- | ---- |
 | cl-version | \<text-cumulus-linux-version\> | Only display switches running this version of the Cumulus Linux OS |
 | netq-version | \<text-netq-version\> | Only display switches running this version of NetQ |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
-
-```
-cumulus@switch:~$ netq lcm show switches
-Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Last Changed
------------------ ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- -------------------------
-fw2                          192.168.200.62            44:38:39:00:01:8E  x86_64   4.2.0       4.0.0-cl4u32~ []                           Thu Jan 21 16:56:01 2021
-                                                                                               1610528867.2e
-                                                                                               518733
-border02                     192.168.200.64            44:38:39:00:01:7C  x86_64   4.2.0       4.0.0-cl4u32~ []                           Thu Feb 18 16:42:52 2021
-                                                                                               1610528867.2e
-                                                                                               518733
-leaf03                       192.168.200.13            44:38:39:00:01:84  x86_64   4.2.0       4.0.0-cl4u32~ []                           Thu Feb 18 16:42:28 2021
-                                                                                               1610528867.2e
-                                                                                               518733
-spine03                      192.168.200.23            44:38:39:00:01:70  x86_64   4.2.0       4.0.0-cl4u32~ []                           Wed Jan 20 16:41:50 2021
-                                                                                               1610528867.2e
-                                                                                               518733
-...
-```
 
 ```
 cumulus@switch:~$ netq lcm show switches cl-version 4.2.1
@@ -956,11 +801,11 @@ None
 ## netq lcm show upgrade-jobs
 <!-- vale on -->
 
-Displays a history of all Cumulus Linux or NetQ upgrade jobs, including the job identifier and name, Cumulus Linux or NetQ version, pre-check status, warnings and errors, and start the job started. The NetQ upgrade jobs also show the overall status.
+Displays a history of all Cumulus Linux or NetQ upgrade jobs, including the job identifier and name, Cumulus Linux or NetQ version, pre-check status, warnings and errors, and time the job started. The NetQ upgrade jobs also show the overall status.
 
 ### Syntax
 
-Two forms of this command are available; one for Cumulus Linux and one for NetQ.
+Two forms of this command are available: one for Cumulus Linux and one for NetQ.
 
 ```
 netq lcm show upgrade-jobs
@@ -984,51 +829,9 @@ netq lcm show upgrade-jobs
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
-
-```
-cumulus@switch:~$ netq lcm show upgrade-jobs cl-image 
-Job ID       Name            CL Version  Pre-Check Status Warnings         Errors       Start Time
------------- --------------- ----------- ---------------- ---------------- ------------ --------------------------
-job_cl_upgra test            4.2.1       COMPLETED                                      Wed Jan 20 19:29:41 2021
-de_a96e0beb5
-9a16b085a7d2
-b3b5ffd6e597
-1870aa2903c6
-df86f26fa908
-ded2e21
-job_cl_upgra UpgradeJustOne  4.2.1       COMPLETED                                      Wed Feb 17 20:58:35 2021
-de_9c5e3b4b7
-6f490e6531c3
-4faf52907bda
-46648701b3f7
-c0289b96c5d7
-6af53eb
-
-cumulus@switch:~$ netq lcm show upgrade-jobs cl-image json
-[
-    {
-        "jobId": "job_cl_upgrade_a96e0beb59a16b085a7d2b3b5ffd6e5971870aa2903c6df86f26fa908ded2e21",
-        "name": "test",
-        "clVersion": "4.2.1",
-        "pre-checkStatus": "COMPLETED",
-        "warnings": "",
-        "errors": "",
-        "startTime": 1611170981846.0
-    },
-    {
-        "jobId": "job_cl_upgrade_9c5e3b4b76f490e6531c34faf52907bda46648701b3f7c0289b96c5d76af53eb",
-        "name": "UpgradeJustOne",
-        "clVersion": "4.2.1",
-        "pre-checkStatus": "COMPLETED",
-        "warnings": "",
-        "errors": "",
-        "startTime": 1613595515152.0
-    }
-]
-```
 
 ```
 cumulus@switch:~$ netq lcm show upgrade-jobs netq-image 
@@ -1041,24 +844,10 @@ c3fb340d8f51
 e70c3ab508d6
 9f3fdf5032ee
 bad118cc7
-
-cumulus@switch:~$ netq lcm show upgrade-jobs netq-image json
-[
-    {
-        "jobId": "job_netq_install_7152a03a8c63c906631c3fb340d8f51e70c3ab508d69f3fdf5032eebad118cc7",
-        "name": "Leaf01-02 to NetQ330",
-        "netqVersion": "4.0.0",
-        "overallStatus": "FAILED",
-        "pre-checkStatus": "COMPLETED",
-        "warnings": [],
-        "errors": [],
-        "startTime": 1611863290557.0
-    }
-]
 ```
 
 ### Related Commands
 
-- netq lcm show status
+- ```netq lcm show status```
 
 <!-- vale NVIDIA.HeadingTitles = YES -->

@@ -9,14 +9,14 @@ pdfhidden: true
 
 ## netq decommission
 
-Decommissions a switch or host currently running NetQ Agent. This removes information about the switch or host from the NetQ database. Before decommissioning a switch, you should stop and disable the NetQ Agent.
+Decommissions a switch or host *currently* running the NetQ Agent. This removes information about the switch or host from the NetQ database. Before decommissioning a switch, you should stop and disable the NetQ Agent.
 
 You might need to decommission a switch when you:
 
 <!-- vale off -->
-- Change the hostname of the switch or host being monitored
-- Move the switch or host being monitored from one data center to another
-- RMA the switch or host being monitored
+- Change the hostname of the switch or host
+- Move the switch or host from one data center to another
+- Return the switch or host
 <!-- vale on -->
 
 ### Syntax

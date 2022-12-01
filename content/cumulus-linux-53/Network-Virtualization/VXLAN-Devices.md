@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 605
 toc: 3
 ---
-Cumulus Linux supports both single and traditional [VXLAN](## "Virtual Extensible LAN") devices.
+Cumulus Linux supports both single and traditional <span style="background-color:#F5F5DC">[VXLAN](## "Virtual Extensible LAN")</span> devices.
 
 {{%notice note%}}
 - You can configure single VXLAN devices in VLAN-aware bridge mode only.

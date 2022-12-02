@@ -1,5 +1,5 @@
 ---
-title: SNMP Commands
+title: SNMP Server Commands
 author: Cumulus Networks
 weight: 220
 product: Cumulus Linux
@@ -11,15 +11,9 @@ type: nojsscroll
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server listening-address
 
@@ -27,15 +21,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server listening-address \<listening-address-id>\
 
@@ -43,15 +31,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username
 
@@ -59,15 +41,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\
 
@@ -75,15 +51,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-none
 
@@ -91,15 +61,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-md5
 
@@ -107,15 +71,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\
 
@@ -123,15 +81,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des
 
@@ -139,15 +91,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -155,15 +101,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes
 
@@ -171,15 +111,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\
 
@@ -187,15 +121,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-sha
 
@@ -203,15 +131,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\
 
@@ -219,15 +141,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-des
 
@@ -235,15 +151,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -251,15 +161,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes
 
@@ -267,15 +171,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\
 
@@ -283,15 +181,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server mibs
 
@@ -299,15 +191,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server viewname
 
@@ -315,15 +201,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server viewname \<viewname-id>\
 
@@ -331,15 +211,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server readonly-community
 
@@ -347,15 +221,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server readonly-community \<readonly-community-id>\
 
@@ -363,15 +231,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server readonly-community \<readonly-community-id>\ access
 
@@ -379,15 +241,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server readonly-community \<readonly-community-id>\ access \<access-id>\
 
@@ -395,30 +251,18 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 ## nv show service snmp-server readonly-community-v6
 
 ### Usage
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server readonly-community-v6 \<readonly-community-id>\
 
@@ -426,15 +270,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server readonly-community-v6 \<readonly-community-id>\ access
 
@@ -442,15 +280,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server readonly-community-v6 \<readonly-community-id>\ access \<access-id>\
 
@@ -458,15 +290,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-link-down
 
@@ -474,15 +300,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-link-up
 
@@ -490,15 +310,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-snmp-auth-failures
 
@@ -506,15 +320,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-cpu-load-average
 
@@ -522,15 +330,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-cpu-load-average one-minute
 
@@ -538,15 +340,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\
 
@@ -554,15 +350,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute
 
@@ -570,15 +360,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\
 
@@ -586,15 +370,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\ fifteen-minute
 
@@ -602,15 +380,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-cpu-load-average one-minute \<one-minute-id>\ five-minute \<five-minute-id>\ fifteen-minute \<fifteen-minute-id>\
 
@@ -618,15 +390,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination
 
@@ -634,15 +400,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\
 
@@ -650,15 +410,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ community-password
 
@@ -666,15 +420,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ community-password \<community-password-id>\
 
@@ -682,15 +430,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf
 
@@ -698,15 +440,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\
 
@@ -714,15 +450,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ community-password
 
@@ -730,15 +460,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ community-password \<community-password-id>\
 
@@ -746,15 +470,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username
 
@@ -762,15 +480,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\
 
@@ -778,15 +490,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5
 
@@ -794,15 +500,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\
 
@@ -810,15 +510,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id
 
@@ -826,15 +520,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id \<engine-id>\
 
@@ -842,15 +530,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des
 
@@ -858,15 +540,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -874,15 +550,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
@@ -890,15 +560,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -906,15 +570,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes
 
@@ -922,15 +580,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\
 
@@ -938,15 +590,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id
 
@@ -954,15 +600,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -970,15 +610,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha
 
@@ -986,15 +620,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\
 
@@ -1002,15 +630,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id
 
@@ -1018,15 +640,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id \<engine-id>\
 
@@ -1034,15 +650,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des
 
@@ -1050,15 +660,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -1066,15 +670,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
@@ -1082,15 +680,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -1098,15 +690,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes
 
@@ -1114,15 +700,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\
 
@@ -1130,15 +710,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id
 
@@ -1146,15 +720,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -1162,15 +730,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username
 
@@ -1178,15 +740,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\
 
@@ -1194,15 +750,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5
 
@@ -1210,15 +760,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\
 
@@ -1226,15 +770,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id
 
@@ -1242,15 +780,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id \<engine-id>\
 
@@ -1258,15 +790,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des
 
@@ -1274,15 +800,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -1290,15 +810,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
@@ -1306,15 +820,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -1322,15 +830,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes
 
@@ -1338,15 +840,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\
 
@@ -1354,15 +850,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id
 
@@ -1370,15 +860,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -1386,15 +870,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha
 
@@ -1402,15 +880,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\
 
@@ -1418,15 +890,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id
 
@@ -1434,15 +900,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id \<engine-id>\
 
@@ -1450,15 +910,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des
 
@@ -1466,15 +920,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\
 
@@ -1482,15 +930,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
@@ -1498,15 +940,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -1514,15 +950,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes
 
@@ -1530,15 +960,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\
 
@@ -1546,15 +970,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id
 
@@ -1562,15 +980,9 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id \<engine-id>\
 
@@ -1578,12 +990,6 @@ cumulus@leaf04:mgmt:~$
 
 ### Attributes
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
+| Attribute |  Description  |
+| --------- | ------------- |
+|           |               |

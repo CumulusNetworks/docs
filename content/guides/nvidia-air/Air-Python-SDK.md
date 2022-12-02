@@ -454,7 +454,7 @@ The response will contain an Image upload URL:
 ```
 Use the provided upload_url to upload a local Image file to Air:
 ```
-curl --request PUT 'https://air.nvidia.com/api/v1/image/3d9a34e6-fd64-47bc-a65d-8a30f9f3ddc7/upload/?filename=/Users/admin/fake_image.qcow2' \
+curl --request PUT 'https://air.nvidia.com/api/v1/image/3d9a34e6-fd64-47bc-a65d-8a30f9f3ddc7/upload/' -F filename='@/Users/admin/fake_image.qcow2' \
 --header 'Authorization: Bearer <bearer_token>'
 ```
 

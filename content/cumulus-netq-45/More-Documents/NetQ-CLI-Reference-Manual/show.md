@@ -11,7 +11,7 @@ pdfhidden: true
 ## netq show address-history
 <!-- vale on -->
 
-Displays where an IPv4 or IPv6 address has lived in your network fabric in the last 24 hours. The output provides:
+Displays where an IPv4 or IPv6 address has lived in your network fabric in the last 24 hours. The output displays:
 
 - When the address was last changed
 - The switch or hostname where the address resides
@@ -50,7 +50,7 @@ netq [<hostname>] show address-history
 | diff | NA | Only display the differences associated with each change |
 | between | \<text-time\> and \<text-endtime\> | Only display results between the snapshots taken at these times |
 | listby | \<text-list-by\> | Display results by the specified attribute. Attributes include the interface name, VRF name, and hostname. |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 {{<notice note>}}
 When entering a time value with the <code>between</code> option, you must include a numeric value <em>and</em> the unit of measure:
@@ -67,7 +67,7 @@ You can enter the start time (<code>text-time</code>) and end time (<code>text-e
 
 ### Sample Usage
 
-Basic show: all devices, all VLANs, in last 24 hours
+Display address history for the past 24 hours:
 
 ```
 cumulus@switch:~$ netq show address-history 10.10.10.3
@@ -78,7 +78,7 @@ Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3             
 
 ```
 
-Show only the differences between now and four months ago.
+Show only the differences between now and four months ago:
 
 ```
 cumulus@switch:~$ netq show address-history 10.10.10.3 between now and 120d
@@ -88,7 +88,7 @@ Last Changed              Hostname          Ifname       Prefix                 
 Thu Oct 15 22:28:16 2020  leaf03            lo           10.10.10.3                     32       default
 ```
 
-Show changes grouped by VRF.
+Show changes grouped by VRF:
 
 ```
 cumulus@switch:~$ netq show address-history 10.1.10.104 listby vrf
@@ -100,24 +100,24 @@ Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104            
 
 ### Related Commands
 
-- netq show mac-history
+- ```netq show mac-history```
 
 - - -
 
 ## netq show agents
 
-Displays basic configuration, health, and connectivity status for all nodes or a specific node running NetQ Agent in your network fabric. This command gives you an easy way to see if any NetQ Agents or their nodes have lost power, if they have difficulty communicating with the telemetry server, or whether agents are running different versions of software. Any of these situations could cause problems in the operation of your network.
+Displays basic configuration, health, and connectivity status for all nodes or a specific node running NetQ Agent in your network fabric. This command gives you an easy way to see if any NetQ Agents or their nodes have lost power, if they have difficulty communicating with the telemetry server, or whether agents are running different software versions.
 
-The output provides:
+The output displays:
 
 <!-- vale off -->
-- Whether each node has been heard recently (last 90 seconds)
+- Whether each node has communicated recently (last 90 seconds)
 - If each node is in time synchronization with the NetQ appliance or virtual machine
 - The NetQ Agent software version currently running on the node
 - How long the node has been operationally up
 - How long the NetQ Agent has been operationally up
 - The last time the NetQ Agent was reinitialized
-- When the last change occurred for the any of these items
+- When the last change occurred for any of the above items
 <!-- vale on -->
 
 ### Syntax
@@ -143,11 +143,11 @@ None
 | rotten | NA | Filter output for devices where the NetQ Agent has not communicated with the appliance or VM in the last two minutes |
 | opta | NA | Filter output for the NetQ Agent installed on the appliance or VM |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Basic show: all devices, all states, currently
+Display agent status across all network nodes:
 
 ```
 cumulus@switch:~$ netq show agents
@@ -177,7 +177,7 @@ spine03           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed    
 spine04           Fresh            yes      3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:32:49 2020  Fri Oct  2 22:24:40 2020  Fri Oct  2 22:24:40 2020   Fri Nov 20 18:49:22 2020
 ```
 
-Show all devices in rotten state, currently.
+Display all devices in a rotten state:
 
 ```
 cumulus@switch:~$ netq show agents rotten
@@ -188,44 +188,13 @@ fw1               Rotten           no       3.2.0-cl4u30~1601403318.104fb9ed    
 fw2               Rotten           no       3.2.0-cl4u30~1601403318.104fb9ed     Fri Oct  2 20:36:32 2020  Mon
 ```
 
-Show all devices in rotten state, currently, in JSON format
-
-```
-cumulus@switch:~$ netq show agents rotten json
-{
-    "agents":[
-        {
-            "hostname":"fw1",
-            "status":"Rotten",
-            "ntpSync":"no",
-            "version":"3.2.0-cl4u30~1601403318.104fb9ed",
-            "sysUptime":1601670993.0,
-            "agentUptime":1604346561.0,
-            "reinitializeTime":1604346561.0,
-            "lastChanged":1605903102.0
-        },
-        {
-            "hostname":"fw2",
-            "status":"Rotten",
-            "ntpSync":"no",
-            "version":"3.2.0-cl4u30~1601403318.104fb9ed",
-            "sysUptime":1601670992.0,
-            "agentUptime":1604346560.0,
-            "reinitializeTime":1604346560.0,
-            "lastChanged":1605903103.0
-        }
-    ],
-    "truncatedResult":false
-}
-```
-
 ### Related Commands
 
-- netq show unit-tests agent
-- netq show events
-- netq check agents
-- netq config add agent
-- netq config del agent
+- ```netq show unit-tests agent```
+- ```netq show events```
+- ```netq check agents```
+- ```netq config add agent```
+- ```netq config del agent```
 
 - - -
 
@@ -266,17 +235,17 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | <!-- vale off -->\<bgp-session\><!-- vale on --> | Only display results for this particular BGP session; for example 5468354 |
-| asn | \<number-asn\> | Only display results for nodes using this ASN; for example 65013 |
-| vrf | \<vrf\> | Only display results for sessions run on this VRF; for example default, mgmt, or vrf10 |
+| NA | <!-- vale off -->\<bgp-session\><!-- vale on --> | Only display results for this particular BGP session (for example, 5468354) |
+| asn | \<number-asn\> | Only display results for nodes using this ASN (for example, 65013) |
+| vrf | \<vrf\> | Only display results for sessions run on this VRF (for example, default, mgmt, or vrf10) |
 | established | NA | Only display established BGP sessions |
 | failed | NA | Only display failed BGP sessions |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Basic show: all devices, all states, currently
+Display BGP sessions across all network nodes:
 
 ```
 cumulus@switch:~$ netq show bgp
@@ -339,7 +308,7 @@ spine04           swp2(leaf02)                 default         65199      65101 
 spine04           swp5(border01)               default         65199      65132      3/-/0        Fri Oct  2 22:39:00 2020
 ```
 
-View status of nodes running BGP with particular ASN
+View status of nodes running BGP with a given ASN:
 
 ```
 cumulus@switch:~$ netq show bgp asn 65101
@@ -360,9 +329,9 @@ leaf02            swp51(spine01)               default         65101      65199 
 
 ### Related Commands
 <!-- vale off -->
-- netq show unit-tests bgp
-- netq show events
-- netq check bgp
+- ```netq show unit-tests bgp```
+- ```netq show events```
+- ```netq check bgp```
 <!-- vale on -->
 - - -
 

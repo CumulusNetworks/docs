@@ -10,7 +10,11 @@ NVUE supports both snippets and flexible snippets:
 
 ## Snippets
 
-Use snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format and add the configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.
+Use snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format, then add the configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file with the `nv config patch` command.
+
+{{%notice note%}}
+The `nv config patch` command requires you to use the fully qualified path name to the snippet `.yaml` file; for example you cannot use `./` with the `nv config patch` command.
+{{%/notice%}}
 <!-- vale off -->
 ### /etc/frr/frr.conf Snippets
 <!-- vale on -->
@@ -22,7 +26,7 @@ NVUE does not support configuring BGP to peer across the default route. The foll
 1. Create a `.yaml` file with the following snippet:
 
    ```
-   cumulus@switch:~$ sudo nano ./bgp_snippet.yaml
+   cumulus@switch:~$ sudo nano bgp_snippet.yaml
    - set:
        system:
          config:
@@ -34,7 +38,7 @@ NVUE does not support configuring BGP to peer across the default route. The foll
 2. Run the following command to patch the configuration:
 
    ```
-   cumulus@switch:~$ nv config patch ./bgp_snippet.yaml
+   cumulus@switch:~$ nv config patch bgp_snippet.yaml
    ```
 
 3. Run the `nv config apply` command to apply the configuration:
@@ -60,7 +64,7 @@ NVUE does not support configuring EVPN route targets using auto derived values f
 1. Create a `.yaml` file with the following snippet:
 
    ```
-   cumulus@switch:~$ sudo nano ./bgp_snippet.yaml
+   cumulus@switch:~$ sudo nano bgp_snippet.yaml
    - set:
        system:
          config:
@@ -76,7 +80,7 @@ Make sure to use spaces not tabs; the parser expects spaces in yaml format.
 2. Run the following command to patch the configuration:
 
    ```
-   cumulus@switch:~$ nv config patch ./bgp_snippet.yaml
+   cumulus@switch:~$ nv config patch bgp_snippet.yaml
    ```
 
 3. Run the `nv config apply` command to apply the configuration:
@@ -108,7 +112,7 @@ NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggreg
 1. Create a `.yaml` file and add the following snippet:
 
    ```
-   cumulus@switch:~$ sudo nano ./mlag_snippet.yaml
+   cumulus@switch:~$ sudo nano mlag_snippet.yaml
    - set:
        system:
          config:
@@ -121,7 +125,7 @@ NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggreg
 2. Run the following command to patch the configuration:
 
    ```
-   cumulus@switch:~$ nv config patch ./mlag_snippet.yaml
+   cumulus@switch:~$ nv config patch mlag_snippet.yaml
    ```
 
 3. Run the `nv config apply` command to apply the configuration:
@@ -152,7 +156,7 @@ NVUE does not support configuring traditional bridges. The following example con
 1. Create a `.yaml` file and add the following snippet:
 
    ```
-   cumulus@switch:~$ sudo nano ./bridge_snippet.yaml
+   cumulus@switch:~$ sudo nano bridge_snippet.yaml
    - set:
        system:
         config:
@@ -169,7 +173,7 @@ NVUE does not support configuring traditional bridges. The following example con
 2. Run the following command to patch the configuration:
 
    ```
-   cumulus@switch:~$ nv config patch ./bridge_snippet.yaml
+   cumulus@switch:~$ nv config patch bridge_snippet.yaml
    ```
 
 3. Run the `nv config apply` command to apply the configuration:
@@ -209,7 +213,7 @@ To create flexible snippets:
 1. Create a file in `yaml` format and add each flexible snippet you want to apply in the format shown below.
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano ./<filename>.yaml>
+   cumulus@leaf01:mgmt:~$ sudo nano <filename>.yaml>
    - set:
        system:
         config:
@@ -232,12 +236,12 @@ To create flexible snippets:
 
 ### TACACS+ Client Example
 
-The following example creates a snippet called `tacacs-config` in a file called `./tacacs.yaml`. The snippet adds the server 192.168.0.30 and the shared secret `tacacskey` to the `/etc/tacplus_servers` file.
+The following example creates a snippet called `tacacs-config` in a file called `tacacs.yaml`. The snippet adds the server 192.168.0.30 and the shared secret `tacacskey` to the `/etc/tacplus_servers` file.
 
 1. Create the `tacacs.yaml` snippet:
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano ./tacacs.yaml
+   cumulus@leaf01:mgmt:~$ sudo nano tacacs.yaml
    - set:
        system:
         config:
@@ -252,7 +256,7 @@ The following example creates a snippet called `tacacs-config` in a file called 
 2. Run the following command to patch the configuration:
 
    ```
-   cumulus@switch:~$ nv config patch ./snmp.yaml
+   cumulus@switch:~$ nv config patch tacacs.yaml
    ```
 
 3. Run the `nv config apply` command to apply the configuration:
@@ -265,7 +269,7 @@ NVUE appends the snippet at the end of the `/etc/tacplus_servers` file.
 
 ### SNMP Example
 
-The following example creates a snippet called `snmp-config` in a file called `./snmp.yaml`. The snippet adds content to the `/etc/snmp/snmpd.conf` file to:
+The following example creates a snippet called `snmp-config` in a file called `snmp.yaml`. The snippet adds content to the `/etc/snmp/snmpd.conf` file to:
 - Configure the switch to listen on any interface on the management VRF.
 - Create a read-only community.
 - Restart the `snmpd` service.
@@ -273,7 +277,7 @@ The following example creates a snippet called `snmp-config` in a file called `.
 1. Create the `snmp.yaml` snippet:
 
    ```
-   cumulus@leaf01:mgmt:~$ sudo nano ./snmp.yaml
+   cumulus@leaf01:mgmt:~$ sudo nano snmp.yaml
    - set:
        system:
          config:
@@ -294,7 +298,7 @@ The following example creates a snippet called `snmp-config` in a file called `.
 2. Run the following command to patch the configuration:
 
    ```
-   cumulus@switch:~$ nv config patch ./snmp.yaml
+   cumulus@switch:~$ nv config patch snmp.yaml
    ```
 
 3. Run the `nv config apply` command to apply the configuration:

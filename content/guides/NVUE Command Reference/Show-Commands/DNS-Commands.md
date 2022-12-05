@@ -1,17 +1,17 @@
 ---
-title: Syslog Commands
+title: DNS Commands
 author: Cumulus Networks
-weight: 320
+weight: 145
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show service syslog
+## nv show service dns
 
-collection of syslog
+collection of DNS
 
 ### Usage
 
-`nv show service syslog [options] [<vrf-id> ...]`
+`nv show service dns [options] [<vrf-id> ...]`
 
 ### Identifiers
 
@@ -29,13 +29,13 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
-## nv show service syslog \<vrf-id\>
+## nv show service dns \<vrf-id\>
 
 Domain Name Service
 
 ### Usage
 
-`nv show service syslog <vrf-id> [options] [<attribute> ...]`
+`nv show service dns <vrf-id> [options] [<attribute> ...]`
 
 ### Identifiers
 
@@ -47,7 +47,7 @@ Domain Name Service
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `server` | Remote DNS servers |
+| `server` |   Remote DNS servers |
 
 ### Version History
 
@@ -59,20 +59,20 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
-## nv show service syslog \<vrf-id\> server \<server-id\>
+## nv show service dns \<vrf-id\> server \<dns-server-id\>
 
 A remote DNS server
 
 ### Usage
 
-`nv show service syslog <vrf-id> server <server-id> [options]`
+`nv show service dns <vrf-id> server <dns-server-id> [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-| `<server-id>` | Hostname or IP address of a syslog server |
+| `<dns-server-id>`  | IPv4 or IPv6 address of a DNS server |
 
 ### Version History
 

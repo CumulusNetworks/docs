@@ -1,7 +1,7 @@
 ---
 title: NTP Commands
 author: Cumulus Networks
-weight: 160
+weight: 180
 product: Cumulus Linux
 type: nojsscroll
 ---

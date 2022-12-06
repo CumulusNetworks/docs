@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show interface \<interface-id\> router adaptive-routing
 
-Adaptive routing interface configuration.
+Shows adaptive routing interface configuration. This command shows if adaptive routing is on or off for the interface and the link utilization threshold (as a percentage).
 
 ### Usage
 
@@ -26,12 +26,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp1 router adaptive-routing
 ```
 
 ## nv show router adaptive-routing
 
-Adaptive routing global configuration.
+Shows global adaptive routing configuration. This command shows if adaptive routing is on or off.
 
 ### Usage
 
@@ -44,5 +44,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show router adaptive-routing
 ```

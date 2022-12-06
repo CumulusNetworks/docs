@@ -706,7 +706,7 @@ Displays the performance degradation or complete outage of any digital optics mo
 
 The output provides the following information for each device and interface:
 
-- Alarm and warning thresholds
+- Events and warning thresholds
 - Current value, by channel for laser type
 - When any of these items was last changed
 
@@ -731,11 +731,11 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| laser_rx_power | NA | Display current value and threshold alarms for transceiver input power (mW) on the DOMs |
-| laser_output_power | NA | Display current value and threshold alarms for laser output power (mW) on the DOMs |
-| laser_bias_current | NA | Display current value and threshold alarms for laser bias current (mA) on the DOMs |
-| module_temp | NA | Display current value and threshold alarms for temperature (°C) on the DOMs |
-| module_voltage | NA | Display current value and threshold alarms for transceiver voltage (V) on the DOMs |
+| laser_rx_power | NA | Display current value and threshold events for transceiver input power (mW) on the DOMs |
+| laser_output_power | NA | Display current value and threshold events for laser output power (mW) on the DOMs |
+| laser_bias_current | NA | Display current value and threshold events for laser bias current (mA) on the DOMs |
+| module_temp | NA | Display current value and threshold events for temperature (°C) on the DOMs |
+| module_voltage | NA | Display current value and threshold events for transceiver voltage (V) on the DOMs |
 
 ### Options
 
@@ -745,11 +745,11 @@ netq [<hostname>] show dom type (module_temp|module_voltage)
 | interface | \<text-dom-port-anchor\> | Only display results for the interface with this port name |
 | channel_id | \<text-channel-id\> | Only display laser results for the channel with this ID |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Show module temperature of DOMs on given device
+Show module temperature of DOMs on a given device:
 
 ```
 cumulus@switch:~$ netq spine01 show dom type module_temp
@@ -805,12 +805,12 @@ None
 
 ## netq show ethtool-stats
 
-Displays transmit and receive statistics for network interfaces on one or all devices, including frame errors, ACL drops, buffer drops and more. You can filter the output by device and view the statistics for a time in the past.
+Displays transmit and receive statistics for network interfaces on one or all devices, including frame errors, ACL drops, buffer drops, and more. You can filter the output by device and view the statistics for a time in the past.
 
 ### Syntax
 
 ```
-netq <hostname> show interface-stats
+netq <hostname> show ethtool-stats
     port <physical-port>
     (rx|tx)
     [extended]
@@ -835,11 +835,11 @@ netq <hostname> show interface-stats
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | extended | NA | Display additional statistics; does not include statistics presented with standard output |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Show transmit statistics for a given switch interface and switch in the network
+Show transmit statistics for a given switch interface and switch in the network:
 
 ```
 cumulus@switch:~$ netq leaf01 show ethtool-stats port swp50 tx
@@ -849,83 +849,10 @@ Hostname          Interface                 HwIfOutOctets        HwIfOutUcastPkt
 leaf01            swp50                     8749                 0                    44                   0                    0                    0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:57 2020
 ```
 
-Display additional statistics
-
-```
-cumulus@switch:~$ netq leaf01 show ethtool-stats port swp50 rx extended
-
-Matching ethtool_stats records:
-Hostname          Interface                 HwIfInPfc0Pkt        HwIfInPfc1Pkt        HwIfInPfc2Pkt        HwIfInPfc3Pkt        HwIfInPfc4Pkt        HwIfInPfc5Pkt        HwIfInPfc6Pkt        HwIfInPfc7Pkt        Last Updated
------------------ ------------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
-leaf01            swp50                     0                    0                    0                    0                    0                    0                    0                    0                    Tue Apr 28 22:09:25 2020
-```
-
-Show statistics in JSON format
-
-```
-cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50 tx json
-{
-    "ethtool_stats":[
-        {
-            "hwifoutoctets":12571,
-            "hwifoutucastpkts":0,
-            "hwifoutpausepkt":0,
-            "softouttxfifofull":0,
-            "hwifoutmcastpkts":58,
-            "hwifoutbcastpkts":0,
-            "softouterrors":0,
-            "interface":"swp50",
-            "lastUpdated":1588112216.0,
-            "softoutdrops":0,
-            "hwifoutdiscards":0,
-            "hwifoutqlen":0,
-            "hwifoutnonqdrops":0,
-            "hostname":"leaf01",
-            "hwifouterrors":0,
-            "hwifoutqdrops":0
-	}
-    ],
-    "truncatedResult":false
-}
-```
-
-```
-cumulus@leaf01:~$ netq leaf01 show ethtool-stats port swp50 tx extended json
-{
-    "ethtool_stats":[
-        {
-            "hostname":"leaf01",
-            "hwifoutq5wreddrops":0,
-            "hwifoutq3wreddrops":0,
-            "hwifoutpfc3pkt":0,
-            "hwifoutq6wreddrops":0,
-            "hwifoutq9wreddrops":0,
-            "hwifoutq2wreddrops":0,
-            "hwifoutq8wreddrops":0,
-            "hwifoutpfc7pkt":0,
-            "hwifoutpfc4pkt":0,
-            "hwifoutpfc6pkt":0,
-            "hwifoutq7wreddrops":0,
-            "hwifoutpfc0pkt":0,
-            "hwifoutpfc1pkt":0,
-            "interface":"swp50",
-            "hwifoutq0wreddrops":0,
-            "hwifoutq4wreddrops":0,
-            "hwifoutpfc2pkt":0,
-            "lastUpdated":1588112216.0,
-            "hwifoutwreddrops":0,
-            "hwifoutpfc5pkt":0,
-            "hwifoutq1wreddrops":0
-	}
-    ],
-    "truncatedResult":false
-}
-```
-
 ### Related Commands
 
-- netq show interface-stats
-- netq show interface-untilization
+- ```netq show interface-stats```
+- ```netq show interface-untilization```
 
 - - -
 
@@ -1594,7 +1521,7 @@ Displays information about the hardware and software components deployed on a gi
 
 ### Syntax
 
-Eight forms of this command are available based on the inventory component you want to view.
+Eight forms of this command are available based on the inventory component you'd like to view:
 
 ```
 netq [<hostname>] show inventory brief
@@ -1636,13 +1563,13 @@ netq [<hostname>] show inventory os
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| brief | NA | Only display summary information; hostname, switch, OS, CPU architecture, ASIC vendor, ports |
-| asic | NA | Only display ASIC information; hostname, vendor, model, model ID, core bandwidth, ports |
-| board | NA | Only display motherboard information; hostname, vendor, model, base MAC address, serial number, part number, revision, manufacturing date |
-| cpu | NA | Only display processor information; hostname, architecture, model, frequency, number of cores |
-| disk | NA | Only display disk information; hostname, disk name and type, transport, size, vendor, model |
-| memory | NA | Only display memory information; hostname, memory name, type, size, speed, vendor, serial number |
-| os | NA | Only display operating system information; hostname, OS name, version, when changed |
+| brief | NA | Only display summary information: hostname, switch, OS, CPU architecture, ASIC vendor, ports |
+| asic | NA | Only display ASIC information: hostname, vendor, model, model ID, core bandwidth, ports |
+| board | NA | Only display motherboard information: hostname, vendor, model, base MAC address, serial number, part number, revision, manufacturing date |
+| cpu | NA | Only display processor information: hostname, architecture, model, frequency, number of cores |
+| disk | NA | Only display disk information: hostname, disk name and type, transport, size, vendor, model |
+| memory | NA | Only display memory information: hostname, memory name, type, size, speed, vendor, serial number |
+| os | NA | Only display operating system information: hostname, OS name, version, when changed |
 
 ### Options
 
@@ -1659,11 +1586,11 @@ netq [<hostname>] show inventory os
 | name | \<os-name\> | Only display results for operating systems with this name |
 | opta | NA | Only display results for the NetQ appliance or VM (not other switches or hosts) |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Show inventory summary
+Display an inventory summary:
 
 ```
 cumulus@switch:~$ netq show inventory brief
@@ -1690,61 +1617,10 @@ spine02           VX                   CL              x86_64   VX              
 spine03           VX                   CL              x86_64   VX              N/A
 spine04           VX                   CL              x86_64   VX              N/A
 ```
-
-Show ASIC information
-
-```
-cumulus@switch:~$ netq show inventory asic
-Matching inventory records:
-Hostname          Vendor               Model                          Model ID                  Core BW        Ports
------------------ -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
-dell-z9100-05     Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
-mlx-2100-05       Mellanox             Spectrum                       MT52132                   N/A            16 x 100G-QSFP28
-mlx-2410a1-05     Mellanox             Spectrum                       MT52132                   N/A            48 x 25G-SFP28 & 8 x 100G-QSFP28
-mlx-2700-11       Mellanox             Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
-qct-ix1-08        Broadcom             Tomahawk                       BCM56960                  2.0T           32 x 100G-QSFP28
-qct-ix7-04        Broadcom             Trident3                       BCM56870                  N/A            32 x 100G-QSFP28
-st1-l1            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-st1-l2            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-st1-l3            Broadcom             Trident2                       BCM56854                  720G           48 x 10G-SFP+ & 6 x 40G-QSFP+
-st1-s1            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
-st1-s2            Broadcom             Trident2                       BCM56850                  960G           32 x 40G-QSFP+
-```
-
-Show OS information
-
-```
-cumulus@switch:~$ netq show inventory os
-Matching inventory records:
-Hostname          Name            Version                              Last Changed
------------------ --------------- ------------------------------------ -------------------------
-border01          CL              3.7.13                               Tue Jul 28 18:49:46 2020
-border02          CL              3.7.13                               Tue Jul 28 18:44:42 2020
-fw1               CL              3.7.13                               Tue Jul 28 19:14:27 2020
-fw2               CL              3.7.13                               Tue Jul 28 19:12:50 2020
-leaf01            CL              3.7.13                               Wed Jul 29 16:12:20 2020
-leaf02            CL              3.7.13                               Wed Jul 29 16:12:21 2020
-leaf03            CL              3.7.13                               Tue Jul 14 21:18:21 2020
-leaf04            CL              3.7.13                               Tue Jul 14 20:58:47 2020
-oob-mgmt-server   Ubuntu          18.04                                Mon Jul 13 21:01:35 2020
-server01          Ubuntu          18.04                                Mon Jul 13 22:09:18 2020
-server02          Ubuntu          18.04                                Mon Jul 13 22:09:18 2020
-server03          Ubuntu          18.04                                Mon Jul 13 22:09:20 2020
-server04          Ubuntu          18.04                                Mon Jul 13 22:09:20 2020
-server05          Ubuntu          18.04                                Mon Jul 13 22:09:20 2020
-server06          Ubuntu          18.04                                Mon Jul 13 22:09:21 2020
-server07          Ubuntu          18.04                                Mon Jul 13 22:09:21 2020
-server08          Ubuntu          18.04                                Mon Jul 13 22:09:22 2020
-spine01           CL              3.7.12                               Mon Aug 10 19:55:06 2020
-spine02           CL              3.7.12                               Mon Aug 10 19:55:07 2020
-spine03           CL              3.7.12                               Mon Aug 10 19:55:09 2020
-spine04           CL              3.7.12                               Mon Aug 10 19:55:08 2020
-```
-
 ### Related Commands
 
-- netq config agent cpu-limit
-- netq show resource-util
+- ```netq config agent cpu-limit```
+- ```netq show resource-util```
 
 - - -
 
@@ -2155,13 +2031,13 @@ None
 
 ## netq show kubernetes
 
-Displays the configuration and health of the non-NetQ Kubernetes components in your container environment. This command enables you to:
+Displays the configuration and health of the non-NetQ Kubernetes components in your container environment. This command lets you:
 
-- Identify and locate pods, deployment, replica-set and services deployed within the network using IP, name, label, and so forth
-- Track network connectivity of all pods of a service, deployment and replica set
+- Identify and locate pods, deployment, replica-set, and services deployed within the network using IP, name, label, and so forth
+- Track network connectivity of all pods of a service, deployment, and replica set
 - Locate any pods deployed adjacent to a top of rack (ToR) switch
 
-Outputs vary according to the component of the kubernetes cluster you want to view.
+Outputs vary according to the component of the Kubernetes cluster you want to view.
 
 {{<notice tip>}}
 You must enable Kubernetes monitoring on NetQ Agents. Refer to the <code>netq config add agent</code> command to enable monitoring.
@@ -2277,14 +2153,14 @@ netq [<hostname>] show kubernetes service
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| cluster | NA | Only display kubernetes cluster information |
-| node | NA | Only display kubernetes node information |
-| daemon-set | Only display kubernetes daemon-set information |
-| deployment | NA | Only display kubernetes node information |
-| pod | NA | Only display kubernetes node information |
-| replication-controller | NA | Only display kubernetes node information |
-| replica-set | NA | Only display kubernetes node information |
-| service | NA | Only display kubernetes node information |
+| cluster | NA | Only display Kubernetes cluster information |
+| node | NA | Only display Kubernetes node information |
+| daemon-set | NA |  Only display Kubernetes daemon-set information |
+| deployment | NA | Only display Kubernetes node information |
+| pod | NA | Only display Kubernetes node information |
+| replication-controller | NA | Only display Kubernetes node information |
+| replica-set | NA | Only display Kubernetes node information |
+| service | NA | Only display Kubernetes node information |
 | connectivity | NA | Only display connectivity information for the daemon-set, deployment, or service |
 
 ### Options
@@ -2293,18 +2169,18 @@ netq [<hostname>] show kubernetes service
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | name | \<kube-cluster-name\>, \<kube-node-name\>, \<kube-ds-name\>, \<kube-deployment-name\>, \<kube-pod-name\>, \<kube-rc-name\>, \<kube-rs-name\>, \<kube-service-name\> | Only display results for the Kubernetes component with this name |
-| components | NA | TBD |
-| cluster | \<kube-cluster-name>\ | Only display results for the cluster with this name |
+| components | NA | Only display results for Kubernetes nodes with this name |
+| cluster | \<kube-cluster-name\> | Only display results for the cluster with this name |
 | label | \<kube-node-label\>, \<kube-ds-label\>, \<kube-deployment-label\>, \<kube-pod-label\>, \<kube-rc-label\>, \<kube-rs-label\>, \<kube-service-label\> | Only display results for components with this label |
 | namespace | \<namespace\> | Only display results for clusters and nodes within this namespace |
-| pod-ip | \<<kube-pod-ipaddress\> | Only display results for the pod with this IP address |
+| pod-ip | \<kube-pod-ipaddress\> | Only display results for the pod with this IP address |
 | service-cluster-ip | \<kube-service-cluster-ip\> | Only display results for the service cluster with this IP address |
 | service-external-ip | \<kube-service-external-ip\> | Only display results for the service with this external IP address |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 ### Sample Usage
 
-Show health of clusters
+Show health of clusters:
 
 ```
 cumulus@host:~$ netq show kubernetes cluster
@@ -2321,33 +2197,7 @@ server12:3.0.0.69        default          Healthy              Healthy          
                                                                                 22
 ```
 
-Show health of pods
-
-```
-cumulus@host:~$ netq show kubernetes pod
-Matching kube_pod records:
-Master                   Namespace    Name                 IP               Node         Labels               Status   Containers               Last Changed
------------------------- ------------ -------------------- ---------------- ------------ -------------------- -------- ------------------------ ----------------
-server11:3.0.0.68        default      cumulus-frr-8vssx    3.0.0.70         server13     pod-template-generat Running  cumulus-frr:f8cac70bb217 Fri Feb  8 01:50:50 2019
-                                                                                            ion:1 name:cumulus-f
-                                                                                            rr controller-revisi
-                                                                                            on-hash:3710533951
-server11:3.0.0.68        default      cumulus-frr-dkkgp    3.0.5.135        server24     pod-template-generat Running  cumulus-frr:577a60d5f40c Fri Feb  8 01:50:50 2019
-                                                                                            ion:1 name:cumulus-f
-                                                                                            rr controller-revisi
-                                                                                            on-hash:3710533951
-server11:3.0.0.68        default      cumulus-frr-f4bgx    3.0.3.196        server11     pod-template-generat Running  cumulus-frr:1bc73154a9f5 Fri Feb  8 01:50:50 2019
-                                                                                            ion:1 name:cumulus-f
-                                                                                            rr controller-revisi
-                                                                                            on-hash:3710533951
-server11:3.0.0.68        default      cumulus-frr-gqqxn    3.0.2.5          server22     pod-template-generat Running  cumulus-frr:3ee0396d126a Fri Feb  8 01:50:50 2019
-                                                                                            ion:1 name:cumulus-f
-                                                                                            rr controller-revisi
-                                                                                            on-hash:3710533951`
-...
-```
-
-Show connectivity for a service
+Show connectivity for a service:
 
 ```
 cumulus@host:~$ netq show kubernetes service name calico-etcd connectivity
@@ -2361,14 +2211,14 @@ cumulus@host:~$ netq show kubernetes service name calico-etcd connectivity
                                      -- server12:swp4:NetQBond-2 -- swp17:NetQBond-17:edge02
 ```
 
-Refer to {{<link title="Monitor Container Environments Using Kubernetes API Server">}} for more usage examples.
+Refer to {{<link title="Monitor Container Environments Using Kubernetes API Server">}} for additional examples.
 
 ### Related Commands
 
-- netq config add agent kubernetes-monitor
-- netq config del agent kubernetes-monitor
-- netq config show agent kubernetes-monitor
-- netq show impact kubernetes
+- ```netq config add agent kubernetes-monitor```
+- ```netq config del agent kubernetes-monitor```
+- ```netq config show agent kubernetes-monitor```
+- ```netq show impact kubernetes```
 
 - - -
 
@@ -2624,15 +2474,7 @@ Thu Oct  1 14:25:18 2020  border02         4002   44:38:39:be:ef:ff configured o
 ## netq show mac-history
 
 <!-- vale off -->
-Displays when a MAC address is learned, when and where it moved in the network after that, if there was a duplicate at any time, and so forth. By default, the command displays various history threads in the output grouped by VLAN and timestamp (chronologically). You can filter the output based on the options used:
-<!-- vale on -->
-
-- Changes made between two points in time: use the `between` option
-- Only the differences in the changes between two points in time: use the `diff` option
-- The output grouped by selected output fields: use the `listby` option
-- Each change made for the MAC address on a particular VLAN: use the `vlan` option
-
-The default time range used is now to one hour ago. You can view the output in JSON format as well.
+Displays when a MAC address is learned, when and where it moved in the network after that, if there was a duplicate at any time, and so forth. By default, the command displays various history threads in the output grouped by VLAN and timestamp (chronologically). The default time range is between now and one hour ago.
 
 ### Syntax
 
@@ -2661,7 +2503,7 @@ netq [<hostname>] show mac-history
 | diff | NA | Only display the subset of changes that occurred within a time range defined by the `between` option |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | listby | \<text-list-by\> | Display output in groups based on the specified output field |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
@@ -2692,8 +2534,8 @@ Tue Oct 27 22:29:07 2020  leaf04            30     no     peerlink              
 
 ### Related Commands
 
-- netq show mac-commentary
-- netq show ip/ipv6 addresses
+- ```netq show mac-commentary```
+- ```netq show ip/ipv6 addresses```
 
 - - -
 
@@ -3151,11 +2993,11 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-On-premises appliance or VM
+On-premises appliance or VM:
 
 ```
 cumulus@hostname:~$ netq show opta-health
@@ -3174,16 +3016,9 @@ netq-app-configdiff-deploy-ff54c4cc4-7rz66             READY     default        
 ...
 ```
 
-Cloud appliance or VM
-
-```
-cumulus@hostname:~$ netq show opta-health
-OPTA is healthy
-```
-
 ### Related Commands
 
-- netq show opta-platform
+- ```netq show opta-platform```
 
 - - -
 
@@ -3206,7 +3041,7 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
@@ -3221,7 +3056,7 @@ Version                              Uptime                    Reinitialize Time
 
 ### Related Commands
 
-- netq show opta-health
+- ```netq show opta-health```
 
 - - -
 <!-- vale off -->
@@ -3795,14 +3630,14 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | tca_id | \<text-tca-id-anchor\> | Only display results for the configuration with this ID/name |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Show all TCA event configurations
+Show all TCA event configurations:
 
 ```
-cumulus@switch:~$ netq show tca
+cumulus@switch:~$ netq show tca:
 Matching config_tca records:
 TCA Name                     Event Name           Scope                      Severity Channel/s          Active Threshold          Unit     Threshold Type Suppress Until
 ---------------------------- -------------------- -------------------------- -------- ------------------ ------ ------------------ -------- -------------- ----------------------------
@@ -3820,7 +3655,7 @@ TCA_TCAM_IPV4_ROUTE_UPPER_1  TCA_TCAM_IPV4_ROUTE_ {"hostname":"*"}           err
                              UPPER
 ```
 
-Show a specific TCA configuration
+Show a specific TCA configuration:
 
 ```
 cumulus@switch:~$ netq show tca tca_id TCA_TXMULTICAST_UPPER_1
@@ -3833,9 +3668,9 @@ TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname inf
 
 ### Related Commands
 
-- netq add tca
-- netq del tca
-- netq show notification
+- ```netq add tca```
+- ```netq del tca```
+- ```netq show notification```
 
 - - -
 

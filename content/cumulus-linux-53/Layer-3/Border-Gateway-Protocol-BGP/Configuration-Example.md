@@ -1465,15 +1465,12 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL52 - BGP" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
+    {{< simulation name="Try It CL53 - BGP" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
 This simulation starts with the example BGP configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
 To validate the configuration, run the commands listed in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/Troubleshooting/" text="Troubleshooting">}} section.
 
-{{%notice note%}}
-This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation is coming soon.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

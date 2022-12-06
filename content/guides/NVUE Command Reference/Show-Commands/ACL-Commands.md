@@ -332,7 +332,7 @@ Shows source port matches for the ACL rule specified.
 | --------- | -------------- |
 | `<acl-id>` | The ACL name.|
 | `<rule-id>` | The rule number.|
-| `<ip-port-id>` | The IP port number. |
+| `<ip-port-id>` | The IP port number or protocol. |
 
 ### Version History
 
@@ -341,7 +341,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ssh
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\>
@@ -358,7 +358,7 @@ Shows destination port matches for the ACL rule specified.
 | --------- | -------------- |
 | `<acl-id>` | The ACL name.|
 | `<rule-id>` | The rule number.|
-| `<ip-port-id>` |  The IP port number. |
+| `<ip-port-id>` |  The IP port number or protocol. |
 
 ### Version History
 

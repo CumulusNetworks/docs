@@ -777,7 +777,7 @@ iface bond1.30
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL52 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
+    {{< simulation name="Try It CL53 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
 
 This demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
@@ -794,9 +794,6 @@ mac-id                          none               Override anycast-id
 state        up                 up                 The state of the interface
 ```
 
-{{%notice note%}}
-This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation is coming soon.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

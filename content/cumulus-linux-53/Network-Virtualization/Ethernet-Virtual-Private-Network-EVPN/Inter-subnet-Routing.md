@@ -1722,7 +1722,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL52 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
+    {{< simulation name="Try It CL53 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 
 This simulation starts with the example downstream VNI configuration. To simplify the example, only one spine is in the topology. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
@@ -1731,9 +1731,6 @@ This simulation starts with the example downstream VNI configuration. To simplif
 
 To validate the configuration, run the verification commands shown below.
 
-{{%notice note%}}
-This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation is coming soon.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

@@ -4234,7 +4234,7 @@ To workaround this issue, run the command against each VRF independently.</td>
 <tr>
 <td>2660583</td>
 <td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
-<td>3.7.14-4.3.0</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2654715</td>

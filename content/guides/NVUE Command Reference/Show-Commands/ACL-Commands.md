@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show interface \<interface-id\> acl \<acl-id\>
 
-An ACL is used for matching packets and take actions
+Shows information about Access Control Lists (ACLs) on the switch. You use ACLs to match packets and take actions.
 
 ### Usage
 
@@ -17,29 +17,29 @@ An ACL is used for matching packets and take actions
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<acl-id>` |     ACL ID|
+| `<interface-id>` | The interface on which the ACL operates. |
+| `<acl-id>` | The ACL name.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `inbound`  | ACL applied for inbound direction |
-| `outbound` | ACL applied for outbound direction |
+| `inbound`  | Shows information about the ACL applied for inbound traffic. |
+| `outbound` | Shows information about the ACL applied for outbound traffic. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp1 acl
 ```
 
 ## nv show interface \<interface-id\> acl \<acl-id\> inbound
 
-inbound direction
+Shows information about the ACL applied for inbound traffic.
 
 ### Usage
 
@@ -49,28 +49,28 @@ inbound direction
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<acl-id>` | ACL ID |
+| `<interface-id>` | The interface on which the ACL operates. |
+| `<acl-id>` | The ACL name.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `control-plane`   | ACL applied for control plane |
+| `control-plane`   | Shows information about the ACL applied to the control plane for inbound traffic. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound
 ```
 
 ## nv show interface \<interface-id\> acl \<acl-id\> inbound control-plane
 
-State details
+Shows information about the ACL applied for the control plane.
 
 ### Usage
 
@@ -80,8 +80,8 @@ State details
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<acl-id>` | ACL ID |
+| `<interface-id>` | The interface on which the ACL operates. |
+| `<acl-id>` | The ACL name.|
 
 ### Version History
 
@@ -90,12 +90,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound control-plane
 ```
 
 ## nv show interface \<interface-id\> acl \<acl-id\> outbound
 
-State details
+Shows information about the ACL applied for outbound traffic.
 
 ### Usage
 
@@ -105,14 +105,14 @@ State details
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<acl-id>` | ACL ID |
+| `<interface-id>` | The interface on which the ACL operates. |
+| `<acl-id>` | The ACL name.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `control-plane` | |
+| `control-plane` |  Shows information about the ACL applied to the control plane for outbound traffic. |
 
 ### Version History
 
@@ -121,12 +121,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound
 ```
 
 ## nv show interface \<interface-id\> acl \<acl-id\> outbound control-plane
 
-State details
+Shows information about the ACL applied to the control plane for outbound traffic.
 
 ### Usage
 
@@ -136,17 +136,17 @@ State details
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<acl-id>` | ACL ID |
+| `<interface-id>` | The interface on which the ACL operates. |
+| `<acl-id>` | The ACL name.|
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plane
 ```
 
 ## nv show system acl
@@ -167,7 +167,7 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show acl
 
-ACL rules
+Shows the configured ACL rules on the switch.
 
 ### Usage
 
@@ -177,7 +177,7 @@ ACL rules
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| <acl-id> |  ACL ID |
+| `<acl-id>` | The ACL name.|
 
 ### Version History
 
@@ -186,12 +186,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl
 ```
 
 ## nv show acl \<acl-id\>
 
-An ACL is used for matching packets and take actions
+Shows the specified ACL rule.
 
 ### Usage
 
@@ -201,13 +201,13 @@ An ACL is used for matching packets and take actions
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>`  |  ACL ID |
+| `<acl-id>` | The ACL name.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `rule` |  acl rule |
+| `rule` |  Shows configuration information about the ACL with the specified rule number.|
 
 ### Version History
 
@@ -216,12 +216,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\>
 
-ACL Matching criteria and action rule
+Shows configuration information about the ACL with the specified rule number.
 
 ### Usage
 
@@ -231,15 +231,15 @@ ACL Matching criteria and action rule
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `match`   | ACL match criteria |
-| `action`  | ACL action |
+| `match`   | Shows the ACL match criteria.|
+| `action`  | Shows the ACL action. |
 
 ### Version History
 
@@ -248,12 +248,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match
 
-An ACL match
+Shows the ACL match criteria for the specified ACL rule.
 
 ### Usage
 
@@ -263,15 +263,15 @@ An ACL match
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `ip` |   IPv4 and IPv6 match |
-| `mac` |  MAC match |
+| `ip` |   Shows an IPv4 or IPv6 match. |
+| `mac` |  Shows a MAC match. |
 
 ### Version History
 
@@ -280,12 +280,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip
 
-An ACL IPv4/IPv6 match
+Shows an IPv4 or IPv6 match for the ACL rule specified.
 
 ### Usage
 
@@ -295,18 +295,18 @@ An ACL IPv4/IPv6 match
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `source-port`| source port |
-| `dest-port`  | destination port |
-| `fragment`   | Fragment packets |
-| `ecn`        | ECN protocol packet match |
-| `tcp`        | TCP protocol packet match |
+| `source-port`| Shows source port matches. |
+| `dest-port`  | Shows destination port matches. |
+| `fragment`   | Shows ip fragment packets. |
+| `ecn`        | Shows ECN protocol packet matches |
+| `tcp`        | Shows TCP protocol packet matches. |
 
 ### Version History
 
@@ -315,10 +315,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip source-port \<ip-port-id\>
+
+Shows source port matches for the ACL rule specified.
 
 ### Usage
 
@@ -328,9 +330,9 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
-| `<ip-port-id>` |  IP port ID |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+| `<ip-port-id>` | The IP port number. |
 
 ### Version History
 
@@ -339,12 +341,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ssh
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\>
 
-L4 port
+Shows destination port matches for the ACL rule specified.
 
 ### Usage
 
@@ -354,9 +356,9 @@ L4 port
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
-| `<ip-port-id>` | IP port ID |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+| `<ip-port-id>` |  The IP port number. |
 
 ### Version History
 
@@ -365,12 +367,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port http
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip fragment
 
-State details
+Shows ip fragment packet matches for the ACL rule specified.
 
 ### Usage
 
@@ -380,8 +382,8 @@ State details
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -390,12 +392,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip fragment
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip ecn
 
-ECN
+Shows ECN matches for the ACL rule specified.
 
 ### Usage
 
@@ -405,14 +407,14 @@ ECN
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `flags`  |  ECN protocol flags |
+| `flags`  |  Shows the ECN protocol flags. |
 
 ### Version History
 
@@ -421,12 +423,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip ecn flags
 
-ECN flags
+Shows the ECN protocol flag matches for the ACL rule specified.
 
 ### Usage
 
@@ -436,8 +438,8 @@ ECN flags
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -446,12 +448,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp
 
-L4 port
+Shows TCP matches for the ACL rule specified.
 
 ### Usage
 
@@ -461,15 +463,15 @@ L4 port
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `flags`  | TCP protocol flags |
-| `mask`   | TCP protocol flag mask |
+| `flags`  | Shows TCP protocol flag matches. |
+| `mask`   | Shows TCP protocol flag mask matches. |
 
 ### Version History
 
@@ -478,12 +480,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp flags
 
-TCP flags
+Shows TCP flag matches for the ACL rule specified.
 
 ### Usage
 
@@ -493,8 +495,8 @@ TCP flags
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -503,12 +505,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp flags
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp mask
 
-TCP flags
+Shows TCP protocol flag mask matches for the ACL rule specified.
 
 ### Usage
 
@@ -518,8 +520,8 @@ TCP flags
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -528,12 +530,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp mask
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match mac
 
-An ACL MAC match
+Shows MAC address matches for the ACL rule specified.
 
 ### Usage
 
@@ -543,8 +545,8 @@ An ACL MAC match
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -553,12 +555,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match mac
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action
 
-ACL rule action
+Shows the action for the ACL rule specified.
 
 ### Usage
 
@@ -568,19 +570,19 @@ ACL rule action
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `permit`  | Permit action |
-| `deny`    | Deny action |
-| `log`     | Provides ACL logging facility |
-| `set`     | Modify the packet with appropriate values |
-| `erspan`  | ERSPAN session |
-| `police`  | policing of packets/bytes |
+| `permit`  | Shows a permit action. |
+| `deny`    | Shows a deny action. |
+| `log`     | Shows ACL logging. |
+| `set`     | Shows a set action. |
+| `erspan`  | Shows an ERSPAN session. |
+| `police`  | Shows policing of packets and bytes. |
 
 ### Version History
 
@@ -589,12 +591,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action permit
 
-Permit packets
+Shows a permit action for the ACL rule specified.
 
 ### Usage
 
@@ -604,8 +606,8 @@ Permit packets
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -614,12 +616,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action permit
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action deny
 
-deny packets
+Shows a deny action for the ACL rule specified.
 
 ### Usage
 
@@ -629,8 +631,8 @@ deny packets
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -639,12 +641,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action deny
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action log
 
-log packets
+Shows logs for the ACL rule specified.
 
 ### Usage
 
@@ -654,8 +656,8 @@ log packets
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -664,12 +666,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action log
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action set
 
-Set action for packets
+Shows the set action for the ACL rule specified.
 
 ### Usage
 
@@ -679,8 +681,8 @@ Set action for packets
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -689,12 +691,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action set
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action erspan
 
-ERSPAN session
+Shows the ERSPAN session for the ACL rule specified.
 
 ### Usage
 
@@ -704,8 +706,8 @@ ERSPAN session
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>` | ACL ID |
-| `<rule-id>`  |   ACL rule number |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
 
 ### Version History
 
@@ -714,12 +716,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action erspan
 ```
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action police
 
-Policing of matched packets/bytes
+Shows policing of matched packets and bytes for the ACL rule specified.
 
 ### Usage
 
@@ -729,9 +731,8 @@ Policing of matched packets/bytes
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<acl-id>`  |  ACL ID |
-  
-  <rule-id>             ACL rule number
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The ACL rule number. |
 
 ### Version History
 
@@ -740,5 +741,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action police
 ```

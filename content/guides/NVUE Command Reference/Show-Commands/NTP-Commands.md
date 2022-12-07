@@ -7,17 +7,11 @@ type: nojsscroll
 ---
 ## nv show service ntp
 
-NTPs
+Shows the Network Time Protocol (NTP) configuration on the switch.
 
 ### Usage
 
-`nv show service ntp [options] [<vrf-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
+`nv show service ntp [options]`
 
 ### Version History
 
@@ -26,12 +20,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service ntp
 ```
 
 ## nv show service ntp \<vrf-id\>
 
-Network Time Protocol
+Shows the NTP configuration in the specified VRF.
 
 ### Usage
 
@@ -41,14 +35,14 @@ Network Time Protocol
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |  The VRF name.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `server` | Remote NTP Servers |
-| `pool`  |  Remote NTP Servers |
+| `server` | Shows information about the specified remote NTP server. |
+| `pool`  |  Shows information about the specified remote NTP server pool. |
 
 ### Version History
 
@@ -57,12 +51,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service ntp default
 ```
 
 ## nv show service ntp \<vrf-id\> server \<server-id\>
 
-A remote NTP Server
+Shows information about the specified remote NTP server.
 
 ### Usage
 
@@ -72,8 +66,8 @@ A remote NTP Server
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<server-id>` |   Hostname or IP address of the NTP server |
+| `<vrf-id>` | The VRF name. |
+| `<server-id>` | The hostname or IP address of the NTP server. |
 
 ### Version History
 
@@ -82,12 +76,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service ntp default server time.nist.gov
 ```
 
 ## nv show service ntp \<vrf-id\> pool \<server-id\>
 
-A remote NTP Server
+Shows information about the specified remote NTP server pool.
 
 ### Usage
 
@@ -97,8 +91,8 @@ A remote NTP Server
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<server-id>` |   Hostname or IP address of the NTP server |
+| `<vrf-id>` | The VRF name. |
+| `<server-id>` | The hostname or IP address of the NTP server. |
 
 ### Version History
 
@@ -107,5 +101,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service ntp default server 4.cumulusnetworks.pool.ntp.org
 ```

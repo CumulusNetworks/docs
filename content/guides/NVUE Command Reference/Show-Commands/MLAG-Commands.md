@@ -52,7 +52,7 @@ Shows inconsistencies on the interface that the MLAG consistency checker finds.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -108,7 +108,7 @@ Shows any MLAG inconsistencies on the MLAG peers.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -126,7 +126,7 @@ Shows global MLAG settings for each MLAG peer and indicates if there are any inc
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -168,7 +168,7 @@ Shows information about the backup IP address specified.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 

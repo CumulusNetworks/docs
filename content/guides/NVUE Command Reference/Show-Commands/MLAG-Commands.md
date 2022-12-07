@@ -38,7 +38,7 @@ cumulus@leaf04:mgmt:~$ nv show interface swp1 bond mlag
 
 ## nv show interface \<interface-id\> bond mlag consistency-checker
 
-Interface MLAG Consistency-checker
+Shows inconsistencies on the interface that the MLAG consistency checker finds.
 
 ### Usage
 
@@ -57,7 +57,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp1 bond mlag consistency-checker
 ```
 
 ## nv show mlag
@@ -94,7 +94,7 @@ cumulus@leaf04:mgmt:~$ nv show mlag
 
 ## nv show mlag consistency-checker
 
-Shows any MLAG inconsistencies on the switch.
+Shows any MLAG inconsistencies on the MLAG peers.
 
 ### Usage
 
@@ -104,7 +104,7 @@ Shows any MLAG inconsistencies on the switch.
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `global`    | Shows global consistency-checker |
+| `global`    | Shows global MLAG settings for each MLAG peer and indicates if there are any inconsistencies. |
 
 ### Version History
 
@@ -113,12 +113,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show mlag consistency-checker
 ```
 
 ## nv show mlag consistency-checker global
 
-Shows global MLAG settings for each peer and indicates if there are any inconsistencies.
+Shows global MLAG settings for each MLAG peer and indicates if there are any inconsistencies.
 
 ### Usage
 
@@ -204,7 +204,7 @@ cumulus@leaf04:mgmt:~$ nv show mlag fdb
 
 ## nv show mlag fdb local
 
-Shows the locally learned MAC addresses.
+Shows the locally learned MAC addresses in the FDB.
 
 ### Usage
 
@@ -222,7 +222,7 @@ cumulus@leaf04:mgmt:~$ nv show mlag fdb local
 
 ## nv show mlag fdb peer
 
-Shows the MAC addresses synchronized between MLAG peers.
+Shows the MAC addresses synchronized between MLAG peers in the FDB.
 
 ### Usage
 
@@ -240,7 +240,7 @@ cumulus@leaf04:mgmt:~$ nv show mlag fdb peer
 
 ## nv show mlag fdb permanent
 
-Shows the permanent MAC addresses installed on the MLAG peer.
+Shows the permanent MAC addresses installed in the FDB on the MLAG peer.
 
 ### Usage
 
@@ -258,7 +258,7 @@ cumulus@leaf04:mgmt:~$ nv show mlag fdb permanent
 
 ## nv show mlag mdb
 
-Shows the multicast database on the both the local and peer switch.
+Shows the multicast database on both MLAG peers.
 
 ### Usage
 
@@ -319,7 +319,7 @@ cumulus@leaf04:mgmt:~$ nv show mlag mdb peer
 
 ## nv show mlag multicast-router-port
 
-Shows the MLAG multicast router ports on both the local and the peer switch.
+Shows the MLAG multicast router ports on both MLAG peers.
 
 ### Usage
 
@@ -380,7 +380,7 @@ cumulus@leaf04:mgmt:~$ nv show mlag multicast-router-port peer
 
 ## nv show mlag vni
 
-Shows the MLAG VNIs on both the local and the peer switch.
+Shows the MLAG VNIs on both MLAG peers.
 
 ### Usage
 
@@ -441,7 +441,7 @@ cumulus@leaf04:mgmt:~$ nv show mlag vni peer
 
 ## nv show mlag lacpdb
 
-Shows the LACP database on the both the local and the peer switch.
+Shows the LACP database on the both MLAG peers.
 
 ### Usage
 

@@ -482,7 +482,7 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 ran
 
 ## nv show service dhcp-server \<vrf-id\> domain-name \<domain-name-id\>
 
-TBD
+Shows the DNS attributes provided by the DHCP server.
 
 ### Usage
 
@@ -492,8 +492,8 @@ TBD
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<domain-name-id>` | DHCP domain name |
+| `<vrf-id>` | The VRF name.|
+| `<domain-name-id>` | The IPv4 DHCP domain name. |
 
 ### Version History
 
@@ -502,12 +502,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default domain-name
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default domain-name my-domain
 ```
 
 ## nv show service dhcp-server \<vrf-id\> domain-name-server \<server-id\>
 
-A remote DNS server
+Shows DNS server configuration provided by the DHCP server.
 
 ### Usage
 
@@ -517,8 +517,8 @@ A remote DNS server
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<server-id>` |  DNS server |
+| `<vrf-id>` | The VRF name.|
+| `<server-id>` |  The DNS server. |
 
 ### Version History
 
@@ -527,12 +527,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default domain-name-server 192.168.200.53
 ```
 
 ## nv show service dhcp-server \<vrf-id\> static \<static-id\>
 
-static entry
+Shows static configuration for hosts served by the DHCP server.
 
 ### Usage
 
@@ -542,8 +542,8 @@ static entry
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<static-id>` | static mapping name|
+| `<vrf-id>` | The VRF name. |
+| `<static-id>` | The IDN host name.|
 
 ### Version History
 
@@ -552,22 +552,16 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default static server1
 ```
 
 ## nv show service dhcp-server6
 
-DHCP-servers6
+Shows IPv6 DHCP server information.
 
 ### Usage
 
-`nv show service dhcp-server6 [options] [<vrf-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
+`nv show service dhcp-server6 [options]`
 
 ### Version History
 
@@ -576,7 +570,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server6
 ```
 
 ## nv show service dhcp-server6 \<vrf-id\>
@@ -591,7 +585,7 @@ Dynamic Host Configuration Protocol IPv6 Server
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |  The VRF name.|
 
 ### Attributes
 

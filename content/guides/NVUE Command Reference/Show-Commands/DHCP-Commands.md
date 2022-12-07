@@ -267,7 +267,7 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface downstream 
 
 ## nv show service dhcp-server
 
-Shows IPv4 DHCP server configuration information.
+Shows IPv4 DHCP server information.
 
 ### Usage
 
@@ -373,7 +373,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool storage-servers
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24
 ```
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\>
@@ -399,7 +399,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool storage servers domain-name-server 192.168.200.53
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name-server 192.168.200.53
 ```
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
@@ -425,7 +425,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool storage servers domain-name example.com
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name example.com
 ```
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> gateway \<gateway-id\>
@@ -451,7 +451,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool storage servers gateway 10.1.10.1
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 gateway 10.1.10.1
 ```
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\>
@@ -468,7 +468,7 @@ Shows the IPv4 DHCP IP address range assignments.
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<pool-id>` |  The DHCP pool subnet. |
-| `<range-id>` |  The IP address range. |
+| `<range-id>` |  The start of the IP address range. |
 
 ### Version History
 
@@ -477,7 +477,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool storage servers range 10.1.10.100 to 10.1.10.199
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 range 10.1.10.100
 ```
 
 ## nv show service dhcp-server \<vrf-id\> domain-name \<domain-name-id\>
@@ -502,7 +502,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default domain-name
 ```
 
 ## nv show service dhcp-server \<vrf-id\> domain-name-server \<server-id\>

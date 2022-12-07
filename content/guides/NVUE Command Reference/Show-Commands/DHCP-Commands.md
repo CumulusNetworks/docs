@@ -7,17 +7,11 @@ type: nojsscroll
 ---
 ## nv show service dhcp-relay
 
-DHCP-relays
+Shows the IPv4 DHCP relay configuration on the switch.
 
 ### Usage
 
 `nv show service dhcp-relay [options] [<vrf-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
 
 ### Version History
 
@@ -26,12 +20,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-relay
 ```
 
 ## nv show service dhcp-relay \<vrf-id\>
 
-DHCP relay
+Shows the IPv4 DHCP relay configuration in the specified VRF.
 
 ### Usage
 
@@ -41,15 +35,15 @@ DHCP relay
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` | The VRF name.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `server`                | DHCP servers |
-| `interface`             | Set of interfaces on which to handle DHCP relay traffic |
-| `giaddress-interface`   | Configures DHCP relay giaddress on the interfaes. |
+| `server`                | Shows the specified DHCP server configuration.|
+| `interface`             | Shows DHCP relay configuration information for the interface that handles DHCP relay traffic. |
+| `giaddress-interface`   | Shows DHCP relay giaddress configuration information. |
 
 ### Version History
 
@@ -58,12 +52,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default
 ```
 
 ## nv show service dhcp-relay \<vrf-id\> server \<server-id\>
 
-A DHCP server
+Shows configuration for the specified IPv4 DHCP server participating in DHCP relay.
 
 ### Usage
 
@@ -73,8 +67,8 @@ A DHCP server
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<server-id>`   | DHCP server |
+| `<vrf-id>` |  The VRF name.|
+| `<server-id>`   | The DHCP server. |
 
 ### Version History
 
@@ -83,10 +77,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default server 172.16.1.102
 ```
 
 ## nv show service dhcp-relay \<vrf-id\> interface \<interface-id\>
+
+Shows IPv4 DHCP relay configuration information for the interface that handles DHCP relay traffic.
 
 ### Usage
 
@@ -96,8 +92,8 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<interface-id>` |  DHCP relay interface |
+| `<vrf-id>` |  The VRF name.|
+| `<interface-id>` |  The DHCP relay interface.|
 
 ### Version History
 
@@ -106,10 +102,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default interface swp1
 ```
 
 ## nv show service dhcp-relay \<vrf-id\> giaddress-interface \<interface-id\>
+
+Shows the IPv4 DHCP relay gateway IP address (giaddress) interface configuration.
 
 ### Usage
 
@@ -119,8 +117,8 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<interface-id>`  | DHCP relay giaddress interface |
+| `<vrf-id>` |  The VRF name.|
+| `<interface-id>`  | The DHCP relay giaddress interface. |
 
 ### Version History
 
@@ -129,20 +127,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default giaddress-interface lo
 ```
 
 ## nv show service dhcp-relay6
 
+Shows IPv6 DHVP relay configuration information on the switch.
+
 ### Usage
 
-`nv show service dhcp-relay6 [options] [<vrf-id> ...]`
+`nv show service dhcp-relay6 [options]`
 
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |  The VRF name.|
 
 ### Version History
 
@@ -151,10 +151,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6
 ```
 
 ## nv show service dhcp-relay6 \<vrf-id\>
+
+Shows IPv6 DHVP relay configuration information in the specified VRF on the switch.
 
 ### Usage
 
@@ -164,13 +166,13 @@ cumulus@leaf04:mgmt:~$
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |  The VRF name.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `interface`  | DHCP relay interfaces |
+| `interface`  | Shows the IPv6 DHCP relay interfaces. |
 
 ### Version History
 
@@ -179,12 +181,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default
 ```
 
 ## nv show service dhcp-relay6 \<vrf-id\> interface
 
-DHCP relay interfaces
+Shows the IPv6 DHCP relay interface configuration in the specified VRF.
 
 ### Usage
 
@@ -194,14 +196,14 @@ DHCP relay interfaces
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |  The VRF name.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `upstream`   | Configures DHCP relay on the interfaes. |
-| `downstream` | Configures DHCP relay on the interfaes. |
+| `upstream`   | Shows the upstream IPv6 DHCP relay interface configuration. |
+| `downstream` | Shows the downstream IPv6 DHCP relay interface configuration. |
 
 ### Version History
 
@@ -210,12 +212,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface swp1
 ```
 
 ## nv show service dhcp-relay6 \<vrf-id\> interface upstream \<interface-id\>
 
-An interface on which DPCH relay is configured.
+Shows the upstream IPv6 DHCP relay interface configuration.
 
 ### Usage
 
@@ -225,8 +227,8 @@ An interface on which DPCH relay is configured.
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<interface-id>` |  DHCP relay interface |
+| `<vrf-id>` |  The VRF name.|
+| `<interface-id>` | The DHCP relay interface. |
 
 ### Version History
 
@@ -235,12 +237,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface upstream swp51
 ```
 
 ## nv show service dhcp-relay6 \<vrf-id\> interface downstream \<interface-id\>
 
-An interface on which DPCH relay is configured.
+AShows the downstream IPv6 DHCP relay interface configuration.
 
 ### Usage
 
@@ -250,8 +252,8 @@ An interface on which DPCH relay is configured.
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<interface-id>` |  DHCP relay interface |
+| `<vrf-id>` |  The VRF name.|
+| `<interface-id>` |  The DHCP relay interface. |
 
 ### Version History
 
@@ -260,25 +262,16 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface downstream swp1
 ```
-
-
-
 
 ## nv show service dhcp-server
 
-DHCP-servers
+Shows IPv4 DHCP server configuration information.
 
 ### Usage
 
-`nv show service dhcp-server [options] [<vrf-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
+`nv show service dhcp-server [options]`
 
 ### Version History
 
@@ -287,12 +280,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server
 ```
 
 ## nv show service dhcp-server \<vrf-id\>
 
-Dynamic Host Configuration Protocol Server
+Shows IPv4 DHCP server configuration information in the specified VRF.
 
 ### Usage
 
@@ -302,17 +295,17 @@ Dynamic Host Configuration Protocol Server
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` | The VRF name.|
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `interface`             | Assign DHCP options to clients directly attached to these interfaes. |
-| `pool`                  | DHCP Pools |
-| `domain-name`           | DHCP domain names |
-| `domain-name-server`    | DHCP domain name servers |
-| `static`                | DHCP clients with fixed IP address assignments |
+| `interface`             | Shows the interfaces on which IPv4 DPCH clients are attached.|
+| `pool`                  | Shows the IPv4 DHCP Pools. |
+| `domain-name`           | Shows the IPv4 DHCP domain names. |
+| `domain-name-server`    | Shows the IPv4 DHCP domain name servers. |
+| `static`                | Shows the IPv4 DHCP clients with fixed IP address assignments. |
 
 ### Version History
 
@@ -321,12 +314,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default
 ```
 
 ## nv show service dhcp-server \<vrf-id\> interface \<interface-id\>
 
-An interface on which DPCH clients are attached.
+Shows information about the interface on which IPv4 DHCP client is attached.
 
 ### Usage
 
@@ -336,8 +329,8 @@ An interface on which DPCH clients are attached.
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<interface-id>`  | DHCP client interface |
+| `<vrf-id>` | The VRF name.|
+| `<interface-id>`  | The IPv4 DHCP client interface. |
 
 ### Version History
 
@@ -346,12 +339,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default interface swp1
 ```
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\>
 
-DHCP Pool
+Shows information about the IPv4 DHCP pool subnet.
 
 ### Usage
 
@@ -361,17 +354,17 @@ DHCP Pool
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<pool-id>` |  DHCP pool subnet. |
+| `<vrf-id>` | The VRF name.|
+| `<pool-id>` |  The DHCP pool subnet. |
 
 ### Attributes
 
 | Attribute |  Description   |
 | --------- | -------------- |
-| `domain-name-server`    | DHCP domain name servers |
-| `domain-name`           | DHCP domain names |
-| `gateway`               | DHCP gateway |
-| `range`                 | IP Address range assignments |
+| `domain-name-server`    | Shows information about the IPv4 DHCP domain name server in the pool |
+| `domain-name`           | Shows information about the the IPv4 DHCP domain name in the pool. |
+| `gateway`               | Shows information about the IPv4 DHCP gateway. |
+| `range`                 | Shows the IPv4 DHCP IP address range assignments. |
 
 ### Version History
 
@@ -380,12 +373,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool storage-servers
 ```
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\>
 
-A remote DNS server
+Shows information about the IPv4 DHCP domain name server in the pool.
 
 ### Usage
 
@@ -395,9 +388,9 @@ A remote DNS server
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |  VRF |
-| `<pool-id>` |  DHCP pool subnet. |
-| `<server-id>` | DNS server |
+| `<vrf-id>` | The VRF name.|
+| `<pool-id>` |  The DHCP pool subnet. |
+| `<server-id>` | The DNS server IP address.|
 
 ### Version History
 
@@ -406,12 +399,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool storage servers domain-name-server 192.168.200.53
 ```
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
 
-TBD
+Shows information about the the IPv4 DHCP domain name in the pool.
 
 ### Usage
 
@@ -421,9 +414,9 @@ TBD
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<pool-id>` | DHCP pool subnet. |
-| `<domain-name-id>` | DHCP domain name |
+| `<vrf-id>` | The VRF name.|
+| `<pool-id>` |  The DHCP pool subnet. |
+| `<domain-name-id>` | The DHCP domain name. |
 
 ### Version History
 
@@ -432,26 +425,24 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool storage servers domain-name example.com
 ```
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> gateway \<gateway-id\>
+
+Shows information about the IPv4 DHCP gateway.
 
 ### Usage
 
 `nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]`
 
-
-
-  A remote DNS server
-
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<pool-id>` | DHCP pool subnet. |
-| `<gateway-id>` |  Gateway |
+| `<vrf-id>` | The VRF name.|
+| `<pool-id>` |  The DHCP pool subnet. |
+| `<gateway-id>` |  The gateway IP address. |
 
 ### Version History
 
@@ -460,26 +451,24 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool storage servers gateway 10.1.10.1
 ```
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\>
+
+Shows the IPv4 DHCP IP address range assignments.
 
 ### Usage
 
 `nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options]`
 
-
-
-  DHCP Pool range
-
 ### Identifiers
 
 | Identifier |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<pool-id>` | DHCP pool subnet. |
-| `<range-id>` |   DHCP client interface |
+| `<vrf-id>` | The VRF name.|
+| `<pool-id>` |  The DHCP pool subnet. |
+| `<range-id>` |  The IP address range. |
 
 ### Version History
 
@@ -488,7 +477,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool storage servers range 10.1.10.100 to 10.1.10.199
 ```
 
 ## nv show service dhcp-server \<vrf-id\> domain-name \<domain-name-id\>

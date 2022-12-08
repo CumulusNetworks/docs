@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3283598"></a> [3283598](#3283598) <a name="3283598"></a> <br />None | After you restart the FRR service, show commands incorrectly reflect the VLAN associated with layer 3 VNIs as 0:<pre># net show evpn vni 123VNI: 123Type: L3Tenant VRF: BLUEVlan: 0</pre> | 5.3.0 | |
 | <a name="3244955"></a> [3244955](#3244955) <a name="3244955"></a> <br /> | ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries. | 5.2.0-5.3.0 | |
 | <a name="3174706"></a> [3174706](#3174706) <a name="3174706"></a> <br /> | When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped. | 5.1.0-5.3.0 | |
 | <a name="3172504"></a> [3172504](#3172504) <a name="3172504"></a> <br /> | When you connect the NVIDIA SN4600C switch to a Spectrum 1 or Spectrum-3 switch with a 40GbE passive copper cable (Part Number: MC2210126-005) on edge ports 1-4 and 61-64, there is an Effective BER of 1E-12 in PHY. | 5.2.0-5.3.0 | |

@@ -1880,10 +1880,22 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3288156</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
 <td>4.4.3-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3236366</td>
+<td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands or   running {{apt upgrade}} to upgrade to Cumulus Linux 4.4.5.</td>
+<td>4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -3806,6 +3818,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3288156</td>
@@ -5864,6 +5882,12 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3288156</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
@@ -7905,6 +7929,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3221470</td>
@@ -10131,6 +10161,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3221470</td>

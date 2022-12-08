@@ -46,6 +46,7 @@ pdfhidden: True
 ### Fixed Issues in 5.4.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="3283598"></a> [3283598](#3283598) <a name="3283598"></a> <br />None | After you restart the FRR service, show commands incorrectly reflect the VLAN associated with layer 3 VNIs as 0:<pre># net show evpn vni 123VNI: 123Type: L3Tenant VRF: BLUEVlan: 0</pre> | 5.3.0 | |
 | <a name="3244955"></a> [3244955](#3244955) <a name="3244955"></a> <br /> | ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries. | 5.2.0-5.3.0 | |
 | <a name="3145222"></a> [3145222](#3145222) <a name="3145222"></a> <br /> | The NVUE <code>nv show system forwarding --output json</code> command does not provide any output. To work around this issue, run the <code>nv show system forwarding</code> command. | 5.2.0-5.3.0 | |
 

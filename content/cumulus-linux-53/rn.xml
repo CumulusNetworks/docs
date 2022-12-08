@@ -193,12 +193,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>2895333</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.1, 5.0.0-5.3.0</td>
-<td>4.4.2-4.4.5</td>
-</tr>
-<tr>
 <td>2891255</td>
 <td>CVE-2021-39925: Buffer overflow in the Bluetooth SDP dissector in Wireshark 3.4.0 to 3.4.9 and 3.2.0 to 3.2.17 allows denial of service via packet injection or crafted capture file.
 Vulnerable: &lt;= 2.6.20-0+deb10u1

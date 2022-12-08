@@ -1,0 +1,23 @@
+name: 'Scheduled STAGE Release Note Publisher'
+
+on:
+  schedule:
+    - cron:  '0 13,20 * * *'
+
+jobs:
+  release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+      - name: Run the **STAGE** RN and FOSS scripts
+        run: |
+          python3 utils/build_rnstage_rns.py
+          python3 utils/build_rnstage_foss_licenses.py
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "Automated release note commit"
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.STU_GITHUB_TOKEN }}

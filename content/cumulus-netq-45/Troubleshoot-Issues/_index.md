@@ -9,7 +9,7 @@ toc: 2
 This page describes how to generate a support file for the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA support team">}} to help troubleshoot issues with NetQ itself.
 ## Generate a Support File
 
-The `opta-support` command generates an archive of useful information for troubleshooting issues with NetQ. It is an extension of the `cl-support` command in Cumulus Linux. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command.
+The `opta-support` command generates an archive of useful information for troubleshooting issues with NetQ. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command.
 
 ```
 cumulus@server:~$ sudo opta-support

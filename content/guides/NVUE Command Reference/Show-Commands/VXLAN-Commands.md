@@ -31,6 +31,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show nve vxlan mlag
 
 VxLAN specfic MLAG configuration
@@ -49,6 +51,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show nve vxlan source
 
 Source address
@@ -66,6 +70,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show nve vxlan flooding
 
@@ -91,6 +97,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show nve vxlan flooding head-end-replication
 
 Set of IPv4 unicast addresses or "evpn".
@@ -114,6 +122,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show nve vxlan flooding head-end-replication \<hrep-id\>
 
@@ -139,6 +149,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show nve vxlan encapsulation
 
 ### Usage
@@ -154,6 +166,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show nve vxlan encapsulation dscp
 
@@ -171,6 +185,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show nve vxlan decapsulation
 
 ### Usage
@@ -186,5 +202,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show nve vxlan decapsulation dscp

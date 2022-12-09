@@ -35,6 +35,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show interface swp1 ip igmp
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> ip igmp static-group
 
 Shows information about IGMP static multicast groups configured on the interface.
@@ -58,6 +60,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show interface swp1 ip igmp static-group
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> ip igmp static-group \<static-group-id\>
 
@@ -83,6 +87,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show interface swp1 ip igmp static-group 224.10.0.0
 ```
+
+- - -
 
 ## nv show router igmp
 

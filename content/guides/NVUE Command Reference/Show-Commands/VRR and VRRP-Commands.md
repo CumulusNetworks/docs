@@ -36,6 +36,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> ip vrr address \<ip-prefix-id\>
 
 An IP address with prefix
@@ -61,6 +63,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> ip vrr state
 
 The state of the interface
@@ -84,6 +88,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> ip vrrp
 
@@ -115,6 +121,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\>
 
 A virtual gateway implemented with VRRP
@@ -145,6 +153,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address \<ip-address-id\>
 

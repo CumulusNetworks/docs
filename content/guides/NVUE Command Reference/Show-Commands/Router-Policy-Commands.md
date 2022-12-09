@@ -37,6 +37,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound
 
 Outbound unicast policy
@@ -62,6 +64,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound
 
 Outbound unicast policy
@@ -86,6 +90,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy
 
@@ -119,6 +125,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound
 
 Outbound unicast policy
@@ -144,6 +152,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound
 
 Outbound unicast policy
@@ -168,6 +178,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy
 
@@ -201,6 +213,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound
 
 Inbound l2vpn-evpn policy
@@ -225,6 +239,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy outbound
 
@@ -251,6 +267,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ebgp-policy
 
 EBGP Policy RFC8212
@@ -275,6 +293,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy
 
@@ -308,6 +328,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound
 
 Outbound unicast policy
@@ -333,6 +355,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound
 
 Outbound unicast policy
@@ -357,6 +381,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy
 
@@ -390,6 +416,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound
 
 Inbound l2vpn-evpn policy
@@ -415,6 +443,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound
 
 Outbound l2vpn-evpn policy
@@ -439,6 +469,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy
 
@@ -469,6 +501,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy community-list
 
 ### Usage
@@ -490,6 +524,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy community-list \<list-id\>
 
@@ -521,6 +557,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy community-list \<list-id\> rule
 
 Community list rules
@@ -545,6 +583,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy community-list \<list-id\> rule \<rule-id\>
 
@@ -577,6 +617,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy community-list \<list-id\> rule \<rule-id\> community
 
 Set of community names for community-list
@@ -602,6 +644,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\>
 
@@ -629,6 +673,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy as-path-list
 
 AS Path lists
@@ -652,6 +698,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy as-path-list \<list-id\>
 
@@ -683,6 +731,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy as-path-list \<list-id>\ rule \<rule-id\>
 
 AS Path list Matching criteria and action rule
@@ -708,6 +758,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy ext-community-list
 
 Extended Community lists
@@ -731,6 +783,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy ext-community-list \<list-id\>
 
@@ -762,6 +816,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy ext-community-list \<list-id\> rule
 
 Extended Community list rules
@@ -786,6 +842,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\>
 
@@ -817,6 +875,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
 
@@ -850,6 +910,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt
 
 Set of extended communities
@@ -875,6 +937,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\>
 
@@ -902,6 +966,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
 
 Set of extended communities
@@ -927,6 +993,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo \<ext-community-id\>
 
@@ -954,6 +1022,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy large-community-list
 
 Large Community lists
@@ -977,6 +1047,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy large-community-list \<list-id\>
 
@@ -1008,6 +1080,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy large-community-list \<list-id\> rule
 
 Large Community list rules
@@ -1032,6 +1106,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy large-community-list \<list-id\> rule \<rule-id\>
 
@@ -1064,6 +1140,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy large-community-list \<list-id\> rule \<rule-id\> large-community
 
 Set of community names for large community list
@@ -1089,6 +1167,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy large-community-list \<list-id\> rule \<rule-id\> large-community \<large-community-id\>
 
@@ -1116,6 +1196,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy prefix-list
 
 Prefix list rules
@@ -1139,6 +1221,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy prefix-list \<prefix-list-id\>
 
@@ -1169,6 +1253,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy prefix-list \<prefix-list-id\> rule \<rule-id\>
 
@@ -1201,6 +1287,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\>
 
 A prefix matc
@@ -1227,6 +1315,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy route-map
 
 Collection of Route Maps
@@ -1250,6 +1340,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy route-map \<route-map-id\>
 
@@ -1280,6 +1372,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\>
 
@@ -1314,6 +1408,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> match
 
 Route map rule match
@@ -1338,6 +1434,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set
 
@@ -1373,6 +1471,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend
 
 AS Path prepend
@@ -1397,6 +1497,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set community \<community-id\>
 
@@ -1424,6 +1526,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set large-community \<large-community-id\>
 
 Large BGP Community
@@ -1449,6 +1553,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\>
 
@@ -1482,6 +1588,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\> address \<ipv4-address-id\>
 
 An IPv4 address
@@ -1508,6 +1616,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> action
 
@@ -1541,6 +1651,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> action deny
 
 State details
@@ -1565,6 +1677,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit
 
@@ -1596,6 +1710,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy
 

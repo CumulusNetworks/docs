@@ -35,6 +35,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> bridge domain \<domain-id\>
 
 Bridge domain on this interface
@@ -67,6 +69,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> bridge domain \<domain-id\> stp
 
 attributed related to a stpd interface
@@ -91,6 +95,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\>
 
@@ -118,6 +124,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge
 
 Properties associated with an instance of a bridge.
@@ -142,6 +150,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain
 
 Bridge domains
@@ -165,6 +175,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show bridge domain \<domain-id\>
 
@@ -201,6 +213,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> stp
 
 attributes related to global stp
@@ -231,6 +245,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> stp state
 
 The state of STP on the bridge
@@ -254,6 +270,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show bridge domain \<domain-id\> multicast
 
@@ -286,6 +304,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> multicast snooping
 
 IGMP/MLD snooping configuration
@@ -316,6 +336,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> multicast snooping querier
 
 IGMP/MLD querier configuration
@@ -339,6 +361,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\>
 
@@ -373,6 +397,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\>
 
 VNI
@@ -404,6 +430,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding
 
@@ -438,6 +466,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication <hrep-id>
 
 Set of IPv4 unicast addresses or "evpn".
@@ -466,6 +496,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> vlan \<vid\> ptp
 
 VLAN PTP configuration.  Inherited by interfaces in this VLAN.
@@ -490,6 +522,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\> multicast
 
@@ -522,6 +556,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> vlan \<vid\> multicast snooping
 
 IGMP/MLD snooping configuration
@@ -553,6 +589,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier
 
 IGMP/MLD querier configuration
@@ -578,6 +616,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> mac-table
 
 L2 FDB
@@ -602,6 +642,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show bridge domain \<domain-id\> mdb
 
 Set of mdb entries in the bridge domain
@@ -625,6 +667,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show bridge domain \<domain-id\> router-port
 

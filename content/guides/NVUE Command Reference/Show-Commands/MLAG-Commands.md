@@ -36,6 +36,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show interface swp1 bond mlag
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> bond mlag consistency-checker
 
 Shows inconsistencies on the interface that the MLAG consistency checker finds.
@@ -59,6 +61,8 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@leaf04:mgmt:~$ nv show interface swp1 bond mlag consistency-checker
 ```
+
+- - -
 
 ## nv show mlag
 
@@ -92,6 +96,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag
 ```
 
+- - -
+
 ## nv show mlag consistency-checker
 
 Shows any MLAG inconsistencies on the MLAG peers.
@@ -116,6 +122,8 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf04:mgmt:~$ nv show mlag consistency-checker
 ```
 
+- - -
+
 ## nv show mlag consistency-checker global
 
 Shows global MLAG settings for each MLAG peer and indicates if there are any inconsistencies.
@@ -134,6 +142,8 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf04:mgmt:~$ nv show mlag consistency-checker global
 ```
 
+- - -
+
 ## nv show mlag backup
 
 Shows the backup IP address configured for the peer link. The switch uses this backup IP address if the peer link goes down.
@@ -151,6 +161,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show mlag backup
 ```
+
+- - -
 
 ## nv show mlag backup \<backup-ip\>
 
@@ -175,6 +187,8 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@leaf04:mgmt:~$ nv show mlag backup 10.10.10.2
 ```
+
+- - -
 
 ## nv show mlag fdb
 
@@ -202,6 +216,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag fdb
 ```
 
+- - -
+
 ## nv show mlag fdb local
 
 Shows the locally learned MAC addresses in the FDB.
@@ -219,6 +235,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show mlag fdb local
 ```
+
+- - -
 
 ## nv show mlag fdb peer
 
@@ -238,6 +256,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag fdb peer
 ```
 
+- - -
+
 ## nv show mlag fdb permanent
 
 Shows the permanent MAC addresses installed in the FDB on the MLAG peer.
@@ -255,6 +275,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show mlag fdb permanent
 ```
+
+- - -
 
 ## nv show mlag mdb
 
@@ -281,6 +303,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag mdb
 ```
 
+- - -
+
 ## nv show mlag mdb local
 
 Multicast Groups Info
@@ -299,6 +323,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag mdb local
 ```
 
+- - -
+
 ## nv show mlag mdb peer
 
 Shows the multicast database on the peer switch.
@@ -316,6 +342,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show mlag mdb peer
 ```
+
+- - -
 
 ## nv show mlag multicast-router-port
 
@@ -342,6 +370,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag multicast-router-port
 ```
 
+- - -
+
 ## nv show mlag multicast-router-port local
 
 Shows the MLAG multicast router ports on the local switch.
@@ -360,6 +390,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag multicast-router-port local
 ```
 
+- - -
+
 ## nv show mlag multicast-router-port peer
 
 Shows the MLAG multicast router ports on the peer switch.
@@ -377,6 +409,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show mlag multicast-router-port peer
 ```
+
+- - -
 
 ## nv show mlag vni
 
@@ -403,6 +437,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag vni
 ```
 
+- - -
+
 ## nv show mlag vni local
 
 Shows the MLAG VNIs configured on the local switch.
@@ -421,6 +457,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag vni local
 ```
 
+- - -
+
 ## nv show mlag vni peer
 
 Shows the MLAG VNIs configured on the peer switch.
@@ -438,6 +476,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show mlag vni peer
 ```
+
+- - -
 
 ## nv show mlag lacpdb
 
@@ -464,6 +504,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag lacpdb
 ```
 
+- - -
+
 ## nv show mlag lacpdb local
 
 Shows the LACP database on the local switch.
@@ -482,6 +524,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag lacpdb local
 ```
 
+- - -
+
 ## nv show mlag lacpdb peer
 
 Shows the LACP database on the peer switch.
@@ -499,6 +543,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show mlag lacpdb peer
 ```
+
+- - -
 
 ## nv show mlag neighbor
 
@@ -525,6 +571,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show mlag neighbor
 ```
 
+- - -
+
 ## nv show mlag neighbor dynamic
 
 Shows information about MLAG dynamic neighbors.
@@ -542,6 +590,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show mlag neighbor dynamic
 ```
+
+- - -
 
 ## nv show mlag neighbor permanent
 

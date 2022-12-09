@@ -32,6 +32,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform capabilities
 
 Capabilities of this platform
@@ -49,6 +51,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show platform hardware
 
@@ -74,6 +78,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform hardware component
 
 Set of components making up the platform.
@@ -97,6 +103,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show platform hardware component \<component-id\>
 
@@ -129,6 +137,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform hardware component \<component-id\> linecard
 
 Properties of a linecard component
@@ -152,6 +162,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show platform hardware component \<component-id\> port
 
@@ -177,6 +189,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show platform hardware component \<component-id\> port \<port-id\>
 
@@ -209,6 +223,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform hardware component \<component-id\> port \<port-id\> breakout-mode
 
 Set of breakout modes
@@ -235,6 +251,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform hardware component \<component-id\> port \<port-id\> breakout-mode \<mode-id\>
 
 A breakout mode
@@ -260,6 +278,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show platform environment
 
@@ -288,6 +308,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform environment fan
 
 The fans on the switch.
@@ -311,6 +333,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show platform environment fan \<fan-id\>
 
@@ -336,6 +360,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform environment sensor
 
 The sensors on the switch.
@@ -359,6 +385,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show platform environment sensor \<sensor-id\>
 
@@ -384,6 +412,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform environment psu
 
 The PSUs on the switch.
@@ -407,6 +437,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show platform environment psu \<psu-id\>
 
@@ -433,6 +465,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform environment led
 
 The LEDs on the switch.
@@ -456,6 +490,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show platform environment led \<led-id\>
 
@@ -481,6 +517,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform software
 
 The platform's software
@@ -505,6 +543,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show platform software installed
 
 List of installed software
@@ -528,6 +568,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show platform software installed \<installed-id\>
 

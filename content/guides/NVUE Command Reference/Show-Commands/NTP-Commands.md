@@ -5,6 +5,8 @@ weight: 180
 product: Cumulus Linux
 type: nojsscroll
 ---
+- - -
+
 ## nv show service ntp
 
 Shows the Network Time Protocol (NTP) configuration on the switch.
@@ -22,6 +24,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service ntp
 ```
+
+- - -
 
 ## nv show service ntp \<vrf-id\>
 
@@ -54,6 +58,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service ntp default
 ```
 
+- - -
+
 ## nv show service ntp \<vrf-id\> server \<server-id\>
 
 Shows information about the specified remote NTP server.
@@ -78,6 +84,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service ntp default server time.nist.gov
 ```
+
+- - -
 
 ## nv show service ntp \<vrf-id\> pool \<server-id\>
 

@@ -34,6 +34,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> qos counters
 
 Interface QoS counters
@@ -67,6 +69,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> qos counters port-stats
 
 QoS Statistics for Interface
@@ -98,6 +102,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> qos counters port-stats rx-stats
 
 QoS Rx Statistics for Interface
@@ -121,6 +127,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> qos counters port-stats tx-stats
 
@@ -146,6 +154,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> qos counters egress-queue-stats
 
 Egress queue statistics per egress traffic-class
@@ -169,6 +179,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> qos counters ingress-buffer-stats
 
@@ -194,6 +206,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> qos counters pfc-stats
 
 PFC statistics per internal switch-priority
@@ -217,6 +231,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> qos roce
 
@@ -247,6 +263,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> qos roce counters
 
 Interface roce counters
@@ -270,6 +288,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> qos roce status
 
@@ -303,6 +323,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> qos roce status pool-map
 
 Interface Roce pools
@@ -327,6 +349,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> qos roce status prio-map
 
 RoCE PCP/DSCP->SP mapping configurations
@@ -350,6 +374,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> qos roce status tc-map
 

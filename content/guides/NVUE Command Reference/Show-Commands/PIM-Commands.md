@@ -37,6 +37,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> router pim timers
 
 Timers
@@ -61,6 +63,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> router pim bfd
 
 BFD configuration
@@ -84,6 +88,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> router pim address-family
 
@@ -115,6 +121,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> router pim address-family ipv4-unicast
 
 IPv4 unicast address family
@@ -145,6 +153,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> router pim address-family ipv4-unicast allow-rp
 
 Allow RP feature, which allows RP address to be accepts for the received
@@ -168,6 +178,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router pim
 
@@ -193,6 +205,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router pim timers
 
 Timers
@@ -210,6 +224,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router pim
 
@@ -244,6 +260,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router pim timers
 
 Timers
@@ -268,6 +286,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router pim ecmp
 
 Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
@@ -291,6 +311,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router pim msdp-mesh-group \<msdp-mesh-group-id\>
 
@@ -323,6 +345,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router pim msdp-mesh-group \<msdp-mesh-group-id\> member-address \<mesh-member-id\>
 
 A MSDP mesh member
@@ -348,6 +372,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router pim address-family
 
@@ -378,6 +404,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast
 
@@ -410,6 +438,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover
 
 Build shortest path tree towards source.
@@ -433,6 +463,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\>
 
@@ -464,6 +496,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range \<group-range-id\>
 

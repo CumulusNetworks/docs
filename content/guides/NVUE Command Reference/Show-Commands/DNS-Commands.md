@@ -29,6 +29,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service dns \<vrf-id\>
 
 Domain Name Service
@@ -58,6 +60,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service dns \<vrf-id\> server \<dns-server-id\>
 

@@ -29,6 +29,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router ospf timers
 
 Timers
@@ -54,6 +56,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router ospf timers lsa
 
 LSA timers
@@ -72,6 +76,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show router ospf timers spf
 
 SPF timers
@@ -89,6 +95,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> router ospf
 
@@ -122,6 +130,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> router ospf timers
 
 Timers configuration
@@ -145,6 +155,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> router ospf authentication
 
@@ -170,6 +182,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> router ospf bfd
 
 BFD configuration
@@ -193,6 +207,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast
 
 IPv4 unicast address family
@@ -230,6 +246,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute
 
 Route redistribute
@@ -262,6 +280,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router ospf
 
@@ -299,6 +319,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf area \<area-id\>
 
 An OSPF area
@@ -332,6 +354,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf area \<area-id\> filter-list
 
 Filters networks between OSPF areas
@@ -355,6 +379,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\>
 
@@ -382,6 +408,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf area \<area-id\> network \<network-id\>
 
 Filters out components of the prefix
@@ -408,6 +436,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf default-originate
 
 Advertise a default route as external lsa
@@ -431,6 +461,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router ospf distance
 
@@ -457,6 +489,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf max-metric
 
 Set maximum metric value in router lsa to make stub router
@@ -482,6 +516,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf log
 
 Log configuration
@@ -505,6 +541,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router ospf redistribute
 
@@ -539,6 +577,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf redistribute static
 
 Source route type.
@@ -562,6 +602,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router ospf redistribute connected
 
@@ -587,6 +629,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf redistribute kernel
 
 Source route type.
@@ -611,6 +655,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf redistribute bgp
 
 Source route type.
@@ -634,6 +680,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router ospf timers
 
@@ -666,6 +714,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf timers lsa
 
 LSA timers
@@ -689,6 +739,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> router ospf timers spf
 

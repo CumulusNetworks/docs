@@ -35,6 +35,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> lldp neighbor \<neighbor-id\>
 
 LLDP on an interface
@@ -65,6 +67,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> lldp neighbor \<neighbor-id\> bridge
 
@@ -97,6 +101,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> lldp neighbor \<neighbor-id\> bridge vlan \<vid\>
 
 A VLAN tag identifier
@@ -122,6 +128,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service lldp
 

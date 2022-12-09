@@ -21,6 +21,8 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system wjh channel
 
 ### Usage
@@ -36,6 +38,8 @@ Introduced in Cumulus Linux 5.3.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show system wjh channel \<channel-id\>
 
@@ -53,6 +57,8 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system wjh channel \<channel-id\> trigger
 
 ### Usage
@@ -68,6 +74,8 @@ Introduced in Cumulus Linux 5.3.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show system wjh packet-buffer
 

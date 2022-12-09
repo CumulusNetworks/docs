@@ -35,6 +35,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> router pbr map \<pbr-map-id\>
 
 Interface Pbr map
@@ -60,6 +62,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system global reserved routing-table pbr
 
 reserved routing table ranges for PBR
@@ -77,6 +81,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show router pbr
 
@@ -102,6 +108,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show router pbr
 ```
 
+- - -
+
 ## nv show router pbr map
 
 Shows settings for PBR maps. If you do not provide a specific map name, this command shows configuration settings for all configured maps.
@@ -125,6 +133,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show router pbr map
 ```
+
+- - -
 
 ## nv show router pbr map \<pbr-map-id\>
 
@@ -155,6 +165,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show router pbr map map1
 ```
+
+- - -
 
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\>
 
@@ -188,6 +200,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1
 ```
 
+- - -
+
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> match
 
 Shows the rule match criteria for a route map.
@@ -212,6 +226,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1 match
 ```
+
+- - -
 
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action
 
@@ -243,6 +259,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1 action
 ```
+
+- - -
 
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
 

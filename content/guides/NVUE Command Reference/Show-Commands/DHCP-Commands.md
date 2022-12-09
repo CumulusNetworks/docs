@@ -23,6 +23,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-relay
 ```
 
+- - -
+
 ## nv show service dhcp-relay \<vrf-id\>
 
 Shows the IPv4 DHCP relay configuration in the specified VRF.
@@ -55,6 +57,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default
 ```
 
+- - -
+
 ## nv show service dhcp-relay \<vrf-id\> server \<server-id\>
 
 Shows configuration for the specified IPv4 DHCP server participating in DHCP relay.
@@ -79,6 +83,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default server 172.16.1.102
 ```
+
+- - -
 
 ## nv show service dhcp-relay \<vrf-id\> interface \<interface-id\>
 
@@ -105,6 +111,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default interface swp1
 ```
 
+- - -
+
 ## nv show service dhcp-relay \<vrf-id\> giaddress-interface \<interface-id\>
 
 Shows the IPv4 DHCP relay gateway IP address (giaddress) interface configuration.
@@ -130,6 +138,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default giaddress-interface lo
 ```
 
+- - -
+
 ## nv show service dhcp-relay6
 
 Shows IPv6 DHVP relay configuration information on the switch.
@@ -153,6 +163,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6
 ```
+
+- - -
 
 ## nv show service dhcp-relay6 \<vrf-id\>
 
@@ -183,6 +195,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default
 ```
+
+- - -
 
 ## nv show service dhcp-relay6 \<vrf-id\> interface
 
@@ -215,6 +229,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface swp1
 ```
 
+- - -
+
 ## nv show service dhcp-relay6 \<vrf-id\> interface upstream \<interface-id\>
 
 Shows the upstream IPv6 DHCP relay interface configuration.
@@ -239,6 +255,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface upstream swp51
 ```
+
+- - -
 
 ## nv show service dhcp-relay6 \<vrf-id\> interface downstream \<interface-id\>
 
@@ -265,6 +283,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface downstream swp1
 ```
 
+- - -
+
 ## nv show service dhcp-server
 
 Shows IPv4 DHCP server information.
@@ -282,6 +302,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server
 ```
+
+- - -
 
 ## nv show service dhcp-server \<vrf-id\>
 
@@ -317,6 +339,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server default
 ```
 
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> interface \<interface-id\>
 
 Shows information about the interface on which IPv4 DHCP client is attached.
@@ -341,6 +365,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server default interface swp1
 ```
+
+- - -
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\>
 
@@ -376,6 +402,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24
 ```
 
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\>
 
 Shows information about the IPv4 DHCP domain name server in the pool.
@@ -401,6 +429,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name-server 192.168.200.53
 ```
+
+- - -
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
 
@@ -428,6 +458,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name example.com
 ```
 
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> gateway \<gateway-id\>
 
 Shows information about the IPv4 DHCP gateway.
@@ -453,6 +485,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 gateway 10.1.10.1
 ```
+
+- - -
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\>
 
@@ -480,6 +514,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 range 10.1.10.100
 ```
 
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> domain-name \<domain-name-id\>
 
 Shows the DNS attributes provided by the DHCP server.
@@ -504,6 +540,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server default domain-name my-domain
 ```
+
+- - -
 
 ## nv show service dhcp-server \<vrf-id\> domain-name-server \<server-id\>
 
@@ -530,6 +568,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server default domain-name-server 192.168.200.53
 ```
 
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> static \<static-id\>
 
 Shows static configuration for hosts served by the DHCP server.
@@ -555,6 +595,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server default static server1
 ```
 
+- - -
+
 ## nv show service dhcp-server6
 
 Shows IPv6 DHCP server information.
@@ -572,6 +614,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show service dhcp-server6
 ```
+
+- - -
 
 ## nv show service dhcp-server6 \<vrf-id\>
 
@@ -607,6 +651,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service dhcp-server6 \<vrf-id\> interface \<interface-id\>
 
 ### Usage
@@ -629,6 +675,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\>
 
@@ -666,6 +714,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\>
 
 A remote DNS server
@@ -691,6 +741,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
 
@@ -718,6 +770,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\>
 
 DHCP Pool range
@@ -744,6 +798,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service dhcp-server6 \<vrf-id\> domain-name \<domain-name-id\>
 
 TBD
@@ -769,6 +825,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service dhcp-server6 \<vrf-id\> domain-name-server \<server-id\>
 
 A remote DNS server
@@ -793,6 +851,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service dhcp-server6 \<vrf-id\> static \<static-id\>
 

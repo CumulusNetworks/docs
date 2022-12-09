@@ -11,7 +11,7 @@ Shows adaptive routing interface configuration. This command shows if adaptive r
 
 ### Usage
 
-`nv show interface <interface-id> router adaptive-routing [options]`
+`nv [options] show interface <interface-id> router adaptive-routing`
 
 ### Identifiers
 
@@ -29,13 +29,15 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show interface swp1 router adaptive-routing
 ```
 
+- - -
+
 ## nv show router adaptive-routing
 
 Shows global adaptive routing configuration. This command shows if adaptive routing is on or off.
 
 ### Usage
 
-`nv show router adaptive-routing [options]`
+`nv [options] show router adaptive-routing`
 
 ### Version History
 

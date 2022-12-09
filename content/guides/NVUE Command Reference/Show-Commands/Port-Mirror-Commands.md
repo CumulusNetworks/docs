@@ -29,6 +29,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system port-mirror session
 
 sessions
@@ -52,6 +54,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show system port-mirror session \<session-id\>
 
@@ -83,6 +87,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show system port-mirror session \<session-id\> span
 
@@ -116,6 +122,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system port-mirror session \<session-id\> span source-port
 
 Set of source ports.
@@ -140,6 +148,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show system port-mirror session \<session-id\> span source-port \<port-id\>
 
@@ -166,6 +176,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system port-mirror session \<session-id\> span destination
 
 The SPAN destination port.
@@ -190,6 +202,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show system port-mirror session \<session-id\> span destination \<port-id\>
 
@@ -216,6 +230,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system port-mirror session \<session-id\> span truncate
 
 TBD
@@ -239,6 +255,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show system port-mirror session \<session-id\> erspan
 
@@ -272,6 +290,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system port-mirror session \<session-id\> erspan source-port
 
 Set of source ports.
@@ -297,6 +317,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system port-mirror session \<session-id\> erspan source-port \<port-id\>
 
 A port-mirror source port (swps or bonds only)
@@ -321,6 +343,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show system port-mirror session \<session-id\> erspan destination
 
@@ -353,6 +377,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system port-mirror session \<session-id\> erspan destination source-ip
 
 Set of IPv4 addresses
@@ -378,6 +404,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system port-mirror session \<session-id\> erspan destination source-ip \<source-ip\>
 
 An IPv4 address
@@ -401,6 +429,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show system port-mirror session \<session-id\> erspan destination dest-ip
 
@@ -427,6 +457,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show system port-mirror session \<session-id\> erspan destination dest-ip \<dest-ip\>
 
 An IPv4 address
@@ -450,6 +482,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show system port-mirror session \<session-id\> erspan truncate
 

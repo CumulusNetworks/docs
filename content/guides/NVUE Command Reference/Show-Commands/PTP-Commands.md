@@ -36,6 +36,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> ptp timers
 
 Interface PTP timers
@@ -59,6 +61,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> ptp counters
 
@@ -84,6 +88,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service ptp
 
 Collection of PTP instances
@@ -107,6 +113,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service ptp \<instance-id\>
 
@@ -143,6 +151,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service ptp \<instance-id\> acceptable-master
 
 Collection of acceptable masters
@@ -168,6 +178,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service ptp \<instance-id\> acceptable-master <clock-id>
 
 List of clocks that the local clock can accept as master clock
@@ -192,6 +204,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service ptp \<instance-id\> monitor
 
@@ -224,6 +238,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service ptp \<instance-id\> monitor timestamp-log
 
 ### Usage
@@ -245,6 +261,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service ptp \<instance-id\> monitor violations
 
@@ -275,6 +293,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service ptp \<instance-id\> monitor violations log
 
@@ -310,6 +330,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service ptp \<instance-id\> monitor violations log acceptable-master
 
 Collection of master violations
@@ -333,6 +355,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service ptp \<instance-id\> monitor violations log forced-master
 
@@ -358,6 +382,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service ptp \<instance-id\> monitor violations log max-offset
 
 Collection of violations logs
@@ -381,6 +407,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service ptp \<instance-id\> monitor violations log min-offset
 
@@ -406,6 +434,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service ptp \<instance-id\> monitor violations log path-delay
 
 Collection of violations logs
@@ -429,6 +459,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service ptp \<instance-id\> current
 
@@ -454,6 +486,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service ptp \<instance-id\> clock-quality
 
 Clock Quality Status
@@ -477,6 +511,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service ptp \<instance-id\> parent
 
@@ -508,6 +544,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show service ptp \<instance-id\> parent grandmaster-clock-quality
 
 Clock Quality Status
@@ -531,6 +569,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show service ptp \<instance-id\> time-properties
 

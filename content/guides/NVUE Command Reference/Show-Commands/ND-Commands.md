@@ -39,6 +39,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\>
 
 A recursive DNS server
@@ -63,6 +65,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\>
 
@@ -89,6 +93,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\>
 
 A DNS search list
@@ -114,6 +120,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> ip neighbor-discovery router-advertisement
 
 Router advertisement configuration for an interface
@@ -137,6 +145,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> ip neighbor-discovery home-agent
 

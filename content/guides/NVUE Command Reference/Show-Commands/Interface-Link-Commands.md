@@ -39,6 +39,10 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
+- - -
+
 ## nv show interface \<interface-id\> link state
 
 The state of the interface
@@ -62,6 +66,10 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
+
+- - -
 
 ## nv show interface \<interface-id\> link dot1x
 
@@ -87,6 +95,10 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
+- - -
+
 ## nv show interface \<interface-id\> link stats
 
 Interface stats
@@ -111,6 +123,10 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
+- - -
+
 ## nv show interface \<interface-id\> link traffic-engineering
 
 Traffic engineering stats
@@ -134,6 +150,10 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
+
+- - -
 
 ## nv show interface \<interface-id\> link flag
 

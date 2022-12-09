@@ -37,6 +37,8 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf04:mgmt:~$ nv show interface swp1 acl
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> acl \<acl-id\> inbound
 
 Shows information about the ACL applied for inbound traffic.
@@ -68,6 +70,8 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> acl \<acl-id\> inbound control-plane
 
 Shows information about the ACL applied for the control plane.
@@ -92,6 +96,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound control-plane
 ```
+
+- - -
 
 ## nv show interface \<interface-id\> acl \<acl-id\> outbound
 
@@ -124,6 +130,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> acl \<acl-id\> outbound control-plane
 
 Shows information about the ACL applied to the control plane for outbound traffic.
@@ -149,6 +157,8 @@ Introduced in Cumulus Linux 5.2.0
 cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plane
 ```
 
+- - -
+
 ## nv show system acl
 
 ### Usage
@@ -164,6 +174,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show acl
 
@@ -188,6 +200,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl
 ```
+
+- - -
 
 ## nv show acl \<acl-id\>
 
@@ -218,6 +232,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1
 ```
+
+- - -
 
 ## nv show acl \<acl-id\> rule \<rule-id\>
 
@@ -251,6 +267,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10
 ```
 
+- - -
+
 ## nv show acl \<acl-id\> rule \<rule-id\> match
 
 Shows the ACL match criteria for the specified ACL rule.
@@ -282,6 +300,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match
 ```
+
+- - -
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip
 
@@ -318,6 +338,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip
 ```
 
+- - -
+
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip source-port \<ip-port-id\>
 
 Shows source port matches for the ACL rule specified.
@@ -343,6 +365,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
 ```
+
+- - -
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\>
 
@@ -370,6 +394,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port http
 ```
 
+- - -
+
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip fragment
 
 Shows ip fragment packet matches for the ACL rule specified.
@@ -394,6 +420,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip fragment
 ```
+
+- - -
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip ecn
 
@@ -426,6 +454,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
 ```
 
+- - -
+
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip ecn flags
 
 Shows the ECN protocol flag matches for the ACL rule specified.
@@ -450,6 +480,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
 ```
+
+- - -
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp
 
@@ -483,6 +515,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp
 ```
 
+- - -
+
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp flags
 
 Shows TCP flag matches for the ACL rule specified.
@@ -507,6 +541,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp flags
 ```
+
+- - -
 
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip tcp mask
 
@@ -533,6 +569,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp mask
 ```
 
+- - -
+
 ## nv show acl \<acl-id\> rule \<rule-id\> match mac
 
 Shows MAC address matches for the ACL rule specified.
@@ -557,6 +595,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match mac
 ```
+
+- - -
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action
 
@@ -594,6 +634,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action
 ```
 
+- - -
+
 ## nv show acl \<acl-id\> rule \<rule-id\> action permit
 
 Shows a permit action for the ACL rule specified.
@@ -618,6 +660,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action permit
 ```
+
+- - -
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action deny
 
@@ -644,6 +688,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action deny
 ```
 
+- - -
+
 ## nv show acl \<acl-id\> rule \<rule-id\> action log
 
 Shows logs for the ACL rule specified.
@@ -668,6 +714,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action log
 ```
+
+- - -
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action set
 
@@ -694,6 +742,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action set
 ```
 
+- - -
+
 ## nv show acl \<acl-id\> rule \<rule-id\> action erspan
 
 Shows the ERSPAN session for the ACL rule specified.
@@ -718,6 +768,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action erspan
 ```
+
+- - -
 
 ## nv show acl \<acl-id\> rule \<rule-id\> action police
 

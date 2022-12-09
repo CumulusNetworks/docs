@@ -35,6 +35,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> evpn multihoming
 
 Multihoming interface configuration parameters
@@ -65,6 +67,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> evpn multihoming segment
 
 Multihoming interface segment
@@ -88,6 +92,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show vrf \<vrf-id\> evpn
 
@@ -119,6 +125,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show vrf \<vrf-id\> evpn vni \<vni-id\>
 
  VNI
@@ -143,6 +151,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show evpn
 
@@ -171,6 +181,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show evpn route-advertise
 
 ### Usage
@@ -186,6 +198,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show evpn dad
 
@@ -211,6 +225,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show evpn dad duplicate-action
 
 Handling of BUM traffic
@@ -235,6 +251,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show evpn dad duplicate-action freeze
 
 Advertise
@@ -252,6 +270,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show evpn evi
 
@@ -275,6 +295,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show evpn evi \<evi-id\>
 
@@ -306,6 +328,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show evpn evi \<evi-id\> route-advertise
 
 Route advertise
@@ -328,6 +352,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show evpn evi \<evi-id\> route-target
 
@@ -360,6 +386,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show evpn evi \<evi-id\> route-target export
 
 Set of route target identifiers
@@ -384,6 +412,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show evpn evi \<evi-id\> route-target export \<rt-id\>
 
@@ -410,6 +440,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show evpn evi \<evi-id\> route-target import
 
 Set of route target identifiers
@@ -434,6 +466,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show evpn evi \<evi-id\> route-target import \<rt-id\>
 
@@ -460,6 +494,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show evpn evi \<evi-id\> route-target both
 
 Set of route target identifiers
@@ -484,6 +520,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show evpn evi \<evi-id\> route-target both \<rt-id\>
 
@@ -510,6 +548,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show evpn multihoming
 
 Multihoming global configuration parameters
@@ -535,6 +575,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf04:mgmt:~$ 
 ```
 
+- - -
+
 ## nv show evpn multihoming ead-evi-route
 
 ### Usage
@@ -550,6 +592,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
+
+- - -
 
 ## nv show evpn multihoming segment
 

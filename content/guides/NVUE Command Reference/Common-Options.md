@@ -7,13 +7,13 @@ type: nojsscroll
 ---
 All NVUE commands have `-h` and `--help` options that provide command description and usage. This reference guide is based on the command `-h` output.
 
-The NVUE `nv show` commands have these common options.
+The NVUE commands have these common options.
 
 ## Revision Options
 
 | <div style="width:200px">Option | Description |
 | ------ | ----------- |
-|`--rev <revision>` | Shows a detached pending configuration. `<revsion>` is the ID. For example, `nv show --rev changeset/cumulus/2021-06-11_16.16.41_FPKK interface bond1`. |
+|`--rev <revision>` | Shows a detached pending configuration. `<revsion>` is the ID. For example, `nv show --rev 4. |
 |`--pending` | Shows configuration that is `set` and `unset` but not yet applied or saved. For example, `nv show --pending interface bond1`. |
 |`--applied` | Shows configuration applied with the `nv config apply` command. For example, `nv show --applied interface bond1`.`|
 |`--startup` | Shows configuration saved with the `nv config save` command. This is the configuration after the switch boots.|

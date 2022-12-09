@@ -9,8 +9,8 @@ product: Cumulus Linux
 Applies the current pending configuration or a specific revision. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:
 
 - `--y` or `--assume-yes` automatically replies yes to all prompts.
--  `--assume-no` automatically replies no to all prompts.
--  `--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
+- `--assume-no` automatically replies no to all prompts.
+- `--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
 - `--confirm-status` shows the amount of time left before the automatic rollback.
 
 **Usage**

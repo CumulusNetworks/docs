@@ -11,11 +11,15 @@ You can install NetQ with a single command or you can perform the individual ste
 
 You can use these commands only after bootstrapping the physical server or VM. Refer to {{<link title="bootstrap" text="netq bootstrap">}}.
 
+<!--
+
 {{<figure src="/images/netq/cliref-install-onprem-single-server-330.png" width="500" caption="On-premises single server">}}
 
 {{<figure src="/images/netq/cliref-install-onprem-server-cluster-330.png" width="600" caption="On-premises server cluster">}}
 
 {{<figure src="/images/netq/cliref-install-cloud-remote-330.png" width="250" caption="Cloud/remote">}}
+
+-->
 
 - - -
 

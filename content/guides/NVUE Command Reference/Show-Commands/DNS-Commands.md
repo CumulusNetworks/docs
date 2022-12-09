@@ -9,13 +9,9 @@ type: nojsscroll
 
 collection of DNS
 
-### Usage
+### Command Syntax
 
-`nv show service dns [options] [<vrf-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -35,21 +31,11 @@ cumulus@leaf04:mgmt:~$
 
 Domain Name Service
 
-### Usage
+### Command Syntax
 
-`nv show service dns <vrf-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `server` |   Remote DNS servers |
 
 ### Version History
 
@@ -67,13 +53,9 @@ cumulus@leaf04:mgmt:~$
 
 A remote DNS server
 
-### Usage
+### Command Syntax
 
-`nv show service dns <vrf-id> server <dns-server-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<dns-server-id>`  | IPv4 or IPv6 address of a DNS server |

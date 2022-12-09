@@ -7,10 +7,6 @@ type: nojsscroll
 ---
 ## nv show router ptm
 
-### Usage
-
-`nv show router ptm [options]`
-
 ### Version History
 
 Introduced in Cumulus Linux 5.3.0

@@ -9,22 +9,11 @@ type: nojsscroll
 
 Configuration for VRR
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip vrr [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `address`  | Virtual addresses with prefixes
-| `state`  | The state of the interface
 
 ### Version History
 
@@ -42,13 +31,9 @@ cumulus@leaf04:mgmt:~$
 
 An IP address with prefix
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip vrr address <ip-prefix-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<ip-prefix-id>`| IPv4 or IPv6 address and route prefix in CIDR notation|
@@ -69,13 +54,9 @@ cumulus@leaf04:mgmt:~$
 
 The state of the interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip vrr state [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -95,21 +76,11 @@ cumulus@leaf04:mgmt:~$
 
 Configuration for VRRP
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip vrrp [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `virtual-router`   | Group of virtual gateways implemented with VRRP|
 
 ### Version History
 
@@ -127,22 +98,12 @@ cumulus@leaf04:mgmt:~$
 
 A virtual gateway implemented with VRRP
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<virtual-router-id>` |  Virtual Router IDentifier (VRID)|
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `address`  |     A set of virtual addresses for VRRPv3|
 
 ### Version History
 
@@ -160,13 +121,9 @@ cumulus@leaf04:mgmt:~$
 
 An IP address
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address <ip-address-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<virtual-router-id>`    | Virtual Router IDentifier (VRID) |

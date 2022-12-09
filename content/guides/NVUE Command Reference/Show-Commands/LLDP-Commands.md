@@ -9,21 +9,11 @@ type: nojsscroll
 
 LLDP on for an interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> lldp [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `neighbor` | LLDP neighbors |
 
 ### Version History
 
@@ -41,22 +31,12 @@ cumulus@leaf04:mgmt:~$
 
 LLDP on an interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> lldp neighbor <neighbor-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<neighbor-id>` |  System generated identifier for the neighbor on the interface|
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `bridge`  |  Bridge properties, such as VLANs, of the neighbor|
 
 ### Version History
 
@@ -74,22 +54,12 @@ cumulus@leaf04:mgmt:~$
 
 An LLDP bridge
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> lldp neighbor <neighbor-id> bridge [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<neighbor-id>` |  System generated identifier for the neighbor on the interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `vlan` | Set of vlans understood by this neighbor.|
 
 ### Version History
 
@@ -107,13 +77,9 @@ cumulus@leaf04:mgmt:~$
 
 A VLAN tag identifier
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<neighbor-id>` |  System generated identifier for the neighbor on the interface |
@@ -134,10 +100,6 @@ cumulus@leaf04:mgmt:~$
 ## nv show service lldp
 
 Global LLDP
-
-### Usage
-
-`nv show service lldp [options]`
 
 ### Version History
 

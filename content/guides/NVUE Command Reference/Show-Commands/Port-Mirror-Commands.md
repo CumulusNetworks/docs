@@ -9,16 +9,6 @@ type: nojsscroll
 
 Port mirror
 
-### Usage
-
-`nv show system port-mirror [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `session` |   sessions |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -35,13 +25,9 @@ cumulus@leaf04:mgmt:~$
 
 sessions
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session [options] [<session-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>`  |port mirror session number |
 
@@ -61,22 +47,11 @@ cumulus@leaf04:mgmt:~$
 
 port mirror session number
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `span` | Switched Port Analyzer |
-| `erspan` |  Encapsulated Remote Switched Port Analyzer.|
 
 ### Version History
 
@@ -94,23 +69,11 @@ cumulus@leaf04:mgmt:~$
 
 Switched Port Analyzer
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> span [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |   port mirror session number |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `source-port` | Set of source ports.|
-| `destination` |  The SPAN destination port.|
-| `truncate` |  TBD|
 
 ### Version History
 
@@ -128,13 +91,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of source ports.
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> span source-port [options] [<port-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 | `<port-id>` | Port interface |
@@ -155,13 +114,9 @@ cumulus@leaf04:mgmt:~$
 
 A port-mirror source port (swps or bonds only)
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> span source-port <port-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 | `<port-id>` | Port interface |
@@ -182,13 +137,9 @@ cumulus@leaf04:mgmt:~$
 
 The SPAN destination port.
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> span destination [options] [<port-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 | `<port-id>` | Port interface |
@@ -209,13 +160,9 @@ cumulus@leaf04:mgmt:~$
 
 The SPAN destination port.
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> span destination <port-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 | `<port-id>` | Port interface |
@@ -236,13 +183,9 @@ cumulus@leaf04:mgmt:~$
 
 TBD
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> span truncate [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 
@@ -262,23 +205,11 @@ cumulus@leaf04:mgmt:~$
 
 Encapsulated Remote Switched Port Analyzer.
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> erspan [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `source-port` |   Set of source ports. |
-| `destination` |   erspan destination |
-| `truncate` |   TBD|
 
 ### Version History
 
@@ -296,13 +227,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of source ports.
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> erspan source-port [options] [<port-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 | `<port-id>` |   Port interface` |
@@ -323,13 +250,9 @@ cumulus@leaf04:mgmt:~$
 
 A port-mirror source port (swps or bonds only)
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> erspan source-port <port-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 | `<port-id>` |   Port interface |
@@ -350,22 +273,11 @@ cumulus@leaf04:mgmt:~$
 
 erspan destination
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> erspan destination [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `source-ip` | TBD |
-| `dest-ip` |   TBD |
 
 ### Version History
 
@@ -383,13 +295,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of IPv4 addresses
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> erspan destination source-ip [options] [<source-ip> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 | `<source-ip>` | IPv4 address |
@@ -410,13 +318,9 @@ cumulus@leaf04:mgmt:~$
 
 An IPv4 address
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> erspan destination source-ip <source-ip> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 
@@ -436,13 +340,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of IPv4 addresses
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> erspan destination dest-ip [options] [<dest-ip> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 | `<dest-ip>` |  IPv4 address |
@@ -463,13 +363,9 @@ cumulus@leaf04:mgmt:~$
 
 An IPv4 address
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> erspan destination dest-ip <dest-ip> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 
@@ -489,13 +385,9 @@ cumulus@leaf04:mgmt:~$
 
 TBD
 
-### Usage
+### Command Syntax
 
-`nv show system port-mirror session <session-id> erspan truncate [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<session-id>` |  port mirror session number |
 

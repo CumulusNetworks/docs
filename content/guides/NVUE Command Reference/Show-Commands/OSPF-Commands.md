@@ -9,16 +9,6 @@ type: nojsscroll
 
 OSPF global configuration.
 
-### Usage
-
-`nv show router ospf [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `timers` |  Timers |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -34,17 +24,6 @@ cumulus@leaf04:mgmt:~$
 ## nv show router ospf timers
 
 Timers
-
-### Usage
-
-`nv show router ospf timers [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `lsa` |   LSA timers |
-| `spf` | SPF timers |
 
 ### Version History
 
@@ -62,10 +41,6 @@ cumulus@leaf04:mgmt:~$
 
 LSA timers
 
-### Usage
-
-`nv show router ospf timers lsa [options]`
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -81,10 +56,6 @@ cumulus@leaf04:mgmt:~$
 ## nv show router ospf timers spf
 
 SPF timers
-
-### Usage
-
-`nv show router ospf timers spf [options]`
 
 ### Version History
 
@@ -102,23 +73,11 @@ cumulus@leaf04:mgmt:~$
 
 OSPF interface configuration.
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> router ospf [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `timers`                | `Timers configuration |
-| `authentication`        | `md5 authentication configuration |
-| `bfd`                   | `BFD configuration |
 
 ### Version History
 
@@ -136,13 +95,9 @@ cumulus@leaf04:mgmt:~$
 
 Timers configuration
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> router ospf timers [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -162,13 +117,9 @@ cumulus@leaf04:mgmt:~$
 
 md5 authentication configuration
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> router ospf authentication [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -188,13 +139,9 @@ cumulus@leaf04:mgmt:~$
 
 BFD configuration
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> router ospf bfd [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -213,28 +160,11 @@ cumulus@leaf04:mgmt:~$
 
 IPv4 unicast address family
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp address-family ipv4-unicast [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `redistribute`     | Route redistribute| 
-| `aggregate-route`  | IPv4 aggregate routes| 
-| `network`          | IPv4 static networks.| 
-| `route-import `    | Route import| 
-| `multipaths`       | Multipaths| 
-| `admin-distance`   | Admin distances.| 
-| `route-export`     | Route export| 
-| `loc-rib`          | IPv4 local RIB|
 
 ### Version History
 
@@ -252,24 +182,11 @@ cumulus@leaf04:mgmt:~$
 
 Route redistribute
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `static`    | Route redistribution of ipv4 static routes |
-| `connected` | Route redistribution of ipv4 connected routes |
-| `kernel`    | Route redistribution of ipv4 kernel routes|
-| `ospf`      | Route redistribution of ipv4 ospf routes |
 
 ### Version History
 
@@ -287,27 +204,11 @@ cumulus@leaf04:mgmt:~$
 
 OSPF VRF configuration.
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `area`                  | OSPF areas |
-| `default-originate`     | Advertise a default route as external lsa |
-| `distance`              | Administrative distance for installation into the rib |
-| `max-metric`            | Set maximum metric value in router lsa to make stub router |
-| `log`                   | Log configuration |
-| `redistribute`          | Route redistribute |
-| `timers`                | Timers |
 
 ### Version History
 
@@ -325,24 +226,12 @@ cumulus@leaf04:mgmt:~$
 
 An OSPF area
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf area <area-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<area-id>` |  Area |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `filter-list`  | Filters networks between OSPF areas |
-| `range`        | Area ranges |
-| `network`      | Area networks |
 
 ### Version History
 
@@ -359,13 +248,10 @@ cumulus@leaf04:mgmt:~$
 ## nv show vrf \<vrf-id\> router ospf area \<area-id\> filter-list
 
 Filters networks between OSPF areas
-### Usage
 
-`nv show vrf <vrf-id> router ospf area <area-id> filter-list [options]`
+### Command Syntax
 
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<area-id>` |  Area |
@@ -386,13 +272,9 @@ cumulus@leaf04:mgmt:~$
 
 Filters out components of the prefix
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf area <area-id> range <range-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<area-id>` |  Area |
@@ -414,13 +296,9 @@ cumulus@leaf04:mgmt:~$
 
 Filters out components of the prefix
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf area <area-id> network <network-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<area-id>` |  Area |
@@ -442,13 +320,9 @@ cumulus@leaf04:mgmt:~$
 
 Advertise a default route as external lsa
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf default-originate [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -468,14 +342,9 @@ cumulus@leaf04:mgmt:~$
 
 Administrative distance for installation into the rib
 
+### Command Syntax
 
-### Usage
-
-`nv show vrf <vrf-id> router ospf distance [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -495,14 +364,9 @@ cumulus@leaf04:mgmt:~$
 
 Set maximum metric value in router lsa to make stub router
 
+### Command Syntax
 
-### Usage
-
-`nv show vrf <vrf-id> router ospf max-metric [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -522,13 +386,9 @@ cumulus@leaf04:mgmt:~$
 
 Log configuration
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf log [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -548,24 +408,11 @@ cumulus@leaf04:mgmt:~$
 
 Route redistribute
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf redistribute [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `static`      | Route redistribute of static routes |
-| `connected`   | Route redistribute of connected routes |
-| `kernel`      | Route redistribute of kernel routes |
-| `bgp`         | Route redistribute of bgp routes |
 
 ### Version History
 
@@ -583,13 +430,9 @@ cumulus@leaf04:mgmt:~$
 
 Source route type.
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf redistribute static [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -609,13 +452,9 @@ cumulus@leaf04:mgmt:~$
 
  Source route type.
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf redistribute connected [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -635,13 +474,9 @@ cumulus@leaf04:mgmt:~$
 
 Source route type.
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf redistribute kernel [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -661,13 +496,9 @@ cumulus@leaf04:mgmt:~$
 
 Source route type.
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf redistribute bgp [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -687,22 +518,11 @@ cumulus@leaf04:mgmt:~$
 
 Timers
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf timers [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `lsa`     | LSA timers |
-| `spf`     | SPF timers |
 
 ### Version History
 
@@ -720,13 +540,9 @@ cumulus@leaf04:mgmt:~$
 
 LSA timers
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf timers lsa [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -746,13 +562,9 @@ cumulus@leaf04:mgmt:~$
 
 SPF timers
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router ospf timers spf [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 

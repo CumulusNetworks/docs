@@ -9,15 +9,9 @@ type: nojsscroll
 
 Configures adaptive routing on the specified interface. Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
 
-### Usage
+### Command Syntax
 
-`nv [options] set interface <interface-id> router adaptive-routing [enable ...]`
-
-`nv [options] set interface <interface-id> router adaptive-routing [link-utilization-threshold ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `interface-id` | The interface you want to configure. |
 
@@ -31,17 +25,13 @@ Introduced in Cumulus Linux 5.1.0
 
 Turns adaptive routing on the specified interface on or off.
 
-### Usage
-
-`nv [options] set interface <interface-id> router adaptive-routing enable [<arg> ...]`
-
 ### Default Setting
 
 `off`
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `interface-id` | The interface you want to configure. |
 
@@ -61,17 +51,13 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 router adaptive-routing enable on
 
 Configures the link utilization threshold percentage. You can specify a value between 1 and 100.
 
-### Usage
-
-`nv [options] set interface <interface-id> router adaptive-routing link-utilization-threshold <arg>`
-
 ### Default Setting
 
 `70`
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `interface-id` | The interface you want to configure. |
 
@@ -91,10 +77,6 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 router adaptive-routing link-utiliz
 
 Configures adaptive routing globally on the switch. Adaptive routing is a load balancing mechanism that improves network utilization by selecting routes dynamically based on the immediate network state, such as switch queue length and port utilization.
 
-### Usage
-
-`nv [options] set router adaptive-routing [enable ...]`
-
 ### Version History
 
 Introduced in Cumulus Linux 5.1.0
@@ -104,10 +86,6 @@ Introduced in Cumulus Linux 5.1.0
 ## nv set router adaptive-routing enable
 
 Turns adaptive routing on or off.
-
-### Usage
-
-`nv [options] set router adaptive-routing enable [<arg> ...]`
 
 ### Default Setting
 

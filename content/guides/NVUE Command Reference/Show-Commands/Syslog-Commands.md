@@ -9,13 +9,9 @@ type: nojsscroll
 
 collection of syslog
 
-### Usage
+### Command Syntax
 
-`nv show service syslog [options] [<vrf-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -35,21 +31,11 @@ cumulus@leaf04:mgmt:~$
 
 Domain Name Service
 
-### Usage
+### Command Syntax
 
-`nv show service syslog <vrf-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `server` | Remote DNS servers |
 
 ### Version History
 
@@ -67,13 +53,9 @@ cumulus@leaf04:mgmt:~$
 
 A remote DNS server
 
-### Usage
+### Command Syntax
 
-`nv show service syslog <vrf-id> server <server-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<server-id>` | Hostname or IP address of a syslog server |

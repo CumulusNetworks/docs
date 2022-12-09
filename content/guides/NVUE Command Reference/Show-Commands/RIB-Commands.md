@@ -9,23 +9,12 @@ type: nojsscroll
 
 Vrf aware Routing-table per address-family
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router rib <afi> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<afi>` |  Route address family. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `protocol` |   Import protocols from RIB to FIB |
-| `route` |  RIB Routes with info.|
 
 ### Version History
 
@@ -43,13 +32,9 @@ cumulus@leaf04:mgmt:~$
 
 Import Protocols from where routes are known
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router rib <afi> protocol <import-protocol-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<afi>` |   Route address family. |
@@ -71,23 +56,13 @@ cumulus@leaf04:mgmt:~$
 
 A route
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router rib <afi> route <route-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<afi>` |   Route address family. |
 | `<route-id>`   | IP prefix |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `protocol` |   Route entries |
 
 ### Version History
 
@@ -105,24 +80,14 @@ cumulus@leaf04:mgmt:~$
 
 Protocol types from where routes are known
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router rib <afi> route <route-id> protocol <protocol-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<afi>`          | The route address family.|
 | `<route-id>`     | The IP prefix|
 | `<protocol-id>`  | The route entry list keys.|
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `entry-index` | Route entries |
 
 ### Version History
 
@@ -138,30 +103,78 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index
 
+### Command Syntax
+
+### Version History
+
+### Example
+
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\>
+
+### Command Syntax
+
+### Version History
+
+### Example
 
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> flags
 
+### Command Syntax
+
+### Version History
+
+### Example
+
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via
+
+### Command Syntax
+
+### Version History
+
+### Example
 
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\> flags
 
+### Command Syntax
+
+### Version History
+
+### Example
+
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\> label
+
+### Command Syntax
+
+### Version History
+
+### Example
 
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\> resolved-via
 
+### Command Syntax
+
+### Version History
+
+### Example
+
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index via \<via-id\> resolved-via \<resolved-via-id\>
+
+### Command Syntax
+
+### Version History
+
+### Example

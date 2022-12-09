@@ -11,10 +11,6 @@ type: nojsscroll
 
 Shows the Network Time Protocol (NTP) configuration on the switch.
 
-### Usage
-
-`nv show service ntp [options]`
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -31,22 +27,11 @@ cumulus@leaf04:mgmt:~$ nv show service ntp
 
 Shows the NTP configuration in the specified VRF.
 
-### Usage
+### Command Syntax
 
-`nv show service ntp <vrf-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `server` | Shows information about the specified remote NTP server. |
-| `pool`  |  Shows information about the specified remote NTP server pool. |
 
 ### Version History
 
@@ -64,13 +49,9 @@ cumulus@leaf04:mgmt:~$ nv show service ntp default
 
 Shows information about the specified remote NTP server.
 
-### Usage
+### Command Syntax
 
-`nv show service ntp <vrf-id> server <server-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<server-id>` | The hostname or IP address of the NTP server. |
@@ -91,13 +72,9 @@ cumulus@leaf04:mgmt:~$ nv show service ntp default server time.nist.gov
 
 Shows information about the specified remote NTP server pool.
 
-### Usage
+### Command Syntax
 
-`nv show service ntp <vrf-id> pool <server-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<server-id>` | The hostname or IP address of the NTP server. |

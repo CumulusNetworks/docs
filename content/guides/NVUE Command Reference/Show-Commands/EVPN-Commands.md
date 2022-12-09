@@ -9,21 +9,11 @@ type: nojsscroll
 
 EVPN control plane config and info for VRF
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> evpn [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-|  `multihoming`    | Multihoming interface configuration parameters|
 
 ### Version History
 
@@ -41,21 +31,11 @@ cumulus@leaf04:mgmt:~$
 
 Multihoming interface configuration parameters
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> evpn multihoming [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `segment`   |  Multihoming interface segment|
 
 ### Version History
 
@@ -73,13 +53,9 @@ cumulus@leaf04:mgmt:~$
 
 Multihoming interface segment
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> evpn multihoming segment [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -99,21 +75,11 @@ cumulus@leaf04:mgmt:~$
 
 EVPN control plane config and info for VRF
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> evpn [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `vni`|  L3 VNI |
 
 ### Version History
 
@@ -131,13 +97,9 @@ cumulus@leaf04:mgmt:~$
 
  VNI
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> evpn vni <vni-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<vni-id>` |  VxLAN ID |
@@ -158,19 +120,6 @@ cumulus@leaf04:mgmt:~$
 
 Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-### Usage
-
-`nv show evpn [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `route-advertise`  | Route advertising |
-| `dad`              | Advertise |
-| `evi`              | EVI |
-| `multihoming`      | Multihoming global configuration parameters |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -184,10 +133,6 @@ cumulus@leaf04:mgmt:~$
 - - -
 
 ## nv show evpn route-advertise
-
-### Usage
-
-`nv show evpn route-advertise [options]`
 
 ### Version History
 
@@ -205,16 +150,6 @@ cumulus@leaf04:mgmt:~$
 
 Duplicate address detection
 
-### Usage
-
-`nv show evpn dad [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `duplicate-action`  | Action to take when a MAC is flagged as a possible duplicate. If 'warning-only', generates a log message. If 'freeze', further move events for the MAC will not be acted upon. |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -230,16 +165,6 @@ cumulus@leaf04:mgmt:~$
 ## nv show evpn dad duplicate-action
 
 Handling of BUM traffic
-
-### Usage
-
-`nv show evpn dad duplicate-action [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `freeze`  |  Further move events for the MAC will not be acted upon. |
 
 ### Version History
 
@@ -257,10 +182,6 @@ cumulus@leaf04:mgmt:~$
 
 Advertise
 
-### Usage
-
-`nv show evpn dad duplicate-action freeze [options]`
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -277,13 +198,9 @@ cumulus@leaf04:mgmt:~$
 
 EVIs
 
-### Usage
+### Command Syntax
 
-`nv show evpn evi [options] [<evi-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | `<evi-id>`    |  VRF |
 
 ### Version History
@@ -302,21 +219,10 @@ cumulus@leaf04:mgmt:~$
 
 Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
 
-### Usage
+### Command Syntax
 
-`nv show evpn evi <evi-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | `<evi-id>`    |  VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `route-advertise` | Route advertise |
-| `route-target`    | Route targets |
 
 ### Version History
 
@@ -334,13 +240,9 @@ cumulus@leaf04:mgmt:~$
 
 Route advertise
 
-### Usage
+### Command Syntax
 
-`nv show evpn evi <evi-id> route-advertise [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | `<evi-id>`    |  VRF |
 
 ### Version History
@@ -359,22 +261,10 @@ cumulus@leaf04:mgmt:~$
 
 EVPN control plane config and info for VRF
 
-### Usage
+### Command Syntax
 
-`nv show evpn evi <evi-id> route-target [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | `<evi-id>`    |  VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `export` |  Route targets to export |
-| `import` |  Route targets to import |
-| `both`   |  Route targets to import and export |
 
 ### Version History
 
@@ -392,13 +282,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of route target identifiers
 
-### Usage
+### Command Syntax
 
-`nv show evpn evi <evi-id> route-target export [options] [<rt-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<evi-id>` |   VRF |
 | `<rt-id>` |    Route target ID |
@@ -419,13 +305,9 @@ cumulus@leaf04:mgmt:~$
 
 A route target identifier
 
-### Usage
+### Command Syntax
 
-`nv show evpn evi <evi-id> route-target export <rt-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<evi-id>` |   VRF |
 | `<rt-id>` |    Route target ID |
@@ -446,13 +328,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of route target identifiers
 
-### Usage
+### Command Syntax
 
-`nv show evpn evi <evi-id> route-target import [options] [<rt-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<evi-id>` |   VRF |
 | `<rt-id>` |    Route target ID |
@@ -473,13 +351,9 @@ cumulus@leaf04:mgmt:~$
 
 A route target identifier
 
-### Usage
+### Command Syntax
 
-`nv show evpn evi <evi-id> route-target import <rt-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<evi-id>` |   VRF |
 | `<rt-id>` |    Route target ID |
@@ -500,13 +374,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of route target identifiers
 
-### Usage
+### Command Syntax
 
-`nv show evpn evi <evi-id> route-target both [options] [<rt-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<evi-id>` |   VRF |
 | `<rt-id>` |    Route target ID |
@@ -527,13 +397,9 @@ cumulus@leaf04:mgmt:~$
 
 A route target identifier
 
-### Usage
+### Command Syntax
 
-`nv show evpn evi <evi-id> route-target both <rt-id> [options]`
-
-### Identifiers
-
-|  Identifier |  Description   |
+|  Syntax |  Description   |
 | --------- | -------------- |
 | `<evi-id>` |  VRF |
 | `<rt-id>` |Route target ID |
@@ -554,17 +420,6 @@ cumulus@leaf04:mgmt:~$
 
 Multihoming global configuration parameters
 
-### Usage
-
-`nv show evpn multihoming [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `ead-evi-route`  | Ethernet Auto-discovery per EVPN instance routes |
-| `segment`        | Multihoming interface segment |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -578,10 +433,6 @@ cumulus@leaf04:mgmt:~$
 - - -
 
 ## nv show evpn multihoming ead-evi-route
-
-### Usage
-
-`nv show evpn multihoming ead-evi-route [options]`
 
 ### Version History
 
@@ -598,10 +449,6 @@ cumulus@leaf04:mgmt:~$
 ## nv show evpn multihoming segment
 
 Multihoming interface segment
-
-### Usage
-
-`nv show evpn multihoming segment [options]`
 
 ### Version History
 

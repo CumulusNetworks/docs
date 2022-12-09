@@ -9,23 +9,12 @@ type: nojsscroll
 
 Policies for ipv4 unicast
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<peer-group-id>` | Domain |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `inbound`  | Outbound unicast policy |
-| `outbound` | Outbound unicast policy |
 
 ### Version History
 
@@ -43,13 +32,9 @@ cumulus@leaf04:mgmt:~$
 
 Outbound unicast policy
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy inbound [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<peer-group-id>` | Domain |
@@ -70,13 +55,9 @@ cumulus@leaf04:mgmt:~$
 
 Outbound unicast policy
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast policy outbound [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<peer-group-id>` | Domain |
@@ -97,23 +78,12 @@ cumulus@leaf04:mgmt:~$
 
 Policies for ipv6 unicast
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<peer-group-id>` | Domain |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `inbound`  | Outbound unicast policy |
-| `outbound` | Outbound unicast policy |
 
 ### Version History
 
@@ -131,13 +101,9 @@ cumulus@leaf04:mgmt:~$
 
 Outbound unicast policy
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy inbound [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<peer-group-id>` | Domain |
@@ -158,13 +124,9 @@ cumulus@leaf04:mgmt:~$
 
 Outbound unicast policy
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<peer-group-id>` | Domain |
@@ -185,23 +147,12 @@ cumulus@leaf04:mgmt:~$
 
 Policies for l2vpn evpn
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<peer-group-id>`  |   Domain |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `inbound`  | Inbound l2vpn-evpn policy |
-| `outbound` | Outbound l2vpn-evpn policy |
 
 ### Version History
 
@@ -219,13 +170,9 @@ cumulus@leaf04:mgmt:~$
 
 Inbound l2vpn-evpn policy
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy inbound [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<peer-group-id>`  |   Domain |
@@ -246,13 +193,9 @@ cumulus@leaf04:mgmt:~$
 
 Outbound l2vpn-evpn policy
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-evpn policy outbound [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<peer-group-id>`  |   Domain |
@@ -273,13 +216,9 @@ cumulus@leaf04:mgmt:~$
 
 EBGP Policy RFC8212
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> ebgp-policy [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<neighbor-id>`   Peer ID |
@@ -300,23 +239,12 @@ cumulus@leaf04:mgmt:~$
 
 Policies for ipv4 unicast
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<neighbor-id>`  | Peer ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `inbound` |  Outbound unicast policy |
-| `outbound` |   Outbound unicast policy |
 
 ### Version History
 
@@ -334,13 +262,9 @@ cumulus@leaf04:mgmt:~$
 
 Outbound unicast policy
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy inbound [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<neighbor-id>`  | Peer ID |
@@ -361,13 +285,9 @@ cumulus@leaf04:mgmt:~$
 
 Outbound unicast policy
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast policy outbound [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<neighbor-id>`  |  Peer ID |
@@ -388,23 +308,12 @@ cumulus@leaf04:mgmt:~$
 
 Policies for l2vpn evpn
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<neighbor-id>`  |  Peer ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `inbound`    | Inbound l2vpn-evpn policy |
-| `outbound`   | Outbound l2vpn-e |
 
 ### Version History
 
@@ -422,13 +331,9 @@ cumulus@leaf04:mgmt:~$
 
 Inbound l2vpn-evpn policy
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy inbound [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<neighbor-id>`  |  Peer ID |
@@ -449,13 +354,9 @@ cumulus@leaf04:mgmt:~$
 
 Outbound l2vpn-evpn policy
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn policy outbound [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<neighbor-id>`  |  Peer ID |
@@ -476,21 +377,6 @@ cumulus@leaf04:mgmt:~$
 
 Shows route filtering and distribution configuration information. You can see configuration settings for prefix lists, community lists, AS path lists, and route maps.
 
-### Usage
-
-`nv show router policy [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `community-list` | Shows community lists. |
-| `as-path-list` |  Shows AS path lists. |
-| `ext-community-list` | Shows Extended Community lists. |
-| `large-community-list` | Shows Large Community lists. |
-| `prefix-list`  | Shows prefix list rules. |
-| `route-map` | Shows the collection of route maps. |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -505,13 +391,9 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show router policy community-list
 
-### Usage
+### Command Syntax
 
-`nv show router policy community-list [options] [<list-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  The Community List identifier. |
 
@@ -531,21 +413,11 @@ cumulus@leaf04:mgmt:~$
 
 A community list is used for matching BGP community policies.
 
-### Usage
+### Command Syntax
 
-`nv show router policy community-list <list-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  The Community List identifier. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rule` | Shows the Cmmunity List rule. |
 
 ### Version History
 
@@ -563,13 +435,9 @@ cumulus@leaf04:mgmt:~$
 
 Community list rules
 
-### Usage
+### Command Syntax
 
-`nv show router policy community-list <list-id> rule [options] [<rule-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  The Community List identifier. |
 | `<rule-id>` |  The prefix list rule number. |
@@ -590,22 +458,12 @@ cumulus@leaf04:mgmt:~$
 
 Community list Matching criteria and action rule
 
-### Usage
+### Command Syntax
 
-`nv show router policy community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `community` |  Community expression |
 
 ### Version History
 
@@ -623,13 +481,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of community names for community-list
 
-### Usage
+### Command Syntax
 
-`nv show router policy community-list <list-id> rule <rule-id> community [options] [<community-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
@@ -651,13 +505,9 @@ cumulus@leaf04:mgmt:~$
 
 A community name
 
-### Usage
+### Command Syntax
 
-`nv show router policy community-list <list-id> rule <rule-id> community <community-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
@@ -679,13 +529,9 @@ cumulus@leaf04:mgmt:~$
 
 AS Path lists
 
-### Usage
+### Command Syntax
 
-`nv show router policy as-path-list [options] [<list-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 |`<list-id>` | AS Path List ID |
 
@@ -705,21 +551,11 @@ cumulus@leaf04:mgmt:~$
 
 An AS Path list is used for matching BGP AS Path
 
-### Usage
+### Command Syntax
 
-`nv show router policy as-path-list <list-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 |`<list-id>` |  AS Path List ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rule` | AS Path List rule |
 
 ### Version History
 
@@ -737,13 +573,9 @@ cumulus@leaf04:mgmt:~$
 
 AS Path list Matching criteria and action rule
 
-### Usage
+### Command Syntax
 
-`nv show router policy as-path-list <list-id> rule <rule-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` | AS Path List ID |
 | `<rule-id>` | Prefix List rule number |
@@ -764,13 +596,9 @@ cumulus@leaf04:mgmt:~$
 
 Extended Community lists
 
-### Usage
+### Command Syntax
 
-`nv show router policy ext-community-list [options] [<list-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` | Community List ID |
 
@@ -790,21 +618,11 @@ cumulus@leaf04:mgmt:~$
 
 A Extended Community list used for matching BGP communities
 
-### Usage
+### Command Syntax
 
-`nv show router policy ext-community-list <list-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rule` | Extended Community List rule |
 
 ### Version History
 
@@ -822,13 +640,9 @@ cumulus@leaf04:mgmt:~$
 
 Extended Community list rules
 
-### Usage
+### Command Syntax
 
-`nv show router policy ext-community-list <list-id> rule [options] [<rule-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id> |` Community List ID |
 | `<rule-id>` |  Prefix List rule number |
@@ -849,22 +663,12 @@ cumulus@leaf04:mgmt:~$
 
 Extended Community list Matching criteria and action rule
 
-### Usage
+### Command Syntax
 
-`nv show router policy ext-community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `ext-community` |  Extended Community expression |
 
 ### Version History
 
@@ -882,23 +686,12 @@ cumulus@leaf04:mgmt:~$
 
 A Extended community name
 
-### Usage
+### Command Syntax
 
-`nv show router policy ext-community-list <list-id> rule <rule-id> ext-community [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rt` |  Route Target Extended Community |
-| `soo` | Site of Origin Extended Community |
 
 ### Version History
 
@@ -916,13 +709,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of extended communities
 
-### Usage
+### Command Syntax
 
-`nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt [options] [<ext-community-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |   Prefix List rule number |
@@ -944,13 +733,9 @@ cumulus@leaf04:mgmt:~$
 
 A extended community name
 
-### Usage
+### Command Syntax
 
-`nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
@@ -972,13 +757,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of extended communities
 
-### Usage
+### Command Syntax
 
-`nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo [options] [<ext-community-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |   Community List ID |
 | `<rule-id>` |   Prefix List rule number |
@@ -1000,13 +781,9 @@ cumulus@leaf04:mgmt:~$
 
 A extended community name
 
-### Usage
+### Command Syntax
 
-`nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
@@ -1028,13 +805,9 @@ cumulus@leaf04:mgmt:~$
 
 Large Community lists
 
-### Usage
+### Command Syntax
 
-`nv show router policy large-community-list [options] [<list-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` | The Community List ID. |
 
@@ -1054,21 +827,11 @@ cumulus@leaf04:mgmt:~$
 
 A Large Community list used for matching community based BGP policies
 
-### Usage
+### Command Syntax
 
-`nv show router policy large-community-list <list-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` | The Community List ID. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rule` |  Large Community List rules. |
 
 ### Version History
 
@@ -1086,13 +849,9 @@ cumulus@leaf04:mgmt:~$
 
 Large Community list rules
 
-### Usage
+### Command Syntax
 
-`nv show router policy large-community-list <list-id> rule [options] [<rule-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
@@ -1113,22 +872,12 @@ cumulus@leaf04:mgmt:~$
 
 Large Community list Matching criteria and action rule
 
-### Usage
+### Command Syntax
 
-`nv show router policy large-community-list <list-id> rule <rule-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `large-community` | Large Community expression |
 
 ### Version History
 
@@ -1146,13 +895,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of community names for large community list
 
-### Usage
+### Command Syntax
 
-`nv show router policy large-community-list <list-id> rule <rule-id> large-community [options] [<large-community-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
@@ -1174,13 +919,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of community names for large community list
 
-### Usage
+### Command Syntax
 
-`nv show router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
@@ -1202,13 +943,9 @@ cumulus@leaf04:mgmt:~$
 
 Prefix list rules
 
-### Usage
+### Command Syntax
 
-`nv show router policy prefix-list [options] [<prefix-list-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<prefix-list-id>` |  Prefix List ID |
 
@@ -1228,21 +965,11 @@ cumulus@leaf04:mgmt:~$
 
 A prefix list is used for matching IPv4 and IPv6 address prefixes.
 
-### Usage
+### Command Syntax
 
-`nv show router policy prefix-list <prefix-list-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<prefix-list-id>` |  Prefix List ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rule` |   Prefix List rule |
 
 ### Version History
 
@@ -1260,22 +987,12 @@ cumulus@leaf04:mgmt:~$
 
 Prefix list Matching criteria and action rule
 
-### Usage
+### Command Syntax
 
-`nv show router policy prefix-list <prefix-list-id> rule <rule-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<prefix-list-id>` |  Prefix List ID |
 | `<rule-id>` |   Prefix List rule number |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `match` |   Prefix List rule |
 
 ### Version History
 
@@ -1293,13 +1010,9 @@ cumulus@leaf04:mgmt:~$
 
 A prefix matc
 
-### Usage
+### Command Syntax
 
-`nv show router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<prefix-list-id>` | Prefix List ID |
 | `<rule-id>` |  Prefix List rule number |
@@ -1321,13 +1034,9 @@ cumulus@leaf04:mgmt:~$
 
 Collection of Route Maps
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map [options] [<route-map-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 
@@ -1347,21 +1056,11 @@ cumulus@leaf04:mgmt:~$
 
 A route map is used for policy configuration.
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rule` | Route Map rule |
 
 ### Version History
 
@@ -1379,24 +1078,12 @@ cumulus@leaf04:mgmt:~$
 
 Route Map Matching/setting criteria and action rule
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `match` |   Route Map match |
-| `set` |    Route Map set |
-| `action` |  Route Map set |
 
 ### Version History
 
@@ -1414,13 +1101,9 @@ cumulus@leaf04:mgmt:~$
 
 Route map rule match
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> match [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
@@ -1441,25 +1124,12 @@ cumulus@leaf04:mgmt:~$
 
 Route map rule set
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> set [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `as-path-prepend` | AS Path prepend |
-| `community` |  Collection of BGP communities |
-| `large-community` |  Collection of large BGP communities |
-| `aggregator-as` | Collection of aggregator AS |
 
 ### Version History
 
@@ -1477,13 +1147,9 @@ cumulus@leaf04:mgmt:~$
 
 AS Path prepend
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> set as-path-prepend [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
@@ -1504,13 +1170,9 @@ cumulus@leaf04:mgmt:~$
 
 BGP Community
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> set community <community-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
@@ -1532,13 +1194,9 @@ cumulus@leaf04:mgmt:~$
 
 Large BGP Community
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
@@ -1560,23 +1218,13 @@ cumulus@leaf04:mgmt:~$
 
 Aggregator AS Number
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
 | `<asn-id>` |  Autonomous number |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `address` |  Set of IPv4 addresses |
 
 ### Version History
 
@@ -1594,13 +1242,9 @@ cumulus@leaf04:mgmt:~$
 
 An IPv4 address
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
@@ -1623,23 +1267,12 @@ cumulus@leaf04:mgmt:~$
 
 Route map rule action
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> action [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `deny` |  Deny action |
-| `permit` | Permit action |
 
 ### Version History
 
@@ -1657,13 +1290,9 @@ cumulus@leaf04:mgmt:~$
 
 State details
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> action deny [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
@@ -1684,22 +1313,12 @@ cumulus@leaf04:mgmt:~$
 
 permit action
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> action permit [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `exit-policy` |  Permit action exit policy |
 
 ### Version History
 
@@ -1717,13 +1336,9 @@ cumulus@leaf04:mgmt:~$
 
 Permit action exit policy
 
-### Usage
+### Command Syntax
 
-`nv show router policy route-map <route-map-id> rule <rule-id> action permit exit-policy [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<route-map-id>` |  Route Map ID |
 | `<rule-id>` |  Sequence to insert or delete from the route-map |

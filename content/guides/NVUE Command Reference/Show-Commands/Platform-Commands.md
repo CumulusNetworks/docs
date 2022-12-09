@@ -9,19 +9,6 @@ type: nojsscroll
 
 Top-level container for the components in the system. This node represents a system component inventory, which includes hardware and software elements.
 
-### Usage
-
-`nv show platform [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `capabilities` |  Capabilities of this platform |
-| `hardware`   | The platform's hardware |
-| `environment` |   Platform environment information |
-| `software` |    The platform's software |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -37,10 +24,6 @@ cumulus@leaf04:mgmt:~$
 ## nv show platform capabilities
 
 Capabilities of this platform
-
-### Usage
-
-`nv show platform capabilities [options]`
 
 ### Version History
 
@@ -58,16 +41,6 @@ cumulus@leaf04:mgmt:~$
 
 The platform's hardware
 
-### Usage
-
-`nv show platform hardware [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `component` | Set of components making up the platform. |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -84,13 +57,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of components making up the platform.
 
-### Usage
+### Command Syntax
 
-`nv show platform hardware component [options] [<component-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<component-id>`  |  Component identifier |
 
@@ -110,22 +79,11 @@ cumulus@leaf04:mgmt:~$
 
 A component in the platform.
 
-### Usage
+### Command Syntax
 
-`nv show platform hardware component <component-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<component-id>`  |  Component identifier |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `linecard` | Properties of a linecard component |
-| `port` |   Set of physical ports on this component |
 
 ### Version History
 
@@ -143,13 +101,9 @@ cumulus@leaf04:mgmt:~$
 
 Properties of a linecard component
 
-### Usage
+### Command Syntax
 
-`nv show platform hardware component <component-id> linecard [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<component-id>`  |  Component identifier |
 
@@ -169,13 +123,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of physical ports on this component
 
-### Usage
+### Command Syntax
 
-`nv show platform hardware component <component-id> port [options] [<port-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<component-id>`  |  Component identifier |
 | `<port-id>` |  Physical port identifier |
@@ -196,22 +146,12 @@ cumulus@leaf04:mgmt:~$
 
 A physical port on the component.
 
-### Usage
+### Command Syntax
 
-`nv show platform hardware component <component-id> port <port-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<component-id>`  |  Component identifier |
 | `<port-id>` |  Physical port identifier |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `breakout-mode` | Set of breakout modes supported by this port |
 
 ### Version History
 
@@ -229,13 +169,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of breakout modes
 
-### Usage
+### Command Syntax
 
-`nv show platform hardware component <component-id> port <port-id> breakout-mode [options] [<mode-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<component-id>`  |  Component identifier |
 | `<port-id>` | Physical port identifier |
@@ -257,13 +193,9 @@ cumulus@leaf04:mgmt:~$
 
 A breakout mode
 
-### Usage
+### Command Syntax
 
-`nv show platform hardware component <component-id> port <port-id> breakout-mode <mode-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<component-id>`  |  Component identifier |
 | `<port-id>` | Physical port identifier |
@@ -285,19 +217,6 @@ cumulus@leaf04:mgmt:~$
 
 Platform environment information
 
-### Usage
-
-`nv show platform environment [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `fan` | The fans on the switch. |
-| `sensor` | The sensors on the switch. |
-| `psu` |  The PSUs on the switch. |
-| `led` |  The LEDs on the switch. |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -314,13 +233,9 @@ cumulus@leaf04:mgmt:~$
 
 The fans on the switch.
 
-### Usage
+### Command Syntax
 
-`nv show platform environment fan [options] [<fan-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<fan-id>` |   Physical fan identifier |
 
@@ -340,13 +255,9 @@ cumulus@leaf04:mgmt:~$
 
 A physical fan on the component.
 
-### Usage
+### Command Syntax
 
-`nv show platform environment fan <fan-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<fan-id>` |   Physical fan identifier |
 
@@ -366,13 +277,9 @@ cumulus@leaf04:mgmt:~$
 
 The sensors on the switch.
 
-### Usage
+### Command Syntax
 
-`nv show platform environment sensor [options] [<sensor-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<sensor-id>` |  Physical sensor identifier |
 
@@ -392,13 +299,9 @@ cumulus@leaf04:mgmt:~$
 
 A physical sensor on the component.
 
-### Usage
+### Command Syntax
 
-`nv show platform environment sensor <sensor-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<sensor-id>` |  Physical sensor identifier |
 
@@ -418,13 +321,9 @@ cumulus@leaf04:mgmt:~$
 
 The PSUs on the switch.
 
-### Usage
+### Command Syntax
 
-`nv show platform environment psu [options] [<psu-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<psu-id>` |  Physical PSU identifier |
 
@@ -444,14 +343,9 @@ cumulus@leaf04:mgmt:~$
 
 A PSU
 
-### Usage
+### Command Syntax
 
-`nv show platform environment psu <psu-id> [options]`
-
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<psu-id>` |  Physical PSU identifier |
 
@@ -471,13 +365,9 @@ cumulus@leaf04:mgmt:~$
 
 The LEDs on the switch.
 
-### Usage
+### Command Syntax
 
-`nv show platform environment led [options] [<led-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<led-id>` |  Physical LED identifier |
 
@@ -497,13 +387,9 @@ cumulus@leaf04:mgmt:~$
 
 A LED
 
-### Usage
+### Command Syntax
 
-nv show platform environment led \<led-id\> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<led-id>` |  Physical LED identifier |
 
@@ -523,16 +409,6 @@ cumulus@leaf04:mgmt:~$
 
 The platform's software
 
-### Usage
-
-`nv show platform software [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `installed` |  List of installed software |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -549,13 +425,9 @@ cumulus@leaf04:mgmt:~$
 
 List of installed software
 
-### Usage
+### Command Syntax
 
-`nv show platform software installed [options] [<installed-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<installed-id>` | Package name |
 
@@ -575,13 +447,9 @@ cumulus@leaf04:mgmt:~$
 
 An installed package
 
-### Usage
+### Command Syntax
 
-`nv show platform software installed <installed-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<installed-id>` |  Package name |
 

@@ -9,23 +9,11 @@ type: nojsscroll
 
 PIM interface configuration.
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> router pim [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-|`timers`                | Timers |
-|`bfd`                   | BFD configuration |
-|`address-family`        | Address family specific configuration |
 
 ### Version History
 
@@ -43,13 +31,9 @@ cumulus@leaf04:mgmt:~$
 
 Timers
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> router pim timers [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -69,13 +53,9 @@ cumulus@leaf04:mgmt:~$
 
 BFD configuration
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> router pim bfd [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -95,21 +75,11 @@ cumulus@leaf04:mgmt:~$
 
 Address family specific configuration
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> router pim address-family [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `ipv4-unicast` | IPv4 unicast address family |
 
 ### Version History
 
@@ -127,21 +97,11 @@ cumulus@leaf04:mgmt:~$
 
 IPv4 unicast address family
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> router pim address-family ipv4-unicast [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `allow-rp` |   Allow RP feature, which allows RP address to be accepts for the received |
 
 ### Version History
 
@@ -159,13 +119,11 @@ cumulus@leaf04:mgmt:~$
 
 Allow RP feature, which allows RP address to be accepts for the received
 
-### Usage
-
 `nv show interface <interface-id> router pim address-family ipv4-unicast allow-rp [options]`
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -185,16 +143,6 @@ cumulus@leaf04:mgmt:~$
 
 PIM global configuration.
 
-### Usage
-
-`nv show router pim [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `timers` |    Timers |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -210,10 +158,6 @@ cumulus@leaf04:mgmt:~$
 ## nv show router pim timers
 
 Timers
-
-### Usage
-
-`nv show router pim timers [options]`
 
 ### Version History
 
@@ -231,24 +175,11 @@ cumulus@leaf04:mgmt:~$
 
 PIM VRF configuration.
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router pim [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `timers`                | Timers |
-| `ecmp`                  | Choose all available ECMP paths for a particular RPF. If 'off', the first nexthop found will be used. This is the default.|
-| `msdp-mesh-group`       | To connect multiple PIM-SM multicast domains using RPs. |
-| `address-family`        | Address family specific configuration |
 
 ### Version History
 
@@ -266,13 +197,9 @@ cumulus@leaf04:mgmt:~$
 
 Timers
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router pim timers [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -292,13 +219,9 @@ cumulus@leaf04:mgmt:~$
 
 Choose all available ECMP paths for a particular RPF.  If 'off', the first nexthop found will be used.  This is the default.
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router pim ecmp [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -318,22 +241,12 @@ cumulus@leaf04:mgmt:~$
 
 MSDP mesh-group
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<msdp-mesh-group-id>` |  MSDP mesh group name |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `member-address` | Set of member-address |
 
 ### Version History
 
@@ -351,13 +264,9 @@ cumulus@leaf04:mgmt:~$
 
 A MSDP mesh member
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router pim msdp-mesh-group <msdp-mesh-group-id> member-address <mesh-member-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<msdp-mesh-group-id>`  | MSDP mesh group name |
@@ -379,21 +288,11 @@ cumulus@leaf04:mgmt:~$
 
 Address family specific configuration
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router pim address-family [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `ipv4-unicast`   |  IPv4 unicast address family |
 
 ### Version History
 
@@ -411,22 +310,11 @@ cumulus@leaf04:mgmt:~$
 
 IPv4 unicast address family
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router pim address-family ipv4-unicast [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-|`spt-switchover`   | Build shortest path tree towards source. |
-| `rp`  |  RP address and associated group range. |
 
 ### Version History
 
@@ -444,13 +332,9 @@ cumulus@leaf04:mgmt:~$
 
 Build shortest path tree towards source.
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router pim address-family ipv4-unicast spt-switchover [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 
@@ -470,22 +354,12 @@ cumulus@leaf04:mgmt:~$
 
 RP
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<rp-id>` |  RP IP address |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `group-range`   |  Set of group range assocaited to RP.|
 
 ### Version History
 
@@ -503,13 +377,9 @@ cumulus@leaf04:mgmt:~$
 
 A group range
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> router pim address-family ipv4-unicast rp <rp-id> group-range <group-range-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<rp-id>`  | RP IP address |

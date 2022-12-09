@@ -7,22 +7,11 @@ type: nojsscroll
 ---
 ## nv show interface \<interface-id\> qos
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos [options] [<attribute> ...]
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `counters` | |
-| `roce` | |
 
 ### Version History
 
@@ -40,24 +29,11 @@ cumulus@leaf04:mgmt:~$
 
 Interface QoS counters
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos counters [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `port-stats`            | `QoS Statistics for Interface`
-| `egress-queue-stats`    | `Egress queue statistics per egress traffic-class`
-| `ingress-buffer-stats`  | `Ingress Buffer statistics per priority-group`
-| `pfc-stats`             | `PFC statistics per internal switch-priority`
 
 ### Version History
 
@@ -75,22 +51,11 @@ cumulus@leaf04:mgmt:~$
 
 QoS Statistics for Interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos counters port-stats [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rx-stats`   | QoS Rx Statistics for Interface |
-| `tx-stats` |  QoS Tx Statistics for Interface |
 
 ### Version History
 
@@ -108,13 +73,9 @@ cumulus@leaf04:mgmt:~$
 
 QoS Rx Statistics for Interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos counters port-stats rx-stats [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -134,13 +95,9 @@ cumulus@leaf04:mgmt:~$
 
 QoS Tx Statistics for Interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos counters port-stats tx-stats [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -160,13 +117,9 @@ cumulus@leaf04:mgmt:~$
 
 Egress queue statistics per egress traffic-class
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos counters egress-queue-stats [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -186,13 +139,9 @@ cumulus@leaf04:mgmt:~$
 
 Ingress Buffer statistics per priority-group
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos counters ingress-buffer-stats [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -212,13 +161,9 @@ cumulus@leaf04:mgmt:~$
 
 PFC statistics per internal switch-priority
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos counters pfc-stats [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -236,22 +181,11 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show interface \<interface-id\> qos roce
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos roce [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `counters` | |
-| `status` | |
 
 ### Version History
 
@@ -269,13 +203,9 @@ cumulus@leaf04:mgmt:~$
 
 Interface roce counters
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos roce counters [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -295,23 +225,11 @@ cumulus@leaf04:mgmt:~$
 
 Interface status
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos roce status [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `pool-map`   |  Interface Roce pools|
-| `prio-map`  |  RoCE PCP/DSCP->SP mapping configurations|
-| `tc-map  | RoCE SP->TC mapping and ETS configurations|
 
 ### Version History
 
@@ -329,13 +247,9 @@ cumulus@leaf04:mgmt:~$
 
 Interface Roce pools
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos roce status pool-map [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -355,13 +269,9 @@ cumulus@leaf04:mgmt:~$
 
 RoCE PCP/DSCP->SP mapping configurations
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos roce status prio-map [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -381,13 +291,9 @@ cumulus@leaf04:mgmt:~$
 
 RoCE SP->TC mapping and ETS configurations
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> qos roce status tc-map [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 

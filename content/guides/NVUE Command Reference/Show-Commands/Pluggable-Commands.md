@@ -7,10 +7,6 @@ type: nojsscroll
 ---
 ## nv show interface \<interface-id\> pluggable
 
-### Usage
-
-`nv show interface <interface-id> pluggable [options]`
-
 ### Version History
 
 Introduced in Cumulus Linux 5.3.0

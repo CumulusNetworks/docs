@@ -9,17 +9,6 @@ type: nojsscroll
 
 Affect how config operations are performed.
 
-### Usage
-
-`nv show system config [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `apply`   |  Affect how config apply operations are performed.|
-| `snippet`  | Configuration file snippets that will be loaded as written into the appropriate configuration file during a foundation unit's lifecycle.
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -35,16 +24,6 @@ cumulus@leaf04:mgmt:~$
 ## nv show system config apply
 
 Affect how config apply operations are performed.
-
-### Usage
-
-`nv show system config apply [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `ignore` |   Set of files to ignore during config apply operations. |
 
 ### Version History
 
@@ -62,13 +41,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of files to ignore during config apply operations.
 
-### Usage
+### Command Syntax
 
-`nv show system config apply ignore [options] [<ignore-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<ignore-id>` |   Ignored file |
 
@@ -88,13 +63,9 @@ cumulus@leaf04:mgmt:~$
 
 File to ignore during config apply operations.
 
-### Usage
+### Command Syntax
 
-`nv show system config apply ignore <ignore-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<ignore-id>` |   Ignored file |
 
@@ -113,10 +84,6 @@ cumulus@leaf04:mgmt:~$
 ## nv show system config snippet
 
 Configuration file snippets that will be loaded as written into the appropriate configuration file during a foundation unit's lifecycle.  This is essentially a copy-paste operation to handle gaps in the current CUE OM.
-
-### Usage
-
-`nv show system config snippet [options]`
 
 ### Version History
 

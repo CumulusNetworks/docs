@@ -9,25 +9,11 @@ type: nojsscroll
 
 An physical interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> link [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `state`                | The state of the interface|
-| `dot1x`                | An physical interface|
-| `stats`                | Interface stats|
-| `traffic-engineering`  | Traffic engineering stats|
-| `flag`                 | link flags|
 
 ### Version History
 
@@ -38,8 +24,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
-
-- - -
 
 - - -
 
@@ -47,13 +31,9 @@ cumulus@leaf04:mgmt:~$
 
 The state of the interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> link state [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -66,8 +46,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
-
-- - -
 
 - - -
 
@@ -75,13 +53,9 @@ cumulus@leaf04:mgmt:~$
 
 An physical interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> link dot1x [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -94,8 +68,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
-
-- - -
 
 - - -
 
@@ -103,13 +75,9 @@ cumulus@leaf04:mgmt:~$
 
 Interface stats
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> link stats [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -122,8 +90,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
-
-- - -
 
 - - -
 
@@ -131,13 +97,9 @@ cumulus@leaf04:mgmt:~$
 
 Traffic engineering stats
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> link traffic-engineering [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -153,19 +115,13 @@ cumulus@leaf04:mgmt:~$
 
 - - -
 
-- - -
-
 ## nv show interface \<interface-id\> link flag
 
 link flags
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> link flag [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 

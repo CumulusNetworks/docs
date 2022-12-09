@@ -9,10 +9,6 @@ type: nojsscroll
 
 Shows the IPv4 DHCP relay configuration on the switch.
 
-### Usage
-
-`nv show service dhcp-relay [options] [<vrf-id> ...]`
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -29,23 +25,11 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay
 
 Shows the IPv4 DHCP relay configuration in the specified VRF.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-relay <vrf-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `server`                | Shows the specified DHCP server configuration.|
-| `interface`             | Shows DHCP relay configuration information for the interface that handles DHCP relay traffic. |
-| `giaddress-interface`   | Shows DHCP relay giaddress configuration information. |
 
 ### Version History
 
@@ -63,13 +47,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default
 
 Shows configuration for the specified IPv4 DHCP server participating in DHCP relay.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-relay <vrf-id> server <server-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<server-id>`   | The DHCP server. |
@@ -90,13 +70,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default server 172.16.1.102
 
 Shows IPv4 DHCP relay configuration information for the interface that handles DHCP relay traffic.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-relay <vrf-id> interface <interface-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<interface-id>` |  The DHCP relay interface.|
@@ -117,13 +93,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default interface swp1
 
 Shows the IPv4 DHCP relay gateway IP address (giaddress) interface configuration.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-relay <vrf-id> giaddress-interface <interface-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<interface-id>`  | The DHCP relay giaddress interface. |
@@ -144,13 +116,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default giaddress-interface lo
 
 Shows IPv6 DHVP relay configuration information on the switch.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-relay6 [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 
@@ -170,21 +138,11 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6
 
 Shows IPv6 DHVP relay configuration information in the specified VRF on the switch.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-relay6 <vrf-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `interface`  | Shows the IPv6 DHCP relay interfaces. |
 
 ### Version History
 
@@ -202,22 +160,11 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default
 
 Shows the IPv6 DHCP relay interface configuration in the specified VRF.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-relay6 <vrf-id> interface [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `upstream`   | Shows the upstream IPv6 DHCP relay interface configuration. |
-| `downstream` | Shows the downstream IPv6 DHCP relay interface configuration. |
 
 ### Version History
 
@@ -235,13 +182,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface swp1
 
 Shows the upstream IPv6 DHCP relay interface configuration.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-relay6 <vrf-id> interface upstream <interface-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<interface-id>` | The DHCP relay interface. |
@@ -262,13 +205,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface upstream sw
 
 AShows the downstream IPv6 DHCP relay interface configuration.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-relay6 <vrf-id> interface downstream <interface-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
 | `<interface-id>` |  The DHCP relay interface. |
@@ -289,10 +228,6 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface downstream 
 
 Shows IPv4 DHCP server information.
 
-### Usage
-
-`nv show service dhcp-server [options]`
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -309,25 +244,11 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server
 
 Shows IPv4 DHCP server configuration information in the specified VRF.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server <vrf-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `interface`             | Shows the interfaces on which IPv4 DPCH clients are attached.|
-| `pool`                  | Shows the IPv4 DHCP Pools. |
-| `domain-name`           | Shows the IPv4 DHCP domain names. |
-| `domain-name-server`    | Shows the IPv4 DHCP domain name servers. |
-| `static`                | Shows the IPv4 DHCP clients with fixed IP address assignments. |
 
 ### Version History
 
@@ -345,13 +266,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default
 
 Shows information about the interface on which IPv4 DHCP client is attached.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server <vrf-id> interface <interface-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<interface-id>`  | The IPv4 DHCP client interface. |
@@ -372,25 +289,12 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default interface swp1
 
 Shows information about the IPv4 DHCP pool subnet.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server <vrf-id> pool <pool-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<pool-id>` |  The DHCP pool subnet. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `domain-name-server`    | Shows information about the IPv4 DHCP domain name server in the pool |
-| `domain-name`           | Shows information about the the IPv4 DHCP domain name in the pool. |
-| `gateway`               | Shows information about the IPv4 DHCP gateway. |
-| `range`                 | Shows the IPv4 DHCP IP address range assignments. |
 
 ### Version History
 
@@ -408,13 +312,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24
 
 Shows information about the IPv4 DHCP domain name server in the pool.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<pool-id>` |  The DHCP pool subnet. |
@@ -436,13 +336,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 dom
 
 Shows information about the the IPv4 DHCP domain name in the pool.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<pool-id>` |  The DHCP pool subnet. |
@@ -464,13 +360,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 dom
 
 Shows information about the IPv4 DHCP gateway.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<pool-id>` |  The DHCP pool subnet. |
@@ -492,13 +384,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 gat
 
 Shows the IPv4 DHCP IP address range assignments.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<pool-id>` |  The DHCP pool subnet. |
@@ -520,13 +408,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 ran
 
 Shows the DNS attributes provided by the DHCP server.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server <vrf-id> domain-name <domain-name-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<domain-name-id>` | The IPv4 DHCP domain name. |
@@ -547,13 +431,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default domain-name my-domain
 
 Shows DNS server configuration provided by the DHCP server.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server <vrf-id> domain-name-server <server-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name.|
 | `<server-id>` |  The DNS server. |
@@ -574,13 +454,9 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default domain-name-server 19
 
 Shows static configuration for hosts served by the DHCP server.
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server <vrf-id> static <static-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<static-id>` | The IDN host name.|
@@ -601,10 +477,6 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server default static server1
 
 Shows IPv6 DHCP server information.
 
-### Usage
-
-`nv show service dhcp-server6 [options]`
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -621,25 +493,12 @@ cumulus@leaf04:mgmt:~$ nv show service dhcp-server6
 
 Dynamic Host Configuration Protocol IPv6 Server
 
-### Usage
 
-`nv show service dhcp-server6 <vrf-id> [options] [<attribute> ...]`
+### Command Syntax
 
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |  The VRF name.|
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `interface`             | Assign DHCP options to clients directly attached to these interfaes.|
-| `pool`                  | DHCP IP Pools |
-| `domain-name`           | DHCP domain names |
-| `domain-name-server`    | DHCP domain name servers |
-| `static`                | DHCP clients with fixed IP address assignments |
 
 ### Version History
 
@@ -655,13 +514,9 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service dhcp-server6 \<vrf-id\> interface \<interface-id\>
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server6 <vrf-id> interface <interface-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<interface-id>` | DHCP client interface |
@@ -682,27 +537,12 @@ cumulus@leaf04:mgmt:~$
 
 DHCP Pool
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server6 <vrf-id> pool <pool-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<pool-id>` |   DHCP6 pool subnet. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-
-  domain-name-server    DHCP domain name servers
-
-  domain-name           DHCP domain names
-
-  range                 IP Address range assignments
 
 ### Version History
 
@@ -720,13 +560,9 @@ cumulus@leaf04:mgmt:~$
 
 A remote DNS server
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<pool-id>` |  DHCP6 pool subnet. |
@@ -748,13 +584,9 @@ cumulus@leaf04:mgmt:~$
 
 TBD
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<pool-id>` |  DHCP6 pool subnet. |
@@ -776,13 +608,9 @@ cumulus@leaf04:mgmt:~$
 
 DHCP Pool range
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<pool-id>` |  DHCP6 pool subnet. |
@@ -804,13 +632,9 @@ cumulus@leaf04:mgmt:~$
 
 TBD
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<domain-name-id>` | DHCP domain name |
@@ -831,13 +655,9 @@ cumulus@leaf04:mgmt:~$
 
 A remote DNS server
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server6 <vrf-id> domain-name-server <server-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<server-id>` |  DNS server |
@@ -858,13 +678,9 @@ cumulus@leaf04:mgmt:~$
 
 static entry
 
-### Usage
+### Command Syntax
 
-`nv show service dhcp-server6 <vrf-id> static <static-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<static-id>` |  static mapping name|

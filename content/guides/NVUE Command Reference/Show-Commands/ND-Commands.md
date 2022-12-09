@@ -9,25 +9,11 @@ type: nojsscroll
 
 Neighbor discovery configuration for an interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip neighbor-discovery [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `rdnss`                 | Recursive DNS server addresses to be advertised using type 25 option RFC8016 |
-| `prefix`                | IPv6 prefix configuration |
-| `dnssl`                 | Advertise DNS search list using type 31 option RFC8106 |
-| `router-advertisement`  | Router advertisement |
-| `home-agent`            | Home agent configuration |
 
 ### Version History
 
@@ -45,13 +31,9 @@ cumulus@leaf04:mgmt:~$
 
 A recursive DNS server
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip neighbor-discovery rdnss <ipv6-address-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<ipv6-address-id>`  |   IPv6 address |
@@ -72,13 +54,9 @@ cumulus@leaf04:mgmt:~$
 
 A IPv6 prefix
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip neighbor-discovery prefix <ipv6-prefix-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<ipv6-address-id>`  |   IPv6 address |
@@ -99,13 +77,9 @@ cumulus@leaf04:mgmt:~$
 
 A DNS search list
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip neighbor-discovery dnssl <domain-name-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<domain-name-id>`   |  The domain portion of a hostname (RFC 1123) or an internationalized hostname (RFC 5890).|
@@ -126,13 +100,9 @@ cumulus@leaf04:mgmt:~$
 
 Router advertisement configuration for an interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip neighbor-discovery router-advertisement [options]  
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -152,13 +122,9 @@ cumulus@leaf04:mgmt:~$
 
 Indicates to neighbors that this router acts as a Home Agent and includes a Home Agent Option. Not defined by default
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip neighbor-discovery home-agent [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 

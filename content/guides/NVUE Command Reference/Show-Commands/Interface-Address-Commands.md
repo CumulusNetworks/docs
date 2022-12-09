@@ -9,29 +9,11 @@ type: nojsscroll
 
 IP configuration for an interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `address`               | ipv4 and ipv6 address |
-| `neighbor`              | IP neighbors |
-| `vrr`                   | Configuration for VRR |
-| `gateway`               | default ipv4 and ipv6 gateways |
-| `ipv4`                  | IPv4 configuration for an interface |
-| `ipv6`                  | IPv6 configuration for an interface |
-| `igmp`                  | Configuration for IGMP|
-| `vrrp`                  | Configuration for VRRP |
-| `neighbor-discovery`    | Neighbor discovery configuration for an interface |
 
 ### Version History
 
@@ -49,13 +31,9 @@ cumulus@leaf04:mgmt:~$
 
 An IP address with prefix
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip address <ip-prefix-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<ip-prefix-id>`  |  IPv4 or IPv6 address and route prefix in CIDR notation|
@@ -76,22 +54,11 @@ cumulus@leaf04:mgmt:~$
 
 IP neighbors
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip neighbor [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `ipv4`  | IPv4 neighbors |
-| `ipv6`  | IPv6 neighbors |
 
 ### Version History
 
@@ -109,13 +76,9 @@ cumulus@leaf04:mgmt:~$
 
 A neighbor
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip neighbor ipv4 <neighbor-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<neighbor-id>`  | The IPv4 address of the neighbor node.|
@@ -136,13 +99,9 @@ cumulus@leaf04:mgmt:~$
 
 A neighbor
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip neighbor ipv6 <neighbor-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<neighbor-id>`  | The IPv4 address of the neighbor node.|
@@ -163,21 +122,11 @@ cumulus@leaf04:mgmt:~$
 
 The loopback IP interface associated with this VRF.
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> loopback [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `ip` |  Properties associated with the loopback IP address on this VRF. |
 
 ### Version History
 
@@ -195,22 +144,11 @@ cumulus@leaf04:mgmt:~$
 
 IP addresses associated with the VRF's loopback interface.
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> loopback ip [options] [<attribute> ...]`
-
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `address` |  static IPv4 or IPv6 address |
 
 ### Version History
 
@@ -228,14 +166,9 @@ cumulus@leaf04:mgmt:~$
 
 An IP address with prefix
 
-### Usage
+### Command Syntax
 
-`nv show vrf <vrf-id> loopback ip address <ip-prefix-id> [options]`
-
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
 | `<ip-prefix-id>` |    IPv4 or IPv6 address and route prefix in CIDR notation |
@@ -249,4 +182,3 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf04:mgmt:~$ 
 ```
-

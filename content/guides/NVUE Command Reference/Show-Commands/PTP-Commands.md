@@ -9,22 +9,11 @@ type: nojsscroll
 
 Interface Specific PTP configuration.
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ptp [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `timers`  |  Interface PTP timers |
-| `counters`  |  Interface PTP counters |
 
 ### Version History
 
@@ -42,13 +31,9 @@ cumulus@leaf04:mgmt:~$
 
 Interface PTP timers
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ptp timers [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -68,13 +53,9 @@ cumulus@leaf04:mgmt:~$
 
 Interface PTP counters
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ptp counters [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 
@@ -94,13 +75,9 @@ cumulus@leaf04:mgmt:~$
 
 Collection of PTP instances
 
-### Usage
+### Command Syntax
 
-`nv show service ptp [options] [<instance-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
@@ -120,26 +97,11 @@ cumulus@leaf04:mgmt:~$
 
 Global PTP configuration.
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `acceptable-master`     | Collection of acceptable masters |
-| `monitor`               | PTP monitor configuration |
-| `current`               | Local states learned from the exchange of PTP messages |
-| `clock-quality`         | Clock Quality Status |
-| `parent`                | Local states learned from the exchange of PTP messages |
-| `time-properties`       | Time attributes of the clock |
 
 ### Version History
 
@@ -157,13 +119,9 @@ cumulus@leaf04:mgmt:~$
 
 Collection of acceptable masters
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> acceptable-master [options] [<clock-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 | `<clock-id>`  |  Clock ID |
@@ -184,13 +142,9 @@ cumulus@leaf04:mgmt:~$
 
 List of clocks that the local clock can accept as master clock
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> acceptable-master <clock-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 | `<clock-id>`  |  Clock ID |
@@ -211,22 +165,11 @@ cumulus@leaf04:mgmt:~$
 
 PTP monitor configuration
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> monitor [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `timestamp-log`  | Collection of violations logs |
-| `violations`     | PTP violations |
 
 ### Version History
 
@@ -242,13 +185,9 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show service ptp \<instance-id\> monitor timestamp-log
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> monitor timestamp-log [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
@@ -268,21 +207,11 @@ cumulus@leaf04:mgmt:~$
 
 PTP violations
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> monitor violations [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `log` |  PTP violations log |
 
 ### Version History
 
@@ -300,25 +229,11 @@ cumulus@leaf04:mgmt:~$
 
 PTP violations log
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> monitor violations log [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `acceptable-master`     | Collection of master violations |
-| `forced-master`         | Collection of master violations |
-| `max-offset`            | Collection of violations logs |
-| `min-offset`            | Collection of violations logs |
-| `path-delay`            | Collection of violations logs |
 
 ### Version History
 
@@ -336,13 +251,9 @@ cumulus@leaf04:mgmt:~$
 
 Collection of master violations
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> monitor violations log acceptable-master [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
@@ -362,13 +273,9 @@ cumulus@leaf04:mgmt:~$
 
 Collection of master violations
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> monitor violations log forced-master [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
@@ -388,13 +295,9 @@ cumulus@leaf04:mgmt:~$
 
 Collection of violations logs
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> monitor violations log max-offset [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
@@ -414,13 +317,9 @@ cumulus@leaf04:mgmt:~$
 
 Collection of violations logs
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> monitor violations log min-offset [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
@@ -440,13 +339,9 @@ cumulus@leaf04:mgmt:~$
 
 Collection of violations logs
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> monitor violations log path-delay [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
@@ -466,13 +361,9 @@ cumulus@leaf04:mgmt:~$
 
 Local states learned from the exchange of PTP messages
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> current [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
@@ -492,13 +383,9 @@ cumulus@leaf04:mgmt:~$
 
 Clock Quality Status
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> clock-quality [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
@@ -518,21 +405,11 @@ cumulus@leaf04:mgmt:~$
 
 Local states learned from the exchange of PTP messages 
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> parent [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-|`grandmaster-clock-quality` | Clock Quality Status |
 
 ### Version History
 
@@ -550,13 +427,9 @@ cumulus@leaf04:mgmt:~$
 
 Clock Quality Status
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> parent grandmaster-clock-quality [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>`  |  PTP instance number. It is used for management purpose. |
 
@@ -576,13 +449,9 @@ cumulus@leaf04:mgmt:~$
 
 Time attributes of the clock
 
-### Usage
+### Command Syntax
 
-`nv show service ptp <instance-id> time-properties [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<instance-id>` | PTP instance number. It is used for management  purpose. |
 

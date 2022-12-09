@@ -9,21 +9,11 @@ type: nojsscroll
 
 Shows IGMP configuration information. IGMP prevents hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments.
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip igmp [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`  | The interface name. |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `static-group`  | Shows the IGMP static mutlicast mroutes. |
 
 ### Version History
 
@@ -41,13 +31,9 @@ cumulus@leaf04:mgmt:~$ nv show interface swp1 ip igmp
 
 Shows information about IGMP static multicast groups configured on the interface.
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip igmp static-group [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    | The interface name. |
 
@@ -67,13 +53,9 @@ cumulus@leaf04:mgmt:~$ nv show interface swp1 ip igmp static-group
 
 Shows information about IGMP static multicast groups configured on the interface.
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> ip igmp static-group <static-group-id> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    | The interface name. |
 | `<static-group-id>` | The IGMP static multicast mroute destination. |
@@ -93,10 +75,6 @@ cumulus@leaf04:mgmt:~$ nv show interface swp1 ip igmp static-group 224.10.0.0
 ## nv show router igmp
 
 Shows global IGMP configuration information.
-
-### Usage
-
-`nv show router igmp [options]`
 
 ### Version History
 

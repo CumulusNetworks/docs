@@ -9,21 +9,11 @@ type: nojsscroll
 
 attributed related to a bridged interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> bridge [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `domain`  |  Bridge domains on this interface |
 
 ### Version History
 
@@ -41,23 +31,12 @@ cumulus@leaf04:mgmt:~$
 
 Bridge domain on this interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> bridge domain <domain-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<domain-id>`   | Domain |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `stp`  |attributed related to a stpd interface
-| `vlan` | Set of allowed vlans for this bridge domain on this  interface. If "all", inherit all vlans from the bridge domain, if appropriate. This is the default. |
 
 ### Version History
 
@@ -75,13 +54,9 @@ cumulus@leaf04:mgmt:~$
 
 attributed related to a stpd interface
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> bridge domain <domain-id> stp [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<domain-id>`   | Domain |
@@ -102,13 +77,9 @@ cumulus@leaf04:mgmt:~$
 
 A VLAN tag identifier
 
-### Usage
+### Command Syntax
 
-`nv show interface <interface-id> bridge domain <domain-id> vlan <vid> [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>`    |    Interface |
 | `<domain-id>`   | Domain |
@@ -130,16 +101,6 @@ cumulus@leaf04:mgmt:~$
 
 Properties associated with an instance of a bridge.
 
-### Usage
-
-`nv show bridge [options] [<attribute> ...]`
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `domain` |  Bridge domains |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -156,13 +117,9 @@ cumulus@leaf04:mgmt:~$
 
 Bridge domains
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain [options] [<domain-id> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` |  Domain |
 
@@ -182,26 +139,11 @@ cumulus@leaf04:mgmt:~$
 
 Bridge domain
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` |  Domain |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `stp`  |   attributes related to global stp |
-| `multicast`    | Configure multicast on the bridge |
-| `vlan`         | Set of vlans in the bridge domain. Only applicable when the domain type is "vlan-aware". |
-| `mac-table`    | L2 FDB |
-| `mdb`          | Set of mdb entries in the bridge domain |
-| `router-port`  | Set of multicast router ports |
 
 ### Version History
 
@@ -219,21 +161,11 @@ cumulus@leaf04:mgmt:~$
 
 attributes related to global stp
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> stp [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` |  Domain |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `state` | The state of STP on the bridge |
 
 ### Version History
 
@@ -251,13 +183,9 @@ cumulus@leaf04:mgmt:~$
 
 The state of STP on the bridge
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> stp state [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` |  Domain |
 
@@ -277,22 +205,11 @@ cumulus@leaf04:mgmt:~$
 
 Configure multicast on the bridge
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> multicast [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` Domain | 
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-
-  snooping              IGMP/MLD snooping configuration
 
 ### Version History
 
@@ -310,21 +227,11 @@ cumulus@leaf04:mgmt:~$
 
 IGMP/MLD snooping configuration
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> multicast snooping [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` |  Domain |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `querier` |  IGMP/MLD querier configuration |
 
 ### Version History
 
@@ -342,13 +249,9 @@ cumulus@leaf04:mgmt:~$
 
 IGMP/MLD querier configuration
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> multicast snooping querier [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | Domain |
 
@@ -368,24 +271,12 @@ cumulus@leaf04:mgmt:~$
 
 A VLAN tag identifier
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> vlan <vid> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | Domain |
 | `<vid> |     VLAN ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `vni`       | L2 VNI |
-| `ptp`       | VLAN PTP configuration. Inherited by interfaces in this VLAN. |
-| `multicast` | Configure multicast on the vlan |
 
 ### Version History
 
@@ -403,23 +294,13 @@ cumulus@leaf04:mgmt:~$
 
 VNI
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> vlan <vid> vni <vni-id> [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>`          | Domain |
 | `<vid>`                | VLAN ID |
 | `<vni-id>`             | VxLAN ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `flooding`  | Handling of BUM traffic |
 
 ### Version History
 
@@ -437,24 +318,14 @@ cumulus@leaf04:mgmt:~$
 
 Handling of BUM traffic
 
-### Usage
-
-`nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding [options] [<attribute> ...]`
-
-### Identifiers
+### Command Syntax
 
 | --------- | -------------- |
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>`          | Domain |
 | `<vid>`                | VLAN ID |
 | `<vni-id>`             | VxLAN ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `head-end-replication` | BUM traffic is replicated and individual copies sent to remote destinations.|
 
 ### Version History
 
@@ -472,14 +343,10 @@ cumulus@leaf04:mgmt:~$
 
 Set of IPv4 unicast addresses or "evpn".
 
-### Usage
-
-`nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id> [options]`
-
-### Identifiers
+### Command Syntax
 
 | --------- | -------------- |
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | Domain |
 | `<vid>`      | VLAN ID |
@@ -502,13 +369,9 @@ cumulus@leaf04:mgmt:~$
 
 VLAN PTP configuration.  Inherited by interfaces in this VLAN.
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> vlan <vid> ptp [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | Domain |
 | `<vid>`      | VLAN ID |
@@ -529,22 +392,12 @@ cumulus@leaf04:mgmt:~$
 
 Configure multicast on the vlan
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> vlan <vid> multicast [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | Domain |
 | `<vid>`      | VLAN ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `snooping`  | IGMP/MLD snooping configuration |
 
 ### Version History
 
@@ -562,22 +415,12 @@ cumulus@leaf04:mgmt:~$
 
 IGMP/MLD snooping configuration
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> vlan <vid> multicast snooping [options] [<attribute> ...]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | Domain |
 | `<vid>`      | VLAN ID |
-
-### Attributes
-
-| Attribute |  Description   |
-| --------- | -------------- |
-| `querier`  | IGMP/MLD querier configuration |
 
 ### Version History
 
@@ -595,13 +438,9 @@ cumulus@leaf04:mgmt:~$
 
 IGMP/MLD querier configuration
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> vlan <vid> multicast snooping querier [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | Domain |
 | `<vid>`      | VLAN ID |
@@ -622,13 +461,9 @@ cumulus@leaf04:mgmt:~$
 
 L2 FDB
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> mac-table [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | Domain |
 
@@ -648,13 +483,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of mdb entries in the bridge domain
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> mdb [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | Domain |
 
@@ -674,13 +505,9 @@ cumulus@leaf04:mgmt:~$
 
 Set of multicast router ports
 
-### Usage
+### Command Syntax
 
-`nv show bridge domain <domain-id> router-port [options]`
-
-### Identifiers
-
-| Identifier |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | Domain |
 

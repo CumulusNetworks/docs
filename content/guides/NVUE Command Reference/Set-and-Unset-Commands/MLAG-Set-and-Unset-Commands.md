@@ -1,10 +1,106 @@
 ---
 title: MLAG Set and Unset Commands
 author: Cumulus Networks
-weight: 600
+weight: 640
 product: Cumulus Linux
 type: nojsscroll
 ---
+## nv set interface \<interface-id\> bond mlag
+
+Configures Multi-chassis Link Aggregation (MLAG) on the bond interface.
+
+### Default Setting
+
+N/A
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## nv set interface \<interface-id\> bond mlag enable
+
+Turns MLAG on or off on the bond interface.
+
+### Default Setting
+
+`off`
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mlag enable on
+```
+
+- - -
+
+## nv set interface \<interface-id\> bond mlag id
+
+Configures the MLAG ID on the bond interface. You must specify a unique MLAG ID (`clag-id`) for every dual-connected bond on each peer switch so that switches know which links dual-connect or connect to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches. A value of 0 disables MLAG on the bond.
+
+### Default Setting
+
+`auto`
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mlag id 1
+```
+
+- - -
+
+## nv set interface \<interface-id\> bond mlag lacp-conflict
+
+Configures MLAG LACP conflict on the bond interface.
+
+### Default Setting
+
+N/A
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mlag lacp-conflict 
+```
+
 - - -
 
 ## nv set mlag
@@ -19,7 +115,7 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set mlag backup \<backup-ip\>
 
-Configures the IP address of the MLAG backup switch. The backup IP address is any layer 3 backup interface for the peer link, which the switch uses when the peer link goes down. You must add the backup IP address, which must be different than the peer link IP address.
+Configures the IP address of a backup layer 3 interface for the peer link, which the switch uses when the peer link goes down. You must add a backup IP address, which must be different than the peer link IP address. You can use the loopback or management IP address of the switch.
 
 ### Default Setting
 
@@ -29,7 +125,7 @@ N/A
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<backup-ip>` |  The IP address of the MLAG backup switch. |
+| `<backup-ip>` |  The IP address of the backup interface. |
 
 ### Version History
 
@@ -45,7 +141,7 @@ cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2
 
 ## nv set mlag backup \<backup-ip\> vrf \<vrf-name\>
 
-Configures the VRF for MLAG backup IP address.
+Configures the VRF for the MLAG backup IP address.
 
 ### Default Setting
 
@@ -55,7 +151,7 @@ N/A
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<backup-ip>` |  The IP address of the MLAG backup switch.|
+| `<backup-ip>` |  The IP address of the backup interface.|
 
 ### Version History
 
@@ -95,7 +191,7 @@ Configures the MLAG system MAC address. NVIDIA provides a reserved range of MAC 
 
 ### Default Setting
 
-N/A
+`auto`
 
 ### Version History
 
@@ -193,3 +289,31 @@ cumulus@leaf01:mgmt:~$ nv set mlag debug on
 ```
 
 - - -
+
+## nv set nve vxlan mlag
+
+Configures MLAG for VXLAN.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## nv set nve vxlan mlag shared-address
+
+Configures the shared anycast address for MLAG peers.
+
+### Default Setting
+
+N/A
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag vxlan mlag shared-address 10.10.10.2
+```

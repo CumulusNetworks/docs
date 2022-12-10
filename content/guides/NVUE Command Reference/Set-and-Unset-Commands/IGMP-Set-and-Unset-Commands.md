@@ -1,0 +1,231 @@
+---
+title: IGMP Set and Unset Commands
+author: Cumulus Networks
+weight: 590
+product: Cumulus Linux
+type: nojsscroll
+---
+## nv set interface <interface-id> ip igmp
+
+Configures Internet Group Management Protocol (IGMP).
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+- - -
+
+## nv set interface <interface-id> ip igmp static-group <static-group-id>
+
+Configures the IGMP static multicast mroute destination. This is the IPv4 address of the member associated with the specified multicast group address.
+
+### Default Setting
+
+N/A
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<static-group-id>` | The IGMP static multicast mroute destination. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp static-group 234.10.10.10
+```
+
+- - -
+
+## nv set interface <interface-id> ip igmp static-group <static-group-id> source-address <ipv4-unicast>
+
+Configures the IPv4 unicast address of the IGMP static multicast mroute source.
+
+### Default Setting
+
+N/A
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<static-group-id>` | The IGMP static multicast mroute destination. |
+| `<ipv4-unicast>` | The IPv4 unicast address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp static-group 234.10.10.10 source-address 234.1.1.1
+```
+
+- - -
+
+## nv set interface <interface-id> ip igmp enable (on|off)
+
+Turns IGMP on or off on the specified interface.
+
+### Default Setting
+
+N/A
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp enable on
+```
+
+- - -
+
+## nv set interface <interface-id> ip igmp version
+
+Configures the IGMP version. You can specify version 2 or version 3.
+
+### Default Setting
+
+`2`
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp version 3
+```
+
+- - -
+
+## nv set interface <interface-id> ip igmp query-interval
+
+Configures how often IGMP sends query-host messages to discover which multicast groups have members on the attached networks. You can specify a value between 1 and 1800 seconds.
+
+### Default Setting
+
+`125`
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp query-interval 1000
+```
+
+- - -
+
+## nv set interface <interface-id> ip igmp query-max-response-time
+
+Configures the maximum response time for IGMP general queries. You can specify a value between 10 and 250 seconds.
+
+### Default Setting
+
+`10`
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp query-max-response-time 100
+```
+
+- - -
+
+## nv set interface <interface-id> ip igmp last-member-query-interval 1-255
+
+Configures the maximum response time advertised in IGMP group-specific queries . You can specify a value between 1 and 255 seconds.
+
+### Default Setting
+
+`1`
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp last-member-query-interval 10
+```
+
+- - -
+
+## nv set router igmp
+
+Configures global IGMP settings
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## nv set router igmp enable
+
+Turns IGMP on or off globally.
+
+### Default Setting
+
+`off`
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router igmp on
+```
+
+- - -

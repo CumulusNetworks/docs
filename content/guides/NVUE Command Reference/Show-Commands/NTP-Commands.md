@@ -86,5 +86,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ntp default server 4.cumulusnetworks.pool.ntp.org
+cumulus@leaf04:mgmt:~$ nv show service ntp default pool 4.cumulusnetworks.pool.ntp.org
 ```

@@ -9,7 +9,7 @@ cascade:
 
 L2 EVPN deployment uses a bridged overlay as seen in Figure 7. It provides Ethernet bridging in an EVPN network and extends VLANs between the leaf devices across VXLAN tunnels. These leaf-to-leaf VXLAN tunnels are useful in networks that require connectivity between leaf devices but do not need inter-VLAN routing. As a result, the intelligence is at the leaf layer. The spine layer simply provides connectivity between leaf devices. Leaf devices establish <span style="background-color:#F5F5DC">[VTEPs](## "Virtual Tunnel Endpoints")</span> to connect to other leaf devices. The tunnels enable communication between leaf devices and Ethernet-connected end systems in the data center.
 
-FIGURE 7 - L2 EVPN EXAMPLE
+**Figure 7 - L2 EVPN Example**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/l2evpn.png" >}}
 
@@ -46,7 +46,7 @@ The nature of a centrally routed bridging overlay is that routing occurs at a ce
 
 Figure 8 shows a common way to deploy this model. Border devices are located at the edge, or border, of a data center fabric. These devices also act as the VTEP for north-south traffic entering and exiting the network fabric. The traffic that originates at the Ethernet-connected end systems is forwarded to the leaf VTEP devices over a trunk (multiple VLANs) or an access port (single VLAN). The VTEP device forwards the traffic to local end systems or to an end system at a remote VTEP device. An  integrated routing and bridging (IRB) interface at the border devices routes traffic between the Ethernet virtual networks.
 
-FIGURE 8 - CENTRALIZED IRB EXAMPLE
+**Figure 8 - Centralized IRB Example**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/centralized.png" >}}
 
@@ -66,7 +66,7 @@ Using the distributed architecture, the {{<exlink url="https://datatracker.ietf.
 
 This is the default EVPN routing model. The symmetric model routes and bridges on both the ingress and the egress leaves. This results in bidirectional traffic being able to travel on the same VNI, hence the symmetric name. However, a new specialty transit VNI is used for all routed VXLAN traffic, called the L3VNI. All traffic that must be routed is routed onto the L3VNI, tunneled across the L3 infrastructure, routed off the L3VNI to the appropriate VLAN, and ultimately bridged to the destination. Figure 9 shows bridging and routing in a sample symmetric configuration.
 
-FIGURE 9 - SYMMETRIC IRB EXAMPLE
+**Figure 9 - Symmetric IRB Example**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/symmetric.png" >}}
 
@@ -93,7 +93,7 @@ Symmetric VXLAN routing is configured directly on the ToR, using EVPN for both V
 
 The asymmetric model enables routing and bridging on the VXLAN tunnel ingress, but only bridging on the egress. This results in bidirectional VXLAN traffic traveling on different VNIs in each direction (always the destination VNI) across the routed infrastructure. Figure 10 shows bridging and routing in a sample asymmetric configuration. Even though this is supported by Cumulus Linux, Symmetric IRB is the recommended deployment model.
 
-FIGURE 10 - ASYMMETRIC IRB EXAMPLE
+**Figure 10 - Asymmetric IRB Example**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/asymmetric.png" >}}
 
@@ -111,7 +111,7 @@ In EVPN, routing is assumed to occur within the context of a VRF. This is true r
 
 As shown in Figure 11, the servers in a group are placed in one VRF segment and can communicate with each other, but they cannot communicate with users in another VRF segment. If you want to send and receive traffic from one VRF segment to another VRF segment, you must configure {{<link url="#route-leaking" text="route leaking">}} or rely on an external gateway.
 
-FIGURE 11 - MULTI-TENANCY USING VRF
+**Figure 11 - Multi-tenancy using a VRF**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/multi-tenancy.png" >}}
 
@@ -295,7 +295,7 @@ Disadvantages of this model include:
 
 Figure 12 shows an EVPN-PIM configuration, where underlay multicast distributes BUM traffic.
 
-FIGURE 12 – EVPN-PIM FOR BUM TRAFFIC
+**Figure 12 – EVPN-PIM for BUM Traffic**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/pim.png" >}}
 

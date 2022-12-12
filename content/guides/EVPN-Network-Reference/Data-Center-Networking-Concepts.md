@@ -9,7 +9,7 @@ cascade:
 
 Network virtualization is the carving up of a single physical network into many virtual networks. Virtualizing a resource allows it to be shared by multiple users. In the case of virtual networks, each user is under the illusion that there are no other users of the network. To preserve the illusion, virtual networks are isolated from one another.
 
-A virtual network implemented with protocols that leave the transit nodes unaware of it is called a *virtual network overlay*. An *underlay* is the network that transports the overlay network. Underlay networks can be L2 or L3 networks. L2 underlay networks today are typically based on Ethernet, with segmentation accomplished through VLANs. Internet is an example of an L3 underlay network, where autonomous systems use interior gateway protocols (IGPs) such as <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> and <span style="background-color:#F5F5DC">[IS-IS](## "Intermediate System to Intermediate System")</span> to run control planes, and use <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> as the Internet-wide routing protocol. <span style="background-color:#F5F5DC">[MPLS](## "Multi-Protocol Label Switched")</span> networks are a legacy underlay WAN technology that falls between L2 and L3. Overlay networks implement network virtualization concepts, where L2 and L3 tunneling encapsulation <span style="background-color:#F5F5DC">[VXLAN](## "Virtual Extensible LAN")</span>, <span style="background-color:#F5F5DC">[GRE](## "IP Generic Routing Encapsulation ")</span> and <span style="background-color:#F5F5DC">[IPSec](## "Internet Protocol Security")</span> serves as the transport overlay protocol, sometimes referred to as OTV (Overlay Transport Virtualization).
+A virtual network implemented with protocols that leave the transit nodes unaware of it is called a **virtual network overlay**. An **underlay** is the network that transports the overlay network. Underlay networks can be L2 or L3 networks. L2 underlay networks today are typically based on Ethernet, with segmentation accomplished through VLANs. Internet is an example of an L3 underlay network, where autonomous systems use interior gateway protocols (IGPs) such as <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span> and <span style="background-color:#F5F5DC">[IS-IS](## "Intermediate System to Intermediate System")</span> to run control planes, and use <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> as the Internet-wide routing protocol. <span style="background-color:#F5F5DC">[MPLS](## "Multi-Protocol Label Switched")</span> networks are a legacy underlay WAN technology that falls between L2 and L3. Overlay networks implement network virtualization concepts, where L2 and L3 tunneling encapsulation <span style="background-color:#F5F5DC">[VXLAN](## "Virtual Extensible LAN")</span>, <span style="background-color:#F5F5DC">[GRE](## "IP Generic Routing Encapsulation ")</span> and <span style="background-color:#F5F5DC">[IPSec](## "Internet Protocol Security")</span> serves as the transport overlay protocol, sometimes referred to as OTV (Overlay Transport Virtualization).
 
 In data centers, the role of the underlay is to provide reachability for the entire network. The underlay doesn’t actually have any intelligence to keep track of the endpoints or define the end-to-end networking. It provides the ability for all devices in the network to communicate with each other. In overlay environments, routing information is typically aggregated in top-of-rack switches (for bare-metal endpoints) or server hypervisors (for virtualized workloads).
 
@@ -33,7 +33,7 @@ VXLAN is widely deployed in many L3 data centers to provide L2 connectivity betw
 
 When a host sends traffic that belongs to a <span style="background-color:#F5F5DC">[VNI](## "VXLAN Network Identifier")</span>, as shown in figure 2, the traffic is encapsulated in UDP and IP headers. This is then sent across the underlay network, just like normal IP traffic. When the packet reaches the destination switch, the packet is decapsulated and delivered to the destination server.
 
-FIGURE 2 - VXLAN COMMUNICATION
+**Figure 2 - VXLAN Communication**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/vxlan-communication.png" >}}
 
@@ -45,7 +45,7 @@ In the 2 tier leaf-spine topology, the leaf switches handle all the VXLAN functi
 
 These are the top-of-rack switches (for bare-metal endpoints) and server hypervisors (for virtualized workloads). A VTEP requires an IP address (often a loopback address) and uses this address as the source/destination tunnel IP address. The VTEP IP address must be advertised into the routed domain so the VXLAN tunnel endpoints can reach each other. You can have multiple VNIs (VXLANs) using one VTEP IP address. Each switch that hosts a VTEP must have a VXLAN-supported chipset, such as Spectrum. VXLAN is a *point-to-multipoint tunnel*. Multicast or broadcast packets can be sent from a single VTEP to multiple VTEPs in the network.
 
-FIGURE 3 - VXLAN TUNNEL AND VTEPs WITHIN A DATA CENTER
+**Figure 3 - VXLAN Tunnel and VTEPs within a Data Center**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/vxlan-tunnel.png" >}}
 
@@ -58,7 +58,7 @@ VXLAN is an overlay technology that uses encapsulation to allow L2 overlay VLANs
 - STP convergence is very slow.
 - Redundancy is normally only limited to two devices due to MLAG.
 
-VXLAN overcomes these deficiencies and allows the network operator to optimize on an L3 routed fabric. A L2 overlay can still be accomplished, but no longer requires STP for control plane convergence due to the reliance of EVPN as the control plane.EVPN exchanges MAC information through a BGP address family, instead of relying on the inefficiencies of broadcast flood and learn. Plus, VXLAN uses a 24-bit ID that can define up to 16 million virtual networks, whereas VLAN only has a 12-bit ID and is limited to 4094 virtual networks.
+VXLAN overcomes these deficiencies and allows the network operator to optimize on an L3 routed fabric. A L2 overlay can still be accomplished, but no longer requires STP for control plane convergence due to the reliance of EVPN as the control plane. EVPN exchanges MAC information through a BGP address family, instead of relying on the inefficiencies of broadcast flood and learn. Plus, VXLAN uses a 24-bit ID that can define up to 16 million virtual networks, whereas VLAN only has a 12-bit ID and is limited to 4094 virtual networks.
 
 ## Border Gateway Protocol
 
@@ -92,7 +92,7 @@ The auto BGP leaf and spine keywords are only used to configure the ASN. The con
 
 ### BGP Unnumbered
 
-One of the requirements for BGP to establish peering is to have IP addresses configured for L3 communication.This requires IPv4 and IPv6 address configuration on links connecting neighboring routers, which in a large network can consume a lot of address space and can require a separate IP address for each peer-facing interface. The BGP neighbors only connect and exchange routes when all of the configurations are correct. Configuring BGP in large data centers can be repetitive, time-consuming, and error-prone. **BGP unnumbered** helps to avoid these issues.
+One of the requirements for BGP to establish peering is to have IP addresses configured for L3 communication.This requires IPv4 and IPv6 address configuration on links connecting neighboring routers, which in a large network can consume a lot of address space and can require a separate IP address for each peer-facing interface. The BGP neighbors only connect and exchange routes when all of the configurations are correct. Configuring BGP in large data centers can be repetitive, time-consuming, and error-prone. BGP unnumbered helps to avoid these issues.
 
 The BGP unnumbered standard in RFC 5549 uses ENHE and does not require that you advertise an IPv4 prefix together with an IPv4 next hop. You can configure BGP peering between your Cumulus Linux switches and exchange IPv4 prefixes without having to configure an IPv4 address on each switch; BGP uses unnumbered interfaces.
 
@@ -166,7 +166,7 @@ As shown in Figure 4, a typical data center uses just a few eBGP elements:
 - Add a routing policy to disallow leaf switches as transit devices.
 - Enable load balancing.
 
-FIGURE 4 - EVPN DEPLOYMENT WITH eBGP
+**Figure 4 - EVPN Deployment with eBGP**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/eBGP.png" >}}
 
@@ -207,7 +207,7 @@ Table 1 shows the different Route Types (RTs) used in EVPN. The minimum required
 
 <span style="background-color:#F5F5DC">[MLAG](## "Multi-Chasis Link Aggregation")</span> enables a pair of switches to act redundantly in an active-active architecture and appear as a single, logical device from the perspective of the host. The two switches in an MLAG pair are connected by a link or bonded links called the peer link. In a basic MLAG configuration, as shown in Figure 5, leaf01 and leaf02 are MLAG peers. MLAG is on three bonds, each with a single port, a peer link that is a bond with two member ports, and three VLANs on each port.
 
-FIGURE 5 - BASIC MLAG CONFIGURATION
+**Figure 5 - Basic MLAG Cconfiguration**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/mlag.png" >}}
 
@@ -221,7 +221,7 @@ A device that connects to an MLAG bond believes there is a single device on the 
 
 EVPN-MH uses BGP-EVPN `type-1`, `type-2` and `type-4` routes to discover Ethernet segments (ES) and to forward traffic to them. The MAC and neighbor databases synchronize between the ES peers through these routes as well. An ES is a group of switch links that attach to the same server. As seen in Figure 6, EVPN-MH eliminates the need for peer links or inter-switch links between the top of rack switch.
 
-FIGURE 6 - BASIC EVPN-MH CONFIGURATION
+**Figure 6 - Basic EVPN-MH Configuration**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/multihoming.png" >}}
 

@@ -62,7 +62,7 @@ The cloud native data center infrastructure pioneers picked a network topology c
 
 Figure 1 shows the most common Clos two-tier topology. The green nodes represent the switches and the black nodes the servers. There are two layers of switches: spine and leaf, therefore, the topology is commonly called a leaf-spine topology.
 
-FIGURE 1 - TWO-TIER CLOS TOPOLOGY
+**Figure 1 - Two-Tier CLOS Topology**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/CLOS.png" >}}
 

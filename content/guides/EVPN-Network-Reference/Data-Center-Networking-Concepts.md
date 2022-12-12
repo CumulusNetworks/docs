@@ -100,7 +100,7 @@ The next hop address for each prefix is an IPv6 link-local address, which BGP as
 
 The following example commands show a basic BGP unnumbered configuration for two switches, leaf01 and spine01, which are eBGP peers. As seen below, the only difference in a BGP unnumbered configuration is that the BGP neighbor is an interface and not an IP address.
 
-**leaf01 Configuration**
+**leaf01 configuration**
 
 ```
 nv set router bgp autonomous-system 65101
@@ -111,7 +111,7 @@ nv set vrf default router bgp address-family ipv4-unicast network 10.1.10.0/24
 nv config apply
 ```
 
-**spine01 Configuration**
+**spine01 configuration**
 
 ```
 nv set router bgp autonomous-system 65199
@@ -173,15 +173,15 @@ FIGURE 4 - EVPN DEPLOYMENT WITH eBGP
 ### Benefits of Deploying EVPN
 
 EVPN is a standardized control plane protocol that offers controller-less VXLAN tunnels. It also offers scale, redundancy, fast convergence and robustness while reducing broadcast, unknown unicast, and multicast (BUM) traffic across a data center core. Deploying EVPN provides many advantages to an L3 data center:
-- Simplicity - EVPN uses the BGP routing protocol. BGP is also the preferred routing protocol for data center infrastructures. The same routing protocol can be used for both infrastructure and virtual topologies. 
-- Controller-less VXLAN tunnels - No controller is needed for VXLAN tunnels, as EVPN provides peer discovery with authentication natively. This also mitigates the chance of rogue VTEPs in a network and dealing with complicated controller redundancy, and scaling issues caused by controller.
-- ARP Suppression - Cumulus EVPN reduces broadcast traffic within a data center by allowing the local leaf switch to respond to a host’s ARP requests instead of forwarding throughout the data center. Cumulus Linux enables ARP suppression by default.
-- Scale and robustness - EVPN uses the BGP routing protocol. BGP is very mature, scalable, flexible and robust. It is the primary routing protocol for the Internet and data centers. It supports routing policy and filtering, which provides granular control over traffic flow.
-- Fast convergence and host mobility - Cumulus EVPN supports the new BGP MAC mobility extended community, offering fast convergence and reducing discovery traffic after a MAC or VM move. MAC stickiness is also supported, preventing specific host mobility if desired.
-- Support for VXLAN active-active mode - Cumulus EVPN integrates with MLAG and multihoming, thereby providing host dual homing for redundancy.
-- Multitenancy - EVPN uses the RDs and RTs to separate tenants within a data center.
-- VXLAN Routing - Cumulus EVPN supports IP routing between VXLAN VNIs in overlay networks and is supported with Spectrum chipsets. VXLAN routing within a VRF is also supported.
-- Interoperability between vendors - The standardized multiprotocol BGP (MP-BGP) is used for the EVPN control plane. As long as vendor implementations maintain adherence to both the VXLAN and EVPN standards, interoperability is assured. 
+- **Simplicity**. EVPN uses the BGP routing protocol. BGP is also the preferred routing protocol for data center infrastructures. The same routing protocol can be used for both infrastructure and virtual topologies. 
+- **Controller-less VXLAN tunnels**. No controller is needed for VXLAN tunnels, as EVPN provides peer discovery with authentication natively. This also mitigates the chance of rogue VTEPs in a network and dealing with complicated controller redundancy, and scaling issues caused by controller.
+- **ARP Suppression**. Cumulus EVPN reduces broadcast traffic within a data center by allowing the local leaf switch to respond to a host’s ARP requests instead of forwarding throughout the data center. Cumulus Linux enables ARP suppression by default.
+- **Scale and robustness**. EVPN uses the BGP routing protocol. BGP is very mature, scalable, flexible and robust. It is the primary routing protocol for the Internet and data centers. It supports routing policy and filtering, which provides granular control over traffic flow.
+- **Fast convergence and host mobility**. Cumulus EVPN supports the new BGP MAC mobility extended community, offering fast convergence and reducing discovery traffic after a MAC or VM move. MAC stickiness is also supported, preventing specific host mobility if desired.
+- **Support for VXLAN active-active mode**. Cumulus EVPN integrates with MLAG and multihoming, thereby providing host dual homing for redundancy.
+- **Multitenancy**. EVPN uses the RDs and RTs to separate tenants within a data center.
+- **VXLAN Routing**. Cumulus EVPN supports IP routing between VXLAN VNIs in overlay networks and is supported with Spectrum chipsets. VXLAN routing within a VRF is also supported.
+- **Interoperability between vendors**. The standardized multiprotocol BGP (MP-BGP) is used for the EVPN control plane. As long as vendor implementations maintain adherence to both the VXLAN and EVPN standards, interoperability is assured.
 
 ### EVPN Route Types
 

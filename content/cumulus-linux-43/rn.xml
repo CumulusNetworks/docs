@@ -59,12 +59,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>5.2.0-5.3.0</td>
 </tr>
 <tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
-</tr>
-<tr>
 <td>3093966</td>
 <td>On Broadcom switches, INPUT chain iptable rules filter IPv6 packets matching the rules. </td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
@@ -1947,7 +1941,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>3291548</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td></td>
+<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -2000,12 +1994,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3098936</td>

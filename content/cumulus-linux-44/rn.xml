@@ -129,12 +129,6 @@ end vrf
 <td>5.2.0-5.3.0</td>
 </tr>
 <tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.6</td>
-<td>5.0.0-5.3.0</td>
-</tr>
-<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-4.3.0, 4.4.0-4.4.6</td>
@@ -1859,6 +1853,11 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
@@ -1883,7 +1882,7 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td>3291548</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td></td>
+<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3288156</td>
@@ -2028,12 +2027,6 @@ end vrf
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
 <td>4.4.4-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3098936</td>
@@ -3823,7 +3816,7 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>3291548</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td></td>
+<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3288156</td>
@@ -3978,12 +3971,6 @@ end vrf
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
 <td>4.4.4-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3098936</td>
@@ -5885,7 +5872,7 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>3291548</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td></td>
+<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3288156</td>
@@ -5999,12 +5986,6 @@ end vrf
 </td>
 <td>4.4.3-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3107615</td>
@@ -7934,7 +7915,7 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>3291548</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td></td>
+<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3221470</td>
@@ -8030,12 +8011,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3107615</td>
@@ -10166,7 +10141,7 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td>3291548</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
-<td></td>
+<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3221470</td>
@@ -10247,12 +10222,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3107615</td>

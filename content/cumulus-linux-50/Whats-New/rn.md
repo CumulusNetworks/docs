@@ -223,7 +223,7 @@ pdfhidden: True
 ### Fixed Issues in 5.0.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
-| <a name="3108491"></a> [3108491](#3108491) <a name="3108491"></a> <br /> | In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart <code>switchd</code>. | 4.2.1-4.4.5 | |
+| <a name="3108491"></a> [3108491](#3108491) <a name="3108491"></a> <br />None | In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart <code>switchd</code>. | 4.2.1-4.4.5 | |
 | <a name="2873186"></a> [2873186](#2873186) <a name="2873186"></a> <br /> | In an MLAG configuration with traditional bridges, MAC addresses are  seen over peer link during <code>ifreload</code> when adding new VLANS or bridges.  | 3.7.14.2-3.7.15, 4.3.0-4.4.5 | |
 | <a name="2862211"></a> [2862211](#2862211) <a name="2862211"></a> <br /> | On NVIDIA Spectrum ASICs in a layer 2 bridge scaled configuration (more than 800 VLANs), <code>clagd.service</code> enters a failed state after a reboot or a <code>switchd</code> restart<br />To work around this issue, load the port configuration in a staggered manner (groups of five downlink ports). | 3.7.12-3.7.15, 4.3.0, 4.4.2-4.4.5 | |
 | <a name="2847618"></a> [2847618](#2847618) <a name="2847618"></a> <br /> | When you enable PIM on VLAN interfaces, multicast throughput might not achieve line rate depending on packet sizes in the multicast flow. |  | |

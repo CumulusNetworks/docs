@@ -1,0 +1,1 @@
+gcc has no copyright file

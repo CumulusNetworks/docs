@@ -22,8 +22,8 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
 ### New Features and Enhancements
 
 - Port configuration changes
-- PTP Shaper for Spectrum 1
-- SyncE Support available for early access
+- {{<link url="Quality-of-Service#" text="PTP Shaping">}} for Spectrum 1
+- {{<link url="SyncE#synce" text="SyncE">}} available for early access
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - User management
   - TACACS Plus

@@ -7,7 +7,7 @@ cascade:
 ---
 ## EVPN for L2 Deployments
 
-L2 EVPN deployment uses a bridged overlay as seen in Figure 7. It provides Ethernet bridging in an EVPN network and extends VLANs between the leaf devices across VXLAN tunnels. These leaf-to-leaf VXLAN tunnels are useful in networks that require connectivity between leaf devices but do not need inter-VLAN routing. As a result, the intelligence is at the leaf layer. The spine layer simply provides connectivity between leaf devices. Leaf devices establish <span style="background-color:#F5F5DC">[VTEPs](## "Virtual Tunnel Endpoints")</span>to connect to other leaf devices. The tunnels enable communication between leaf devices and Ethernet-connected end systems in the data center.
+L2 EVPN deployment uses a bridged overlay as seen in Figure 7. It provides Ethernet bridging in an EVPN network and extends VLANs between the leaf devices across VXLAN tunnels. These leaf-to-leaf VXLAN tunnels are useful in networks that require connectivity between leaf devices but do not need inter-VLAN routing. As a result, the intelligence is at the leaf layer. The spine layer simply provides connectivity between leaf devices. Leaf devices establish <span style="background-color:#F5F5DC">[VTEPs](## "Virtual Tunnel Endpoints")</span> to connect to other leaf devices. The tunnels enable communication between leaf devices and Ethernet-connected end systems in the data center.
 
 FIGURE 7 - L2 EVPN EXAMPLE
 

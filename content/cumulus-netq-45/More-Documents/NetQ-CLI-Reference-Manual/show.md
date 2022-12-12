@@ -967,7 +967,7 @@ None
 
 ## netq show events-config
 
-Displays all event suppression configurations. Optionally, you can filter by a specific configuration or message type. The output when viewing one or all event suppression configurations provides the following information for each configuration:
+Displays all event suppression configurations. Optionally, you can filter by a specific configuration or message type. The output displays the following information for each configuration:
 
 - Configuration identifier and name
 - Message type
@@ -999,10 +999,10 @@ None
 | events_config_id | \<text-events-config-id-anchor\> | Only display results for the switch or host with this name |
 | show-filter-conditions | NA | Only display results for sessions using the VNI with this name |
 | message_type | \<text-message-type-anchor\> | Only display results for configurations with this type. Values include <!-- vale off -->*agent*, *bgp*, *btrfsinfo*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *ntp*, *ospf*, *sensor*, *services*, and *ssdutil*.<!-- vale on --> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 ### Sample Usage
 
-Show a given event suppression configuration
+Display a given event-suppression configuration:
 
 ```
 cumulus@switch:~$ netq show events-config events_config_id eventsconfig_1
@@ -1107,7 +1107,7 @@ eventsconfig_10      job_cl_upgrade_2d89c sensor               {"sensor":"*","ne
                      fw2
 ```
 
-Show filter conditions for EVPN event suppression configurations
+Display filter conditions for EVPN event suppression configurations:
 
 ```
 cumulus@switch:~$ netq show events-config message_type evpn show-filter-conditions
@@ -1119,7 +1119,11 @@ evpn                     vni                                        3           
 evpn                     severity                                   2                                                    Severity error/info
 evpn                     hostname                                   1                                                    Target Hostname
 ```
-<!-- vale off -->
+### Related Commands
+
+- ```netq show events```
+
+- - -
 ## netq show evpn
 <!-- vale on -->
 Displays the health of all EVPN sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides the following for each session:
@@ -1152,11 +1156,9 @@ None
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | <!-- vale off -->vni | \<text-vni\><!-- vale on --> | Only display results for sessions using the VNI with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
-
-Basic show: all devices, all VNIs, currently
 
 ```
 cumulus@switch:~$ netq show evpn
@@ -1192,9 +1194,9 @@ leaf04            4001       10.0.1.2         L3               Vrf RED        ye
 
 ### Related Commands
 <!-- vale off -->
-- netq show unit-tests evpn
-- netq show events
-- netq check evpn
+- ```netq show unit-tests evpn```
+- ```netq show events```
+- ```netq check evpn```
 <!-- vale on -->
 - - -
 
@@ -2790,7 +2792,7 @@ yes    36:6a:10:4a:41:02  4001   leaf04            vniRED                       
 
 ## netq show notification
 
-Displays the configuration of notification channels, filters, rules, or the proxy (if configured). Supported notification channels include email, PagerDuty, Slack, and `syslog`. The output varies according to the component you want to view.
+Displays the configuration of notification channels, filters, rules, or the proxy (if configured). Supported notification channels include email, PagerDuty, Slack, and `syslog`. The output varies according to the component you want to view. Refer to {{<link title="Configure System Event Notifications">}} for additional information.
 
 ### Syntax
 
@@ -2813,11 +2815,11 @@ netq show notification
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Show notification channels
+Display notification channels:
 
 ```
 cumulus@netq-ts:~$ netq show notification channel
@@ -2844,25 +2846,7 @@ syslog-netq-eve syslog           debug            syslog_hostname: 10.10.2
 nts                                               0.35, syslog_port: 514
 ```
 
-Show filters
-
-```
-cumulus@switch:~$ netq show notification filter
-    Matching config_notify records:
-    Name            Order      Severity         Channels         Rules
-    --------------- ---------- ---------------- ---------------- ----------
-    swp52Drop       1          error            NetqDefaultChann swp52
-                                                el
-    bgpSpine        2          info             pd-netq-events   bgpHostnam
-                                                                 e
-    vni42           3          warning          pd-netq-events   evpnVni
-    configChange    4          info             slk-netq-events  sysconf
-    newFEC          5          info             slk-netq-events  fecSupport
-    svcDown         6          critical         slk-netq-events  svcStatus
-    critTemp        7          critical         onprem-email     overTemp
-```
-
-Show rules
+Display rules:
 
 ```
 cumulus@switch:~$ netq show notification rule
@@ -2879,25 +2863,13 @@ swp52           port             swp52
 sysconf         configdiff       updated
 ```
 
-Show proxy
-
-```
-cumulus@switch:~$ netq show notification proxy
-Matching config_notify records:
-Proxy URL          Slack Enabled              PagerDuty Enabled
------------------- -------------------------- ----------------------------------
-proxy4:80          yes                        yes
-```
-
-Refer to {{<link title="Configure System Event Notifications">}} for more detail about configuring notifications.
-
 ### Related Commands
 
-- netq add notification
-- netq del notification
-- netq add tca
-- netq del tca
-- netq show tca
+- ```netq add notification```
+- ```netq del notification```
+- ```netq add tca```
+- ```netq del tca```
+- ```netq show tca```
 
 - - -
 
@@ -3369,7 +3341,7 @@ netq [<hostname>] show sensors
 | ---- | ---- | ---- |
 | all | NA | Display data for all sensors |
 | fan | \<fan-name\> | Display data for all fan sensors or the one specified using the `fan-name` value |
-| psu | \<psu-name\> | Display data for all power supply unit sensors or the one specified using the`psu-name` value |
+| psu | \<psu-name\> | Display data for all power supply unit sensors or the one specified using the `psu-name` value |
 | temp | \<temp-name\> | Display data for all temperature sensors or the one specified using the `temp-name` value |
 
 ### Options
@@ -3378,39 +3350,11 @@ netq [<hostname>] show sensors
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Basic show: all devices, all states, currently
-
-```
-cumulus@switch:~$ netq show sensors all
-Matching sensors records:
-Hostname          Name            Description                         State      Message                             Last Changed
------------------ --------------- ----------------------------------- ---------- ----------------------------------- -------------------------
-border01          fan5            fan tray 3, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
-border01          psu1fan1        psu1 fan                            ok                                             Tue Nov 24 03:57:06 2020
-border01          fan4            fan tray 2, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
-border01          fan2            fan tray 1, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
-border01          fan3            fan tray 2, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
-border01          fan6            fan tray 3, fan 2                   ok                                             Tue Nov 24 03:57:06 2020
-border01          psu2fan1        psu2 fan                            ok                                             Tue Nov 24 03:57:06 2020
-border01          fan1            fan tray 1, fan 1                   ok                                             Tue Nov 24 03:57:06 2020
-border02          fan3            fan tray 2, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
-border02          psu1fan1        psu1 fan                            ok                                             Tue Nov 24 04:13:30 2020
-border02          fan1            fan tray 1, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
-border02          fan6            fan tray 3, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
-border02          fan5            fan tray 3, fan 1                   ok                                             Tue Nov 24 04:13:30 2020
-border02          psu2fan1        psu2 fan                            ok                                             Tue Nov 24 04:13:30 2020
-border02          fan4            fan tray 2, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
-border02          fan2            fan tray 1, fan 2                   ok                                             Tue Nov 24 04:13:30 2020
-fw1               psu2fan1        psu2 fan                            ok                                             Tue Nov 24 19:50:49 2020
-fw1               psu1fan1        psu1 fan                            ok                                             Tue Nov 24 19:50:49 2020
-...
-```
-
-Show data for the fan4 sensor on all nodes.
+Display data for the fan4 sensor on all nodes:
 
 ```
 cumulus@switch:~$ netq show sensors fan fan4
@@ -3427,21 +3371,23 @@ spine04           fan4            fan tray 2, fan 2                   ok        
 
 ### Related Commands
 
-- netq show events
-- netq check sensors
-- netq show unit-tests sensors
+- ```netq show events```
+- ```netq check sensors```
+- ```netq show unit-tests sensors```
 
 - - -
 
 ## netq show services
 
-Displays configuration and health of system-level services for one or all switches and hosts, currently or for a time in the past. You can filter the output by switch, service, VRF, and status. Supported services include:
+Displays configuration and health of system-level services for one or all switches and hosts, currently or for a time in the past. You can filter the output by switch, service, VRF, and status. 
+
+Supported services include:
 <!-- vale off -->
-- **bgpd**: BGP (Border Gateway Protocol) daemon
-- **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
+- **bgpd**: BGP daemon
+- **clagd**: MLAG daemon
 - **helpledmgrd**: Switch LED manager daemon
-- **lldpd**: LLDP (Link Layer Discovery Protocol) daemon
-- **mstpd**: MSTP (Multiple Spanning Tree Protocol) daemon
+- **lldpd**: LLDP daemon
+- **mstpd**: MSTP daemon
 - **neighmgrd**: Neighbor Manager daemon for BGP and OSPF
 - **netq-agent**: NetQ Agent service
 - **netqd**: NetQ application daemon
@@ -3453,7 +3399,7 @@ Displays configuration and health of system-level services for one or all switch
 - **smond**: System monitor daemon
 - **ssh**: Secure Shell service for switches and servers
 - **syslog**: System event logging service
-- **vrf**: VRF (Virtual Route Forwarding) service
+- **vrf**: VRF service
 - **zebra**: GNU Zebra routing daemon
 <!-- vale on -->
 
@@ -3461,18 +3407,18 @@ The output provides the following information for each switch and host:
 
 - Service name and ID
 - VRF used by the service
-- Is the service enabled, active, and monitored
+- Whether the service is enabled, active, and monitored
 - Status of the service
 - How long the service has been up and running
-- When the last time any of these items has changed
+- The last time any of these items changed
 
 {{<notice tip>}}
-Using <code>netq config add color</code> is helpful with this command as it shows what services are not enabled, active, or monitored in red text.
+Run <code>netq config add color</code> to display services that are not enabled, active, or monitored in red text.
 {{</notice>}}
 
 ### Syntax
 
-Two forms of this command are available; one for all information, and one for a particular status.
+Two forms of this command are available: one for all information, and one for a particular status.
 
 ```
 netq [<hostname>] show services
@@ -3506,11 +3452,11 @@ netq [<hostname>] show services
 | active | NA | Only display results for currently running services |
 | monitored | NA | Only display results for monitored services |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Basic show: All services, all switches and hosts
+Display all services, switches, and hosts:
 
 ```
 cumulus@switch:~$ netq show services
@@ -3532,14 +3478,7 @@ border01          lldpd                870   default         yes     yes    yes 
 ...
 ```
 
-Status of all services with warnings
-
-```
-cumulus@swit:~$ netq show services status warning
-No matching services records found
-```
-
-Given service
+Display a given service:
 
 ```
 cumulus@switch:~$ netq show services bgpd
@@ -3552,7 +3491,7 @@ spine03           bgpd                 13919 default         yes     yes    yes 
 spine04           bgpd                 13934 default         yes     yes    yes       ok               Tue Dec  8 21:18:44 2020  Tue Dec  8 21:18:44 2020
 ```
 
-Given switch or host
+Display services on a given switch or host:
 
 ```
 cumulus@switch:~$ netq leaf02 show services
@@ -3562,36 +3501,6 @@ Hostname          Service              PID   VRF             Enabled Active Moni
 leaf02            air-agent            663   mgmt            yes     yes    no        ok               Tue Dec  8 21:15:00 2020  Tue Dec  8 21:15:00 2020
 leaf02            snmpd                10098 mgmt            yes     yes    no        ok               Tue Dec  8 21:15:00 2020  Tue Dec  8 21:15:00 2020
 leaf02            rsyslog              11937 default         yes     yes    no        ok               Tue Dec  8 21:15:00 2020  Tue Dec  8 21:15:00 2020
-
-cumulus@switch:~$ netq server01 show services
-Matching services records:
-Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
------------------ -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
-server01          rsyslog              710   default         yes     yes    no        ok               Tue Dec  8 21:19:02 2020  Tue Dec  8 21:19:02 2020
-
-cumulus@switch:~$ netq border01 show services
-Matching services records:
-Hostname          Service              PID   VRF             Enabled Active Monitored Status           Uptime                    Last Changed
------------------ -------------------- ----- --------------- ------- ------ --------- ---------------- ------------------------- -------------------------
-border01          netqd                28693 mgmt            yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          netq-agent           28621 default         yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          pwmd                 549   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          ntp                  n/a   mgmt            yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          zebra                14427 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          clagd                1215  default         yes     yes    yes       ok               Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          neighmgrd            796   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          ntp                  n/a   default         no      no     yes       n/a              Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          ssh                  9611  default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          mstpd                345   default         yes     yes    yes       ok               Tue Dec  8 21:18:49 2020  Tue Dec  8 21:18:49 2020
-border01          bgpd                 14432 default         yes     yes    yes       ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          lldpd                870   default         yes     yes    yes       ok               Tue Dec  8 21:19:19 2020  Tue Dec  8 21:19:19 2020
-border01          smond                540   default         yes     yes    yes       ok               Tue Dec  8 21:18:49 2020  Tue Dec  8 21:18:49 2020
-border01          air-agent            663   mgmt            yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          netqd                n/a   default         no      no     yes       n/a              Tue Dec  8 21:19:00 2020  Tue Dec  8 21:19:00 2020
-border01          ledmgrd              547   default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          rsyslog              13546 default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          snmpd                10152 mgmt            yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
-border01          ptmd                 9796  default         yes     yes    no        ok               Tue Dec  8 21:18:39 2020  Tue Dec  8 21:18:39 2020
 ```
 
 ### Related Commands
@@ -3789,36 +3698,70 @@ Displays a list of all validation tests that you can run for the associated `net
 ### Syntax
 
 ```
-netq show unit-tests agent [json]
-netq show unit-tests bgp [json]
-netq show unit-tests clag [json]
-netq show unit-tests cl-version [json]
-netq show unit-tests evpn [json]
-netq show unit-tests interfaces [json]
-netq show unit-tests mlag [json]
-netq show unit-tests mtu [json]
-netq show unit-tests ntp [json]
-netq show unit-tests ospf [json]
-netq show unit-tests sensors [json]
-netq show unit-tests vlan [json]
-netq show unit-tests vxlan [json]
+netq show unit-tests address 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests agent 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests bgp [
+    check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests clag 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests cl-version 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests evpn 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests interfaces 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests mlag 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests mtu 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests ntp 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests ospf 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests roce 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests sensors 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests vlan 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+netq show unit-tests vxlan 
+    [check_filter_id <text-check-filter-id>] 
+    [json]
+
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| <!-- vale off -->agent, bgp, clag, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
+| <!-- vale off -->address, agent, bgp, clag, cl-version, evpn, interfaces, mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | NA | Display tests run during standard validation for the protocol or service with this name |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| check_filter_id | \<text-check-filter-id\> | Include the specific filter for a validation |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Show tests for BGP
+Display list of BGP validation tests:
 
 ```
 cumulus@netq-ts:~$ netq show unit-tests bgp
@@ -3833,8 +3776,8 @@ Configured per test result filters:
 
 ### Related Commands
 
-- netq show events
-- netq check sensors
+- ```netq show events```
+- ```netq check sensors```
 
 - - -
 
@@ -3847,7 +3790,7 @@ Displays one or all scheduled validations, including their name, type, cadence, 
 ```
 netq show validation settings
     [name <text-validation-name>]
-    [type agents|bgp|evpn|interfaces|mlag|mtu|ntp|ospf|sensors|vlan|vxlan]
+    [type addr|agents|bgp|evpn|interfaces|license|mlag|mtu|ntp|ospf|roce|sensors|vlan|vxlan]
     [json]
 ```
 
@@ -3860,11 +3803,11 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | name | \<text-validation-name\> | Filter output to view settings for the scheduled validation with this name |
-| type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, license mlag, mtu, ntp, ospf, roce, sensors, vlan, or vxlan<!-- vale on --> | Filter output to view settings for only the indicated protocol or service |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
-
+<!-- update example-->
 ```
 cumulus@switch:~$ netq show validation settings
 Name            Types      Cadence        Start Time           Creation Time              Active
@@ -3901,9 +3844,9 @@ ion EVPN                                  2020
 
 ### Related Commands
 
-- netq add validation name
-- netq del validation
-- netq show validation summary
+- ```netq add validation name```
+- ```netq del validation```
+- ```netq show validation summary```
 
 - - -
 
@@ -3916,7 +3859,7 @@ Displays summary status of a scheduled validation for a given protocol or servic
 ```
 netq show validation summary
     [name <text-validation-name>]
-    type (agents | bgp | evpn | interfaces | mlag | mtu | ntp | ospf | sensors | vlan | vxlan)
+    type (addr | agents | bgp | evpn | interfaces | license | mlag | mtu | ntp | ospf | roce | sensors | vlan | vxlan)
     [around <text-time-hr>]
     [json]
 ```
@@ -3925,7 +3868,7 @@ netq show validation summary
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| type | <!-- vale off -->agents, bgp, evpn, interfaces, mlag, mtu, ntp, ospf, sensors, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
+| type | <!-- vale off -->addr, agents, bgp, evpn, interfaces, license, mlag, mtu, ntp, ospf, roce, sensors, vlan or vxlan <!-- vale on --> | Show validation runs summary for the indicated protocol or service |
 
 ### Options
 
@@ -3937,7 +3880,7 @@ netq show validation summary
 
 ### Sample Usage
 
-Basic show: one protocol, within last 24 hours
+Display EVPN scheduled validations summary for the past 24 hours:
 
 ```
 cumulus@switch:~$ netq show validation summary type evpn
@@ -3993,9 +3936,9 @@ ion                              2-4ee7-917e-
 
 ### Related Commands
 
-- netq add validation name
-- netq del validation
-- netq show validation settings
+- ```netq add validation name```
+- ```netq del validation```
+- ```netq show validation settings```
 
 - - -
 

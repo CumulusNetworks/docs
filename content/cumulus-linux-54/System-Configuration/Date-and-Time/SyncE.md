@@ -2,9 +2,12 @@
 title: SyncE 
 author: NVIDIA
 weight: 129
-draft: true
 toc: 3
 ---
+{{%notice note%}}
+SyncE is available for early access only.
+{{%/notice%}}
+
 <span style="background-color:#F5F5DC">[SyncE](## "Synchronous Ethernet")</span> is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (<span style="background-color:#F5F5DC">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>), manages this synchronization.
 
 The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
@@ -14,10 +17,6 @@ The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
   - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
   - Using to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
   - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
-
-{{%notice note%}}
-Cumulus Linux supports SyncE on the NVIDIA SN3700-S switch only as an early access feature.
-{{%/notice%}}
 
 ## Basic Configuration
 

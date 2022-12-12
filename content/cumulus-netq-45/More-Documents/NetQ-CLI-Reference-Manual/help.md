@@ -34,7 +34,7 @@ netq help verbose
 
 ### Sample Usage
 
-Show syntax for all commands with the `agent` keyword
+Display syntax for all commands with the `agent` keyword:
 
 ```
 cumulus@switch:~$ netq agent help OR netq help agent
@@ -44,29 +44,9 @@ Commands:
     netq check agents [label <text-label-name> | hostnames <text-list-hostnames>] [include <agent-number-range-list> | exclude <agent-number-range-list>] [around <text-time>] [json]
     netq show unit-tests agent [json]
     netq config (add|del) agent (stats|sensors)
-...
 ```
 
-Show all NetQ commands
-
-```
-cumulus@switch:~$ netq help list
-
-netq - Query data across all nodes in fabric
-
-Usage:
-   netq help [<text-keywords>]
-   netq help verbose
-   netq help list
-
-   netq <hostname> show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
-   netq show ip addresses [<remote-interface>] [<ipv4>|<ipv4/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
-   netq <hostname> show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [around <text-time>] [count] [json]
-   netq show ipv6 addresses [<remote-interface>] [<ipv6>|<ipv6/prefixlen>] [vrf <vrf>] [subnet|supernet|gateway] [around <text-time>] [json]
-...
-```
-
-Show the NetQ command format rules
+Display the NetQ command format rules:
 
 ```
 cumulus@netq-ts:~$ netq help verbose

@@ -10,9 +10,7 @@ pdfhidden: true
 
 You must run the `netq config` commands with sudo privileges.
 
-<!-- vale off -->
 ## netq config add agent cluster-servers
-<!-- vale on -->
 
 Configures the server cluster where the NetQ Agents on monitored switches and hosts should send their collected data. You can also provide a specific port or VRF to use for the communication. Note that you must restart the NetQ Agent to enable the configuration.
 
@@ -23,6 +21,8 @@ netq config add agent cluster-servers
     <text-opta-ip-list>
     [port <text-opta-port>]
     [vrf <text-vrf-name>]
+    [ssl true | ssl false]
+    [ssl-cert <text-ssl-cert-file> | ssl-cert download]
 ```
 
 ### Required Arguments
@@ -37,6 +37,8 @@ netq config add agent cluster-servers
 | ---- | ---- | ---- |
 | port | \<text-opta-port\> | Use the port with this name on each switch to receive data; default is port 31980 |
 | vrf | \<text-vrf-names\> | Use the VRF with this name on each switch to receive data; default VRF is *default* |
+
+<!-- Need to add ssl definitions -->
 
 ### Sample Usage
 
@@ -323,7 +325,7 @@ netq config add agent opta-discovery-servers
 
 ### Sample Usage
 
-Configure a range of IP addresses to search for switches without NetQ
+Configure a range of IP addresses to search for switches that are not running NetQ:
 
 ```
 cumulus@switch:~$ netq config add agent opta-discovery-servers 192.168.0.24-64,128-190
@@ -335,7 +337,7 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config restart agent
+- ```netq config restart agent```
 
 - - -
 
@@ -390,6 +392,8 @@ netq config add agent server
     <text-opta-ip>
     [port <text-opta-port>]
     [vrf <text-vrf-name>]
+    [ssl true | ssl false ]
+    [ssl-cert <text-ssl-cert-file> | ssl-cert download]
 ```
 
 ### Required Arguments
@@ -404,6 +408,8 @@ netq config add agent server
 | ---- | ---- | ---- |
 | port | \<text-opta-port\> | Use this port on the appliance or VM to receive NetQ Agent data and API requests |
 | vrf | \<text-vrf-name\> | Use this VRF on the appliance or VM to receive NetQ Agent data and API requests |
+
+<!--Add defintions for ssl options-->
 
 ### Sample Usage
 
@@ -464,7 +470,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent wjh
 
-Configures the NetQ Agent to collect and send What Just Happened events occurring on NVIDIA Spectrum&trade; switches. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}} for a list of supported WJH events and to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for configuration information.
+Configures the NetQ Agent to collect and send What Just Happened events from  NVIDIA Spectrum&trade; switches. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}} for a list of supported WJH events and to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for configuration information.
 
 ### Syntax
 
@@ -494,11 +500,11 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent wjh
-- netq config del agent wjh
-- netq config add agent wjh-drop-filter
-- netq config add agent wjh-threshold
-- netq config restart agent
+- ```netq config show agent wjh```
+- ```netq config del agent wjh```
+- ```netq config add agent wjh-drop-filter```
+- ```netq config add agent wjh-threshold```
+- ```netq config restart agent```
 
 - - -
 
@@ -551,7 +557,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent wjh-threshold
 
-WJH latency and congestion metrics depend on threshold settings to trigger the events. NetQ measures packet latency as the time spent inside a single system (switch). It measures congestion as a percentage of buffer occupancy on the switch. When configured, the NetQ Agent collects and sends these WJH triggered events when a metric crosses the high and low thresholds.
+WJH latency and congestion metrics depend on threshold settings to trigger the events. NetQ measures packet latency as the time spent inside a single system (switch). It measures congestion as a percentage of buffer occupancy on the switch. When configured, the NetQ Agent collects and sends these WJH-triggered events when a metric crosses the high and low thresholds.
 
 This command only applies to NVIDIA Spectrum switches.
 
@@ -597,11 +603,11 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 
 ### Related Commands
 
-- netq config show agent wjh-threshold
-- netq config del agent wjh-threshold
-- netq config add agent wjh
-- netq config add agent wjh-drop-filter
-- netq config restart agent
+- ```netq config show agent wjh-threshold```
+- ```netq config del agent wjh-threshold```
+- ```netq config add agent wjh```
+- ```netq config add agent wjh-drop-filter```
+- ```netq config restart agent```
 
 - - -
 <!-- vale off -->
@@ -728,8 +734,8 @@ Netq Command factory reset successful
 
 ### Related Commands
 
-- netq config add agent command
-- netq config show agent commands
+- ```netq config add agent command```
+- ```netq config show agent commands```
 
 - - -
 
@@ -1124,7 +1130,7 @@ netq config del agent wjh-threshold
 | wjh-threshold | NA | Remove latency or congestion events triggered by thresholds |
 | latency | NA | Remove latency event thresholds |
 | congestion | NA | Remove congestion event thresholds |
-| NA | \<text-tc-list\> or all | Remove latency or congestion events for these traffic classes, or use *all* for all traffic classes. When you desire more than one traffic class, you should format this value as a comma-separated list, without spaces. |
+| NA | \<text-tc-list\> or all | Remove latency or congestion events for these traffic classes, or use *all* for all traffic classes. When you want more than one traffic class, format this value as a comma-separated list, without spaces. |
 
 ### Options
 
@@ -1140,11 +1146,11 @@ cumulus@switch:~$ netq config del agent wjh-threshold congestion 4
 
 ### Related Commands
 
-- netq config show agent wjh-threshold
-- netq config add agent wjh-threshold
-- netq config del agent wjh
-- netq config del agent wjh-drop-filter
-- netq config restart agent
+- ```netq config show agent wjh-threshold```
+- ```netq config add agent wjh-threshold```
+- ```netq config del agent wjh```
+- ```netq config del agent wjh-drop-filter```
+- ```netq config restart agent```
 
 - - -
 <!-- vale off -->

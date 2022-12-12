@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 420
 toc: 3
 ---
-Ethernet bridges enable hosts to communicate through layer 2 by connecting the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}}. The bridge [MTU](## "Maximum Transmission Unit") is the minimum MTU among all its members. By default, the [bridge's MAC address]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge" >}}) is the MAC address of the first port in the `bridge-ports` list in the `/etc/network/interfaces` file. You can also assign an IP address to the bridge; see {{<link url="#bridge-mac-addresses" text="below">}}.
+Ethernet bridges enable hosts to communicate through layer 2 by connecting the physical and logical interfaces in the system into a single layer 2 domain. The bridge is a logical interface with a MAC address and an {{<link url="Switch-Port-Attributes#mtu" text="MTU">}}. The bridge <span style="background-color:#F5F5DC">[MTU](## "Maximum Transmission Unit")</span> is the minimum MTU among all its members. By default, the [bridge's MAC address]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/Cumulus-Linux-Derivation-of-MAC-Address-for-a-Bridge" >}}) is the MAC address of the first port in the `bridge-ports` list in the `/etc/network/interfaces` file. You can also assign an IP address to the bridge; see {{<link url="#bridge-mac-addresses" text="below">}}.
 
 {{%notice note%}}
 - Bridge members can be individual physical interfaces, bonds, or logical interfaces that traverse an 802.1Q VLAN trunk.
@@ -15,7 +15,7 @@ Ethernet bridges enable hosts to communicate through layer 2 by connecting the p
 
 The Cumulus Linux bridge driver supports two configuration modes; one that is VLAN-aware and one that follows a more traditional Linux bridge model.
 
-NVIDIA recommends that you use *{{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}}* bridges instead of *traditional mode* bridges. The Cumulus Linux bridge driver is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, see
+NVIDIA recommends that you use {{<link url="VLAN-aware-Bridge-Mode" text="VLAN-aware mode">}} bridges instead of *traditional mode* bridges. The Cumulus Linux bridge driver is capable of VLAN filtering, which allows for configurations that are similar to incumbent network devices. For a comparison of traditional and VLAN-aware modes, see
 [this knowledge base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Interfaces/Compare-Traditional-Bridge-Mode-to-VLAN-aware-Bridge-Mode" >}}).
 
 You can configure both VLAN-aware and traditional mode bridges on the same network in Cumulus Linux.
@@ -46,13 +46,13 @@ cumulus@switch:~$ nv show bridge domain br_default mac-table
 
 ## bridge fdb Command Output
 
-The Linux `bridge fdb` command interacts with the [FDB](## "Forwarding Database Table"), which the bridge uses to store the MAC addresses it learns and the ports on which it learns those MAC addresses. The `bridge fdb show` command output contains some specific keywords:
+The Linux `bridge fdb` command interacts with the <span style="background-color:#F5F5DC">[FDB](## "Forwarding Database Table")</span>, which the bridge uses to store the MAC addresses it learns and the ports on which it learns those MAC addresses. The `bridge fdb show` command output contains some specific keywords:
 
 | Keyword| Description |
 |--- |--- |
 | `self` | The FDB entry belongs to the FDB on the device referenced by the device.<br>For example, this FDB entry belongs to the VXLAN device:<br>`vx-1000`: `00:02:00:00:00:08 dev vx-1000 dst 27.0.0.10 self` |
 | `master` |The FDB entry belongs to the FDB on the device's master and the FDB entry is pointing to a master's port.<br>For example, this FDB entry is from the master device named bridge and is pointing to the VXLAN bridge port:<br>`vx-1001`: `02:02:00:00:00:08 dev vx-1001 vlan 1001 master bridge` |
-| `extern_learn` | An external control plane, such as the [BGP](## "Border Gateway Protocol") control plane for [EVPN](## "Ethernet Virtual Private Network"), manages (offloads) the FDB entry. |
+| `extern_learn` | An external control plane, such as the <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> control plane for <span style="background-color:#F5F5DC">[EVPN](## "Ethernet Virtual Private Network")</span>, manages (offloads) the FDB entry. |
 
 The following example shows the `bridge fdb show` command output:
 

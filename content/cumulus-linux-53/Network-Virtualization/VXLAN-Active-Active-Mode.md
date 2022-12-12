@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 615
 toc: 3
 ---
-*VXLAN active-active mode* enables a pair of [MLAG](## "Multi Chassis Link Aggregation") switches to act as a single [VTEP](## "Virtual Tunnel End Point"), providing active-active VXLAN termination for bare metal as well as virtualized workloads.
+*VXLAN active-active mode* enables a pair of <span style="background-color:#F5F5DC">[MLAG](## "Multi Chassis Link Aggregation")</span> switches to act as a single <span style="background-color:#F5F5DC">[VTEP](## "Virtual Tunnel End Point")</span>, providing active-active VXLAN termination for bare metal as well as virtualized workloads.
 
 To use VXLAN active-active mode, you need to configure:
 - {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}}
@@ -1752,15 +1752,12 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL52 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
+    {{< simulation name="Try It CL53 - VXLAN Active-Active" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server04" >}}
 
 The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
 To validate the configuration, run the commands shown in the troublshooting section above.
 
-{{%notice note%}}
-This simulation is running Cumulus Linux 5.2. The Cumulus Linux 5.3 simulation is coming soon.
-{{%/notice%}}
 
 {{< /tab >}}
 {{< /tabs >}}

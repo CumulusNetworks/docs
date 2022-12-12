@@ -9,7 +9,7 @@ content/cumulus-netq/*
 *.exe
 *.o
 *.so
-*.pdf
+# *.pdf
 *.xls
 
 # Packages #

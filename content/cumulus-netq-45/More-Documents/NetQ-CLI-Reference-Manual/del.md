@@ -57,8 +57,8 @@ Successfully deleted Events Config eventsconfig_10
 
 ### Related Commands
 
-- netq add events-config
-- netq show events-config
+- ```netq add events-config```
+- ```netq show events-config```
 
 - - -
 
@@ -66,14 +66,14 @@ Successfully deleted Events Config eventsconfig_10
 
 Removes a channel, filter, rule, or proxy component from an event notification configuration. This is commonly done when:
 
-- You retire selected channels from a given notification application (Slack, PagerDuty, `syslog`, or Email) and you no longer need the configuration in NetQ
-- A filter was temporary; for debugging for example
+- You retire selected channels from a given notification application (Slack, PagerDuty, `syslog`, or email) and you no longer need the configuration in NetQ
+- A filter was temporary (for example, when debugging)
 - A rule no longer applies
-- A proxy is no longer needed or desired
+- A proxy is no longer required
 
 ### Syntax
 
-Four forms of this command are available, one for each component of the configuration.
+Four forms of this command are available, one for each component of the configuration:
 
 ```
 netq del notification channel <text-channel-name-anchor>
@@ -97,7 +97,7 @@ None
 
 ### Sample Usage
 
-Remove channel
+Remove notification channel:
 
 ```
 cumulus@switch:~$ netq del notification channel slk-netq-events
@@ -110,33 +110,7 @@ pd-netq-events  pagerduty        info             integration-key: 1234567
                                                     890
 ```
 
-Remove filter
-
-```
-cumulus@switch:~$ netq del notification filter bgpSpine
-
-cumulus@switch:~$ netq show notification filter
-Matching config_notify records:
-Name            Order      Severity         Channels         Rules
---------------- ---------- ---------------- ---------------- ----------
-swp52Drop       1          error            NetqDefaultChann swp52
-                                            el
-vni42           2          warning          pd-netq-events   evpnVni
-configChange    3          info             slk-netq-events  sysconf
-svcDown         4          error            slk-netq-events  svcStatus
-critTemp        5          error            pd-netq-events   switchLeaf
-                                                            04
-                                                            overTemp
-```
-
-Remove proxy
-
-```
-cumulus@switch:~$ netq del notification proxy
-Successfully overwrote notifier proxy to null
-```
-
-Remove rule
+Remove notification rule:
 
 ```
 cumulus@switch:~$ netq del notification rule swp52
@@ -155,8 +129,8 @@ sysconf         configdiff       updated
 
 ### Related Commands
 
-- netq add notification
-- netq show notification
+- ```netq add notification```
+- ```netq show notification```
 
 - - -
 
@@ -190,17 +164,17 @@ Successfully deleted TCA TCA_RXBYTES_UPPER_1
 
 ### Related Commands
 
-- netq add tca
-- netq show tca
+- ```netq add tca```
+- ```netq show tca```
 
 - - -
 
 ## netq del trace
 
-Removes a scheduled trace, whether created using the NetQ UI or CLI. Use `netq show trace summary` to obtain the relevant trace name.
+Removes a scheduled trace. Use `netq show trace summary` to obtain the relevant trace name.
 
 {{<notice note>}}
-Both standard user and administrative users can remove scheduled traces. The removal does not generate a notification. Be sure to communicate with other users before removing a scheduled trace to avoid confusion and support issues.
+Both standard user and administrative roles can remove scheduled traces. The removal does not generate a notification. Be sure to communicate with other users before removing a scheduled trace to avoid confusion and support issues.
 {{</notice>}}
 
 ### Syntax
@@ -249,8 +223,8 @@ Successfully deleted schedule trace leaf01toborder01
 
 ### Related Commands
 
-- netq add trace name
-- netq show trace summary
+- ```netq add trace name```
+- ```netq show trace summary```
 
 - - -
 
@@ -283,5 +257,5 @@ Successfully deleted validation Bgp15m
 
 ### Related Commands
 
-- netq add validation name
-- netq show validation settings
+- ```netq add validation name```
+- ```netq show validation settings```

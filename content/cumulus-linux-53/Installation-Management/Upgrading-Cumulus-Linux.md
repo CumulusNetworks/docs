@@ -142,7 +142,7 @@ For information about the NVUE object model and commands, see {{<link url="NVIDI
 
 ## Upgrade Cumulus Linux
 
-[ONIE](## "Open Network Install Environment") is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
+<span style="background-color:#F5F5DC">[ONIE](## "Open Network Install Environment")</span> is an open source project (equivalent to PXE on servers) that enables the installation of network operating systems (NOS) on a bare metal switch.
 
 You can upgrade Cumulus Linux in one of two ways:
 

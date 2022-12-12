@@ -57,11 +57,11 @@ None
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Basic validation: all devices, all tests, currently
+Basic validation that runs all tests on all devices:
 
 ```
 cumulus@switch:~$ netq check agents
@@ -76,7 +76,7 @@ Warning nodes       : 0
 Agent Health Test   : passed
 ```
 
-Validation for selected devices
+Validation for selected devices:
 
 ```
 cumulus@switch:~$ netq check agents hostnames leaf01,leaf02,leaf03,leaf04
@@ -91,7 +91,7 @@ Warning nodes       : 0
 Agent Health Test   : passed
 ```
 
-Validation for a Time in the Past
+Basic validation that checks device states as they were 4 hours ago:
 
 ```
 cumulus@switch:~$ netq check agents around 4h
@@ -108,11 +108,11 @@ Agent Health Test   : passed
 
 ### Related Commands
 
-- netq show agents
-- netq show unit-tests agent
-- netq add validation
-- netq add validation name
-- netq config agent
+- ```netq show agents```
+- ```netq show unit-tests agent```
+- ```netq add validation```
+- ```netq add validation name```
+- ```netq config agent```
 
 - - -
 <!-- vale off -->

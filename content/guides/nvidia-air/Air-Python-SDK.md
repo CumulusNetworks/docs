@@ -414,12 +414,14 @@ Upload and create the Image object:
 >>> air = AirApi(username=user, password=api_token)
 >>> image_name = 'My Image'
 >>> filename = '/Users/user/my_image.qcow2'
+>>> # Is the air-agent enabled in the Image by default?
 >>> agent_enabled = False
+>>> # Should the image be published and accessible to all users? 
 >>> base = False
 >>> default_username = 'admin'
 >>> default_password = 'admin'
 >>> organization = '<organization_uuid>'
->>> image = air.images.create(name=image_name, base=base, filename=filename, agent_enabled=agent_enabled, default_username=default_username, default_password=default_password, organization=org)
+>>> image = air.images.create(name=image_name, base=base, filename=filename, agent_enabled=agent_enabled, default_username=default_username, default_password=default_password, organization=organization)
 ```
 
 {{< /tab >}}
@@ -454,7 +456,7 @@ The response will contain an Image upload URL:
 ```
 Use the provided upload_url to upload a local Image file to Air:
 ```
-curl --request PUT 'https://air.nvidia.com/api/v1/image/3d9a34e6-fd64-47bc-a65d-8a30f9f3ddc7/upload/?filename=/Users/admin/fake_image.qcow2' \
+curl --request PUT 'https://air.nvidia.com/api/v1/image/3d9a34e6-fd64-47bc-a65d-8a30f9f3ddc7/upload/' -F filename='@/Users/admin/fake_image.qcow2' \
 --header 'Authorization: Bearer <bearer_token>'
 ```
 
@@ -491,6 +493,85 @@ curl --request POST 'https://air.nvidia.com/api/v1/topology/' \
 
 {{< /tab >}}
 {{< /tabs >}}
+
+### Using Node Instructions
+Simulation Nodes that have the Air Agent installed can be configured via the API using Node Instructions. The Air Agent is present in Simulation Nodes that use Images where the agent_enabled flag is set to True.
+
+After creating (but not starting) a simulation, first get the ID of the Simulation Node to be configured. 
+
+{{< tabs "TabID55000 ">}}
+{{< tab "SDK ">}}
+
+Find the Simulation Nodes for the Simulation, and get the specific Simulation Node to be configured. In this instance the Node is named "sample-node":
+```
+>>> simnodes = air.simulation_nodes.list(simulation=simulation)
+>>> for simnode in simnodes:
+>>>    if 'sample-node' == simnode.name:
+>>>        sample-node = simnode
+```
+
+Edit /etc/network/interfaces on the sample-node and apply config with ifreload:
+
+```
+>>> eni_contents = '<string_containing_desired_etc_network_interfaces_content>''
+>>> post_cmd = 'ifreload -a'
+>>> data = {'/etc/network/interfaces': eni_contents, 'post_cmd': post_cmd}
+>>> sample-node.create_instructions(data=json.dumps(data), executor='file')
+```
+
+Edit frr.conf on the sample-node and restart frr:
+```
+>>> frr_contents = '<frr_conf_config_here>''
+>>> post_cmd = 'systemctl restart frr'
+>>> data = {'/etc/frr/frr.conf': frr_contents, 'post_cmd':post_cmd}
+>>> sample-node.create_instructions(data=json.dumps(data), executor='file')
+```
+
+To execute a command instead of populating the contents of a file, use the "shell" executor instead of "file":
+```
+>>> data = 'ip link set swp1 ip address 192.168.100.2/24'
+>>> sample-node.create_instructions(data=data, executor='shell')
+```
+
+Finally, start the simulation:
+```
+>>> simulation.start()
+```
+{{< /tab >}}
+{{< tab "cURL">}}
+
+Find the Simulation's Simulation Nodes:
+```
+curl --request GET 'https://air.nvidia.com/api/v1/simulation-node/?simulation=<simulation_id>' \
+--header 'Authorization: Bearer <bearer_token>'
+```
+
+Create and send the Node Instruction:
+```
+curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_node_id>/instructions/' \
+--header 'Authorization: Bearer <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "executor": "file",
+    "data": "{'\''/etc/frr/frr.conf'\'': '\''<frr.conf contents>'\'', '\''post_cmd'\'':,'\''systemctl restart frr'\''}"
+}'
+```
+Or, use the shell executor instead of file to run a command:
+
+```
+curl --request POST 'https://air.nvidia.com/api/v1/simulation-node/<simulation_node_id>/instructions/' \
+--header 'Authorization: <bearer_token>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "executor": "shell",
+    "data": "ip link set swp1 ip address 192.168.100.2/24"
+}'
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+Note: To avoid a race condition on Cumulus Linux nodes running a version prior to 5.0.0, schedule the Node Instructions prior to starting the simulation. Otherwise instructions may fail to complete. 
 
 ## Developing
 

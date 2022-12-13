@@ -1063,7 +1063,7 @@ The output provides the following for each device:
 
 ### Syntax
 
-Four forms of the command are available, based on whether you want to view interface health for all devices or a given device, and whether you want to filter by an interface type.
+Five forms of the command are available, based on whether you want to view interface health for all devices or a given device, and whether you want to filter by an interface type.
 
 ```
 netq show interfaces
@@ -1077,6 +1077,11 @@ netq <hostname> show interfaces
     [state <remote-interface-state>]
     [around <text-time>]
     [count]
+    [json]
+
+netq [<hostname>] show interfaces alias 
+    [<remote-interface>] 
+    [around <text-time>] 
     [json]
 
 netq show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|vrf|vxlan)
@@ -1096,6 +1101,7 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name. You only need to specify a hostname when you use the `count` option. |
+| alias | NA | Only display results for the specified interface alias |
 | type | <!-- vale off -->bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan<!-- vale on --> | Only display results for the specified interface type |
 
 ### Options
@@ -1106,35 +1112,10 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 | state | \<remote-interface-state\> | Only display results for remote interfaces in the specified state&mdash;up or down |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | count | NA | Display the total number of interface on the specified switch or host. You must specify the `hostname` option. |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 ### Sample Usage
 
-Basic show: all devices, all interface types, currently
-
-```
-cumulus@switch:~$ netq show interfaces
-Matching link records:
-Hostname          Interface                 Type             State      VRF             Details                             Last Changed
------------------ ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
-border01          swp52                     swp              up         default         VLANs: ,                            Tue Nov 10 22:29:05 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: spine02:swp
-                                                                                        5
-border01          swp53                     swp              up         default         VLANs: ,                            Tue Nov 10 22:29:05 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: spine03:swp
-                                                                                        5
-border01          swp54                     swp              up         default         VLANs: ,                            Tue Nov 10 22:29:05 2020
-                                                                                        PVID: 0 MTU: 9216 LLDP: spine04:swp
-                                                                                        5
-border01          eth0                      eth              up         mgmt            MTU: 1500                           Tue Nov 10 22:29:05 2020
-border01          lo                        loopback         up         default         MTU: 65536                          Tue Nov 10 22:29:05 2020
-border01          peerlink                  bond             up         default         Slave: swp49 (LLDP: border02:swp49) Tue Nov 10 22:29:05 2020
-                                                                                        ,
-                                                                                        Slave: swp50 (LLDP: border02:swp50)
-border01          vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Nov 10 22:29:05 2020
-...
-```
-
-View interfaces on a given device.
+Display interfaces on a given device:
 
 ```
 cumulus@switch:~$ netq spine01 show interfaces
@@ -1175,9 +1156,9 @@ Count of matching link records: 10
 
 ### Related Commands
 
-- netq show events
-- netq check interfaces
-- netq show unit-tests interfaces
+- ```netq show events```
+- ```netq check interfaces```
+- ```netq show unit-tests interfaces```
 
 - - -
 
@@ -2155,39 +2136,11 @@ None
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | NA | \<remote-physical-interface\> | Only display results for sessions using the interface port with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON file format |
 
 ### Sample Usage
 
-Basic show: all devices, all interfaces, currently
-
-```
-cumulus@switch:~$ netq show lldp
-Matching lldp records:
-Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
------------------ ------------------------- ----------------- ------------------------- -------------------------
-border01          swp54                     spine04           swp5                      Fri Nov 20 10:19:39 2020
-border01          swp51                     spine01           swp5                      Fri Nov 20 10:19:39 2020
-border01          swp53                     spine03           swp5                      Fri Nov 20 10:19:39 2020
-border01          swp3                      fw1               swp1                      Fri Nov 20 10:19:39 2020
-border01          swp50                     border02          swp50                     Fri Nov 20 10:19:39 2020
-border01          swp52                     spine02           swp5                      Fri Nov 20 10:19:39 2020
-border01          swp49                     border02          swp49                     Fri Nov 20 10:19:39 2020
-border01          eth0                      oob-mgmt-switch   swp20                     Fri Nov 20 10:19:39 2020
-border02          swp49                     border01          swp49                     Fri Nov 20 10:25:40 2020
-border02          swp51                     spine01           swp6                      Fri Nov 20 10:25:40 2020
-border02          swp52                     spine02           swp6                      Fri Nov 20 10:25:40 2020
-border02          eth0                      oob-mgmt-switch   swp21                     Fri Nov 20 10:25:40 2020
-border02          swp3                      fw1               swp2                      Fri Nov 20 10:25:40 2020
-border02          swp50                     border01          swp50                     Fri Nov 20 10:25:40 2020
-border02          swp53                     spine03           swp6                      Fri Nov 20 10:25:40 2020
-border02          swp54                     spine04           swp6                      Fri Nov 20 10:25:40 2020
-fw1               eth0                      oob-mgmt-switch   swp18                     Fri Nov 20 19:51:49 2020
-fw1               swp1                      border01          swp3                      Fri Nov 20 19:51:49 2020
-...
-```
-
-Show only session for a given host interface port.
+Display session for a given host interface port:
 
 ```
 cumulus@switch:~$ netq show lldp swp5
@@ -2202,8 +2155,8 @@ spine04           swp5                      border01          swp54             
 
 ### Related Commands
 
-- netq show events
-- netq check lldp
+- ```netq show events```
+- ```netq check lldp```
 
 - - -
 
@@ -2243,7 +2196,7 @@ netq [<hostname>] show mac-commentary
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
@@ -2258,8 +2211,8 @@ Thu Oct  1 14:25:18 2020  border02         4002   44:38:39:be:ef:ff configured o
 
 ### Related Commands
 
-- netq show mac-history
-- netq show ip/ipv6 addresses
+- ```netq show mac-history```
+- ```netq show ip/ipv6 addresses```
 
 - - -
 
@@ -2389,41 +2342,18 @@ netq <hostname> show macs
 | origin | NA | Only display results for addresses owned by the specified switch or switches |
 | count | NA | Display the total number of MAC addresses used by the specified switch; can only use this option when you define the `hostname` option |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON file format |
 
 ### Sample Usage
 
-Basic show: all addresses, all switches, all VLANs, all egress ports
-
-```
-cumulus@switch:~$ netq show macs
-Matching mac records:
-Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
------- ------------------ ------ ----------------- ------------------------------ ------ -------------------------
-no     46:38:39:00:00:46  20     leaf04            bond2                          no     Mon Dec  7 22:30:15 2020
-yes    00:00:00:00:00:1a  10     leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
-yes    44:38:39:00:00:5e  4002   leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
-yes    44:38:39:00:00:5e  20     leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:5d  30     leaf04            peerlink                       no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:59  30     leaf04            vni30                          no     Mon Dec  7 22:30:15 2020
-yes    7e:1a:b3:4f:05:b8  20     leaf04            vni20                          no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:37  30     leaf04            vni30                          no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:36  30     leaf04            vni30                          yes    Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:37  20     leaf04            vni20                          no     Mon Dec  7 22:30:15 2020
-no     44:38:39:be:ef:aa  4001   leaf04            vniRED                         yes    Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:37  10     leaf04            vni10                          no     Mon Dec  7 22:30:15 2020
-yes    36:6a:10:4a:41:02  4001   leaf04            vniRED                         no     Mon Dec  7 22:30:15 2020
-...
-```
-
-Show count of MAC addresses on a switch
+Display count of MAC addresses on a switch:
 
 ```
 cumulus@switch:~$ netq leaf01 show macs count
 Count of matching mac records: 50
 ```
 
-Show MAC addresses that use a given egress port on a switch
+Display MAC addresses that use a given egress port on a switch:
 
 ```
 cumulus@switch:~$ netq leaf01 show macs egress-port bond3
@@ -2437,8 +2367,8 @@ no     46:38:39:00:00:3c  30     leaf01            bond3                        
 
 ### Related Commands
 
-- netq show mac-commentary
-- netq show mac-history
+- ```netq show mac-commentary```
+- ```netq show mac-history```
 
 - - -
 
@@ -2474,11 +2404,9 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON file format |
 
 ### Sample Usage
-
-Basic show: all devices, all states, currently
 
 ```
 cumulus@switch:~$ netq show mlag
@@ -2496,15 +2424,15 @@ leaf04            leaf03(P)         44:38:39:be:ef:bb  up         up     8     8
 
 ### Related Commands
 
-- netq show events type clag
-- netq check mlag
-- netq show unit-tests mlag
+- ```netq show events type clag```
+- ```netq check mlag```
+- ```netq show unit-tests mlag```
 
 - - -
 
 ## netq show neighbor-history
 
-Displays when the neighbor configuration changed for an IP address. By default the changes display in chronological order. You can filter the output by time and interface, and you can choose to view only differences or group the output by historical thread.
+Displays when the neighbor configuration changed for an IP address. By default, the changes display in chronological order. You can filter the output by time and interface, and you can choose to view only differences or group the output by historical thread.
 
 The output provides the following information for each neighbor change:
 
@@ -2517,7 +2445,7 @@ The output provides the following information for each neighbor change:
 - Whether the IP address is an IPv4 or IPv6 address
 - Index of the IP interface address
 
-By default, each row in the output is a thread (or group) sorted by VLAN and the time range used is now to one hour ago. You can view the output in JSON format as well.
+By default, each row in the output is a thread (or group) sorted by VLAN and the time range used is now to one hour ago.
 
 ### Syntax
 
@@ -2545,11 +2473,9 @@ None
 | diff | NA | Only display the differences associated with each change |
 | between | \<text-time\> and \<text-endtime\> | Only display results between the snapshots taken at these times |
 | listby | \<text-list-by\> | Display results by the specified attribute. Attributes include the interface name or index, VRF name, remote status, MAC address, if the address is an IPv6 address, and hostname. |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
-
-Basic show: all addresses, all switches, all VLANs, all egress ports
 
 ```
 cumulus@switch:~$ netq show macs
@@ -2575,8 +2501,8 @@ yes    36:6a:10:4a:41:02  4001   leaf04            vniRED                       
 
 ### Related Commands
 
-- netq show address-history
-- netq show mac-history
+- ```netq show address-history```
+- ```netq show mac-history```
 
 - - -
 

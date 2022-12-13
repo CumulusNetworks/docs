@@ -7,13 +7,7 @@ type: nojsscroll
 ---
 ## nv set system wjh
 
-Configures What Just Happened (WJH) to provide real time visibility into network problems. You can diagnose network problems by looking at dropped packets.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-- - -
+Provides commands to configure What Just Happened (WJH) to provide real time visibility into network problems. You can diagnose network problems by looking at dropped packets.
 
 ## nv set system wjh channel \<channel-id\>
 
@@ -39,7 +33,7 @@ cumulus@leaf01:mgmt:~$ nv set system wjh channel forwarding
 
 ## nv set system wjh channel \<channel-id\> trigger
 
-Configures the type of packet drops you want to monitor. You can monitor layer 1, layer 2, or layer 3 packet drops.
+Configures the type of packet drops you want to monitor. You can monitor layer 1 (`l1`), layer 2 (`l2`), layer 3 (`l3`), or tunnel (`tunnel1) related packet drops.
 
 ### Command Syntax
 
@@ -62,6 +56,8 @@ cumulus@leaf01:mgmt:~$ nv set system wjh channel forwarding trigger l3
 ## nv set system wjh enable
 
 Turns the WJH service on or off.
+
+The default value is `on`.
 
 ### Version History
 

@@ -7,21 +7,7 @@ type: nojsscroll
 ---
 ## nv set interface \<interface-id\> bond mlag
 
-Configures Multi-chassis Link Aggregation (MLAG) on the bond interface.
-
-### Default Setting
-
-N/A
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Provides commands to configure Multi-chassis Link Aggregation (MLAG) on a bond interface.
 
 - - -
 
@@ -29,9 +15,7 @@ Introduced in Cumulus Linux 5.0.0
 
 Turns MLAG on or off on the bond interface.
 
-### Default Setting
-
-`off`
+The default setting is `off`.
 
 ### Command Syntax
 
@@ -55,9 +39,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mlag enable on
 
 Configures the MLAG ID on the bond interface. You must specify a unique MLAG ID (`clag-id`) for every dual-connected bond on each peer switch so that switches know which links dual-connect or connect to the same host or switch. The value must be between 1 and 65535 and must be the same on both peer switches. A value of 0 disables MLAG on the bond.
 
-### Default Setting
-
-`auto`
+The default setting is `auto`.
 
 ### Command Syntax
 
@@ -81,7 +63,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mlag id 1
 
 Configures MLAG LACP conflict on the bond interface.
 
-### Default Setting
+The default setting is 
 
 N/A
 
@@ -117,7 +99,7 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures the IP address of a backup layer 3 interface for the peer link, which the switch uses when the peer link goes down. You must add a backup IP address, which must be different than the peer link IP address. You can use the loopback or management IP address of the switch.
 
-### Default Setting
+The default setting is 
 
 N/A
 
@@ -143,7 +125,7 @@ cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2
 
 Configures the VRF for the MLAG backup IP address.
 
-### Default Setting
+The default setting is 
 
 N/A
 
@@ -169,9 +151,7 @@ cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2 vrf RED
 
 Turns MLAG on or off.
 
-### Default Setting
-
-`off`
+The default setting is `off`.
 
 ### Version History
 
@@ -189,9 +169,7 @@ cumulus@leaf01:mgmt:~$ nv set mlag enable on
 
 Configures the MLAG system MAC address. NVIDIA provides a reserved range of MAC addresses for MLAG (between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff). Use a MAC address from this range to prevent conflicts with other interfaces in the same bridged network. Do not to use a multicast MAC address. Make sure you specify a different MAC address for each MLAG pair in the network.
 
-### Default Setting
-
-`auto`
+The default setting is `auto`.
 
 ### Version History
 
@@ -209,10 +187,6 @@ cumulus@leaf01:mgmt:~$ nv set mlag mac-address 44:38:39:BE:EF:AA
 
 Configures the IP address of the MLAG peer. You can specify an IPv4 address, an IPv6 address or `linklocal`.
 
-### Default Setting
-
-N/A
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -229,7 +203,7 @@ cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
 
 Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a vlaue between 0-65535.
 
-### Default Setting
+The default setting is 
 
 32768
 
@@ -254,9 +228,7 @@ This timer sets to 0 automatically under the following conditions:
 - When the peer sends a goodbye (through the peer link or the backup link).
 - When both MLAG sessions come up at the same time.
 
-### Default Setting
-
-180
+The default setting is 180.
 
 ### Version History
 
@@ -274,9 +246,7 @@ cumulus@leaf01:mgmt:~$ nv set mlag init-delay 100
 
 Turns MLAG degugging on or off.
 
-### Default Setting
-
-`off`
+The default setting is `off`.
 
 ### Version History
 
@@ -292,21 +262,13 @@ cumulus@leaf01:mgmt:~$ nv set mlag debug on
 
 ## nv set nve vxlan mlag
 
-Configures MLAG for VXLAN.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Provides commands to configure MLAG for VXLAN.
 
 - - -
 
 ## nv set nve vxlan mlag shared-address
 
 Configures the shared anycast address for MLAG peers.
-
-### Default Setting
-
-N/A
 
 ### Version History
 

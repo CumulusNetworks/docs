@@ -7,11 +7,9 @@ type: nojsscroll
 ---
 ## nv set service ntp \<vrf-id\>
 
-Configures the Network Time Protocol (NTP).
+Configures the Network Time Protocol (NTP) in a specific VRF.
 
-### Default Setting
-
-N/A
+The default VRF is `default`.
 
 ### Command Syntax
 
@@ -34,10 +32,6 @@ cumulus@leaf01:mgmt:~$ nv set service ntp default
 ## nv set service ntp \<vrf-id\> server \<server-id\>
 
 Configures the remote NTP server.
-
-### Default Setting
-
-N/A
 
 ### Command Syntax
 
@@ -62,9 +56,7 @@ cumulus@leaf01:mgmt:~$ nv set service ntp default server time.nist.gov
 
 Configures NTP to send a burst of eight packets instead of the usual one packet when the server is unreachable. You can specify `on` or `off`.
 
-### Default Setting
-
-`off`
+The default setting is `off`.
 
 ### Command Syntax
 
@@ -89,10 +81,6 @@ cumulus@leaf01:mgmt:~$ nv set service ntp default server 192.168.0.254 iburst on
 
 Configures the remote NTP server pool.
 
-### Default Setting
-
-N/A
-
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -114,9 +102,7 @@ cumulus@leaf01:mgmt:~$ nv set service ntp default pool 4.cumulusnetworks.pool.nt
 
 Configures NTP to send a burst of eight packets instead of the usual one packet when the server pool is unreachable. You can specify `on` or `off`.
 
-### Default Setting
-
-`off`
+The default setting is `off`.
 
 ### Command Syntax
 
@@ -141,9 +127,7 @@ cumulus@leaf01:mgmt:~$ nv set service ntp default pool 4.cumulusnetworks.pool.nt
 
 Configures the NTP interface on which to listen.
 
-### Default Setting
-
-`eth0`
+The default setting is `eth0`.
 
 ### Command Syntax
 

@@ -8,21 +8,13 @@ type: nojsscroll
 
 ## nv set interface \<interface-id\> link
 
-Configures the physical interface settings, such as the link state, auto-negotiation, breakouts, FEC, MTU, speed, 802.1X, and MAC authentication bypass (MAB).
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Provides commands to configure physical interface settings, such as the link state, auto-negotiation, breakouts, FEC, MTU, speed, 802.1X, and MAC authentication bypass (MAB).
 
 - - -
 
 ## nv set interface \<interface-id\> link state
 
 Brings an interface up or down administratively (admin up or admin down). You can specify `up` or `down`.
-
-### Default Setting
-
-N/A
 
 ### Command Syntax
 
@@ -46,10 +38,6 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link state up
 
 Configures the IEEE 802.1X protocol for the specified interface.
 
-### Default Setting
-
-N/A
-
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -66,9 +54,7 @@ Introduced in Cumulus Linux 5.0.0
 
 Configures MAC authentication bypass (MAB), which enables bridge ports to allow devices to bypass authentication based on their MAC address. This is useful for devices that do not support PAE, such as printers or phones. You can specify `on` or `off`.
 
-### Default Setting
-
-`off`
+The default setting is `off`.
 
 ### Command Syntax
 
@@ -92,9 +78,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link dot1x mab on
 
 Configures a Parking VLAN. If a non-authorized supplicant tries to communicate with the switch, you can route traffic from that device to a different VLAN and associate that VLAN with one of the switch ports to which the supplicant is attached. You can specify `on` or `off`.
 
-### Default Setting
-
-`off`
+The default setting is `off`.
 
 ### Command Syntax
 
@@ -118,9 +102,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link dot1x parking-vlan on
 
 Configures auto-negotiation for the interface.
 
-### Default Setting
-
-`on`
+The default setting is `on`.
 
 ### Command Syntax
 
@@ -144,10 +126,6 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link auto-negotiate off
 
 Configures breakout ports for the interface. You can specify 1x, 2x20G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G, disabled, or loopback.
 
-### Default Setting
-
-N/A
-
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -170,9 +148,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link breakout 4x25G
 
 Configures duplex mode for the interface; full or half.
 
-### Default Setting
-
-`full`
+The default setting is `full`.
 
 ### Command Syntax
 
@@ -196,10 +172,6 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link duplex half
 
 Configures the speed for the interface.
 
-### Default Setting
-
-N/A
-
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -222,9 +194,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link speed 10G
 
 Configures Forward Error Correction (FEC) for the interface. FEC enables the switch to detect and correct bit errors introduced over the cable between two interfaces.
 
-### Default Setting
-
-`auto`
+The default setting is `auto`.
 
 ### Command Syntax
 
@@ -248,9 +218,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link fec baser
 
 Configures the maximum transmission unit (MTU) for the interface. You can set a value between 552 and 9216.
 
-### Default Setting
-
-9216
+The default setting is 9216
 
 ### Command Syntax
 
@@ -270,13 +238,11 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link mtu 1500
 
 - - -
 
-## nv set interface <interface-id> link fast-linkup (on|off)
+## nv set interface \<interface-id\> link fast-linkup
 
 Configures fast linkup on interfaces on NVIDIA Spectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards. You can specify `on` or `off`.
 
-### Default Setting
-
-`off`
+The default setting is `off`.
 
 ### Command Syntax
 

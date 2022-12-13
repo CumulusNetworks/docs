@@ -17,24 +17,28 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - NVIDIA SN3750-SX (200G Spectrum-2) generally available
-- Support 1G for all Spectrum-2 and Spectrum-3 switches
 
 ### New Features and Enhancements
 
+- Support for 1G on all Spectrum-2 and Spectrum-3 switches
 - Port configuration changes
-- PTP Shaper for Spectrum 1
-- SyncE Support available for early access
+- {{<link url="Quality-of-Service#ptp-shaping" text="PTP Shaping">}} for Spectrum 1
+- {{<link url="SyncE#synce" text="SyncE">}} available for early access
+- PTP PPS In or Out
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
-  - User management
-  - TACACS Plus
-  - PTP PPS In or Out Support
-  - ASIC Resource Slicing (KVD)
-  - LLDP Ability to set CDP-only/LLDP-only TX/RX
-  - EVPN Phase 1 - EVPN Operational OM for VNI, MAC/Neigh and RIB
-  - NVUE Feature gaps on CL in comparison to Onyx - QoS Phase 2
-  - BGP Phase 2
+  - User management commands
+  - TACACS Plus commands
+  - ASIC Resource Slicing (KVD) commands
+  - LLDP commands to send either CDP frames only or LLDP frames only
+  - EVPN commands to show operational data
+  - QoS commands for egress shaping, link pause, traffic remarking, and advanced buffer configuration
+  - BGP commands to clear all BGP sessions, enable debugging, and to show BGP information
   - Obfuscated passwords to protect passwords from casual viewing
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
+  - Support interactive commands (less, tail -f)
+  - Auto save configuration
+  - Store version information in configuration output
+  - `nv config apply` command messages
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

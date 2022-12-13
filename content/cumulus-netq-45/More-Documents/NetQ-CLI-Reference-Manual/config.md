@@ -60,9 +60,9 @@ cumulus@switch:~$ netq config restart agent
 
 ## netq config add agent command
 
-The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command lets you fine tune which events the agent can poll and vary the frequency of polling. Note that you must restart the NetQ Agent to enable the configuration.
+The NetQ Agent contains a pre-configured set of modular commands that run periodically and send event and resource data to the NetQ appliance or VM. This command lets you fine-tune which events the agent can poll and vary the frequency of polling. Note that you must restart the NetQ Agent to enable the configuration.
 
-Refer to the {{<link title="Manage NetQ Agents/#change-netq-agent-polling-data-and-frequency" text="NetQ User Guide">}} for details of the commands, including their service keys and default polling intervals.
+Refer to the {{<link title="Manage NetQ Agents/#change-netq-agent-polling-data-and-frequency" text="Manage NetQ Agents">}} for additional details, including service keys and default polling intervals.
 
 ### Syntax
 
@@ -84,20 +84,20 @@ netq config add agent command
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| poll-period | \<text-cmd-periodicity\> | Set the polling period for the NetQ Agent command with the designated service key |
+| poll-period | \<text-cmd-periodicity\> | Set the polling period (in seconds) for the NetQ Agent command with the designated service key |
 | command | \<text-cmd-text\> | Run this executable command for the NetQ Agent command with the designated service key |
 | enable | True, False | Enable (True) or disable (False) the NetQ Agent command with the designated service key |
 
 ### Sample Usage
 
-Modify polling frequency for a command
+Modify the polling frequency for a command:
 
 ```
 cumulus@switch:~$ netq config add agent command service-key lldp-json poll-period 60
 Successfully added/modified Command service lldpd command /usr/sbin/lldpctl -f json
 ```
 
-Disable a command
+Disable a command:
 
 ```
 cumulus@switch:~$ netq config add agent command service-key ospf-neighbor-json enable False
@@ -106,8 +106,8 @@ Command Service ospf-neighbor-json is disabled
 
 ### Related Commands
 
-- netq config show agent commands
-- netq config agent factory-reset commands
+- ```netq config show agent commands```
+- ```netq config agent factory-reset commands```
 
 - - -
 
@@ -136,7 +136,7 @@ None
 
 ### Sample Usage
 
-Set CPU usage limit by NetQ Agent to 60 percent
+Limit CPU usage by NetQ Agent to 60%:
 
 ```
 cumulus@switch:~$ netq config add agent cpu-limit 60
@@ -149,15 +149,15 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent cpu-limit
-- netq config del agent cpu-limit
-- netq config restart agent
+- ```netq config show agent cpu-limit```
+- ```netq config del agent cpu-limit```
+- ```netq config restart agent```
 
 - - -
 
 ## netq config add agent frr-monitor
 
-Configures the NetQ Agent to monitor the Free Range Router (FRR) function when running in a Docker container. Typically FRR runs as a service. Note that you must restart the NetQ Agent to enable the configuration.
+Configures the NetQ Agent to monitor the Free Range Router (FRR) function when running in a Docker container. Typically, FRR runs as a service. Note that you must restart the NetQ Agent to enable the configuration.
 
 ### Syntax
 
@@ -178,7 +178,7 @@ None
 
 ### Sample Usage
 
-Configure NetQ Agent to collect FRR statistics
+Configure NetQ Agent to collect FRR statistics:
 
 ```
 cumulus@switch:~$ netq config add agent frr-monitor frr
@@ -190,15 +190,15 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent frr-monitor
-- netq config del agent frr-monitor
-- netq config restart agent
+- ```netq config show agent frr-monitor```
+- ```netq config del agent frr-monitor```
+- ```netq config restart agent```
 
 - - -
 
 ## netq config add agent kubernetes-monitor
 
-Configures the NetQ Agent to monitor kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent to enable the configuration.
+Configures the NetQ Agent to monitor Kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent to enable the configuration.
 
 ### Syntax
 
@@ -215,11 +215,11 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| poll-period | \<text-duration-period\> | Collect statistics about kubernetes containers at this frequency, in seconds |
+| poll-period | \<text-duration-period\> | Collect statistics about Kubernetes containers at this frequency, in seconds |
 
 ### Sample Usage
 
-Configure NetQ Agent to monitor kubernetes containers
+Configure NetQ Agent to monitor Kubernetes containers:
 
 ```
 cumulus@switch:~$ netq config add agent kubernetes-monitor
@@ -229,7 +229,7 @@ cumulus@switch:~$ netq config restart agent
 Restarting netq-agent... Success!
 ```
 
-Configure the polling frequency for kubernetes container data collection
+Configure the polling frequency for Kubernetes container data collection:
 
 ```
 cumulus@switch:~$ netq config add agent kubernetes-monitor poll-period 120
@@ -241,9 +241,9 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent kubernetes-monitor
-- netq config del agent kubernetes-monitor
-- netq config restart agent
+- ```netq config show agent kubernetes-monitor```
+- ```netq config del agent kubernetes-monitor```
+- ```netq config restart agent```
 
 - - -
 
@@ -256,7 +256,7 @@ Configures the amount of information to log about the NetQ Agent activity, from 
 - Info: Logs events classified as info, warning, and errors
 - Debug: Logs all events
 
-You should return a log level of info or higher after you finish debugging. Note that you must restart the NetQ Agent for to enable the configuration.
+After you finish debugging, reset the log level to info or higher. Note that you must restart the NetQ Agent to enable the configuration.
 
 ### Syntax
 
@@ -277,7 +277,7 @@ None
 
 ### Sample Usage
 
-Configure NetQ Agent to log only errors
+Configure NetQ Agent to log only errors:
 
 ```
 cumulus@switch:~$ netq config add agent loglevel error
@@ -289,9 +289,9 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent loglevel
-- netq config del agent loglevel
-- netq config restart agent
+- ```netq config show agent loglevel```
+- ```netq config del agent loglevel```
+- ```netq config restart agent```
 
 - - -
 
@@ -617,8 +617,6 @@ Configures the NetQ CLI on the switch or host where you run this command. Cloud 
 
 When the NetQ CLI is not configured, you can run only `netq config` and `netq help` commands, and you must use `sudo` to run them.
 
-For additional configuration information, refer to the {{<link title="Install the NetQ System" text="NetQ User Guide">}}.
-
 ### Syntax
 
 ```
@@ -648,14 +646,14 @@ netq config add cli server
 
 ### Sample Usage
 
-On-premises
+On-premises:
 
 ```
 cumulus@switch:~$ sudo netq config add cli server 10.0.1.1 vrf mgmt port 32000
 cumulus@switch:~$ sudo netq config restart cli
 ```
 
-Cloud/remote
+Cloud/remote:
 
 ```
 cumulus@switch:~# sudo netq config add cli server api.netq.cumulusnetworks.com access-key 45d11f46bc09986db64612c590204054b1f12bc05219324a7d66084cf741779c secret-key zHoQ9feNlScNuGBVzUNqr0c0kJL+FAZbhEz8YtW2Rc0= premises NewYork 
@@ -663,14 +661,14 @@ cumulus@switch:~# sudo netq config restart cli
 ```
 
 ### Related Commands
-<!-- vale off -->
-- netq config show cli
-- netq config del cli server
-- netq config restart cli
-<!-- vale on -->
+
+- ```netq config show cli```
+- ```netq config del cli server```
+- ```netq config restart cli```
+
 - - -
 
-## netq config add color
+## netq config (add|del) color
 
 <!-- vale off -->
 Configures command output to presents results in color for many commands. Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output of a trace command is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). Outputs are shown with color cues as soon as you run the command.
@@ -679,14 +677,15 @@ Configures command output to presents results in color for many commands. Result
 ### Syntax
 
 ```
-netq config add color
+netq config (add|del) color
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| color | NA | Display command output using color |
+| add | NA | Display color-coded command output |
+| del | NA | Remove color-coded command output |
 
 ### Options
 
@@ -701,7 +700,7 @@ Color coded output config added
 
 ### Related Commands
 
-- netq config del color
+None
 
 - - -
 
@@ -807,9 +806,9 @@ cumulus@switch:~$ netq config restart agent
 
 ### Related Commands
 
-- netq config show agent cpu-limit
-- netq config add agent cpu-limit
-- netq config restart agent
+- ```netq config show agent cpu-limit```
+- ```netq config add agent cpu-limit```
+- ```netq config restart agent```
 
 - - -
 
@@ -1181,43 +1180,10 @@ cumulus@switch:~$ netq config del cli server
 ```
 
 ### Related Commands
-<!-- vale off -->
+
 - netq config add cli server
 - netq config show cli
 - netq config restart agent
-<!-- vale on -->
-- - -
-
-## netq config del color
-
-Disables color cues in command output. This command takes effect immediately.
-
-### Syntax
-
-```
-netq config del color
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| color | NA | Remove color from command outputs |
-
-### Options
-
-None
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config del color
-Color coded output config deleted
-```
-
-### Related Commands
-
-- netq config add color
 
 - - -
 
@@ -1428,11 +1394,11 @@ netq config show agent commands
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | service-key | \<text-service-key-anchor\> | View the configuration of the NetQ Agent command with this service key (name) |
-| json | NA | View the configuration information for the specified NetQ Agent commands in JSON format |
+| json | NA | Display the output in JSON format|
 
 ### Sample Usage
 
-Show configuration for all commands
+Show the configuration for all commands:
 
 ```
 cumulus@switch:~$ netq config show agent commands
@@ -1454,7 +1420,7 @@ dmicode             N/A       yes       dmidecode -t 17
 is-opta             N/A       yes       cat /etc/app-release
 ```
 
-Show configuration for specific command
+Show the configuration for a specified command:
 
 ```
 cumulus@switch:~$ netq config show agent commands service-key agent_stats
@@ -1465,8 +1431,8 @@ agent_stats           300  yes       Netq Predefined Command
 
 ### Related Commands
 
-- netq config add agent commands
-- netq config agent factory-reset commands
+- ```netq config add agent commands```
+- ```netq config agent factory-reset commands```
 
 - - -
 

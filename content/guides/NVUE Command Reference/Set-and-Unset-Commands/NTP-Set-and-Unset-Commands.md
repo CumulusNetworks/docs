@@ -92,6 +92,8 @@ Configures the remote NTP server pool.
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
 ```
 cumulus@leaf01:mgmt:~$ nv set service ntp default pool 4.cumulusnetworks.pool.ntp.org
 ```

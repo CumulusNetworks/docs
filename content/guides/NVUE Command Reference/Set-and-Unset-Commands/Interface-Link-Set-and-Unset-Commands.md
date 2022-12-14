@@ -36,17 +36,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link state up
 
 ## nv set interface \<interface-id\> link dot1x
 
-Configures the IEEE 802.1X protocol for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Provides commands to configure the IEEE 802.1X protocol for the specified interface.
 
 - - -
 

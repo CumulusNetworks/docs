@@ -59,49 +59,15 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mlag id 1
 
 - - -
 
-## nv set interface \<interface-id\> bond mlag lacp-conflict
-
-Configures MLAG LACP conflict on the bond interface.
-
-The default setting is 
-
-N/A
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 bond mlag lacp-conflict 
-```
-
-- - -
-
 ## nv set mlag
 
-Configures global Multi-chassis Link Aggregation (MLAG) properties.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Provides commands to configure global Multi-chassis Link Aggregation (MLAG) settings.
 
 - - -
 
 ## nv set mlag backup \<backup-ip\>
 
 Configures the IP address of a backup layer 3 interface for the peer link, which the switch uses when the peer link goes down. You must add a backup IP address, which must be different than the peer link IP address. You can use the loopback or management IP address of the switch.
-
-The default setting is 
-
-N/A
 
 ### Command Syntax
 
@@ -124,10 +90,6 @@ cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2
 ## nv set mlag backup \<backup-ip\> vrf \<vrf-name\>
 
 Configures the VRF for the MLAG backup IP address.
-
-The default setting is 
-
-N/A
 
 ### Command Syntax
 
@@ -203,9 +165,7 @@ cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
 
 Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a vlaue between 0-65535.
 
-The default setting is 
-
-32768
+The default setting is 32768.
 
 ### Version History
 

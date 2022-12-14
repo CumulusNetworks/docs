@@ -9,6 +9,12 @@ This document supports the Cumulus Linux 5.3 release, and lists new platforms, f
 - For a list of all the platforms supported in Cumulus Linux 5.3, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 5.3, see the {{<link title="Cumulus Linux 5.3 Release Notes" text="Cumulus Linux 5.3 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.3, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
+
+<!-- vale off -->
+## What's New in Cumulus Linux 5.3.1
+<!-- vale on -->
+Cumulus Linux 5.3.1 provides bug fixes.
+
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.3.0
 <!-- vale on -->

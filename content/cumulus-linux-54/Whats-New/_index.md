@@ -28,7 +28,7 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - User management commands
   - TACACS Plus commands
-  - ASIC Resource Slicing (KVD) commands
+  - {{<link url="Supported-Route-Table-Entries/#change-forwarding-resource-profiles" text="ASIC Resource Slicing">}} (KVD) commands
   - LLDP commands to send either CDP frames only or LLDP frames only
   - EVPN commands to show operational data
   - QoS commands for egress shaping, link pause, traffic remarking, and advanced buffer configuration

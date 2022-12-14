@@ -19,6 +19,14 @@
 <td>5.3.0</td>
 </tr>
 <tr>
+<td>3211114</td>
+<td>After an abrupt power cycle, the {{nvued}} service fails to start. This is due to NVUE's internal data store being corrupted.
+
+The details of the bug fix and the user impact has been explained in these slides here: https://nvidia-my.sharepoint.com/:p:/p/asadasivarao/Eb_aWX4fyDtMlW0wMbkajlkBnywSBorXofg792uXUJlb7A?e=jRxrQX</td>
+<td>5.2.0-5.2.1</td>
+<td>5.3.0</td>
+</tr>
+<tr>
 <td>3211054</td>
 <td>On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:
 
@@ -458,6 +466,14 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>3235368</td>
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
+<td>5.3.0</td>
+</tr>
+<tr>
+<td>3211114</td>
+<td>After an abrupt power cycle, the {{nvued}} service fails to start. This is due to NVUE's internal data store being corrupted.
+
+The details of the bug fix and the user impact has been explained in these slides here: https://nvidia-my.sharepoint.com/:p:/p/asadasivarao/Eb_aWX4fyDtMlW0wMbkajlkBnywSBorXofg792uXUJlb7A?e=jRxrQX</td>
+<td>5.2.0-5.2.1</td>
 <td>5.3.0</td>
 </tr>
 <tr>

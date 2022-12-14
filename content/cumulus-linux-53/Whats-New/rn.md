@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3289972"></a> [3289972](#3289972) <a name="3289972"></a> <br />None | When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the <code>dmesg</code> log might report the message <code>bridge: RTM_NEWNEIGH with invalid ether address</code> in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly.  | 5.3.0 | |
 | <a name="3283598"></a> [3283598](#3283598) <a name="3283598"></a> <br />None | After you restart the FRR service, show commands incorrectly reflect the VLAN associated with layer 3 VNIs as 0:<pre># net show evpn vni 123VNI: 123Type: L3Tenant VRF: BLUEVlan: 0</pre> | 5.3.0 | |
 | <a name="3244955"></a> [3244955](#3244955) <a name="3244955"></a> <br /> | ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries. | 5.2.0-5.3.0 | |
 | <a name="3174706"></a> [3174706](#3174706) <a name="3174706"></a> <br /> | When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped. | 5.1.0-5.3.0 | |
@@ -61,6 +62,7 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="3235368"></a> [3235368](#3235368) <a name="3235368"></a> <br /> | When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the <code>net commit</code> command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run <code>net commit</code> after each command. | 4.4.4-5.2.1 | |
+| <a name="3211114"></a> [3211114](#3211114) <a name="3211114"></a> <br /> | After an abrupt power cycle, the <code>nvued</code> service fails to start. This is due to NVUE's internal data store being corrupted<br />The details of the bug fix and the user impact has been explained in these slides here: https://nvidia-my.sharepoint.com/:p:/p/asadasivarao/Eb_aWX4fyDtMlW0wMbkajlkBnywSBorXofg792uXUJlb7A?e=jRxrQX | 5.2.0-5.2.1 | |
 | <a name="3211054"></a> [3211054](#3211054) <a name="3211054"></a> <br /> | On the NVIDIA Spectrum-2 switch, when receiving multicast traffic on a PIM enabled VLAN, the multicast traffic is forwarded correctly to the associated VLAN, however WJH shows traffic loss with the error:<br /><pre><br />Packet size is larger than router interface MTU – Validate the router interface MTU configuration<br /></pre> | 4.4.2-5.2.1 | |
 | <a name="3205859"></a> [3205859](#3205859) <a name="3205859"></a> <br /> | On the NVIDIA SN3700 and SN4600 switch, the fans run at very high speed but the temperature sensor readings are within an acceptable range. | 5.2.0-5.2.1 | |
 | <a name="3202991"></a> [3202991](#3202991) <a name="3202991"></a> <br /> | Locally generated multicast traffic including IGMPv2 GSQs do not transmit to local clients when using PIM. | 5.0.1-5.2.1 | |

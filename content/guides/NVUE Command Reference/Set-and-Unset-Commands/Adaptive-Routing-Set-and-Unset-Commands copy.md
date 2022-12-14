@@ -1,7 +1,7 @@
 ---
 title: Adaptive Routing Set and Unset Commands
 author: Cumulus Networks
-weight: 520
+weight: 510
 product: Cumulus Linux
 type: nojsscroll
 ---

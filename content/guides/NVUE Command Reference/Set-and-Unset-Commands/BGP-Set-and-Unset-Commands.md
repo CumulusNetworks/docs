@@ -1,0 +1,4973 @@
+---
+title: BGP Set and Unset Commands
+author: Cumulus Networks
+weight: 520
+product: Cumulus Linux
+type: nojsscroll
+---
+## nv set vrf \<vrf-id\> router bgp
+
+Provides commands to configure BGP on the specified VRF.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family
+
+Provides commands to configure the address family in this VRF.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast
+
+Provides commands to configure the IPv4 unicast address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute
+
+Provides commands to configure route redistribution, which allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute static
+
+Provides commands to configure route redistribution of IPv4 static routes.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute static enable
+
+Turns route redistribution of IPv4 static routes on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute static enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute static metric
+
+Configures the metric you want to use for the redistributed route. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route. 
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute static metric 4294967295
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute static route-map
+
+Sets the route map to apply to the redistributed route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute static route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute connected
+
+Configures route redistribution of IPv4 connected routes.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute connected enable
+
+Turns route redistribution of IPv4 connected routes on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute connected metric
+
+Configures the metric you want to use for the redistributed connected route. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route. 
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected metric 4294967295
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute connected route-map
+
+Sets the route map to apply to the redistributed connected route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute connected route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel
+
+Provides commands to configure redistribution of IPv4 kernel routes.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel enable
+
+Turns redistribution of kernel routes on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute kernel enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel metric
+
+Configures the metric you want to use for the redistributed kernel route. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute kernel metric 4294967295
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel route-map
+
+Sets the route map to apply to the redistributed route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute kernel route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf
+
+Provides commands to configure redistribution of IPv4 OSPF routes.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf enable
+
+Turns redistribution of OSPF routes on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute ospf enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf metric
+
+Configures the metric you want to use for the redistributed ospf routes. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route. 
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute ospf metric 4294967295
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf route-map
+
+Sets the route map to apply to the redistributed route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast redistribute ospf route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\>
+
+Provides commands to configure route aggregation to minimize the size of the routing table and save bandwidth. You can aggregate a range of networks in your routing table into a single prefix.
+
+- - -
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> summary-only
+
+Ensures that BGP suppresses longer prefixes inside the aggregate address before sending updates.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<aggregate-route-id>` |  The IPv4 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 summary-only on
+```
+
+- - -
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> as-set
+
+Turns generation of an AS_SET for the aggregate on or off. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The AS_SET option summarizes the AS_PATH attributes of all the individual routes to help BGP detect and avoid loops.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<aggregate-route-id>` |  The IPv4 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 as-set on
+```
+
+- - -
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> route-map 
+
+Applies a route map to the aggregate route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<aggregate-route-id>` |  The IPv4 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16 route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast network \<static-network-id\>
+
+Configures the prefixes to originate from a BGP node.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<static-network-id>` |  The IPv4 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32
+```
+
+- - -
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> route-map
+
+Applies a route map to the prefixes that originate from a BGP node.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<static-network-id>` |  The IPv4 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast network 10.10.10.1/32 route-map HI-PRIO
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import
+
+Provides commands to configure route leaking, where a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf
+
+Provides commands to configure the VRF from which route leaking occurs for the IPv4 ddress family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list \<leak-vrf-id\>
+
+Configures the VRF from which to import routes.You can specify multiple VRFs.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<leak-vrf-id>`  | The VRF from which you want to leak routes. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+```
+
+- - -
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf enable (on|off)
+
+Turns route leaking on or off for the IPv4 ddress family.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf route-map \<instance-name\>
+
+Applies a route map to control importing routes. For example, to exclude certain prefixes from the import process, configure the prefixes in a route map.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf route-map BLUEtoRED
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths
+
+Configures the maximum number of equal-cost BGP paths allowed. The BGP multipath option is on by default and the maximum number of paths is 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs. 1 disables the BGP multipath option.
+
+The default setting is 64.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast multipaths 1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths ebgp
+
+Configures the number of equal-cost EBGP paths allowed.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast multipaths ebgp 120
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths ibgp
+
+Configures the number of equal-cost IBGP paths allowed.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast multipaths ibgp 120
+```
+
+- - -
+
+## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths compare-cluster-length
+
+Turns on cluster length comparison. When `on` and IBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast compare-cluster-length on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance
+
+Provides commands to configure the BGP administrative distance so that the switch can choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance external
+
+Configures the distance to apply to routes from EBGP peers when installed into the RIB. You can specify a value between 1 and 255.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast admin-distance external 150
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance internal
+
+Configures the distance to apply to routes from IBGP peers when installed into the RIB. You can specify a value between 1 and 255.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast admin-distance internal 110
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export
+
+Provides commands to configure route export settings.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn
+
+Provides commands to configure prefix-based routing using EVPN type-5 routes. Type-5 routes (or prefix routes) primarily route to destinations outside of the data center fabric. EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn enable
+
+Turns prefix-based routing using EVPN type-5 routes on or off. When `on`, the switch can announce IP prefixes in the BGP RIB as EVPN type-5 routes.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast route-export to-evpn enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn route-map
+
+Sets the route map to control the export of routes into EVPN. By default, when announcing IP prefixes in the BGP RIB as EVPN type-5 routes, the switch selects all routes in the BGP RIB to advertise as EVPN type-5 routes. You can use a route map to allow selective route advertisement from the BGP RIB.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast route-export to-evpn route-map HIGH-PRIO
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn default-route-origination
+
+ Configures originating EVPN default type-5 routes. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast route-export to-evpn default-route-origination on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast rib-filter
+
+Applies a route map on route updates from BGP to the Route Information Base (RIB). You can match on prefix, next hop, communities, and so on. You can set the metric and next hop only. Route maps do not affect the BGP internal RIB. Route maps work on multi-paths; however, BGP bases the metric setting on the best path only.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast rib-filter routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast enable
+
+Tuns the BGP IPv4 address family on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family l2vpn-evpn
+
+Provides commands to configure the L2VPN-EVPN address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family l2vpn-evpn enable
+
+Tuns the L2VPN-EVPN address family on or off for the VRF.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast
+
+Provides commands to configure the IPv6 unicast address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast aggregate-route \<aggregate-route-id\>
+
+Provides commands to configure an IPv6 aggregate route.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast aggregate-route \<aggregate-route-id\> summary-only (on|off)
+
+Ensures that BGP suppresses longer IPv6 prefixes inside the aggregate address before sending updates.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<aggregate-route-id>` |  The IPv6 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast aggregate-route 2001:db8::1/128 summary-only on
+```
+
+- - -
+
+## nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> as-set
+
+Turns generation of an AS_SET for the aggregate on or off. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The AS_SET option summarizes the AS_PATH attributes of all the individual routes to help BGP detect and avoid loops.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<aggregate-route-id>` |  The IPv6 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast aggregate-route 2001:db8::1/128 as-set on
+```
+
+- - -
+
+## nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> route-map 
+
+Applies a route map to the aggregate route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<aggregate-route-id>` |  The IPv6 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast aggregate-route 2001:db8::1/128 route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast network \<static-network-id\>
+
+Provides commands to configure an IPv6 static network.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import
+
+Provides commands to configure route leaking, where a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf
+
+Provides commands to configure VRF to VRF route leaking for this address-family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf list
+
+Configures the VRF from which to import routes. You can specify multiple VRFs.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv6-unicast route-import from-vrf list BLUE
+```
+
+- - -
+
+## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf enable
+
+Turns route leaking for IPv6 on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv6-unicast route-import from-vrf enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf route-map \<instance-name\>
+
+Applies a route map to control importing routes.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv6-unicast route-import from-vrf route-map BLUEtoRED
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths
+
+Provides commands to configure the maximum number of equal-cost BGP paths allowed. The BGP multipath option is on by default and the maximum number of paths is 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths ebgp
+
+Configures the number of equal-cost EBGP paths allowed. You can specify a value between 1 and 128.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast multipaths ebgp 120
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths ibgp
+
+Configures the number of equal-cost IBGP paths allowed. You can specify a value between 1 and 128.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast multipaths ibgp 120
+```
+
+- - -
+
+## nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths compare-cluster-length
+
+Turns on cluster length comparison. When `on` and IBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast compare-cluster-length on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast admin-distance
+
+Provides commands to configure the administrative distance for internal and external routes.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast admin-distance external
+
+Configures the distance to apply to routes from EBGP peers when installed into the RIB. You can specify a value between 1 and 255.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast admin-distance external 150
+```
+
+- - -
+
+## nv set vrf \<vrf-id>\ router bgp address-family ipv6-unicast admin-distance internal
+
+Configures the distance to apply to routes from IBGP peers when installed into the RIB. You can specify a value between 1 and 255.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast admin-distance internal 110
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export
+
+Provides commands to configure route export settings for IPv6.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn
+
+Provides commands to configure exporting routes from this VRF for this address-family into EVPN as type-5 routes.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn enable
+
+Turns prefix-based routing using EVPN type-5 routes on or off. When `on`, the switch can announce IPv6 prefixes in the BGP RIB as EVPN type-5 routes.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast route-export to-evpn enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn route-map
+
+Applies the route map to control the export of routes into EVPN. By default, when announcing IPv6 prefixes in the BGP RIB as EVPN type-5 routes, the switch selects all routes in the BGP RIB to advertise as EVPN type-5 routes. You can use a route map to allow selective route advertisement from the BGP RIB.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast route-export to-evpn route-map HIGH-PRIO
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn default-route-origination
+
+Configures originating EVPN default type-5 routes. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast route-export to-evpn default-route-origination on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute
+
+Provides commands to configure route redistribution, which allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static
+
+Provides commands to configure route redistribution of IPv6 static routes.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static enable
+
+Turns route redistribution of IPv6 static routes on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute static enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static metric
+
+Configures the metric you want to use for the redistributed route. You can specify auto or a value between 0 and 4294967295. If you specify auto, the switch choses an appropriate value based on the type of route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute static metric 4294967295
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static route-map
+
+Applies the route map to the redistributed route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute static route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected
+
+Provides commands to configure route redistribution of IPv6 connected routes.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected enable
+
+Turns route redistribution of IPv6 connected routes on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute connected enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected metric
+
+Configures the metric you want to use for the redistributed connected route. You can specify auto or a value between 0 and 4294967295. If you specify auto, the switch choses an appropriate value based on the type of route.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute connected metric 4294967295
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected route-map (none|<instance-name>)
+
+Applies a route map to the redistributed connected route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute connected route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel
+
+Provides commands to configure redistribution of IPv4 kernel routes.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel enable
+
+Turns redistribution of kernel routes on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute kernel enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel metric
+
+Configures the metric you want to use for the redistributed kernel route. You can specify auto or a value between 0 and 4294967295. If you specify auto, the switch choses an appropriate value based on the type of route.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute kernel metric 4294967295
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel route-map
+
+Applies a route map to the redistributed route.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute kernel route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6
+
+Provides commands to configure redistribution of IPv6 OSPF routes.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 enable
+
+Turns redistribution of OSPF routes on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute ospf enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 metric (0-4294967295|auto)
+
+Configures the metric you want to use for the redistributed OSPF routes. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute ospf metric 4294967295
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 route-map (none|<instance-name>)
+
+Applies a route map to the redistributed route.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast redistribute ospf route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast rib-filter
+
+Applies a route map on route updates from BGP to the Route Information Base (RIB). You can match on prefix, next hop, communities, and so on. You can set the metric and next hop only. Route maps do not affect the BGP internal RIB. Route maps work on multi-paths; however, BGP bases the metric setting on the best path only.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast rib-filter routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast enable (on|off)
+
+Tuns the BGP IPv6 address family on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection
+
+Provides commands to configure BGP best path selection.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection aspath
+
+Provides commands to configure how BGP selects the best path to an autonomous system (AS).
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection aspath compare-lengths
+
+Configures BGP to select the AS based on path length.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp path-selection aspath compare-lengths on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection aspath compare-confed (on|off)
+
+Configures BGP to select the AS based on confederations.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp path-selection aspath compare-confed on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection med
+
+Provides commands to configure BGP multi-exit discriminator (MED) path selection.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection med compare-always
+
+Configures BGP to always compare the MED on routes even when received from different neighbouring autonomous systems. When enabled, BGP compares MEDs for all paths.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection med compare-always on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection med compare-deterministic
+
+Applies route selection in a way that produces deterministic answers locally.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection med compare-deterministic on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection med compare-confed (on|off)
+
+Configures MED for route-selection based on confederations.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection med compare-confed on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection med missing-as-max (on|off)
+
+Configures MED missing-as-max.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection med missing-as-max on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection multipath
+
+Provides commands to configure BGP multipath path selection.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection multipath aspath-ignore
+
+Configures BGP to ignore the AS path when determining multipath routing.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection multipath aspath-ignore on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection multipath generate-asset (on|off)
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection multipath generate-asset on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection multipath bandwidth
+
+Configures multipath route selection based on bandwidth. You can specify `bandwidth`, `all-paths`, `skip-missing`, `default-weight-for-missing`, or `ignore`.
+
+The default setting is `ignore`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection multipath bandwidth all-paths
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp path-selection routerid-compare (on|off)
+
+Configures BGP to use the router ID to decide the best path when two identical routes are received from two different peers.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp path-selection routerid-compare on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-reflection
+
+Provides commands to configure BGP route reflection. When you configure an iBGP speaker as a route reflector, it can send iBGP learned routes to other iBGP peers.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-reflection enable
+
+Turns BGP route reflection on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-reflection cluster-id
+
+Configures the cluster ID to use during route reflection. This setting is required when route-reflection is on.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection cluster-id 10
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-reflection reflect-between-clients
+
+Allows routes to be reflected between clients. Typically, routes are reflected only between clients and non-clients, with the clients of a route reflector expected to be fully meshed.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection reflect-between-clients on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-reflection outbound-policy (on|off)
+
+Allows an outbound peer policy to modify the attributes for reflected routes. Typically, reflected routes have to retain their original attributes.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp route-reflection outbound-policy on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\>
+
+Provides commands to configure BGP peer group settings.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd
+
+Provides commands to configure Bidirectional Forwarding Detection (BFD) for BGP sessions for the peer group. When you configure BFD in BGP, PTM registers and de-registers neighbors dynamically.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd enable
+
+Turns BFD on or off for the BGP peer group.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` |  The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE bfd enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd detect-multiplier
+
+Configures the BFD interval multiplier. You can specify a value between 2 and 255.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` |  The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE bfd detect-multiplier 4
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group <peer-group-id> bfd min-rx-interval
+
+Configures the minimum interval between received BFD control packets. You can specify a value between 50 and 60000.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE bfd min-rx-interval 400
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd min-tx-interval
+
+Configures the minimum interval between sending BFD control packets. You can specify a value between 50 and 60000.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` |  The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE bfd min-tx-interval 400
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security
+
+Provides commands to configure the TTL security hop count for the peer group to prevent attacks against eBGP, such as denial of service (DoS) attacks. By default, BGP messages to eBGP neighbors have an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. An attacker can adjust the TTL of packets so that they look like they originate from a directly connected peer. The BGP TTL security hops option inverts the direction in which BGP counts the TTL. Instead of accepting only packets with a TTL of 1, Cumulus Linux accepts BGP messages with a TTL greater than or equal to 255 minus the specified hop count.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security enable
+
+Turns BGP TTL security on or off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` |  The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE ttl-security enable on 
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security hops
+
+Configures the number of hops to deduct from a TTL greater than or equal to 255 to prevent attacks against eBGP, such as denial of service (DoS) attacks.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` |  The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE ttl-security hops 200 
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities
+
+Provides commands to configure advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities extended-nexthop
+
+Turns the extended next hop capability defined in RFC 5549 on or off. The extended nexthop is advertised to peers in the peer group. If you specify `auto`, extended next hop is `on` for unnumbered peers and `off` otherwise.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE capabilities extended-nexthop on 
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities source-address
+
+Configures the source IP address of the TCP connection, which is often used as the BGP next hop for updates.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE capabilities source-address 10.10.10.1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> graceful-restart
+
+Provides commands to configure graceful restart to minimize the negative effects that occur when BGP restarts. This option enables a BGP speaker to signal to its peers that it can preserve its forwarding state and continue data forwarding during a restart. It also enables a BGP speaker to continue to use routes announced by a peer even after the peer has gone down.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> graceful-restart mode 
+
+Configures the graceful restart mode. If you specify `auto`, the mode is inherited from the global setting. If you specify `off`, graceful restart is not negotiated with the peer group. If you specify `helper-only`, the switch is in a helper role only, where routes originated and advertised from a BGP peer in the peer group are not deleted. If you specify `full`, the switch is in both a helper and restarter role.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default bgp peer-group SPINE graceful-restart mode helper-only
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as
+
+Provides commands to configure the local AS for the peer group.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as enable
+
+Turns local AS on or off for the peer group.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES local-as enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as asn
+
+Configures the ASN you want to use to establish the peering if it is different from the ASN of the BGP instance. The local AS configured is also attached to incoming and outgoing updates.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES local-as asn ????
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as prepend
+
+Configures BGP to prepend the configured local AS to updates.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES local-as enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as replace
+
+Configures BGP to either attach only the configured local AS to generated updates or attach the ASN of the BGP instance, then prepend it with the configured local AS.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES local-as replace on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers
+
+Provides commands to configure BGP timers for the peer group.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers keepalive
+
+Configures the interval at which BGP exchanges periodic keepalive messages to measure and ensure that a peer is still alive and functioning. You can specify a value between 1 and 65535. If you speciy `none`, keepalives are not sent. If you specify `auto`, the global value is used.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers keepalive 10
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers hold
+
+Configures the hold timer. If BGP does not receive a keepalive or update message from a peer in the peer group within the hold time, it declares the peer down and withdraws all routes received by this peer from the local BGP table. If `none`, keepalives from the peer are not tracked and the peering session does not experience a hold timeout. You can specify a value between 3 and 65535. If you specify `auto`, the global value is used.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers hold 30
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers connection-retry
+
+Configures the time interval at which BGP  attempts to connect to a peer after a failure. You can specify a value between 1 and 65535. If you specify `auto`, the global value is used.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers connection-retry 30
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers route-advertisement
+
+Configures the time between route advertisements (BGP updates). After making a new best path decision for a prefix, BGP can insert a delay before advertising the new results to a peer. This delay rate limits the amount of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. You can specify a value between 1 and 65535. If you specify `none` route advertisements are delayed and batched. If you specify `auto`, the global value is used.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES timers route-advertisement 5
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family
+
+Provides commands to configure the address family settings for the peer group.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast
+
+Provides commands to configure the IPv4 unicast address family for the BGP peer group.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise
+
+Provides commands to configure the BGP COMMUNITY attribute to advertise to the peer group.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise regular
+
+Configures BGP to announce the COMMUNITIES attribute to the peer group. You can specify `on` or `off`.
+
+The default setting is `on`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise regular off
+```
+
+### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise extended
+
+Configures BGP to announce the EXT_COMMUNITIES attribute to the peer group. You can specify `on` or `off`.
+
+The default setting is `on`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise extended off
+```
+
+### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise large
+
+Configures BGP to announce the LARGE_COMMUNITIES attribute to the peer group. You can specify `on` or `off`.
+
+The default setting is `on`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise large off
+```
+
+### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod
+
+Provides commands to configure the BGP attribute mode for the peer group.
+
+### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod aspath
+
+Configures BGP to follow normal BGP procedures when generating the AS_PATH attribute for the specified peer group. You can specify `on` or `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod aspath on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod med
+
+Configures BGP to follow normal BGP procedures when generating the MED attribute for the specified peer group. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change the MED when sending an update to the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod med on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod nexthop
+
+Configures BGP to follow normal BGP procedures when generating the NEXT_HOP attribute for the specified peer group. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change NEXT_HOP when sending an update to the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod nexthop on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath
+
+Provides commands to configure options for handling the BGP AS_PATH for prefixes from or to the specified peer group.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath allow-my-asn
+
+Provides commands to configure BGP to accept a received AS_PATH that contains the ASN of the local system.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath allow-my-asn occurrences
+
+Configures the maximum number of occurrences of the local system's AS number allowed in the received AS_PATH. You can specify a value between 1 and 10.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath allow-my-asn occurrences 6
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits
+
+Provides commands to configure prefix limits from peers in the peer group.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits inbound
+
+Provides commands to configure limits on inbound prefix from the peer for this address-family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound maximum 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound maximum 3000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits inbound warning-threshold
+
+Configures the percentage of the maximum at which the switch generates a warning syslog. You can set a value between 1 and 100.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound warning-threshold 4
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound warning-only
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound warning-only on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits inbound reestablish-wait
+
+Configures the time in seconds to wait before establishing the BGP session again with the peers in the peer group. You can specify a value between 1-4294967295. A value of `auto` uses standard BGP timers and processing (between 2 and 3 seconds).
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound reestablish-wait 3000000000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast default-route-origination
+
+Provides commands to configure default route origination.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy
+
+Provides commands to configure an optional route map policy to control the conditions under which the default route is originated.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound
+
+Provides commands to configure the inbound unicast policy.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound route-map
+
+Configures the route map you want to apply to updates received from the peers in the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound route-map myroutemap
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound prefix-list 
+
+Configures the prefix list you want to apply to updates received from the peers in the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound prefix-list myprefixlist
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound aspath-list none
+
+Configures the AS path filter list you want to apply to updates received from the peers in the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound aspath-filter myaspathlist
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound
+
+Provides commands to configure the outbound IPv4 unicast policy for the peer group.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound route-map
+
+Configures the route map you want to apply to updates to be sent to the peers in the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy outbound route-map myroutemap
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound unsuppress-map
+
+Configures the route map used to unsuppress routes selectively when advertising to the peers in the peer group; these are routes that have been suppressed due to aggregation configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy outbound unsuppress-map myunsuppress
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound prefix-list
+
+Configures the prefix list you want to apply to updates to be sent to the peers in the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy outbound prefix-list myprefixlist
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound aspath-list none
+
+Configures the AS path filter list you want to apply to updates sent to the peers in the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy outbound aspath-list myaspathlist
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise
+
+Provides commands to configure BGP conditional advertisement, which lets you advertise certain routes only if other routes either do or do not exist. BGP conditional advertisement is typically used in multihomed networks where BGP advertises some prefixes to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise enable
+
+Turns BGP conditional advertisement on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise advertise-map \<instance-name\>
+
+Configures the route map that contains the prefix list with the list of routes or prefixes you want to advertise.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise advertise-map myadvertise 
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise exist-map \<instance-name\>
+
+Configures the route map that contains the prefix list with the conditional routes or prefixes.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise exist-map EXIST 
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise non-exist-map \<instance-name\>
+
+Configures the route map that contains the prefix list with the negative conditional routes or prefixes.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise non-exist-map NONEXIST 
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast enable
+
+Turns on the IPv4 unicast address family for the BGP peer group.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast route-reflector-client
+
+Configures the BGP node as a route reflector for a BGP peer.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast route-reflector-client on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast route-server-client (on|off)
+
+Configures the BGP node as a route server for a BGP peer.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast route-server-client on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast soft-reconfiguration (on|off)
+
+Turns on soft configuration so that received routes from the peers in the peer group that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP updates.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast soft-reconfiguration on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast nexthop-setting
+
+Configures the BGP next hop value of advertised routes for the peers in the peer group. You can specify `auto` to follow regular BGP next hop determination rules, `self` to set the next hop to ourselves for route advertisement excluding reflected routes, or `force` to set the next hop to ourselves for route advertisement including reflected routes.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast nexthop-setting force
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast add-path-tx
+
+Configures BGP to advertise more than just the best path for a prefix. You can specify `all-paths` to advertise all known paths to the peers in the peer group or `best-per-AS` to advertise only the best path learned from each AS.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast add-path-tx all-paths
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast weight
+
+Configures the weight applied to routes received from peer; this is used in the BGP route selection algorithm.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast weight 65535
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast
+
+Provides commands to configure the BGP peer group IPv6 unicast address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy
+
+Provides commands to configure policies for the IPv6 unicast address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound
+
+Provides commands to configure the inbound unicast policy.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound route-map
+
+Configures the route map you want to apply to updates received from the peers in the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound route-map routemap1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound prefix-list
+
+Configures the prefix list you want to apply to updates received from the peers in the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound prefix-list myprefixlist
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound aspath-list none
+
+Configures the AS path filter list you want to apply to updates received from the peers in the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound aspath-list MYASPATHLIST
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound
+
+Provides commands to configure the outbound IPv6 unicast policy for the peer group.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound aspath-list none
+
+Configures the AS path filter list you want to apply to updates sent to the peers in the peer group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound aspath-filter myaspathlist
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath
+
+Provides commands to configure the AS path filter list you want to apply to updates sent to the peers in the peer group.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn
+
+Provides commands to configure BGP to allow a received AS path to contain the ASN of the local system.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn enable
+
+Turns `allow-my-asn` on or off. When on, allows a received AS path to contain the ASN of the local system.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast allow-my-asn enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn origin
+
+Configures BGP to allow a received AS path to contain the ASN of the local system only if it is the originating AS.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast allow-my-asn origin on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn occurrences
+
+Configures the maximum number of times the AS number of the local system can be in the received AS path.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast allow-my-asn occurrences 5
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath replace-peer-as
+
+Configures BGP to replace the AS path in an outgoing update that contains the ASN of the peer with the ASN of the local system.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath replace-peer-as on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath private-as
+
+Configures what action to take with private ASNs. You can specify`none` to take no action, `remove`, to remove any private ASNs in the update to the peer, or `replace` to replace any private ASNs in the update to the peer with the ASN of the local system.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath private-as replace
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits
+
+Provides commands to configure prefix limits from peers in the peer group for IPv6.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound
+
+Provides commands to configure limits on the inbound prefix from the peers in the specified peer group. 
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound maximum
+
+Configures the maximum number of prefixes that BGP can receive from the peers in the peer group. By default, there is no limit.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound maximum 50000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound warning-threshold
+
+Configures the percentage of the maximum at which the switch generates a syslog warning. You can specify a value between 1 and 100.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound warning-threshold 50
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound warning-only
+
+Turns on syslog warning generation only and does not bring down the BGP session if the number of received prefixes exceeds the limit.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound warning-only on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound reestablish-wait
+
+Configures the time in seconds to wait before establishing the BGP session again with the peers in the peer group. You can specify a value between 1-4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound reestablish-wait 5000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination
+
+Provides commands to configure default route origination.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination enable
+
+Turns default route origination on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination policy
+
+Configures the optional route map policy to control the conditions under which the default route is originated.
+
+The default setting is `none`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination policy mypolicy
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise
+
+Provides commands to configure the BGP COMMUNITY attribute to advertise to the peer group for the IPv6 address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise regular
+
+Configures BGP to announce the COMMUNITIES attribute to the peer group.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise regular on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise extended
+
+Configures BGP to announce the EXT_COMMUNITIES attribute to the peer group.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise extended on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise large
+
+Configures BGP to announce the LARGE_COMMUNITIES attribute to the peer group.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise large on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod
+
+Provides commands to configure the BGP attribute mode for the peer group for IPv6.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise
+
+Provides commands to configure BGP conditional advertisement, which lets you advertise certain routes only if other routes either do or do not exist. BGP conditional advertisement is typically used in multihomed networks where BGP advertises some prefixes to one of the providers only if information from the other provider is not present. For example, a multihomed router can use conditional advertisement to choose which upstream provider learns about the routes it provides so that it can influence which provider handles traffic destined for the downstream router. This is useful for cost of service, latency, or other policy requirements that are not natively accounted for in BGP.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise enable
+
+Turns BGP conditional advertisement on or off for IPv6.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise advertise-map \<instance-name\>
+
+Configures the route map that contains the prefix list with the list of routes or prefixes you want to advertise.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise advertise-map myadvertise
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise exist-map \<instance-name\>
+
+Configures the route map that contains the prefix list with the conditional routes or prefixes.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise exist-map EXIST  
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise non-exist-map \<instance-name\>
+
+Configures the route map that contains the prefix list with the negative conditional routes or prefixes.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise non-exist-map NONEXIST 
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast enable
+
+Turns on the IPv6 unicast address family for the BGP peer group.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast route-reflector-client
+
+Configures the BGP node as a route reflector for a BGP peer.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast route-reflector-client on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast route-server-client
+
+Configures the BGP node as a route server for a BGP peer.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast route-server-client on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast soft-reconfiguration
+
+Turns on soft configuration so that received routes from the peers in the peer group that are rejected by inbound policy are still stored. This allows policy changes to take effect without any exchange of BGP updates.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast soft-reconfiguration on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast nexthop-setting
+
+Configures the BGP next hop value of advertised routes for the peers in the peer group. You can specify `auto` to follow regular BGP next hop determination rules, `self` to set the next hop to itself for route advertisement excluding reflected routes, or `force` to set the next hop to itself for route advertisement including reflected routes.
+
+The default setting is `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast nexthop-setting force
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast add-path-tx
+
+Configures BGP to advertise more than just the best path for a prefix. You can specify `all-paths` to advertise all known paths to the peers in the peer group or `best-per-AS` to advertise only the best path learned from each AS.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast add-path-tx all-paths
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast weight
+
+Configures the weight applied to routes received from peer; this is used in the BGP route selection algorithm. You can specify a value between 0 and 65535.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv6-unicast weight 5000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn
+
+Provides commands to configure the peer group l2vpn EVPN address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn attribute-mod
+
+Provides commands to configure the attribute mode for the address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath
+
+Provides commands to configure the options for handling AS_PATH for prefixes from/to peer for the specified address family
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath allow-my-asn
+
+Provides commands to configure allow the AS_PATH to contain the ASN of the local system.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath allow-my-asn occurrences
+
+Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy
+
+Provides commands to configure the policies for l2vpn EVPN.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound
+
+Provides commands to configure inbound l2vpn-evpn policies.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy outbound
+
+Provides commands to configure the outbound l2vpn-evpn policies.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> password none
+
+Configure the password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> description none
+
+Configures the neighbor description.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<peer-group-id>` | The peer group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-export
+
+Provides commands to configure exporting ipv4 and ipv6 routes from this VRF.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-export to-evpn
+
+Provides commands to configure exporting routes from this VRF into EVPN.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-export to-evpn route-target \<rt-id\>
+
+A route target Syntax
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<rt-id>`   | Route targets or "auto"|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-import
+
+Provides commands to configure importing IPv4 and IPv6 routes from this VRF.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-import from-evpn
+
+Provides commands to configure importing EVPN type-2 and type-5 routes into this VRF.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp route-import from-evpn route-target \<rt-id\>
+
+Configures the  route target syntax.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<rt-id>`   |  Route targets or "auto"|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp timers
+
+Provides commands to configure timer values for all peers in this VRF.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp timers connection-retry
+
+Time interval at which connection attempts are retried upon a failure.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp confederation
+
+Provides commands to configure BGP Confederation options.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp confederation member-as
+
+Set of autonomous numbers
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\>
+
+Provides commands to configure BGP global configuration.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd
+
+Provides commands to configure tracking BGP peering sessions using this configuration via BFD.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd detect-multiplier
+
+Detect multiplier
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd min-rx-interval
+
+Minimum receive interval
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd min-tx-interval
+
+Minimum transmit interval.  The actual value used is the smaller of this or what the peer expects.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> capabilities
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as
+
+Provides commands to configure the local AS feature.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as asn
+
+ASN to use to establish the peering if different from the ASN of the BGP instance.  This configuration finds use during AS renumbering.  The local-as configured is also attached to incoming and outgoing updates.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> graceful-restart
+
+Provides commands to configure BGP Graceful restart per neighbor.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security
+
+Provides commands to configure RFC 5082.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security hops
+
+Number of hops
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family
+
+Provides commands to configure  theAddress family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast
+
+Provides commands to configure the peer IPv4 unicast address family.  Always on, unless disabled globally.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast attribute-mod
+
+Provides commands to configure the attribute mode for the address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath
+
+Provides commands to configure options for handling AS_PATH for prefixes from/to peer for the specified address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn
+
+If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn occurrences
+
+Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy
+
+Provides commands to configure policies for ipv4 unicast.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound
+
+Provides commands to configure outbound unicast policies.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound aspath-list none
+
+AS-Path filter list to apply to Updates received from this peer
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound
+
+Provides commands to configure outbound unicast policies.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound aspath-list none
+
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits
+
+Provides commands to configure 
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound
+
+Provides commands to configure limits on inbound prefix from the peer for this address-family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound warning-threshold
+
+Percentage of the maximum at which a warning syslog is generated.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound reestablish-wait
+
+Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast default-route-origination
+
+Provides commands to configure the default route origination.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast community-advertise
+
+Provides commands to configure community advertise for the address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise
+
+Provides commands to configure advertise for the address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise advertise-map \<instance-name\>
+
+route-map contains prefix-list which has list of routes/prefixes to operate on.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise exist-map \<instance-name\>
+
+route-map contains the conditional routes/prefixes in prefix-list.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise non-exist-map \<instance-name\>
+
+route-map contains the negative conditional routes/prefixes in prefix-list.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast weight
+
+Weight applied to routes received from peer; this is used in the BGP route selection algorithm
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast
+
+Provides commands to configure the peer IPv6 unicast address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast attribute-mod
+
+Provides commands to configure the attribute mode for the address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath
+
+Provides commands to configure options for handling AS_PATH for prefixes from/to peer for the specified address family
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath allow-my-asn
+
+If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath allow-my-asn occurrences
+
+Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits
+
+Provides commands to configure limits on prefix from the peer for this address-family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound
+
+Provides commands to configure limits on inbound prefix from the peer for this address-family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound warning-threshold
+
+Percentage of the maximum at which a warning syslog is generated.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound reestablish-wait
+
+Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast default-route-origination
+
+Provides commands to configure the default route origination.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy
+
+Provides commands to configure policies for ipv6 unicast
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy inbound
+
+Provides commands to configure outbound unicast policies.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy inbound aspath-list none
+
+AS-Path filter list to apply to Updates received from this peer
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound
+
+Provides commands to configure outbound unicast policies.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound aspath-list none
+
+AS-Path filter list to apply to Updates sent to this peer.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast community-advertise
+
+Provides commands to configure community advertise for the address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise
+
+Provides commands to configure conditional advertise for the address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise advertise-map \<instance-name\>
+
+route-map contains prefix-list which has list of routes/prefixes to operate on.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise exist-map \<instance-name\>
+
+route-map contains the conditional routes/prefixes in prefix-list.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise non-exist-map \<instance-name\>
+
+route-map contains the negative conditional routes/prefixes in prefix-list.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast weight
+
+Weight applied to routes received from peer; this is used in the BGP route selection algorithm
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn
+
+Provides commands to configure the peer l2vpn EVPN address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn attribute-mod
+
+Provides commands to configure attribute mode for the address family.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath
+
+Provides commands to configure options for handling AS_PATH for prefixes from/to peer for the specified address family
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn
+
+If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn occurrences
+
+Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy
+
+Provides commands to configure policies for l2vpn evpn.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound
+
+Provides commands to configure inbound l2vpn-evpn policies.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound
+
+Provides commands to configure outbound l2vpn-evpn policies.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers
+
+Provides commands to configure BGP peer timers.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> password none
+
+Password
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> description none
+
+neighbor description
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   |  The Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp dynamic-peer-limit
+
+Maximum number of dynamic neighbors from whom we can accept a connection. Applicable only if 'dynamic-peering' subnet ranges are configured
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set
+```
+
+- - -

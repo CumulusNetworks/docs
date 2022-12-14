@@ -3926,11 +3926,6 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
-<td>3289227</td>
-<td>The {{CumulusLinux-4.3.1}} distribution in the external APT repository incorrectly has a {{grub-efi-amd64-signed}} package that does not match the index files. </td>
-<td></td>
-</tr>
-<tr>
 <td>3216915</td>
 <td>Cumulus Linux 4.3.1 is available for Broadcom switches only. Do not upgrade a Mellanox switch to Cumulus Linux 4.3.1.
 

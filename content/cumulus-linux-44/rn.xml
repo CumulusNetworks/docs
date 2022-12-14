@@ -1892,6 +1892,18 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td></td>
 </tr>
 <tr>
+<td>3270988</td>
+<td>After restarting {{switchd}} on the NVIDIA SN2100 switch, the FAN speeds are at one hundred percent. To work around this issue, restart the {{hw-management}} service.</td>
+<td>4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3269537</td>
+<td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3236366</td>
 <td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands or   running {{apt upgrade}} to upgrade to Cumulus Linux 4.4.5.</td>
 <td>4.4.5</td>
@@ -3823,6 +3835,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
 <td>4.4.3-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3269537</td>
+<td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.4.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -5882,6 +5900,12 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td></td>
 </tr>
 <tr>
+<td>3269537</td>
+<td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
@@ -7916,6 +7940,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
 <td>5.0.0-5.3.0</td>
+</tr>
+<tr>
+<td>3269537</td>
+<td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3221470</td>
@@ -10142,6 +10172,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
 <td>5.0.0-5.3.0</td>
+</tr>
+<tr>
+<td>3269537</td>
+<td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3221470</td>

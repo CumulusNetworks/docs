@@ -847,10 +847,6 @@ To apply a custom egress scheduler for specific ports, see [Port Groups](#egress
 
 ## Policing and Shaping
 
-{{%notice note%}}
-NVUE does not currently provide commands to configure traffic shaping and policing.
-{{%/notice%}}
-
 Traffic shaping and policing control the rate at which the switch sends or receives traffic on a network to prevent congestion.
 
 {{% notice note %}}
@@ -861,35 +857,52 @@ Traffic shaping typically occurs at egress and traffic policing at ingress.
 
 Traffic shaping allows a switch to send traffic at an average bitrate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts; for example, an ISP.
 
-Traffic shaping works by holding packets in the buffer and releasing them at time intervals called the `tc`.
+Traffic shaping works by holding packets in the buffer and releasing them at specific time intervals.
 
-Cumulus Linux supports two levels of hierarchical traffic shaping: one at the egress queue level and one at the port level. This allows for minimum and maximum bandwidth guarantees for each egress-queue and a defined interface traffic shaping rate.
+Cumulus Linux supports two levels of hierarchical traffic shaping: one at the egress queue level and one at the port level. This allows for minimum and maximum bandwidth guarantees for each egress-queue and a defined port traffic shaping rate.
 
-You configure traffic shaping in the `shaping` section of the `qos_features.conf` file. Traffic shaping configuration supports [Port Groups](#using-port-groups) so that you can apply different shaping profiles to different ports.
+The following example configuration:
+- Sets the profile name (port group) to use with the traffic shaping settings to `shaper1`.
+- Sets the minimum bandwidth for egress queue 2 to 100 kbps. The default minimum bandwidth is 0 kbps.
+- Sets the maximum bandwidth for egress queue 2 to 500 kbps. The default minimum bandwidth is 2147483647 kbps.
+- Sets the maximum packet shaper rate for the port group to 200000. The default maximum packet shaper rate is 2147483647 kbps.
+- Applies the traffic shaping configuration to swp1, swp2, swp3, and swp5.
+
+{{% notice note %}}
+- When the minimum bandwidth for an egress queue is `0`, there is no bandwidth guarantee for this queue.
+- The maximum bandwidth for an egress queue must not exceed the maximum packet shaper rate for the port group.
+- The maximum packet shaper rate for the port group must not exceed the physical interface speed.
+{{% /notice %}}
+
+{{< tabs "TabID868 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 min-rate 100
+cumulus@switch:~$ nv set qos egress-shaper shaper1 traffic-class 2 max-rate 500
+cumulus@switch:~$ nv set qos egress-shaper shaper1 port-max-rate 200000
+cumulus@switch:~$ nv set interface swp1-swp3,swp5 qos egress-shaper profile shaper1
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `shaping` section of the `qos_features.conf` file.
 
 Cumulus Linux bases the `egr_queue` value on the configured [egress queue](#egress-queues).
 
-This is an example traffic shaping configuration:
+Traffic shaping configuration supports [Port Groups](#using-port-groups) so that you can apply different shaping profiles to different ports.
 
 ```
-shaping.port_group_list = [shaper_port_group]
-shaping.shaper_port_group.port_set = swp1-swp3,swp5
-shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]
-shaping.shaper_port_group.port.shaper = 900000
+shaping.port_group_list = [shaper1]
+shaping.shaper1.port_set = swp1-swp3,swp5
+shaping.shaper1.egr_queue_0.shaper = [50000, 100000]
+shaping.shaper1.port.shaper = 900000
 ```
 
-<details>
-<summary>All Shaping configuration options</summary>
-
-|Configuration  |Description|
-|-------------  |---------- |
-|`shaping.port_group_list`  | The port group (label) to use with traffic shaping settings.<br>In the following example, the group is `shaper_port_group`:<br>`shaping.port_group_list = [shaper_port_group]` |
-|`shaping.shaper_port_group.port_set` | The set of interfaces on which you want to apply traffic shaping.<br>The following example applies traffic shaping on swp1, swp2, swp3, and swp5:<br>`shaping.shaper_port_group.port_set = swp1-swp3,swp5` |
-|`shaping.shaper_port_group.egr_queue_0.shaper`| The minimum and maximum bandwidth value in kbps for switch priority group 0.<br>In the following example, switch priority 0 always has at least `50000` kbps of bandwidth with a maximum of `100000` kbps:<br>`shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]` |
-|`shaping.shaper_port_group.port.shaper` | The maximum packet shaper rate at the interface level.<br>In the following example, swp1, swp2, swp3, and swp5 do not transmit greater than `900000` kbps:<br>`shaping.shaper_port_group.port.shaper = 900000`|
-</details>
-
-If you define a queue minimum shaping value of `0`, there is no bandwidth guarantee for this queue. The maximum queue shaping value must not exceed the interface shaping value defined by `port.shaper`. The `port.shaper` value must not exceed the physical interface speed.
+{{< /tab >}}
+{{< /tabs >}}
 
 ### PTP Shaping
 

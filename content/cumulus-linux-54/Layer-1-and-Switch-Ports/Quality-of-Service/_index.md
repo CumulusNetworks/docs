@@ -478,64 +478,61 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 
 ### Pause Frames
 
-{{%notice note%}}
-NVUE does not currently provide commands to configure pause frames.
-{{%/notice%}}
-
-Pause frames are an older congestion control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames start and stop depending on how congested the buffer is. The value that determines when pause frames start is the `xoff` value (transmit off). When the buffer congestion reaches the `xoff` point, the switch sends a pause frame to one or more neighbors. When congestion drops below the `xon` point (transmit on), the switch sends an updated pause frame so that the neighbor resumes sending traffic.
+Pause frames are an older congestion control mechanism that causes all traffic on a link between two switches, or between a host and switch, to stop transmitting during times of congestion. Pause frames start and stop depending on buffer congestion. You configure pause frames on a per-direction, per-interface basis. You can receive pause frames to stop the switch from transmitting when requested, send pause frames to request neighboring devices to stop transmitting, or both.
 
 {{% notice note %}}
-NVIDIA recommends that you use Priority Flow Control (PFC) instead of pause frames.
-{{% /notice  %}}
-
-{{% notice note %}}
-Before configuring pause frames, you must first modify the switch buffer allocation. Refer to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
+- NVIDIA recommends that you use Priority Flow Control (PFC) instead of pause frames.
+- Before configuring pause frames, you must first modify the switch buffer allocation. Refer to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
 {{% /notice %}}
 
-You configure pause frames on a per-direction, per-interface basis under the `link_pause` section of the `qos_features.conf` file.  
-Setting `link_pause.pause_port_group.rx_enable = true` receives pause frames to stop the switch from transmitting when requested.
-Setting `link_pause.pause_port_group.tx_enable = true` sends pause frames to request neighboring devices to stop transmitting.
-You can use pause frames for either receive (`rx`), transmit (`tx`), or both.
+The following example configuration:
+- Creates a profile (port group) called `my_pause_ports`.
+- Configures frame transmission to stop when the buffer is at 1500 bytes and to start when the buffer is at 1000 bytes.
+- Enables sending pause frames and disables receiving pause frames.
+- Sets the amount of reserved port buffer space to 2000 bytes.
+- Sets the cable length to 50 meters.
+- Sets link pause on swp1 through swp4, and swp6.
 
-{{% notice note %}}
-Cumulus Linux automatically enables or derives the following settings when link pause is on an interface with `link_pause.port_group_list`:
+{{< tabs "TabID495 ">}}
+{{< tab "NVUE Commands">}}
 
-- `link_pause.pause_port_group.rx_enable`
-- `link_pause.pause_port_group.tx_enable`
-- `link_pause.pause_port_group.port_buffer_bytes`
-- `link_pause.pause_port_group.xoff_size`
-- `link_pause.pause_port_group.xon_delta`
+```
+cumulus@switch:~$ nv set qos link-pause my_pause_ports xoff-threshold 1500
+cumulus@switch:~$ nv set qos link-pause my_pause_ports xon-threshold 1000
+cumulus@switch:~$ nv set qos link-pause my_pause_ports tx enable
+cumulus@switch:~$ nv set qos link-pause my_pause_ports rx disable
+cumulus@switch:~$ nv set qos link-pause my_pause_ports port-buffer 2000
+cumulus@switch:~$ nv set qos link-pause my_pause_ports cable-length 50
+cumulus@switch:~$ nv set interface swp1-swp4,swp6 qos link-pause profile my_pause_ports
+cumulus@switch:~$ nv config apply
+```
 
-To process pause frames, you must enable link pause on the specific interfaces.
-{{% /notice %}}
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
-The following is an example `link_pause` configuration.
+Edit the `link_pause` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
 link_pause.port_group_list = [my_pause_ports]
 link_pause.my_pause_ports.port_set = swp1-swp4,swp6
+link_pause.my_pause_ports.port_buffer_bytes = 2000
+link_pause.my_pause_ports.xoff_size = 1500
+link_pause.my_pause_ports.xon_delta = 1000
+link_pause.my_pause_ports.rx_enable = false
+link_pause.my_pause_ports.tx_enable = true
+link_pause.my_pause_ports.cable_length = 10
 ```
+
+To process pause frames, you must enable link pause on the specific interfaces.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 {{% notice warning %}}
 Pause frame buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
 
 Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
 {{% /notice %}}
-
-<details>
-<summary>All Link Pause configuration options</summary>
-
-|Configuration |Description |
-|------------- |----------- |
-|`link_pause.port_group_list` |The port group (label) to use with pause frame settings.<br>In the following example, the group is `my_pause_ports`:<br>`link_pause.port_group_list = [my_pause_ports]`  |
-|`link_pause.my_pause_ports.port_set` | The set of interfaces on which to apply pause frame configuration.<br>In the following example, swp1, swp2, swp3, swp4 and swp6 have pause frame on:<br>`link_pause.my_pause_ports.port_set = swp1-swp4,swp6` |
-|`link_pause.my_pause_ports.port_buffer_bytes`|The amount of reserved buffer space for the set of ports in the port group list (reserved from the global shared buffer).<br>The following example sets the amount of reserved buffer space to 25000 bytes:<br>`link_pause.my_pause_ports.port_buffer_bytes = 25000` |
-|`link_pause.my_pause_ports.xoff_size`  | The amount of reserved buffer to consume before the switch sends a pause frame out of the set of interfaces in the port group list.<br>In the following example, after you consume 10000 bytes of reserved buffer, the switch sends pause frames:<br>`link_pause.my_pause_ports.xoff_size = 10000` |
-|`link_pause.my_pause_ports.xon_delta` |The number of bytes below the `xoff` threshold that the buffer consumption must drop below before sending pause frame stops.<br>In the following example, the buffer congestion must reduce by 2000 bytes (to 8000 bytes) before pause frame stops:<br>`link_pause.my_pause_ports.xon_delta = 2000` |
-|`link_pause.my_pause_ports.rx_enable` |Enables (`true`) or disables (`false`) sending pause frames. The default value is `true`.<br>In the following example, sending pause frames is on:<br>`link_pause.my_pause_ports.tx_enable = true`  |
-|`link_pause.my_pause_ports.tx_enable`  |Enables (`true`) or disables (`false`) the switch to receive pause frames. The default value is `true`.<br>In the following example, the receiving pause frames is on:<br>`link_pause.my_pause_ports.rx_enable = true` |
-|`link_pause.my_pause_ports.cable_length` | The length, in meters, of the cable that attaches to the port in the port group list. Cumulus Linux uses this value internally to determine the latency between generating a pause frame and receiving the pause frame. The default is `100` meters.<br>In the following example, the attached cable is `5` meters:<br>`link_pause.pause_port_group.cable_length = 5`|
-</details>
 
 ### Priority Flow Control (PFC)
 

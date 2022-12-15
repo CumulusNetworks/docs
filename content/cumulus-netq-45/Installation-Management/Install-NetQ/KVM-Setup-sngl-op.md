@@ -38,3 +38,5 @@ Follow these steps to set up and configure your VM on a single server in an on-p
 8. The final step is to install and activate the NetQ software:
 
 {{<netq-install/install-with-cli version="4.4" deployment="onprem-single">}}
+
+After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

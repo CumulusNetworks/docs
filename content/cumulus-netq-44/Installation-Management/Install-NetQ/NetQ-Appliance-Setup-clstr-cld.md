@@ -131,3 +131,5 @@ Make a note of the private IP addresses you assign to the master and worker node
 10. The final step is to install and activate the NetQ software using the CLI:
 
 {{<netq-install/install-with-cli version="4.4" deployment="cloud-cluster">}}
+
+After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

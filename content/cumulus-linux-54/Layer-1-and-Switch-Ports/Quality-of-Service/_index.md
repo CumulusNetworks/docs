@@ -482,7 +482,7 @@ flow_control.egress_buffer.dynamic_quota = ALPHA_INFINITY
 NVUE does not currently provide commands to configure pause frames.
 {{%/notice%}}
 
-Pause frames are an older congestion control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames start and stop depending on how congested the buffer is. The value that determines when pause frames start is the `xoff` value (transmit off). When the buffer congestion reaches the `xoff` point, the switch sends a pause frame to one or more neighbors. When congestion drops below the `xon` point (transmit on), the switch sends an updated pause frame so that the neighbor resumes sending traffic.
+Pause frames are an older congestion control mechanism that causes all traffic on a link between two devices (two switches or a host and switch) to stop transmitting during times of congestion. Pause frames start and stop depending on how congested the buffer is. You configure pause frames on a per-direction, per-interface basis. You can receive pause frames to stop the switch from transmitting when requested and send pause frames to request neighboring devices to stop transmitting.
 
 {{% notice note %}}
 NVIDIA recommends that you use Priority Flow Control (PFC) instead of pause frames.
@@ -491,6 +491,30 @@ NVIDIA recommends that you use Priority Flow Control (PFC) instead of pause fram
 {{% notice note %}}
 Before configuring pause frames, you must first modify the switch buffer allocation. Refer to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
 {{% /notice %}}
+
+The following example:
+- Creates a profile called `my_pause_ports`.
+- Configures frame transmission to stop when the buffer is at 1500 bytes and to start when the buffer is at 1000 bytes.
+- Configures the switch to receive pause frames to stop transmitting when requested.
+- Configures the to send pause frames to request neighboring devices to stop transmitting.
+- Sets the amount of reserved port buffer space to 2000 bytes.
+- Sets the cable length to 50 meters.
+- Sets link pause on swp1 through swp4 and swp6
+
+{{< tabs "TabID495 ">}}
+{{< tab "NVUE Commands">}}
+
+cumulus@switch:~$ nv set qos link-pause my_pause_ports xoff-threshold 1500
+cumulus@switch:~$ nv set qos link-pause my_pause_ports xon-threshold 1000
+cumulus@switch:~$ nv set qos link-pause my_pause_ports tx enable
+cumulus@switch:~$ nv set qos link-pause my_pause_ports rx enable
+cumulus@switch:~$ nv set qos link-pause my_pause_ports port-buffer 2000
+cumulus@switch:~$ nv set qos link-pause my_pause_ports cable-length 50
+cumulus@switch:~$ nv set interface swp1-swp4,swp6 qos link-pause profile my_pause_ports
+cumulus@switch:~$ nv config apply
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 You configure pause frames on a per-direction, per-interface basis under the `link_pause` section of the `qos_features.conf` file.  
 Setting `link_pause.pause_port_group.rx_enable = true` receives pause frames to stop the switch from transmitting when requested.
@@ -516,6 +540,9 @@ link_pause.port_group_list = [my_pause_ports]
 link_pause.my_pause_ports.port_set = swp1-swp4,swp6
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 {{% notice warning %}}
 Pause frame buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
 
@@ -525,7 +552,7 @@ Incorrect cable length settings can cause wasted buffer space (triggering conges
 <details>
 <summary>All Link Pause configuration options</summary>
 
-|Configuration |Description |
+|Setting |Description |
 |------------- |----------- |
 |`link_pause.port_group_list` |The port group (label) to use with pause frame settings.<br>In the following example, the group is `my_pause_ports`:<br>`link_pause.port_group_list = [my_pause_ports]`  |
 |`link_pause.my_pause_ports.port_set` | The set of interfaces on which to apply pause frame configuration.<br>In the following example, swp1, swp2, swp3, swp4 and swp6 have pause frame on:<br>`link_pause.my_pause_ports.port_set = swp1-swp4,swp6` |

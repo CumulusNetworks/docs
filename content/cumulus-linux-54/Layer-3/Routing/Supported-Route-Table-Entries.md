@@ -82,7 +82,7 @@ cumulus@switch:~$ nv unset system forwarding profile l2-heavy
 cumulus@switch:~$ nv config apply
 ```
 
-You can also run the `nv set system forwarding profile default` command to set the profile back to the default.
+Instead of the above command, you can run the `nv set system forwarding profile default` command to set the profile back to the default.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -99,6 +99,8 @@ After you specify a different profile, {{%link url="Configuring-switchd#restart-
 
 {{< /tab >}}
 {{< /tabs >}}
+
+To show the current profile settings, run the `nv show system forwarding profile-option` command.
 
 ## TCAM Profiles - Spectrum 1
 

@@ -26,7 +26,7 @@ The following tables list the number of MAC addresses, layer 3 neighbors, and LP
 The values in the following tables reflect results from testing, which can differ from published manufacturer specifications.
 {{%/notice%}}
 <!-- vale off -->
-### Spectrum
+### Spectrum 1
 <!-- vale off -->
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| Longest Prefix Match (LPM)  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
@@ -37,6 +37,7 @@ The values in the following tables reflect results from testing, which can diffe
 | v4-lpm-heavy-1 | 8k            | 8k (IPv4) and 2k (IPv6)   | 176k (IPv4) and 2k (IPv6-long) |
 | v6-lpm-heavy   | 40k           | 8k (IPv4) and 40k (IPv6)  | 8k (IPv4), 32k (IPv6-long) and 32K (IPv6/64) |
 | lpm-balanced   | 8k            | 8k (IPv4) and 8k (IPv6)   | 60k (IPv4), 60k (IPv6-long) and 120k (IPv6/64) |
+| mpls           | 8k            | 8k (IPv4) and 8k (IPv6)   | 65k (IPv4), 32k (IPv6-long) |
 
 ### Spectrum-2 and Spectrum-3
 
@@ -45,66 +46,69 @@ The values in the following tables reflect results from testing, which can diffe
 | default        | 50k           | 41k (IPv4) and 20k (IPv6) | 82k (IPv4), 74k (IPv6-long), 10K (IPv4-Mcast)|
 | l2-heavy       | 115k          | 74k (IPv4) and 37k (IPv6) | 16k (IPv4), 24k (IPv6-long), 10K (IPv4-Mcast)|
 | l2-heavy-1     | 239K          | 16k (IPv4) and 12k (IPv6) | 16k (IPv4), 16k (IPv6-long), 10K (IPv4-Mcast)|
+| l2-heavy-2     | 124k          | 132k (IPv4) and 12k (IPv6)| 16k (IPv4), 16k (IPv6-long), 10K (IPv4-Mcast)|
+| l2-heavy-3     | 107k          | 90k (IPv4) and 80k (IPv6) | 25k (IPv4), 10k (IPv6-long), 10K (IPv4-Mcast)|
 | v4-lpm-heavy   | 16k           | 41k (IPv4) and 24k (IPv6) | 124k (IPv4), 24k (IPv6-long), 10K (IPv4-Mcast)|
 | v4-lpm-heavy-1 | 16k           | 16k (IPv4) and 4k (IPv6)  | 256k (IPv4), 8k (IPv6-long), 10K (IPv4-Mcast)|
 | v6-lpm-heavy   | 16k           | 16k (IPv4) and 62k (IPv6) | 16k (IPv4), 99k (IPv6-long), 10K (IPv4-Mcast)|
+| v6-lpm-heavy-1 | 5k            | 4k (IPv4) and 4k (IPv6)   | 90k (IPv4), 235k (IPv6-long), 10K (IPv4-Mcast)
 | lpm-balanced   | 16k           | 16k (IPv4) and 12k (IPv6) | 124k (IPv4), 124k (IPv6-long), 10K (IPv4-Mcast)|
-| ipmc-heavy     | 57k           | 41k (IPv4) and 20k (IPv6) | 82K (IPv4), 66K (IPv6), 8K (IPv4-Mcast)     |
-| ipmc-max       | 41K           | 41k (IPv4) and 20k (IPv6) | 74K (IPv4), 66K (IPv6), 15K (IPv4-Mcast)    |
+| ipmc-heavy     | 57k           | 41k (IPv4) and 20k (IPv6) | 82K (IPv4), 66K (IPv6-long), 8K (IPv4-Mcast)     |
+| ipmc-max       | 41K           | 41k (IPv4) and 20k (IPv6) | 74K (IPv4), 66K (IPv6-long), 15K (IPv4-Mcast)    |
 <!-- vale on -->
+
 The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
 
-## Forwarding Resource Profiles
+## Change Forwarding Resource Profiles
 
-You can configure forwarding resource allocation. Choose the profile that best suits your network architecture.
-<!-- vale off -->
-### Spectrum, Spectrum-2 and Spectrum-3
-<!-- vale on -->
-Specify the profile you want to use with the `forwarding_table.profile` variable in the `/etc/cumulus/datapath/traffic.conf` file. The following example specifies ipmc-max:
+You can set the profile that best suits your network architecture.
+
+{{< tabs "TabID64 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set system forwarding profile <profile-name>` command to specify the profile you want to use.
+
+The following example command sets the l2-heavy profile:
+
+```
+cumulus@switch:~$ nv set system forwarding profile l2-heavy 
+cumulus@switch:~$ nv config apply
+```
+
+To set the profile back to the default:
+
+```
+cumulus@switch:~$ nv unset system forwarding profile l2-heavy 
+cumulus@switch:~$ nv config apply
+```
+
+Instead of the above command, you can run the `nv set system forwarding profile default` command to set the profile back to the default.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Specify the profile you want to use with the `forwarding_table.profile` variable in the `/etc/cumulus/datapath/traffic.conf` file. The following example specifies l2-heavy:
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
-# Specify the forwarding table resource allocation profile, applicable
-# only on platforms that support universal forwarding resources.
-#
-# /usr/cumulus/sbin/cl-resource-query reports the allocated table sizes
-# based on the profile setting.
-#
-#   Values: one of { *** Common ***
-#                   'default', 'l2-heavy', 'l2-heavy-1', 'l2-heavy-2',
-#                   'v4-lpm-heavy', 'v4-lpm-heavy-1', 'v6-lpm-heavy',
-#                   'rash-v4-lpm-heavy', 'rash-custom-profile1',
-#                   'rash-custom-profile2', 'lpm-balanced'
-#
-#                   *** Mellanox Spectrum2+ only platforms ***
-#                   'ipmc-heavy', 'ipmc-max'
-#
-#                   }
-#
-#   Default value: 'default'
-#   Notes: some devices may support more modes, please consult user
-#          guide for more details
-#
-forwarding_table.profile = ipmc-max
+...
+forwarding_table.profile = l2-heavy
 ```
 
 After you specify a different profile, {{%link url="Configuring-switchd#restart-switchd" text="restart `switchd`"%}} for the change to take effect.
 
-### TCAM Profiles - Spectrum Only
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the current profile settings, run the `nv show system forwarding profile-option` command.
+
+## TCAM Profiles - Spectrum 1
 
 Specify the profile you want to use with the `tcam_resource.profile` variable in the `/etc/mlx/datapath/tcam_profile.conf` file. The following example specifies ipmc-max:
 
 ```
 cumulus@switch:~$ cat /etc/mlx/datapath/tcam_profile.conf
-#
-# Default tcam_profile configuration for Mellanox Spectrum chip
-# Copyright (C) 20xx-2021 NVIDIA Corporation. ALL RIGHTS RESERVED.
-#
-
-#TCAM resource forwarding profile
-# Applicable for Spectrum-1 and Spectrum-A1 switches only
-# Valid profiles -
-#    default, ipmc-heavy, acl-heavy, ipmc-max, ip-acl-heavy
+...
 tcam_resource.profile = ipmc-max
 ```
 

@@ -31,7 +31,7 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Supported-Route-Table-Entries/#change-forwarding-resource-profiles" text="ASIC Resource Slicing">}} (KVD) commands
   - LLDP commands to send either CDP frames only or LLDP frames only
   - EVPN commands to show operational data
-  - QoS commands for egress shaping, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, traffic remarking, and advanced buffer configuration
+  - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, traffic remarking, and advanced buffer configuration
   - BGP commands to clear all BGP sessions, enable debugging, and to show BGP information
   - Obfuscated passwords to protect passwords from casual viewing
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model

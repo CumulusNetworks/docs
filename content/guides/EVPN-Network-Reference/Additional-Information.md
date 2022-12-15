@@ -17,7 +17,7 @@ This approach has the advantages that it is simple to implement, strictly layere
 
 These limitations have driven the demand for RoCE to operate in L3 (routable) environments. A straightforward extension of the RoCE framework allows it to be readily transported across L3 networks. An L3 capable RoCE protocol simply continues up the stack and replaces the optional L3 global routing header (GRH) with the standard IP networking header and adds a UDP header as a stateless encapsulation of the L4 payload. This is a very natural extension of RoCE as the L3 header is already based on an IP address, therefore, this substitution is straightforward. In addition, the UDP encapsulation is a standard type of L4 packet and is forwarded efficiently by routers as a mainstream data path operation.
 
-FIGURE 13 - RoCE
+**Figure 13 - RoCE**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/roce.png" >}}
 

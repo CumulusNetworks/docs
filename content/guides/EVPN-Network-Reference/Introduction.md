@@ -15,9 +15,9 @@ In the Data Center, EVPN enables optimal east-west and south-north traffic forwa
 
 ### Key Use Cases
 
-1. L2 and L3 VPN for tenancy. You can choose to segment your networks at L2, L3, or both. By carrying L2 and L3 endpoint reachability information, EVPN supports integrated bridging and routing in overlay networks.
+1. **L2 and L3 VPN for tenancy**. You can choose to segment your networks at L2, L3, or both. By carrying L2 and L3 endpoint reachability information, EVPN supports integrated bridging and routing in overlay networks.
 
-2. Scaling out the access layer
+2. **Scaling out the access layer**
 
    a. Active-active L2 and EVPN multihoming at the access is critical for high availability.
 
@@ -27,7 +27,7 @@ In the Data Center, EVPN enables optimal east-west and south-north traffic forwa
 
    d. Allows full network bandwidth utilization by running VXLAN at the access layer and eliminating the need to run STP.
 
-3. Extending services beyond a single data center. VXLAN EVPN enabled the industry to use new data center deployment approaches and optimized ingress routing. As the EVPN control plane evolves, L2 extensions can not only cross physical rack boundaries but also stretch across data centers.
+3. **Extending services beyond a single data center**. VXLAN EVPN enabled the industry to use new data center deployment approaches and optimized ingress routing. As the EVPN control plane evolves, L2 extensions can not only cross physical rack boundaries but also stretch across data centers.
 
 ### Intended Audience
 
@@ -45,10 +45,10 @@ The following topology is used throughout the document.
 
 |         |        |
 | ------- | ------ |
-| Leaf | Also referred to as an access switch, where servers connect to the network. Servers and storage connect to leaf switches that aggregate the network traffic. |
-| Spine | Also referred to as an aggregation switch, end-of-row switch, or distribution switch, where leaf switches connect into the spine, forming the access layer that delivers network connection points for servers. |
-| Border leaf | A leaf that connects external services, such as firewalls, load balancers and internet routers, for north-south traffic typically. This acts as a demarcation zone between the underlying fabric and the outside world. The border leaf is responsible for announcing the prefix of the fabric to the outside world and determining how to join the internet and other data centers. |
-| Super spine | Sometimes referred to as a spine aggregation switch, end-of-row switch, or data center core switch. |
+| **Leaf** | Also referred to as an access switch, where servers connect to the network. Servers and storage connect to leaf switches that aggregate the network traffic. |
+| **Spine** | Also referred to as an aggregation switch, end-of-row switch, or distribution switch, where leaf switches connect into the spine, forming the access layer that delivers network connection points for servers. |
+| **Border leaf** | A leaf that connects external services, such as firewalls, load balancers and internet routers, for north-south traffic typically. This acts as a demarcation zone between the underlying fabric and the outside world. The border leaf is responsible for announcing the prefix of the fabric to the outside world and determining how to join the internet and other data centers. |
+| **Super spine** | Sometimes referred to as a spine aggregation switch, end-of-row switch, or data center core switch. |
 
 ## Common Data Center Architectures
 
@@ -62,7 +62,7 @@ The cloud native data center infrastructure pioneers picked a network topology c
 
 Figure 1 shows the most common Clos two-tier topology. The green nodes represent the switches and the black nodes the servers. There are two layers of switches: spine and leaf, therefore, the topology is commonly called a leaf-spine topology.
 
-FIGURE 1 - TWO-TIER CLOS TOPOLOGY
+**Figure 1 - Two-Tier CLOS Topology**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/CLOS.png" >}}
 
@@ -70,6 +70,6 @@ The spine nodes connect the leaf nodes with one another and the leaf nodes conne
 
 This topology produces a high-capacity network because there are more than two paths between any two servers. Adding more spines or multiple links to the spine increases the available bandwidth between leaves, thanks to equal-cost multipath (ECMP).
 
-The endpoints are all connected to leaves and the spines merely act as connectors. In this model, the functionality is pushed out to the edges instead of pulled into the spines. This model of scaling is called a scale-out model.
+The endpoints are all connected to leaves and the spines merely act as connectors. In this model, the functionality is pushed out to the edges instead of pulled into the spines. This model of scaling is called a *scale-out model*.
 
 Typically, servers are interconnected to the leaf through lower-speed links and the switches are interconnected by higher-speed links. A common deployment is to interconnect servers to leaves through 25 Gbps links, while interconnecting switches with one another through 100 Gbps links. In AI/ML environments, you can also have higher bandwidth servers with 50/100G network interface cards and 200/400G interconnects.

@@ -9,7 +9,7 @@ cascade:
 
 L2 EVPN deployment uses a bridged overlay as seen in Figure 7. It provides Ethernet bridging in an EVPN network and extends VLANs between the leaf devices across VXLAN tunnels. These leaf-to-leaf VXLAN tunnels are useful in networks that require connectivity between leaf devices but do not need inter-VLAN routing. As a result, the intelligence is at the leaf layer. The spine layer simply provides connectivity between leaf devices. Leaf devices establish <span style="background-color:#F5F5DC">[VTEPs](## "Virtual Tunnel Endpoints")</span> to connect to other leaf devices. The tunnels enable communication between leaf devices and Ethernet-connected end systems in the data center.
 
-FIGURE 7 - L2 EVPN EXAMPLE
+**Figure 7 - L2 EVPN Example**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/l2evpn.png" >}}
 
@@ -35,8 +35,8 @@ Traditionally, data centers have used L2 technologies such as STP and MLAG. As d
 You might have to communicate between L2 domains and between a VXLAN tunnel and the outside world, for which you can enable VXLAN routing in the network.
 
 VXLAN routing can be performed with one of two architectures:
-- Centralized routing performs all the VXLAN routing on one or two centralized routers (routing on the border leaves), which is a good option for data centers with a lot of north-south traffic. This can cause additional east-west traffic in the data center.
-- Distributed routing provides the VXLAN routing closest to the hosts on the directly connected leaf switches (routing in the leaf layer), which is a good option for data centers with a lot of east-west traffic. This simplifies the traffic flow.
+- **Centralized routing** performs all the VXLAN routing on one or two centralized routers (routing on the border leaves), which is a good option for data centers with a lot of north-south traffic. This can cause additional east-west traffic in the data center.
+- **Distributed routing** provides the VXLAN routing closest to the hosts on the directly connected leaf switches (routing in the leaf layer), which is a good option for data centers with a lot of east-west traffic. This simplifies the traffic flow.
 
 BGP EVPN is used to communicate the VXLAN L3 routing information to the leaves.
 
@@ -46,7 +46,7 @@ The nature of a centrally routed bridging overlay is that routing occurs at a ce
 
 Figure 8 shows a common way to deploy this model. Border devices are located at the edge, or border, of a data center fabric. These devices also act as the VTEP for north-south traffic entering and exiting the network fabric. The traffic that originates at the Ethernet-connected end systems is forwarded to the leaf VTEP devices over a trunk (multiple VLANs) or an access port (single VLAN). The VTEP device forwards the traffic to local end systems or to an end system at a remote VTEP device. An  integrated routing and bridging (IRB) interface at the border devices routes traffic between the Ethernet virtual networks.
 
-FIGURE 8 - CENTRALIZED IRB EXAMPLE
+**Figure 8 - Centralized IRB Example**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/centralized.png" >}}
 
@@ -66,7 +66,7 @@ Using the distributed architecture, the {{<exlink url="https://datatracker.ietf.
 
 This is the default EVPN routing model. The symmetric model routes and bridges on both the ingress and the egress leaves. This results in bidirectional traffic being able to travel on the same VNI, hence the symmetric name. However, a new specialty transit VNI is used for all routed VXLAN traffic, called the L3VNI. All traffic that must be routed is routed onto the L3VNI, tunneled across the L3 infrastructure, routed off the L3VNI to the appropriate VLAN, and ultimately bridged to the destination. Figure 9 shows bridging and routing in a sample symmetric configuration.
 
-FIGURE 9 - SYMMETRIC IRB EXAMPLE
+**Figure 9 - Symmetric IRB Example**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/symmetric.png" >}}
 
@@ -93,7 +93,7 @@ Symmetric VXLAN routing is configured directly on the ToR, using EVPN for both V
 
 The asymmetric model enables routing and bridging on the VXLAN tunnel ingress, but only bridging on the egress. This results in bidirectional VXLAN traffic traveling on different VNIs in each direction (always the destination VNI) across the routed infrastructure. Figure 10 shows bridging and routing in a sample asymmetric configuration. Even though this is supported by Cumulus Linux, Symmetric IRB is the recommended deployment model.
 
-FIGURE 10 - ASYMMETRIC IRB EXAMPLE
+**Figure 10 - Asymmetric IRB Example**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/asymmetric.png" >}}
 
@@ -111,7 +111,7 @@ In EVPN, routing is assumed to occur within the context of a VRF. This is true r
 
 As shown in Figure 11, the servers in a group are placed in one VRF segment and can communicate with each other, but they cannot communicate with users in another VRF segment. If you want to send and receive traffic from one VRF segment to another VRF segment, you must configure {{<link url="#route-leaking" text="route leaking">}} or rely on an external gateway.
 
-FIGURE 11 - MULTI-TENANCY USING VRF
+**Figure 11 - Multi-tenancy using a VRF**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/multi-tenancy.png" >}}
 
@@ -147,20 +147,20 @@ nv config apply
 
 ### Summarized Route Announcements
 
-In EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes advertise with the anycast IP address as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch might forward traffic to a leaf switch that does not have the destination routes. To prevent dropped traffic in this failure scenario, Cumulus Linux enables the Advertise Primary IP address feature by default so that the switch handles the next hop IP address of the VTEP conditionally depending on the route type: host type-2 (MAC and IP advertisement) or type-5 (IP prefix route).
-- For host type-2 routes, the anycast IP address is the next hop IP address and the anycast MAC address is the router MAC address.
-- For type-5 routes, the system IP address (the unique primary loopback IP address of the VTEP) is the next hop IP address and the unique router MAC address of the VTEP is the router MAC address.
+In EVPN symmetric routing configurations with VXLAN active-active (MLAG), all EVPN routes advertise with the anycast IP address as the next hop IP address and the anycast MAC address as the router MAC address. In a failure scenario, the switch might forward traffic to a leaf switch that does not have the destination routes. To prevent dropped traffic in this failure scenario, Cumulus Linux enables the Advertise Primary IP address feature by default so that the switch handles the next hop IP address of the VTEP conditionally depending on the route type: host `type-2` (MAC and IP advertisement) or `type-5` (IP prefix route).
+- For host `type-2` routes, the anycast IP address is the next hop IP address and the anycast MAC address is the router MAC address.
+- For `type-5` routes, the system IP address (the unique primary loopback IP address of the VTEP) is the next hop IP address and the unique router MAC address of the VTEP is the router MAC address.
 
 ### Prefix-based Routing
 
-The EVPN type-2 (MAC and IP) advertisement does not support advertising summarized or prefix routes such as /16 or /24 routes. This affects the scalability of the solution.
+The EVPN `type-2` (MAC and IP) advertisement does not support advertising summarized or prefix routes such as /16 or /24 routes. This affects the scalability of the solution.
 
-If you consider a network with edge devices, the edge devices commonly advertise only the default route to border devices. In just about every deployment, the spines and the leaves do not carry the routing table of the external world. They just carry the default route which gets them to the border devices and from there to the edge devices. The default route is 0.0.0.0/0, which has a non-/32 prefix (IPv6 has ::/0 as the default route).
+If you consider a network with edge devices, the edge devices commonly advertise only the default route to border devices. In just about every deployment, the spines and the leaves do not carry the routing table of the external world. They just carry the default route which gets them to the border devices and from there to the edge devices. The default route is `0.0.0.0/0`, which has a non-/32 prefix (IPv6 has `::/0` as the default route).
 
-A new route type, type-5 (RT-5) was introduced to support this use case. EVPN in Cumulus Linux supports prefix-based routing using EVPN type-5 (prefix) routes. Type-5 routes (or prefix routes) primarily route to destinations outside of the data center fabric. EVPN prefix routes carry the L3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
+A new route type, `type-5` (`RT-5`) was introduced to support this use case. EVPN in Cumulus Linux supports prefix-based routing using EVPN `type-5` (prefix) routes. `Type-5` routes (or prefix routes) primarily route to destinations outside of the data center fabric. EVPN prefix routes carry the L3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
 
 Points to consider:
-- When connecting to a WAN edge router to reach destinations outside the data center, deploy specific border or exit leaf switches to originate the type-5 routes.
+- When connecting to a WAN edge router to reach destinations outside the data center, deploy specific border or exit leaf switches to originate the `type-5` routes.
 - On switches with Spectrum ASICs, centralized routing, symmetric routing, and prefix-based routing only work with Spectrum-A1 and later.
 - Configure a per-tenant VXLAN interface that specifies the L3 VNI for the tenant. This VXLAN interface is part of the bridge; router MAC addresses of remote VTEPs install over this interface.
 - Configure an SVI (L3 interface) corresponding to the per-tenant VXLAN interface. This attaches to the VRF of the tenant. The remote prefix routes install over this SVI.
@@ -168,7 +168,7 @@ Points to consider:
 
 Scenarios for using prefix-based routing:
 - Route to destinations outside of the data center fabric.
-- To subdivide the data center into multiple pods with full host mobility within a pod but only do prefix-based routing across pods. You can achieve this by only exchanging EVPN type-5 routes across pods. The following example commands configure EVPN to advertise type-5 routes on the leaf:
+- To subdivide the data center into multiple pods with full host mobility within a pod but only do prefix-based routing across pods. You can achieve this by only exchanging EVPN `type-5` routes across pods. The following example commands configure EVPN to advertise `type-5` routes on the leaf:
 
    ```
    nv set router policy route-map map1 rule 10 match type ipv4
@@ -186,7 +186,7 @@ Scenarios for using prefix-based routing:
    nv config apply
    ```
 
-- Cumulus Linux supports originating EVPN default type-5 routes. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
+- Cumulus Linux supports originating EVPN default `type-5` routes. The default `type-5` route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
 
    ```
    nv set vrf RED router bgp address-family ipv4-unicast route-export to-evpn default-route-origination on
@@ -231,7 +231,7 @@ nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list
 nv config apply
 ```
 
-The following example configures a route map to match the source protocol BGP and imports the routes from VRF BLUE to VRF RED. For the imported routes, the community is 11:11 in VRF RED.
+The following example configures a route map to match the source protocol BGP and imports the routes from VRF BLUE to VRF RED. For the imported routes, the community is `11:11` in VRF `RED`.
 
 ```
 nv set vrf RED router bgp address-family ipv4-unicast route-import from-vrf list BLUE
@@ -251,7 +251,7 @@ Cumulus Linux enables ARP and ND suppression by default on all VNIs to reduce AR
 
 Without ARP suppression, all ARP requests are broadcast throughout the entire VXLAN fabric, sent to every VTEP that has a VNI for the network. With ARP suppression enabled, MAC addresses learned over EVPN are passed down to the ARP control plane. The leaf switch, which acts as the VTEP, responds directly back to the ARP requester through a proxy ARP reply.
 
-Because the IP-to-MAC mappings are already communicated through the VXLAN control plane using EVPN type-2 messages, implementing ARP suppression enables optimization for faster resolution of the overlay control plane. It also reduces the amount of broadcast traffic in the fabric, as ARP suppression reduces the need for flooding ARP requests to every VTEP in the VXLAN infrastructure.
+Because the IP-to-MAC mappings are already communicated through the VXLAN control plane using EVPN `type-2` messages, implementing ARP suppression enables optimization for faster resolution of the overlay control plane. It also reduces the amount of broadcast traffic in the fabric, as ARP suppression reduces the need for flooding ARP requests to every VTEP in the VXLAN infrastructure.
 
 Points to consider:
 - You can only use ND suppression on Spectrum_A1 and above.
@@ -295,11 +295,11 @@ Disadvantages of this model include:
 
 Figure 12 shows an EVPN-PIM configuration, where underlay multicast distributes BUM traffic.
 
-FIGURE 12 – EVPN-PIM FOR BUM TRAFFIC
+**Figure 12 – EVPN-PIM for BUM Traffic**
 
 {{< img src = "/images/guides/VXLAN-EVPN-design-guide/pim.png" >}}
 
-By default, the VTEP floods all BUM packets (such as ARP, NS, or DHCP) it receives to all interfaces (except for the incoming interface) and to all VXLAN tunnel interfaces in the same broadcast domain. When the switch receives such packets on a VXLAN tunnel interface, it floods the packets to all interfaces in the packet’s broadcast domain. For PIM-SM, type-3 routes do not result in any forwarding entries. Cumulus Linux does not advertise type-3 routes for an L2 VNI when BUM mode for that VNI is PIM-SM.
+By default, the VTEP floods all BUM packets (such as ARP, NS, or DHCP) it receives to all interfaces (except for the incoming interface) and to all VXLAN tunnel interfaces in the same broadcast domain. When the switch receives such packets on a VXLAN tunnel interface, it floods the packets to all interfaces in the packet’s broadcast domain. For PIM-SM, `type-3` routes do not result in any forwarding entries. Cumulus Linux does not advertise `type-3` routes for an L2 VNI when BUM mode for that VNI is PIM-SM.
 
 ### Dropping BUM packets
 
@@ -307,7 +307,7 @@ BUM packets are considered by many network administrators to be a cheap way to l
 
 Dropping BUM packets implies that after we hear from an endpoint, its MAC address is communicated to all the other nodes via BGP. Therefore, there is really no need to flood these packets.
 
-You can disable BUM flooding over VXLAN tunnels so that EVPN does not advertise type-3 routes for each local VNI and stops taking action on received type-3 routes.
+You can disable BUM flooding over VXLAN tunnels so that EVPN does not advertise `type-3` routes for each local VNI and stops taking action on received `type-3` routes.
 
 Disabling BUM flooding is useful in a deployment with a controller or orchestrator, where the switch is pre-provisioned and there is no need to flood any ARP, NS, or DHCP packets.
 

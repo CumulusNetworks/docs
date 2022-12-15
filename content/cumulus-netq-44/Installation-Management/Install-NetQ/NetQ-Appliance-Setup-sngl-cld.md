@@ -102,3 +102,5 @@ Now that the appliance is up and running, verify that the software is available 
 4. Install and activate the NetQ software using the CLI:
 
 {{<netq-install/install-with-cli version="4.4" deployment="cloud-single">}}
+
+After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

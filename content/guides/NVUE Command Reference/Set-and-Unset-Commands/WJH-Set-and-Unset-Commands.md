@@ -9,6 +9,8 @@ type: nojsscroll
 
 Provides commands to configure What Just Happened (WJH) to provide real time visibility into network problems. You can diagnose network problems by looking at dropped packets.
 
+- - -
+
 ## nv set system wjh channel \<channel-id\>
 
 Configures a WJH channel where you want to monitor packet drops.

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3301950</td>
+<td>When upgrading from Cumulus Linux 5.0.0 thru 5.2.1 to Cumulus Linux 5.3.0 or 5.3.1, the {{babeltrace}} and {{python3-babeltrace}} packages are not added automatically even though they are in the default image in Cumulus Linux 5.3.0 and later. You may need these packages to decode LTTNG traces with {{/usr/lib/frr/frr_babeltrace.py.}}. If you need to use this script, run the {{sudo apt update &amp;&amp; sudo apt install babeltrace python3-babeltrace}} command to install the packages.</td>
+<td>5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3289972</td>
 <td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
 <td>5.3.0</td>
@@ -26,15 +32,33 @@ Vlan: 0
 <td></td>
 </tr>
 <tr>
+<td>3258467</td>
+<td>On NVIDIA Spectrum-2 and Spectrum-3 switches, after you run the {{nv config save}} command, the NVUE service successfully reports that the current applied configuration is saved to the {{/etc/nvue.d/startup.yaml}} file. However, if you power cycle the switch within one minute after you save the configuration, the contents of the {{/etc/nvue.d/startup.yaml}} file might be cleared, which causes the {{nvue-startup}} service to fail. The NVUE service writes a log message indicating that the {{startup.yaml}} file is empty or incomplete. To work around this issue, either reboot the switch with the {{sudo reboot}} command instead of power cycling or wait at least one minute before you power cycle.</td>
+<td>5.2.1-5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3258232</td>
+<td>If you configure multiple SNMP listener addresses at the same time with NVUE, the SNMP service fails to start. To work around this issue, configure multiple SNMP listener addresses one at a time.</td>
+<td>5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3257714</td>
+<td>If you try to add an interface to a VRF but the VRF is not yet created, the NVUE service fails to reload. To work around this issue, create the VRF first,  then add the interface.</td>
+<td>5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3244955</td>
 <td>ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries.</td>
 <td>5.2.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3174706</td>
-<td>When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped.</td>
-<td>5.1.0-5.3.0</td>
+<td>3241567</td>
+<td>When you apply switch configuration for the first time on a freshly booted switch, you might see the error message {{Failed to start Hostname Service}} when you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
+<td>5.3.0</td>
 <td></td>
 </tr>
 <tr>

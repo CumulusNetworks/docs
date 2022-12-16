@@ -85,12 +85,6 @@ To work around this issue, restart the {{hostapd}} service with the {{systemctl 
 <td>4.3.1-4.4.5</td>
 </tr>
 <tr>
-<td>3021879</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-4.4.3</td>
-<td>4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3021693</td>
 <td>When ARP suppression is off, Cumulus Linux sends GARPs from {{neighmgrd}} for remote neighbors over VXLAN.</td>
 <td>3.7.15-4.3.0, 4.4.0-4.4.3, 5.0.0-5.1.0</td>
@@ -2534,12 +2528,6 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 To work around this issue, restart the {{hostapd}} service with the {{systemctl restart hostapd}} command.</td>
 <td>3.7.15-4.3.0</td>
 <td>4.3.1-4.4.5</td>
-</tr>
-<tr>
-<td>3021879</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-4.4.3</td>
-<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3021693</td>
@@ -5046,6 +5034,11 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <td>3.7.0-3.7.14.2</td>
 </tr>
 <tr>
+<td>2599607</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.14.2</td>
+</tr>
+<tr>
 <td>2595889</td>
 <td>In a traditional bridge configuration with {{ip-forward off}}, neighbors are synchronized to hardware with a {{switchd}} restart but are cleared when you flap the bridge interface.</td>
 <td>3.7.10-3.7.14.2, 4.0.0-4.2.1</td>
@@ -5438,12 +5431,6 @@ These messages are harmless and can be ignored.</td>
 <td>On the EdgeCore AS4610 switch, when you change the speed of any of the SFP+ ports, the other SFP+ ports flap.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
 <td></td>
-</tr>
-<tr>
-<td>3021879</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-4.4.3</td>
-<td>4.4.4-4.4.5</td>
 </tr>
 <tr>
 <td>3017190</td>
@@ -6292,6 +6279,12 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <td>On the EdgeCore AS7726 switch, when you run the NCLU {{net show system}} command, you see the error {{Command not found}}.</td>
 <td>3.7.14.2-3.7.16</td>
 <td></td>
+</tr>
+<tr>
+<td>2599607</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.14.2</td>
+<td>3.7.15-3.7.16</td>
 </tr>
 <tr>
 <td>2595889</td>
@@ -8097,12 +8090,6 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <td></td>
 </tr>
 <tr>
-<td>3021879</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-4.4.3</td>
-<td>4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -8888,6 +8875,12 @@ Fixed: 2.72-3+deb8u6</td>
 Vulnerable: 6.8.9.9-5+deb8u22
 Fixed: 6.8.9.9-5+deb8u23</td>
 <td>3.7.0-3.7.14.2</td>
+<td>3.7.15-3.7.16</td>
+</tr>
+<tr>
+<td>2599607</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
 </tr>
 <tr>
@@ -11120,12 +11113,6 @@ To work around this issue, modify the routing design or policy such that routes 
 <td></td>
 </tr>
 <tr>
-<td>3021879</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-4.4.3</td>
-<td>4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -11888,6 +11875,12 @@ Fixed: 3.4.0-1+deb8u4</td>
 Vulnerable: 6.8.9.9-5+deb8u22
 Fixed: 6.8.9.9-5+deb8u23</td>
 <td>3.7.0-3.7.14.2</td>
+<td>3.7.15-3.7.16</td>
+</tr>
+<tr>
+<td>2599607</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
 </tr>
 <tr>
@@ -14198,12 +14191,6 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <td></td>
 </tr>
 <tr>
-<td>3021879</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-4.4.3</td>
-<td>4.4.4-4.4.5</td>
-</tr>
-<tr>
 <td>3017190</td>
 <td>When you power cycle the switch, multiple interfaces came up in a PoE disabled state.
 To work around this issue, run the {{sudo poectl -a | grep disabled}} command to find ports with disabled POE.  Run the {{sudo poectl -e swp1-swp48}} command to enable POE on affected ports.</td>
@@ -14953,6 +14940,12 @@ Fixed: 3.4.0-1+deb8u4</td>
 Vulnerable: 6.8.9.9-5+deb8u22
 Fixed: 6.8.9.9-5+deb8u23</td>
 <td>3.7.0-3.7.14.2</td>
+<td>3.7.15-3.7.16</td>
+</tr>
+<tr>
+<td>2599607</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
 </tr>
 <tr>

@@ -113,12 +113,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3015393</td>
-<td>The NVUE {{nv show interface &lt;tunnel-name&gt;}} command shows the operational state of the tunnel as down even though the tunnel is up, and encapsulation and decapsulation occurs correctly.</td>
-<td>5.1.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2993471</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
 <td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.4.0</td>
@@ -244,6 +238,11 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Affects </th>
 </tr>
 <tr>
+<td>3301950</td>
+<td>When upgrading from Cumulus Linux 5.0.0 thru 5.2.1 to Cumulus Linux 5.3.0 or 5.3.1, the {{babeltrace}} and {{python3-babeltrace}} packages are not added automatically even though they are in the default image in Cumulus Linux 5.3.0 and later. You may need these packages to decode LTTNG traces with {{/usr/lib/frr/frr_babeltrace.py.}}. If you need to use this script, run the {{sudo apt update &amp;&amp; sudo apt install babeltrace python3-babeltrace}} command to install the packages.</td>
+<td>5.3.0</td>
+</tr>
+<tr>
 <td>3289972</td>
 <td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
 <td>5.3.0</td>
@@ -269,6 +268,11 @@ Vlan: 0
 <td>3145222</td>
 <td>The NVUE {{nv show system forwarding --output json}} command does not provide any output. To work around this issue, run the {{nv show system forwarding}} command.</td>
 <td>5.2.0-5.3.0</td>
+</tr>
+<tr>
+<td>3015393</td>
+<td>The NVUE {{nv show interface &lt;tunnel-name&gt;}} command shows the operational state of the tunnel as down even though the tunnel is up, and encapsulation and decapsulation occurs correctly.</td>
+<td>5.1.0-5.3.0</td>
 </tr>
 </table>
 </tables>

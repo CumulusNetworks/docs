@@ -1561,6 +1561,11 @@ To recover from this state, flap the bond interface (not the physical swp) by ru
 <td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
 </tr>
 <tr>
+<td>2556039</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-4.4.3</td>
+</tr>
+<tr>
 <td>2555981</td>
 <td>In BGP, to enable an address family on a peer, you have to enable the address family  globally.</td>
 <td>4.4.0-4.4.5</td>

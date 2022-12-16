@@ -4299,6 +4299,23 @@ Fixed: 1.1.1d-0+deb10u5</td>
 <td>4.0.0-4.3.0</td>
 </tr>
 <tr>
+<td>2556602</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.3.0</td>
+</tr>
+<tr>
 <td>2556591</td>
 <td>After upgrading to Cumulus Linux, MLAG ports might remain down with {{clagctl}} and {{net show clag}} reporting {{bridge-priority-mismatch}}.
 To work around this issue, run the {{sudo ifreload -a}} command on both peers, or configure {{bridge-bridgeprio}} to be the same value as {{mstpctl-treeprio}} on the bridge interface in the {{/etc/network/interfaces}} file, then run {{sudo ifreload -a}}.</td>

@@ -9,13 +9,16 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## December 2022
 <!-- Air:WhatsNew -->
+### 82.2022.1215
+- Fixed an issue with instruction execution by the agent on the oob-mgmt-switch
+
+<!-- Air:WhatsNew -->
+
 ### 82.2022.1205
 - Fixed an issue where agent instructions were executed multiple times
 - Improved an error message related to uploads
 - Improved how service connectivity is implemented
 - Added support for filtering simulations by title in the API
-
-<!-- Air:WhatsNew -->
 
 ## November 2022
 ### 82.2022.1107-011

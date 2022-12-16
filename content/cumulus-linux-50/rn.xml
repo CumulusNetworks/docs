@@ -148,7 +148,7 @@ end vrf
 <td>3102128</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>4.4.3-5.1.0</td>
+<td>5.0.0-5.1.0</td>
 <td>5.2.0-5.3.0</td>
 </tr>
 <tr>
@@ -524,6 +524,14 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>4.4.3-4.4.5</td>
 </tr>
 <tr>
+<td>2904450</td>
+<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
+
+</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2903374</td>
 <td>The {{nv show interfaces}} command returns a 500 error and syslog shows a python error, triggered by third party devices (non CL) missing LLDP fields.
 To work around this issue, disable LLDP on a single interface.</td>
@@ -540,12 +548,6 @@ Unrecoverable internal error
 </td>
 <td>5.0.0-5.0.1</td>
 <td>5.1.0-5.3.0</td>
-</tr>
-<tr>
-<td>2895333</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.1, 5.0.0-5.3.0</td>
-<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2891255</td>
@@ -873,7 +875,7 @@ end vrf
 <td>3102128</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>4.4.3-5.1.0</td>
+<td>5.0.0-5.1.0</td>
 <td>5.2.0-5.3.0</td>
 </tr>
 <tr>
@@ -1131,6 +1133,14 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <td>5.0.1-5.3.0</td>
 </tr>
 <tr>
+<td>2904450</td>
+<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
+
+</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2903374</td>
 <td>The {{nv show interfaces}} command returns a 500 error and syslog shows a python error, triggered by third party devices (non CL) missing LLDP fields.
 To work around this issue, disable LLDP on a single interface.</td>
@@ -1147,12 +1157,6 @@ Unrecoverable internal error
 </td>
 <td>5.0.0-5.0.1</td>
 <td>5.1.0-5.3.0</td>
-</tr>
-<tr>
-<td>2895333</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.1, 5.0.0-5.3.0</td>
-<td>4.4.2-4.4.5</td>
 </tr>
 <tr>
 <td>2891255</td>
@@ -1555,6 +1559,11 @@ To recover from this state, flap the bond interface (not the physical swp) by ru
 <td>2556811</td>
 <td>Under certain high scale conditions, various modules might experience timetouts during cl-support collection, which results in missing data in the cl-support file.</td>
 <td>3.7.12-3.7.15, 4.1.1-4.3.0</td>
+</tr>
+<tr>
+<td>2556039</td>
+<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
+<td>3.7.12-4.4.3</td>
 </tr>
 <tr>
 <td>2555981</td>

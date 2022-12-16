@@ -7,15 +7,58 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3301950</td>
+<td>When upgrading from Cumulus Linux 5.0.0 thru 5.2.1 to Cumulus Linux 5.3.0 or 5.3.1, the {{babeltrace}} and {{python3-babeltrace}} packages are not added automatically even though they are in the default image in Cumulus Linux 5.3.0 and later. You may need these packages to decode LTTNG traces with {{/usr/lib/frr/frr_babeltrace.py.}}. If you need to use this script, run the {{sudo apt update &amp;&amp; sudo apt install babeltrace python3-babeltrace}} command to install the packages.</td>
+<td>5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3289972</td>
+<td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
+<td>5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3283598</td>
+<td>After you restart the FRR service, show commands incorrectly reflect the VLAN associated with layer 3 VNIs as 0:
+
+# net show evpn vni 123
+VNI: 123
+Type: L3
+Tenant VRF: BLUE
+Vlan: 0
+</td>
+<td>5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3258467</td>
+<td>On NVIDIA Spectrum-2 and Spectrum-3 switches, after you run the {{nv config save}} command, the NVUE service successfully reports that the current applied configuration is saved to the {{/etc/nvue.d/startup.yaml}} file. However, if you power cycle the switch within one minute after you save the configuration, the contents of the {{/etc/nvue.d/startup.yaml}} file might be cleared, which causes the {{nvue-startup}} service to fail. The NVUE service writes a log message indicating that the {{startup.yaml}} file is empty or incomplete. To work around this issue, either reboot the switch with the {{sudo reboot}} command instead of power cycling or wait at least one minute before you power cycle.</td>
+<td>5.2.1-5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3258232</td>
+<td>If you configure multiple SNMP listener addresses at the same time with NVUE, the SNMP service fails to start. To work around this issue, configure multiple SNMP listener addresses one at a time.</td>
+<td>5.3.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3257714</td>
+<td>If you try to add an interface to a VRF but the VRF is not yet created, the NVUE service fails to reload. To work around this issue, create the VRF first,  then add the interface.</td>
+<td>5.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3244955</td>
 <td>ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries.</td>
 <td>5.2.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3174706</td>
-<td>When the ingress PTP port receiving PTP messages is an SVI and STP has set the port to either alternate or backup, ingress PTP messages are dropped.</td>
-<td>5.1.0-5.3.0</td>
+<td>3241567</td>
+<td>When you apply switch configuration for the first time on a freshly booted switch, you might see the error message {{Failed to start Hostname Service}} when you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
+<td>5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -28,10 +71,8 @@
 <td>3147782</td>
 <td>You cannot use NVUE to configure an SNMP view to include a subtree beginning with a period. For example:
 
-
 $ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310
 Error: GET /nvue_v1/service/snmp-server/viewname/cumulusOnly/included?pointers=%5B%22%2Fparameters%22%2C+%22%2Fpatch%2FrequestBody%2Fcontent%2Fapplication~1json%2Fschema%22%2C+%22%2Fpatch%2Fparameters%22%2C+%22%2Fpatch%2Fresponses%2F200%2Flinks%22%5D responded with 404 NOT FOUND
-
 
 To work around this problem, reference the OID without the preceding period ( {{.}} ) in the command.</td>
 <td>5.3.0</td>
@@ -187,10 +228,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>3.7.16, 4.3.1</td>
 </tr>
 <tr>
-<td>2895333</td>
-<td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.1, 5.0.0-5.3.0</td>
-<td>4.4.2-4.4.5</td>
+<td>2904450</td>
+<td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
+
+</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2891255</td>
@@ -283,6 +326,13 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>3235368</td>
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
+</tr>
+<tr>
+<td>3211114</td>
+<td>After an abrupt power cycle, the {{nvued}} service fails to start. This is due to NVUE's internal data store being corrupted.
+
+The details of the bug fix and the user impact has been explained in these slides here: https://nvidia-my.sharepoint.com/:p:/p/asadasivarao/Eb_aWX4fyDtMlW0wMbkajlkBnywSBorXofg792uXUJlb7A?e=jRxrQX</td>
+<td>5.2.0-5.2.1</td>
 </tr>
 <tr>
 <td>3211054</td>

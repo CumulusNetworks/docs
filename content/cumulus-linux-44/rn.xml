@@ -171,12 +171,6 @@ end vrf
 <td></td>
 </tr>
 <tr>
-<td>3066798</td>
-<td>After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down.</td>
-<td>4.4.3-4.4.6</td>
-<td></td>
-</tr>
-<tr>
 <td>3059135</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
@@ -2083,12 +2077,6 @@ end vrf
 <td></td>
 </tr>
 <tr>
-<td>3066798</td>
-<td>After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down.</td>
-<td>4.4.3-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3059135</td>
 <td>In an OSPF configuration, after you change the IPv6 subnet mask, the old address remains in the RIB as a connected OSPF route.
 To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} command.</td>
@@ -3825,6 +3813,24 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5</td>
+</tr>
+<tr>
 <td>3291548</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
@@ -4030,12 +4036,6 @@ end vrf
 <td>3070672</td>
 <td>TACACS Command Authorization results in a traceback error and command is not executed</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3066798</td>
-<td>After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down.</td>
-<td>4.4.3-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -5887,6 +5887,24 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5</td>
+</tr>
+<tr>
 <td>3291548</td>
 <td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
 <td>4.2.1-4.4.5</td>
@@ -6077,12 +6095,6 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>3070672</td>
 <td>TACACS Command Authorization results in a traceback error and command is not executed</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3066798</td>
-<td>After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down.</td>
-<td>4.4.3-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -7934,6 +7946,24 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5</td>
 </tr>
 <tr>
 <td>3291548</td>
@@ -10166,6 +10196,24 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5</td>
 </tr>
 <tr>
 <td>3291548</td>

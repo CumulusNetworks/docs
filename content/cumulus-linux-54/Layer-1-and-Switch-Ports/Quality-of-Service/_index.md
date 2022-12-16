@@ -301,10 +301,6 @@ To apply a custom profile to specific interfaces, see [Port Groups](#port-groups
 
 ## Mark and Remark Traffic
 
-{{%notice note%}}
-NVUE does not currently provide commands to mark or remark traffic.
-{{%/notice%}}
-
 You can mark or remark traffic in two ways:
 
  * Use [iptables](#iptables) to match packets and set 802.1p COS or DSCP values.
@@ -379,7 +375,17 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 <!-- vale off -->
 ### 802.1p or DSCP for Marking
 <!-- vale on -->
-To enable global remarking of 802.1p, DSCP or both 802.1p and DSCP values, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. For example, to enable the remarking of only 802.1p values:
+
+To enable global remarking of 802.1p, DSCP or both 802.1p and DSCP values:
+
+{{< tabs "TabID383 ">}}
+{{< tab "NVUE Commands">}}
+
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/cumulus/datapath/qos/qos_features.conf` file, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]` . For example, to enable the remarking of only 802.1p values:
 
 ```
 traffic.packet_priority_remark_set = [802.1p]
@@ -414,6 +420,9 @@ To map switch priority 1 and 2 to DSCP 40:
 traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To apply a custom profile to specific interfaces, see [Port Groups](#remarking).
 

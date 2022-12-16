@@ -7,6 +7,37 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td>5.0.0-5.3.0</td>
+</tr>
+<tr>
+<td>3288156</td>
+<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
+To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
+<td>4.4.3-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3270988</td>
+<td>After restarting {{switchd}} on the NVIDIA SN2100 switch, the FAN speeds are at one hundred percent. To work around this issue, restart the {{hw-management}} service.</td>
+<td>4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3269537</td>
+<td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3236366</td>
+<td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands or   running {{apt upgrade}} to upgrade to Cumulus Linux 4.4.5.</td>
+<td>4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3235368</td>
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
@@ -138,19 +169,6 @@ end vrf
 <td>5.2.0-5.3.0</td>
 </tr>
 <tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
-</tr>
-<tr>
-<td>3102128</td>
-<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
-To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>4.4.3-5.1.0</td>
-<td>5.2.0-5.3.0</td>
-</tr>
-<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
@@ -190,12 +208,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>3070672</td>
 <td>TACACS Command Authorization results in a traceback error and command is not executed</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3066798</td>
-<td>After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down.</td>
-<td>4.4.3-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -353,7 +365,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1935,6 +1947,43 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5</td>
+</tr>
+<tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td>5.0.0-5.3.0</td>
+</tr>
+<tr>
+<td>3288156</td>
+<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
+To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
+<td>4.4.3-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3269537</td>
+<td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3235368</td>
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
@@ -2082,19 +2131,6 @@ end vrf
 <td>5.2.0-5.3.0</td>
 </tr>
 <tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
-</tr>
-<tr>
-<td>3102128</td>
-<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
-To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>4.4.3-5.1.0</td>
-<td>5.2.0-5.3.0</td>
-</tr>
-<tr>
 <td>3098936</td>
 <td>When withdrawal and advertisement processing occurs in short succession, type-2 routes with an IP are not imported into layer 2 VNIs.</td>
 <td>3.7.12-3.7.16, 4.3.0-4.4.5</td>
@@ -2134,12 +2170,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>3070672</td>
 <td>TACACS Command Authorization results in a traceback error and command is not executed</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3066798</td>
-<td>After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down.</td>
-<td>4.4.3-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2297,7 +2327,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -3991,6 +4021,43 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5</td>
+</tr>
+<tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td>5.0.0-5.3.0</td>
+</tr>
+<tr>
+<td>3288156</td>
+<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
+To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
+<td>4.4.3-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3269537</td>
+<td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
@@ -4097,25 +4164,12 @@ end vrf
 <td>5.2.0-5.3.0</td>
 </tr>
 <tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
-</tr>
-<tr>
 <td>3107615</td>
 <td>Cumulus Linux installation fails with the error {{Installation Problems, sub-task Installing Optional Packages}}. This occurs because the web server hosting the Cumulus Linux image remaps a 404 for a non-existent file {{image.optional_pkgs}} into a web page, which it then incorrectly attempts to use as a list of optional packages.
 
 To work around this issue, on the web server hosting the image, create an empty file with the same name as the image with {{.optional_pkgs}} appended to the name.</td>
 <td>4.4.0-4.4.3</td>
 <td>4.3.1, 4.4.4-4.4.5, 5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3102128</td>
-<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
-To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>4.4.3-5.1.0</td>
-<td>5.2.0-5.3.0</td>
 </tr>
 <tr>
 <td>3098936</td>
@@ -4175,12 +4229,6 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <td>3070672</td>
 <td>TACACS Command Authorization results in a traceback error and command is not executed</td>
 <td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
-<td>3066798</td>
-<td>After a switch reboot, the hardware redirect for EVPN-MH does not work if the EVPN-MH bond is down.</td>
-<td>4.4.3-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4414,7 +4462,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6034,6 +6082,36 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5</td>
+</tr>
+<tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td>5.0.0-5.3.0</td>
+</tr>
+<tr>
+<td>3269537</td>
+<td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
@@ -6127,12 +6205,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3107615</td>
@@ -6453,7 +6525,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -8036,7 +8108,7 @@ Fixed: 1.9.2-1+deb10u1</td>
 <tr>
 <td>2895333</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.1, 5.0.0-5.3.0</td>
+<td>4.4.0-4.4.1</td>
 </tr>
 <tr>
 <td>2891255</td>
@@ -8260,6 +8332,36 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3303105</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.4.0-4.4.4</td>
+<td>4.4.5</td>
+</tr>
+<tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td>5.0.0-5.3.0</td>
+</tr>
+<tr>
+<td>3269537</td>
+<td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
+<td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
@@ -8338,12 +8440,6 @@ When the MAC mobility sequence that BGP knows legitimately lowers (due to narrow
 <td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3107615</td>
@@ -8595,7 +8691,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <td>When you run the {{ethtool -m}} or the {{l1-show}} command, the 400G interface optical values do not show. 
 
 </td>
-<td>4.4.0-4.4.5</td>
+<td>4.4.0-4.4.5, 5.0.0-5.3.0</td>
 <td></td>
 </tr>
 <tr>
@@ -8607,7 +8703,7 @@ Dec 15 10:01:35 leaf01 switchd3431: hal_mlx_ecmp.c:2207 ERR ECMP: failed to find
 <tr>
 <td>2895333</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
-<td>4.4.0-4.4.1, 5.0.0-5.3.0</td>
+<td>4.4.0-4.4.1</td>
 <td>4.4.2-4.4.5</td>
 </tr>
 <tr>
@@ -10497,11 +10593,6 @@ Fixed: 1.6.7-1+deb10u2</td>
 Vulnerable: 1.8.3-1
 Fixed: 1.8.3-1+deb10u1</td>
 <td>4.0.0-4.3.1</td>
-</tr>
-<tr>
-<td>2658021</td>
-<td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
-<td>3.7.14-4.3.0</td>
 </tr>
 <tr>
 <td>2656527</td>

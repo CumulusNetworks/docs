@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3291548</td>
+<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
+<td>4.2.1-4.4.5</td>
+<td>5.0.0-5.3.0</td>
+</tr>
+<tr>
 <td>3216759</td>
 <td>With the {{ip-acl-heavy}} TCAM profile, the following message might appear after you install an ACL with NCLU or cl-acltool and the ACL might not work correctly.
 
@@ -57,12 +63,6 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>When you edit the {{/usr/share/openvswitch/scripts/ovs-ctl-vtep}} file to change the {{ovs-vtepd}} configuration between {{vlan-aware}} and {{vlan-unaware}} mode, {{ovs-vtepd}} crashes when you restart the service. To recover, restart the networking service with the {{sudo systemctl restart networking}} command.</td>
 <td>4.3.0-5.1.0</td>
 <td>5.2.0-5.3.0</td>
-</tr>
-<tr>
-<td>3108491</td>
-<td>In EVPN deployments,  a buffer lockup for split or pre-split ports can occur on Spectrum-2 and Spectrum-3 switches. As result, traffic coming in on these ports is dropped in the RX buffer. To work around this issue, restart {{switchd}}.</td>
-<td>4.2.1-4.4.5</td>
-<td>5.0.0-5.3.0</td>
 </tr>
 <tr>
 <td>3098936</td>
@@ -2303,7 +2303,7 @@ To workaround this issue, run the command against each VRF independently.</td>
 <tr>
 <td>2660583</td>
 <td>In an MLAG configuration, the secondary MLAG switch does not use a unique address instead of the MLAG system MAC address when there is a double-failure (peer link failure and backup IP failure)</td>
-<td>3.7.14-4.3.0</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2654715</td>
@@ -2366,6 +2366,23 @@ CVE-2019-1551: There is an overflow bug in the x64_64 Montgomery squaring proced
 Vulnerable: &lt;= 1.1.1d-0+deb10u4
 Fixed: 1.1.1d-0+deb10u5</td>
 <td>4.0.0-4.3.0</td>
+</tr>
+<tr>
+<td>2556602</td>
+<td>Clagd crash is observed with the following traceback in /var/log/clagd.log following a clag sync event which is typically driven by a peerlink up event:
+
+ unhandled exception:
+     Traceback (most recent call last):
+       File "/usr/sbin/clagd", line 1304, in PeerRecvT
+         PeerRecv()
+       File "/usr/sbin/clagd", line 513, in PeerRecv
+         ParseProtoBufMessage(nlm, myPeerMsg)
+       File "/usr/sbin/clagd", line 853, in ParseProtoBufMessage
+         msgData = FdbSync.ParseProtoBufMessage(msgHdr)
+       File "/usr/lib/python3/dist-packages/clag/fdbsync.py", line 892, in ParseProtoBufMessage
+         msgData.ParseFromString(msgHdr.data)
+     google.protobuf.message.DecodeError: Error parsing message</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2556591</td>

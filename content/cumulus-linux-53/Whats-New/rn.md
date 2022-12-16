@@ -69,6 +69,7 @@ pdfhidden: True
 ### Fixed Issues in 5.3.1
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
+| <a name="3303372"></a> [3303372](#3303372) <a name="3303372"></a> <br /> | On Spectrum-2  switches,  200G ports might flap.  This issue happens rarely. | 5.3.0 | |
 | <a name="3303082"></a> [3303082](#3303082) <a name="3303082"></a> <br /> | When you delete a route under the following conditions, <code>switchd</code> might crash:<br />- The minimum number of routes is set to a non-zero value.<br />- KVD utilization is higher than sixty percent.<br />- The number of routes currently configured is less than the minimum reserved value, and multiple KVD linear resources have just been freed and are waiting in the Garbage Collector queue. | 5.2.0-5.3.0 | |
 
 ## 5.3.0 Release Notes

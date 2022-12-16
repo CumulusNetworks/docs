@@ -347,6 +347,11 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Affects </th>
 </tr>
 <tr>
+<td>3303372</td>
+<td>On Spectrum-2  switches,  200G ports might flap.  This issue happens rarely.</td>
+<td>5.3.0</td>
+</tr>
+<tr>
 <td>3303082</td>
 <td>When you delete a route under the following conditions, {{switchd}} might crash:
 - The minimum number of routes is set to a non-zero value.

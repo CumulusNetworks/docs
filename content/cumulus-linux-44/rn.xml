@@ -4626,7 +4626,7 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>3021879</td>
 <td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
 <td>4.4.0-4.4.3</td>
-<td>4.4.4-4.4.5</td>
+<td>3.7.15-3.7.16, 4.4.4-4.4.5, 5.0.0-5.3.1</td>
 </tr>
 <tr>
 <td>3021877</td>
@@ -6768,7 +6768,7 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>3021879</td>
 <td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
 <td>4.4.0-4.4.3</td>
-<td>4.4.4-4.4.5</td>
+<td>3.7.15-3.7.16, 4.4.4-4.4.5, 5.0.0-5.3.1</td>
 </tr>
 <tr>
 <td>3021877</td>
@@ -9065,7 +9065,7 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>3021879</td>
 <td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
 <td>4.4.0-4.4.3</td>
-<td>4.4.4-4.4.5</td>
+<td>3.7.15-3.7.16, 4.4.4-4.4.5, 5.0.0-5.3.1</td>
 </tr>
 <tr>
 <td>3021692</td>

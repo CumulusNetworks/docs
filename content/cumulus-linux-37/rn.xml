@@ -5042,7 +5042,7 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <tr>
 <td>2599607</td>
 <td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-3.7.14.2</td>
+<td>4.4.0-4.4.3</td>
 </tr>
 <tr>
 <td>2595889</td>
@@ -6291,12 +6291,6 @@ Fixed: 6.8.9.9-5+deb8u23</td>
 <td>On the EdgeCore AS7726 switch, when you run the NCLU {{net show system}} command, you see the error {{Command not found}}.</td>
 <td>3.7.14.2-3.7.16</td>
 <td></td>
-</tr>
-<tr>
-<td>2599607</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-3.7.14.2</td>
-<td>3.7.15-3.7.16</td>
 </tr>
 <tr>
 <td>2595889</td>
@@ -8893,12 +8887,6 @@ Fixed: 2.72-3+deb8u6</td>
 Vulnerable: 6.8.9.9-5+deb8u22
 Fixed: 6.8.9.9-5+deb8u23</td>
 <td>3.7.0-3.7.14.2</td>
-<td>3.7.15-3.7.16</td>
-</tr>
-<tr>
-<td>2599607</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
 </tr>
 <tr>
@@ -11899,12 +11887,6 @@ Fixed: 3.4.0-1+deb8u4</td>
 Vulnerable: 6.8.9.9-5+deb8u22
 Fixed: 6.8.9.9-5+deb8u23</td>
 <td>3.7.0-3.7.14.2</td>
-<td>3.7.15-3.7.16</td>
-</tr>
-<tr>
-<td>2599607</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
 </tr>
 <tr>
@@ -14970,12 +14952,6 @@ Fixed: 3.4.0-1+deb8u4</td>
 Vulnerable: 6.8.9.9-5+deb8u22
 Fixed: 6.8.9.9-5+deb8u23</td>
 <td>3.7.0-3.7.14.2</td>
-<td>3.7.15-3.7.16</td>
-</tr>
-<tr>
-<td>2599607</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>3.7.12-3.7.14.2</td>
 <td>3.7.15-3.7.16</td>
 </tr>
 <tr>

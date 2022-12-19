@@ -2189,11 +2189,6 @@ To work around this issue, configure an IPv4 address on all VRF interfaces.</td>
 <td>4.3.0</td>
 </tr>
 <tr>
-<td>2875300</td>
-<td>Cumulus Linux learns remote MAC addresses as local entries on the bridge with the wrong remote VTEP IP address even when bridge learning is off on the VTEP and ARP suppression is enabled. </td>
-<td>4.3.0</td>
-</tr>
-<tr>
 <td>2875296</td>
 <td>On a Mellanox Spectrum-2 switch, after running the {{systemctl restart networking service}} command on the MLAG primary switch, the secondary switch also closes its ports. To work around this issue, run the {{ifreload -a}} command to restart networking.</td>
 <td>4.2.1-4.3.0</td>

@@ -28,12 +28,12 @@ User guide updates:
 
 ## Upgrade Paths
 
-You can upgrade to NetQ 4.4.0 directly from versions 4.1.0 or later. Upgrades from releases earlier than NetQ 4.1.0 require a fresh installation or an incremental upgrade to version 4.1.0 first.
+You can upgrade to NetQ 4.4 directly from versions 4.1.0 or later. Upgrades from releases earlier than NetQ 4.1.0 require a fresh installation or an incremental upgrade to version 4.1.0 first.
 
 NetQ no longer supports the Admin UI for installation and upgrades. Follow the {{<link title="Installation Management" text="updated instructions">}} according to your deployment model.
 ## Compatible Agent Versions
 
-NetQ 4.4.0 is compatible with NetQ Agent versions 4.3.0 and above. You can install NetQ Agents on switches and servers running:
+NetQ 4.4 is compatible with NetQ Agent versions 4.3.0 and above. You can install NetQ Agents on switches and servers running:
 
 - Cumulus Linux 3.7.12 and later
 - SONiC 202012 to 202106

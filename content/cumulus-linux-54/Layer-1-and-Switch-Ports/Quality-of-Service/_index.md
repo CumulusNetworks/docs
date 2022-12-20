@@ -381,6 +381,39 @@ To enable global remarking of 802.1p, DSCP or both 802.1p and DSCP values:
 {{< tabs "TabID383 ">}}
 {{< tab "NVUE Commands">}}
 
+To remark switch priority 0 to egress 802.1p 4
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l2
+cumulus@switch:~$ nv set qos remark default-global switch-priority 0 pcp 4
+cumulus@switch:~$ nv config apply
+```
+
+To remark switch priority 0 to egress DSCP 22:
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l3
+cumulus@switch:~$ nv set qos remark default-global switch-priority 0 dscp 22
+cumulus@switch:~$ nv config apply
+```
+
+You can remap multiple switch priority values to the same external 802.1p or DSCP value. For example, to map switch priority 1 and 2 to 802.1p 3:
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l2
+cumulus@switch:~$ nv set qos remark default-global switch-priority 1 pcp 3
+cumulus@switch:~$ nv set qos remark default-global switch-priority 2 pcp 3
+cumulus@switch:~$ nv config apply
+```
+
+To map switch priority 1 and 2 to DSCP 40:
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l3
+cumulus@switch:~$ nv set qos remark default-global switch-priority 1 dscp 40
+cumulus@switch:~$ nv set qos remark default-global switch-priority 2 dscp 40
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -1093,6 +1126,22 @@ To change the marked value on a packet, the switch ASIC reads the enable or disa
 
 In the following example configuration, only packets that *ingress* on swp1 and *egress* on swp2 change the marked value of the packet. Packets that ingress on other ports and egress on swp2 do **not** change the marked value of the packet. The commands map switch priority 0 and 1 to egress DSCP 37.
 
+{{< tabs "TabID1129 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos remark remark_port_group1 rewrite l3
+cumulus@switch:~$ nv set interface swp1 qos remark profile remark_port_group1
+cumulus@switch:~$ nv set qos remark remark_port_group2 rewrite l3
+cumulus@switch:~$ nv set qos remark remark_port_group2 switch-priority 0 dscp 37
+cumulus@switch:~$ nv set qos remark remark_port_group2 switch-priority 1 dscp 37
+cumulus@switch:~$ nv set interface swp2 qos remark profile remark_port_group2
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 ```
 remark.port_group_list = [remark_port_group1,remark_port_group2]
 remark.remark_port_group1.packet_priority_remark_set = [dscp]
@@ -1102,6 +1151,9 @@ remark.remark_port_group2.port_set = swp2
 remark.remark_port_group2.cos_0.priority_remark.dscp = [37]
 remark.remark_port_group2.cos_1.priority_remark.dscp = [37]
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Egress Scheduling
 

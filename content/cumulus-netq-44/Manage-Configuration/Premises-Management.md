@@ -34,7 +34,7 @@ In this deployment model, each NetQ deployment can be installed separately. The 
 
 To configure a these premises so that their data can be viewed from one premises:
 
-1. In the workbench header, select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown.
+1. In the workbench header, select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown.
 
 2. Select **Manage Premises**, then **External Premises**.
 
@@ -62,7 +62,7 @@ In this deployment model, the data is stored and can be viewed only from the Net
 
 <div class="notices note"><p>The primary NetQ premises must be installed and operational before the secondary premises can be added. </p></div>
 
-1. In the workbench header, select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown.
+1. In the workbench header, select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown.
 
 2. Click **Manage Premises**. Your primary premises (*OPID0*) is shown by default.
 
@@ -90,7 +90,7 @@ In this deployment model, the data is stored and can be viewed only from the Net
 
 To rename an existing premises:
 
-1. In the workbench header, select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown, then **Manage premises**.
+1. In the workbench header, select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown, then **Manage premises**.
 
 1. Select a premises to rename, then click {{<img src="/images/old_doc_images/pencil-2.png" width="16">}} Edit.
 
@@ -100,7 +100,7 @@ To rename an existing premises:
 
 To view the physical server or VM configuration:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu"> Menu.
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} Menu.
 
 2. Under **Admin**, select **Management**.
 

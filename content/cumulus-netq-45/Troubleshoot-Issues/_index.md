@@ -7,9 +7,70 @@ toc: 2
 ---
 
 This page describes how to generate a support file for the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA support team">}} to help troubleshoot issues with NetQ itself.
-## Generate a Support File
 
-The `opta-support` command generates an archive of useful information for troubleshooting issues with NetQ. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command.
+## Browse Configuration and Log Files
+
+The following configuration and log files contain information that can help with troubleshooting:
+
+| File | Description |
+| ---- | ---- |
+| `/etc/netq/netq.yml` | The NetQ configuration file. This file appears only if you installed either the `netq-apps` package or the NetQ Agent on the system. |
+| `/var/log/netqd.log` | The NetQ daemon log file for the NetQ CLI. This log file appears only if you installed the `netq-apps` package on the system. |
+| `/var/log/netq-agent.log` | The NetQ Agent log file. This log file appears only if you installed the NetQ Agent on the system.                                   |
+
+## Check NetQ System Installation Status
+
+The `netq show status verbose` command shows the status of NetQ components after installation. Use this command to validate NetQ system readiness:
+
+```
+cumulus@netq:~$ netq show status verbose
+NetQ Live State: Active
+Installation Status: FINISHED
+Version: 4.4.0
+Installer Version: 4.4.0
+Installation Type: Standalone
+Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
+Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==
+Is Cloud: False
+Kubernetes Cluster Nodes Status:
+IP Address     Hostname       Role    NodeStatus
+-------------  -------------  ------  ------------
+10.188.46.243  10.188.46.243  Role    Ready
+Task                                                                Status
+------------------------------------------------------------------  --------
+Prepared for download and extraction                                FINISHED
+Completed setting up python virtual environment                     FINISHED
+Checked connectivity from master node                               FINISHED
+Installed Kubernetes control plane services                         FINISHED
+Installed Calico CNI                                                FINISHED
+Installed K8 Certificates                                           FINISHED
+Updated etc host file with master node IP address                   FINISHED
+Stored master node hostname                                         FINISHED
+Generated and copied master node configuration                      FINISHED
+Updated cluster information                                         FINISHED
+Plugged in release bundle                                           FINISHED
+Downloaded, installed, and started node service                     FINISHED
+Downloaded, installed, and started port service                     FINISHED
+Patched Kubernetes infrastructure                                   FINISHED
+Removed unsupported conditions from master node                     FINISHED
+Installed NetQ Custom Resource Definitions                          FINISHED
+Installed Master Operator                                           FINISHED
+Updated Master Custom Resources                                     FINISHED
+Updated NetQ cluster manager custom resource                        FINISHED
+Installed Cassandra                                                 FINISHED
+Created new database                                                FINISHED
+Updated Master Custom Resources                                     FINISHED
+Updated Kafka Custom Resources                                      FINISHED
+Read Config Key ConfigMap                                           FINISHED
+Backed up ConfigKey                                                 FINISHED
+Read ConfigKey                                                      FINISHED
+Created Keys                                                        FINISHED
+Verified installer version                                          FINISHED
+...
+```
+## Generate a Support File on the NetQ System
+
+The `opta-support` command generates information for troubleshooting issues with NetQ. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command.
 
 ```
 cumulus@server:~$ sudo opta-support
@@ -24,12 +85,14 @@ Access key is not found. Please check the access key entered or generate a fresh
 Proceeding with opta-support generation without netq show outputs
 Please send /var/support/opta_support_server_20211122_22259.txz to Nvidia support.
 ```
-## Browse Configuration and Log Files
+## Generate a Support File on Switches and Hosts
 
-The following configuration and log files contain information that can help with troubleshooting:
+The `netq-support` command generates information for troubleshooting NetQ issues on a host or switch. Similar to collecting a support bundle on the NetQ system, the NVIDIA support team might request this output to gather more information about switch and host status. 
 
-| File | Description |
-| ---- | ---- |
-| `/etc/netq/netq.yml` | The NetQ configuration file. This file appears only if you installed either the `netq-apps` package or the NetQ Agent on the system. |
-| `/var/log/netqd.log` | The NetQ daemon log file for the NetQ CLI. This log file appears only if you installed the `netq-apps` package on the system. |
-| `/var/log/netq-agent.log` | The NetQ Agent log file. This log file appears only if you installed the NetQ Agent on the system.                                   |
+When you run the `netq-support` command on a switch running Cumulus Linux, a {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Monitoring-and-Troubleshooting/Understanding-the-cl-support-Output-File/" text="cl-support file">}} will also be created and bundled within the NetQ support archive:
+
+```
+cumulus@switch:mgmt:~$ sudo netq-support
+Collecting cl-support...
+Collecting netq-support...
+Please send /var/support/netq_support_switch_20221220_16188.txz to Nvidia support.

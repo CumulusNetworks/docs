@@ -26,7 +26,7 @@ MLAG dynamically adds and removes the anycast IP address as the loopback interfa
 - The active-active configuration for a given VXLAN interface must be consistent between both switches in the MLAG pair; MLAG ensures that the configuration is consistent before bringing up the VXLAN interfaces.
   - The anycast virtual IP address for VXLAN termination must be the same on both switches in the MLAG pair.
   - You must configure a VXLAN interface with the same VXLAN ID, which must be administratively up on both switches in the MLAG pair. Run the `clagctl` command to check if any VXLAN switches are in a PROTO_DOWN state.
-- If you use VXLAN active-active with EVPN symmetric mode, see {{<link url="Inter-subnet-Routing/#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
+- If you use VXLAN active-active with EVPN symmetric mode, you must set the anycast MAC address on both switches in the MLAG pair; see {{<link url="Inter-subnet-Routing/#advertise-primary-ip-address-vxlan-active-active-mode" text="Advertise Primary IP Address">}}.
 {{%/notice%}}
 
 To configure the anycast IP address:
@@ -1759,6 +1759,7 @@ The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networki
 
 To validate the configuration, run the commands shown in the troublshooting section above.
 
-
 {{< /tab >}}
 {{< /tabs >}}
+
+For a full EVPN symmetric active-active configuration example, see {{<link url="Configuration-Examples#evpn-symmetric-routing" >}}.

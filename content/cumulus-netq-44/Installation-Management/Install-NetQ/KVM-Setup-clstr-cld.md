@@ -57,3 +57,5 @@ Make a note of the private IP address you assign to the worker node. You need it
 
 {{<netq-install/install-with-cli version="4.4" deployment="cloud-cluster">}}
 
+After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.
+

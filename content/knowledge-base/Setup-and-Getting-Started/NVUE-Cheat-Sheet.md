@@ -240,7 +240,7 @@ This cheat sheet covers some of the basic configuration commands for static VXLA
 
 This cheat sheet covers the basic EVPN configuration commands. Refer to the [Ethernet Virtual Private Network - EVPN]({{<ref "/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN">}}) documentation for more information and extra configuration.
 
-| <div style="width:2500px">Command Syntax | Description and Example |
+| <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
 | `nv set evpn enable on` | Enables the EVPN capabilities globally on the switch. You do not have to enable EVPN per VRF, it is set automatically.<pre>$ nv set evpn enable on</pre>|
 | `nv set vrf default router bgp neighbor <neighbor> address-family l2vpn-evpn enable on` | Activates the EVPN address family between BGP neighbors. You need to set the EVPN neighbors in the `default` VRF.<pre>$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn enable on</pre>|

@@ -14,29 +14,28 @@ This cheat sheet helps you get up to speed using [Cumulus Linux]({{<ref "/cumulu
 
 {{%notice note%}}
 This cheat sheet covers the most common and useful commands for certain Cumulus Linux elements, features, and protocols. Refer to the [Cumulus Linux User Guide]({{<ref "/cumulus-linux-53">}}) for more information, and additional and specific configurations.
-{{%/notice%}}
-{{%notice note%}}
+
 For information about using the [NVUE REST API]({{<ref "/cumulus-linux-53/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-API">}}), refer to the [NVUE API documentation](https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-53/api/index.html).
 {{%/notice%}}
 
 ## NVUE CLI Command Syntax
 
-NVUE commands all begin with `nv` and fall into one of four syntax categories:
+All NVUE commands begin with `nv` and fall into one of four syntax categories:
 
 - Configuration (`nv set` and `nv unset`)
 - Monitoring (`nv show`)
 - Configuration management (`nv config`)
-- Action commands (`nv action`)
+- Action (`nv action`)
 
-Like all industry-standard CLIs, the NVUE CLI includes command completion with the TAB key, use of the question mark (`?`) to display required command information, and command abbreviation to speed up CLI interaction. In addition, you can get help with command syntax by using the `-h` or `--help` option, and list all commands by running `nv list-commands`.
+Like all industry-standard CLIs, the NVUE CLI includes command completion with the TAB key, use of the question mark (`?`) to display command information, and command abbreviation to speed up CLI interaction. In addition, you can get help with command syntax by using the `-h` or `--help` option, and list all commands by running `nv list-commands`.
 
 ## Getting Started
 
-After you have racked and powered on your NVIDIA Spectrum switch with Cumulus Linux, connect a serial console cable to start configuring it. All switches are manufactured with an RJ45 serial port for console connectivity and set to 115200 baud rate. If your switch does not have a pre-installed <span style="background-color:#F5F5DC"> [NOS](## "Network Operating System")</span>, you can [install a new Cumulus Linux image]({{<ref "/cumulus-linux-53/Installation-Management/Installing-a-New-Cumulus-Linux-Image">}}).
+After you rack and power on your NVIDIA Spectrum switch with Cumulus Linux, connect a serial console cable so that you can begin configuration. All switches are manufactured with an RJ45 serial port for console connectivity and set to 115200 baud rate. If your switch does not have a pre-installed <span style="background-color:#F5F5DC"> [NOS](## "Network Operating System")</span>, you can [install a new Cumulus Linux image]({{<ref "/cumulus-linux-53/Installation-Management/Installing-a-New-Cumulus-Linux-Image">}}).
 
 ## System Management and Services
 
-Using the below commands, you can configure the management network and some system services on the switch.
+Use the following commands to configure the management network and system services on the switch.
 
 | <div style="width:220px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
@@ -49,7 +48,7 @@ Using the below commands, you can configure the management network and some syst
 
 ## Working with Interfaces
 
-Use these commands to configure the physical, breakout, loopback, and logical layer 2 and layer 3 interfaces.
+Use the following commands to configure the physical, breakout, loopback, and logical layer 2 and layer 3 interfaces.
 
 ### Physical Interfaces
 
@@ -71,7 +70,7 @@ To increase the number of ports on the NVIDIA Spectrum switch, you can break out
 
 ### Loopback Interface
 
-Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface called `lo` is `up` and assigned an IP address of `127.0.0.1`.
+Cumulus Linux has a preconfigured loopback interface. When the switch boots up, the loopback interface, called `lo`, is `up` and assigned an IP address of `127.0.0.1`.
 
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
@@ -101,7 +100,7 @@ The default bridge `br_default` is a VLAN-aware bridge. Refer to the [Ethernet B
 
 The VLAN-aware bridge (`br_default`) operates only in <span style="background-color:#F5F5DC"><a><abbr title="Rapid Spanning-Tree Protocol">RSTP</abbr></a></span> mode.
 {{%notice note%}}
-Traditional bridges operate in both <span style="background-color:#F5F5DC"><a><abbr title="Per-VLAN Spanning-Tree">PVST</abbr></a></span> and <span style="background-color:#F5F5DC"><a><abbr title="Rapid Per-VLAN Spanning-Tree">RPVST</abbr></a></span> mode. The default is PVRST. Each traditional bridge has its own separate STP instance.
+Traditional bridges operate in both <span style="background-color:#F5F5DC"><a><abbr title="Per-VLAN Spanning-Tree">PVST</abbr></a></span> and <span style="background-color:#F5F5DC"><a><abbr title="Rapid Per-VLAN Spanning-Tree">RPVST</abbr></a></span> mode. The default mode is PVRST. Each traditional bridge has its own separate STP instance.
 {{%/notice%}}
 
 | <div style="width:250px">Command Syntax | Description and Example |
@@ -122,7 +121,7 @@ After you enable a Cumulus Linux interface administratively, it is a routed port
 
 ### Link Aggregation Interfaces
 
-The Link Aggregation (LAG) interface in Cumulus Linux is called a bond. You can configure bonds as layer 2 or layer 3 interfaces.
+The Link Aggregation (LAG) interface in Cumulus Linux is called a bond. You can configure a bond as a layer 2 or layer 3 interface.
 
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
@@ -132,20 +131,20 @@ The Link Aggregation (LAG) interface in Cumulus Linux is called a bond. You can 
 
 ## Working with Network Protocols
 
-This cheat sheet covers some of the basic configuration commands of the main data center protocols. You can refer to the [Cumulus Linux User Guide]({{<ref "/cumulus-linux-53">}}) for other protocols, configuration commands, examples, and more detailed information.
+This cheat sheet includes some of the basic commands to configure the main data center protocols. To configure other protocols, see additional configuration commands, examples, and more detailed information, refer to the [Cumulus Linux User Guide]({{<ref "/cumulus-linux-53">}}).
 
 ### Layer 2 Protocols
 
 #### Multi-Chassis Link Aggregation - MLAG
 
-MLAG provides layer 2 redundancy and greater system throughput. To set MLAG on Cumulus Linux switches, you must fulfill these requirements:
+MLAG provides layer 2 redundancy and greater system throughput. To configure MLAG, you must fulfill these requirements:
 
 - Only two switches can share MLAG configuration. However, you can have multiple (different) MLAG pairs in the network.
 - Both MLAG peer switches must be directly connected. This is typically a bond for increased reliability and bandwidth.
 - Both switches in the MLAG pair must be of the same Spectrum model and run the same Cumulus Linux version.
 - The dual-connected devices (servers or switches) can use LACP or static bond modes. MLAG switches must be set accordingly.
 
-This cheat sheet covers the basic MLAG configuration commands. Refer to the [Multi-Chassis Link Aggregation - MLAG]({{<ref "/cumulus-linux-53/Layer-2/Multi-Chassis-Link-Aggregation-MLAG">}}) documentation for more information.
+This cheat sheet includes the basic MLAG configuration commands. Refer to the [Multi-Chassis Link Aggregation - MLAG]({{<ref "/cumulus-linux-53/Layer-2/Multi-Chassis-Link-Aggregation-MLAG">}}) documentation for more information.
 
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
@@ -173,9 +172,9 @@ Refer to the [Virtual Router Redundancy - VRR and VRRP]({{<ref "/cumulus-linux-5
 
 #### Virtual Routing and Forwarding - VRF
 
-<span style="background-color:#F5F5DC"> [VRF](## "Virtual Routing and Forwarding")</span> (also called VRF-Lite) enables you to use multiple independent routing tables that work simultaneously on the same switch; for example, in multi-tenant environments.
+<span style="background-color:#F5F5DC"> [VRF](## "Virtual Routing and Forwarding")</span> (also called VRF-Lite) enables you to use multiple independent routing tables that work simultaneously on the same switch. VRFs are useful in multi-tenant environments.
 
-Here are the basic commands for VRFs. Refer to the [Virtual Routing and Forwarding - VRF]({{<ref "/cumulus-linux-53/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF">}}) and [Management VRF]({{<ref "/cumulus-linux-53/Layer-3/VRFs/Management-VRF">}}) documentation for more information about using custom and `mgmt` VRFs with different protocols.
+This cheat sheet includes basic VRF commands. For more information about using custom and `mgmt` VRFs with different protocols, refer to the [Virtual Routing and Forwarding - VRF]({{<ref "/cumulus-linux-53/Layer-3/VRFs/Virtual-Routing-and-Forwarding-VRF">}}) and [Management VRF]({{<ref "/cumulus-linux-53/Layer-3/VRFs/Management-VRF">}}) documentation.
 
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
@@ -184,7 +183,7 @@ Here are the basic commands for VRFs. Refer to the [Virtual Routing and Forwardi
 
 #### Static Routing
 
-To configure static routing:
+You can use static routing if you do not require the complexity of a dynamic routing protocol (such as BGP or OSPF), if you have routes that do not change frequently and for which the destination is only one or two paths away.
 
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
@@ -197,7 +196,7 @@ To configure static routing:
 Cumulus Linux makes BGP configuration in the data center easier with [Auto BGP]({{<ref "/cumulus-linux-53/Layer-3/Border-Gateway-Protocol-BGP#auto-bgp">}}) and
 [BGP Unnumbered]({{<ref "/cumulus-linux-53/Layer-3/Border-Gateway-Protocol-BGP#bgp-unnumbered">}}). NVIDIA recommends using these features to eliminate the need for <span style="background-color:#F5F5DC"> [ASN](## "Autonomous System Number")</span> and point-to-point IP addressing assignments, and to reduce human errors.
 
-This cheat sheet covers the basic BGP configuration. Refer to the [Border Gateway Protocol - BGP]({{<ref "/cumulus-linux-53/Layer-3/Border-Gateway-Protocol-BGP">}}) documentation for more information.
+This cheat sheet includes basic BGP configuration commands. Refer to the [Border Gateway Protocol - BGP]({{<ref "/cumulus-linux-53/Layer-3/Border-Gateway-Protocol-BGP">}}) documentation for more information.
 
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
@@ -214,13 +213,13 @@ This cheat sheet covers the basic BGP configuration. Refer to the [Border Gatewa
 
 #### VXLAN Devices and Static Tunnels
 
-Cumulus Linux supports single and traditional VXLAN devices. NVUE allows you to work only with a single VXLAN device (single VTEP) in a VLAN-aware bridge. With a single VXLAN device (<span style="background-color:#F5F5DC">[NVE](## "Network Virtual Interface")</span> interface), you specify a VLAN to <span style="background-color:#F5F5DC"> [VNI](## "Virtual Network Identifier")</span> mapping. 
+Cumulus Linux supports single and traditional VXLAN devices. NVUE allows you to work only with a single VXLAN device (single VTEP) in a VLAN-aware bridge. With a single VXLAN device (<span style="background-color:#F5F5DC">[NVE](## "Network Virtual Interface")</span> interface), you specify the VLAN to <span style="background-color:#F5F5DC"> [VNI](## "Virtual Network Identifier")</span> mapping. 
 
 {{%notice note %}}
 Cumulus Linux supports multiple single VXLAN devices when set with multiple VLAN-aware bridges. Make sure not to duplicate VNIs across devices.
 {{%/notice %}}
 
-This cheat sheet covers some of the basic configuration commands for static VXLAN tunnels. Refer to the [Network Virtualization]({{<ref "/cumulus-linux-53/Network-Virtualization">}}) documentation for more information and for additional configuration.
+This cheat sheet includes some of the basic configuration commands for static VXLAN tunnels. For more information and for additional configuration, refer to the [Network Virtualization]({{<ref "/cumulus-linux-53/Network-Virtualization">}}) documentation.
 
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
@@ -238,7 +237,7 @@ This cheat sheet covers some of the basic configuration commands for static VXLA
 
 <span style="background-color:#F5F5DC"> [EVPN](## "Ethernet Virtual Private Network")</span> is a standards-based control plane that relies on multi-protocol BGP (MP-BGP) and allows for building and deploying VXLANs at scale. EVPN enables intra-subnet bridging and inter-subnet routing, including multi-tenancy support. 
 
-This cheat sheet covers the basic EVPN configuration commands. Refer to the [Ethernet Virtual Private Network - EVPN]({{<ref "/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN">}}) documentation for more information and extra configuration.
+This cheat sheet includes the basic EVPN configuration commands. For more information and additional configuration, refer to the [Ethernet Virtual Private Network - EVPN]({{<ref "/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN">}}) documentation.
 
 | <div style="width:250px">Command Syntax | Description and Example |
 | -------------| ----------------------- |
@@ -253,9 +252,9 @@ This cheat sheet covers the basic EVPN configuration commands. Refer to the [Eth
 | `nv set interface <bond-name> evpn multihoming segment df-preference <value>` | Configures the EVPN-MH ES <span style="background-color:#F5F5DC"><a><abbr title="Designated Frowarder">DF</abbr></a></span>. The DF handles the flooded traffic received through the VXLAN tunnels to the local ES. The default DF value is 32767. NVIDIA recommends setting the DF preference to avoid unpredictable failure scenarios.<pre>$ nv set interface bond1 evpn multihoming segment df-preference 50000</pre>|
 | `nv set interface <interface> evpn multihoming uplink on` | Configures the EVPN-MH uplink ports. When all ES uplink ports go down, all bonds enter an error-disabled state to prevent active MH bonds without VXLAN overlay tunnels.<pre>$ nv set interface swp51-54 evpn multihoming uplink on</pre>|
 
-Refer to these [Configuration Examples]({{<ref "/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Configuration-Examples">}}) of EVPN layer 2 extensions, centralized, and symmetric routing use cases. Here you can see the [EVPN-MH]({{<ref "/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-Multihoming#configuration-example">}}) configuration example.
+The [Configuration Examples]({{<ref "/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/Configuration-Examples">}}) section of the Cumulus Linux user guide provides examples of EVPN layer 2 routing, centralized routing, symmetric routing, and [EVPN-MH]({{<ref "/cumulus-linux-53/Network-Virtualization/Ethernet-Virtual-Private-Network-EVPN/EVPN-Multihoming#configuration-example">}}).
 
-You can also examine and try the EVPN best practices using our pre-built simulations in [Air Marketplace](https://air.nvidia.com/marketplace):
+You can also examine and try the EVPN best practices using these pre-built simulations in [Air Marketplace](https://air.nvidia.com/marketplace):
 - [EVPN L2 Extension](https://air.nvidia.com/marketplace?demo_id=18e96902-48a0-4bf9-9cf7-23852fbe72c5) 
 - [EVPN Centralized Routing](https://air.nvidia.com/marketplace?demo_id=4a7f8342-9efa-446b-a58d-11c2c8bc94dc)
 - [EVPN Symmetric Routing](https://air.nvidia.com/marketplace?demo_id=d2b854ae-12ed-4a9a-82b5-49863d3fb37c)
@@ -282,7 +281,7 @@ In addition to NVUE commands, you can configure ACLs by setting <em>ebtable</em>
 
 ## Monitoring Commands
 
-The NVUE monitoring commands show various parts of the network configuration. The monitoring commands are divided into categories (objects) which include subcommands.</br>The general commands syntax is `nv show <category> <subcommand> <subcommand> <...>`. You can use TAB completion to navigate through the commands.
+The NVUE monitoring commands show how your network is configured. The monitoring commands are divided into categories (objects), which include subcommands. The general commands syntax is `nv show <category> <subcommand> <subcommand> <...>`. You can use TAB completion to navigate through the commands.
 
 | <div style="width:200px">Command Syntax | Description |
 | -------------- | ----------------------- |
@@ -300,7 +299,7 @@ The NVUE monitoring commands show various parts of the network configuration. Th
 | `nv show system` |Shows global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs. You can also see system login messages and switch reboot history.|
 | `nv show vrf` |Shows VRF configuration.|
 
-NVUE provides additional options to the `nv show` commands. These options are available using command flags.
+NVUE provides additional options for the `nv show` commands. These options are available using command flags.
 
 | <div style="width:200px">Command Syntax | Description |
 | -------------- | ----------------------- |
@@ -315,7 +314,7 @@ NVUE provides additional options to the `nv show` commands. These options are av
 | `--startup` | Shows the switch startup configuration (with the `nv config save` command).|
 | `--view` | Shows these different views: `brief`, `lldp`, `mac`, `pluggables`, and `small`. This option is available for the `nv show interface` command only. For example, the `nv show interface --view=small` command shows a list of the interfaces on the switch and the `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host, and port.|
 
-Here are some of the useful show commands:
+Here are some useful show commands:
 
 | <div style="width:250px">Command Syntax | Description |
 | -------------- | ----------------------- |

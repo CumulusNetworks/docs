@@ -1504,6 +1504,71 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
+## BGP Clear
+
+<!--
+You can clear the TCP session with a BGP neighbor and force it to restart to receive all prefixes from the neighbor again.
+
+{{< tabs "1511 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp clear
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# bgp clear
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
+```
+
+<!--The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
+
+```
+router bgp 65199
+  ...
+  neighbor swp51 clear
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## BGP Debug
+
+To enable BGP debugging to show information about BGP processing:
+
+{{< tabs "1549 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router bgp debug
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# configure terminal
+spine01(config)# router bgp 65101
+spine01(config-router)# bgp debug
+spine01(config-router)# end
+spine01# write memory
+spine01# exit
+```
+-->
 ## BGP Neighbor Shutdown
 
 You can shut down all active BGP sessions with a neighbor and remove all associated routing information without removing its associated configuration. When shut down, the neighbor goes into an administratively idle state.

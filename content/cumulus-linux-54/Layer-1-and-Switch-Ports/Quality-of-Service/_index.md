@@ -418,7 +418,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/cumulus/datapath/qos/qos_features.conf` file, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]` . For example, to enable the remarking of only 802.1p values:
+In the `/etc/cumulus/datapath/qos/qos_features.conf` file, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]`. For example, to enable the remarking of only 802.1p values:
 
 ```
 traffic.packet_priority_remark_set = [802.1p]
@@ -1120,7 +1120,7 @@ source.customports.port_set = swp1,swp2,swp3
 
 ### Remarking
 
-You can use profiles to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value. You define these profiles with `remark.port_group_list` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. The name is a label for configuration settings.
+You can use profiles to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value.
 
 To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark 802.1p or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
 
@@ -1141,6 +1141,8 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+You define these profiles with `remark.port_group_list` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. The name is a label for configuration settings.
 
 ```
 remark.port_group_list = [remark_port_group1,remark_port_group2]

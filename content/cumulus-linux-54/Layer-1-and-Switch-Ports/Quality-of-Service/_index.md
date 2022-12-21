@@ -301,10 +301,6 @@ To apply a custom profile to specific interfaces, see [Port Groups](#port-groups
 
 ## Mark and Remark Traffic
 
-{{%notice note%}}
-NVUE does not currently provide commands to mark or remark traffic.
-{{%/notice%}}
-
 You can mark or remark traffic in two ways:
 
  * Use [iptables](#iptables) to match packets and set 802.1p COS or DSCP values.
@@ -379,7 +375,50 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 <!-- vale off -->
 ### 802.1p or DSCP for Marking
 <!-- vale on -->
-To enable global remarking of 802.1p, DSCP or both 802.1p and DSCP values, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. For example, to enable the remarking of only 802.1p values:
+
+To enable global remarking of 802.1p, DSCP or both 802.1p and DSCP values:
+
+{{< tabs "TabID383 ">}}
+{{< tab "NVUE Commands">}}
+
+To remark switch priority 0 to egress 802.1p 4
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l2
+cumulus@switch:~$ nv set qos remark default-global switch-priority 0 pcp 4
+cumulus@switch:~$ nv config apply
+```
+
+To remark switch priority 0 to egress DSCP 22:
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l3
+cumulus@switch:~$ nv set qos remark default-global switch-priority 0 dscp 22
+cumulus@switch:~$ nv config apply
+```
+
+You can remap multiple switch priority values to the same external 802.1p or DSCP value. For example, to map switch priority 1 and 2 to 802.1p 3:
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l2
+cumulus@switch:~$ nv set qos remark default-global switch-priority 1 pcp 3
+cumulus@switch:~$ nv set qos remark default-global switch-priority 2 pcp 3
+cumulus@switch:~$ nv config apply
+```
+
+To map switch priority 1 and 2 to DSCP 40:
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l3
+cumulus@switch:~$ nv set qos remark default-global switch-priority 1 dscp 40
+cumulus@switch:~$ nv set qos remark default-global switch-priority 2 dscp 40
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/cumulus/datapath/qos/qos_features.conf` file, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]`. For example, to enable the remarking of only 802.1p values:
 
 ```
 traffic.packet_priority_remark_set = [802.1p]
@@ -414,6 +453,9 @@ To map switch priority 1 and 2 to DSCP 40:
 traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To apply a custom profile to specific interfaces, see [Port Groups](#remarking).
 
@@ -1078,11 +1120,29 @@ source.customports.port_set = swp1,swp2,swp3
 
 ### Remarking
 
-You can use profiles to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value. You define these profiles with `remark.port_group_list` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. The name is a label for configuration settings.
+You can use profiles to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value.
 
 To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark 802.1p or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
 
 In the following example configuration, only packets that *ingress* on swp1 and *egress* on swp2 change the marked value of the packet. Packets that ingress on other ports and egress on swp2 do **not** change the marked value of the packet. The commands map switch priority 0 and 1 to egress DSCP 37.
+
+{{< tabs "TabID1129 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos remark remark_port_group1 rewrite l3
+cumulus@switch:~$ nv set interface swp1 qos remark profile remark_port_group1
+cumulus@switch:~$ nv set qos remark remark_port_group2 rewrite l3
+cumulus@switch:~$ nv set qos remark remark_port_group2 switch-priority 0 dscp 37
+cumulus@switch:~$ nv set qos remark remark_port_group2 switch-priority 1 dscp 37
+cumulus@switch:~$ nv set interface swp2 qos remark profile remark_port_group2
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+You define these profiles with `remark.port_group_list` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. The name is a label for configuration settings.
 
 ```
 remark.port_group_list = [remark_port_group1,remark_port_group2]
@@ -1093,6 +1153,9 @@ remark.remark_port_group2.port_set = swp2
 remark.remark_port_group2.cos_0.priority_remark.dscp = [37]
 remark.remark_port_group2.cos_1.priority_remark.dscp = [37]
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Egress Scheduling
 

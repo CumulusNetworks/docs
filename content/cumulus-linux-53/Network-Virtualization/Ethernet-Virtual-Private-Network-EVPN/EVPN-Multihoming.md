@@ -108,6 +108,11 @@ When you enable EVPN-MH, all SVI MAC addresses advertise as type-2 routes. You d
 {{%notice note%}}
 On a switch with the Spectrum 1 ASIC, you must enable EVPN-MH with the Linux commands. On a switch with Spectrum-2 and later, you can use the NVUE command.
 {{%/notice%}}
+
+{{%notice note%}}
+Inside a fabric, when EVPN-MH is enabled on some VTEPs, it is recommended to enable evpn-mh inside the entire fabric in order to avoid duplicate packets.
+{{%/notice%}}
+      
 <!-- vale on -->
 {{< tabs "TabID105 ">}}
 {{<tab "NVUE Commands">}}

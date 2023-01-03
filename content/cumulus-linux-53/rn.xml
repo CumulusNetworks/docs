@@ -186,12 +186,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3047747</td>
-<td>When you change the split port speed from explicitly defined to auto-negotiation, the port speed remains stuck on the previously configured value.</td>
-<td>5.1.0-5.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>3045369</td>
 <td>NVUE does not support orphaned data or pre-provisioned data. For example, if you remove a port breakout but the breakout interfaces (such as swp1s0-3) have configured data. To work around this issue, do not configure breakout interfaces until you configure and apply the breakout with the {{nv set interface &lt;interface&gt; link breakout &lt;breakout&gt;}} and {{nv config apply}} commands.</td>
 <td>5.2.0-5.3.1</td>
@@ -558,12 +552,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>3053094</td>
 <td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
-<td>5.1.0-5.3.1</td>
-<td></td>
-</tr>
-<tr>
-<td>3047747</td>
-<td>When you change the split port speed from explicitly defined to auto-negotiation, the port speed remains stuck on the previously configured value.</td>
 <td>5.1.0-5.3.1</td>
 <td></td>
 </tr>

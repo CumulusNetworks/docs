@@ -29,7 +29,7 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
   - User management commands
   - TACACS Plus commands
   - {{<link url="Supported-Route-Table-Entries/#change-forwarding-resource-profiles" text="ASIC Resource Slicing">}} (KVD) commands
-  - LLDP commands to send either CDP frames only or LLDP frames only
+  - {{<link url="Link-Layer-Discovery-Protocol/#set-lldp-mode" text="LLDP commands">}} to send either CDP frames only or LLDP frames only
   - EVPN show commands show operational data
   - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#ingress-cos-or-dscp-for-marking" text="traffic remarking">}}, and advanced buffer configuration
   - BGP commands to clear a BGP session, enable debugging, and to show BGP operational information

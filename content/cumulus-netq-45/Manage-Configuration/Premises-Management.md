@@ -75,7 +75,7 @@ To create and add secondary premises:
 
 {{<figure src="/images/netq/new-premises-config-key.png" width="650">}}
 
-To view the premises you just added, return to the home workbench and select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown at the top-right corner of the screen.
+To view the premises you just added, return to the home workbench and select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown at the top-right corner of the screen.
 
 ## Rename a Premises
 

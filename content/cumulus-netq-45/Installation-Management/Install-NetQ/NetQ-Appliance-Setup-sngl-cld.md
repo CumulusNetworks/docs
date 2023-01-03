@@ -19,7 +19,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 
 {{<netq-install/appliance-setup deployment="cloud">}}
 
-## Configure the Password, Hostname and IP Address
+## Configure the Password, Hostname, and IP Address
 
 1. Log in to the appliance using the default login credentials:
 
@@ -41,7 +41,7 @@ If you're looking for hardware specifications (including LED layouts and FRUs li
 
     Kubernetes requires that hostnames comprise a sequence of labels concatenated with dots. For example, *en.wikipedia.org* is a hostname. Each label must be from 1 to 63 characters long. The entire hostname, including the delimiting dots, has a maximum of 253 ASCII characters.
 
-    The Internet standards (RFCs) for protocols specify that labels can  contain only the ASCII letters a through z (in lower case), the digits 0 through 9, and the hyphen-minus character ('-').
+    The Internet standards (RFCs) for protocols specify that labels can contain only the ASCII letters a through z (in lower case), the digits 0 through 9, and the hyphen-minus character ('-').
 
     Use the following command:
 

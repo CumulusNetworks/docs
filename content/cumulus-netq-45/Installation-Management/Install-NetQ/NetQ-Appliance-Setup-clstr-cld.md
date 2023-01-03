@@ -20,7 +20,7 @@ For more detail about hardware specifications (including LED layouts and FRUs li
 
 {{<netq-install/appliance-setup deployment="cloud">}}
 
-#### Configure the Password, Hostname and IP Address
+#### Configure the Password, Hostname, and IP Address
 
 Change the password and specify the hostname and IP address for each appliance before installing the NetQ software.
 

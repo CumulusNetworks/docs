@@ -20,7 +20,7 @@ In this implementation, there is a NetQ appliance or VM running the NetQ Platfor
 
 To configure a single UI to monitor multiple premises:
 
-1. From the UI of the primary premises (*OPID0*), select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown at the top-right corner of the screen. 
+1. From the UI of the primary premises (*OPID0*), select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown at the top-right corner of the screen. 
 
 2. Select **Manage premises**, then select the **External premises** tab.
 
@@ -38,9 +38,9 @@ To configure a single UI to monitor multiple premises:
 
     {{<figure src="/images/netq/additional-external-premises.png" width="350">}}
 
-You can also reduce the number of premises that can be displayed in the UI by hovering over a deployment and selecting <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> Delete.
+You can also reduce the number of premises that can be displayed in the UI by hovering over a deployment and selecting {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} Delete.
 
-To view the premises you just added, return to the home workbench and select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown at the top-right corner of the screen.
+To view the premises you just added, return to the home workbench and select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown at the top-right corner of the screen.
 
 
 ### Full NetQ Deployment at Primary Premises and Smaller Deployments at Secondary Premises

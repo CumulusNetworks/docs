@@ -20,8 +20,8 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Features and Enhancements
 
-- Support for 1G on all Spectrum-2 and Spectrum-3 switches
-- Port configuration changes
+- Support for 1G speed on all NVIDIA Spectrum-2 and Spectrum-3 switches
+- Port configuration changes; you now configure port breakouts in the `/etc/cumulus/ports.conf` file and port speed in the `/etc/network/interfaces` file
 - {{<link url="Quality-of-Service#ptp-shaping" text="PTP Shaping">}} for Spectrum 1
 - {{<link url="SyncE#synce" text="SyncE">}} available for early access
 - PTP PPS In or Out
@@ -37,8 +37,8 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - Support interactive commands (less, tail -f)
   - Auto save configuration
-  - Store version information in configuration output
-  - `nv config apply` command messages
+  - NVUE shows version information in configuration output
+  - You can add messages to the `nv config apply` command
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

@@ -21,7 +21,7 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
 ### New Features and Enhancements
 
 - Support for 1G speed on all NVIDIA Spectrum-2 and Spectrum-3 switches
-- Port configuration changes; you now {{<link url="Quality-of-Service#ptp-shaping" text="configure port breakouts">}} in the `/etc/cumulus/ports.conf` file and port speed in the `/etc/network/interfaces` file
+- Port configuration changes; you now {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="configure port breakouts">}} in the `/etc/cumulus/ports.conf` file and port speed in the `/etc/network/interfaces` file
 - {{<link url="Quality-of-Service#ptp-shaping" text="PTP Shaping">}} for Spectrum 1
 - {{<link url="SyncE#synce" text="SyncE">}} available for early access
 - PTP PPS In or Out

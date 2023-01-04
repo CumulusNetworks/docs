@@ -1576,7 +1576,7 @@ To enable BGP debugging to show information about BGP processing:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router bgp debug
+cumulus@leaf01:~$ nv action debug bgp
 cumulus@leaf01:~$ nv config apply
 ```
 

@@ -56,11 +56,11 @@ cumulus@switch:~$ netq install cluster activate-job config-key ju8Kl4IhZ3cucHJvZ
 
 ### Related Commands
 
-- netq install cluster infra-job
-- netq install cluster init-job
-- netq install cluster install-job
-- netq install cluster join-workers
-- netq install cluster full
+- ```netq install cluster infra-job```
+- ```netq install cluster init-job```
+- ```netq install cluster install-job```
+- ```netq install cluster join-workers```
+- ```netq install cluster full```
 
 - - -
 
@@ -68,7 +68,7 @@ cumulus@switch:~$ netq install cluster activate-job config-key ju8Kl4IhZ3cucHJvZ
 
 Installs the NetQ Platform software on the servers (NetQ On-premises Appliances or VMs) in an on-premises, server cluster deployment, all with a single command. You must have the hostname or IP address of the master node and two worker nodes, and the NetQ software bundle to run the command.
 
-Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
 ### Syntax
 
@@ -77,6 +77,7 @@ netq install cluster full
     (interface <text-opta-ifname>|ip-addr <text-ip-addr>)
     bundle <text-bundle-url>
     [config-key <text-opta-key>]
+    [pod-ip-range <text-pod-ip-range>]
     workers <text-worker-01> <text-worker-02>
 ```
 
@@ -95,10 +96,10 @@ netq install cluster full
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | conifg-key | \<text-opta-key\> | Use this unique key to install the server cluster |
+| pod-ip-range | \<text-pod-ip-range\> | |
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/installables/NetQ-4.0.0.tgz workers 10.20.10.25 10.20.10.45
 ```
@@ -117,7 +118,7 @@ cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/insta
 ## netq install cluster init-job
 <!-- vale on -->
 
-Verifies master node (NetQ On-premises Appliance or VM) resources, extracts NetQ packages, configures Kubernetes, node services and Docker registry, and install the Cassandra database in preparation for NetQ installation and activation in a server cluster deployment.
+Verifies master node (NetQ On-premises Appliance or VM) resources, extracts NetQ packages, configures Kubernetes, node services and Docker registry, and installs the Cassandra database in preparation for NetQ installation and activation in a server-cluster deployment.
 
 Alternately, use {{<link title="#netq-install-cluster-full" text="netq install cluster full">}} to perform this and all other steps of a NetQ installation with a single command.
 
@@ -139,18 +140,17 @@ None
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq install cluster init-job
 ```
 
 ### Related Commands
 
-- netq install cluster activate-job
-- netq install cluster infra-job
-- netq install cluster install-job
-- netq install cluster join-workers
-- netq install cluster full
+- ```netq install cluster activate-job```
+- ```netq install cluster infra-job```
+- ```netq install cluster install-job```
+- ```netq install cluster join-workers```
+- ```netq install cluster full```
 
 - - -
 
@@ -185,18 +185,17 @@ netq install cluster join-workers
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq install cluster join-workers 192.168.10.23 192.168.10.25
 ```
 
 ### Related Commands
 
-- netq install cluster activate-job
-- netq install cluster infra-job
-- netq install cluster init-job
-- netq install cluster install-job
-- netq install cluster full
+- ```netq install cluster activate-job```
+- ```netq install cluster infra-job```
+- ```netq install cluster init-job```
+- ```netq install cluster install-job```
+- ```netq install cluster full```
 
 - - -
 
@@ -226,18 +225,17 @@ None
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq install cluster infra-job
 ```
 
 ### Related Commands
 
-- netq install cluster activate-job
-- netq install cluster init-job
-- netq install cluster install-job
-- netq install cluster join-workers
-- netq install cluster full
+- ```netq install cluster activate-job```
+- ```netq install cluster init-job```
+- ```netq install cluster install-job```
+- ```netq install cluster join-workers```
+- ```netq install cluster full```
 
 - - -
 
@@ -247,7 +245,7 @@ cumulus@<hostname>:~$ netq install cluster infra-job
 
 After you prepare and configure all the infrastructure, this command installs the NetQ software using the NetQ installation file that you previously downloaded and stored.
 
-Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
 Alternately, use {{<link title="#netq-install-cluster-full" text="netq install cluster full">}} (on-premises) or {{<link title="#netq-install-opta-cluster" text="netq install opta cluster">}} (remote/cloud) to perform this and all other steps of a NetQ installation with a single command.
 
@@ -271,18 +269,17 @@ None
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq install cluster install-job bundle /mnt/installables/NetQ-4.0.0.tgz
 ```
 
 ### Related Commands
 
-- netq install cluster activate-job
-- netq install cluster infra-job
-- netq install cluster init-job
-- netq install cluster join-workers
-- netq install cluster full
+- ```netq install cluster activate-job```
+- ```netq install cluster infra-job```
+- ```netq install cluster init-job```
+- ```netq install cluster join-workers```
+- ```netq install cluster full```
 
 - - -
 
@@ -312,15 +309,14 @@ None
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@switch:~$ netq install opta activate-job config-key ju8Kl4IhZ3cucHJvZDEubmV0cPk3vW11bHV9f3lk0d29ya3MuY29cB3ag
 ```
 
 ### Related Commands
 
-- netq install opta cluster
-- netq install opta standalone
+- ```netq install opta cluster```
+- ```netq install opta standalone```
 
 - - -
 
@@ -328,7 +324,7 @@ cumulus@switch:~$ netq install opta activate-job config-key ju8Kl4IhZ3cucHJvZDEu
 
 Installs the NetQ Collector software on a master node and two worker nodes. For cloud deployments, it installs the software on the NetQ Cloud Appliance or VM. For a multi-site on-premises deployment, it installs the software on one or two secondary servers at the external premises. You must have the hostname, IP address, or interface of the servers, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
 
-Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
 Obtain the config-key as follows:
 
@@ -342,8 +338,9 @@ Obtain the config-key as follows:
 ```
 netq install opta cluster full
     (interface <text-opta-ifname>|ip-addr <text-ip-addr>)
-    bundle<text-bundle-url>
+    bundle <text-bundle-url>
     config-key <text-opta-key>
+    [pod-ip-range <text-pod-ip-range>]
     workers <text-worker-01> <text-worker-02>
     [proxy-host <text-proxy-host> proxy-port <text-proxy-port>]
 ```
@@ -365,6 +362,7 @@ netq install opta cluster full
 | ---- | ---- | ---- |
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a proxy host |
+| pod-ip-range | \<text-pod-ip-range\> | |
 
 ### Sample Usage
 
@@ -383,7 +381,7 @@ cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/
 
 Installs the NetQ Collector software on a single cloud server (NetQ Cloud Appliance or VM) with a single command. You must have the hostname, IP address, or interface of the server, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
 
-Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
 <!-- vale off -->
 Obtain the config-key from the email sent to your NetQ administrator titled *A new site has been added to your NVIDIA NetQ account*.
@@ -396,6 +394,7 @@ netq install opta standalone full
     (interface <text-opta-ifname>|ip-addr <text-ip-addr>)
     bundle <text-bundle-url>
     config-key <text-opta-key>
+    [pod-ip-range <text-pod-ip-range>]
     [proxy-host <text-proxy-host> proxy-port<text-proxy-port>]
 ```
 
@@ -415,10 +414,10 @@ netq install opta standalone full
 | ---- | ---- | ---- |
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a proxy host |
+| pod-ip-range | \<text-pod-ip-range\> | |
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /mnt/installables/NetQ-4.0.0.tgz config-key CI39fo5CZ3cucHJvZDEubmV0cS5jdW11bHVzbmVp6z8ma3MuY29tGLsD
 ```
@@ -452,14 +451,13 @@ None
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq install patch /mnt/installables/NetQ-4.0.0-patch.tgz
 ```
 
 ### Related Commands
 
-- netq upgrade
+- ```netq upgrade```
 
 - - -
 
@@ -509,7 +507,7 @@ cumulus@switch:~$ netq install standalone activate-job config-key ju8Kl4IhZ3cucH
 
 Installs the NetQ Platform software on the NetQ On-premises Appliance or VM in an on-premises, single server deployment, all with a single command. You must have the hostname or IP address of the server, and the NetQ software bundle to run the command. A configuration key is optional.
 
-Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
 ### Syntax
 
@@ -637,7 +635,7 @@ cumulus@<hostname>:~$ netq install standalone init-job
 
 After you prepare and configure all the infrastructure, this command installs the NetQ Platform software on the NetQ On-premises Appliance or VM using the NetQ installation file that you previously downloaded and stored.
 
-Obtain the software release bundle from the {{<exlink url="http://support.mellanox.com/s/" text="My Mellanox support">}} page.
+Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
 Alternately, use {{<link title="#netq-install-standalone-full" text="netq install standalone full">}} to perform this and all other steps of a NetQ installation with a single command.
 

@@ -5,7 +5,7 @@ weight: 226
 toc: 5
 bookhidden: true
 ---
-Follow these steps to setup and configure your VM on a single server in a cloud deployment:
+Follow these steps to set up and configure your VM on a single server in a cloud deployment:
 
 1. Verify that your system meets the VM requirements.
 

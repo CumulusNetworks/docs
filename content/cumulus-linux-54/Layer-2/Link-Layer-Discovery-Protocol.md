@@ -118,32 +118,6 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 - The `-M 4` option sends a field in discovery packets to indicate that the switch is a network device.
 {{%/notice%}}
 
-<!--## Change CDP Settings
-
-Cumulus Linux provides support for <span style="background-color:#F5F5DC">[CDP](## "Cisco Discovery Protocol ")</span> so that the switch can advertise information about itself with Cisco routers that do not support LLDP. By default, the Cumulus Linux switch sends CDP packets only if the peer sends CDP packets. You can change this setting by replacing `-c` in the `/etc/default/lldpd` file with one of the following options:
-
-| Option | Description |
-|--------|-------------|
-| -cc    | The Cumulus Linux switch sends CDPv1 packets even when there is no detected CDP peer. |
-| -ccc   | The Cumulus Linux switch sends CDPv2 packets even when there is no detected CDP peer. |
-| -cccc  | The Cumulus Linux switch disables CDPv1 and enables CDPv2. |
-| -ccccc | The Cumulus Linux switch disables CDPv1 and forces CDPv2. |
-
-The following example changes the CDP setting to `-ccc` so that the switch sends CDPv2 packets even when there is no detected CDP peer:
-
-```
-cumulus@switch:~$ sudo nano /etc/default/lldpd
-...
-# Enable CDP by default
-DAEMON_ARGS="-ccc -x -M 4"
-```
-
-You must restart the `lldpd` service for the changes to take effect.
-
-```
-cumulus@switch:~$ sudo systemctl restart lldpd
-```
--->
 ## Set LLDP Mode
 
 By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, then it sends CDP frames. You can change this behaviour and configure the `lldpd` service to send only CDP frames or only LLDP frames.

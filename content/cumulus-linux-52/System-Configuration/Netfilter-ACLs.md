@@ -230,6 +230,11 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 -A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
 ```
 
+{{%notice note%}}
+- Cumulus Linux reserves `mark` values between 0 and 100; for example, if you use `--mark-set 10`, you see an error. Use mark values between 101 and 4196.
+- You cannot mark multiple VLANs with the same value.
+{{%/notice%}}
+
 ## Install and Manage ACL Rules with NVUE
 
 Instead of crafting a rule by hand, then installing it with `cl-acltool`, you can use NVUE commands. Cumulus Linux converts the commands to the `/etc/cumulus/acl/policy.d/50_nvue.rules` file. The rules you create with NVUE are independent of the default files `/etc/cumulus/acl/policy.d/00control_plane.rules` and `99control_plane_catch_all.rules`.

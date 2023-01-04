@@ -16,8 +16,7 @@ Cumulus Linux 4.2.1 supports a new platform, provides bug fixes, and contains ce
 
 ### New Platforms
 
-- Mellanox SN4700 (Spectrum-3)
-- Mellanox SN4700 (Spectrum A0)
+- Mellanox SN4700 (Spectrum-3-A0)
 
 ### Enhancements
 
@@ -31,8 +30,7 @@ Cumulus Linux 4.2.0 supports new platforms, provides bug fixes, and contains sev
 
 ### New Platforms
 
-- Mellanox SN4600C (100G Spectrum-3)
-- Mellanox SN4600C (100G Spectrum A0)
+- Mellanox SN4600C (100G Spectrum-3-A0)
 - Mellanox SN3420 (25G Spectrum-2)
 
 ### New Features and Enhancements

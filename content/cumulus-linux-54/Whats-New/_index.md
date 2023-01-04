@@ -38,7 +38,7 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
   - Support interactive commands (less, tail -f)
   - Auto save configuration
   - NVUE shows version information in configuration output
-  - You can add messages to the `nv config apply` command
+  - You can add configuration descriptions with the `nv config apply` command
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

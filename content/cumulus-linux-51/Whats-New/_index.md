@@ -17,8 +17,9 @@ Cumulus Linux 5.1.0 supports new platforms, provides bug fixes, and contains sev
 ### Platforms
 
 - NVIDIA SN4410 (100G and 400G Spectrum-3) now generally available
-- NVIDIA SN4600 (200G Spectrum-3) now generally available
-- NVIDIA SN4600 (200G Spectrum A1) now generally available
+- NVIDIA SN4700 (Spectrum-3-A1) now generally available
+- NVIDIA SN4600C (100G Spectrum-3-A1) now generally available
+- NVIDIA SN4600 (200G Spectrum-3-A1) now generally available
 
 ### New Features and Enhancements
 

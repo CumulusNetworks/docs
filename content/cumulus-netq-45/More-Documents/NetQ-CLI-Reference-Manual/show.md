@@ -2851,7 +2851,7 @@ Version                              Uptime                    Reinitialize Time
 ## netq show ospf
 <!-- vale on -->
 
-Displays the health of all OSPF sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+Displays the health of all OSPF sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. The output displays:
 
 - The host interface
 - The routing domain (area)
@@ -2882,7 +2882,7 @@ None
 | NA | \<remote-interface\> | Only display results for the host interface with this name |
 | area | \<area-id\> | Only display results for devices in this routing domain |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
@@ -2913,9 +2913,9 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 ### Related Commands
 <!-- vale off -->
-- netq show events
-- netq check ospf
-- netq show unit-tests ospf
+- ```netq show events```
+- ```netq check ospf```
+- ```netq show unit-tests ospf```
 <!-- vale on -->
 - - -
 

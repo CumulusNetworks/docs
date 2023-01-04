@@ -33,13 +33,12 @@ Validates the communication status of all nodes (leafs, spines, and hosts) runni
 ### Syntax
 
 ```
-netq check agents
-    [label <text-label-name> | hostnames <text-list-hostnames>]
+netq check agents streaming
+    [hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <agents-number-range-list> | exclude <agents-number-range-list>]
     [around <text-time>]
-    [streaming]
-    [json]
+    [json | summary]
 ```
 
 ### Required Arguments
@@ -50,14 +49,13 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| label | \<text-label-name\> | Reserved |
-| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames with to include in validation |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
 
@@ -134,13 +132,13 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 ### Syntax
 
 ```
-netq check bgp
+netq check bgp 
     [label <text-label-name> | hostnames <text-list-hostnames>]
     [vrf <vrf>]
     [check_filter_id <text-check-filter-id>]
     [include <bgp-number-range-list> | exclude <bgp-number-range-list>]
     [around <text-time>]
-    [streaming]
+    [streaming | legacy]
     [json | summary]
 ```
 
@@ -160,8 +158,9 @@ None
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
+| legacy | NA | Perform a non-streaming query check |
+| json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
 
@@ -188,10 +187,10 @@ Router ID Test               : passed
 
 ### Related Commands
 <!-- vale off -->
-- netq show bgp
-- netq show unit-tests bgp
-- netq add validation
-- netq add validation name
+- ```netq show bgp```
+- ```netq show unit-tests bgp```
+- ```netq add validation```
+- ```netq add validation name```
 <!-- vale on -->
 - - -
 
@@ -229,8 +228,8 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
+| json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
 
@@ -297,7 +296,7 @@ Cumulus Linux Image Version Test   : passed
 
 ### Related Commands
 
-- netq show unit-tests cl-version
+- ```netq show unit-tests cl-version```
 
 - - -
 
@@ -347,7 +346,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
 
@@ -484,7 +483,7 @@ the same |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
 
@@ -692,7 +691,7 @@ None
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 ### Sample Usage
 
 Basic validation: All devices, all tests, currently
@@ -803,7 +802,7 @@ netq check mtu
     [check_filter_id <text-check-filter-id>]
     [include <mtu-number-range-list> | exclude <mtu-number-range-list>]
     [around <text-time>]
-    [streaming]
+    [streaming | legacy]
     [json | summary]
 ```
 
@@ -823,7 +822,8 @@ None
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| legacy | NA | Perform a non-streaming query check |
+| json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
@@ -903,9 +903,9 @@ oob-mgmt-server   vagrant                   1500   -                 -          
 
 ### Related Commands
 
-- netq show unit-tests mtu
-- netq add validation
-- netq add validation name
+- ```netq show unit-tests mtu```
+- ```netq add validation```
+- ```netq add validation name```
 
 - - -
 
@@ -1029,7 +1029,7 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
@@ -1075,10 +1075,10 @@ tor-2             uplink-2                  0.0.0.20                  27.0.0.20 
 
 ### Related Commands
 <!-- vale off -->
-- netq show ospf
-- netq show unit-tests ospf
-- netq add validation
-- netq add validation name
+- ```netq show ospf```
+- ```netq show unit-tests ospf```
+- ```netq add validation```
+- ```netq add validation name```
 <!-- vale on -->
 - - -
 

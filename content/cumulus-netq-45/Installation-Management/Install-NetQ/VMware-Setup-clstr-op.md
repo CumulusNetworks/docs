@@ -7,7 +7,7 @@ bookhidden: true
 ---
 First configure the VM on the master node, and then configure the VM on each worker node.
 
-Follow these steps to setup and configure your VM cluster for an on-premises deployment:
+Follow these steps to set up and configure your VM cluster for an on-premises deployment:
 
 1. Verify that your master node meets the VM requirements.
 

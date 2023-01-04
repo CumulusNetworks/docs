@@ -1253,13 +1253,13 @@ Maximum 400G ports: 32
 - Spectrum-2 and Spectrum-3 switches have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum-2 and Spectrum-3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
 
     ```
-    1=4x25G
+    1=4x
     2=disabled
     ```
 
    When you split a port into two interfaces, such as 2x50G, you do **not** have to disable the adjacent port.
 
-For valid port configuration and breakout guidance, see the `/etc/cumulus/ports.conf` file.
+<!--For valid port configuration and breakout guidance, see the `/etc/cumulus/ports.conf` file.-->
 {{%/notice%}}
 
 ### Configure a Breakout Port
@@ -1271,12 +1271,14 @@ You can breakout (split) a port using the following options:
 - `4x` splits the port into four interfaces.
 - `8x` splits the port into eight interfaces.
 
-If auto-negotiation is on, each split port transmits at the same speed. For example, if you split a port into four interfaces, the speed for each interface is 25G. You can overide this configuration and configure specific speeds for the split ports.
+Each split port transmits at the same speed. For example, if you split a 100G port into four interfaces, the speed for each interface is 25G. You can overide this configuration and configure specific speeds for the split ports if necessary.
+
+When you split a port, you must **also** disable the next port????
 
 {{< tabs "TabID607 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example command breaks out the 100G port on swp1 into four interfaces at equal speeds (25G):
+The following example command breaks out a 100G port on swp1 into four interfaces at equal speeds (25G):
 
 ```
 cumulus@switch:~$ nv set interface swp1 link breakout 4x
@@ -1284,23 +1286,18 @@ cumulus@switch:~$ nv set interface swp1s0-3 link state up
 cumulus@switch:~$ nv config apply
 ```
 
-The following example command splits the port into four interfaces and each interface runs at 10G. TURN OFF AUTO-NEG??
-
-When you split a port, you must **also** disable the next port????
+The following example command splits the port into four interfaces and configures the speed for each breakout port to 10G.
 
 ```
-cumulus@switch:~$ nv set interface swp1 link breakout 4x1
+cumulus@switch:~$ nv set interface swp1 link breakout 4x
 cumulus@switch:~$ nv set interface swp1s0-3 link state up
 cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
-
-cumulus@switch:~$ nv set interface swp2 link breakout disabled
-cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp1 into four 25G ports. You also need to disable the next port. The example also disables swp2.
+1. To split a port into multiple interfaces, edit the `/etc/cumulus/ports.conf` file. The following example command breaks out a 100G port on swp1 into four interfaces at equal speeds (25G):
 
    ```
    cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
@@ -1312,7 +1309,7 @@ cumulus@switch:~$ nv config apply
    ...
    ```
 
-2. Edit the `/etc/network/interfaces` file to configure the port speeds. The following example shows the swp1 breakout ports (swp1s0, swp1s1, swp1s2, and swp1s3) at 10G.
+2. To configure specific speeds for the split ports, edit the `/etc/network/interfaces` file. The following example configures the speed for each swp1 breakout port (swp1s0, swp1s1, swp1s2, and swp1s3) to 10G.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces

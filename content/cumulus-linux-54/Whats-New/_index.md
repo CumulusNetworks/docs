@@ -21,7 +21,7 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
 ### New Features and Enhancements
 
 - Support for 1G speed on all NVIDIA Spectrum-2 and Spectrum-3 switches
-- Port configuration changes; you now configure port breakouts in the `/etc/cumulus/ports.conf` file and port speed in the `/etc/network/interfaces` file
+- Port configuration changes; you now {{<link url="Quality-of-Service#ptp-shaping" text="configure port breakouts">}} in the `/etc/cumulus/ports.conf` file and port speed in the `/etc/network/interfaces` file
 - {{<link url="Quality-of-Service#ptp-shaping" text="PTP Shaping">}} for Spectrum 1
 - {{<link url="SyncE#synce" text="SyncE">}} available for early access
 - PTP PPS In or Out
@@ -32,13 +32,13 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Link-Layer-Discovery-Protocol/#set-lldp-mode" text="LLDP commands">}} to send either CDP frames only or LLDP frames only
   - EVPN show commands show operational data
   - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#ingress-cos-or-dscp-for-marking" text="traffic remarking">}}, and advanced buffer configuration
-  - BGP commands to clear a BGP session, enable debugging, and to show BGP operational information
+  - BGP commands to {{<link url="Optional-BGP-Configuration#bgp-clear" text="clear a BGP session">}}, {{<link url="Optional-BGP-Configuration#bgp-debug" text="enable debugging">}}, and to show BGP operational information
   - Obfuscated passwords to protect passwords from casual viewing
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - Support interactive commands (less, tail -f)
   - Auto save configuration
-  - NVUE shows version information in configuration output
-  - You can add configuration descriptions with the `nv config apply` command
+  - Show version information in configuration output
+  - Commit messages with the `nv config apply` command
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

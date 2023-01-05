@@ -297,10 +297,10 @@ The following example matches on a VLAN and DSCP class, and sets the internal cl
 
 ```
 [ebtables]
--A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 0x66
+-A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 102
 
 [iptables]
--A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
+-A FORWARD -i swp31 -m mark --mark 102 -m dscp --dscp-class CS1 -j SETCLASS --class 2
 ```
 
 {{%notice note%}}

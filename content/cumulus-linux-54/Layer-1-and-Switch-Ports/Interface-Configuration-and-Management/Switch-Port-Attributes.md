@@ -1253,68 +1253,87 @@ Maximum 400G ports: 32
 - Spectrum-2 and Spectrum-3 switches have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum-2 and Spectrum-3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
 
     ```
-    1=4x25G
+    1=4x
     2=disabled
     ```
 
    When you split a port into two interfaces, such as 2x50G, you do **not** have to disable the adjacent port.
 
-For valid port configuration and breakout guidance, see the `/etc/cumulus/ports.conf` file.
+<!--For valid port configuration and breakout guidance, see the `/etc/cumulus/ports.conf` file.-->
 {{%/notice%}}
 
 ### Configure a Breakout Port
 
-To configure a breakout port:
+You can breakout (split) a port using the following options:
+
+- `1x` does not split the port.
+- `2x` splits the port into two interfaces.
+- `4x` splits the port into four interfaces.
+- `8x` splits the port into eight interfaces.
+
+Each split port transmits at the same speed. For example, if you split a 100G port into four interfaces, the speed for each interface is 25G. You can overide this configuration and configure specific speeds for the split ports if necessary.
+
+When you split a port, you must **also** disable the next port????
 
 {{< tabs "TabID607 ">}}
 {{< tab "NVUE Commands ">}}
 
-This example command breaks out the 100G port on swp1 into four 25G ports:
+The following example command breaks out a 100G port on swp1 into four interfaces at equal speeds (25G):
 
 ```
-cumulus@switch:~$ nv set interface swp1 link breakout 4x25G 
+cumulus@switch:~$ nv set interface swp1 link breakout 4x
+cumulus@switch:~$ nv set interface swp1s0-3 link state up
 cumulus@switch:~$ nv config apply
 ```
 
-To break out a port into four 10G ports, you must **also** disable the next port.
+The following example command splits the port into four interfaces and configures the speed for each breakout port to 10G.
 
 ```
-cumulus@switch:~$ nv set interface swp1 link breakout 4x10G
-cumulus@switch:~$ nv set interface swp2 link breakout disabled
-cumulus@switch:~$ nv config apply
+cumulus@switch:~$ nv set interface swp1 link breakout 4x
+cumulus@switch:~$ nv set interface swp1s0-3 link state up
+cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/cumulus/ports.conf` file to configure the port breakout. The following example breaks out the 100G port on swp1 into four 25G ports. (To break out swp1 into four 10G ports, use 1=4x10G.) You also need to disable the next port. The example also disables swp2.
+1. To split a port into multiple interfaces, edit the `/etc/cumulus/ports.conf` file. The following example command breaks out a 100G port on swp1 into four interfaces at equal speeds (25G):
 
    ```
    cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
    ...
-   1=4x25G
-   2=disabled
-   3=100G
-   4=100G
+   1=4x 
+   2=disabled 
+   3=1x 
+   4=1x 
    ...
    ```
 
-2. Configure the breakout ports in the `/etc/network/interfaces` file. The following example shows the swp1 breakout ports (swp1s0, swp1s1, swp1s2, and swp1s3).
+2. To configure specific speeds for the split ports, edit the `/etc/network/interfaces` file. The following example configures the speed for each swp1 breakout port (swp1s0, swp1s1, swp1s2, and swp1s3) to 10G.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
 ...
 auto swp1s0
 iface swp1s0
-
+    link-speed 10000 
+    link-duplex full 
+    link-autoneg off
 auto swp1s1
 iface swp1s1
-
+    link-speed 10000 
+    link-duplex full 
+    link-autoneg off
 auto swp1s2
 iface swp1s2
-
+    link-speed 10000 
+    link-duplex full 
+    link-autoneg off
 auto swp1s3
 iface swp1s3
+    link-speed 10000 
+    link-duplex full 
+    link-autoneg off
 ...
 ```
 
@@ -1359,11 +1378,10 @@ To remove a breakout port:
     ```
     cumulus@switch:~$ sudo nano /etc/cumulus/ports.conf
     ...
-
-    1=100G
-    2=100G
-    3=100G
-    4=100G
+    1=1x 
+    2=1x 
+    3=1x 
+    4=1x 
     ...
     ```
 

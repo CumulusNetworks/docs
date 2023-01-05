@@ -3713,7 +3713,7 @@ ion EVPN                                  2020
 
 ### Related Commands
 
-- ```netq add validation name```
+- ```netq add validation```
 - ```netq del validation```
 - ```netq show validation summary```
 
@@ -3805,7 +3805,7 @@ ion                              2-4ee7-917e-
 
 ### Related Commands
 
-- ```netq add validation name```
+- ```netq add validation```
 - ```netq del validation```
 - ```netq show validation settings```
 

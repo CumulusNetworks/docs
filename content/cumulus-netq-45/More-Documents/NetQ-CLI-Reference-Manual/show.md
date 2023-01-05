@@ -3086,6 +3086,75 @@ server08          /dev/vda1            486105088            80372736            
 
 - - -
 
+## netq show roce-counters
+
+Displays the RoCE counters.
+
+### Syntax
+
+```
+netq [<hostname>] show roce-counters 
+    [<text-port>] tx | rx [roce | general] 
+    [around <text-time>] 
+    [json]
+```
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the device with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON format |
+
+### Sample Usage
+
+Display general and CNP Rx counters:
+
+```
+cumulus@switch:~$ netq show roce-counters rx general
+
+Matching roce records:
+Hostname          Interface            PG packets           PG bytes             no buffer discard    buffer usage         buffer max usage     PG usage             PG max usage
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+switch            swp1s1               1627273              152582910            0                    0                    1                    0                    1
+switch            swp1s2               1627273              152582910            0                    0                    1                    0                    1
+switch            swp63s1              1618361              160178796            0                    0                    2                    0                    2
+switch            swp1s0               1627273              152582910            0                    0                    1                    0                    1
+switch            swp63s3              1618361              160178796            0                    0                    2                    0                    2
+switch            swp1s3               1627273              152582910            0                    0                    1                    0                    1
+switch            swp63s0              1094532              120228456            0                    0                    1                    0                    1
+switch            swp63s2              1618361              160178796            0                    0                    2                    0                    2
+```
+
+Display RoCE-specific Rx counters:
+
+```
+cumulus@switch:~$ netq show roce-counters rx roce
+
+Matching roce records:
+Hostname          Interface       PG packets   PG bytes     no buffer discard  PFC pause packets  PFC pause duration buffer usage buffer max usage   PG usage     PG max usage
+----------------- --------------- ------------ ------------ ------------------ ------------------ ------------------ ------------ ------------------ ------------ ---------------
+switch            swp1s1          0            0            0                  0                  0                  0            0                  0            0
+switch            swp1s2          0            0            0                  0                  0                  0            0                  0            0
+switch            swp63s1         0            0            0                  0                  0                  0            0                  0            0
+switch            swp1s0          0            0            0                  0                  0                  0            0                  0            0
+switch            swp63s3         0            0            0                  0                  0                  0            0                  0            0
+switch            swp1s3          0            0            0                  0                  0                  0            0                  0            0
+switch            swp63s0         0            0            0                  0                  0                  0            0                  0            0
+switch            swp63s2         0            0            0                  0                  0                  0            0                  0            0
+```
+
+### Related Commands
+
+- netq show roce-config
+- netq show roce-counters
+- netq check roce
+
+- - -
 ## netq show sensors
 
 Displays the status of all fan, power supply, and temperature sensors on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:

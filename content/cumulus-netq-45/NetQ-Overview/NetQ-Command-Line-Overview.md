@@ -90,7 +90,6 @@ For example, in the `netq check` command:
 <!-- vale on -->
 Examples of valid commands include:
 
-- `netq leaf02 check agents json`
 - `netq show bgp`
 - `netq config restart cli`
 - `netq trace 10.0.0.5 from 10.0.0.35`

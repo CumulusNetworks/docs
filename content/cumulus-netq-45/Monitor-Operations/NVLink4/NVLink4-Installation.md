@@ -1,7 +1,7 @@
 ---
 title: NVLink4 Installation Management
 author: NVIDIA
-weight: 920
+weight: 910
 toc: 3
 bookhidden: false
 ---

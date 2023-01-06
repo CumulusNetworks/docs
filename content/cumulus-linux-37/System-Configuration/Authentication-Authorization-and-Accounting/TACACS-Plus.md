@@ -201,7 +201,7 @@ additional plugin for `auditd`/`audisp`. The plugin maps the auid in the
 accounting record to a TACACS login, based on the `auid` and
 `sessionid`. The `audisp` module requires `libnss_tacplus` and uses the
 `libtacplus_map.so` library interfaces as part of the modified
-`lipam_tacplus` package.
+`libpam_tacplus` package.
 
 Communication with the TACACS+ servers is done with the
 `libsimple-tacact1` library, through `dlopen()`. A maximum of 240 bytes

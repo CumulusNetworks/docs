@@ -3086,9 +3086,68 @@ server08          /dev/vda1            486105088            80372736            
 
 - - -
 
+## netq show roce-config
+
+Displays RoCE configuration.
+
+### Syntax
+```
+netq [<hostname>] show roce-config
+    [<text-port>] 
+    [around <text-time>] 
+    [json]
+```
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the device with this name |
+| NA | \<text-port\> | |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON format |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq show roce-config 
+
+Matching roce records:
+Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  DSCP->SP   SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
+----------------- --------------- ---------- ------------ -------- -------- -------- ---------- -------- -------- -------- ---------- ---------- ---------- -------------------------
+switch            swp34           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp47           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp19           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp37           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp30           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp45           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp57           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp33           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp31           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp39           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp24           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp13           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp53           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp1s1          Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp6            Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp29           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp42           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+switch            swp35           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+...
+```
+
+### Related Commands
+
+- netq show roce-counters
+- netq check roce
+
+- - -
 ## netq show roce-counters
 
-Displays the RoCE counters.
+Displays RoCE counters.
 
 ### Syntax
 
@@ -3107,6 +3166,8 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
+| tx | \<text-port\> | |
+| rx | roce, general | |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -3151,8 +3212,49 @@ switch            swp63s2         0            0            0                  0
 ### Related Commands
 
 - netq show roce-config
-- netq show roce-counters
+- netq show roce-counters pool
 - netq check roce
+- netq show events
+
+- - -
+
+## netq show roce-counters pool
+
+Displays RoCE counter pools.
+
+### Syntax 
+
+```
+netq [<hostname>] show roce-counters pool 
+    [json]
+```
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the device with this name |
+| json | NA | Display the output in JSON format |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq show roce-counters pool 
+
+Matching roce records:
+Hostname          Lossy Default Ingress Size     Roce Reserved Ingress Size     Lossy Default Egress Size      Roce Reserved Egress Size
+----------------- ------------------------------ ------------------------------ ------------------------------ ------------------------------
+switch            104823                         104823                         104823                         104823
+```
+
+### Related Commands
+
+- ```netq show roce-config```
+- ```netq check roce```
+- ```netq show events```
 
 - - -
 ## netq show sensors
@@ -3363,15 +3465,14 @@ leaf02            rsyslog              11937 default         yes     yes    no  
 None
 
 - - -
-## netq show status
+## netq show status verbose
 
-Displays installation status.
+Displays the status of NetQ components after installation. Use this command to validate NetQ system readiness.
 
 ### Syntax
 
 ```
-netq show status
-    [verbose]
+netq show status verbose
     [json]
 ```
 ### Required Arguments
@@ -3382,12 +3483,60 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| verbose | NA | |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
+```
+cumulus@netq:~$ netq show status verbose
+NetQ Live State: Active
+Installation Status: FINISHED
+Version: 4.4.0
+Installer Version: 4.4.0
+Installation Type: Standalone
+Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
+Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==
+Is Cloud: False
+Kubernetes Cluster Nodes Status:
+IP Address     Hostname       Role    NodeStatus
+-------------  -------------  ------  ------------
+10.188.46.243  10.188.46.243  Role    Ready
+Task                                                                Status
+------------------------------------------------------------------  --------
+Prepared for download and extraction                                FINISHED
+Completed setting up python virtual environment                     FINISHED
+Checked connectivity from master node                               FINISHED
+Installed Kubernetes control plane services                         FINISHED
+Installed Calico CNI                                                FINISHED
+Installed K8 Certificates                                           FINISHED
+Updated etc host file with master node IP address                   FINISHED
+Stored master node hostname                                         FINISHED
+Generated and copied master node configuration                      FINISHED
+Updated cluster information                                         FINISHED
+Plugged in release bundle                                           FINISHED
+Downloaded, installed, and started node service                     FINISHED
+Downloaded, installed, and started port service                     FINISHED
+Patched Kubernetes infrastructure                                   FINISHED
+Removed unsupported conditions from master node                     FINISHED
+Installed NetQ Custom Resource Definitions                          FINISHED
+Installed Master Operator                                           FINISHED
+Updated Master Custom Resources                                     FINISHED
+Updated NetQ cluster manager custom resource                        FINISHED
+Installed Cassandra                                                 FINISHED
+Created new database                                                FINISHED
+Updated Master Custom Resources                                     FINISHED
+Updated Kafka Custom Resources                                      FINISHED
+Read Config Key ConfigMap                                           FINISHED
+Backed up ConfigKey                                                 FINISHED
+Read ConfigKey                                                      FINISHED
+Created Keys                                                        FINISHED
+Verified installer version                                          FINISHED
+...
+```
+
 ### Related Commands
+
+- `netq install`
 
 - - -
 ## netq show stp topology

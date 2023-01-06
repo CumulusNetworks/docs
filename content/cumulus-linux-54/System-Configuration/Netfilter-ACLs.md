@@ -222,14 +222,15 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 
 ```
 [ebtables]
--A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 0x66
+-A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 102
 
 [iptables]
--A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
+-A FORWARD -i swp31 -m mark --mark 102 -m dscp --dscp-class CS1 -j SETCLASS --class 2
 ```
 
 {{%notice note%}}
-Cumulus Linux reserves `mark` values between 0 and 100; for example, if you use `--mark-set 10`, you see an error. Use mark values between 101 and 4196.
+- Cumulus Linux reserves `mark` values between 0 and 100; for example, if you use `--mark-set 10`, you see an error. Use mark values between 101 and 4196.
+- You cannot mark multiple VLANs with the same value.
 {{%/notice%}}
 
 ## Install and Manage ACL Rules with NVUE

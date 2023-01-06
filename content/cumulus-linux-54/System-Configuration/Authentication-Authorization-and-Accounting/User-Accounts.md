@@ -21,15 +21,43 @@ The *root* account:
 
 You can add additional user accounts as needed. Like the *cumulus* account, these accounts must use `sudo` to {{<link url="Using-sudo-to-Delegate-Privileges" text="execute privileged commands">}}; be sure to include them in the *sudo* group. For example:
 
+{{< tabs "TabID24 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system aaa user newuser role system-admin
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 ```
 cumulus@switch:~$ sudo adduser NEWUSERNAME sudo
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 
 ## NVUE Command Access
 
-You can control local user account access to NVUE commands by changing the Linux group membership for a user. Use the following groups to set the permissions for local user accounts. To add users to these groups, use the `useradd(8)` or `usermod(8)` commands:
+You can control local user account access to NVUE commands by changing the group membership for a user.
+
+{{< tabs "TabID34 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system aaa user newuser role system-admin
+cumulus@switch:~$ nv set system aaa user newuser full-name blah blah blah
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Use the following groups to set the permissions for local user accounts. To add users to these groups, use the `useradd(8)` or `usermod(8)` commands:
 
 | Group | Permissions |
 |--------- |---------- |
@@ -37,15 +65,17 @@ You can control local user account access to NVUE commands by changing the Linux
 | `nvset`  | Allows `show` commands and staging configuration changes. |
 | `nvapply` | Allows `show` commands, staging and applying configuration changes. |
 
-## Enable Remote Access for the root User
+{{< /tab >}}
+{{< /tabs >}}
 
-The root user does not have a password and cannot log into a switch using SSH. This default account behavior is consistent with Debian. To connect to a switch using the root account, you can do one of the
-following:
+## Enable Remote Access for a root User
+
+The root user does not have a password and cannot log into a switch using SSH. This default account behavior is consistent with Debian. To connect to a switch using the root account, you can do one of the following:
 
 - Generate an SSH key
 - Set a password
 
-### Generate an SSH Key for the root Account
+### Generate an SSH Key for an Account
 
 1. In a terminal on your host system (not the switch), check to see if a key already exists:
 
@@ -60,19 +90,36 @@ following:
     ```
     root@host:~# ssh-keygen -t rsa
     ```
-<!-- vale off -->
-3. At the prompt, enter a file in which to save the key (/root/.ssh/id\_rsa)*.* Press Enter to use the home directory of the root user or provide a different destination.
-<!-- vale on -->
+
+3. At the prompt, enter a file in which to save the key (`/root/.ssh/id_rsa`). Press Enter to use the home directory of the root user or provide a different destination.
+
 4. At the prompt, enter a passphrase (empty for no passphrase). This is optional but it does provide an extra layer of security.
-5. The public key is now located in `/root/.ssh/id_rsa.pub`. The private key (identification) is now located in `/root/.ssh/id_rsa`.
-6. Copy the public key to the switch. SSH to the switch as the cumulus user, then run:
+
+   The public key is now located in `/root/.ssh/id_rsa.pub`. The private key (identification) is now located in `/root/.ssh/id_rsa`.
+
+5. Copy the public key to the switch. SSH to the switch as the cumulus user, then run:
 
     ```
     cumulus@switch:~$ sudo mkdir -p /root/.ssh
     cumulus@switch:~$ echo <SSH public key string> | sudo tee -a /root/.ssh/authorized_keys
     ```
 
-### Set the root User Password
+{{< /tab >}}
+{{< /tabs >}}
+
+### Set the User Password
+
+{{< tabs "TabID81 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system aaa user newuser password 
+cumulus@switch:~$ nv set system aaa user newuser
+
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
 1. Run the following command:
 
@@ -97,3 +144,6 @@ following:
     ```
     cumulus@switch:~$ sudo systemctl reload ssh.service
     ```
+
+{{< /tab >}}
+{{< /tabs >}}

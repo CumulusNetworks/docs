@@ -841,7 +841,7 @@ leaf01            swp50                     8749                 0              
 Display system events that have occurred in the last 24 hours. Optionally, view events for a time in the past. You can filter the output by event severity and event type. The output provides the following information for each device:
 
 - Message type
-- Event severity (info, error, warning, debug)
+- Event severity (info, error)
 - Descriptive event message
 - When the event occurred
 
@@ -849,8 +849,8 @@ Display system events that have occurred in the last 24 hours. Optionally, view 
 
 ```
 netq [<hostname>] show events
-    [level info | level error | level warning | level debug]
-    [type agents|bgp|btrfsinfo|clag|clsupport|configdiff|evpn|interfaces|interfaces-physical|lcm|lldp|macs|mtu|ntp|os|ospf|roceconfig|sensors|services|tca_roce|trace|vlan|vxlan]
+    [severity info | severity error]
+    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_wjh|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -864,14 +864,14 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| level | info, error, warning, or debug | Only display events with this severity level |
-| type | agents, bgp, btrfsinfo, clag, clsupport, configdiff, evpn, interfaces, interfaces-physical, lcm, lldp, macs, mtu, ntp, os, ospf, roceconfig, sensors, services, tca_roce, trace, vlan or vxlan | Display events for the type with this name |
+| severity | info, error| Only display events with this severity level |
+| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Show all events in the last 3 days
+Display all events from the past 3 days:
 
 ```
 cumulus@switch:~$ netq show events between now and 3d
@@ -917,31 +917,9 @@ leaf02            services                 info             Service netqd status
 ...
 ```
 
-Show error events for a particular service
-
-```
-cumulus@switch:~$ netq show events level error type clag between now and 3d
-Matching events records:
-Hostname          Message Type             Severity         Message                             Timestamp
------------------ ------------------------ ---------------- ----------------------------------- -------------------------
-leaf01            clag                     error            Peer state changed to down          Thu Dec 10 18:53:44 2020
-leaf02            clag                     error            Peer state changed to down          Thu Dec 10 18:39:00 2020
-border01          clag                     error            Peer state changed to down          Thu Dec 10 02:21:59 2020
-border01          clag                     error            Peer state changed to down          Thu Dec 10 02:19:55 2020
-border01          clag                     error            Peer state changed to down          Thu Dec 10 02:16:50 2020
-border01          clag                     error            Peer state changed to down          Thu Dec 10 02:14:47 2020
-border01          clag                     error            Peer state changed to down          Wed Dec  9 23:02:34 2020
-border01          clag                     error            Peer state changed to down          Wed Dec  9 22:56:25 2020
-border02          clag                     error            Peer state changed to down          Wed Dec  9 22:53:27 2020
-border01          clag                     error            Peer state changed to down          Wed Dec  9 22:53:20 2020
-border01          clag                     error            Peer state changed to down          Wed Dec  9 22:47:10 2020
-border02          clag                     error            Peer state changed to down          Wed Dec  9 22:25:32 2020
-```
-
 ### Related Commands
 
 None
-<!-- show notification?? -->
 
 - - -
 

@@ -205,7 +205,7 @@ Where to go next depends on what data you see, but a couple of options include:
 
     {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-most-unestab-pst-wk-230.png" width="500">}}
 
-    If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
+    If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Switches">}}.
 
 - Click **Show All Sessions** to investigate all OSPF sessions with events in the full screen card.
 

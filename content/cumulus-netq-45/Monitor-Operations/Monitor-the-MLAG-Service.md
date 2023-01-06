@@ -319,7 +319,7 @@ To view switches with the most unestablished MLAG sessions:
 
 Where to go next depends on what data you see, but a few options include:
 
-- Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
+- Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Switches">}}.
 - Click **Show All Sessions** to investigate all MLAG sessions with events in the full-screen card.
 
 ### View MLAG Configuration Information for a Given Device

@@ -1,5 +1,5 @@
 ---
-title: Internet Protocol
+title: IP
 author: NVIDIA
 weight: 940
 toc: 3

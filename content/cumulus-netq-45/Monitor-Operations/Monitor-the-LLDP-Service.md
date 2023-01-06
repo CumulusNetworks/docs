@@ -486,7 +486,7 @@ To view switches with the most unestablished LLDP sessions:
 
 Where to go next depends on what data you see, but a few options include:
 
-- Changing the time period and comparing the data with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
+- Changing the time period and comparing the data with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Switches">}}.
 - Selecting **Show All Sessions** to investigate all LLDP sessions with events in the full screen card.
 
 ### View LLDP Configuration Information for a Given Device

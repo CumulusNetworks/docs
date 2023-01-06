@@ -1,5 +1,5 @@
 ---
-title: Topology View
+title: Network Topology
 author: NVIDIA
 weight: 1040
 toc: 3

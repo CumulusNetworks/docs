@@ -1,11 +1,11 @@
 ---
-title: Spanning Tree Protocol
+title: STP
 author: NVIDIA
 weight: 900
 toc: 3
 ---
 
-Use the CLI to view the STP topology on a bridge or switch with the `netq show stp topology` command. 
+Use the CLI to view the Spanning Tree Protocol (STP) topology on a bridge or switch with the `netq show stp topology` command. 
 
 The syntax for the show command is:
 

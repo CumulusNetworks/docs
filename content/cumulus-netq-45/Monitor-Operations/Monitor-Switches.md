@@ -1,5 +1,5 @@
 ---
-title: Monitor Switches
+title: Switches
 author: NVIDIA
 weight: 830
 toc: 4

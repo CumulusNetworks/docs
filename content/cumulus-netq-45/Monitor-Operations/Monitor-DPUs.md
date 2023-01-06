@@ -1,5 +1,5 @@
 ---
-title: Monitor DPUs
+title: DPUs
 author: NVIDIA
 weight: 850
 toc: 3

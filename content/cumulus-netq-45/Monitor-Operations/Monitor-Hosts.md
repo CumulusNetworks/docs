@@ -1,5 +1,5 @@
 ---
-title: Monitor Hosts
+title: Hosts
 author: NVIDIA
 weight: 840
 toc: 3

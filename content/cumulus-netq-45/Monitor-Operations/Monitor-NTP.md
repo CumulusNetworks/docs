@@ -1,5 +1,5 @@
 ---
-title: Application Layer Protocols
+title: NTP
 author: NVIDIA
 weight: 995
 toc: 3

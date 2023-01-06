@@ -1,7 +1,7 @@
 ---
 title: NVLink4 Domain Management
 author: NVIDIA
-weight: 1150
+weight: 700
 toc: 3
 bookhidden: false
 ---

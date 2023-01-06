@@ -1,8 +1,8 @@
 ---
 title: Switches
 author: NVIDIA
-weight: 830
-toc: 4
+weight: 960
+toc: 3
 ---
 With the NetQ UI and NetQ CLI, you can monitor the health of individual switches, including interface performance and resource utilization.
 

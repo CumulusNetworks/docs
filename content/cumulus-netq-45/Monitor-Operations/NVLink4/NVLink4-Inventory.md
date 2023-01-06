@@ -1,7 +1,7 @@
 ---
 title: NVLink4 Inventory Management
 author: NVIDIA
-weight: 1150
+weight: 930
 toc: 3
 bookhidden: false
 ---

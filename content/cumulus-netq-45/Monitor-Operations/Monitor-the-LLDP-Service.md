@@ -1,8 +1,8 @@
 ---
 title: LLDP
 author: NVIDIA
-weight: 890
-toc: 4
+weight: 860
+toc: 3
 ---
 
 Network devices use LLDP to advertise their identity, capabilities, and neighbors on a LAN. You can view this information for one or more devices. You can also view the information at an earlier point in time or view changes that have occurred to the information during a specified time period. For an overview and how to configure LLDP in your network, refer to {{<kb_link latest="cl" url="Layer-2/Link-Layer-Discovery-Protocol.md" text="Link Layer Discovery Protocol">}}.

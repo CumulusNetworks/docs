@@ -1,7 +1,7 @@
 ---
 title: NTP
 author: NVIDIA
-weight: 995
+weight: 900
 toc: 3
 ---
 The only application layer protocol monitored by NetQ is NTP, the Network Time Protocol.

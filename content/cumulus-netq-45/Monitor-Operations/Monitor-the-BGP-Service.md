@@ -1,8 +1,8 @@
 ---
 title: BGP
 author: NVIDIA
-weight: 950
-toc: 4
+weight: 800
+toc: 3
 ---
 NetQ enables operators to view the health of the BGP service on a networkwide or per session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show bgp` command.
 

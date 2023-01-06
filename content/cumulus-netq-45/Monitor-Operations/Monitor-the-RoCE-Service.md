@@ -1,8 +1,8 @@
 ---
 title: RoCE
 author: NVIDIA
-weight: 980
-toc: 4
+weight: 940
+toc: 3
 ---
 
 In NetQ, use either the UI or CLI to monitor RoCE in your network.

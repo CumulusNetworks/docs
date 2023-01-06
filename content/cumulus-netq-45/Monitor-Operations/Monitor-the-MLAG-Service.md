@@ -1,8 +1,8 @@
 ---
 title: MLAG
 author: NVIDIA
-weight: 920
-toc: 4
+weight: 880
+toc: 3
 ---
 
 You use Multi-Chassis Link Aggregation (MLAG) to enable a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group or trunk) to connect those ports to different switches and operate as if they have a connection to a single, logical switch. This provides greater redundancy and greater system throughput. Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, NetQ supports active-active links from the dual-connected devices even though each switch connects to a different physical switch. For an overview and how to configure MLAG in your network, refer to {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG">}}.

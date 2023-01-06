@@ -1,7 +1,7 @@
 ---
 title: NVLink4 Overview
 author: NVIDIA
-weight: 1150
+weight: 910
 toc: 3
 bookhidden: false
 ---

@@ -1,7 +1,7 @@
 ---
 title: NVLink4 Glossary
 author: NVIDIA
-weight: 1150
+weight: 950
 toc: 3
 bookhidden: false
 ---

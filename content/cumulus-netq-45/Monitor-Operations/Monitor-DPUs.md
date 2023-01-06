@@ -1,7 +1,7 @@
 ---
 title: DPUs
 author: NVIDIA
-weight: 850
+weight: 810
 toc: 3
 ---
 

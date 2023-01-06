@@ -4,16 +4,16 @@ author: NVIDIA
 weight: 740
 toc: 4
 ---
-With the NetQ UI and NetQ CLI, you can monitor your inventory of switches across the network or individually. A user can view operating system, motherboard, ASIC, microprocessor, disk, memory, fan, and power supply information. This information is relevant for upgrades, compliance, and other planning tasks.
+With the NetQ UI and NetQ CLI, you can monitor your inventory of switches across the network or individually. A user can view operating system, motherboard, ASIC, microprocessor, disk, memory, fan, and power supply information.
 
-For switch performance information, refer to {{<link title="Switches">}}.
+For switch performance information, refer to {{<link title="Switches" text="Switch Monitoring">}}.
 ## Access Switch Inventory Data
 
 Add the Inventory/Switches card to your workbench to monitor the hardware and software component inventory on switches running NetQ in your network. Select the dropdown to view additional inventory information.
 
 {{<img src="/images/netq/inventory-switches-updated.png" width="200">}}&nbsp;&nbsp;&nbsp;&nbsp;{{<img src="/images/netq/inventory-switches-dropdown.png" width="200">}}
 
-The CLI provides detailed switch inventory information through its `netq <hostname> show inventory` command.
+Use the `netq <hostname> show inventory` command to view switch inventory information with the CLI.
 
 ## View Switch Inventory Summary
 

@@ -5,8 +5,9 @@ weight: 750
 toc: 4
 ---
 
-In the UI, you can view your inventory of hosts across the network or individually, including a host's operating system, ASIC, CPU model, disk, platform, and memory information. This information can help with upgrades, compliance, and other planning tasks.
+In the UI, you can view your inventory of hosts across the network or individually, including a host's operating system, ASIC, CPU model, disk, platform, and memory information.
 
+To monitor host hardware resource utilization, see {{<link title="Hosts" text="Host Monitoring">}}.
 ## Access and View Host Inventory Data
 
 The Inventory/Hosts card monitors the hardware- and software-component inventory on hosts running NetQ in your network. Access this card from the NetQ Workbench, or add it to your own workbench by clicking <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> (Add card) > Inventory > Inventory/Hosts card > Open Cards.
@@ -20,8 +21,4 @@ Hover over the chart in the default card view to view component details. To view
 To display detailed information as a table, expand the card to its largest size:
 
 {{<figure src="/images/netq/inventory-hosts-l4-42.png" alt="fully expanded host inventory card displaying a table with data" width="1000">}}
-
-## Related Information
-
-To monitor host hardware resource utilization, see {{<link title="Hosts">}}.
 

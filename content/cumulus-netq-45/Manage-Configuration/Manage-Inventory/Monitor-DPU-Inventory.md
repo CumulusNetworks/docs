@@ -11,8 +11,9 @@ DPU monitoring is an early access feature.
 
 {{</notice>}}
 
-In the UI, you can view your DPU inventory across the network or individually, including a DPU's operating system, ASIC, CPU model, disk, platform, and memory information. This information can help with upgrades, compliance, and other planning tasks.
+Use the UI to view your data processing unit (DPU) inventory. The Inventory/DPU card includes the DPU's operating system, ASIC, CPU model, disk, platform, and memory information.
 
+For DPU performance information, refer to {{<link title="DPUs" text="DPU Monitoring">}}.
 ## Access and View DPU Inventory Data
 
 The Inventory/DPU card displays the hardware- and software-component inventory on DPUs running NetQ in your network.
@@ -28,7 +29,5 @@ To display detailed information as a table, expand the card to its largest size:
 {{<figure src="/images/netq/dpu-inventory-l4-42.png" alt="fully expanded DPU inventory card displaying a table with data" width="1000">}}
 
 ## Related Information
-
-To monitor DPU hardware resource utilization, see {{<link title="DPUs">}}.
 
 To read more about NVIDIA BlueField DPUs and the DOCA Telemetry Service, refer to the {{<exlink url="https://docs.nvidia.com/doca/sdk/doca-telemetry-service/index.html" text="DOCA SDK Documentation">}}.

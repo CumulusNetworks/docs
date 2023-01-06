@@ -13,6 +13,8 @@ DPU monitoring is an early access feature.
 
 With the NetQ UI, you can monitor hardware resources of individual data processing units (DPUs), including CPU utilization, disk usage, and memory utilization.
 
+For DPU inventory information, refer to {{<link title="DPUs" text="DPU Inventory">}}.
+
 ## View Overall Health of a DPU
 
 For an overview of the current or past health of DPU hardware resources, open the DPU device card. To open a DPU device card:
@@ -52,4 +54,4 @@ Installed packages are displayed in a table. You can export the table into other
 
 ## Related Information
 
-- {{<exlink url="https://docs.nvidia.com/doca/sdk/doca-telemetry-service/index.html" text="DOCA Telemetry Service on NVIDIA BlueField DPUs">}}
+To read more about NVIDIA BlueField DPUs and the DOCA Telemetry Service, refer to the {{<exlink url="https://docs.nvidia.com/doca/sdk/doca-telemetry-service/index.html" text="DOCA SDK Documentation">}}.

@@ -23,5 +23,5 @@ To display detailed information as a table, expand the card to its largest size:
 
 ## Related Information
 
-To monitor host hardware resource utilization, see {{<link title="Monitor Hosts">}}.
+To monitor host hardware resource utilization, see {{<link title="Hosts">}}.
 

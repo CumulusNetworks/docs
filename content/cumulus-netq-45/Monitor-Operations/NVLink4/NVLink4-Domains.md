@@ -3,7 +3,7 @@ title: NVLink4 Domain Management
 author: NVIDIA
 weight: 1150
 toc: 3
-bookhidden: true
+bookhidden: false
 ---
 
 This section describes how to create, edit, and delete NVLink4 domains. After you create and configure a domain, Global Fabric Manager (GFM) manages the domains while NetQ collects telemetry data that can be visualized in the UI.

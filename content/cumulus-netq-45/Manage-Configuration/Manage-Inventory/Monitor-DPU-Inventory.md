@@ -29,6 +29,6 @@ To display detailed information as a table, expand the card to its largest size:
 
 ## Related Information
 
-To monitor DPU hardware resource utilization, see {{<link title="Monitor DPUs">}}.
+To monitor DPU hardware resource utilization, see {{<link title="DPUs">}}.
 
 To read more about NVIDIA BlueField DPUs and the DOCA Telemetry Service, refer to the {{<exlink url="https://docs.nvidia.com/doca/sdk/doca-telemetry-service/index.html" text="DOCA SDK Documentation">}}.

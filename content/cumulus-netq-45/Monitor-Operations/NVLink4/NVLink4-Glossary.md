@@ -3,7 +3,7 @@ title: NVLink4 Glossary
 author: NVIDIA
 weight: 1150
 toc: 3
-bookhidden: true
+bookhidden: false
 ---
 
 ## NVLink4 Terminology and Acronyms

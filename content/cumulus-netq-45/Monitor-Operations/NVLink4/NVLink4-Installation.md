@@ -3,7 +3,7 @@ title: NVLink4 Installation Management
 author: NVIDIA
 weight: 1150
 toc: 3
-bookhidden: true
+bookhidden: false
 ---
 
 ## System Requirements and Installation

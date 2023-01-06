@@ -257,5 +257,5 @@ Successfully deleted validation Bgp15m
 
 ### Related Commands
 
-- ```netq add validation name```
+- ```netq add validation```
 - ```netq show validation settings```

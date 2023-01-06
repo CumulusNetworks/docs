@@ -96,7 +96,7 @@ netq install cluster full
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | conifg-key | \<text-opta-key\> | Use this unique key to install the server cluster |
-| pod-ip-range | \<text-pod-ip-range\> | |
+| pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 
 ### Sample Usage
 
@@ -106,11 +106,11 @@ cumulus@<hostname>:~$ netq install cluster full interface eth0 bundle /mnt/insta
 
 ### Related Commands
 
-- netq install cluster activate-job
-- netq install cluster infra-job
-- netq install cluster init-job
-- netq install cluster install-job
-- netq install cluster join-workers
+- ```netq install cluster activate-job```
+- ```netq install cluster infra-job```
+- ```netq install cluster init-job```
+- ```netq install cluster install-job```
+- ```netq install cluster join-workers```
 
 - - -
 
@@ -362,7 +362,7 @@ netq install opta cluster full
 | ---- | ---- | ---- |
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a proxy host |
-| pod-ip-range | \<text-pod-ip-range\> | |
+| pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 
 ### Sample Usage
 
@@ -373,7 +373,7 @@ cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/
 
 ### Related Commands
 
-- netq install opta activate-job
+- ```netq install opta activate-job```
 
 - - -
 
@@ -414,7 +414,7 @@ netq install opta standalone full
 | ---- | ---- | ---- |
 | proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a port |
 | proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a proxy host |
-| pod-ip-range | \<text-pod-ip-range\> | |
+| pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 
 ### Sample Usage
 
@@ -424,7 +424,7 @@ cumulus@<hostname>:~$ netq install opta standalone full interface en01 bundle /m
 
 ### Related Commands
 
-- netq install opta activate-job
+- ```netq install opta activate-job```
 
 - - -
 
@@ -496,10 +496,10 @@ cumulus@switch:~$ netq install standalone activate-job config-key ju8Kl4IhZ3cucH
 
 ### Related Commands
 
-- netq install standalone infra-job
-- netq install standalone init-job
-- netq install standalone install-job
-- netq install standalone full
+- ```netq install standalone infra-job```
+- ```netq install standalone init-job```
+- ```netq install standalone install-job```
+- ```netq install standalone full```
 
 - - -
 
@@ -516,6 +516,7 @@ netq install standalone full
     (interface <text-opta-ifname>|ip-addr <text-ip-addr>)
     bundle <text-bundle-url>
     [config-key <text-opta-key>]
+    [pod-ip-range <text-pod-ip-range>]
 ```
 
 ### Required Arguments
@@ -532,20 +533,20 @@ netq install standalone full
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | conifg-key | \<text-opta-key\> | Use this unique key to activate the software |
+| pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/installables/NetQ-4.0.0.tgz
 ```
 
 ### Related Commands
 
-- netq install standalone activate-job
-- netq install standalone infra-job
-- netq install standalone init-job
-- netq install standalone install-job
+- ```netq install standalone activate-job```
+- ```netq install standalone infra-job```
+- ```netq install standalone init-job```
+- ```netq install standalone install-job```
 
 - - -
 
@@ -553,7 +554,7 @@ cumulus@<hostname>:~$ netq install standalone full interface eth0 bundle /mnt/in
 ## netq install standalone infra-job
 <!-- vale on -->
 
-After initialization, this command installs kafka and operators to aid in installation of software.
+After initialization, this command installs Kafka and additional operators to help with software installation.
 
 Alternately, use {{<link title="#netq-install-standalone-full" text="netq install standalone full">}} to perform this and all other steps of a NetQ installation with a single command.
 
@@ -582,10 +583,10 @@ cumulus@<hostname>:~$ netq install standalone infra-job
 
 ### Related Commands
 
-- netq install standalone activate-job
-- netq install standalone init-job
-- netq install standalone install-job
-- netq install standalone full
+- ```netq install standalone activate-job```
+- ```netq install standalone init-job```
+- ```netq install standalone install-job```
+- ```netq install standalone full```
 
 - - -
 
@@ -593,7 +594,7 @@ cumulus@<hostname>:~$ netq install standalone infra-job
 ## netq install standalone init-job
 <!-- vale on -->
 
-Verifies NetQ On-premises Appliance or VM resources, extracts NetQ packages, configures Kubernetes, node services and Docker registry, and install the Cassandra database in preparation for NetQ installation and activation in a single server, on-premises deployment.
+Verifies NetQ On-premises Appliance or VM resources, extracts NetQ packages, configures Kubernetes, node services and Docker registry, and installs the Cassandra database in preparation for NetQ installation and activation in a single server, on-premises deployment.
 
 Alternately, use {{<link title="#netq-install-standalone-full" text="netq install standalone full">}} to perform this and all other steps of a NetQ installation with a single command.
 
@@ -622,10 +623,10 @@ cumulus@<hostname>:~$ netq install standalone init-job
 
 ### Related Commands
 
-- netq install standalone activate-job
-- netq install standalone infra-job
-- netq install standalone install-job
-- netq install standalone full
+- ```netq install standalone activate-job```
+- ```netq install standalone infra-job```
+- ```netq install standalone install-job```
+- ```netq install standalone full```
 
 - - -
 
@@ -659,17 +660,16 @@ None
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@<hostname>:~$ netq install standalone install-job bundle /mnt/installables/NetQ-4.0.0.tgz
 ```
 
 ### Related Commands
 
-- netq install standalone activate-job
-- netq install standalone infra-job
-- netq install standalone init-job
-- netq install standalone full
+- ```netq install standalone activate-job```
+- ```netq install standalone infra-job```
+- ```netq install standalone init-job```
+- ```netq install standalone full```
 
 - - -
 
@@ -677,7 +677,7 @@ cumulus@<hostname>:~$ netq install standalone install-job bundle /mnt/installabl
 ## netq install update-settings
 <!-- vale on -->
 
-Overrides system variables after encountering issues during installation. File a {{<exlink url="https://support.mellanox.com/s/contact-support-page" text="support ticket">}} with the NVIDIA Global Support Services team before using this command. They can provide the key/value pair needed to resolve your issue.
+Overrides system variables after encountering issues during installation. File a {{<exlink url="https://enterprise-support.nvidia.com/" text="support ticket">}} with the NVIDIA Global Support Services team before using this command. They can provide the key/value pair needed to resolve your issue.
 
 ### Syntax
 

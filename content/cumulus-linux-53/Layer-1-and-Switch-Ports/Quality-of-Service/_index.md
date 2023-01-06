@@ -789,7 +789,7 @@ The following example modifies the default profile. The commands change the band
 {{< tab "NVUE Commands ">}}
 
 - The `traffic-class` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `traffic-class 2` defines the bandwidth allocation for egress queue 2.
-- For each egress queue, you can either define the mode as `dwrr` or `strict`. In `dwrr` mode, you must define a bandwidth percent value between 1 and 100. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues. The combined total of values you assign to `bw_percent` must be less than or equal to 100.
+- For each egress queue, you can either define the mode as `dwrr` or `strict`. In `dwrr` mode, you must define a bandwidth percent value between 1 and 100. If you do not configure any `traffic-class` values for an egress scheduler profile, Cumulus Linux assumes DWRR mode with weight 0 (no egress scheduling). The combined total of values you assign to `bw_percent` must be less than or equal to 100.
 
 ```
 cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 2,6 mode dwrr 
@@ -826,7 +826,7 @@ TC->DWRR weight configuration
 
 You configure the egress scheduling policy in the `egress scheduling` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 - The `egr_queue_` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `egr_queue_0` defines the bandwidth allocation for egress queue 0.
-- The `bw_percent` value defines the bandwidth allocation you want to assign to an egress queue. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues. The combined total of values you assign to `bw_percent` must be less than or equal to 100.
+- The `bw_percent` value defines the bandwidth allocation you want to assign to an egress queue. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling). If you specify a value of 0 for an egress queue, Cumulus Linux assigns `strict` priority mode to the egress queue and always processes it ahead of other queues.” The combined total of values you assign to `bw_percent` must be less than or equal to 100.
 
 ```
 default_egress_sched.egr_queue_0.bw_percent = 0

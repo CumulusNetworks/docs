@@ -155,7 +155,7 @@ This section provides CLI validation examples for a variety of protocols and ele
 
 {{<tab "Addresses">}}
 
-The duplicate address detection validation tests look for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and check for duplicate /32 host routes in each VRF.
+The duplicate address detection validation tests looks for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and checks for duplicate /32 host routes in each VRF.
 
 ```
 cumulus@switch:mgmt:~$ netq check addresses

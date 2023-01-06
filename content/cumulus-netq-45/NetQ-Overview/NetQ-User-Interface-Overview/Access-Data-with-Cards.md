@@ -15,14 +15,11 @@ Each card focuses on a particular aspect of your network. They include:
 - **Events**: system events and anomalies
 - **What Just Happened**: network issues and packet drops 
 - **Device groups**: distribution of device components
-- **Inventory/Devices**: info about all switches and hosts in the network
-- **Inventory/Switches**: info about the components on a given switch
-- **Inventory/DPU**: info about data processing units
-- **Inventory/Hosts**: info about hosts
 - **Trace request**: discovery workflow for paths between two devices in the network fabric
 - **MAC move commentary**: info about changes to a MAC address on a specific VLAN
+- Network services cards: **BGP**, **MLAG**, **EVPN**, **OSPF**, and **LLDP**
+- Inventory cards: **Devices**, **Switches**, **DPUs**, **Hosts**, **NVLink4 Switches**, and **NVLink4 GPUs**
 
-There are five additional network services cards for session monitoring, including **BGP**, **MLAG**, **EVPN**, **OSPF**, and **LLDP**.
 ## Card Sizes
 
 Cards are available in 4 sizes. The granularity of the content on a card varies with the size of the card, with the highest level of information on the smallest card to the most detailed information on the full-screen card.
@@ -78,7 +75,7 @@ Cards are available in 4 sizes. The granularity of the content on a card varies 
 
 3. When you have selected the cards you want to add to your workbench, select **Open cards**:
 
-      {{<figure src="/images/netq/add-cards-to-workbench.png" alt="1 selected card to be added to a workbench" width="900">}}
+      {{<figure src="/images/netq/access-cards-450.png" alt="1 selected card to be added to a workbench" width="900">}}
 
 The cards are placed at the end of the set of cards currently on the workbench. You might need to scroll down to see them. Drag and drop the cards on the workbench to rearrange them.
 

@@ -25,7 +25,7 @@ Provides commands to configure the IPv4 unicast address family in the specified 
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute
 
-Provides commands to configure route redistribution, which allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
+Provides commands to configure IPv4 route redistribution, which allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.
 
 - - -
 
@@ -137,7 +137,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute connected metric
 
-Configures the metric you want to use for the redistributed connected route. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route. 
+Configures the metric you want to use for the redistributed connected route. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
 
 The default setting is `auto`.
 
@@ -183,13 +183,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel
 
-Provides commands to configure redistribution of IPv4 kernel routes.
+Provides commands to configure IPv4 kernel route redistribution.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel enable
 
-Turns redistribution of IPv4 kernel routes on or off.
+Turns IPv4 kernel route redistribution on or off.
 
 The default setting is `off`.
 
@@ -335,13 +335,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\>
 
-Provides commands to configure route aggregation to minimize the size of the routing table and save bandwidth. You can aggregate a range of networks in your routing table into a single prefix.
+Provides commands to configure IPv4 route aggregation to minimize the size of the routing table and save bandwidth. You can aggregate a range of networks in your routing table into a single prefix.
 
 - - -
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> summary-only
 
-Configures BGP to suppress longer prefixes inside the aggregate address before sending updates.
+Configures BGP to suppress longer IPv4 prefixes inside the aggregate address before sending updates.
 
 The default setting is `off`.
 
@@ -366,7 +366,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> as-set
 
-Turns generation of an `AS_SET` for the route aggregate on or off. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the A`S_PATH` attributes of all the individual routes to help BGP detect and avoid loops.
+Turns generation of an `AS_SET` for route aggregate on or off. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual routes to help BGP detect and avoid loops.
 
 The default setting is `off`.
 
@@ -414,7 +414,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast network \<static-network-id\>
 
-Configures the prefixes to originate from a BGP node.
+Configures the IPv4 prefixes to originate from a BGP node.
 
 ### Command Syntax
 
@@ -437,7 +437,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> route-map
 
-Applies a route map to the prefixes that originate from a BGP node.
+Applies a route map to the IPv4 prefixes that originate from a BGP node.
 
 ### Command Syntax
 
@@ -460,19 +460,19 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import
 
-Provides commands to configure route leaking, where a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP.
+Provides commands to configure IPv4 route leaking, where a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf
 
-Provides commands to configure the VRF from which route leaking occurs for the IPv4 address family.
+Provides commands to configure the VRF from which IPv4 route leaking occurs.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list \<leak-vrf-id\>
 
-Configures the VRF from which to import routes. You can specify multiple VRFs.
+Configures the VRF from which to import IPv4 routes. You can specify multiple VRFs.
 
 ### Command Syntax
 
@@ -495,7 +495,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast rou
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf enable
 
-Turns route leaking on or off for the IPv4 ddress family.
+Turns IPv4 route leaking on or off.
 
 The default setting is `off`.
 
@@ -519,7 +519,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast rou
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf route-map \<instance-name\>
 
-Applies a route map to control importing routes. For example, to exclude certain prefixes from the import process, configure the prefixes in a route map.
+Applies a route map to control importing IPv4 routes. For example, to exclude certain prefixes from the import process, configure the prefixes in a route map.
 
 ### Command Syntax
 
@@ -541,7 +541,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast rou
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths
 
-Configures the maximum number of equal-cost BGP paths allowed. The BGP multipath option is on by default and the maximum number of paths is 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs. 1 disables the BGP multipath option.
+Configures the maximum number of equal-cost BGP paths allowed for IPv4. The BGP multipath option is on by default and the maximum number of paths is 64 so that the switch can install multiple equal-cost BGP paths to the forwarding table and load balance traffic across multiple links. You can change the number of paths allowed, according to your needs. 1 disables the BGP multipath option.
 
 ### Command Syntax
 
@@ -563,7 +563,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast mul
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths ebgp
 
-Configures the number of equal-cost eBGP paths allowed.
+Configures the number of equal-cost eBGP paths allowed for IPv4.
 
 The default value is 64.
 
@@ -587,7 +587,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths ibgp
 
-Configures the number of equal-cost iBGP paths allowed.
+Configures the number of equal-cost iBGP paths allowed for IPv4.
 
 The default value is 64.
 
@@ -611,7 +611,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths compare-cluster-length
 
-Turns on cluster length comparison. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
+Turns on cluster length comparison for IPv4. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
 
 The default setting is `off`.
 
@@ -635,13 +635,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance
 
-Provides commands to configure the BGP administrative distance so that the switch can choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
+Provides commands to configure the BGP administrative distance so that the switch can choose which routing protocol to use when two different protocols provide IPv4 route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance external
 
-Configures the distance to apply to routes from eBGP peers when installed into the RIB. You can specify a value between 1 and 255.
+Configures the distance to apply to IPv4 routes from eBGP peers when installed into the RIB. You can specify a value between 1 and 255.
 
 ### Command Syntax
 
@@ -663,7 +663,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance internal
 
-Configures the distance to apply to routes from iBGP peers when installed into the RIB. You can specify a value between 1 and 255.
+Configures the distance to apply to IPv4 routes from iBGP peers when installed into the RIB. You can specify a value between 1 and 255.
 
 ### Command Syntax
 
@@ -685,19 +685,19 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export
 
-Provides commands to configure route export settings.
+Provides commands to configure IPv4 route export settings.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn
 
-Provides commands to configure prefix-based routing using EVPN type-5 routes. Type-5 routes (or prefix routes) primarily route to destinations outside of the data center fabric. EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
+Provides commands to configure IPv4 prefix-based routing using EVPN type-5 routes. Type-5 routes (or prefix routes) primarily route to destinations outside of the data center fabric. EVPN prefix routes carry the layer 3 VNI and router MAC address and follow the symmetric routing model to route to the destination prefix.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn enable
 
-Turns prefix-based routing using EVPN type-5 routes on or off. When `on`, the switch can announce IP prefixes in the BGP RIB as EVPN type-5 routes.
+Turns IPv4 prefix-based routing using EVPN type-5 routes on or off. When `on`, the switch can announce IP prefixes in the BGP RIB as EVPN type-5 routes.
 
 The default setting is `off`.
 
@@ -721,7 +721,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn route-map
 
-Sets the route map to control the export of routes into EVPN. By default, when announcing IP prefixes in the BGP RIB as EVPN type-5 routes, the switch selects all routes in the BGP RIB to advertise as EVPN type-5 routes. You can use a route map to allow selective route advertisement from the BGP RIB.
+Sets the route map to control the export of IPv4 routes into EVPN. By default, when announcing IP prefixes in the BGP RIB as EVPN type-5 routes, the switch selects all routes in the BGP RIB to advertise as EVPN type-5 routes. You can use a route map to allow selective route advertisement from the BGP RIB.
 
 ### Command Syntax
 
@@ -743,7 +743,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn default-route-origination
 
- Configures originating EVPN default type-5 routes. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
+Configures originating EVPN default type-5 routes. The default type-5 route originates from a border (exit) leaf and advertises to all the other leafs within the pod. Any leaf within the pod follows the default route towards the border leaf for all external traffic (towards the Internet or a different pod).
 
 The default setting is `off`.
 
@@ -767,7 +767,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast rib-filter
 
-Applies a route map on route updates from BGP to the Route Information Base (RIB). You can match on prefix, next hop, communities, and so on. You can set the metric and next hop only. Route maps do not affect the BGP internal RIB. Route maps work on multi-paths; however, BGP bases the metric setting on the best path only.
+Applies a route map on IPv4 route updates from BGP to the Route Information Base (RIB). You can match on prefix, next hop, communities, and so on. You can set the metric and next hop only. Route maps do not affect the BGP internal RIB. Route maps work on multi-paths; however, BGP bases the metric setting on the best path only.
 
 ### Command Syntax
 
@@ -843,7 +843,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family l2vpn-evpn e
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast
 
-Provides commands to configure the IPv6 unicast address family.
+Provides commands to configure the BGP for IPv6.
 
 - - -
 
@@ -880,7 +880,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> as-set
 
-Turns generation of an `AS_SET` for the aggregate on or off. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual routes to help BGP detect and avoid loops.
+Turns generation of an `AS_SET` for the aggregate on or off. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual IPv6 routes to help BGP detect and avoid loops.
 
 The default setting is `off`.
 
@@ -934,13 +934,13 @@ Provides commands to configure an IPv6 static network.
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import
 
-Provides commands to configure route leaking, where a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP.
+Provides commands to configure IPv6 route leaking, where a destination VRF wants to know the routes of a source VRF. As routes come and go in the source VRF, they dynamically leak to the destination VRF through BGP.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf
 
-Provides commands to configure VRF to VRF route leaking for the IPv6 address-family.
+Provides commands to configure VRF to VRF route leaking for IPv6.
 
 - - -
 
@@ -968,7 +968,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv6-unicast rou
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf enable
 
-Turns route leaking for IPv6 on or off.
+Turns IPv6 route leaking on or off.
 
 The default setting is `off`.
 
@@ -1042,7 +1042,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths ibgp
 
-Configures the number of equal-cost iBGP paths allowed. You can specify a value between 1 and 128.
+Configures the number of equal-cost iBGP paths allowed for IPv6. You can specify a value between 1 and 128.
 
 ### Command Syntax
 
@@ -1064,7 +1064,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths compare-cluster-length
 
-Turns on cluster length comparison. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
+Turns on cluster length comparison for IPv6. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
 
 The default setting is `off`.
 
@@ -1088,13 +1088,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast admin-distance
 
-Provides commands to configure the administrative distance for internal and external routes.
+Provides commands to configure the administrative distance for internal and external IPv6 routes.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast admin-distance external
 
-Configures the distance to apply to routes from eBGP peers when installed into the RIB. You can specify a value between 1 and 255.
+Configures the distance to apply to IPv6 routes from eBGP peers when installed into the RIB. You can specify a value between 1 and 255.
 
 ### Command Syntax
 
@@ -1116,7 +1116,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf \<vrf-id>\ router bgp address-family ipv6-unicast admin-distance internal
 
-Configures the distance to apply to routes from iBGP peers when installed into the RIB. You can specify a value between 1 and 255.
+Configures the distance to apply to IPv6 routes from iBGP peers when installed into the RIB. You can specify a value between 1 and 255.
 
 ### Command Syntax
 
@@ -1138,7 +1138,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export
 
-Provides commands to configure route export settings for IPv6.
+Provides commands to configure IPv6 route export settings.
 
 - - -
 
@@ -1150,7 +1150,7 @@ Provides commands to export IPv6 routes from this VRF into EVPN as type-5 routes
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn enable
 
-Turns prefix-based routing for EVPN type-5 routes on or off. When `on`, the switch can announce IPv6 prefixes in the BGP RIB as EVPN type-5 routes.
+Turns IPv6 prefix-based routing for EVPN type-5 routes on or off. When `on`, the switch can announce IPv6 prefixes in the BGP RIB as EVPN type-5 routes.
 
 The default setting is `off`.
 
@@ -1256,7 +1256,9 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static metric
 
-Configures the metric you want to use for the redistributed route. You can specify `auto`, or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
+Configures the metric you want to use for the redistributed IPv6 route. You can specify `auto`, or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
+
+The default setting is `auto`.
 
 ### Command Syntax
 
@@ -1406,7 +1408,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel metric
 
-Configures the metric you want to use for the redistributed kernel route. You can specify auto or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
+Configures the metric you want to use for the redistributed kernel route. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
 
 The default setting is `auto`.
 
@@ -4283,7 +4285,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family
 
-Provides commands to configure  theAddress family.
+Provides commands to configure the IPv4 or IPv6 address family.
 
 - - -
 
@@ -4295,25 +4297,25 @@ Provides commands to configure the peer IPv4 unicast address family.  Always on,
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast attribute-mod
 
-Provides commands to configure the attribute mode for the address family.
+Provides commands to configure the attribute mode for IPv4.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath
 
-Provides commands to configure options for handling AS_PATH for prefixes from/to peer for the specified address family.
+Provides commands to configure options for handling the AS_PATH for prefixes to and from the peer for IPv4.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn
 
-If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system.
+Turns on or off the option for a received AS_PATH to contain the ASN of the local system.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn occurrences
 
-Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+Configues the maximum number of times the local system's AS number can occur in the received AS_PATH.
 
 ### Command Syntax
 
@@ -4348,7 +4350,7 @@ Provides commands to configure outbound unicast policies.
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound aspath-list none
 
-AS-Path filter list to apply to Updates received from this peer
+Configures the AS-Path filter list to apply to updates received from this peer.
 
 ### Command Syntax
 
@@ -4399,19 +4401,19 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits
 
-Provides commands to configure 
+Provides commands to configure IPv4 prefix limits.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound
 
-Provides commands to configure limits on inbound prefix from the peer for this address-family.
+Provides commands to configure limits on inbound IPv4 prefixes from the peer.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound warning-threshold
 
-Percentage of the maximum at which a warning syslog is generated.
+Configures the percentage of the maximum at which a warning syslog is generated.
 
 ### Command Syntax
 
@@ -4434,7 +4436,9 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound reestablish-wait
 
-Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
+Specifes the time in seconds to wait before establishing the IPv4 BGP session again with the peer. 
+
+The default setting is auto, which uses standard BGP timers and processing (typically be 2-3 seconds).
 
 ### Command Syntax
 
@@ -4457,25 +4461,25 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast default-route-origination
 
-Provides commands to configure the default route origination.
+Provides commands to configure the default IPv4 route origination.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast community-advertise
 
-Provides commands to configure community advertise for the address family.
+Provides commands to configure community advertisement for IPv4.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise
 
-Provides commands to configure advertise for the address family.
+Provides commands to configure conditional advertisement for IPv4.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise advertise-map \<instance-name\>
 
-route-map contains prefix-list which has list of routes/prefixes to operate on.
+Configures the route map that contains the prefix list with a list of IPv4 routes and prefixes on which to operate.
 
 ### Command Syntax
 
@@ -4491,14 +4495,15 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise advertise-map ADVERTISEMAP
+
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise exist-map \<instance-name\>
 
-route-map contains the conditional routes/prefixes in prefix-list.
+Configures a route map that uses a prefix list with the IPv4 routes that must exist in the routing table.
 
 ### Command Syntax
 
@@ -4514,14 +4519,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise exist-map EXIST
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise non-exist-map \<instance-name\>
 
-route-map contains the negative conditional routes/prefixes in prefix-list.
+Configures a route map that uses a prefix list with the IPv4 routes that must not exist in the routing table.
 
 ### Command Syntax
 
@@ -4537,14 +4542,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise non-exist-map NONEXIST
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast weight
 
-Weight applied to routes received from peer; this is used in the BGP route selection algorithm
+Configures the weights to apply to IPv4 routes from the peer; this is used in the BGP route selection algorithm.
 
 ### Command Syntax
 
@@ -4560,38 +4565,38 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast weight 10
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast
 
-Provides commands to configure the peer IPv6 unicast address family.
+Provides commands to configure the BGP peer for IPv6.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast attribute-mod
 
-Provides commands to configure the attribute mode for the address family.
+Provides commands to configure the BGP attribute mode for IPv6.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath
 
-Provides commands to configure options for handling AS_PATH for prefixes from/to peer for the specified address family
+Provides commands to configure options for handling the AS_PATH for IPv6 prefixes to and from the peer.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath allow-my-asn
 
-If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+Turns on or off the option to allow the received AS_PATH to contain the ASN of the local system.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath allow-my-asn occurrences
 
-Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+Configures the maximum number of times the local system's AS number can be in the received AS_PATH.
 
 ### Command Syntax
 
@@ -4611,19 +4616,19 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits
 
-Provides commands to configure limits on prefix from the peer for this address-family.
+Provides commands to configure limits on IPv6 prefixes from the peer.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound
 
-Provides commands to configure limits on inbound prefix from the peer for this address-family.
+Provides commands to configure limits on inbound IPv6 prefixes from the peer.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound warning-threshold
 
-Percentage of the maximum at which a warning syslog is generated.
+Configures the percentage of the maximum at which a warning syslog is generated.
 
 ### Command Syntax
 
@@ -4646,7 +4651,9 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound reestablish-wait
 
-Specifes the time in seconds to wait before establishing the BGP session again with the peer. Defaults to 'auto', which will use standard BGP timers and processing.  This would typically be 2-3 seconds.
+Specifes the time in seconds to wait before establishing the IPv6 BGP session again with the peer. 
+
+The defaults is `auto`, which uses standard BGP timers and processing (typically between 2 and 3 seconds).
 
 ### Command Syntax
 
@@ -4669,25 +4676,25 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast default-route-origination
 
-Provides commands to configure the default route origination.
+Provides commands to configure the default IPv6 route origination.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy
 
-Provides commands to configure policies for ipv6 unicast
+Provides commands to configure IPv6 policies.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy inbound
 
-Provides commands to configure outbound unicast policies.
+Provides commands to configure IPv6 outbound unicast policies.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy inbound aspath-list none
 
-AS-Path filter list to apply to Updates received from this peer
+Configures the AS-Path filter list to apply to updates received from the peer.
 
 ### Command Syntax
 
@@ -4704,13 +4711,13 @@ Introduced in Cumulus Linux 5.0.0
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound
 
-Provides commands to configure outbound unicast policies.
+Provides commands to configure IPv6 outbound unicast policies.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound aspath-list none
 
-AS-Path filter list to apply to Updates sent to this peer.
+Configures the AS-Path filter list to apply to updates sent to this peer.
 
 ### Command Syntax
 
@@ -4733,19 +4740,19 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast community-advertise
 
-Provides commands to configure community advertise for the address family.
+Provides commands to configure community advertisement for IPv6.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise
 
-Provides commands to configure conditional advertise for the address family.
+Provides commands to configure conditional advertisement for IPv6.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise advertise-map \<instance-name\>
 
-route-map contains prefix-list which has list of routes/prefixes to operate on.
+Configures the route map that contains the prefix-list with the list of IPv6 routes and prefixes on which to operate.
 
 ### Command Syntax
 
@@ -4768,7 +4775,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise exist-map \<instance-name\>
 
-route-map contains the conditional routes/prefixes in prefix-list.
+Configures a route map that uses a prefix list with the IPv6 routes that must exist in the routing table.
 
 ### Command Syntax
 
@@ -4791,7 +4798,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise non-exist-map \<instance-name\>
 
-route-map contains the negative conditional routes/prefixes in prefix-list.
+Configures a route map that uses a prefix list with the IPv6 routes that must not exist in the routing table.
 
 ### Command Syntax
 
@@ -4814,7 +4821,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast weight
 
-Weight applied to routes received from peer; this is used in the BGP route selection algorithm
+Configures the weight applied to IPv6 routes from the peer; this is used in the BGP route selection algorithm.
 
 ### Command Syntax
 
@@ -4843,25 +4850,25 @@ Provides commands to configure the peer l2vpn EVPN address family.
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn attribute-mod
 
-Provides commands to configure attribute mode for the address family.
+Provides commands to configure the attribute mode for l2vpn EVPN.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath
 
-Provides commands to configure options for handling AS_PATH for prefixes from/to peer for the specified address family
+Provides commands to configure options for handling AS_PATH for prefixes to and from the peer for l2vpn EVPN.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn
 
-If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+Turns on and off the option for a received AS_PATH to contain the ASN of the local system for l2vpn EVPN.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn occurrences
 
-Indicates max number of occurrences of the local system's AS number in the received AS_PATH
+Configures the maximum number of times the local system's AS number can be in the received AS_PATH.
 
 ### Command Syntax
 
@@ -4884,19 +4891,19 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy
 
-Provides commands to configure policies for l2vpn evpn.
+Provides commands to configure policies for l2vpn EVPN.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound
 
-Provides commands to configure inbound l2vpn-evpn policies.
+Provides commands to configure inbound l2vpn EVPN policies.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound
 
-Provides commands to configure outbound l2vpn-evpn policies.
+Provides commands to configure outbound l2vpn EVPN policies.
 
 - - -
 

@@ -1,8 +1,8 @@
 ---
 title: OSPF
 author: NVIDIA
-weight: 960
-toc: 4
+weight: 920
+toc: 3
 ---
 
 If you have OSPF running on your switches and hosts, NetQ enables you to view the health of the OSPF service on a networkwide and a per session basis, giving greater insight into all aspects of the service. For each device, you can view its associated interfaces, areas, peers, state, and type of OSPF running (numbered or unnumbered). Additionally, you can view the information at an earlier point in time and filter against a particular device, interface, or area.
@@ -205,7 +205,7 @@ Where to go next depends on what data you see, but a couple of options include:
 
     {{<figure src="/images/netq/ntwk-svcs-all-ospf-large-summary-tab-most-unestab-pst-wk-230.png" width="500">}}
 
-    If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
+    If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Switches">}}.
 
 - Click **Show All Sessions** to investigate all OSPF sessions with events in the full screen card.
 

@@ -1,8 +1,8 @@
 ---
 title: BGP
 author: NVIDIA
-weight: 950
-toc: 4
+weight: 800
+toc: 3
 ---
 NetQ enables operators to view the health of the BGP service on a networkwide or per session basis, giving greater insight into all aspects of the service. You accomplish this in the NetQ UI through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show bgp` command.
 
@@ -313,7 +313,7 @@ include:
 
 - Change the time period for the data to compare with a prior time.
 
-    If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
+    If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Switches">}}.
 
 - Click **Show All Sessions** to investigate all BGP sessions with events in the full screen card.
 

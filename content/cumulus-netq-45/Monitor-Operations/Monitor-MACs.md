@@ -1,7 +1,7 @@
 ---
 title: MAC Addresses
 author: NVIDIA
-weight: 915
+weight: 870
 toc: 3
 ---
 A MAC (media access control) address is a layer 2 construct that uses 48 bits to uniquely identify a network interface controller (NIC) for communication within a network.

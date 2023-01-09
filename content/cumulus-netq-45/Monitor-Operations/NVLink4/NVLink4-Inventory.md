@@ -1,9 +1,9 @@
 ---
 title: NVLink4 Inventory Management
 author: NVIDIA
-weight: 1150
+weight: 930
 toc: 3
-bookhidden: true
+bookhidden: false
 ---
 
 This section describes how to view device statistics and data for NVLink4 switches and GPUs.

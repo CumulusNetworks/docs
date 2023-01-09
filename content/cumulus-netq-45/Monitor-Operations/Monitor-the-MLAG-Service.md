@@ -1,8 +1,8 @@
 ---
 title: MLAG
 author: NVIDIA
-weight: 920
-toc: 4
+weight: 880
+toc: 3
 ---
 
 You use Multi-Chassis Link Aggregation (MLAG) to enable a server or switch with a two-port bond (such as a link aggregation group/LAG, EtherChannel, port group or trunk) to connect those ports to different switches and operate as if they have a connection to a single, logical switch. This provides greater redundancy and greater system throughput. Dual-connected devices can create LACP bonds that contain links to each physical switch. Therefore, NetQ supports active-active links from the dual-connected devices even though each switch connects to a different physical switch. For an overview and how to configure MLAG in your network, refer to {{<kb_link latest="cl" url="Layer-2/Multi-Chassis-Link-Aggregation-MLAG.md" text="Multi-Chassis Link Aggregation - MLAG">}}.
@@ -319,7 +319,7 @@ To view switches with the most unestablished MLAG sessions:
 
 Where to go next depends on what data you see, but a few options include:
 
-- Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Monitor Switches">}}.
+- Change the time period for the data to compare with a prior time. If the same switches are consistently indicating the most unestablished sessions, you might want to look more carefully at those switches using the Switches card workflow to determine probable causes. Refer to {{<link title="Switches">}}.
 - Click **Show All Sessions** to investigate all MLAG sessions with events in the full-screen card.
 
 ### View MLAG Configuration Information for a Given Device

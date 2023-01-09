@@ -1,9 +1,9 @@
 ---
 title: NVLink4 Fluentd Reference
 author: NVIDIA
-weight: 1150
+weight: 940
 toc: 3
-bookhidden: true
+bookhidden: false
 ---
 
 ## NVLink4 Fluentd Reference

@@ -1,8 +1,8 @@
 ---
 title: EVPN
 author: NVIDIA
-weight: 980
-toc: 4
+weight: 820
+toc: 3
 ---
 
 NetQ enables operators to view the health of the EVPN service on a networkwide and a per-session basis, giving greater insight into all aspects of the service. You accomplish this through two card workflows, one for the service and one for the session, and in the NetQ CLI with the `netq show evpn` command.

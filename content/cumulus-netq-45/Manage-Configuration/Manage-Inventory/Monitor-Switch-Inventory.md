@@ -759,4 +759,4 @@ This example shows changes to the `bgpd` service in the last 48 hours.
 
 ## Related Information
 
-- {{<link title="Switches">}}
+- {{<link title="Switches" text="Switch Monitoring">}}

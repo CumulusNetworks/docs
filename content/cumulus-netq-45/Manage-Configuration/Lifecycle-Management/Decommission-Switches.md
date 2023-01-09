@@ -5,7 +5,7 @@ weight: 695
 toc: 3
 ---
 
-You can decommission a switch or host at any time. You might need to do this when you:
+You might need to decommission a switch when you:
 
 - Change the hostname of the monitored switch or host
 - Move the monitored switch or host from one data center to another
@@ -17,7 +17,27 @@ Decommissioning the switch or host removes information about the switch or host 
 
 {{%/notice%}}
 
-## Decommission from the CLI
+## Decommission a Switch
+
+{{<tabs "TabID22" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. From the LCM dashboard, navigate to the **Switch management** tab.
+
+2. On the Switches card, select **Manage**.
+
+3. Select the devices to decommission, then select the decommission icon above the table:
+
+{{<figure src="/images/netq/lcm-decom-switch-450.png" alt="" width="600">}}
+
+3. Confirm the devices you want to decommission.
+
+4. Wait for the decommission process to complete, then select **Done**.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
 
 To decommission a switch or host:
 
@@ -33,24 +53,9 @@ To decommission a switch or host:
     ```
     cumulus@netq-appliance:~$ netq decommission <hostname-to-decommission>
     ```
+{{</tab>}}
 
-## Decommission from the NetQ UI
-
-You can decommission a switch or host from the NetQ UI using the Inventory/Devices card. This stops and disables the NetQ Agent service on the device, and decommissions it from the NetQ database.
-
-1. Expand the Inventory/Devices card to list the devices in the current inventory:
-
-{{<figure src="/images/netq/inventory-devices-card.png" alt="inventory card displaying 12 hosts and 12 switches" width="200">}}
-
-2. Select the devices to decommission, then select the decommission icon above the table:
-
-{{<figure src="/images/netq/decommission-select.png" alt="expanded inventory card with one device selected" width="600">}}
-
-3. Confirm the devices to decommission:
-
-{{<figure src="/images/netq/decommission-confirmation.png" alt="confirmation dialog with a list of devices" width="600">}}
-
-4. Wait for the decommission process to complete, then select **Done**.
+{{</tabs>}}
 
 
 ## Related Information

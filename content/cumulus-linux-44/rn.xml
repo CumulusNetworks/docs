@@ -64,6 +64,13 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
 <tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-4.3.0, 4.4.0-4.4.6</td>
+<td>4.3.1</td>
+</tr>
+<tr>
 <td>3211359</td>
 <td>The {{net show interface &lt;interface&gt; detail}} command output shows {{Type=Unknown}} for the specified interface.</td>
 <td>4.4.3-5.0.1</td>
@@ -77,6 +84,14 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </td>
 <td>4.4.2-5.2.1</td>
 <td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
+<td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -1931,6 +1946,11 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
+<td>3293110</td>
+<td>You cannot set the NTF router flag (NTF_ROUTER) on neighbor entries from the user space.</td>
+<td>4.4.2-4.4.5</td>
+</tr>
+<tr>
 <td>3292873</td>
 <td>When you run ZTP manually with the {{ztp -R}} command, then the {{ztp -vb}} command, the process stalls indefinitely while searching the local (USB) location and not using DHCP information. To work around this issue, run the {{ztp -r}} command with the URL of the ZTP server:
 
@@ -1976,6 +1996,11 @@ Vlan: 0
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
+<td>3236366</td>
+<td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands or   running {{apt upgrade}} to upgrade to Cumulus Linux 4.4.5.</td>
+<td>4.4.5</td>
+</tr>
+<tr>
 <td>3236334</td>
 <td>Using ARP suppression with a very large number of interfaces might result in missing ARP entries on the local device or buffer underrun warnings in the {{neighmgrd}} log.</td>
 <td>4.3.0-4.4.5</td>
@@ -2000,6 +2025,12 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3293110</td>
+<td>You cannot set the NTF router flag (NTF_ROUTER) on neighbor entries from the user space.</td>
+<td>4.4.2-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3292873</td>
@@ -2111,6 +2142,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>5.3.0-5.3.1</td>
 </tr>
 <tr>
+<td>3226579</td>
+<td>The {{net show interface &lt;interface&gt; detail}} command output shows {{Type=Unknown}} for the specified interface.</td>
+<td>4.4.3-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
@@ -2122,8 +2159,15 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.3.1</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3211359</td>
@@ -2139,6 +2183,14 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </td>
 <td>4.4.2-5.2.1</td>
 <td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
+<td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -4071,6 +4123,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>4.4.5</td>
 </tr>
 <tr>
+<td>3293110</td>
+<td>You cannot set the NTF router flag (NTF_ROUTER) on neighbor entries from the user space.</td>
+<td>4.4.2-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3292873</td>
 <td>When you run ZTP manually with the {{ztp -R}} command, then the {{ztp -vb}} command, the process stalls indefinitely while searching the local (USB) location and not using DHCP information. To work around this issue, run the {{ztp -r}} command with the URL of the ZTP server:
 
@@ -4168,6 +4226,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>5.3.0-5.3.1</td>
 </tr>
 <tr>
+<td>3226579</td>
+<td>The {{net show interface &lt;interface&gt; detail}} command output shows {{Type=Unknown}} for the specified interface.</td>
+<td>4.4.3-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
@@ -4179,8 +4243,15 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.3.1</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -4206,6 +4277,14 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </td>
 <td>4.4.2-5.2.1</td>
 <td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
+<td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3205701</td>
@@ -6277,6 +6356,12 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
+<td>3293110</td>
+<td>You cannot set the NTF router flag (NTF_ROUTER) on neighbor entries from the user space.</td>
+<td>4.4.2-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3292873</td>
 <td>When you run ZTP manually with the {{ztp -R}} command, then the {{ztp -vb}} command, the process stalls indefinitely while searching the local (USB) location and not using DHCP information. To work around this issue, run the {{ztp -r}} command with the URL of the ZTP server:
 
@@ -6362,6 +6447,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>5.3.0-5.3.1</td>
 </tr>
 <tr>
+<td>3226579</td>
+<td>The {{net show interface &lt;interface&gt; detail}} command output shows {{Type=Unknown}} for the specified interface.</td>
+<td>4.4.3-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3221470</td>
 <td>Under heavy system load, when many forwarding resources (routes, neighbors, ECMP groups, and so on) are removed from hardware, subsequent attempts to configure additional forwarding resources might fail and you see the following log message:
 
@@ -6373,8 +6464,15 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.3.1</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -6400,6 +6498,14 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </td>
 <td>4.4.2-5.2.1</td>
 <td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
+<td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -8461,6 +8567,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>4.4.4-4.4.5</td>
 </tr>
 <tr>
+<td>3293110</td>
+<td>You cannot set the NTF router flag (NTF_ROUTER) on neighbor entries from the user space.</td>
+<td>4.4.2-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3292873</td>
 <td>When you run ZTP manually with the {{ztp -R}} command, then the {{ztp -vb}} command, the process stalls indefinitely while searching the local (USB) location and not using DHCP information. To work around this issue, run the {{ztp -r}} command with the URL of the ZTP server:
 
@@ -8550,8 +8662,15 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.3.1</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -8571,6 +8690,14 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </td>
 <td>4.4.2-5.2.1</td>
 <td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
+<td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3192808</td>
@@ -10895,8 +11022,15 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.3.1</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -10907,6 +11041,14 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-4.4.4</td>
 <td>4.4.5</td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
+<td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3192808</td>

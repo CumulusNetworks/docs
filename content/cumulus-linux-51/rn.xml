@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3301988</td>
+<td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3235368</td>
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
@@ -33,8 +39,8 @@
 <tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.3.1</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3211054</td>
@@ -304,8 +310,8 @@ cumulus@switch:~$ nv config apply
 
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
 </td>
-<td>5.0.1-5.1.0</td>
-<td>5.2.0-5.3.1</td>
+<td>5.0.1-5.3.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3071652</td>
@@ -460,6 +466,12 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <tr>
 <td>3037829</td>
 <td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3037824</td>
+<td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -633,6 +645,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2823307</td>
 <td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2821929</td>
+<td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>

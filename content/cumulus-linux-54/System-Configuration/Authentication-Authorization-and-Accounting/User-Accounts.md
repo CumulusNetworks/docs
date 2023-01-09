@@ -11,7 +11,7 @@ The *cumulus* account:
 - Uses the default password `cumulus`. You must change the default password when you log into Cumulus Linux for the first time.
 - Is a user account in the *sudo* group with sudo privileges.
 - Can log in to the system through all the usual channels, such as console and {{<link url="SSH-for-Remote-Access" text="SSH">}}.
-- Along with the cumulus group, has both show and edit rights for NVUE.
+- Has both show and edit rights for NVUE.
 
 The *root* account:
 
@@ -22,7 +22,6 @@ The *root* account:
 ## Add a New User Account
 
 You can add additional user accounts as needed.
-
 - You control local user account access to NVUE commands by changing the group membership for a user. Like the *cumulus* account, these accounts must use `sudo` to {{<link url="Using-sudo-to-Delegate-Privileges" text="execute privileged commands">}}; be sure to include them in the *sudo* group.
 - You can set a normal password or a hashed password for the local user account. To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 - You can provide a full name for the local user account (optional).
@@ -32,19 +31,25 @@ You can add additional user accounts as needed.
 
 Use the following groups to set the permissions for local user accounts.
 
-| Group | Permissions |
+| <div style="width:200px">Group | Permissions |
 |--------- |---------- |
-| `system-admin` | Allows `sudo`, `nv show` commands, staging (`nv set`) and applying configuration changes (`nv apply`). |
-| `nvue-admin` | Allows `show` commands, staging (`nv set`) and applying configuration changes (`nv apply`). |
-| `nvue-monitor` | Allows `nv show` commands only.|
+| `system-admin` | Allows the user to use `sudo` to run commands as the privileged user, run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
+| `nvue-admin` | Allows the user to run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
+| `nvue-monitor` | Allows the user to run `nv show` commands only.|
 
-Only user accounts in the `system-admin` group can create, modify and delete other `system-admin` accounts.
+{{%notice note%}}
+Only user accounts in the `system-admin` group can create, modify, and delete other `system-admin` accounts.
+{{%/notice%}}
 
-The following example commands create a new user account called admin2, set the password for the new user account to CumulusLinux! and set the group membership to `system-admin` (permissions for `sudo`, `nv show`, `nv set`, and `nv apply` commands).
+The following example:
+- Creates a new user account called `admin2` and sets the group membership to `system-admin` (permissions for `sudo`, `nv show`, `nv set`, and `nv apply`).
+- Adds the full name `Wolfgang Mozart`.
+- Sets the password to CumulusLinux!
 
 ```
 cumulus@switch:~$ nv set system aaa user admin2 role system-admin
 cumulus@switch:~$ nv set system aaa user admin2 password CumulusLinux!
+cumulus@switch:~$ nv set system aaa user admin2 full-name Wolfgang Mozart
 cumulus@switch:~$ nv config apply
 ```
 
@@ -55,13 +60,6 @@ cumulus@switch:~$ nv set system aaa user admin2 hashed-password CumulusLinux!
 cumulus@switch:~$ nv config apply
 ```
 
-To set a full name for the local user account, run the `nv set system aaa user <username> full-name <full name>` command.
-
-```
-cumulus@switch:~$ nv set system aaa user admin2 full-name Wolfgang Mozart
-cumulus@switch:~$ nv config apply
-```
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
@@ -69,29 +67,19 @@ Use the following groups to set the permissions for local user accounts. To add 
 
 | Group | Permissions |
 |--------- |---------- |
-| `sudo` | Allows sudo. |
-| `nvshow` | Allows `show` commands only. |
-| `nvset`  | Allows `show` commands and staging configuration changes. |
-| `nvapply` | Allows `show` commands, staging and applying configuration changes. |
+| `sudo` | Allows the user to use `sudo` to run commands as the privileged user. |
+| `nvshow` | Allows the user to run `nv show` commands only. |
+| `nvset`  | Allows the user to run `nv show` commands, and run `nv set` and `nv unset` commands to stage configuration changes. |
+| `nvapply` | Allows the user to run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
 
-The following example commands create a new user account called admin2, set the password for the new user account to CumulusLinux!, and set the set the group membership to `sudo` `nvapply` (permissions for `sudo`, `nv show`, `nv set`, and `nv apply` commands).
+The following example:
+- Creates a new user account called `admin2`, adds the full name `Wolfgang Mozart`, and sets the password to CumulusLinux!
+- Sets the group membership to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
 
 ```
-cumulus@switch:~$ sudo useradd admin2 -p CumulusLinux!
+cumulus@switch:~$ sudo useradd admin1 -c "Wolfgang Mozart" -p -e CumulusLinux!
 cumulus@switch:~$ sudo adduser admin2 sudo
 cumulus@switch:~$ sudo adduser admin2 nvapply
-```
-
-To set a hashed password for the local user, run the ???? command:
-
-```
-cumulus@switch:~$ sudo useradd admin2 ?????
-```
-
-To set a full name for the local user account, run the ???? command:
-
-```
-cumulus@switch:~$ sudo ????????
 ```
 
 {{< /tab >}}
@@ -113,7 +101,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 ```
-cumulus@switch:~$ sudo userdel -r admin2
+cumulus@switch:~$ sudo userdel admin2
 ```
 
 {{< /tab >}}
@@ -121,10 +109,10 @@ cumulus@switch:~$ sudo userdel -r admin2
 
 ## Show User Accounts
 
-To show the user accounts configured on the system, run the NVUE `nv show ` command or the linux `sudo cat /etc/passwd` command.
+To show the user accounts configured on the system, run the NVUE `nv show system aaa` command or the linux `sudo cat /etc/passwd` command.
 
 ```
-cumulus@switch:~$ nv show ???
+cumulus@switch:~$ nv show system aaa
 ```
 
 ## Enable Remote Access for a root User

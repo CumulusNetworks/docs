@@ -34,6 +34,8 @@ netq help verbose
 
 ### Sample Usage
 
+<!--need updated example-->
+
 Display syntax for all commands with the `agent` keyword:
 
 ```

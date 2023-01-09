@@ -13,7 +13,7 @@ This page describes how to log in and out of NetQ.
     - NetQ On-premises Appliance or VM: *https://\<hostname-or-ipaddress\>:443*  
     - NetQ Cloud Appliance or VM: *https://netq.nvidia.com*
 
-    {{< figure src="/images/netq/netq-welcome-screen.png" alt="NetQ login screen" width="700" >}}
+    {{<figure src="/images/netq/netq-welcome-screen.png" alt="NetQ login screen" width="700">}}
 
 3. Log in.
 

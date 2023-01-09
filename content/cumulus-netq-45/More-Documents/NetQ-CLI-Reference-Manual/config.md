@@ -37,6 +37,9 @@ netq config add agent cluster-servers
 | ---- | ---- | ---- |
 | port | \<text-opta-port\> | Use the port with this name on each switch to receive data; default is port 31980 |
 | vrf | \<text-vrf-names\> | Use the VRF with this name on each switch to receive data; default VRF is *default* |
+| ssl | true, false |  |
+| ssl-cert | \<text-ssl-cert-file\> | Use the SSL certificate contained in this file. Value must include entire path to the file. |
+| ssl-cert download | NA | |
 
 <!-- Need to add ssl definitions -->
 
@@ -408,8 +411,9 @@ netq config add agent server
 | ---- | ---- | ---- |
 | port | \<text-opta-port\> | Use this port on the appliance or VM to receive NetQ Agent data and API requests |
 | vrf | \<text-vrf-name\> | Use this VRF on the appliance or VM to receive NetQ Agent data and API requests |
-
-<!--Add defintions for ssl options-->
+| ssl | true, false |  |
+| ssl-cert | \<text-ssl-cert-file\> | Use the SSL certificate contained in this file. Value must include entire path to the file. |
+| ssl-cert download | NA | |
 
 ### Sample Usage
 
@@ -667,8 +671,33 @@ cumulus@switch:~# sudo netq config restart cli
 - ```netq config restart cli```
 
 - - -
+## netq config addons
 
-## netq config (add|del) color
+### Syntax
+
+```
+netq config (add|del) addons
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| add | NA |  |
+| del | NA | |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+None
+
+- - -
+## netq config color
 
 <!-- vale off -->
 Configures command output to presents results in color for many commands. Results with errors are shown in <span style="color: #ff0000;">red</span>, and warnings are shown in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings are shown in either black or <span style="color: #00ff00;">green</span>. VTEPs are shown in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output of a trace command is shown in **bold**, and a router interface is wrapped in angle brackets (\< \>). Outputs are shown with color cues as soon as you run the command.
@@ -1184,6 +1213,31 @@ cumulus@switch:~$ netq config del cli server
 - netq config add cli server
 - netq config show cli
 - netq config restart agent
+
+- - -
+
+## netq config experimental
+
+### Syntax
+
+```
+netq config (add|del) experimental
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| add | NA | Enables experimental features |
+| del | NA | Disables experimental features |
+
+### Options
+
+None
+### Sample Usage
+
+### Related Commands
+
+None
 
 - - -
 

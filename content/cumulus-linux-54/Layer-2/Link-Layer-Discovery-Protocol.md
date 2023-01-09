@@ -118,30 +118,101 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 - The `-M 4` option sends a field in discovery packets to indicate that the switch is a network device.
 {{%/notice%}}
 
-## Change CDP Settings
+## Set LLDP Mode
 
-Cumulus Linux provides support for <span style="background-color:#F5F5DC">[CDP](## "Cisco Discovery Protocol ")</span> so that the switch can advertise information about itself with Cisco routers that do not support LLDP. By default, the Cumulus Linux switch sends CDP packets only if the peer sends CDP packets. You can change this setting by replacing `-c` in the `/etc/default/lldpd` file with one of the following options:
+By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, then it sends CDP frames. You can change this behaviour and configure the `lldpd` service to send only CDP frames or only LLDP frames.
 
-| Option | Description |
-|--------|-------------|
-| -cc    | The Cumulus Linux switch sends CDPv1 packets even when there is no detected CDP peer. |
-| -ccc   | The Cumulus Linux switch sends CDPv2 packets even when there is no detected CDP peer. |
-| -cccc  | The Cumulus Linux switch disables CDPv1 and enables CDPv2. |
-| -ccccc | The Cumulus Linux switch disables CDPv1 and forces CDPv2. |
+{{%notice note%}}
+You configure the `lldpd` service to send only CDP or only LLDP frames globally for all interfaces; you cannot configure these settings for specific interfaces.
+{{%/notice%}}
 
-The following example changes the CDP setting to `-ccc` so that the switch sends CDPv2 packets even when there is no detected CDP peer:
+{{< tabs "TabID156 ">}}
+{{< tab "NVUE Commands ">}}
+
+To send only CDPv1 frames:
+
+```
+cumulus@switch:~$ nv set service lldp mode force-send-cdpv1
+cumulus@switch:~$ nv config apply
+```
+
+To send only CDPv2 frames:
+
+```
+cumulus@switch:~$ nv set service lldp mode force-send-cdpv2
+cumulus@switch:~$ nv config apply
+```
+
+To send only LLDP frames:
+
+```
+cumulus@switch:~$ nv set service lldp mode force-send-lldp
+cumulus@switch:~$ nv config apply
+```
+
+To reset to the default setting (to send both CDP and LLDP frames):
+
+```
+cumulus@switch:~$ nv set service lldp mode default
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/default/lldpd` file and add one of the following options to the `DAEMON_ARGS` section:
+
+To send only CDPv1 frames:
 
 ```
 cumulus@switch:~$ sudo nano /etc/default/lldpd
 ...
-# Enable CDP by default
-DAEMON_ARGS="-ccc -x -M 4"
+DAEMON_ARGS="-cc -ll -M 4"
+```
+
+To send only CDPv2 frames:
+
+```
+cumulus@switch:~$ sudo nano /etc/default/lldpd
+...
+DAEMON_ARGS="-cccc -ll -M 4"
+```
+
+To send only LLDP frames:
+
+```
+cumulus@switch:~$ sudo nano /etc/default/lldpd
+...
+DAEMON_ARGS="-l -M 4"
+```
+
+To reset to the default setting (to send both CDP and LLDP frames):
+
+```
+cumulus@switch:~$ sudo nano /etc/default/lldpd
+...
+DAEMON_ARGS="-c -M 4"
 ```
 
 You must restart the `lldpd` service for the changes to take effect.
 
 ```
 cumulus@switch:~$ sudo systemctl restart lldpd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the current LLDP mode, run the `nv show service lldp` command. The following example shows that the `lldpd` service sends CDPv2 frames only.
+
+```
+cumulus@leaf02:mgmt:~$ nv show service lldp
+                    operational       applied           description
+------------------  ----------------  ----------------  ----------------------------------------------------------------------
+dot1-tlv            off               off               Enable dot1 TLV advertisements on enabled ports
+mode                force-send-cdpv2  force-send-cdpv2  Enable sending CDP/LLDP frames only
+tx-hold-multiplier  4                 4                 < TTL of transmitted packets is calculated by multiplying the tx-in...
+tx-interval         30                30                change transmit delay
 ```
 
 ## LLDP DCBX TLVs

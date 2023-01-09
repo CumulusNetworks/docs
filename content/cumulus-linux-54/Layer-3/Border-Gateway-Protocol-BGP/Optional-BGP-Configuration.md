@@ -1504,6 +1504,96 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
+## BGP Clear
+
+You can clear a BGP session with all neighbors, a specific BGP neighbor, or a peer group, which forces neighbors to restart so that BGP can receive all prefixes from the neighbors again.
+
+{{< tabs "1511 ">}}
+{{< tab "NVUE Commands ">}}
+
+To clear BGP sessions with all neighbors:
+
+```
+cumulus@leaf01:~$ nv action clear bgp all
+cumulus@leaf01:~$ nv config apply
+```
+
+To clear a BGP session with a specific neighbor:
+
+```
+cumulus@leaf01:~$ nv action clear bgp 10.10.10.101
+cumulus@leaf01:~$ nv config apply
+```
+
+To clear BGP sessions with a peer group:
+
+```
+cumulus@leaf01:~$ nv action clear bgp SPINES
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+To clear BGP sessions with all neighbors:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# clear bgp *
+spine01# write memory
+spine01# exit
+```
+
+To clear a BGP session with a specific neighbor:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# clear bgp 10.10.10.101
+spine01# write memory
+spine01# exit
+```
+
+To clear BGP sessions with a peer group:
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# clear bgp SPINES
+spine01# write memory
+spine01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## BGP Debug
+
+To enable BGP debugging to show information about BGP processing:
+
+{{< tabs "1549 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv action debug bgp
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@spine01:~$ sudo vtysh
+...
+spine01# debug bgp
+spine01# write memory
+spine01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## BGP Neighbor Shutdown
 
 You can shut down all active BGP sessions with a neighbor and remove all associated routing information without removing its associated configuration. When shut down, the neighbor goes into an administratively idle state.

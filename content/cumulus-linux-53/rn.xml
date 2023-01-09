@@ -7,8 +7,32 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3303084</td>
+<td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward the BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3301988</td>
+<td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3301950</td>
 <td>When upgrading from Cumulus Linux 5.0.0 thru 5.2.1 to Cumulus Linux 5.3.0 or 5.3.1, the {{babeltrace}} and {{python3-babeltrace}} packages are not added automatically even though they are in the default image in Cumulus Linux 5.3.0 and later. You may need these packages to decode LTTNG traces with {{/usr/lib/frr/frr_babeltrace.py.}}. If you need to use this script, run the {{sudo apt update &amp;&amp; sudo apt install babeltrace python3-babeltrace}} command to install the packages.</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3293039</td>
+<td>When you add the {{/etc/frr/frr.conf}} file to the ignore list for NVUE, any configuration change causes FRR to restart because a check is done to see if any running configuration has changed since the previously applied configuration in the vtysh shell. </td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3292773</td>
+<td>NVUE requires the SNMPv2 community string to be a minimum of eight characters.</td>
 <td>5.3.0-5.3.1</td>
 <td></td>
 </tr>
@@ -16,6 +40,12 @@
 <td>3289972</td>
 <td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
 <td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3289646</td>
+<td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
+<td>5.2.0-5.3.1</td>
 <td></td>
 </tr>
 <tr>
@@ -29,6 +59,18 @@ Tenant VRF: BLUE
 Vlan: 0
 </td>
 <td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3267328</td>
+<td>On Spectrum 1 switches when configuring ACLs in non-atomic mode, if there are too many IPv6 matches due to rules with both {{input-interface}} and {{output-interface}} matches on SVIs, the ACL install fails and {{switchd}} crashes.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3266050</td>
+<td>Due to a race at the initial configuration, the SDK RDQ test may test RDQ configured for WJH and fail the test resulting in a fatal health event.</td>
+<td>5.2.0-5.3.1</td>
 <td></td>
 </tr>
 <tr>
@@ -50,6 +92,12 @@ Vlan: 0
 <td></td>
 </tr>
 <tr>
+<td>3255899</td>
+<td>The Linux utility that sends ARP packets is constrained to 512 interfaces on the system. In large scale deployments, the warm boot process fails repeatedly as it sends gratuitous ARP requests for each local address. This issue does not impact the functionality and can be ignored.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3244955</td>
 <td>ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries.</td>
 <td>5.2.0-5.3.1</td>
@@ -62,14 +110,41 @@ Vlan: 0
 <td></td>
 </tr>
 <tr>
+<td>3241047</td>
+<td>When you delete a route under the following conditions, {{switchd}} might crash:
+- The minimum number of routes is set to a non-zero value.
+- KVD utilization is higher than sixty percent.
+- The number of routes currently configured is less than the minimum reserved value, and multiple KVD linear resources have just been freed and are waiting in the Garbage Collector queue.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3240349</td>
 <td>On NVIDIA Spectrum-2 and Spectrum-3 switches, after you run the {{nv config save}} command, the NVUE service successfully reports that the current applied configuration is saved to the {{/etc/nvue.d/startup.yaml}} file. However, if you power cycle the switch within one minute after you save the configuration, the contents of the {{/etc/nvue.d/startup.yaml}} file might be cleared, which causes the {{nvue-startup}} service to fail. The NVUE service writes a log message indicating that the {{startup.yaml}} file is empty or incomplete. To work around this issue, either reboot the switch with the {{sudo reboot}} command instead of power cycling or wait at least one minute before you power cycle.</td>
 <td>5.2.1-5.3.1</td>
 <td></td>
 </tr>
 <tr>
+<td>3226506</td>
+<td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3221628</td>
+<td>Cumulus Linux 5.2.0 and 5.2.1 VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3210023</td>
 <td>If you add a local user to the {{nvset}} group, they also get full permissions to run {{nv apply}} commands even though they are not part of {{nvapply}} group. </td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3172682</td>
+<td>On rare occasions, when you query the system hostname through the {{hostnamctl}} application, you see a timeout. The {{hostnamctl}}  application is used by NVUE to determine the system hostname and can result in an {{nv config apply}} command failure.</td>
 <td>5.2.0-5.3.1</td>
 <td></td>
 </tr>
@@ -150,6 +225,15 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>3074390</td>
+<td>You can not apply NVUE configurations when TACACS is enabled for user authentication. To work around this issue, add the {{nvue}} account to the {{exclude_users}} line in {{/etc/tacplus_nss.conf}}:
+
+exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
+</td>
+<td>5.0.1-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>4.4.4-4.4.5, 5.1.0-5.3.1</td>
@@ -200,6 +284,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>3037829</td>
 <td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3037824</td>
+<td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -300,6 +390,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2823307</td>
 <td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2821929</td>
+<td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -368,6 +464,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>5.3.1</td>
 </tr>
 <tr>
+<td>3303084</td>
+<td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward the BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3303082</td>
 <td>When you delete a route under the following conditions, {{switchd}} might crash:
 - The minimum number of routes is set to a non-zero value.
@@ -377,8 +479,26 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>5.3.1</td>
 </tr>
 <tr>
+<td>3301988</td>
+<td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3301950</td>
 <td>When upgrading from Cumulus Linux 5.0.0 thru 5.2.1 to Cumulus Linux 5.3.0 or 5.3.1, the {{babeltrace}} and {{python3-babeltrace}} packages are not added automatically even though they are in the default image in Cumulus Linux 5.3.0 and later. You may need these packages to decode LTTNG traces with {{/usr/lib/frr/frr_babeltrace.py.}}. If you need to use this script, run the {{sudo apt update &amp;&amp; sudo apt install babeltrace python3-babeltrace}} command to install the packages.</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3293039</td>
+<td>When you add the {{/etc/frr/frr.conf}} file to the ignore list for NVUE, any configuration change causes FRR to restart because a check is done to see if any running configuration has changed since the previously applied configuration in the vtysh shell. </td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3292773</td>
+<td>NVUE requires the SNMPv2 community string to be a minimum of eight characters.</td>
 <td>5.3.0-5.3.1</td>
 <td></td>
 </tr>
@@ -386,6 +506,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>3289972</td>
 <td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
 <td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3289646</td>
+<td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
+<td>5.2.0-5.3.1</td>
 <td></td>
 </tr>
 <tr>
@@ -399,6 +525,18 @@ Tenant VRF: BLUE
 Vlan: 0
 </td>
 <td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3267328</td>
+<td>On Spectrum 1 switches when configuring ACLs in non-atomic mode, if there are too many IPv6 matches due to rules with both {{input-interface}} and {{output-interface}} matches on SVIs, the ACL install fails and {{switchd}} crashes.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3266050</td>
+<td>Due to a race at the initial configuration, the SDK RDQ test may test RDQ configured for WJH and fail the test resulting in a fatal health event.</td>
+<td>5.2.0-5.3.1</td>
 <td></td>
 </tr>
 <tr>
@@ -420,6 +558,12 @@ Vlan: 0
 <td></td>
 </tr>
 <tr>
+<td>3255899</td>
+<td>The Linux utility that sends ARP packets is constrained to 512 interfaces on the system. In large scale deployments, the warm boot process fails repeatedly as it sends gratuitous ARP requests for each local address. This issue does not impact the functionality and can be ignored.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3244955</td>
 <td>ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries.</td>
 <td>5.2.0-5.3.1</td>
@@ -432,14 +576,41 @@ Vlan: 0
 <td></td>
 </tr>
 <tr>
+<td>3241047</td>
+<td>When you delete a route under the following conditions, {{switchd}} might crash:
+- The minimum number of routes is set to a non-zero value.
+- KVD utilization is higher than sixty percent.
+- The number of routes currently configured is less than the minimum reserved value, and multiple KVD linear resources have just been freed and are waiting in the Garbage Collector queue.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3240349</td>
 <td>On NVIDIA Spectrum-2 and Spectrum-3 switches, after you run the {{nv config save}} command, the NVUE service successfully reports that the current applied configuration is saved to the {{/etc/nvue.d/startup.yaml}} file. However, if you power cycle the switch within one minute after you save the configuration, the contents of the {{/etc/nvue.d/startup.yaml}} file might be cleared, which causes the {{nvue-startup}} service to fail. The NVUE service writes a log message indicating that the {{startup.yaml}} file is empty or incomplete. To work around this issue, either reboot the switch with the {{sudo reboot}} command instead of power cycling or wait at least one minute before you power cycle.</td>
 <td>5.2.1-5.3.1</td>
 <td></td>
 </tr>
 <tr>
+<td>3226506</td>
+<td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3221628</td>
+<td>Cumulus Linux 5.2.0 and 5.2.1 VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3210023</td>
 <td>If you add a local user to the {{nvset}} group, they also get full permissions to run {{nv apply}} commands even though they are not part of {{nvapply}} group. </td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3172682</td>
+<td>On rare occasions, when you query the system hostname through the {{hostnamctl}} application, you see a timeout. The {{hostnamctl}}  application is used by NVUE to determine the system hostname and can result in an {{nv config apply}} command failure.</td>
 <td>5.2.0-5.3.1</td>
 <td></td>
 </tr>
@@ -520,6 +691,15 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>3074390</td>
+<td>You can not apply NVUE configurations when TACACS is enabled for user authentication. To work around this issue, add the {{nvue}} account to the {{exclude_users}} line in {{/etc/tacplus_nss.conf}}:
+
+exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
+</td>
+<td>5.0.1-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>4.4.4-4.4.5, 5.1.0-5.3.1</td>
@@ -570,6 +750,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <tr>
 <td>3037829</td>
 <td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3037824</td>
+<td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -670,6 +856,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2823307</td>
 <td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2821929</td>
+<td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -768,7 +960,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
+<td>3.7.0-5.2.1</td>
 </tr>
 <tr>
 <td>3211114</td>
@@ -788,6 +980,11 @@ Packet size is larger than router interface MTU – Validate the router interfac
 <tr>
 <td>3205859</td>
 <td>On the NVIDIA SN3700 and SN4600 switch, the fans run at very high speed but the temperature sensor readings are within an acceptable range.</td>
+<td>5.2.0-5.2.1</td>
+</tr>
+<tr>
+<td>3205858</td>
+<td>Ports might experience intermittent I2C EEPROM read problems, which result in blinking amber LEDs and incorrect ethtool output.</td>
 <td>5.2.0-5.2.1</td>
 </tr>
 <tr>

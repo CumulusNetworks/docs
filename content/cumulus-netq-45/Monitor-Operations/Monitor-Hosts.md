@@ -70,3 +70,6 @@ no     default         10.0.0.0/8                     server01          10.1.10.
 yes    default         192.168.200.0/24               server01          eth0                                Thu Sep 17 20:27:30 2020
 yes    default         10.1.10.0/24                   server01          uplink                              Thu Sep 17 20:27:30 2020
 ```
+## Related Information
+
+- {{<link title="Host Inventory">}}

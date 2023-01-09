@@ -31,7 +31,7 @@ To access LCM, open the Manage Switch Assets page in one of the following ways:
 
 The Manage Switch Assets view provides access to switch management, image management, NetQ Agent configurations, and job history.
 
-{{<figure src="/images/netq/updated-lcm-dashboard.png" alt="dashboard displaying switch management tab" width="700">}}
+{{<figure src="/images/netq/manage-switch-assets-450.png" alt="dashboard displaying switch management tab" width="700">}}
 
 ## LCM Summary
 

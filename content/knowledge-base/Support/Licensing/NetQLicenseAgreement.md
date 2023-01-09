@@ -1,5 +1,5 @@
 ---
-title: NetQ License Agreements
+title: NetQ License Agreement
 author: Cumulus Networks
 weight: 615
 toc: 4

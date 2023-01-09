@@ -23,10 +23,9 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
 - Support for 1G speed on all NVIDIA Spectrum-2 and Spectrum-3 switches
 - Port configuration changes; you now {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="configure port breakouts">}} in the `/etc/cumulus/ports.conf` file and port speed in the `/etc/network/interfaces` file
 - {{<link url="Quality-of-Service#ptp-shaping" text="PTP Shaping">}} for Spectrum 1
-- {{<link url="SyncE#synce" text="SyncE">}} available for early access
 - PTP PPS In or Out
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
-  - User management commands
+  - {{<link url="User-Accounts" text="User management">}} commands
   - TACACS Plus commands
   - {{<link url="Supported-Route-Table-Entries/#change-forwarding-resource-profiles" text="ASIC Resource Slicing">}} (KVD) commands
   - {{<link url="Link-Layer-Discovery-Protocol/#set-lldp-mode" text="LLDP commands">}} to send either CDP frames only or LLDP frames only

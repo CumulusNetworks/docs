@@ -1266,7 +1266,7 @@ Maximum 400G ports: 32
 
 You can breakout (split) a port using the following options:
 
-- `1x` does not split the port.
+- `1x` does not split the port. This is the default port setting.
 - `2x` splits the port into two interfaces.
 - `4x` splits the port into four interfaces.
 - `8x` splits the port into eight interfaces.
@@ -1274,6 +1274,11 @@ You can breakout (split) a port using the following options:
 Each split port transmits at the same speed. For example, if you split a 100G port into four interfaces, the speed for each interface is 25G. You can overide this configuration and configure specific speeds for the split ports if necessary.
 
 When you split a port, you must **also** disable the next port????
+
+{{%notice note%}}
+- Cumulus Linux 5.4 and later uses a new format for port splitting. For example, instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. If you upgrade to Cumulus Linux 5.4, Cumulus Linux continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, the NVUE command port split options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) in Cumulus Linux 5.3 and earlier are depricated. There is no backward compatibility for these deprecated NVUE command options; make sure to modify any configuration scripts when you upgrade to Cumulus Linux 5.4.
+- In Cumulus Linux 5.3 and earlier, you can configure port speed in the the `/etc/cumulus/ports.conf` file. If you upgrade to Cumulus Linux 5.4, Cumulus Linux no longer supports the speed configuration in the `/etc/cumulus/ports.conf` file. You must set the speed in the `/etc/network/interfaces` file.
+{{%/notice%}}
 
 {{< tabs "TabID607 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1396,7 +1401,11 @@ To remove a breakout port:
 
 ## Configure Port Lanes
 
-To override the default behavior for supported speeds and platforms, you can specify the number of lanes. For example for the NVIDIA SN3700 switch, the default behavior is 50G (2 lanes, NRZ) and 100G (4 lanes, NRZ). You can override this setting to to 50G (1 lanes, PAM4) and 100G (2 lanes, PAM4):
+With auto-negotiation off, you can override the default behavior for supported speeds and platforms and specify the number of lanes for a port. For example, for the NVIDIA SN3700 switch, the default port speed is 50G (2 lanes, <span style="background-color:#F5F5DC">[NRZ](## "Non-Return-to-Zero")</span> signaling mode) and 100G (4 lanes, NRZ signaling mode). You can override this setting to 50G (1 lane, <span style="background-color:#F5F5DC">[PAM4](## "Pulse Amplitude Modulation 4-level")</span> signaling mode) and 100G (2 lanes, PAM4 signaling mode).
+
+{{%notice note%}}
+This setting does not apply when auto-negotiation is on because Cumulus Linux advertises all supported speed options, including PAM4 and NRZ during auto-negotiation.
+{{%/notice%}}
 
 {{< tabs "TabID1401 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1423,9 +1432,15 @@ cumulus@switch:~$ nv config apply
 
 You can change the width of the sub-interfaces in a breakout port. For example, if you use NRZ breakout cables with a QSFP56-DD port, you might want to have different sub-interface widths.
 
-By default, Cumulus Linux calculates the sub-interface width during breakout with the formula: **sub_interface_width = full_port_width / desired_breakout**. For example, for a QSFP56-DD port and 4x breakout => 8 lanes width / 2x breakout = 4 lanes per sub-interface.
+By default, Cumulus Linux calculates the sub-interface width during breakout with the following formula:
+
+**sub_interface_width = full_port_width / desired_breakout**
+
+For example, for a QSFP56-DD port and 4x breakout => 8 lanes width / 2x breakout = 4 lanes per sub-interface.
 
 To change the width of the sub-interfaces in a breakout port:
+
+NEED INFO 
 
 <!--## Logical Switch Port Limitations
 

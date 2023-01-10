@@ -21,7 +21,10 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
 ### New Features and Enhancements
 
 - Support for 1G speed on all NVIDIA Spectrum-2 and Spectrum-3 switches
-- Port configuration changes; you now {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="configure port breakouts">}} in the `/etc/cumulus/ports.conf` file and port speed in the `/etc/network/interfaces` file
+- `/etc/cumulus/ports.conf` configuration changes:
+   - New format for {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}}
+   - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file.
+- {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="Port lane">}} and {{<link url="Switch-Port-Attributes/#configure-port-width" text="port width">}} configuration
 - {{<link url="Quality-of-Service#ptp-shaping" text="PTP Shaping">}} for Spectrum 1
 - PTP PPS In or Out
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
@@ -34,9 +37,7 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
   - BGP commands to {{<link url="Optional-BGP-Configuration#bgp-clear" text="clear a BGP session">}}, {{<link url="Optional-BGP-Configuration#bgp-debug" text="enable debugging">}}, and to show BGP operational information
   - Obfuscated passwords to protect passwords from casual viewing
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
-  - Support interactive commands (less, tail -f)
   - Auto save configuration
-  - Show version information in configuration output
   - Commit messages with the `nv config apply` command
   - New commands:
    {{< tabs "TabID40 ">}}

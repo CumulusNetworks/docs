@@ -1264,9 +1264,9 @@ Maximum 400G ports: 32
 
 ### Configure a Breakout Port
 
-You can breakout (split) a port using the following options:
+You can break out (split) a port using the following options:
 
-- `1x` does not split the port.
+- `1x` does not split the port. This is the default port setting.
 - `2x` splits the port into two interfaces.
 - `4x` splits the port into four interfaces.
 - `8x` splits the port into eight interfaces.
@@ -1274,6 +1274,11 @@ You can breakout (split) a port using the following options:
 Each split port transmits at the same speed. For example, if you split a 100G port into four interfaces, the speed for each interface is 25G. You can overide this configuration and configure specific speeds for the split ports if necessary.
 
 When you split a port, you must **also** disable the next port????
+
+{{%notice note%}}
+- Cumulus Linux 5.4 and later uses a new format for port splitting. For example, instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. If you upgrade to Cumulus Linux 5.4, Cumulus Linux continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, the NVUE command port split options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) in Cumulus Linux 5.3 and earlier are depricated. There is no backward compatibility for these deprecated NVUE command options; make sure to modify any configuration scripts when you upgrade to Cumulus Linux 5.4.
+- In Cumulus Linux 5.3 and earlier, you can configure port speed in the the `/etc/cumulus/ports.conf` file. If you upgrade to Cumulus Linux 5.4, Cumulus Linux no longer supports the speed configuration in the `/etc/cumulus/ports.conf` file. You must set the speed in the `/etc/network/interfaces` file.
+{{%/notice%}}
 
 {{< tabs "TabID607 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1309,7 +1314,13 @@ cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
    ...
    ```
 
-2. To configure specific speeds for the split ports, edit the `/etc/network/interfaces` file. The following example configures the speed for each swp1 breakout port (swp1s0, swp1s1, swp1s2, and swp1s3) to 10G.
+2. Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+
+   ```
+   cumulus@switch:~$ sudo systemctl reload switchd.service
+   ```
+
+3. To configure specific speeds for the split ports, edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example configures the speed for each swp1 breakout port (swp1s0, swp1s1, swp1s2, and swp1s3) to 10G.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
@@ -1337,10 +1348,8 @@ iface swp1s3
 ...
 ```
 
-Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
-
 ```
-cumulus@switch:~$ sudo systemctl reload switchd.service
+cumulus@switch:~$ sudo ifreload -a
 ```
 
 {{< /tab >}}
@@ -1391,12 +1400,71 @@ To remove a breakout port:
    cumulus@switch:~$ sudo systemctl reload switchd.service
    ```
 
+3. Remove the breakout interface configuration from the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Configure Port Lanes
+
+With auto-negotiation off, you can override the default behavior for supported speeds and platforms and specify the number of lanes for a port. For example, for the NVIDIA SN3700 switch, the default port speed is 50G (2 lanes, <span style="background-color:#F5F5DC">[NRZ](## "Non-Return-to-Zero")</span> signaling mode) and 100G (4 lanes, NRZ signaling mode). You can override this setting to 50G (1 lane, <span style="background-color:#F5F5DC">[PAM4](## "Pulse Amplitude Modulation 4-level")</span> signaling mode) and 100G (2 lanes, PAM4 signaling mode).
+
+{{%notice note%}}
+This setting does not apply when auto-negotiation is on because Cumulus Linux advertises all supported speed options, including PAM4 and NRZ during auto-negotiation.
+{{%/notice%}}
+
+{{< tabs "TabID1401 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 link speed 50G
+cumulus@switch:~$ nv set interface swp1 link lanes 1
+cumulus@switch:~$ nv config apply 
+```
+
+```
+cumulus@switch:~$ nv set interface swp2 link speed 100G
+cumulus@switch:~$ nv set interface swp2 link lanes 2
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Configure Port Width
+
+You can change the width of the interfaces in a breakout port. For example, if you use NRZ breakout cables with a QSFP56-DD port, you might want to have different interface widths.
+
+By default, Cumulus Linux calculates the sub-interface width during breakout with the following formula:
+
+**subinterface width = full port width / breakout**
+
+For example, splitting a QSFP56-DD port into 2 interfaces distributes 8 lanes across the breakout ports, which results in 4 lanes per interface.
+
+To change the width of the interfaces in a breakout port:
+
+{{< tabs "TabID1401 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ 
+cumulus@switch:~$ nv config apply 
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+
 {{< /tab >}}
 {{< /tabs >}}
 
 ## Logical Switch Port Limitations
 
 100G and 40G switches can support a certain number of logical ports depending on the switch. Before you configure any logical ports on a switch, check the limitations listed in the `/etc/cumulus/ports.conf`file.
+
 <!-- vale off -->
 ### ports.conf File Validator
 <!-- vale on -->

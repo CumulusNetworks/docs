@@ -387,6 +387,8 @@ cumulus@switch:~$ nv set system config auto-save enable on
 cumulus@switch:~$ nv config apply
 ```
 
+To disable auto save, run the `nv set system config auto-save enable off` command.
+
 ## Add Configuration Apply Messages
 
 When you run the `nv config apply` command, you can add a message that describes the configuration updates you make. You can see the message when you run the `nv config history` command.

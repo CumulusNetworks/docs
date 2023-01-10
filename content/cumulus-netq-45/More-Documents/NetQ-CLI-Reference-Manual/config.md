@@ -378,9 +378,9 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent sensors
-- netq config del agent sensors
-- netq config restart agent
+- `netq config show agent sensors`
+- `netq config del agent sensors`
+- `netq config restart agent`
 
 - - -
 
@@ -466,9 +466,9 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent stats
-- netq config del agent stats
-- netq config restart agent
+- `netq config show agent stats`
+- `netq config del agent stats`
+- `netq config restart agent`
 
 - - -
 
@@ -530,7 +530,7 @@ netq config add agent wjh-drop-filter
 <!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| wjh-drop-filter | NA | Collect and send WJH events filtered by drop type, reason or severity |
+| wjh-drop-filter | NA | Collect and send WJH events filtered by drop type, reason, or severity |
 | drop-type | \<text-wjh-drop-type\> | Only collect and send WJH events with this drop type. Valid drop types include *acl*, *buffer*, *l1*, *l2*, *router*, and *tunnel*. |
 <!-- vale on -->
 
@@ -538,8 +538,8 @@ netq config add agent wjh-drop-filter
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. When you desire more than one drop reason, you should format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
-| severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. When you desire more than one severity, you should format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+| drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. To specify more than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
+| severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
 ### Sample Usage
 
@@ -552,10 +552,10 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config del agent wjh-drop-filter
-- netq config add agent wjh
-- netq config add agent wjh-threshold
-- netq config restart agent
+- `netq config del agent wjh-drop-filter`
+- `netq config add agent wjh`
+- `netq config add agent wjh-threshold`
+- `netq config restart agent`
 
 - - -
 
@@ -793,26 +793,60 @@ Netq Command factory reset successful
 - ```netq config show agent```
 
 - - -
+## netq config del agent
 
-## netq config del agent cluster-servers
+Disables or removes NetQ Agent configurations on a switch. Several forms of this command are available.
 
-For deployments using a cluster server configuration, this command removes the IP addresses of all cluster servers configured to receive NetQ Agent data.
+<!--
 
+Cluster Servers: For deployments using a cluster server configuration, this command removes the IP addresses of all cluster servers configured to receive NetQ Agent data.
+
+CPU Limit: Removes the CPU usage limit for the NetQ Agent on this device.
+
+FRR Monitor: Disables NetQ Agent from monitoring FRR running in a Docker container. This *does not* disable NetQ Agent from monitoring FRR running as a service.
+
+Kubernetes Monitor: Disables NetQ Agent from monitoring Kubernetes container activity on a switch.
+
+Log level: Disables NetQ Agent logging on a switch.
+
+Sensors: Disables NetQ Agent from collecting fan, power supply unit, and temperature sensors for a switch chassis.
+
+Server: Removes the destination (NetQ appliance or VM) for the data collected by the NetQ Agent and for API requests.
+
+SSL: 
+
+Stats: Disables the NetQ Agent from collecting interface statistics on a switch.
+
+WJH: Disables the NetQ Agent from collecting What Just Happened events on a switch.
+
+-->
 ### Syntax
 
 ```
-netq config del agent cluster-servers
+netq config del agent 
+    [cluster-servers]
+    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|ssl|stats|wjh] 
+    [json]
 ```
-
 ### Required Arguments
 
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| cluster-servers | NA | Remove all cluster servers configured to receive NetQ Agent data |
+None
 
 ### Options
 
-None
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| cluster-servers | NA | Remove all cluster servers configured to receive NetQ Agent data |
+| cpu-limit | NA | Remove CPU usage limit for the NetQ Agent on this device | 
+| frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
+| kubernetes-monitor | NA | Stop the NetQ Agent from monitoring Kubernetes containers |
+| loglevel | NA | Stop the NetQ Agent from logging events about the agent |
+| sensors | NA | Stop the NetQ Agent from monitoring chassis sensors |
+| server | NA | Delete the current destination of NetQ Agent data and API requests |
+| ssl | NA | Delete SSL configuration |
+| stats | NA | Stop the NetQ Agent from collecting interface statistics |
+| wjh | NA | Stop the NetQ Agent from collecting WJH information |
+| json | NA | Display the output in JSON file format |
 
 ### Sample Usage
 
@@ -825,297 +859,10 @@ cumulus@switch:~$ netq config restart agent
 
 ### Related Commands
 
-- netq config add agent cluster-servers
-- netq config restart agent
+- `netq config add agent`
+- `netq config restart agent`
+- `netq config show agent`
 
-- - -
-
-## netq config del agent cpu-limit
-
-Removes the CPU usage limit for the NetQ Agent on this device.
-
-### Syntax
-
-```
-netq config del agent cpu-limit
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| cpu-limit | NA | Remove CPU usage limit for the NetQ Agent on this device |
-
-### Options
-
-None
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config del agent cpu-limit
-Successfully deleted agent CPU limit
-Please restart agent(netq config restart agent)
-
-cumulus@switch:~$ netq config restart agent
-```
-
-### Related Commands
-
-- ```netq config show agent cpu-limit```
-- ```netq config add agent cpu-limit```
-- ```netq config restart agent```
-
-- - -
-
-## netq config del agent frr-monitor
-
-Disables NetQ Agent from monitoring FRR running in a Docker container. This *does not* disable NetQ Agent from monitoring FRR running as a service.
-
-### Syntax
-
-```
-netq config del agent frr-monitor
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
-
-### Options
-
-None
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config del agent frr-monitor
-Successfully deleted FRR docker monitoring for netq-agent. Please restart service.
-
-cumulus@switch:~$ netq config restart agent
-```
-
-### Related Commands
-
-- netq config show agent frr-monitor
-- netq config add agent frr-monitor
-- netq config restart agent
-
-- - -
-
-## netq config del agent kubernetes-monitor
-
-Disables NetQ Agent from monitoring Kubernetes container activity on a switch.
-
-### Syntax
-
-```
-netq config del agent kubernetes-monitor
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| kubernetes-monitor | NA | Stop the NetQ Agent from monitoring Kubernetes containers |
-
-### Options
-
-None
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config del agent kubernetes-monitor
-Successfully deleted kubernetes monitoring for netq-agent. Please restart service.
-
-cumulus@switch:~$ netq config restart agent
-```
-
-### Related Commands
-
-- netq config show agent kubernetes-monitor
-- netq config add agent kubernetes-monitor
-- netq config restart agent
-
-- - -
-
-## netq config del agent loglevel
-
-Disables NetQ Agent logging on a switch.
-
-### Syntax
-
-```
-netq config del agent loglevel
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| loglevel | NA | Stops the NetQ Agent from logging events about the agent |
-
-### Options
-
-None
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config del agent loglevel
-Successfully deleted logger for netq-agent. Please restart service.
-
-cumulus@switch:~$ netq config restart agent
-```
-
-### Related Commands
-
-- netq config show agent loglevel
-- netq config add agent loglevel
-- netq config restart agent
-
-- - -
-
-## netq config del agent sensors
-
-Disables NetQ Agent from collecting fan, power supply unit, and temperature sensors for a switch chassis.
-
-### Syntax
-
-```
-netq config del agent sensors
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| sensors | NA | Stops the NetQ Agent from monitoring chassis sensors |
-
-### Options
-
-None
-
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config del agent sensors
-cumulus@switch:~$ netq config restart agent
-```
-
-### Related Commands
-
-- netq config show agent sensors
-- netq config add agent sensors
-- netq config restart agent
-
-- - -
-
-## netq config del agent server
-
-Removes the destination (NetQ appliance or VM) for the data collected by the NetQ Agent and for API requests.
-
-### Syntax
-
-```
-netq config del agent server
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| server | NA | Delete the current destination of NetQ Agent data and API requests |
-
-### Options
-
-None
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config del agent server
-Deleted agent server 127.0.0.1 port 31980 vrf default. Please restart netq-agent (netq config restart agent)
-
-cumulus@switch:~$ netq config restart agent
-```
-
-### Related Commands
-
-- netq config add agent server
-- netq config restart agent
-
-- - -
-
-## netq config del agent stats
-
-Disables the NetQ Agent from collecting interface statistics on a switch.
-
-### Syntax
-
-```
-netq config del agent stats
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| stats | NA | Stop NetQ Agent from collecting interface statistics |
-
-### Options
-
-None
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config del agent stats
-stats config deleted
-```
-
-### Related Commands
-
-- netq config show agent stats
-- netq config add agent stats
-- netq config restart agent
-
-- - -
-
-## netq config del agent wjh
-
-Disables the NetQ Agent from collecting What Just Happened events on a switch.
-
-### Syntax
-
-```
-netq config del agent wjh
-```
-
-### Required Arguments
-
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| wjh | NA | Stop NetQ Agent from collecting WJH information |
-
-### Options
-
-None
-### Sample Usage
-
-```
-cumulus@switch:~$ netq config del agent wjh
-cumulus@switch:~$ netq config restart agent
-```
-
-### Related Commands
-
-- netq config del agent wjh
-- netq config del agent wjh-threshold
-- netq config show agent wjh
-- netq config add agent wjh
-- netq config restart agent
 
 - - -
 
@@ -1145,8 +892,8 @@ netq config del agent wjh-drop-filter
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. When you desire more than one drop reason, you should format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
-| severity | \<text-drop-severity-list\> | Delete WJH event filter with these severities. When you desire more than one severity, you should format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
+| drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. To specify than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
+| severity | \<text-drop-severity-list\> | Delete WJH event filter with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
 ### Sample Usage
 
@@ -1159,13 +906,12 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config add agent wjh-drop-filter
-- netq config add/del agent wjh
-- netq config del agent wjh-threshold
-- netq config restart agent
+- `netq config add agent wjh-drop-filter`
+- `netq config add/del agent wjh`
+- `netq config del agent wjh-threshold`
+- `netq config restart agent`
 
 - - -
-
 ## netq config del agent wjh-threshold
 
 Remove latency or congestion thresholds for WJH events.
@@ -1334,7 +1080,7 @@ Restarting NetQ CLI... Success!
 
 ### Related Commands
 
-- `netq config (start|stop) agent`
+- `netq config stop agent`
 
 - - -
 <!-- vale off -->

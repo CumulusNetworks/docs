@@ -75,7 +75,6 @@ Matching addresshistory records:
 Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
 ------------------------- ----------------- ------------ ------------------------------ -------- ---------------
 Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3                     32       default
-
 ```
 
 Show only the differences between now and four months ago:

@@ -1394,9 +1394,43 @@ To remove a breakout port:
 {{< /tab >}}
 {{< /tabs >}}
 
-## Logical Switch Port Limitations
+## Configure Port Lanes
 
-100G and 40G switches can support a certain number of logical ports depending on the switch. Before you configure any logical ports on a switch, check the limitations listed in the `/etc/cumulus/ports.conf`file.
+To override the default behavior for supported speeds and platforms, you can specify the number of lanes. For example for the NVIDIA SN3700 switch, the default behavior is 50G (2 lanes, NRZ) and 100G (4 lanes, NRZ). You can override this setting to to 50G (1 lanes, PAM4) and 100G (2 lanes, PAM4):
+
+{{< tabs "TabID1401 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 link speed 50G
+cumulus@switch:~$ nv set interface swp1 link lanes 1
+cumulus@switch:~$ nv config apply 
+```
+
+```
+cumulus@switch:~$ nv set interface swp2 link speed 100G
+cumulus@switch:~$ nv set interface swp2 link lanes 2
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Configure Port Width
+
+You can change the width of the sub-interfaces in a breakout port. For example, if you use NRZ breakout cables with a QSFP56-DD port, you might want to have different sub-interface widths.
+
+By default, Cumulus Linux calculates the sub-interface width during breakout with the formula: **sub_interface_width = full_port_width / desired_breakout**. For example, for a QSFP56-DD port and 4x breakout => 8 lanes width / 2x breakout = 4 lanes per sub-interface.
+
+To change the width of the sub-interfaces in a breakout port:
+
+<!--## Logical Switch Port Limitations
+
+100G and 40G switches can support a certain number of logical ports depending on the switch. Before you configure any logical ports on a switch, check the limitations listed in the `/etc/cumulus/ports.conf`file.-->
+
 <!-- vale off -->
 ### ports.conf File Validator
 <!-- vale on -->

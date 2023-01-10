@@ -312,7 +312,6 @@ Configured State
   - *Admin Down* means the kernel has disabled the port.
 - `Speed`:  
   - The configured speed in the kernel.  
-  - The maximum speed is in the `/etc/cumulus/ports.conf` file.
   - You can lower the speed with NVUE or `ifupdown2`.
   - If you enable auto-negotiation, this output displays the negotiated or auto-detected speed.
 - `MTU`: The configured MTU setting in the kernel.

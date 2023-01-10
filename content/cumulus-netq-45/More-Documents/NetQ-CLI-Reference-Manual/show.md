@@ -2167,7 +2167,6 @@ netq [<hostname>] show line-utilization
    [between <text-time> and <text-endtime>] 
    [around <text-time>] 
    [json]
-
 ```
 ### Required Arguments
 

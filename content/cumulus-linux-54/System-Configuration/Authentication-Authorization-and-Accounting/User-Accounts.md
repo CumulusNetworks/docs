@@ -29,36 +29,33 @@ You can add additional user accounts as needed.
 {{< tabs "TabID30 ">}}
 {{< tab "NVUE Commands ">}}
 
-Use the following groups to set the permissions for local user accounts.
+Use the following roles to set the permissions for local user accounts.
 
-| <div style="width:200px">Group | Permissions |
+| <div style="width:200px">Role | Permissions |
 |--------- |---------- |
 | `system-admin` | Allows the user to use `sudo` to run commands as the privileged user, run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
 | `nvue-admin` | Allows the user to run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
 | `nvue-monitor` | Allows the user to run `nv show` commands only.|
 
 {{%notice note%}}
-Only user accounts in the `system-admin` group can create, modify, and delete other `system-admin` accounts.
+Only user accounts with the `system-admin` role can create, modify, and delete other `system-admin` accounts.
 {{%/notice%}}
 
 The following example:
-- Creates a new user account called `admin2` and sets the group membership to `system-admin` (permissions for `sudo`, `nv show`, `nv set`, and `nv apply`).
-- Adds the full name `Wolfgang Mozart`.
+- Creates a new user account called `admin2` and sets the role to `system-admin` (permissions for `sudo`, `nv show`, `nv set`, and `nv apply`).
+- Adds the full name `FIRST LAST`.
 - Sets the password to CumulusLinux!
 
 ```
 cumulus@switch:~$ nv set system aaa user admin2 role system-admin
 cumulus@switch:~$ nv set system aaa user admin2 password CumulusLinux!
-cumulus@switch:~$ nv set system aaa user admin2 full-name Wolfgang Mozart
+cumulus@switch:~$ nv set system aaa user admin2 full-name FIRST LAST
 cumulus@switch:~$ nv config apply
 ```
 
 To set a hashed password for the local user, run the `nv set system aaa user <username> hashed-password <hashed-password>` command.
 
-```
-cumulus@switch:~$ nv set system aaa user admin2 hashed-password CumulusLinux!
-cumulus@switch:~$ nv config apply
-```
+You can also set an SSH authorized key for a user with the `nv set system aaa user <username> ssh authorized-key <value>` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -73,11 +70,11 @@ Use the following groups to set the permissions for local user accounts. To add 
 | `nvapply` | Allows the user to run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
 
 The following example:
-- Creates a new user account called `admin2`, adds the full name `Wolfgang Mozart`, and sets the password to CumulusLinux!
+- Creates a new user account called `admin2`, adds the full name `First Last`, and sets the password to CumulusLinux!
 - Sets the group membership to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
 
 ```
-cumulus@switch:~$ sudo useradd admin1 -c "Wolfgang Mozart" -p -e CumulusLinux!
+cumulus@switch:~$ sudo useradd admin1 -c "First Last" -p CumulusLinux!
 cumulus@switch:~$ sudo adduser admin2 sudo
 cumulus@switch:~$ sudo adduser admin2 nvapply
 ```
@@ -158,7 +155,7 @@ The root user does not have a password and cannot log into a switch using SSH. T
 
 ```
 cumulus@switch:~$ nv set system aaa user root password 
-
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

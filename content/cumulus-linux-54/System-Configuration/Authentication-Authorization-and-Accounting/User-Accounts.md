@@ -11,18 +11,17 @@ The *cumulus* account:
 - Uses the default password `cumulus`. You must change the default password when you log into Cumulus Linux for the first time.
 - Is a user account in the *sudo* group with sudo privileges.
 - Can log in to the system through all the usual channels, such as console and {{<link url="SSH-for-Remote-Access" text="SSH">}}.
-- Has both show and edit rights for NVUE.
+- Includes permissions to run NVUE `nv show`, `nv set`, `nv unset`, and `nv apply` commands.
 
 The *root* account:
 
-- Has the default password disabled by default
-- Has the standard Linux root user access to everything on the switch
-- The disabled password prevents you from using SSH, telnet, FTP, and so on, to log in to the switch.
+- Has the default password disabled by default and prevents you from using SSH, telnet, FTP, and so on, to log in to the switch.
+- Has the standard Linux root user access to everything on the switch.
 
 ## Add a New User Account
 
 You can add additional user accounts as needed.
-- You control local user account access to NVUE commands by changing the group membership for a user. Like the *cumulus* account, these accounts must use `sudo` to {{<link url="Using-sudo-to-Delegate-Privileges" text="execute privileged commands">}}; be sure to include them in the *sudo* group.
+- You control local user account access to NVUE commands by changing the group membership (role) for a user. Like the *cumulus* account, these accounts must use `sudo` to {{<link url="Using-sudo-to-Delegate-Privileges" text="execute privileged commands">}}; be sure to include them in the *sudo* group.
 - You can set a normal password or a hashed password for the local user account. To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 - You can provide a full name for the local user account (optional).
 
@@ -55,12 +54,12 @@ cumulus@switch:~$ nv config apply
 
 To set a hashed password for the local user, run the `nv set system aaa user <username> hashed-password <hashed-password>` command.
 
-You can also set an SSH authorized key for a user with the `nv set system aaa user <username> ssh authorized-key <value>` command.
+To set an SSH authorized key for a user, run the `nv set system aaa user <username> ssh authorized-key <value>` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Use the following groups to set the permissions for local user accounts. To add users to these groups, use the `useradd(8)` or `usermod(8)` commands:
+Use the following groups to set permissions for local user accounts. To add users to these groups, use the `useradd(8)` or `usermod(8)` commands:
 
 | Group | Permissions |
 |--------- |---------- |
@@ -89,6 +88,8 @@ To delete a user account:
 {{< tabs "TabID104 ">}}
 {{< tab "NVUE Commands ">}}
 
+Run the `nv unset system aaa user <user>` command. The following example deletes the user account called `admin2`.
+
 ```
 cumulus@switch:~$ nv unset system aaa user admin2
 cumulus@switch:~$ nv config apply
@@ -96,6 +97,8 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
+
+Run the `sudo userdel <user>` command. The following example deletes the user account called `admin2`.
 
 ```
 cumulus@switch:~$ sudo userdel admin2
@@ -106,7 +109,7 @@ cumulus@switch:~$ sudo userdel admin2
 
 ## Show User Accounts
 
-To show the user accounts configured on the system, run the NVUE `nv show system aaa` command or the linux `sudo cat /etc/passwd` command.
+To show the user accounts configured on the system, run the NVUE `nv show system aaa user` command or the linux `sudo cat /etc/passwd` command.
 
 ```
 cumulus@switch:~$ nv show system aaa

@@ -37,9 +37,7 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
   - BGP commands to {{<link url="Optional-BGP-Configuration#bgp-clear" text="clear a BGP session">}}, {{<link url="Optional-BGP-Configuration#bgp-debug" text="enable debugging">}}, and to show BGP operational information
   - Obfuscated passwords to protect passwords from casual viewing
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
-  - Support interactive commands (less, tail -f)
   - Auto save configuration
-  - Show version information in configuration output
   - Commit messages with the `nv config apply` command
   - New commands:
    {{< tabs "TabID40 ">}}

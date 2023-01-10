@@ -1264,7 +1264,7 @@ Maximum 400G ports: 32
 
 ### Configure a Breakout Port
 
-You can breakout (split) a port using the following options:
+You can break out (split) a port using the following options:
 
 - `1x` does not split the port. This is the default port setting.
 - `2x` splits the port into two interfaces.
@@ -1314,7 +1314,13 @@ cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
    ...
    ```
 
-2. To configure specific speeds for the split ports, edit the `/etc/network/interfaces` file. The following example configures the speed for each swp1 breakout port (swp1s0, swp1s1, swp1s2, and swp1s3) to 10G.
+2. Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
+
+   ```
+   cumulus@switch:~$ sudo systemctl reload switchd.service
+   ```
+
+3. To configure specific speeds for the split ports, edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example configures the speed for each swp1 breakout port (swp1s0, swp1s1, swp1s2, and swp1s3) to 10G.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
@@ -1342,10 +1348,8 @@ iface swp1s3
 ...
 ```
 
-Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
-
 ```
-cumulus@switch:~$ sudo systemctl reload switchd.service
+cumulus@switch:~$ sudo ifreload -a
 ```
 
 {{< /tab >}}
@@ -1396,6 +1400,8 @@ To remove a breakout port:
    cumulus@switch:~$ sudo systemctl reload switchd.service
    ```
 
+3. Remove the breakout interface configuration from the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -1430,21 +1436,34 @@ cumulus@switch:~$ nv config apply
 
 ## Configure Port Width
 
-You can change the width of the sub-interfaces in a breakout port. For example, if you use NRZ breakout cables with a QSFP56-DD port, you might want to have different sub-interface widths.
+You can change the width of the interfaces in a breakout port. For example, if you use NRZ breakout cables with a QSFP56-DD port, you might want to have different interface widths.
 
 By default, Cumulus Linux calculates the sub-interface width during breakout with the following formula:
 
-**sub_interface_width = full_port_width / desired_breakout**
+**subinterface width = full port width / breakout**
 
-For example, for a QSFP56-DD port and 4x breakout => 8 lanes width / 2x breakout = 4 lanes per sub-interface.
+For example, splitting a QSFP56-DD port into 2 interfaces distributes 8 lanes across the breakout ports, which results in 4 lanes per interface.
 
-To change the width of the sub-interfaces in a breakout port:
+To change the width of the interfaces in a breakout port:
 
-NEED INFO 
+{{< tabs "TabID1401 ">}}
+{{< tab "NVUE Commands ">}}
 
-<!--## Logical Switch Port Limitations
+```
+cumulus@switch:~$ 
+cumulus@switch:~$ nv config apply 
+```
 
-100G and 40G switches can support a certain number of logical ports depending on the switch. Before you configure any logical ports on a switch, check the limitations listed in the `/etc/cumulus/ports.conf`file.-->
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Logical Switch Port Limitations
+
+100G and 40G switches can support a certain number of logical ports depending on the switch. Before you configure any logical ports on a switch, check the limitations listed in the `/etc/cumulus/ports.conf`file.
 
 <!-- vale off -->
 ### ports.conf File Validator

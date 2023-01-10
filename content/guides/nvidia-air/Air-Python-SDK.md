@@ -237,7 +237,7 @@ curl --location --request POST 'https://air.nvidia.com/api/v1/simulation/<simula
 {{< tab "SDK ">}}
 
 ```
->>> from air_sdk import AirAPI
+>>> from air_sdk import AirApi
 >>> air = AirApi(username='<user>', password='<api_token>')
 >>> simulation = air.simulations.get('<simulation_uuid>')
 >>> simulation.delete()
@@ -272,7 +272,7 @@ Find, and load the Simulation:
 {{< tab "SDK ">}}
 
 ```
->>> from air_sdk import AirAPI
+>>> from air_sdk import AirApi
 >>> air = AirApi(username='<user>', password='<api_token>')
 >>> simulation = air.simulations.get('<simulation_uuid>')
 >>> simulation.load()
@@ -408,7 +408,7 @@ Upload and create the Image object:
 {{< tab "SDK ">}}
 
 ```
->>> from air_sdk import AirAPI
+>>> from air_sdk import AirApi
 >>> user = 'user@nvidia.com'
 >>> api_token = 'fake_api_token'
 >>> air = AirApi(username=user, password=api_token)

@@ -30,22 +30,18 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 4. Download the network OS disk images (*.bin* files) from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}}. Log in to the portal and from the **Downloads** tab, select **Switches and Gateways**. Under **Switch Software**, click **All downloads** next to **Cumulus Linux for Mellanox Switches**. Select the current version and the target version, then click **Show Downloads Path**. Download the file.
 
-5. Back in the UI, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
-
-  {{<figure src="/images/netq/lcm-import-linux-image-dialog-320.png" alt="dialog prompting the user to import the CL image" width="250">}}
+5. In the UI, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Add image** above the table.
 
 6. Provide the *.bin* file from an external drive that matches the criteria for the selected image(s).
 
 7. Click **Import**.
 
-<div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message appears. Close the dialog and try uploading the file again.
+<div style="padding-left: 18px;">If the upload was unsuccessful, an <em>Image Import Failed</em> message appears. Close the dialog and try uploading the file again.
 </div>
 
 8. Click **Done**.
 
-9. (Optional) Click **Uploaded** to verify the image is in the repository.
-
-    {{<figure src="/images/netq/lcm-import-linux-image-uploaded-320.png" alt="UI screen verifying that the image is in the repository" width="700">}}
+9. (Optional) Click the **Uploaded** tab to verify the image is in the repository.
 
 10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" alt="close" height="14" width="14">}} to return to the LCM dashboard.
 
@@ -85,8 +81,6 @@ To upload missing **NetQ** images:
 
 2. On the NetQ Images card, select *View # missing NetQ images* to see which images you need.
 
-    {{<figure src="/images/netq/lcm-netq-images-missinglink-310.png" alt="netq images card with link to view missing images" width="200">}}
-
 <div style="padding-left: 18px;">{{<notice tip>}}
 If you have already specified a default image, you must click <strong>Manage</strong> and then <strong>Missing</strong> to see the missing images.
     {{</notice>}}</div>
@@ -95,19 +89,19 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 4. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/p/python-netq/" text="NetQ repository">}}, selecting the appropriate OS version and architecture. Place the files in an accessible part of your local network.
 
-5. Back in the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Image) above the table.
+5. In the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Add image** above the table.
 
-    {{<figure src="/images/netq/lcm-import-netq-image-dialog-320.png" alt="dialog prompting the user to import the NetQ images" width="250">}}
+    {{<figure src="/images/netq/import-netq-images-450.png" alt="dialog prompting the user to import the NetQ images" width="250">}}
 
 6. Provide the *.deb* file(s) from an external drive that matches the criteria for the selected image.
 
 7. Click **Import**.
 
-<div style="padding-left: 18px;">If the upload was not successful, an <em>Image Import Failed</em> message appears. Close the Import Image dialog and try uploading the file again.</div>
+<div style="padding-left: 18px;">If the upload was unsuccessful, an <em>Image Import Failed</em> message appears. Close the dialog and try uploading the file again.</div>
 
 8. Click **Done**.
 
-9. (Optional) Click **Uploaded** to verify the images are in the repository.
+9. (Optional) Click the **Uploaded** tab to verify the image is in the repository.
 
 10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
 
@@ -148,11 +142,11 @@ After obtaining the images, upload them to NetQ with the UI or CLI:
 
 {{<tab "NetQ UI">}}
 
-1. Click **Image Management**.
+1. From the LCM dashboard, select the **Image management** tab.
 
-2. Click **Add Image** on the Cumulus Linux Images or NetQ Images card.
+2. Select the **Add image** button on the appropriate card:
 
-    {{<img src="/images/netq/lcm-linux-images-card-at-install-addimage-300.png" alt="" width="200">}} {{<img src="/images/netq/lcm-netq-images-card-at-install-addimage-310.png" alt="" width="200">}}
+    {{<img src="/images/netq/add-image-450.png" alt="" width="600">}}
 
 3. Provide one or more images from an external drive.
 
@@ -240,7 +234,7 @@ After you upgrade all your switches beyond a particular release, you can remove 
 
 {{<tab "NetQ UI">}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**. Select the **Image Management** tab. 
+1. From the LCM dashboard, select the **Image management** tab.
 
 2. Click **Manage** on the Cumulus Linux Images or NetQ Images card.
 

@@ -717,3 +717,6 @@ The final step is configuring the local NetQ Agent on the switch to connect to t
 ```
 netq config add agent server localhost vrf mgmt
 ```
+
+## Related Information
+- {{<link title="Manage NetQ Agents">}}

@@ -13,15 +13,11 @@ Upon installation, lifecycle management displays an inventory of switches that a
 
 {{<tab "NetQ UI" >}}
 
-The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
+From the LCM dashboard, select the **Switch management** tab. The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
 
-{{<figure src="/images/netq/lcm-switches-card-with-labels-320.png" alt="switches card displaying 12 discovered switches with Cumulus Linux version 4.1.0" width="400">}}
+{{<figure src="/images/netq/lcm-dashboard-switches-450.png" alt="switches card displaying 14 discovered switches with Cumulus Linux version 4.4.4" width="400">}}
 
-To view a list of all discovered switches, select **Manage** on the Switches card.
-
-Review the list:
-- Sort the list by any column; hover over column title and click to toggle between ascending and descending order
-- Filter the list: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}} and enter parameter value of interest
+To view a table of all discovered switches and their attributes, select **Manage** on the Switches card.
 
 {{<notice tip>}}
 If you have more than one network OS version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
@@ -96,23 +92,23 @@ Role assignment is optional, but recommended. Using roles can prevent switches f
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**.
+1. From the LCM dashboard, select the **Switch management**.
 
 2. On the Switches card, click **Manage**.
 
 3. Select one switch or multiple switches to assign to the same role.
 
-4. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
+4. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role**.
 
 5. Select the role that applies to the selected switch(es):
 
-    {{<figure src="/images/netq/lcm-role-assign-role-selection-320.png" alt="dialog showing role options including superspine, leaf, spine, and exit" width="300">}}
+    {{<figure src="/images/netq/switch-role-450.png" alt="dialog showing role options including superspine, leaf, spine, and exit" width="400">}}
 
 6. Click **Assign**.
 
     Note that the **Role** column is updated with the role assigned to the selected switch(es). To return to the full list of switches, click **All**.
 
-    {{<figure src="/images/netq/lcm-switches-listing-role-assigned-320.png" alt="table displaying role column with updated switch role assignments" width="700">}}
+    {{<figure src="/images/netq/role-column-450.png" alt="table displaying role column with updated role assignments" width="700">}}
 
 7. Continue selecting switches and assigning roles until most or all switches have roles assigned.
 
@@ -137,25 +133,6 @@ To assign multiple switches to the same role, separate the hostnames with commas
 ```
 netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 ```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-### View Switch Roles
-
-{{<tabs "TabID151" >}}
-
-{{<tab "NetQ UI" >}}
-
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**.
-
-2. On the Switches card, click **Manage**. The assigned role appears in the table's **Role** column.
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
 To view all switch roles, run:
 
 ```
@@ -164,7 +141,7 @@ netq lcm show switches [version <text-cumulus-linux-version>] [json]
 <!-- vale off -->
 Use the `version` option to only show switches with a given network OS version, X.Y.Z.
 <!-- vale on -->
-This example shows the role of all switches in the **Role** column of the listing.
+The **Role** column displays assigned roles:
 
 ```
 cumulus@switch:~$ netq lcm show switches
@@ -195,7 +172,6 @@ fw1                          192.168.200.61            44:38:39:00:01:8C  x86_64
 leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:53 2020
                                                                                                         104fb9ed
 ```
-
 {{</tab>}}
 
 {{</tabs>}}
@@ -212,9 +188,9 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 
 3. Select the switches with the incorrect role from the list.
 
-4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
+4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role**.
 
-5. Select the correct role. (Note that you can select **No Role** here as well to remove the role from the switches.)
+5. Select the correct role. To leave a switch unassigned, select **No Role**. 
 
 6. Click **Assign**.
 
@@ -252,11 +228,9 @@ cumulus@switch:~$ netq lcm add role exit switches border01,border02
 
 3. Select one or more switches.
 
-4. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
+4. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> **Export selected**.
 
-5. Choose the export file type and click **Export**:
-
-    {{<figure src="/images/netq/export-data-dialog-300.png" alt="dialog prompting user to export data as a CSV or in JSON format" width="250">}}
+5. Choose the export file type and click **Export**.
 
 {{</tab>}}
 

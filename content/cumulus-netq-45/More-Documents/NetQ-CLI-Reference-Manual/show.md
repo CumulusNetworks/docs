@@ -4153,7 +4153,7 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 <!-- vale on -->
 - - -
 
-## netq show wjh-drops
+## netq show wjh-drop
 
 Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems that WJH (What Just Happened) feature captures on NVIDIA switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by various attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
 
@@ -4167,30 +4167,29 @@ Additionally, using `wjh_dump.py` on a NVIDIA platform that is running Cumulus L
 
 <!-- vale off -->
 ```
-netq [<hostname>] show wjh-drop
-    [ingress-port <text-ingress-port>]
-    [severity <text-severity>]
-    [details]
-    [between <text-time> and <text-endtime>]
-    [around <text-time>]
+netq [<hostname>] show wjh-drop 
+    [severity <text-severity>] 
+    [details] 
+    [between <text-fixed-time> and <text-fixed-endtime>] 
+    [around <text-fixed-time>] 
     [json]
 
-netq [<hostname>] show wjh-drop <text-drop-type>
-    [ingress-port <text-ingress-port>]
-    [severity <text-severity>]
-    [reason <text-reason>]
-    [src-ip <text-src-ip>]
-    [dst-ip <text-dst-ip>]
-    [proto <text-proto>]
-    [src-port <text-src-port>]
-    [dst-port <text-dst-port>]
-    [src-mac <text-src-mac>]
-    [dst-mac <text-dst-mac>]
-    [egress-port <text-egress-port>]
-    [traffic-class <text-traffic-class>]
-    [rule-id-acl <text-rule-id-acl>]
-    [between <text-time> and <text-endtime>]
-    [around <text-time>]
+netq [<hostname>] show wjh-drop <text-drop-type> 
+    [ingress-port <text-ingress-port>] 
+    [severity <text-severity>] 
+    [reason <text-reason>] 
+    [src-ip <text-src-ip>] 
+    [dst-ip <text-dst-ip>] 
+    [proto <text-proto>] 
+    [src-port <text-src-port>] 
+    [dst-port <text-dst-port>] 
+    [src-mac <text-src-mac>] 
+    [dst-mac <text-dst-mac>] 
+    [egress-port <text-egress-port>] 
+    [traffic-class <text-traffic-class>] 
+    [rule-id-acl <text-rule-id-acl>] 
+    [between <text-time> and <text-endtime>] 
+    [around <text-time>] 
     [json]
 ```
 <!-- vale on -->
@@ -4199,16 +4198,16 @@ netq [<hostname>] show wjh-drop <text-drop-type>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-drop-type\> | Only display results for this category of drops |
+| NA | \<text-drop-type\> | Only display results for this type of packet drop. Types include *l1*, *l2*, *router*, *tunnel*, *buffer*, and *acl*. |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display drops for the switch or host with this name |
-| ingress-port | \<text-ingress-port\> | Only display drops for the ingress port with this name |
 | severity | \<text-severity\> | Only display drops with this severity; *error*, *warning*, or *notice* |
 | details | NA | Display drop count and reason for all drop types |
+| ingress-port | \<text-ingress-port\> | Only display drops for the ingress port with this name |
 | reason | \<text-reason\> | Only display drops with this reason |
 | src-ip | \<text-src-ip\> | Only display drops with this source IP address |
 | dst-ip | \<text-dst-ip\> | Only display drops with this destination IP address |
@@ -4222,11 +4221,11 @@ netq [<hostname>] show wjh-drop <text-drop-type>
 | rule-id-acl | \<text-rule-id-acl\> | Only display ACL drops with this rule ID |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Show drops for a given switch or host
+Display drops for a given switch or host:
 
 ```
 cumulus@switch:~$ netq leaf03 show wjh-drop between now and 7d
@@ -4241,7 +4240,7 @@ ACL                0
 Tunnel             0
 ```
 
-Show drops for a particular drop type
+Display L2 drops:
 
 ```
 cumulus@mlx-2700-03:mgmt:~$ netq show wjh-drop l2
@@ -4253,7 +4252,7 @@ mlx-2700-03       swp1s2                   Source MAC equals destination MAC    
 mlx-2700-03       swp1s2                   Source MAC equals destination MAC             10                 0.0.0.0          0.0.0.0          0      0                0                00:02:00:00:00:73  00:02:00:00:00:73  Mon Dec 16 11:40:44 2019       Mon Dec 16 11:40:44 2019
 ```
 
-Show drops of a given severity
+Display ACL drops:
 
 ```
 cumulus@switch:~$ netq show wjh-drop acl
@@ -4265,10 +4264,10 @@ leaf01            swp2                     Ingress router ACL                   
 
 ### Related Commands
 
-- netq config add agent wjh
-- netq config add agent wjh-threshold
-- netq config add agent wjh-drop-filter
-- netq config restart agent
+- `netq config add agent wjh`
+- `netq config add agent wjh-threshold`
+- `netq config add agent wjh-drop-filter`
+- `netq config restart agent`
 
 - - -
 <!-- vale NVIDIA.HeadingTitles = YES -->

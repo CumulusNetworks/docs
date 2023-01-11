@@ -5,7 +5,7 @@ weight: 160
 toc: 4
 ---
 
-The NetQ CLI provides access to all network state and event information collected by NetQ Agents. It behaves similarly to typical CLIs, with groups of commands that display related information, and help commands that provide additional information. There are four command categories: check, show, config, and trace.
+The NetQ CLI provides access to all network state and event information collected by NetQ Agents. It behaves similarly to typical CLIs, with groups of commands that display related information, and help commands that provide additional information.
 
 {{<notice note>}}
 

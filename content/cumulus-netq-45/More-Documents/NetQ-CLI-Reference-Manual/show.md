@@ -294,10 +294,40 @@ leaf02            swp51(spine01)               default         65101      65199 
 - ```netq check bgp```
 <!-- vale on -->
 - - -
+## netq show check-filter
 
-<!-- vale off -->
+### Syntax
+
+```
+netq show check-filter 
+    [check_filter_id <text-check-filter-id>|check_name <text-check-name-anchor>] 
+    [show-check-catalog | check_name <text-check-name-anchor> show-check-catalog | check_name <text-check-name-anchor> show-reason-catalog ] 
+    [json] 
+```
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| check_filter_id | \<text-check-filter-id\> | |
+| check_name | \<text-check-name-anchor\> |  |
+| show-check-catalog | NA |  |
+| show-reason-catalog | NA |  |
+| json | NA | Display the output in JSON format |
+
+### Sample Usage
+
+### Related Commands
+
+- netq add check-filter
+- netq del check-filter
+
+- - -
 ## netq show cl-btrfs-info
-<!-- vale on -->
+
 
 Displays status about disk utilization on a given device or all devices networkwide with BTRFS and Cumulus Linux 3.x installed. The output provides the following information for each device:
 

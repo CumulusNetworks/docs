@@ -21,13 +21,11 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in the workbench header.
+1. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
 
-2. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
+2. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-3. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
-
-4. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
+3. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
 {{</tab>}}
 
@@ -51,11 +49,11 @@ After you complete the preparation steps, upgrade the NetQ Agents:
 
 {{<tab "NetQ UI" >}}
 
-1. In the **Switch Management** tab, locate the Switches card and click **Manage**.
+1. From the LCM dashboard, select the **Switch Management** tab. Locate the Switches card and click **Manage**.
 
-2. Select the switches you want to upgrade. You can filter by role or sort by column heading to narrow down the list.
+2. Select the switches you want to upgrade.
 
-3. Click {{<img src="/images/netq/netq-upgrade-icon-blk.png" height="18" width="18">}} (Upgrade NetQ) above the table and follow the steps in the UI.
+3. Click {{<img src="/images/netq/netq-upgrade-icon-blk.png" height="18" width="18">}} **Upgrade NetQ** above the table and follow the steps in the UI.
 
 4. Verify that the number of switches selected for upgrade matches your expectation.
 
@@ -127,7 +125,7 @@ netq lcm show upgrade-jobs netq-image [json]
 netq lcm show status <text-lcm-job-id> [json]
 
 ```
-{{<expand "Example show upgrade-jobs command">}}
+{{<expand "Example netq lcm show upgrade-jobs">}}
 
 You can view the progress of one upgrade job at a time. This requires the job identifier.
 

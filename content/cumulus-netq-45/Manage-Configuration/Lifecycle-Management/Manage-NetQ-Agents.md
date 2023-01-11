@@ -93,7 +93,7 @@ vrf                    default    default
 
 To view the configuration of a particular aspect of a NetQ Agent, use the various options.
 
-This example show a NetQ Agent configured with a CPU limit of 60%.
+This example shows a NetQ Agent configured with a CPU limit of 60%.
 
 ```
 cumulus@switch:~$ netq config show agent cpu-limit
@@ -121,7 +121,7 @@ Commands apply to one agent at a time, and you run them on the switch or host wh
 
 ### Add and Remove a NetQ Agent
 
-Adding or removing a NetQ Agent is to add or remove the IP address (and port and VRF when specified) from the NetQ configuration file (at */etc/netq/netq.yml*). This adds or removes the information about the appliance or VM where the agent sends the data it collects.
+To add or remove a NetQ Agent, you must add or remove the IP address (and port and VRF when specified) from the NetQ configuration file (at */etc/netq/netq.yml*). This adds or removes the information about the appliance or VM where the agent sends the data it collects.
 
 To use the NetQ CLI to add or remove a NetQ Agent on a switch or host, run:
 

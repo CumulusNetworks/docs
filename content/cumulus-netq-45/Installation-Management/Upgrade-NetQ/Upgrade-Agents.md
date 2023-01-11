@@ -4,9 +4,6 @@ author: NVIDIA
 weight: 420
 toc: 4
 ---
-Upgrading the NetQ Agents is optional, but recommended.
-
-## Upgrade NetQ Agent
 
 To upgrade the NetQ Agent:
 
@@ -85,3 +82,6 @@ root@rhel7:~# rpm -q -netq-agent
 {{</tabs>}}
 
 If you see an older version, upgrade the NetQ Agent, as described above.
+
+## Related Information
+- {{<link title="Manage NetQ Agents">}}

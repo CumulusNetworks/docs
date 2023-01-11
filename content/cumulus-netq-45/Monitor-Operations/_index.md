@@ -5,10 +5,22 @@ weight: 815
 toc: 2
 ---
 
-After you deploy the network, the day-to-day tasks of monitoring the devices, protocols and services begin. The topics in this section provide instructions for monitoring:
-
-- Switches and hosts
-- Physical, data link, network, and application layer protocols and services
-- Overlay network protocols
-
-Additionally, this section provides instructions for monitoring devices and the network using a topology view.
+- {{<link title="BGP">}}
+- {{<link title="DPUs">}}
+- {{<link title="EVPN">}}
+- {{<link title="Hosts">}}
+- {{<link title="Interfaces">}}
+- {{<link title="IP">}}
+- {{<link title="LLDP">}}
+- {{<link title="MAC Addresses">}}
+- {{<link title="MLAG">}}
+- {{<link title="Network Topology">}}
+- {{<link title="NTP">}}
+- {{<link title="NVLink4">}}
+- {{<link title="OSPF">}}
+- {{<link title="PTP">}}
+- {{<link title="RoCE">}}
+- {{<link title="STP">}}
+- {{<link title="Switches">}}
+- {{<link title="VLAN">}}
+- {{<link title="VXLAN">}}

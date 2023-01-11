@@ -49,7 +49,6 @@ None
 
 ### Sample Usage
 
-<!-- Add output/results -->
 ```
 cumulus@switch:~$ netq install cluster activate-job config-key ju8Kl4IhZ3cucHJvZDEubmV0cPk3vW11bHVzbmV0d29ya3MuY29cB3ag
 ```
@@ -64,6 +63,29 @@ cumulus@switch:~$ netq install cluster activate-job config-key ju8Kl4IhZ3cucHJvZ
 
 - - -
 
+## netq install cluster add-worker
+
+### Syntax
+
+```
+netq install cluster 
+    add-worker <text-worker-01>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| add-worker | \<text-worker-01\> | Install the worker nodes with these IP addresses |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- - -
 ## netq install cluster full
 
 Installs the NetQ Platform software on the servers (NetQ On-premises Appliances or VMs) in an on-premises, server cluster deployment, all with a single command. You must have the hostname or IP address of the master node and two worker nodes, and the NetQ software bundle to run the command.
@@ -282,7 +304,52 @@ cumulus@<hostname>:~$ netq install cluster install-job bundle /mnt/installables/
 - ```netq install cluster full```
 
 - - -
+## netq install cluster master-init
 
+### Syntax
+
+```
+netq install cluster master-init
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| master-init | NA | Initialize the cluster master node |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- - -
+
+## netq install cluster worker-init
+
+### Syntax
+
+```
+netq install cluster worker-init 
+    <text-ssh-key>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| worker-init| NA | Initialize cluster worker node |
+| NA| \<text-ssh-key\> |  |
+
+### Options
+
+None
+### Sample Usage
+
+### Related Commands
+
+- - -
 <!-- vale off -->
 ## netq install opta activate-job
 
@@ -377,6 +444,29 @@ cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/
 
 - - -
 
+## install opta cluster add-worker
+
+### Syntax
+
+```
+ netq install opta cluster 
+    add-worker <text-worker-01>
+ ```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| add-worker | \<text-worker-01\> | Install the worker nodes with these IP addresses |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- - -
 ## netq install opta standalone
 
 Installs the NetQ Collector software on a single cloud server (NetQ Cloud Appliance or VM) with a single command. You must have the hostname, IP address, or interface of the server, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
@@ -673,9 +763,35 @@ cumulus@<hostname>:~$ netq install standalone install-job bundle /mnt/installabl
 
 - - -
 
-<!-- vale off -->
+## netq update-opta-ssl-setting
+
+### Syntax
+
+```
+netq install update-opta-ssl-setting 
+    ssl-cert <text-ssl-cert-file> 
+    ssl-key <text-ssl-key-file>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| update-opta-ssl-setting | NA | Update the TLS/SSL settings on opta for agent-opta connection |
+| ssl-cert | \<text-ssl-cert-filel\> | TLS/SSL certificate file absolute path |
+| ssl-key | \<text-ssl-key-filel\> | TLS/SSL private key file absolute path |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- - -
+
 ## netq install update-settings
-<!-- vale on -->
+
 
 Overrides system variables after encountering issues during installation. File a {{<exlink url="https://enterprise-support.nvidia.com/" text="support ticket">}} with the NVIDIA Global Support Services team before using this command. They can provide the key/value pair needed to resolve your issue.
 

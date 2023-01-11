@@ -1273,8 +1273,6 @@ You can break out (split) a port using the following options:
 
 Each split port transmits at the same speed. For example, if you split a 100G port into four interfaces, the speed for each interface is 25G. You can overide this configuration and configure specific speeds for the split ports if necessary.
 
-When you split a port, you must **also** disable the next port????
-
 {{%notice note%}}
 - Cumulus Linux 5.4 and later uses a new format for port splitting. For example, instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. If you upgrade to Cumulus Linux 5.4, Cumulus Linux continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, the NVUE command port split options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) in Cumulus Linux 5.3 and earlier are depricated. There is no backward compatibility for these deprecated NVUE command options; make sure to modify any configuration scripts when you upgrade to Cumulus Linux 5.4.
 - In Cumulus Linux 5.3 and earlier, you can configure port speed in the the `/etc/cumulus/ports.conf` file. If you upgrade to Cumulus Linux 5.4, Cumulus Linux no longer supports the speed configuration in the `/etc/cumulus/ports.conf` file. You must set the speed in the `/etc/network/interfaces` file.
@@ -1314,6 +1312,7 @@ cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
    ...
    ```
 
+<!--When you split a port, you must **also** disable the next port????-->
 2. Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
    ```
@@ -1565,11 +1564,11 @@ If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *OFF*
 <!-- vale on -->
 If auto-negotiation is on and the link speed is set for a port, auto-negotiation takes precedence over the link speed setting.
 
-### Port Speed and the ifreload -a Command
+<!--### Port Speed and the ifreload -a Command
 
-When you configure port speed or break outs in the `/etc/cumulus/ports.conf` file, you must run the `ifreload -a` command to reload the configuration after restarting `switchd` if:
+When you configure break out ports in the `/etc/cumulus/ports.conf` file, you must run the `ifreload -a` command to reload the configuration after restarting `switchd` if:
 - You configure or configure then remove the port speed in the `/etc/cumulus/ports.conf` file and you also set or remove the speed on the same physical port or breakouts of that port in the `/etc/network/interfaces` file after the last time you restarted `switchd`.
-- You break out a switch port or remove a break out port, and you set the port speed in both the `/etc/cumulus/ports.conf` file and the `/etc/network/interfaces` file.
+- You break out a switch port or remove a break out port, and you set the port speed in both the `/etc/cumulus/ports.conf` file and the `/etc/network/interfaces` file.-->
 
 <!-- vale off -->
 <!-- Vale issue #253 -->

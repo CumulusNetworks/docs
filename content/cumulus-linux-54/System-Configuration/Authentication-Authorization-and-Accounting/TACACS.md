@@ -6,13 +6,11 @@ toc: 4
 ---
 Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication, and Authorization) in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in {{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}. There is no need to create accounts or directories on the switch. Accounting records go to all configured TACACS+ servers by default. Using per-command authorization requires additional setup on the switch.
 
-## Supported Features
-
-- Authentication using PAM; includes `login`, `ssh`, `sudo` and `su`
-- Runs over the eth0 management interface
-- Ability to run in the {{<link url="Management-VRF" text="management VRF">}}
-- TACACS+ privilege 15 users can run any command with sudo using the `/etc/sudoers.d/tacplus` file that the `libtacplus-map1` package installs
-- Up to seven TACACS+ servers
+TACACS+ in Cumulus Linux:
+- Uses PAM authentication and includes `login`, `ssh`, `sudo` and `su`.
+- Runs over the eth0 interface and in the {{<link url="Management-VRF" text="management VRF">}}.
+- Allows privilege 15 users to run any command with sudo.
+- Supports up to seven TACACS+ servers.
 
 ## Install the TACACS+ Client Packages
 
@@ -25,43 +23,153 @@ cumulus@switch:~$ sudo -E apt-get update
 cumulus@switch:~$ sudo -E apt-get install tacplus-client
 ```
 
-## Configure the TACACS+ Client
+## Basic TACACS+ Client Configuration
 
-After installing TACACS+, edit the `/etc/tacplus_servers` file to add at least one server and one shared secret (key). You can specify the server and secret parameters in any order anywhere in the file. Whitespace (spaces or tabs) are not allowed. For example, if your TACACS+ server IP address is `192.168.0.30` and your shared secret is `tacacskey`, add these parameters to the `/etc/tacplus_servers` file:
+After you install the required packages, you need to configure the following settings on the switch (the TACACS+ client).
+- Set the IP address or hostname of at least one TACACS+ server.
+- Set the secret (key) shared between the TACACS+ server and client.
+
+Optionally, you can set the port to use for communication between the TACACS+ server and client. By default, Cumulus Linux uses IP port 49.
+
+{{< tabs "TabID31 ">}}
+{{< tab "NVUE Commands ">}}
+
+NVUE commands require you to specify the priority for each TACACS+ server. You must a priority even if you only specify one server.
+
+The following example commmands set the TACACS+ server priority to 5, the IP address of the server to 192.168.0.30, the secret to `mytacacskey`, and the IP port to 32:
 
 ```
-secret=tacacskey
-server=192.168.0.30
+cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
+cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey 
+cumulus@switch:~$ nv set system aaa tacacs server 5 port 32
+cumulus@switch:~$ nv apply config
 ```
 
-Cumulus Linux supports a maximum of seven TACACS+ servers. To specify multiple servers, add one per line to the `/etc/tacplus_servers` file.
+If you configure more than one TACACS+ server, you need to set the priority for each server. If the switch cannot establish a connection with the server that has the highest priority, it tries to establish a connection with the next highest priority server. The server with the lower number has the higher prioritity. In the example below, server 192.168.0.30 with a priority value of 5 has a higher priority than server 192.168.1.30, which has a priority value of 10.
 
-Connections establish in the order that this file lists. In most cases, you do not need to change any other parameters. You can add parameters the packages use to this file, which affects all the TACACS+ client software. For example, the timeout value for NSS lookups is 5 seconds by default in the `/etc/tacplus_nss.conf` file, whereas the timeout value for other packages is 10 seconds in the `/etc/tacplus_servers` file. The timeout value applies to each connection to the TACACS+ servers. (If you configure authorization per command, the timeout occurs for *each* command.) There are several connections to the server per login attempt from PAM, as well as two or more through NSS. Therefore, with the default timeout values, a TACACS+ server that is not reachable can delay logins by a minute or more for each unreachable server. If you must list unreachable TACACS+ servers, place them at the end of the server list and consider reducing the timeout values.
+```
+cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
+cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey 
+cumulus@switch:~$ nv set system aaa tacacs server 10 host 192.168.1.30
+cumulus@switch:~$ nv set system aaa tacacs server 10 secret mytacacskey2 
+cumulus@switch:~$ nv apply config
+```
 
-When you add or remove TACACS+ servers, you must restart `auditd` (with the `systemctl restart auditd` command) or you must send a signal (with `killall -HUP audisp-tacplus`) before `audisp-tacplus` rereads the configuration to see the changed server list.
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
-You can also configure the IP address used as the source IP address when communicating with the TACACS+ server. See {{<link url="#tacacs-configuration-parameters" text="TACACS Configuration Parameters">}} below for the full list of TACACS+ parameters.
+1. Edit the `/etc/tacplus_servers` file to add at least one server and one shared secret (key). You can specify the server and secret parameters in any order anywhere in the file. Whitespace (spaces or tabs) are not allowed. For example, if your TACACS+ server IP address is `192.168.0.30` and your shared secret is `tacacskey`, add these parameters to the `/etc/tacplus_servers` file:
 
-Following is the complete list of the TACACS+ client configuration files, and their use.
+   ```
+   cumulus@switch:~$ sudo nano /etc/tacplus_servers
+   secret=tacacskey
+   server=192.168.0.30
+   ```
 
-| <div style="width:250px">Filename | Description |
-|----------|-------------|
-| `/etc/tacplus_servers` | The primary file that requires configuration after installation. All packages with `include=/etc/tacplus_servers` parameters use this file. Typically, this file contains the shared secrets; make sure that the Linux file mode is 600. |
-| `/etc/nsswitch.conf` | When the `libnss_tacplus` package installs, this file configures tacplus lookups through `libnss_tacplus`. If you replace this file by automation, you need to add tacplus as the first lookup method for the *passwd* database line. |
-| `/etc/tacplus_nss.conf` |Sets the basic parameters for `libnss_tacplus`. The file includes a debug variable for debugging NSS lookups separately from other client packages. |
-| `/usr/share/pam-configs/tacplus` | The configuration file for `pam-auth-update` to generate the files in the next row. The file uses these configurations at `login`, by `su`, and by `ssh`. |
-| `/etc/pam.d/common-*` | The `/etc/pam.d/common-*` files update for `tacplus` authentication. The files update with `pam-auth-update`, when you install or remove `libpam-tacplus`. |
-| `/etc/sudoers.d/tacplus` | Allows TACACS+ privilege level 15 users to run commands with `sudo`. The file includes an example (commented out) of how to enable privilege level 15 TACACS users to use `sudo` without a password and provides an example of how to enable all TACACS users to run specific commands with sudo. Only edit this file with the `visudo -f /etc/sudoers.d/tacplus` command. |
-| `/etc/audisp/plugins.d/audisp-tacplus.conf` | The `audisp` plugin configuration file. You do not need to modify this file. |
-| `/etc/audisp/audisp-tac_plus.conf` | The TACACS+ server configuration file for accounting. You do not need to modify this file. You can use this configuration file when you only want to debug TACACS+ accounting issues, not all TACACS+ users. |
-| `/etc/audit/rules.d/audisp-tacplus.rules` | The `auditd` rules for TACACS+ accounting. The `augenrules` command uses all rule files to generate the rules file (described below). |
-| `/etc/audit/audit.rules`|The audit rules file that generate when you install `auditd`. |
+   Cumulus Linux supports a maximum of seven TACACS+ servers. To specify multiple servers, add one per line to the `/etc/tacplus_servers` file. Connections establish in the order in the file.
 
-{{%notice warning%}}
+   ```
+   cumulus@switch:~$ sudo nano /etc/tacplus_servers
+   secret=tacacskey
+   server=192.168.0.30
+   secret=mytacacskey2
+   server=192.168.1.30
+   ```
 
-You can edit the `/etc/pam.d/common-*` files manually. However, if you run `pam-auth-update` again after making the changes, the update fails. Only configure `/usr/share/pam-configs/tacplus`, then run `pam-auth-update`.
+   To set the IP port, use the format `server:port`. The following example sets the port to 32:
 
-{{%/notice%}}
+   ```
+   cumulus@switch:~$ sudo nano /etc/tacplus_servers
+   secret=tacacskey
+   server=192.168.0.30:32
+   ```
+
+2. Restart `auditd`:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart auditd
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Optional TACACS+ Configuration
+
+You can set the following optional TACACS+ parameters:
+- The VRF in which you want TACACS+ to run. By default, the TACACS+ client establishes connections with TACACS+ servers only through ports that belong to the {{<link url="Management-VRF" text="management VRF">}}.
+- The TACACS timeout value, which is the number of seconds to wait for a response from the TACACS+ server before trying the next TACACS+ server. You can specify a value between 0 and 60. The default is 5 seconds.
+- The source IP address to use when communicating with the TACACS+ server so that the server can identify the client switch (typically the loopback address). You must specify an IPv4 address. You cannot use IPv6 addresses and hostnames. The address must be valid for the interface you use.
+- The TACACS+ authentication type. You can specify <span style="background-color:#F5F5DC">[PAP](## "Password Authentication Protocol")</span> to send clear text between the user and the server, <span style="background-color:#F5F5DC">[CHAP](## "Challenge Handshake Authentication Protocol")</span> to establish a <span style="background-color:#F5F5DC">[PPP](## "Point-to-Point Protocol")</span> connection between the user and the server, or login. The default is PAP.
+- The output debugging information level through syslog(3) to use for troubleshooting. You can specify a value between 0 and 2. The default is 0 (the default logging level). A value of 1 enables debug logging. A value of 2 increases the verbosity of some debug logs.
+
+  {{%notice note%}}
+  Do not leave debugging enabled on a production switch after you complete troubleshooting.
+  {{%/notice%}}
+
+The following example command sets the VRF to `default`, the timeout to 10 seconds, the debug level to 2, the source IP address to 10.10.10.1, and the authentication type to CHAP.
+
+{{< tabs "TabID111 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system aaa tacacs vrf default
+cumulus@switch:~$ nv set system aaa tacacs timeout 10
+cumulus@switch:~$ nv set system aaa tacacs debug 2
+cumulus@switch:~$ nv set system aaa tacacs source-ip 10.10.10.1
+cumulus@switch:~$ nv set system aaa tacacs authentication mode chap
+
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+- To set the VRF, source IP, and authentication type, edit the `/etc/tacplus_servers` file, then restart `auditd`.
+- To set the timeout and debug level, edit the `/etc/tacplus_nss.conf` file (you do not need to restart `auditd`).
+
+```
+cumulus@switch:~$ sudo nano /etc/tacplus_servers
+...
+# If the management network is in a vrf, set this variable to the vrf name.
+# This would usually be "mgmt"
+# When this variable is set, the connection to the TACACS+ accounting servers
+# will be made through the named vrf.
+vrf=default
+...
+# Sets the IPv4 address used as the source IP address when communicating with
+# the TACACS+ server.  IPv6 addresses are not supported, nor are hostnames.
+# The address must work when passsed to the bind() system call, that is, it must
+# be valid for the interface being used.
+source_ip=10.10.10.1
+...
+login=chap
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart auditd
+```
+
+```
+cumulus@switch:~$ sudo nano /etc/tacplus_nss.conf
+...
+# The connection timeout for an NSS library should be short, since it is
+# invoked for many programs and daemons, and a failure is usually not
+# catastrophic.  Not set or set to a negative value disables use of poll().
+# This follows the include of tacplus_servers, so it can override any
+# timeout value set in that file.
+# It's important to have this set in this file, even if the same value
+# as in tacplus_servers, since tacplus_servers should not be readable
+# by users other than root.
+timeout=10
+...
+# if set, errors and other issues are logged with syslog
+# debug=1
+debug=2
+```
+
+The recognized configuration options are the same as the `libpam_tacplus` command line arguments; however, Cumulus Linux does not support all `pam_tacplus` options. For a description of the configuration parameters, refer to the `tacplus_servers.5` man page, which is part of the `libpam-tacplus` package.
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## TACACS+ Authentication (login)
 
@@ -70,14 +178,12 @@ PAM modules and an updated version of the `libpam-tacplus` package configure aut
 The TACACS+ privilege attribute `priv_lvl` determines the privilege level for the user that the TACACS+ server returns during the user authorization exchange. The client accepts the attribute in either the mandatory or optional forms and also accepts `priv-lvl` as the attribute name. The attribute value must be a numeric string in the range 0 to 15, with 15 the most privileged level.
 
 {{%notice note%}}
-
 By default, TACACS+ users at privilege levels other than 15 cannot run `sudo` commands and can only run commands with standard Linux user permissions.
-
 {{%/notice%}}
 
 ### TACACS+ Client Sequencing
 
-Due to SSH and login processing mechanisms, Cumulus Linux needs to know the following at the beginning of the AAA sequence:
+Cumulus Linux requires the following information at the beginning of the AAA sequence:
 
 - Whether the user is a valid TACACS+ user
 - The user privilege level
@@ -135,77 +241,83 @@ The first `adduser` command prompts for information and a password. You can skip
 
 ## TACACS+ Accounting
 
-TACACS+ accounting uses the `audisp` module, with an additional plugin for `auditd`/`audisp`. The plugin maps the auid in the accounting record to a TACACS login, which it bases on the `auid` and `sessionid`. The `audisp` module requires `libnss_tacplus` and uses the `libtacplus_map.so` library interfaces as part of the modified `libpam_tacplus` package.
+When you install the TACACS+ packages and configure the basic TACACS+ settings (set the server and shared secret), accounting is on and there is no additional configuration required.
+
+{{%notice note%}}
+All `sudo` commands run by TACACS+ users generate accounting records against the original TACACS+ login name.
+{{%/notice%}}
+
+By default, Cumulus Linux sends accounting records to all servers. To can change this setting to send accounting records to the server that is first to respond:
+
+{{< tabs "TabID248 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system aaa tacacs accounting send-records first-response
+cumulus@switch:~$ nv config apply
+```
+
+To reset to the default configuration (send accounting records to all servers), run the `nv set system aaa tacacs accounting send-records all` command.
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/audisp/audisp-tacplus.conf` file and add the line `acct_all=first-response`:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/audisp/audisp-tacplus.conf
+   ...
+   acct_all=first-response
+   ```
+
+2. Restart `auditd`:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart auditd
+   ```
+
+To reset to the default configuration (send accounting records to all servers), change the line to `acct_all=all`.
+
+TACACS+ accounting uses the `audisp` module, with an additional plugin for `auditd` and `audisp`. The plugin maps the `auid` in the accounting record to a TACACS login, which it bases on the `auid` and `sessionid`. The `audisp` module requires `libnss_tacplus` and uses the `libtacplus_map.so` library interfaces as part of the modified `libpam_tacplus` package.
 
 Communication with the TACACS+ servers occurs with the `libsimple-tacact1` library, through `dlopen()`. A maximum of 240 bytes of command name and arguments send in the accounting record, due to the TACACS+ field length limitation of 255 bytes.
 
 {{%notice note%}}
-
 All Linux commands result in an accounting record, including login commands and sub-processes of other commands. This can generate a lot of accounting records.
-
 {{%/notice%}}
-
-Configure the IP address and encryption key of the server in the `/etc/tacplus_servers` file. Minimal configuration to `auditd` and `audisp` is necessary to enable the audit records needed for accounting. These records install as part of the package.
 
 `audisp-tacplus` installs the audit rules for command accounting. When you configure a {{<link url="Management-VRF" text="management VRF">}}, you must add the *vrf* parameter and signal the `audisp-tacplus` process to reread the configuration. The example below shows that the management VRF name is *mgmt*. You can add the *vrf* parameter to either the `/etc/tacplus_servers` file or the `/etc/audisp/audisp-tac_plus.conf` file.
 
 ```
+cumulus@switch:~$ sudo nano /etc/tacplus_servers
+...
 vrf=mgmt
 ```
 
 After editing the configuration file, send the **HUP** signal `killall -HUP audisp-tacplus` to notify the accounting process to reread the file.
 
-{{%notice note%}}
-
-All `sudo` commands run by TACACS+ users generate accounting records against the original TACACS+ login name.
-
-{{%/notice%}}
-
 For more information, refer to the `audisp.8` and `auditd.8` man pages.
 
-<!--## Configure NVUE for TACACS+ Users
+{{< /tab >}}
+{{< /tabs >}}
 
-When you install or upgrade TACACS+ packages, the installation and update process maps user accounts automatically and adds all *tacacs0* through *tacacs15* users to the *nvshow* group.
+To disable TACACS+ accounting:
 
-If you want any TACACS+ users to execute NVUE commands and restart services with NVUE, you need to add those users to the `/etc/nvue-auth.yaml` file. Add the *tacacs15* user and, depending upon your policies, other users (*tacacs1* through *tacacs14*).
-
-To allow a TACACS+ user access to the nv show commands, add the *tacacs* group to the `read-only access` section of the `/etc/nvue-auth.yaml` file.
-
-{{%notice warning%}}
-
-Do not add the *tacacs* group to the `full read/write access` section of the `/etc/nvue-auth.yaml` file; any user can log into the switch as the root user.
-
-{{%/notice%}}
-
-To add the users, edit the `/etc/nvue-auth.yaml` file:
+{{< tabs "TabID306 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ sudo nano /etc/nvue-auth.yaml
-...
-  - reason: full read/write access
-    action: allow
-    match-request:
-      path: '*'
-      method: '*'
-    match-user:
-      name: cumulus
-      group:
-        - nvapply
-        - nvset
-  - reason: read-only access
-    action: allow
-    match-request:
-      path: '*'
-      method: GET
-    match-user:
-      group: nvshow
+cumulus@switch:~$ nv set system aaa tacacs accounting enable off
+cumulus@switch:~$ nv config apply
 ```
 
-After you save and exit the `/etc/nvue-auth.yaml` file, restart the `nvued` service. Run:
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
 
-```
-cumulus@switch:~$ sudo systemctl restart nvued
-``` -->
+??????
+
+{{< /tab >}}
+{{< /tabs >}}
 <!-- vale off -->
 ## TACACS+ Per-command Authorization
 
@@ -268,30 +380,6 @@ If TACACS+ server does not find the user, it uses the `libtacplus.so` exported f
 
 If the TACACS+ server does not find the user, it decrements the privilege level and checks again until it reaches privilege level 0 (user `tacacs0`). This allows you to use only the two local users `tacacs0` and `tacacs15`, for minimal configuration.
 
-## TACACS Configuration Parameters
-
-The recognized configuration options are the same as the `libpam_tacplus` command line arguments; however, Cumulus Linux does not support all `pam_tacplus` options. For a description of the configuration parameters, refer to the `tacplus_servers.5` man page, which is part of the `libpam-tacplus` package.
-
-The table below describes the configuration options available:
-
-| Configuration Option | Description |
-|--------------------- |------------ |
-| debug | The output debugging information through syslog(3).<br>**Note**: Debugging is heavy, including passwords. Do not leave debugging enabled on a production switch after you have completed troubleshooting. |
-| secret=STRING | The secret key to encrypt and decrypt packets sent to and received from the server.<br>You can specify the secret key more than one time in any order. <br>Only use this parameter in files such as /etc/tacplus_servers that are not world readable. |
-| server=hostname<br>server=ip-address | Adds a TACACS+ server to the servers list. Cumulus Linux queries servers in turn until it finds a match or no servers remain in the list. You can provide an IP address with a port number, preceded by a colon (:). The default port is 49.<br>**Note**: When sending accounting records, the record sends to all servers in the list if `acct_all=1`, which is the default. |
-| source_ip=ipv4-address | Sets the IP address as the source IP address when communicating with the TACACS+ server. You must specify an IPv4 address. You cannot use IPv6 addresses and hostnames. The address must be valid for the interface you use. |
-| timeout=seconds | TACACS+ servers communication timeout.<br>This parameter defaults to 10 seconds in the /etc/tacplus_servers file, but defaults to 5 seconds in the /etc/tacplus_nss.conf file. |
-| include=/file/name | A supplemental configuration file to avoid duplicating configuration information. You can include up to 8 more configuration files. |
-| min_uid=value | The minimum user ID that the NSS plugin looks up. 0 specifies that the plugin never looks up uid 0 (root). Do not specify a value greater than the local TACACS+ user IDs (0 through 15). |
-| exclude_users=user1,user2,| A comma-separated list of usernames in the `tacplus_nss.conf` file that the NSS plugin never looks up. You cannot use * (asterisk) as a wild card in the list. While it is not a legal username, bash can look up this asterisk as a username during pathname completion, so it is in this list as a username string.<br>**Note**: Do not remove the cumulus user from the `exclude_users` list; doing so can make it impossible to log in as the cumulus user, which is the primary administrative account in Cumulus Linux. If you do remove the cumulus user, add some other local fallback user that does not rely on TACACS but is a member of sudo and NVUE read/write groups, so that these accounts can run sudo and NVUE commands. |
-| login=string | TACACS+ authentication service (pap, chap, or login).<br>The default value is pap.|
-|user_homedir=1|This option is off by default. When you enable this option, Cumulus Linux creates a separate home directory for each TACACS+ user when the TACACS+ user first logs in. By default, the switch uses the home directory in the mapping accounts in `/etc/passwd` (`/home/tacacs0` through `/home/tacacs15`). If the home directory does not exist, the `mkhomedir_helper` program creates it, in the same way as `pam_mkhomedir`.<br>This option does not apply for accounts with restricted shells when you enable per-command authorization. |
-| acct_all=1 | Configuration option for audisp_tacplus and pam_tacplus sending accounting records to all supplied servers (1), or the first server to respond (0).<br>The default value is 1. |
-| timeout=seconds | Sets the timeout in seconds for connections to each TACACS+ server.<br>The default is 10 seconds for all lookups. NSS lookups use a 5 second timeout. |
-| vrf=vrf-name | If the management network is in a VRF, set this variable to the VRF name. This is typically `mgmt`. When you set this variable, the connection to the TACACS+ accounting servers establishes through the named VRF. |
-| service | TACACS+ accounting and authorization service. Examples include shell, pap, raccess, ppp, and slip.<br>The default value is shell. |
-| protocol | TACACS+ protocol field. This option is user dependent. PAM uses the SSH protocol. |
-
 ## Remove the TACACS+ Client Packages
 
 To remove all the TACACS+ client packages, use the following commands:
@@ -307,7 +395,36 @@ To remove the TACACS+ client configuration files as well as the packages (recomm
 cumulus@switch:~$ sudo -E apt-get autoremove --purge
 ```
 
+## TACACS+ Client Configuration Files
+
+The following table describes the TACACS+ client configuration files that Cumulus Linux uses.
+
+| <div style="width:250px">Filename | Description |
+|----------|-------------|
+| `/etc/tacplus_servers` | The primary file that requires configuration after installation. All packages with `include=/etc/tacplus_servers` parameters use this file. Typically, this file contains the shared secrets; make sure that the Linux file mode is 600. |
+| `/etc/nsswitch.conf` | When the `libnss_tacplus` package installs, this file configures tacplus lookups through `libnss_tacplus`. If you replace this file by automation, you need to add tacplus as the first lookup method for the *passwd* database line. |
+| `/etc/tacplus_nss.conf` |Sets the basic parameters for `libnss_tacplus`. The file includes a debug variable for debugging NSS lookups separately from other client packages. |
+| `/usr/share/pam-configs/tacplus` | The configuration file for `pam-auth-update` to generate the files in the next row. The file uses these configurations at `login`, by `su`, and by `ssh`. |
+| `/etc/pam.d/common-*` | The `/etc/pam.d/common-*` files update for `tacplus` authentication. The files update with `pam-auth-update`, when you install or remove `libpam-tacplus`. |
+| `/etc/sudoers.d/tacplus` | Allows TACACS+ privilege level 15 users to run commands with `sudo`. The file includes an example (commented out) of how to enable privilege level 15 TACACS users to use `sudo` without a password and provides an example of how to enable all TACACS users to run specific commands with sudo. Only edit this file with the `visudo -f /etc/sudoers.d/tacplus` command. |
+| `/etc/audisp/plugins.d/audisp-tacplus.conf` | The `audisp` plugin configuration file. You do not need to modify this file. |
+| `/etc/audisp/audisp-tac_plus.conf` | The TACACS+ server configuration file for accounting. You do not need to modify this file. You can use this configuration file when you only want to debug TACACS+ accounting issues, not all TACACS+ users. |
+| `/etc/audit/rules.d/audisp-tacplus.rules` | The `auditd` rules for TACACS+ accounting. The `augenrules` command uses all rule files to generate the rules file (described below). |
+| `/etc/audit/audit.rules`|The audit rules file that generate when you install `auditd`. |
+
+{{%notice warning%}}
+You can edit the `/etc/pam.d/common-*` files manually. However, if you run `pam-auth-update` again after making the changes, the update fails. Only configure `/usr/share/pam-configs/tacplus`, then run `pam-auth-update`.
+
+{{%/notice%}}
+
 ## Troubleshooting
+
+nv show aaa tacacs – show TACACS+ configuration (server secret keys hidden)
+nv show system aaa tacacs authentication
+nv show system aaa tacacs accounting
+nv show system aaa tacacs server
+nv show system aaa tacacs server <priority-id>
+nv show system aaa tacacs exclude-user
 
 ### Basic Server Connectivity or NSS Issues
 
@@ -410,7 +527,7 @@ The TACACS+ client is only supported through the management interface on the swi
 
 If two or more TACACS+ users log in simultaneously with the same privilege level, while the accounting records are correct, a lookup on either name matches both users, while a UID lookup only returns the user that logs in first.
 
-This means that any processes that either user runs apply to both, and all files either user creates apply to the first name matched. This is similar to adding two local users to the password file with the same UID and GID, and is an inherent limitation of using the UID for the base user from the password file.
+As a result, any processes that either user runs apply to both and all files either user creates apply to the first name matched. This is similar to adding two local users to the password file with the same UID and GID and is an inherent limitation of using the UID for the base user from the password file.
 
 {{%notice note%}}
 

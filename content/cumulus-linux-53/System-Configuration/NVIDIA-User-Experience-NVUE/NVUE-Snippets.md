@@ -5,12 +5,12 @@ weight: 123
 toc: 3
 ---
 NVUE supports both snippets and flexible snippets:
-- Use snippets to add configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file.
+- Use snippets to add configuration to the `/etc/frr/frr.conf`, `/etc/network/interfaces`, or `/etc/cumulus/switchd.conf` file.
 - Use flexible snippets to manage any other text file on the system.
 
 ## Snippets
 
-Use snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format, then add the configuration to either the `/etc/frr/frr.conf` or `/etc/network/interfaces` file with the `nv config patch` command.
+Use snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format, then add the configuration to the `/etc/frr/frr.conf`, `/etc/network/interfaces`, or `/etc/cumulus/switchd.conf` file with the `nv config patch` command.
 
 {{%notice note%}}
 The `nv config patch` command requires you to use the fully qualified path name to the snippet `.yaml` file; for example you cannot use `./` with the `nv config patch` command.
@@ -53,7 +53,7 @@ NVUE does not support configuring BGP to peer across the default route. The foll
    cumulus@switch:~$ sudo cat /etc/frr/frr.conf
    ...
    ! end of router ospf block
-   !---- CUE snippets ----
+   !---- NVUE snippets ----
    ip nht resolve-via-default
    ```
 
@@ -95,7 +95,7 @@ Make sure to use spaces not tabs; the parser expects spaces in yaml format.
    cumulus@switch:~$ sudo cat /etc/frr/frr.conf
    ...
    ! end of router bgp 65517 vrf default
-   !---- CUE snippets ----
+   !---- NVUE snippets ----
    router bgp 65517 vrf default
    address-family l2vpn evpn
    autort rfc8365-compatible
@@ -194,6 +194,44 @@ NVUE does not support configuring traditional bridges. The following example con
      bridge-vlan-aware no
    ```
 
+### /etc/cumulus/switchd.conf Snippets
+
+NVUE does not provide options to configure link flap detection settings. The following example configures the link flap window to 10 seconds and the link flap threshold to 5 seconds:
+
+1. Create a `.yaml` file and add the following snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano switchd_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             switchd.conf: |
+               link_flap_window = 10
+               link_flap_threshold = 5
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch switchd_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/cumulus/switchd.conf` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/cumulus/switchd.conf
+   !---- NVUE snippets ----
+   link_flap_window = 10
+   link_flap_threshold = 5
+   ```
+
 ## Flexible Snippets
 
 Flexible snippets are an extension of regular snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file and add content.
@@ -266,7 +304,7 @@ The following example creates a snippet called `tacacs-config` in a file called 
    ```
 
 NVUE appends the snippet at the end of the `/etc/tacplus_servers` file.
-
+<!--
 ### SNMP Example
 
 The following example creates a snippet called `snmp-config` in a file called `snmp.yaml`. The snippet adds content to the `/etc/snmp/snmpd.conf` file to:
@@ -308,3 +346,4 @@ The following example creates a snippet called `snmp-config` in a file called `s
    ```
 
 NVUE appends the snippet at the end of the `/etc/snmp/snmpd.conf` file.
+-->

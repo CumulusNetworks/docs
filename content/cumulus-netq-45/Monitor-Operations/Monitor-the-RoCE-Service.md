@@ -5,7 +5,7 @@ weight: 940
 toc: 3
 ---
 
-In NetQ, use either the UI or CLI to monitor RoCE in your network.
+Use the UI or CLI to monitor RoCE in your network.
 
 The syntax for RoCE commands is:
 
@@ -285,4 +285,4 @@ To disable RoCE monitoring:
 
 - {{<link title="Configure Threshold-Based Event Notifications" text="Configure notifications for TCA events">}}
 - {{<link title="TCA Event Messages Reference#roce" text="RoCE TCA event reference">}}
-- [RoCE and Cumulus Linux]({{<ref "cumulus-linux-43/Network-Solutions/RDMA-over-Converged-Ethernet-RoCE">}})
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-53/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE and Cumulus Linux">}}

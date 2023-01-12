@@ -1,5 +1,5 @@
 ---
-title: Monitor Operations
+title: Network Monitoring
 author: NVIDIA
 weight: 815
 toc: 2

@@ -13,10 +13,12 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale on -->
 This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. Additional features and improvements include:
 
+- PTP monitoring
+- NVLink4
+- RoCE monitoring enhancements, including PCP mapping
+
 
 Command line updates: 
-
-- RoCE monitoring command updates, including PCP mapping
 
 
 User guide updates:

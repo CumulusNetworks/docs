@@ -12,11 +12,13 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0
 <!-- vale on -->
-Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
+<!--Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 ### Platforms
 
 - NVIDIA SN3750-SX (200G Spectrum-2) generally available
+-->
+Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new features and improvements.
 
 ### New Features and Enhancements
 
@@ -32,12 +34,12 @@ Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains sev
   - {{<link url="Supported-Route-Table-Entries/#change-forwarding-resource-profiles" text="ASIC Resource Slicing">}} (KVD) commands
   - {{<link url="Link-Layer-Discovery-Protocol/#set-lldp-mode" text="LLDP commands">}} to send either CDP frames only or LLDP frames only
   - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#ingress-cos-or-dscp-for-marking" text="traffic remarking">}}, and advanced buffer configuration
-  - BGP commands to {{<link url="Optional-BGP-Configuration#bgp-clear" text="clear a BGP session">}}, {{<link url="Optional-BGP-Configuration#bgp-debug" text="enable debugging">}}, and to show BGP operational information
-  - Operational data in EVPN show commands
-  - Obfuscated passwords to protect passwords from casual viewing
+  <!-- - BGP commands to {{<link url="Optional-BGP-Configuration#bgp-clear" text="clear a BGP session">}}, {{<link url="Optional-BGP-Configuration#bgp-debug" text="enable debugging">}}, and to show BGP operational information -->
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - {{<link url="NVUE-CLI/#configure-auto-save" text="Auto save configuration">}} option
   - {{<link url="NVUE-CLI/#add-configuration-apply-messages" text="Configuration apply messages">}}
+  - Operational data included in BGP and EVPN show commands
+  - Obfuscated passwords to protect passwords from casual viewing
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

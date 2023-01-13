@@ -93,7 +93,7 @@ cumulus@switch:~$ nv show system
           operational          applied  pending  description
 --------  -------------------  -------  -------  ------------------------------
 hostname  leaf01                                 Static hostname for the switch
-build     Cumulus Linux 5.3.0                    system build version
+build     Cumulus Linux 5.4.0                    system build version
 uptime    6 days, 22:03:49                       system uptime
 timezone  Etc/UTC                                system time zone
 ```

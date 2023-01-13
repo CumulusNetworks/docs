@@ -499,7 +499,7 @@ You can also add `debug=1` to individual pam_tacplus lines in `/etc/pam.d/common
 
 All log messages are in `/var/log/syslog`.
 
-#### Incorrect Shared Key
+### Incorrect Shared Key
 
 The TACACS client on the switch and the TACACS server must have the same shared secret key. If this key is incorrect, the following message prints to `syslog`:
 
@@ -507,7 +507,7 @@ The TACACS client on the switch and the TACACS server must have the same shared 
 2017-09-05T19:57:00.356520+00:00 leaf01 sshd[3176]: nss_tacplus: TACACS+ server 192.168.0.254:49 read failed with protocol error (incorrect shared secret?) user cumulus
 ```
 <!-- vale off -->
-### Issues with Per-command Authorization
+### Debug Issues with Per-command Authorization
 <!-- vale on -->
 To debug TACACS user command authorization, have the TACACS+ user enter the following command at a shell prompt, then try the command again:
 
@@ -541,7 +541,7 @@ cumulus@switch:~$ sudo systemctl restart auditd.service
 
 Cumulus Linux uses the following packages for TACACS.
 
-| Package Name| Description|
+| <div style="width:280px">Package Name| Description|
 |--------|---------|
 | `audisp-tacplus\_1.0.0-1-cl3u3` | Uses auditing data from `auditd` to send accounting records to the TACACS+ server and starts as part of `auditd`. |
 | `libtac2\_1.4.0-cl3u2` | Provides basic TACACS+ server utility and communications routines. |
@@ -598,7 +598,7 @@ To work around this issue, you can use the switch audit log or the TACACS server
 
 The Linux `auditd` system does not always generate audit events for processes when terminated with a signal (with the `kill` system call or internal errors such as SIGSEGV). As a result, processes that exit on a signal that you do not handle, generate a STOP accounting record.
 
-### Issues with deluser Command
+### Issues with the deluser Command
 
 TACACS+ and other non-local users that run the `deluser` command with the `--remove-home` option see the following error:
 

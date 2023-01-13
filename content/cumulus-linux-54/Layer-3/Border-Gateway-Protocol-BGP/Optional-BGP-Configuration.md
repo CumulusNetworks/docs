@@ -1504,7 +1504,7 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
-## BGP Clear
+<!-- ## BGP Clear
 
 You can clear a BGP session with all neighbors, a specific BGP neighbor, or a peer group, which forces neighbors to restart so that BGP can receive all prefixes from the neighbors again.
 
@@ -1593,7 +1593,7 @@ spine01# exit
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## BGP Neighbor Shutdown
 
 You can shut down all active BGP sessions with a neighbor and remove all associated routing information without removing its associated configuration. When shut down, the neighbor goes into an administratively idle state.

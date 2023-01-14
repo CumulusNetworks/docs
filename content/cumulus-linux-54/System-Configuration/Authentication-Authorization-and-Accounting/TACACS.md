@@ -102,33 +102,51 @@ cumulus@switch:~$ nv apply config
 You can set the following optional TACACS+ parameters:
 - The VRF in which you want TACACS+ to run. By default, the TACACS+ client establishes connections with TACACS+ servers only through ports that belong to the {{<link url="Management-VRF" text="management VRF">}}.
 - The TACACS timeout value, which is the number of seconds to wait for a response from the TACACS+ server before trying the next TACACS+ server. You can specify a value between 0 and 60. The default is 5 seconds.
-- The source IP address to use when communicating with the TACACS+ server so that the server can identify the client switch (typically the loopback address). You must specify an IPv4 address. You cannot use IPv6 addresses and hostnames. The address must be valid for the interface you use.
+- The source IP address to use when communicating with the TACACS+ server so that the server can identify the client switch. You must specify an IPv4 address, which must be valid for the interface you use. This source IP address is typically the loopback address on the switch.
 - The TACACS+ authentication type. You can specify <span style="background-color:#F5F5DC">[PAP](## "Password Authentication Protocol")</span> to send clear text between the user and the server, <span style="background-color:#F5F5DC">[CHAP](## "Challenge Handshake Authentication Protocol")</span> to establish a <span style="background-color:#F5F5DC">[PPP](## "Point-to-Point Protocol")</span> connection between the user and the server, or login. The default is PAP.
-- The output debugging information level through syslog(3) to use for troubleshooting. You can specify a value between 0 and 2. The default is 0 (the default logging level). A value of 1 enables debug logging. A value of 2 increases the verbosity of some debug logs.
+- The users you do not want to send to the TACACS+ server for authentication; for example, local user accounts that exist on the switch, such as the cumulus user.
+- Creation of a separate home directory for each TACACS+ user when the TACACS+ user first logs in. By default, the switch uses the home directory in the mapping accounts in `/etc/passwd`. If the home directory does not exist, the `mkhomedir_helper` program creates it. This option does not apply to accounts with restricted shells (users mapped to a TACACS privilege level that has enforced per-command authorization).
+- The output debugging information level through syslog(3) to use for troubleshooting. You can specify a value between 0 and 2. The default is 0. A value of 1 enables debug logging. A value of 2 increases the verbosity of some debug logs.
 
   {{%notice note%}}
   Do not leave debugging enabled on a production switch after you complete troubleshooting.
   {{%/notice%}}
 
-The following example command sets the VRF to `default`, the timeout to 10 seconds, the debug level to 2, the source IP address to 10.10.10.1, and the authentication type to CHAP.
-
 {{< tabs "TabID111 ">}}
 {{< tab "NVUE Commands ">}}
+
+The following example commands set the VRF to `default`, the timeout to 10 seconds, and the debug level to 2:
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs vrf default
 cumulus@switch:~$ nv set system aaa tacacs timeout 10
 cumulus@switch:~$ nv set system aaa tacacs debug 2
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands set the source IP address to 10.10.10.1 and the authentication type to CHAP:
+
+```
 cumulus@switch:~$ nv set system aaa tacacs source-ip 10.10.10.1
 cumulus@switch:~$ nv set system aaa tacacs authentication mode chap
+cumulus@switch:~$ nv config apply
+```
+
+The following example commands exclude the user `USER1` from being sent to the TACACS+ server for authentication and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
+
+```
+cumulus@switch:~$ nv set system aaa tacacs exclude-user username USER1
+cumulus@switch:~$ nv set system aaa tacacs authentication per-user-homedir on
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-- To set the VRF, source IP, and authentication type, edit the `/etc/tacplus_servers` file, then restart `auditd`.
-- To set the timeout and debug level, edit the `/etc/tacplus_nss.conf` file (you do not need to restart `auditd`).
+- To set the VRF, source IP, authentication type, and enable creation of a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` file, then restart `auditd`.
+- To set the timeout, the debug level, and the usernames to exclude from TACACS+ authentication, edit the `/etc/tacplus_nss.conf` file (you do not need to restart `auditd`).
+
+The following example sets the VRF to `default`, the authentication type to CHAP, the source IP address to 10.10.10.1, and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
 
 ```
 cumulus@switch:~$ sudo nano /etc/tacplus_servers
@@ -145,12 +163,22 @@ vrf=default
 # be valid for the interface being used.
 source_ip=10.10.10.1
 ...
+# If user_homedir=1, then tacacs users will be set to have a home directory
+# based on their login name, rather than the mapped tacacsN home directory.
+# mkhomedir_helper is used to create the directory if it does not exist (similar
+# to use of pam_mkhomedir.so). This flag is ignored for users with restricted
+# shells, e.g., users mapped to a tacacs privilege level that has enforced
+# per-command authorization (see the tacplus-restrict man page).
+user_homedir=1
+...
 login=chap
 ```
 
 ```
 cumulus@switch:~$ sudo systemctl restart auditd
 ```
+
+The following example sets the timeout to 10 seconds, the debug level to 2, and excludes the user `USER1` from being sent to the TACACS+ server for authentication:
 
 ```
 cumulus@switch:~$ sudo nano /etc/tacplus_nss.conf
@@ -168,9 +196,16 @@ timeout=10
 # if set, errors and other issues are logged with syslog
 # debug=1
 debug=2
+...
+# This is a comma separated list of usernames that are never sent to
+# a tacacs server, they cause an early not found return.
+#
+# "*" is not a wild card.  While it's not a legal username, it turns out
+# that during pathname completion, bash can do an NSS lookup on "*"
+# To avoid server round trip delays, or worse, unreachable server delays
+# on filename completion, we include "*" in the exclusion list.
+exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,snmp,www-data,ntp,man,_lldpd,USER1,*
 ```
-
-The recognized configuration options are the same as the `libpam_tacplus` command line arguments; however, Cumulus Linux does not support all `pam_tacplus` options. For a description of the configuration parameters, refer to the `tacplus_servers.5` man page, which is part of the `libpam-tacplus` package.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -199,6 +234,10 @@ You need to configure certain TACACS+ servers to allow authorization requests be
 ## Local Fallback Authentication
 
 If a site wants to allow local fallback authentication for a user when none of the TACACS servers are reachable, you can add a privileged user account as a local account on the switch.
+
+{{%notice note%}}
+NVUE does not provide commands to configure local fallback authentication.
+{{%/notice%}}
 
 To configure local fallback authentication:
 
@@ -246,7 +285,8 @@ The first `adduser` command prompts for information and a password. You can skip
 When you install the TACACS+ packages and configure the basic TACACS+ settings (set the server and shared secret), accounting is on and there is no additional configuration required.
 
 {{%notice note%}}
-All `sudo` commands run by TACACS+ users generate accounting records against the original TACACS+ login name.
+- All `sudo` commands run by TACACS+ users generate accounting records against the original TACACS+ login name.
+- All Linux and NVUE commands result in an accounting record, including login commands and sub-processes of other commands. This can generate a lot of accounting records.
 {{%/notice%}}
 
 By default, Cumulus Linux sends accounting records to all servers. You can change this setting to send accounting records to the server that is first to respond:
@@ -279,18 +319,6 @@ To reset to the default configuration (send accounting records to all servers), 
    ```
 
 To reset to the default configuration (send accounting records to all servers), change the value of `acct_all` to 1 (`acct_all=1`).
-
-TACACS+ accounting uses the `audisp` module, with an additional plugin for `auditd` and `audisp`. The plugin maps the `auid` in the accounting record to a TACACS login, which it bases on the `auid` and `sessionid`. The `audisp` module requires `libnss_tacplus` and uses the `libtacplus_map.so` library interfaces as part of the modified `libpam_tacplus` package.
-
-Communication with the TACACS+ servers occurs with the `libsimple-tacact1` library, through `dlopen()`. A maximum of 240 bytes of command name and arguments send in the accounting record, due to the TACACS+ field length limitation of 255 bytes.
-
-{{%notice note%}}
-All Linux commands result in an accounting record, including login commands and sub-processes of other commands. This can generate a lot of accounting records.
-{{%/notice%}}
-
-After editing the configuration file, send the **HUP** signal `killall -HUP audisp-tacplus` to notify the accounting process to reread the file.
-
-For more information, refer to the `audisp.8` and `auditd.8` man pages.
 
 {{< /tab >}}
 {{< /tabs >}}
@@ -327,6 +355,10 @@ cumulus@switch:~$ nv config apply
 {{< /tabs >}}
 <!-- vale off -->
 ## TACACS+ Per-command Authorization
+
+{{%notice note%}}
+NVUE does not provide commands to configure per-command authorization.
+{{%/notice%}}
 
 The `tacplus-auth` command handles authorization for each command. To make this an enforced authorization, change the TACACS+ login to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The `tacplus-restrict` utility simplifies setting up the restricted environment. The example below initializes the environment for the *tacacs0* user account. This is the account for TACACS+ users at privilege level `0`.
 <!-- vale on -->
@@ -411,14 +443,21 @@ Run the following commands to show TACACS+ configuration:
 - To show all TACACS+ configuration (NVUE hides server secret keys), run the `nv show aaa tacacs` command.
 - To show TACACS+ authentication configuration , run the `nv show system aaa tacacs authentication` command.
 - To show TACACS+ accounting configuration , run the `nv show system aaa tacacs accounting` command.
-- To show TACACS+ server configuration , run the `nv show system aaa tacacs server` command.
+- To show TACACS+ server configuration, run the `nv show system aaa tacacs server` command.
 - To show TACACS+ server priority configuration, run the `nv show system aaa tacacs server <priority-id>` command.
-- To show run the `nv show system aaa tacacs exclude-user` command.
+- To show the list of users excluded from TACACS+ server authentication, run the `nv show system aaa tacacs exclude-user` command.
 
 The following example command shows all TACACS+ configuration:
 
 ```
 cumulus@switch:~$ nv show system aaa tacacs
+NEED OUTPUT
+```
+
+The following command shows the list of users excluded from TACACS+ server authentication:
+
+```
+cumulus@switch:~$ nv show system aaa tacacs exclude-user
 NEED OUTPUT
 ```
 
@@ -460,7 +499,7 @@ You can also add `debug=1` to individual pam_tacplus lines in `/etc/pam.d/common
 
 All log messages are in `/var/log/syslog`.
 
-#### Incorrect Shared Key
+### Incorrect Shared Key
 
 The TACACS client on the switch and the TACACS server must have the same shared secret key. If this key is incorrect, the following message prints to `syslog`:
 
@@ -468,7 +507,7 @@ The TACACS client on the switch and the TACACS server must have the same shared 
 2017-09-05T19:57:00.356520+00:00 leaf01 sshd[3176]: nss_tacplus: TACACS+ server 192.168.0.254:49 read failed with protocol error (incorrect shared secret?) user cumulus
 ```
 <!-- vale off -->
-### Issues with Per-command Authorization
+### Debug Issues with Per-command Authorization
 <!-- vale on -->
 To debug TACACS user command authorization, have the TACACS+ user enter the following command at a shell prompt, then try the command again:
 
@@ -498,11 +537,11 @@ If accounting records do not send, add *debug=1* to the `/etc/audisp/audisp-tac_
 cumulus@switch:~$ sudo systemctl restart auditd.service
 ```
 
-### TACACS Component Software Descriptions
+### TACACS+ Package Descriptions
 
 Cumulus Linux uses the following packages for TACACS.
 
-| Package Name| Description|
+| <div style="width:280px">Package Name| Description|
 |--------|---------|
 | `audisp-tacplus\_1.0.0-1-cl3u3` | Uses auditing data from `auditd` to send accounting records to the TACACS+ server and starts as part of `auditd`. |
 | `libtac2\_1.4.0-cl3u2` | Provides basic TACACS+ server utility and communications routines. |
@@ -559,7 +598,7 @@ To work around this issue, you can use the switch audit log or the TACACS server
 
 The Linux `auditd` system does not always generate audit events for processes when terminated with a signal (with the `kill` system call or internal errors such as SIGSEGV). As a result, processes that exit on a signal that you do not handle, generate a STOP accounting record.
 
-### Issues with deluser Command
+### Issues with the deluser Command
 
 TACACS+ and other non-local users that run the `deluser` command with the `--remove-home` option see the following error:
 

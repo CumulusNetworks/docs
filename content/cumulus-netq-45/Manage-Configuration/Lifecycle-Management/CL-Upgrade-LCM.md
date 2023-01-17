@@ -5,7 +5,7 @@ weight: 680
 toc: 4
 ---
 
-LCM lets you upgrade Cumulus Linux on one or more switches in your network through the NetQ UI or the NetQ CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time.
+LCM lets you upgrade Cumulus Linux on one or more switches in your network via the NetQ UI or the CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time. Upgrading Cumulus Linux on a switch typically takes around 45 minutes.
 
 You can upgrade Cumulus Linux from:
 
@@ -16,11 +16,12 @@ You can upgrade Cumulus Linux from:
 - 5.0.0 or later to 5.1.0 or later versions of Cumulus Linux 5
 
 {{<notice warning>}}
-When upgrading to Cumulus Linux 5.0 or later, LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade to Cumulus Linux 5, running NVUE configuration commands replaces any configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} for additional information.
-<br><br>
-LCM does not support Cumulus Linux upgrades when NVUE is enabled.
+When upgrading to Cumulus Linux 5.0.0 or later, LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade to Cumulus Linux 5, running NVUE configuration commands replaces any configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} for additional information.
 {{</notice>}}
 
+{{<notice info>}}
+When NVUE is enabled, LCM supports upgrades from Cumulus Linux 5.0.0 to later versions of Cumulus Linux 5. Upgrading to earlier versions of Cumulus Linux is not supported when NVUE is enabled. 
+{{</notice>}}
 ## How to Upgrade Cumulus Linux Using LCM
 
 If the NetQ Agent is already installed on the switches you'd like to upgrade, follow the steps below.
@@ -45,10 +46,6 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 4. Verify or add {{<link title="Switch Credentials" text="switch access credentials">}}.
 
 5. (Optional) Assign a {{<link  title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch.
-
-Your LCM dashboard should look similar to this:
-
-{{<figure src="/images/netq/lcm-netq-upgrade-dashboard-post-prep-320.png" alt="LCM dashboard displaying uploaded Cumulus Linux images with a specified default version" width="700">}}
 
 {{</tab>}}
 

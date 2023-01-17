@@ -42,13 +42,13 @@ Only user accounts with the `system-admin` role can create, modify, and delete o
 
 The following example:
 - Creates a new user account called `admin2` and sets the role to `system-admin` (permissions for `sudo`, `nv show`, `nv set`, and `nv apply`).
-- Adds the full name `FIRST LAST`.
+- Adds the full name `FIRST LAST`. If the full name includes more than one name, either separate the names with a hyphon (FIRST-LAST) or enclose the full name in quotes ("FIRST LAST").
 - Sets the password to CumulusLinux!
 
 ```
 cumulus@switch:~$ nv set system aaa user admin2 role system-admin
 cumulus@switch:~$ nv set system aaa user admin2 password CumulusLinux!
-cumulus@switch:~$ nv set system aaa user admin2 full-name FIRST LAST
+cumulus@switch:~$ nv set system aaa user admin2 full-name "FIRST LAST"
 cumulus@switch:~$ nv config apply
 ```
 
@@ -73,7 +73,7 @@ The following example:
 - Sets the group membership to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
 
 ```
-cumulus@switch:~$ sudo useradd admin1 -c "First Last" -p CumulusLinux!
+cumulus@switch:~$ sudo useradd admin2 -c "First Last" -p CumulusLinux!
 cumulus@switch:~$ sudo adduser admin2 sudo
 cumulus@switch:~$ sudo adduser admin2 nvapply
 ```
@@ -109,10 +109,16 @@ cumulus@switch:~$ sudo userdel admin2
 
 ## Show User Accounts
 
-To show the user accounts configured on the system, run the NVUE `nv show system aaa user` command or the linux `sudo cat /etc/passwd` command.
+To show the user accounts configured on the system, run the NVUE `nv show system aaa` command or the linux `sudo cat /etc/passwd` command.
 
 ```
-cumulus@switch:~$ nv show system aaa
+cumulus@switch:~$ nv show system aaa user
+```
+
+To show information about a specific user account, run the run the NVUE `nv show system aaa user <user>` command:
+
+```
+cumulus@switch:~$ nv show system aaa user admin2
 ```
 
 ## Enable Remote Access for a root User

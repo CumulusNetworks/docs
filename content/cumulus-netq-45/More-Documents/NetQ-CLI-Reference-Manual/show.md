@@ -3122,26 +3122,23 @@ None
 cumulus@switch:~$ netq show roce-config 
 
 Matching roce records:
-Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  DSCP->SP   SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
------------------ --------------- ---------- ------------ -------- -------- -------- ---------- -------- -------- -------- ---------- ---------- ---------- -------------------------
-switch            swp34           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp47           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp19           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp37           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp30           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp45           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp57           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp33           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp31           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp39           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp24           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp13           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp53           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp1s1          Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp6            Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp29           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp42           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
-switch            swp35           Lossy      0,3          ECN      10432    1088     26 -> 3    3 -> 2   3 -> 3   3        disabled   disabled   dwrr       Thu May 20 22:05:48 2021
+Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  DSCP->SP   PCP->SP  SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
+----------------- --------------- ---------- ------------ -------- -------- -------- ---------- -------- -------- -------- -------- ---------- ---------- ---------- -------------------------
+mlx-2700a1-19     swp2            Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
+mlx-2700a1-19     swp24           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
+mlx-2700a1-19     swp23           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
+mlx-2700a1-19     swp31           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
+ufm-switch23      swp32           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+ufm-switch23      swp1            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+ufm-switch23      swp8            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+ufm-switch23      swp11           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+ufm-switch23      swp22           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+ufm-switch23      swp15           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+ufm-switch23      swp18           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+ufm-switch23      swp26           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+ufm-switch23      swp29           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+ufm-switch23      swp4            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+ufm-switch23      swp30           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
 ...
 ```
 

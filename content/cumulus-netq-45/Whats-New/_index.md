@@ -13,17 +13,14 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale on -->
 This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. Additional features and improvements include:
 
-- PTP monitoring
-- NVLink4
-- RoCE monitoring enhancements, including PCP mapping
 
+RoCE command line updates. The `netq check roce` {{<link title="check#netq-check-roce" text="command output">}} now includes a column displaying PCP (priority code point) and SP (switch priority) mapping misconfigurations and recommendations. `netq show roce-config` displays all {{<link title="RoCE#view-the-roce-configuration" text="PCP and SP mappings">}}.
 
-Command line updates: 
+PTP monitoring
 
+NVLink4
 
-User guide updates:
-
-- Updated command line reference
+An updated command line reference
 
 
 ## Upgrade Paths

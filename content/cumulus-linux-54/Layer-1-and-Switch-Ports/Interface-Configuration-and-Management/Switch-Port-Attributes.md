@@ -1437,10 +1437,31 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
+1. Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/network/interfaces
+   ...
+   auto swp1
+   iface swp1
+       link-lanes 1
+       link-speed 50000
+   auto swp2
+   iface swp2
+       link-lanes 2
+       link-speed 100000
+   ```
+
+2. Run the `ifreload -a` command:
+
+   ```
+   cumulus@switch:~$ sudo ifreload -a
+   ```
+
 {{< /tab >}}
 {{< /tabs >}}
 
-## Configure Port Width
+<!--## Configure Port Width
 
 You can change the width of the interfaces in a breakout port. For example, if you use NRZ breakout cables with a QSFP56-DD port, you might want to have different interface widths.
 
@@ -1463,10 +1484,9 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## Logical Switch Port Limitations
 
 100G and 40G switches can support a certain number of logical ports depending on the switch. Before you configure any logical ports on a switch, check the limitations listed in the `/etc/cumulus/ports.conf`file.

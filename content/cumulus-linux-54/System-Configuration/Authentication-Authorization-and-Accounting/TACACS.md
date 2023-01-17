@@ -4,11 +4,10 @@ author: NVIDIA
 weight: 180
 toc: 4
 ---
-Cumulus Linux implements TACACS+ client AAA (Accounting, Authentication, and Authorization) in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in {{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}. There is no need to create accounts or directories on the switch. Accounting records go to all configured TACACS+ servers by default. Using per-command authorization requires additional setup on the switch.
+Cumulus Linux implements TACACS+ client <span style="background-color:#F5F5DC">[AAA](## "Accounting, Authentication, and Authorization")</span> in a transparent way with minimal configuration. The client implements the TACACS+ protocol as described in {{<exlink url="https://tools.ietf.org/html/draft-grant-tacacs-02" text="this IETF document">}}. There is no need to create accounts or directories on the switch. Accounting records go to all configured TACACS+ servers by default. Using per-command authorization requires additional setup on the switch.
 
 TACACS+ in Cumulus Linux:
 - Uses PAM authentication and includes `login`, `ssh`, `sudo` and `su`.
-- Runs over the eth0 interface and in the {{<link url="Management-VRF" text="management VRF">}}.
 - Allows privilege 15 users to run any command with sudo.
 - Supports up to seven TACACS+ servers.
 
@@ -38,7 +37,7 @@ Optionally, you can set the port to use for communication between the TACACS+ se
 {{< tabs "TabID31 ">}}
 {{< tab "NVUE Commands ">}}
 
-NVUE commands require you to specify the priority for each TACACS+ server. You must a priority even if you only specify one server.
+NVUE commands require you to specify the priority for each TACACS+ server. You must set a priority even if you only specify one server.
 
 The following example commmands set the TACACS+ server priority to 5, the IP address of the server to 192.168.0.30, the secret to `mytacacskey`, and the IP port to 32:
 
@@ -46,7 +45,7 @@ The following example commmands set the TACACS+ server priority to 5, the IP add
 cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
 cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey 
 cumulus@switch:~$ nv set system aaa tacacs server 5 port 32
-cumulus@switch:~$ nv apply config
+cumulus@switch:~$ nv config apply
 ```
 
 If you configure more than one TACACS+ server, you need to set the priority for each server. If the switch cannot establish a connection with the server that has the highest priority, it tries to establish a connection with the next highest priority server. The server with the lower number has the higher prioritity. In the example below, server 192.168.0.30 with a priority value of 5 has a higher priority than server 192.168.1.30, which has a priority value of 10.
@@ -56,7 +55,7 @@ cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
 cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey 
 cumulus@switch:~$ nv set system aaa tacacs server 10 host 192.168.1.30
 cumulus@switch:~$ nv set system aaa tacacs server 10 secret mytacacskey2 
-cumulus@switch:~$ nv apply config
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -100,7 +99,7 @@ cumulus@switch:~$ nv apply config
 ## Optional TACACS+ Configuration
 
 You can set the following optional TACACS+ parameters:
-- The VRF in which you want TACACS+ to run. By default, the TACACS+ client establishes connections with TACACS+ servers only through ports that belong to the {{<link url="Management-VRF" text="management VRF">}}.
+- The VRF in which you want TACACS+ to run. Typically, you configure the TACACS+ client to establish connections with TACACS+ servers only through ports that belong to the {{<link url="Management-VRF" text="management VRF">}}.
 - The TACACS timeout value, which is the number of seconds to wait for a response from the TACACS+ server before trying the next TACACS+ server. You can specify a value between 0 and 60. The default is 5 seconds.
 - The source IP address to use when communicating with the TACACS+ server so that the server can identify the client switch. You must specify an IPv4 address, which must be valid for the interface you use. This source IP address is typically the loopback address on the switch.
 - The TACACS+ authentication type. You can specify <span style="background-color:#F5F5DC">[PAP](## "Password Authentication Protocol")</span> to send clear text between the user and the server, <span style="background-color:#F5F5DC">[CHAP](## "Challenge Handshake Authentication Protocol")</span> to establish a <span style="background-color:#F5F5DC">[PPP](## "Point-to-Point Protocol")</span> connection between the user and the server, or login. The default is PAP.
@@ -115,10 +114,10 @@ You can set the following optional TACACS+ parameters:
 {{< tabs "TabID111 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example commands set the VRF to `default`, the timeout to 10 seconds, and the debug level to 2:
+The following example commands set the VRF to `mgmt`, the timeout to 10 seconds, and the debug level to 2:
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs vrf default
+cumulus@switch:~$ nv set system aaa tacacs vrf mgmt
 cumulus@switch:~$ nv set system aaa tacacs timeout 10
 cumulus@switch:~$ nv set system aaa tacacs debug 2
 cumulus@switch:~$ nv config apply
@@ -146,7 +145,7 @@ cumulus@switch:~$ nv config apply
 - To set the VRF, source IP, authentication type, and enable creation of a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` file, then restart `auditd`.
 - To set the timeout, the debug level, and the usernames to exclude from TACACS+ authentication, edit the `/etc/tacplus_nss.conf` file (you do not need to restart `auditd`).
 
-The following example sets the VRF to `default`, the authentication type to CHAP, the source IP address to 10.10.10.1, and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
+The following example sets the VRF to `mgmt`, the authentication type to CHAP, the source IP address to 10.10.10.1, and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
 
 ```
 cumulus@switch:~$ sudo nano /etc/tacplus_servers
@@ -155,7 +154,7 @@ cumulus@switch:~$ sudo nano /etc/tacplus_servers
 # This would usually be "mgmt"
 # When this variable is set, the connection to the TACACS+ accounting servers
 # will be made through the named vrf.
-vrf=default
+vrf=mgmt
 ...
 # Sets the IPv4 address used as the source IP address when communicating with
 # the TACACS+ server.  IPv6 addresses are not supported, nor are hostnames.
@@ -209,27 +208,6 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 
 {{< /tab >}}
 {{< /tabs >}}
-
-## TACACS+ Authentication (login)
-
-PAM modules and an updated version of the `libpam-tacplus` package configure authentication initially. When you install the package, the `pam-auth-update` command updates the PAM configuration in `/etc/pam.d`. If you make changes to your PAM configuration, you need to integrate these changes. If you also use LDAP with the `libpam-ldap` package, you need to edit the PAM configuration with the LDAP and TACACS ordering you prefer. The `libpam-tacplus` package ignore rules and the values in `success=2` require adjustments to ignore LDAP rules.
-
-The TACACS+ privilege attribute `priv_lvl` determines the privilege level for the user that the TACACS+ server returns during the user authorization exchange. The client accepts the attribute in either the mandatory or optional forms and also accepts `priv-lvl` as the attribute name. The attribute value must be a numeric string in the range 0 to 15, with 15 the most privileged level.
-
-{{%notice note%}}
-By default, TACACS+ users at privilege levels other than 15 cannot run `sudo` commands and can only run commands with standard Linux user permissions.
-{{%/notice%}}
-
-### TACACS+ Client Sequencing
-
-Cumulus Linux requires the following information at the beginning of the AAA sequence:
-
-- Whether the user is a valid TACACS+ user
-- The user privilege level
-
-For non-local users (users not in the local password file) you need to send a TACACS+ authorization request as the first communication with the TACACS+ server, before authentication and before the user logging in requests a password.
-
-You need to configure certain TACACS+ servers to allow authorization requests before authentication. Contact your TACACS+ server vendor for information.
 
 ## Local Fallback Authentication
 
@@ -409,16 +387,6 @@ For more information on `tacplus-auth` and `tacplus-restrict`, run the `man` com
 cumulus@switch:~$ man tacplus-auth tacplus-restrict
 ```
 
-## NSS Plugin
-
-With `pam_tacplus`, TACACS+ authenticated users can log in without a local account on the system using the NSS plugin that comes with the `tacplus_nss` package. The plugin uses the mapped `tacplus` information if the user is not in the local password file, provides the `getpwnam()` and `getpwuid()`entry points, and uses the TACACS+ authentication functions.
-
-The plugin asks the TACACS+ server if it knows the user, and then for relevant attributes to determine the privilege level of the user. When you install the `libnss_tacplus` package, `nsswitch.conf` changes to set `tacplus` as the first lookup method for `passwd`. If you change the order, lookups return the local accounts, such as `tacacs0`
-
-If TACACS+ server does not find the user, it uses the `libtacplus.so` exported functions to do a mapped lookup. The privilege level appends to `tacacs` and the lookup searches for the name in the local password file. For example, privilege level 15 searches for the tacacs15 user. If the TACACS+ server finds the user, it adds information for the user in the password structure.
-
-If the TACACS+ server does not find the user, it decrements the privilege level and checks again until it reaches privilege level 0 (user `tacacs0`). This allows you to use only the two local users `tacacs0` and `tacacs15`, for minimal configuration.
-
 ## Remove the TACACS+ Client Packages
 
 To remove all the TACACS+ client packages, use the following commands:
@@ -451,14 +419,28 @@ The following example command shows all TACACS+ configuration:
 
 ```
 cumulus@switch:~$ nv show system aaa tacacs
-NEED OUTPUT
+                    applied
+------------------  -------
+enable              off    
+debug-level         0      
+timeout             5      
+vrf                 mgmt   
+accounting                 
+  enable            off    
+authentication             
+  mode              pap    
+  per-user-homedir  off    
+[server]            5      
+[server]            10 
 ```
 
 The following command shows the list of users excluded from TACACS+ server authentication:
 
 ```
 cumulus@switch:~$ nv show system aaa tacacs exclude-user
-NEED OUTPUT
+          applied
+--------  -------
+username  USER1  
 ```
 
 ### Basic Server Connectivity or NSS Issues
@@ -569,15 +551,11 @@ The following table describes the TACACS+ client configuration files that Cumulu
 | `/etc/audit/rules.d/audisp-tacplus.rules` | The `auditd` rules for TACACS+ accounting. The `augenrules` command uses all rule files to generate the rules file.
 | `/etc/audit/audit.rules`|The audit rules file that generate when you install `auditd`. |
 
-{{%notice warning%}}
-You can edit the `/etc/pam.d/common-*` files manually. However, if you run `pam-auth-update` again after making the changes, the update fails. Only configure `/usr/share/pam-configs/tacplus`, then run `pam-auth-update`.
-{{%/notice%}}
-
 ## Considerations
 
-### TACACS+ Client Is only Supported through the Management Interface
+<!--### TACACS+ Client Is only Supported through the Management Interface
 
-The TACACS+ client is only supported through the management interface on the switch: eth0, eth1, or the VRF management interface. The TACACS+ client is not supported through bonds, switch virtual interfaces (SVIs), or switch port interfaces (swp).
+The TACACS+ client is only supported through the management interface on the switch: eth0, eth1, or the VRF management interface. The TACACS+ client is not supported through bonds, switch virtual interfaces (SVIs), or switch port interfaces (swp).-->
 
 ### Multiple TACACS+ Users
 
@@ -586,9 +564,7 @@ If two or more TACACS+ users log in simultaneously with the same privilege level
 As a result, any processes that either user runs apply to both and all files either user creates apply to the first name matched. This is similar to adding two local users to the password file with the same UID and GID and is an inherent limitation of using the UID for the base user from the password file.
 
 {{%notice note%}}
-
 The current algorithm returns the first name matching the UID from the mapping file; either the first or the second user that logs in.
-
 {{%/notice%}}
 
 To work around this issue, you can use the switch audit log or the TACACS server accounting logs to determine which processes and files each user creates.
@@ -615,3 +591,38 @@ Only use the `--remove-home` option with the `user_homedir=1` configuration comm
 ### Both TACACS+ and RADIUS AAA Clients
 
 When you install both the TACACS+ and the RADIUS AAA client, Cumulus Linux does not attempt RADIUS login. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.
+
+## TACACS+ and PAM
+
+PAM modules and an updated version of the `libpam-tacplus` package configure authentication initially. When you install the package, the `pam-auth-update` command updates the PAM configuration in `/etc/pam.d`. If you make changes to your PAM configuration, you need to integrate these changes. If you also use LDAP with the `libpam-ldap` package, you need to edit the PAM configuration with the LDAP and TACACS ordering you prefer. The `libpam-tacplus` package ignore rules and the values in `success=2` require adjustments to ignore LDAP rules.
+
+The TACACS+ privilege attribute `priv_lvl` determines the privilege level for the user that the TACACS+ server returns during the user authorization exchange. The client accepts the attribute in either the mandatory or optional forms and also accepts `priv-lvl` as the attribute name. The attribute value must be a numeric string in the range 0 to 15, with 15 the most privileged level.
+
+{{%notice note%}}
+By default, TACACS+ users at privilege levels other than 15 cannot run `sudo` commands and can only run commands with standard Linux user permissions.
+{{%/notice%}}
+
+{{%notice warning%}}
+You can edit the `/etc/pam.d/common-*` files manually. However, if you run `pam-auth-update` again after making the changes, the update fails. Only configure `/usr/share/pam-configs/tacplus`, then run `pam-auth-update`.
+{{%/notice%}}
+
+## NSS Plugin
+
+With `pam_tacplus`, TACACS+ authenticated users can log in without a local account on the system using the NSS plugin that comes with the `tacplus_nss` package. The plugin uses the mapped `tacplus` information if the user is not in the local password file, provides the `getpwnam()` and `getpwuid()`entry points, and uses the TACACS+ authentication functions.
+
+The plugin asks the TACACS+ server if it knows the user, and then for relevant attributes to determine the privilege level of the user. When you install the `libnss_tacplus` package, `nsswitch.conf` changes to set `tacplus` as the first lookup method for `passwd`. If you change the order, lookups return the local accounts, such as `tacacs0`
+
+If TACACS+ server does not find the user, it uses the `libtacplus.so` exported functions to do a mapped lookup. The privilege level appends to `tacacs` and the lookup searches for the name in the local password file. For example, privilege level 15 searches for the tacacs15 user. If the TACACS+ server finds the user, it adds information for the user in the password structure.
+
+If the TACACS+ server does not find the user, it decrements the privilege level and checks again until it reaches privilege level 0 (user `tacacs0`). This allows you to use only the two local users `tacacs0` and `tacacs15`, for minimal configuration.
+
+### TACACS+ Client Sequencing
+
+Cumulus Linux requires the following information at the beginning of the AAA sequence:
+
+- Whether the user is a valid TACACS+ user
+- The user privilege level
+
+For non-local users (users not in the local password file) you need to send a TACACS+ authorization request as the first communication with the TACACS+ server, before authentication and before the user logging in requests a password.
+
+You need to configure certain TACACS+ servers to allow authorization requests before authentication. Contact your TACACS+ server vendor for information.

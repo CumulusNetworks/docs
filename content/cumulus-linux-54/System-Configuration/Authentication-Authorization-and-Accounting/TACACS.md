@@ -212,8 +212,6 @@ Cumulus Linux supports the following additional Linux parameters in the `etc/tac
 | --------------- | ----------- |
 | `include` | Configures a supplemental configuration file to avoid duplicating configuration information. You can include up to eight additional configuration files. For example: `include=/myfile/myname`. |
 | `min_uid` | Configures the minimum user ID that the NSS plugin can look up. 0 specifies that the plugin never looks up uid 0 (root). Do not specify a value greater than the local TACACS+ user IDs (0 through 15). |
-| `service` | TACACS+ accounting and authorization service. Examples include `shell`, `pap`, `raccess`, `ppp`, and `slip`.<br>The default value is `shell`. Add this parameter at the end of the `/etc/tacplus_servers` file. |
-| `protocol` | TACACS+ protocol field. PAM uses the SSH protocol. Add this parameter at the end of the `/etc/tacplus_servers` file. |
 
 {{< /tab >}}
 {{< /tabs >}}

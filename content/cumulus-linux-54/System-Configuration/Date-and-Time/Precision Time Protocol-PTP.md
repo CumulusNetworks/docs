@@ -1730,7 +1730,7 @@ nv show interface <interface-id> ptp counters
 ...
 ```
 
-<!-- ### PTP Shaping
+### PTP Shaping
 
 To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
 
@@ -1766,7 +1766,7 @@ interface.swp1.ptp.shaper = TRUE
 
 {{< /tab >}}
 {{< /tabs >}}
--->
+
 ## Example Configuration
 
 In the following example, the boundary clock on the switch receives time from Master 1 (the grandmaster) on PTP slave port swp1, sets its clock and passes the time down through PTP master ports swp2, swp3, and swp4 to the hosts that receive the time.

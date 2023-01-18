@@ -206,66 +206,15 @@ debug=2
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,snmp,www-data,ntp,man,_lldpd,USER1,*
 ```
 
-{{< /tab >}}
-{{< /tabs >}}
-
-Cumulus Linux supports the following additional Linux parameters. Currently, there are no equivalent NUVE commands.
+Cumulus Linux supports the following additional Linux parameters in the `etc/tacplus_nss.conf` file. Currently, there are no equivalent NUVE commands.
 
 | Linux Parameter | Description |
 | --------------- | ----------- |
-| `include` | Configures a supplemental configuration file to avoid duplicating configuration information. You can include up to eight additional configuration files. For example: `include=/myfile/myname`|
-| `min_uid` | The minimum user ID that the NSS plugin looks up. 0 specifies that the plugin never looks up uid 0 (root). Do not specify a value greater than the local TACACS+ user IDs (0 through 15).|
-| `service` | TACACS+ accounting and authorization service. Examples include `shell`, `pap`, `raccess`, `ppp`, and `slip`.<br>The default value is `shell`. |
-| `protocol` | The TACACS+ protocol field. PAM uses the SSH protocol. |
+| `include` | Configures a supplemental configuration file to avoid duplicating configuration information. You can include up to eight additional configuration files. For example: `include=/myfile/myname`. |
+| `min_uid` | Configures the minimum user ID that the NSS plugin can look up. 0 specifies that the plugin never looks up uid 0 (root). Do not specify a value greater than the local TACACS+ user IDs (0 through 15). |
 
-## Local Fallback Authentication
-
-If a site wants to allow local fallback authentication for a user when none of the TACACS servers are reachable, you can add a privileged user account as a local account on the switch.
-
-{{%notice note%}}
-NVUE does not provide commands to configure local fallback authentication.
-{{%/notice%}}
-
-To configure local fallback authentication:
-
-1. Edit the `/etc/nsswitch.conf` file to remove the keyword `tacplus` from the line starting with `passwd`. (You need to add the keyword back in step 3.)
-
-    The following example shows the `/etc/nsswitch.conf` file with no `tacplus` keyword in the line starting with `passwd`.
-
-    ```
-    cumulus@switch:~$ sudo vi /etc/nsswitch.conf
-    #
-    # Example configuration of GNU Name Service Switch functionality.
-    # If you have the `glibc-doc-reference' and `info' packages installed, try:
-    # `info libc "Name Service Switch"' for information about this file.
-
-    passwd:         files
-    group:          tacplus files
-    shadow:         files
-    gshadow:        files
-    ...
-    ```
-
-2. To enable the local privileged user to run `sudo` and NVUE commands, run the `adduser` commands shown below. In the example commands, the TACACS account name is tacadmin.
-
-    {{%notice note%}}
-The first `adduser` command prompts for information and a password. You can skip most of the requested information by pressing ENTER.
-{{%/notice%}}
-
-    ```
-    cumulus@switch:~$ sudo adduser --ingroup tacacs tacadmin
-    cumulus@switch:~$ sudo adduser tacadmin nvset
-    cumulus@switch:~$ sudo adduser tacadmin nvapply
-    cumulus@switch:~$ sudo adduser tacadmin sudo
-    ```
-
-3. Edit the `/etc/nsswitch.conf` file to add the keyword `tacplus` back to the line starting with `passwd` (the keyword you removed in the first step).
-
-4. Restart the `nvued` service with the following command:
-
-    ```
-    cumulus@switch:~$ sudo systemctl restart nvued
-    ```
+{{< /tab >}}
+{{< /tabs >}}
 
 ## TACACS+ Accounting
 
@@ -341,6 +290,56 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 <!-- vale off -->
+
+## Local Fallback Authentication
+
+If a site wants to allow local fallback authentication for a user when none of the TACACS servers are reachable, you can add a privileged user account as a local account on the switch.
+
+{{%notice note%}}
+NVUE does not provide commands to configure local fallback authentication.
+{{%/notice%}}
+
+To configure local fallback authentication:
+
+1. Edit the `/etc/nsswitch.conf` file to remove the keyword `tacplus` from the line starting with `passwd`. (You need to add the keyword back in step 3.)
+
+    The following example shows the `/etc/nsswitch.conf` file with no `tacplus` keyword in the line starting with `passwd`.
+
+    ```
+    cumulus@switch:~$ sudo vi /etc/nsswitch.conf
+    #
+    # Example configuration of GNU Name Service Switch functionality.
+    # If you have the `glibc-doc-reference' and `info' packages installed, try:
+    # `info libc "Name Service Switch"' for information about this file.
+
+    passwd:         files
+    group:          tacplus files
+    shadow:         files
+    gshadow:        files
+    ...
+    ```
+
+2. To enable the local privileged user to run `sudo` and NVUE commands, run the `adduser` commands shown below. In the example commands, the TACACS account name is tacadmin.
+
+    {{%notice note%}}
+The first `adduser` command prompts for information and a password. You can skip most of the requested information by pressing ENTER.
+{{%/notice%}}
+
+    ```
+    cumulus@switch:~$ sudo adduser --ingroup tacacs tacadmin
+    cumulus@switch:~$ sudo adduser tacadmin nvset
+    cumulus@switch:~$ sudo adduser tacadmin nvapply
+    cumulus@switch:~$ sudo adduser tacadmin sudo
+    ```
+
+3. Edit the `/etc/nsswitch.conf` file to add the keyword `tacplus` back to the line starting with `passwd` (the keyword you removed in the first step).
+
+4. Restart the `nvued` service with the following command:
+
+    ```
+    cumulus@switch:~$ sudo systemctl restart nvued
+    ```
+
 ## TACACS+ Per-command Authorization
 
 {{%notice note%}}
@@ -601,7 +600,7 @@ Only use the `--remove-home` option with the `user_homedir=1` configuration comm
 
 When you install both the TACACS+ and the RADIUS AAA client, Cumulus Linux does not attempt RADIUS login. As a workaround, do not install both the TACACS+ and the RADIUS AAA client on the same switch.
 
-## TACACS+ and PAM
+### TACACS+ and PAM
 
 PAM modules and an updated version of the `libpam-tacplus` package configure authentication initially. When you install the package, the `pam-auth-update` command updates the PAM configuration in `/etc/pam.d`. If you make changes to your PAM configuration, you need to integrate these changes. If you also use LDAP with the `libpam-ldap` package, you need to edit the PAM configuration with the LDAP and TACACS ordering you prefer. The `libpam-tacplus` package ignore rules and the values in `success=2` require adjustments to ignore LDAP rules.
 
@@ -615,7 +614,7 @@ By default, TACACS+ users at privilege levels other than 15 cannot run `sudo` co
 You can edit the `/etc/pam.d/common-*` files manually. However, if you run `pam-auth-update` again after making the changes, the update fails. Only configure `/usr/share/pam-configs/tacplus`, then run `pam-auth-update`.
 {{%/notice%}}
 
-## NSS Plugin
+### NSS Plugin
 
 With `pam_tacplus`, TACACS+ authenticated users can log in without a local account on the system using the NSS plugin that comes with the `tacplus_nss` package. The plugin uses the mapped `tacplus` information if the user is not in the local password file, provides the `getpwnam()` and `getpwuid()`entry points, and uses the TACACS+ authentication functions.
 

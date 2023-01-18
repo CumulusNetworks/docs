@@ -41,9 +41,9 @@ Only user accounts with the `system-admin` role can create, modify, and delete o
 {{%/notice%}}
 
 The following example:
-- Creates a new user account called `admin2` and sets the role to `system-admin` (permissions for `sudo`, `nv show`, `nv set`, and `nv apply`).
-- Adds the full name `FIRST LAST`. If the full name includes more than one name, either separate the names with a hyphon (FIRST-LAST) or enclose the full name in quotes ("FIRST LAST").
+- Creates a new user account called `admin2` and sets the role to `system-admin` (permissions for `sudo`, `nv show`, `nv set` and `nvunset`, and `nv apply`).
 - Sets the password to CumulusLinux!
+- Adds the full name `FIRST LAST`. If the full name includes more than one name, either separate the names with a hyphon (`FIRST-LAST`) or enclose the full name in quotes (`"FIRST LAST"`).
 
 ```
 cumulus@switch:~$ nv set system aaa user admin2 role system-admin
@@ -112,13 +112,26 @@ cumulus@switch:~$ sudo userdel admin2
 To show the user accounts configured on the system, run the NVUE `nv show system aaa` command or the linux `sudo cat /etc/passwd` command.
 
 ```
-cumulus@switch:~$ nv show system aaa user
+cumulus@switch:~$ nv show system aaa
+Username          Full-name                           Role          enable
+----------------  ----------------------------------  ------------  ------
+Debian-snmp                                           Unknown       system
+_apt                                                  Unknown       system
+_lldpd                                                Unknown       system
+admin2            FIRST LAST                          system-admin  on    
+...
 ```
 
 To show information about a specific user account, run the run the NVUE `nv show system aaa user <user>` command:
 
 ```
 cumulus@switch:~$ nv show system aaa user admin2
+                 operational   applied     
+---------------  ------------  ------------
+full-name        FIRST LAST    FIRST LAST  
+hashed-password  *             *           
+role             system-admin  system-admin
+enable           on            on  
 ```
 
 ## Enable Remote Access for a root User
@@ -163,7 +176,9 @@ The root user does not have a password and cannot log into a switch using SSH. T
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set system aaa user root password 
+cumulus@switch:~$ nv set system aaa user root password
+Enter new password:
+...
 cumulus@switch:~$ nv config apply
 ```
 
@@ -174,6 +189,8 @@ cumulus@switch:~$ nv config apply
 
     ```
     cumulus@switch:~$ sudo passwd root
+    Enter new password:
+    ...
     ```
 
 2. Change the `PermitRootLogin` setting in the `/etc/ssh/sshd_config` file from *without-password* to *yes*.

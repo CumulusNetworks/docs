@@ -946,48 +946,6 @@ shaping.shaper1.port.shaper = 900000
 {{< /tab >}}
 {{< /tabs >}}
 
-### PTP Shaping
-
-To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
-
-{{%notice note%}}
-PTP shaping is not supported on Spectrum-2 and later.
-{{%/notice%}}
-
-{{< tabs "TabID1387 ">}}
-{{< tab "NVUE Commands ">}}
-
-For each PTP-enabled port, run the `nv set interface <swp> qos egress-shaper ptp-shaper profile <profile-name>` command.
-
-```
-cumulus@switch:~$ nv set interface swp1 qos egress-shaper ptp-shaper profile ptp-profile
-cumulus@switch:~$ nv set interface swp2 qos egress-shaper ptp-shaper profile ptp-profile
-cumulus@switch:~$ nv set interface swp3 qos egress-shaper ptp-shaper profile ptp-profile
-cumulus@switch:~$ nv set interface swp5 qos egress-shaper ptp-shaper profile ptp-profile
-cumulus@switch:~$ nv config apply
-```
-
-The NVUE command adds the PTP shaping configuration for the specified ports to the `qos_features.conf` file. To see the profile settings, run the `nv show qos egress-shaper ptp-shaper profile <profile-name>` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-In the `shaping` section of the `qos_features.conf` file, add the following:
-- A port group to use with traffic shaping settings.
-- The set of interfaces to which you want apply traffic shaping.
-- The minimum and maximum bandwidth value in kbps for internal COS group 0.
-- The maximum packet shaper rate at the interface level.
-
-```
-ptp_shaping.port_group_list = [ptp_shaper_port_group_speed_1G]
-ptp_shaping.shaper_port_group.port_set = swp1-swp3,swp5
-ptp_shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]
-ptp_shaping.shaper_port_group.port.shaper = 900000
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ### Policing
 
 Traffic policing prevents an interface from receiving more traffic than intended. You use policing to enforce a maximum transmission rate on an interface. The switch drops any traffic above the policing level.

@@ -1,9 +1,7 @@
 ---
-title: NVLink4 Overview
+title: NVLink4
 author: NVIDIA
-weight: 1150
-toc: 3
-bookhidden: true
+weight: 1090
 ---
 
 This section describes the NetQ integration with NVLink4. This integration supports the following:

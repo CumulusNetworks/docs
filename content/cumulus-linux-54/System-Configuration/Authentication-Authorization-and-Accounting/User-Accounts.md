@@ -52,7 +52,7 @@ cumulus@switch:~$ nv set system aaa user admin2 full-name "FIRST LAST"
 cumulus@switch:~$ nv config apply
 ```
 
-To set a hashed password for the local user, run the `nv set system aaa user <username> hashed-password <hashed-password>` command.
+To set a hashed password for the local user, run the `nv set system aaa user <username> hashed-password '<hashed-password>'` command. You must enclose the hashed password in single quotes (`).
 
 To set an SSH authorized key for a user, run the `nv set system aaa user <username> ssh authorized-key <value>` command.
 

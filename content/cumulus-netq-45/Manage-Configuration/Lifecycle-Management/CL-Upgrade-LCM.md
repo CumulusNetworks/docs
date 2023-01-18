@@ -20,7 +20,7 @@ When upgrading to Cumulus Linux 5.0.0 or later, LCM backs up and restores flat f
 {{</notice>}}
 
 {{<notice info>}}
-When NVUE is enabled, LCM supports upgrades from Cumulus Linux 5.0.0 to later versions of Cumulus Linux 5. Upgrading to earlier versions of Cumulus Linux is not supported when NVUE is enabled. 
+When NVUE is enabled, LCM supports upgrades from Cumulus Linux 5.0.0 to later versions of Cumulus Linux 5. Upgrading from earlier versions of Cumulus Linux is not supported when NVUE is enabled. 
 {{</notice>}}
 ## How to Upgrade Cumulus Linux Using LCM
 

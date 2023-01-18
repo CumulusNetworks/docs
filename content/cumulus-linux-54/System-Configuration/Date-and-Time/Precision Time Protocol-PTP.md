@@ -1748,7 +1748,7 @@ cumulus@switch:~$ nv set interface swp1 ptp shaper enable on
 cumulus@switch:~$ nv config apply
 ```
 
-The NVUE command adds the PTP shaping configuration for the specified ports to the `/etc/cumulus/switchd.d/ptp_shaper.conf` file. To see the profile settings, run the `nv show interface <interface> ptp shaper` command.
+The NVUE command adds the PTP shaping configuration for the specified ports to the `/etc/cumulus/switchd.d/ptp_shaper.conf` file. To see the PTP shaping settings, run the `nv show interface <interface> ptp shaper` command.
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}

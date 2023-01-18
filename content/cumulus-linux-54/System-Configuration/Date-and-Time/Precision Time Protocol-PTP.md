@@ -1745,15 +1745,23 @@ For each PTP-enabled port where you want to set traffic shaping, run the `nv set
 
 ```
 cumulus@switch:~$ nv set interface swp1 ptp shaper enable on
+cumulus@switch:~$ nv set interface swp2 ptp shaper enable on
 cumulus@switch:~$ nv config apply
 ```
 
-The NVUE command adds the PTP shaping configuration for the specified ports to the `/etc/cumulus/switchd.d/ptp_shaper.conf` file. To see the PTP shaping settings, run the `nv show interface <interface> ptp shaper` command.
+The NVUE command adds the PTP shaping configuration for the specified ports to the `/etc/cumulus/switchd.d/ptp_shaper.conf` file. To see the PTP shaping setting for a switch port, run the `nv show interface <interface> ptp shaper` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 ptp shaper
+        operational  applied  
+------  -----------  -------  
+enable               on   
+```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-In the `/etc/cumulus/switchd.d/ptp_shaper.conf` file, set the `interface.<interface>.ptp.shaper` parameter to TRUE for the interfaces to which you want apply traffic shaping.
+In the `/etc/cumulus/switchd.d/ptp_shaper.conf` file, set the `interface.<interface>.ptp.shaper` parameter to TRUE for the interfaces to which you want to apply traffic shaping, then reload `switchd`.
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ptp_shaper.conf
@@ -1762,6 +1770,10 @@ interface.swp1.ptp.shaper = TRUE
 #interface.swp2.ptp.shaper = FALSE
 #interface.swp9.ptp.shaper = TRUE
 #interface.swp12.ptp.shaper = TRUE
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
 ```
 
 {{< /tab >}}

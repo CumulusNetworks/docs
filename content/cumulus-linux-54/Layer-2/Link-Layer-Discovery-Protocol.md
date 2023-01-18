@@ -207,12 +207,12 @@ To show the current LLDP mode, run the `nv show service lldp` command. The follo
 
 ```
 cumulus@leaf02:mgmt:~$ nv show service lldp
-                    operational       applied           description
-------------------  ----------------  ----------------  ----------------------------------------------------------------------
-dot1-tlv            off               off               Enable dot1 TLV advertisements on enabled ports
-mode                force-send-cdpv2  force-send-cdpv2  Enable sending CDP/LLDP frames only
-tx-hold-multiplier  4                 4                 < TTL of transmitted packets is calculated by multiplying the tx-in...
-tx-interval         30                30                change transmit delay
+                    operational       applied
+------------------  ----------------  ----------------
+dot1-tlv            off               off
+mode                force-send-cdpv2  force-send-cdpv2
+tx-hold-multiplier  4                 4
+tx-interval         30                30
 ```
 
 ## LLDP DCBX TLVs

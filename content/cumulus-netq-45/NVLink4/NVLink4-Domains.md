@@ -20,7 +20,7 @@ Select the NVL4 icon in the header, then select **Add domain**:
 
 Creating a domain is a 4-step process. The first step configures the GFM:
 
-{{<figure src="/images/netq/nvlink-gfm-config.png" alt="wizard prompting user to configure GFM" width="750">}}
+{{<figure src="/images/netq/nvlink4-gfm-config.png" alt="wizard prompting user to configure GFM" width="550">}}
 
 **Domain name** is the name that will appear in the inventory list.
 
@@ -29,6 +29,8 @@ The **log level** is critical, error, warning, info, or none.
 **GFM timeout** is the length of time (in seconds) that the GFM node will wait for Local Fabric Managers (LFMs) to boot up on all nodes. Setting this field to -1 (recommended) prevents timeout issues.
 
 **Fabric manager mode** lists supported physical and virtualization models. For more information, refer to chapters 3 and 4 in the {{<exlink url="https://docs.nvidia.com/datacenter/tesla/pdf/fabric-manager-user-guide.pdf" text="Fabric Manager User Guide">}}.
+
+The **Create all node partition** toggle 
 
 The next step prompts you to upload a topology file:
 
@@ -52,7 +54,7 @@ If you are also using NetQ to manage ethernet switches, make sure the switch use
 
 After reviewing the summary, select **Finish**. NetQ adds the domain to a list of all NVLink4 domains:
 
-{{<figure src="/images/netq/nvl4-domain-list.png" alt="list of three NVL4 domains, including the one created in the preceding steps" width="1050">}}
+{{<figure src="/images/netq/nvlink4-domains-list.png" alt="list of three NVL4 domains" width="1050">}}
 
 From the list of NVLink4 domains, you can view and manage multiple domains. Per domain, you can view:
 
@@ -67,9 +69,11 @@ You can also stop and start GFM by selecting the stop and play buttons. Stopping
 
 Select **View details** to review the domain's configuration and associated devices:
 
-{{<figure src="/images/netq/nvl4-view-details.png" alt="configuration summary for a selected domain" width="1050">}}
+{{<figure src="/images/netq/nvlink4-view-details.png" alt="configuration summary for a selected domain" width="700">}}
 
-{{<figure src="/images/netq/nvl4-devices-list.png" alt="devices summary for selected domain" width="1050">}}
+The Devices tab displays the device health (healthy or unhealthy) and the LFM status. Hover over unhealthy devices to view the time at which they were last healthy:
+
+{{<figure src="/images/netq/nvlink4-unhealthy.png" alt="devices summary for selected domain, including timestamp for an unhealthy device" width="1050">}}
 
 ## Edit a Domain
 

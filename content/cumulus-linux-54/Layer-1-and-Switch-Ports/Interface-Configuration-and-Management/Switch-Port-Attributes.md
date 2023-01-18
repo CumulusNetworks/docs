@@ -1278,7 +1278,7 @@ Each split port transmits at the same speed. For example, if you split a 100G po
 - In Cumulus Linux 5.3 and earlier, you can configure port speed in the the `/etc/cumulus/ports.conf` file. If you upgrade to Cumulus Linux 5.4, Cumulus Linux no longer supports the speed configuration in the `/etc/cumulus/ports.conf` file. You must set the speed in the `/etc/network/interfaces` file.
 {{%/notice%}}
 
-{{< tabs "TabID607 ">}}
+{{< tabs "TabID1281 ">}}
 {{< tab "NVUE Commands ">}}
 
 The following example command breaks out a 100G port on swp1 into four interfaces at equal speeds (25G):
@@ -1297,10 +1297,14 @@ cumulus@switch:~$ nv set interface swp1s0-3 link state up
 cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
 ```
 
+{{%notice note%}}
+Depending on the logical interface limit on certain switches, Cumulus Linux must disable the adjacent port. In this case, you see a message indicating that Cumulus Linux is disabling the adjacent port when you apply the configuration.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. To split a port into multiple interfaces, edit the `/etc/cumulus/ports.conf` file. The following example command breaks out a 100G port on swp1 into four interfaces at equal speeds (25G):
+1. To split a port into multiple interfaces, edit the `/etc/cumulus/ports.conf` file. The following example command breaks out a 100G port on swp1 into four interfaces at equal speeds (25G).
 
    ```
    cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
@@ -1312,7 +1316,10 @@ cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
    ...
    ```
 
-<!--When you split a port, you must **also** disable the next port????-->
+   {{%notice note%}}
+Depending on the logical interface limit on certain switches, you must disable the adjacent port when splitting a port. See this {{<link url="Switch-Port-Attributes/#breakout-ports" text="note">}} above
+{{%/notice%}}
+
 2. Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.
 
    ```
@@ -1358,7 +1365,7 @@ cumulus@switch:~$ sudo ifreload -a
 
 To remove a breakout port:
 
-{{< tabs "TabID710 ">}}
+{{< tabs "TabID1361 ">}}
 {{< tab "NVUE Commands ">}}
 
 1. Run the `nv unset interface <interface>` command. For example:
@@ -1412,7 +1419,7 @@ With auto-negotiation off, you can override the default behavior for supported s
 This setting does not apply when auto-negotiation is on because Cumulus Linux advertises all supported speed options, including PAM4 and NRZ during auto-negotiation.
 {{%/notice%}}
 
-{{< tabs "TabID1401 ">}}
+{{< tabs "TabID1415 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -1430,10 +1437,31 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
+1. Edit the `/etc/network/interfaces` file, then run the `ifreload -a` command.
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/network/interfaces
+   ...
+   auto swp1
+   iface swp1
+       link-lanes 1
+       link-speed 50000
+   auto swp2
+   iface swp2
+       link-lanes 2
+       link-speed 100000
+   ```
+
+2. Run the `ifreload -a` command:
+
+   ```
+   cumulus@switch:~$ sudo ifreload -a
+   ```
+
 {{< /tab >}}
 {{< /tabs >}}
 
-## Configure Port Width
+<!--## Configure Port Width
 
 You can change the width of the interfaces in a breakout port. For example, if you use NRZ breakout cables with a QSFP56-DD port, you might want to have different interface widths.
 
@@ -1445,21 +1473,20 @@ For example, splitting a QSFP56-DD port into 2 interfaces distributes 8 lanes ac
 
 To change the width of the interfaces in a breakout port:
 
-{{< tabs "TabID1401 ">}}
+{{< tabs "TabID1448 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ 
+cumulus@switch:~$ nv set interface swp2 link width 
 cumulus@switch:~$ nv config apply 
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## Logical Switch Port Limitations
 
 100G and 40G switches can support a certain number of logical ports depending on the switch. Before you configure any logical ports on a switch, check the limitations listed in the `/etc/cumulus/ports.conf`file.

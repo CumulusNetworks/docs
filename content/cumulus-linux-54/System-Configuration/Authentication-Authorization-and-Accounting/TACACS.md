@@ -209,6 +209,15 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 {{< /tab >}}
 {{< /tabs >}}
 
+Cumulus Linux supports the following additional Linux parameters. Currently, there are no equivalent NUVE commands.
+
+| Linux Parameter | Description |
+| --------------- | ----------- |
+| `include` | Configures a supplemental configuration file to avoid duplicating configuration information. You can include up to eight additional configuration files. For example: `include=/myfile/myname`|
+| `min_uid` | The minimum user ID that the NSS plugin looks up. 0 specifies that the plugin never looks up uid 0 (root). Do not specify a value greater than the local TACACS+ user IDs (0 through 15).|
+| `service` | TACACS+ accounting and authorization service. Examples include `shell`, `pap`, `raccess`, `ppp`, and `slip`.<br>The default value is `shell`. |
+| `protocol` | The TACACS+ protocol field. PAM uses the SSH protocol. |
+
 ## Local Fallback Authentication
 
 If a site wants to allow local fallback authentication for a user when none of the TACACS servers are reachable, you can add a privileged user account as a local account on the switch.

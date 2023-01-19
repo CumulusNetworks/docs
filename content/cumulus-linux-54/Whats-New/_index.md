@@ -22,10 +22,10 @@ Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new featur
 
 ### New Features and Enhancements
 
-- `/etc/cumulus/ports.conf` configuration changes:
-   - New format for {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}}
+- Port configuration changes:
+   - New format for {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} in the `/etc/cumulus/ports.conf` file
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
-- {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="Port lane">}} and {{<link url="Switch-Port-Attributes/#configure-port-width" text="port width">}} configuration
+   - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} configuration
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches
 - {{<link url="Precision-Time-Protocol-PTP#ptp-shaping" text="PTP Shaping">}} for Spectrum 1
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:

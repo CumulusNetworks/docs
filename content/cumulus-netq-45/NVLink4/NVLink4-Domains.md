@@ -61,7 +61,7 @@ From the list of NVLink4 domains, you can view and manage multiple domains. Per 
 - Name of the user who created the domain
 - GFM status (starting, stopping, up, down, or failed)
 - Total number of nodes (GPU nodes and NVL4 switches)
-- Number of healthy, unhealthy, and undiscovered nodes. *Undiscovered* means that NetQ is not receiving telemetry data from the device.
+- Number of healthy and unhealthy nodes
 
 You can also stop and start GFM by selecting the stop and play buttons. Stopping GFM gradually shuts down monitoring operations and stops the telemetry agent.
 

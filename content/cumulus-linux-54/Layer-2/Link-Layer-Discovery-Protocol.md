@@ -124,7 +124,7 @@ By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, 
 
 {{%notice note%}}
 - You configure the `lldpd` service to send only CDP or only LLDP frames globally for all interfaces; you cannot configure these settings for specific interfaces.
-- Cumulus Linux does not support QOS ROCE with CDPv1 or CDPv2.
+- If you configure the `lldpd` service to send only CDP frames (CDPv1 or CDPv2), {{<link url="#lldp-dcbx-tlvs" text="LLDP DCBX TLV transmission for QOS ROCE" >}} is not supported.
 {{%/notice%}}
 
 {{< tabs "TabID156 ">}}

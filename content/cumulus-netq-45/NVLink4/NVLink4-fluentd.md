@@ -6,7 +6,35 @@ toc: 3
 
 ---
 
-## NVLink4 Fluentd Reference
+## Enable Fluentd Streaming
+
+To enable Fluentd streaming from nvlink4 switches to your flient collector, use the `nvos_api_handler` tool to configure streaming parameters. The syntax for the command is below and can be reviewed on the command line with the `nvos_api_handler -h` command:
+
+```
+$ ./nvos_api_handler -h
+Usage of ./nvos_api_handler:
+  -address value
+    	list of addresses for discovery
+  -destination value
+    	list of fluent destinations (format <ip_addr>,<port>,<tcp/tls>)
+  -domain string
+    	Domain name
+  -domain_id string
+    	Domain identifier
+  -password string
+    	NVOS http password (default "admin")
+  -user string
+    	NVOS http user (default "admin")
+Examples for configuring one switch with one fluent destination:
+	./nvos_api_handler  -address 10.7.144.163 -destination 10.188.44.17,30001,tcp -user admin -password admin -domain test -domain_id 5 -domain my_domain
+Examples for configuring a switch with two fluent destination:
+	./nvos_api_handler  -address 10.7.144.163 -destination 10.188.44.17,30001,tcp -destination 10.188.44.43,30001,tcp -user admin -password admin -domain test -domain_id 5 -domain my_domain
+Examples for configuring two switches with one fluent destination:
+	./nvos_api_handler  -address 10.7.144.163 -address 10.7.144.173 -destination 10.188.44.17,30001,tcp -user admin -password admin -domain test -domain_id 5 -domain my_domain
+```
+
+
+## NVLink4 Fluentd Message Example
 
 The following examples show NVLink4 fluentd message output in JSON format: 
 
@@ -387,4 +415,28 @@ Dom
     }
   ]
 }
+```
+
+## Fluentd Collection
+
+You can use your own fluent collector, or use the fluent-bit collector from {{<exlink url="https://fluentbit.io" text="fluentbit.io">}}:
+
+```
+$ /opt/fluent-bit/bin/fluent-bit -i forward -p port=30001 -o stdout -p format=json_lines -m '*'
+Fluent Bit v2.0.5
+* Copyright (C) 2015-2022 The Fluent Bit Authors
+* Fluent Bit is a CNCF sub-project under the umbrella of Fluentd
+* https://fluentbit.io
+
+
+[2023/01/19 03:15:40] [ info] [fluent bit] version=2.0.5, commit=, pid=2341886
+[2023/01/19 03:15:40] [ info] [storage] ver=1.3.0, type=memory, sync=normal, checksum=off, max_chunks_up=128
+[2023/01/19 03:15:40] [ info] [cmetrics] version=0.5.7
+[2023/01/19 03:15:40] [ info] [ctraces ] version=0.2.5
+[2023/01/19 03:15:40] [ info] [input:forward:forward.0] initializing
+[2023/01/19 03:15:40] [ info] [input:forward:forward.0] storage_strategy='memory' (memory only)
+[2023/01/19 03:15:40] [ info] [input:forward:forward.0] listening on 0.0.0.0:30001
+[2023/01/19 03:15:40] [ info] [sp] stream processor started
+[2023/01/19 03:15:40] [ info] [output:stdout:stdout.0] worker #0 started
+{"date":1674090930.626897,"aid":"<hostname>","message_type":"Link","ts":1674090926111,"trans_mode":1,"domain":"my_domain","message":[{"active":true,"admin_state":"Enabled","deleted":false,"down_reason":"","hostname":"<hostname>","ifalias":"","ifname":"NVL1/2/1/2","kind":"nvl","managed":true,"master":"test","message_type":"Link","mtu":256,"oper_state":"active","timestamp":1674090926111,"vrf":"default"},{"active":true,"admin_state":"Enabled","deleted":false,"down_reason":"","hostname":"<hostname>","ifalias":"","ifname":"NVL1/12/2/1","kind":"nvl","managed":true,"master":"test","message_type":"Link","mtu":256,"oper_state":"init","timestamp":1674090926111,"vrf":"default"},{"active":true,"admin_state":"Enabled","deleted":false,"down_reason":"","hostname":"<hostname>","ifalias":"","ifname":"NVL1/13/2/2","kind":"nvl","managed":true,"master":"test","message_type":"Link","mtu":256,"oper_state":"init","timestamp":1674090926111,"vrf":"default"},{"active":true,"admin_state":"Enabled","deleted":false,"down_reason":"","hostname":"<hostname>","ifalias":"","ifname":"NVL2/29/2/2","kind":"nvl","managed":true,"master":"test","message_type":"Link","mtu":256,"oper_state":"init","timestamp":1674090926111,"vrf":"default"},{"active":true,"admin_state":"Enabled","deleted":false,"down_reason":"","hostname":"<hostname>","ifalias":"","ifname":"NVL2/32/1/2","kind":"nvl","managed":true,"master":"test","message_type":"Link","mtu":256,"oper_state":"init","timestamp":1674090926111,"vrf":"default"},{"active":true,"admin_state":"Enabled","deleted":false,"down_reason":"","hostname":"<hostname>","ifalias":"","ifname":"NVL1/7/1/1","kind":"nvl","managed":true,"master":"test","message_type":"Link","mtu":256,"oper_state":"init","timestamp":1674090926111,"vrf":"default"},{"active":true,"admin_state":"Enabled","deleted":false,"down_reason":"","hostname":"<hostname>","ifalias":"","ifname":"NVL1/9/1/2","kind":"nvl","managed":true,"master":"test","message_type":"Link","mtu":256,"oper_state":"init","timestamp":1674090926111,"vrf":"default"},{"active":true,"admin_state":"Enabled","deleted":false,"down_reason":"","hostname":"<hostname>","ifalias":"","ifname":"NVL2/30/1/1","kind":"nvl","managed":true,"master":"test","message_type":"Link","mtu":256,"oper_state":"init","timestamp":1674090926111,"vrf":"default"},{"active":true,"admin_state":"Enabled","deleted":false,"down_reason":"","hostname":"<hostname>","ifalias":"","ifname":"NVL1/16/2/2","kind":"nvl","managed":true,"master":"test","message_type":"Link","mtu":256,"oper_state":"init","timestamp":1674090926111,"vrf":"default"},{"active":true,"admin_state":"Enabled","deleted":false,"down_reason":"","hostname":"<hostname>","ifalias":"","ifname":"NVL2/17/2/1","kind":"nvl","managed":true,"master":"test","message_type":"Link","mtu":256,"oper_state":"init","timestamp":1674090926111,"vrf":"default"}]}
 ```

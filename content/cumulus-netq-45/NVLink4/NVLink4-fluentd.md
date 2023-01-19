@@ -8,7 +8,7 @@ toc: 3
 
 ## Enable Fluentd Streaming
 
-To enable Fluentd streaming from nvlink4 switches to your flient collector, use the `nvos_api_handler` tool to configure streaming parameters. The syntax for the command is below and can be reviewed on the command line with the `nvos_api_handler -h` command:
+To enable Fluentd streaming from nvlink4 switches to your fluent collector, use the `nvos_api_handler` tool to configure streaming parameters. The syntax for the command is below and can be reviewed on the command line with the `nvos_api_handler -h` command:
 
 ```
 $ ./nvos_api_handler -h

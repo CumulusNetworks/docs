@@ -1,0 +1,892 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "",
+    "version" : "",
+    "title" : "",
+    "termsOfService" : ""
+  },
+  "host" : "",
+  "basePath" : "/api/netq/nvl4/v1",
+  "tags" : [ {
+    "name" : "blob"
+  }, {
+    "name" : "domain"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/blob/{blobId}" : {
+      "get" : {
+        "tags" : [ "blob" ],
+        "summary" : "Get file by id",
+        "description" : "",
+        "operationId" : "getBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "blobId",
+          "in" : "path",
+          "description" : "file id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BlobUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "File {blobId} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "blob" ],
+        "summary" : "Delete file by id",
+        "description" : "",
+        "operationId" : "deleteBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "blobId",
+          "in" : "path",
+          "description" : "file id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DelResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/blob" : {
+      "get" : {
+        "tags" : [ "blob" ],
+        "summary" : "Get all file list for the premise",
+        "description" : "",
+        "operationId" : "getAllBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BlobMetaUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/nodes" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get nodes information by domain id",
+        "description" : "",
+        "operationId" : "getNodes",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/NodeInfo"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Domain with domain id: {domainId} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}/gfm/{action}" : {
+      "put" : {
+        "tags" : [ "domain" ],
+        "summary" : "Start or Stop GFM",
+        "description" : "",
+        "operationId" : "activateAndDeactivateGfm",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "action",
+          "in" : "path",
+          "description" : "start/stop",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DomainUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/blob/{fileType}" : {
+      "post" : {
+        "tags" : [ "blob" ],
+        "summary" : "Add a new file",
+        "description" : "",
+        "operationId" : "postBlob",
+        "consumes" : [ "multipart/form-data" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "file",
+          "in" : "formData",
+          "description" : "Add file request",
+          "required" : true
+        }, {
+          "name" : "fileType",
+          "in" : "path",
+          "description" : "topology/fabric_configuration",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/BlobMetaUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/blob/{blobId}/download" : {
+      "get" : {
+        "tags" : [ "blob" ],
+        "summary" : "download file by file id",
+        "description" : "",
+        "operationId" : "downloadBlob",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "blobId",
+          "in" : "path",
+          "description" : "file id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BlobUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "File {BlobId} for opid {opid} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain/{domainId}" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get domain by id",
+        "description" : "",
+        "operationId" : "getDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/DomainUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "404" : {
+            "description" : "Domain with domain id: {domainId} does not exist",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "domain" ],
+        "summary" : "Delete nvl4 domain by id",
+        "description" : "",
+        "operationId" : "deleteDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "domainId",
+          "in" : "path",
+          "description" : "domain id value",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DelResponse"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/domain" : {
+      "get" : {
+        "tags" : [ "domain" ],
+        "summary" : "Get all nvl4 domains for the premise",
+        "description" : "",
+        "operationId" : "getAllDomains",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/DomainUiObj"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "domain" ],
+        "summary" : "Add a new nvl4 domain",
+        "description" : "",
+        "operationId" : "postDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Domain request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/DomainCreationRequest"
+          }
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DomainUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "domain" ],
+        "summary" : "Updates nvl4 domain",
+        "description" : "",
+        "operationId" : "putDomain",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Update domain request",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/DomainUpdateRequest"
+          }
+        }, {
+          "name" : "api_version",
+          "in" : "path",
+          "description" : "Supported versions",
+          "required" : false,
+          "type" : "string",
+          "default" : "v1",
+          "enum" : [ "v1" ]
+        } ],
+        "security" : [ {
+          "jwt" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DomainUiObj"
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          },
+          "409" : {
+            "description" : "Domain with id {domain_id} doesn't exists",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "jwt" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "DelResponse" : {
+      "type" : "object",
+      "required" : [ "deleted" ],
+      "properties" : {
+        "deleted" : {
+          "type" : "boolean"
+        }
+      },
+      "description" : "BLob UI Object"
+    },
+    "ErrorResponse" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "description" : "error message"
+        }
+      },
+      "description" : "Generic error response"
+    },
+    "BlobUiObj" : {
+      "type" : "object",
+      "properties" : {
+        "opid" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Premise Id"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Blob Id. Automaticaly generated when a file is uploaded."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the file uploaded."
+        },
+        "blob_type" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Type of the file uploaded.\n The two supported files are : \n 1. topology file (binary format) and \n 2. the file with list of Ips (Text format) called fabric configuration file"
+        },
+        "domains" : {
+          "type" : "array",
+          "description" : "List of Domain Ids refering to this file.",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        },
+        "data" : {
+          "type" : "string",
+          "description" : "Content of the file."
+        },
+        "uploaded_at" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Time of upload of the file."
+        }
+      },
+      "description" : "BLob UI Object"
+    },
+    "BlobMetaUiObj" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Blob Id. Automaticaly generated when a file is uploaded."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the file uploaded."
+        },
+        "blob_type" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Type of the file uploaded.\n The two supported files are : \n 1. topology file (binary format) and \n 2. the file with list of Ips (Text format) called fabric configuration file"
+        },
+        "domains" : {
+          "type" : "array",
+          "description" : "List of Domain Ids refering to this file.",
+          "items" : {
+            "type" : "object",
+            "properties" : { }
+          }
+        },
+        "uploaded_at" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Username of the user who uploaded the file"
+        },
+        "uploaded_by" : {
+          "type" : "string",
+          "description" : "Time of upload of the file."
+        }
+      },
+      "description" : "BLob UI Object"
+    },
+    "DomainStatusSummary" : {
+      "type" : "object",
+      "properties" : {
+        "totalNodes" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Total number of nodes from Gfm"
+        },
+        "healthyNodes" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Total number of nodes with HEALTHY status from Gfm"
+        },
+        "unhealthyNodes" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Total number of nodes with UNHEALTHY status from Gfm"
+        },
+        "undiscoverdNodes" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Total number of nodes with UNKOWN status from Gfm"
+        },
+        "lastHeartbeat" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Timestamp of the last GFM heartbeat recieved from the controller"
+        }
+      },
+      "description" : "Domain (GFM Nodes) Status Summary"
+    },
+    "DomainUiObj" : {
+      "type" : "object",
+      "properties" : {
+        "opid" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Premise Id"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Domain Id. Automaticaly generated when domain is created."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Domain Name. Given by user to identify the domain."
+        },
+        "log_level" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Fabric Manager logging levels.\n0  - All the logging is disabled,\n1  - Set log level to CRITICAL and above,\n2  - Set log level to ERROR and above,\n3  - Set log level to WARNING and above,\n4  - Set log level to INFO and above"
+        },
+        "fabric_mode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Fabric Manager Operating Mode\n0  - Start Fabric Manager in Bare metal or Full pass through virtualization mode\n       1  - Start Fabric Manager in Shared NVSwitch multitenancy mode. \n       2  - Start Fabric Manager in vGPU based multitenancy mode."
+        },
+        "gfm_timeout" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Time in Seconds. Negative value for gfmWaitTimeout denotes an infinite wait time."
+        },
+        "topology" : {
+          "$ref" : "#/definitions/BlobMetaUiObj"
+        },
+        "fabric_configuration" : {
+          "$ref" : "#/definitions/BlobMetaUiObj"
+        },
+        "created_by" : {
+          "type" : "string",
+          "description" : "Username who created the Domain"
+        },
+        "created_at" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Time of creation of the Domain"
+        },
+        "updated_at" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Time of last edit of any properties of the Domain"
+        },
+        "isActive" : {
+          "type" : "boolean",
+          "description" : "Gfm started for the Domain"
+        },
+        "gfm_state" : {
+          "type" : "string",
+          "description" : "Heath State of the GFM (controller) for the domain"
+        },
+        "statusSummary" : {
+          "$ref" : "#/definitions/DomainStatusSummary"
+        },
+        "status" : {
+          "type" : "string",
+          "description" : "State of Gfm Job for the DOmain"
+        },
+        "multi_node_enable_all_node_partition" : {
+          "type" : "boolean",
+          "description" : "Domain fully connected"
+        }
+      },
+      "description" : "Domain UI Object"
+    },
+    "DomainCreationRequest" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "Domain Name. Given by user to identify the domain."
+        },
+        "log_level" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Fabric Manager logging levels.\n0  - All the logging is disabled,\n1  - Set log level to CRITICAL and above,\n2  - Set log level to ERROR and above,\n3  - Set log level to WARNING and above,\n4  - Set log level to INFO and above"
+        },
+        "fabric_mode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Fabric Manager Operating Mode\n0  - Start Fabric Manager in Bare metal or Full pass through virtualization mode\n       1  - Start Fabric Manager in Shared NVSwitch multitenancy mode. \n       2  - Start Fabric Manager in vGPU based multitenancy mode."
+        },
+        "gfm_timeout" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Time in Seconds. Negative value for gfmWaitTimeout denotes an infinite wait time."
+        },
+        "topology_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Id of the selected topology file"
+        },
+        "fabric_configuration_id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Id of the selected file of IP Addresses"
+        },
+        "multi_node_enable_all_node_partition" : {
+          "type" : "boolean",
+          "description" : "Domain property to select if the domain is fully connected"
+        }
+      },
+      "description" : "Add Domain Request"
+    },
+    "DomainUpdateRequest" : {
+      "type" : "object",
+      "properties" : {
+        "domainId" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Domain Id. Automaticaly generated when domain is created."
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "log_level" : {
+          "type" : "object",
+          "description" : "Fabric Manager logging levels.\n0  - All the logging is disabled,\n1  - Set log level to CRITICAL and above,\n2  - Set log level to ERROR and above,\n3  - Set log level to WARNING and above,\n4  - Set log level to INFO and above",
+          "properties" : { }
+        },
+        "fabric_mode" : {
+          "type" : "object",
+          "description" : "Fabric Manager Operating Mode\n0  - Start Fabric Manager in Bare metal or Full pass through virtualization mode\n       1  - Start Fabric Manager in Shared NVSwitch multitenancy mode. \n       2  - Start Fabric Manager in vGPU based multitenancy mode.",
+          "properties" : { }
+        },
+        "gfm_timeout" : {
+          "type" : "object",
+          "description" : "Time in Seconds. Negative value for gfmWaitTimeout denotes an infinite wait time.",
+          "properties" : { }
+        },
+        "topology_id" : {
+          "type" : "object",
+          "description" : "Id of the selected topology file",
+          "properties" : { }
+        },
+        "fabric_configuration_id" : {
+          "type" : "object",
+          "description" : "Id of the selected file of IP Addresses",
+          "properties" : { }
+        },
+        "multi_node_enable_all_node_partition" : {
+          "type" : "object",
+          "description" : "Domain property to select if the domain is fully connected",
+          "properties" : { }
+        }
+      },
+      "description" : "Update Domain Request"
+    },
+    "NodeInfo" : {
+      "type" : "object",
+      "properties" : {
+        "hostname" : {
+          "type" : "string",
+          "description" : "Hostname of the switch"
+        },
+        "lfm_status" : {
+          "type" : "string",
+          "description" : "LFM status of the Switch"
+        },
+        "lfm_last_running_timestamp" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Last time when the state of switch as per LFM was RUNNING"
+        },
+        "device_type" : {
+          "type" : "string",
+          "description" : "Type of switch: cpu/gpu"
+        },
+        "ip_address" : {
+          "type" : "string",
+          "description" : "Ip Address of the switch"
+        },
+        "health" : {
+          "type" : "string",
+          "description" : "Gfm Health status of the node"
+        },
+        "last_healthy" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Timestamp of the last healthy status of node from GFM"
+        },
+        "last_gfm_heartbeat" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Timestamp of the last heartbeat from GFM (controller)"
+        }
+      },
+      "description" : "Nodes data"
+    }
+  }
+}

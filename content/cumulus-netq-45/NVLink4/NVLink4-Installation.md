@@ -1,7 +1,7 @@
 ---
 title: Deployment Guide
 author: NVIDIA
-weight: 1010
+weight: 1000
 toc: 3
 
 ---

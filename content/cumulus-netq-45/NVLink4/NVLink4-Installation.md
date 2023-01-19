@@ -1,5 +1,5 @@
 ---
-title: NVLink4 Installation Management
+title: Deployment Guide
 author: NVIDIA
 weight: 1010
 toc: 3

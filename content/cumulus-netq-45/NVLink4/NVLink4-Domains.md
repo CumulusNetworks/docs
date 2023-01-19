@@ -1,5 +1,5 @@
 ---
-title: NVLink4 Domain Management
+title: Domain Management
 author: NVIDIA
 weight: 1150
 toc: 3
@@ -29,8 +29,6 @@ The **log level** is critical, error, warning, info, or none.
 **GFM timeout** is the length of time (in seconds) that the GFM node will wait for Local Fabric Managers (LFMs) to boot up on all nodes. Setting this field to -1 (recommended) prevents timeout issues.
 
 **Fabric manager mode** lists supported physical and virtualization models. For more information, refer to chapters 3 and 4 in the {{<exlink url="https://docs.nvidia.com/datacenter/tesla/pdf/fabric-manager-user-guide.pdf" text="Fabric Manager User Guide">}}.
-
-The **Create all node partition** toggle 
 
 The next step prompts you to upload a topology file:
 

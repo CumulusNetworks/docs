@@ -1,14 +1,14 @@
 ---
-title: NVLink4 Fluentd Reference
+title: Fluentd Reference
 author: NVIDIA
-weight: 1150
+weight: 1153
 toc: 3
 
 ---
 
 ## Enable Fluentd Streaming
 
-To enable Fluentd streaming from nvlink4 switches to your fluent collector, use the `nvos_api_handler` tool to configure streaming parameters. The syntax for the command is below and can be reviewed on the command line with the `nvos_api_handler -h` command:
+To enable Fluentd streaming from NVlink4 switches to your Fluent collector, use the `nvos_api_handler` tool to configure streaming parameters. The syntax for the command is below and can be reviewed on the command line with the `nvos_api_handler -h` command:
 
 ```
 $ ./nvos_api_handler -h
@@ -419,7 +419,7 @@ Dom
 
 ## Fluentd Collection
 
-You can use your own fluent collector, or use the fluent-bit collector from {{<exlink url="https://fluentbit.io" text="fluentbit.io">}}:
+You can use your own Fluent collector, or use {{<exlink url="https://fluentbit.io" text="Fluent Bit">}}:
 
 ```
 $ /opt/fluent-bit/bin/fluent-bit -i forward -p port=30001 -o stdout -p format=json_lines -m '*'

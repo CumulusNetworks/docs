@@ -1,5 +1,5 @@
 ---
-title: NVLink4 Inventory Management
+title: Inventory Management
 author: NVIDIA
 weight: 1150
 toc: 3

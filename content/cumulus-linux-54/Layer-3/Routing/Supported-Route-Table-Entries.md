@@ -45,7 +45,7 @@ The values in the following tables reflect results from testing, which can diffe
 | default        | 50k           | 41k (IPv4) and 20k (IPv6) | 82k (IPv4), 74k (IPv6-long), 1K (IPv4-Mcast)|
 | l2-heavy       | 115k          | 74k (IPv4) and 37k (IPv6) | 16k (IPv4), 24k (IPv6-long), 1K (IPv4-Mcast)|
 | l2-heavy-1     | 239K          | 16k (IPv4) and 12k (IPv6) | 16k (IPv4), 16k (IPv6-long), 1K (IPv4-Mcast)|
-| l2-heavy-2     | 124k          | 132k (IPv4) and 12k (IPv6)| 16k (IPv4), 16k (IPv6-long), 1K (IPv4-Mcast)|
+| l2-heavy-3     | 107k          | 90k (IPv4) and 80k (IPv6) | 25k (IPv4), 10k (IPv6-long), 1K (IPv4-Mcast) |
 | v4-lpm-heavy   | 16k           | 41k (IPv4) and 24k (IPv6) | 124k (IPv4), 24k (IPv6-long), 1K (IPv4-Mcast)|
 | v4-lpm-heavy-1 | 16k           | 16k (IPv4) and 4k (IPv6)  | 256k (IPv4), 8k (IPv6-long), 1K (IPv4-Mcast)|
 | v6-lpm-heavy   | 16k           | 16k (IPv4) and 62k (IPv6) | 16k (IPv4), 99k (IPv6-long), 1K (IPv4-Mcast)|
@@ -54,9 +54,9 @@ The values in the following tables reflect results from testing, which can diffe
 | ipmc-heavy     | 57k           | 41k (IPv4) and 20k (IPv6) | 82K (IPv4), 66K (IPv6-long), 8K (IPv4-Mcast) |
 | ipmc-max       | 41K           | 41k (IPv4) and 20k (IPv6) | 74K (IPv4), 66K (IPv6-long), 33K (IPv4-Mcast)|
 <!-- vale on -->
-
 <!-- | mpls           | 8k            | 8k (IPv4) and 8k (IPv6)   | 65k (IPv4), 32k (IPv6-long) |
-| l2-heavy-3     | 107k          | 90k (IPv4) and 80k (IPv6) | 25k (IPv4), 10k (IPv6-long), 1K (IPv4-Mcast) | -->
+| l2-heavy-2     | 124k          | 132k (IPv4) and 12k (IPv6)| 16k (IPv4), 16k (IPv6-long), 1K (IPv4-Mcast)|
+-->
 The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
 
 ## Change Forwarding Resource Profiles
@@ -100,7 +100,7 @@ After you specify a different profile, {{%link url="Configuring-switchd#restart-
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the current profile settings, run the `nv show system forwarding profile-option` command.
+To show the different forwarding profiles that your switch supports and the MAC address, layer 3 neighbor, and LPM scale availability for each forwarding profile, run the `nv show system forwarding profile-option` command.
 
 ## TCAM Profiles - Spectrum 1
 

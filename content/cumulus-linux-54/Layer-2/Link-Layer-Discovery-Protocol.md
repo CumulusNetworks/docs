@@ -123,7 +123,8 @@ cumulus@switch:~$ sudo systemctl restart lldpd
 By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, then it sends CDP frames. You can change this behaviour and configure the `lldpd` service to send only CDP frames or only LLDP frames.
 
 {{%notice note%}}
-You configure the `lldpd` service to send only CDP or only LLDP frames globally for all interfaces; you cannot configure these settings for specific interfaces.
+- You configure the `lldpd` service to send only CDP or only LLDP frames globally for all interfaces; you cannot configure these settings for specific interfaces.
+- Cumulus Linux does not support QOS ROCE with CDPv1 or CDPv2.
 {{%/notice%}}
 
 {{< tabs "TabID156 ">}}

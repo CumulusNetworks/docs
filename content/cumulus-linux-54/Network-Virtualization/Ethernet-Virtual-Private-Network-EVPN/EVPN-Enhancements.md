@@ -23,9 +23,9 @@ If you do *not* want to derive RDs and RTs automatically, you can define them ma
 {{< tab "leaf01 ">}}
 
 ``` 
-cumulus@leaf01:~$ nv set evpn evi 10 rd 10.10.10.1:20
-cumulus@leaf01:~$ nv set evpn evi 10 route-target export 65101:10
-cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:10
+cumulus@leaf01:~$ nv set evpn vni 10 rd 10.10.10.1:20
+cumulus@leaf01:~$ nv set evpn vni 10 route-target export 65101:10
+cumulus@leaf01:~$ nv set evpn vni 10 route-target import 65102:10
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -33,9 +33,9 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ nv set evpn evi 10 rd 10.10.10.3:20
-cumulus@leaf03:~$ nv set evpn evi 10 route-target export 65102:10
-cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
+cumulus@leaf03:~$ nv set evpn vni 10 rd 10.10.10.3:20
+cumulus@leaf03:~$ nv set evpn vni 10 route-target export 65102:10
+cumulus@leaf03:~$ nv set evpn vni 10 route-target import 65101:10
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -130,9 +130,9 @@ You can configure multiple RT values. In addition, you can configure both the im
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:10
-cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:20
-cumulus@leaf01:~$ nv set evpn evi 20 route-target both 65101:10
+cumulus@leaf01:~$ nv set evpn vni 10 route-target import 65102:10
+cumulus@leaf01:~$ nv set evpn vni 10 route-target import 65102:20
+cumulus@leaf01:~$ nv set evpn vni 20 route-target both 65101:10
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -140,9 +140,9 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
-cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:20
-cumulus@leaf03:~$ nv set evpn evi 20 route-target both 65102:10
+cumulus@leaf03:~$ nv set evpn vni 10 route-target import 65101:10
+cumulus@leaf03:~$ nv set evpn vni 10 route-target import 65101:20
+cumulus@leaf03:~$ nv set evpn vni 20 route-target both 65102:10
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -737,7 +737,7 @@ To advertise a *specific* SVI IP/MAC address, run these commands:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn evi 10 route-advertise svi-ip on
+cumulus@leaf01:~$ nv set evpn vni 10 route-advertise svi-ip on
 cumulus@leaf01:~$ nv config apply
 ```
 

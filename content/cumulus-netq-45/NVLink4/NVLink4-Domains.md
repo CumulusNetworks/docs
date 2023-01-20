@@ -6,7 +6,7 @@ toc: 3
 
 ---
 
-This section describes how to create, edit, and delete NVLink4 domains. After you create and configure a domain, Global Fabric Manager (GFM) manages the domains while NetQ collects telemetry data that can be visualized in the UI.
+This section describes how to create, edit, and delete NVLink4 domains. After you create and configure a domain, run Global Fabric Manager (GFM), then collect manages the domains while NetQ collects telemetry data that can be visualized in the UI.
 
 ## Requirements
 
@@ -16,11 +16,11 @@ To run GFM, each domain needs a configuration file, a topology file, and an IP a
 
 Select the NVL4 icon in the header, then select **Add domain**:
 
-{{<figure src="/images/netq/netq-header-nvl4.png" alt="" width="750">}}
+{{<figure src="/images/netq/nvl4-header-450.png" alt="" width="850">}}
 
 Creating a domain is a 4-step process. The first step configures the GFM:
 
-{{<figure src="/images/netq/nvlink4-gfm-config.png" alt="wizard prompting user to configure GFM" width="550">}}
+{{<figure src="/images/netq/nvl4-config-450.png" alt="wizard prompting user to configure GFM" width="550">}}
 
 **Domain name** is the name that will appear in the inventory list.
 
@@ -36,28 +36,22 @@ The next step prompts you to upload a topology file:
 
 For GFM to run, the topology file must reflect how the network is wired. The same topology file is frequently reused for multiple domains. If a topology file was previously used to create a domain, it will appear on this screen.
 
-Next, upload a file of IP addresses:
+Next, upload a file of IP addresses. This is a text file listing the IP addresses for the nodes (GPU nodes and NVL4 switches) that comprise the domain.
 
 {{<figure src="/images/netq/nvl4-ip-address-file.png" alt="wizard prompting user to upload file containing IP adressess" width="550">}}
 
-This is a text file listing the IP addresses for the nodes (GPU nodes and NVL4 switches) that comprise the domain.
 
 The final screen displays a summary of the domain's parameters. In addition to the summary, you can toggle GFM to run after creating the domain. If you are not ready to start GFM, you can save the configuration and start it later.
-
-Enter your credentials to set the switch username and password. 
-
-{{<notice info>}}
-If you are also using NetQ to manage ethernet switches, make sure the switch username and password match.
-{{</notice>}}
 
 After reviewing the summary, select **Finish**. NetQ adds the domain to a list of all NVLink4 domains:
 
 {{<figure src="/images/netq/nvlink4-domains-list.png" alt="list of three NVL4 domains" width="1050">}}
 
-From the list of NVLink4 domains, you can view and manage multiple domains. Per domain, you can view:
+From the list of NVLink4 domains, you can view and manage multiple domains. Per domain, you can view the:
 
-- The domain's name
+- Domain's name
 - Time a domain was created
+- Last time the domain was updated
 - Name of the user who created the domain
 - GFM status (starting, stopping, up, down, or failed)
 - Total number of nodes (GPU nodes and NVL4 switches)
@@ -75,7 +69,7 @@ The Devices tab displays the device health (healthy or unhealthy) and the LFM st
 
 ## Edit a Domain
 
-Select the three-dot menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}} to edit a domain's configuration. Note that if GFM is running, you must stop it before editing a domain. 
+Select the three-dot menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}} to edit a domain's configuration. This menu only appears when GFM is not running. You must stop GFM to edit the domain.
 
 ## Delete a Domain
 

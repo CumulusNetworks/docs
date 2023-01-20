@@ -13,7 +13,7 @@ This section describes the NetQ integration with NVLink4. This integration suppo
  - {{<link title="Inventory Management" text="Inventory management">}}: manage your inventory of NVLink4 switches and GPU nodes, and view statistics and data for each device.
  
 
- Each GPU node and NVSwitch has a designated telemetry agent embedded in NVOS. This agent fetches telemetry data and streams it to a Fluentd data collector that integrates with NetQ or a third-party client. 
+ Each GPU node and NVSwitch has a designated telemetry agent embedded in NVOS. This agent fetches telemetry data and streams it to a Fluentd data collector that integrates with NetQ and/or a third-party client. 
  
  Additionally, NetQ maintains GFM processes with high availability. If the GFM process stops unexpectedly, NetQ quickly and automatically remediates issues.
 

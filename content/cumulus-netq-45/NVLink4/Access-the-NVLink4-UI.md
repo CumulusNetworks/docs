@@ -25,7 +25,7 @@ After creating a new password and accepting the Terms of Use, the default workbe
 
 To reveal NVLink4 in the UI, run `netq features nvl4 enable`. Return to the UI, which now displays the NVL4 icon in the header:
 
-{{<figure src="/images/netq/netq-header-nvl4.png" alt="" width="850">}}
+{{<figure src="/images/netq/nvl4-header-450.png" alt="" width="950">}}
 
 To hide the NVLink4 features in the UI, run `netq features nvl4 disable`.
 

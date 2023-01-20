@@ -8,7 +8,7 @@ Cumulus Linux implements TACACS+ client <span style="background-color:#F5F5DC">[
 
 TACACS+ in Cumulus Linux:
 - Uses PAM authentication and includes `login`, `ssh`, `sudo` and `su`.
-- Allows privilege 15 users to run any command with sudo.
+- Allows users with privilege level 15 to run any command with sudo, and to run NVUE `nv set` and `nv unset` commands in addition to `nv show` commands. TACACS+ users with a lower privilege level can only execute `nv show` commands.
 - Supports up to seven TACACS+ servers.
 
 {{%notice note%}}
@@ -16,6 +16,15 @@ NVUE commands for TACACS+ are currently in Beta.
 {{%/notice%}}
 
 ## Install the TACACS+ Client Packages
+
+{{%notice note%}}
+You must install the TACACS+ client packages to use TACACS+. If you do not install the TACACS+ packages, you see the following message when you try to enable TACACS+ with the NVUE `nv set system aaa tacacs enable on` command:
+
+```
+'tacplus-client' package needs to be installed to enable tacacs
+```
+
+{{%/notice%}}
 
 You can install the TACACS+ packages even if the switch is not connected to the internet; the packages are in the `cumulus-local-apt-archive` repository in the {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="Cumulus Linux image">}}.
 
@@ -28,9 +37,10 @@ cumulus@switch:~$ sudo -E apt-get install tacplus-client
 
 ## Basic TACACS+ Client Configuration
 
-After you install the required packages, you need to configure the following settings on the switch (the TACACS+ client).
+After you install the required packages, configure the following required settings on the switch (the TACACS+ client).
 - Set the IP address or hostname of at least one TACACS+ server.
 - Set the secret (key) shared between the TACACS+ server and client.
+- Enable TACACS+ (NVUE commands only).
 
 Optionally, you can set the port to use for communication between the TACACS+ server and client. By default, Cumulus Linux uses IP port 49.
 
@@ -45,6 +55,7 @@ The following example commmands set the TACACS+ server priority to 5, the IP add
 cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
 cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey 
 cumulus@switch:~$ nv set system aaa tacacs server 5 port 32
+cumulus@switch:~$ nv set system aaa tacacs enable on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -98,7 +109,7 @@ cumulus@switch:~$ nv config apply
 
 ## Optional TACACS+ Configuration
 
-You can set the following optional TACACS+ parameters:
+You can configure the following optional TACACS+ settings:
 - The VRF in which you want TACACS+ to run. Typically, you configure the TACACS+ client to establish connections with TACACS+ servers only through ports that belong to the {{<link url="Management-VRF" text="management VRF">}}.
 - The TACACS timeout value, which is the number of seconds to wait for a response from the TACACS+ server before trying the next TACACS+ server. You can specify a value between 0 and 60. The default is 5 seconds.
 - The source IP address to use when communicating with the TACACS+ server so that the server can identify the client switch. You must specify an IPv4 address, which must be valid for the interface you use. This source IP address is typically the loopback address on the switch.
@@ -220,6 +231,10 @@ Cumulus Linux supports the following additional Linux parameters in the `etc/tac
 
 When you install the TACACS+ packages and configure the basic TACACS+ settings (set the server and shared secret), accounting is on and there is no additional configuration required.
 
+TACACS+ accounting uses the `audisp` module, with an additional plugin for `auditd` and `audisp`. The plugin maps the `auid` in the accounting record to a TACACS login, which it bases on the `auid` and `sessionid`. The `audisp` module requires `libnss_tacplus` and uses the `libtacplus_map.so` library interfaces as part of the modified `libpam_tacplus` package.
+
+Communication with the TACACS+ servers occurs with the `libsimple-tacact1` library, through `dlopen()`. A maximum of 240 bytes of command name and arguments send in the accounting record, due to the TACACS+ field length limitation of 255 bytes.
+
 {{%notice note%}}
 - All `sudo` commands run by TACACS+ users generate accounting records against the original TACACS+ login name.
 - All Linux and NVUE commands result in an accounting record, including login commands and sub-processes of other commands. This can generate a lot of accounting records.
@@ -277,7 +292,7 @@ cumulus@switch:~$ nv config apply
    ```
    cumulus@switch:~$ sudo nano /etc/audisp/plugins.d/audisp-tacplus.conf
    ...
-   # default to enabling tacacs accounting; change to no to disnable
+   # default to enabling tacacs accounting; change to no to disable
    active = no
    ```
 
@@ -357,7 +372,7 @@ The following table provides the command options:
 | Option | Description |
 |------- |------------ |
 | `-i` | Initializes the environment. You only need to issue this option one time per username. |
-| `-a` | You can invoke the utility with the `-a` option as often as you like. For each command in the `-a` list, the utility creates a symbolic link from `tacplus-auth` to the relative portion of the command name in the local bin subdirectory. You also need to enable these commands on the TACACS+ server (refer to the TACACS+ server documentation). It is common for the server to allow some options to a command, but not others. |
+| `-a` | You can invoke the utility with the `-a` option as often as you like. For each command in the `-a` list, the utility creates a symbolic link from `tacplus-auth` to the relative portion of the command name in the local bin subdirectory. You also need to enable these commands on the TACACS+ server (refer to your TACACS+ server documentation). It is common for the server to allow some options to a command, but not others. |
 | `-f` | Re-initializes the environment. If you need to restart, run the `-f` option with `-i` to force re-initialization; otherwise, the utility ignores repeated use of `-i`.<br>During initialization:<br>- The user shell changes to `/bin/rbash`.<br>- The utility saves any existing dot files. |
 
 For example, if you want to allow the user to be able to run the `nv` and `ip` commands (if authorized by the TACACS+ server):
@@ -377,7 +392,7 @@ lrwxrwxrwx 1 root root 22 Nov 21 22:07 nv -> /usr/sbin/tacplus-auth
 
 Other than shell built-ins, privilege level 0 TACACS users can only run the `ip` and `nv` commands.
 
-If add commands with the `-a` option by mistake, you can remove them. The example below removes the `nv` command:
+If you add commands with the `-a` option by mistake, you can remove them. The example below removes the `nv` command:
 
 ```
 cumulus@switch:~$ sudo rm ~tacacs0/bin/nv
@@ -476,16 +491,7 @@ cumulus@switch:~$ sudo getent -s tacplus passwd cumulusTAC
 cumulusTAC:x:1016:1001:TACACS+ mapped user at privilege level 15,,,:/home/tacacs15:/bin/bash
 ```
 
-If TACACS is not working correctly, debug the following configuration files by adding the *debug=1* parameter to one or more of these files:
-
-- `/etc/tacplus_servers`
-- `/etc/tacplus_nss.conf`
-
-{{%notice note%}}
-
-You can also add `debug=1` to individual pam_tacplus lines in `/etc/pam.d/common*`.
-
-{{%/notice%}}
+If TACACS+ is not working correctly, you can use debugging. Either run the NVUE `nv set system aaa tacacs debug 1` command or add the `debug=1` parameter to the `/etc/tacplus_servers` and `/etc/tacplus_nss.conf` files; see {{<link url="#optional-tacacs-configuration" text="Optional TACACS+ Configuration">}} above. You can also add `debug=1` to individual pam_tacplus lines in `/etc/pam.d/common*`.
 
 All log messages are in `/var/log/syslog`.
 
@@ -531,16 +537,16 @@ cumulus@switch:~$ sudo systemctl restart auditd.service
 
 Cumulus Linux uses the following packages for TACACS.
 
-| <div style="width:280px">Package Name| Description|
+| <div style="width:280px">Package | Description|
 |--------|---------|
-| `audisp-tacplus\_1.0.0-1-cl3u3` | Uses auditing data from `auditd` to send accounting records to the TACACS+ server and starts as part of `auditd`. |
-| `libtac2\_1.4.0-cl3u2` | Provides basic TACACS+ server utility and communications routines. |
-| `libnss-tacplus\_1.0.1-cl3u3` | Provides an interface between `libc` username lookups, the mapping functions, and the TACACS+ server. |
-| `tacplus-auth-1.0.0-cl3u1` | Includes the `tacplus-restrict` setup utility, which enables you to perform per-command TACACS+ authorization. Per-command authorization is not the default. |
-| `libpam-tacplus\_1.4.0-1-cl3u2` | Provides a modified version of the standard Debian package. |
-| `libtacplus-map1\_1.0.0-cl3u2` | Provides mapping between local and TACACS+ users on the server. The package</br>- Sets the immutable `sessionid` and auditing UID to ensure that you can track the original user through multiple processes and privilege changes.</br>- Sets the auditing `loginuid` as immutable.</br>- Creates and maintains a status database in `/run/tacacs_client_map` to manage and lookup mappings. |
-| `libsimple-tacacct1\_1.0.0-cl3u2` | Provides an interface for programs to send accounting records to the TACACS+ server. `audisp-tacplus` uses this package. |
-| `libtac2-bin\_1.4.0-cl3u2` | Provides the `tacc` testing program and TACACS+ man page. |
+| `audisp-tacplus` | Uses auditing data from `auditd` to send accounting records to the TACACS+ server and starts as part of `auditd`. |
+| `libtac2` | Provides basic TACACS+ server utility and communication routines. |
+| `libnss-tacplus` | Provides an interface between `libc` username lookups, the mapping functions, and the TACACS+ server. |
+| `tacplus-auth` | Includes the `tacplus-restrict` setup utility, which enables you to perform per-command TACACS+ authorization. Per-command authorization is not the default. |
+| `libpam-tacplus` | Provides a modified version of the standard Debian package. |
+| `libtacplus-map1` | Provides mapping between local and TACACS+ users on the server. The package:</br>- Sets the immutable `sessionid` and auditing UID to ensure that you can track the original user through multiple processes and privilege changes.</br>- Sets the auditing `loginuid` as immutable.</br>- Creates and maintains a status database in `/run/tacacs_client_map` to manage and lookup mappings. |
+| `libsimple-tacacct1` | Provides an interface for programs to send accounting records to the TACACS+ server. `audisp-tacplus` uses this package. |
+| `libtac2-bin` | Provides the `tacc` testing program and TACACS+ man page. |
 
 ### TACACS+ Client Configuration Files
 

@@ -6,7 +6,7 @@ toc: 3
 
 ---
 
-This section describes how to create, edit, and delete NVLink4 domains. After you create and configure a domain, run Global Fabric Manager (GFM), then collect manages the domains while NetQ collects telemetry data that can be visualized in the UI.
+This section describes how to create, edit, and delete NVLink4 domains. To collect telemetry data that can be visualized in the UI, create and configure a domain and run Global Fabric Manager (GFM).
 
 ## Requirements
 
@@ -36,7 +36,7 @@ The next step prompts you to upload a topology file:
 
 For GFM to run, the topology file must reflect how the network is wired. The same topology file is frequently reused for multiple domains. If a topology file was previously used to create a domain, it will appear on this screen.
 
-Next, upload a file of IP addresses. This is a text file listing the IP addresses for the nodes (GPU nodes and NVL4 switches) that comprise the domain.
+Next, upload your fabric node configuration. This is a text file listing the IP addresses for the nodes (GPU nodes and NVL4 switches) that comprise the domain.
 
 {{<figure src="/images/netq/nvl4-ip-address-file.png" alt="wizard prompting user to upload file containing IP adressess" width="550">}}
 

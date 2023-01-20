@@ -13,9 +13,6 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale on -->
 This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. Additional features and improvements include:
 
-
-RoCE command line updates. The `netq check roce` {{<link title="check#netq-check-roce" text="command output">}} now includes a column displaying PCP (priority code point) and SP (switch priority) mapping misconfigurations and recommendations. `netq show roce-config` displays all {{<link title="RoCE#view-the-roce-configuration" text="PCP and SP mappings">}}.
-
 Lifecycle management now supports {{<link title="Upgrade Cumulus Linux Using LCM" text="upgrades to Cumulus Linux 5.0.0 and later">}} with and without NVUE enabled.
 
 Precision time protocol (PTP) monitoring

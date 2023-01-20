@@ -11,26 +11,26 @@ toc: 3
 To enable Fluentd streaming from NVlink4 switches to your Fluent collector, use the `netq_telemetry_agent_handler` tool to configure streaming parameters. The syntax for the command is below and can be reviewed on the command line with the `netq_telemetry_agent_handler -h` command:
 
 ```
-$ ./netq_telemetry_agent_handler -h
-Usage of ./netq_telemetry_agent_handler:
+$ ./netq_telemetry_agent_handler/netq_telemetry_agent_handler -h
+Usage of ./netq_telemetry_agent_handler/netq_telemetry_agent_handler:
   -address value
-        list of addresses for discovery
+    	list of addresses for discovery
   -destination value
-        list of fluent collectors (format <ip_addr>,<port>,<tcp/tls>)
+    	list of fluent collectors (format <ip_addr>,<port>,<tcp/tls>)
   -domain string
-        Domain name (optional)
+    	Domain name (optional)
   -domain_id string
-        Domain identifier (optional)
+    	Domain identifier (optional)
   -password string
-        NVOS http password (default "admin")
+    	NVOS http password (default "admin")
   -user string
-        NVOS http user (default "admin")
+    	NVOS http user (default "admin")
 Examples for configuring one switch with one fluent destination:
-  ./nvos_api_handler  -address 192.168.0.17 -destination 10.188.44.17,30001,tcp -user admin -password admin -domain test -domain_id 1 -domain my_domain
+	./netq_telemetry_agent_handler  -address 192.168.0.17 -destination 10.188.44.17,30001,tcp -user admin -password admin -domain test -domain_id 1 -domain my_domain
 Examples for configuring a switch with two fluent destinations:
-  ./nvos_api_handler  -address 192.168.0.17 -destination 10.188.44.17,30001,tcp -destination 10.188.44.43,30001,tcp -user admin -password admin -domain test -domain_id 1 -domain my_domain
+	./netq_telemetry_agent_handler  -address 192.168.0.17 -destination 10.188.44.17,30001,tcp -destination 10.188.44.43,30001,tcp -user admin -password admin -domain test -domain_id 1 -domain my_domain
 Examples for configuring two switches with one fluent destination:
-   ./nvos_api_handler  -address 192.168.0.17 -address 192.168.0.21 -destination 10.188.44.17,30001,tcp -user admin -password admin -domain test -domain_id 1 -domain my_domain
+	./netq_telemetry_agent_handler  -address 192.168.0.17 -address 192.168.0.21 -destination 10.188.44.17,30001,tcp -user admin -password admin -domain test -domain_id 1 -domain my_domain
 ```
 ## NVLink4 Fluentd Message Example
 

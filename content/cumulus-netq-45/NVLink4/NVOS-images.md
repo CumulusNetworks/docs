@@ -17,7 +17,7 @@ From the dashboard, select the **Image management** tab to display the NetQ and 
 
 ## View and Upload Missing Images
 
-You should upload images for each network OS and NetQ version currently installed in your inventory so you can support rolling back to a known good version should an installation or upgrade fail. If you have specified a default network NVOS version, the NetQ UI also verifies that the necessary versions of the default image are available based on the known device inventory, and if not, lists those that are missing.
+You should upload images for each NVOS version currently installed in your inventory so you can support rolling back to a known good version should an installation or upgrade fail. If you have specified a default network NVOS version, the NetQ UI also verifies that the necessary versions of the default image are available based on the known device inventory, and if not, lists those that are missing.
 
 To upload missing **NVOS** images:
 

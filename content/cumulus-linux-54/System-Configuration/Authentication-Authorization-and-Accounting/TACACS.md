@@ -8,7 +8,7 @@ Cumulus Linux implements TACACS+ client <span style="background-color:#F5F5DC">[
 
 TACACS+ in Cumulus Linux:
 - Uses PAM authentication and includes `login`, `ssh`, `sudo` and `su`.
-- Allows privilege 15 users to run any command with sudo.
+- Allows users with privilege level 15 to run any command with sudo, and to run NVUE `nv set` and `nv unset` commands in addition to `nv show` commands. TACACS+ users with a lower privilege level can only execute `nv show` commands.
 - Supports up to seven TACACS+ servers.
 
 {{%notice note%}}
@@ -16,6 +16,15 @@ NVUE commands for TACACS+ are currently in Beta.
 {{%/notice%}}
 
 ## Install the TACACS+ Client Packages
+
+{{%notice note%}}
+You must install the TACACS+ client packages to use TACACS+. If you do not install the TACACS+ packages, you see the following message when you try to enable TACACS+ with the NVUE `nv set system aaa tacacs enable on` command:
+
+```
+'tacplus-client' package needs to be installed to enable tacacs
+```
+
+{{%/notice%}}
 
 You can install the TACACS+ packages even if the switch is not connected to the internet; the packages are in the `cumulus-local-apt-archive` repository in the {{<link url="Adding-and-Updating-Packages#add-packages-from-the-cumulus-linux-local-archive" text="Cumulus Linux image">}}.
 
@@ -28,9 +37,10 @@ cumulus@switch:~$ sudo -E apt-get install tacplus-client
 
 ## Basic TACACS+ Client Configuration
 
-After you install the required packages, you need to configure the following settings on the switch (the TACACS+ client).
+After you install the required packages, configure the following required settings on the switch (the TACACS+ client).
 - Set the IP address or hostname of at least one TACACS+ server.
 - Set the secret (key) shared between the TACACS+ server and client.
+- Enable TACACS+ (NVUE commands only).
 
 Optionally, you can set the port to use for communication between the TACACS+ server and client. By default, Cumulus Linux uses IP port 49.
 
@@ -45,6 +55,7 @@ The following example commmands set the TACACS+ server priority to 5, the IP add
 cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
 cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey 
 cumulus@switch:~$ nv set system aaa tacacs server 5 port 32
+cumulus@switch:~$ nv set system aaa tacacs enable on
 cumulus@switch:~$ nv config apply
 ```
 
@@ -98,7 +109,7 @@ cumulus@switch:~$ nv config apply
 
 ## Optional TACACS+ Configuration
 
-You can set the following optional TACACS+ parameters:
+You can configure the following optional TACACS+ settings:
 - The VRF in which you want TACACS+ to run. Typically, you configure the TACACS+ client to establish connections with TACACS+ servers only through ports that belong to the {{<link url="Management-VRF" text="management VRF">}}.
 - The TACACS timeout value, which is the number of seconds to wait for a response from the TACACS+ server before trying the next TACACS+ server. You can specify a value between 0 and 60. The default is 5 seconds.
 - The source IP address to use when communicating with the TACACS+ server so that the server can identify the client switch. You must specify an IPv4 address, which must be valid for the interface you use. This source IP address is typically the loopback address on the switch.

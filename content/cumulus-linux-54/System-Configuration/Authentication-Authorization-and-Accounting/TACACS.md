@@ -8,8 +8,9 @@ Cumulus Linux implements TACACS+ client <span style="background-color:#F5F5DC">[
 
 TACACS+ in Cumulus Linux:
 - Uses PAM authentication and includes `login`, `ssh`, `sudo` and `su`.
-- Allows users with privilege level 15 to run any command with sudo, and to run NVUE `nv set` and `nv unset` commands in addition to `nv show` commands. TACACS+ users with a lower privilege level can only execute `nv show` commands.
-- Supports up to seven TACACS+ servers.
+- Allows users with privilege level 15 to run any command with sudo.
+- Allows users with privilege level 15 to run NVUE `nv set`, `nv unset`, and `nv apply` commands in addition to `nv show` commands. TACACS+ users with a lower privilege level can only execute `nv show` commands.
+- Supports up to seven TACACS+ servers. Be sure to configure your TACACS+ servers. Refer to your TACACS+ server documentation.
 
 {{%notice note%}}
 NVUE commands for TACACS+ are currently in Beta.
@@ -35,26 +36,31 @@ cumulus@switch:~$ sudo -E apt-get update
 cumulus@switch:~$ sudo -E apt-get install tacplus-client
 ```
 
-## Basic TACACS+ Client Configuration
+## Required TACACS+ Client Configuration
 
-After you install the required packages, configure the following required settings on the switch (the TACACS+ client).
+After you install the required TACACS+ packages, configure the following required settings on the switch (the TACACS+ client).
 - Set the IP address or hostname of at least one TACACS+ server.
 - Set the secret (key) shared between the TACACS+ server and client.
-- Enable TACACS+ (NVUE commands only).
 
-Optionally, you can set the port to use for communication between the TACACS+ server and client. By default, Cumulus Linux uses IP port 49.
+If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users and enable TACACS+.
 
 {{< tabs "TabID31 ">}}
 {{< tab "NVUE Commands ">}}
 
 NVUE commands require you to specify the priority for each TACACS+ server. You must set a priority even if you only specify one server.
 
-The following example commmands set the TACACS+ server priority to 5, the IP address of the server to 192.168.0.30, the secret to `mytacacskey`, and the IP port to 32:
+The following example commmands set:
+- The TACACS+ server priority to 5.
+- The IP address of the server to 192.168.0.30.
+- The secret to `mytacacskey`.
+- The authentication order so that TACACS+ authentication has priority over local (the lower number has priority).
+- TACACS+ to enabled.
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
 cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey 
-cumulus@switch:~$ nv set system aaa tacacs server 5 port 32
+cumulus@switch:~$ nv set system aaa authentication-order 5 tacacs
+cumulus@switch:~$ nv set system aaa authentication-order 10 local
 cumulus@switch:~$ nv set system aaa tacacs enable on
 cumulus@switch:~$ nv config apply
 ```
@@ -90,14 +96,6 @@ cumulus@switch:~$ nv config apply
    server=192.168.1.30
    ```
 
-   To set the IP port, use the format `server:port`. The following example sets the port to 32:
-
-   ```
-   cumulus@switch:~$ sudo nano /etc/tacplus_servers
-   secret=tacacskey
-   server=192.168.0.30:32
-   ```
-
 2. Restart `auditd`:
 
    ```
@@ -111,6 +109,7 @@ cumulus@switch:~$ nv config apply
 
 You can configure the following optional TACACS+ settings:
 - The VRF in which you want TACACS+ to run. Typically, you configure the TACACS+ client to establish connections with TACACS+ servers only through ports that belong to the {{<link url="Management-VRF" text="management VRF">}}.
+- The port to use for communication between the TACACS+ server and client. By default, Cumulus Linux uses IP port 49.
 - The TACACS timeout value, which is the number of seconds to wait for a response from the TACACS+ server before trying the next TACACS+ server. You can specify a value between 0 and 60. The default is 5 seconds.
 - The source IP address to use when communicating with the TACACS+ server so that the server can identify the client switch. You must specify an IPv4 address, which must be valid for the interface you use. This source IP address is typically the loopback address on the switch.
 - The TACACS+ authentication type. You can specify <span style="background-color:#F5F5DC">[PAP](## "Password Authentication Protocol")</span> to send clear text between the user and the server, <span style="background-color:#F5F5DC">[CHAP](## "Challenge Handshake Authentication Protocol")</span> to establish a <span style="background-color:#F5F5DC">[PPP](## "Point-to-Point Protocol")</span> connection between the user and the server, or login. The default is PAP.
@@ -125,11 +124,12 @@ You can configure the following optional TACACS+ settings:
 {{< tabs "TabID111 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example commands set the VRF to `mgmt`, the timeout to 10 seconds, and the debug level to 2:
+The following example commands set the VRF to `mgmt`, the timeout to 10 seconds, the TACACS+ server port to 32, and the debug level to 2:
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs vrf mgmt
 cumulus@switch:~$ nv set system aaa tacacs timeout 10
+cumulus@switch:~$ nv set system aaa tacacs server 5 port 32
 cumulus@switch:~$ nv set system aaa tacacs debug 2
 cumulus@switch:~$ nv config apply
 ```
@@ -153,13 +153,16 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-- To set the VRF, source IP, authentication type, and enable creation of a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` file, then restart `auditd`.
+- To set the VRF, the server port (use the format `server:port`), source IP, authentication type, and enable creation of a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` file, then restart `auditd`.
 - To set the timeout, the debug level, and the usernames to exclude from TACACS+ authentication, edit the `/etc/tacplus_nss.conf` file (you do not need to restart `auditd`).
 
-The following example sets the VRF to `mgmt`, the authentication type to CHAP, the source IP address to 10.10.10.1, and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
+The following example sets the VRF to `mgmt`, the server port to 32, the authentication type to CHAP, the source IP address to 10.10.10.1, and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
 
 ```
 cumulus@switch:~$ sudo nano /etc/tacplus_servers
+...
+secret=tacacskey
+server=192.168.0.30:32
 ...
 # If the management network is in a vrf, set this variable to the vrf name.
 # This would usually be "mgmt"
@@ -304,7 +307,6 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
-<!-- vale off -->
 
 ## Local Fallback Authentication
 
@@ -362,7 +364,7 @@ NVUE does not provide commands to configure per-command authorization.
 {{%/notice%}}
 
 The `tacplus-auth` command handles authorization for each command. To make this an enforced authorization, change the TACACS+ login to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The `tacplus-restrict` utility simplifies setting up the restricted environment. The example below initializes the environment for the *tacacs0* user account. This is the account for TACACS+ users at privilege level `0`.
-<!-- vale on -->
+
 ```
 tacuser0@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a command1 command2 command3
 ```

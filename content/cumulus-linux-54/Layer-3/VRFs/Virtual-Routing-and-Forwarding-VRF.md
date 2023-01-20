@@ -319,22 +319,27 @@ switch# exit
 
 ### Verify Route Leaking Configuration
 
-To check the status of VRF route leaking, run the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command or the `net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
+To check the status of VRF route leaking, run the NVUE `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# show ip bgp vrf RED ipv4 unicast route-leak
-This VRF is importing IPv4 Unicast routes from the following VRFs:
-  BLUE
-Import RT(s): 0.0.0.0:3
-This VRF is exporting IPv4 Unicast routes to the following VRFs:
-  RED
-RD: 10.1.1.1:2
-Export RT: 10.1.1.1:2
+cumulus@switch:~$ nv show vrf RED router bgp address-family ipv4-unicast route-import
+                operational   applied  
+--------------  ------------  ---------
+from-vrf                               
+  enable                      on       
+  route-map                   BLUEtoRED
+  [list]        BLUE          BLUE     
+[route-target]  10.10.10.1:3    
 ```
 
-- To view the BGP routing table, run the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
-- To view the FRR IP routing table, run the vtysh `show ip route vrf <vrf-name>` command or the `net show route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
+To show more detailed status information, you can run the following NVUE commands:
+- `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import from-vrf`
+- `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import from-vrf list`
+- `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>`
+
+To view the BGP routing table, run the NVUE `nv show vrf <vrf-name> router bgp address-family ipv4-unicast` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
+
+To view the FRR IP routing table, run the vtysh `show ip route vrf <vrf-name>` command or the `net show route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
 
 The following example commands show all routes in VRF `RED`, including routes leaked from VRF `BLUE`:
 

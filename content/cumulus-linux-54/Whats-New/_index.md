@@ -37,7 +37,7 @@ Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new featur
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - {{<link url="NVUE-CLI/#configure-auto-save" text="Auto save configuration">}} option
   - {{<link url="NVUE-CLI/#add-configuration-apply-messages" text="Configuration apply messages">}}
-  - New BGP show commands to show BGP update group, nexthop, VRF, and route import information
+  - New BGP show commands to show BGP update group, nexthop, VRF, and {{<link url="Virtual-Routing-and-Forwarding-VRF/#verify-route-leaking-configuration" text="route import">}} information
   - New EVPN show commands to show EVPN local RIB and VNI information
   - Obfuscated passwords to protect passwords from casual viewing
   - New commands:

@@ -2130,15 +2130,15 @@ nv set evpn dad duplicate-action freeze duration (30-3600|permanent)
 nv set evpn dad enable (on|off)
 nv set evpn dad mac-move-threshold 2-1000
 nv set evpn dad move-window 2-1800
-nv set evpn evi <evi-id>
-nv set evpn evi <evi-id> route-advertise
-nv set evpn evi <evi-id> route-advertise svi-ip (on|off|auto)
-nv set evpn evi <evi-id> route-advertise default-gateway (on|off|auto)
-nv set evpn evi <evi-id> route-target
-nv set evpn evi <evi-id> route-target export <rt-id>
-nv set evpn evi <evi-id> route-target import <rt-id>
-nv set evpn evi <evi-id> route-target both <rt-id>
-nv set evpn evi <evi-id> rd (auto|<route-distinguisher>)
+nv set evpn vni <vni-id>
+nv set evpn vni <vni-id> route-advertise
+nv set evpn vni <vni-id> route-advertise svi-ip (on|off|auto)
+nv set evpn vni <vni-id> route-advertise default-gateway (on|off|auto)
+nv set evpn vni <vni-id> route-target
+nv set evpn vni <vni-id> route-target export <rt-id>
+nv set evpn vni <vni-id> route-target import <rt-id>
+nv set evpn vni <vni-id> route-target both <rt-id>
+nv set evpn vni <vni-id> rd (auto|<route-distinguisher>)
 nv set evpn multihoming
 nv set evpn multihoming ead-evi-route
 nv set evpn multihoming ead-evi-route rx (on|off)

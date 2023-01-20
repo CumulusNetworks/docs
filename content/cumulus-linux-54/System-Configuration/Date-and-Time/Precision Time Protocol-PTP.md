@@ -1730,55 +1730,6 @@ nv show interface <interface-id> ptp counters
 ...
 ```
 
-### PTP Shaping
-
-To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
-
-{{%notice note%}}
-PTP shaping is not supported on Spectrum-2 and later.
-{{%/notice%}}
-
-{{< tabs "TabID1387 ">}}
-{{< tab "NVUE Commands ">}}
-
-For each PTP-enabled port where you want to set traffic shaping, run the `nv set interface <interface> ptp shaper enable on` command.
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp shaper enable on
-cumulus@switch:~$ nv set interface swp2 ptp shaper enable on
-cumulus@switch:~$ nv config apply
-```
-
-The NVUE command adds the PTP shaping configuration for the specified ports to the `/etc/cumulus/switchd.d/ptp_shaper.conf` file. To see the PTP shaping setting for a switch port, run the `nv show interface <interface> ptp shaper` command:
-
-```
-cumulus@switch:~$ nv show interface swp1 ptp shaper
-        operational  applied  
-------  -----------  -------  
-enable               on   
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-In the `/etc/cumulus/switchd.d/ptp_shaper.conf` file, set the `interface.<interface>.ptp.shaper` parameter to TRUE for the interfaces to which you want to apply traffic shaping, then reload `switchd`.
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ptp_shaper.conf
-## Per-port configuration for PTP shaper
-interface.swp1.ptp.shaper = TRUE
-#interface.swp2.ptp.shaper = FALSE
-#interface.swp9.ptp.shaper = TRUE
-#interface.swp12.ptp.shaper = TRUE
-```
-
-```
-cumulus@switch:~$ sudo systemctl reload switchd.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
 ## Example Configuration
 
 In the following example, the boundary clock on the switch receives time from Master 1 (the grandmaster) on PTP slave port swp1, sets its clock and passes the time down through PTP master ports swp2, swp3, and swp4 to the hosts that receive the time.
@@ -1904,6 +1855,57 @@ udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
 network_transport       UDPv4
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Considerations
+
+### PTP Traffic Shaping
+
+To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
+
+{{%notice note%}}
+PTP shaping is not supported on Spectrum-2 and later.
+{{%/notice%}}
+
+{{< tabs "TabID1387 ">}}
+{{< tab "NVUE Commands ">}}
+
+For each PTP-enabled port where you want to set traffic shaping, run the `nv set interface <interface> ptp shaper enable on` command.
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp shaper enable on
+cumulus@switch:~$ nv set interface swp2 ptp shaper enable on
+cumulus@switch:~$ nv config apply
+```
+
+The NVUE command adds the PTP shaping configuration for the specified ports to the `/etc/cumulus/switchd.d/ptp_shaper.conf` file. To see the PTP shaping setting for a switch port, run the `nv show interface <interface> ptp shaper` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 ptp shaper
+        operational  applied  
+------  -----------  -------  
+enable               on   
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/cumulus/switchd.d/ptp_shaper.conf` file, set the `interface.<interface>.ptp.shaper` parameter to TRUE for the interfaces to which you want to apply traffic shaping, then reload `switchd`.
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/switchd.d/ptp_shaper.conf
+## Per-port configuration for PTP shaper
+interface.swp1.ptp.shaper = TRUE
+#interface.swp2.ptp.shaper = FALSE
+#interface.swp9.ptp.shaper = TRUE
+#interface.swp12.ptp.shaper = TRUE
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
 ```
 
 {{< /tab >}}

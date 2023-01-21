@@ -8,35 +8,31 @@ Use the following commands to troubleshoot BGP.
 
 ## Basic Troubleshooting Commands
 
-The following example commands run on a BGP unnumbered configuration and show IPv6 next hops or the interface name for any IPv4 prefix.
+Run the following commands to help you troubleshoot BGP.
 
-To show a summary of the BGP configuration on the switch, run the vtysh `show ip bgp summary` command or the `net show bgp summary` command. For example:
+## Show BGP configuration Summary
+
+To show a summary of the BGP configuration on the switch, run the vtysh `show ip bgp summary` command or the NVUE `nv show router bgp` command. For example:
 
 ```
-cumulus@switch:~$ sudo vtysh
-...
-switch# show ip bgp summary
-
-ipv4 Unicast Summary
-BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
-BGP table version 88
-RIB entries 25, using 4800 bytes of memory
-Peers 5, using 106 KiB of memory
-Peer groups 1, using 64 bytes of memory
-
-Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
-spine01(swp51)        4      65199     31122     31194        0    0    0 1d01h44m            7
-spine02(swp52)        4      65199     31060     31151        0    0    0 01:47:13            7
-spine03(swp53)        4      65199     31150     31207        0    0    0 01:48:31            7
-spine04(swp54)        4      65199     31042     31098        0    0    0 01:46:57            7
-leaf02(peerlink.4094) 4      65101     30919     30913        0    0    0 01:47:43           12
-
-Total number of neighbors 5
+cumulus@switch:~$ nv show router bgp
+                                applied    
+------------------------------  -----------
+enable                          on         
+autonomous-system               65101      
+graceful-shutdown               off        
+policy-update-timer             5          
+router-id                       10.10.10.1 
+wait-for-install                off        
+convergence-wait                           
+  establish-wait-time           0          
+  time                          0          
+graceful-restart                           
+  mode                          helper-only
+  path-selection-deferral-time  360        
+  restart-time                  120        
+  stale-routes-time             360        
 ```
-
-{{%notice tip%}}
-To determine if the sessions above are iBGP or eBGP sessions, look at the ASNs.
-{{%/notice%}}
 
 To view the routing table as defined by BGP, run the vtysh `show ip bgp ipv4 unicast` command or the `net show bgp ipv4 unicast` command. For example:
 
@@ -76,67 +72,36 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete
 Displayed 13 routes and 42 total paths
 ```
 
-To show a more detailed breakdown of a specific neighbor, run the vtysh `show ip bgp neighbor <neighbor>` command or the `net show bgp neighbor <neighbor>` command:
+To show a more detailed breakdown of a specific neighbor, run the vtysh `show ip bgp neighbor <neighbor>` command or the NVUE `nv show vrf <vrf> router bgp neighbor <neighbor>` command:
 
 ```
-cumulus@switch:~$ sudo vtysh
+cumulus@switch:~$ nv show vrf default router bgp neighbor swp51
+                               operational                applied   
+-----------------------------  -------------------------  ----------
+description                                               none      
+enforce-first-as                                          off       
+multihop-ttl                                              auto      
+nexthop-connected-check                                   on        
+passive-mode                                              off       
+password                                                  none      
+address-family                                                      
+  ipv4-unicast                                                      
+    enable                                                on        
+    add-path-tx                                           off       
+    nexthop-setting                                       auto      
+    route-reflector-client                                off       
+    route-server-client                                   off       
+    soft-reconfiguration                                  off       
+    aspath                                                          
+      private-as                                          none      
+      replace-peer-as                                     off       
+      allow-my-asn                                                  
+        enable                                            off       
+    attribute-mod                                                   
+      aspath                   off                        on        
+      med                      off                        on        
+      nexthop                  off                        on        
 ...
-switch# show ip bgp neighbor swp51
-GP neighbor on swp51: fe80::7c41:fff:fe93:b711, remote AS 65199, local AS 65101, external link
-Hostname: spine01
- Member of peer-group underlay for session parameters
-  BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1
-  BGP state = Established, up for 1d01h47m
-  Last read 00:00:00, Last write 00:00:00
-  Hold time is 9, keepalive interval is 3 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    AddPath:
-      IPv4 Unicast: RX advertised IPv4 Unicast and received
-    Extended nexthop: advertised and received
-      Address families by peer:
-                   IPv4 Unicast
-    Route refresh: advertised and received(old & new)
-    Address Family IPv4 Unicast: advertised and received
-    Hostname Capability: advertised (name: leaf01,domain name: n/a) received (name: spine01,domain name: n/a)
-    Graceful Restart Capability: advertised
-  Graceful restart information:
-    Local GR Mode: Helper*
-    Remote GR Mode: Disable
-    R bit: False
-    Timers:
-      Configured Restart Time(sec): 120
-      Received Restart Time(sec): 0
-  Message statistics:
-    Inq depth is 0
-    Outq depth is 0
-                         Sent       Rcvd
-    Opens:                  2          1
-    Notifications:          0          0
-    Updates:              309        237
-    Keepalives:         30942      30943
-    Route Refresh:          0          0
-    Capability:             0          0
-    Total:              31253      31181
-  Minimum time between advertisement runs is 0 seconds
-
- For address family: IPv4 Unicast
-  underlay peer-group member
-  Update group 2, subgroup 2
-  Packet Queue length 0
-  Community attribute sent to this neighbor(all)
-  7 accepted prefixes
-
-  Connections established 1; dropped 0
-  Last reset 1d01h47m,  No AFI/SAFI activated for peer
-Local host: fe80::2294:15ff:fe02:7bbf, Local port: 179
-Foreign host: fe80::7c41:fff:fe93:b711, Foreign port: 45548
-Nexthop: 10.10.10.1
-Nexthop global: fe80::2294:15ff:fe02:7bbf
-Nexthop local: fe80::2294:15ff:fe02:7bbf
-BGP connection: shared network
-BGP Connect Retry Timer in Seconds: 10
-Read thread: on  Write thread: on  FD used: 30
 ```
 
 To see details of a specific route, such as its source and destination, run the vtysh `show ip bgp <route>` command or the `net show bgp <route>` command.
@@ -173,6 +138,112 @@ Paths: (5 available, best #5, table default)
     (fe80::7c41:fff:fe93:b711) (used)
       Origin incomplete, valid, external, multipath, bestpath-from-AS 65199, best (Older Path)
       Last update: Wed Oct  7 13:13:13 2020
+```
+
+## Check BGP Timer Settings
+
+To check BGP timers, such as the BGP keepalive interval, hold time, and advertisement interval, run the NVUE `nv show vrf default router bgp neighbor <neighbor> timers` command or the vtysh `show ip bgp neighbor <peer>` command. For example:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 timers
+                     operational  applied
+-------------------  -----------  -------
+connection-retry     10           auto   
+hold                 9000         auto   
+keepalive            3000         auto   
+route-advertisement               auto
+```
+
+## BGP Update Groups
+
+You can show information about update group events or information about a specific IPv4 or IPv6 update group.
+
+To show information about update group events, run the NVUE `nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group` or `nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group` command, or the vtysh `show bgp update-group` command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group
+   Time created  LocalAs change  Prepend Flag  Replace AS flag  Minimum advertisement interval  Routemap  Update group  Summary     
+-  ------------  --------------  ------------  ---------------  ------------------------------  --------  ------------  ------------
+5  1674253324                                                   0                                         5             sub-group: 5               
+```
+
+To show information about a specific update group, such as the number of peer refresh events, prune events, and packet queue length, run the NVUE `nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group <group-id>` command for IPv4 or the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group <group-id>` command for IPv6. Alternatively, you can run the vtysh `show bgp update-group <group-id>` command.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 5
+                                  operational  applied
+--------------------------------  -----------  -------
+create-time                       1674253325          
+min-route-advertisement-interval  0                   
+update-group-id                   5
+sub-group
+============
+       Adjace…  Coales…  Join     Merge    Merge    Peer     Prune    Split    Switch   Time     Refresh   Packet   Packet    Total    Total     Split    Split     Sub      Version  Summary   
+       list     time     events   check    events   refersh  events   events   events   created  Flag      hwm      queue     queued   enqueued  group    subgroup  group                       
+       count                      events            events                                                 length   length    packets  packets   id       id        id                          
+    -  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  -------…  ------…  -------…  ------…  -------…  ------…  -------…  ------…  -------  ---------…
+    5  8        1300     2        0        1        0        0        0        0        167425…  off       1        0         7        7                            5        10       Neighbor: 
+                                                                                                                                                                                      peerlink.…
+                                                                                                                                                                                      Neighbor: 
+                                                                                                                                                                                      swp52     
+...
+```
+
+## Show Next Hop Information
+
+To show information about a specific next hop, run the NVUE `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address>` command for IPv4 or the `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address>` command for IPv6.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2
+
+                  operational  applied   
+----------------  -----------  ----------
+complete          on           on        
+igp-metric        0            0         
+last-update-time  1674253415   1674253415
+path-count        6            6         
+valid             on           on        
+
+resolved-via
+===============
+    Nexthop                    interface    
+    -------------------------  -------------
+    fe80::4ab0:2dff:fe0d:9dfe  peerlink.4094
+
+path
+=======
+    Path  address-family  flags.damped  flags.deterministic-…  flags.history  flags.multipath  flags.nexthop-self  flags.removed  flags.selected  flags.stale  flags.valid  prefix                 rd            vrf    
+    ----  --------------  ------------  --------------------…  -------------  ---------------  ------------------  -------------  --------------  -----------  -----------  --------------------…  ------------  -------
+    1     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.30.0/2…  10.10.10.2:3  default
+    2     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.20.0/2…  10.10.10.2:2  default
+    3     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.10.0/2…  10.10.10.2:2  default
+    4     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.30.0/2…  10.10.10.2:3  default
+    5     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.20.0/2…  10.10.10.2:2  default
+    6     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.10.0/2…  10.10.10.2:2  default
+```
+
+To show the paths for a specific next next hop, run the NVUE `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> path` command for IPv4 or the `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> path` command for IPv6.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 path
+Path  address-family  flags.damped  flags.deterministic-…  flags.history  flags.multipath  flags.nexthop-self  flags.removed  flags.selected  flags.stale  flags.valid  prefix                 rd            vrf    
+----  --------------  ------------  --------------------…  -------------  ---------------  ------------------  -------------  --------------  -----------  -----------  --------------------…  ------------  -------
+1     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.30.0/2…  10.10.10.2:3  default
+2     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.20.0/2…  10.10.10.2:2  default
+3     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.10.0/2…  10.10.10.2:2  default
+4     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.30.0/2…  10.10.10.2:3  default
+5     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.20.0/2…  10.10.10.2:2  default
+6     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.10.0/2…  10.10.10.2:2  default
+cumulus@leaf01:mgmt:~$ 
+```
+
+To show how BGP resolves a specific next hop, run the NVUE `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> resolved-via` command for IPv4 or the `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> resolved-via` command for IPv6.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 resolved-via
+Nexthop                    interface    
+-------------------------  -------------
+fe80::4ab0:2dff:fe0d:9dfe  peerlink.4094
 ```
 
 ## Troubleshoot BGP Unnumbered
@@ -424,65 +495,6 @@ C>* 172.16.3.0/24 is directly connected, swp2, 3d00h26m
 B>  172.16.4.0/24 [200/0] via 2001:2:2::4 (recursive), 00:00:01
   *                         via 2001:1:1::1, swp1, 00:00:01
 C>* 172.16.10.0/24 is directly connected, swp3, 3d00h26m
-```
-
-## Check BGP Timer Settings
-
-To check BGP timers, such as the BGP keepalive interval, hold time, and advertisement interval, run the vtysh `show ip bgp neighbor <peer>` command. For example:
-
-```
-cumulus@leaf01:~$ sudo vtysh
-...
-leaf01# show ip bgp neighbor swp51
-BGP neighbor on swp51: fe80::f208:5fff:fe12:cc8c, remote AS 65199, local AS 65101, external link
-Hostname: spine01
- Member of peer-group underlay for session parameters
-  BGP version 4, remote router ID 10.10.10.101, local router ID 10.10.10.1
-  BGP state = Established, up for 06:50:58
-  Last read 00:00:03, Last write 00:00:03
-  Hold time is 9, keepalive interval is 3 seconds
-  Neighbor capabilities:
-    4 Byte AS: advertised and received
-    AddPath:
-      IPv4 Unicast: RX advertised IPv4 Unicast and received
-    Extended nexthop: advertised and received
-      Address families by peer:
-                   IPv4 Unicast
-    Route refresh: advertised and received(old & new)
-    Address Family IPv4 Unicast: advertised and received
-    Hostname Capability: advertised (name: leaf01,domain name: n/a) received (name: spine01,domain name: n/a)
-    Graceful Restart Capability: advertised and received
-      Remote Restart timer is 120 seconds
-      Address families by peer:
-        none
-  Graceful restart information:
-    End-of-RIB send: IPv4 Unicast
-    End-of-RIB received: IPv4 Unicast
-    Local GR Mode: Helper*
-    Remote GR Mode: Helper
-    R bit: True
-    Timers:
-      Configured Restart Time(sec): 120
-      Received Restart Time(sec): 120
-    IPv4 Unicast:
-      F bit: False
-      End-of-RIB sent: Yes
-      End-of-RIB sent after update: No
-      End-of-RIB received: Yes
-      Timers:
-        Configured Stale Path Time(sec): 360
-  Message statistics:
-    Inq depth is 0
-    Outq depth is 0
-                         Sent       Rcvd
-    Opens:                  2          1
-    Notifications:          0          0
-    Updates:               54         59
-    Keepalives:          8219       8219
-    Route Refresh:          0          0
-    Capability:             0          0
-    Total:               8275       8279
-  Minimum time between advertisement runs is 0 seconds
 ```
 
 ## Neighbor State Change Log

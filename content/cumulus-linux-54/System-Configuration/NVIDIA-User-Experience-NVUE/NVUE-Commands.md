@@ -791,16 +791,16 @@ nv show evpn route-advertise
 nv show evpn dad
 nv show evpn dad duplicate-action
 nv show evpn dad duplicate-action freeze
-nv show evpn evi
-nv show evpn evi <evi-id>
-nv show evpn evi <evi-id> route-advertise
-nv show evpn evi <evi-id> route-target
-nv show evpn evi <evi-id> route-target export
-nv show evpn evi <evi-id> route-target export <rt-id>
-nv show evpn evi <evi-id> route-target import
-nv show evpn evi <evi-id> route-target import <rt-id>
-nv show evpn evi <evi-id> route-target both
-nv show evpn evi <evi-id> route-target both <rt-id>
+nv show evpn vni
+nv show evpn vni <evi-id>
+nv show evpn vni <evi-id> route-advertise
+nv show evpn vni <evi-id> route-target
+nv show evpn vni <evi-id> route-target export
+nv show evpn vni <evi-id> route-target export <rt-id>
+nv show evpn vni <evi-id> route-target import
+nv show evpn vni <evi-id> route-target import <rt-id>
+nv show evpn vni <evi-id> route-target both
+nv show evpn vni <evi-id> route-target both <rt-id>
 nv show evpn multihoming
 nv show evpn multihoming ead-evi-route
 nv show evpn multihoming segment

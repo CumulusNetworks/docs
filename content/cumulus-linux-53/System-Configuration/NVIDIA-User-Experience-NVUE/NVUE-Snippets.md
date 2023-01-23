@@ -270,9 +270,8 @@ To create flexible snippets:
     NVUE appends the flexible snippet at the end of an existing file. If the file does not exist, NVUE creates the file and adds the content.
 
     - You can only set the umast permissions to a new file that you create. Adding the `permissions:` line is optional. The default umask persmissions are 644.
-    - You can add a service with an action, such as start, restart, or stop. Adding the `services:` lines is optional. The {{<link url="#snmp-example" text="SNMP example below">}} restarts the `snmpd` service.
-
-### TACACS+ Client Example
+    - You can add a service with an action, such as start, restart, or stop. Adding the `services:` lines is optional.
+<!--### TACACS+ Client Example
 
 The following example creates a snippet called `tacacs-config` in a file called `tacacs.yaml`. The snippet adds the server 192.168.0.30 and the shared secret `tacacskey` to the `/etc/tacplus_servers` file.
 
@@ -304,7 +303,7 @@ The following example creates a snippet called `tacacs-config` in a file called 
    ```
 
 NVUE appends the snippet at the end of the `/etc/tacplus_servers` file.
-<!--
+
 ### SNMP Example
 
 The following example creates a snippet called `snmp-config` in a file called `snmp.yaml`. The snippet adds content to the `/etc/snmp/snmpd.conf` file to:

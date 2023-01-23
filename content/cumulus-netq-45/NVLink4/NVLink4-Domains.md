@@ -30,6 +30,8 @@ The **log level** is critical, error, warning, info, or none.
 
 **Fabric manager mode** lists supported physical and virtualization models. For more information, refer to chapters 3 and 4 in the {{<exlink url="https://docs.nvidia.com/datacenter/tesla/pdf/fabric-manager-user-guide.pdf" text="Fabric Manager User Guide">}}.
 
+The **Create all nodes partition** toggle creates a single default partition when toggled on.
+
 The next step prompts you to upload a topology file:
 
 {{<figure src="/images/netq/nvl4-topology-file.png" alt="wizard prompting user to upload topology file" width="550">}}
@@ -63,7 +65,7 @@ Select **View details** to review the domain's configuration and associated devi
 
 {{<figure src="/images/netq/nvlink4-view-details.png" alt="configuration summary for a selected domain" width="700">}}
 
-The Devices tab displays the device health (healthy or unhealthy) and the LFM status. Hover over unhealthy devices to view the time at which they were last healthy:
+The Devices tab displays the device health (healthy or unhealthy) and the LFM status. Hover over unhealthy devices to view the time at which they were last healthy. The timestamp updates continuously at a polling frequency of 60 seconds:
 
 {{<figure src="/images/netq/nvlink4-unhealthy.png" alt="devices summary for selected domain, including timestamp for an unhealthy device" width="1050">}}
 

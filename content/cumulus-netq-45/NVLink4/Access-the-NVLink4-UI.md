@@ -23,7 +23,7 @@ After creating a new password and accepting the Terms of Use, the default workbe
 
 ## Access NVLink4
 
-To reveal NVLink4 in the UI, run `netq features nvl4 enable` on your NetQ server CLI. Return to the UI, which now displays the NVL4 icon in the header:
+To reveal NVLink4 in the UI, run `netq features nvl4 enable` on your NetQ server CLI. Return to the UI and refresh the page. The NVL4 icon now appears in the header:
 
 {{<figure src="/images/netq/nvl4-header-450.png" alt="" width="950">}}
 

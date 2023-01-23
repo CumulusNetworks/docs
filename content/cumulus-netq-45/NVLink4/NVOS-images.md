@@ -5,7 +5,7 @@ weight: 1152
 toc: 4
 ---
 
-NVOS images are managed with lifecycle management in the NetQ UI. This section details how to check for missing images, upgrade images, and specify default images.
+NVOS images are managed with lifecycle management in the NetQ UI. This section details how to check for missing images, upload images, and specify default images.
 
 To complete the tasks outlined in this section, expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage switches**:
 
@@ -17,7 +17,7 @@ From the dashboard, select the **Image management** tab to display the NetQ and 
 
 ## View and Upload Missing Images
 
-You should upload images for each NVOS version currently installed in your inventory so you can support rolling back to a known good version should an installation or upgrade fail. If you have specified a default network NVOS version, the NetQ UI also verifies that the necessary versions of the default image are available based on the known device inventory, and if not, lists those that are missing.
+You should upload images for each NVOS version currently installed in your inventory so you can support rolling back to a known good version should an installation or upgrade fail. If you have specified a default NVOS version, NetQ verifies that the necessary versions of the default image are available based on the known device inventory, and if not, lists those that are missing.
 
 To upload missing **NVOS** images:
 
@@ -58,7 +58,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 {{</tabs>}}
 
-## Upload Upgrade Images
+## Upload Images
 
 To upload the NVOS images that you want to use for the upgrade, first download the images (*.img* files). Place them in an accessible part of your local network.
 
@@ -88,9 +88,9 @@ Specifying a default upgrade version is optional, but recommended. You can assig
 
 {{<tab "NetQ UI">}}
 
-To specify a default version in the NetQ UI:
+To specify a default version:
 
-1. Select the link in the relevant card.
+1. On the NVOS Images card, select *Click here to set default NVOS version*:
 
     {{<img src="/images/netq/default-nvos-450.png" alt="card highlighting link to set default NVOS version" width="200">}}
 

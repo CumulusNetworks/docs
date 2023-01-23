@@ -5,7 +5,7 @@ weight: 1153
 toc: 4
 ---
 
-Lifecycle management (LCM) lets you upgrade NVLink4 switches and GPU compute nodes to the latest NVOS version. You can run up to five upgrades concurrently.
+Lifecycle management (LCM) lets you upgrade NVLink4 switches and GPU nodes to the latest NVOS version. You can run up to five upgrades concurrently.
 
 ## Prepare for an NVOS Upgrade
 

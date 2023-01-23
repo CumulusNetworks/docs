@@ -6,7 +6,7 @@ toc: 3
 
 ---
 
-This section describes how to create, edit, and delete NVLink4 domains. To collect telemetry data that can be visualized in the UI, create and configure a domain and run Global Fabric Manager (GFM).
+This section describes how to create, edit, and delete NVLink4 domains. To collect telemetry data that can be visualized in the UI, create and configure a domain, then run Global Fabric Manager (GFM).
 
 ## Requirements
 
@@ -47,7 +47,7 @@ The final screen displays a summary of the domain's parameters. In addition to t
 
 After reviewing the summary, select **Finish**. NetQ adds the domain to a list of all NVLink4 domains:
 
-{{<figure src="/images/netq/nvlink4-domains-list.png" alt="list of three NVL4 domains" width="1050">}}
+{{<figure src="/images/netq/nvlink4-domains-list.png" alt="list of three NVL4 domains" width="1150">}}
 
 From the list of NVLink4 domains, you can view and manage multiple domains. Per domain, you can view the:
 

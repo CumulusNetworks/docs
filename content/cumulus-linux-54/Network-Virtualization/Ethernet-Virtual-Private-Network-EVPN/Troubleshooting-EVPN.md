@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting
+title: Troubleshooting EVPN
 author: NVIDIA
 weight: 590
 toc: 4
@@ -8,16 +8,15 @@ This section provides various commands to help you examine your EVPN configurati
 
 The following outputs are from the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules/-/tree/master/inventories/evpn_symmetric" text="EVPN Symmetric Cumulus in the Cloud" >}} demo.
 
-## General Linux Commands
+## General Commands
 
-You can use various `iproute2` commands to examine links, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
+You can use various NVUE or Linux commands to examine links, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
 
-- `ip [-d] link show`
-- `bridge link show`
-- `bridge vlan show`
-- `bridge [-s] fdb show`
-- `ip neighbor show`
-- `ip route show [table <vrf-name>]`
+- `nv show nve vxlan` (NVUE) or `ip [-d] link show` (Linux)
+- `nv show bridge domain <bridge> mac-table` (NVUE) or `bridge [-s] fdb show` (Linux)
+- `bridge vlan show` (Linux)
+- `ip neighbor show` (Linux)
+- `ip route show [table <vrf-name>]` (Linux)
 
 The sample output below shows `ip -d link show type vxlan` for one VXLAN interface. Relevant parameters are the VNI value, the state, the local IP address for the VXLAN tunnel, the UDP port number (4789) and the bridge of which the interface is part (*bridge* in the example below). The output also shows that MAC learning is *off* on the VXLAN interface.
 
@@ -215,7 +214,7 @@ Total number of neighbors 4
 
 ## Show EVPN VNIs
 
-Run the vtysh `show bgp l2vpn evpn vni` command or the `net show bgp l2vpn evpn vni` command to display the configured VNIs on a network device participating in BGP EVPN. This command is only relevant on a VTEP. For symmetric routing, this command displays the special layer 3 VNIs for each tenant VRF.
+Run the vtysh `show bgp l2vpn evpn vni` command or the NVUE `net show bgp l2vpn evpn vni` command to display the configured VNIs on a network device participating in BGP EVPN. This command is only relevant on a VTEP. For symmetric routing, this command displays the special layer 3 VNIs for each tenant VRF.
 
 The following example from leaf01 shows three layer 2 VNIs (10, 20 and 30) as well as two layer 3 VNIs (4001, 4002).
 
@@ -237,7 +236,7 @@ Flags: * - Kernel
 * 4001       L3   10.1.20.2:5           65101:4001                65101:4001               RED
 ```
 
-Run the `show evpn vni` command or the `net show evpn vni` command to see a summary of VNIs and the number of MAC or ARP entries associated with each VNI.
+Run the NVUE `nv show evpn vni` command or the vtysh `show evpn vni` command to see a summary of VNIs and the number of MAC or ARP entries associated with each VNI.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -251,7 +250,7 @@ VNI        Type VxLAN IF              # MACs   # ARPs   # Remote VTEPs  Tenant V
 4002       L3   vniBLUE               0        0        n/a             BLUE
 ```
 
-Run the vtysh `show evpn vni <vni>` command or the `net show evpn vni <vni>` command to examine EVPN information for a specific VNI in detail. The following example output shows details for the layer 2 VNI 10 as well as for the layer 3 VNI 4001. For the layer 2 VNI, the output shows the remote VTEPs that contain that VNI. For the layer 3 VNI, the router shows the router MAC and associated layer 2 VNIs. The state of the layer 3 VNI depends on the state of its associated VRF as well as the states of its underlying VXLAN interface and SVI.
+Run the NVUE `nv show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to examine EVPN information for a specific VNI in detail. The following example output shows details for the layer 2 VNI 10 as well as for the layer 3 VNI 4001. For the layer 2 VNI, the output shows the remote VTEPs that contain that VNI. For the layer 3 VNI, the router shows the router MAC and associated layer 2 VNIs. The state of the layer 3 VNI depends on the state of its associated VRF as well as the states of its underlying VXLAN interface and SVI.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -286,23 +285,22 @@ VNI: 4001
 
 ## Examine Local and Remote MAC Addresses for a VNI
 
-Run the vtysh `show evpn mac vni <vni>` command or the `net show evpn mac vni <vni>` command to examine all local and remote MAC addresses for a VNI. This command is only relevant for a layer 2 VNI:
+Run the NVUE `nv show evpn vni <vni> mac` command or the vtysh `show evpn mac vni <vni>` command to examine all local and remote MAC addresses for a VNI. This command is only relevant for a layer 2 VNI:
 
 ```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# show evpn mac vni 10
-Number of MACs (local and remote) known for this VNI: 8
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac
+                   local-interface  local-mobility-seq  neigh-sync-count  remote-esi  remote-mobility-seq  remote-vtep  type    vlan  Summary
+-----------------  ---------------  ------------------  ----------------  ----------  -------------------  -----------  ------  ----  -------
+44:38:39:22:01:8a                   0                                                 0                    10.0.1.34    remote               
+44:38:39:22:01:78  peerlink         0                                                 0                                 local                
+44:38:39:22:01:84                   0                                                 0                    10.0.1.34    remote               
+cumulus@leaf01:mgmt:~$ net show evpn mac vni 10
+Number of MACs (local and remote) known for this VNI: 3
 Flags: B=bypass N=sync-neighs, I=local-inactive, P=peer-active, X=peer-proxy
 MAC               Type   Flags Intf/Remote ES/VTEP            VLAN  Seq #'s
-26:76:e6:93:32:78 local        bond1                          10    0/0
-94:8e:1c:0d:77:93 remote       10.0.1.2                             0/0
-50:88:b2:3c:08:f9 remote       10.0.1.2                             0/0
-68:0f:31:ae:3d:7a remote       10.0.1.2                             1/0
-c8:7d:bc:96:71:f3 remote       10.0.1.2                             0/0
-c0:8a:e6:03:96:d0 local        peerlink                       10    0/0
-76:ed:2a:8a:67:24 local        vlan10                         10    0/0
-00:60:08:69:97:ef local        bond1                          10    0/0
+44:38:39:22:01:8a remote       10.0.1.34                            0/0
+44:38:39:22:01:84 remote       10.0.1.34                            0/0
+44:38:39:22:01:78 local        peerlink                       10    0/0 
 ```
 
 Run the vtysh `show evpn mac vni all` command or the `net show evpn mac vni all` command to examine MAC addresses for all VNIs.

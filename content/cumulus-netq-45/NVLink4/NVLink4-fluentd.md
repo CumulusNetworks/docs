@@ -1,7 +1,7 @@
 ---
 title: Fluentd Reference
 author: NVIDIA
-weight: 1160
+weight: 1153
 toc: 3
 
 ---
@@ -32,6 +32,8 @@ Examples for configuring a switch with two fluent destinations:
 Examples for configuring two switches with one fluent destination:
 	./netq_telemetry_agent_handler  -address 192.168.0.17 -address 192.168.0.21 -destination 10.188.44.17,30001,tcp -user admin -password admin -domain test -domain_id 1 -domain my_domain
 ```
+
+The `netq_telemetry_agent_handler` application can be downloaded from {{<exlink url="https://apps.nvidia.com/pid/contentlibraries/detail?id=1097442" text="NVIDIA Product Information Delivery">}}.
 ## NVLink4 Fluentd Message Example
 
 The following examples show NVLink4 Fluentd message output in JSON format: 
@@ -39,8 +41,8 @@ The following examples show NVLink4 Fluentd message output in JSON format:
 ```Node
 {
   "date": 1656408595.780359,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "Node",
   "ts": 1656408595754,
   "trans_mode": 1,
@@ -48,7 +50,7 @@ The following examples show NVLink4 Fluentd message output in JSON format:
     {
       "active": true,
       "deleted": false,
-     "hostname": "r-ufm191",
+     "hostname": "r-nvos191",
       "last_reinit": 1656408413,
       "lastboot": 1656408413,
       "message_type": "Node",
@@ -64,8 +66,8 @@ The following examples show NVLink4 Fluentd message output in JSON format:
 Inventory
 {
   "date": 1656408595.780281,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "Inventory",
   "ts": 1656408595754,
   "trans_mode": 1,
@@ -88,7 +90,7 @@ Inventory
       "disk_data": "[{\"firmware_version\":\"0202-000\",\"model\":\"StorFly VSF302XC016G-MLX1\",\"serial_number\":\"P1T13004897701140573\"}]",
       "disk_total_size": "15.8 GB",
       "domain": "",
-      "hostname": "r-ufm191",
+      "hostname": "r-nvos191",
       "license_data": "[{\"license\":\"LK2-RESTRICTED_CMDS_GEN2-43A1-4H83-DSKJ-N88A-52AS-J329-PF\",\"name\":\"24:8A:07:40:05:96 (ok)\"}]",
       "license_state": "ok",
       "memory_data": "[]",
@@ -112,8 +114,8 @@ Inventory
 ResourceUtil
 {
   "date": 1656408595.758639,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "ResourceUtil",
   "ts": 1656408595754,
   "trans_mode": 1,
@@ -134,7 +136,7 @@ ResourceUtil
           "used": 1048576
         }
       },
-      "hostname": "r-ufm191",
+      "hostname": "r-nvos191",
       "is_disk_read_only": true,
       "mem_utilization": 27.04,
       "message_type": "ResourceUtil",
@@ -146,8 +148,8 @@ ResourceUtil
 Port
 {
   "date": 1656408595.768998,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "Port",
   "ts": 1656408595754,
   "trans_mode": 1,
@@ -156,7 +158,7 @@ Port
       "active": true,
       "connector": "-",
       "deleted": false,
-      "hostname": "r-ufm191",
+      "hostname": "r-nvos191",
       "identifier": "-",
       "ifname": "NVL4/16/1/2",
       "message_type": "Port",
@@ -174,8 +176,8 @@ Port
 Fan
 {
   "date": 1656408595.776626,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "Fan",
   "ts": 1656408595754,
   "trans_mode": 1,
@@ -183,7 +185,7 @@ Fan
     {
       "active": true,
       "deleted": false,
-      "hostname": "r-ufm191",
+      "hostname": "r-nvos191",
       "message_type": "Fan",
       "s_input": 8287,
       "s_name": "FAN3-F1",
@@ -197,8 +199,8 @@ Fan
 Temp
 {
   "date": 1656408595.777002,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "Temp",
   "ts": 1656408595754,
   "trans_mode": 1,
@@ -206,7 +208,7 @@ Temp
     {
       "active": true,
       "deleted": false,
-      "hostname": "r-ufm191",
+      "hostname": "r-nvos191",
       "message_type": "Temp",
       "s_desc": "PS2 power-mon T1",
       "s_input": 30,
@@ -221,8 +223,8 @@ Temp
 Power
 {
   "date": 1656409388.77556,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "Power",
   "ts": 1656409388754,
   "trans_mode": 1,
@@ -230,7 +232,7 @@ Power
     {
       "active": true,
       "deleted": false,
-      "hostname": "r-ufm191",
+      "hostname": "r-nvos191",
       "message_type": "Power",
       "s_adapter_name": "PS1",
       "timestamp": 1656409388754
@@ -241,8 +243,8 @@ Power
 PSU
 {
   "date": 1656409327.775926,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "PSU",
   "ts": 1656409327753,
   "trans_mode": 1,
@@ -250,7 +252,7 @@ PSU
     {
       "active": true,
       "deleted": false,
-      "hostname": "r-ufm191",
+      "hostname": "r-nvos191",
       "message_type": "PSU",
       "s_name": "PS1",
       "s_prev_state": "fail",
@@ -263,8 +265,8 @@ PSU
 Link
 {
   "date": 1656408595.813899,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "Link",
   "ts": 1656408595754,
   "trans_mode": 1,
@@ -274,7 +276,7 @@ Link
       "admin_state": "Enabled",
       "deleted": false,
       "down_reason": "",
-      "hostname": "r-ufm191",
+      "hostname": "r-nvos191",
       "ifalias": "",
       "ifname": "NVL1/9/2/2",
       "kind": "nvl",
@@ -291,8 +293,8 @@ Link
 NvlStats
 {
   "date": 1656408595.831456,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "NvlStats",
   "ts": 1656408595754,
   "trans_mode": 1,
@@ -301,7 +303,7 @@ NvlStats
       "active": true,
       "crc_errors": 0,
       "deleted": false,
-      "hostname": "r-ufm191",
+      "hostname": "r-nvos191",
       "ifname": "NVL2/30/1/1",
       "message_type": "NvlStats",
       "rx_all_flits": 0,
@@ -318,8 +320,8 @@ Lfm
 [
   {
     "date": 1656409315.771477,
-    "aid": "r-ufm191",
-     "domain": "r-ufm",
+    "aid": "r-nvos191",
+     "domain": "r-nvos",
     "message_type": "LfmStatus",
     "ts": 1656409315754,
     "trans_mode": 1,
@@ -328,7 +330,7 @@ Lfm
         "active": true,
         "bind_interface_ip": "10.209.38.181",
         "deleted": false,
-        "hostname": "r-ufm191",
+        "hostname": "r-nvos191",
         "log_append_to_log": "enabled",
         "log_level": "info",
         "message_type": "LfmStatus",
@@ -344,8 +346,8 @@ Lfm
 Dom
 {
   "date": 1656410104.058327,
-  "aid": "r-ufm191",
-  "domain": "r-ufm",
+  "aid": "r-nvos191",
+  "domain": "r-nvos",
   "message_type": "Dom",
   "ts": 1656410103925,
   "trans_mode": 1,
@@ -353,7 +355,7 @@ Dom
     {
       "active": true,
       "deleted": false,
-      "hostname": "r-ufm191",
+      "hostname": "r-nvos191",
       "identifier": "",
       "ifname": "NVL2/5/2/1",
       "laser_bias_current": {

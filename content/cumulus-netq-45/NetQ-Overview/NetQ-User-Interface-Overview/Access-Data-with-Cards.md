@@ -18,7 +18,7 @@ Each card focuses on a particular aspect of your network. They include:
 - **Trace request**: discovery workflow for paths between two devices in the network fabric
 - **MAC move commentary**: info about changes to a MAC address on a specific VLAN
 - Network services cards: **BGP**, **MLAG**, **EVPN**, **OSPF**, and **LLDP**
-- Inventory cards: **Devices**, **Switches**, **DPUs**, **Hosts**, **NVLink4 Switches**, and **NVLink4 GPUs**
+- Inventory cards: **Devices**, **Switches**, **DPUs**, and **Hosts**
 
 ## Card Sizes
 

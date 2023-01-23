@@ -7,9 +7,45 @@ right_toc_levels: 1
 pdfhidden: true
 ---
 
-<!-- vale off -->
+## netq add check-filter
+
+### Syntax
+
+```
+ netq add check-filter 
+    [check_filter_id <text-check-filter-id>] 
+    [check_name <text-check-name-anchor>] 
+    [test_name <text-test-name-anchor>] 
+    [scope <text-check-scope-anchor> | scope-append <text-check-scope-anchor>] 
+    [is_active true | is_active false] 
+    [suppress_until <text-suppress-until>]
+```
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| check_filter_id | \<text-check-filter-id\> | |
+| check_name | \<text-check-name-anchor\> |  |
+| test_name | \<text-test-name-anchor\> |  |
+| scope | \<text-check-scope-anchor\> |  |
+| scope-append | \<text-check-scope-anchor\> |  |
+| is_active | true, false | Enables or disables configuration |
+| suppress_until | \<text-suppress-until\> | Amount of time, in seconds, to suppress the specified events |
+
+### Sample Usage
+
+### Related Commands
+
+- netq del check-filter
+- netq show check-filter
+
+ - - -
 ## netq add events-config
-<!-- vale on -->
+
 
 Suppresses system events, excluding them from event displays. You can suppress events for:
 

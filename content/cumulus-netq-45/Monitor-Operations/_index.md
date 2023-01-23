@@ -1,5 +1,5 @@
 ---
-title: Monitor Operations
+title: Network Monitoring
 author: NVIDIA
 weight: 815
 toc: 2
@@ -16,7 +16,6 @@ toc: 2
 - {{<link title="MLAG">}}
 - {{<link title="Network Topology">}}
 - {{<link title="NTP">}}
-- {{<link title="NVLink4">}}
 - {{<link title="OSPF">}}
 - {{<link title="PTP">}}
 - {{<link title="RoCE">}}

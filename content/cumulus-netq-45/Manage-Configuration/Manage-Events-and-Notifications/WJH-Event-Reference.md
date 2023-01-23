@@ -9,11 +9,10 @@ This reference lists all the NetQ-supported WJH metrics and provides a brief des
 For instructions on how to configure and monitor What Just Happened events, refer to {{<link title="Configure and Monitor What Just Happened">}}.
 ## Layer 1 Drops
 
-Displays the reason why a port is in the down state.
+Displays why a port is in the down state.
 
 | Reason | Description|
 | --- | --- |
-| Port admin down | Port has been purposely set down by user |
 | Auto-negotiation failure | Negotiation of port speed with peer has failed |
 | Logical mismatch with peer link | Logical mismatch with peer link |
 | Link training failure | Link is not able to go operational up due to link training failure |

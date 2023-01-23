@@ -10,9 +10,9 @@ pdfhidden: true
 
 Three sets of validation commands are available, all for verifying the health and performance of network protocols and services:
 
-- `netq check` commands. These commands validate various elements in your network fabric currently or at a time in the past. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results appear in the NetQ CLI. Commands with a `streaming` option run streaming checks by default to return results faster. To run a non-streaming validation, include the `legacy` option.  
-- `netq add validation` commands. Use {{<link url="add/#netq-add-validation-name" text="these commands">}} to validate various elements in your network fabric currently or on a schedule. The results appear in the NetQ UI Validation Result cards. You can only filter the results in the UI.
-- The validation management commands. `netq show validation settings` displays a list of all jobs and job settings and `netq del validation` allows you to remove validations.
+- `netq check` commands. These commands validate various elements in your network fabric. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results appear in the NetQ CLI. Commands with a `streaming` option run streaming checks by default to return results faster. To run a non-streaming validation, include the `legacy` option.  
+- `netq add validation` commands. Use {{<link url="add/#netq-add-validation-name" text="these commands">}} to validate various elements in your network fabric. The results appear in the Validation Result cards in the UI, where you can filter them.
+- Validation management commands. `netq show validation settings` displays a list of all jobs and job settings and `netq del validation` allows you to remove validations.
 
 Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation.
 

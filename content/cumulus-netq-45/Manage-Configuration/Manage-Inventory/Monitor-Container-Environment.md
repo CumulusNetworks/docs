@@ -119,29 +119,6 @@ For deployments with multiple clusters, you can use the `hostname` option to fil
                                                                                     er12 server23 server
                                                                                     24
 
-Optionally, use the `json` option to present the results in JSON format.
-
-    cumulus@host:~$ netq show kubernetes cluster json
-    {
-        "kube_cluster":[
-            {
-                "clusterName":"default",
-                "schedulerStatus":"Healthy",
-                "master":"server12:3.0.0.69",
-                "nodes":"server12 server21 server23 server13 server14 server21 server22",
-                "controllerStatus":"Healthy"
-            },
-            {
-                "clusterName":"default",
-                "schedulerStatus":"Healthy",
-                "master":"server11:3.0.0.68",
-                "nodes":"server11 server13 server22 server11 server12 server23 server24",
-                "controllerStatus":"Healthy"
-        }
-        ],
-        "truncatedResult":false
-    }
-
 ### View Changes to a Cluster
 
 If data collection from the NetQ Agents is not occurring as it did previously, verify that no changes made to the Kubernetes cluster configuration use the `around` option. Be sure to include the unit of measure with the around value. Valid units include:

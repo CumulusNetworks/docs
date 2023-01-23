@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting
+title: Troubleshooting BGP
 author: NVIDIA
 weight: 870
 toc: 3
@@ -167,7 +167,11 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 5  1674253324                                                   0                                         5             sub-group: 5               
 ```
 
-To show information about a specific update group, such as the number of peer refresh events, prune events, and packet queue length, run the NVUE `nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group <group-id>` command for IPv4 or the `nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group <group-id>` command for IPv6. Alternatively, you can run the vtysh `show bgp update-group <group-id>` command.
+To show information about a specific update group, such as the number of peer refresh events, prune events, and packet queue length, run these NVUE commands:
+- `nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group <group-id>` for IPv4
+- `nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group <group-id>` for IPv6
+
+Alternatively, you can run the vtysh `show bgp update-group <group-id>` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 5
@@ -191,7 +195,9 @@ sub-group
 
 ## Show Next Hop Information
 
-To show information about a specific next hop, run the NVUE `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address>` command for IPv4 or the `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address>` command for IPv6.
+To show information about a specific next hop, run these NVUE commands:
+- `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address>` for IPv4
+- `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address>` for IPv6
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2
@@ -222,7 +228,9 @@ path
     6     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.10.0/2…  10.10.10.2:2  default
 ```
 
-To show the paths for a specific next next hop, run the NVUE `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> path` command for IPv4 or the `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> path` command for IPv6.
+To show the paths for a specific next next hop, run these NVUE commands:
+- `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> path` for IPv4
+- `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> path` for IPv6
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 path
@@ -237,7 +245,9 @@ Path  address-family  flags.damped  flags.deterministic-…  flags.history  flag
 cumulus@leaf01:mgmt:~$ 
 ```
 
-To show how BGP resolves a specific next hop, run the NVUE `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> resolved-via` command for IPv4 or the `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> resolved-via` command for IPv6.
+To show how BGP resolves a specific next hop, run these NVUE commands:
+- `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> resolved-via` for IPv4
+- `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> resolved-via` for IPv6
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 resolved-via

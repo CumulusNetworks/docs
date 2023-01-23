@@ -91,7 +91,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 5. In the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Add image** above the table.
 
-    {{<figure src="/images/netq/import-netq-images-450.png" alt="dialog prompting the user to import the NetQ images" width="250">}}
+    {{<figure src="/images/netq/import-netq-images-450.png" alt="dialog prompting the user to import the NetQ images" width="450">}}
 
 6. Provide the *.deb* file(s) from an external drive that matches the criteria for the selected image.
 
@@ -146,7 +146,7 @@ After obtaining the images, upload them to NetQ with the UI or CLI:
 
 2. Select the **Add image** button on the appropriate card:
 
-    {{<img src="/images/netq/add-image-450.png" alt="" width="600">}}
+    {{<img src="/images/netq/add-image-updated-450.png" alt="" width="500">}}
 
 3. Provide one or more images from an external drive.
 

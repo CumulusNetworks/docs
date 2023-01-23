@@ -33,13 +33,13 @@ Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new featur
   - {{<link url="TACACS" text="TACACS+">}} commands (in Beta)
   - {{<link url="Supported-Route-Table-Entries/#supported-route-entries" text="ASIC Resource Slicing">}} (KVD) commands
   - {{<link url="Link-Layer-Discovery-Protocol/#set-lldp-mode" text="LLDP commands">}} to send either CDP frames only or LLDP frames only
-  - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#ingress-cos-or-dscp-for-marking" text="traffic remarking">}}, and advanced buffer configuration
+  - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#8021p-or-dscp-for-marking" text="traffic remarking">}}, and advanced buffer configuration
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - {{<link url="NVUE-CLI/#configure-auto-save" text="Auto save configuration">}} option
   - {{<link url="NVUE-CLI/#add-configuration-apply-messages" text="Configuration apply messages">}}
-  - New BGP show commands to show BGP update group and nexthop details
+  - New BGP show commands to show {{<link url="Troubleshooting-BGP/#bgp-update-groups" text="update groups">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="next hop">}} details
   - Updated BGP {{<link url="Virtual-Routing-and-Forwarding-VRF/#verify-route-leaking-configuration" text="route import">}} show commands now show operational data
-  - New EVPN show commands to show EVPN local RIB and VNI information
+  - New {{<link url="Troubleshooting-EVPN" text="EVPN show commands">}} to show EVPN local RIB and VNI information
   - The `nv set evpn evi`, `nv unset evpn evi`, and `nv show evpn evi` commands are changed to `nv set evpn vni`, `nv unset evpn vni`, and `nv show evpn vni`
   - Obfuscated passwords to protect passwords from casual viewing
   - New commands:

@@ -552,7 +552,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `link_pause` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+Uncomment and edit the `link_pause` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
 link_pause.port_group_list = [my_pause_ports]
@@ -897,11 +897,11 @@ Traffic shaping typically occurs at egress and traffic policing at ingress.
 
 ### Shaping
 
-Traffic shaping allows a switch to send traffic at an average bitrate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts; for example, an ISP.
+Traffic shaping allows a switch to send traffic at an average bitrate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts.
 
 Traffic shaping works by holding packets in the buffer and releasing them at specific time intervals.
 
-Cumulus Linux supports two levels of hierarchical traffic shaping: one at the egress queue level and one at the port level. This allows for minimum and maximum bandwidth guarantees for each egress-queue and a defined port traffic shaping rate.
+Cumulus Linux supports two levels of hierarchical traffic shaping: one at the egress queue level and one at the port level. This allows for minimum and maximum bandwidth guarantees for each egress queue and a defined port traffic shaping rate.
 
 The following example configuration:
 - Sets the profile name (port group) to use with the traffic shaping settings to `shaper1`.
@@ -933,8 +933,6 @@ cumulus@switch:~$ nv config apply
 Edit the `shaping` section of the `qos_features.conf` file.
 
 Cumulus Linux bases the `egr_queue` value on the configured [egress queue](#egress-queues).
-
-Traffic shaping configuration supports [Port Groups](#using-port-groups) so that you can apply different shaping profiles to different ports.
 
 ```
 shaping.port_group_list = [shaper1]

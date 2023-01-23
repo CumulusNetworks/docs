@@ -1469,7 +1469,7 @@ exit-address-family
 
 This simulation starts with the example BGP configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
-To validate the configuration, run the commands listed in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/Troubleshooting/" text="Troubleshooting">}} section.
+To validate the configuration, run the commands listed in the {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-3/Border-Gateway-Protocol-BGP/Troubleshooting-BGP/" text="Troubleshooting-BGP">}} section.
 
 
 {{< /tab >}}

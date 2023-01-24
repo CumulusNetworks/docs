@@ -47,7 +47,7 @@ To view the full history of NVOS upgrades:
 
 {{<figure src="/images/netq/nvos-upgrade-history-450.png" alt="" width="450">}}
 
-3. On the NVOS upgrade history card, select elect **View**. From here, you can sort and filter upgrades using the controls at the top of the screen.
+3. On the NVOS upgrade history card, select **View**. From here, you can sort and filter upgrades using the controls at the top of the screen.
 
 To view information at the most granular level, expand an individual upgrade job and select the arrow:
 

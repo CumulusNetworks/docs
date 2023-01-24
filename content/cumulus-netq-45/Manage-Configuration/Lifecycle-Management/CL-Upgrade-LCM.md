@@ -80,7 +80,7 @@ After you complete the preparation steps, upgrade Cumulus Linux:
 
 3. Select the switches you want to upgrade. You can filter by role or sort by column heading to narrow down the list.
 
-4. Click {{<img src="/images/netq/cl-upgrade-icon-blk.png" height="14" width="18">}} (Upgrade OS) above the table.
+4. Click {{<img src="/images/netq/cl-upgrade-icon-blk.png" height="14" width="18">}} Upgrade OS above the table.
 
     From this point forward, the software walks you through the upgrade process, beginning with a review of the switches that you selected for upgrade.
 

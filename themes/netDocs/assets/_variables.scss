@@ -1,15 +1,16 @@
-// Import DIN PRO webfont
-@font-face{font-family:"DINPro";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro.woff") format("woff");font-style:normal;font-weight:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+// Import NVIDIA Sans webfont
 
-@font-face{font-family:"DINPro";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Bold.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Bold.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Bold.woff") format("woff");font-style:normal;font-weight:bold;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+@font-face{font-family:"NVIDIASans";src:url("/fonts/NVIDIASans_Rg.ttf") format("truetype");font-style:normal;font-weight:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-@font-face{font-family:"DINPro";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Light.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Light.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Light.woff") format("woff");font-style:normal;font-weight:lighter;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+@font-face{font-family:"NVIDIASans";src:url("/fonts/NVIDIASans_Bd.ttf") format("truetype");font-style:normal;font-weight:bold;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-@font-face{font-family:"DINPro-Regular";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Regular.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Regular.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Regular.woff") format("woff"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Regular.ttf") format("truetype");-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+@font-face{font-family:"NVIDIASans";src:url("/fonts/NVIDIASans_Lt.ttf") format("woff");font-style:normal;font-weight:lighter;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-@font-face{font-family:"DINPro-Light";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Light.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Light.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Light.woff") format("woff"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINPro-Light.ttf") format("truetype");-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+@font-face{font-family:"NVIDIASans-Regular";src:url("/fonts/NVIDIASans_Rg.ttf") format("truetype");-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-@font-face{font-family:"DINWebPro-Medium";src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Medium.eot");src:url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Medium.eot?#iefix") format("embedded-opentype"),url("https://images.nvidia.com/etc/designs/nvidiaGDC/clientlibs_base/fonts/DINWebPro-Medium.woff") format("woff");-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+@font-face{font-family:"NVIDIASans-Light";src:url("/fonts/NVIDIASans_Lt.ttf") format("truetype");-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+@font-face{font-family:"NVIDIASans-Medium";src:url("/fonts/NVIDIASans_Md.ttf") format("truetype");-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
 
 $padding-1: 1px;
@@ -17,7 +18,7 @@ $padding-4: 0.25rem;
 $padding-8: 0.5rem;
 $padding-16: 1rem;
 
-$cumulus-font-family: "DINPro-Regular", "Helvetica", sans-serif;
+$cumulus-font-family: "NVIDIASans-Regular", "Helvetica", sans-serif;
 $font-size-base: 17px;
 $font-size-12: 0.70rem;
 $font-size-14: 0.823rem;

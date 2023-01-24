@@ -158,7 +158,9 @@ route-advertisement               auto
 
 You can show information about update group events or information about a specific IPv4 or IPv6 update group.
 
-To show information about update group events, run the NVUE `nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group` or `nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group` command, or the vtysh `show bgp update-group` command:
+To show information about update group events, run the vtysh `show bgp update-group` command or run these NVUE commands:
+- `nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group` for IPv4
+- `nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group` for IPv6
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group
@@ -167,11 +169,9 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 5  1674253324                                                   0                                         5             sub-group: 5               
 ```
 
-To show information about a specific update group, such as the number of peer refresh events, prune events, and packet queue length, run these NVUE commands:
+To show information about a specific update group, such as the number of peer refresh events, prune events, and packet queue length, run the vtysh `show bgp update-group <group-id>` command or run these NVUE commands:
 - `nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group <group-id>` for IPv4
 - `nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group <group-id>` for IPv6
-
-Alternatively, you can run the vtysh `show bgp update-group <group-id>` command.
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 5
@@ -195,7 +195,7 @@ sub-group
 
 ## Show Next Hop Information
 
-To show information about a specific next hop, you can run the vtysh `show bgp vrf default nexthop <ip-address>` command or you can run these NVUE commands:
+To show information about a specific next hop, run the vtysh `show bgp vrf default nexthop <ip-address>` command or run these NVUE commands:
 - `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address>` for IPv4
 - `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address>` for IPv6
 

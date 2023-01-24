@@ -78,78 +78,39 @@ After you complete the preparation steps, upgrade Cumulus Linux:
 
 2. Locate the Switches card and click **Manage**.
 
-3. Select the switches you want to upgrade. You can filter by role or sort by column heading to narrow down the list.
+3. Select the switches you want to upgrade.
 
 4. Click {{<img src="/images/netq/cl-upgrade-icon-blk.png" height="14" width="18">}} Upgrade OS above the table.
 
-    From this point forward, the software walks you through the upgrade process, beginning with a review of the switches that you selected for upgrade.
+    Follow the steps in the UI. Create a name for the upgrade and review the switches that you selected to upgrade:
 
-    {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-tab-320.png" alt="screen displaying 4 switches selected for upgrading" width="500">}}
+    {{<figure src="/images/netq/upgrade-switches-450.png" alt="screen displaying 2 switches selected for upgrading" width="550">}}
 
-6. Verify that the switches you selected are included, and that they have the correct IP address and roles assigned.
-
-If you accidentally included a switch that you do NOT want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} to remove it from the upgrade job.
+If you accidentally included a switch that you do *not* want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} Delete to remove it from the upgrade.
    
+If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} Edit, then select a role for that switch from the dropdown. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} Cancel to discard the change.
 
-        {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-modify-switch-320.png" alt="switch assigned a spine roll with dropdown to change role" width="500">}}
+7. Click **Next**.
 
-If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}}, then select a role for that switch from the dropdown. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} to discard a role change:
+8. Select either a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default image">}} or custom version.
 
-        {{<figure src="/images/netq/lcm-upgrade-switches-review-switches-edit-roles-320.png" width="150">}}
-
-7. When you are satisfied that the list of switches is accurate for the job, click **Next**.
-
-8. Verify that you want to use the default Cumulus Linux or NetQ version for this upgrade job. If not, click **Custom** and select an alternate image from the list.
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-describe-tab-320.png" width="500" caption="Default CL Version Selected">}}{{<figure src="/images/netq/lcm-upgrade-switches-describe-tab-custom-version-320.png" width="400" caption="Custom CL Version Selected">}}
-
-9. Note that the switch access authentication method, *Using global access credentials*, indicates you have chosen either basic authentication with a username and password or SSH key-based authentication for all of your switches. Authentication on a per switch basis is not currently available.
+9. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
 
 10. Click **Next**.
 
 11. Verify the upgrade job options.
 
-    By default, NetQ takes a network snapshot before the upgrade and then one after the upgrade is complete. It also performs a roll back to the original Cumulus Linux version on any server which fails to upgrade.
+    By default, NetQ performs a roll back to the original Cumulus Linux version on any server which fails to upgrade. It also takes network snapshots before and after the upgrade.
 
-    You can exclude selected services and protocols from the snapshots. By default, node and services are included, but you can deselect any of the other items. Click on one to remove it; click again to include it. This is helpful when you are not running a particular protocol, or you have concerns about the amount of time it will take to run the snapshot. Note that removing services or protocols from the job might produce non-equivalent results compared with prior snapshots.
+    You can exclude selected services and protocols from the snapshots by clicking them. Node and services must be included.
 
-    While these options provide a smoother upgrade process and are highly recommended, you have the option to disable these options by clicking **No** next to one or both options.
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-options-tab-320.png" width="500">}}
+    {{<figure src="/images/netq/upgrade-switch-options-450.png" width="500">}}
 
 12. Click **Next**.
 
-13. After the pre-checks have completed successfully, click **Preview**. If there are failures, refer to {{<link url="#Pre-check Failures" text="Pre-check Failures">}}.
+13. NetQ performs several checks to eliminate preventable problems during the upgrade process. When all of the pre-checks pass, click **Preview**.
 
-    These checks verify the following:
-
-    - Selected switches are not currently scheduled for, or in the middle of, a Cumulus Linux or NetQ Agent upgrade
-    - Selected versions of Cumulus Linux and NetQ Agent are valid upgrade paths
-    - All mandatory parameters have valid values, including MLAG configurations
-    - All switches are reachable
-    - The order to upgrade the switches, based on roles and configurations
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-precheck-tab-success-320.png" width="500">}}
-
-14. Review the job preview.
-
-    When all of your switches have roles assigned, this view displays the chosen job options (top center), the pre-checks status (top right and left in Pre-Upgrade Tasks), the order in which the switches are planned for upgrade (center; upgrade starts from the left), and the post-upgrade tasks status (right).
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-preview-job-320.png" width="700" caption="Roles assigned">}}
-
-<div style="padding-left: 18px;">When none of your switches have roles assigned <em>or</em> they are all of the same role, this view displays the chosen job options (top center), the pre-checks status (top right and left in Pre-Upgrade Tasks), a list of switches planned for upgrade (center), and the post-upgrade tasks status (right).</div>
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-preview-single-roll-320.png" width="700" caption="All roles the same">}}
-
-<div style="padding-left: 18px;">When some of your switches have roles assigned, any switches without roles get upgraded last and get grouped under the label <em>Stage1</em>.</div>
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-preview-job-someroles-310.png" width="700" caption="Some roles assigned">}}
-
-15. When you are happy with the job specifications, click **Start Upgrade**.
-
-16. Click **Yes** to confirm that you want to continue with the upgrade, or click **Cancel** to discard the upgrade job.
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-confirm-dialog-320.png" width="200">}}
+14. NetQ directs you to a screen where you can review the upgrade. After reviewing, select **Start upgrade** and confirm.
 
 {{</tab>}}
 
@@ -185,223 +146,24 @@ cumulus@switch:~$ netq lcm upgrade cl-image name upgrade-430 cl-version 4.3.0 ne
 
 If one or more of the pre-checks fail, resolve the related issue and start the upgrade again. In the NetQ UI these failures appear on the Upgrade Preview page. In the NetQ CLI, it appears in the form of error messages in the `netq lcm show upgrade-jobs cl-image` command output.
 
-{{<expand "Pre-check failure messages">}}
-
-<!-- vale off -->
-| Pre-check | Message | Type | Description | Corrective Action |
-| --------- | ------- | ---- | ----------- | ----------------- |
-| (1) Switch Order | &lt;hostname1&gt; switch cannot be upgraded without isolating &lt;hostname2&gt;, &lt;hostname3&gt; which are connected neighbors. Unable to upgrade | Warning | Switches hostname2 and hostname3 get isolated during an upgrade, making them unreachable. These switches are skipped if you continue with the upgrade. | Reconfigure hostname2 and hostname3 to have redundant connections, or continue with upgrade knowing that connectivity is lost with these switches during the upgrade process. |
-| (2) Version Compatibility | Unable to upgrade &lt;hostname&gt; with CL version &lt;#&gt; to &lt;#&gt; | Error | LCM only supports the following Cumulus Linux upgrades:<br/><ul><li>3.7.12 to later versions of Cumulus Linux 3</li><li>3.7.12 or later to 4.2.0 or later versions of Cumulus Linux 4</li><li>4.0 to later versions of Cumulus Linux 4</li><li>4.4.0 or later to Cumulus Linux 5.0 releases</li><li>5.0.0 or later to Cumulus Linux 5.1 releases</li></ul> | Perform a fresh install of CL. |
-|  | Image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;NVIDIA \| Broadcom&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified Cumulus Linux image is not available in the LCM repository | Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}. |
-|  | Restoration image not uploaded for the combination: CL Version - &lt;x.y.z&gt;, Asic Vendor - &lt;Mellanox \| Broadcom&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified Cumulus Linux image needed to restore the switch back to its original version if the upgrade fails is not available in the LCM repository. This applies only when the "Roll back on upgrade failure" job option is selected. | Upload missing image. Refer to {{<link title="#Upload Images" text="Upload Images">}}. |
-|  | NetQ Agent and NetQ CLI Debian packages are not present for combination: CL Version - &lt;x.y.z&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified NetQ packages are not installed on the switch. | Upload missing packages. Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}} and {{<link title="Install NetQ CLI" text="Install NetQ CLI">}}. |
-|  |  | Restoration NetQ Agent and NetQ CLI Debian packages are not present for combination: CL Version - &lt;x.y.z&gt;, CPU Arch - &lt;x86 \| ARM &gt; | Error | The specified NetQ packages are not installed on the switch. | Install missing packages. Refer to {{<link title="Install NetQ Agents" text="Install NetQ Agents">}} and {{<link title="Install NetQ CLI" text="Install NetQ CLI">}}. |
-|  | CL version to be upgraded to and current version on switch &lt;hostname&gt; are the same. | Warning | Switch is already operating the desired upgrade CL version. No upgrade is required. | Choose an alternate CL version for upgrade or remove switch from upgrade job. |
-| (3) Switch Connectivity | Global credentials are not specified | Error | Switch access credentials are required to perform a CL upgrade, and they have not been specified. | Specify access credentials. Refer to {{<link title="#Specify Switch Credentials" text="Specify Switch Credentials">}}. |
-|  | Switch is not in NetQ inventory: &lt;hostname&gt; | Error | LCM cannot upgrade a switch that is not in its inventory. | Verify you have the correct hostname or IP address for the switch.<br/><br/>Verify the switch has NetQ Agent 4.1.0 or later installed: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agents if needed. Refer to {{<link title="Upgrade NetQ Agents">}}. |
-|  | Switch &lt;hostname&gt; is rotten. Cannot select for upgrade. | Error | LCM must be able to communicate with the switch to upgrade it. | Troubleshoot the connectivity issue and retry upgrade when the switch is fresh. |
-|  | Total number of jobs &lt;running jobs count&gt; exceeded Max jobs supported 50 | Error | LCM can support a total of 50 upgrade jobs running simultaneously. | Wait for the total number of simultaneous upgrade jobs to drop below 50. |
-|  | Switch &lt;hostname&gt; is already being upgraded. Cannot initiate another upgrade. | Error | Switch is already a part of another running upgrade job. | Remove switch from current job or wait until the competing job has completed. |
-|  | Backup failed in previous upgrade attempt for switch &lt;hostname&gt;. | Warning | LCM was unable to back up switch during a previously failed upgrade attempt. | You could back up the switch manually prior to upgrade if you want to restore the switch after upgrade. Refer to {{<link title="Back Up and Restore NetQ">}}. |
-|  | Restore failed in previous upgrade attempt for switch &lt;hostname&gt;. | Warning | LCM was unable to restore switch after a previously failed upgrade attempt. | You might need to restore the switch manually after upgrade. Refer to {{<link title="Back Up and Restore NetQ">}}. |
-|  | Upgrade failed in previous attempt for switch &lt;hostname&gt;. | Warning | LCM was unable to upgrade switch during last attempt. |  |
-| (4) MLAG Configuration | hostname:&lt;hostname&gt;,reason:&lt;MLAG error message&gt; | Error | An error in an MLAG configuration has been detected. For example: Backup IP 10.10.10.1 does not belong to peer. | Review the MLAG configuration on the identified switch. Refer to [Multi-Chassis Link Aggregation - MLAG]({{<ref "cumulus-linux-44/Layer-2/Multi-Chassis-Link-Aggregation-MLAG">}}). Make any needed changes. |
-|  | MLAG configuration checks timed out | Error | One or more switches stopped responding to the MLAG checks. |  |
-|  | MLAG configuration checks failed | Error | One or more switches failed the MLAG checks. |  |
-|  | For switch &lt;hostname&gt;, the MLAG switch with Role: secondary and ClagSysmac: &lt;MAC address&gt; does not exist. | Error | Identified switch is the primary in an MLAG pair, but the defined secondary switch is not in NetQ inventory. | Verify the switch has NetQ Agent 4.1.0 or later installed: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}}, then click <strong>Agents</strong> in the <strong>Network</strong> section, view <strong>Version</strong> column. Upgrade NetQ Agent if needed. Refer to {{<link title="Upgrade NetQ Agents">}}. Add the missing peer switch to NetQ inventory. |
-<!-- vale on -->
-
-{{</expand>}}
-
 ### Analyze Results
 
-After starting the upgrade you can monitor the progress of your upgrade job and the final results. While the views are different, essentially the same information is available from either the NetQ UI or the NetQ CLI.
+After starting the upgrade you can monitor the progress in the NetQ UI. Successful upgrades are indicated by a green {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/check-circle-1.svg" height="16" width="18">}}. Failed upgrades display error messages indicating the cause of failure.
 
-{{<tabs "TabID334">}}
+To view the progress of current upgrade jobs and the history of previous upgrade jobs using the CLI, run `netq lcm show upgrade-jobs cl-image`.
 
-{{<tab "NetQ UI">}}
-
-You can track the progress of your upgrade job from the Preview page or the Upgrade History page of the NetQ UI.
-
-{{<notice tip>}}
-
-If you get disconnected while the job is in progress, it might appear as if nothing is happening. Try closing (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}) and reopening your view (click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}), or refreshing the page.
-
-{{</notice>}}
-
-Several viewing options are available for monitoring the upgrade job.
-
-- Monitor the job with full details open on the Preview page:
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-320.png" width="700" caption="Single role">}}
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-job-upgrading-2-310.png" width="700" caption="Multiple roles and some without roles">}}
-
-<div style="padding-left: 18px;">Each switch goes through a number of steps. To view these steps, click <strong>Details</strong> and scroll down as needed. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-up-1.svg" height="18" width="18"/> collapse the step detail. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> to close the detail popup.</div>
-
-- Monitor the job with summary information only in the CL Upgrade History page. Open this view by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the full details view:
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-upgrading-summary-320.png" width="700">}}
-
-<div style="padding-left: 18px;">This view is refreshed automatically. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">}} to view what stage the job is in.</div>
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-stage-view-320.png" width="700">}}
-
-<div style="padding-left: 18px;">Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}} to view the detailed view.</div>
-
-- Monitor the job through the CL Upgrade History card in the **Job History** tab. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard. As you perform more upgrades the graph displays the success and failure of each job.
-
-    {{<figure src="/images/netq/lcm-cl-upgrade-history-card-inprogress-310.png" width="450">}}
-
-<div style="padding-left: 18px;">Click <strong>View</strong> to return to the Upgrade History page as needed.</div>
-
-### Sample Successful Upgrade
-
-On successful completion, you can:
-
-- Compare the network snapshots taken before and after the upgrade.
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-success-detail-300.png" width="700">}}
-
-<div style="padding-left: 18px;">Click <strong>Compare Snapshots</strong> in the detail view.</div>
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-compare-snapshots-300.png" width="700">}}
-
-<div style="padding-left: 18px;">Refer to {{<link title="#interpreting-the-comparison-data" text="Interpreting the Comparison Data">}} for information about analyzing these results.</div>
-
-- Download details about the upgrade in the form of a JSON-formatted file, by clicking **Download Report**.
-
-- View the changes on the Switches card of the LCM dashboard.
-
-    Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} Menu, then **Upgrade Switches**.
-
-    {{<figure src="/images/netq/lcm-switches-card-after-upgrade-300.png" width="200">}}
-
-<div style="padding-left: 18px;">In our example, all switches have been upgraded to Cumulus Linux 3.7.12.</div>
-
-### Sample Failed Upgrade
-
-If an upgrade job fails for any reason, you can view the associated error(s):
-
-1. From the CL Upgrade History dashboard, find the job of interest.
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-upg-history-upgrading-summary-320.png" width="700">}}
-
-2. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">}}.
-
-3. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}.
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-upgrade-error-open-320.png" width="700">}}
-
-<div style="padding-left: 18px;">Note in this example, all of the pre-upgrade tasks were successful, but backup failed on the spine switches.</div>
-
-4. To view what step in the upgrade process failed, click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-down-1.svg" height="18" width="18">}} and scroll down. Click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-up-1.svg" height="18" width="18">}} to close the step list.
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-upgrade-error-step-320.png" width="200">}}
-
-5. To view details about the errors, either double-click the failed step or click <strong>Details</strong> and scroll down as needed. Click <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-up-1.svg" height="18" width="18"/> collapse the step detail. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14"/> to close the detail popup.
-
-    {{<figure src="/images/netq/lcm-upgrade-switches-upgrade-error-message-320.png" width="700">}}
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
-To see the progress of current upgrade jobs and the history of previous upgrade jobs, run `netq lcm show upgrade-jobs cl-image`:
-
-```
-cumulus@switch:~$ netq lcm show upgrade-jobs cl-image
-Job ID       Name            CL Version           Pre-Check Status                 Warnings         Errors       Start Time
------------- --------------- -------------------- -------------------------------- ---------------- ------------ --------------------
-job_cl_upgra Leafs upgr to C 4.2.0                COMPLETED                                                      Fri Sep 25 17:16:10
-de_ff9c35bc4 L410                                                                                                2020
-950e92cf49ac
-bb7eb4fc6e3b
-7feca7d82960
-570548454c50
-cd05802
-job_cl_upgra Spines to 4.2.0 4.2.0                COMPLETED                                                      Fri Sep 25 16:37:08
-de_9b60d3a1f                                                                                                     2020
-dd3987f787c7
-69fd92f2eef1
-c33f56707f65
-4a5dfc82e633
-dc3b860
-job_upgrade_ 3.7.12 Upgrade  3.7.12               WARNING                                                        Fri Apr 24 20:27:47
-fda24660-866                                                                                                     2020
-9-11ea-bda5-
-ad48ae2cfafb
-job_upgrade_ DataCenter      3.7.12               WARNING                                                        Mon Apr 27 17:44:36
-81749650-88a                                                                                                     2020
-e-11ea-bda5-
-ad48ae2cfafb
-job_upgrade_ Upgrade to CL3. 3.7.12               COMPLETED                                                      Fri Apr 24 17:56:59
-4564c160-865 7.12                                                                                                2020
-3-11ea-bda5-
-ad48ae2cfafb
-```
-
-To see details of a particular upgrade job, run `netq lcm show status job-ID`:
-
-```
-cumulus@switch:~$ netq lcm show status job_upgrade_fda24660-8669-11ea-bda5-ad48ae2cfafb
-Hostname    CL Version    Backup Status    Backup Start Time         Restore Status    Restore Start Time        Upgrade Status    Upgrade Start Time
-----------  ------------  ---------------  ------------------------  ----------------  ------------------------  ----------------  ------------------------
-spine02     4.1.0         FAILED           Fri Sep 25 16:37:40 2020  SKIPPED_ON_FAILURE  N/A                   SKIPPED_ON_FAILURE  N/A
-spine03     4.1.0         FAILED           Fri Sep 25 16:37:40 2020  SKIPPED_ON_FAILURE  N/A                   SKIPPED_ON_FAILURE  N/A
-spine04     4.1.0         FAILED           Fri Sep 25 16:37:40 2020  SKIPPED_ON_FAILURE  N/A                   SKIPPED_ON_FAILURE  N/A
-spine01     4.1.0         FAILED           Fri Sep 25 16:40:26 2020  SKIPPED_ON_FAILURE  N/A                   SKIPPED_ON_FAILURE  N/A
-```
+To see details of a particular upgrade job, run `netq lcm show status job-ID`.
 
 To see only Cumulus Linux upgrade jobs, run `netq lcm show status cl-image job-ID`.
 
-{{</tab>}}
+Upon successful upgrade, you can:
 
-{{</tabs>}}
+- {{<link title="#interpreting-the-comparison-data" text="Compare network snapshots">}} taken before and after the upgrade.
 
+- Download details about the upgrade in a JSON-formatted file, by clicking **Download report**.
 ### Post-check Failures
 
 A successful upgrade can still have post-check warnings. For example, you updated the OS, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages appear in the Post-Upgrade Tasks section of the preview. Click the warning category to view the detailed messages.
-
-{{< expand "Post-check failure messages"  >}}
-
-<table>
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 24%" />
-<col style="width: 10%" />
-<col style="width: 23%" />
-<col style="width: 23%" />
-</colgroup>
-<thead>
-<tr>
-<th>Post-check</th>
-<th>Message</th>
-<th>Type</th>
-<th>Description</th>
-<th>Corrective Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Health of Services</td>
-<td>Service &lt;service-name&gt; is missing on Host &lt;hostname&gt; for &lt;VRF default|VRF mgmt&gt;.</td>
-<td>Warning</td>
-<td>A given service is not yet running on the upgraded host. For example: Service ntp is missing on Host Leaf01 for VRF default.</td>
-<td>Wait for up to x more minutes to see if the specified services come up.</td>
-</tr>
-<tr>
-<td>Switch Connectivity</td>
-<td>Service &lt;service-name&gt; is missing on Host &lt;hostname&gt; for &lt;VRF default|VRF mgmt&gt;.</td>
-<td>Warning</td>
-<td>A given service is not yet running on the upgraded host. For example: Service ntp is missing on Host Leaf01 for VRF default.</td>
-<td>Wait for up to x more minutes to see if the specified services come up.</td>
-</tr>
-</tbody>
-</table>
-
-{{< /expand >}}
-
 ### Reasons for Upgrade Job Failure
 
 Upgrades can fail at any of the stages of the process. The following table lists common reasons for upgrade failures:
@@ -433,7 +195,7 @@ To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on
 
 3. Enter a name for the scan.
 
-    {{<figure src="/images/netq/lcm-discover-search-switches-tab-310.png" width="500">}}
+    {{<figure src="/images/netq/switch-discovery-450.png" width="500">}}
 
 4. Choose whether you want to look for switches by entering IP address ranges OR import switches using a comma-separated values (CSV) file.
 
@@ -457,7 +219,7 @@ To discover switches using address ranges:
 
     For example, *198.51.100.0-128* or *198.51.100.0-128,190,200-253*.
 
-3. Add additional ranges as needed. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/subtract-circle.svg" height="18" width="18">}} to remove a range if needed.
+3. Add additional ranges as needed. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/subtract-circle.svg" height="18" width="18">}} to remove a range.
 
 If you decide to use a CSV file instead, the ranges you entered will remain if you return to using IP ranges again.
 

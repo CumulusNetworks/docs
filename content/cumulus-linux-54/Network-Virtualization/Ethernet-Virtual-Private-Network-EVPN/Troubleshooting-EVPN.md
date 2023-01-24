@@ -10,11 +10,11 @@ The following outputs are from the {{<exlink url="https://gitlab.com/cumulus-con
 
 ## General Commands
 
-You can use various NVUE or Linux commands to examine links, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
+You can use various NVUE or Linux commands to examine interfaces, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
 
-- `nv show nve vxlan` (NVUE) or `ip [-d] link show` (Linux)
+- `nv show nve vxlan` (NVUE) or `ip [-d] link show type vxlan` (Linux)
 - `nv show bridge domain <bridge> mac-table` (NVUE) or `bridge [-s] fdb show` (Linux)
-- `bridge vlan show` (Linux)
+- `nv show bridge domain <bridge> vlan` (NVUE) or `bridge vlan show` (Linux)
 - `ip neighbor show` (Linux)
 - `ip route show [table <vrf-name>]` (Linux)
 
@@ -31,10 +31,10 @@ cumulus@leaf01:~$ ip -d link show type vxlan
 
 The following example output for the `net show bridge macs` command shows:
 
-- bond1 is an access port with VLAN ID 10, which maps to VXLAN interface vni10.
-- 26:76:e6:93:32:78 is the server01 host MAC learned on bond1.
+- bond1 is in VLAN ID 10, which maps to VXLAN interface vni10.
+- 26:76:e6:93:32:78 is the host MAC learned on bond1.
 - A remote VTEP that participates in VLAN ID 10 is 10.0.1.2 (the FDB entries have a MAC address of 00:00:00:00:00:00). BUM traffic replication uses these entries.
-- 68:0f:31:ae:3d:7a is a remote host MAC of server04 reachable over the VXLAN tunnel via VTEP 10.0.1.2.
+- 68:0f:31:ae:3d:7a is a remote host MAC reachable over the VXLAN tunnel via VTEP 10.0.1.2.
 
 ```
 cumulus@leaf01:mgmt:~$ net show bridge macs
@@ -250,37 +250,30 @@ VNI        Type VxLAN IF              # MACs   # ARPs   # Remote VTEPs  Tenant V
 4002       L3   vniBLUE               0        0        n/a             BLUE
 ```
 
-Run the NVUE `nv show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to examine EVPN information for a specific VNI in detail. The following example output shows details for the layer 2 VNI 10 as well as for the layer 3 VNI 4001. For the layer 2 VNI, the output shows the remote VTEPs that contain that VNI. For the layer 3 VNI, the router shows the router MAC and associated layer 2 VNIs. The state of the layer 3 VNI depends on the state of its associated VRF as well as the states of its underlying VXLAN interface and SVI.
+Run the NVUE `nv show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to examine EVPN information for a specific VNI in detail. The following example output shows details for the layer 2 VNI 10. The output shows the remote VTEPs that contain that VNI.
 
 ```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# show evpn vni 10
-VNI: 10
- Type: L2
- Tenant VRF: RED
- VxLAN interface: vni10
- VxLAN ifIndex: 14
- Local VTEP IP: 10.0.1.1
- Mcast group: 0.0.0.0
- Remote VTEPs for this VNI:
-  10.0.1.2 flood: HER
- Number of MACs (local and remote) known for this VNI: 8
- Number of ARPs (IPv4 and IPv6, local and remote) known for this VNI: 6
- Advertise-gw-macip: No
-cumulus@leaf01:mgmt:~$  
-cumulus@leaf01:mgmt:~$ net show evpn vni 4001
-VNI: 4001
-  Type: L3
-  Tenant VRF: RED
-  Local Vtep Ip: 10.0.1.1
-  Vxlan-Intf: vniRED
-  SVI-If: vlan4001
-  State: Up
-  VNI Filter: none
-  System MAC: 44:38:39:be:ef:aa
-  Router MAC: 44:38:39:be:ef:aa
-  L2 VNIs: 10 20
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10
+                   operational  applied
+-----------------  -----------  -------
+route-advertise                        
+  default-gateway  off                 
+  svi-ip           off                 
+bridge-domain      br_default          
+host-count         3                   
+local-vtep         10.10.10.1          
+mac-count          7                   
+remote-vtep-count  2                   
+tenant-vrf         RED                 
+vlan               10                  
+vxlan-interface    vxlan48
+
+remote-vtep
+==============
+               flood
+    ---------  -----
+    10.0.1.12  HER  
+    10.0.1.34  HER  
 ```
 
 ## Examine Local and Remote MAC Addresses for a VNI
@@ -288,19 +281,19 @@ VNI: 4001
 Run the NVUE `nv show evpn vni <vni> mac` command or the vtysh `show evpn mac vni <vni>` command to examine all local and remote MAC addresses for a VNI. This command is only relevant for a layer 2 VNI:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac
-                   local-interface  local-mobility-seq  neigh-sync-count  remote-esi  remote-mobility-seq  remote-vtep  type    vlan  Summary
------------------  ---------------  ------------------  ----------------  ----------  -------------------  -----------  ------  ----  -------
-44:38:39:22:01:8a                   0                                                 0                    10.0.1.34    remote               
-44:38:39:22:01:78  peerlink         0                                                 0                                 local                
-44:38:39:22:01:84                   0                                                 0                    10.0.1.34    remote               
-cumulus@leaf01:mgmt:~$ net show evpn mac vni 10
-Number of MACs (local and remote) known for this VNI: 3
-Flags: B=bypass N=sync-neighs, I=local-inactive, P=peer-active, X=peer-proxy
-MAC               Type   Flags Intf/Remote ES/VTEP            VLAN  Seq #'s
-44:38:39:22:01:8a remote       10.0.1.34                            0/0
-44:38:39:22:01:84 remote       10.0.1.34                            0/0
-44:38:39:22:01:78 local        peerlink                       10    0/0 
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac                                                                               
+LocMobSeq - local mobility sequence, RemMobSeq - remote mobility sequence,       
+RemoteVtep - Remote Vtep address, Esi - Remote Esi                               
+                                                                                 
+MAC address        Type    State  LocMobSeq  RemMobSeq  Interface  RemoteVtep  Esi
+-----------------  ------  -----  ---------  ---------  ---------  ----------  ---
+44:38:39:22:01:7a  local          0          0          vlan10                    
+44:38:39:22:01:8a  remote         0          0                     10.0.1.34      
+44:38:39:22:01:84  remote         0          0                     10.0.1.34      
+48:b0:2d:0c:a9:f4  remote         0          0                     10.0.1.12      
+48:b0:2d:3a:a3:38  local          1408       1407       bond1                     
+48:b0:2d:d2:ac:68  remote         0          0                     10.0.1.34      
+48:b0:2d:eb:26:6e  remote         1          0                     10.0.1.34      
 ```
 
 Run the vtysh `show evpn mac vni all` command or the `net show evpn mac vni all` command to examine MAC addresses for all VNIs.
@@ -623,6 +616,8 @@ EVPN type-5 prefix: [5]:[EthTag]:[IPlen]:[IP]
 ```
 
 To display the VNI routing table for all VNIs, run the vtysh `show bgp l2vpn evpn route vni all` command.
+
+To view the EVPN RIB with NVUE, run the `nv show vrf <vrf> router bgp address-family l2vpn-evpn loc-rib rd <rd> route-type <type> route` command.
 
 ## Show the VRF BGP Routing Table
 

@@ -195,7 +195,7 @@ sub-group
 
 ## Show Next Hop Information
 
-To show information about a specific next hop, run these NVUE commands:
+To show information about a specific next hop, you can run the vtysh `show bgp vrf default nexthop <ip-address>` command or you can run these NVUE commands:
 - `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address>` for IPv4
 - `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address>` for IPv6
 

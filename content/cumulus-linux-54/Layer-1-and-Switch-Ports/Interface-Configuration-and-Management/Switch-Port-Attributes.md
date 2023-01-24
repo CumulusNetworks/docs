@@ -1507,7 +1507,7 @@ out-pkts             43945
 ...
 ```
 
-## Query SFP Port Information
+### Query SFP Port Information
 
 To verify SFP settings, run the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
 

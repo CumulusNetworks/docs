@@ -26,6 +26,11 @@ Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new featur
    - New format for {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} in the `/etc/cumulus/ports.conf` file
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
    - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} configuration
+
+   {{%notice note%}}
+The port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} for important upgrade information.
+{{%/notice%}}
+
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches
 - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
@@ -39,7 +44,7 @@ Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new featur
   - {{<link url="NVUE-CLI/#add-configuration-apply-messages" text="Configuration apply messages">}}
   - New BGP show commands to show {{<link url="Troubleshooting-BGP/#bgp-update-groups" text="update groups">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="next hop">}} details
   - Updated BGP {{<link url="Virtual-Routing-and-Forwarding-VRF/#verify-route-leaking-configuration" text="route import">}} show commands now show operational data
-  - New {{<link url="Troubleshooting-EVPN" text="EVPN show commands">}} to show EVPN local RIB and VNI information
+  - New {{<link url="Troubleshooting-EVPN" text="EVPN show commands">}} to show {{<link url="Troubleshooting-EVPN#show-the-vni-evpn-routing-table" text="EVPN local RIB">}} and {{<link url="Troubleshooting-EVPN/#show-evpn-vnis" text="VNI">}} information
   - The `nv set evpn evi`, `nv unset evpn evi`, and `nv show evpn evi` commands are changed to `nv set evpn vni`, `nv unset evpn vni`, and `nv show evpn vni`
   - Obfuscated passwords to protect passwords from casual viewing
   - New commands:

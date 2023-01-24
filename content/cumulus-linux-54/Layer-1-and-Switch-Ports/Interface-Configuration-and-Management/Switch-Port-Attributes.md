@@ -1271,17 +1271,19 @@ You can break out (split) a port using the following options:
 - `4x` splits the port into four interfaces.
 - `8x` splits the port into eight interfaces.
 
-Each split port transmits at the same speed. For example, if you split a 100G port into four interfaces, the speed for each interface is 25G. You can overide this configuration and configure specific speeds for the split ports if necessary.
+If you split a 100G port into four interfaces and auto-negotiation is on (the default setting), Cumulus Linux advertises the speed for each interface up to 25G. You can overide this configuration and set specific speeds for the split ports if necessary.
 
-{{%notice note%}}
-- Cumulus Linux 5.4 and later uses a new format for port splitting. For example, instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. If you upgrade to Cumulus Linux 5.4, Cumulus Linux continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, the NVUE command port split options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) in Cumulus Linux 5.3 and earlier are depricated. There is no backward compatibility for these deprecated NVUE command options; make sure to modify any configuration scripts when you upgrade to Cumulus Linux 5.4.
-- In Cumulus Linux 5.3 and earlier, you can configure port speed in the the `/etc/cumulus/ports.conf` file. If you upgrade to Cumulus Linux 5.4, Cumulus Linux no longer supports the speed configuration in the `/etc/cumulus/ports.conf` file. You must set the speed in the `/etc/network/interfaces` file.
+{{%notice warning%}}
+- Cumulus Linux 5.4 and later uses a new format for port splitting; instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. The new format does not support specifying a speed for breakout ports in the `/etc/cumulus/ports.conf` file. To set a maximum speed, either set the `link-speed` for each split port in the `/etc/network/interfaces` file or with the NVUE `nv set interface <interface> link speed <speed>` command.
+- Cumulus Linux 5.4 continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, the NVUE command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) in Cumulus Linux 5.3 and earlier are deprecated with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, you must either:
+  - Upgrade to Cumulus Linux 5.4 with a binary installation and configure your switch with the new syntax.
+  - Before you do an `apt upgrade`, edit the `/etc/nvue.d/startup.yaml` file with the new syntax.
 {{%/notice%}}
 
 {{< tabs "TabID1281 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example command breaks out a 100G port on swp1 into four interfaces at equal speeds (25G):
+The following example breaks out a 100G port on swp1 into four interfaces. Cumulus Linux advertises the speed for each interface up to 25G:
 
 ```
 cumulus@switch:~$ nv set interface swp1 link breakout 4x
@@ -1289,12 +1291,21 @@ cumulus@switch:~$ nv set interface swp1s0-3 link state up
 cumulus@switch:~$ nv config apply
 ```
 
-The following example command splits the port into four interfaces and configures the speed for each breakout port to 10G.
+The following example splits the port into four interfaces. When auto-negotiation is on (the default setting), Cumulus Linux advertises the speed for each interface up to 10G.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link breakout 4x
 cumulus@switch:~$ nv set interface swp1s0-3 link state up
 cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
+```
+
+To force each split interface to only run at 10G, disable auto-negotiation:
+
+```
+cumulus@switch:~$ nv set interface swp1 link breakout 4x
+cumulus@switch:~$ nv set interface swp1s0-3 link state up
+cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
+cumulus@switch:~$ nv set interface swp1s0-3 link auto-negotiate off
 ```
 
 {{%notice note%}}
@@ -1304,7 +1315,7 @@ Depending on the logical interface limit on certain switches, Cumulus Linux must
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. To split a port into multiple interfaces, edit the `/etc/cumulus/ports.conf` file. The following example command breaks out a 100G port on swp1 into four interfaces at equal speeds (25G).
+1. To split a port into multiple interfaces, edit the `/etc/cumulus/ports.conf` file. The following example command breaks out swp1 into four interfaces.
 
    ```
    cumulus@switch:~$ sudo cat /etc/cumulus/ports.conf
@@ -1326,7 +1337,7 @@ Depending on the logical interface limit on certain switches, you must disable t
    cumulus@switch:~$ sudo systemctl reload switchd.service
    ```
 
-3. To configure specific speeds for the split ports, edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example configures the speed for each swp1 breakout port (swp1s0, swp1s1, swp1s2, and swp1s3) to 10G.
+3. To configure specific speeds for the split ports, edit the `/etc/network/interfaces` file, then run the `ifreload -a` command. The following example configures the speed for each swp1 breakout port (swp1s0, swp1s1, swp1s2, and swp1s3) to 10G with auto-negotiation off.
 
 ```
 cumulus@switch:~$ sudo cat /etc/network/interfaces
@@ -1461,36 +1472,6 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--## Configure Port Width
-
-You can change the width of the interfaces in a breakout port. For example, if you use NRZ breakout cables with a QSFP56-DD port, you might want to have different interface widths.
-
-By default, Cumulus Linux calculates the sub-interface width during breakout with the following formula:
-
-**subinterface width = full port width / breakout**
-
-For example, splitting a QSFP56-DD port into 2 interfaces distributes 8 lanes across the breakout ports, which results in 4 lanes per interface.
-
-To change the width of the interfaces in a breakout port:
-
-{{< tabs "TabID1448 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp2 link width 
-cumulus@switch:~$ nv config apply 
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-{{< /tab >}}
-{{< /tabs >}}
--->
-## Logical Switch Port Limitations
-
-100G and 40G switches can support a certain number of logical ports depending on the switch. Before you configure any logical ports on a switch, check the limitations listed in the `/etc/cumulus/ports.conf`file.
-
 <!-- vale off -->
 ### ports.conf File Validator
 <!-- vale on -->
@@ -1508,63 +1489,27 @@ This section shows basic commands for troubleshooting switch ports. For a more c
 
 ### Statistics
 
-To show high-level interface statistics, run the `nv show interface <interface>` command.
+To show interface statistics, run the NVUE `nv show interface <interface> stats` command or the Linux `sudo ethtool -S <interface>` command.
 
 ```
-cumulus@switch:~$ nv show interface swp1
-                  operational        applied  description
------------------ -----------------  -------  ----------------------------------------------------------------------
-type              swp                swp      The type of interface
-[acl]                                         Interface ACL rules
-evpn
-  multihoming
-    uplink                           off      Enable evpn multihoming tracking to prevent traffic loss due to NVE...
-ip
-  vrf                                default  Virtual routing and forwarding
-  [gateway]                          default ipv4 and ipv6 gateways
-  igmp
-    enable                           off      Turn the feature 'on' or 'off'.  The default is 'off'.
-  ipv4
-    forward                          on       Enable or disable forwarding.
-  ipv6
-    enable                           on       Turn the feature 'on' or 'off'.  The default is 'on'.
-    forward                          on       Enable or disable forwarding.
+cumulus@switch:~$ nv show interface swp1 stats
+                    operational  applied
+-------------------  -----------  -------
+carrier-transitions  4                   
+in-bytes             3.37 MB             
+in-drops             0                   
+in-errors            0                   
+in-pkts              29025               
+out-bytes            4.28 MB             
+out-drops            0                   
+out-errors           0                   
+out-pkts             43945  
 ...
 ```
 
-To show low-level interface statistics, run the following `ethtool` command:
+## Query SFP Port Information
 
-```
-cumulus@switch:~$ sudo ethtool -S swp1
-NIC statistics:
-      HwIfInOctets: 21870
-      HwIfInUcastPkts: 0
-      HwIfInBcastPkts: 0
-      HwIfInMcastPkts: 243
-      HwIfOutOctets: 1148217
-      HwIfOutUcastPkts: 0
-      HwIfOutMcastPkts: 11353
-      HwIfOutBcastPkts: 0
-      HwIfInDiscards: 0
-      HwIfInL3Drops: 0
-      HwIfInBufferDrops: 0
-      HwIfInAclDrops: 0
-      HwIfInBlackholeDrops: 0
-      HwIfInDot3LengthErrors: 0
-      HwIfInErrors: 0
-      SoftInErrors: 0
-      HwIfOutErrors: 0
-      HwIfOutQDrops: 0
-      HwIfOutNonQDrops: 0
-      SoftOutErrors: 0
-      SoftOutDrops: 0
-      SoftOutTxFifoFull: 0
-      HwIfOutQLen: 0
-```
-
-### Query SFP Port Information
-
-To verify SFP settings, run the `ethtool -m` command. The following example shows the vendor, type and power output for the swp1 interface.
+To verify SFP settings, run the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
 
 ```
 cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'

@@ -17,40 +17,258 @@ The following is only an example of the NVUE command list. To see the most up to
 ```
 cumulus@leaf01:mgmt:~$ nv list-commands
 nv show platform
-nv show platform capabilities
 nv show platform hardware
 nv show platform hardware component
 nv show platform hardware component <component-id>
-nv show platform hardware component <component-id> linecard
-nv show platform hardware component <component-id> port
-nv show platform hardware component <component-id> port <port-id>
-nv show platform hardware component <component-id> port <port-id> breakout-mode
-nv show platform hardware component <component-id> port <port-id> breakout-mode <mode-id>
+nv show platform software
+nv show platform software installed
+nv show platform software installed <installed-id>
+nv show platform capabilities
 nv show platform environment
 nv show platform environment fan
 nv show platform environment fan <fan-id>
-nv show platform environment sensor
-nv show platform environment sensor <sensor-id>
 nv show platform environment psu
 nv show platform environment psu <psu-id>
 nv show platform environment led
 nv show platform environment led <led-id>
-nv show platform software
-nv show platform software installed
-nv show platform software installed <installed-id>
+nv show platform environment sensor
+nv show platform environment sensor <sensor-id>
+nv show action
+nv show action <action-job-id>
+nv show router
+nv show router ptm
+nv show router nexthop
+nv show router nexthop group
+nv show router nexthop group <nexthop-group-id>
+nv show router nexthop group <nexthop-group-id> via
+nv show router nexthop group <nexthop-group-id> via <via-id>
+nv show router nexthop rib
+nv show router nexthop rib <nhg-id>
+nv show router nexthop rib <nhg-id> resolved-via
+nv show router nexthop rib <nhg-id> resolved-via <resolved-via-id>
+nv show router nexthop rib <nhg-id> resolved-via-backup
+nv show router nexthop rib <nhg-id> resolved-via-backup <resolved-via-id>
+nv show router nexthop rib <nhg-id> depends
+nv show router nexthop rib <nhg-id> dependents
+nv show router pbr
+nv show router pbr map
+nv show router pbr map <pbr-map-id>
+nv show router pbr map <pbr-map-id> rule
+nv show router pbr map <pbr-map-id> rule <rule-id>
+nv show router pbr map <pbr-map-id> rule <rule-id> match
+nv show router pbr map <pbr-map-id> rule <rule-id> action
+nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group
+nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
+nv show router policy
+nv show router policy community-list
+nv show router policy community-list <list-id>
+nv show router policy community-list <list-id> rule
+nv show router policy community-list <list-id> rule <rule-id>
+nv show router policy community-list <list-id> rule <rule-id> community
+nv show router policy community-list <list-id> rule <rule-id> community <community-id>
+nv show router policy as-path-list
+nv show router policy as-path-list <list-id>
+nv show router policy as-path-list <list-id> rule
+nv show router policy as-path-list <list-id> rule <rule-id>
+nv show router policy ext-community-list
+nv show router policy ext-community-list <list-id>
+nv show router policy ext-community-list <list-id> rule
+nv show router policy ext-community-list <list-id> rule <rule-id>
+nv show router policy ext-community-list <list-id> rule <rule-id> ext-community
+nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt
+nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
+nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo
+nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
+nv show router policy large-community-list
+nv show router policy large-community-list <list-id>
+nv show router policy large-community-list <list-id> rule
+nv show router policy large-community-list <list-id> rule <rule-id>
+nv show router policy large-community-list <list-id> rule <rule-id> large-community
+nv show router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
+nv show router policy prefix-list
+nv show router policy prefix-list <prefix-list-id>
+nv show router policy prefix-list <prefix-list-id> rule
+nv show router policy prefix-list <prefix-list-id> rule <rule-id>
+nv show router policy prefix-list <prefix-list-id> rule <rule-id> match
+nv show router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
+nv show router policy route-map
+nv show router policy route-map <route-map-id>
+nv show router policy route-map <route-map-id> rule
+nv show router policy route-map <route-map-id> rule <rule-id>
+nv show router policy route-map <route-map-id> rule <rule-id> match
+nv show router policy route-map <route-map-id> rule <rule-id> set
+nv show router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
+nv show router policy route-map <route-map-id> rule <rule-id> set community
+nv show router policy route-map <route-map-id> rule <rule-id> set community <community-id>
+nv show router policy route-map <route-map-id> rule <rule-id> set large-community
+nv show router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
+nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as
+nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
+nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address
+nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id>
+nv show router policy route-map <route-map-id> rule <rule-id> action
+nv show router policy route-map <route-map-id> rule <rule-id> action deny
+nv show router policy route-map <route-map-id> rule <rule-id> action permit
+nv show router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
+nv show router bgp
+nv show router bgp graceful-restart
+nv show router bgp convergence-wait
+nv show router ospf
+nv show router ospf timers
+nv show router ospf timers lsa
+nv show router ospf timers spf
+nv show router pim
+nv show router pim timers
+nv show router igmp
+nv show router vrrp
+nv show router vrr
+nv show router adaptive-routing
+nv show bridge
+nv show bridge domain
+nv show bridge domain <domain-id>
+nv show bridge domain <domain-id> stp
+nv show bridge domain <domain-id> stp state
+nv show bridge domain <domain-id> multicast
+nv show bridge domain <domain-id> multicast snooping
+nv show bridge domain <domain-id> multicast snooping querier
+nv show bridge domain <domain-id> vlan
+nv show bridge domain <domain-id> vlan <vid>
+nv show bridge domain <domain-id> vlan <vid> vni
+nv show bridge domain <domain-id> vlan <vid> vni <vni-id>
+nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
+nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication
+nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
+nv show bridge domain <domain-id> vlan <vid> ptp
+nv show bridge domain <domain-id> vlan <vid> multicast
+nv show bridge domain <domain-id> vlan <vid> multicast snooping
+nv show bridge domain <domain-id> vlan <vid> multicast snooping querier
+nv show bridge domain <domain-id> mac-table
+nv show bridge domain <domain-id> mdb
+nv show bridge domain <domain-id> router-port
+nv show mlag
+nv show mlag consistency-checker
+nv show mlag consistency-checker global
+nv show mlag backup
+nv show mlag backup <backup-ip>
+nv show mlag fdb
+nv show mlag fdb local
+nv show mlag fdb peer
+nv show mlag fdb permanent
+nv show mlag mdb
+nv show mlag mdb local
+nv show mlag mdb peer
+nv show mlag multicast-router-port
+nv show mlag multicast-router-port local
+nv show mlag multicast-router-port peer
+nv show mlag vni
+nv show mlag vni local
+nv show mlag vni peer
+nv show mlag lacpdb
+nv show mlag lacpdb local
+nv show mlag lacpdb peer
+nv show mlag neighbor
+nv show mlag neighbor dynamic
+nv show mlag neighbor permanent
+nv show evpn
+nv show evpn route-advertise
+nv show evpn dad
+nv show evpn dad duplicate-action
+nv show evpn dad duplicate-action freeze
+nv show evpn vni
+nv show evpn vni <vni-id>
+nv show evpn vni <vni-id> route-advertise
+nv show evpn vni <vni-id> route-target
+nv show evpn vni <vni-id> route-target export
+nv show evpn vni <vni-id> route-target export <rt-id>
+nv show evpn vni <vni-id> route-target import
+nv show evpn vni <vni-id> route-target import <rt-id>
+nv show evpn vni <vni-id> route-target both
+nv show evpn vni <vni-id> route-target both <rt-id>
+nv show evpn vni <vni-id> mac
+nv show evpn vni <vni-id> mac <mac-address-id>
+nv show evpn vni <vni-id> host
+nv show evpn vni <vni-id> host <ip-address-id>
+nv show evpn vni <vni-id> bgp-info
+nv show evpn multihoming
+nv show evpn multihoming ead-evi-route
+nv show evpn multihoming segment
+nv show qos
+nv show qos advance-buffer-config
+nv show qos advance-buffer-config <profile-id>
+nv show qos advance-buffer-config <profile-id> ingress-pool
+nv show qos advance-buffer-config <profile-id> ingress-pool <pool-id>
+nv show qos advance-buffer-config <profile-id> egress-pool
+nv show qos advance-buffer-config <profile-id> egress-pool <pool-id>
+nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer
+nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group
+nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id>
+nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> switch-priority
+nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> switch-priority <qos-sp-id>
+nv show qos advance-buffer-config <profile-id> ingress-lossless-buffer
+nv show qos advance-buffer-config <profile-id> egress-lossless-buffer
+nv show qos advance-buffer-config <profile-id> egress-lossy-buffer
+nv show qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class
+nv show qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id>
+nv show qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority
+nv show qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id>
+nv show qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-port
+nv show qos traffic-pool
+nv show qos traffic-pool <traffic-pool-id>
+nv show qos traffic-pool <traffic-pool-id> switch-priority
+nv show qos traffic-pool <traffic-pool-id> switch-priority <qos-sp-id>
+nv show qos link-pause
+nv show qos link-pause <profile-id>
+nv show qos pfc
+nv show qos pfc <profile-id>
+nv show qos pfc <profile-id> switch-priority
+nv show qos pfc <profile-id> switch-priority <qos-sp-id>
+nv show qos mapping
+nv show qos mapping <profile-id>
+nv show qos mapping <profile-id> pcp
+nv show qos mapping <profile-id> pcp <qos-pcp-id>
+nv show qos mapping <profile-id> dscp
+nv show qos mapping <profile-id> dscp <qos-dscp-id>
+nv show qos remark
+nv show qos remark <profile-id>
+nv show qos remark <profile-id> switch-priority
+nv show qos remark <profile-id> switch-priority <qos-sp-id>
+nv show qos congestion-control
+nv show qos congestion-control <profile-id>
+nv show qos congestion-control <profile-id> traffic-class
+nv show qos congestion-control <profile-id> traffic-class <qos-tc-id>
+nv show qos egress-queue-mapping
+nv show qos egress-queue-mapping <profile-id>
+nv show qos egress-queue-mapping <profile-id> switch-priority
+nv show qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id>
+nv show qos egress-scheduler
+nv show qos egress-scheduler <profile-id>
+nv show qos egress-scheduler <profile-id> traffic-class
+nv show qos egress-scheduler <profile-id> traffic-class <qos-tc-id>
+nv show qos egress-shaper
+nv show qos egress-shaper <profile-id>
+nv show qos egress-shaper <profile-id> traffic-class
+nv show qos egress-shaper <profile-id> traffic-class <qos-tc-id>
+nv show qos roce
+nv show qos roce prio-map
+nv show qos roce tc-map
+nv show qos roce pool-map
+nv show qos roce pool
+nv show qos buffer
+nv show qos buffer pool
+nv show qos buffer multicast-switch-priority
 nv show interface
 nv show interface <interface-id>
 nv show interface <interface-id> pluggable
 nv show interface <interface-id> ip
 nv show interface <interface-id> ip address
 nv show interface <interface-id> ip address <ip-prefix-id>
+nv show interface <interface-id> ip gateway
+nv show interface <interface-id> ip gateway <ip-address-id>
 nv show interface <interface-id> ip neighbor
 nv show interface <interface-id> ip neighbor ipv4
 nv show interface <interface-id> ip neighbor ipv4 <neighbor-id>
 nv show interface <interface-id> ip neighbor ipv6
 nv show interface <interface-id> ip neighbor ipv6 <neighbor-id>
-nv show interface <interface-id> ip gateway
-nv show interface <interface-id> ip gateway <ip-address-id>
 nv show interface <interface-id> ip ipv4
 nv show interface <interface-id> ip ipv6
 nv show interface <interface-id> ip vrr
@@ -76,7 +294,8 @@ nv show interface <interface-id> ip neighbor-discovery router-advertisement
 nv show interface <interface-id> ip neighbor-discovery home-agent
 nv show interface <interface-id> link
 nv show interface <interface-id> link state
-nv show interface <interface-id> link dot1x
+nv show interface <interface-id> link breakout
+nv show interface <interface-id> link breakout <mode-id>
 nv show interface <interface-id> link stats
 nv show interface <interface-id> link traffic-engineering
 nv show interface <interface-id> link flag
@@ -114,33 +333,46 @@ nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan
 nv show interface <interface-id> lldp neighbor <neighbor-id> bridge vlan <vid>
 nv show interface <interface-id> qos
 nv show interface <interface-id> qos pfc
+nv show interface <interface-id> qos link-pause
 nv show interface <interface-id> qos mapping
 nv show interface <interface-id> qos mapping pcp
 nv show interface <interface-id> qos mapping pcp <qos-pcp-id>
 nv show interface <interface-id> qos mapping dscp
 nv show interface <interface-id> qos mapping dscp <qos-dscp-id>
+nv show interface <interface-id> qos remark
+nv show interface <interface-id> qos remark switch-priority
+nv show interface <interface-id> qos remark switch-priority <qos-sp-id>
 nv show interface <interface-id> qos congestion-control
 nv show interface <interface-id> qos congestion-control traffic-class
-nv show interface <interface-id> qos congestion-control traffic-class <if-qos-tc-id>
+nv show interface <interface-id> qos congestion-control traffic-class <qos-tc-id>
 nv show interface <interface-id> qos egress-scheduler
 nv show interface <interface-id> qos egress-scheduler traffic-class
-nv show interface <interface-id> qos egress-scheduler traffic-class <if-qos-tc-id>
+nv show interface <interface-id> qos egress-scheduler traffic-class <qos-tc-id>
 nv show interface <interface-id> qos egress-queue-mapping
 nv show interface <interface-id> qos egress-queue-mapping switch-priority
 nv show interface <interface-id> qos egress-queue-mapping switch-priority <qos-sp-id>
-nv show interface <interface-id> qos counters
-nv show interface <interface-id> qos counters port-stats
-nv show interface <interface-id> qos counters port-stats rx-stats
-nv show interface <interface-id> qos counters port-stats tx-stats
-nv show interface <interface-id> qos counters egress-queue-stats
-nv show interface <interface-id> qos counters ingress-buffer-stats
-nv show interface <interface-id> qos counters pfc-stats
+nv show interface <interface-id> qos egress-shaper
+nv show interface <interface-id> qos egress-shaper traffic-class
+nv show interface <interface-id> qos egress-shaper traffic-class <qos-tc-id>
+nv show interface <interface-id> qos counter
+nv show interface <interface-id> qos counter port-stats
+nv show interface <interface-id> qos counter port-stats rx-stats
+nv show interface <interface-id> qos counter port-stats tx-stats
+nv show interface <interface-id> qos counter egress-queue-stats
+nv show interface <interface-id> qos counter ingress-buffer-stats
+nv show interface <interface-id> qos counter pfc-stats
 nv show interface <interface-id> qos roce
 nv show interface <interface-id> qos roce counters
 nv show interface <interface-id> qos roce status
 nv show interface <interface-id> qos roce status pool-map
 nv show interface <interface-id> qos roce status prio-map
 nv show interface <interface-id> qos roce status tc-map
+nv show interface <interface-id> qos buffer
+nv show interface <interface-id> qos buffer ingress-port
+nv show interface <interface-id> qos buffer ingress-priority-group
+nv show interface <interface-id> qos buffer egress-port
+nv show interface <interface-id> qos buffer egress-traffic-class
+nv show interface <interface-id> qos buffer egress-multicast
 nv show interface <interface-id> evpn
 nv show interface <interface-id> evpn multihoming
 nv show interface <interface-id> evpn multihoming segment
@@ -154,10 +386,51 @@ nv show interface <interface-id> acl <acl-id> outbound
 nv show interface <interface-id> acl <acl-id> outbound control-plane
 nv show interface <interface-id> ptp
 nv show interface <interface-id> ptp timers
+nv show interface <interface-id> ptp shaper
 nv show interface <interface-id> ptp counters
 nv show interface <interface-id> tunnel
 nv show interface <interface-id> storm-control
+nv show interface <interface-id> synce
+nv show interface <interface-id> synce counters
 nv show service
+nv show service dhcp-server
+nv show service dhcp-server <vrf-id>
+nv show service dhcp-server <vrf-id> interface
+nv show service dhcp-server <vrf-id> interface <interface-id>
+nv show service dhcp-server <vrf-id> pool
+nv show service dhcp-server <vrf-id> pool <pool-id>
+nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server
+nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
+nv show service dhcp-server <vrf-id> pool <pool-id> domain-name
+nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
+nv show service dhcp-server <vrf-id> pool <pool-id> gateway
+nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>
+nv show service dhcp-server <vrf-id> pool <pool-id> range
+nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id>
+nv show service dhcp-server <vrf-id> domain-name
+nv show service dhcp-server <vrf-id> domain-name <domain-name-id>
+nv show service dhcp-server <vrf-id> domain-name-server
+nv show service dhcp-server <vrf-id> domain-name-server <server-id>
+nv show service dhcp-server <vrf-id> static
+nv show service dhcp-server <vrf-id> static <static-id>
+nv show service dhcp-server6
+nv show service dhcp-server6 <vrf-id>
+nv show service dhcp-server6 <vrf-id> interface
+nv show service dhcp-server6 <vrf-id> interface <interface-id>
+nv show service dhcp-server6 <vrf-id> pool
+nv show service dhcp-server6 <vrf-id> pool <pool-id>
+nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server
+nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
+nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name
+nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
+nv show service dhcp-server6 <vrf-id> pool <pool-id> range
+nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
+nv show service dhcp-server6 <vrf-id> domain-name
+nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id>
+nv show service dhcp-server6 <vrf-id> domain-name-server
+nv show service dhcp-server6 <vrf-id> domain-name-server <server-id>
+nv show service dhcp-server6 <vrf-id> static
+nv show service dhcp-server6 <vrf-id> static <static-id>
 nv show service dns
 nv show service dns <vrf-id>
 nv show service dns <vrf-id> server
@@ -286,44 +559,7 @@ nv show service snmp-server trap-destination <trap-destination-id> username <use
 nv show service snmp-server trap-destination <trap-destination-id> username <username-id> auth-sha <auth-id> encrypt-aes <encrypt-id>
 nv show service snmp-server trap-destination <trap-destination-id> username <username-id> auth-sha <auth-id> encrypt-aes <encrypt-id> engine-id
 nv show service snmp-server trap-destination <trap-destination-id> username <username-id> auth-sha <auth-id> encrypt-aes <encrypt-id> engine-id <engine-id>
-nv show service dhcp-server
-nv show service dhcp-server <vrf-id>
-nv show service dhcp-server <vrf-id> interface
-nv show service dhcp-server <vrf-id> interface <interface-id>
-nv show service dhcp-server <vrf-id> pool
-nv show service dhcp-server <vrf-id> pool <pool-id>
-nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server
-nv show service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
-nv show service dhcp-server <vrf-id> pool <pool-id> domain-name
-nv show service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
-nv show service dhcp-server <vrf-id> pool <pool-id> gateway
-nv show service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>
-nv show service dhcp-server <vrf-id> pool <pool-id> range
-nv show service dhcp-server <vrf-id> pool <pool-id> range <range-id>
-nv show service dhcp-server <vrf-id> domain-name
-nv show service dhcp-server <vrf-id> domain-name <domain-name-id>
-nv show service dhcp-server <vrf-id> domain-name-server
-nv show service dhcp-server <vrf-id> domain-name-server <server-id>
-nv show service dhcp-server <vrf-id> static
-nv show service dhcp-server <vrf-id> static <static-id>
-nv show service dhcp-server6
-nv show service dhcp-server6 <vrf-id>
-nv show service dhcp-server6 <vrf-id> interface
-nv show service dhcp-server6 <vrf-id> interface <interface-id>
-nv show service dhcp-server6 <vrf-id> pool
-nv show service dhcp-server6 <vrf-id> pool <pool-id>
-nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server
-nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
-nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name
-nv show service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
-nv show service dhcp-server6 <vrf-id> pool <pool-id> range
-nv show service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
-nv show service dhcp-server6 <vrf-id> domain-name
-nv show service dhcp-server6 <vrf-id> domain-name <domain-name-id>
-nv show service dhcp-server6 <vrf-id> domain-name-server
-nv show service dhcp-server6 <vrf-id> domain-name-server <server-id>
-nv show service dhcp-server6 <vrf-id> static
-nv show service dhcp-server6 <vrf-id> static <static-id>
+nv show service synce
 nv show service ptp
 nv show service ptp <instance-id>
 nv show service ptp <instance-id> acceptable-master
@@ -353,12 +589,18 @@ nv show system
 nv show system message
 nv show system cpu
 nv show system memory
-nv show system ztp
-nv show system ztp script
-nv show system ztp status
 nv show system reboot
 nv show system reboot reason
 nv show system reboot history
+nv show system config
+nv show system config auto-save
+nv show system config apply
+nv show system config apply ignore
+nv show system config apply ignore <ignore-id>
+nv show system config snippet
+nv show system ztp
+nv show system ztp script
+nv show system ztp status
 nv show system acl
 nv show system counter
 nv show system counter polling-interval
@@ -379,6 +621,7 @@ nv show system forwarding
 nv show system forwarding lag-hash
 nv show system forwarding ecmp-hash
 nv show system forwarding programming
+nv show system forwarding profile-option
 nv show system port-mirror
 nv show system port-mirror session
 nv show system port-mirror session <session-id>
@@ -397,16 +640,27 @@ nv show system port-mirror session <session-id> erspan destination source-ip <so
 nv show system port-mirror session <session-id> erspan destination dest-ip
 nv show system port-mirror session <session-id> erspan destination dest-ip <dest-ip>
 nv show system port-mirror session <session-id> erspan truncate
-nv show system config
-nv show system config apply
-nv show system config apply ignore
-nv show system config apply ignore <ignore-id>
-nv show system config snippet
 nv show system wjh
 nv show system wjh channel
 nv show system wjh channel <channel-id>
 nv show system wjh channel <channel-id> trigger
 nv show system wjh packet-buffer
+nv show system aaa
+nv show system aaa user
+nv show system aaa user <user-id>
+nv show system aaa user <user-id> ssh
+nv show system aaa user <user-id> ssh authorized-key
+nv show system aaa user <user-id> ssh authorized-key <ssh-authorized-key-id>
+nv show system aaa role
+nv show system aaa role <role-id>
+nv show system aaa authentication-order
+nv show system aaa authentication-order <priority-id>
+nv show system aaa tacacs
+nv show system aaa tacacs authentication
+nv show system aaa tacacs accounting
+nv show system aaa tacacs server
+nv show system aaa tacacs server <priority-id>
+nv show system aaa tacacs exclude-user
 nv show vrf
 nv show vrf <vrf-id>
 nv show vrf <vrf-id> loopback
@@ -416,6 +670,11 @@ nv show vrf <vrf-id> loopback ip address <ip-prefix-id>
 nv show vrf <vrf-id> evpn
 nv show vrf <vrf-id> evpn vni
 nv show vrf <vrf-id> evpn vni <vni-id>
+nv show vrf <vrf-id> evpn bgp-info
+nv show vrf <vrf-id> evpn remote-router-mac
+nv show vrf <vrf-id> evpn remote-router-mac <mac-address-id>
+nv show vrf <vrf-id> evpn nexthop-vtep
+nv show vrf <vrf-id> evpn nexthop-vtep <nexthop-vtep-id>
 nv show vrf <vrf-id> router
 nv show vrf <vrf-id> router rib
 nv show vrf <vrf-id> router rib <afi>
@@ -441,6 +700,13 @@ nv show vrf <vrf-id> router nexthop-tracking <afi> route-map <nht-routemap-id>
 nv show vrf <vrf-id> router nexthop-tracking <afi> route-map <nht-routemap-id> protocol
 nv show vrf <vrf-id> router nexthop-tracking <afi> route-map <nht-routemap-id> protocol <nht-protocol-id>
 nv show vrf <vrf-id> router bgp
+nv show vrf <vrf-id> router bgp nexthop
+nv show vrf <vrf-id> router bgp nexthop <afi>
+nv show vrf <vrf-id> router bgp nexthop <afi> ip-address
+nv show vrf <vrf-id> router bgp nexthop <afi> ip-address <ip-address-id>
+nv show vrf <vrf-id> router bgp nexthop <afi> ip-address <ip-address-id> resolved-via
+nv show vrf <vrf-id> router bgp nexthop <afi> ip-address <ip-address-id> path
+nv show vrf <vrf-id> router bgp nexthop <afi> ip-address <ip-address-id> path <path-id>
 nv show vrf <vrf-id> router bgp address-family
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast redistribute
@@ -474,7 +740,22 @@ nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> community
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp address-family ipv4-unicast loc-rib route <route-id> path <path-id> ext-community
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group <group-id>
+nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group <group-id> sub-group
 nv show vrf <vrf-id> router bgp address-family l2vpn-evpn
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id>
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id>
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route <evpn-route-id>
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route <evpn-route-id> path
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn loc-rib rd <rd-id> route-type <route-type-id> route <evpn-route-id> path <path-id>
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn update-group
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn update-group <group-id>
+nv show vrf <vrf-id> router bgp address-family l2vpn-evpn update-group <group-id> sub-group
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id>
@@ -506,6 +787,9 @@ nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> community
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> large-community
 nv show vrf <vrf-id> router bgp address-family ipv6-unicast loc-rib route <route-id> path <path-id> ext-community
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group <group-id>
+nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group <group-id> sub-group
 nv show vrf <vrf-id> router bgp path-selection
 nv show vrf <vrf-id> router bgp path-selection aspath
 nv show vrf <vrf-id> router bgp path-selection med
@@ -659,183 +943,6 @@ nv show vrf <vrf-id> router ospf timers
 nv show vrf <vrf-id> router ospf timers lsa
 nv show vrf <vrf-id> router ospf timers spf
 nv show vrf <vrf-id> ptp
-nv show action
-nv show action <action-job-id>
-nv show router
-nv show router ptm
-nv show router nexthop-group
-nv show router nexthop-group <nexthop-group-id>
-nv show router nexthop-group <nexthop-group-id> via
-nv show router nexthop-group <nexthop-group-id> via <via-id>
-nv show router pbr
-nv show router pbr map
-nv show router pbr map <pbr-map-id>
-nv show router pbr map <pbr-map-id> rule
-nv show router pbr map <pbr-map-id> rule <rule-id>
-nv show router pbr map <pbr-map-id> rule <rule-id> match
-nv show router pbr map <pbr-map-id> rule <rule-id> action
-nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group
-nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
-nv show router policy
-nv show router policy community-list
-nv show router policy community-list <list-id>
-nv show router policy community-list <list-id> rule
-nv show router policy community-list <list-id> rule <rule-id>
-nv show router policy community-list <list-id> rule <rule-id> community
-nv show router policy community-list <list-id> rule <rule-id> community <community-id>
-nv show router policy as-path-list
-nv show router policy as-path-list <list-id>
-nv show router policy as-path-list <list-id> rule
-nv show router policy as-path-list <list-id> rule <rule-id>
-nv show router policy ext-community-list
-nv show router policy ext-community-list <list-id>
-nv show router policy ext-community-list <list-id> rule
-nv show router policy ext-community-list <list-id> rule <rule-id>
-nv show router policy ext-community-list <list-id> rule <rule-id> ext-community
-nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt
-nv show router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
-nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo
-nv show router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
-nv show router policy large-community-list
-nv show router policy large-community-list <list-id>
-nv show router policy large-community-list <list-id> rule
-nv show router policy large-community-list <list-id> rule <rule-id>
-nv show router policy large-community-list <list-id> rule <rule-id> large-community
-nv show router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
-nv show router policy prefix-list
-nv show router policy prefix-list <prefix-list-id>
-nv show router policy prefix-list <prefix-list-id> rule
-nv show router policy prefix-list <prefix-list-id> rule <rule-id>
-nv show router policy prefix-list <prefix-list-id> rule <rule-id> match
-nv show router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
-nv show router policy route-map
-nv show router policy route-map <route-map-id>
-nv show router policy route-map <route-map-id> rule
-nv show router policy route-map <route-map-id> rule <rule-id>
-nv show router policy route-map <route-map-id> rule <rule-id> match
-nv show router policy route-map <route-map-id> rule <rule-id> set
-nv show router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
-nv show router policy route-map <route-map-id> rule <rule-id> set community
-nv show router policy route-map <route-map-id> rule <rule-id> set community <community-id>
-nv show router policy route-map <route-map-id> rule <rule-id> set large-community
-nv show router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
-nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as
-nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
-nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address
-nv show router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id>
-nv show router policy route-map <route-map-id> rule <rule-id> action
-nv show router policy route-map <route-map-id> rule <rule-id> action deny
-nv show router policy route-map <route-map-id> rule <rule-id> action permit
-nv show router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
-nv show router bgp
-nv show router bgp graceful-restart
-nv show router bgp convergence-wait
-nv show router ospf
-nv show router ospf timers
-nv show router ospf timers lsa
-nv show router ospf timers spf
-nv show router pim
-nv show router pim timers
-nv show router igmp
-nv show router vrrp
-nv show router vrr
-nv show router adaptive-routing
-nv show bridge
-nv show bridge domain
-nv show bridge domain <domain-id>
-nv show bridge domain <domain-id> stp
-nv show bridge domain <domain-id> stp state
-nv show bridge domain <domain-id> multicast
-nv show bridge domain <domain-id> multicast snooping
-nv show bridge domain <domain-id> multicast snooping querier
-nv show bridge domain <domain-id> vlan
-nv show bridge domain <domain-id> vlan <vid>
-nv show bridge domain <domain-id> vlan <vid> vni
-nv show bridge domain <domain-id> vlan <vid> vni <vni-id>
-nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
-nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication
-nv show bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
-nv show bridge domain <domain-id> vlan <vid> ptp
-nv show bridge domain <domain-id> vlan <vid> multicast
-nv show bridge domain <domain-id> vlan <vid> multicast snooping
-nv show bridge domain <domain-id> vlan <vid> multicast snooping querier
-nv show bridge domain <domain-id> mac-table
-nv show bridge domain <domain-id> mdb
-nv show bridge domain <domain-id> router-port
-nv show mlag
-nv show mlag consistency-checker
-nv show mlag consistency-checker global
-nv show mlag backup
-nv show mlag backup <backup-ip>
-nv show mlag fdb
-nv show mlag fdb local
-nv show mlag fdb peer
-nv show mlag fdb permanent
-nv show mlag mdb
-nv show mlag mdb local
-nv show mlag mdb peer
-nv show mlag multicast-router-port
-nv show mlag multicast-router-port local
-nv show mlag multicast-router-port peer
-nv show mlag vni
-nv show mlag vni local
-nv show mlag vni peer
-nv show mlag lacpdb
-nv show mlag lacpdb local
-nv show mlag lacpdb peer
-nv show mlag neighbor
-nv show mlag neighbor dynamic
-nv show mlag neighbor permanent
-nv show evpn
-nv show evpn route-advertise
-nv show evpn dad
-nv show evpn dad duplicate-action
-nv show evpn dad duplicate-action freeze
-nv show evpn vni
-nv show evpn vni <evi-id>
-nv show evpn vni <evi-id> route-advertise
-nv show evpn vni <evi-id> route-target
-nv show evpn vni <evi-id> route-target export
-nv show evpn vni <evi-id> route-target export <rt-id>
-nv show evpn vni <evi-id> route-target import
-nv show evpn vni <evi-id> route-target import <rt-id>
-nv show evpn vni <evi-id> route-target both
-nv show evpn vni <evi-id> route-target both <rt-id>
-nv show evpn multihoming
-nv show evpn multihoming ead-evi-route
-nv show evpn multihoming segment
-nv show qos
-nv show qos traffic-pool
-nv show qos traffic-pool <traffic-pool-id>
-nv show qos traffic-pool <traffic-pool-id> switch-priority
-nv show qos traffic-pool <traffic-pool-id> switch-priority <qos-sp-id>
-nv show qos pfc
-nv show qos pfc <profile-id>
-nv show qos pfc <profile-id> switch-priority
-nv show qos pfc <profile-id> switch-priority <qos-sp-id>
-nv show qos mapping
-nv show qos mapping <profile-id>
-nv show qos mapping <profile-id> pcp
-nv show qos mapping <profile-id> pcp <qos-pcp-id>
-nv show qos mapping <profile-id> dscp
-nv show qos mapping <profile-id> dscp <qos-dscp-id>
-nv show qos congestion-control
-nv show qos congestion-control <profile-id>
-nv show qos congestion-control <profile-id> traffic-class
-nv show qos congestion-control <profile-id> traffic-class <qos-tc-id>
-nv show qos egress-queue-mapping
-nv show qos egress-queue-mapping <profile-id>
-nv show qos egress-queue-mapping <profile-id> switch-priority
-nv show qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id>
-nv show qos egress-scheduler
-nv show qos egress-scheduler <profile-id>
-nv show qos egress-scheduler <profile-id> traffic-class
-nv show qos egress-scheduler <profile-id> traffic-class <qos-tc-id>
-nv show qos roce
-nv show qos roce prio-map
-nv show qos roce tc-map
-nv show qos roce pool-map
-nv show qos roce pool
 nv show nve
 nv show nve vxlan
 nv show nve vxlan mlag
@@ -871,13 +978,328 @@ nv show acl <acl-id> rule <rule-id> action log
 nv show acl <acl-id> rule <rule-id> action set
 nv show acl <acl-id> rule <rule-id> action erspan
 nv show acl <acl-id> rule <rule-id> action police
-nv set platform
-nv set platform hardware
-nv set platform hardware component <component-id>
-nv set platform hardware component <component-id> linecard
-nv set platform hardware component <component-id> linecard provision (16x100GE|4x400GE|8x200GE|NONE)
-nv set platform hardware component <component-id> type (switch|linecard)
-nv set platform hardware component <component-id> admin-state (enable|disable)
+nv set router
+nv set router ptm
+nv set router ptm enable (on|off)
+nv set router nexthop
+nv set router nexthop group <nexthop-group-id>
+nv set router nexthop group <nexthop-group-id> via <via-id>
+nv set router nexthop group <nexthop-group-id> via <via-id> interface (auto|<interface-name>)
+nv set router nexthop group <nexthop-group-id> via <via-id> vrf (auto|<vrf-name>)
+nv set router pbr
+nv set router pbr map <pbr-map-id>
+nv set router pbr map <pbr-map-id> rule <rule-id>
+nv set router pbr map <pbr-map-id> rule <rule-id> match
+nv set router pbr map <pbr-map-id> rule <rule-id> match source-ip (<ipv4-prefix>|<ipv6-prefix>)
+nv set router pbr map <pbr-map-id> rule <rule-id> match destination-ip (<ipv4-prefix>|<ipv6-prefix>)
+nv set router pbr map <pbr-map-id> rule <rule-id> match dscp 0-63
+nv set router pbr map <pbr-map-id> rule <rule-id> match ecn 0-3
+nv set router pbr map <pbr-map-id> rule <rule-id> action
+nv set router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
+nv set router pbr map <pbr-map-id> rule <rule-id> action vrf <vrf-name>
+nv set router pbr enable (on|off)
+nv set router policy
+nv set router policy community-list <list-id>
+nv set router policy community-list <list-id> rule <rule-id>
+nv set router policy community-list <list-id> rule <rule-id> community <community-id>
+nv set router policy community-list <list-id> rule <rule-id> action (permit|deny)
+nv set router policy as-path-list <list-id>
+nv set router policy as-path-list <list-id> rule <rule-id>
+nv set router policy as-path-list <list-id> rule <rule-id> action (permit|deny)
+nv set router policy as-path-list <list-id> rule <rule-id> aspath-exp <bgp-regex>
+nv set router policy ext-community-list <list-id>
+nv set router policy ext-community-list <list-id> rule <rule-id>
+nv set router policy ext-community-list <list-id> rule <rule-id> ext-community
+nv set router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
+nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
+nv set router policy ext-community-list <list-id> rule <rule-id> action (permit|deny)
+nv set router policy large-community-list <list-id>
+nv set router policy large-community-list <list-id> rule <rule-id>
+nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
+nv set router policy large-community-list <list-id> rule <rule-id> action (permit|deny)
+nv set router policy prefix-list <prefix-list-id>
+nv set router policy prefix-list <prefix-list-id> rule <rule-id>
+nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
+nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> min-prefix-len 0-128
+nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> max-prefix-len 0-128
+nv set router policy prefix-list <prefix-list-id> rule <rule-id> action (permit|deny)
+nv set router policy prefix-list <prefix-list-id> type (ipv4|ipv6)
+nv set router policy route-map <route-map-id>
+nv set router policy route-map <route-map-id> rule <rule-id>
+nv set router policy route-map <route-map-id> rule <rule-id> match
+nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-list <generic-name>
+nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-len 0-128
+nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-list <generic-name>
+nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-len 0-32
+nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop (<ipv4>|<ipv6>)
+nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-type blackhole
+nv set router policy route-map <route-map-id> rule <rule-id> match as-path-list <generic-name>
+nv set router policy route-map <route-map-id> rule <rule-id> match community-list <generic-name>
+nv set router policy route-map <route-map-id> rule <rule-id> match large-community-list <generic-name>
+nv set router policy route-map <route-map-id> rule <rule-id> match metric 1-4294967295
+nv set router policy route-map <route-map-id> rule <rule-id> match interface (<interface-name>|<vrf-name>)
+nv set router policy route-map <route-map-id> rule <rule-id> match tag 1-4294967295
+nv set router policy route-map <route-map-id> rule <rule-id> match source-protocol (bgp|connected|kernel|ospf|ospf6|sharp|static)
+nv set router policy route-map <route-map-id> rule <rule-id> match origin (egp|igp|incomplete)
+nv set router policy route-map <route-map-id> rule <rule-id> match peer (local|<interface-name>|<ipv4>|<ipv6>)
+nv set router policy route-map <route-map-id> rule <rule-id> match local-preference 0-4294967295
+nv set router policy route-map <route-map-id> rule <rule-id> match evpn-route-type (macip|imet|ip-prefix)
+nv set router policy route-map <route-map-id> rule <rule-id> match evpn-vni <value>
+nv set router policy route-map <route-map-id> rule <rule-id> match evpn-default-route (on|off)
+nv set router policy route-map <route-map-id> rule <rule-id> match source-vrf <vrf-name>
+nv set router policy route-map <route-map-id> rule <rule-id> match type (ipv4|ipv6)
+nv set router policy route-map <route-map-id> rule <rule-id> set
+nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
+nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as <asn-range>
+nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as 1-10
+nv set router policy route-map <route-map-id> rule <rule-id> set community <community-id>
+nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
+nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
+nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id>
+nv set router policy route-map <route-map-id> rule <rule-id> set as-path-exclude 1-4294967295
+nv set router policy route-map <route-map-id> rule <rule-id> set atomic-aggregate (on|off)
+nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-rt <route-distinguisher>
+nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-soo <route-distinguisher>
+nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-bw (1-25600|cumulative|multipaths|cumulative-non-transitive|multipaths-non-transitive)
+nv set router policy route-map <route-map-id> rule <rule-id> set local-preference 0-4294967295
+nv set router policy route-map <route-map-id> rule <rule-id> set weight 0-4294967295
+nv set router policy route-map <route-map-id> rule <rule-id> set metric (1-4294967295|metric-plus|metric-minus|rtt|rtt-plus|rtt-minus)
+nv set router policy route-map <route-map-id> rule <rule-id> set metric-type (type-1|type-2)
+nv set router policy route-map <route-map-id> rule <rule-id> set origin (egp|igp|incomplete)
+nv set router policy route-map <route-map-id> rule <rule-id> set tag 1-4294967295
+nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-global <ipv6>
+nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-local <ipv6>
+nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-prefer-global (on|off)
+nv set router policy route-map <route-map-id> rule <rule-id> set ip-nexthop (unchanged|peer-addr|<ipv4>|<ipv6>)
+nv set router policy route-map <route-map-id> rule <rule-id> set source-ip (<ipv4>|<ipv6>)
+nv set router policy route-map <route-map-id> rule <rule-id> set community-delete-list (<generic-name>|<integer>)
+nv set router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list (<generic-name>|<integer>)
+nv set router policy route-map <route-map-id> rule <rule-id> set originator-id <ipv4>
+nv set router policy route-map <route-map-id> rule <rule-id> set label-index 0-1048560
+nv set router policy route-map <route-map-id> rule <rule-id> set forwarding-address <ipv6>
+nv set router policy route-map <route-map-id> rule <rule-id> action
+nv set router policy route-map <route-map-id> rule <rule-id> action deny
+nv set router policy route-map <route-map-id> rule <rule-id> action permit
+nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
+nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule <value>
+nv set router policy route-map <route-map-id> rule <rule-id> description none
+nv set router bgp
+nv set router bgp graceful-restart
+nv set router bgp graceful-restart mode (off|helper-only|full)
+nv set router bgp graceful-restart restart-time 1-3600
+nv set router bgp graceful-restart path-selection-deferral-time 0-3600
+nv set router bgp graceful-restart stale-routes-time 1-3600
+nv set router bgp convergence-wait
+nv set router bgp convergence-wait time 0-3600
+nv set router bgp convergence-wait establish-wait-time 0-3600
+nv set router bgp enable (on|off)
+nv set router bgp autonomous-system (1-4294967295|none|leaf|spine)
+nv set router bgp router-id (none|<ipv4>)
+nv set router bgp policy-update-timer 0-600
+nv set router bgp graceful-shutdown (on|off)
+nv set router bgp wait-for-install (on|off)
+nv set router ospf
+nv set router ospf timers
+nv set router ospf timers lsa
+nv set router ospf timers lsa min-arrival 0-600000
+nv set router ospf timers lsa throttle 0-5000
+nv set router ospf timers spf
+nv set router ospf timers spf delay 0-600000
+nv set router ospf timers spf holdtime 0-600000
+nv set router ospf timers spf max-holdtime 0-600000
+nv set router ospf timers refresh 10-1800
+nv set router ospf enable (on|off)
+nv set router ospf router-id (none|<ipv4>)
+nv set router pim
+nv set router pim timers
+nv set router pim timers hello-interval 1-180
+nv set router pim timers register-suppress 5-60000
+nv set router pim timers join-prune-interval 60-600
+nv set router pim timers keep-alive 31-60000
+nv set router pim timers rp-keep-alive 31-60000
+nv set router pim enable (on|off)
+nv set router pim packets 1-100
+nv set router igmp
+nv set router igmp enable (on|off)
+nv set router vrrp
+nv set router vrrp enable (on|off)
+nv set router vrrp priority 1-254
+nv set router vrrp preempt (on|off)
+nv set router vrrp advertisement-interval 10-40950
+nv set router vrr
+nv set router vrr enable (on|off)
+nv set router adaptive-routing
+nv set router adaptive-routing enable (on|off)
+nv set bridge
+nv set bridge domain <domain-id>
+nv set bridge domain <domain-id> stp
+nv set bridge domain <domain-id> stp state (up|down)
+nv set bridge domain <domain-id> stp priority 4096-61440
+nv set bridge domain <domain-id> multicast
+nv set bridge domain <domain-id> multicast snooping
+nv set bridge domain <domain-id> multicast snooping querier
+nv set bridge domain <domain-id> multicast snooping querier enable (on|off)
+nv set bridge domain <domain-id> multicast snooping enable (on|off)
+nv set bridge domain <domain-id> vlan <vid>
+nv set bridge domain <domain-id> vlan <vid> vni <vni-id>
+nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
+nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
+nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding enable (on|off|auto)
+nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group <ipv4-multicast>
+nv set bridge domain <domain-id> vlan <vid> vni <vni-id> mac-learning (on|off|auto)
+nv set bridge domain <domain-id> vlan <vid> ptp
+nv set bridge domain <domain-id> vlan <vid> ptp enable (on|off)
+nv set bridge domain <domain-id> vlan <vid> multicast
+nv set bridge domain <domain-id> vlan <vid> multicast snooping
+nv set bridge domain <domain-id> vlan <vid> multicast snooping querier
+nv set bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip <ipv4>
+nv set bridge domain <domain-id> type vlan-aware
+nv set bridge domain <domain-id> untagged (1-4094|none)
+nv set bridge domain <domain-id> encap 802.1Q
+nv set bridge domain <domain-id> mac-address (auto|<mac>)
+nv set bridge domain <domain-id> vlan-vni-offset 0-16773120
+nv set mlag
+nv set mlag backup <backup-ip>
+nv set mlag backup <backup-ip> vrf <vrf-name>
+nv set mlag enable (on|off)
+nv set mlag mac-address (auto|<mac>)
+nv set mlag peer-ip (linklocal|<ipv4>|<ipv6>)
+nv set mlag priority 0-65535
+nv set mlag init-delay 1-900
+nv set mlag debug (on|off)
+nv set mlag lacp-conflict
+nv set evpn
+nv set evpn route-advertise
+nv set evpn route-advertise nexthop-setting (system-ip-mac|shared-ip-mac)
+nv set evpn route-advertise svi-ip (on|off)
+nv set evpn route-advertise default-gateway (on|off)
+nv set evpn dad
+nv set evpn dad duplicate-action
+nv set evpn dad duplicate-action freeze
+nv set evpn dad duplicate-action freeze duration (30-3600|permanent)
+nv set evpn dad enable (on|off)
+nv set evpn dad mac-move-threshold 2-1000
+nv set evpn dad move-window 2-1800
+nv set evpn vni <vni-id>
+nv set evpn vni <vni-id> route-advertise
+nv set evpn vni <vni-id> route-advertise svi-ip (on|off|auto)
+nv set evpn vni <vni-id> route-advertise default-gateway (on|off|auto)
+nv set evpn vni <vni-id> route-target
+nv set evpn vni <vni-id> route-target export <rt-id>
+nv set evpn vni <vni-id> route-target import <rt-id>
+nv set evpn vni <vni-id> route-target both <rt-id>
+nv set evpn vni <vni-id> rd (auto|<route-distinguisher>)
+nv set evpn multihoming
+nv set evpn multihoming ead-evi-route
+nv set evpn multihoming ead-evi-route rx (on|off)
+nv set evpn multihoming ead-evi-route tx (on|off)
+nv set evpn multihoming segment
+nv set evpn multihoming segment mac-address <mac>
+nv set evpn multihoming segment df-preference 1-65535
+nv set evpn multihoming enable (on|off)
+nv set evpn multihoming mac-holdtime 0-86400
+nv set evpn multihoming neighbor-holdtime 0-86400
+nv set evpn multihoming startup-delay 0-3600
+nv set evpn enable (on|off)
+nv set qos
+nv set qos advance-buffer-config <profile-id>
+nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id>
+nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> memory-percent 0-100
+nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> infinite (true|false)
+nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> mode (static|dynamic)
+nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> reserved 0-4294967295
+nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> shared-bytes 0-4294967295
+nv set qos advance-buffer-config <profile-id> ingress-pool <pool-id> shared-alpha (alpha_0|alpha_1_128|alpha_1_64|alpha_1_32|alpha_1_16|alpha_1_8|alpha_1_4|alpha_1_2|alpha_1|alpha_2|alpha_4|alpha_8|alpha_16|alpha_32|alpha_64|alpha_infinity)
+nv set qos advance-buffer-config <profile-id> egress-pool <pool-id>
+nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> memory-percent 0-100
+nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> infinite (true|false)
+nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> mode (static|dynamic)
+nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> reserved 0-4294967295
+nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> shared-bytes 0-4294967295
+nv set qos advance-buffer-config <profile-id> egress-pool <pool-id> shared-alpha (alpha_0|alpha_1_128|alpha_1_64|alpha_1_32|alpha_1_16|alpha_1_8|alpha_1_4|alpha_1_2|alpha_1|alpha_2|alpha_4|alpha_8|alpha_16|alpha_32|alpha_64|alpha_infinity)
+nv set qos advance-buffer-config <profile-id> ingress-lossy-buffer
+nv set qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id>
+nv set qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> switch-priority <qos-sp-id>
+nv set qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> name <value>
+nv set qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> reserved 0-4294967295
+nv set qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> shared-bytes 0-4294967295
+nv set qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> shared-alpha (alpha_0|alpha_1_128|alpha_1_64|alpha_1_32|alpha_1_16|alpha_1_8|alpha_1_4|alpha_1_2|alpha_1|alpha_2|alpha_4|alpha_8|alpha_16|alpha_32|alpha_64|alpha_infinity)
+nv set qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> service-pool <integer>
+nv set qos advance-buffer-config <profile-id> ingress-lossless-buffer
+nv set qos advance-buffer-config <profile-id> ingress-lossless-buffer service-pool <integer>
+nv set qos advance-buffer-config <profile-id> ingress-lossless-buffer shared-alpha (alpha_0|alpha_1_128|alpha_1_64|alpha_1_32|alpha_1_16|alpha_1_8|alpha_1_4|alpha_1_2|alpha_1|alpha_2|alpha_4|alpha_8|alpha_16|alpha_32|alpha_64|alpha_infinity)
+nv set qos advance-buffer-config <profile-id> ingress-lossless-buffer shared-bytes 0-4294967295
+nv set qos advance-buffer-config <profile-id> egress-lossless-buffer
+nv set qos advance-buffer-config <profile-id> egress-lossless-buffer service-pool <integer>
+nv set qos advance-buffer-config <profile-id> egress-lossless-buffer reserved 0-4294967295
+nv set qos advance-buffer-config <profile-id> egress-lossless-buffer shared-alpha (alpha_0|alpha_1_128|alpha_1_64|alpha_1_32|alpha_1_16|alpha_1_8|alpha_1_4|alpha_1_2|alpha_1|alpha_2|alpha_4|alpha_8|alpha_16|alpha_32|alpha_64|alpha_infinity)
+nv set qos advance-buffer-config <profile-id> egress-lossless-buffer shared-bytes 0-4294967295
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id>
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id> reserved 0-4294967295
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id> shared-bytes 0-4294967295
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id> shared-alpha (alpha_0|alpha_1_128|alpha_1_64|alpha_1_32|alpha_1_16|alpha_1_8|alpha_1_4|alpha_1_2|alpha_1|alpha_2|alpha_4|alpha_8|alpha_16|alpha_32|alpha_64|alpha_infinity)
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id> service-pool <integer>
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id>
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id> reserved 0-4294967295
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id> shared-bytes 0-4294967295
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id> shared-alpha (alpha_0|alpha_1_128|alpha_1_64|alpha_1_32|alpha_1_16|alpha_1_8|alpha_1_4|alpha_1_2|alpha_1|alpha_2|alpha_4|alpha_8|alpha_16|alpha_32|alpha_64|alpha_infinity)
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id> service-pool <integer>
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-port
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-port reserved 0-4294967295
+nv set qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-port shared-bytes 0-4294967295
+nv set qos traffic-pool <traffic-pool-id>
+nv set qos traffic-pool <traffic-pool-id> switch-priority <qos-sp-id>
+nv set qos traffic-pool <traffic-pool-id> memory-percent 1-100
+nv set qos link-pause <profile-id>
+nv set qos link-pause <profile-id> xoff-threshold <value>
+nv set qos link-pause <profile-id> xon-threshold <value>
+nv set qos link-pause <profile-id> port-buffer <value>
+nv set qos link-pause <profile-id> cable-length 1-100000
+nv set qos link-pause <profile-id> tx (enable|disable)
+nv set qos link-pause <profile-id> rx (enable|disable)
+nv set qos pfc <profile-id>
+nv set qos pfc <profile-id> switch-priority <qos-sp-id>
+nv set qos pfc <profile-id> xoff-threshold <value>
+nv set qos pfc <profile-id> xon-threshold <value>
+nv set qos pfc <profile-id> port-buffer <value>
+nv set qos pfc <profile-id> cable-length 1-100000
+nv set qos pfc <profile-id> tx (enable|disable)
+nv set qos pfc <profile-id> rx (enable|disable)
+nv set qos mapping <profile-id>
+nv set qos mapping <profile-id> pcp <qos-pcp-id>
+nv set qos mapping <profile-id> pcp <qos-pcp-id> switch-priority 0-7
+nv set qos mapping <profile-id> dscp <qos-dscp-id>
+nv set qos mapping <profile-id> dscp <qos-dscp-id> switch-priority 0-7
+nv set qos mapping <profile-id> port-default-sp 0-7
+nv set qos mapping <profile-id> trust (l2|l3|port|both)
+nv set qos remark <profile-id>
+nv set qos remark <profile-id> switch-priority <qos-sp-id>
+nv set qos remark <profile-id> switch-priority <qos-sp-id> pcp 0-7
+nv set qos remark <profile-id> switch-priority <qos-sp-id> dscp 0-63
+nv set qos remark <profile-id> rewrite (l2|l3|both)
+nv set qos congestion-control <profile-id>
+nv set qos congestion-control <profile-id> traffic-class <qos-tc-id>
+nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> min-threshold <value>
+nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> max-threshold <value>
+nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> probability 0-100
+nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> red (enable|disable)
+nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> ecn (enable|disable)
+nv set qos egress-queue-mapping <profile-id>
+nv set qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id>
+nv set qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id> traffic-class 0-7
+nv set qos egress-scheduler <profile-id>
+nv set qos egress-scheduler <profile-id> traffic-class <qos-tc-id>
+nv set qos egress-scheduler <profile-id> traffic-class <qos-tc-id> mode (dwrr|strict)
+nv set qos egress-scheduler <profile-id> traffic-class <qos-tc-id> bw-percent 0-100
+nv set qos egress-shaper <profile-id>
+nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id>
+nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id> min-rate 0-2147483647
+nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id> max-rate 0-2147483647
+nv set qos egress-shaper <profile-id> port-max-rate 0-2147483647
+nv set qos roce
+nv set qos roce enable (on|off)
+nv set qos roce mode (lossy|lossless)
 nv set interface <interface-id>
 nv set interface <interface-id> ip
 nv set interface <interface-id> ip address <ip-prefix-id>
@@ -894,8 +1316,7 @@ nv set interface <interface-id> ip vrr enable (on|off)
 nv set interface <interface-id> ip vrr mac-id (1-255|none)
 nv set interface <interface-id> ip vrr mac-address (auto|<mac>)
 nv set interface <interface-id> ip igmp
-nv set interface <interface-id> ip igmp static-group <static-group-id>
-nv set interface <interface-id> ip igmp static-group <static-group-id> source-address <ipv4-unicast>
+nv set interface <interface-id> ip igmp static-group <static-group-id> source-address
 nv set interface <interface-id> ip igmp enable (on|off)
 nv set interface <interface-id> ip igmp version (2|3)
 nv set interface <interface-id> ip igmp query-interval 1-1800
@@ -941,12 +1362,11 @@ nv set interface <interface-id> ip neighbor-discovery mtu 1-65535
 nv set interface <interface-id> ip vrf <vrf-name>
 nv set interface <interface-id> link
 nv set interface <interface-id> link state (up|down)
-nv set interface <interface-id> link dot1x
-nv set interface <interface-id> link dot1x mab (on|off)
-nv set interface <interface-id> link dot1x parking-vlan (on|off)
+nv set interface <interface-id> link breakout <mode-id>
+nv set interface <interface-id> link breakout <mode-id> lanes-per-port (1|2|4|8)
 nv set interface <interface-id> link auto-negotiate (on|off)
-nv set interface <interface-id> link breakout (1x|2x|4x|8x|2x10G|2x25G|2x40G|2x50G|2x100G|2x200G|4x10G|4x25G|4x50G|4x100G|8x50G|disabled|loopback)
 nv set interface <interface-id> link duplex (half|full)
+nv set interface <interface-id> link lanes (1|2|4|8)
 nv set interface <interface-id> link speed (auto|10M|100M|1G|10G|25G|40G|50G|100G|200G|400G|800G)
 nv set interface <interface-id> link fec (auto|baser|off|rs|driver-auto)
 nv set interface <interface-id> link mtu 552-9216
@@ -1029,12 +1449,18 @@ nv set interface <interface-id> lldp dcbx-ets-recomm-tlv (on|off)
 nv set interface <interface-id> qos
 nv set interface <interface-id> qos pfc
 nv set interface <interface-id> qos pfc profile <profile-name>
+nv set interface <interface-id> qos link-pause
+nv set interface <interface-id> qos link-pause profile <profile-name>
 nv set interface <interface-id> qos mapping
 nv set interface <interface-id> qos mapping profile <profile-name>
+nv set interface <interface-id> qos remark
+nv set interface <interface-id> qos remark profile <profile-name>
 nv set interface <interface-id> qos congestion-control
 nv set interface <interface-id> qos congestion-control profile <profile-name>
 nv set interface <interface-id> qos egress-scheduler
 nv set interface <interface-id> qos egress-scheduler profile <profile-name>
+nv set interface <interface-id> qos egress-shaper
+nv set interface <interface-id> qos egress-shaper profile <profile-name>
 nv set interface <interface-id> evpn
 nv set interface <interface-id> evpn multihoming
 nv set interface <interface-id> evpn multihoming segment
@@ -1055,8 +1481,10 @@ nv set interface <interface-id> ptp timers announce-interval -3-4
 nv set interface <interface-id> ptp timers sync-interval -7-1
 nv set interface <interface-id> ptp timers delay-req-interval -7-6
 nv set interface <interface-id> ptp timers announce-timeout 2-10
+nv set interface <interface-id> ptp shaper
+nv set interface <interface-id> ptp shaper enable (on|off)
 nv set interface <interface-id> ptp enable (on|off)
-nv set interface <interface-id> ptp instance <value>
+nv set interface <interface-id> ptp instance 1-16
 nv set interface <interface-id> ptp forced-master (on|off)
 nv set interface <interface-id> ptp acceptable-master (on|off)
 nv set interface <interface-id> ptp delay-mechanism end-to-end
@@ -1076,11 +1504,56 @@ nv set interface <interface-id> storm-control
 nv set interface <interface-id> storm-control broadcast 1-4294967295
 nv set interface <interface-id> storm-control multicast 1-4294967295
 nv set interface <interface-id> storm-control unknown-unicast 1-4294967295
-nv set interface <interface-id> type (swp|eth|bond|loopback|svi|sub|peerlink|tunnel)
+nv set interface <interface-id> synce
+nv set interface <interface-id> synce enable (on|off)
+nv set interface <interface-id> synce provider-priority 1-255
+nv set interface <interface-id> type (swp|eth|bond|loopback|svi|sub|peerlink|tunnel|bridge|vrf)
 nv set interface <interface-id> base-interface (none|<interface-name>)
 nv set interface <interface-id> vlan 1-4094
 nv set interface <interface-id> description <value>
 nv set service
+nv set service dhcp-server <vrf-id>
+nv set service dhcp-server <vrf-id> interface <interface-id>
+nv set service dhcp-server <vrf-id> pool <pool-id>
+nv set service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
+nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
+nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name <idn-hostname>
+nv set service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>
+nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id>
+nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> to <ipv4>
+nv set service dhcp-server <vrf-id> pool <pool-id> pool-name <value>
+nv set service dhcp-server <vrf-id> pool <pool-id> lease-time 180-31536000
+nv set service dhcp-server <vrf-id> pool <pool-id> ping-check (on|off)
+nv set service dhcp-server <vrf-id> pool <pool-id> default-url <value>
+nv set service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url <value>
+nv set service dhcp-server <vrf-id> domain-name <domain-name-id>
+nv set service dhcp-server <vrf-id> domain-name <domain-name-id> domain-name <idn-hostname>
+nv set service dhcp-server <vrf-id> domain-name-server <server-id>
+nv set service dhcp-server <vrf-id> static <static-id>
+nv set service dhcp-server <vrf-id> static <static-id> mac-address <mac>
+nv set service dhcp-server <vrf-id> static <static-id> ip-address <ipv4>
+nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url <value>
+nv set service dhcp-server <vrf-id> static <static-id> host-id-circuit-id <value>
+nv set service dhcp-server6 <vrf-id>
+nv set service dhcp-server6 <vrf-id> interface <interface-id>
+nv set service dhcp-server6 <vrf-id> pool <pool-id>
+nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
+nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
+nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name <idn-hostname>
+nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
+nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to <ipv6>
+nv set service dhcp-server6 <vrf-id> pool <pool-id> pool-name <value>
+nv set service dhcp-server6 <vrf-id> pool <pool-id> lease-time 180-31536000
+nv set service dhcp-server6 <vrf-id> pool <pool-id> ping-check (on|off)
+nv set service dhcp-server6 <vrf-id> pool <pool-id> default-url <value>
+nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url <value>
+nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id>
+nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> domain-name <idn-hostname>
+nv set service dhcp-server6 <vrf-id> domain-name-server <server-id>
+nv set service dhcp-server6 <vrf-id> static <static-id>
+nv set service dhcp-server6 <vrf-id> static <static-id> mac-address <mac>
+nv set service dhcp-server6 <vrf-id> static <static-id> ip-address <ipv6>
+nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url <value>
 nv set service dns <vrf-id>
 nv set service dns <vrf-id> server <dns-server-id>
 nv set service syslog <vrf-id>
@@ -1199,59 +1672,23 @@ nv set service snmp-server enable (on|off)
 nv set service snmp-server system-contact <value>
 nv set service snmp-server system-location <value>
 nv set service snmp-server system-name <value>
-nv set service dhcp-server <vrf-id>
-nv set service dhcp-server <vrf-id> interface <interface-id>
-nv set service dhcp-server <vrf-id> pool <pool-id>
-nv set service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
-nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
-nv set service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name <idn-hostname>
-nv set service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>
-nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id>
-nv set service dhcp-server <vrf-id> pool <pool-id> range <range-id> to <ipv4>
-nv set service dhcp-server <vrf-id> pool <pool-id> pool-name <value>
-nv set service dhcp-server <vrf-id> pool <pool-id> lease-time 180-31536000
-nv set service dhcp-server <vrf-id> pool <pool-id> ping-check (on|off)
-nv set service dhcp-server <vrf-id> pool <pool-id> default-url <value>
-nv set service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url <value>
-nv set service dhcp-server <vrf-id> domain-name <domain-name-id>
-nv set service dhcp-server <vrf-id> domain-name <domain-name-id> domain-name <idn-hostname>
-nv set service dhcp-server <vrf-id> domain-name-server <server-id>
-nv set service dhcp-server <vrf-id> static <static-id>
-nv set service dhcp-server <vrf-id> static <static-id> mac-address <mac>
-nv set service dhcp-server <vrf-id> static <static-id> ip-address <ipv4>
-nv set service dhcp-server <vrf-id> static <static-id> cumulus-provision-url <value>
-nv set service dhcp-server6 <vrf-id>
-nv set service dhcp-server6 <vrf-id> interface <interface-id>
-nv set service dhcp-server6 <vrf-id> pool <pool-id>
-nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
-nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
-nv set service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name <idn-hostname>
-nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
-nv set service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to <ipv6>
-nv set service dhcp-server6 <vrf-id> pool <pool-id> pool-name <value>
-nv set service dhcp-server6 <vrf-id> pool <pool-id> lease-time 180-31536000
-nv set service dhcp-server6 <vrf-id> pool <pool-id> ping-check (on|off)
-nv set service dhcp-server6 <vrf-id> pool <pool-id> default-url <value>
-nv set service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url <value>
-nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id>
-nv set service dhcp-server6 <vrf-id> domain-name <domain-name-id> domain-name <idn-hostname>
-nv set service dhcp-server6 <vrf-id> domain-name-server <server-id>
-nv set service dhcp-server6 <vrf-id> static <static-id>
-nv set service dhcp-server6 <vrf-id> static <static-id> mac-address <mac>
-nv set service dhcp-server6 <vrf-id> static <static-id> ip-address <ipv6>
-nv set service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url <value>
+nv set service synce
+nv set service synce enable (on|off)
+nv set service synce wait-to-restore-time 1-720
+nv set service synce log-level (info|debug)
+nv set service synce provider-default-priority 1-256
 nv set service ptp <instance-id>
 nv set service ptp <instance-id> acceptable-master <clock-id>
-nv set service ptp <instance-id> acceptable-master <clock-id> alt-priority <value>
+nv set service ptp <instance-id> acceptable-master <clock-id> alt-priority 0-255
 nv set service ptp <instance-id> unicast-master <table-id>
 nv set service ptp <instance-id> unicast-master <table-id> address <ip-mac-address-id>
 nv set service ptp <instance-id> unicast-master <table-id> query-interval -3-4
 nv set service ptp <instance-id> unicast-master <table-id> peer-address (<ipv4>|<ipv6>)
 nv set service ptp <instance-id> profile <profile-id>
 nv set service ptp <instance-id> profile <profile-id> profile-type (ieee-1588|itu-g-8275-1)
-nv set service ptp <instance-id> profile <profile-id> priority1 <value>
-nv set service ptp <instance-id> profile <profile-id> priority2 <value>
-nv set service ptp <instance-id> profile <profile-id> local-priority <value>
+nv set service ptp <instance-id> profile <profile-id> priority1 0-255
+nv set service ptp <instance-id> profile <profile-id> priority2 0-255
+nv set service ptp <instance-id> profile <profile-id> local-priority 0-255
 nv set service ptp <instance-id> profile <profile-id> domain 0-255
 nv set service ptp <instance-id> profile <profile-id> delay-mechanism end-to-end
 nv set service ptp <instance-id> profile <profile-id> transport (ipv4|ipv6|802.3)
@@ -1260,27 +1697,34 @@ nv set service ptp <instance-id> profile <profile-id> sync-interval -7-7
 nv set service ptp <instance-id> profile <profile-id> delay-req-interval -7-7
 nv set service ptp <instance-id> profile <profile-id> announce-timeout 2-255
 nv set service ptp <instance-id> monitor
-nv set service ptp <instance-id> monitor min-offset-threshold <value>
-nv set service ptp <instance-id> monitor max-offset-threshold <value>
-nv set service ptp <instance-id> monitor path-delay-threshold <value>
-nv set service ptp <instance-id> monitor max-timestamp-entries 400-1000
-nv set service ptp <instance-id> monitor max-violation-log-sets 8-128
-nv set service ptp <instance-id> monitor max-violation-log-entries 8-128
-nv set service ptp <instance-id> monitor violation-log-interval 0-259200
+nv set service ptp <instance-id> monitor min-offset-threshold -1000000000-0
+nv set service ptp <instance-id> monitor max-offset-threshold 0-1000000000
+nv set service ptp <instance-id> monitor path-delay-threshold 0-1000000000
+nv set service ptp <instance-id> monitor max-timestamp-entries 100-200
+nv set service ptp <instance-id> monitor max-violation-log-sets 2-4
+nv set service ptp <instance-id> monitor max-violation-log-entries 4-8
+nv set service ptp <instance-id> monitor violation-log-interval 0-60
 nv set service ptp <instance-id> enable (on|off)
 nv set service ptp <instance-id> current-profile <value>
-nv set service ptp <instance-id> priority1 <value>
-nv set service ptp <instance-id> priority2 <value>
+nv set service ptp <instance-id> priority1 0-255
+nv set service ptp <instance-id> priority2 0-255
 nv set service ptp <instance-id> domain 0-127
 nv set service ptp <instance-id> ip-dscp 0-63
 nv set service lldp
 nv set service lldp tx-interval 10-300
 nv set service lldp tx-hold-multiplier 1-10
 nv set service lldp dot1-tlv (on|off)
+nv set service lldp mode (default|force-send-cdpv1|force-send-cdpv2|force-send-lldp)
 nv set system
 nv set system message
 nv set system message pre-login <value>
 nv set system message post-login <value>
+nv set system config
+nv set system config auto-save
+nv set system config auto-save enable (on|off)
+nv set system config apply
+nv set system config apply ignore <ignore-id>
+nv set system config apply overwrite (all|controlled)
 nv set system acl
 nv set system acl mode (atomic|non-atomic)
 nv set system counter
@@ -1342,6 +1786,7 @@ nv set system forwarding programming
 nv set system forwarding programming log-level (debug|info|critical|warning|error)
 nv set system forwarding hash-seed 0-4294967295
 nv set system forwarding host-route-preference (route|neighbour|route-and-neighbour)
+nv set system forwarding profile (default|l2-heavy|l2-heavy-1|l2-heavy-3|v4-lpm-heavy|v4-lpm-heavy-1|v6-lpm-heavy|v6-lpm-heavy-1|ipmc-heavy|ipmc-max|lpm-balanced)
 nv set system port-mirror
 nv set system port-mirror session <session-id>
 nv set system port-mirror session <session-id> span
@@ -1362,25 +1807,51 @@ nv set system port-mirror session <session-id> erspan truncate enable (on|off)
 nv set system port-mirror session <session-id> erspan truncate size (4-4088|none)
 nv set system port-mirror session <session-id> erspan enable (on|off)
 nv set system port-mirror session <session-id> erspan direction (ingress|egress)
-nv set system config
-nv set system config apply
-nv set system config apply ignore <ignore-id>
-nv set system config apply overwrite (all|controlled)
 nv set system wjh
 nv set system wjh channel <channel-id>
 nv set system wjh channel <channel-id> trigger (l1|l2|l3|tunnel)
 nv set system wjh enable (on|off)
+nv set system aaa
+nv set system aaa user <user-id>
+nv set system aaa user <user-id> ssh
+nv set system aaa user <user-id> ssh authorized-key <ssh-authorized-key-id>
+nv set system aaa user <user-id> ssh authorized-key <ssh-authorized-key-id> key <key-string>
+nv set system aaa user <user-id> ssh authorized-key <ssh-authorized-key-id> type (ecdsa-sha2-nistp256|ecdsa-sha2-nistp384|ecdsa-sha2-nistp521|ssh-ed25519|ssh-dss|ssh-rsa)
+nv set system aaa user <user-id> role (system-admin|nvue-admin|nvue-monitor)
+nv set system aaa user <user-id> full-name <value>
+nv set system aaa user <user-id> password <value>
+nv set system aaa user <user-id> hashed-password <value>
+nv set system aaa user <user-id> enable (on|off)
+nv set system aaa authentication-order <priority-id> (tacacs|local)
+nv set system aaa tacacs
+nv set system aaa tacacs authentication
+nv set system aaa tacacs authentication mode (pap|chap|login)
+nv set system aaa tacacs authentication per-user-homedir (on|off)
+nv set system aaa tacacs accounting
+nv set system aaa tacacs accounting enable (on|off)
+nv set system aaa tacacs accounting send-records (all|first-response)
+nv set system aaa tacacs server <priority-id>
+nv set system aaa tacacs server <priority-id> host (<idn-hostname>|<ipv4>)
+nv set system aaa tacacs server <priority-id> port 0-65535
+nv set system aaa tacacs server <priority-id> secret <value>
+nv set system aaa tacacs exclude-user
+nv set system aaa tacacs exclude-user username <value>
+nv set system aaa tacacs enable (on|off)
+nv set system aaa tacacs timeout 0-60
+nv set system aaa tacacs debug-level 0-2
+nv set system aaa tacacs source-ip <ipv4>
+nv set system aaa tacacs vrf <vrf-name>
 nv set system hostname <idn-hostname>
-nv set system timezone
+nv set system timezone (Africa/Abidjan|Africa/Accra|Africa/Addis_Ababa|Africa/Algiers|Africa/Asmara|Africa/Bamako|Africa/Bangui|Africa/Banjul|Africa/Bissau|Africa/Blantyre|Africa/Brazzaville|Africa/Bujumbura|Africa/Cairo|Africa/Casablanca|Africa/Ceuta|Africa/Conakry|Africa/Dakar|Africa/Dar_es_Salaam|Africa/Djibouti|Africa/Douala|Africa/El_Aaiun|Africa/Freetown|Africa/Gaborone|Africa/Harare|Africa/Johannesburg|Africa/Juba|Africa/Kampala|Africa/Khartoum|Africa/Kigali|Africa/Kinshasa|Africa/Lagos|Africa/Libreville|Africa/Lome|Africa/Luanda|Africa/Lubumbashi|Africa/Lusaka|Africa/Malabo|Africa/Maputo|Africa/Maseru|Africa/Mbabane|Africa/Mogadishu|Africa/Monrovia|Africa/Nairobi|Africa/Ndjamena|Africa/Niamey|Africa/Nouakchott|Africa/Ouagadougou|Africa/Porto-Novo|Africa/Sao_Tome|Africa/Timbuktu|Africa/Tripoli|Africa/Tunis|Africa/Windhoek|America/Adak|America/Anchorage|America/Anguilla|America/Antigua|America/Araguaina|America/Argentina/Buenos_Aires|America/Argentina/Catamarca|America/Argentina/ComodRivadavia|America/Argentina/Cordoba|America/Argentina/Jujuy|America/Argentina/La_Rioja|America/Argentina/Mendoza|America/Argentina/Rio_Gallegos|America/Argentina/Salta|America/Argentina/San_Juan|America/Argentina/San_Luis|America/Argentina/Tucuman|America/Argentina/Ushuaia|America/Aruba|America/Asuncion|America/Atikokan|America/Atka|America/Bahia|America/Bahia_Banderas|America/Barbados|America/Belem|America/Belize|America/Blanc-Sablon|America/Boa_Vista|America/Bogota|America/Boise|America/Buenos_Aires|America/Cambridge_Bay|America/Campo_Grande|America/Cancun|America/Caracas|America/Catamarca|America/Cayenne|America/Cayman|America/Chicago|America/Chihuahua|America/Coral_Harbour|America/Cordoba|America/Costa_Rica|America/Creston|America/Cuiaba|America/Curacao|America/Danmarkshavn|America/Dawson|America/Dawson_Creek|America/Denver|America/Detroit|America/Dominica|America/Edmonton|America/Eirunepe|America/El_Salvador|America/Ensenada|America/Fort_Nelson|America/Fort_Wayne|America/Fortaleza|America/Glace_Bay|America/Godthab|America/Goose_Bay|America/Grand_Turk|America/Grenada|America/Guadeloupe|America/Guatemala|America/Guayaquil|America/Guyana|America/Halifax|America/Havana|America/Hermosillo|America/Indiana/Indianapolis|America/Indiana/Knox|America/Indiana/Marengo|America/Indiana/Petersburg|America/Indiana/Tell_City|America/Indiana/Vevay|America/Indiana/Vincennes|America/Indiana/Winamac|America/Indianapolis|America/Inuvik|America/Iqaluit|America/Jamaica|America/Jujuy|America/Juneau|America/Kentucky/Louisville|America/Kentucky/Monticello|America/Knox_IN|America/Kralendijk|America/La_Paz|America/Lima|America/Los_Angeles|America/Louisville|America/Lower_Princes|America/Maceio|America/Managua|America/Manaus|America/Marigot|America/Martinique|America/Matamoros|America/Mazatlan|America/Mendoza|America/Menominee|America/Merida|America/Metlakatla|America/Mexico_City|America/Miquelon|America/Moncton|America/Monterrey|America/Montevideo|America/Montreal|America/Montserrat|America/Nassau|America/New_York|America/Nipigon|America/Nome|America/Noronha|America/North_Dakota/Beulah|America/North_Dakota/Center|America/North_Dakota/New_Salem|America/Ojinaga|America/Panama|America/Pangnirtung|America/Paramaribo|America/Phoenix|America/Port-au-Prince|America/Port_of_Spain|America/Porto_Acre|America/Porto_Velho|America/Puerto_Rico|America/Rainy_River|America/Rankin_Inlet|America/Recife|America/Regina|America/Resolute|America/Rio_Branco|America/Rosario|America/Santa_Isabel|America/Santarem|America/Santiago|America/Santo_Domingo|America/Sao_Paulo|America/Scoresbysund|America/Shiprock|America/Sitka|America/St_Barthelemy|America/St_Johns|America/St_Kitts|America/St_Lucia|America/St_Thomas|America/St_Vincent|America/Swift_Current|America/Tegucigalpa|America/Thule|America/Thunder_Bay|America/Tijuana|America/Toronto|America/Tortola|America/Vancouver|America/Virgin|America/Whitehorse|America/Winnipeg|America/Yakutat|America/Yellowknife|Antarctica/Casey|Antarctica/Davis|Antarctica/DumontDUrville|Antarctica/Macquarie|Antarctica/Mawson|Antarctica/McMurdo|Antarctica/Palmer|Antarctica/Rothera|Antarctica/South_Pole|Antarctica/Syowa|Antarctica/Troll|Antarctica/Vostok|Arctic/Longyearbyen|Asia/Aden|Asia/Almaty|Asia/Amman|Asia/Anadyr|Asia/Aqtau|Asia/Aqtobe|Asia/Ashgabat|Asia/Ashkhabad|Asia/Atyrau|Asia/Baghdad|Asia/Bahrain|Asia/Baku|Asia/Bangkok|Asia/Barnaul|Asia/Beirut|Asia/Bishkek|Asia/Brunei|Asia/Calcutta|Asia/Chita|Asia/Choibalsan|Asia/Chongqing|Asia/Chungking|Asia/Colombo|Asia/Dacca|Asia/Damascus|Asia/Dhaka|Asia/Dili|Asia/Dubai|Asia/Dushanbe|Asia/Famagusta|Asia/Gaza|Asia/Harbin|Asia/Hebron|Asia/Ho_Chi_Minh|Asia/Hong_Kong|Asia/Hovd|Asia/Irkutsk|Asia/Istanbul|Asia/Jakarta|Asia/Jayapura|Asia/Jerusalem|Asia/Kabul|Asia/Kamchatka|Asia/Karachi|Asia/Kashgar|Asia/Kathmandu|Asia/Katmandu|Asia/Khandyga|Asia/Kolkata|Asia/Krasnoyarsk|Asia/Kuala_Lumpur|Asia/Kuching|Asia/Kuwait|Asia/Macao|Asia/Macau|Asia/Magadan|Asia/Makassar|Asia/Manila|Asia/Muscat|Asia/Nicosia|Asia/Novokuznetsk|Asia/Novosibirsk|Asia/Omsk|Asia/Oral|Asia/Phnom_Penh|Asia/Pontianak|Asia/Pyongyang|Asia/Qatar|Asia/Qyzylorda|Asia/Rangoon|Asia/Riyadh|Asia/Saigon|Asia/Sakhalin|Asia/Samarkand|Asia/Seoul|Asia/Shanghai|Asia/Singapore|Asia/Srednekolymsk|Asia/Taipei|Asia/Tashkent|Asia/Tbilisi|Asia/Tehran|Asia/Tel_Aviv|Asia/Thimbu|Asia/Thimphu|Asia/Tokyo|Asia/Tomsk|Asia/Ujung_Pandang|Asia/Ulaanbaatar|Asia/Ulan_Bator|Asia/Urumqi|Asia/Ust-Nera|Asia/Vientiane|Asia/Vladivostok|Asia/Yakutsk|Asia/Yangon|Asia/Yekaterinburg|Asia/Yerevan|Atlantic/Azores|Atlantic/Bermuda|Atlantic/Canary|Atlantic/Cape_Verde|Atlantic/Faeroe|Atlantic/Faroe|Atlantic/Jan_Mayen|Atlantic/Madeira|Atlantic/Reykjavik|Atlantic/South_Georgia|Atlantic/St_Helena|Atlantic/Stanley|Australia/ACT|Australia/Adelaide|Australia/Brisbane|Australia/Broken_Hill|Australia/Canberra|Australia/Currie|Australia/Darwin|Australia/Eucla|Australia/Hobart|Australia/LHI|Australia/Lindeman|Australia/Lord_Howe|Australia/Melbourne|Australia/NSW|Australia/North|Australia/Perth|Australia/Queensland|Australia/South|Australia/Sydney|Australia/Tasmania|Australia/Victoria|Australia/West|Australia/Yancowinna|Brazil/Acre|Brazil/DeNoronha|Brazil/East|Brazil/West|Canada/Atlantic|Canada/Central|Canada/East-Saskatchewan|Canada/Eastern|Canada/Mountain|Canada/Newfoundland|Canada/Pacific|Canada/Saskatchewan|Canada/Yukon|Chile/Continental|Chile/EasterIsland|Etc/GMT|Etc/GMT0|Etc/GMT+0|Etc/GMT+1|Etc/GMT+2|Etc/GMT+3|Etc/GMT+4|Etc/GMT+5|Etc/GMT+6|Etc/GMT+7|Etc/GMT+8|Etc/GMT+9|Etc/GMT+10|Etc/GMT+11|Etc/GMT+12|Etc/GMT-0|Etc/GMT-1|Etc/GMT-2|Etc/GMT-3|Etc/GMT-4|Etc/GMT-5|Etc/GMT-6|Etc/GMT-7|Etc/GMT-8|Etc/GMT-9|Etc/GMT-10|Etc/GMT-11|Etc/GMT-12|Etc/GMT-13|Etc/GMT-14|Etc/Greenwich|Etc/UTC|Etc/Universal|Etc/Zulu|Europe/Amsterdam|Europe/Andorra|Europe/Astrakhan|Europe/Athens|Europe/Belfast|Europe/Belgrade|Europe/Berlin|Europe/Bratislava|Europe/Brussels|Europe/Bucharest|Europe/Budapest|Europe/Busingen|Europe/Chisinau|Europe/Copenhagen|Europe/Dublin|Europe/Gibraltar|Europe/Guernsey|Europe/Helsinki|Europe/Isle_of_Man|Europe/Istanbul|Europe/Jersey|Europe/Kaliningrad|Europe/Kiev|Europe/Kirov|Europe/Lisbon|Europe/Ljubljana|Europe/London|Europe/Luxembourg|Europe/Madrid|Europe/Malta|Europe/Mariehamn|Europe/Minsk|Europe/Monaco|Europe/Moscow|Europe/Nicosia|Europe/Oslo|Europe/Paris|Europe/Podgorica|Europe/Prague|Europe/Riga|Europe/Rome|Europe/Samara|Europe/San_Marino|Europe/Sarajevo|Europe/Saratov|Europe/Simferopol|Europe/Skopje|Europe/Sofia|Europe/Stockholm|Europe/Tallinn|Europe/Tirane|Europe/Tiraspol|Europe/Ulyanovsk|Europe/Uzhgorod|Europe/Vaduz|Europe/Vatican|Europe/Vienna|Europe/Vilnius|Europe/Volgograd|Europe/Warsaw|Europe/Zagreb|Europe/Zaporozhye|Europe/Zurich|Indian/Antananarivo|Indian/Chagos|Indian/Christmas|Indian/Cocos|Indian/Comoro|Indian/Kerguelen|Indian/Mahe|Indian/Maldives|Indian/Mauritius|Indian/Mayotte|Indian/Reunion|Mexico/BajaNorte|Mexico/BajaSur|Mexico/General|Pacific/Apia|Pacific/Auckland|Pacific/Bougainville|Pacific/Chatham|Pacific/Chuuk|Pacific/Easter|Pacific/Efate|Pacific/Enderbury|Pacific/Fakaofo|Pacific/Fiji|Pacific/Funafuti|Pacific/Galapagos|Pacific/Gambier|Pacific/Guadalcanal|Pacific/Guam|Pacific/Honolulu|Pacific/Johnston|Pacific/Kiritimati|Pacific/Kosrae|Pacific/Kwajalein|Pacific/Majuro|Pacific/Marquesas|Pacific/Midway|Pacific/Nauru|Pacific/Niue|Pacific/Norfolk|Pacific/Noumea|Pacific/Pago_Pago|Pacific/Palau|Pacific/Pitcairn|Pacific/Pohnpei|Pacific/Ponape|Pacific/Port_Moresby|Pacific/Rarotonga|Pacific/Saipan|Pacific/Samoa|Pacific/Tahiti|Pacific/Tarawa|Pacific/Tongatapu|Pacific/Truk|Pacific/Wake|Pacific/Wallis|Pacific/Yap|US/Alaska|US/Aleutian|US/Arizona|US/Central|US/East-Indiana|US/Eastern|US/Hawaii|US/Indiana-Starke|US/Michigan|US/Mountain|US/Pacific|US/Pacific-New|US/Samoa)
 nv set vrf <vrf-id>
 nv set vrf <vrf-id> loopback
 nv set vrf <vrf-id> loopback ip
 nv set vrf <vrf-id> loopback ip address <ip-prefix-id>
 nv set vrf <vrf-id> evpn
 nv set vrf <vrf-id> evpn vni <vni-id>
-nv set vrf <vrf-id> evpn vni <vni-id> prefix-routes-only (on|off)
 nv set vrf <vrf-id> evpn enable (on|off)
 nv set vrf <vrf-id> evpn vlan (1-4094|auto)
+nv set vrf <vrf-id> evpn prefix-routes-only (on|off)
 nv set vrf <vrf-id> router
 nv set vrf <vrf-id> router rib <afi>
 nv set vrf <vrf-id> router rib <afi> protocol <import-protocol-id>
@@ -1518,7 +1989,7 @@ nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as asn 1-4294967
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as prepend (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> local-as replace (on|off)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers
-nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers keepalive (1-65535|none|auto)
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers keepalive (0-65535|none|auto)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers hold (3-65535|none|auto)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers connection-retry (1-65535|auto)
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> timers route-advertisement (1-600|none|auto)
@@ -1657,7 +2128,7 @@ nv set vrf <vrf-id> router bgp route-import
 nv set vrf <vrf-id> router bgp route-import from-evpn
 nv set vrf <vrf-id> router bgp route-import from-evpn route-target <rt-id>
 nv set vrf <vrf-id> router bgp timers
-nv set vrf <vrf-id> router bgp timers keepalive (1-65535|none)
+nv set vrf <vrf-id> router bgp timers keepalive (0-65535|none)
 nv set vrf <vrf-id> router bgp timers hold (3-65535|none)
 nv set vrf <vrf-id> router bgp timers connection-retry 1-65535
 nv set vrf <vrf-id> router bgp timers route-advertisement (1-600|none)
@@ -1808,7 +2279,7 @@ nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn 
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn nexthop-setting (auto|self|force)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn add-path-tx (off|all-paths|best-per-as)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers
-nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers keepalive (1-65535|none|auto)
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers keepalive (0-65535|none|auto)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers hold (3-65535|none|auto)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers connection-retry (1-65535|auto)
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> timers route-advertisement (1-600|none|auto)
@@ -1929,264 +2400,6 @@ nv set vrf <vrf-id> router ospf router-id (auto|<ipv4>)
 nv set vrf <vrf-id> ptp
 nv set vrf <vrf-id> ptp enable (on|off)
 nv set vrf <vrf-id> table auto
-nv set router
-nv set router ptm
-nv set router ptm enable (on|off)
-nv set router nexthop-group <nexthop-group-id>
-nv set router nexthop-group <nexthop-group-id> via <via-id>
-nv set router nexthop-group <nexthop-group-id> via <via-id> interface (auto|<interface-name>)
-nv set router nexthop-group <nexthop-group-id> via <via-id> vrf (auto|<vrf-name>)
-nv set router pbr
-nv set router pbr map <pbr-map-id>
-nv set router pbr map <pbr-map-id> rule <rule-id>
-nv set router pbr map <pbr-map-id> rule <rule-id> match
-nv set router pbr map <pbr-map-id> rule <rule-id> match source-ip (<ipv4-prefix>|<ipv6-prefix>)
-nv set router pbr map <pbr-map-id> rule <rule-id> match destination-ip (<ipv4-prefix>|<ipv6-prefix>)
-nv set router pbr map <pbr-map-id> rule <rule-id> match dscp 0-63
-nv set router pbr map <pbr-map-id> rule <rule-id> match ecn 0-3
-nv set router pbr map <pbr-map-id> rule <rule-id> action
-nv set router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
-nv set router pbr map <pbr-map-id> rule <rule-id> action vrf <vrf-name>
-nv set router pbr enable (on|off)
-nv set router policy
-nv set router policy community-list <list-id>
-nv set router policy community-list <list-id> rule <rule-id>
-nv set router policy community-list <list-id> rule <rule-id> community <community-id>
-nv set router policy community-list <list-id> rule <rule-id> action (permit|deny)
-nv set router policy as-path-list <list-id>
-nv set router policy as-path-list <list-id> rule <rule-id>
-nv set router policy as-path-list <list-id> rule <rule-id> action (permit|deny)
-nv set router policy as-path-list <list-id> rule <rule-id> aspath-exp <bgp-regex>
-nv set router policy ext-community-list <list-id>
-nv set router policy ext-community-list <list-id> rule <rule-id>
-nv set router policy ext-community-list <list-id> rule <rule-id> ext-community
-nv set router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
-nv set router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
-nv set router policy ext-community-list <list-id> rule <rule-id> action (permit|deny)
-nv set router policy large-community-list <list-id>
-nv set router policy large-community-list <list-id> rule <rule-id>
-nv set router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
-nv set router policy large-community-list <list-id> rule <rule-id> action (permit|deny)
-nv set router policy prefix-list <prefix-list-id>
-nv set router policy prefix-list <prefix-list-id> rule <rule-id>
-nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
-nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> min-prefix-len 0-128
-nv set router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> max-prefix-len 0-128
-nv set router policy prefix-list <prefix-list-id> rule <rule-id> action (permit|deny)
-nv set router policy prefix-list <prefix-list-id> type (ipv4|ipv6)
-nv set router policy route-map <route-map-id>
-nv set router policy route-map <route-map-id> rule <rule-id>
-nv set router policy route-map <route-map-id> rule <rule-id> match
-nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-list <generic-name>
-nv set router policy route-map <route-map-id> rule <rule-id> match ip-prefix-len 0-128
-nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-list <generic-name>
-nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-len 0-32
-nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop (<ipv4>|<ipv6>)
-nv set router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-type blackhole
-nv set router policy route-map <route-map-id> rule <rule-id> match as-path-list <generic-name>
-nv set router policy route-map <route-map-id> rule <rule-id> match community-list <generic-name>
-nv set router policy route-map <route-map-id> rule <rule-id> match large-community-list <generic-name>
-nv set router policy route-map <route-map-id> rule <rule-id> match metric <value>
-nv set router policy route-map <route-map-id> rule <rule-id> match interface (<interface-name>|<vrf-name>)
-nv set router policy route-map <route-map-id> rule <rule-id> match tag 1-4294967295
-nv set router policy route-map <route-map-id> rule <rule-id> match source-protocol (bgp|connected|kernel|ospf|ospf6|sharp|static)
-nv set router policy route-map <route-map-id> rule <rule-id> match origin (egp|igp|incomplete)
-nv set router policy route-map <route-map-id> rule <rule-id> match peer (local|<interface-name>|<ipv4>|<ipv6>)
-nv set router policy route-map <route-map-id> rule <rule-id> match local-preference 0-4294967295
-nv set router policy route-map <route-map-id> rule <rule-id> match evpn-route-type (macip|imet|ip-prefix)
-nv set router policy route-map <route-map-id> rule <rule-id> match evpn-vni <value>
-nv set router policy route-map <route-map-id> rule <rule-id> match evpn-default-route (on|off)
-nv set router policy route-map <route-map-id> rule <rule-id> match source-vrf <vrf-name>
-nv set router policy route-map <route-map-id> rule <rule-id> match type (ipv4|ipv6)
-nv set router policy route-map <route-map-id> rule <rule-id> set
-nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
-nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as <asn-range>
-nv set router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as 1-10
-nv set router policy route-map <route-map-id> rule <rule-id> set community <community-id>
-nv set router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
-nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
-nv set router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id>
-nv set router policy route-map <route-map-id> rule <rule-id> set as-path-exclude 1-4294967295
-nv set router policy route-map <route-map-id> rule <rule-id> set atomic-aggregate (on|off)
-nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-rt <route-distinguisher>
-nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-soo <route-distinguisher>
-nv set router policy route-map <route-map-id> rule <rule-id> set ext-community-bw (cumulative|multipaths|cumulative-non-transitive|multipaths-non-transitive)
-nv set router policy route-map <route-map-id> rule <rule-id> set local-preference 0-4294967295
-nv set router policy route-map <route-map-id> rule <rule-id> set weight 0-4294967295
-nv set router policy route-map <route-map-id> rule <rule-id> set metric (metric-plus|metric-minus|rtt|rtt-plus|rtt-minus)
-nv set router policy route-map <route-map-id> rule <rule-id> set metric-type (type-1|type-2)
-nv set router policy route-map <route-map-id> rule <rule-id> set origin (egp|igp|incomplete)
-nv set router policy route-map <route-map-id> rule <rule-id> set tag 1-4294967295
-nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-global <ipv6>
-nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-local <ipv6>
-nv set router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-prefer-global (on|off)
-nv set router policy route-map <route-map-id> rule <rule-id> set ip-nexthop (unchanged|peer-addr|<ipv4>|<ipv6>)
-nv set router policy route-map <route-map-id> rule <rule-id> set source-ip (<ipv4>|<ipv6>)
-nv set router policy route-map <route-map-id> rule <rule-id> set community-delete-list (<generic-name>|<integer>)
-nv set router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list (<generic-name>|<integer>)
-nv set router policy route-map <route-map-id> rule <rule-id> set originator-id <ipv4>
-nv set router policy route-map <route-map-id> rule <rule-id> set label-index 0-1048560
-nv set router policy route-map <route-map-id> rule <rule-id> set forwarding-address <ipv6>
-nv set router policy route-map <route-map-id> rule <rule-id> action
-nv set router policy route-map <route-map-id> rule <rule-id> action deny
-nv set router policy route-map <route-map-id> rule <rule-id> action permit
-nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
-nv set router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule <value>
-nv set router policy route-map <route-map-id> rule <rule-id> description none
-nv set router bgp
-nv set router bgp graceful-restart
-nv set router bgp graceful-restart mode (off|helper-only|full)
-nv set router bgp graceful-restart restart-time 1-3600
-nv set router bgp graceful-restart path-selection-deferral-time 0-3600
-nv set router bgp graceful-restart stale-routes-time 1-3600
-nv set router bgp convergence-wait
-nv set router bgp convergence-wait time 0-3600
-nv set router bgp convergence-wait establish-wait-time 0-3600
-nv set router bgp enable (on|off)
-nv set router bgp autonomous-system (1-4294967295|none|leaf|spine)
-nv set router bgp router-id (none|<ipv4>)
-nv set router bgp policy-update-timer 0-600
-nv set router bgp graceful-shutdown (on|off)
-nv set router bgp wait-for-install (on|off)
-nv set router ospf
-nv set router ospf timers
-nv set router ospf timers lsa
-nv set router ospf timers lsa min-arrival 0-600000
-nv set router ospf timers lsa throttle 0-5000
-nv set router ospf timers spf
-nv set router ospf timers spf delay 0-600000
-nv set router ospf timers spf holdtime 0-600000
-nv set router ospf timers spf max-holdtime 0-600000
-nv set router ospf timers refresh 10-1800
-nv set router ospf enable (on|off)
-nv set router ospf router-id (none|<ipv4>)
-nv set router pim
-nv set router pim timers
-nv set router pim timers hello-interval 1-180
-nv set router pim timers register-suppress 5-60000
-nv set router pim timers join-prune-interval 60-600
-nv set router pim timers keep-alive 31-60000
-nv set router pim timers rp-keep-alive 31-60000
-nv set router pim enable (on|off)
-nv set router pim packets 1-100
-nv set router igmp
-nv set router igmp enable (on|off)
-nv set router vrrp
-nv set router vrrp enable (on|off)
-nv set router vrrp priority 1-254
-nv set router vrrp preempt (on|off)
-nv set router vrrp advertisement-interval 10-40950
-nv set router vrr
-nv set router vrr enable (on|off)
-nv set router adaptive-routing
-nv set router adaptive-routing enable (on|off)
-nv set bridge
-nv set bridge domain <domain-id>
-nv set bridge domain <domain-id> stp
-nv set bridge domain <domain-id> stp state (up|down)
-nv set bridge domain <domain-id> stp priority 4096-61440
-nv set bridge domain <domain-id> multicast
-nv set bridge domain <domain-id> multicast snooping
-nv set bridge domain <domain-id> multicast snooping querier
-nv set bridge domain <domain-id> multicast snooping querier enable (on|off)
-nv set bridge domain <domain-id> multicast snooping enable (on|off)
-nv set bridge domain <domain-id> vlan <vid>
-nv set bridge domain <domain-id> vlan <vid> vni <vni-id>
-nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
-nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
-nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding enable (on|off|auto)
-nv set bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group <ipv4-multicast>
-nv set bridge domain <domain-id> vlan <vid> vni <vni-id> mac-learning (on|off|auto)
-nv set bridge domain <domain-id> vlan <vid> ptp
-nv set bridge domain <domain-id> vlan <vid> ptp enable (on|off)
-nv set bridge domain <domain-id> vlan <vid> multicast
-nv set bridge domain <domain-id> vlan <vid> multicast snooping
-nv set bridge domain <domain-id> vlan <vid> multicast snooping querier
-nv set bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip <ipv4>
-nv set bridge domain <domain-id> type vlan-aware
-nv set bridge domain <domain-id> untagged (1-4094|none)
-nv set bridge domain <domain-id> encap 802.1Q
-nv set bridge domain <domain-id> mac-address (auto|<mac>)
-nv set bridge domain <domain-id> vlan-vni-offset 0-16773120
-nv set mlag
-nv set mlag backup <backup-ip>
-nv set mlag backup <backup-ip> vrf <vrf-name>
-nv set mlag enable (on|off)
-nv set mlag mac-address (auto|<mac>)
-nv set mlag peer-ip (linklocal|<ipv4>|<ipv6>)
-nv set mlag priority 0-65535
-nv set mlag init-delay 0-900
-nv set mlag debug (on|off)
-nv set mlag lacp-conflict
-nv set evpn
-nv set evpn route-advertise
-nv set evpn route-advertise nexthop-setting (system-ip-mac|shared-ip-mac)
-nv set evpn route-advertise svi-ip (on|off)
-nv set evpn route-advertise default-gateway (on|off)
-nv set evpn dad
-nv set evpn dad duplicate-action
-nv set evpn dad duplicate-action freeze
-nv set evpn dad duplicate-action freeze duration (30-3600|permanent)
-nv set evpn dad enable (on|off)
-nv set evpn dad mac-move-threshold 2-1000
-nv set evpn dad move-window 2-1800
-nv set evpn vni <vni-id>
-nv set evpn vni <vni-id> route-advertise
-nv set evpn vni <vni-id> route-advertise svi-ip (on|off|auto)
-nv set evpn vni <vni-id> route-advertise default-gateway (on|off|auto)
-nv set evpn vni <vni-id> route-target
-nv set evpn vni <vni-id> route-target export <rt-id>
-nv set evpn vni <vni-id> route-target import <rt-id>
-nv set evpn vni <vni-id> route-target both <rt-id>
-nv set evpn vni <vni-id> rd (auto|<route-distinguisher>)
-nv set evpn multihoming
-nv set evpn multihoming ead-evi-route
-nv set evpn multihoming ead-evi-route rx (on|off)
-nv set evpn multihoming ead-evi-route tx (on|off)
-nv set evpn multihoming segment
-nv set evpn multihoming segment mac-address <mac>
-nv set evpn multihoming segment df-preference 1-65535
-nv set evpn multihoming enable (on|off)
-nv set evpn multihoming mac-holdtime 0-86400
-nv set evpn multihoming neighbor-holdtime 0-86400
-nv set evpn multihoming startup-delay 0-3600
-nv set evpn enable (on|off)
-nv set qos
-nv set qos traffic-pool <traffic-pool-id>
-nv set qos traffic-pool <traffic-pool-id> switch-priority <qos-sp-id>
-nv set qos traffic-pool <traffic-pool-id> memory-percent 1-100
-nv set qos pfc <profile-id>
-nv set qos pfc <profile-id> switch-priority <qos-sp-id>
-nv set qos pfc <profile-id> xoff-threshold <value>
-nv set qos pfc <profile-id> xon-threshold <value>
-nv set qos pfc <profile-id> port-buffer <value>
-nv set qos pfc <profile-id> tx (enable|disable)
-nv set qos pfc <profile-id> rx (enable|disable)
-nv set qos pfc <profile-id> cable-length 1-100000
-nv set qos mapping <profile-id>
-nv set qos mapping <profile-id> pcp <qos-pcp-id>
-nv set qos mapping <profile-id> pcp <qos-pcp-id> switch-priority 0-7
-nv set qos mapping <profile-id> dscp <qos-dscp-id>
-nv set qos mapping <profile-id> dscp <qos-dscp-id> switch-priority 0-7
-nv set qos mapping <profile-id> port-default-sp 0-7
-nv set qos mapping <profile-id> trust (l2|l3|port|both)
-nv set qos congestion-control <profile-id>
-nv set qos congestion-control <profile-id> traffic-class <qos-tc-id>
-nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> min-threshold <value>
-nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> max-threshold <value>
-nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> probability 0-100
-nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> red (enable|disable)
-nv set qos congestion-control <profile-id> traffic-class <qos-tc-id> ecn (enable|disable)
-nv set qos egress-queue-mapping <profile-id>
-nv set qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id>
-nv set qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id> traffic-class 0-7
-nv set qos egress-scheduler <profile-id>
-nv set qos egress-scheduler <profile-id> traffic-class <qos-tc-id>
-nv set qos egress-scheduler <profile-id> traffic-class <qos-tc-id> mode (dwrr|strict)
-nv set qos egress-scheduler <profile-id> traffic-class <qos-tc-id> bw-percent 0-100
-nv set qos roce
-nv set qos roce enable (on|off)
-nv set qos roce mode (lossy|lossless)
 nv set nve
 nv set nve vxlan
 nv set nve vxlan mlag
@@ -2235,11 +2448,12 @@ nv set acl <acl-id> rule <rule-id> match mac source-mac-mask <mac>
 nv set acl <acl-id> rule <rule-id> match mac dest-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
 nv set acl <acl-id> rule <rule-id> match mac dest-mac-mask <mac>
 nv set acl <acl-id> rule <rule-id> match mac protocol (0-255|ANY|arp|ipv4|ipv6)
-nv set acl <acl-id> rule <rule-id> match mac vlan 1-4094
+nv set acl <acl-id> rule <rule-id> match vlan 1-4094
 nv set acl <acl-id> rule <rule-id> action
 nv set acl <acl-id> rule <rule-id> action permit
 nv set acl <acl-id> rule <rule-id> action deny
 nv set acl <acl-id> rule <rule-id> action log
+nv set acl <acl-id> rule <rule-id> action log log-prefix <value>
 nv set acl <acl-id> rule <rule-id> action set
 nv set acl <acl-id> rule <rule-id> action set dscp (0-64|ANY|af11|af12|af13|af21|af22|af23|af31|af32|af33|af41|af42|af43|cs1|cs2|cs3|cs4|cs5|cs6|cs7|be|ef)
 nv set acl <acl-id> rule <rule-id> action set class 0-7
@@ -2249,19 +2463,395 @@ nv set acl <acl-id> rule <rule-id> action erspan source-ip (<ipv4>|<ipv6>)
 nv set acl <acl-id> rule <rule-id> action erspan dest-ip (<ipv4>|<ipv6>)
 nv set acl <acl-id> rule <rule-id> action erspan ttl 1-255
 nv set acl <acl-id> rule <rule-id> action police
-nv set acl <acl-id> rule <rule-id> action police mode (packet|bps|kbps|mbps|gbps)
+nv set acl <acl-id> rule <rule-id> action police mode (packet|kbps|mbps|gbps)
 nv set acl <acl-id> rule <rule-id> action police burst 1-2147483647
 nv set acl <acl-id> rule <rule-id> action police rate 1-2147483647
+nv set acl <acl-id> rule <rule-id> action police class 0-7
 nv set acl <acl-id> rule <rule-id> action span <interface-name>
+nv set acl <acl-id> rule <rule-id> remark <value>
 nv set acl <acl-id> type (ipv4|ipv6|mac)
-nv unset platform
-nv unset platform hardware
-nv unset platform hardware component
-nv unset platform hardware component <component-id>
-nv unset platform hardware component <component-id> linecard
-nv unset platform hardware component <component-id> linecard provision
-nv unset platform hardware component <component-id> type
-nv unset platform hardware component <component-id> admin-state
+nv unset router
+nv unset router ptm
+nv unset router ptm enable
+nv unset router nexthop
+nv unset router nexthop group
+nv unset router nexthop group <nexthop-group-id>
+nv unset router nexthop group <nexthop-group-id> via
+nv unset router nexthop group <nexthop-group-id> via <via-id>
+nv unset router nexthop group <nexthop-group-id> via <via-id> interface
+nv unset router nexthop group <nexthop-group-id> via <via-id> vrf
+nv unset router pbr
+nv unset router pbr map
+nv unset router pbr map <pbr-map-id>
+nv unset router pbr map <pbr-map-id> rule
+nv unset router pbr map <pbr-map-id> rule <rule-id>
+nv unset router pbr map <pbr-map-id> rule <rule-id> match
+nv unset router pbr map <pbr-map-id> rule <rule-id> match source-ip
+nv unset router pbr map <pbr-map-id> rule <rule-id> match destination-ip
+nv unset router pbr map <pbr-map-id> rule <rule-id> match dscp
+nv unset router pbr map <pbr-map-id> rule <rule-id> match ecn
+nv unset router pbr map <pbr-map-id> rule <rule-id> action
+nv unset router pbr map <pbr-map-id> rule <rule-id> action nexthop-group
+nv unset router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
+nv unset router pbr map <pbr-map-id> rule <rule-id> action vrf
+nv unset router pbr enable
+nv unset router policy
+nv unset router policy community-list
+nv unset router policy community-list <list-id>
+nv unset router policy community-list <list-id> rule
+nv unset router policy community-list <list-id> rule <rule-id>
+nv unset router policy community-list <list-id> rule <rule-id> community
+nv unset router policy community-list <list-id> rule <rule-id> community <community-id>
+nv unset router policy community-list <list-id> rule <rule-id> action
+nv unset router policy as-path-list
+nv unset router policy as-path-list <list-id>
+nv unset router policy as-path-list <list-id> rule
+nv unset router policy as-path-list <list-id> rule <rule-id>
+nv unset router policy as-path-list <list-id> rule <rule-id> action
+nv unset router policy as-path-list <list-id> rule <rule-id> aspath-exp
+nv unset router policy ext-community-list
+nv unset router policy ext-community-list <list-id>
+nv unset router policy ext-community-list <list-id> rule
+nv unset router policy ext-community-list <list-id> rule <rule-id>
+nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community
+nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community rt
+nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
+nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community soo
+nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
+nv unset router policy ext-community-list <list-id> rule <rule-id> action
+nv unset router policy large-community-list
+nv unset router policy large-community-list <list-id>
+nv unset router policy large-community-list <list-id> rule
+nv unset router policy large-community-list <list-id> rule <rule-id>
+nv unset router policy large-community-list <list-id> rule <rule-id> large-community
+nv unset router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
+nv unset router policy large-community-list <list-id> rule <rule-id> action
+nv unset router policy prefix-list
+nv unset router policy prefix-list <prefix-list-id>
+nv unset router policy prefix-list <prefix-list-id> rule
+nv unset router policy prefix-list <prefix-list-id> rule <rule-id>
+nv unset router policy prefix-list <prefix-list-id> rule <rule-id> match
+nv unset router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
+nv unset router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> min-prefix-len
+nv unset router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> max-prefix-len
+nv unset router policy prefix-list <prefix-list-id> rule <rule-id> action
+nv unset router policy prefix-list <prefix-list-id> type
+nv unset router policy route-map
+nv unset router policy route-map <route-map-id>
+nv unset router policy route-map <route-map-id> rule
+nv unset router policy route-map <route-map-id> rule <rule-id>
+nv unset router policy route-map <route-map-id> rule <rule-id> match
+nv unset router policy route-map <route-map-id> rule <rule-id> match ip-prefix-list
+nv unset router policy route-map <route-map-id> rule <rule-id> match ip-prefix-len
+nv unset router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-list
+nv unset router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-len
+nv unset router policy route-map <route-map-id> rule <rule-id> match ip-nexthop
+nv unset router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-type
+nv unset router policy route-map <route-map-id> rule <rule-id> match as-path-list
+nv unset router policy route-map <route-map-id> rule <rule-id> match community-list
+nv unset router policy route-map <route-map-id> rule <rule-id> match large-community-list
+nv unset router policy route-map <route-map-id> rule <rule-id> match metric
+nv unset router policy route-map <route-map-id> rule <rule-id> match interface
+nv unset router policy route-map <route-map-id> rule <rule-id> match tag
+nv unset router policy route-map <route-map-id> rule <rule-id> match source-protocol
+nv unset router policy route-map <route-map-id> rule <rule-id> match origin
+nv unset router policy route-map <route-map-id> rule <rule-id> match peer
+nv unset router policy route-map <route-map-id> rule <rule-id> match local-preference
+nv unset router policy route-map <route-map-id> rule <rule-id> match evpn-route-type
+nv unset router policy route-map <route-map-id> rule <rule-id> match evpn-vni
+nv unset router policy route-map <route-map-id> rule <rule-id> match evpn-default-route
+nv unset router policy route-map <route-map-id> rule <rule-id> match source-vrf
+nv unset router policy route-map <route-map-id> rule <rule-id> match type
+nv unset router policy route-map <route-map-id> rule <rule-id> set
+nv unset router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
+nv unset router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as
+nv unset router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as
+nv unset router policy route-map <route-map-id> rule <rule-id> set community
+nv unset router policy route-map <route-map-id> rule <rule-id> set community <community-id>
+nv unset router policy route-map <route-map-id> rule <rule-id> set large-community
+nv unset router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
+nv unset router policy route-map <route-map-id> rule <rule-id> set aggregator-as
+nv unset router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
+nv unset router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address
+nv unset router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id>
+nv unset router policy route-map <route-map-id> rule <rule-id> set as-path-exclude
+nv unset router policy route-map <route-map-id> rule <rule-id> set atomic-aggregate
+nv unset router policy route-map <route-map-id> rule <rule-id> set ext-community-rt
+nv unset router policy route-map <route-map-id> rule <rule-id> set ext-community-soo
+nv unset router policy route-map <route-map-id> rule <rule-id> set ext-community-bw
+nv unset router policy route-map <route-map-id> rule <rule-id> set local-preference
+nv unset router policy route-map <route-map-id> rule <rule-id> set weight
+nv unset router policy route-map <route-map-id> rule <rule-id> set metric
+nv unset router policy route-map <route-map-id> rule <rule-id> set metric-type
+nv unset router policy route-map <route-map-id> rule <rule-id> set origin
+nv unset router policy route-map <route-map-id> rule <rule-id> set tag
+nv unset router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-global
+nv unset router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-local
+nv unset router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-prefer-global
+nv unset router policy route-map <route-map-id> rule <rule-id> set ip-nexthop
+nv unset router policy route-map <route-map-id> rule <rule-id> set source-ip
+nv unset router policy route-map <route-map-id> rule <rule-id> set community-delete-list
+nv unset router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list
+nv unset router policy route-map <route-map-id> rule <rule-id> set originator-id
+nv unset router policy route-map <route-map-id> rule <rule-id> set label-index
+nv unset router policy route-map <route-map-id> rule <rule-id> set forwarding-address
+nv unset router policy route-map <route-map-id> rule <rule-id> action
+nv unset router policy route-map <route-map-id> rule <rule-id> action deny
+nv unset router policy route-map <route-map-id> rule <rule-id> action permit
+nv unset router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
+nv unset router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule
+nv unset router policy route-map <route-map-id> rule <rule-id> description
+nv unset router bgp
+nv unset router bgp graceful-restart
+nv unset router bgp graceful-restart mode
+nv unset router bgp graceful-restart restart-time
+nv unset router bgp graceful-restart path-selection-deferral-time
+nv unset router bgp graceful-restart stale-routes-time
+nv unset router bgp convergence-wait
+nv unset router bgp convergence-wait time
+nv unset router bgp convergence-wait establish-wait-time
+nv unset router bgp enable
+nv unset router bgp autonomous-system
+nv unset router bgp router-id
+nv unset router bgp policy-update-timer
+nv unset router bgp graceful-shutdown
+nv unset router bgp wait-for-install
+nv unset router ospf
+nv unset router ospf timers
+nv unset router ospf timers lsa
+nv unset router ospf timers lsa min-arrival
+nv unset router ospf timers lsa throttle
+nv unset router ospf timers spf
+nv unset router ospf timers spf delay
+nv unset router ospf timers spf holdtime
+nv unset router ospf timers spf max-holdtime
+nv unset router ospf timers refresh
+nv unset router ospf enable
+nv unset router ospf router-id
+nv unset router pim
+nv unset router pim timers
+nv unset router pim timers hello-interval
+nv unset router pim timers register-suppress
+nv unset router pim timers join-prune-interval
+nv unset router pim timers keep-alive
+nv unset router pim timers rp-keep-alive
+nv unset router pim enable
+nv unset router pim packets
+nv unset router igmp
+nv unset router igmp enable
+nv unset router vrrp
+nv unset router vrrp enable
+nv unset router vrrp priority
+nv unset router vrrp preempt
+nv unset router vrrp advertisement-interval
+nv unset router vrr
+nv unset router vrr enable
+nv unset router adaptive-routing
+nv unset router adaptive-routing enable
+nv unset bridge
+nv unset bridge domain
+nv unset bridge domain <domain-id>
+nv unset bridge domain <domain-id> stp
+nv unset bridge domain <domain-id> stp state
+nv unset bridge domain <domain-id> stp priority
+nv unset bridge domain <domain-id> multicast
+nv unset bridge domain <domain-id> multicast snooping
+nv unset bridge domain <domain-id> multicast snooping querier
+nv unset bridge domain <domain-id> multicast snooping querier enable
+nv unset bridge domain <domain-id> multicast snooping enable
+nv unset bridge domain <domain-id> vlan
+nv unset bridge domain <domain-id> vlan <vid>
+nv unset bridge domain <domain-id> vlan <vid> vni
+nv unset bridge domain <domain-id> vlan <vid> vni <vni-id>
+nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
+nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication
+nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
+nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding enable
+nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group
+nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> mac-learning
+nv unset bridge domain <domain-id> vlan <vid> ptp
+nv unset bridge domain <domain-id> vlan <vid> ptp enable
+nv unset bridge domain <domain-id> vlan <vid> multicast
+nv unset bridge domain <domain-id> vlan <vid> multicast snooping
+nv unset bridge domain <domain-id> vlan <vid> multicast snooping querier
+nv unset bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip
+nv unset bridge domain <domain-id> type
+nv unset bridge domain <domain-id> untagged
+nv unset bridge domain <domain-id> encap
+nv unset bridge domain <domain-id> mac-address
+nv unset bridge domain <domain-id> vlan-vni-offset
+nv unset mlag
+nv unset mlag backup
+nv unset mlag backup <backup-ip>
+nv unset mlag backup <backup-ip> vrf
+nv unset mlag enable
+nv unset mlag mac-address
+nv unset mlag peer-ip
+nv unset mlag priority
+nv unset mlag init-delay
+nv unset mlag debug
+nv unset mlag lacp-conflict
+nv unset evpn
+nv unset evpn route-advertise
+nv unset evpn route-advertise nexthop-setting
+nv unset evpn route-advertise svi-ip
+nv unset evpn route-advertise default-gateway
+nv unset evpn dad
+nv unset evpn dad duplicate-action
+nv unset evpn dad duplicate-action freeze
+nv unset evpn dad duplicate-action freeze duration
+nv unset evpn dad enable
+nv unset evpn dad mac-move-threshold
+nv unset evpn dad move-window
+nv unset evpn vni
+nv unset evpn vni <vni-id>
+nv unset evpn vni <vni-id> route-advertise
+nv unset evpn vni <vni-id> route-advertise svi-ip
+nv unset evpn vni <vni-id> route-advertise default-gateway
+nv unset evpn vni <vni-id> route-target
+nv unset evpn vni <vni-id> route-target export
+nv unset evpn vni <vni-id> route-target export <rt-id>
+nv unset evpn vni <vni-id> route-target import
+nv unset evpn vni <vni-id> route-target import <rt-id>
+nv unset evpn vni <vni-id> route-target both
+nv unset evpn vni <vni-id> route-target both <rt-id>
+nv unset evpn vni <vni-id> rd
+nv unset evpn multihoming
+nv unset evpn multihoming ead-evi-route
+nv unset evpn multihoming ead-evi-route rx
+nv unset evpn multihoming ead-evi-route tx
+nv unset evpn multihoming segment
+nv unset evpn multihoming segment mac-address
+nv unset evpn multihoming segment df-preference
+nv unset evpn multihoming enable
+nv unset evpn multihoming mac-holdtime
+nv unset evpn multihoming neighbor-holdtime
+nv unset evpn multihoming startup-delay
+nv unset evpn enable
+nv unset qos
+nv unset qos advance-buffer-config
+nv unset qos advance-buffer-config <profile-id>
+nv unset qos advance-buffer-config <profile-id> ingress-pool
+nv unset qos advance-buffer-config <profile-id> ingress-pool <pool-id>
+nv unset qos advance-buffer-config <profile-id> ingress-pool <pool-id> memory-percent
+nv unset qos advance-buffer-config <profile-id> ingress-pool <pool-id> infinite
+nv unset qos advance-buffer-config <profile-id> ingress-pool <pool-id> mode
+nv unset qos advance-buffer-config <profile-id> ingress-pool <pool-id> reserved
+nv unset qos advance-buffer-config <profile-id> ingress-pool <pool-id> shared-bytes
+nv unset qos advance-buffer-config <profile-id> ingress-pool <pool-id> shared-alpha
+nv unset qos advance-buffer-config <profile-id> egress-pool
+nv unset qos advance-buffer-config <profile-id> egress-pool <pool-id>
+nv unset qos advance-buffer-config <profile-id> egress-pool <pool-id> memory-percent
+nv unset qos advance-buffer-config <profile-id> egress-pool <pool-id> infinite
+nv unset qos advance-buffer-config <profile-id> egress-pool <pool-id> mode
+nv unset qos advance-buffer-config <profile-id> egress-pool <pool-id> reserved
+nv unset qos advance-buffer-config <profile-id> egress-pool <pool-id> shared-bytes
+nv unset qos advance-buffer-config <profile-id> egress-pool <pool-id> shared-alpha
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id>
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> switch-priority
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> switch-priority <qos-sp-id>
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> name
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> reserved
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> shared-bytes
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> shared-alpha
+nv unset qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> service-pool
+nv unset qos advance-buffer-config <profile-id> ingress-lossless-buffer
+nv unset qos advance-buffer-config <profile-id> ingress-lossless-buffer service-pool
+nv unset qos advance-buffer-config <profile-id> ingress-lossless-buffer shared-alpha
+nv unset qos advance-buffer-config <profile-id> ingress-lossless-buffer shared-bytes
+nv unset qos advance-buffer-config <profile-id> egress-lossless-buffer
+nv unset qos advance-buffer-config <profile-id> egress-lossless-buffer service-pool
+nv unset qos advance-buffer-config <profile-id> egress-lossless-buffer reserved
+nv unset qos advance-buffer-config <profile-id> egress-lossless-buffer shared-alpha
+nv unset qos advance-buffer-config <profile-id> egress-lossless-buffer shared-bytes
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id>
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id> reserved
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id> shared-bytes
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id> shared-alpha
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id> service-pool
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id>
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id> reserved
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id> shared-bytes
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id> shared-alpha
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id> service-pool
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-port
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-port reserved
+nv unset qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-port shared-bytes
+nv unset qos traffic-pool
+nv unset qos traffic-pool <traffic-pool-id>
+nv unset qos traffic-pool <traffic-pool-id> switch-priority
+nv unset qos traffic-pool <traffic-pool-id> switch-priority <qos-sp-id>
+nv unset qos traffic-pool <traffic-pool-id> memory-percent
+nv unset qos link-pause
+nv unset qos link-pause <profile-id>
+nv unset qos link-pause <profile-id> xoff-threshold
+nv unset qos link-pause <profile-id> xon-threshold
+nv unset qos link-pause <profile-id> port-buffer
+nv unset qos link-pause <profile-id> cable-length
+nv unset qos link-pause <profile-id> tx
+nv unset qos link-pause <profile-id> rx
+nv unset qos pfc
+nv unset qos pfc <profile-id>
+nv unset qos pfc <profile-id> switch-priority
+nv unset qos pfc <profile-id> switch-priority <qos-sp-id>
+nv unset qos pfc <profile-id> xoff-threshold
+nv unset qos pfc <profile-id> xon-threshold
+nv unset qos pfc <profile-id> port-buffer
+nv unset qos pfc <profile-id> cable-length
+nv unset qos pfc <profile-id> tx
+nv unset qos pfc <profile-id> rx
+nv unset qos mapping
+nv unset qos mapping <profile-id>
+nv unset qos mapping <profile-id> pcp
+nv unset qos mapping <profile-id> pcp <qos-pcp-id>
+nv unset qos mapping <profile-id> pcp <qos-pcp-id> switch-priority
+nv unset qos mapping <profile-id> dscp
+nv unset qos mapping <profile-id> dscp <qos-dscp-id>
+nv unset qos mapping <profile-id> dscp <qos-dscp-id> switch-priority
+nv unset qos mapping <profile-id> port-default-sp
+nv unset qos mapping <profile-id> trust
+nv unset qos remark
+nv unset qos remark <profile-id>
+nv unset qos remark <profile-id> switch-priority
+nv unset qos remark <profile-id> switch-priority <qos-sp-id>
+nv unset qos remark <profile-id> switch-priority <qos-sp-id> pcp
+nv unset qos remark <profile-id> switch-priority <qos-sp-id> dscp
+nv unset qos remark <profile-id> rewrite
+nv unset qos congestion-control
+nv unset qos congestion-control <profile-id>
+nv unset qos congestion-control <profile-id> traffic-class
+nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id>
+nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id> min-threshold
+nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id> max-threshold
+nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id> probability
+nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id> red
+nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id> ecn
+nv unset qos egress-queue-mapping
+nv unset qos egress-queue-mapping <profile-id>
+nv unset qos egress-queue-mapping <profile-id> switch-priority
+nv unset qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id>
+nv unset qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id> traffic-class
+nv unset qos egress-scheduler
+nv unset qos egress-scheduler <profile-id>
+nv unset qos egress-scheduler <profile-id> traffic-class
+nv unset qos egress-scheduler <profile-id> traffic-class <qos-tc-id>
+nv unset qos egress-scheduler <profile-id> traffic-class <qos-tc-id> mode
+nv unset qos egress-scheduler <profile-id> traffic-class <qos-tc-id> bw-percent
+nv unset qos egress-shaper
+nv unset qos egress-shaper <profile-id>
+nv unset qos egress-shaper <profile-id> traffic-class
+nv unset qos egress-shaper <profile-id> traffic-class <qos-tc-id>
+nv unset qos egress-shaper <profile-id> traffic-class <qos-tc-id> min-rate
+nv unset qos egress-shaper <profile-id> traffic-class <qos-tc-id> max-rate
+nv unset qos egress-shaper <profile-id> port-max-rate
+nv unset qos roce
+nv unset qos roce enable
+nv unset qos roce mode
 nv unset interface
 nv unset interface <interface-id>
 nv unset interface <interface-id> ip
@@ -2284,7 +2874,6 @@ nv unset interface <interface-id> ip vrr mac-address
 nv unset interface <interface-id> ip igmp
 nv unset interface <interface-id> ip igmp static-group
 nv unset interface <interface-id> ip igmp static-group <static-group-id>
-nv unset interface <interface-id> ip igmp static-group <static-group-id> source-address
 nv unset interface <interface-id> ip igmp enable
 nv unset interface <interface-id> ip igmp version
 nv unset interface <interface-id> ip igmp query-interval
@@ -2335,12 +2924,12 @@ nv unset interface <interface-id> ip neighbor-discovery mtu
 nv unset interface <interface-id> ip vrf
 nv unset interface <interface-id> link
 nv unset interface <interface-id> link state
-nv unset interface <interface-id> link dot1x
-nv unset interface <interface-id> link dot1x mab
-nv unset interface <interface-id> link dot1x parking-vlan
-nv unset interface <interface-id> link auto-negotiate
 nv unset interface <interface-id> link breakout
+nv unset interface <interface-id> link breakout <mode-id>
+nv unset interface <interface-id> link breakout <mode-id> lanes-per-port
+nv unset interface <interface-id> link auto-negotiate
 nv unset interface <interface-id> link duplex
+nv unset interface <interface-id> link lanes
 nv unset interface <interface-id> link speed
 nv unset interface <interface-id> link fec
 nv unset interface <interface-id> link mtu
@@ -2427,12 +3016,18 @@ nv unset interface <interface-id> lldp dcbx-ets-recomm-tlv
 nv unset interface <interface-id> qos
 nv unset interface <interface-id> qos pfc
 nv unset interface <interface-id> qos pfc profile
+nv unset interface <interface-id> qos link-pause
+nv unset interface <interface-id> qos link-pause profile
 nv unset interface <interface-id> qos mapping
 nv unset interface <interface-id> qos mapping profile
+nv unset interface <interface-id> qos remark
+nv unset interface <interface-id> qos remark profile
 nv unset interface <interface-id> qos congestion-control
 nv unset interface <interface-id> qos congestion-control profile
 nv unset interface <interface-id> qos egress-scheduler
 nv unset interface <interface-id> qos egress-scheduler profile
+nv unset interface <interface-id> qos egress-shaper
+nv unset interface <interface-id> qos egress-shaper profile
 nv unset interface <interface-id> evpn
 nv unset interface <interface-id> evpn multihoming
 nv unset interface <interface-id> evpn multihoming segment
@@ -2454,6 +3049,8 @@ nv unset interface <interface-id> ptp timers announce-interval
 nv unset interface <interface-id> ptp timers sync-interval
 nv unset interface <interface-id> ptp timers delay-req-interval
 nv unset interface <interface-id> ptp timers announce-timeout
+nv unset interface <interface-id> ptp shaper
+nv unset interface <interface-id> ptp shaper enable
 nv unset interface <interface-id> ptp enable
 nv unset interface <interface-id> ptp instance
 nv unset interface <interface-id> ptp forced-master
@@ -2475,11 +3072,75 @@ nv unset interface <interface-id> storm-control
 nv unset interface <interface-id> storm-control broadcast
 nv unset interface <interface-id> storm-control multicast
 nv unset interface <interface-id> storm-control unknown-unicast
+nv unset interface <interface-id> synce
+nv unset interface <interface-id> synce enable
+nv unset interface <interface-id> synce provider-priority
 nv unset interface <interface-id> type
 nv unset interface <interface-id> base-interface
 nv unset interface <interface-id> vlan
 nv unset interface <interface-id> description
 nv unset service
+nv unset service dhcp-server
+nv unset service dhcp-server <vrf-id>
+nv unset service dhcp-server <vrf-id> interface
+nv unset service dhcp-server <vrf-id> interface <interface-id>
+nv unset service dhcp-server <vrf-id> pool
+nv unset service dhcp-server <vrf-id> pool <pool-id>
+nv unset service dhcp-server <vrf-id> pool <pool-id> domain-name-server
+nv unset service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
+nv unset service dhcp-server <vrf-id> pool <pool-id> domain-name
+nv unset service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
+nv unset service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name
+nv unset service dhcp-server <vrf-id> pool <pool-id> gateway
+nv unset service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>
+nv unset service dhcp-server <vrf-id> pool <pool-id> range
+nv unset service dhcp-server <vrf-id> pool <pool-id> range <range-id>
+nv unset service dhcp-server <vrf-id> pool <pool-id> range <range-id> to
+nv unset service dhcp-server <vrf-id> pool <pool-id> pool-name
+nv unset service dhcp-server <vrf-id> pool <pool-id> lease-time
+nv unset service dhcp-server <vrf-id> pool <pool-id> ping-check
+nv unset service dhcp-server <vrf-id> pool <pool-id> default-url
+nv unset service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url
+nv unset service dhcp-server <vrf-id> domain-name
+nv unset service dhcp-server <vrf-id> domain-name <domain-name-id>
+nv unset service dhcp-server <vrf-id> domain-name <domain-name-id> domain-name
+nv unset service dhcp-server <vrf-id> domain-name-server
+nv unset service dhcp-server <vrf-id> domain-name-server <server-id>
+nv unset service dhcp-server <vrf-id> static
+nv unset service dhcp-server <vrf-id> static <static-id>
+nv unset service dhcp-server <vrf-id> static <static-id> mac-address
+nv unset service dhcp-server <vrf-id> static <static-id> ip-address
+nv unset service dhcp-server <vrf-id> static <static-id> cumulus-provision-url
+nv unset service dhcp-server <vrf-id> static <static-id> host-id-circuit-id
+nv unset service dhcp-server6
+nv unset service dhcp-server6 <vrf-id>
+nv unset service dhcp-server6 <vrf-id> interface
+nv unset service dhcp-server6 <vrf-id> interface <interface-id>
+nv unset service dhcp-server6 <vrf-id> pool
+nv unset service dhcp-server6 <vrf-id> pool <pool-id>
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> domain-name
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> range
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> pool-name
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> lease-time
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> ping-check
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> default-url
+nv unset service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url
+nv unset service dhcp-server6 <vrf-id> domain-name
+nv unset service dhcp-server6 <vrf-id> domain-name <domain-name-id>
+nv unset service dhcp-server6 <vrf-id> domain-name <domain-name-id> domain-name
+nv unset service dhcp-server6 <vrf-id> domain-name-server
+nv unset service dhcp-server6 <vrf-id> domain-name-server <server-id>
+nv unset service dhcp-server6 <vrf-id> static
+nv unset service dhcp-server6 <vrf-id> static <static-id>
+nv unset service dhcp-server6 <vrf-id> static <static-id> mac-address
+nv unset service dhcp-server6 <vrf-id> static <static-id> ip-address
+nv unset service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url
 nv unset service dns
 nv unset service dns <vrf-id>
 nv unset service dns <vrf-id> server
@@ -2658,66 +3319,11 @@ nv unset service snmp-server enable
 nv unset service snmp-server system-contact
 nv unset service snmp-server system-location
 nv unset service snmp-server system-name
-nv unset service dhcp-server
-nv unset service dhcp-server <vrf-id>
-nv unset service dhcp-server <vrf-id> interface
-nv unset service dhcp-server <vrf-id> interface <interface-id>
-nv unset service dhcp-server <vrf-id> pool
-nv unset service dhcp-server <vrf-id> pool <pool-id>
-nv unset service dhcp-server <vrf-id> pool <pool-id> domain-name-server
-nv unset service dhcp-server <vrf-id> pool <pool-id> domain-name-server <server-id>
-nv unset service dhcp-server <vrf-id> pool <pool-id> domain-name
-nv unset service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id>
-nv unset service dhcp-server <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name
-nv unset service dhcp-server <vrf-id> pool <pool-id> gateway
-nv unset service dhcp-server <vrf-id> pool <pool-id> gateway <gateway-id>
-nv unset service dhcp-server <vrf-id> pool <pool-id> range
-nv unset service dhcp-server <vrf-id> pool <pool-id> range <range-id>
-nv unset service dhcp-server <vrf-id> pool <pool-id> range <range-id> to
-nv unset service dhcp-server <vrf-id> pool <pool-id> pool-name
-nv unset service dhcp-server <vrf-id> pool <pool-id> lease-time
-nv unset service dhcp-server <vrf-id> pool <pool-id> ping-check
-nv unset service dhcp-server <vrf-id> pool <pool-id> default-url
-nv unset service dhcp-server <vrf-id> pool <pool-id> cumulus-provision-url
-nv unset service dhcp-server <vrf-id> domain-name
-nv unset service dhcp-server <vrf-id> domain-name <domain-name-id>
-nv unset service dhcp-server <vrf-id> domain-name <domain-name-id> domain-name
-nv unset service dhcp-server <vrf-id> domain-name-server
-nv unset service dhcp-server <vrf-id> domain-name-server <server-id>
-nv unset service dhcp-server <vrf-id> static
-nv unset service dhcp-server <vrf-id> static <static-id>
-nv unset service dhcp-server <vrf-id> static <static-id> mac-address
-nv unset service dhcp-server <vrf-id> static <static-id> ip-address
-nv unset service dhcp-server <vrf-id> static <static-id> cumulus-provision-url
-nv unset service dhcp-server6
-nv unset service dhcp-server6 <vrf-id>
-nv unset service dhcp-server6 <vrf-id> interface
-nv unset service dhcp-server6 <vrf-id> interface <interface-id>
-nv unset service dhcp-server6 <vrf-id> pool
-nv unset service dhcp-server6 <vrf-id> pool <pool-id>
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> domain-name-server <server-id>
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> domain-name
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id>
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> domain-name <domain-name-id> domain-name
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> range
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> range <range-id>
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> range <range-id> to
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> pool-name
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> lease-time
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> ping-check
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> default-url
-nv unset service dhcp-server6 <vrf-id> pool <pool-id> cumulus-provision-url
-nv unset service dhcp-server6 <vrf-id> domain-name
-nv unset service dhcp-server6 <vrf-id> domain-name <domain-name-id>
-nv unset service dhcp-server6 <vrf-id> domain-name <domain-name-id> domain-name
-nv unset service dhcp-server6 <vrf-id> domain-name-server
-nv unset service dhcp-server6 <vrf-id> domain-name-server <server-id>
-nv unset service dhcp-server6 <vrf-id> static
-nv unset service dhcp-server6 <vrf-id> static <static-id>
-nv unset service dhcp-server6 <vrf-id> static <static-id> mac-address
-nv unset service dhcp-server6 <vrf-id> static <static-id> ip-address
-nv unset service dhcp-server6 <vrf-id> static <static-id> cumulus-provision-url
+nv unset service synce
+nv unset service synce enable
+nv unset service synce wait-to-restore-time
+nv unset service synce log-level
+nv unset service synce provider-default-priority
 nv unset service ptp
 nv unset service ptp <instance-id>
 nv unset service ptp <instance-id> acceptable-master
@@ -2760,10 +3366,18 @@ nv unset service lldp
 nv unset service lldp tx-interval
 nv unset service lldp tx-hold-multiplier
 nv unset service lldp dot1-tlv
+nv unset service lldp mode
 nv unset system
 nv unset system message
 nv unset system message pre-login
 nv unset system message post-login
+nv unset system config
+nv unset system config auto-save
+nv unset system config auto-save enable
+nv unset system config apply
+nv unset system config apply ignore
+nv unset system config apply ignore <ignore-id>
+nv unset system config apply overwrite
 nv unset system acl
 nv unset system acl mode
 nv unset system counter
@@ -2827,6 +3441,7 @@ nv unset system forwarding programming
 nv unset system forwarding programming log-level
 nv unset system forwarding hash-seed
 nv unset system forwarding host-route-preference
+nv unset system forwarding profile
 nv unset system port-mirror
 nv unset system port-mirror session
 nv unset system port-mirror session <session-id>
@@ -2853,16 +3468,45 @@ nv unset system port-mirror session <session-id> erspan truncate enable
 nv unset system port-mirror session <session-id> erspan truncate size
 nv unset system port-mirror session <session-id> erspan enable
 nv unset system port-mirror session <session-id> erspan direction
-nv unset system config
-nv unset system config apply
-nv unset system config apply ignore
-nv unset system config apply ignore <ignore-id>
-nv unset system config apply overwrite
 nv unset system wjh
 nv unset system wjh channel
 nv unset system wjh channel <channel-id>
 nv unset system wjh channel <channel-id> trigger
 nv unset system wjh enable
+nv unset system aaa
+nv unset system aaa user
+nv unset system aaa user <user-id>
+nv unset system aaa user <user-id> ssh
+nv unset system aaa user <user-id> ssh authorized-key
+nv unset system aaa user <user-id> ssh authorized-key <ssh-authorized-key-id>
+nv unset system aaa user <user-id> ssh authorized-key <ssh-authorized-key-id> key
+nv unset system aaa user <user-id> ssh authorized-key <ssh-authorized-key-id> type
+nv unset system aaa user <user-id> role
+nv unset system aaa user <user-id> full-name
+nv unset system aaa user <user-id> password
+nv unset system aaa user <user-id> hashed-password
+nv unset system aaa user <user-id> enable
+nv unset system aaa authentication-order
+nv unset system aaa authentication-order <priority-id>
+nv unset system aaa tacacs
+nv unset system aaa tacacs authentication
+nv unset system aaa tacacs authentication mode
+nv unset system aaa tacacs authentication per-user-homedir
+nv unset system aaa tacacs accounting
+nv unset system aaa tacacs accounting enable
+nv unset system aaa tacacs accounting send-records
+nv unset system aaa tacacs server
+nv unset system aaa tacacs server <priority-id>
+nv unset system aaa tacacs server <priority-id> host
+nv unset system aaa tacacs server <priority-id> port
+nv unset system aaa tacacs server <priority-id> secret
+nv unset system aaa tacacs exclude-user
+nv unset system aaa tacacs exclude-user username
+nv unset system aaa tacacs enable
+nv unset system aaa tacacs timeout
+nv unset system aaa tacacs debug-level
+nv unset system aaa tacacs source-ip
+nv unset system aaa tacacs vrf
 nv unset system hostname
 nv unset system timezone
 nv unset vrf
@@ -2874,9 +3518,9 @@ nv unset vrf <vrf-id> loopback ip address <ip-prefix-id>
 nv unset vrf <vrf-id> evpn
 nv unset vrf <vrf-id> evpn vni
 nv unset vrf <vrf-id> evpn vni <vni-id>
-nv unset vrf <vrf-id> evpn vni <vni-id> prefix-routes-only
 nv unset vrf <vrf-id> evpn enable
 nv unset vrf <vrf-id> evpn vlan
+nv unset vrf <vrf-id> evpn prefix-routes-only
 nv unset vrf <vrf-id> router
 nv unset vrf <vrf-id> router rib
 nv unset vrf <vrf-id> router rib <afi>
@@ -3450,312 +4094,6 @@ nv unset vrf <vrf-id> router ospf router-id
 nv unset vrf <vrf-id> ptp
 nv unset vrf <vrf-id> ptp enable
 nv unset vrf <vrf-id> table
-nv unset router
-nv unset router ptm
-nv unset router ptm enable
-nv unset router nexthop-group
-nv unset router nexthop-group <nexthop-group-id>
-nv unset router nexthop-group <nexthop-group-id> via
-nv unset router nexthop-group <nexthop-group-id> via <via-id>
-nv unset router nexthop-group <nexthop-group-id> via <via-id> interface
-nv unset router nexthop-group <nexthop-group-id> via <via-id> vrf
-nv unset router pbr
-nv unset router pbr map
-nv unset router pbr map <pbr-map-id>
-nv unset router pbr map <pbr-map-id> rule
-nv unset router pbr map <pbr-map-id> rule <rule-id>
-nv unset router pbr map <pbr-map-id> rule <rule-id> match
-nv unset router pbr map <pbr-map-id> rule <rule-id> match source-ip
-nv unset router pbr map <pbr-map-id> rule <rule-id> match destination-ip
-nv unset router pbr map <pbr-map-id> rule <rule-id> match dscp
-nv unset router pbr map <pbr-map-id> rule <rule-id> match ecn
-nv unset router pbr map <pbr-map-id> rule <rule-id> action
-nv unset router pbr map <pbr-map-id> rule <rule-id> action nexthop-group
-nv unset router pbr map <pbr-map-id> rule <rule-id> action nexthop-group <nexthop-group-id>
-nv unset router pbr map <pbr-map-id> rule <rule-id> action vrf
-nv unset router pbr enable
-nv unset router policy
-nv unset router policy community-list
-nv unset router policy community-list <list-id>
-nv unset router policy community-list <list-id> rule
-nv unset router policy community-list <list-id> rule <rule-id>
-nv unset router policy community-list <list-id> rule <rule-id> community
-nv unset router policy community-list <list-id> rule <rule-id> community <community-id>
-nv unset router policy community-list <list-id> rule <rule-id> action
-nv unset router policy as-path-list
-nv unset router policy as-path-list <list-id>
-nv unset router policy as-path-list <list-id> rule
-nv unset router policy as-path-list <list-id> rule <rule-id>
-nv unset router policy as-path-list <list-id> rule <rule-id> action
-nv unset router policy as-path-list <list-id> rule <rule-id> aspath-exp
-nv unset router policy ext-community-list
-nv unset router policy ext-community-list <list-id>
-nv unset router policy ext-community-list <list-id> rule
-nv unset router policy ext-community-list <list-id> rule <rule-id>
-nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community
-nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community rt
-nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community rt <ext-community-id>
-nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community soo
-nv unset router policy ext-community-list <list-id> rule <rule-id> ext-community soo <ext-community-id>
-nv unset router policy ext-community-list <list-id> rule <rule-id> action
-nv unset router policy large-community-list
-nv unset router policy large-community-list <list-id>
-nv unset router policy large-community-list <list-id> rule
-nv unset router policy large-community-list <list-id> rule <rule-id>
-nv unset router policy large-community-list <list-id> rule <rule-id> large-community
-nv unset router policy large-community-list <list-id> rule <rule-id> large-community <large-community-id>
-nv unset router policy large-community-list <list-id> rule <rule-id> action
-nv unset router policy prefix-list
-nv unset router policy prefix-list <prefix-list-id>
-nv unset router policy prefix-list <prefix-list-id> rule
-nv unset router policy prefix-list <prefix-list-id> rule <rule-id>
-nv unset router policy prefix-list <prefix-list-id> rule <rule-id> match
-nv unset router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id>
-nv unset router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> min-prefix-len
-nv unset router policy prefix-list <prefix-list-id> rule <rule-id> match <match-id> max-prefix-len
-nv unset router policy prefix-list <prefix-list-id> rule <rule-id> action
-nv unset router policy prefix-list <prefix-list-id> type
-nv unset router policy route-map
-nv unset router policy route-map <route-map-id>
-nv unset router policy route-map <route-map-id> rule
-nv unset router policy route-map <route-map-id> rule <rule-id>
-nv unset router policy route-map <route-map-id> rule <rule-id> match
-nv unset router policy route-map <route-map-id> rule <rule-id> match ip-prefix-list
-nv unset router policy route-map <route-map-id> rule <rule-id> match ip-prefix-len
-nv unset router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-list
-nv unset router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-len
-nv unset router policy route-map <route-map-id> rule <rule-id> match ip-nexthop
-nv unset router policy route-map <route-map-id> rule <rule-id> match ip-nexthop-type
-nv unset router policy route-map <route-map-id> rule <rule-id> match as-path-list
-nv unset router policy route-map <route-map-id> rule <rule-id> match community-list
-nv unset router policy route-map <route-map-id> rule <rule-id> match large-community-list
-nv unset router policy route-map <route-map-id> rule <rule-id> match metric
-nv unset router policy route-map <route-map-id> rule <rule-id> match interface
-nv unset router policy route-map <route-map-id> rule <rule-id> match tag
-nv unset router policy route-map <route-map-id> rule <rule-id> match source-protocol
-nv unset router policy route-map <route-map-id> rule <rule-id> match origin
-nv unset router policy route-map <route-map-id> rule <rule-id> match peer
-nv unset router policy route-map <route-map-id> rule <rule-id> match local-preference
-nv unset router policy route-map <route-map-id> rule <rule-id> match evpn-route-type
-nv unset router policy route-map <route-map-id> rule <rule-id> match evpn-vni
-nv unset router policy route-map <route-map-id> rule <rule-id> match evpn-default-route
-nv unset router policy route-map <route-map-id> rule <rule-id> match source-vrf
-nv unset router policy route-map <route-map-id> rule <rule-id> match type
-nv unset router policy route-map <route-map-id> rule <rule-id> set
-nv unset router policy route-map <route-map-id> rule <rule-id> set as-path-prepend
-nv unset router policy route-map <route-map-id> rule <rule-id> set as-path-prepend as
-nv unset router policy route-map <route-map-id> rule <rule-id> set as-path-prepend last-as
-nv unset router policy route-map <route-map-id> rule <rule-id> set community
-nv unset router policy route-map <route-map-id> rule <rule-id> set community <community-id>
-nv unset router policy route-map <route-map-id> rule <rule-id> set large-community
-nv unset router policy route-map <route-map-id> rule <rule-id> set large-community <large-community-id>
-nv unset router policy route-map <route-map-id> rule <rule-id> set aggregator-as
-nv unset router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id>
-nv unset router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address
-nv unset router policy route-map <route-map-id> rule <rule-id> set aggregator-as <asn-id> address <ipv4-address-id>
-nv unset router policy route-map <route-map-id> rule <rule-id> set as-path-exclude
-nv unset router policy route-map <route-map-id> rule <rule-id> set atomic-aggregate
-nv unset router policy route-map <route-map-id> rule <rule-id> set ext-community-rt
-nv unset router policy route-map <route-map-id> rule <rule-id> set ext-community-soo
-nv unset router policy route-map <route-map-id> rule <rule-id> set ext-community-bw
-nv unset router policy route-map <route-map-id> rule <rule-id> set local-preference
-nv unset router policy route-map <route-map-id> rule <rule-id> set weight
-nv unset router policy route-map <route-map-id> rule <rule-id> set metric
-nv unset router policy route-map <route-map-id> rule <rule-id> set metric-type
-nv unset router policy route-map <route-map-id> rule <rule-id> set origin
-nv unset router policy route-map <route-map-id> rule <rule-id> set tag
-nv unset router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-global
-nv unset router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-local
-nv unset router policy route-map <route-map-id> rule <rule-id> set ipv6-nexthop-prefer-global
-nv unset router policy route-map <route-map-id> rule <rule-id> set ip-nexthop
-nv unset router policy route-map <route-map-id> rule <rule-id> set source-ip
-nv unset router policy route-map <route-map-id> rule <rule-id> set community-delete-list
-nv unset router policy route-map <route-map-id> rule <rule-id> set large-community-delete-list
-nv unset router policy route-map <route-map-id> rule <rule-id> set originator-id
-nv unset router policy route-map <route-map-id> rule <rule-id> set label-index
-nv unset router policy route-map <route-map-id> rule <rule-id> set forwarding-address
-nv unset router policy route-map <route-map-id> rule <rule-id> action
-nv unset router policy route-map <route-map-id> rule <rule-id> action deny
-nv unset router policy route-map <route-map-id> rule <rule-id> action permit
-nv unset router policy route-map <route-map-id> rule <rule-id> action permit exit-policy
-nv unset router policy route-map <route-map-id> rule <rule-id> action permit exit-policy rule
-nv unset router policy route-map <route-map-id> rule <rule-id> description
-nv unset router bgp
-nv unset router bgp graceful-restart
-nv unset router bgp graceful-restart mode
-nv unset router bgp graceful-restart restart-time
-nv unset router bgp graceful-restart path-selection-deferral-time
-nv unset router bgp graceful-restart stale-routes-time
-nv unset router bgp convergence-wait
-nv unset router bgp convergence-wait time
-nv unset router bgp convergence-wait establish-wait-time
-nv unset router bgp enable
-nv unset router bgp autonomous-system
-nv unset router bgp router-id
-nv unset router bgp policy-update-timer
-nv unset router bgp graceful-shutdown
-nv unset router bgp wait-for-install
-nv unset router ospf
-nv unset router ospf timers
-nv unset router ospf timers lsa
-nv unset router ospf timers lsa min-arrival
-nv unset router ospf timers lsa throttle
-nv unset router ospf timers spf
-nv unset router ospf timers spf delay
-nv unset router ospf timers spf holdtime
-nv unset router ospf timers spf max-holdtime
-nv unset router ospf timers refresh
-nv unset router ospf enable
-nv unset router ospf router-id
-nv unset router pim
-nv unset router pim timers
-nv unset router pim timers hello-interval
-nv unset router pim timers register-suppress
-nv unset router pim timers join-prune-interval
-nv unset router pim timers keep-alive
-nv unset router pim timers rp-keep-alive
-nv unset router pim enable
-nv unset router pim packets
-nv unset router igmp
-nv unset router igmp enable
-nv unset router vrrp
-nv unset router vrrp enable
-nv unset router vrrp priority
-nv unset router vrrp preempt
-nv unset router vrrp advertisement-interval
-nv unset router vrr
-nv unset router vrr enable
-nv unset router adaptive-routing
-nv unset router adaptive-routing enable
-nv unset bridge
-nv unset bridge domain
-nv unset bridge domain <domain-id>
-nv unset bridge domain <domain-id> stp
-nv unset bridge domain <domain-id> stp state
-nv unset bridge domain <domain-id> stp priority
-nv unset bridge domain <domain-id> multicast
-nv unset bridge domain <domain-id> multicast snooping
-nv unset bridge domain <domain-id> multicast snooping querier
-nv unset bridge domain <domain-id> multicast snooping querier enable
-nv unset bridge domain <domain-id> multicast snooping enable
-nv unset bridge domain <domain-id> vlan
-nv unset bridge domain <domain-id> vlan <vid>
-nv unset bridge domain <domain-id> vlan <vid> vni
-nv unset bridge domain <domain-id> vlan <vid> vni <vni-id>
-nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding
-nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication
-nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding head-end-replication <hrep-id>
-nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding enable
-nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> flooding multicast-group
-nv unset bridge domain <domain-id> vlan <vid> vni <vni-id> mac-learning
-nv unset bridge domain <domain-id> vlan <vid> ptp
-nv unset bridge domain <domain-id> vlan <vid> ptp enable
-nv unset bridge domain <domain-id> vlan <vid> multicast
-nv unset bridge domain <domain-id> vlan <vid> multicast snooping
-nv unset bridge domain <domain-id> vlan <vid> multicast snooping querier
-nv unset bridge domain <domain-id> vlan <vid> multicast snooping querier source-ip
-nv unset bridge domain <domain-id> type
-nv unset bridge domain <domain-id> untagged
-nv unset bridge domain <domain-id> encap
-nv unset bridge domain <domain-id> mac-address
-nv unset bridge domain <domain-id> vlan-vni-offset
-nv unset mlag
-nv unset mlag backup
-nv unset mlag backup <backup-ip>
-nv unset mlag backup <backup-ip> vrf
-nv unset mlag enable
-nv unset mlag mac-address
-nv unset mlag peer-ip
-nv unset mlag priority
-nv unset mlag init-delay
-nv unset mlag debug
-nv unset mlag lacp-conflict
-nv unset evpn
-nv unset evpn route-advertise
-nv unset evpn route-advertise nexthop-setting
-nv unset evpn route-advertise svi-ip
-nv unset evpn route-advertise default-gateway
-nv unset evpn dad
-nv unset evpn dad duplicate-action
-nv unset evpn dad duplicate-action freeze
-nv unset evpn dad duplicate-action freeze duration
-nv unset evpn dad enable
-nv unset evpn dad mac-move-threshold
-nv unset evpn dad move-window
-nv unset evpn evi
-nv unset evpn evi <evi-id>
-nv unset evpn evi <evi-id> route-advertise
-nv unset evpn evi <evi-id> route-advertise svi-ip
-nv unset evpn evi <evi-id> route-advertise default-gateway
-nv unset evpn evi <evi-id> route-target
-nv unset evpn evi <evi-id> route-target export
-nv unset evpn evi <evi-id> route-target export <rt-id>
-nv unset evpn evi <evi-id> route-target import
-nv unset evpn evi <evi-id> route-target import <rt-id>
-nv unset evpn evi <evi-id> route-target both
-nv unset evpn evi <evi-id> route-target both <rt-id>
-nv unset evpn evi <evi-id> rd
-nv unset evpn multihoming
-nv unset evpn multihoming ead-evi-route
-nv unset evpn multihoming ead-evi-route rx
-nv unset evpn multihoming ead-evi-route tx
-nv unset evpn multihoming segment
-nv unset evpn multihoming segment mac-address
-nv unset evpn multihoming segment df-preference
-nv unset evpn multihoming enable
-nv unset evpn multihoming mac-holdtime
-nv unset evpn multihoming neighbor-holdtime
-nv unset evpn multihoming startup-delay
-nv unset evpn enable
-nv unset qos
-nv unset qos traffic-pool
-nv unset qos traffic-pool <traffic-pool-id>
-nv unset qos traffic-pool <traffic-pool-id> switch-priority
-nv unset qos traffic-pool <traffic-pool-id> switch-priority <qos-sp-id>
-nv unset qos traffic-pool <traffic-pool-id> memory-percent
-nv unset qos pfc
-nv unset qos pfc <profile-id>
-nv unset qos pfc <profile-id> switch-priority
-nv unset qos pfc <profile-id> switch-priority <qos-sp-id>
-nv unset qos pfc <profile-id> xoff-threshold
-nv unset qos pfc <profile-id> xon-threshold
-nv unset qos pfc <profile-id> port-buffer
-nv unset qos pfc <profile-id> tx
-nv unset qos pfc <profile-id> rx
-nv unset qos pfc <profile-id> cable-length
-nv unset qos mapping
-nv unset qos mapping <profile-id>
-nv unset qos mapping <profile-id> pcp
-nv unset qos mapping <profile-id> pcp <qos-pcp-id>
-nv unset qos mapping <profile-id> pcp <qos-pcp-id> switch-priority
-nv unset qos mapping <profile-id> dscp
-nv unset qos mapping <profile-id> dscp <qos-dscp-id>
-nv unset qos mapping <profile-id> dscp <qos-dscp-id> switch-priority
-nv unset qos mapping <profile-id> port-default-sp
-nv unset qos mapping <profile-id> trust
-nv unset qos congestion-control
-nv unset qos congestion-control <profile-id>
-nv unset qos congestion-control <profile-id> traffic-class
-nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id>
-nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id> min-threshold
-nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id> max-threshold
-nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id> probability
-nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id> red
-nv unset qos congestion-control <profile-id> traffic-class <qos-tc-id> ecn
-nv unset qos egress-queue-mapping
-nv unset qos egress-queue-mapping <profile-id>
-nv unset qos egress-queue-mapping <profile-id> switch-priority
-nv unset qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id>
-nv unset qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id> traffic-class
-nv unset qos egress-scheduler
-nv unset qos egress-scheduler <profile-id>
-nv unset qos egress-scheduler <profile-id> traffic-class
-nv unset qos egress-scheduler <profile-id> traffic-class <qos-tc-id>
-nv unset qos egress-scheduler <profile-id> traffic-class <qos-tc-id> mode
-nv unset qos egress-scheduler <profile-id> traffic-class <qos-tc-id> bw-percent
-nv unset qos roce
-nv unset qos roce enable
-nv unset qos roce mode
 nv unset nve
 nv unset nve vxlan
 nv unset nve vxlan mlag
@@ -3809,11 +4147,12 @@ nv unset acl <acl-id> rule <rule-id> match mac source-mac-mask
 nv unset acl <acl-id> rule <rule-id> match mac dest-mac
 nv unset acl <acl-id> rule <rule-id> match mac dest-mac-mask
 nv unset acl <acl-id> rule <rule-id> match mac protocol
-nv unset acl <acl-id> rule <rule-id> match mac vlan
+nv unset acl <acl-id> rule <rule-id> match vlan
 nv unset acl <acl-id> rule <rule-id> action
 nv unset acl <acl-id> rule <rule-id> action permit
 nv unset acl <acl-id> rule <rule-id> action deny
 nv unset acl <acl-id> rule <rule-id> action log
+nv unset acl <acl-id> rule <rule-id> action log log-prefix
 nv unset acl <acl-id> rule <rule-id> action set
 nv unset acl <acl-id> rule <rule-id> action set dscp
 nv unset acl <acl-id> rule <rule-id> action set class
@@ -3826,19 +4165,26 @@ nv unset acl <acl-id> rule <rule-id> action police
 nv unset acl <acl-id> rule <rule-id> action police mode
 nv unset acl <acl-id> rule <rule-id> action police burst
 nv unset acl <acl-id> rule <rule-id> action police rate
+nv unset acl <acl-id> rule <rule-id> action police class
 nv unset acl <acl-id> rule <rule-id> action span
+nv unset acl <acl-id> rule <rule-id> remark
 nv unset acl <acl-id> type
-nv action clear interface <interface-id> bond mlag lacp-conflict
-nv action clear interface <interface-id> qos roce counters
 nv action clear mlag lacp-conflict
+nv action clear qos buffer pool
+nv action clear qos buffer multicast-switch-priority
+nv action clear interface <interface-id> bond mlag lacp-conflict
+nv action clear interface <interface-id> qos counter
+nv action clear interface <interface-id> qos roce counters
+nv action clear interface <interface-id> qos buffer
+nv action disconnect system aaa user <user-id>
 nv config apply [<revision>]
 nv config save
-nv config replace <cue-file>
+nv config replace <nvue-file>
 nv config detach
 nv config diff [<revision>] [<revision>]
 nv config show
 nv config find <search-string>
-nv config patch <cue-file>
+nv config patch <nvue-file>
 nv config history [<revision>]
 ```
 

@@ -189,7 +189,7 @@ sub-group
     5  8        1300     2        0        1        0        0        0        0        167425…  off       1        0         7        7                            5        10       Neighbor: 
                                                                                                                                                                                       peerlink.…
                                                                                                                                                                                       Neighbor: 
-                                                                                                                                                                                      swp52     
+                                                                                                                                                                                      swp52
 ...
 ```
 
@@ -201,31 +201,31 @@ To show information about a specific next hop, run these NVUE commands:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2
-
                   operational  applied   
 ----------------  -----------  ----------
 complete          on           on        
 igp-metric        0            0         
-last-update-time  1674253415   1674253415
+last-update-time  1674572412   1674572412
 path-count        6            6         
-valid             on           on        
+valid             on           on
 
 resolved-via
 ===============
-    Nexthop                    interface    
-    -------------------------  -------------
-    fe80::4ab0:2dff:fe0d:9dfe  peerlink.4094
+    Nexthop                    interface
+    -------------------------  ---------
+    fe80::4ab0:2dff:fe20:ac25  swp51    
+    fe80::4ab0:2dff:fe93:d92d  swp52
 
 path
 =======
-    Path  address-family  flags.damped  flags.deterministic-…  flags.history  flags.multipath  flags.nexthop-self  flags.removed  flags.selected  flags.stale  flags.valid  prefix                 rd            vrf    
-    ----  --------------  ------------  --------------------…  -------------  ---------------  ------------------  -------------  --------------  -----------  -----------  --------------------…  ------------  -------
-    1     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.30.0/2…  10.10.10.2:3  default
-    2     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.20.0/2…  10.10.10.2:2  default
-    3     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.10.0/2…  10.10.10.2:2  default
-    4     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.30.0/2…  10.10.10.2:3  default
-    5     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.20.0/2…  10.10.10.2:2  default
-    6     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.10.0/2…  10.10.10.2:2  default
+    Path  addres…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags…  prefix   rd      vrf    
+    ----  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  -----…  ------…  -----…  -------
+    1     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
+    2     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
+    3     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
+    4     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
+    5     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
+    6     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
 ```
 
 To show the paths for a specific next next hop, run these NVUE commands:
@@ -234,15 +234,14 @@ To show the paths for a specific next next hop, run these NVUE commands:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 path
-Path  address-family  flags.damped  flags.deterministic-…  flags.history  flags.multipath  flags.nexthop-self  flags.removed  flags.selected  flags.stale  flags.valid  prefix                 rd            vrf    
-----  --------------  ------------  --------------------…  -------------  ---------------  ------------------  -------------  --------------  -----------  -----------  --------------------…  ------------  -------
-1     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.30.0/2…  10.10.10.2:3  default
-2     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.20.0/2…  10.10.10.2:2  default
-3     l2vpn-evpn      off           on                     off            off              off                 off            off             off          on           [5]:[0]:[10.1.10.0/2…  10.10.10.2:2  default
-4     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.30.0/2…  10.10.10.2:3  default
-5     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.20.0/2…  10.10.10.2:2  default
-6     l2vpn-evpn      off           on                     off            off              off                 off            on              off          on           [5]:[0]:[10.1.10.0/2…  10.10.10.2:2  default
-cumulus@leaf01:mgmt:~$ 
+Path  addres…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags…  prefix   rd      vrf    
+----  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  -----…  ------…  -----…  -------
+1     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
+2     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
+3     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
+4     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
+5     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
+6     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
 ```
 
 To show how BGP resolves a specific next hop, run these NVUE commands:
@@ -251,9 +250,10 @@ To show how BGP resolves a specific next hop, run these NVUE commands:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 resolved-via
-Nexthop                    interface    
--------------------------  -------------
-fe80::4ab0:2dff:fe0d:9dfe  peerlink.4094
+Nexthop                    interface
+-------------------------  ---------
+fe80::4ab0:2dff:fe20:ac25  swp51    
+fe80::4ab0:2dff:fe93:d92d  swp52
 ```
 
 ## Troubleshoot BGP Unnumbered

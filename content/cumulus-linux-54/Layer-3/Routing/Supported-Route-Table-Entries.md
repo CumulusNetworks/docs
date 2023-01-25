@@ -25,7 +25,7 @@ The following tables list the number of MAC addresses, layer 3 neighbors, and LP
 {{%notice note%}}
 The values in the following tables reflect results from testing, which can differ from published manufacturer specifications.
 {{%/notice%}}
-<!-- vale off -->
+
 ### Spectrum 1
 <!-- vale off -->
 | <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| Longest Prefix Match (LPM)  |
@@ -58,7 +58,7 @@ The values in the following tables reflect results from testing, which can diffe
 | l2-heavy-2     | 124k          | 132k (IPv4) and 12k (IPv6)| 16k (IPv4), 16k (IPv6-long), 1K (IPv4-Mcast)|
 -->
 The IPv6 number corresponds to the /64 IPv6 prefix. The /128 IPv6 prefix number is half of the /64 IPv6 prefix number.
-
+<!-- vale on -->
 ## Change Forwarding Resource Profiles
 
 You can set the profile that best suits your network architecture.
@@ -68,7 +68,7 @@ You can set the profile that best suits your network architecture.
 
 Run the `nv set system forwarding profile <profile-name>` command to specify the profile you want to use.
 
-The following example command sets the l2-heavy profile:
+The following example command sets the `l2-heavy` profile:
 
 ```
 cumulus@switch:~$ nv set system forwarding profile l2-heavy 
@@ -87,7 +87,7 @@ Instead of the above command, you can run the `nv set system forwarding profile 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Specify the profile you want to use with the `forwarding_table.profile` variable in the `/etc/cumulus/datapath/traffic.conf` file. The following example specifies l2-heavy:
+Specify the profile you want to use with the `forwarding_table.profile` variable in the `/etc/cumulus/datapath/traffic.conf` file. The following example specifies `l2-heavy`:
 
 ```
 cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf

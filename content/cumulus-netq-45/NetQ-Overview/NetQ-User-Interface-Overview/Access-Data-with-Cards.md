@@ -69,7 +69,7 @@ Cards are available in 4 sizes. The granularity of the content on a card varies 
 ## Card Actions
 ### Add Cards to Your Workbench
 
-1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> in the header.
+1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> Card in the header.
 
 2. Locate and select the card(s) you want to add to your workbench.
 
@@ -83,15 +83,13 @@ The cards are placed at the end of the set of cards currently on the workbench. 
 
 You can add switch cards to a workbench through the Devices icon on the header or by searching for it in the Global Search field. To add a switch card from the header:
 
-1. Click <img src="https://icons.cumulusnetworks.com/03-Computers-Devices-Electronics/09-Hard-Drives/hard-drive-1.svg" height="18" width="18"/>, then select **Open a device card**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} Devices, then select **Open a device card**.
 
-2. Enter the first few letters of the switch's hostname.
+2. Select the device from the suggestions that appear:
 
-3. Select the device from the suggestions that appear:
+      {{<figure src="/images/netq/open-device-card-450.png" alt="dropdown displaying switches" width="250">}}
 
-      {{<figure src="/images/netq/open-switch-card-suggest-400.png" alt="dropdown displaying switches" width="250">}}
-
-4. Choose the card's size, then select **Add**.
+3. Choose the card's size, then select **Add**.
 
 ### Remove Cards from Your Workbench
 
@@ -107,11 +105,11 @@ The card is removed from the workbench, but not from the application.
 
 ### Change the Size of the Card
 
-1. Hover over the top portion of the card until you see a rectangle. This is the size picker.
+1. Hover over the top portion of the card until you see a rectangular box divided into four segments.
 
-2. Hover over the size picker and move the cursor right or left until the desired size option is highlighted.
+2. Move your cursor over the box until the desired size option is highlighted.
 
-    {{<figure src="/images/netq/card-size-picker-222.png" alt="" width="200" >}}
+    {{<figure src="/images/netq/size-picker-450.png" alt="" width="200" >}}
 
     One-quarter width opens a small card. One-half width opens a medium card. Three-quarters width opens a large card. Full width opens a full-screen card.
 
@@ -123,11 +121,11 @@ All cards have a default time period for the data shown on the card, typically t
 
 To change the time period for a card:
 
-1. Hover over the top portion of the card and select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
+1. Hover over the top portion of the card and select the clock icon <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/>.
 
 3. Select a time period from the dropdown list.
 
-    {{<figure src="/images/netq/time-series-options.png" alt="time options" width="200">}}
+    {{<figure src="/images/netq/time-clock-450.png" alt="time options" width="300">}}
 
 {{<notice tip>}}
 Changing the time period in this manner only changes the time period for the given card.
@@ -138,7 +136,7 @@ Changing the time period in this manner only changes the time period for the giv
 
 You can manipulate the tabular data displayed in a full-screen card by filtering and sorting the columns. Hover over the column header and select it to sort the column. The data is sorted in ascending or descending order: A-Z, Z-A, 1-n, or n-1. The number of rows that can be sorted is limited to 10,000.
 
-To reposition the columns, drag and drop them using your mouse. You can also export the data presented in the table by selecting <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> .
+To reposition the columns, drag and drop them using your mouse. You can also export the data presented in the table by selecting <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> Export.
 
 The following icons are common in the full-screen card view:
 

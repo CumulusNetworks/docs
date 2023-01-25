@@ -193,9 +193,9 @@ NVUE does not support configuring traditional bridges. The following example con
      bridge-ports swp1 swp2
      bridge-vlan-aware no
    ```
-
+<!-- vale off -->
 ### /etc/cumulus/switchd.conf Snippets
-
+<!-- vale on -->
 NVUE does not provide options to configure link flap detection settings. The following example configures the link flap window to 10 seconds and the link flap threshold to 5 seconds:
 
 1. Create a `.yaml` file and add the following snippet:

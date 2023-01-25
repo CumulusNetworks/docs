@@ -531,7 +531,7 @@ Setting the default MTU also applies to the management interface. Be sure to add
 ## Breakout Ports
 
 Cumulus Linux supports the following ports breakout options:
-
+<!-- vale off -->
 {{< tabs "Platforms ">}}
 {{< tab "SN2010">}}
 
@@ -1241,7 +1241,7 @@ Maximum 400G ports: 32
 
 {{< /tab >}}
 {{< /tabs >}}
-
+<!-- vale on -->
 {{%notice note%}}
 - You can use a single SFP (10/25/50G) transceiver in a QSFP (100/200/400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface> link speed <speed>` command. Do not configure this port as a breakout port.
 - If you break out a port, then reload the `switchd` service on a switch running in *nonatomic* ACL mode, temporary disruption to traffic occurs while the ACLs reinstall.
@@ -1275,7 +1275,7 @@ If you split a 100G port into four interfaces and auto-negotiation is on (the de
 
 {{%notice warning%}}
 - Cumulus Linux 5.4 and later uses a new format for port splitting; instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. The new format does not support specifying a speed for breakout ports in the `/etc/cumulus/ports.conf` file. To set a maximum speed, either set the `link-speed` for each split port in the `/etc/network/interfaces` file or with the NVUE `nv set interface <interface> link speed <speed>` command.
-- Cumulus Linux 5.4 continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, the NVUE command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) in Cumulus Linux 5.3 and earlier are deprecated with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, you must either:
+- Cumulus Linux 5.4 continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, you must either:
   - Upgrade to Cumulus Linux 5.4 with a binary installation and configure your switch with the new syntax.
   - Before you do an `apt upgrade`, edit the `/etc/nvue.d/startup.yaml` file with the new syntax.
 {{%/notice%}}

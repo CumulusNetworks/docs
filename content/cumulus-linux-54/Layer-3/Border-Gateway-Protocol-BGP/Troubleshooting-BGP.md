@@ -217,7 +217,7 @@ resolved-via
     fe80::4ab0:2dff:fe93:d92d  swp52
 
 path
-=======
+===========
     Path  addres…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags…  prefix   rd      vrf    
     ----  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  -----…  ------…  -----…  -------
     1     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
@@ -228,7 +228,7 @@ path
     6     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
 ```
 
-To show the paths for a specific next next hop, run these NVUE commands:
+To show the paths for a specific next hop, run these NVUE commands:
 - `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> path` for IPv4
 - `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> path` for IPv6
 

@@ -45,7 +45,7 @@ The port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refe
   - New BGP show commands to show {{<link url="Troubleshooting-BGP/#bgp-update-groups" text="update groups">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="next hop">}} details
   - Updated BGP {{<link url="Virtual-Routing-and-Forwarding-VRF/#verify-route-leaking-configuration" text="route import">}} show commands now show operational data
   - New {{<link url="Troubleshooting-EVPN" text="EVPN show commands">}} to show {{<link url="Troubleshooting-EVPN#show-the-vni-evpn-routing-table" text="EVPN local RIB">}} and {{<link url="Troubleshooting-EVPN/#show-evpn-vnis" text="VNI">}} information
-  - The `nv set evpn evi`, `nv unset evpn evi`, and `nv show evpn evi` commands are changed to `nv set evpn vni`, `nv unset evpn vni`, and `nv show evpn vni`
+  - The `nv set evpn evi`, `nv unset evpn evi`, and `nv show evpn evi` commands are now `nv set evpn vni`, `nv unset evpn vni`, and `nv show evpn vni`
   - Obfuscated passwords to protect passwords from casual viewing
   - New commands:
    {{< tabs "TabID40 ">}}

@@ -21,7 +21,7 @@ For an overview of the current or past health of DPU hardware resources, open th
 
 {{<figure src="/images/netq/open-device-card-42.png" width="250">}}
 
-2. Begin typing the hotsname of the DPU you would like to view. Select it from the suggested matches when it appears.
+2. Begin typing the hostname of the DPU you would like to view. Select it from the suggested matches when it appears.
 
 {{<figure src="/images/netq/add-dpu-auto-suggest-42.png" alt="device card showing 2 DPUs" width="250">}}
 

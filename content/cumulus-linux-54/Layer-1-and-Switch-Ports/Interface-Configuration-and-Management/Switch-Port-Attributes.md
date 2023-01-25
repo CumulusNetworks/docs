@@ -1473,7 +1473,7 @@ cumulus@switch:~$ nv config apply
 {{< /tabs >}}
 
 <!-- vale off -->
-### ports.conf File Validator
+## ports.conf File Validator
 <!-- vale on -->
 Cumulus Linux includes a `ports.conf` validator that `switchd` runs automatically before the switch starts up to confirm that the file syntax is correct. You can run the validator manually to verify the syntax of the file whenever you make changes. The validator is useful if you want to copy a new `ports.conf` file to the switch with automation tools, then validate that it has the correct syntax.
 

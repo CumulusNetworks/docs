@@ -71,3 +71,18 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 3    21/06/16 12:03:12.745  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
 4    21/06/16 12:03:12.745  swp1   N/A    N/A   44:38:39:00:a4:84  44:38:39:00:a4:84  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet was received from peer
 ```
+
+## Considerations
+
+WJH runs in a Docker container. By default, when Docker starts, it creates a bridge called `docker0`. For compatibility reasons Cumulus Linux needs the `docker0` bridge to be disabled in the `/etc/docker/daemon.json` file. This can be disabled by adding `"bridge": "none"` to the json file and then starting the WJH service. 
+  
+The following example shows a configuration that disables the docker bridge: 
+ ```
+root@switch:~# cat /etc/docker/daemon.json 
+{
+     "iptables": false,
+     "ip-forward": false,
+     "ip-masq": false,
+     "bridge": "none"
+}
+ ```

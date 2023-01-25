@@ -112,7 +112,9 @@ You can configure the following optional TACACS+ settings:
 - The port to use for communication between the TACACS+ server and client. By default, Cumulus Linux uses IP port 49.
 - The TACACS timeout value, which is the number of seconds to wait for a response from the TACACS+ server before trying the next TACACS+ server. You can specify a value between 0 and 60. The default is 5 seconds.
 - The source IP address to use when communicating with the TACACS+ server so that the server can identify the client switch. You must specify an IPv4 address, which must be valid for the interface you use. This source IP address is typically the loopback address on the switch.
+<!-- vale off -->
 - The TACACS+ authentication type. You can specify <span style="background-color:#F5F5DC">[PAP](## "Password Authentication Protocol")</span> to send clear text between the user and the server, <span style="background-color:#F5F5DC">[CHAP](## "Challenge Handshake Authentication Protocol")</span> to establish a <span style="background-color:#F5F5DC">[PPP](## "Point-to-Point Protocol")</span> connection between the user and the server, or login. The default is PAP.
+<!-- vale on -->
 - The users you do not want to send to the TACACS+ server for authentication; for example, local user accounts that exist on the switch, such as the cumulus user.
 - Creation of a separate home directory for each TACACS+ user when the TACACS+ user first logs in. By default, the switch uses the home directory in the mapping accounts in `/etc/passwd`. If the home directory does not exist, the `mkhomedir_helper` program creates it. This option does not apply to accounts with restricted shells (users mapped to a TACACS privilege level that has enforced per-command authorization).
 - The output debugging information level through syslog(3) to use for troubleshooting. You can specify a value between 0 and 2. The default is 0. A value of 1 enables debug logging. A value of 2 increases the verbosity of some debug logs.
@@ -142,7 +144,7 @@ cumulus@switch:~$ nv set system aaa tacacs authentication mode chap
 cumulus@switch:~$ nv config apply
 ```
 
-The following example commands exclude the user `USER1` from being sent to the TACACS+ server for authentication and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
+The following example commands exclude the user `USER1` from going to the TACACS+ server for authentication and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs exclude-user username USER1
@@ -191,7 +193,7 @@ login=chap
 cumulus@switch:~$ sudo systemctl restart auditd
 ```
 
-The following example sets the timeout to 10 seconds, the debug level to 2, and excludes the user `USER1` from being sent to the TACACS+ server for authentication:
+The following example sets the timeout to 10 seconds, the debug level to 2, and excludes the user `USER1` from going to the TACACS+ server for authentication:
 
 ```
 cumulus@switch:~$ sudo nano /etc/tacplus_nss.conf
@@ -356,7 +358,7 @@ The first `adduser` command prompts for information and a password. You can skip
     ```
     cumulus@switch:~$ sudo systemctl restart nvued
     ```
-
+<!-- vale off -->
 ## TACACS+ Per-command Authorization
 
 {{%notice note%}}
@@ -364,7 +366,7 @@ NVUE does not provide commands to configure per-command authorization.
 {{%/notice%}}
 
 The `tacplus-auth` command handles authorization for each command. To make this an enforced authorization, change the TACACS+ login to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The `tacplus-restrict` utility simplifies setting up the restricted environment. The example below initializes the environment for the *tacacs0* user account. This is the account for TACACS+ users at privilege level `0`.
-
+<!-- vale on -->
 ```
 tacuser0@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a command1 command2 command3
 ```

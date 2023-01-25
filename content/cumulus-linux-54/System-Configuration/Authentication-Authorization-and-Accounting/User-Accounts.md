@@ -42,7 +42,7 @@ Only user accounts with the `system-admin` role can create, modify, and delete o
 
 The following example:
 - Creates a new user account called `admin2` and sets the role to `system-admin` (permissions for `sudo`, `nv show`, `nv set` and `nvunset`, and `nv apply`).
-- Sets the password to CumulusLinux!
+- Sets the password to `CumulusLinux!`
 - Adds the full name `FIRST LAST`. If the full name includes more than one name, either separate the names with a hyphon (`FIRST-LAST`) or enclose the full name in quotes (`"FIRST LAST"`).
 
 ```
@@ -69,7 +69,7 @@ Use the following groups to set permissions for local user accounts. To add user
 | `nvapply` | Allows the user to run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
 
 The following example:
-- Creates a new user account called `admin2`, adds the full name `First Last`, and sets the password to CumulusLinux!
+- Creates a new user account called `admin2`, adds the full name `First Last`, and sets the password to `CumulusLinux!`
 - Sets the group membership to `sudo` and `nvapply` (permissions to use `sudo`, `nv show`, `nv set`, and `nv apply`).
 
 ```

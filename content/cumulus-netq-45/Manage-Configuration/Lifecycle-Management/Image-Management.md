@@ -45,7 +45,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" alt="close" height="14" width="14">}} to return to the LCM dashboard.
 
-    The Cumulus Linux Images card now reflects the number of images you uploaded.
+    The Cumulus Linux Images card reflects the number of images you uploaded.
 
 {{</tab>}}
 
@@ -91,9 +91,9 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 5. In the UI, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Add image** above the table.
 
-    {{<figure src="/images/netq/import-netq-images-450.png" alt="dialog prompting the user to import the NetQ images" width="450">}}
-
 6. Provide the *.deb* file(s) from an external drive that matches the criteria for the selected image.
+
+   {{<figure src="/images/netq/import-netq-images-450.png" alt="dialog prompting the user to import the NetQ images" width="450">}}
 
 7. Click **Import**.
 
@@ -105,7 +105,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
 
-   The NetQ Images card now shows the number of images you uploaded.
+   The NetQ Images card reflects the number of images you uploaded.
 
 {{</tab>}}
 
@@ -154,8 +154,6 @@ After obtaining the images, upload them to NetQ with the UI or CLI:
 
 5. Monitor the progress until it completes. Click **Done**.
 
-6. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
-
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -189,11 +187,11 @@ Specifying a default upgrade version is optional, but recommended. You can assig
 
 To specify a default version in the NetQ UI:
 
-1. Click **Image Management**.
+1. From the LCM dashboard, select the **Image management** tab.
 
-2. Select the link in the relevant card.
+2. Select *Click here to set default x version* on the relevant card.
 
-    {{<img src="/images/netq/lcm-images-card-spec-default-cl-300.png" alt="card highlighting link to set default CL version" width="200">}} {{<img src="/images/netq/lcm-images-card-spec-default-netq-310.png" alt="card highlighting link to set default NetQ version" width="200">}}
+    {{<img src="/images/netq/default-image-link-450.png" alt="card highlighting link to set default version" width="500">}} 
 
 3. Select the version you want to use as the default for switch upgrades.
 
@@ -209,22 +207,26 @@ To specify a default network OS version, run:
 ```
 cumulus@switch:~$ netq lcm add default-version cl-images <text-cumulus-linux-version>
 ```
+To verify the default network OS version, run:
+
+```
+cumulus@switch:~$ netq lcm show default-version cl-images
+```
 
 To specify a default NetQ version, run:
 
 ```
 cumulus@switch:~$ netq lcm add default-version netq-images <text-netq-version>
 ```
+To verify the default NetQ version, run:
+
+```
+cumulus@switch:~$ netq lcm show default-version netq-images
+```
 
 {{</tab>}}
 
 {{</tabs>}}
-
-In the CLI, you can check which version of the network OS or NetQ is the default.
-
-- For Cumulus Linux, run `netq lcm show default-version cl-images`
-
-- For NetQ, run `netq lcm show default-version netq-images`
 
 ## Remove Images from Local Repository
 
@@ -240,7 +242,7 @@ After you upgrade all your switches beyond a particular release, you can remove 
 
 3. On the **Uploaded** tab, select the images you want to remove. 
 
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> Delete. 
 
 {{</tab>}}
 

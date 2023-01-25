@@ -80,7 +80,7 @@ There are several options for opening workbenches:
 - Open through the NVIDIA logo
     - Click the logo in the header to open your favorite workbench
 
-## Manage Auto-refresh for Your Workbenches
+## Manage Auto-refresh
 
 You can specify how often to update the data displayed on your workbenches. Three refresh rates are available:
 
@@ -88,19 +88,14 @@ You can specify how often to update the data displayed on your workbenches. Thre
 - **Debug**: updates every minute
 - **Monitor**: updates every 2 minutes
 
-By default, auto-refresh is enabled and configured to update every 30 seconds.
-### Change Settings
+By default, auto-refresh is configured to update every 30 seconds.
 
 To modify the auto-refresh setting:
 
 1. Select the dropdown <img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-button-down-2.svg" width="18"/> next to **Refresh**.
 
-2. Select the refresh rate. A check mark is shown next to the current selection. The new refresh rate is applied immediately. 
+2. Select the refresh rate. A check mark indicates the current selection. The new refresh rate is applied immediately. 
 
     {{<figure src="/images/netq/wb-refresh-rate-set-400.png" alt="refresh rate dropdown listng rate options of 30 seconds, 1 minute, and 2 minutes" width="150">}}
 
-### Disable/Enable Auto-refresh
-
-When you are troubleshooting and do not want the displayed data to update, you can disable auto-refresh then enable it when you are finished.
-
-To disable or pause auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> above **Refresh** in the workbench header. When you're ready for the data to refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/>.
+To disable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> Pause. When you're ready for the data to refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> Play.

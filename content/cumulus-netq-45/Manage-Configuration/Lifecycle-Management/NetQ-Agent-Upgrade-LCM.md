@@ -123,7 +123,6 @@ To view the progress of upgrade jobs using the CLI, run:
 ```
 netq lcm show upgrade-jobs netq-image [json]
 netq lcm show status <text-lcm-job-id> [json]
-
 ```
 {{<expand "Example netq lcm show upgrade-jobs">}}
 

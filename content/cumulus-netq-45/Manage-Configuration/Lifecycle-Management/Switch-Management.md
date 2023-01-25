@@ -215,35 +215,3 @@ cumulus@switch:~$ netq lcm add role exit switches border01,border02
 {{</tab>}}
 
 {{</tabs>}}
-
-## Export a List of Switches
-
-{{<tabs "TabID223" >}}
-
-{{<tab "NetQ UI" >}}
-
-1. Open the LCM dashboard.
-
-2. On the Switches card, click **Manage**.
-
-3. Select one or more switches.
-
-4. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> **Export selected**.
-
-5. Choose the export file type and click **Export**.
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
-Use the `json` option with the `netq lcm show switches` command to output a list of all switches in the LCM repository. Alternately, output only switches running a particular network OS version by including the `version` option.
-
-```
-cumulus@switch:~$ netq lcm show switches json
-
-cumulus@switch:~$ netq lcm show switches version 3.7.11 json
-```
-
-{{</tab>}}
-
-{{</tabs>}}

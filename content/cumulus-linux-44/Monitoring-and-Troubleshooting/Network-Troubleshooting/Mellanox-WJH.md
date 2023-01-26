@@ -74,15 +74,16 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 
 ## Considerations
 
-WJH runs in a Docker container. By default, when Docker starts, it creates a bridge called `docker0`. For compatibility reasons Cumulus Linux needs the `docker0` bridge to be disabled in the `/etc/docker/daemon.json` file. This can be disabled by adding `"bridge": "none"` to the json file and then starting the WJH service. 
-  
-The following example shows a configuration that disables the docker bridge: 
- ```
-root@switch:~# cat /etc/docker/daemon.json 
+WJH runs in a Docker container. By default, when Docker starts, it creates a bridge called `docker0`. For compatibility reasons, you must disable the `docker0` bridge in the `/etc/docker/daemon.json` file.
+
+To disable the `docker0` bridge, add `"bridge": "none"` to the `/etc/docker/daemon.json` file, then start the WJH service:
+
+```
+root@switch:~# nano /etc/docker/daemon.json 
 {
      "iptables": false,
      "ip-forward": false,
      "ip-masq": false,
      "bridge": "none"
 }
- ```
+```

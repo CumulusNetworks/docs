@@ -72,3 +72,19 @@ PCAP file path : /var/log/mellanox/wjh/wjh_user_2020_11_06_16_13_37.pcap
 2  20/11/06 16:13:31.063  -1     N/A    N/A   44:38:39:00:a4:80  44:38:39:00:a4:80  IPv4     N/A          N/A          N/A       L2     Error     Source MAC equals destination MAC - Bad packet
                                                                                                                                                   was received from peer
 ```
+
+## Considerations
+
+WJH runs in a Docker container. By default, when Docker starts, it creates a bridge called `docker0`. For compatibility reasons, you must disable the `docker0` bridge in the `/etc/docker/daemon.json` file.
+
+To disable the `docker0` bridge, add `"bridge": "none"` to the `/etc/docker/daemon.json` file, then start the WJH service:
+
+```
+root@switch:~# nano /etc/docker/daemon.json 
+{
+     "iptables": false,
+     "ip-forward": false,
+     "ip-masq": false,
+     "bridge": "none"
+}
+```

@@ -47,7 +47,7 @@ The default setting is `off`.
 
 ### Command Syntax
 
-| Syntax |  Description   |
+| Syntax |  Description |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 

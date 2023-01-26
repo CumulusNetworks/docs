@@ -10,7 +10,7 @@ Snapshots capture a network's state---including the services running on the netw
 
 To create a snapshot:
 
-1. From the workbench header, select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}}, then **Create Snapshot**:
+1. From the workbench header, select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} Snapshot, then **Create Snapshot**:
 
     {{<figure src="/images/netq/create-network-snapshot.png" alt="modal prompting user to create, compare, view, or delete snapshots" width="400">}}
 
@@ -26,7 +26,7 @@ To create a snapshot:
 
 3. Select **Finish**. The card now appears on your workbench.
 
-4. When you are finished viewing the snapshot, click **Dismiss** to remove it from your workbench. You can add it back by selecting {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} in the header and navigating to the option to view snapshots. 
+4. When you are finished viewing the snapshot, click **Dismiss** to remove it from your workbench. You can add it back by selecting {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} Snapshot in the header and navigating to the option to view snapshots. 
 
 ## Compare Network Snapshots
 
@@ -34,7 +34,7 @@ You can compare the state of your network before and after an upgrade or other c
 
 To compare network snapshots:
 
-1. From the workbench header, click {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}}.
+1. From the workbench header, select {{<img src="/images/netq/camera.svg" alt="snapshot" width="22.5" height="18">}} Snapshot.
 
 2. Select **Compare snapshots**, then select the two snapshots you want to compare.
 

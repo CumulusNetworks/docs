@@ -5,7 +5,7 @@ weight: 60
 product: Cumulus Linux
 type: nojsscroll
 ---
-All NVUE commands have `-h` and `--help` options that provide command description and usage. This reference guide is based on the command `-h` output.
+All NVUE commands have `-h` and `--help` options that provide command description and usage.
 
 The NVUE commands have these common options.
 

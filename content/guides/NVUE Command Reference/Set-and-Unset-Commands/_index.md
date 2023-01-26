@@ -12,5 +12,5 @@ This section describes all the `nv set` and `nv unset` commands. The commands ar
 - To see `nv config` and `nv action` command descriptions, refer to {{<link url="Config-and-Action-Commands" text="Config and Action Commands">}}.
 
 {{%notice note%}}
-The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if there is a difference between the `nv set` and `nv unset` command.
+The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}

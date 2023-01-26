@@ -13,17 +13,11 @@ Applies the current pending configuration or a specific revision. This command d
 - `--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
 - `--confirm-status` shows the amount of time left before the automatic rollback.
 
-**Usage**
+The default is the current pending configuration.
 
-`nv config apply [options] [<revision>]`
+### Command Syntax
 
-**Default Setting**
-
-The current pending configuration.
-
-**Identifiers**
-
-| <div style="width:250px">Identifier   |  Description  |
+| <div style="width:250px">Syntax  |  Description  |
 | ----------   | ------------  |
 | `<revision>` | The configuration revision you want to apply instead of the current pending configuration. |
 
@@ -41,14 +35,6 @@ cumulus@leaf01:mgmt:~$ nv config apply --y
 
 Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot.
 
-**Usage**
-
-`nv config save [options]`
-
-**Default Setting**
-
-N/A
-
 **Version History**
 
 Introduced in Cumulus Linux 5.0.0
@@ -63,17 +49,9 @@ cumulus@leaf01:mgmt:~$ nv config save
 
 Replaces the pending configuration with the specified YAML configuration file.
 
-**Usage**
+### Command Syntax
 
-`nv config replace [options] <cue-file>`
-
-**Default Setting**
-
-N/A
-
-**Identifiers**
-
-| <div style="width:250px">Identifier   |  Description  |
+| <div style="width:250px">Syntax   |  Description  |
 | ----------   | ------------  |
 | `<cue-file>` | The NVUE YAML file you want to use to replace the pending configuration. |
 
@@ -91,14 +69,6 @@ cumulus@leaf01:mgmt:~$ nv config replace myconfig.yaml
 
 Detaches the configuration from the current pending configuration. Cumulus Linux names the detached configuration `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`
 
-**Usage**
-
-`nv config detach [options]`
-
-**Default Setting**
-
-N/A
-
 **Version History**
 
 Introduced in Cumulus Linux 5.0.0
@@ -113,15 +83,9 @@ cumulus@leaf01:mgmt:~$ nv config detach
 
 Shows differences between configurations, such as the pending configuration and the applied configuration or the detached configuration and the pending configuration.
 
-**Usage**
+### Command Syntax
 
-`nv config diff [options] [<revision>] [<revision>]`
-
-**Default Setting**
-
-N/A
-
-| <div style="width:250px">Identifier   |  Description  |
+| <div style="width:250px">Syntax   |  Description  |
 | ----------   | ------------  |
 | `<revision>` | The configuration revisions you want to compare. |
 
@@ -139,14 +103,6 @@ cumulus@leaf01:mgmt:~$ nv config diff pending_20210128_212626_4WSY pending_20210
 
 Shows the currently applied configuration in YAML format.
 
-**Usage**
-
-`nv config show [options]`
-
-**Default Setting**
-
-N/A
-
 **Version History**
 
 Introduced in Cumulus Linux 5.0.0
@@ -161,15 +117,9 @@ cumulus@leaf01:mgmt:~$ nv config show
 
 Updates the pending configuration with an NVUE configuration file in YAML format.
 
-**Usage**
+### Command Syntax
 
-`nv config patch [options] <cue-file>`
-
-**Default Setting**
-
-N/A
-
-| <div style="width:250px">Identifier   |  Description  |
+| <div style="width:250px">Syntax   |  Description  |
 | ----------   | ------------  |
 | `<cue-file>` | The NVUE YAML file you want to use to update the pending configuration. |
 
@@ -187,17 +137,11 @@ cumulus@leaf01:mgmt:~$ nv config patch myconfig.yaml
 
 Shows the `apply` history for the current revision or for a specific revision.
 
-**Usage**
+The default is the current revision.
 
-`nv config history [options] [<revision>]`
+### Command Syntax
 
-**Default Setting**
-
-The current revision.
-
-**Identifiers**
-
-| <div style="width:250px">Identifier   |  Description  |
+| <div style="width:250px">Syntax   |  Description  |
 | ----------   | ------------  |
 | `<revision>` | The revision whose `apply` history you want to show.|
 
@@ -214,10 +158,6 @@ cumulus@leaf01:mgmt:~$ nv config history
 ## nv action
 
 Applies action configuration attributes.
-
-**Usage**
-
-`nv action [options]`
 
 **Version History**
 

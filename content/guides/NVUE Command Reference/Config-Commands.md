@@ -6,7 +6,7 @@ product: Cumulus Linux
 ---
 ## nv config apply
 
-Applies the current pending configuration or a specific revision. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:
+Applies the current pending configuration or a specific configuration revision. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:
 
 - `--y` or `--assume-yes` automatically replies yes to all prompts.
 - `--assume-no` automatically replies no to all prompts.
@@ -46,7 +46,7 @@ cumulus@leaf01:mgmt:~$ nv config save
 ```
 - - -
 
-## nv config replace \<cue-file\>
+## nv config replace \<nvue-file\>
 
 Replaces the pending configuration with the specified YAML configuration file.
 
@@ -54,7 +54,7 @@ Replaces the pending configuration with the specified YAML configuration file.
 
 | <div style="width:250px">Syntax   |  Description  |
 | ----------   | ------------  |
-| `<cue-file>` | The NVUE YAML file you want to use to replace the pending configuration. |
+| `<nvue-file>` | The NVUE YAML file you want to use to replace the pending configuration. |
 
 ### Version History
 
@@ -70,7 +70,7 @@ cumulus@leaf01:mgmt:~$ nv config replace myconfig.yaml
 
 ## nv config detach
 
-Detaches the configuration from the current pending configuration. Cumulus Linux names the detached configuration `pending` and includes a timestamp with extra characters. For example: `pending_20210128_212626_4WSY`
+Detaches the configuration from the current pending configuration.
 
 ### Version History
 
@@ -86,13 +86,13 @@ cumulus@leaf01:mgmt:~$ nv config detach
 
 ## nv config diff
 
-Shows differences between configurations, such as the pending configuration and the applied configuration or the detached configuration and the pending configuration.
+Shows differences between configurations, such as the startup configuration and the applied configuration, or the applied configuration and a specific configuration revision.
 
 ### Command Syntax
 
 | <div style="width:250px">Syntax   |  Description  |
 | ----------   | ------------  |
-| `<revision>` | The configuration revisions you want to compare. |
+| `<revision>` | The configuration revisions you want to compare. You can specify applied, startup, or a specific configuration revision number. |
 
 ### Version History
 
@@ -101,7 +101,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv config diff pending_20210128_212626_4WSY pending_20210222_212625_3VRX
+cumulus@leaf01:mgmt:~$ nv config diff 1 2
 ```
 
 - - -
@@ -122,7 +122,7 @@ cumulus@leaf01:mgmt:~$ nv config show
 
 - - -
 
-## nv config patch \<cue-file\>
+## nv config patch \<nvue-file\>
 
 Updates the pending configuration with an NVUE configuration file in YAML format.
 
@@ -146,7 +146,7 @@ cumulus@leaf01:mgmt:~$ nv config patch myconfig.yaml
 
 ## nv config history
 
-Shows the `apply` history for the current revision or for a specific revision.
+Shows the `apply` history for the current configuration revision or for a specific configuration revision.
 
 ### Command Syntax
 

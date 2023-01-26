@@ -1867,6 +1867,7 @@ network_transport       UDPv4
 To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
 
 {{%notice note%}}
+PTP shaping is a Beta feature.
 PTP shaping is not supported on Spectrum-2 and later.
 {{%/notice%}}
 

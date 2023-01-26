@@ -21,36 +21,28 @@ For an overview of the current or past health of DPU hardware resources, open th
 
 1. Click {{<img src="/images/netq/devices.svg" alt="empty device card" height="18" width="18">}} Devices in the header, then click **Open a device card**.
 
-{{<figure src="/images/netq/open-device-card-42.png" width="250">}}
+2. Select a DPU from the dropdown.
 
-2. Begin typing the hotsname of the DPU you would like to view. Select it from the suggested matches when it appears.
-
-{{<figure src="/images/netq/add-dpu-auto-suggest-42.png" alt="device card showing 2 DPUs" width="250">}}
-
-3. Click **Add**.
+3. Click **Add**. This example shows that the *r-netq-bf2-01* DPU has low utilization across CPU, memory, and disks:
 
     {{<figure src="/images/netq/dev-medium-dpu-card-42.png" alt="DPU card displaying CPU, memory, and disk utilization statistics" width="200">}}
 
-    This example shows that the *r-netq-bf2-01* DPU has low utilization across CPU, memory, and disks.
-
 ### View DPU Attributes
 
-For a quick look at the key attributes of a particular DPU, expand the DPU card using the card size picker.
+For a quick look at the key attributes of a particular DPU, expand the DPU card.
 
 Attributes are displayed as the default tab on the large DPU card. You can view the static information about the DPU, including its hostname, ASIC vendor and model, CPU information, OS version, and agent version.
 
 {{<figure src="/images/netq/dev-dpu-large-attributes-tab-42.png" alt="large DPU card displaying static DPU information" width="500">}}
 
-To view a larger display of hardware resource utilization, select {{<img src="/images/netq/analytics-bars.svg" alt="large DPU card displaying hardware utilization data" height="18" width="18">}} (Utilization).
+To view a larger display of hardware resource utilization, select {{<img src="/images/netq/analytics-bars.svg" alt="large DPU card displaying hardware utilization data" height="18" width="18">}} Utilization.
 
 {{<figure src="/images/netq/dev-dpu-large-utilization-42.png" width="500">}}
 ## View Installed Packages
 
-To view the list of installed packages on a particular DPU, expand the card to its largest size using the card size picker.
+To view the list of installed packages on a particular DPU, expand the card to its largest size:
 
-Installed packages are displayed in a table. You can export the table into other file formats by selecting {{<img src="/images/netq/export.svg" height="18" width="18">}} (Export), and you can filter the table by selecting {{<img src="/images/netq/filter-1.svg" height="18" width="18">}} (Filter).
-
-{{<figure src="/images/netq/dpu-hwresources-l4-installed-packages-42.png" alt="list of packages installed on a DPU" width="1000">}}
+{{<figure src="/images/netq/dpu-hwresources-l4-installed-packages-42.png" alt="list of packages installed on a DPU" width="1100">}}
 
 ## Related Information
 

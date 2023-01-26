@@ -32,7 +32,7 @@ The port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refe
 {{%/notice%}}
 
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches
-- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1
+- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (in Beta)
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="User-Accounts" text="User management">}} commands
   - {{<link url="TACACS" text="TACACS+">}} commands (in Beta)

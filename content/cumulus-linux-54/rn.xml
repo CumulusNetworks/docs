@@ -7,15 +7,27 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3226506</td>
-<td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
+<td>3329518</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} fils specifies {{passwd: files tacplus}} (files is listed before tacplus), a user present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3319919</td>
+<td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3258232</td>
+<td>If you configure multiple SNMP listener addresses at the same time with NVUE, the SNMP service fails to start. To work around this issue, configure multiple SNMP listener addresses one at a time.</td>
 <td>5.3.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3210023</td>
-<td>If you add a local user to the {{nvset}} group, they also get full permissions to run {{nv apply}} commands even though they are not part of {{nvapply}} group. </td>
-<td>5.2.0-5.4.0</td>
+<td>3226506</td>
+<td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
+<td>5.3.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -143,18 +155,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3037824</td>
-<td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
-<td>5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2993471</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>5.0.0-5.4.0</td>
@@ -171,12 +171,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
-</tr>
-<tr>
-<td>2923737</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.4.0</td>
-<td>3.7.16, 4.3.1</td>
 </tr>
 <tr>
 <td>2904450</td>
@@ -280,6 +274,21 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Affects </th>
 </tr>
 <tr>
+<td>3334317</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-5.3.1</td>
+</tr>
+<tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td></td>
+</tr>
+<tr>
+<td>3329096</td>
+<td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
+<td>4.4.0-5.3.1</td>
+</tr>
+<tr>
 <td>3303084</td>
 <td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward the BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
 <td>5.3.0-5.3.1</td>
@@ -342,6 +351,11 @@ Vlan: 0
 <td>5.2.1-5.3.1</td>
 </tr>
 <tr>
+<td>3255899</td>
+<td>The Linux utility that sends ARP packets is constrained to 512 interfaces on the system. In large scale deployments, the warm boot process fails repeatedly as it sends gratuitous ARP requests for each local address. This issue does not impact the functionality and can be ignored.</td>
+<td>5.2.0-5.3.1</td>
+</tr>
+<tr>
 <td>3244955</td>
 <td>ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries.</td>
 <td>5.2.0-5.3.1</td>
@@ -353,6 +367,11 @@ Vlan: 0
 - KVD utilization is higher than sixty percent.
 - The number of routes currently configured is less than the minimum reserved value, and multiple KVD linear resources have just been freed and are waiting in the Garbage Collector queue.</td>
 <td>5.2.0-5.3.1</td>
+</tr>
+<tr>
+<td>3234085</td>
+<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
+<td>5.0.1-5.3.1</td>
 </tr>
 <tr>
 <td>3145222</td>
@@ -371,6 +390,11 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>3041860</td>
 <td>The Events card displays duplicate entries for VLAN interface link down events.</td>
 <td></td>
+</tr>
+<tr>
+<td>3037824</td>
+<td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
+<td>5.0.0-5.3.1</td>
 </tr>
 <tr>
 <td>3015393</td>

@@ -7,6 +7,18 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3334317</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3319919</td>
+<td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3303082</td>
 <td>When you delete a route under the following conditions, {{switchd}} might crash:
 - The minimum number of routes is set to a non-zero value.
@@ -85,6 +97,12 @@
 <td>5.3.0-5.3.1</td>
 </tr>
 <tr>
+<td>3234085</td>
+<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
+<td>5.0.1-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3227905</td>
 <td>PTP forced master mode does not work. To work around this issue, change {{masterOnly}} to {{serverOnly}} in the {{/etc/ptp4l.conf}} file.</td>
 <td>5.2.0-5.2.1</td>
@@ -142,12 +160,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </td>
 <td>4.4.2-5.2.1</td>
 <td>5.3.0-5.3.1</td>
-</tr>
-<tr>
-<td>3210023</td>
-<td>If you add a local user to the {{nvset}} group, they also get full permissions to run {{nv apply}} commands even though they are not part of {{nvapply}} group. </td>
-<td>5.2.0-5.3.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3205859</td>
@@ -475,12 +487,6 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <td></td>
 </tr>
 <tr>
-<td>2993471</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>5.0.0-5.3.1</td>
@@ -503,12 +509,6 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <td>The NVUE command {{nv show service ntp mgmt server}} does not show any configured servers.</td>
 <td>5.0.0-5.2.1</td>
 <td>5.3.0-5.3.1</td>
-</tr>
-<tr>
-<td>2923737</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.3.1</td>
-<td>3.7.16, 4.3.1</td>
 </tr>
 <tr>
 <td>2904450</td>
@@ -631,6 +631,18 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3334317</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3319919</td>
+<td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3303082</td>
 <td>When you delete a route under the following conditions, {{switchd}} might crash:
 - The minimum number of routes is set to a non-zero value.
@@ -697,6 +709,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>5.3.0-5.3.1</td>
 </tr>
 <tr>
+<td>3234085</td>
+<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
+<td>5.0.1-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3227905</td>
 <td>PTP forced master mode does not work. To work around this issue, change {{masterOnly}} to {{serverOnly}} in the {{/etc/ptp4l.conf}} file.</td>
 <td>5.2.0-5.2.1</td>
@@ -754,12 +772,6 @@ Packet size is larger than router interface MTU – Validate the router interfac
 </td>
 <td>4.4.2-5.2.1</td>
 <td>5.3.0-5.3.1</td>
-</tr>
-<tr>
-<td>3210023</td>
-<td>If you add a local user to the {{nvset}} group, they also get full permissions to run {{nv apply}} commands even though they are not part of {{nvapply}} group. </td>
-<td>5.2.0-5.3.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3205859</td>
@@ -1093,12 +1105,6 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <td></td>
 </tr>
 <tr>
-<td>2993471</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>5.0.0-5.3.1</td>
@@ -1121,12 +1127,6 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <td>The NVUE command {{nv show service ntp mgmt server}} does not show any configured servers.</td>
 <td>5.0.0-5.2.1</td>
 <td>5.3.0-5.3.1</td>
-</tr>
-<tr>
-<td>2923737</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.3.1</td>
-<td>3.7.16, 4.3.1</td>
 </tr>
 <tr>
 <td>2904450</td>

@@ -6,7 +6,7 @@ product: Cumulus Linux
 type: nojsscroll
 ---
 {{%notice note%}}
-The `nv unset` commands remove the configuration you set with the equivlent `nv set` commands. This guide only describes an `nv unset` command if there is a difference between the `nv set` and `nv unset` command.
+The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if there is a difference between the `nv set` and `nv unset` command.
 {{%/notice%}}
 
 nv set service lldp

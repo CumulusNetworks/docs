@@ -535,7 +535,7 @@ Cumulus Linux supports the following ports breakout options:
 {{< tabs "Platforms ">}}
 {{< tab "SN2010">}}
 
-18x SFP+ 25G and 4x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
+18x SFP28 25G and 4x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
 
 All 4x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 
@@ -1177,7 +1177,7 @@ SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings.
 
 For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.
 
-Only the top or the bottom 16x QSFP-DD ports can break out into 8x SFP56. You must disable the adjacent QSFP-DD port.
+Only the top 16x QSFP-DD ports can break out into 8x SFP56. You must disable the adjacent QSFP-DD port.
 
 All 32x QSFP-DD ports can break out into 2x QSFP56 at 2x200G or 4x QSFP56 at 4x 100G without disabling ports.
 
@@ -1328,7 +1328,7 @@ Depending on the logical interface limit on certain switches, Cumulus Linux must
    ```
 
    {{%notice note%}}
-Depending on the logical interface limit on certain switches, you must disable the adjacent port when splitting a port. See this {{<link url="Switch-Port-Attributes/#breakout-ports" text="note">}} above
+Depending on the logical interface limit on certain switches, you must disable the adjacent port when splitting a port. See this {{<link url="Switch-Port-Attributes/#breakout-ports" text="note">}} above.
 {{%/notice%}}
 
 2. Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.

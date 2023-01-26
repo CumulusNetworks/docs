@@ -84,7 +84,7 @@ cumulus@leaf01:mgmt:~$ nv config detach
 
 - - -
 
-## nv config diff
+## nv config diff \<revision-base\> \<revision-target\>
 
 Shows differences between configurations, such as the startup configuration and the applied configuration, or the applied configuration and a specific configuration revision.
 
@@ -92,7 +92,8 @@ Shows differences between configurations, such as the startup configuration and 
 
 | <div style="width:250px">Syntax   |  Description  |
 | ----------   | ------------  |
-| `<revision>` | The configuration revisions you want to compare. You can specify applied, startup, or a specific configuration revision number. |
+| `<revision-base>` | The base configuration revision you want to compare against. You can specify applied, startup, or a specific configuration revision number. |
+| `<revision-target>` | The target configuration revision you want to compare against. You can specify applied, startup, or a specific configuration revision number. |
 
 ### Version History
 
@@ -146,7 +147,23 @@ cumulus@leaf01:mgmt:~$ nv config patch myconfig.yaml
 
 ## nv config history
 
-Shows the `apply` history for the current configuration revision or for a specific configuration revision.
+Shows the `apply` history for the current configuration revision.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv config history
+```
+
+- - -
+
+## nv config history \<revision\>
+
+Shows the `apply` history for a specific configuration revision.
 
 ### Command Syntax
 
@@ -161,6 +178,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv config history
 cumulus@leaf01:mgmt:~$ nv config history 5
 ```

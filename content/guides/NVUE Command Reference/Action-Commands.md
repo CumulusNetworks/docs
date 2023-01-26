@@ -50,7 +50,7 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp1 bond mlag lacp-conflict
 
 ## nv action clear qos buffer multicast-switch-priority
 
-Clears the multicast switch priority buffers.
+Clears the QoS multicast switch priority buffers.
 
 ### Version History
 

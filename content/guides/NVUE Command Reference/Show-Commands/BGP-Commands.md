@@ -73,7 +73,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute
 
-Shows IPv4 BGP route redistribution configuration information.
+Shows configuration information for IPv4 BGP route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -95,7 +95,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute static
 
-Shows IPv4 BGP static route redistribution configuration information.
+Shows configuration information for IPv4 BGP static route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -117,7 +117,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute connected
 
-Shows IPv4 BGP connected route redistribution configuration information.
+Shows configuration information for IPv4 BGP connected route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -139,13 +139,13 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel
 
-Source route type.
+Shows configuration information for IPv4 BGP kernel route redistribution for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` | The VRF name.|
 
 ### Version History
 
@@ -154,20 +154,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute kernel
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf
 
-Source route type.
+Shows configuration information for redistributing IPv4 OSPF routes into BGP for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name. |
 
 ### Version History
 
@@ -176,21 +176,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute ospf
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\>
 
-An IPv4 aggregate route
+Shows information about the specified BGP IPv4 aggregate route (a range of networks in your routing table aggregated into a single prefix).
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<aggregate-route-id>` |  IPv4 address and route prefix in CIDR notation |
+| `<vrf-id>` |  The VRF name.  |
+| `<aggregate-route-id>` |  The IPv4 address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -199,21 +199,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast network \<static-network-id\>
 
-An IPv4 static network.
+Shows information about the specified BGP IPv4 static network for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<static-network-id>` |   IPv4 address and route prefix in CIDR notation |
+| `<vrf-id>` |    The VRF name. |
+| `<static-network-id>` |   The IPv4 address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -222,20 +222,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast 10.10.10.101/32
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import
 
-Route import
+Shows configuration information about BGP IPV4 route import (route leaking) for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.  |
 
 ### Version History
 
@@ -244,20 +244,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf
 
-Controls for VRF to VRF route leaking for this address-family
+Shows configuration information about VRF to VRF IPv4 route leaking.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |   The VRF name. |
 
 ### Version History
 
@@ -266,7 +266,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf
 ```
 
 - - -

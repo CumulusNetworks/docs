@@ -13,7 +13,7 @@ Shows the bridge domain on the specified interface.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |   The interface name. |
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
@@ -35,8 +35,8 @@ Shows configuration settings for the specified bridge domain on the specified in
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |   The interface name. |
-| `<domain-id>`   | The bridge domain. |
+| `<interface-id>`  | The interface name. |
+| `<domain-id>` | The bridge domain. |
 
 ### Version History
 
@@ -58,8 +58,8 @@ Shows STP configuration settings for the specified bridge domain on the specifie
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |   The interface name. |
-| `<domain-id>`   | The bridge domain. |
+| `<interface-id>` | The interface name. |
+| `<domain-id>`  | The bridge domain. |
 
 ### Version History
 
@@ -81,9 +81,9 @@ Shows configuration settings for the specified VLAN on the specifies bridge doma
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |   The interface name. |
+| `<interface-id>`  |  The interface name. |
 | `<domain-id>`   | The bridge domain. |
-| `<vid>`     | The VLAN name. You can also specify `all` to see settings for all VLANs |
+| `<vid>`     | The VLAN name. You can also specify `all` to show settings for all VLANs. |
 
 ### Version History
 
@@ -270,7 +270,7 @@ Shows configuration settings for the specified VLAN on the specified bridge doma
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>`   | The bridge domain. |
-| `<vid>` |   The VLAN name |
+| `<vid>` |   The VLAN name. |
 
 ### Version History
 
@@ -293,7 +293,7 @@ Shows configuration settings for the specified VLAN VNI on the specified bridge 
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>`   | The bridge domain. |
-| `<vid>` |   The VLAN name |
+| `<vid>` |   The VLAN name. |
 | `<vni-id>` | The VXLAN name. |
 
 ### Version History
@@ -317,8 +317,8 @@ Shows configuration settings for BUM traffic flooding for the specified VNI.
 | --------- | -------------- |
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
-| `<vid>` |   The VLAN name |
+| `<domain-id>` | The bridge domain. |
+| `<vid>` | The VLAN name.  |
 | `<vni-id>` | The VXLAN name. |
 
 ### Version History
@@ -342,8 +342,8 @@ Shows the head-end-replication settings for the specified VNI.
 | --------- | -------------- |
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
-| `<vid>` |   The VLAN name |
+| `<domain-id>` | The bridge domain. |
+| `<vid>` | The VLAN name. |
 | `<vni-id>` | The VXLAN name. |
 | `<hrep-id>`  | The IPv4 unicast address or `evpn`. |
 
@@ -367,7 +367,7 @@ Shows the PTP configuration settings for the specified VLAN.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`   | The bridge domain. |
+| `<domain-id>` | The bridge domain. |
 | `<vid>`      | The VLAN name. |
 
 ### Version History

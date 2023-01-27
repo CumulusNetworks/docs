@@ -43,7 +43,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv action clear interface swp1 bond mlag lacp-conflict 
+cumulus@leaf01:mgmt:~$ nv action clear mlag lacp-conflict 
 ```
 
 - - -

@@ -6,7 +6,28 @@ product: Cumulus Linux
 ---
 ## nv config apply
 
-Applies the current pending configuration or a specific configuration revision. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:
+Applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:
+
+- `--y` or `--assume-yes` automatically replies yes to all prompts.
+- `--assume-no` automatically replies no to all prompts.
+- `--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `nv config apply --confirm 60` requires you to confirm within one hour.
+- `--confirm-status` shows the amount of time left before the automatic rollback.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv config apply --y
+```
+
+- - -
+
+## nv config apply \<revision\>
+
+Applies a specific configuration revision. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:
 
 - `--y` or `--assume-yes` automatically replies yes to all prompts.
 - `--assume-no` automatically replies no to all prompts.
@@ -17,7 +38,7 @@ Applies the current pending configuration or a specific configuration revision. 
 
 | <div style="width:250px">Syntax  |  Description  |
 | ----------   | ------------  |
-| `<revision>` | The configuration revision you want to apply instead of the current pending configuration. |
+| `<revision>` | The configuration revision you want to apply instead of the current pending configuration. You can specify `applied`, `startup`, `empty`, or a revision number. |
 
 ### Version History
 
@@ -26,7 +47,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv config apply --y
+cumulus@leaf01:mgmt:~$ nv config apply 5 --y
 ```
 
 - - -

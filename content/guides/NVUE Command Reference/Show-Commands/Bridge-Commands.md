@@ -7,13 +7,13 @@ type: nojsscroll
 ---
 ## nv show interface \<interface-id\> bridge
 
-attributed related to a bridged interface
+Shows the bridge domain on the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>`    |   The interface name. |
 
 ### Version History
 
@@ -22,21 +22,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp1 bridge
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> bridge domain \<domain-id\>
 
-Bridge domain on this interface
+Shows configuration settings for the specified bridge domain on the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<domain-id>`   | Domain |
+| `<interface-id>`    |   The interface name. |
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -45,21 +45,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface bond3 bridge domain br_default 
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> bridge domain \<domain-id\> stp
 
-attributed related to a stpd interface
+Shows STP configuration settings for the specified bridge domain on the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<domain-id>`   | Domain |
+| `<interface-id>`    |   The interface name. |
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -68,22 +68,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface bond3 bridge domain br_default stp
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\>
 
-A VLAN tag identifier
+Shows configuration settings for the specified VLAN on the specifies bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<domain-id>`   | Domain |
-| `<vid>`     | VLAN ID, or all |
+| `<interface-id>`    |   The interface name. |
+| `<domain-id>`   | The bridge domain. |
+| `<vid>`     | The VLAN name. You can also specify `all` to see settings for all VLANs |
 
 ### Version History
 
@@ -92,14 +92,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface bond3 bridge domain br_default vlan 30
 ```
 
 - - -
 
 ## nv show bridge
 
-Properties associated with an instance of a bridge.
+Shows the configured bridge domains.
 
 ### Version History
 
@@ -108,20 +108,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge
 ```
 
 - - -
 
 ## nv show bridge domain
 
-Bridge domains
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<domain-id>` |  Domain |
+Shows configuration settings for the all configured bridge domains.
 
 ### Version History
 
@@ -130,20 +124,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\>
 
-Bridge domain
+Shows configuration settings for the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` |  Domain |
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -152,20 +146,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> stp
 
-attributes related to global stp
+Shows the STP settings for the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` |  Domain |
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -174,20 +168,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default stp
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> stp state
 
-The state of STP on the bridge
+Shows the STP state (uo or down) of the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` |  Domain |
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -196,20 +190,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default stp state
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> multicast
 
-Configure multicast on the bridge
+Shows the multicast configuration settings on the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` Domain | 
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -218,20 +212,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default multicast
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> multicast snooping
 
-IGMP/MLD snooping configuration
+Shows the IGMP or MLD snooping configuration settings on the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` |  Domain |
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -240,20 +234,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default multicast snooping
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> multicast snooping querier
 
-IGMP/MLD querier configuration
+Shows the IGMP or MLD querier configuration settings on the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | Domain |
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -262,21 +256,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default multicast snooping querier
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\>
 
-A VLAN tag identifier
+Shows configuration settings for the specified VLAN on the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | Domain |
-| `<vid> |     VLAN ID |
+| `<domain-id>`   | The bridge domain. |
+| `<vid>` |   The VLAN name |
 
 ### Version History
 
@@ -285,22 +279,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\>
 
-VNI
+Shows configuration settings for the specified VLAN VNI on the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`          | Domain |
-| `<vid>`                | VLAN ID |
-| `<vni-id>`             | VxLAN ID |
+| `<domain-id>`   | The bridge domain. |
+| `<vid>` |   The VLAN name |
+| `<vni-id>` | The VXLAN name. |
 
 ### Version History
 
@@ -309,23 +303,23 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding
 
-Handling of BUM traffic
+Shows configuration settings for BUM traffic flooding for the specified VNI.
 
 ### Command Syntax
 
 | --------- | -------------- |
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>`          | Domain |
-| `<vid>`                | VLAN ID |
-| `<vni-id>`             | VxLAN ID |
+| `<domain-id>`   | The bridge domain. |
+| `<vid>` |   The VLAN name |
+| `<vni-id>` | The VXLAN name. |
 
 ### Version History
 
@@ -334,24 +328,24 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication <hrep-id>
 
-Set of IPv4 unicast addresses or "evpn".
+Shows the head-end-replication settings for the specified VNI.
 
 ### Command Syntax
 
 | --------- | -------------- |
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | Domain |
-| `<vid>`      | VLAN ID |
-| `<vni-id>`   | VxLAN ID |
-| `<hrep-id>`  | IPv4 unicast addresses or "evpn" |
+| `<domain-id>`   | The bridge domain. |
+| `<vid>` |   The VLAN name |
+| `<vni-id>` | The VXLAN name. |
+| `<hrep-id>`  | The IPv4 unicast address or `evpn`. |
 
 ### Version History
 
@@ -360,21 +354,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.0.1.34
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\> ptp
 
-VLAN PTP configuration.  Inherited by interfaces in this VLAN.
+Shows the PTP configuration settings for the specified VLAN.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | Domain |
-| `<vid>`      | VLAN ID |
+| `<domain-id>`   | The bridge domain. |
+| `<vid>`      | The VLAN name. |
 
 ### Version History
 
@@ -383,21 +377,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 ptp
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\> multicast
 
-Configure multicast on the vlan
+Shows the multicast configuration settings for the specified VLAN.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | Domain |
-| `<vid>`      | VLAN ID |
+| `<domain-id>`   | The bridge domain. |
+| `<vid>`      | The VLAN name. |
 
 ### Version History
 
@@ -406,21 +400,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 multicast
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\> multicast snooping
 
-IGMP/MLD snooping configuration
+Shows the IGMP or MLD snooping configuration settings for the specified VLAN.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | Domain |
-| `<vid>`      | VLAN ID |
+| `<domain-id>`   | The bridge domain. |
+| `<vid>`      | The VLAN name. |
 
 ### Version History
 
@@ -429,21 +423,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 multicast snooping
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> vlan \<vid\> multicast snooping querier
 
-IGMP/MLD querier configuration
+Shows the IGMP or MLD querier configuration settings for the specified VLAN.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | Domain |
-| `<vid>`      | VLAN ID |
+| `<domain-id>`   | The bridge domain. |
+| `<vid>`  | The VLAN name. |
 
 ### Version History
 
@@ -452,20 +446,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 multicast snooping querier
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> mac-table
 
-L2 FDB
+Shows the layer 2 Forwarding Database for the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | Domain |
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -474,20 +468,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> mdb
 
-Set of mdb entries in the bridge domain
+Shows the MDB entries in the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | Domain |
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -496,20 +490,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mdb
 ```
 
 - - -
 
 ## nv show bridge domain \<domain-id\> router-port
 
-Set of multicast router ports
+Shows the multicast router ports for the specified bridge domain.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<domain-id>` | Domain |
+| `<domain-id>`   | The bridge domain. |
 
 ### Version History
 
@@ -518,6 +512,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show bridge domain br_default router-port
 ```
-

@@ -1864,11 +1864,17 @@ network_transport       UDPv4
 
 ### PTP Traffic Shaping
 
+{{%notice note%}}
+- PTP shaping is a Beta feature.
+{{%/notice%}}
+
 To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
+For example, if you see that the PTP timing offset varies widely and is does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
 
 {{%notice note%}}
-PTP shaping is a Beta feature.
-PTP shaping is not supported on Spectrum-2 and later.
+- Switches with Spectrum-2 and later do not support PTP shaping.
+- Bonds do not support PTP shaping.
+- Do not configure QoS, such as egress queue or port based scheduling, on the same ports with PTP traffic shaping.
 {{%/notice%}}
 
 {{< tabs "TabID1387 ">}}

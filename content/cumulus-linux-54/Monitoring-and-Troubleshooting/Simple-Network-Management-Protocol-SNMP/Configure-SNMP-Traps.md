@@ -253,7 +253,7 @@ monitor CumulusLinkDOWN -S -r 10 -o ifName -o ifIndex -o ifAdminStatus -o ifOper
 monitor CumulusLinkUP -S -r 15 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus != 2
 ```
 
-The following example adds `linkUpTrap` and `linkDownTrap` traps as defined in {{<link url="https://www.rfc-editor.org/rfc/rfc3418" text="RFC 3418">}}:
+The following example adds `linkUpTrap` and `linkDownTrap` traps as defined in {{<exlink url="https://www.rfc-editor.org/rfc/rfc3418" text="RFC 3418">}}:
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf

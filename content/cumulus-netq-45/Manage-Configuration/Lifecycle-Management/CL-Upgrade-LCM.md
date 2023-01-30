@@ -164,20 +164,6 @@ Upon successful upgrade, you can:
 ### Post-check Failures
 
 A successful upgrade can still have post-check warnings. For example, you updated the OS, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages appear in the Post-Upgrade Tasks section of the preview. Click the warning category to view the detailed messages.
-### Reasons for Upgrade Job Failure
-
-Upgrades can fail at any of the stages of the process. The following table lists common reasons for upgrade failures:
-
-<!-- vale off -->
-| Reason | Error Message |
-| --- | --- |
-| Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15." Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
-| Switch is reachable, but user-provided credentials are invalid | Invalid/incorrect username/password. Skipping remaining 2 retries to prevent account lockout: Warning: Permanently added '\<hostname-ipaddr\>' to the list of known hosts. Permission denied, please try again. |
-| Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: `/etc/network/interfaces`: No such file or directory |
-| Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
-| Retry failed after five attempts | FAILED In all retries to process the LCM Job |
-<!-- vale on -->
-
 ## Upgrade Cumulus Linux on Switches Without NetQ Agent Installed
 
 When you want to update Cumulus Linux on switches without NetQ installed, use the switch discovery feature. The feature browses your network to find all Cumulus Linux switches (with and without NetQ currently installed) and determines the versions of Cumulus Linux and NetQ installed. These results are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure rather than in two steps. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
@@ -268,63 +254,21 @@ Click **Remove** if you decide to use a different file or want to use IP address
 
     If the discovery process does not find any switches for a particular category, then it does not display that category.
 
-    {{<figure src="/images/netq/lcm-discover-select-switches-tab-310.png" width="500">}}
-
 7. Select which switches you want to upgrade from each category by clicking the checkbox on each switch card.
 
-    {{<figure src="/images/netq/lcm-discover-select-switches-tab-chosen-switches-310.png" width="500">}}
+    {{<figure src="/images/netq/switch-discovery-selected-450.png" width="500">}}
 
 8. Click **Next**.
 
-9. Verify the number of switches identified for upgrade and the configuration profile to be applied is correct.
+9. Accept the default NetQ version or click **Custom** and select an alternate version.
 
-10. Accept the default NetQ version or click **Custom** and select an alternate version.
+10. By default, the NetQ Agent and CLI are upgraded on the selected switches. If you *do not* want to upgrade the NetQ CLI, click **Advanced** and change the selection to **No**.
 
-11. By default, the NetQ Agent and CLI are upgraded on the selected switches. If you *do not* want to upgrade the NetQ CLI, click **Advanced** and change the selection to **No**.
+11. Click **Next**.
 
-12. Click **Next**.
-
-13. Several checks are performed to eliminate preventable problems during the install process.
-
-    {{<figure src="/images/netq/lcm-netq-upgrade-precheck-tab-310.png" width="500">}}
-
-   These checks verify the following:
-
-   - Selected switches are not currently scheduled for, or in the middle of, a Cumulus Linux or NetQ Agent upgrade
-   - Selected versions of Cumulus Linux and NetQ Agent are valid upgrade paths
-   - All mandatory parameters have valid values, including MLAG configurations
-   - All switches are reachable
-   - The order to upgrade the switches, based on roles and configurations
-
-   If any of the pre-checks fail, review the error messages and take appropriate action.
-
-   If all of the pre-checks pass, click **Install** to initiate the job.
-
-14. Monitor the job progress.
+12. NetQ performs several checks to eliminate preventable problems during the upgrade process. When all of the pre-checks pass, select **Install**.
 
     After starting the upgrade you can monitor the progress from the preview page or the Upgrade History page.
-
-    From the preview page, a green circle with rotating arrows is shown on each switch as it is working. Alternately, you can close the detail of the job and see a summary of all current and past upgrade jobs on the NetQ Install and Upgrade History page. The job started most recently is shown at the top, and the data is refreshed periodically.
-
-    {{<notice tip>}}
-If you are disconnected while the job is in progress, it might appear as if nothing is happening. Try closing (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}}) and reopening your view (click {{<img src="https://icons.cumulusnetworks.com/52-Arrows-Diagrams/01-Arrows/arrow-right-1.svg" height="18" width="18">}}), or refreshing the page.
-    {{</notice>}}
-
-   Several viewing options are available for monitoring the upgrade job.
-
-   - Monitor the job with full details open:
-
-        {{<figure src="/images/netq/lcm-discover-netq-upgrade-inprogress-310.png" width="700">}}
-
-   - Monitor the job with only summary information in the NetQ Install and Upgrade History page. Open this view by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} in the full details view; useful when you have multiple jobs running simultaneously
-
-        {{<figure src="/images/netq/lcm-netq-upgrade-history-summ-view-310.png" width="700">}}
-
-   - Monitor the job through the NetQ Install and Upgrade History card on the LCM dashboard. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} twice to return to the LCM dashboard.
-
-        {{<figure src="/images/netq/lcm-netq-upgrade-history-card-inprogress-310.png" width="200">}}
-
-15. Investigate any failures and create new jobs to reattempt the upgrade.
 
 {{</tab>}}
 

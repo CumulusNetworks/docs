@@ -2925,6 +2925,28 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 <!-- vale on -->
 - - -
 
+## netq show ptp
+
+### Syntax
+
+```
+netq [<hostname>] show ptp
+    [clock]
+    [port-status]
+    [counters rx | counters tx]
+    [global-config]
+```
+
+### Required Arguments
+
+### Options
+
+### Sample Usage
+
+### Related Commands
+
+- - -
+
 ## netq show recommended-pkg-version
 
 When you have a software manifest in place, this command displays the software packages and versions recommended for upgrade based on the installed Cumulus Linux release. You can then compare that to the packages installed on your switch(es) to determine if it differs from the manifest. Such a difference might occur if you upgraded one or more packages separately from the Cumulus Linux software itself.

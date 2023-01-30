@@ -56,8 +56,7 @@ The default credentials for Cumulus Linux have changed from <!-- vale off -->cum
 ### Syntax
 
 ```
-netq lcm add
-    credentials
+netq lcm add credentials
     username <text-switch-username>
     (password <text-switch-password> | ssh-key <text-ssh-key>)
 ```
@@ -99,12 +98,10 @@ Configures or changes the Cumulus Linux or NetQ version to use automatically dur
 Two forms of this command are available: one for Cumulus Linux and the other for NetQ.
 
 ```
-netq lcm add 
-    default-version
+netq lcm add default-version
     cl-images <text-cumulus-linux-version>
 
-netq lcm add
-    default-version
+netq lcm add default-version
     netq-images <text-netq-version>
 ```
 
@@ -207,6 +204,21 @@ cumulus@switch:~$ netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 None
 
 - - -
+## netq lcm attach credentials
+
+### Syntax
+
+### Required Arguments
+
+### Options
+
+### Sample Usage
+
+### Related Commands
+
+- netq lcm show credentials
+
+- - -
 
 ## netq lcm del cl-image
 
@@ -261,8 +273,7 @@ Removes the access credentials required to upgrade Cumulus Linux or NetQ on swit
 ### Syntax
 
 ```
-netq lcm del
-    credentials
+netq lcm del credentials
 ```
 
 ### Required Arguments
@@ -337,6 +348,20 @@ cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494
 - ```netq lcm upgrade netq-image```
 
 - - -
+## netq lcm detach credentials
+### Syntax
+
+### Required Arguments
+
+### Options
+
+### Sample Usage
+
+### Related Commands
+
+- netq lcm show credentials
+
+- - -
 
 ## netq lcm discover
 
@@ -372,7 +397,37 @@ NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556d
 - ```netq lcm show discovery-job```
 
 - - -
+## netq lcm edit credentials
+### Syntax
 
+### Required Arguments
+
+### Options
+
+### Sample Usage
+
+### Related Commands
+
+- netq lcm show credentials
+
+- - -
+## netq lcm install netq-image
+
+### Syntax
+
+```
+netq lcm install netq-image 
+    job-name <text-job-name> 
+    netq-version <text-netq-version> 
+    upgrade-cli [ True | False] 
+    hostname <text-switch-hostname> 
+    ip <text-switch-ip> 
+    cpu_arch <text-cpu-arch> 
+    cl_version <text-cumulus-linux-version> 
+    [config_profile <text-config-profile>]
+```
+
+- - -
 ## netq lcm show cl-images
 
 Displays all Cumulus Linux images in the lifecycle management repository. 
@@ -857,12 +912,14 @@ Upgrades Cumulus Linux on one or more switches in your network
 ### Syntax
 
 ```
-netq lcm upgrade cl-image 
+netq lcm upgrade 
+    [cl-image] 
     job-name <text-job-name> 
     cl-version <text-cumulus-linux-version> 
     netq-version <text-netq-version> 
     hostnames <text-switch-hostnames> 
-    [run-restore-on-failure] [run-snapshot-before-after]
+    [run-restore-on-failure] 
+    [run-snapshot-before-after]
 ```
 ### Required Arguments
 
@@ -877,6 +934,7 @@ netq lcm upgrade cl-image
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| cl-image | NA |  |
 | run-restore-on-failure | NA | Restore the previous version of Cumulus Linux if the upgrade fails (recommended) |
 | run-snapshot-before-after | NA | Generate a network snapshot before and after the upgrade |
 
@@ -885,7 +943,9 @@ netq lcm upgrade cl-image
 
 ### Related Commands
 
+- netq lcm show discovery-job
 
+- - -
 ## netq lcm upgrade netq-image
 
 ### Syntax
@@ -904,19 +964,21 @@ netq lcm upgrade netq-image
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | netq-image | NA |  |
-| job-name | \<text-job-name\> | |
-| hostnames | \<text-switch-hostnames\> |  |
+| job-name | \<text-job-name\> | Name for the upgrade |
+| hostnames | \<text-switch-hostnames\> | Comma-separated list of the hostname(s) to be upgraded |
 
 ### Options
 
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| netq-version | <text-netq-version\> |  |
+| upgrade-cli | True, False | Upgrade the NetQ CLI as part of the upgrade (True) |
+| config_profile | <text-config-profile\> |  |
+
 ### Sample Usage
-
-The following example creates a NetQ Agent upgrade job called *upgrade-cl430-nq330*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.1.0.
-
-```
-cumulus@switch:~$ netq lcm upgrade job-name upgrade-cl430-nq330 netq-version 4.1.0 hostnames spine01,spine02
-```
 
 ### Related Commands
 
 - netq lcm show upgrade-jobs netq-image 
+
+- - -

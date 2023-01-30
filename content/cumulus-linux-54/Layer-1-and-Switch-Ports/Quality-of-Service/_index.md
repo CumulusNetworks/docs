@@ -527,27 +527,34 @@ Pause frames are an older congestion control mechanism that causes all traffic o
 - Before configuring pause frames, you must first modify the switch buffer allocation. Refer to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
 {{% /notice %}}
 
+{{% notice warning %}}
+Pause frame buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
+
+Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
+{{% /notice %}}
+
 The following example configuration:
 - Creates a profile (port group) called `my_pause_ports`.
-- Configures frame transmission to stop when the buffer is at 1500 bytes and to start when the buffer is at 1000 bytes.
 - Enables sending pause frames and disables receiving pause frames.
-- Sets the amount of reserved port buffer space to 2000 bytes.
 - Sets the cable length to 50 meters.
 - Sets link pause on swp1 through swp4, and swp6.
+
+{{% notice note %}}
+Cumulus Linux also includes frame transmission start and stop threshold, and port buffer settings. NVIDIA recommends that you do not change these settings but, instead, let Cumulus Linux configure the settings dynamically. Only change the threshold and buffer settings if you are an advanced user who understands the buffer configuration requirements for lossless traffic to work seamlessly.
+{{% /notice %}}
 
 {{< tabs "TabID495 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set qos link-pause my_pause_ports xoff-threshold 1500
-cumulus@switch:~$ nv set qos link-pause my_pause_ports xon-threshold 1000
 cumulus@switch:~$ nv set qos link-pause my_pause_ports tx enable
 cumulus@switch:~$ nv set qos link-pause my_pause_ports rx disable
-cumulus@switch:~$ nv set qos link-pause my_pause_ports port-buffer 2000
 cumulus@switch:~$ nv set qos link-pause my_pause_ports cable-length 50
 cumulus@switch:~$ nv set interface swp1-swp4,swp6 qos link-pause profile my_pause_ports
 cumulus@switch:~$ nv config apply
 ```
+
+To show the pause frame settings for a profile, run the `nv show qos link-pause <profile>` command
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -557,9 +564,9 @@ Uncomment and edit the `link_pause` section of the `/etc/cumulus/datapath/qos/qo
 ```
 link_pause.port_group_list = [my_pause_ports]
 link_pause.my_pause_ports.port_set = swp1-swp4,swp6
-link_pause.my_pause_ports.port_buffer_bytes = 2000
-link_pause.my_pause_ports.xoff_size = 1500
-link_pause.my_pause_ports.xon_delta = 1000
+link_pause.my_pause_ports.port_buffer_bytes = 25000
+link_pause.my_pause_ports.xoff_size = 10000
+link_pause.my_pause_ports.xon_delta = 2000
 link_pause.my_pause_ports.rx_enable = false
 link_pause.my_pause_ports.tx_enable = true
 link_pause.my_pause_ports.cable_length = 10
@@ -569,12 +576,6 @@ To process pause frames, you must enable link pause on the specific interfaces.
 
 {{< /tab >}}
 {{< /tabs >}}
-
-{{% notice warning %}}
-Pause frame buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
-
-Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
-{{% /notice %}}
 
 ### Priority Flow Control (PFC)
 
@@ -595,20 +596,20 @@ To apply PFC settings on all ports, modify the default PFC profile (`default-glo
 
 The following example modifies the default profile and configures:
 - PFC on egress queue 0.
-- The buffer limit that triggers PFC frame transmission to stop to 1500 bytes and to start to 1000 bytes.
-- The amount of reserved buffer space to 2000 bytes.
+- Enables sending pause frames and disables receiving pause frames.
 - The cable length to 50 meters.
+
+{{% notice note %}}
+Cumulus Linux also includes frame transmission start and stop threshold, and port buffer settings. NVIDIA recommends that you do not change these settings but, instead, let Cumulus Linux configure the settings dynamically. Only change the threshold and buffer settings if you are an advanced user who understands the buffer configuration requirements for lossless traffic to work seamlessly.
+{{% /notice %}}
 
 {{< tabs "TabID535 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set qos pfc default-global switch-priority 0 
-cumulus@switch:~$ nv set qos pfc default-global xoff-threshold 1500 
-cumulus@switch:~$ nv set qos pfc default-global xon-threshold 1000 
 cumulus@switch:~$ nv set qos pfc default-global tx enable 
 cumulus@switch:~$ nv set qos pfc default-global rx disable 
-cumulus@switch:~$ nv set qos pfc default-global port-buffer 2000 
 cumulus@switch:~$ nv set qos pfc default-global cable-length 50
 cumulus@switch:~$ nv config apply
 ```
@@ -620,11 +621,11 @@ cumulus@switch:~$ nv show qos pfc default-global
                    operational  applied  description
 -----------------  -----------  -------  --------------------------------
 cable-length       50           50       Cable Length (in meters)
-port-buffer        2000 B       2000 B   Port Buffer (in bytes)
+port-buffer        25000 B      25000 B  Port Buffer (in bytes)
 rx                 disable      disable  PFC Rx State
 tx                 enable       enable   PFC Tx State
-xoff-threshold     1500 B       1500 B   Xoff Threshold (in bytes)
-xon-threshold      1000 B       1000 B   Xon Threshold (in bytes)
+xoff-threshold     10000 B      10000 B  Xoff Threshold (in bytes)
+xon-threshold      2000 B       2000 B   Xon Threshold (in bytes)
 [switch-priority]  0            0        Collection of switch priorities.
 ```
 
@@ -637,9 +638,9 @@ Edit the `priority flow control` section of the `/etc/cumulus/datapath/qos/qos_f
 pfc.port_group_list = [default-global]
 pfc.default-global.port_set = allports
 pfc.default-global.cos_list = [0]
-pfc.default-global.port_buffer_bytes = 2000
-pfc.default-global.xoff_size = 1500
-pfc.default-global.xon_delta = 500
+pfc.default-global.port_buffer_bytes = 25000
+pfc.default-global.xoff_size = 10000
+pfc.default-global.xon_delta = 2000
 pfc.default-global.tx_enable = true
 pfc.default-global.rx_enable = false
 pfc.default-global.cable_length = 50
@@ -914,6 +915,7 @@ The following example configuration:
 - When the minimum bandwidth for an egress queue is `0`, there is no bandwidth guarantee for this queue.
 - The maximum bandwidth for an egress queue must not exceed the maximum packet shaper rate for the port group.
 - The maximum packet shaper rate for the port group must not exceed the physical interface speed.
+- Cumulus Linux only shapes traffic for the traffic classes in a profile that include shaper configuration.
 {{% /notice %}}
 
 {{< tabs "TabID868 ">}}
@@ -1088,7 +1090,6 @@ In the following example configuration, only packets that *ingress* on swp1 and 
 ```
 cumulus@switch:~$ nv set qos remark remark_port_group1 rewrite l3
 cumulus@switch:~$ nv set interface swp1 qos remark profile remark_port_group1
-cumulus@switch:~$ nv set qos remark remark_port_group2 rewrite l3
 cumulus@switch:~$ nv set qos remark remark_port_group2 switch-priority 0 dscp 37
 cumulus@switch:~$ nv set qos remark remark_port_group2 switch-priority 1 dscp 37
 cumulus@switch:~$ nv set interface swp2 qos remark profile remark_port_group2

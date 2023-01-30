@@ -1865,7 +1865,7 @@ network_transport       UDPv4
 ### PTP Traffic Shaping
 
 {{%notice note%}}
-- PTP shaping is a Beta feature.
+PTP shaping is a Beta feature.
 {{%/notice%}}
 
 To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.

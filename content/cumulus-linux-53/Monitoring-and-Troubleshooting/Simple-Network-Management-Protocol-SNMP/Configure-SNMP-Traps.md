@@ -213,7 +213,15 @@ You can configure the switch to trigger link up and link down notifications when
 {{< tabs "traps-linkupdown" >}}
 {{< tab "NVUE Commands" >}}
 
-The following example commands enable the Event MIB tables to monitor the ifTable for network interfaces that come up every 15 seconds or go down every 10 seconds, and trigger a `linkUp` amd `linkDown` notification.
+The following example commands enable the Disman Event MIB (.1.3.6.1.2.1.88.2.0.1) to monitor the ifTable for network interfaces that come up every 15 seconds or go down every 10 seconds, and trigger a `CumulusLinkUp` and `CumulusLinkDown` named notification.
+
+The default checkvfrequency is 60 seconds, with a minimum of 5 and a maximum of 300 seconds.
+
+These notifications include the following information.
+- ifName
+- ifIndex
+- ifAdminStatus
+- ifOperStatus
 
 ```
 cumulus@switch:~$ nv set service snmp-server trap-link-down check-frequency 10
@@ -226,7 +234,26 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/snmp/snmpd.conf` file and configure the trap settings.
 
-To enable link up and link down trap notifications, add `linkUpDownNotifications yes` to the `snmpd.conf` file and provide a trap configuration. The following configuration enables the Event MIB tables to monitor the ifTable for network interfaces that come up every 15 seconds or go down every 10 seconds, and triggers a `linkUp` or `linkDown` notification:
+To enable link up and link down trap notifications, add `linkUpDownNotifications yes` to the `snmpd.conf` file and provide a trap configuration.
+
+The following example commands enable the Disman Event MIB (.1.3.6.1.2.1.88.2.0.1) to monitor the ifTable for network interfaces that come up every 15 seconds or go down every 10 seconds, and trigger a `CumulusLinkUp` and `CumulusLinkDown` named notification.
+
+These notifications include the following information.
+- ifName
+- ifIndex
+- ifAdminStatus
+- ifOperStatus
+
+```
+cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
+...
+linkUpDownNotifications yes
+
+monitor CumulusLinkDOWN -S -r 10 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus == 2
+monitor CumulusLinkUP -S -r 15 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus != 2
+```
+
+The following example adds `linkUpTrap` and `linkDownTrap` traps as defined in {{<link url="https://www.rfc-editor.org/rfc/rfc3418" text="RFC 3418">}}:
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
@@ -245,6 +272,8 @@ Restart the `snmpd` service to apply the changes.
 ```
 cumulus@switch:~$ sudo systemctl restart snmpd.service
 ```
+
+For more information or additional options, refer to the `snmpd.conf` man page.
 
 {{< /tab >}}
 {{< /tabs >}}

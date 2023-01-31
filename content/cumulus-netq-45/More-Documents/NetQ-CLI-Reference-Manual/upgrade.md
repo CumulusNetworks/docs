@@ -5,6 +5,7 @@ weight: 1107
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
+type: nojsscroll
 ---
 
 ## netq upgrade

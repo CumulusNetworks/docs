@@ -1291,21 +1291,12 @@ cumulus@switch:~$ nv set interface swp1s0-3 link state up
 cumulus@switch:~$ nv config apply
 ```
 
-The following example splits the port into four interfaces and sets the link speed to 10G. When auto-negotiation is on (the default setting), Cumulus Linux advertises the speed for each interface up to a maximum of 10G.
+The following example splits the port into four interfaces and forces the link speed to be 10G. Cumulus disables auto-negotiation when you force set the speed.
 
 ```
 cumulus@switch:~$ nv set interface swp1 link breakout 4x
 cumulus@switch:~$ nv set interface swp1s0-3 link state up
 cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
-```
-
-To force each split interface to only run at 10G, disable auto-negotiation:
-
-```
-cumulus@switch:~$ nv set interface swp1 link breakout 4x
-cumulus@switch:~$ nv set interface swp1s0-3 link state up
-cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
-cumulus@switch:~$ nv set interface swp1s0-3 link auto-negotiate off
 ```
 
 {{%notice note%}}
@@ -1367,6 +1358,35 @@ iface swp1s3
 
 ```
 cumulus@switch:~$ sudo ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Set the Number of Lanes per Split Port
+
+By default, to calculate the split port width, Cumulus Linux uses the formula `split port width = full port width / breakout`. For example, a port split into four interfaces (4x breakout) => 8 lanes width / 4x breakout = 2 lanes per split port.
+
+If you need to use a different port width than the default, you can set the number of lanes per port.
+
+The following example command splits swp1 into two interfaces (2x) and sets the number of lanes per split port to 2.
+
+{{< tabs "TabID1383 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 link breakout 2x lanes-per-port 2
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/cumulus/ports_width.conf` file and add the numer of lanes per split port you want to use:
+
+```
+cumulus@switch:~$ sudo nano /etc/cumulus/ports_width.conf
+...
 ```
 
 {{< /tab >}}

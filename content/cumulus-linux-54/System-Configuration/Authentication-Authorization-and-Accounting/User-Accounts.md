@@ -21,8 +21,8 @@ The *root* account:
 ## Add a New User Account
 
 You can add additional user accounts as needed.
-- You control local user account access to NVUE commands by changing the group membership (role) for a user. Like the *cumulus* account, these accounts must use `sudo` to {{<link url="Using-sudo-to-Delegate-Privileges" text="execute privileged commands">}}; be sure to include them in the *sudo* group.
-- You can set a normal password or a hashed password for the local user account. To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
+- You control local user account access to NVUE commands by changing the group membership (role) for a user. Like the *cumulus* account, these accounts must be in the `sudo` group or include the NVUE `system-admin` role to {{<link url="Using-sudo-to-Delegate-Privileges" text="execute privileged commands">}}.
+- You can set a plain text password or a hashed password for the local user account. To access the switch without a password, you need to {{<link url="Single-User-Mode-Password-Recovery" text="boot into a single shell/user mode">}}.
 - You can provide a full name for the local user account (optional).
 
 {{< tabs "TabID30 ">}}
@@ -36,25 +36,23 @@ Use the following roles to set the permissions for local user accounts.
 | `nvue-admin` | Allows the user to run `nv show` commands, run `nv set` and `nv unset` commands to stage configuration changes, and run `nv apply` commands to apply configuration changes. |
 | `nvue-monitor` | Allows the user to run `nv show` commands only.|
 
-{{%notice note%}}
-Only user accounts with the `system-admin` role can create, modify, and delete other `system-admin` accounts.
-{{%/notice%}}
-
 The following example:
 - Creates a new user account called `admin2` and sets the role to `system-admin` (permissions for `sudo`, `nv show`, `nv set` and `nvunset`, and `nv apply`).
-- Sets the password to `CumulusLinux!`
+- Sets a plain text password. NVUE hashes the plain text password and stores the value as a hashed password. To set a hashed password, see {{<link url="#hashed-passwords" text="Hashed Passwords">}}, below.
 - Adds the full name `FIRST LAST`. If the full name includes more than one name, either separate the names with a hyphon (`FIRST-LAST`) or enclose the full name in quotes (`"FIRST LAST"`).
 
 ```
 cumulus@switch:~$ nv set system aaa user admin2 role system-admin
-cumulus@switch:~$ nv set system aaa user admin2 password CumulusLinux!
+cumulus@switch:~$ nv set system aaa user admin2 password
+Enter new password:
+Confirm password:
 cumulus@switch:~$ nv set system aaa user admin2 full-name "FIRST LAST"
 cumulus@switch:~$ nv config apply
 ```
 
-To set a hashed password for the local user, run the `nv set system aaa user <username> hashed-password '<hashed-password>'` command. You must enclose the hashed password in single quotes (').
-
-To set an SSH authorized key for a user, run the `nv set system aaa user <username> ssh authorized-key <value>` command.
+{{%notice note%}}
+The NVUE API does not support configuring a plain text password; if you use the NVUE API instead of the CLI, you must provide a hashed password.
+{{%/notice%}}
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
@@ -80,6 +78,102 @@ cumulus@switch:~$ sudo adduser admin2 nvapply
 
 {{< /tab >}}
 {{< /tabs >}}
+
+{{%notice note%}}
+Only the following user accounts can create, modify, and delete other `system-admin` accounts:
+- NVUE-managed users with the `system-admin` role.
+- The root user.
+- Non NVUE-managed users that are in the `sudo` group.
+{{%/notice%}}
+
+### Hashed Passwords
+
+Instead of a plain text password, you can provide a hashed password for a local user.
+
+You must specify the hashed password in Linux `crypt` format; the password must be a minimum of 15 to 20 characters long and must include special characters, digits, lower case alphabetic letters, and more. Typically, the password format is set to `$id$salt$hashed`, where `$id` is the hashing algorithm. In GNU or Linux:
+  - `$1$` is MD5
+  - `$2a$` is Blowfish
+  - `$2y$` is Blowfish
+  - `$5$` is SHA-256
+  - `$6$` is SHA-512
+  
+To generate a hashed password on the switch, you can either run a `python3` command or install and use the `mkpasswd` utility:
+
+{{< tabs "TabID102 ">}}
+{{< tab "python3 Command ">}}
+
+Run the following command. When prompted, enter the plain text password you want to hash:
+
+```
+cumulus@switch:~$ python3 -c "import crypt; import getpass; print(crypt.crypt(getpass.getpass(), salt=crypt.METHOD_SHA512))"                    
+Password:                                                                                                                                                                 
+$6$MIDE.sdxwxuAMGHd$XFXSpHV4NRJymUpeCKz.SYEMUfGGEtLbcqK0fBw3d96ZzegP3sw6ppl5Atx9xLS3UHLLTWS/BOwjkeBJJaRx10
+```
+
+{{< /tab >}}
+{{< tab "mkpasswd Utility ">}}
+
+1. Install the `mkpasswd` utility on the switch or Linux host:
+
+  ```
+  cumulus@switch:~$ sudo -E apt-get update
+  cumulus@switch:~$ sudo -E apt-get install whois
+  ```
+
+2. To generate a hashed password for SHA-512, SHA256, or MD5 encryption, run the following command. When prompted, enter the plain text password you want to hash:
+
+   SHA-512 encryption:
+
+   ```
+   cumulus@switch:~$ mkpasswd -m SHA-512
+   Password:
+   $6$bQcjKuWgKC0vdwT5$.ZlRgmS44geDH/HsCIttldsaxJ7Y/NidicXwR0FarwXq74uA/yJHxQXGHZwNviY/cG412i7Grzl6Wk8mStJwD0
+   ```
+
+   SHA256 encryption:
+
+   ```                          
+   cumulus@switch:~$ mkpasswd -m SHA-256
+   Password:
+   $5$SJsPU8bjl2F$.fzRpTGxwGw82RDdFPwhIermSSh6g2ZCYzPeNpeDrgC
+   ```
+
+   MD5 encryption:
+
+   ```
+   cumulus@switch:~$ mkpasswd -m MD5
+   Password:
+   $1$/ETjhZMJ$P73qhBZEYP20mKnRkhBol0
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To set the hashed password for the local user:
+
+{{< tabs "TabID152 ">}}
+{{< tab "NVUE Commands ">}}
+
+Run the `nv set system aaa user <username> hashed-password <password>` command:
+
+```
+cumulus@switch:~$ nv set system aaa user admin2 hashed-password '$1$/ETjhZMJ$P73qhBZEYP20mKnRkhBol0'
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+cumulus@switch:~$ sudo useradd admin2 -c "First Last" -p '$1$/ETjhZMJ$P73qhBZEYP20mKnRkhBol0'
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+Hashed password strings contain characters, such as `$`, that have a special meaning in the Linux shell; you must enclose the hashed password in single quotes (').
+{{%/notice%}}
 
 ## Delete a User Account
 
@@ -213,3 +307,8 @@ cumulus@switch:~$ nv config apply
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Related Information
+
+- {{<exlink url="https://man7.org/linux/man-pages/man3/crypt.3.html" text="crypt man page">}}
+- {{<exlink url="https://www.cyberciti.biz/faq/understanding-etcshadow-file/" text="Understanding /etc/shadow file format on Linux">}}

@@ -720,6 +720,11 @@ None
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq config add addons
+Addons config added
+```
+
 ### Related Commands
 
 None

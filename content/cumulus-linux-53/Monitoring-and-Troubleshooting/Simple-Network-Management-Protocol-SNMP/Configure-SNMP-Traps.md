@@ -234,8 +234,6 @@ cumulus@switch:~$ nv config apply
 
 Edit the `/etc/snmp/snmpd.conf` file and configure the trap settings.
 
-To enable link up and link down trap notifications, add `linkUpDownNotifications yes` to the `snmpd.conf` file and provide a trap configuration.
-
 The following example commands enable the Disman Event MIB (.1.3.6.1.2.1.88.2.0.1) to monitor the ifTable for network interfaces that come up every 15 seconds or go down every 10 seconds, and trigger a `CumulusLinkUp` and `CumulusLinkDown` named notification.
 
 These notifications include the following information.
@@ -247,8 +245,6 @@ These notifications include the following information.
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf
 ...
-linkUpDownNotifications yes
-
 monitor CumulusLinkDOWN -S -r 10 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus == 2
 monitor CumulusLinkUP -S -r 15 -o ifName -o ifIndex -o ifAdminStatus -o ifOperStatus ifOperStatus != 2
 ```

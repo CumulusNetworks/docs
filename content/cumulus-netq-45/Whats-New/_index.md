@@ -11,15 +11,14 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale off -->
 ## What's New in NetQ 4.5.0
 <!-- vale on -->
-This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. Additional features and improvements include:
+NetQ 4.5.0 includes the following new features and improvements:
 
-Precision time protocol (PTP) monitoring {{<link title="PTP">}}.
+ - Early access support for {{<link title="PTP" text="Precision Time Protocol monitoring">}}
+ - {{<link title="Switch Credentials" text="Switch credentials">}} that can be applied to individual switches
+ - RoCE {{<link title="check/#netq-check-roce" text="check">}} and {{<link title="show/#netq-show-roce-config" text="show">}} commands that display PCP (priority code point) and SP (switch priority) mapping misconfigurations and recommendations
+ - Lifecycle management for NVUE-enabled {{<link title="Upgrade Cumulus Linux Using LCM" text="upgrades to Cumulus Linux 5.0.0 and later">}}
 
-Lifecycle management now supports {{<link title="Upgrade Cumulus Linux Using LCM" text="upgrades to Cumulus Linux 5.0.0 and later">}} with and without NVUE enabled.
-
-RoCE command line updates. The `netq check roce` {{<link title="check#netq-check-roce" text="command output">}} now includes a column displaying PCP (priority code point) and SP (switch priority) mapping misconfigurations and recommendations. `netq show roce-config` displays all {{<link title="RoCE#view-the-roce-configuration" text="PCP and SP mappings">}}.
-
-An updated {{<link title="NetQ CLI Reference" text="command line reference">}}.
+User guide enhancements include a {{<link title="Troubleshoot NetQ" text="NetQ troubleshooting guide">}} and updated {{<link title="NetQ CLI Reference" text="command line reference">}}.
 
 ## Upgrade Paths
 

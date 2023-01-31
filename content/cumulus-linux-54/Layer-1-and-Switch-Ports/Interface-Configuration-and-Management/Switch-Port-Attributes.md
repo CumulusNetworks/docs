@@ -1382,11 +1382,24 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/cumulus/ports_width.conf` file and add the numer of lanes per split port you want to use:
+Edit the `/etc/cumulus/ports_width.conf` file and add the numer of lanes per split port you want to use, then reload `switchd`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/cumulus/ports_width.conf
 ...
+1=2
+2=default
+3=default
+4=default
+5=default
+6=default
+7=default
+8=default
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl reload switchd.service
 ```
 
 {{< /tab >}}

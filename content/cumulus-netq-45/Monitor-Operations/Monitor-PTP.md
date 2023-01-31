@@ -13,11 +13,30 @@ PTP monitoring is an early access feature and is supported on NVIDIA Spectrum 2 
 
 Use the UI or CLI to monitor PTP (Precision Time Protocol) in your network.
 
+## PTP Commands
+
 PTP commands include:
 
 ```
-netq show ptp
+   netq [<hostname>] show ptp clock-details 
+    [around <text-time>] 
+    [json]
+   
+   netq [<hostname>] show ptp global-config 
+    [around <text-time>] 
+    [json]
+
+   netq [<hostname>] show ptp port-status [<text-port>] 
+    [around <text-time>] 
+    [json]
+
+   netq [<hostname>] show ptp counters [<text-port>]
+    tx | rx 
+   [around <text-time>] 
+   [json]
 ```
+
+See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional details and examples.
 
 ## Access the PTP Dashboard
 

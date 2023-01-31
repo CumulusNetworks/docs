@@ -2930,16 +2930,40 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 ### Syntax
 
 ```
-netq [<hostname>] show ptp
-    [clock]
-    [port-status]
-    [counters rx | counters tx]
-    [global-config]
+   netq [<hostname>] show ptp clock-details 
+    [around <text-time>] 
+    [json]
+   
+   netq [<hostname>] show ptp global-config 
+    [around <text-time>] 
+    [json]
+
+   netq [<hostname>] show ptp port-status [<text-port>] 
+    [around <text-time>] 
+    [json]
+
+   netq [<hostname>] show ptp counters [<text-port>]
+    tx | rx 
+   [around <text-time>] 
+   [json]
 ```
 
 ### Required Arguments
 
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| clock-details | NA |  |
+| global-config | NA |  |
+| port-status | NA |  |
+| counters | NA |  |
+
 ### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<hostname\> | Only display results for the switch or host with this name |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON format |
 
 ### Sample Usage
 

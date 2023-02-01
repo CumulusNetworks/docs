@@ -18,25 +18,16 @@ Use the UI or CLI to monitor PTP (Precision Time Protocol) in your network.
 PTP commands include:
 
 ```
-   netq [<hostname>] show ptp clock-details 
-    [around <text-time>] 
-    [json]
-   
-   netq [<hostname>] show ptp global-config 
-    [around <text-time>] 
-    [json]
+   netq show ptp clock-details 
+  
+   netq show ptp global-config 
 
-   netq [<hostname>] show ptp port-status [<text-port>] 
-    [around <text-time>] 
-    [json]
+   netq show ptp port-status 
 
-   netq [<hostname>] show ptp counters [<text-port>]
-    tx | rx 
-   [around <text-time>] 
-   [json]
+   netq show ptp counters
 ```
 
-See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional details and examples.
+See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional options and examples.
 
 ## Access the PTP Dashboard
 

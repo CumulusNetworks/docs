@@ -1575,10 +1575,8 @@ cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'
 
 Cumulus Linux 5.4 and later uses a new format for port splitting but continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, you must either:
 
-- Upgrade to Cumulus Linux 5.4 with a binary installation, then configure port breakouts on your switch with the new NVUE syntax.
+- Upgrade to Cumulus Linux 5.4 with a {{<link url="Upgrading-Cumulus-Linux/#cumulus-linux-image-install-onie" text="binary installation">}}, then configure port breakouts on your switch with the {{<link url="#configure-a-breakout-port" text="new NVUE syntax">}}.
 - Upgrade to Cumulus Linux 5.4 with package installation (`apt upgrade`) but follow the steps below **before** you upgrade.
-
-To upgrade with a binary install, refer to {{<link url="Upgrading-Cumulus-Linux/#cumulus-linux-image-install-onie" text="Cumulus Linux Image Install (ONIE)">}} for the upgrade procedure and {{<link url="#configure-a-breakout-port" text="Configure a Breakout Port">}} above for the new NVUE syntax.
 
 To upgrade with `apt upgrade`:
 

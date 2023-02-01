@@ -246,6 +246,7 @@ nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id>
 nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id> min-rate 0-2147483647
 nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id> max-rate 0-2147483647
 nv set qos egress-shaper <profile-id> port-max-rate 0-2147483647
+nv set interface <interface-id> link breakout <mode-id>
 nv set interface <interface-id> link breakout <mode-id> lanes-per-port (1|2|4|8)
 nv set interface <interface-id> link lanes (1|2|4|8)
 nv set interface <interface-id> qos link-pause

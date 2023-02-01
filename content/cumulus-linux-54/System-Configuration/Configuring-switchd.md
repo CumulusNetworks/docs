@@ -183,7 +183,7 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 | `link_flap_window` | The duration in seconds during which a link must flap the number of times set in the `link_flap_threshold` before Cumulus Linux sets the link to protodown and specifies `linkflap` as the reason.</br>The default setting is 10. A value of 0 disables link flap protection.| restart |
 | `link_flap_threshold` | The number of times the link must flap within the link flap window before Cumulus Linux sets the link to protodown and specifies `linkflap` as the reason.</br>The default setting is 5. A value of 0 disables link flap protection. | restart |
 | `res_usage_warn_threshold` | Sets the percentage over which forwarding resources (routes, hosts, MAC addresses) must go before Cumulus Linux generates a warning. You can set a value between 50 and 95.</br>The default setting is 90. | restart |
-| `res_warn_msg_int` | The time interval in seconds between resource warning messages. Warning messages generate only once in the specified interval per resource type even if the threshold falls below or goe over the value set in `res_usage_warn_threshold` multiple times in this interval. You can set a value between 60 and 3600.</br>The default setting is 300. | restart |
+| `res_warn_msg_int` | The time interval in seconds between resource warning messages. Warning messages generate only one time in the specified interval per resource type even if the threshold falls below or goes over the value set in `res_usage_warn_threshold` multiple times during this interval. You can set a value between 60 and 3600.</br>The default setting is 300. | restart |
 
 {{< /tab >}}
 {{< /tabs >}}

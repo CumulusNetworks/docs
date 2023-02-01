@@ -312,7 +312,7 @@ nv unset evpn vni <vni-id> route-target import <rt-id>
 nv unset evpn vni <vni-id> route-target both
 nv unset evpn vni <vni-id> route-target both <rt-id>
 nv unset evpn vni <vni-id> rd
-v unset qos advance-buffer-config
+nv unset qos advance-buffer-config
 nv unset qos advance-buffer-config <profile-id>
 nv unset qos advance-buffer-config <profile-id> ingress-pool
 nv unset qos advance-buffer-config <profile-id> ingress-pool <pool-id>

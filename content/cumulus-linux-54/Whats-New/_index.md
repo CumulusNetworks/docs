@@ -20,6 +20,10 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 -->
 Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new features and improvements.
 
+{{%notice note%}}
+Early Access features are now called Beta features.
+{{%/notice%}}
+
 ### New Features and Enhancements
 
 - Port configuration changes:
@@ -27,7 +31,7 @@ Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new featur
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
    - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} and {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="breakout port lane">}} configuration settings
 
-   {{%notice note%}}
+   {{%notice warning%}}
 The port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} for important upgrade information.
 {{%/notice%}}
 
@@ -246,6 +250,7 @@ nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id>
 nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id> min-rate 0-2147483647
 nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id> max-rate 0-2147483647
 nv set qos egress-shaper <profile-id> port-max-rate 0-2147483647
+nv set interface <interface-id> link breakout <mode-id>
 nv set interface <interface-id> link breakout <mode-id> lanes-per-port (1|2|4|8)
 nv set interface <interface-id> link lanes (1|2|4|8)
 nv set interface <interface-id> qos link-pause

@@ -501,16 +501,6 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>5.0.0-5.3.1</td>
 </tr>
 <tr>
-<td>2804044</td>
-<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
-
-kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
-kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
-</td>
-<td>4.4.0-4.4.6</td>
-<td></td>
-</tr>
-<tr>
 <td>2803428</td>
 <td>The {{clagctl -v -j}} and {{net show clag verbose json}} commands show incorrect output.</td>
 <td>4.4.0-4.4.6</td>
@@ -2651,16 +2641,6 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>5.0.0-5.3.1</td>
 </tr>
 <tr>
-<td>2804044</td>
-<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
-
-kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
-kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
-</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2803428</td>
 <td>The {{clagctl -v -j}} and {{net show clag verbose json}} commands show incorrect output.</td>
 <td>4.4.0-4.4.5</td>
@@ -4761,16 +4741,6 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>When you change the port speed with the NVUE {{nv set interface &lt;interface&gt; link speed}} command, then run {{nv config apply}}, the port is disabled. To work around this issue, run the {{ifreload -a}} command after you apply the port speed setting.</td>
 <td>4.4.0-4.4.5</td>
 <td>5.0.0-5.3.1</td>
-</tr>
-<tr>
-<td>2804044</td>
-<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
-
-kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
-kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
-</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2803428</td>
@@ -7075,16 +7045,6 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>5.0.0-5.3.1</td>
 </tr>
 <tr>
-<td>2804044</td>
-<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
-
-kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
-kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
-</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>2803428</td>
 <td>The {{clagctl -v -j}} and {{net show clag verbose json}} commands show incorrect output.</td>
 <td>4.4.0-4.4.5</td>
@@ -9280,16 +9240,6 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>When you change the port speed with the NVUE {{nv set interface &lt;interface&gt; link speed}} command, then run {{nv config apply}}, the port is disabled. To work around this issue, run the {{ifreload -a}} command after you apply the port speed setting.</td>
 <td>4.4.0-4.4.5</td>
 <td>5.0.0-5.3.1</td>
-</tr>
-<tr>
-<td>2804044</td>
-<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
-
-kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
-kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
-</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2803428</td>
@@ -11657,16 +11607,6 @@ To work around this issue, run the {{sudo systemctl restart snmpd.service}} comm
 <td>When you change the port speed with the NVUE {{nv set interface &lt;interface&gt; link speed}} command, then run {{nv config apply}}, the port is disabled. To work around this issue, run the {{ifreload -a}} command after you apply the port speed setting.</td>
 <td>4.4.0-4.4.5</td>
 <td>5.0.0-5.3.1</td>
-</tr>
-<tr>
-<td>2804044</td>
-<td>The SDK process sx_core prints the messages shown below and the switch stops forwarding traffic.
-
-kernel: sx_core: Did not receive completion for SDQ dqn (1) idx (849) after 10 seconds
-kernel: sx_core: __sx_core_post_send: Cannot send packet on dqn [1] sdq stuck
-</td>
-<td>4.4.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>2803428</td>

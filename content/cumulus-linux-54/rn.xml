@@ -31,6 +31,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3241567</td>
+<td>When you apply switch configuration for the first time on a freshly booted switch, you might see the error message {{Failed to start Hostname Service}} when you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
+<td>5.3.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3226506</td>
 <td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
 <td>5.3.0-5.4.0</td>

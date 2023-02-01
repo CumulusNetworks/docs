@@ -20,6 +20,10 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 -->
 Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new features and improvements.
 
+{{%notice note%}}
+Early Access features are now called Beta features.
+{{%/notice%}}
+
 ### New Features and Enhancements
 
 - Port configuration changes:

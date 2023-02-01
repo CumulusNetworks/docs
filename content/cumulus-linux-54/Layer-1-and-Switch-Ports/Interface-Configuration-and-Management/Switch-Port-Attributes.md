@@ -1604,7 +1604,7 @@ To upgrade with `apt upgrade`:
        type: swp
    ```
 
-3. Run `apt-get upgrade`.
+3. {{<link url="Upgrading-Cumulus-Linux/" text="Upgrade">}} to Cumulus Linux 5.4 with `apt-get upgrade`.
 
 <!-- vale off -->
 <!-- Vale issue #253 -->

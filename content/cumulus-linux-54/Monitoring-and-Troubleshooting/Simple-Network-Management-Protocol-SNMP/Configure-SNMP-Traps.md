@@ -218,10 +218,10 @@ The following example commands enable the Disman Event MIB (.1.3.6.1.2.1.88.2.0.
 The default check frequency is 60 seconds, with a minimum of 5 and a maximum of 300 seconds.
 
 These notifications include the following information.
-- ifName
-- ifIndex
-- ifAdminStatus
-- ifOperStatus
+- `ifName`
+- `ifIndex`
+- `ifAdminStatus`
+- `ifOperStatus`
 
 ```
 cumulus@switch:~$ nv set service snmp-server trap-link-down check-frequency 10
@@ -237,10 +237,10 @@ Edit the `/etc/snmp/snmpd.conf` file and configure the trap settings.
 The following example commands enable the Disman Event MIB (.1.3.6.1.2.1.88.2.0.1) to monitor the ifTable for network interfaces that come up every 15 seconds or go down every 10 seconds, and trigger a `CumulusLinkUp` and `CumulusLinkDown` named notification.
 
 These notifications include the following information.
-- ifName
-- ifIndex
-- ifAdminStatus
-- ifOperStatus
+- `ifName`
+- `ifIndex`
+- `ifAdminStatus`
+- `ifOperStatus`
 
 ```
 cumulus@switch:~$ sudo nano /etc/snmp/snmpd.conf

@@ -50,6 +50,8 @@ cumulus@switch:~$ nv set system aaa user admin2 full-name "FIRST LAST"
 cumulus@switch:~$ nv config apply
 ```
 
+You can also run the `nv set system aaa user <user> password <plain-text-password>` command to specify the password inline (bypass the `Enter new password` and `Confirm password` prompts).
+
 {{%notice note%}}
 The NVUE API does not support configuring a plain text password; if you use the NVUE API instead of the CLI, you must provide a hashed password.
 {{%/notice%}}
@@ -102,7 +104,7 @@ To generate a hashed password on the switch, you can either run a `python3` comm
 {{< tabs "TabID102 ">}}
 {{< tab "python3 Command ">}}
 
-Run the following command. When prompted, enter the plain text password you want to hash:
+Run the following command on the switch or Linux host. When prompted, enter the plain text password you want to hash:
 
 ```
 cumulus@switch:~$ python3 -c "import crypt; import getpass; print(crypt.crypt(getpass.getpass(), salt=crypt.METHOD_SHA512))"                    

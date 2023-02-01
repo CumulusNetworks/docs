@@ -25,7 +25,7 @@ Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new featur
 - Port configuration changes:
    - New format for {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} in the `/etc/cumulus/ports.conf` file
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
-   - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} configuration
+   - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} and {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="breakout port lane">}} configuration settings
 
    {{%notice note%}}
 The port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} for important upgrade information.

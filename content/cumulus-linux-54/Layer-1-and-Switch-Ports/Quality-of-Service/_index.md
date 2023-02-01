@@ -1413,6 +1413,40 @@ egress_buffer.cos_2.mc.dynamic_quota = ALPHA_8
 
 For additional `default-lossless` and RoCE pool examples, see {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}} and {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}}.
 
+## Advanced Buffer Tuning
+
+You can tune advanced buffer properties on top of the supported {{<link title="#Traffic Pools" text="traffic pool">}} configurations.
+
+{{%notice note%}}
+You can only configure advanced buffer settings for the `default-global` profile.
+{{%/notice%}}
+
+You can adjust advanced buffer settings with the following NVUE command:
+
+- `nv set qos advance-buffer-config default-global <buffer> <priority-group | property> <value>`
+
+You can settings for the following buffers, priority groups, and properties:
+
+|Buffers | Priority Groups | Properties |
+|------------- |----------- | ---------------- |
+| <ul>`ingress-lossy-buffer`<br>`ingress-lossless-buffer`<br>`egress-lossless-buffer` | <ul>`bulk`<br>`control`<br>`service1`<br>`service2`<br>`service3`<br>`service4`<br>`service5`<br>`service6` | <ul>`name` - Priority group alias name<br>`reserved` -  Reserved buffer allocation in bytes <br>`service-pool` - Service pool mapping <br>`shared-alpha` - Dynamic shared buffer alpha allocation<br>`shared-bytes` - Static shared buffer allocation in bytes<br>`switch-priority` - Switch priority values 
+| `egress-lossy-buffer` | N/A | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes <br> `multicast-switch-priority` - Multicast switch priorities</ul> 
+
+You can adjust ingress and egress pool profile properties with the following NVUE commands:
+
+- `nv set qos advance-buffer-config default-global ingress-pool <pool-id> <property> <value>`
+- `nv set qos advance-buffer-config default-global egress-pool <pool-id> <property> <value>`
+
+You can adjust the following properties for each pool:
+
+|Property | Description |
+|------------- |----------- |
+| `infinite`	| Pool infinite flag |
+| `memory-percent` | Pool memory percent allocation |
+| `mode` | Pool mode - static/dynamic |
+| `reserved ` | Reserved buffer allocation in bytes |
+| `shared-alpha ` | Dynamic shared buffer alpha allocation |
+| `shared-bytes` | Static shared buffer allocation in bytes |
 ## Syntax Checker
 
 Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.

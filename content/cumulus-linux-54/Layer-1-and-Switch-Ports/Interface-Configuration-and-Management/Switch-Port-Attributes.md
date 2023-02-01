@@ -1246,18 +1246,18 @@ Maximum 400G ports: 32
 - You can use a single SFP (10/25/50G) transceiver in a QSFP (100/200/400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface> link speed <speed>` command. Do not configure this port as a breakout port.
 - If you break out a port, then reload the `switchd` service on a switch running in *nonatomic* ACL mode, temporary disruption to traffic occurs while the ACLs reinstall.
 - Cumulus Linux does not support port ganging.
-- Switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out to 4x25G or 4x10G:
+- Switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out into 4 interfaces at 25G or 4 interfaces at 10G:
   - You can only break out odd-numbered ports into four logical ports.
   - You must disable the next even numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
   These restrictions do *not* apply to a 2x50G breakout configuration or to the NVIDIA SN2100 and SN2010 switch.
-- Spectrum-2 and Spectrum-3 switches have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum-2 and Spectrum-3 switches with 64 interfaces, you must disable the adjacent port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
+- Spectrum-2 and Spectrum-3 switches have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum-2 and Spectrum-3 switches with 64 interfaces, you must disable the next even numbered port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
 
     ```
     1=4x
     2=disabled
     ```
 
-   When you split a port into two interfaces, such as 2x50G, you do **not** have to disable the adjacent port.
+   When you split a port into two interfaces, such as 2x, you do **not** have to disable the adjacent port.
 
 <!--For valid port configuration and breakout guidance, see the `/etc/cumulus/ports.conf` file.-->
 {{%/notice%}}
@@ -1275,10 +1275,7 @@ If you split a 100G port into four interfaces and auto-negotiation is on (the de
 
 {{%notice warning%}}
 - Cumulus Linux 5.4 and later uses a new format for port splitting; instead of 1=100G or 1=4x10G, you specify 1=1x or 1=4x. The new format does not support specifying a speed for breakout ports in the `/etc/cumulus/ports.conf` file. To set a maximum speed, either set the `link-speed` parameter for each split port in the `/etc/network/interfaces` file or run the NVUE `nv set interface <interface> link speed <speed>` command.
-- Cumulus Linux 5.4 continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, see <link> for important upgrade information.
-
-
- 
+- Cumulus Linux 5.4 continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, see {{<link url="#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
 {{%/notice%}}
 
 {{< tabs "TabID1281 ">}}
@@ -1381,7 +1378,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{%notice note%}}
-You must configure the lanes-per-port at the same time as you configure the breakout. If you want to change the number of lanes per port after you configure a breakout, you must first unset the breakout with the `nv unset interface <port> breakout` and the `nv config apply` commands, then reconfigure the breakout and the lanes with the `nv set interface <interface> link breakout <breakout> lanes-per-port <lanes>` command. For example:
+You must configure the lanes-per-port at the same time as you configure the breakout. If you want to change the number of lanes per port after you configure a breakout, you must first unset the breakout with the `nv unset interface <port> breakout` and `nv config apply` commands, then reconfigure the breakout and the lanes with the `nv set interface <interface> link breakout <breakout> lanes-per-port <lanes>` command. For example:
 
 ```
 cumulus@switch:~$ nv unset interface swp1 breakout
@@ -1391,14 +1388,13 @@ cumulus@switch:~$ nv config apply
 ```
 {{%/notice%}}
 
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/cumulus/ports_width.conf` file and add the numer of lanes per split port you want to use, then reload `switchd`:
 
 {{%notice note%}}
-You must configure the lanes per port in the `/etc/cumulus/ports_width.conf` before you configure the breakout in the `/etc/cumulus/ports.conf` file. If the `ports.conf` file already contains breakout configuration for a port, you must set the breakout back to `1x`, then reload `switchd`. You can then apply the desired lanes per port configuration and reconfigure the breakout.
+You must configure the lanes per port in the `/etc/cumulus/ports_width.conf` before you configure the breakout in the `/etc/cumulus/ports.conf` file. If the `ports.conf` file already contains breakout configuration for a port, you must set the breakout back to `1x`, then reload `switchd`. You can then set the desired lanes per port, then reconfigure the breakout.
 {{%/notice%}}
 
 ```
@@ -1575,41 +1571,42 @@ cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'
 
 ## Considerations
 
-### Important Upgrade Information
+### Important Upgrade Information for Breakout Ports and NVUE
 
-Cumulus Linux 5.4 and later uses a new format for port splitting and continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, you must either:
+Cumulus Linux 5.4 and later uses a new format for port splitting but continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, you must either:
 
-  - Upgrade to Cumulus Linux 5.4 with a binary installation and configure your switch with the new NVUE syntax.
-  - Upgrade to Cumulus Linux 5.4 using the following steps to `apt upgrade`.
+- Upgrade to Cumulus Linux 5.4 with a binary installation, then configure port breakouts on your switch with the new NVUE syntax.
+- Upgrade to Cumulus Linux 5.4 with package installation (`apt upgrade`) but follow the steps below **before** you upgrade.
 
-To upgrade with a binary install, refer to <link for binary install> and refer to <link above for configure a breakout port> with the new syntax
+To upgrade with a binary install, refer to {{<link url="Upgrading-Cumulus-Linux/#cumulus-linux-image-install-onie" text="Cumulus Linux Image Install (ONIE)">}} for the upgrade procedure and {{<link url="#configure-a-breakout-port" text="Configure a Breakout Port">}} above for the new NVUE syntax.
 
-  To use `apt upgrade`:
+To upgrade with `apt upgrade`:
 
-  **Before** you run `apt upgrade` perform the following steps:
+1. **Before** you run `apt upgrade`, save the current NVUE configuration with the `nv config save` command.
+2. Edit the `/etc/nvue.d/startup.yaml` file to use the new NVUE breakout syntax for each breakout port. For example, change `4x10G` to `4x: {}`:
 
-    1. Save the current NVUE configuration with the `nv config save` command.
-    2. Edit the `/etc/nvue.d/startup.yaml` file to use the new NVUE breakout syntax for each breakout port. For example, change `4x10G` to `4x: {}`:
+   Change:
 
-    ```
-    interface:
-      swp1:
-        link:
-          breakout: 4x10G
-        type: swp
-    ```
+   ```
+   interface:
+     swp1:
+       link:
+         breakout: 4x10G
+       type: swp
+   ```
 
-        to 
+   to
 
-    ```
-    interface:
-      swp1:
-        link:
-          breakout:
-            4x: {}
-        type: swp
-    ```
-    Run `apt-get upgrade`.
+   ```
+   interface:
+     swp1:
+       link:
+         breakout:
+           4x: {}
+       type: swp
+   ```
+
+3. Run `apt-get upgrade`.
 
 <!-- vale off -->
 <!-- Vale issue #253 -->

@@ -32,7 +32,7 @@ Early Access features are now called Beta features.
    - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} and {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="breakout port lane">}} configuration settings
 
    {{%notice warning%}}
-The port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} for important upgrade information.
+If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
 {{%/notice%}}
 
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches

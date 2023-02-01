@@ -202,6 +202,10 @@ To upgrade the switch:
 
 ### Package Upgrade
 
+{{%notice warning%}}
+Cumulus Linux 5.4 and later uses a new format for port splitting but continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, see {{<link url="#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
+{{%/notice%}}
+
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
 
 When you use package upgrade to upgrade your switch, configuration data stays in place during the upgrade. If the new release updates a previously changed configuration file, the upgrade process prompts you to either specify the version you want to use or evaluate the differences.

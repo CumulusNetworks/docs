@@ -31,7 +31,7 @@ Early Access features are now called Beta features.
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
    - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} and {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="breakout port lane">}} configuration settings
 
-   {{%notice note%}}
+   {{%notice warning%}}
 The port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} for important upgrade information.
 {{%/notice%}}
 

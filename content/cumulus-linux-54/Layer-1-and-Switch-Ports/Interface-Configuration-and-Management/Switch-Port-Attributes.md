@@ -1300,7 +1300,7 @@ cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
 ```
 
 {{%notice note%}}
-Depending on the logical interface limit on certain switches, Cumulus Linux must disable the adjacent port. In this case, you see a message indicating that Cumulus Linux is disabling the adjacent port when you apply the configuration.
+Depending on the logical interface limit on certain switches, you must disable the next even port after the split port. For 4x breakouts, NVUE shows a message indicating that Cumulus Linux is disabling the next even port when you apply the configuration. For other breakouts, you must disable the next even port manually.
 {{%/notice%}}
 
 {{< /tab >}}

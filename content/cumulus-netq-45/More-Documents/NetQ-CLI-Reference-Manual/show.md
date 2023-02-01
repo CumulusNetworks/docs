@@ -2846,7 +2846,6 @@ Matching platform records:
 Version                              Uptime                    Reinitialize Time
 ------------------------------------ ------------------------- --------------------------
 3.2.0                                Fri Oct  2 22:04:17 2020  Wed Nov 11 21:53:57 2020
-
 ```
 
 ### Related Commands
@@ -2892,8 +2891,6 @@ None
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
-
-Basic show: all devices, all states, currently
 
 ```
 cumulus@switch:~$ netq show ospf

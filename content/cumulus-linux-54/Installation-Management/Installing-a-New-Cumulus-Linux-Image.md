@@ -362,7 +362,7 @@ To provide a hashed password instead of a clear text password, use the `--hashed
    ```
 
 {{%notice note%}}
-If you specify both the `--password` and `--hashed-password` options, the `--hashed-password` option takes precedence and the switch ignores he `--password` option.
+If you specify both the `--password` and `--hashed-password` options, the `--hashed-password` option takes precedence and the switch ignores the `--password` option.
 {{%/notice%}}
 
 ### Provide Initial Network Configuration

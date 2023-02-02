@@ -46,11 +46,13 @@ If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and ear
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - {{<link url="NVUE-CLI/#configure-auto-save" text="Auto save configuration">}} option
   - {{<link url="NVUE-CLI/#add-configuration-apply-messages" text="Configuration apply messages">}}
-  - New BGP show commands to show {{<link url="Troubleshooting-BGP/#bgp-update-groups" text="update groups">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="next hop">}} details
+  - New BGP show commands to show {{<link url="Troubleshooting-BGP/#bgp-update-groups" text="update groups">}}
   - Updated BGP {{<link url="Virtual-Routing-and-Forwarding-VRF/#verify-route-leaking-configuration" text="route import">}} show commands now show operational data
   - New {{<link url="Troubleshooting-EVPN" text="EVPN show commands">}} to show {{<link url="Troubleshooting-EVPN#show-the-vni-evpn-routing-table" text="EVPN local RIB">}} and {{<link url="Troubleshooting-EVPN/#show-evpn-vnis" text="VNI">}} information
   - The `nv set evpn evi`, `nv unset evpn evi`, and `nv show evpn evi` commands are now `nv set evpn vni`, `nv unset evpn vni`, and `nv show evpn vni`
   - Obfuscated passwords to protect passwords from casual viewing
+  - The `nv show config` command shows NVUE version information in addition to the saved configuration
+  - You can organize `nv show` command columns
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

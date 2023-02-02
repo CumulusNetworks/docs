@@ -192,7 +192,7 @@ sub-group
                                                                                                                                                                                       swp52
 ...
 ```
-
+<!--
 ## Show Next Hop Information
 
 To show information about a specific next hop, run the vtysh `show bgp vrf default nexthop <ip-address>` command or run these NVUE commands:
@@ -255,7 +255,7 @@ Nexthop                    interface
 fe80::4ab0:2dff:fe20:ac25  swp51    
 fe80::4ab0:2dff:fe93:d92d  swp52
 ```
-
+-->
 ## Troubleshoot BGP Unnumbered
 
 To verify that FRR learns the neighboring link-local IPv6 address through the IPv6 neighbor discovery router advertisements on a given interface, run the vtysh `show interface <interface>` command or the `net show interface <interface>` command.

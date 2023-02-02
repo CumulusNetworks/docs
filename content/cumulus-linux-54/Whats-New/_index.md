@@ -20,6 +20,10 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 -->
 Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new features and improvements.
 
+{{%notice note%}}
+Early Access features are now called Beta features.
+{{%/notice%}}
+
 ### New Features and Enhancements
 
 - Port configuration changes:
@@ -27,8 +31,8 @@ Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new featur
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
    - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} and {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="breakout port lane">}} configuration settings
 
-   {{%notice note%}}
-The port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} for important upgrade information.
+   {{%notice warning%}}
+If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
 {{%/notice%}}
 
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches
@@ -38,7 +42,7 @@ The port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refe
   - {{<link url="TACACS" text="TACACS+">}} commands (in Beta)
   - {{<link url="Supported-Route-Table-Entries/#supported-route-entries" text="ASIC Resource Slicing">}} (KVD) commands
   - {{<link url="Link-Layer-Discovery-Protocol/#set-lldp-mode" text="LLDP commands">}} to send either CDP frames only or LLDP frames only
-  - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#8021p-or-dscp-for-marking" text="traffic remarking">}}, and advanced buffer configuration
+  - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#8021p-or-dscp-for-marking" text="traffic remarking">}}, and {{<link url="Quality-of-Service/#advanced-buffer-tuning" text="advanced buffer configuration">}}
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - {{<link url="NVUE-CLI/#configure-auto-save" text="Auto save configuration">}} option
   - {{<link url="NVUE-CLI/#add-configuration-apply-messages" text="Configuration apply messages">}}
@@ -246,6 +250,7 @@ nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id>
 nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id> min-rate 0-2147483647
 nv set qos egress-shaper <profile-id> traffic-class <qos-tc-id> max-rate 0-2147483647
 nv set qos egress-shaper <profile-id> port-max-rate 0-2147483647
+nv set interface <interface-id> link breakout <mode-id>
 nv set interface <interface-id> link breakout <mode-id> lanes-per-port (1|2|4|8)
 nv set interface <interface-id> link lanes (1|2|4|8)
 nv set interface <interface-id> qos link-pause
@@ -307,7 +312,7 @@ nv unset evpn vni <vni-id> route-target import <rt-id>
 nv unset evpn vni <vni-id> route-target both
 nv unset evpn vni <vni-id> route-target both <rt-id>
 nv unset evpn vni <vni-id> rd
-v unset qos advance-buffer-config
+nv unset qos advance-buffer-config
 nv unset qos advance-buffer-config <profile-id>
 nv unset qos advance-buffer-config <profile-id> ingress-pool
 nv unset qos advance-buffer-config <profile-id> ingress-pool <pool-id>

@@ -19,12 +19,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3319919</td>
-<td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3258232</td>
 <td>If you use NVUE to configure multiple SNMP listener addresses at the same time, the SNMP service fails to start. To work around this issue, configure multiple SNMP listener addresses one at a time.</td>
 <td>5.3.0-5.4.0</td>
@@ -119,12 +113,6 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3066280</td>
-<td> The {{pygments}} python module, version 2.12.0, on the Cumulus Linux switch prevents NVUE from displaying colored output and produces an error or failure. The failure specifically identifies {{#ansidarkred}} as the problem color format. The error prevents any output from showing on the CLI. To work around this problem, downgrade the {{pygments}} module to version 2.3.1.</td>
-<td>5.0.1-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3061656</td>
 <td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
 <td>5.1.0-5.4.0</td>
@@ -149,21 +137,9 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
-<td>3045369</td>
-<td>NVUE does not support orphaned data or pre-provisioned data. For example, if you remove a port breakout but the breakout interfaces (such as swp1s0-3) have configured data. To work around this issue, do not configure breakout interfaces until you configure and apply the breakout with the {{nv set interface &lt;interface&gt; link breakout &lt;breakout&gt;}} and {{nv config apply}} commands.</td>
-<td>5.2.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3045310</td>
 <td>If GTP Hashing is set to {{true}}, after more than two warm boots, {{switchd}} fails and a cl-support file is generated.</td>
 <td>5.1.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3037829</td>
-<td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
-<td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -274,6 +250,16 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Affects </th>
 </tr>
 <tr>
+<td>3351951</td>
+<td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
+<td>4.2.1-5.3.1</td>
+</tr>
+<tr>
+<td>3351936</td>
+<td>Switch fans run at very high speed but the temperature is normal.</td>
+<td>5.2.0-5.3.1</td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
@@ -344,11 +330,6 @@ Vlan: 0
 <td>3262012</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-</tr>
-<tr>
-<td>3258467</td>
-<td>On NVIDIA Spectrum-2 and Spectrum-3 switches, after you run the {{nv config save}} command, the NVUE service successfully reports that the current applied configuration is saved to the {{/etc/nvue.d/startup.yaml}} file. However, if you power cycle the switch within one minute after you save the configuration, the contents of the {{/etc/nvue.d/startup.yaml}} file might be cleared, which causes the {{nvue-startup}} service to fail. The NVUE service writes a log message indicating that the {{startup.yaml}} file is empty or incomplete. To work around this issue, either reboot the switch with the {{sudo reboot}} command instead of power cycling or wait at least one minute before you power cycle.</td>
-<td>5.2.1-5.3.1</td>
 </tr>
 <tr>
 <td>3255899</td>

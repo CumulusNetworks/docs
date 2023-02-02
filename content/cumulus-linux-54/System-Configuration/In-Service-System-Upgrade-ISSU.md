@@ -26,7 +26,8 @@ You can restart the switch in one of the following modes.
    When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is on. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
 {{%notice note%}}
-Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
+- Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
+- Due to port configuration changes, when you upgrade to Cumulus Linux 5.4 from a previous Cumulus Linux release with package installation (`apt-upgrade`) and use warm boot, the ports take some time to come up (approximately one to two minutes depending on the Spectrum ASIC) and Cumulus Linux generates a cl-support file. Port initialization does recover and there is no impact to the switch.
 {{%/notice%}}
 
 The following command restarts the system in cold mode:

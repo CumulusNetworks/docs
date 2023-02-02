@@ -38,7 +38,7 @@ Enter your username and password to log in. You can also log in with SSO if your
 
 5. Accept the Terms of Use after reading them.
 
-    The default workbench opens, with your username and premises shown in the upper-right corner of the application.
+    The default workbench opens, with your username and premises shown in the top-right corner of NetQ.
 
 **SSO**
 
@@ -56,7 +56,7 @@ Enter your username and password to log in. You can also log in with SSO if your
 
 5. Click **Update and Accept** after reading the Terms of Use.
 
-    The default workbench opens, with your username shown in the upper-right corner of the application.
+    The default workbench opens, with your username shown in the top-right corner of NetQ.
 
 {{</tab>}}
 
@@ -78,7 +78,7 @@ Any workbench can be set as the home workbench. Click <img src="https://icons.cu
 
 ## Log Out of NetQ
 
-1. Select  <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="profile" height="18" width="18"/> in the upper-right corner of the application.
+1. Select  <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="profile" height="18" width="18"/> in the top-right corner of NetQ.
 
 2. Select **Log Out**.  
 

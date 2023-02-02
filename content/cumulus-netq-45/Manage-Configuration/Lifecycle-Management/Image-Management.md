@@ -119,11 +119,11 @@ netq lcm show netq-images
 
 2. Download the NetQ Debian packages needed for upgrade from the {{<exlink url="https://apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/p/python-netq/" text="NetQ repository">}}, selecting the appropriate version and hypervisor/platform. Place them in an accessible part of your local network.
 
-3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 4.0.0 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
+3. Upload the images to the LCM repository. This example uploads the two packages (`netq-agent` and `netq-apps`) needed for NetQ version 4.4.0 for a NetQ appliance or VM running Ubuntu 18.04 with an x86 architecture.
 
     ```
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
-    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-agent_4.4.0-ub18.04u40~1667493385.97ef4c9_amd64.deb
+    cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.4.0-ub18.04u40~1667493385.97ef4c9_amd64.deb
     ```
 
 {{</tab>}}
@@ -169,8 +169,8 @@ cumulus@switch:~$ netq lcm add image /path/to/download/cumulus-linux-4.2.0-mlx-a
 NetQ images:
 
 ```
-cumulus@switch:~$ netq lcm add image /path/to/download/	netq-agent_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
-cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.0.0-ub18.04u33~1614767175.886b337_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-agent_4.4.0-ub18.04u40~1667493385.97ef4c9_amd64.deb
+cumulus@switch:~$ netq lcm add image /path/to/download/netq-apps_4.4.0-ub18.04u40~1667493385.97ef4c9_amd64.deb
 ```
 
 {{</tab>}}

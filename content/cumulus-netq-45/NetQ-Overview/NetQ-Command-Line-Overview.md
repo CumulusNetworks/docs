@@ -15,7 +15,7 @@ The NetQ command line interface only runs on switches and server hosts implement
 
 ## CLI Access
 
-When you install or upgrade NetQ, you can also {{<link url="Install-NetQ" text="install and enable the CLI">}} on your NetQ server or appliance and hosts.
+When you install or upgrade NetQ, you can also {{<link title="Install NetQ CLI" text="install and enable the CLI">}} on your NetQ server or appliance and hosts.
 
 To access the CLI from a switch or server:
 
@@ -191,6 +191,7 @@ While the CLI has a flat structure, NetQ commands are conceptually grouped into 
 The `netq check` commands validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. You can perform validation checks for the following:
 
 <!-- vale off -->
+- **addresses**: IPv4 and IPv6 addresses duplicates across devices
 - **agents**: NetQ Agents operation on all switches and hosts
 - **bgp**: BGP (Border Gateway Protocol) operation across the network
   fabric
@@ -202,6 +203,7 @@ The `netq check` commands validate the current or historical state of the networ
 - **mtu**: Link MTU (maximum transmission unit) consistency across paths
 - **ntp**: NTP (Network Time Protocol) operation
 - **ospf**: OSPF (Open Shortest Path First) operation
+- **roce**: RoCE (RDMA over Converged Ethernet) configurations
 - **sensors**: Temperature/Fan/PSU sensor operation
 - **vlan**: VLAN (Virtual Local Area Network) operation
 - **vxlan**: VXLAN (Virtual Extensible LAN) data path operation
@@ -322,7 +324,7 @@ cumulus@switch:~$ netq check bgp json
 The `netq show` commands let you view details about the current or historical configuration and status of various protocols and services. You can view the configuration and status for the following:
 
 <!-- vale off -->
-- **address-history**: Address history info for a IP address/prefix
+- **address-history**: Address history info for an IP address/prefix
 - **agents**: NetQ Agents status on switches and hosts
 - **bgp**: BGP status across the network fabric
 - **cl-btrfs-info**: BTRFS file system data for monitored Cumulus Linux switches
@@ -331,7 +333,8 @@ The `netq show` commands let you view details about the current or historical co
 - **cl-resource**: ACL and forwarding information
 - **cl-ssd-util**: SSD utilization information
 - **clag**: CLAG/MLAG status
-- **dom**: Digital Optical Monitoring
+- **dom**: Digital Optical Monitoring information
+- **ecmp**: Equal-cost multi-path routing
 - **ethtool-stats**: Interface statistics
 - **events**: Display changes over time
 - **events-config**: Event suppression configuration
@@ -343,13 +346,13 @@ The `netq show` commands let you view details about the current or historical co
 - **ip**: IPv4 status
 - **ipv6**: IPv6 status
 - **job-status**: status of upgrade jobs running on the appliance or VM
-- **kubernetes**: Kubernetes cluster, daemon, pod, node, service and replication status
+- **kubernetes**: Kubernetes cluster, daemon, pod, node, service, and replication status
 - **lldp**: LLDP status
 - **mac-commentary**: MAC commentary info for a MAC address
 - **mac-history**: Historical information for a MAC address
 - **macs**: MAC table or address information
 - **mlag**: MLAG status (an alias for CLAG)
-- **neighbor-history**:  Neighbor history info for an IP address
+- **neighbor-history**: Neighbor history info for an IP address
 - **notification**: Notifications sent to various channels
 - **ntp**: NTP status
 - **opta-health**: Display health of apps on the OPTA

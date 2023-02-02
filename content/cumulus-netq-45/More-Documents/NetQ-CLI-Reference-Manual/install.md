@@ -5,6 +5,7 @@ weight: 1104
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
+type: nojsscroll
 ---
 
 You can install NetQ with a single command or you can perform the individual steps using multiple commands. Generally, using the single command option is *strongly recommended*. However, the individual commands can be useful for troubleshooting the installation process when it fails.

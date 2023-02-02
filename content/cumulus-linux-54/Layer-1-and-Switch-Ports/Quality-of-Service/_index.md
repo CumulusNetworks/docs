@@ -1425,12 +1425,12 @@ You can adjust advanced buffer settings with the following NVUE command:
 
 - `nv set qos advance-buffer-config default-global <buffer> <priority-group | property> <value>`
 
-You can settings for the following buffers, priority groups, and properties:
+You can adjust settings for the following buffers, priority groups, and properties:
 
 |Buffers | Priority Groups | Properties |
 |------------- |----------- | ---------------- |
-| <ul>`ingress-lossy-buffer`<br>`ingress-lossless-buffer`<br>`egress-lossless-buffer` | <ul>`bulk`<br>`control`<br>`service1`<br>`service2`<br>`service3`<br>`service4`<br>`service5`<br>`service6` | <ul>`name` - Priority group alias name<br>`reserved` -  Reserved buffer allocation in bytes <br>`service-pool` - Service pool mapping <br>`shared-alpha` - Dynamic shared buffer alpha allocation<br>`shared-bytes` - Static shared buffer allocation in bytes<br>`switch-priority` - Switch priority values 
-| `egress-lossy-buffer` | N/A | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes <br> `multicast-switch-priority` - Multicast switch priorities</ul> 
+| <ul>`ingress-lossy-buffer`<br>`ingress-lossless-buffer`<br>`egress-lossless-buffer` | <ul>`bulk`<br>`control`<br>`service1`<br>`service2`<br>`service3`<br>`service4`<br>`service5`<br>`service6` | <ul>`name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values.
+| `egress-lossy-buffer` | N/A | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority` - Multicast switch priorities.</ul>
 
 You can adjust ingress and egress pool profile properties with the following NVUE commands:
 
@@ -1441,12 +1441,13 @@ You can adjust the following properties for each pool:
 
 |Property | Description |
 |------------- |----------- |
-| `infinite`	| Pool infinite flag |
-| `memory-percent` | Pool memory percent allocation |
-| `mode` | Pool mode - static/dynamic |
-| `reserved ` | Reserved buffer allocation in bytes |
-| `shared-alpha ` | Dynamic shared buffer alpha allocation |
-| `shared-bytes` | Static shared buffer allocation in bytes |
+| `infinite`	| The pool infinite flag. |
+| `memory-percent` | The pool memory percent allocation. |
+| `mode` | The pool mode: static or dynamic. |
+| `reserved ` |The reserved buffer allocation in bytes. |
+| `shared-alpha ` | The dynamic shared buffer alpha allocation. |
+| `shared-bytes` | The static shared buffer allocation in bytes. |
+
 ## Syntax Checker
 
 Cumulus Linux provides a syntax checker for the `qos_features.conf` and `qos_infra.conf` files to check for errors, such missing parameters or invalid parameter labels and values.

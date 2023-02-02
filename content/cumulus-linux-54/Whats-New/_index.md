@@ -52,7 +52,7 @@ If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and ear
   - The `nv set evpn evi`, `nv unset evpn evi`, and `nv show evpn evi` commands are now `nv set evpn vni`, `nv unset evpn vni`, and `nv show evpn vni`
   - Obfuscated passwords to protect passwords from casual viewing
   - The `nv show config` command shows NVUE version information in addition to the saved configuration
-  - You can organize `nv show` command columns
+  - You can reorganize `nv show` command columns
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

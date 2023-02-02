@@ -36,10 +36,10 @@ If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and ear
 {{%/notice%}}
 
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches
-- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (in Beta)
+- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (Beta)
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="User-Accounts" text="User management">}} commands
-  - {{<link url="TACACS" text="TACACS+">}} commands (in Beta)
+  - {{<link url="TACACS" text="TACACS+">}} commands (Beta)
   - {{<link url="Supported-Route-Table-Entries/#supported-route-entries" text="ASIC Resource Slicing">}} (KVD) commands
   - {{<link url="Link-Layer-Discovery-Protocol/#set-lldp-mode" text="LLDP commands">}} to send either CDP frames only or LLDP frames only
   - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#8021p-or-dscp-for-marking" text="traffic remarking">}}, and {{<link url="Quality-of-Service/#advanced-buffer-tuning" text="advanced buffer configuration">}}

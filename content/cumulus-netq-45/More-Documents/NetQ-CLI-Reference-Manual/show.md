@@ -2941,7 +2941,7 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
     [json]
 
    netq [<hostname>] show ptp counters [<text-port>]
-    tx | rx 
+   (tx | rx)
    [around <text-time>] 
    [json]
 ```

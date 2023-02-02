@@ -48,7 +48,7 @@ cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-ml
 
 ## netq lcm add credentials
 
-Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. You can define set of credentials. Choose between basic SSH authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to properly configure switches when using the SSH key method.
+Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. You can define set of credentials. Choose between basic authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to configure switches when using the SSH key method.
 
 {{<notice tip>}}
 The default credentials for Cumulus Linux have changed from <!-- vale off -->cumulus/CumulusLinux!<!-- vale on --> to cumulus/cumulus for releases 4.2 and later. For details, read <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/">Cumulus Linux User Accounts</a>.

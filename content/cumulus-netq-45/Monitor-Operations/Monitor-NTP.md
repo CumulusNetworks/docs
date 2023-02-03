@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 900
 toc: 3
 ---
-The only application layer protocol monitored by NetQ is NTP, the Network Time Protocol.
+NTP stands for Network Time Protocol.
 
 You can use the `netq show ntp` command to view the time synchronization status for all devices or filter for devices that are either in synchronization or out of synchronization, currently or at a time in the past.
 

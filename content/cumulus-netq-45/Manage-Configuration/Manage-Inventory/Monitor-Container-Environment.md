@@ -33,26 +33,7 @@ The NetQ Agent supports Kubernetes version 1.9.2 or later.
 
 ### Command Summary
 
-A large set of commands are available to monitor Kubernetes configurations, including the ability to monitor clusters, nodes, daemon-set, deployment, pods, replication, and services. Run `netq show kubernetes help` to see all the possible commands.
-
-    netq [<hostname>] show kubernetes cluster [name <kube-cluster-name>] [around <text-time>] [json]
-    netq [<hostname>] show kubernetes node [components] [name <kube-node-name>] [cluster <kube-cluster-name> ] [label <kube-node-label>] [around <text-time>] [json]
-    netq [<hostname>] show kubernetes daemon-set [name <kube-ds-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-ds-label>] [around <text-time>] [json]
-    netq [<hostname>] show kubernetes daemon-set [name <kube-ds-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-ds-label>] connectivity [around <text-time>] [json]
-    netq [<hostname>] show kubernetes deployment [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] [around <text-time>] [json]
-    netq [<hostname>] show kubernetes deployment [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] connectivity [around <text-time>] [json]
-    netq [<hostname>] show kubernetes pod [name <kube-pod-name>] [cluster <kube-cluster-name> ] [namespace <namespace>] [label <kube-pod-label>] [pod-ip <kube-pod-ipaddress>] [node <kube-node-name>] [around <text-time>] [json]
-    netq [<hostname>] show kubernetes replication-controller [name <kube-rc-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rc-label>] [around <text-time>] [json]
-    netq [<hostname>] show kubernetes replica-set [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] [around <text-time>] [json]
-    netq [<hostname>] show kubernetes replica-set [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] connectivity [around <text-time>] [json]
-    netq [<hostname>] show kubernetes service [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] [around <text-time>] [json]
-    netq [<hostname>] show kubernetes service [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] connectivity [around <text-time>] [json]
-    netq <hostname> show impact kubernetes service [master <kube-master-node>] [name <kube-service-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-service-label>] [service-cluster-ip <kube-service-cluster-ip>] [service-external-ip <kube-service-external-ip>] [around <text-time>] [json]
-    netq <hostname> show impact kubernetes replica-set [master <kube-master-node>] [name <kube-rs-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-rs-label>] [around <text-time>] [json]
-    netq <hostname> show impact kubernetes deployment [master <kube-master-node>] [name <kube-deployment-name>] [cluster <kube-cluster-name>] [namespace <namespace>] [label <kube-deployment-label>] [around <text-time>] [json]
-    netq config add agent kubernetes-monitor [poll-period <text-duration-period>]
-    netq config del agent kubernetes-monitor
-    netq config show agent kubernetes-monitor [json]
+A large set of commands are available to monitor Kubernetes configurations, including the ability to monitor clusters, nodes, daemon-set, deployment, pods, replication, and services. Run `netq show kubernetes help` to view the commands. Refer to the {{<link title="show/#netq-show-kubernetes" text="command line reference">}} for additional details.
 
 ## Enable Kubernetes Monitoring
 
@@ -77,13 +58,13 @@ To enable NetQ Agent monitoring of the containers using the Kubernetes API, you 
     Successfully added kubernetes monitor. Please restart netq-agent.
     ```
 
-3.  Restart the NetQ agent.
+3.  Restart the NetQ Agent:
 
     ```
     cumulus@host:~$ netq config restart agent
     ```
 
-4. After waiting for a minute, run the `show` command to view the cluster.
+4. After waiting for a minute, run the `show` command to view the cluster:
 
     ```
     cumulus@host:~$netq show kubernetes cluster
@@ -93,7 +74,7 @@ To enable NetQ Agent monitoring of the containers using the Kubernetes API, you 
 
 ## View Status of Kubernetes Clusters
 
-Run the `netq show kubernetes cluster` command to view the status of all Kubernetes clusters in the fabric. The following example shows two clusters; one with *server11* as the master server and the other with *server12* as the master server. Both are healthy and both list their associated worker nodes.
+Run the `netq show kubernetes cluster` command to view the status of all Kubernetes clusters in the fabric. The following example shows two clusters: one with *server11* as the master server and the other with *server12* as the master server. Both are healthy and both list their associated worker nodes.
 
     cumulus@host:~$ netq show kubernetes cluster
     Matching kube_cluster records:

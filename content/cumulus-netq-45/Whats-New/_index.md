@@ -11,20 +11,18 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale off -->
 ## What's New in NetQ 4.5.0
 <!-- vale on -->
-This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. Additional features and improvements include:
+NetQ 4.5.0 includes the following new features and improvements:
 
-Lifecycle management now supports {{<link title="Upgrade Cumulus Linux Using LCM" text="upgrades to Cumulus Linux 5.0.0 and later">}} with and without NVUE enabled.
-
-Precision time protocol (PTP) monitoring
-
-An updated command line reference
-
+ - Early access support for monitoring {{<link title="PTP" text="Precision Time Protocol">}}
+ - {{<link title="Switch Credentials" text="Switch credentials">}} that can be applied to individual switches
+ - RoCE {{<link title="check/#netq-check-roce" text="check">}} and {{<link title="show/#netq-show-roce-config" text="show">}} commands that display PCP (priority code point) and SP (switch priority) mapping misconfigurations and recommendations
+ - Lifecycle management for NVUE-enabled {{<link title="Upgrade Cumulus Linux Using LCM" text="upgrades to Cumulus Linux 5.0.0 and later">}}
+ - User guide enhancements, including a {{<link title="Troubleshoot NetQ" text="NetQ troubleshooting guide">}} and updated {{<link title="NetQ CLI Reference" text="command line reference">}}.
 
 ## Upgrade Paths
 
 You can upgrade to NetQ 4.4.0 directly from versions 4.1.0 or later. Upgrades from releases earlier than NetQ 4.1.0 require a fresh installation or an incremental upgrade to version 4.1.0 first.
 
-NetQ no longer supports the Admin UI for installation and upgrades. Follow the {{<link title="Installation Management" text="updated instructions">}} according to your deployment model.
 ## Compatible Agent Versions
 
 NetQ 4.4.0 is compatible with NetQ Agent versions 4.3.0 and above. You can install NetQ Agents on switches and servers running:

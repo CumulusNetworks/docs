@@ -5,6 +5,7 @@ weight: 1102
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
+type: nojsscroll
 ---
 <!-- vale NVIDIA.HeadingTitles = NO -->
 
@@ -718,6 +719,11 @@ netq config (add|del) addons
 None
 
 ### Sample Usage
+
+```
+cumulus@switch:~$ netq config add addons
+Addons config added
+```
 
 ### Related Commands
 

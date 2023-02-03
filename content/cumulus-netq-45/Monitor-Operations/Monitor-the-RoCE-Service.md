@@ -5,7 +5,7 @@ weight: 940
 toc: 3
 ---
 
-Use the UI or CLI to monitor RoCE in your network.
+Use the UI or CLI to monitor RoCE (RDMA over Converged Ethernet) in your network.
 
 RoCe commands include:
 

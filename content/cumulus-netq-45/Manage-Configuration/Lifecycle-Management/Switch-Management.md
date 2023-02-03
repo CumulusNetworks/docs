@@ -86,6 +86,22 @@ After creating {{<link title="Credentials and Profiles" text="access profiles">}
 
 {{<tab "NetQ UI" >}}
 
+1. On the Switches card, select **Manage**.
+
+2. The table displays a list of switches. The **Access type** column specifies whether the type of authentication is basic or SSH. The **Profile name** column displays the access profile that is assigned to the switch.
+
+Select the switches you'd like to assign access profiles, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} **Manage access profile** above the table: 
+
+{{<figure src="/images/netq/manage-access-profile-450.png" alt="" width="500">}}
+
+3. Select the profile from the list, then click **Done**.
+
+If the profile you'd like to use isn't listed, select **Add new profile** and {{<link title="Credentials and Profiles/#create-access-profiles" text="follow the steps to create an access profile">}}.
+
+4. Select **Ok** on the confirmation dialog. The updated access profiles are now reflected in the **Profile name** column:
+
+{{<figure src="/images/netq/updated-access-profile-450.png" alt="" width="500">}}
+
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
@@ -108,23 +124,21 @@ Role assignment is optional, but recommended. Using roles can prevent switches f
 
 {{<tab "NetQ UI" >}}
 
-1. From the LCM dashboard, select the **Switch management**.
+1. On the Switches card, click **Manage**.
 
-2. On the Switches card, click **Manage**.
+2. Select one switch or multiple switches to assign to the same role.
 
-3. Select one switch or multiple switches to assign to the same role.
+3. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role**.
 
-4. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role**.
+4. Select the role (superspine, leaf, spine, or exit) that applies to the selected switch(es).
 
-5. Select the role (superspine, leaf, spine, or exit) that applies to the selected switch(es).
-
-6. Click **Assign**.
+5. Click **Assign**.
 
     Note that the **Role** column is updated with the role assigned to the selected switch(es). To return to the full list of switches, click **All**.
 
     {{<figure src="/images/netq/role-column-450.png" alt="table displaying role column with updated role assignments" width="700">}}
 
-7. Continue selecting switches and assigning roles until most or all switches have roles assigned.
+6. Continue selecting switches and assigning roles until most or all switches have roles assigned.
 
 {{</tab>}}
 
@@ -196,17 +210,15 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 
 {{<tab "NetQ UI" >}}
 
-1. Open the LCM dashboard.
+1. On the Switches card, click **Manage**.
 
-2. On the Switches card, click **Manage**.
+2. Select the switches with the incorrect role from the list.
 
-3. Select the switches with the incorrect role from the list.
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role**.
 
-4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role**.
+4. Select the correct role. To leave a switch unassigned, select **No Role**. 
 
-5. Select the correct role. To leave a switch unassigned, select **No Role**. 
-
-6. Click **Assign**.
+5. Click **Assign**.
 
 {{</tab>}}
 

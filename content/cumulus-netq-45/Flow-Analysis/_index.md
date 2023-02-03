@@ -4,34 +4,32 @@ author: NVIDIA
 weight: 1006
 toc: 4
 ---
-Use the flow analysis tool to sample data from TCP and UDP flows in your environment and to review latency and buffer utilization statistics across network paths.
+Create a flow analysis to sample data from TCP and UDP flows in your environment and to review latency and buffer utilization statistics across network paths.
 
 <!-- vale off -->
 {{<notice info>}}
 
 Flow analysis is supported on NVIDIA Spectrum-2 switches and above. It requires a switch fabric running Cumulus Linux version 5.0 or above.
 
-You must enable {{<link title="Lifecycle Management" text="Lifecycle Management">}} (LCM) to use the flow analysis tool. If LCM is disabled, you will not see the flow analysis menu in the UI. LCM is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
+You must enable {{<link title="Lifecycle Management" text="Lifecycle Management">}} (LCM) to use the flow analysis. If LCM is disabled, you will not see the flow analysis icon in the UI. LCM is enabled for on-premises deployments by default and disabled for cloud deployments by default. Contact your local NVIDIA sales representative or submit a support ticket to activate LCM on cloud deployments.
 
 {{</notice>}}
 <!-- vale on -->
-## Create New Flow Analysis
+## Create a New Flow Analysis
 
-To start a new flow analysis, click the **Flow Analysis** menu and select **Create new flow analysis**.
+To start a new flow analysis, click the **Flow analysis** icon and select **Create new flow analysis**.
 
 {{<figure src="/images/netq/new-flow-analysis.png" alt="flow analysis menu with options to create a new flow analysis or view a previous analysis" width="350">}}
 
-### Flow Analysis Settings
-
-The flow analysis wizard prompts you to enter the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the respective menus to choose the protocol and VRF for the flow.
+In the dialog, enter the application parameters, including the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the protocol and VRF for the flow from the dropdown menus.
 
 {{<figure src="/images/netq/flow-analysis-create-dialog-42.png" alt="flow analysis wizard prompting user to enter application parameters" width="600">}}
 
-### Flow Monitor Settings
-
-After you enter the settings, the flow analysis wizard prompts you to enter monitor settings, where you schedule the flow analysis and select sampling parameters.
+After you enter the application parameters, enter the monitor settings, including the sampling rate and time parameters.
 
 {{<figure src="/images/netq/flow-monitor-params.png" alt="flow analysis wizard prompting user to enter sampling and scheduling information" width="600">}}
+
+If you attempt to run a flow analysis that includes switches assigned a default, unmodified access profile, the process will fail. {{<link title="Credentials and Profiles" text="Create a unique access profile">}} (or update the default profile with unique credentials), then {{<link title="Switch Management/#assign-a-profile-to-a-switch" text="assign the profile">}} to the switches you want to include in the flow analysis.
 
 {{<notice warning>}}
 
@@ -45,13 +43,13 @@ After starting the flow analysis, a flow analysis card will appear on the NetQ W
 
 {{<figure src="/images/netq/flow-analysis-card.png" alt="flow analysis card showing that a flow analysis is in progress" width="550">}}
 
-View a previous flow analysis by selecting **Flow Analysis** and **View previous flow analysis**. 
+View a previous flow analysis by selecting **Flow analysis** and **View previous flow analysis**. 
 
 {{<figure src="/images/netq/flow-analysis-view-previous.png" alt="flow analysis menu with the option to view previous flow analysis highlighted" width="350">}}
 
 Select **View details** next to the name of the flow analysis to display the analysis dashboard. You can use this dashboard to view latency and buffer statistics for the monitored flow. If bi-directional monitoring was enabled, you can view the reverse direction of the flow by selecting the {{<img src="/images/netq/reverse-toggle.svg" height="18" width="18">}} icon. The following example shows flow data across a single path:
 
-{{<figure src="/images/netq/flow-analysis-dashboard.png" alt="flow analysis dashboard displaying flow data across a single path" width="800">}}
+{{<figure src="/images/netq/flow-analysis-dashboard.png" alt="flow analysis dashboard displaying flow data across a single path" width="1000">}}
 
 The dashboard header shows the monitored flow settings:
 
@@ -109,9 +107,9 @@ The percentages represent the amount of buffer space on the switch that the anal
 
 When packets matching the flow settings traverse multiple paths in the topology, the flow graph displays latency and buffer occupancy for each path:
 
-{{<figure src="/images/netq/flow-analysis-multipath-example-42.png" alt="flow graph displaying multiple paths along with latency and buffer-occupancy data along those paths" width="800">}}
+{{<figure src="/images/netq/flow-analysis-multipath-example-42.png" alt="flow graph displaying multiple paths along with latency and buffer-occupancy data along those paths" width="1000">}}
 
-You can switch between paths by clicking on an alternate path in the **Flow Graph** panel, or by clicking on an unselected path on the main analysis graph:
+You can switch between paths by clicking on an alternate path in the **Flow graph** panel, or by clicking on an unselected path on the main analysis graph:
 
 {{<figure src="/images/netq/flow-multipath-flowgraph-410.png" alt="flow graph panel highlighting a selected path with several unselected paths also displayed" width="200">}}
 
@@ -126,7 +124,7 @@ Some flows can still be analyzed if they traverse a network path that includes s
 - The unsupported device cannot be the initial ingress or terminating egress device in the path of the analyzed flow.
 - If there is more than one consecutive transit device in the path that lacks flow analysis support, the path discovery will terminate at that point in the topology and some devices will not be displayed in the flow graph.
 
-An unsupported device is represented in the flow analysis graph as a black bar lined with red x's  {{<img src="/images/netq/partial-path-unsupported-icon-42.png" height="18" width="18">}}. Flow statistics are not displayed for that device.
+An unsupported device is represented in the flow analysis graph as a black bar lined with red x's. Flow statistics are not displayed for that device.
 
 {{<figure src="/images/netq/partial-path-overview-42.png" alt="flow analysis graph showing an unsupported switch" width="900">}}
 
@@ -134,7 +132,7 @@ Unsupported devices are also designated in the flow graph panel:
 
 {{<figure src="/images/netq/partial-path-flow-graph-42.png" alt="flow graph panel with an unsupported switch" width="200">}}
 
-Selecting the unsupported device shows device statistics in the left panel if available to NetQ. Otherwise, the display will indicate why the device is not supported:
+Selecting the unsupported device displays device statistics in the left panel if they are available to NetQ. Otherwise, the display will indicate why the device is not supported:
 
 {{<figure src="/images/netq/partial-path-device-stats-unsupported-42.png" alt="a panel showing an unsupported device. The device is not supported because the CL version is not supported for flow analysis" width="400">}}
 
@@ -157,14 +155,14 @@ In this view, you can select additional categories to add to the chart:
 
 {{<figure src="/images/netq/device-stats-expanded-chart-stats-42.png" alt="expanded chart displaying latency and WJH data, with buffer occupancy and total packet unselected and therefore not dispayed" swidth="900">}}
 
-The **Flow Graph** panel allows you to access the topology view, where you can also click the paths and devices to view statistics. Click {{<img src="/images/netq/flow-view-in-topology-410.png" height="29" width="141">}} to switch to the topology view:
+The **Flow Graph** panel allows you to access the topology view, where you can also click the paths and devices to view statistics. Click **View in topology** to switch to the topology view.
 
 {{<figure src="/images/netq/flow-topology-view-410.png" alt="topology view showing both selected and unselected devices and their paths" width="600">}}
 
 
 ### View WJH Events
 
-Flow analysis monitors the path for WJH events and records any drops for the flow. Switches with WJH events recorded are represented in the flow analysis graph as a red bar with white stripes {{<img src="/images/netq/flow-analysis-wjh-event-icon-42.png" height="18" width="9">}}. Hover over the device to see a WJH event summary.
+Flow analysis monitors the path for WJH events and records any drops for the flow. Switches with WJH events recorded are represented in the flow analysis graph as a red bar with white stripes. Hover over the device to see a WJH event summary:
 
 {{<figure src="/images/netq/wjh-flow-graph-overview-42.png" alt="a user hovering over a device in the main flow analysis graph with a WJH event summary showing 94,300 total packet drops" width="900">}}
 

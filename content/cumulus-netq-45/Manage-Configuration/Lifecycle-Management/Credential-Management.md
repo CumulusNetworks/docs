@@ -5,10 +5,10 @@ weight: 640
 toc: 4
 ---
 
-Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles, as well as how to assign profiles to individual switches. 
+Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles. After you create a profile, {{<link title="Switch Management" text="assign it to individual switches">}} so that you can perform upgrades on them. 
 
 {{<notice note>}}
-By default, NVIDIA supplies two access profiles: Netq-default and Nvl4-Default. NVIDIA strongly recommends creating new access profiles with unique credentials. You cannot edit or delete default profiles.
+By default, NVIDIA supplies two access profiles: Netq-default and Nvl4-Default. NVIDIA strongly recommends creating new access profiles or updating the default profiles with unique credentials. You cannot delete default profiles.
 {{</notice>}}
 
 ## Create an Access Profile
@@ -60,7 +60,7 @@ Be sure to use credentials for an account that has permission to configure switc
 
 {{<notice tip>}}
 
-The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read [Cumulus Linux User Accounts]({{<ref "cumulus-linux-43/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts">}}).
+The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinux!* to *cumulus/cumulus* for releases 4.2 and later. For details, read [Cumulus Linux User Accounts]({{<ref "cumulus-linux-53/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts">}}).
 
 {{</notice>}}
 
@@ -121,8 +121,6 @@ You must have sudoer permission to properly configure switches when using the SS
 
 ## Edit Access Profiles
 
-Note that Netq-default and Nvl4-Default cannot be edited.
-
 {{<tabs "TabID175" >}}
 
 {{<tab "NetQ UI" >}}
@@ -133,7 +131,7 @@ Note that Netq-default and Nvl4-Default cannot be edited.
 
 3. Select the checkbox next to the profile you'd like to edit. Then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} Edit above the table.
 
-4. Make you edits, then click **Update**.
+4. Make your edits, then click **Update**.
 
 {{</tab>}}
 
@@ -178,7 +176,7 @@ You must have sudoer permission to properly configure switches when using the SS
 
 ## Delete Access Profiles
 
-Any profile that is currently assigned to a switch cannot be removed. You must assign a different profile to the switch before it's able to be deleted. Note that *Netq-default* and *Nvl4-Default* cannot be deleted. 
+Any profile that is currently assigned to a switch cannot be deleted. You must assign a different profile to the switch before you can delete the profile. Note that *Netq-default* and *Nvl4-Default* cannot be deleted. 
 
 {{<tabs "TabID247" >}}
 
@@ -239,3 +237,7 @@ BASIC                           cumulus          **************   Tue Apr 28 19:
 {{</tab>}}
 
 {{</tabs>}}
+
+## Related Information
+
+- {{<link title="Switch Management" text="Attach profiles to switches">}}

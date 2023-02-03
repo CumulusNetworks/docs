@@ -77,7 +77,7 @@ To upload missing **NetQ** images:
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**. Select the **Image Management** tab.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage switches**. Select the **Image management** tab.
 
 2. On the NetQ Images card, select *View # missing NetQ images* to see which images you need.
 
@@ -101,7 +101,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 8. Click **Done**.
 
-9. (Optional) Click the **Uploaded** tab to verify the image is in the repository.
+9. (Optional) Click the **Uploaded** tab to verify that the image is in the repository.
 
 10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
 

@@ -1,11 +1,11 @@
 ---
-title: Switch Inventory and Roles
+title: Switch Management
 author: NVIDIA
 weight: 650
 toc: 4
 ---
 
-Upon installation, lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.7.12 or later, SONiC 202012 and 202106, and NetQ Agent 4.1.0 or later in your network. You can assign network roles to switches and select switches for software installation and upgrades from this inventory listing.
+Upon installation, lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.7.12 or later, SONiC 202012 and 202106, and NetQ Agent 4.1.0 or later in your network. From this list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades.
 
 ## View the LCM Switch Inventory
 
@@ -78,6 +78,22 @@ This list is the starting point for network OS upgrades or NetQ installations an
 - {{<link title="Install NetQ Agents" text="Install NetQ on the switch">}}
 - {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
 
+## Assign a Profile to a Switch
+
+After creating {{<link title="Credentials and Profiles" text="access profiles">}} from your credentials, you can assign profiles to individual switches.
+
+{{<tabs "TabID85" >}}
+
+{{<tab "NetQ UI" >}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+{{</tab>}}
+
+{{</tabs>}}
+
 ## Role Management
 
 You can assign switches one of four roles: superspine, spine, leaf, and exit.
@@ -100,9 +116,7 @@ Role assignment is optional, but recommended. Using roles can prevent switches f
 
 4. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role**.
 
-5. Select the role that applies to the selected switch(es):
-
-    {{<figure src="/images/netq/switch-role-450.png" alt="dialog showing role options including superspine, leaf, spine, and exit" width="400">}}
+5. Select the role (superspine, leaf, spine, or exit) that applies to the selected switch(es).
 
 6. Click **Assign**.
 
@@ -198,7 +212,7 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 
 {{<tab "NetQ CLI" >}}
 
-You use the same command to assign a role as you use to change the role.
+You use the same command to both assign a role and change a role.
 
 For a single switch, run:
 

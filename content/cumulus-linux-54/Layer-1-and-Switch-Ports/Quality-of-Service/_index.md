@@ -1352,7 +1352,7 @@ Cumulus Linux supports adjusting the following traffic pools:
 | `roce-lossless` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossless mode. |
 
 {{%notice note%}}
-- You can only have a single lossless pool configured on the switch at a time. Configure either the `default-lossless` pool or the `roce-lossless` pool when RoCE is enabled.
+-  You can only have a single lossless pool configured on the switch at a time. Configure the `roce-lossless` pool when you are using RoCE, otherwise configure the `default-lossless` pool.
 
 - You can configure multiple lossy pools concurrently.
 {{%/notice%}}

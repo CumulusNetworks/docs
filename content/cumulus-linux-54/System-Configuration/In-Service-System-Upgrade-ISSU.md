@@ -93,19 +93,7 @@ Upgrade mode includes the following options:
 - **dry-run** provides information on the components you want to upgrade.
 
 {{%notice warning%}}
-Cumulus Linux 5.4 package upgrade `apt-get upgrade` does not support warm restart mode; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. The following table shows which upgrade paths support warm restart mode.
-
-| From   | To    | Warm Restart Mode |
-|------- | ----- | ----------------- |
-| 5.0.0  | 5.3.1 | Yes               |
-| 5.1.0  | 5.3.1 | Yes               |
-| 5.2.0  | 5.3.1 | Yes               |
-| 5.3.0  | 5.3.1 | Yes               |
-| 5.0.0  | 5.4.0 | NO                |
-| 5.1.0  | 5.4.0 | NO                |
-| 5.2.0  | 5.4.0 | NO                |
-| 5.3.0  | 5.4.0 | NO                |
-| 5.3.1  | 5.4.0 | NO                |
+Cumulus Linux 5.4 package upgrade `apt-get upgrade` does not support warm restart mode; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart mode.
 {{%/notice%}}
 
 The following command upgrades all the system components:

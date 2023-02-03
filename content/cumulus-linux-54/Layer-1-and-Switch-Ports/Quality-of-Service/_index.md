@@ -469,6 +469,10 @@ Cumulus Linux supports the following congestion control mechanisms:
 - Priority Flow Control (PFC), which is an upgrade of Pause Frames that IEEE 802.1bb defines, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value to pause, while other COS values or queues continue transmitting.
 - Explicit Congestion Notification (ECN). Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
 
+{{%notice note%}}
+You can not configure link pause and PFC on the same port.
+{{%/notice%}}
+
 ### Flow Control Buffers
 
 Before configuring pause frames or PFC, configure the buffer pool memory allocated for lossless and lossy flows. The following example sets each to fifty percent:
@@ -1347,6 +1351,12 @@ Cumulus Linux supports adjusting the following traffic pools:
 | `roce-lossy` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossy mode. |
 | `roce-lossless` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossless mode. |
 
+{{%notice note%}}
+- You can only have a single lossless pool configured on the switch at a time. Configure either the `default-lossless` pool or the `roce-lossless` pool when RoCE is enabled.
+
+- You can configure multiple lossy pools concurrently.
+{{%/notice%}}
+
 You configure a traffic pool by associating switch priorities and defining the buffer memory percentages allocated to the pools. The following example associates switch priority 2 and allocates a memory percentage of 30 for the `mc-lossy` pool:
 
 {{< tabs "TabID1166 ">}}
@@ -1411,28 +1421,52 @@ egress_buffer.cos_2.mc.dynamic_quota = ALPHA_8
 {{< /tab >}}
 {{< /tabs >}}
 
-For additional `default-lossless` and RoCE pool examples, see {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}} and {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}}.
+For additional `default-lossless` and RoCE pool examples, see {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}} and {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}}. You can view traffic-pool configuration with the `nv show qos traffic-pool <pool name>` command:
+
+```
+cumulus@switch:~$  nv show qos traffic-pool default-lossy
+                   applied
+-----------------  -------
+memory-percent     80     
+[switch-priority]  0      
+[switch-priority]  1      
+[switch-priority]  2      
+[switch-priority]  3      
+[switch-priority]  4      
+[switch-priority]  5      
+[switch-priority]  6      
+[switch-priority]  7      
+```
 
 ## Advanced Buffer Tuning
 
-You can tune advanced buffer properties on top of the supported {{<link title="#Traffic Pools" text="traffic pool">}} configurations.
+You can use NVUE commands to tune advanced buffer properties in addition to the supported {{<link title="#Traffic Pools" text="traffic pool">}} configurations. Advanced buffer configuration can override the base traffic-pool profiles configured on the system.
 
 {{%notice note%}}
 You can only configure advanced buffer settings for the `default-global` profile.
 {{%/notice%}}
 
+### Configure Buffer Regions
+
 You can adjust advanced buffer settings with the following NVUE command:
 
 - `nv set qos advance-buffer-config default-global <buffer> <priority-group | property> <value>`
 
-You can adjust settings for the following buffers, priority groups, and properties:
+You can adjust settings for the following supported buffers, priority groups, traffic classes, and properties:
 
-|Buffers | Priority Groups | Properties |
+|Buffers | Priority Groups or <br> Traffic Classes | Supported Properties |
 |------------- |----------- | ---------------- |
-| <ul>`ingress-lossy-buffer`<br>`ingress-lossless-buffer`<br>`egress-lossless-buffer` | <ul>`bulk`<br>`control`<br>`service1`<br>`service2`<br>`service3`<br>`service4`<br>`service5`<br>`service6` | <ul>`name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values.
-| `egress-lossy-buffer` | N/A | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority` - Multicast switch priorities.</ul>
+|`ingress-lossy-buffer` | <ul>**Priority Groups:**<br>`bulk`<br>`control`<br>`service[1-6]` | <ul>`name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values.
+|`ingress-lossless-buffer` | <ul>**Priority Groups:**<br>`bulk`<br>`control`<br>`service[1-6]` | <ul>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
+|`egress-lossless-buffer` | <ul>**Priority Groups:**<br>`bulk`<br>`control`<br>`service[1-6]`| <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> | 
+|`egress-lossy-buffer` | <ul>**Traffic Classes:**<br>`traffic-class [0-7]` | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority` - Multicast switch priorities.</ul> |
 
-You can adjust ingress and egress pool profile properties with the following NVUE commands:
+{{%notice note%}}
+Configure `shared-bytes` for buffer regions mapped to static service pools, and `shared-alpha` for buffer regions mapped to dynamic service pools.
+{{%/notice%}}
+### Configure Service Pools
+
+You can configure ingress and egress service pool profile properties with the following NVUE commands:
 
 - `nv set qos advance-buffer-config default-global ingress-pool <pool-id> <property> <value>`
 - `nv set qos advance-buffer-config default-global egress-pool <pool-id> <property> <value>`
@@ -1447,6 +1481,28 @@ You can adjust the following properties for each pool:
 | `reserved ` |The reserved buffer allocation in bytes. |
 | `shared-alpha ` | The dynamic shared buffer alpha allocation. |
 | `shared-bytes` | The static shared buffer allocation in bytes. |
+
+{{%notice note%}}
+NVUE presents a warning if you attempt to apply incompatible traffic pool and advanced buffer configurations. 
+{{%/notice%}}
+
+A relationship exists between the default traffic pools and the advanced buffer configuration options. For example, to assign 20 percent of memory to a new static pool you must make 20 percent of memory available from the configured traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to allocate the memory to `ingress-pool 3`:
+
+```
+cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 80
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 memory-percent 20
+cumulus@switch:~$ nv config apply
+```
+
+You can view advanced buffer configuration with the `nv show qos advance-buffer-config default-global <buffer/pool name>` command:
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-pool
+Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
+-------  --------  --------------  -------  --------  ------------  ------------
+0                  80              dynamic                                      
+3                  20    
+```
 
 ## Syntax Checker
 

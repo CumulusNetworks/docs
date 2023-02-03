@@ -26,7 +26,7 @@ Early Access features are now called Beta features.
 
 {{%notice warning%}}
 - If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the new port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
-- Cumulus Linux 5.4 package upgrade does not support warm restart mode; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="In-Service-System-Upgrade-ISSU/#upgrade-mode" text="In Service System Upgrade (ISSU) upgrade mode">}} for important information about package upgrade and warm restart mode.
+- Cumulus Linux 5.4 package upgrade does not support warm restart mode; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart mode.
 {{%/notice%}}
 
 ### New Features and Enhancements

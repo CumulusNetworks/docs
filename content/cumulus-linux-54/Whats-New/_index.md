@@ -36,21 +36,22 @@ If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and ear
 {{%/notice%}}
 
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches
-- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (in Beta)
+- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (Beta)
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="User-Accounts" text="User management">}} commands
-  - {{<link url="TACACS" text="TACACS+">}} commands (in Beta)
+  - {{<link url="TACACS" text="TACACS+">}} commands (Beta)
   - {{<link url="Supported-Route-Table-Entries/#supported-route-entries" text="ASIC Resource Slicing">}} (KVD) commands
   - {{<link url="Link-Layer-Discovery-Protocol/#set-lldp-mode" text="LLDP commands">}} to send either CDP frames only or LLDP frames only
   - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#8021p-or-dscp-for-marking" text="traffic remarking">}}, and {{<link url="Quality-of-Service/#advanced-buffer-tuning" text="advanced buffer configuration">}}
   - {{<link url="NVUE-CLI/#search-for-a-specific-configuration" text="Search for a specific configuration">}} in the entire object model
   - {{<link url="NVUE-CLI/#configure-auto-save" text="Auto save configuration">}} option
   - {{<link url="NVUE-CLI/#add-configuration-apply-messages" text="Configuration apply messages">}}
-  - New BGP show commands to show {{<link url="Troubleshooting-BGP/#bgp-update-groups" text="update groups">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="next hop">}} details
+  - New BGP show commands to show {{<link url="Troubleshooting-BGP/#bgp-update-groups" text="update groups">}}
   - Updated BGP {{<link url="Virtual-Routing-and-Forwarding-VRF/#verify-route-leaking-configuration" text="route import">}} show commands now show operational data
   - New {{<link url="Troubleshooting-EVPN" text="EVPN show commands">}} to show {{<link url="Troubleshooting-EVPN#show-the-vni-evpn-routing-table" text="EVPN local RIB">}} and {{<link url="Troubleshooting-EVPN/#show-evpn-vnis" text="VNI">}} information
   - The `nv set evpn evi`, `nv unset evpn evi`, and `nv show evpn evi` commands are now `nv set evpn vni`, `nv unset evpn vni`, and `nv show evpn vni`
   - Obfuscated passwords to protect passwords from casual viewing
+  - The `nv show config` command shows NVUE version information in addition to the saved configuration
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

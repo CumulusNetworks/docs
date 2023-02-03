@@ -484,6 +484,10 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-pro
 
 For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-53/api/index.html" text="NVUE API documentation.">}}
 
+## Considerations
+
+Unlike the NVUE CLI, the NVUE API does not support configuring a plain text password for a user account; you must configure a hashed password for a user account with the NVUE API.
+
 ## Related Information
 
 - {{<exlink url="https://docs.nginx.com/" text="NGINX documentaion">}}

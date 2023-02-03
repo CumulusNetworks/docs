@@ -41,8 +41,9 @@ cumulus@switch:~$ sudo -E apt-get install tacplus-client
 After you install the required TACACS+ packages, configure the following required settings on the switch (the TACACS+ client).
 - Set the IP address or hostname of at least one TACACS+ server.
 - Set the secret (key) shared between the TACACS+ server and client.
+- Set the VRF to the management VRF (`mgmt`), which is the default VRF on the switch.
 
-If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users and enable TACACS+.
+If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users, and enable TACACS+.
 
 {{< tabs "TabID31 ">}}
 {{< tab "NVUE Commands ">}}
@@ -53,12 +54,14 @@ The following example commmands set:
 - The TACACS+ server priority to 5.
 - The IP address of the server to 192.168.0.30.
 - The secret to `mytacacskey`.
+- The VRF to `mgmt`.
 - The authentication order so that TACACS+ authentication has priority over local (the lower number has priority).
 - TACACS+ to enabled.
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
-cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey 
+cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey
+cumulus@switch:~$ nv set system aaa tacacs vrf mgmt 
 cumulus@switch:~$ nv set system aaa authentication-order 5 tacacs
 cumulus@switch:~$ nv set system aaa authentication-order 10 local
 cumulus@switch:~$ nv set system aaa tacacs enable on
@@ -96,7 +99,17 @@ cumulus@switch:~$ nv config apply
    server=192.168.1.30
    ```
 
-2. Restart `auditd`:
+2. Uncomment the `vrf=mgmt` line:
+
+   ```
+   # If the management network is in a vrf, set this variable to the vrf name.
+   # This would usually be "mgmt"
+   # When this variable is set, the connection to the TACACS+ accounting servers
+   # will be made through the named vrf.
+   vrf=mgmt
+   ```
+
+3. Restart `auditd`:
 
    ```
    cumulus@switch:~$ sudo systemctl restart auditd
@@ -116,7 +129,6 @@ You can configure the following optional TACACS+ settings:
 <!-- vale on -->
 - The users you do not want to send to the TACACS+ server for authentication; for example, local user accounts that exist on the switch, such as the cumulus user.
 - A separate home directory for each TACACS+ user when the TACACS+ user first logs in. By default, the switch uses the home directory in the mapping accounts in `/etc/passwd`. If the home directory does not exist, the `mkhomedir_helper` program creates it. This option does not apply to accounts with restricted shells (users mapped to a TACACS privilege level that has enforced per-command authorization).
-- The VRF in which you want TACACS+ to run. Typically, you configure the TACACS+ client to establish connections with TACACS+ servers only through ports that belong to the {{<link url="Management-VRF" text="management VRF">}}, which is the default VRF on the switch.
 
 <!-- - The output debugging information level through syslog(3) to use for troubleshooting. You can specify a value between 0 and 2. The default is 0. A value of 1 enables debug logging. A value of 2 increases the verbosity of some debug logs.
 
@@ -127,10 +139,9 @@ You can configure the following optional TACACS+ settings:
 {{< tabs "TabID111 ">}}
 {{< tab "NVUE Commands ">}}
 
-The following example commands set the VRF to `mgmt`, the timeout to 10 seconds and the TACACS+ server port to 32:
+The following example commands set the timeout to 10 seconds and the TACACS+ server port to 32:
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs vrf mgmt
 cumulus@switch:~$ nv set system aaa tacacs timeout 10
 cumulus@switch:~$ nv set system aaa tacacs server 5 port 32
 cumulus@switch:~$ nv config apply
@@ -155,22 +166,16 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-- To set the VRF, the server port (use the format `server:port`), source IP address, authentication type, and enable Cumulus Linux to create a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` file, then restart `auditd`.
+- To set the server port (use the format `server:port`), source IP address, authentication type, and enable Cumulus Linux to create a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` file, then restart `auditd`.
 - To set the timeout and the usernames to exclude from TACACS+ authentication, edit the `/etc/tacplus_nss.conf` file (you do not need to restart `auditd`).
 
-The following example sets the VRF to `mgmt`, the server port to 32, the authentication type to CHAP, the source IP address to 10.10.10.1, and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
+The following example sets the server port to 32, the authentication type to CHAP, the source IP address to 10.10.10.1, and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:
 
 ```
 cumulus@switch:~$ sudo nano /etc/tacplus_servers
 ...
 secret=tacacskey
 server=192.168.0.30:32
-...
-# If the management network is in a vrf, set this variable to the vrf name.
-# This would usually be "mgmt"
-# When this variable is set, the connection to the TACACS+ accounting servers
-# will be made through the named vrf.
-vrf=mgmt
 ...
 # Sets the IPv4 address used as the source IP address when communicating with
 # the TACACS+ server.  IPv6 addresses are not supported, nor are hostnames.

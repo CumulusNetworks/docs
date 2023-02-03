@@ -16,7 +16,7 @@ To upload missing **network OS** images:
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**. Select the **Image Management** tab.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage switches**. Select the **Image management** tab.
 
 2. On the Cumulus Linux Images card, select *View # missing CL images* to see which images you need.
 

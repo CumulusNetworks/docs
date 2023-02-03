@@ -43,9 +43,9 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 3. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-4. Verify or add {{<link title="Switch Credentials" text="switch access credentials">}}.
+4. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-5. (Optional) Assign a {{<link  title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch.
+5. (Optional) Assign a {{<link  title="Switch Inventory and Roles/#assign-switch-roles" text="role">}} to each switch.
 
 {{</tab>}}
 
@@ -58,9 +58,9 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 2. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}. 
 
-3. Verify or add {{<link title="Switch Credentials" text="switch access credentials">}}.
+3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-4. (Optional) Assign a {{<link title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch.
+4. (Optional) Assign a {{<link title="Switch Inventory and Roles/#assign-switch-roles" text="role">}} to each switch.
 
 {{</tab>}}
 
@@ -94,7 +94,7 @@ If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetw
 
 8. Select either a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default image">}} or custom version.
 
-9. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
+9. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
 10. Click **Next**.
 
@@ -239,7 +239,7 @@ Click **Remove** if you decide to use a different file or want to use IP address
 
     {{</tabs>}}
 
-5. Note that you can use the switch access credentials defined in {{<link title="Switch Credentials">}} to access these switches. If you have issues accessing the switches, you might need to update your credentials.
+5. Note that you can use the switch access credentials defined in {{<link title="Credentials and Profiles">}} to access these switches. If you have issues accessing the switches, you might need to update your credentials.
 
 6. Click **Next**.
 

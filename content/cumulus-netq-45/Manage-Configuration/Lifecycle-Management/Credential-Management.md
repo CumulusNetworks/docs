@@ -1,5 +1,5 @@
 ---
-title: Switch Credentials
+title: Credentials and Profiles
 author: NVIDIA
 weight: 640
 toc: 4

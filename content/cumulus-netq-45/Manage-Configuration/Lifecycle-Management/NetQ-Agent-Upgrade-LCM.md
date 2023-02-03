@@ -25,15 +25,15 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 2. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-3. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
+3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-1. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
+1. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-2. Configure {{<link title="Switch Credentials/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
+2. Configure {{<link title="Credentials and Profiles/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
 3. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
@@ -49,7 +49,7 @@ After you complete the preparation steps, upgrade the NetQ Agents:
 
 {{<tab "NetQ UI" >}}
 
-1. From the LCM dashboard, select the **Switch Management** tab. Locate the Switches card and click **Manage**.
+1. From the LCM dashboard, select the **Switch management** tab. Locate the Switches card and click **Manage**.
 
 2. Select the switches you want to upgrade.
 

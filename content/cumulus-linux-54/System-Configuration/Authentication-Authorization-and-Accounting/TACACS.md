@@ -154,7 +154,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-- To set server port (use the format `server:port`), source IP, authentication type, and enable creation of a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` file, then restart `auditd`.
+- To set server port (use the format `server:port`), source IP address, authentication type, and enable creation of a separate home directory for each TACACS+ user, edit the `/etc/tacplus_servers` file, then restart `auditd`.
 - To set the timeout and the usernames to exclude from TACACS+ authentication, edit the `/etc/tacplus_nss.conf` file (you do not need to restart `auditd`).
 
 The following example sets the server port to 32, the authentication type to CHAP, the source IP address to 10.10.10.1, and enables Cumulus Linux to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in:

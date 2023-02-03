@@ -27,7 +27,6 @@ You can restart the switch in one of the following modes.
 
 {{%notice note%}}
 - Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
-- Due to port configuration changes, when you upgrade to Cumulus Linux 5.4 from a previous Cumulus Linux release with package installation (`apt-upgrade`) and use warm boot, the ports take some time to come up (approximately one to two minutes depending on the Spectrum ASIC) and Cumulus Linux generates a cl-support file. Port initialization does recover and there is no impact to the switch.
 {{%/notice%}}
 
 The following command restarts the system in cold mode:
@@ -64,10 +63,10 @@ cumulus@switch:~$ sudo csmgrctl -f
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command restarts the system in warm mode.
+The following command restarts the system in warm restart mode.
 
 {{< notice warning >}}
-Warm boot resets any manually configured FEC settings.
+Warm restart mode resets any manually configured FEC settings.
 {{< /notice >}}
 
 {{< tabs "76 ">}}
@@ -92,6 +91,10 @@ Upgrade mode updates all the components and services on the switch to the latest
 Upgrade mode includes the following options:
 - **all** runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
 - **dry-run** provides information on the components you want to upgrade.
+
+{{%notice warning%}}
+Cumulus Linux 5.4 package upgrade (`apt-get upgrade`) does not support warm restart to finalize the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
+{{%/notice%}}
 
 The following command upgrades all the system components:
 

@@ -150,12 +150,12 @@ cumulus@switch:~$ ifreload -a
 {{< /tabs >}}
 
 {{%notice note%}}
-NVIDIA Spectrum 1 switches support a maximum of 10000 VLAN elements. NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements when {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm boot mode ">}} is `off` or 7934 VLAN elements when warm boot mode is `on`.
+NVIDIA Spectrum 1 switches support a maximum of 10000 VLAN elements. NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements when {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm restart mode ">}} is `off` or 7934 VLAN elements when warm restart mode is `on`.
 Cumulus Linux calculates the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 2600 VLANs totals 15600 VLAN elements.
 
 On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridges and want to use more VLAN elements than the default, you must update the number of VLAN elements in the `/etc/mlx/datapath/broadcast_domains.conf` file.
-  - To specify the total number of bridge domains you want to use, uncomment and edit the `broadcast_domain.max_vlans` parameter. The default value is 6143 when warm boot mode is `off` or 4096 when warm boot mode is `on`.
-  - To specify the total number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872 when warm boot mode is `off` or 1872 when warm boot mode is `on`.
+  - To specify the total number of bridge domains you want to use, uncomment and edit the `broadcast_domain.max_vlans` parameter. The default value is 6143 when warm restart mode is `off` or 4096 when warm restart mode is `on`.
+  - To specify the total number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872 when warm restart mode is `off` or 1872 when warm restart mode is `on`.
 
   You must restart `switchd` with the `systemctl restart switchd` command to apply the configuration.
 

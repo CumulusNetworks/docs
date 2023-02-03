@@ -1918,7 +1918,7 @@ cumulus@switch:~$ sudo systemctl reload switchd.service
 {{< /tab >}}
 {{< /tabs >}}
 
-## Spanning Tree and PTP
+### Spanning Tree and PTP
 
 PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; Events such as a STP topology changes (where ports temporarily go into the blocking state) can cause interruptions to PTP communications.
 

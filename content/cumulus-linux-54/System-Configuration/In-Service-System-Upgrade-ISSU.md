@@ -63,10 +63,10 @@ cumulus@switch:~$ sudo csmgrctl -f
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command restarts the system in warm mode.
+The following command restarts the system in warm restart mode.
 
 {{< notice warning >}}
-Warm boot resets any manually configured FEC settings.
+Warm restart mode resets any manually configured FEC settings.
 {{< /notice >}}
 
 {{< tabs "76 ">}}
@@ -95,17 +95,17 @@ Upgrade mode includes the following options:
 {{%notice warning%}}
 Cumulus Linux 5.4 package upgrade `apt-get upgrade` does not support warm restart mode; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. The following table shows which upgrade paths support warm restart mode.
 
-| From   | To    | Warm Boot |
-|------- | ----- | --------- |
-| 5.0.0  | 5.3.1 | Yes       |
-| 5.1.0  | 5.3.1 | Yes       |
-| 5.2.0  | 5.3.1 | Yes       |
-| 5.3.0  | 5.3.1 | Yes       |
-| 5.0.0  | 5.4.0 | NO        |
-| 5.1.0  | 5.4.0 | NO        |
-| 5.2.0  | 5.4.0 | NO        |
-| 5.3.0  | 5.4.0 | NO        |
-| 5.3.1  | 5.4.0 | NO        |
+| From   | To    | Warm Restart Mode |
+|------- | ----- | ----------------- |
+| 5.0.0  | 5.3.1 | Yes               |
+| 5.1.0  | 5.3.1 | Yes               |
+| 5.2.0  | 5.3.1 | Yes               |
+| 5.3.0  | 5.3.1 | Yes               |
+| 5.0.0  | 5.4.0 | NO                |
+| 5.1.0  | 5.4.0 | NO                |
+| 5.2.0  | 5.4.0 | NO                |
+| 5.3.0  | 5.4.0 | NO                |
+| 5.3.1  | 5.4.0 | NO                |
 {{%/notice%}}
 
 The following command upgrades all the system components:

@@ -625,7 +625,9 @@ The following example commands delete the PTP interfaces `swp3s0`,
     cumulus@switch:~$ net pending
     cumulus@switch:~$ net commit
 
-## Use NTP in a DHCP Environment
+## Considerations
+
+### Use NTP in a DHCP Environment
 
 If you use DHCP and want to specify your NTP servers, you must specify
 an alternate configuration file for NTP.
@@ -674,12 +676,18 @@ configuration file.
 
 {{%/notice%}}
 
-## System Clock and NCLU Commands
+### System Clock and NCLU Commands
 
 If you provision a new switch without setting the system clock (manually
 or with NTP or PTP), the NCLU `net commit` command fails when the system
 clock is earlier than the modification date of configuration files. Make
 sure to set the system clock on the switch.
+
+### Spanning Tree and PTP
+
+PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; events such as a STP topology changes (where ports temporarily go into the blocking state) can cause interruptions to PTP communications.
+
+If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.
 
 ## Related Information
 

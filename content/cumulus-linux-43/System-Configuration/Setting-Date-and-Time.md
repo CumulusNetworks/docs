@@ -639,6 +639,14 @@ cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
 
+## Considerations
+
+### Spanning Tree and PTP
+
+PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; events such as a STP topology changes (where ports temporarily go into the blocking state) can cause interruptions to PTP communications.
+
+If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.
+
 ## Related Information
 
 - {{<exlink url="http://www.debian.org/doc/manuals/system-administrator/ch-sysadmin-time.html" text="Debian System Administrator's Manual - Time">}}

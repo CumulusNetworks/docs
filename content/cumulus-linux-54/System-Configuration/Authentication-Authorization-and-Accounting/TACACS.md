@@ -41,7 +41,7 @@ cumulus@switch:~$ sudo -E apt-get install tacplus-client
 After you install the required TACACS+ packages, configure the following required settings on the switch (the TACACS+ client).
 - Set the IP address or hostname of at least one TACACS+ server.
 - Set the secret (key) shared between the TACACS+ server and client.
-- Set the VRF to the management VRF (`mgmt`), which is the default VRF on the switch.
+- Set the VRF you want to use to communicate with the TACACS+ server. This is typically the management VRF (`mgmt`), which is the default VRF on the switch.
 
 If you use NVUE commands to configure TACACS+, you must also set the priority for the authentication order for local and TACACS+ users, and enable TACACS+.
 

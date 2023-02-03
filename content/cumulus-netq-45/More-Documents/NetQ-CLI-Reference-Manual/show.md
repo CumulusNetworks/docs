@@ -754,7 +754,7 @@ spine01           swp53s2    module_temperature   {‘degree_c’: 85,     {‘d
 None
 
 - - -
-
+<!--
 ## netq show ecmp
 
 ### Syntax
@@ -811,6 +811,7 @@ None
 
 ### Related Commands
 - - -
+-->
 ## netq show ethtool-stats
 
 Displays transmit and receive statistics for network interfaces on one or all devices, including frame errors, ACL drops, buffer drops, and more. You can filter the output by device and view the statistics for a time in the past.
@@ -2186,7 +2187,7 @@ nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-2
 - ```netq show kubernetes```
 
 - - -
-
+<!--
 ## netq show line-utilization
 
 ### Syntax
@@ -2216,7 +2217,7 @@ None
 
 ### Related Commands
 - - -
-
+-->
 ## netq show lldp
 
 Displays the health of all LLDP sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter the output to show sessions for a particular peer interface port. The output provides the following for each session:

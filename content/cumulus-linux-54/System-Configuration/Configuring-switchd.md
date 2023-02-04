@@ -121,7 +121,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
 ```
 
-The following table describes the `/etc/cumulus/switchd.conf` parameters and indicates if you need to restart or reload `switchd`
+The following table describes the `/etc/cumulus/switchd.conf` file parameters and indicates if you need to restart or reload `switchd`
 for the changes to take effect when you update the setting.
 
 {{%notice warning%}}
@@ -246,3 +246,7 @@ cumulus@switch:~$ nv show system global reserved vlan internal
 -----  -----------  ---------  -------------------
 range  4064-4094    4064-4094  Reserved Vlan range
 ```
+
+{{%notice note%}}
+In addition to restarting `switchd` when you change certain `/etc/cumulus/switchd.conf` file parameters manually, you also need to restart `switchd` whenever you modify a `switchd` hardware configuration file (any `*.conf` file that requires making a change to the switching hardware, such as `/etc/cumulus/datapath/traffic.conf`). You do not have to restart the `switchd` service when you update a network interface configuration (for example, when you edit the `/etc/network/interfaces` file).
+{{%/notice%}}

@@ -572,10 +572,6 @@ The following table describes the TACACS+ client configuration files that Cumulu
 
 ## Considerations
 
-### Package Upgrade and NVUE Configuration
-
-After you upgrade to Cumulus Linux 5.4 with a package upgrade (`apt-upgrade`), the first time you run the NVUE `nv config apply` command, NVUE overrides the existing TACACS+ configuration. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you run NVUE commands to configure TACACS+.
-
 <!--### TACACS+ Client Is only Supported through the Management Interface
 
 The TACACS+ client is only supported through the management interface on the switch: eth0, eth1, or the VRF management interface. The TACACS+ client is not supported through bonds, switch virtual interfaces (SVIs), or switch port interfaces (swp).-->

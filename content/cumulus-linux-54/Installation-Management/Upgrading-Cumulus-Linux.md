@@ -209,7 +209,7 @@ To upgrade the switch:
   | From   | To   | Warm Restart Mode |
   |------- | ---- | ----------------- |
   | 5.0.0 - 5.3.0 | 5.3.1 | Yes       |
-  | 5.0.0 - 5.3.1 | 5.4.0 | NO        |
+  | 5.0.0 - 5.3.1 | 5.4.0 | No        |
 
 - If you configured Cumulus Linux with NVUE in a previous release, the first time you run the NVUE `nv config apply` command after upgrading to Cumulus Linux 5.4, NVUE might override the existing configuration. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you either:
    - Run NVUE commands to configure any features you configured with NVUE in a previous release.

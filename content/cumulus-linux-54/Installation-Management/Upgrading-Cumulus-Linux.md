@@ -286,6 +286,10 @@ To upgrade the switch using package upgrade:
 
 6. Verify correct operation with the old configurations on the new version.
 
+{{%notice note%}}
+Cumulus Linux 5.4 package upgrade affects NVUE TACACS+ configuration. If you configured TACACS+ in a previous release, refer to {{<link url="TACACS#package-upgrade-and-nvue-configuration" text="Package Upgrade and NVUE Configuration">}} for important information about package upgrade and TACACS+.
+{{%/notice%}}
+
 ### Upgrade Notes
 
 *Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.0.0 and run the `sudo -E apt-get upgrade` command on that switch, the packages upgrade to the latest releases in the latest 5.x release.

@@ -226,85 +226,51 @@ role             system-admin  system-admin
 enable           on            on  
 ```
 
-## Enable Remote Access for a root User
+## Enable the root User
 
-The root user does not have a password and cannot log into a switch using SSH. This default account behavior is consistent with Debian. To connect to a switch using the root account, you can do one of the following:
+The root user does not have a password and cannot log into a switch using SSH. This default account behavior is consistent with Debian.
 
-- Generate an SSH key
-- Set a password
+### Enable Console Access
 
-### Generate an SSH Key for the root Account
-
-1. In a terminal on your host system (not the switch), check to see if a key already exists:
-
-    ```
-    root@host:~# ls -al ~/.ssh/
-    ```
-
-    The name of the key is similar to `id_dsa.pub`, `id_rsa.pub`, or `id_ecdsa.pub`.
-
-2. If a key does not exist, generate a new one by first creating the RSA key pair:
-
-    ```
-    root@host:~# ssh-keygen -t rsa
-    ```
-
-3. At the prompt, enter a file in which to save the key (`/root/.ssh/id_rsa`). Press Enter to use the home directory of the root user or provide a different destination.
-
-4. At the prompt, enter a passphrase (empty for no passphrase). This is optional but it does provide an extra layer of security.
-
-   The public key is now located in `/root/.ssh/id_rsa.pub`. The private key (identification) is now located in `/root/.ssh/id_rsa`.
-
-5. Copy the public key to the switch. SSH to the switch as the cumulus user, then run:
-
-    ```
-    cumulus@switch:~$ sudo mkdir -p /root/.ssh
-    cumulus@switch:~$ echo <SSH public key string> | sudo tee -a /root/.ssh/authorized_keys
-    ```
-
-### Set the root User Password
-
-{{< tabs "TabID81 ">}}
-{{< tab "NVUE Commands ">}}
+To log into the switch using root from the console, you must set the password for the root account: 
 
 ```
-cumulus@switch:~$ nv set system aaa user root password
+cumulus@switch:~$ sudo passwd root
 Enter new password:
 ...
-cumulus@switch:~$ nv config apply
 ```
 
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
+### Enable SSH Access
 
-1. Run the following command:
+To log into the switch using root with SSH, either:
+- Install an SSH authorized key; refer to {{<link url="SSH-for-Remote-Access#install-an-authorized-ssh-key" text="Install an Authorized SSH Key">}}.
+- Follow these steps to set a password and enable password authentication for root in `sshd`:
+  
+  1. Run the following command:
+     ```
+     cumulus@switch:~$ sudo passwd root 
+     ```
 
-    ```
-    cumulus@switch:~$ sudo passwd root
-    Enter new password:
-    ...
-    ```
+  2. Change the `PermitRootLogin` setting in the `/etc/ssh/sshd_config` file from `without-password` to `yes`:
 
-2. Change the `PermitRootLogin` setting in the `/etc/ssh/sshd_config` file from *without-password* to *yes*.
+     ```
+     cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
+     ...
+     # Authentication: 
 
-    ``` 
-    cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
-    ...
-    # Authentication:
-    LoginGraceTime 120
-    PermitRootLogin yes
-    StrictModes yes
-    ...  
-    ```
+     LoginGraceTime 120 
 
-3. Restart the `ssh` service:
+     PermitRootLogin yes 
 
-    ```
-    cumulus@switch:~$ sudo systemctl reload ssh.service
-    ```
+     StrictModes yes
+     ...
+     ```
 
-{{< /tab >}}
-{{< /tabs >}}
+  3. Restart the `ssh` service:
+
+     ```
+     cumulus@switch:~$ sudo systemctl reload ssh.service
+     ```
 
 ## Related Information
 

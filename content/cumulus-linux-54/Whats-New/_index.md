@@ -27,7 +27,6 @@ Early Access features are now called Beta features.
 {{%notice warning%}}
 - If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the new port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
 - Cumulus Linux 5.4 package upgrade (`apt-upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
-- Cumulus Linux 5.4 package upgrade might affect NVUE configuration. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and NVUE-configured features in a previous release.
 {{%/notice%}}
 
 ### New Features and Enhancements
@@ -442,7 +441,7 @@ nv unset system aaa tacacs vrf
 {{< /tabs >}}
   
 {{%notice info%}}
-Cumulus Linux 5.4 includes the NVUE object model. After you upgrade to Cumulus Linux 5.4, running NVUE configuration commands replaces the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf` and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
+Cumulus Linux 5.4 includes the NVUE object model. After you upgrade to Cumulus Linux 5.4, running NVUE configuration commands replaces the configuration in certain files and removes configuration you add manually (including TACACS, SNMP and any other switch configuration) or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 
 - Update your automation tools to use NVUE.
 - {{<link url="NVIDIA-User-Experience-NVUE/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.

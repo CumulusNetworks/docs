@@ -27,7 +27,7 @@ Early Access features are now called Beta features.
 {{%notice warning%}}
 - If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the new port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
 - Cumulus Linux 5.4 package upgrade (`apt-upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
-- Cumulus Linux 5.4 package upgrade affects NVUE TACACS+ configuration. Refer to {{<link url="TACACS#package-upgrade-and-nvue-configuration" text="Package Upgrade and NVUE Configuration">}} for important information about package upgrade and TACACS+.
+- Cumulus Linux 5.4 package upgrade might affect NVUE configuration. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and NVUE-configured features in a previous release.
 {{%/notice%}}
 
 ### New Features and Enhancements

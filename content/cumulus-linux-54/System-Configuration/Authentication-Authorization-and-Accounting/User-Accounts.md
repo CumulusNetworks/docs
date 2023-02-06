@@ -251,17 +251,14 @@ To log into the switch using root with SSH, either:
      cumulus@switch:~$ sudo passwd root 
      ```
 
-  2. Change the `PermitRootLogin` setting in the `/etc/ssh/sshd_config` file from `without-password` to `yes`:
+  2. In the `/etc/ssh/sshd_config` file, change the `PermitRootLogin` setting from `without-password` to `yes`:
 
      ```
      cumulus@switch:~$ sudo nano /etc/ssh/sshd_config
      ...
      # Authentication: 
-
      LoginGraceTime 120 
-
      PermitRootLogin yes 
-
      StrictModes yes
      ...
      ```

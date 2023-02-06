@@ -621,7 +621,7 @@ Edit the `/etc/cumulus/switchd.conf` file and add the `interface.<interface>.ena
 cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
 interface.swp1.enable_media_depended_linkup_flow=TRUE
-interface.swp1.enable_port_short_tuning=TRUE
+interface.swp1.enable_short_tuning=TRUE
 ```
 
 Reload `switchd` with the `sudo systemctl reload switchd.service` command.

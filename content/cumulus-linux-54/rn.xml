@@ -7,15 +7,55 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3351938</td>
+<td>Configuring TACACS NSS debugging can cause NVUE commands to break for all users who log in while they are enabled. To work around this issue, if your terminal session is unaffected and the debugs are configured with NVUE, unset the debugs or set the debug level to 0.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3347538</td>
 <td>When connecting a NVIDIA-to-NVIDIA in PAM4, auto-negotiation should always be enabled.</td>
 <td>5.4.0</td>
 <td></td>
 </tr>
 <tr>
+<td>3345054</td>
+<td>The NVUE {{nv show interface &lt;interface&gt; qos}} command takes a significant time to show output or times out. To work around this issue, use specific QoS commands. For example, to show congestion control information, run the {{nv show interface &lt;interface&gt; qos congestion-control}} command.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3343766</td>
+<td>On the NVIDIA SN4800 switch, when you  run an {{apt upgrade}}, you see the following warning:
+
+W: Possible missing firmware /lib/firmware/mellanox/lc_ini_bundle_2008_9999.bin for module mlxsw_core
+
+This warning has no impact on switch functionality.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3341214</td>
+<td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3329518</td>
 <td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch.</td>
 <td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -34,6 +74,12 @@
 <td>3226506</td>
 <td>The {{l1-show eth0}} command does not show port information and is not supported in this release. </td>
 <td>5.3.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3221628</td>
+<td>Cumulus Linux 5.2.0 and 5.2.1 VX images might include an incorrect entry at the end of {{/etc/apt/sources.list}}, which produces warnings when you run {{apt update}}. Remove this entry to avoid these warnings.</td>
+<td>5.2.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -110,6 +156,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>3084027</td>
 <td>Under a high load, you might see ingress drop counters increase. The drops are classified as {{HwIfInDiscards}} in ethtool and shown as {{ingress_general}} in hardware.</td>
 <td>4.3.0-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3071652</td>
+<td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
+<td>4.4.4-4.4.5, 5.1.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -366,11 +418,6 @@ Vlan: 0
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
 </td>
 <td>5.0.1-5.3.1</td>
-</tr>
-<tr>
-<td>3041860</td>
-<td>The Events card displays duplicate entries for VLAN interface link down events.</td>
-<td></td>
 </tr>
 <tr>
 <td>3037824</td>

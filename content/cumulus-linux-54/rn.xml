@@ -13,6 +13,13 @@
 <td></td>
 </tr>
 <tr>
+<td>3350027</td>
+<td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see errors in {{switchd.log}} due to dynamic flow deletion errors. 
+These errors do not affect new dynamic NAT flows from new NAT rules.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3347538</td>
 <td>When connecting a NVIDIA-to-NVIDIA in PAM4, auto-negotiation should always be enabled.</td>
 <td>5.4.0</td>
@@ -41,6 +48,21 @@ This warning has no impact on switch functionality.</td>
 <td></td>
 </tr>
 <tr>
+<td>3340890</td>
+<td>When you run the NVUE {{nv show interface &lt;interface&gt;}} command, you see an error similar to the following:
+
+Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL SERVER ERROR
+</td>
+<td>5.3.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3336807</td>
+<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
+<td>5.2.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3330654</td>
 <td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
@@ -53,9 +75,39 @@ This warning has no impact on switch functionality.</td>
 <td></td>
 </tr>
 <tr>
+<td>3329494</td>
+<td>Ethtool HwIfInDot3FrameErrors (Rx FCS Errors) might lead to an incorrect very large HwIfInErrors count. To work around this issue, stop the source of the FCS errors, then reset the interface counters:
+1. Run the {{sudo mst status}} command to find the device.
+2. Run the {{sudo mlxlink -d &lt;device&gt; -p &lt;port_number&gt; -pc}} command to reset the interface counters. For example: {{sudo mlxlink -d /dev/mst/mt53104_pciconf0 -p 39 -pc}}.</td>
+<td>5.3.1-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3327477</td>
 <td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3326659</td>
+<td>If you have a large number of MAC addresses, they do not age out at the MAC ageing timeout value configured on the switch. It might take up to 30 seconds more for the MAC addresses to age out and be deleted from the hardware. To work around this issue, wait for the ageing timeout value plus 30 seconds to allow for the MAC addresses to age out and be deleted from the hardware.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3312240</td>
+<td>On the Spectrum 1 switch if PTP is configured on a bond, the {{ptp4l}} service fails to start and you see a message similar to the following:
+
+systemd[1]: ptp4l.service: Failed with result 'exit-code'.
+systemd[1]: Failed to start Precision Time Protocol (PTP) service.
+</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3293560</td>
+<td>If you run NVUE commands to break out a port into four interfaces, NVUE disables the subsequent port automatically. However, if you run NVUE commands to break out a port into eight interfaces, NVUE does not disable the subsequent port automatically; you have to run the NVUE command to disable the subsequent port.</td>
+<td>5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -68,6 +120,21 @@ This warning has no impact on switch functionality.</td>
 <td>3241567</td>
 <td>When you apply switch configuration for the first time on a freshly booted switch, you might see the error message {{Failed to start Hostname Service}} when you run the {{nv config apply}} command after setting the hostname with {{nv set system hostname}}. To work around this issue, run the {{nv config apply}} command a second time.</td>
 <td>5.3.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3234814</td>
+<td>With double tagged QinQ interfaces, if the bridge corresponding to the QinQ interface flaps, you might see invalid learning notifications and errors from similar to the following:
+
+Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID. 
+</td>
+<td>5.3.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3232091</td>
+<td>The NVUE {{nv unset interface &lt;interface&gt; link lanes}} command does not restore the port lane setting to default value. To work around this issue, run the {{nv set interface &lt;interface&gt; link lanes &lt;value&gt;}} command.</td>
+<td>5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -195,6 +262,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>3034435</td>
+<td>In a MLAG EVPN deployment when either of the clag peer undergoes reboot then the local host entries in ARP table are incorrectly programmed as remote by FRR.</td>
+<td>4.4.4-4.4.5, 5.1.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>5.0.0-5.4.0</td>
@@ -302,6 +375,11 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Affects </th>
 </tr>
 <tr>
+<td>3351953</td>
+<td>In rare circumstances, attempting to install a Cumulus Linux 5.3 image can fail during installation. The device stops at the (initramfs) prompt. To resume installation, enter the {{exit}} command at the (initramfs) prompt.</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
@@ -312,14 +390,42 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>5.2.0-5.3.1</td>
 </tr>
 <tr>
+<td>3344373</td>
+<td>When the switch boots up, you might see logs similar to the following in the {{nvued}} log files because {{switchd}} is not up and running. This does not impact switch functionality.
+
+2023-01-29T06:05:18.683152+00:00 cumulus nvued:  INFO: apply_config.py:2177 Apply Issues: (b'),(update-ports returned with error (code 254): ports validation node file is not accessibleswitchd validate_node is absent),(ports configuration(ports.conf/ports_width.conf) is invalid),(')
+</td>
+<td></td>
+</tr>
+<tr>
+<td>3339336</td>
+<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
+<td>5.2.0-5.3.1</td>
+</tr>
+<tr>
+<td>3332869</td>
+<td>When a switch is operating as a PTP Grand Master, the phc2sys service might exit shortly after starting as the initial offset to correct is the delta from epoch, which is too large to correct.</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
 </tr>
 <tr>
+<td>3330600</td>
+<td>The SNMP monitor might fail to send the expected traps.</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
 <td>3329096</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
+</tr>
+<tr>
+<td>3308248</td>
+<td>DHCP packets do not forward over VXLAN interfaces in multicast replication environments. This issue does not affect VXLAN environments using head end replication (HER).</td>
+<td></td>
 </tr>
 <tr>
 <td>3303084</td>
@@ -334,6 +440,11 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>3301950</td>
 <td>When upgrading from Cumulus Linux 5.0.0 thru 5.2.1 to Cumulus Linux 5.3.0 or 5.3.1, the {{babeltrace}} and {{python3-babeltrace}} packages are not added automatically even though they are in the default image in Cumulus Linux 5.3.0 and later. You may need these packages to decode LTTNG traces with {{/usr/lib/frr/frr_babeltrace.py.}}. If you need to use this script, run the {{sudo apt update &amp;&amp; sudo apt install babeltrace python3-babeltrace}} command to install the packages.</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3298616</td>
+<td>NVUE gracefully detects and handles upgrades that include valid flexible snippets. For any invalid (incompatible) flexible snippets, you must delete the snippets before you {{apt upgrade}} Cumulus Linux; otherwise, the NVUE {{nv config apply}} command and the equivalent REST API, do not run.</td>
 <td>5.3.0-5.3.1</td>
 </tr>
 <tr>
@@ -405,6 +516,11 @@ Vlan: 0
 <td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>5.0.1-5.3.1</td>
+</tr>
+<tr>
+<td>3226525</td>
+<td>When using TACACS+, if you configure per-command authorization with the {{tacplus-restrict}} command, NVUE configuration commands fail for any user with a privilege level lower than 15. This occurs because NVUE is not able to create a {{.local}} user directory.</td>
+<td>5.2.0-5.3.1</td>
 </tr>
 <tr>
 <td>3145222</td>

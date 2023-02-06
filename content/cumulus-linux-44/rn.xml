@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3336590</td>
+<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
+<td>4.3.0-4.4.6</td>
+<td></td>
+</tr>
+<tr>
 <td>3334036</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-4.4.6</td>
@@ -302,6 +308,12 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-5.1.0</td>
 <td>5.2.0-5.3.1</td>
+</tr>
+<tr>
+<td>3034435</td>
+<td>In a MLAG EVPN deployment when either of the clag peer undergoes reboot then the local host entries in ARP table are incorrectly programmed as remote by FRR.</td>
+<td>4.4.4-4.4.6, 5.1.0-5.3.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3032234</td>
@@ -2051,6 +2063,12 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td></td>
 </tr>
 <tr>
+<td>3336590</td>
+<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3334036</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-4.4.5</td>
@@ -2431,6 +2449,12 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-5.1.0</td>
 <td>5.2.0-5.3.1</td>
+</tr>
+<tr>
+<td>3034435</td>
+<td>In a MLAG EVPN deployment when either of the clag peer undergoes reboot then the local host entries in ARP table are incorrectly programmed as remote by FRR.</td>
+<td>4.4.4-4.4.5, 5.1.0-5.3.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3032234</td>
@@ -4149,6 +4173,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td></td>
 </tr>
 <tr>
+<td>3336590</td>
+<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3334036</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-4.4.5</td>
@@ -4551,6 +4581,12 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>The {{cl-resource-query}} command output shows ECMP nextHop Table exhaustion (above 100 percent utilization) and the {{switchd.log}} file contains ECMP resource errors with routes and next hops failing to install.</td>
 <td>4.2.1-5.1.0</td>
 <td>5.2.0-5.3.1</td>
+</tr>
+<tr>
+<td>3034435</td>
+<td>In a MLAG EVPN deployment when either of the clag peer undergoes reboot then the local host entries in ARP table are incorrectly programmed as remote by FRR.</td>
+<td>4.4.4-4.4.5, 5.1.0-5.3.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3032234</td>
@@ -6393,6 +6429,12 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3336590</td>
+<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -8624,6 +8666,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3336590</td>
+<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -11031,6 +11079,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3336590</td>
+<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>

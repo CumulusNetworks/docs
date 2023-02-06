@@ -494,6 +494,12 @@ Apply the snippet with the {{nv config patch &lt;snippet.yaml&gt;}} command, the
 <td></td>
 </tr>
 <tr>
+<td>3034435</td>
+<td>In a MLAG EVPN deployment when either of the clag peer undergoes reboot then the local host entries in ARP table are incorrectly programmed as remote by FRR.</td>
+<td>4.4.4-4.4.5, 5.1.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3023345</td>
 <td>When you run NVUE commands to unset one or more options associated with a field, the command fails with an error. For example:
 

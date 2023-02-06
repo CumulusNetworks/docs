@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3351953</td>
+<td>In rare circumstances, attempting to install a Cumulus Linux 5.3 image can fail during installation. The device stops at the (initramfs) prompt. To resume installation, enter the {{exit}} command at the (initramfs) prompt.</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-4.4.5, 5.0.0-5.3.1</td>
@@ -15,6 +21,27 @@
 <tr>
 <td>3351936</td>
 <td>Switch fans run at very high speed but the temperature is normal.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3340890</td>
+<td>When you run the NVUE {{nv show interface &lt;interface&gt;}} command, you see an error similar to the following:
+
+Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL SERVER ERROR
+</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3339336</td>
+<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3336807</td>
+<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
 <td></td>
 </tr>
@@ -28,6 +55,20 @@
 <td>3330654</td>
 <td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330600</td>
+<td>The SNMP monitor might fail to send the expected traps.</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3329494</td>
+<td>Ethtool HwIfInDot3FrameErrors (Rx FCS Errors) might lead to an incorrect very large HwIfInErrors count. To work around this issue, stop the source of the FCS errors, then reset the interface counters:
+1. Run the {{sudo mst status}} command to find the device.
+2. Run the {{sudo mlxlink -d &lt;device&gt; -p &lt;port_number&gt; -pc}} command to reset the interface counters. For example: {{sudo mlxlink -d /dev/mst/mt53104_pciconf0 -p 39 -pc}}.</td>
+<td>5.3.1</td>
 <td></td>
 </tr>
 <tr>
@@ -51,6 +92,12 @@
 <tr>
 <td>3301950</td>
 <td>When upgrading from Cumulus Linux 5.0.0 thru 5.2.1 to Cumulus Linux 5.3.0 or 5.3.1, the {{babeltrace}} and {{python3-babeltrace}} packages are not added automatically even though they are in the default image in Cumulus Linux 5.3.0 and later. You may need these packages to decode LTTNG traces with {{/usr/lib/frr/frr_babeltrace.py.}}. If you need to use this script, run the {{sudo apt update &amp;&amp; sudo apt install babeltrace python3-babeltrace}} command to install the packages.</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3298616</td>
+<td>NVUE gracefully detects and handles upgrades that include valid flexible snippets. For any invalid (incompatible) flexible snippets, you must delete the snippets before you {{apt upgrade}} Cumulus Linux; otherwise, the NVUE {{nv config apply}} command and the equivalent REST API, do not run.</td>
 <td>5.3.0-5.3.1</td>
 <td></td>
 </tr>
@@ -137,9 +184,24 @@ Vlan: 0
 <td></td>
 </tr>
 <tr>
+<td>3234814</td>
+<td>With double tagged QinQ interfaces, if the bridge corresponding to the QinQ interface flaps, you might see invalid learning notifications and errors from similar to the following:
+
+Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID. 
+</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>5.0.1-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3226525</td>
+<td>When using TACACS+, if you configure per-command authorization with the {{tacplus-restrict}} command, NVUE configuration commands fail for any user with a privilege level lower than 15. This occurs because NVUE is not able to create a {{.local}} user directory.</td>
+<td>5.2.0-5.3.1</td>
 <td></td>
 </tr>
 <tr>
@@ -285,6 +347,12 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>3037824</td>
 <td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3034435</td>
+<td>In a MLAG EVPN deployment when either of the clag peer undergoes reboot then the local host entries in ARP table are incorrectly programmed as remote by FRR.</td>
+<td>4.4.4-4.4.5, 5.1.0-5.3.1</td>
 <td></td>
 </tr>
 <tr>
@@ -428,6 +496,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3351953</td>
+<td>In rare circumstances, attempting to install a Cumulus Linux 5.3 image can fail during installation. The device stops at the (initramfs) prompt. To resume installation, enter the {{exit}} command at the (initramfs) prompt.</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-4.4.5, 5.0.0-5.3.1</td>
@@ -436,6 +510,27 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>3351936</td>
 <td>Switch fans run at very high speed but the temperature is normal.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3340890</td>
+<td>When you run the NVUE {{nv show interface &lt;interface&gt;}} command, you see an error similar to the following:
+
+Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL SERVER ERROR
+</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3339336</td>
+<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3336807</td>
+<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
 <td></td>
 </tr>
@@ -449,6 +544,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>3330654</td>
 <td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330600</td>
+<td>The SNMP monitor might fail to send the expected traps.</td>
+<td>5.3.0-5.3.1</td>
 <td></td>
 </tr>
 <tr>
@@ -487,6 +588,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>3301950</td>
 <td>When upgrading from Cumulus Linux 5.0.0 thru 5.2.1 to Cumulus Linux 5.3.0 or 5.3.1, the {{babeltrace}} and {{python3-babeltrace}} packages are not added automatically even though they are in the default image in Cumulus Linux 5.3.0 and later. You may need these packages to decode LTTNG traces with {{/usr/lib/frr/frr_babeltrace.py.}}. If you need to use this script, run the {{sudo apt update &amp;&amp; sudo apt install babeltrace python3-babeltrace}} command to install the packages.</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3298616</td>
+<td>NVUE gracefully detects and handles upgrades that include valid flexible snippets. For any invalid (incompatible) flexible snippets, you must delete the snippets before you {{apt upgrade}} Cumulus Linux; otherwise, the NVUE {{nv config apply}} command and the equivalent REST API, do not run.</td>
 <td>5.3.0-5.3.1</td>
 <td></td>
 </tr>
@@ -573,9 +680,24 @@ Vlan: 0
 <td></td>
 </tr>
 <tr>
+<td>3234814</td>
+<td>With double tagged QinQ interfaces, if the bridge corresponding to the QinQ interface flaps, you might see invalid learning notifications and errors from similar to the following:
+
+Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID. 
+</td>
+<td>5.3.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>5.0.1-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3226525</td>
+<td>When using TACACS+, if you configure per-command authorization with the {{tacplus-restrict}} command, NVUE configuration commands fail for any user with a privilege level lower than 15. This occurs because NVUE is not able to create a {{.local}} user directory.</td>
+<td>5.2.0-5.3.1</td>
 <td></td>
 </tr>
 <tr>
@@ -721,6 +843,12 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>3037824</td>
 <td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3034435</td>
+<td>In a MLAG EVPN deployment when either of the clag peer undergoes reboot then the local host entries in ARP table are incorrectly programmed as remote by FRR.</td>
+<td>4.4.4-4.4.5, 5.1.0-5.3.1</td>
 <td></td>
 </tr>
 <tr>

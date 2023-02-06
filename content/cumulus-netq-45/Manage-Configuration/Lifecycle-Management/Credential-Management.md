@@ -184,7 +184,7 @@ Any profile that is assigned to a switch can't be deleted. You must {{<link titl
 
 1. On the Access Profiles card, select **View profiles**.
 
-2. From the list, select Delete {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} in the profile's row. 
+2. From the list of profiles, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} Delete in the profile's row. 
 
 {{<figure src="/images/netq/delete-profile-450.png" alt="" width="600">}}
 

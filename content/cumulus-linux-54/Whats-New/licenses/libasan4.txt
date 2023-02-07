@@ -1,0 +1,1 @@
+libasan4 has no copyright file

@@ -170,7 +170,7 @@ You must have sudoer permission to properly configure switches when using the SS
 
 ## Delete Access Profiles
 
-Any profile that is assigned to a switch can't be deleted. You must {{<link title="Switch Management/#assign-roles-to-switches" text="assign a different profile to the switch">}} first. Note that *Netq-default* and *Nvl4-Default* can't be deleted. 
+Any profile that is assigned to a switch can't be deleted. You must {{<link title="Switch Management/#assign-a-profile-to-a-switch" text="assign a different profile to the switch">}} first. Note that *Netq-default* and *Nvl4-Default* can't be deleted. 
 
 {{<tabs "TabID247" >}}
 
@@ -190,9 +190,36 @@ The delete icon only appears next to custom profiles that are not assigned to a 
 
 {{<tab "NetQ CLI" >}}
 
-1. Run `netq lcm del credentials`. 
+1. Run `netq lcm show credentials`. Identify the profile you'd like to delete and copy its identifier from the Profile ID column. The following example deletes the n-1000 profile:
 
-2. Verify their removal by running `netq lcm show credentials`.
+```
+cumulus@switch:~$ netq lcm show credentials
+Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
+-------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
+credential_profile_d Netq-Default             BASIC                           cumulus          **************   11                                   Fri Feb  3 18:20:33 2023
+9e875bd2e6784617b304
+c20090ce28ff2bb46a4b
+9bf23cda98f1bdf91128
+5c9
+credential_profile_3 Nvl4-Default             BASIC                           admin            **************   1                                    Fri Feb  3 19:18:26 2023
+5a2eead7344fb91218bc
+dec29b12c66ebef0d806
+659b20e8805e4ff629bc
+23e
+credential_profile_3 n-1000                   BASIC                           admin            **************   0                                    Fri Feb  3 21:49:10 2023
+eddab251bddea9653df7
+cd1be0fc123c5d7a42f8
+18b68134e42858e54a9c
+289
+```
+
+2. Run `netq lcm del credentials profile_id <text-credential-profile-id>`:
+
+```
+cumulus@switch:~$ netq lcm del credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
+```
+
+3. Verify that the profile is deleted with `netq lcm show credentials`.
 
 {{</tab>}}
 

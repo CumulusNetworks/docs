@@ -83,8 +83,9 @@ cumulus@switch:~$ netq lcm add credentials username cumulus password cumulus
 
 ### Related Commands
 
-- ```netq lcm show credentials```
-- ```netq lcm del credentials```
+- `netq lcm attach credentials`
+- `netq lcm show credentials`
+- `netq lcm del credentials`
 
 - - -
 
@@ -269,19 +270,20 @@ cumulus@switch:~$ netq lcm del cl-image image_cc97be3955042ca41857c4d0fe95296bce
 
 ## netq lcm del credentials
 
-Removes the access credentials required to upgrade Cumulus Linux or NetQ on switches using the lifecycle management feature. Alternately, use the `netq lcm add credentials` command to change the credentials.
+Removes the access credentials required to upgrade Cumulus Linux or NetQ on switches using lifecycle management. Run `netq show credentials` to obtain the profile ID. Refer to {{<link title="Credentials and Profiles/#delete-access-profiles" text="delete access profiles">}} for step-by-step examples.
 
 ### Syntax
 
 ```
-netq lcm del credentials
+netq lcm del credentials 
+    profile_id <text-credential-profile-id>
 ```
-
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| credentials | \<text-image-id\> | Remove the access credentials used to upgrade switches |
+| credentials | NA | Remove the access credentials used to upgrade switches |
+| profile_id | <text-credential-profile-id\> | Remove the profile assigned this ID |
 
 ### Options
 
@@ -290,7 +292,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm del credentials
+cumulus@switch:~$ netq lcm del credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
 ```
 
 ### Related Commands
@@ -487,7 +489,7 @@ cumulus@switch:~$ netq lcm show cl-images json
 
 ## netq lcm show credentials
 
-Displays the switch access profiles and associated credentials.
+Displays access profiles, their associated credentials, and the number of switches assigned to each access profile.
 
 ### Syntax
 
@@ -533,9 +535,9 @@ cd1be0fc123c5d7a42f8
 
 ### Related Commands
 
-- ```netq lcm add credentials```
+- `netq lcm add credentials`
 - `netq lcm attach credentials`
-- ```netq lcm del credentials```
+- `netq lcm del credentials`
 
 - - -
 

@@ -240,6 +240,7 @@ Attached profile to switch(es).
 ### Related Commands
 
 - `netq lcm add credentials`
+- `netq lcm detach credentials`
 - `netq lcm show credentials`
 - `netq lcm show switches`
 
@@ -293,7 +294,7 @@ cumulus@switch:~$ netq lcm del cl-image image_cc97be3955042ca41857c4d0fe95296bce
 
 ## netq lcm del credentials
 
-Removes the access credentials required to upgrade Cumulus Linux or NetQ on switches using lifecycle management. Run `netq show credentials` to obtain the profile ID. Refer to {{<link title="Credentials and Profiles/#delete-access-profiles" text="delete access profiles">}} for step-by-step examples.
+Deletes the access credentials required to upgrade Cumulus Linux or NetQ on switches using lifecycle management. Run `netq show credentials` to obtain the profile ID. Refer to {{<link title="Credentials and Profiles/#delete-access-profiles" text="delete access profiles">}} for step-by-step examples.
 
 ### Syntax
 
@@ -320,8 +321,9 @@ cumulus@switch:~$ netq lcm del credentials profile_id credential_profile_3eddab2
 
 ### Related Commands
 
-- ```netq lcm add credentials```
-- ```netq lcm show credentials```
+- `netq lcm add credentials`
+- `netq lcm detach credentials`
+- `netq lcm show credentials`
 
 - - -
 
@@ -375,17 +377,38 @@ cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494
 
 - - -
 ## netq lcm detach credentials
+
+Detaches an access profile from a switch and restores the default profile.
+
 ### Syntax
 
+```
+netq lcm detach credentials 
+    hostname <text-switch-hostname>
+```
 ### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| hostname | <text-switch-hostname\>  | Detach access credentials from the switch with this hostname |
 
 ### Options
 
+None
+
 ### Sample Usage
+
+```
+cumulus@switch:~$ netq lcm detach credentials hostname spine-1
+Detached profile from switch.
+```
 
 ### Related Commands
 
-- netq lcm show credentials
+- `netq lcm attach credentials`
+- `netq lcm del credentials`
+- `netq lcm show credentials`
+- `netq lcm show switches`
 
 - - -
 

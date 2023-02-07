@@ -50,9 +50,9 @@ This list is the starting point for network OS upgrades or NetQ installations an
 - {{<link title="Install NetQ Agents" text="Install NetQ on the switch">}}
 - {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
 
-## Assign a Profile to a Switch
+## Attach a Profile to a Switch
 
-After creating {{<link title="Credentials and Profiles" text="access profiles">}} from your credentials, you can assign profiles to individual switches.
+After creating {{<link title="Credentials and Profiles" text="access profiles">}} from your credentials, you can attach a profile to one or more switches.
 
 {{<tabs "TabID85" >}}
 
@@ -98,6 +98,8 @@ Attached profile to switch(es).
 ```
 
 4. Run `netq lcm show switches` and verify the change in the credential profile column.
+
+To detach a profile from a switch and restore it to the default access profile, run {{<link title="lcm/#netq-lcm-detach-credentials" text="netq lcm detach credentials">}}.
 
 
 {{</tab>}}

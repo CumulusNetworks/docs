@@ -39,7 +39,7 @@ Use the following roles to set the permissions for local user accounts.
 The following example:
 - Creates a new user account called `admin2` and sets the role to `system-admin` (permissions for `sudo`, `nv show`, `nv set` and `nvunset`, and `nv apply`).
 - Sets a plain text password. NVUE hashes the plain text password and stores the value as a hashed password. To set a hashed password, see {{<link url="#hashed-passwords" text="Hashed Passwords">}}, below.
-- Adds the full name `FIRST LAST`. If the full name includes more than one name, either separate the names with a hyphon (`FIRST-LAST`) or enclose the full name in quotes (`"FIRST LAST"`).
+- Adds the full name `FIRST LAST`. If the full name includes more than one name, either separate the names with a hyphen (`FIRST-LAST`) or enclose the full name in quotes (`"FIRST LAST"`).
 
 ```
 cumulus@switch:~$ nv set system aaa user admin2 role system-admin

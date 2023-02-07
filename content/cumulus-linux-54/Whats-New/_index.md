@@ -444,7 +444,7 @@ nv unset system aaa tacacs vrf
 Cumulus Linux 5.4 includes the NVUE object model. After you upgrade to Cumulus Linux 5.4, running NVUE configuration commands overrides configuration files for features that are now configurable with NVUE and removes configuration you added manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 
 - Update your automation tools to use NVUE.
-- {{<link url="NVIDIA-User-Experience-NVUE/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
+- {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
 Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.

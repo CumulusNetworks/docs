@@ -6,7 +6,7 @@ toc: 3
 ---
 Cumulus Linux advertises the maximum number of route table entries supported on the switch, including:
 
-- Layer 3 IPv4 LPM (longest prefix match) entries that have a mask less than /32
+- Layer 3 IPv4 <span style="background-color:#F5F5DC">[LPM](## "Longest Prefix Match")</span> entries that have a mask less than /32
 - Layer 3 IPv6 LPM entries that have a mask of /64 or less
 - Layer 3 IPv6 LPM entries that have a mask greater than /64
 - Layer 3 IPv4 neighbor (or host) entries that are the next hops seen in `ip neighbor`
@@ -28,7 +28,7 @@ The values in the following tables reflect results from testing, which can diffe
 
 ### Spectrum 1
 <!-- vale off -->
-| <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| Longest Prefix Match (LPM)  |
+| <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| LPM  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
 | default        | 40k           | 32k (IPv4) and 16k (IPv6) | 64k (IPv4) and 28k (IPv6-long) |
 | l2-heavy       | 88k           | 48k (IPv4) and 40k (IPv6) | 8k (IPv4) and 8k (IPv6-long)   |
@@ -40,7 +40,7 @@ The values in the following tables reflect results from testing, which can diffe
 
 ### Spectrum-2 and Spectrum-3
 
-| <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| Longest Prefix Match (LPM)  |
+| <div style="width:100px">Profile| MAC Addresses | <div style="width:190px">Layer 3 Neighbors| LPM  |
 | -------------- | ------------- | ------------------------- | ------------------------------ |
 | default        | 50k           | 41k (IPv4) and 20k (IPv6) | 82k (IPv4), 74k (IPv6-long), 1K (IPv4-Mcast)|
 | l2-heavy       | 115k          | 74k (IPv4) and 37k (IPv6) | 16k (IPv4), 24k (IPv6-long), 1K (IPv4-Mcast)|

@@ -1499,7 +1499,7 @@ Reference the table below to view the default mappings between default traffic p
 |------------- |----------- | ----------- | ----------- | 
 | `default-lossy` | `memory-percent` | `ingress-pool 0`<br>`egress-pool 0` | `memory-percent` |
 | `default-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group bulk switch-priority` |
-| `mc-lossy` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` |
+| `mc-lossy` | |`memory-percent` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` | 
 
 For example, to assign 20 percent of memory to a new static service pool you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to allocate the memory to `ingress-pool 3`:
 

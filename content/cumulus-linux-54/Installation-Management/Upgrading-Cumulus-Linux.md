@@ -210,10 +210,6 @@ To upgrade the switch:
   |------- | ---- | ----------------- |
   | 5.0.0 - 5.3.0 | 5.3.1 | Yes       |
   | 5.0.0 - 5.3.1 | 5.4.0 | No        |
-
-- The first time you run the NVUE `nv config apply` command after upgrading to Cumulus Linux 5.4, NVUE might override certain existing configuration for features that are now configurable with NVUE. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you either:
-   - Run NVUE commands to configure these features.
-   - Configure NVUE to ignore changes to the relevant configuration files for these features.
 {{%/notice%}}
 
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
@@ -289,6 +285,12 @@ To upgrade the switch using package upgrade:
     ```
 
 6. Verify correct operation with the old configurations on the new version.
+
+{{%notice info%}}
+The first time you run the NVUE `nv config apply` command after upgrading to Cumulus Linux 5.4, NVUE might override certain existing configuration for features that are now configurable with NVUE. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you either:
+- Run NVUE commands to configure the features that are now configurable with NVUE.
+- Configure NVUE to ignore changes to the relevant configuration files for the features that are now configurable with NVUE; refer to  {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}.
+{{%/notice%}}
 
 ### Upgrade Notes
 

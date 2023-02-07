@@ -9,8 +9,9 @@ draft: true
 When you apply an NVUE configuration after upgrade to Cumulus Linux 5.4.0 or later from a prior version, the apply fails with a message indicating breakout syntax is invalid:
 
 ```
-"Invalid config [rev_id: 2]
-Config invalid at interface.swp9.link.breakout: '4x10G' is not of type 'object'"
+cumulus@switch:~$ nv config apply
+Invalid config [rev_id: 4]
+  Config invalid at interface.swp1.link.breakout: '4x10G' is not of type 'object'
 ```
 
 ## Environment

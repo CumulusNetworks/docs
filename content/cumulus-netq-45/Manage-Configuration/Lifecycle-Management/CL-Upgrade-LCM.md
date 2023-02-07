@@ -51,7 +51,7 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 {{<tab "NetQ CLI" >}}
 
-1. Create a discovery job to locate Cumulus Linux switches on the network. Use the {{<link title="lcm/#netq-lcm-discover" text="netq lcm discover">}} command, specifying a single IP address, a range of IP addresses where your switches are located in the network, or a CSV file containing the IP address, and optionally, the hostname and port for each switch on the network. If the port is blank, NetQ uses switch port 22 by default. They can be in any order you like, but the data must match that order.
+1. Create a discovery job to locate Cumulus Linux switches on the network. Use the {{<link title="lcm/#netq-lcm-discover" text="netq lcm discover">}} command, specifying a single IP address, a range of IP addresses where your switches are located in the network, or a CSV file containing the IP address.
 
 You must also specify the access profile ID, which you can obtain with the `netq lcm show credentials` command.
 

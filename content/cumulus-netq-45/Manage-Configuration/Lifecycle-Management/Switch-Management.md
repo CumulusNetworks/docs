@@ -78,6 +78,28 @@ If the profile you'd like to use isn't listed, select **Add new profile** and {{
 
 {{<tab "NetQ CLI" >}}
 
+The command syntax to attach a profile to a switch is:
+
+```
+netq lcm attach credentials 
+    profile_id <text-switch-profile-id> 
+    hostnames <text-switch-hostnames>
+```
+
+1. Run `netq lcm show credentials` to display a list of access profiles. Note the profile ID that you'd like to assign to a switch.
+
+2. Run `netq lcm show switches` to display a list of switches. Note the hostname of the switch(es) you'd like to attach a profile to.
+
+3. Next, attach the credentials to the switch:
+
+```
+netq lcm attach credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 hostnames tor-1,tor-2
+Attached profile to switch(es).
+```
+
+4. Run `netq lcm show switches` and verify the change in the credential profile column.
+
+
 {{</tab>}}
 
 {{</tabs>}}

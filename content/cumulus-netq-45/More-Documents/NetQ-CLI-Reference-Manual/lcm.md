@@ -208,17 +208,40 @@ None
 - - -
 ## netq lcm attach credentials
 
+Assigns an {{<link title="Credentials and Profiles" text="access profile">}} to one or more switches. For step-by-step instructions, see {{<link title="Switch Management#assign-a-profile-to-a-switch" text="Switch Management">}}.
+
+To display the `profile_id`, run `netq lcm show credentials`.
+
+To display `hostnames`, run `netq lcm show switches`.
+
 ### Syntax
 
+```
+netq lcm attach credentials 
+    profile_id <text-switch-profile-id> 
+    hostnames <text-switch-hostnames>
+```
 ### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| profile_id | <text-switch-profile-id\> | Attach the access profile with this ID to the switch |
+| hostnames | <text-switch-hostnames\>  | Assign the access profile to this hostname |
 
 ### Options
 
+None
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq lcm attach credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 hostnames tor-1,tor-2
+Attached profile to switch(es).
+```
 ### Related Commands
 
-- netq lcm show credentials
+- `netq lcm add credentials`
+- `netq lcm show credentials`
+- `netq lcm show switches`
 
 - - -
 

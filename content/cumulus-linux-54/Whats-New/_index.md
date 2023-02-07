@@ -27,7 +27,6 @@ Early Access features are now called Beta features.
 {{%notice warning%}}
 - If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the new port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
 - Cumulus Linux 5.4 package upgrade (`apt-upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
-- Cumulus Linux 5.4 package upgrade affects NVUE TACACS+ configuration. Refer to {{<link url="TACACS#package-upgrade-and-nvue-configuration" text="Package Upgrade and NVUE Configuration">}} for important information about package upgrade and TACACS+.
 {{%/notice%}}
 
 ### New Features and Enhancements
@@ -36,7 +35,7 @@ Early Access features are now called Beta features.
    - New format for {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} in the `/etc/cumulus/ports.conf` file
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
    - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} and {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="breakout port lane">}} configuration settings
-- 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches
+- 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches (Beta)
 - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (Beta)
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="User-Accounts" text="User management">}} commands
@@ -442,10 +441,10 @@ nv unset system aaa tacacs vrf
 {{< /tabs >}}
   
 {{%notice info%}}
-Cumulus Linux 5.4 includes the NVUE object model. After you upgrade to Cumulus Linux 5.4, running NVUE configuration commands replaces the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf` and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
+Cumulus Linux 5.4 includes the NVUE object model. After you upgrade to Cumulus Linux 5.4, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 
 - Update your automation tools to use NVUE.
-- {{<link url="NVIDIA-User-Experience-NVUE/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
+- {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
 Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.

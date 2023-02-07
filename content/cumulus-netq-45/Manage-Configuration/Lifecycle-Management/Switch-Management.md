@@ -30,42 +30,14 @@ If you have more than one network OS version running on your switches, you can c
 To view a list of all switches discovered by lifecycle management, run:
 
 ```
-netq lcm show switches [version <text-cumulus-linux-version>] [json]
+netq lcm show switches
+    [cl-version <text-cumulus-linux-version>]
+    [netq-version <text-netq-version>]
+    [json]
 ```
-<!-- vale off -->
-Use the `version` option to only show switches with a given network OS version, X.Y.Z.
-<!-- vale on -->
-The following example shows all switches discovered by lifecycle management:
+Use the `version` options to display switches with a given OS version, X.Y.Z.
 
-```
-cumulus@switch:~$ netq lcm show switches
-Hostname          Role       IP Address                MAC Address        CPU      CL Version           NetQ Version             Last Changed
------------------ ---------- ------------------------- ------------------ -------- -------------------- ------------------------ -------------------------
-leaf01            leaf       192.168.200.11            44:38:39:00:01:7A  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:37 2020
-                                                                                                        104fb9ed
-spine04           spine      192.168.200.24            44:38:39:00:01:6C  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:16 2020
-                                                                                                        104fb9ed
-leaf03            leaf       192.168.200.13            44:38:39:00:01:84  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:56 2020
-                                                                                                        104fb9ed
-leaf04            leaf       192.168.200.14            44:38:39:00:01:8A  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:07 2020
-                                                                                                        104fb9ed
-border02                     192.168.200.64            44:38:39:00:01:7C  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:56:49 2020
-                                                                                                        104fb9ed
-border01                     192.168.200.63            44:38:39:00:01:74  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:56:37 2020
-                                                                                                        104fb9ed
-fw2                          192.168.200.62            44:38:39:00:01:8E  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:24:58 2020
-                                                                                                        104fb9ed
-spine01           spine      192.168.200.21            44:38:39:00:01:82  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:07 2020
-                                                                                                        104fb9ed
-spine02           spine      192.168.200.22            44:38:39:00:01:92  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:08 2020
-                                                                                                        104fb9ed
-spine03           spine      192.168.200.23            44:38:39:00:01:70  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:16 2020
-                                                                                                        104fb9ed
-fw1                          192.168.200.61            44:38:39:00:01:8C  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:24:58 2020
-                                                                                                        104fb9ed
-leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:53 2020
-                                                                                                        104fb9ed
-```
+For additional details, refer to the {{<link title="lcm/#netq-lcm-show-switches" text="command line reference">}}.
 
 {{</tab>}}
 

@@ -875,7 +875,7 @@ leaf01      4.2.0         FAILED           Wed Jan 20 19:30:12 2021  SKIPPED_ON_
 
 ## netq lcm show switches
 
-Displays information about switches monitored by NetQ and contained in the lifecycle management repository, including their hostnames, any assigned role, IP and MAC addresses, CPU architecture, Cumulus Linux and NetQ versions, and NetQ configuration profiles. Filter the output by Cumulus Linux or NetQ version running on the switch.
+Displays information about switches monitored by NetQ and contained in the lifecycle management repository, including their hostnames, any assigned role, IP and MAC addresses, CPU architecture, Cumulus Linux and NetQ versions, and NetQ configuration and access profiles. Filter the output by Cumulus Linux or NetQ version running on the switch.
 
 ### Syntax
 
@@ -892,7 +892,7 @@ netq lcm show switches
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| switches | NA | Display information about switches known to the lifecycle management feature |
+| switches | NA | Display information about switches known to lifecycle management |
 
 ### Options
 
@@ -905,12 +905,15 @@ netq lcm show switches
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show switches cl-version 4.2.1
-Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Last Changed
------------------ ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- -------------------------
-leaf02                       192.168.200.12            44:38:39:00:01:78  x86_64   4.2.1       4.0.0-cl4u32~ []                           Thu Feb 18 21:33:37 2021
-                                                                                               1609391187.7d
-                                                                                               f4e1d2
+cumulus@switch:~$ netq lcm show switches cl-version 5.2.0
+Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Credential Profile                   Last Changed
+----------------- ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ------------------------------------ -------------------------
+noc-se                       192.168.0.15              00:01:00:00:12:00  x86_64   5.2.0       4.5.0-cl4u41~ []                           Netq-Default                         Fri Feb  3 20:50:40 2023
+                                                                                               1675445092.42
+                                                                                               fbac0a
+spine-1                      192.168.0.15              00:01:00:00:13:00  x86_64   5.2.0       4.5.0-cl4u41~ []                           n-2000                               Fri Feb  3 22:28:25 2023
+                                                                                               1675445092.42
+                                                                                               fbac0a
 ```
 
 ### Related Commands

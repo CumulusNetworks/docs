@@ -1590,7 +1590,7 @@ To upgrade with `apt upgrade`:
 2. Edit the `/etc/nvue.d/startup.yaml` file to use the new NVUE breakout syntax for each breakout port. For example, change `4x10G` to `4x: {}`:
 
 {{%notice note%}}
-You must also configure the colon (`:`) and curly brackets (`{}`) after the breakout setting, including ports set to `disabled`.
+You must also add the colon (`:`) and curly brackets (`{}`) after the split port setting and also after any split port `disabled` setting.
 {{%/notice%}}
 
    Change:

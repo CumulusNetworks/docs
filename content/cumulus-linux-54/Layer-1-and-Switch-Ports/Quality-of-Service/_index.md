@@ -1488,9 +1488,9 @@ A relationship exists between the default traffic pools and the advanced buffer 
 {{%notice note%}}
 NVUE presents a warning if you attempt to apply incompatible traffic pool and advanced buffer configurations. NVUE performs the following validation checks before applying advanced buffer configurations:
 
-- All switch priorities (0-7) must be mapped to a single priority group
-- The sum of `memory-percent` values across all ingress pools must be less than or equal to 100 percent
-- The sum of `memory-percent` values across all egress pools must be less than or equal to 100 percent
+- You must map all switch priorities (0-7) to a single priority group.
+- The sum of `memory-percent` values across all ingress pools must be less than or equal to 100 percent.
+- The sum of `memory-percent` values across all egress pools must be less than or equal to 100 percent.
 {{%/notice%}}
 
 Reference the table below to view the mappings between the default traffic pool and advanced buffer properties:

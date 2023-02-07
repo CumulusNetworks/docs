@@ -6,7 +6,7 @@ draft: true
 
 ## Issue
 
-When you apply an NVUE configuration after upgrade to Cumulus Linux 5.4.0 or later from a prior version, the apply fails with a message indicating breakout syntax is invalid:
+When you apply an NVUE configuration after upgrade to Cumulus Linux 5.4.0 or later from a previous release, the apply fails with a message indicating breakout syntax is invalid:
 
 ```
 cumulus@switch:~$ nv config apply
@@ -18,11 +18,11 @@ Invalid config [rev_id: 4]
 
 This issue is observed when all of the following conditions are true:
 
-- You perform an `apt upgrade` of Cumulus Linux from a version prior to 5.4.0.
+- You upgrade to Cumulus Linux 5.4.0 from a previous Cumulus Linux release with `apt upgrade`.
 
-- You had breakout ports configured with NVUE.
+- In the previous release, you configured breakout ports with NVUE.
 
-- You did not {{<kb_link latest="cl" url="Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#important-upgrade-information-for-breakout-ports-and-nvue" text="change the breakout port configuration syntax to the new version">}} introduced with Cumulus Linux 5.4 prior to `apt upgrade`.
+- You did not {{<kb_link latest="cl" url="Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#important-upgrade-information-for-breakout-ports-and-nvue" text="change the breakout port configuration syntax to the new version">}} introduced with Cumulus Linux 5.4.0 before you upgraded with `apt upgrade`.
 
 ## Solution
 
@@ -31,7 +31,7 @@ To resolve this issue:
 1. Remove the breakout configuration for every port:
 
 {{%notice note%}}
-It is also required to unset the link breakout configuration from ports that were set to `link breakout disabled`.
+You must also unset the link breakout configuration from ports set to `link breakout disabled`.
 {{%/notice%}}
 
 ```

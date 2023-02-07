@@ -378,7 +378,7 @@ cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494
 - - -
 ## netq lcm detach credentials
 
-Detaches an access profile from a switch and restores the default profile.
+Detaches an access profile from a switch and restores the default profile. Obtain the hostname by running `netq lcm show switches`.
 
 ### Syntax
 
@@ -414,13 +414,14 @@ Detached profile from switch.
 
 ## netq lcm discover
 
-Searches for switches that do not have NetQ installed based on IP addresses or from a file. After discovery, you can add them to the lifecycle management repository and upgrade Cumulus Linux. Use the `netq lcm show discovery-job` command to view the results of this command.
+Searches for switches that do not have NetQ installed based on IP addresses or from a file. After discovery, you can add them to the lifecycle management repository and upgrade Cumulus Linux. To obtain the profile ID, run `netq lcm show credentials`. Use the `netq lcm show discovery-job` command to view the results of this command.
 
 ### Syntax
 
 ```
 netq lcm discover
     (ip-range <text-ip-range> | csv-file <text-csv-file-path>)
+    profile_id <text-credential-profile-id>
 ```
 
 ### Required Arguments
@@ -429,6 +430,7 @@ netq lcm discover
 | ---- | ---- | ---- |
 | ip-range | \<text-ip-range\> | Search for switches with this IP address or within this address range. Ranges can be contiguous, for example 192.168.0.24-64, or non-contiguous, for example 192.168.0.24-64,128-190,225, but they must reside within a single subnet. You can include a maximum of 50 addresses in an address range. |
 | csv-file | \<text-csv-file-path\> | Search for switches in this CSV file containing the IP address, and optionally, the hostname and port for each switch on the network. If the port is blank, NetQ uses switch port 22 by default. They can be in any order you like, but the data must match that order. |
+| profile_id | <text-credential-profile-id\> | Search for switches attached to this access profile |
 
 ### Options
 
@@ -437,7 +439,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 
+cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
 NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556db
 ```
 

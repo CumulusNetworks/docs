@@ -27,10 +27,10 @@ This issue is observed when all of the following conditions are true:
 
 To resolve this issue:
 
-1. Remove the breakout configuration for every port, and reapply the configuration with the new syntax:
+1. Remove the breakout configuration for every port:
 
 {{%notice note%}}
-It is also required to unset the link breakout configuration from ports that were set to disabled.
+It is also required to unset the link breakout configuration from ports that were set to `link breakout disabled`.
 {{%/notice%}}
 
 ```

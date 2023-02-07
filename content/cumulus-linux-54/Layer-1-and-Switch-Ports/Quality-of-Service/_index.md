@@ -1446,25 +1446,25 @@ You can use NVUE commands to tune advanced buffer properties in addition to the 
 You can only configure advanced buffer settings for the `default-global` profile.
 {{%/notice%}}
 
-### Configure Buffer Regions
+### Buffer Regions
 
 You can adjust advanced buffer settings with the following NVUE command:
 
 - `nv set qos advance-buffer-config default-global <buffer> <priority-group | property> <value>`
 
-You can adjust settings for the following supported buffers, priority groups, traffic classes, and properties:
+You can adjust settings for the following supported buffer regions and properties:
 
-|Buffers | Priority Groups or <br> Traffic Classes | Supported Properties |
+|Buffers | Priority Groups | Supported Property Values |
 |------------- |----------- | ---------------- |
-|`ingress-lossy-buffer` | <ul>**Priority Groups:**<br>`bulk`<br>`control`<br>`service[1-6]` | <ul>`name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values.
-|`ingress-lossless-buffer` | <ul>**Priority Groups:**<br>`bulk`<br>`control`<br>`service[1-6]` | <ul>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
-|`egress-lossless-buffer` | <ul>**Priority Groups:**<br>`bulk`<br>`control`<br>`service[1-6]`| <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> | 
-|`egress-lossy-buffer` | <ul>**Traffic Classes:**<br>`traffic-class [0-7]` | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority` - Multicast switch priorities.</ul> |
+|`ingress-lossy-buffer` | `bulk`<br>`control`<br>`service[1-6]` | <ul>`name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values. |
+|`egress-lossless-buffer` | N/A | <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> | 
+|`ingress-lossless-buffer` | N/A | <ul>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
+|`egress-lossy-buffer` | N/A| <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority [0-7]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each multicast switch priority.<br>`traffic-class [0-15]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each traffic class.</ul> |
 
 {{%notice note%}}
 Configure `shared-bytes` for buffer regions mapped to static service pools, and `shared-alpha` for buffer regions mapped to dynamic service pools.
 {{%/notice%}}
-### Configure Service Pools
+### Service Pools
 
 You can configure ingress and egress service pool profile properties with the following NVUE commands:
 
@@ -1482,11 +1482,26 @@ You can adjust the following properties for each pool:
 | `shared-alpha ` | The dynamic shared buffer alpha allocation. |
 | `shared-bytes` | The static shared buffer allocation in bytes. |
 
+
+A relationship exists between the default traffic pools and the advanced buffer configuration settings.  
+
 {{%notice note%}}
-NVUE presents a warning if you attempt to apply incompatible traffic pool and advanced buffer configurations. 
+NVUE presents a warning if you attempt to apply incompatible traffic pool and advanced buffer configurations. NVUE performs the following validation checks before applying advanced buffer configurations:
+
+- All switch priorities (0-7) must be mapped to a single priority group
+- The sum of `memory-percent` values across all ingress pools must be less than or equal to 100 percent
+- The sum of `memory-percent` values across all egress pools must be less than or equal to 100 percent
 {{%/notice%}}
 
-A relationship exists between the default traffic pools and the advanced buffer configuration options. For example, to assign 20 percent of memory to a new static pool you must make 20 percent of memory available from the configured traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to allocate the memory to `ingress-pool 3`:
+Reference the table below to view the default mappings between default traffic pool and advanced buffer properties:
+
+| Default Traffic Pool | Default Traffic Pool Properties | Advanced Buffer Region or Service Pool | Advanced Buffer Properties |
+|------------- |----------- | ----------- | ----------- | 
+| `default-lossy` | `memory-percent` | `ingress-pool 0`<br>`egress-pool 0` | `memory-percent` |
+| `default-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group bulk switch-priority` |
+| `mc-lossy` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` |
+
+For example, to assign 20 percent of memory to a new static service pool you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to allocate the memory to `ingress-pool 3`:
 
 ```
 cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 80

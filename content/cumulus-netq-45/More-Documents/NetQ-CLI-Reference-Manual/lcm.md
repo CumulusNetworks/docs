@@ -48,7 +48,9 @@ cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-ml
 
 ## netq lcm add credentials
 
-Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. You can define set of credentials. Choose between basic authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to configure switches when using the SSH key method.
+Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. You can choose between basic authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to configure switches when using the SSH key method.
+
+To obtain the access profile's name, run `netq lcm show credentials`.
 
 {{<notice tip>}}
 The default credentials for Cumulus Linux have changed from <!-- vale off -->cumulus/CumulusLinux!<!-- vale on --> to cumulus/cumulus for releases 4.2 and later. For details, read <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/">Cumulus Linux User Accounts</a>.
@@ -58,6 +60,7 @@ The default credentials for Cumulus Linux have changed from <!-- vale off -->cum
 
 ```
 netq lcm add credentials
+    profile_name <text-switch-profile-name>
     username <text-switch-username>
     (password <text-switch-password> | ssh-key <text-ssh-key>)
 ```
@@ -66,7 +69,7 @@ netq lcm add credentials
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| credentials | NA | Adds switch credentials for software installation and upgrade management |
+| profile_name | \<text-switch-profile-name\> | Specifies the access profile's name |
 | username | \<text-switch-username\> | Specifies the username for the user who can configure switches |
 | password | \<text-switch-password\> | Specifies the password associated with the username so that user can configure switches |
 | ssh-key | \<text-ssh-key\> | Specifies the *private* key required to configure switches. You must have already installed the *public* key on each switch. |
@@ -78,7 +81,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add credentials username cumulus password cumulus
+cumulus@switch:~$ netq lcm add credentials profile_name n-2000 username cumulus password cumulus
 ```
 
 ### Related Commands

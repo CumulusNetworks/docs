@@ -95,13 +95,18 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 To upgrade the NetQ Agent on one or more switches, run:
 
 ```
-netq-image job-name <text-job-name> [netq-version <text-netq-version>] [upgrade-cli True | upgrade-cli False] hostnames <text-switch-hostnames> [config_profile <text-config-profile>]
+netq lcm upgrade netq-image 
+    job-name <text-job-name> 
+    [netq-version <text-netq-version>] 
+    [upgrade-cli True | upgrade-cli False] 
+    hostnames <text-switch-hostnames> 
+    [config_profile <text-config-profile>]
 ```
 
-The following example creates a NetQ Agent upgrade job called *upgrade-cl430-nq330*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.1.0.
+The following example creates a NetQ Agent upgrade job called *upgrade-cl530-nq450*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.5.0.
 
 ```
-cumulus@switch:~$ netq lcm upgrade job-name upgrade-cl430-nq330 netq-version 4.1.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade job-name upgrade-cl530-nq450 netq-version 4.5.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:

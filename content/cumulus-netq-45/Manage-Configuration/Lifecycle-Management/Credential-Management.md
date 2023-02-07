@@ -81,8 +81,9 @@ The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinu
 To configure basic authentication, run:
 
 ```
-cumulus@switch:~$ netq lcm add credentials username cumulus password cumulus
+cumulus@switch:~$ netq lcm add credentials profile_name NEWPROFILE username cumulus password cumulus
 ```
+Specify a unique name for the configuration after `profile_name`. 
 
 {{<notice tip>}}
 
@@ -107,10 +108,10 @@ You must have sudoer permission to properly configure switches when using the SS
     - Manually copy the SSH public key to the */home/\<USER\>/.ssh/authorized_keys* file on each switch, or
     - Run `ssh-copy-id USER@<switch_ip>` on the server where you generated the SSH key pair for each switch
 
-3. Add these credentials to the switch.
+3. Add these credentials to the switch. Specify a unique name for the configuration after `profile_name`. 
 
     ```
-    cumulus@switch:~$ netq lcm add credentials ssh-key PUBLIC_SSH_KEY
+    cumulus@switch:~$ netq lcm add credentials profile_name NEWPROFILE ssh-key PUBLIC_SSH_KEY
     ```
 
 {{</tab>}}

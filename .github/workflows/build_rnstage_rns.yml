@@ -14,7 +14,7 @@ jobs:
       - name: Run the **STAGE** RN and FOSS scripts
         run: |
           python3 utils/build_rnstage_rns.py
-          python3 utils/build_rnstage_foss_licenses.py
+## comment out FOSS processing temporarily for rn-stage !!          python3 utils/build_rnstage_foss_licenses.py
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         with:

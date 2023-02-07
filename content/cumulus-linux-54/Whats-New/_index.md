@@ -449,4 +449,3 @@ Cumulus Linux 5.4 includes the NVUE object model. After you upgrade to Cumulus L
 
 Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.
 {{%/notice%}}
-configuration for features that are now configurable with NVUE

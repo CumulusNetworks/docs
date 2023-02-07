@@ -135,17 +135,19 @@ You must have sudoer permission to properly configure switches when using the SS
 
 {{<tab "NetQ CLI" >}}
 
-To change the basic authentication credentials, run the add credentials command with the new username and/or password. This example changes the password for the cumulus account created above:
+The syntax for editing access profiles is:
 
 ```
-cumulus@switch:~$ netq lcm add credentials username cumulus password Admin#123
+cumulus@switch:~$ netq lcm edit credentials 
+    profile_id <text-switch-profile-id> 
+    [profile_name <text-switch-profile-name>] 
+    [auth-type <text-switch-auth-type>] 
+    [username <text-switch-username>] 
+    [password <text-switch-password> | ssh-key <text-ssh-key>]
 ```
+Run `netq lcm show credentials` to obtain the profile ID. See the {{<link title="lcm/#netq-lcm-edit-credentials" text="command line reference">}} for further details.
 
-To configure SSH authentication using a public/private key:
-
-{{<notice info>}}
-You must have sudoer permission to properly configure switches when using the SSH key method.
-{{</notice>}}
+To configure SSH authentication using a public/private key (requires sudoer permission):
 
 1. If the new keys do not yet exist, create a pair of SSH private and public keys:
 
@@ -161,7 +163,7 @@ You must have sudoer permission to properly configure switches when using the SS
 3. Add these new credentials to the switch:
 
     ```
-    cumulus@switch:~$ netq lcm add credentials ssh-key PUBLIC_SSH_KEY
+    cumulus@switch:~$ netq lcm edit credentials ssh-key PUBLIC_SSH_KEY
     ```
 
 {{</tab>}}

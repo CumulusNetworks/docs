@@ -401,17 +401,73 @@ NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556d
 
 - - -
 ## netq lcm edit credentials
+
+Modifies an access profile's name, authentication type, username, or password. See {{<link title="Credentials and Profiles">}} for more information about access profiles.
+
+Before editing an access profile, run `netq lcm show credentials` to obtain the profile's ID.
 ### Syntax
 
+```
+netq lcm edit credentials 
+    profile_id <text-switch-profile-id> 
+    [profile_name <text-switch-profile-name>] 
+    [auth-type <text-switch-auth-type>] 
+    [username <text-switch-username>] 
+    [password <text-switch-password> | ssh-key <text-ssh-key>]
+```
 ### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| credentials | NA | Edit the access credentials used to upgrade switches |
+| profile_id | <text-credential-profile-id\> | Edit the profile assigned this ID |
 
 ### Options
 
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| profile_name | \<text-switch-profile-name\> | Changes the access profile's name |
+| auth-type | \<text-switch-auth-type\> | Changes the authentication method (basic or SSH) |
+| username | \<text-switch-username\> | Changes the username for the user who can configure switches |
+| password | \<text-switch-password\> | Changes the password associated with the username so that the user can configure switches |
+| ssh-key | \<text-ssh-key\> | Changes the *private* key required to configure switches. You must have already installed the *public* key on each switch. |
+
 ### Sample Usage
 
+To obtain the profile ID, run `netq lcm show credentials`:
+
+```
+cumulus@switch:~$ netq lcm show credentials
+Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
+-------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
+credential_profile_3 n-1000                   BASIC                           admin            **************   3                                    Fri Feb  3 21:49:10 2023
+eddab251bddea9653df7
+cd1be0fc123c5d7a42f8
+18b68134e42858e54a9c
+289
+```
+To change the name of the profile (in this example from n-1000 to n-2000) run:
+
+```
+cumulus@switch:~$ netq lcm edit credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 profile_name n-2000
+Credential profile modified.
+```
+
+Run `netq lcm show credentials` to verify the edit:
+
+```
+netq lcm show credentials
+Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
+-------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
+credential_profile_3 n-2000                   BASIC                           admin            **************   3                                    Tue Feb  7 16:57:46 2023
+eddab251bddea9653df7
+cd1be0fc123c5d7a42f8
+18b68134e42858e54a9c
+289
+```
 ### Related Commands
 
-- netq lcm show credentials
+- `netq lcm show credentials`
 
 - - -
 ## netq lcm install netq-image

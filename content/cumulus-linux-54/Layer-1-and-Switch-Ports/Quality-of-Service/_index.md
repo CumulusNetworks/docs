@@ -1454,12 +1454,12 @@ You can adjust advanced buffer settings with the following NVUE command:
 
 You can adjust settings for the following supported buffer regions and properties:
 
-|Buffers | Priority Groups | Supported Property Values |
-|------------- |----------- | ---------------- |
-|`ingress-lossy-buffer` | `bulk`<br>`control`<br>`service[1-6]` | <ul>`name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values. |
-|`egress-lossless-buffer` | N/A | <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> | 
-|`ingress-lossless-buffer` | N/A | <ul>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
-|`egress-lossy-buffer` | N/A| <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority [0-7]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each multicast switch priority.<br>`traffic-class [0-15]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each traffic class.</ul> |
+|Buffers | Supported Property Values |
+|------------- |----------- |
+|`ingress-lossy-buffer` | <ul>The following properties are supported for the `bulk`, `control`, and `service[1-6]` priority groups: <br> `name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values. |
+|`egress-lossless-buffer` | <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> | 
+|`ingress-lossless-buffer` | <ul>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
+|`egress-lossy-buffer` | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority [0-7]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each multicast switch priority.<br>`traffic-class [0-15]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each traffic class.</ul> |
 
 {{%notice note%}}
 Configure `shared-bytes` for buffer regions mapped to static service pools, and `shared-alpha` for buffer regions mapped to dynamic service pools.
@@ -1493,13 +1493,13 @@ NVUE presents a warning if you attempt to apply incompatible traffic pool and ad
 - The sum of `memory-percent` values across all egress pools must be less than or equal to 100 percent
 {{%/notice%}}
 
-Reference the table below to view the default mappings between default traffic pool and advanced buffer properties:
+Reference the table below to view the mappings between the default traffic pool and advanced buffer properties:
 
 | Default Traffic Pool | Default Traffic Pool Properties | Advanced Buffer Region or Service Pool | Advanced Buffer Properties |
 |------------- |----------- | ----------- | ----------- | 
 | `default-lossy` | `memory-percent` | `ingress-pool 0`<br>`egress-pool 0` | `memory-percent` |
 | `default-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group bulk switch-priority` |
-| `mc-lossy` | |`memory-percent` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` | 
+| `mc-lossy` | `memory-percent` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` | 
 
 For example, to assign 20 percent of memory to a new static service pool you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to allocate the memory to `ingress-pool 3`:
 

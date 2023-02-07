@@ -78,8 +78,6 @@ The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinu
 
 {{<tab "NetQ CLI">}}
 
-<!--
-
 To configure basic authentication, run:
 
 ```
@@ -95,7 +93,7 @@ The default credentials for Cumulus Linux have changed from *cumulus/CumulusLinu
 To configure SSH authentication using a public/private key:
 
 {{<notice info>}}
-You must have sudoer permission to properly configure switches when using the SSH Key method.
+You must have sudoer permission to properly configure switches when using the SSH key method.
 {{</notice>}}
 
 1. If the keys do not yet exist, create a pair of SSH private and public keys.
@@ -114,7 +112,7 @@ You must have sudoer permission to properly configure switches when using the SS
     ```
     cumulus@switch:~$ netq lcm add credentials ssh-key PUBLIC_SSH_KEY
     ```
--->
+
 {{</tab>}}
 
 {{</tabs>}}
@@ -137,8 +135,6 @@ You must have sudoer permission to properly configure switches when using the SS
 
 {{<tab "NetQ CLI" >}}
 
-<!-->
-
 To change the basic authentication credentials, run the add credentials command with the new username and/or password. This example changes the password for the cumulus account created above:
 
 ```
@@ -148,7 +144,7 @@ cumulus@switch:~$ netq lcm add credentials username cumulus password Admin#123
 To configure SSH authentication using a public/private key:
 
 {{<notice info>}}
-You must have sudoer permission to properly configure switches when using the SSH Key method.
+You must have sudoer permission to properly configure switches when using the SSH key method.
 {{</notice>}}
 
 1. If the new keys do not yet exist, create a pair of SSH private and public keys:
@@ -167,8 +163,6 @@ You must have sudoer permission to properly configure switches when using the SS
     ```
     cumulus@switch:~$ netq lcm add credentials ssh-key PUBLIC_SSH_KEY
     ```
-
--->
 
 {{</tab>}}
 
@@ -220,28 +214,12 @@ You can view the type of credentials used to access your switches in the NetQ UI
 
 {{<tab "NetQ CLI" >}}
 
-<!--
+To view a list of access profiles and their associated credentials, run `netq lcm show credentials`.
 
-To see the credentials, run `netq lcm show credentials`.
+If you use an SSH key for the credentials, the public key appears in the command output.
 
-If you use an SSH key for the credentials, the public key appears in the command output:
+If you use a username and password for the credentials, the username appears in the command output with the password masked.
 
-```
-cumulus@switch:~$ netq lcm show credentials
-Type             SSH Key        Username         Password         Last Changed
----------------- -------------- ---------------- ---------------- -------------------------
-SSH              MY-SSH-KEY                                       Tue Apr 28 19:08:52 2020
-```
-
-If you use a username and password for the credentials, the username appears in the command output with the password masked:
-
-```
-cumulus@switch:~$ netq lcm show credentials
-Type             SSH Key        Username         Password         Last Changed
----------------- -------------- ---------------- ---------------- -------------------------
-BASIC                           cumulus          **************   Tue Apr 28 19:10:27 2020
-```
--->
 {{</tab>}}
 
 {{</tabs>}}

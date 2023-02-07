@@ -487,7 +487,7 @@ cumulus@switch:~$ netq lcm show cl-images json
 
 ## netq lcm show credentials
 
-Displays the switch access credentials method and values currently configured.
+Displays the switch access profiles and associated credentials.
 
 ### Syntax
 
@@ -511,22 +511,30 @@ netq lcm show credentials
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show credentials 
-Type             SSH Key        Username         Password         Last Changed
----------------- -------------- ---------------- ---------------- -------------------------
-BASIC                           cumulus          **************   Wed Jan 27 19:24:03 2021
-```
-
-```
 cumulus@switch:~$ netq lcm show credentials
-Type             SSH Key        Username         Password         Last Changed
----------------- -------------- ---------------- ---------------- -------------------------
-SSH              <your-SSH-key>                                   Tue Apr 28 19:08:52 2020
+Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
+-------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
+credential_profile_d Netq-Default             BASIC                           cumulus          **************   11                                   Fri Feb  3 18:20:33 2023
+9e875bd2e6784617b304
+c20090ce28ff2bb46a4b
+9bf23cda98f1bdf91128
+5c9
+credential_profile_3 Nvl4-Default             BASIC                           admin            **************   1                                    Fri Feb  3 19:18:26 2023
+5a2eead7344fb91218bc
+dec29b12c66ebef0d806
+659b20e8805e4ff629bc
+23e
+credential_profile_3 n-1000                   BASIC                           admin            **************   3                                    Fri Feb  3 21:49:10 2023
+eddab251bddea9653df7
+cd1be0fc123c5d7a42f8
+18b68134e42858e54a9c
+289
 ```
 
 ### Related Commands
 
 - ```netq lcm add credentials```
+- `netq lcm attach credentials`
 - ```netq lcm del credentials```
 
 - - -

@@ -1,0 +1,101 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: python-debian
+Upstream-Contact: pkg-python-debian-maint@lists.alioth.debian.org
+Source: https://salsa.debian.org/python-debian-team/python-debian
+
+Files: *
+Copyright: Debian python-debian Maintainers (see debian/control for maintainer names)
+License: GPL-2+
+
+Files: lib/deb822.py lib/debian/deb822.py lib/debian/tests/test_deb822.py
+Copyright: Copyright (C) 2005-2006  dann frazier <dannf@dannf.org>
+           Copyright (C) 2006-2010  John Wright <john@johnwright.org>
+           Copyright (C) 2006       Adeodato Simó <dato@net.com.org.es>
+           Copyright (C) 2008       Stefano Zacchiroli <zack@upsilon.cc>
+           Copyright (C) 2014       Google, Inc.
+License: GPL-2+
+
+Files:
+ examples/changelog/*
+ lib/debian/changelog.py
+ setup.py
+ lib/debian/tests/test_changelog.py
+Copyright: Copyright (C) 2006-2007 James Westby <jw+debian@jameswestby.net>
+           Copyright (C) 2008 Canonical Ltd.
+License: GPL-2+
+Comment: lib/debian/changelog.py's parsing code is based on that from dpkg which is:
+ Copyright 1996 Ian Jackson
+ Copyright 2005 Frank Lichtenheld <frank@lichtenheld.de>
+ and licensed under the same license.
+
+Files:
+ lib/debian/debian_support.py
+ lib/debian/tests/test_debian_support.py
+Copyright: Copyright (C) 2005 Florian Weimer <fw@deneb.enyo.de>
+           Copyright (C) 2006-2007 James Westby <jw+debian@jameswestby.net>
+           Copyright (C) 2010 John Wright <jsw@debian.org>
+License: GPL-2+
+
+Files:
+ examples/debtags/*
+ lib/debian/debtags.py
+ lib/debian/doc-debtags
+ lib/debian/tests/test_debtags.py
+Copyright: Copyright (C) 2003-2007 Enrico Zini <enrico@debian.org>
+License: GPL-3+
+
+Files:
+ examples/debfile/*
+ lib/debian/arfile.py
+ lib/debian/debfile.py
+ lib/debian/tests/test_debfile.py
+Copyright: Copyright (C) 2007-2008  Stefano Zacchiroli  <zack@debian.org>
+           Copyright (C) 2007       Filippo Giunchedi   <filippo@debian.org>
+License: GPL-3+
+
+Files:
+ lib/debian/deprecation.py
+Copyright: Copyright (C) Ben Finney <ben+debian@benfinney.id.au>
+License: GPL-2+
+
+Files:
+ examples/copyright/*
+ lib/debian/copyright.py
+ lib/debian/tests/test_copyright.py
+Copyright: Copyright (C) 2014   Google, Inc.
+License: GPL-2+
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation, either version 2
+ of the License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ version 3 can be found in `/usr/share/common-licenses/GPL-3'.

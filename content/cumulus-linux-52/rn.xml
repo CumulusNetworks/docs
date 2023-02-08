@@ -19,6 +19,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3349207</td>
+<td>The switch does not learn MAC addresses from DHCP packets. When a DHCP enabled host is plugged in for the first time, it tries to obtain an IP address through DHCP. The switch  does not learn the MAC address of the host when it receives these DHCP packets; therefore, the host MAC address is not updated in the local forwarding database and it does not get advertised across EVPN. The switch learns the MAC address when it receives other packets, such as ARP or ND from the host. To work around this issue, either configure a temporary IP address on the host to initiate ARP/ND or enable IPv6, which sends ND after link local address creation.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3339336</td>
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
@@ -639,6 +645,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>3351936</td>
 <td>Switch fans run at very high speed but the temperature is normal.</td>
+<td>5.2.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3349207</td>
+<td>The switch does not learn MAC addresses from DHCP packets. When a DHCP enabled host is plugged in for the first time, it tries to obtain an IP address through DHCP. The switch  does not learn the MAC address of the host when it receives these DHCP packets; therefore, the host MAC address is not updated in the local forwarding database and it does not get advertised across EVPN. The switch learns the MAC address when it receives other packets, such as ARP or ND from the host. To work around this issue, either configure a temporary IP address on the host to initiate ARP/ND or enable IPv6, which sends ND after link local address creation.</td>
 <td>5.2.0-5.3.1</td>
 <td></td>
 </tr>

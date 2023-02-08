@@ -7,8 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3351941</td>
+<td>Cumulus Linux 5.4 package upgrade ({{apt-upgrade}}) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3351938</td>
 <td>Configuring TACACS NSS debugging can cause NVUE commands to break for all users who log in while they are enabled. To work around this issue, if your terminal session is unaffected and the debugs are configured with NVUE, unset the debugs or set the debug level to 0.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3350061</td>
+<td>If you use TACACS+ authentication, modifying the TACACS+ configuration with NVUE might result in a timeout error when you run the {{nv config apply}} command. To work around the issue, restart the {{nvued}} service with the {{sudo systemctl restart nvued.service}} command, then apply the configuration again.</td>
 <td>5.4.0</td>
 <td></td>
 </tr>
@@ -17,6 +29,19 @@
 <td>If you uninstall dynamic NAT rules and {{switchd}} restarts before all the dynamic NAT flows age out and are deleted, you might see errors in {{switchd.log}} due to dynamic flow deletion errors. 
 These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3349533</td>
+<td>On the Spectrum-2 and Spectrum-3 switch with ports operating at 1G speed, there is loss of frames that have an odd/random frame size. In the frame size range of 75 to 1000 bytes, there is frame loss of less than approximately one percent for all odd/random frame sizes in the range. In the frame size range greater than 1000 bytes, there is no loss observed.
+in parallel latency might be increased </td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3349207</td>
+<td>The switch does not learn MAC addresses from DHCP packets. When a DHCP enabled host is plugged in for the first time, it tries to obtain an IP address through DHCP. The switch  does not learn the MAC address of the host when it receives these DHCP packets; therefore, the host MAC address is not updated in the local forwarding database and it does not get advertised across EVPN. The switch learns the MAC address when it receives other packets, such as ARP or ND from the host. To work around this issue, either configure a temporary IP address on the host to initiate ARP/ND or enable IPv6, which sends ND after link local address creation.</td>
+<td>5.2.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>

@@ -82,7 +82,7 @@ After you complete the preparation steps, upgrade Cumulus Linux:
 
 3. Select the switches you want to upgrade.
 
-4. Click {{<img src="/images/netq/cl-upgrade-icon-blk.png" height="14" width="18">}} Upgrade OS above the table.
+4. Click {{<img src="/images/netq/cl-upgrade-icon-blk.png" height="14" width="18">}} **Upgrade OS** above the table.
 
     Follow the steps in the UI. Create a name for the upgrade and review the switches that you selected to upgrade:
 
@@ -276,7 +276,7 @@ Click **Remove** if you decide to use a different file or want to use IP address
 
 {{<tab "NetQ CLI" >}}
 
-If you previously ran a {{<link url="#prepare-for-upgrade" text="discovery job">}}, you can show the results of that job by running the `netq lcm show discovery-job` command.
+If you previously ran a switch discovery, you can display its results with `netq lcm show discovery-job`:
 
 ```
 cumulus@switch:~$ netq lcm show discovery-job job_scan_921f0a40-5440-11eb-97a2-5b3ed2e556db

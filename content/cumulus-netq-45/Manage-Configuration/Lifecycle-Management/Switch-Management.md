@@ -99,8 +99,46 @@ Attached profile to switch(es).
 
 4. Run `netq lcm show switches` and verify the change in the credential profile column.
 
-To detach a profile from a switch and restore it to the default access profile, run {{<link title="lcm/#netq-lcm-detach-credentials" text="netq lcm detach credentials">}}.
+{{</tab>}}
 
+{{</tabs>}}
+
+## Reassign or Detach an Access Profile
+
+Detaching a profile from a switch restores it to the default access profile, Netq-Default.
+
+{{<tabs "TabID110" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. On the Switches card, click **Manage**.
+
+2. The table displays a list of switches. In the profile name column, locate the access profile. Hover over the access type column and select **Manage access**:
+
+{{<figure src="/images/netq/detach-manage-access-450.png" alt="" width="500">}}
+
+3. To assign a different access profile to the switch, select it from the list. To detach the access profile, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18"/> Detach.
+
+{{<figure src="/images/netq/manage-access-profile-spine-450.png" alt="" width="500">}}
+
+After you detach the profile from the switch, NetQ reassigns it to the Netq-Default profile.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+The syntax for the detach command is `netq lcm detach credentials hostname <text-switch-hostname>`.
+
+1. To obtain a list of hostnames, run `netq lcm show switches`.
+
+2. Detach the access profile and specify the hostname. The following example detaches spine-1 from its assigned access profile:
+
+```
+cumulus@switch:~$ netq lcm detach credentials hostname spine-1
+Detached profile from switch.
+```
+
+3. Run `netq lcm show switches` and verify the change in the credential profile column.
 
 {{</tab>}}
 
@@ -116,7 +154,7 @@ Role assignment is optional, but recommended. Using roles can prevent switches f
 
 ### Assign Roles to Switches
 
-{{<tabs "TabID99" >}}
+{{<tabs "TabID136" >}}
 
 {{<tab "NetQ UI" >}}
 
@@ -202,7 +240,7 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 
 ### Reassign Roles to Switches
 
-{{<tabs "TabID179" >}}
+{{<tabs "TabID222" >}}
 
 {{<tab "NetQ UI" >}}
 

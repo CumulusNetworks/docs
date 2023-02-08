@@ -36,7 +36,6 @@ Early Access features are now called Beta features.
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
    - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} and {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="breakout port lane">}} configuration settings
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches (Beta)
-- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (Beta)
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="User-Accounts" text="User management">}} commands
   - {{<link url="TACACS" text="TACACS+">}} commands (Beta)
@@ -52,6 +51,7 @@ Early Access features are now called Beta features.
   - The `nv set evpn evi`, `nv unset evpn evi`, and `nv show evpn evi` commands are now `nv set evpn vni`, `nv unset evpn vni`, and `nv show evpn vni`
   - Obfuscated passwords to protect passwords from casual viewing
   - The `nv show config` command shows NVUE version information in addition to the saved configuration
+  <!-- - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (Beta)-->
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}
@@ -125,7 +125,6 @@ nv show interface <interface-id> qos buffer ingress-priority-group
 nv show interface <interface-id> qos buffer egress-port
 nv show interface <interface-id> qos buffer egress-traffic-class
 nv show interface <interface-id> qos buffer egress-multicast
-nv show interface <interface-id> ptp shaper
 nv show system config auto-save
 nv show system aaa
 nv show system aaa user
@@ -260,7 +259,6 @@ nv set interface <interface-id> qos remark
 nv set interface <interface-id> qos remark profile <profile-name>
 nv set interface <interface-id> qos egress-shaper
 nv set interface <interface-id> qos egress-shaper profile <profile-name>
-nv set interface <interface-id> ptp shaper enable (on|off)
 nv set service lldp mode
 nv set system config auto-save
 nv set system config auto-save enable (on|off)
@@ -397,7 +395,6 @@ nv unset interface <interface-id> qos remark
 nv unset interface <interface-id> qos remark profile
 nv unset interface <interface-id> qos egress-shaper
 nv unset interface <interface-id> qos egress-shaper profile
-nv unset interface <interface-id> ptp shaper enable (on|off)
 nv unset service lldp mode
 nv unset system config auto-save
 nv unset system config auto-save enable

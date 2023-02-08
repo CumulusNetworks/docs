@@ -1087,6 +1087,7 @@ Restarting NetQ CLI... Success!
 ### Related Commands
 
 - `netq config stop agent`
+- `netq config status agent`
 
 - - -
 <!-- vale off -->
@@ -1394,9 +1395,9 @@ Starting netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent
-- netq config stop agent
-- netq config restart agent
+- `netq config show agent`
+- `netq config stop agent`
+- `netq config restart agent`
 
 - - -
 
@@ -1430,9 +1431,9 @@ netq-agent...stopped
 
 ### Related Commands
 
-- netq config show agent
-- netq config stop agent
-- netq config restart agent
+- `netq config show agent`
+- `netq config stop agent`
+- `netq config restart agent`
 
 - - -
 <!-- vale off -->
@@ -1495,7 +1496,7 @@ Stopping netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent
-- netq config start agent
-- netq config restart agent
-<!-- vale NVIDIA.HeadingTitles = YES -->
+- `netq config show agent`
+- `netq config start agent`
+- `netq config restart agent`
+- - -

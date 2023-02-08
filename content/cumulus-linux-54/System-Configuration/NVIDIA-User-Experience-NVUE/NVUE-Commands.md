@@ -386,7 +386,6 @@ nv show interface <interface-id> acl <acl-id> outbound
 nv show interface <interface-id> acl <acl-id> outbound control-plane
 nv show interface <interface-id> ptp
 nv show interface <interface-id> ptp timers
-nv show interface <interface-id> ptp shaper
 nv show interface <interface-id> ptp counters
 nv show interface <interface-id> tunnel
 nv show interface <interface-id> storm-control
@@ -1481,8 +1480,6 @@ nv set interface <interface-id> ptp timers announce-interval -3-4
 nv set interface <interface-id> ptp timers sync-interval -7-1
 nv set interface <interface-id> ptp timers delay-req-interval -7-6
 nv set interface <interface-id> ptp timers announce-timeout 2-10
-nv set interface <interface-id> ptp shaper
-nv set interface <interface-id> ptp shaper enable (on|off)
 nv set interface <interface-id> ptp enable (on|off)
 nv set interface <interface-id> ptp instance 1-16
 nv set interface <interface-id> ptp forced-master (on|off)
@@ -3049,8 +3046,6 @@ nv unset interface <interface-id> ptp timers announce-interval
 nv unset interface <interface-id> ptp timers sync-interval
 nv unset interface <interface-id> ptp timers delay-req-interval
 nv unset interface <interface-id> ptp timers announce-timeout
-nv unset interface <interface-id> ptp shaper
-nv unset interface <interface-id> ptp shaper enable
 nv unset interface <interface-id> ptp enable
 nv unset interface <interface-id> ptp instance
 nv unset interface <interface-id> ptp forced-master

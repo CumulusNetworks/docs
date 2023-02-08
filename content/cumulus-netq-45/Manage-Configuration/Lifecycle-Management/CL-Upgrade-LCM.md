@@ -43,24 +43,26 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 3. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-4. Verify or add {{<link title="Switch Credentials" text="switch access credentials">}}.
+4. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-5. (Optional) Assign a {{<link  title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch.
+5. (Optional) Assign a {{<link  title="Switch Management/#assign-switch-roles" text="role">}} to each switch.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-1. Create a discovery job to locate Cumulus Linux switches on the network. Use the `netq lcm discover` command, specifying a single IP address, a range of IP addresses where your switches are located in the network, or a CSV file containing the IP address, and optionally, the hostname and port for each switch on the network. If the port is blank, NetQ uses switch port 22 by default. They can be in any order you like, but the data must match that order.
+1. Create a discovery job to locate Cumulus Linux switches on the network. Use the {{<link title="lcm/#netq-lcm-discover" text="netq lcm discover">}} command, specifying a single IP address, a range of IP addresses where your switches are located in the network, or a CSV file containing the IP address.
 
-       cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 
+You must also specify the access profile ID, which you can obtain with the `netq lcm show credentials` command.
+
+       cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
        NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556db
 
 2. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}. 
 
-3. Verify or add {{<link title="Switch Credentials" text="switch access credentials">}}.
+3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-4. (Optional) Assign a {{<link title="Switch Credentials/#assign-switch-roles" text="role">}} to each switch.
+4. (Optional) Assign a {{<link title="Switch Management/#assign-switch-roles" text="role">}} to each switch.
 
 {{</tab>}}
 
@@ -94,7 +96,7 @@ If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetw
 
 8. Select either a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default image">}} or custom version.
 
-9. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
+9. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
 10. Click **Next**.
 
@@ -168,7 +170,7 @@ A successful upgrade can still have post-check warnings. For example, you update
 
 When you want to update Cumulus Linux on switches without NetQ installed, use the switch discovery feature. The feature browses your network to find all Cumulus Linux switches (with and without NetQ currently installed) and determines the versions of Cumulus Linux and NetQ installed. These results are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure rather than in two steps. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
 
-To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on them:
+To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on those switches:
 
 {{<tabs "Discover switches" >}}
 
@@ -181,7 +183,7 @@ To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on
 
 3. Enter a name for the scan.
 
-    {{<figure src="/images/netq/switch-discovery-450.png" width="500">}}
+    {{<figure src="/images/netq/discover-switches-profile-450.png" width="500">}}
 
 4. Choose whether you want to look for switches by entering IP address ranges OR import switches using a comma-separated values (CSV) file.
 
@@ -239,7 +241,7 @@ Click **Remove** if you decide to use a different file or want to use IP address
 
     {{</tabs>}}
 
-5. Note that you can use the switch access credentials defined in {{<link title="Switch Credentials">}} to access these switches. If you have issues accessing the switches, you might need to update your credentials.
+5. Select an access profile from the dropdown menu. If you use Netq-Default you will see a message requesting that you {{<link title="Credentials and Profiles" text= "create or update your credentials">}}.
 
 6. Click **Next**.
 

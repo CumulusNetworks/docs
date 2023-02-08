@@ -273,7 +273,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list \<leak-vrf-id\>
 
-A VRF
+Shows routes in the BGP routing table of VRF BLUE dynamically leak into VRF RED.
 
 ### Command Syntax
 
@@ -289,7 +289,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list BLUE
 ```
 
 - - -
@@ -2500,8 +2500,8 @@ Specifies whether to track BGP peering sessions using this configuration via BFD
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  | Peer ID |
+| `<vrf-id>` |    The VRF name.|
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
 
@@ -2592,8 +2592,8 @@ RFC 5082
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  | Peer ID |
+| `<vrf-id>` |    The VRF name.|
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
 
@@ -2638,8 +2638,8 @@ Message statistics
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  | Peer ID |
+| `<vrf-id>` |    The VRF name.|
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
 
@@ -2648,7 +2648,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51
 ```
 
 - - -

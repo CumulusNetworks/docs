@@ -7,10 +7,46 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3351951</td>
+<td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3301988</td>
+<td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3235368</td>
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
 <td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3234085</td>
+<td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
+<td>5.0.1-5.3.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3228899</td>
@@ -39,8 +75,8 @@
 <tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.3.1</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3211359</td>
@@ -234,20 +270,14 @@ cumulus@switch:~$ nv config apply
 
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
 </td>
-<td>5.0.1-5.1.0</td>
-<td>5.2.0-5.3.1</td>
+<td>5.0.1-5.3.1</td>
+<td></td>
 </tr>
 <tr>
 <td>3066664</td>
 <td>In an EVPN-MH configuration, the switch fails to redirect tagged frames with the CoS bits set.</td>
 <td>4.4.0-4.4.3, 5.0.0-5.3.1</td>
 <td>4.4.4-4.4.5</td>
-</tr>
-<tr>
-<td>3066280</td>
-<td> The python module pygments version 2.12.0 on the Cumulus Linux switch prevents NVUE from displaying colored output and produces an error or failure. The failure specifically identifies {{#ansidarkred}} as the problem color format. The error prevents any output from showing on the CLI. To work around this problem, downgrade the pygments module to version 2.3.1.</td>
-<td>5.0.1-5.3.1</td>
-<td></td>
 </tr>
 <tr>
 <td>3061445</td>
@@ -342,8 +372,8 @@ Failure during apply. Ignore? [y/N]
 <td>4.4.4-4.4.5, 5.1.0-5.3.1</td>
 </tr>
 <tr>
-<td>3037829</td>
-<td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
+<td>3037824</td>
+<td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -456,12 +486,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>5.1.0-5.3.1</td>
 </tr>
 <tr>
-<td>2993471</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2978165</td>
 <td>When you use NVUE to configure an ACL rule with a {{set cos}} action, the {{nv config apply}} command fails with the following error message:
 {nofromat}
@@ -532,12 +556,6 @@ Unrecoverable internal error
 To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.3.1</td>
-</tr>
-<tr>
-<td>2923737</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.3.1</td>
-<td>3.7.16, 4.3.1</td>
 </tr>
 <tr>
 <td>2914835</td>
@@ -639,7 +657,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2867042</td>
-<td>When connecting SN4600V to a SNxxxx system, it must run in auto-negotiation mode (as opposed to force mode) otherwise the wrong Tx configuration might be chosen.</td>
+<td>When connecting the SN4600V to an SNxxxx system, it must run in auto-negotiation mode (not force mode) otherwise the wrong Tx configuration might be chosen.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -684,12 +702,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
-<td>2844778</td>
-<td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this issue, use the {{nv config patch &lt;yaml-file&gt;}}  command or the {{nv config replace &lt;yaml-file&gt;}} command to update large pieces of configuration at once.</td>
-<td>5.0.0-5.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2831968</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0, 4.4.0-4.4.5, 5.0.0-5.3.1</td>
@@ -698,6 +710,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2823307</td>
 <td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2821929</td>
+<td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -712,12 +730,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together.</td>
 <td>5.0.0-5.1.0</td>
 <td>5.2.0-5.3.1</td>
-</tr>
-<tr>
-<td>2748923</td>
-<td>If you include a dash (-) when configuring an interface name with NVUE, you see an error. NVUE does not support using a dash in interface names.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.3.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2743186</td>
@@ -797,6 +809,36 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3351951</td>
+<td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3301988</td>
+<td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3235368</td>
 <td>When you try to configure VRF route leaking between many VRFs using multiple NCLU commands before running the {{net commit}} command, the commit fails. To work around this issue, configure VRF leaking one command at a time and run {{net commit}} after each command.</td>
 <td>4.4.4-5.2.1</td>
@@ -817,8 +859,8 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.3.1</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3211359</td>
@@ -1007,8 +1049,8 @@ export HOME
 <td>4.4.4-4.4.5, 5.1.0-5.3.1</td>
 </tr>
 <tr>
-<td>3037829</td>
-<td>If you run the {{nv show system message}} command and the message of the day includes {{\n}} for a line break, NVUE might crash.</td>
+<td>3037824</td>
+<td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -1102,12 +1144,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 <td>5.1.0-5.3.1</td>
 </tr>
 <tr>
-<td>2993471</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2972540</td>
 <td>With RADIUS enabled for user shell authentication, there might be a delay in local user authentication for non cumulus user accounts.</td>
 <td>5.0.0-5.3.1</td>
@@ -1161,12 +1197,6 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 To work around this issue, create a snippet in yaml format and add the configuration to the {{/etc/frr/frr.conf}} file.</td>
 <td>4.4.0-5.0.1</td>
 <td>5.1.0-5.3.1</td>
-</tr>
-<tr>
-<td>2923737</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.3.1</td>
-<td>3.7.16, 4.3.1</td>
 </tr>
 <tr>
 <td>2914835</td>
@@ -1275,7 +1305,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2867042</td>
-<td>When connecting SN4600V to a SNxxxx system, it must run in auto-negotiation mode (as opposed to force mode) otherwise the wrong Tx configuration might be chosen.</td>
+<td>When connecting the SN4600V to an SNxxxx system, it must run in auto-negotiation mode (not force mode) otherwise the wrong Tx configuration might be chosen.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -1320,12 +1350,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td></td>
 </tr>
 <tr>
-<td>2844778</td>
-<td>When pasting numerous NVUE configuration commands into the CLI, there is a delay of around 500ms between processing each command. To work around this issue, use the {{nv config patch &lt;yaml-file&gt;}}  command or the {{nv config replace &lt;yaml-file&gt;}} command to update large pieces of configuration at once.</td>
-<td>5.0.0-5.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2831968</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0, 4.4.0-4.4.5, 5.0.0-5.3.1</td>
@@ -1334,6 +1358,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <tr>
 <td>2823307</td>
 <td>Cumuls Linux does not support a bond with more than 64 ports.  Any configuration with more than 64 ports in a bond changes all ports to down when you apply the configuration. </td>
+<td>5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>2821929</td>
+<td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
 <td></td>
 </tr>
@@ -1348,12 +1378,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>When you configure PIM, you can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use the two methods together.</td>
 <td>5.0.0-5.1.0</td>
 <td>5.2.0-5.3.1</td>
-</tr>
-<tr>
-<td>2748923</td>
-<td>If you include a dash (-) when configuring an interface name with NVUE, you see an error. NVUE does not support using a dash in interface names.</td>
-<td>4.4.0-4.4.5, 5.0.0-5.3.1</td>
-<td></td>
 </tr>
 <tr>
 <td>2743186</td>

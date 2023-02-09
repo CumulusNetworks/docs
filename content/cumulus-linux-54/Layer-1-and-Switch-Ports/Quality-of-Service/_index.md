@@ -1464,6 +1464,13 @@ You can adjust settings for the following supported buffer regions and propertie
 {{%notice note%}}
 Configure `shared-bytes` for buffer regions mapped to static service pools, and `shared-alpha` for buffer regions mapped to dynamic service pools.
 {{%/notice%}}
+
+The shared buffer alpha value determines the proportion of available shared memory allocated across buffer regions. Regions with higher alpha values receive a higher proportion of available shared buffer memory. The following example changes the `ingress-lossless-buffer` shared alpha value to `alpha_2` when using RoCE lossless mode:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer shared-alpha alpha_2
+cumulus@switch:~$ nv config apply
+```
 ### Service Pools
 
 You can configure ingress and egress service pool profile properties with the following NVUE commands:
@@ -1486,9 +1493,9 @@ You can adjust the following properties for each pool:
 A relationship exists between the default traffic pools and the advanced buffer configuration settings.  
 
 {{%notice note%}}
-NVUE presents a warning if you attempt to apply incompatible traffic pool and advanced buffer configurations. NVUE performs the following validation checks before applying advanced buffer configurations:
+Use caution when configure advanced buffer settings. NVUE presents a warning if you attempt to apply incompatible traffic pool and advanced buffer configurations. NVUE performs the following validation checks before applying advanced buffer configurations:
 
-- You must map all switch priorities (0-7) to a priority group.
+- All switch priorities (0-7) must be mapped to a priority group. You can map more than one switch priority to the same priority group.
 - The sum of `memory-percent` values across all ingress pools must be less than or equal to 100 percent.
 - The sum of `memory-percent` values across all egress pools must be less than or equal to 100 percent.
 {{%/notice%}}
@@ -1499,7 +1506,10 @@ Reference the table below to view the mappings between the default traffic pool 
 |------------- |----------- | ----------- | ----------- | 
 | `default-lossy` | `memory-percent` | `ingress-pool 0`<br>`egress-pool 0` | `memory-percent` |
 | `default-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group bulk switch-priority` |
+| `default-lossless` | `memory-percent` | `ingress-pool 1`<br>`egress-pool 1` | `memory-percent` |
+| `roce-lossless` | `memory-percent` | `ingress-pool 1`<br>`egress-pool 1` | `memory-percent` |
 | `mc-lossy` | `memory-percent` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` | 
+| `mc-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group service2 switch-priority` | 
 
 For example, to assign 20 percent of memory to a new static service pool you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to allocate the memory to `ingress-pool 3`:
 
@@ -2077,9 +2087,9 @@ cos_egr_queue.cos_7.cpu = 7
 
 ### Configure QoS and Breakout Ports Simultaneously
 
-If you configure both breakout ports by modifying `ports.conf` and QoS settings by modifying `qos_features.conf`, then apply the settings with `reload switchd`, errors might occur.
+If you configure btoh breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
 
-You must apply breakout port configuration before QoS configuration on the breakout ports. Modify `ports.conf` first, `reload switchd`, then modify `qos_features.conf` and `reload switchd` a second time.
+You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `qos_features.conf` and `reload switchd` a second time.
 
 ### QoS Settings on Bond Member Interfaces
 

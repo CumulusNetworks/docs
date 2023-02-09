@@ -94,7 +94,7 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 </tr>
 <tr>
 <td>3331929</td>
-<td>Running the {{nv show vrf &lt;vrf&gt; router bgp address-family l2vpn-evpn loc-rib}} command if you have more than 1100 SVIs and VXLAN interfaces results in out of memory errors and the command crashes.</td>
+<td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf default router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
 <td>5.4.0</td>
 <td></td>
 </tr>

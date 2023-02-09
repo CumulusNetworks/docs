@@ -25,15 +25,15 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 2. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-3. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
+3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-1. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
+1. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-2. Configure {{<link title="Switch Credentials/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
+2. Configure {{<link title="Credentials and Profiles/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
 3. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
@@ -49,7 +49,7 @@ After you complete the preparation steps, upgrade the NetQ Agents:
 
 {{<tab "NetQ UI" >}}
 
-1. From the LCM dashboard, select the **Switch Management** tab. Locate the Switches card and click **Manage**.
+1. From the LCM dashboard, select the **Switch management** tab. Locate the Switches card and click **Manage**.
 
 2. Select the switches you want to upgrade.
 
@@ -95,13 +95,18 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 To upgrade the NetQ Agent on one or more switches, run:
 
 ```
-netq-image job-name <text-job-name> [netq-version <text-netq-version>] [upgrade-cli True | upgrade-cli False] hostnames <text-switch-hostnames> [config_profile <text-config-profile>]
+netq lcm upgrade netq-image 
+    job-name <text-job-name> 
+    [netq-version <text-netq-version>] 
+    [upgrade-cli True | upgrade-cli False] 
+    hostnames <text-switch-hostnames> 
+    [config_profile <text-config-profile>]
 ```
 
-The following example creates a NetQ Agent upgrade job called *upgrade-cl430-nq330*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.1.0.
+The following example creates a NetQ Agent upgrade job called *upgrade-cl530-nq450*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.5.0.
 
 ```
-cumulus@switch:~$ netq lcm upgrade job-name upgrade-cl430-nq330 netq-version 4.1.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade job-name upgrade-cl530-nq450 netq-version 4.5.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:

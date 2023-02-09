@@ -7,7 +7,7 @@ toc: 3
 
 {{<notice note>}}
 
-PTP monitoring is an early access feature and is supported on NVIDIA Spectrum 2 and 3 platforms. It requires a switch fabric running Cumulus Linux version 5.0 or above.
+PTP monitoring is an early access feature and is supported on NVIDIA Spectrum-2 switches and above. It requires a switch fabric running Cumulus Linux version 5.0 or above.
 
 {{</notice>}}
 
@@ -19,12 +19,12 @@ PTP commands include:
 
 ```
    netq show ptp clock-details 
-  
-   netq show ptp global-config 
+
+   netq show ptp global-config
 
    netq show ptp port-status 
 
-   netq show ptp counters
+   netq show ptp counters (tx | rx) 
 ```
 
 See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional options and examples.

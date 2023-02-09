@@ -24,7 +24,7 @@ To manually create a backup:
 1. Run the backup script to create a backup file in `/opt/<backup-directory>`. Replace `backup-directory` with the name of the directory you want to use for the backup file.
 
    ```
-   cumulus@switch:~$ ./backuprestore.sh --backup --localdir /opt/<backup-directory>
+   cumulus@netq-appliance:~$ sudo /usr/sbin/backuprestore.sh --backup --localdir /opt/<backup-directory>
    ```
 
    {{<notice tip>}}
@@ -53,12 +53,12 @@ You can abbreviate the <code>backup</code> and <code>localdir</code> options of 
 2. Verify the backup file creation was successful.
 
    ```
-   cumulus@switch:~$ cd /opt/<backup-directory>
-   cumulus@switch:~/opt/<backup-directory># ls
+   cumulus@netq-appliance:~$ cd /opt/<backup-directory>
+   cumulus@netq-appliance:~/opt/<backup-directory># ls
    netq_master_snapshot_2019-06-04_07_24_50_UTC.tar.gz
    ```
 
-To create a scheduled backup, add `./backuprestore.sh --backup --localdir /opt/<backup-directory>` to an existing cron job, or create a new one.
+To create a scheduled backup, add `sudo /usr/sbin/backuprestore.sh --backup --localdir /opt/<backup-directory>` to an existing cron job, or create a new one.
 
 ## Restore Your NetQ Data
 
@@ -69,7 +69,7 @@ To restore NetQ on the same hardware where the backup file resides:
 Run the restore script. Replace `backup-directory` with the name of the directory where the backup file resides.
 
 ```
-cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
+cumulus@netq-appliance:~$ sudo /usr/sbin/backuprestore.sh --restore --localdir /opt/<backup-directory>
 ```
 
 {{<notice tip>}}
@@ -108,5 +108,5 @@ To restore NetQ on new hardware:
 2. Run the restore script on the new hardware. Replace `backup-directory` with the name of the directory where the backup file resides.
 
    ```
-   cumulus@switch:~$ ./backuprestore.sh --restore --localdir /opt/<backup-directory>
+   cumulus@netq-appliance:~$ sudo /usr/sbin/backuprestore.sh --restore --localdir /opt/<backup-directory>
    ```

@@ -52,6 +52,10 @@ cumulus@switch:~$ nv config apply
 
 You can also run the `nv set system aaa user <user> password <plain-text-password>` command to specify the plain text password inline. This command bypasses the `Enter new password` and `Confirm password` prompts but displays the plain text password as you type it.
 
+{{%notice note%}}
+If you are an NVUE-mangaged user, you can update your own password with the Linux `passwd` command.
+{{%/notice%}}
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 

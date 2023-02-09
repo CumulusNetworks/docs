@@ -12,13 +12,7 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0
 <!-- vale on -->
-<!--Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
-
-### Platforms
-
-- NVIDIA SN3750-SX (200G Spectrum-2) generally available
--->
-Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 {{%notice note%}}
 Early Access features are now called Beta features.
@@ -27,6 +21,14 @@ Early Access features are now called Beta features.
 {{%notice warning%}}
 - If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the new port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
 - Cumulus Linux 5.4 package upgrade (`apt-upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
+{{%/notice%}}
+
+### Platforms
+
+- NVIDIA SN3750-SX (100G Spectrum-2) available for beta
+
+{{%notice warning%}}
+The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. Do not use this switch in production; it is not supported through NVIDIA networking support.
 {{%/notice%}}
 
 ### New Features and Enhancements

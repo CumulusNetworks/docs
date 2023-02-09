@@ -1,7 +1,6 @@
 ---
 title: NVUE Fails to Apply Configuration After Upgrade
 weight: 306
-draft: true
 ---
 
 ## Issue

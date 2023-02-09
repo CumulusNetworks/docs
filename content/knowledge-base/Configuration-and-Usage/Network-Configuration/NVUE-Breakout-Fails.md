@@ -42,7 +42,7 @@ nv unset interface swp4 link breakout
 nv config apply
 ```
 
-2. Apply the breakout configuration again using the {{<kb_link latest="cl" url="Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md/#configure-a-breakout-port" text="supported syntax in Cumulus Linux 5.4.0">}}:
+2. Apply the breakout configuration again using the {{<kb_link latest="cl" url="Layer-1-and-Switch-Ports/Interface-Configuration-and-Management/Switch-Port-Attributes.md#configure-a-breakout-port" text="supported syntax in Cumulus Linux 5.4.0">}}:
 
 ```
 nv set interface swp1 link breakout 4x

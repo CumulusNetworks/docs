@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3361904</td>
+<td>The NVUE PTP shaping commands are available in the NVUE command list; however, these commands are disabled and do not configure PTP shaping. PTP shaping is not supported in Cumulus Linux 5.4.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3351941</td>
 <td>Cumulus Linux 5.4 package upgrade ({{apt-upgrade}}) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage.</td>
 <td>5.4.0</td>
@@ -33,8 +39,7 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 </tr>
 <tr>
 <td>3349533</td>
-<td>On the Spectrum-2 and Spectrum-3 switch with ports operating at 1G speed, there is loss of frames that have an odd/random frame size. In the frame size range of 75 to 1000 bytes, there is frame loss of less than approximately one percent for all odd/random frame sizes in the range. In the frame size range greater than 1000 bytes, there is no loss observed.
-in parallel latency might be increased </td>
+<td>On the Spectrum-2 and Spectrum-3 switch with ports operating at 1G speed, there is loss of frames that have an odd or random frame size. In the frame size range of 75 to 1000 bytes, there is frame loss of less than approximately one percent for all odd or random frame sizes in the range. In the frame size range greater than 1000 bytes, there is no loss observed.</td>
 <td>5.4.0</td>
 <td></td>
 </tr>
@@ -85,6 +90,12 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3336807</td>
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3331929</td>
+<td>Running the {{nv show vrf &lt;vrf&gt; router bgp address-family l2vpn-evpn loc-rib}} command if you have more than 1100 SVIs and VXLAN interfaces results in out of memory errors and the command crashes.</td>
+<td>5.4.0</td>
 <td></td>
 </tr>
 <tr>

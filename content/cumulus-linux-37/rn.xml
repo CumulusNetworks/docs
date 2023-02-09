@@ -7,10 +7,35 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.3.1</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -21,6 +46,14 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-4.4.4</td>
 <td>4.4.5</td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
+<td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3129819</td>
@@ -112,12 +145,6 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td>5.1.0-5.3.1, 5.2.0-5.3.1</td>
 </tr>
 <tr>
-<td>2993471</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2991514</td>
 <td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
 <td>3.7.15-4.3.0</td>
@@ -144,8 +171,8 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <tr>
 <td>2959067</td>
 <td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
-<td>3.7.14.2-3.7.16, 4.0.0-4.4.5</td>
-<td></td>
+<td>3.7.14.2-4.2.1</td>
+<td>4.3.0-4.4.5</td>
 </tr>
 <tr>
 <td>2951110</td>
@@ -197,12 +224,6 @@ ip route 10.10.0.0/16 Null0
 This example assumes no other static routes are present. Otherwise, you might need to configure additional route maps to limit the static routes being redistributed. </td>
 <td>3.7.12-3.7.16</td>
 <td></td>
-</tr>
-<tr>
-<td>2932121</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15-4.3.0</td>
-<td>4.3.1-4.4.5</td>
 </tr>
 <tr>
 <td>2899422</td>
@@ -1946,7 +1967,7 @@ Fixed: 3.4.0-1+deb8u5</td>
 <tr>
 <td>2923737</td>
 <td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.3.1</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2910862</td>
@@ -2464,10 +2485,35 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
-<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
-<td>4.3.1, 5.3.0-5.3.1</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3216759</td>
@@ -2478,6 +2524,14 @@ hal_flx_acl_util.c:378 ERR hal_flx_acl_resource_release resource region 0 size 7
 To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-heavy}} with ACL non-atomic mode.</td>
 <td>3.7.15-4.4.4</td>
 <td>4.4.5</td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
+<td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
+<td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
 <tr>
 <td>3129819</td>
@@ -2563,12 +2617,6 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 <td>5.1.0-5.3.1, 5.2.0-5.3.1</td>
 </tr>
 <tr>
-<td>2993471</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5, 5.0.0-5.3.1</td>
-<td></td>
-</tr>
-<tr>
 <td>2991514</td>
 <td>Cumulus Linux can take a long time (100 seconds) to sync a large number of VNIs on a bridge.</td>
 <td>3.7.15-4.3.0</td>
@@ -2623,8 +2671,8 @@ Fixed: 4.2-3+deb8u5</td>
 <tr>
 <td>2959067</td>
 <td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
-<td>3.7.14.2-3.7.16, 4.0.0-4.4.5</td>
-<td></td>
+<td>3.7.14.2-4.2.1</td>
+<td>4.3.0-4.4.5</td>
 </tr>
 <tr>
 <td>2959024</td>
@@ -2760,24 +2808,12 @@ This example assumes no other static routes are present. Otherwise, you might ne
 <td>3.7.16, 4.3.1-4.4.5</td>
 </tr>
 <tr>
-<td>2932121</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15-4.3.0</td>
-<td>4.3.1-4.4.5</td>
-</tr>
-<tr>
 <td>2923748</td>
 <td>CVE-2021-43818: lxml is a library for processing XML and HTML in the Python language. Prior to version 4.6.5, the HTML Cleaner in lxml.html lets certain crafted script content pass through, as well as script content in SVG files embedded using data URIs.
 Vulnerable: &lt;= 3.4.0-1+deb8u4
 Fixed: 3.4.0-1+deb8u5</td>
 <td>3.7.15</td>
 <td>3.7.16</td>
-</tr>
-<tr>
-<td>2923737</td>
-<td>When {{switchd}} restarts, the port watch daemon ({{portwd}}) attempts to send requests to {{switchd}} before {{switchd}} is ready. As a result, {{portwd}} goes into a failed state because there is no response from {{switchd}}.</td>
-<td>3.7.15, 4.3.0, 4.4.0-4.4.5, 5.0.0-5.3.1</td>
-<td>3.7.16, 4.3.1</td>
 </tr>
 <tr>
 <td>2910862</td>
@@ -5427,8 +5463,41 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -5470,8 +5539,8 @@ Fixed: 4.2-3+deb8u5</td>
 <tr>
 <td>2959067</td>
 <td>ECMP produces errors indicating {{No More Resources}} and {{switchd}} crashes even when ECMP utilization is low.</td>
-<td>3.7.14.2-3.7.16, 4.0.0-4.4.5</td>
-<td></td>
+<td>3.7.14.2-4.2.1</td>
+<td>4.3.0-4.4.5</td>
 </tr>
 <tr>
 <td>2959024</td>
@@ -8084,8 +8153,41 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -11107,8 +11209,41 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -14185,8 +14320,41 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -17228,8 +17396,41 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -19886,8 +20087,41 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -22075,8 +22309,41 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -24585,8 +24852,41 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -26522,8 +26822,41 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -28798,8 +29131,41 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -30819,8 +31185,41 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -32485,8 +32884,41 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -34178,8 +34610,41 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -35977,8 +36442,41 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -37820,8 +38318,41 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>
@@ -38969,8 +39500,41 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3330705</td>
+<td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3330654</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
+<td>3327477</td>
+<td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
+<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.3.1</td>
+<td></td>
+</tr>
+<tr>
 <td>3216922</td>
 <td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).</td>
+<td>3.7.0-5.2.1</td>
+<td>5.3.0-5.3.1</td>
+</tr>
+<tr>
+<td>3216921</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+</td>
+<td>3.7.0-3.7.16, 4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3209699</td>
+<td>RADIUS authenticated users with read-only access to NCLU commands (users in the {{users_with_show}} list) can run edit commands if a username for a non-local account is on the {{users_with_edit}} line of the {{/etc/netd.conf}} file. To work around this issue, make sure that all usernames on the {{users_with_edit}} line of the {{/etc/netd.conf}} file are configured local users for the system (real Linux users).
+
+</td>
 <td>3.7.0-4.3.0, 4.4.0-5.2.1</td>
 <td>4.3.1, 5.3.0-5.3.1</td>
 </tr>

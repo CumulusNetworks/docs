@@ -2678,7 +2678,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 ebgp-policy
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family
 
-Shows IPv4 address family configuration for the specified BGP neighbor.
+Shows all address family configuration for the specified BGP neighbor.
 
 ### Command Syntax
 
@@ -2701,7 +2701,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast
 
-Show configuration information for the specified IPv6 BGP neighbor.
+Show configuration information for the specified IPv4 BGP neighbor.
 
 ### Command Syntax
 
@@ -2724,7 +2724,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast attribute-mod
 
-Shows the attribute mode configuration setting for the specified IPv4 BGP neighbor.
+Shows the attribute modification configuration settings for the specified IPv4 BGP neighbor.
 
 ### Command Syntax
 
@@ -3046,7 +3046,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast attribute-mod
 
-Shows the attribute mode configuration setting for the specified IPv6 BGP neighbor.
+Shows the attribute modification configuration settings for the specified IPv6 BGP neighbor.
 
 ### Command Syntax
 
@@ -3370,7 +3370,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn attribute-mod
 
-Shows the attribute mode configuration setting for the specified BGP neighbor for layer 2 VPN EVPN.
+Shows the attribute modification configuration settings for the specified neighbor for layer 2 VPN EVPN.
 
 ### Command Syntax
 

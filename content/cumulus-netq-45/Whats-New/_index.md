@@ -21,8 +21,7 @@ NetQ 4.5.0 includes the following new features and improvements:
 
 ## Upgrade Paths
 
-You can upgrade to NetQ 4.4.0 directly from versions 4.1.0 or later. Upgrades from releases earlier than NetQ 4.1.0 require a fresh installation or an incremental upgrade to version 4.1.0 first.
-
+NetQ 4.5.0 images have been upgraded to Ubuntu 20.04. To {{<link title="Upgrade NetQ Appliances and Virtual Machines" text="upgrade to NetQ 4.5.0">}}, you must back up your current NetQ data and perform a new installation of NetQ 4.5.0. 
 ## Compatible Agent Versions
 
 NetQ 4.4.0 is compatible with NetQ Agent versions 4.3.0 and above. You can install NetQ Agents on switches and servers running:

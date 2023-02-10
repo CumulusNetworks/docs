@@ -3185,6 +3185,12 @@ server08          /dev/vda1            486105088            80372736            
 
 Displays RoCE configuration.
 
+{{<notice note>}}
+
+Priority code point (PCP) monitoring requires NetQ Agent 4.5.
+
+{{</notice>}}
+
 ### Syntax
 ```
 netq [<hostname>] show roce-config
@@ -3258,7 +3264,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
-| tx | \<text-port\> | |
+| tx |  | |
 | rx | roce, general | |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |

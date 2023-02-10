@@ -27,7 +27,7 @@ PTP commands include:
    netq show ptp counters (tx | rx) 
 ```
 
-See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional options and examples.
+See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional options, definitions, and examples.
 
 ## Access the PTP Dashboard
 
@@ -64,10 +64,7 @@ Hover over the chart at any point to display timestamped mean-path-delay and off
 
 Select the tabs above the chart to display information about domains, clocks, ports, and configurations:
 
-{{<figure src="/images/netq/ptp-tabs-450.png" width="600">}}
-
-
-
+{{<figure src="/images/netq/ptp-tabs-450.png" width="700">}}
 
 
 ## Related Information

@@ -273,13 +273,13 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list \<leak-vrf-id\>
 
-Shows routes in the BGP routing table of VRF BLUE dynamically leak into VRF RED.
+Shows routes in the IPv4 BGP routing table of VRF BLUE dynamically leak into VRF RED.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 | `<leak-vrf-id>` |  VRF |
 
 ### Version History
@@ -296,13 +296,13 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths
 
-Multipaths
+Shows IPv4 BGP multipath configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -311,20 +311,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast multipaths
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance
 
-Admin distances.
+Shows the IPv4 BGP admin distances configured for the specified VRF. 
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -333,20 +333,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast admin-distance
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export
 
-Route export
+Shows IPv4 BGP route export configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -355,20 +355,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-export
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export to-evpn
 
-Controls for exporting routes from this VRF for this address-family into EVPN (as type-5 routes)
+Shows the controls for exporting IPv4 routes from the specified VRF into EVPN (as type-5 routes).
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -377,20 +377,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-export to-evpn
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib
 
-IPv4 local RIB
+Shows the IPv4 local RIB for the specifed VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -399,7 +399,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib
 ```
 
 - - -
@@ -422,7 +422,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route
 ```
 
 - - -
@@ -435,7 +435,7 @@ An IPv4/IPv6 route
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 | `<route-id>` |  IPv4 address and route prefix in CIDR notation |
 | `<path-id>` |  Path Id |
 
@@ -580,7 +580,7 @@ Set of community names for community-list
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 | `<route-id>`  | IPv4 address and route prefix in CIDR notation |
 | `<path-id>`  | Path Id |
 
@@ -604,7 +604,7 @@ Set of community names for large community list
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 | `<route-id>`  | IPv4 address and route prefix in CIDR notation |
 | `<path-id>`   | Path Id |
 
@@ -628,7 +628,7 @@ extended communities
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 | `<route-id>` | IPv4 address and route prefix in CIDR notation |
 | `<path-id>`  | Path Id |
 
@@ -652,7 +652,7 @@ BGP VRF configuration. L2VPN EVPN address family
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -674,7 +674,7 @@ IPv6 unicast address family
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -696,7 +696,7 @@ An IPv6 aggregate route
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 | `<aggregate-route-id>` |  IPv6 address and route prefix in CIDR notation |
 
 ### Version History
@@ -719,7 +719,7 @@ An IPv6 static network.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 | `<static-network-id>`  | IPv6 address and route prefix in CIDR notation |
 
 ### Version History
@@ -742,7 +742,7 @@ Route import
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -764,7 +764,7 @@ Controls for VRF to VRF route leaking for this address-family
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -786,7 +786,7 @@ Set of VRFs
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -808,7 +808,7 @@ Multipaths
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -830,7 +830,7 @@ Admin distances.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -852,7 +852,7 @@ Route export
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -874,7 +874,7 @@ Controls for exporting routes from this VRF for this address-family into EVPN (a
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -896,7 +896,7 @@ Route redistribute
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -918,7 +918,7 @@ Source route type.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -940,7 +940,7 @@ Source route type.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -962,7 +962,7 @@ Source route type.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -984,7 +984,7 @@ Source route type.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -1006,7 +1006,7 @@ IPv6 local RIB
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -1028,7 +1028,7 @@ An IPv4/IPv6 route
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 | `<route-id>` |  IPv6 address and route prefix in CIDR notation |
 
 ### Version History
@@ -1051,7 +1051,7 @@ An IPv4/IPv6 route
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 | `<route-id>` | IPv6 address and route prefix in CIDR notation |
 | `<path-id> ` | Path Id |
 
@@ -1255,20 +1255,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route \<route-id\> path \<path-id\> ext-community
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp path-selection
 
-BGP path-selection configuration.
+Shows the BGP path selection configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -1277,20 +1277,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp path-selection
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp path-selection aspath
 
-BGP aspath path-selection config, applicable to this BGP instance
+Shows the BGP aspath path selection configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -1299,20 +1299,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp aspath
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp path-selection med
 
-BGP med path-selection config, applicable to this BGP instance
+Shows the BGP med path selection configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -1321,20 +1321,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp path-selection med
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp path-selection multipath
 
-BGP multipath path-selection config, applicable to this BGP instance
+Shows BGP multipath path-selection configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -1343,20 +1343,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp path-selection multipath
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp route-reflection
 
-BGP route-reflection configuration.
+Shows BGP route-reflection configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -1365,20 +1365,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-reflection
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\>
 
-BGP global configuration.
+Shows global configuration for the specified peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 | `<peer-group-id>` |  Domain|
 
 ### Version History
@@ -1388,21 +1388,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd
 
-Specifies whether to track BGP peering sessions using this configuration via BFD.
+Shows BFD configuration for the specified BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
 
@@ -1411,21 +1411,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES bfd
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security
 
-RFC 5082
+Shows BGP TTL security configuration for the specified BGP peer group. BGP TTL security prevents attacks against eBGP, such as denial of service (DoS) attacks.
+
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>`  | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` |  The peer group name. |
 
 ### Version History
 
@@ -1434,21 +1435,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES ttl-security
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities
 
-Capabilities
+Shows the capabilities for the specified BGP peer group, such as if extended-nexthop and 32-bit ASN transmission are enabled.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` |  Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` |  The peer group name. |
 
 ### Version History
 
@@ -1457,21 +1458,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES capabilities
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> graceful-restart
 
-BGP Graceful restart per neighbor configuration
+Shows BGP graceful restart configuration for the specified peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` |  Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` |  The peer group name. |
 
 ### Version History
 
@@ -1480,21 +1481,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES graceful-restart
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> local-as
 
-Local AS feature
+Shows the local AS for the specified BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` |  Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` |  The peer group name. |
 
 ### Version History
 
@@ -1503,21 +1504,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES local-as
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> timers
 
-Peer peer-timers
+Shows BGP timer configuration for the peer group in the specified VRF, such the conditional advertisement, connection retry,
+and keepalive interval and the hold time for keepalive messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` |  Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` |  The peer group name. |
 
 ### Version History
 
@@ -1526,21 +1528,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES timers
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family
 
-Address family specific configuration
+Shows configuraiton information for the address famlies (IPv4, IPv6, l2vpn-evpn).
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` |   Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` |   The peer group name. |
 
 ### Version History
 
@@ -1549,21 +1551,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast
 
-Peer IPv4 unicast address family.  Always on, unless disabled globaly.
+Shows the configuration for the specified IPv4 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
 
@@ -1572,21 +1574,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast 
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise
 
-Community advertise for address family.
+Shows community advertise configuration information for the specified IPv4 BGP peer group. The community advertise option determines if the neighbor can advertise a prefix to any iBGP or eBGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` |  Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` |  The peer group name. |
 
 ### Version History
 
@@ -1595,21 +1597,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod
 
-Attribute mod for address family.
+Shows the attribute modification configuration settings for the specified IPv4 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
 
@@ -1618,21 +1620,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath
 
-Options for handling AS_PATH for prefixes from/to peer for the specified address family
+Shows the configuration settings for handling the AS path for prefixes to and from the specified IPv4 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
 
@@ -1641,21 +1643,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath allow-my-asn
 
-If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+Shows if it is acceptable for a received AS path from the specified IPv4 BGP peer group to contain the ASN of the local system.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
 
@@ -1664,21 +1666,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath allow-my-asn
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits
 
-Limits on prefix from the peer for this address-family
+Shows the limits on prefixes from the specified IPv4 peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
 
@@ -1687,21 +1689,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast prefix-limits inbound
 
-Limits on inbound prefix from the peer for this address-family
+Shows the limits on inbound prefixes from the specified IPv4 peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1710,21 +1712,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast default-route-origination
 
-Default route origination
+Shows default route origination configuration for the specified IPv4 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1733,21 +1735,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast default-route-origination
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy
 
-Policies for ipv4 unicast
+Shows the policies configured for the specified IPv4 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1756,21 +1758,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound
 
-Outbound unicast policy
+Shows the inbound policy for the specified IPv4 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1779,21 +1781,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound
 
-Outbound unicast policy
+Shows the outbound policy for the specified IPv4 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1802,21 +1804,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy outbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise
 
-Conditional advertise for address family.
+Shows conditional advertisement configuration information for the specified IPv4 BGP peer group. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1825,21 +1827,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast
 
-Peer IPv6 unicast address family.
+Shows the configuration for the specified IPv6 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1848,21 +1850,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy
 
-Policies for ipv6 unicast
+Shows the policies for the specified IPv6 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1871,21 +1873,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound
 
-Outbound unicast policy
+Shows the inbound policy for the specified IPv6 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1894,14 +1896,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound
 
-Outbound unicast policy
+Shows the outbound policy for the specified IPv6 BGP peer group.
 
 `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options]`
 
@@ -1909,8 +1911,8 @@ Outbound unicast policy
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1919,21 +1921,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath
 
-Options for handling AS_PATH for prefixes from/to peer for the specified address family
+Shows the configuration settings for handling the AS path for prefixes to and from the specified IPv6 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1942,21 +1944,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn
 
-If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+Shows if it is acceptable for a received AS path from the specified IPv6 BGP peer group to contain the ASN of the local system.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1965,21 +1967,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath allow-my-asn
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits
 
-Limits on prefix from the peer for this address-family
+Shows the limits on prefixes from the specified IPv6 peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -1988,21 +1990,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast prefix-limits inbound
 
-Limits on inbound prefix from the peer for this address-family
+Shows the limits on inbound prefixes from the specified IPv6 peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -2011,21 +2013,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination
 
-Default route origination
+Shows default route origination configuration for the specified IPv6 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -2034,21 +2036,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise
 
-Community advertise for address family.
+Shows community advertise configuration information for the specified IPv6 BGP peer group. The community advertise option determines if the neighbor can advertise a prefix to any iBGP or eBGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -2057,21 +2059,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod
 
-Attribute mod for address family.
+Shows the attribute modification configuration settings for the specified IPv6 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -2080,21 +2082,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise
 
-Conditional advertise for address family.
+Shows conditional advertisement configuration information for the specified IPv6 BGP peer group. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
+
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -2103,21 +2106,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn
 
-Peer l2vpn EVPN address family.
+Show configuration information for the specified BGP peer group for EVPN.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>` | The peer group name. |
 
 ### Version History
 
@@ -2126,21 +2129,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn attribute-mod
 
-Attribute mod for address family.
+Shows the attribute modification configuration settings for the specified BGP peer group for EVPN.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>`  |   Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
 
@@ -2149,21 +2152,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn attribute-mod
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath
 
-Options for handling AS_PATH for prefixes from/to peer for the specified address family
+Shows the configuration settings for handling the AS path for prefixes to and from the specified BGP peer group for EVPN.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>`  |   Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |  The peer group name. |
 
 ### Version History
 
@@ -2172,21 +2175,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath allow-my-asn
 
-If enabled, it is acceptable for a received AS_PATH to contain the ASN of the local system
+Shows if it is acceptable for a received AS path from the specified BGP peer group to contain the ASN of the local system for EVPN.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>`  |   Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
 
@@ -2195,21 +2198,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath allow-my-asn
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy
 
-Policies for l2vpn evpn
+Shows the layer 2 VPN EVPN policies for the specified BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>`  |   Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
 
@@ -2218,21 +2221,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound
 
-Inbound l2vpn-evpn policy
+Shows the inbound layer 2 VPN EVPN policy for the specified BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>`  |   Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |   The peer group name. |
 
 ### Version History
 
@@ -2241,21 +2244,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy outbound
 ```
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy outbound
+## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound
 
-Outbound l2vpn-evpn policy
+Shows the outbound layer 2 VPN EVPN policy for the specified BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>`  |   Domain |
+| `<vrf-id>` |    The VRF name.|
+| `<peer-group-id>`  |  The peer group name. |
 
 ### Version History
 
@@ -2264,20 +2267,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy outbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp route-export
 
-Controls for exporting ipv4 and ipv6 routes from this VRF
+Shows BGP route export configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -2286,20 +2289,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-export
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp route-export to-evpn
 
-Controls for exporting routes from this VRF into EVPN
+Shows BGP route export to EVPN configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -2308,21 +2311,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-export to-evpn route-target 
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp route-export to-evpn route-target \<rt-id\>
 
-A route target identifier
+Shows BGP route export configuration for the specified RT in the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<rt-id>` |  Route targets or "auto" |
+| `<vrf-id>` |    The VRF name.|
+| `<rt-id>` |  The route target. |
 
 ### Version History
 
@@ -2331,20 +2334,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-export to-evpn route-target 65101:10
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp route-import
 
-Controls for importing of ipv4 and ipv6 routes from this VRF
+Shows BGP route import configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -2353,20 +2356,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-import
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp route-import from-evpn
 
-Controls for importing EVPN type-2 and type-5 routes into this VRF
+Shows BGP route import from EVPN configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -2375,21 +2378,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-import from-evpn route-target
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp route-import from-evpn route-target \<rt-id\>
 
- A route target identifier
+Shows configuration for the specified RD and layer 3 RT for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<rt-id>` | Route targets or "auto" |
+| `<vrf-id>` | The VRF name.|
+| `<rt-id>` | The route target. |
 
 ### Version History
 
@@ -2398,20 +2401,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-import from-evpn route-target 65102:4001
+
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp timers
 
-timer values for all peers in this VRF
+Shows BGP timer configuration for all peers in the specified VRF, such the conditional advertisement, connection retry,
+and keepalive interval and the hold time for keepalive messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -2420,20 +2425,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp timers
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp confederation
 
-BGP Confederation options.
+Shows BGP confederation configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -2442,20 +2447,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp confederation
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp confederation member-as
 
-Set of autonomous numbers
+Shows the BGP confederation member AS. A BGP confederation divides a large AS into subautonomous systems, which are uniquely identified by a sub-AS number.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |    The VRF name.|
 
 ### Version History
 
@@ -2464,21 +2469,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp confederation member-as
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\>
 
-BGP global configuration.
+Shows global configuration for the specified BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |   VRF |
-| `<neighbor-id>`  | Peer ID |
+| `<vrf-id>` |    The VRF name.|
+| `<neighbor-id>`  | The BGP neighbor name or interface (for BGP unnumbered). |
 
 ### Version History
 
@@ -2487,14 +2492,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd
 
-Specifies whether to track BGP peering sessions using this configuration via BFD.
+Shows BFD configuration for the specified BGP neighbor.
 
 ### Command Syntax
 
@@ -2510,21 +2515,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 bfd
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> capabilities
 
-Capabilities
+Shows the capabilities for the specified BGP neighbor, such as if extended-nexthop and 32-bit ASN transmission are enabled.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>` |  Peer ID |
+| `<vrf-id>` |    The VRF name.|
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
 
@@ -2533,21 +2538,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 capabilities
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as
 
-Local AS feature
+Shows the local AS for the specified BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>` |   Peer ID |
+| `<vrf-id>` |    The VRF name.|
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
 ### Version History
 
@@ -2556,14 +2561,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 local-as
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> graceful-restart
 
-BGP Graceful restart per neighbor configuration
+Shows BGP graceful restart configuration for the specified BGP neighbor. BGP graceful restart minimizes the negative effects that occur when BGP restarts.
 
 ### Command Syntax
 
@@ -2579,14 +2584,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 graceful-restart
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security
 
-RFC 5082
+Shows BGP TTL security configuration for the specified BGP neighbor. BGP TTL security prevents attacks against eBGP, such as denial of service (DoS) attacks.
 
 ### Command Syntax
 
@@ -2602,21 +2607,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 ttl-security
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> nexthop
 
-Nexthop
+Shows the BGP neighbor next hop.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`   | Peer ID |
+| `<vrf-id>` |    The VRF name.|
+| `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
+
 
 ### Version History
 
@@ -2625,7 +2631,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 nexthop
 ```
 
 - - -

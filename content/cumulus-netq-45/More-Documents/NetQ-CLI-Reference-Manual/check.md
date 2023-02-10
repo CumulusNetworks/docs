@@ -1160,15 +1160,14 @@ RoCE Classification Test       : passed
 RoCE Congestion Control Test   : passed
 RoCE Flow Control Test         : passed
 RoCE ETS mode Test             : passed
-
 ```
 ### Related Commands
 
-- ```netq show roce-counters``` 
-- ```netq show roce-config```
-- ```netq show roce-counters pool```
-- ```netq show events```
-- ```netq show unit-tests```
+- `netq show roce-counters`
+- `netq show roce-config`
+- `netq show roce-counters pool`
+- `netq show events`
+- `netq show unit-tests`
 
 - - -
 ## netq check sensors

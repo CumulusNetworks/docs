@@ -5,16 +5,22 @@ weight: 940
 toc: 3
 ---
 
-Use the UI or CLI to monitor RoCE (RDMA over Converged Ethernet) in your network.
+Use the UI or CLI to monitor RDMA over Converged Ethernet (RoCE) in your network.
 
 RoCe commands include:
 
+```
     netq [<hostname>] show roce-counters [<text-port>] tx | rx [roce | general] [around <text-time>] [json]
     netq [<hostname>] show roce-config [<text-port>] [around <text-time>] [json]
     netq [<hostname>] show roce-counters pool [json]
     netq [<hostname>] show events [message_type tca_roce]
     netq [<hostname>] show events [message_type roceconfig]
+```
+{{<notice note>}}
 
+Priority code point (PCP) monitoring requires NetQ Agent 4.5.
+
+{{</notice>}}
 ## View the RoCE Configuration
 
 To view the RoCE configuration, run `netq show roce-config`.

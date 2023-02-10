@@ -106,7 +106,7 @@ netq lcm upgrade netq-image
 The following example creates a NetQ Agent upgrade job called *upgrade-cl530-nq450*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.5.0.
 
 ```
-cumulus@switch:~$ netq lcm upgrade job-name upgrade-cl530-nq450 netq-version 4.5.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq450 netq-version 4.5.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
@@ -216,11 +216,12 @@ leaf02            4.2.1       4.1.0         3.2.1         ['NetQ default config'
                                                                                                                          gain."]
 ```
 {{</expand>}}
+
+<!--
 ### Reasons for NetQ Agent Upgrade Failure
 
 Upgrades can fail at any stage of the process. The following table lists common reasons for upgrade failures:
 
-<!-- vale off -->
 | Reason | Error Message |
 | --- | --- |
 | Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15." Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
@@ -228,4 +229,5 @@ Upgrades can fail at any stage of the process. The following table lists common 
 | Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: /etc/network/interfaces: No such file or directory |
 | Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
-<!-- vale off -->
+
+-->

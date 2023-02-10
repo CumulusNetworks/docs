@@ -15,7 +15,7 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
 
 {{%notice note%}}
-Early Access features are now called Beta features.
+Early access features are now called beta features.
 {{%/notice%}}
 
 {{%notice warning%}}
@@ -37,10 +37,10 @@ The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Supp
    - New format for {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} in the `/etc/cumulus/ports.conf` file
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
    - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} and {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="breakout port lane">}} configuration settings
-- 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches (Beta)
+- 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches (beta)
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="User-Accounts" text="User management">}} commands
-  - {{<link url="TACACS" text="TACACS+">}} commands (Beta)
+  - {{<link url="TACACS" text="TACACS+">}} commands (beta)
   - {{<link url="Supported-Route-Table-Entries/#supported-route-entries" text="ASIC Resource Slicing">}} (KVD) commands
   - {{<link url="Link-Layer-Discovery-Protocol/#set-lldp-mode" text="LLDP commands">}} to send either CDP frames only or LLDP frames only
   - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#8021p-or-dscp-for-marking" text="traffic remarking">}}, and {{<link url="Quality-of-Service/#advanced-buffer-tuning" text="advanced buffer configuration">}}

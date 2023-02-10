@@ -2926,6 +2926,12 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 ## netq show ptp
 
+Displays PTP clock and configuration details, including:
+
+- Clock identifications and hierarchies
+- Quality and accuracy information
+- PTP port counters
+
 ### Syntax
 
 ```
@@ -2951,10 +2957,11 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| clock-details | NA |  |
-| global-config | NA |  |
-| port-status | NA |  |
-| counters | NA |  |
+| clock-details | NA | Display grandmaster, parent, and clock IDs and clock quality and accurarcy |
+| global-config | NA | Display priority, offset from master, and mean path delay thresholds |
+| port-status | NA | Display hierarchy information (master, slave) |
+| counters | NA | Display PTP port counters |
+| NA | tx, rx | Display transmit (Tx) or receive (Rx) data |
 
 ### Options
 
@@ -2966,7 +2973,44 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq show ptp clock-details
+Matching ptp records:
+Hostname          Clock Domain             Clock Identity               Parent Clock Id                GrandMaster ID               Clock Quality              Clock Accuracy               PTP Ports Configured                     Steps Removed
+----------------- ------------------------ ---------------------------- ------------------------------ ---------------------------- -------------------------- ---------------------------- ---------------------------------------- --------------------------
+mlx-3700c-21      0                        1c:34:da:ff:fe:2d:a1:48      1c34da.fffe.2da148-0           1c:34:da:ff:fe:2d:a1:48      248                        254                          1                                        0
+mlx-3700c-22      0                        1c:34:da:ff:fe:2d:a0:48      1c34da.fffe.2da148-1           1c:34:da:ff:fe:2d:a1:48      248                        254                          1                                        1
+```
+
+```
+cumulus@switch:~$ netq show ptp global-config
+Matching ptp records:
+Hostname          Slave Only           Priority1          Priority2          Domain Number              Two Step Flag              OffSet From Master Max Threshold                                 OffSet From Master Min Threshold                                 Mean Path Delay Threshold
+----------------- -------------------- ------------------ ------------------ -------------------------- -------------------------- ---------------------------------------------------------------- ---------------------------------------------------------------- --------------------------------------------------
+mlx-3700c-21      0                    128                128                0                          0                          51                                                               -49                                                              200
+mlx-3700c-22      0                    129                128                0                          0                          50                                                               -50                                                              200
+```
+```
+cumulus@switch:~$ netq show ptp port-status
+Matching ptp records:
+Hostname          Interface                 PTP Status
+----------------- ------------------------- --------------------
+mlx-3700c-21      swp29                     MASTER
+mlx-3700c-22      swp29                     SLAVE
+```
+```
+cumulus@netq-appliance:~$ netq show ptp counters tx
+Matching ptp records:
+Hostname          Interface            Announce             Delay Request        Delay Response       Follow Up            Delay Resp. Follow U Peer Delay Request   Peer Delay Response  Management           Signaling
+                                                                                                                           p
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+mlx-3700c-21      swp29                114997               0                    200863               229985               0                    0                    0                    0                    229985
+mlx-3700c-22      swp29                12                   0                    0                    16                   0                    0                    0                    0                    16
+```
+
 ### Related Commands
+
+None
 
 - - -
 

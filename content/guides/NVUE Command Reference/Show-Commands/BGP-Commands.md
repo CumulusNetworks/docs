@@ -51,7 +51,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast
 
-Shows a summary of the IPv4 BGP configuration information for the specified VRF.
+Shows a summary of the BGP IPv4 configuration information for the specified VRF.
 
 ### Command Syntax
 
@@ -73,7 +73,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute
 
-Shows configuration information for IPv4 BGP route redistribution for the specified VRF.
+Shows configuration information for BGP IPv4 route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -117,7 +117,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute connected
 
-Shows configuration information for IPv4 BGP connected route redistribution for the specified VRF.
+Shows configuration information for BGP IPv4 connected route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -139,7 +139,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute kernel
 
-Shows configuration information for IPv4 BGP kernel route redistribution for the specified VRF.
+Shows configuration information for BGP IPv4 kernel route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -273,7 +273,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list \<leak-vrf-id\>
 
-Shows routes in the IPv4 BGP routing table of dynamic VRF to VRF route leaking.
+Shows routes in the BGP IPv4 routing table of dynamic VRF to VRF route leaking.
 
 ### Command Syntax
 
@@ -296,7 +296,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths
 
-Shows IPv4 BGP multipath configuration for the specified VRF.
+Shows BGP IPv4 multipath configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -318,7 +318,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast admin-distance
 
-Shows the IPv4 BGP admin distances configured for the specified VRF. 
+Shows the BGP IPv4 admin distances configured for the specified VRF. 
 
 ### Command Syntax
 
@@ -340,7 +340,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-export
 
-Shows IPv4 BGP route export configuration for the specified VRF.
+Shows BGP IPv4 route export configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -691,7 +691,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast
 
-Shows IPv6 BGP configuration for the specified VRF.
+Shows BGP IPv6 configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -713,7 +713,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast aggregate-route
 
-Shows IPv6 BGP aggregate routes for the specified VRF.
+Shows BGP IPv6 aggregate routes for the specified VRF.
 
 ### Command Syntax
 
@@ -826,7 +826,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf list
 
-Shows routes in the IPv4 BGP routing table that are dynamically leaked between VRFs.
+Shows routes in the BGP IPv4 routing table that are dynamically leaked between VRFs.
 
 ### Command Syntax
 
@@ -848,7 +848,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast multipaths
 
-Shows IPv6 BGP multipath configuration for the specified VRF.
+Shows BGP IPv6 multipath configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -870,7 +870,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast admin-distance
 
-Shows the IPv6 BGP admin distances configured for the specified VRF.
+Shows the BGP IPv6 admin distances configured for the specified VRF.
 
 ### Command Syntax
 
@@ -892,7 +892,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export
 
-Shows IPv6 BGP route export configuration for the specified VRF.
+Shows BGP IPv6 route export configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -914,7 +914,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route-export to-evpn
 
-Shows IPv6 BGP route export to EVPN configuration for the specified VRF.
+Shows BGP IPv6 route export to EVPN configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -936,7 +936,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute
 
-Shows configuration information for IPv6 BGP route redistribution for the specified VRF.
+Shows configuration information for BGP IPv6 route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -958,7 +958,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute static
 
-Shows configuration information for IPv6 BGP static route redistribution for the specified VRF.
+Shows configuration information for BGP IPv6 static route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -980,7 +980,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute connected
 
-Shows configuration information for IPv6 BGP connected route redistribution for the specified VRF.
+Shows configuration information for BGP IPv6 connected route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -1002,7 +1002,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute kernel
 
-Shows configuration information for IPv6 BGP kernel route redistribution for the specified VRF.
+Shows configuration information for BGP IPv6 kernel route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -1024,7 +1024,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6
 
-Shows configuration information for IPv6 BGP OSPF6 route redistribution for the specified VRF.
+Shows configuration information for BGP IPv6 OSPF6 route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -1604,7 +1604,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast
 
-Shows the configuration for the specified IPv4 BGP peer group.
+Shows the configuration for the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
@@ -1627,7 +1627,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise
 
-Shows community advertise configuration information for the specified IPv4 BGP peer group. The community advertise option determines if the neighbor can advertise a prefix to any iBGP or eBGP neighbor.
+Shows community advertise configuration information for the specified BGP IPv4 peer group. The community advertise option determines if the neighbor can advertise a prefix to any iBGP or eBGP neighbor.
 
 ### Command Syntax
 
@@ -1650,7 +1650,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod
 
-Shows the attribute modification configuration settings for the specified IPv4 BGP peer group.
+Shows the attribute modification configuration settings for the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
@@ -1673,7 +1673,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath
 
-Shows the configuration settings for handling the AS path for prefixes to and from the specified IPv4 BGP peer group.
+Shows the configuration settings for handling the AS path for prefixes to and from the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
@@ -1696,7 +1696,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath allow-my-asn
 
-Shows if it is acceptable for a received AS path from the specified IPv4 BGP peer group to contain the ASN of the local system.
+Shows if it is acceptable for a received AS path from the specified BGP IPv4 peer group to contain the ASN of the local system.
 
 ### Command Syntax
 
@@ -1765,7 +1765,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast default-route-origination
 
-Shows default route origination configuration for the specified IPv4 BGP peer group.
+Shows default route origination configuration for the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
@@ -1788,7 +1788,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy
 
-Shows the policies configured for the specified IPv4 BGP peer group.
+Shows the policies configured for the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
@@ -1811,7 +1811,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound
 
-Shows the inbound policy for the specified IPv4 BGP peer group.
+Shows the inbound policy for the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
@@ -1834,7 +1834,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound
 
-Shows the outbound policy for the specified IPv4 BGP peer group.
+Shows the outbound policy for the specified BGP IPv4 peer group.
 
 ### Command Syntax
 
@@ -1857,7 +1857,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast conditional-advertise
 
-Shows conditional advertisement configuration information for the specified IPv4 BGP peer group. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
+Shows conditional advertisement configuration information for the specified BGP IPv4 peer group. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
 
 ### Command Syntax
 
@@ -1880,7 +1880,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast
 
-Shows the configuration for the specified IPv6 BGP peer group.
+Shows the configuration for the specified BGP IPv6 peer group.
 
 ### Command Syntax
 
@@ -1903,7 +1903,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy
 
-Shows the policies for the specified IPv6 BGP peer group.
+Shows the policies for the specified BGP IPv6 peer group.
 
 ### Command Syntax
 
@@ -1926,7 +1926,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound
 
-Shows the inbound policy for the specified IPv6 BGP peer group.
+Shows the inbound policy for the specified BGP IPv6 peer group.
 
 ### Command Syntax
 
@@ -1949,7 +1949,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound
 
-Shows the outbound policy for the specified IPv6 BGP peer group.
+Shows the outbound policy for the specified BGP IPv6 peer group.
 
 `nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options]`
 
@@ -1974,7 +1974,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath
 
-Shows the configuration settings for handling the AS path for prefixes to and from the specified IPv6 BGP peer group.
+Shows the configuration settings for handling the AS path for prefixes to and from the specified BGP IPv6 peer group.
 
 ### Command Syntax
 
@@ -1997,7 +1997,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast aspath allow-my-asn
 
-Shows if it is acceptable for a received AS path from the specified IPv6 BGP peer group to contain the ASN of the local system.
+Shows if it is acceptable for a received AS path from the specified BGP IPv6 peer group to contain the ASN of the local system.
 
 ### Command Syntax
 
@@ -2066,7 +2066,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast default-route-origination
 
-Shows default route origination configuration for the specified IPv6 BGP peer group.
+Shows default route origination configuration for the specified BGP IPv6 peer group.
 
 ### Command Syntax
 
@@ -2089,7 +2089,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast community-advertise
 
-Shows community advertise configuration information for the specified IPv6 BGP peer group. The community advertise option determines if the neighbor can advertise a prefix to any iBGP or eBGP neighbor.
+Shows community advertise configuration information for the specified BGP IPv6 peer group. The community advertise option determines if the neighbor can advertise a prefix to any iBGP or eBGP neighbor.
 
 ### Command Syntax
 
@@ -2112,7 +2112,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast attribute-mod
 
-Shows the attribute modification configuration settings for the specified IPv6 BGP peer group.
+Shows the attribute modification configuration settings for the specified BGP IPv6 peer group.
 
 ### Command Syntax
 
@@ -2135,7 +2135,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise
 
-Shows conditional advertisement configuration information for the specified IPv6 BGP peer group. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
+Shows conditional advertisement configuration information for the specified BGP IPv6 peer group. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
 
 
 ### Command Syntax
@@ -2753,7 +2753,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast
 
-Show configuration information for the specified IPv4 BGP neighbor.
+Show configuration information for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
@@ -2776,7 +2776,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast attribute-mod
 
-Shows the attribute modification configuration settings for the specified IPv4 BGP neighbor.
+Shows the attribute modification configuration settings for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
@@ -2799,7 +2799,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath
 
-Shows the configuration settings for handling the AS path for prefixes to and from the specified IPv4 BGP neighbor.
+Shows the configuration settings for handling the AS path for prefixes to and from the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
@@ -2845,7 +2845,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy
 
-Shows the policies for the specified IPv4 BGP neighbor.
+Shows the policies for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
@@ -2868,7 +2868,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound
 
-Shows the inbound policy for the specified IPv4 BGP neighbor.
+Shows the inbound policy for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
@@ -2891,7 +2891,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound
 
-Shows the outbound policy for the specified IPv4 BGP neighbor.
+Shows the outbound policy for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
@@ -2960,7 +2960,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast default-route-origination
 
-Shows default route origination configuration for the specified IPv4 BGP neighbor.
+Shows default route origination configuration for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
@@ -2983,7 +2983,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast community-advertise
 
-Shows community advertise configuration information for the specified IPv4 BGP neighbor. The community advertise option determines if the neighbor can advertise a prefix to any iBGP or eBGP neighbor.
+Shows community advertise configuration information for the specified BGP IPv4 neighbor. The community advertise option determines if the neighbor can advertise a prefix to any iBGP or eBGP neighbor.
 
 ### Command Syntax
 
@@ -3006,7 +3006,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast conditional-advertise
 
-Shows conditional advertisement configuration information for the specified IPv4 BGP neighbor. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
+Shows conditional advertisement configuration information for the specified BGP IPv4 neighbor. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
 
 ### Command Syntax
 
@@ -3029,7 +3029,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast capabilities
 
-Shows all advertised and received capabilities for the specified IPv4 BGP neighbor.
+Shows all advertised and received capabilities for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
@@ -3052,7 +3052,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast graceful-restart
 
-Shows BGP graceful restart configuration information for the specified IPv4 BGP neighbor. BGP graceful restart minimizes the negative effects that occur when BGP restarts.
+Shows BGP graceful restart configuration information for the specified BGP IPv4 neighbor. BGP graceful restart minimizes the negative effects that occur when BGP restarts.
 
 ### Command Syntax
 
@@ -3075,7 +3075,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast
 
-Show configuration information for the specified IPv6 BGP neighbor.
+Show configuration information for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
@@ -3098,7 +3098,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast attribute-mod
 
-Shows the attribute modification configuration settings for the specified IPv6 BGP neighbor.
+Shows the attribute modification configuration settings for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
@@ -3121,7 +3121,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast aspath
 
-Shows the configuration settings for handling the AS path for prefixes to and from the specified IPv6 BGP neighbor.
+Shows the configuration settings for handling the AS path for prefixes to and from the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
@@ -3213,7 +3213,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast default-route-origination
 
-Shows default route origination configuration for the specified IPv6 BGP neighbor.
+Shows default route origination configuration for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
@@ -3236,7 +3236,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy
 
-Shows policies for the specified IPv6 BGP neighbor.
+Shows policies for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
@@ -3259,7 +3259,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy inbound
 
-Shows the inbound policy for the specified IPv6 BGP neighbor.
+Shows the inbound policy for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
@@ -3282,7 +3282,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound
 
-Shows the outbound policy for the specified IPv6 BGP neighbor.
+Shows the outbound policy for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
@@ -3305,7 +3305,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast community-advertise
 
-Shows community advertise configuration information for the specified IPv6 BGP neighbor. The community advertise option determines if the neighbor can advertise a prefix to any iBGP or eBGP neighbor.
+Shows community advertise configuration information for the specified BGP IPv6 neighbor. The community advertise option determines if the neighbor can advertise a prefix to any iBGP or eBGP neighbor.
 
 ### Command Syntax
 
@@ -3328,7 +3328,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise
 
-Shows conditional advertisement configuration information for the specified IPv6 BGP neighbor. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
+Shows conditional advertisement configuration information for the specified BGP IPv6 neighbor. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
 
 ### Command Syntax
 
@@ -3351,7 +3351,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast capabilities
 
-Shows all advertised and received capabilities for the specified IPv6 BGP neighbor.
+Shows all advertised and received capabilities for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
@@ -3374,7 +3374,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast graceful-restart
 
-Shows BGP graceful restart configuration information for the specified IPv6 BGP neighbor. BGP graceful restart minimizes the negative effects that occur when BGP restarts.
+Shows BGP graceful restart configuration information for the specified BGP IPv6 neighbor. BGP graceful restart minimizes the negative effects that occur when BGP restarts.
 
 ### Command Syntax
 

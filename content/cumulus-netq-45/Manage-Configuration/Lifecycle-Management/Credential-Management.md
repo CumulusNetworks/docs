@@ -8,7 +8,7 @@ toc: 4
 Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles. After you create a profile, {{<link title="Switch Management" text="assign it to individual switches">}} so that you can perform upgrades on those switches. 
 
 {{<notice note>}}
-By default, NVIDIA supplies two access profiles: Netq-default and Nvl4-Default. NVIDIA strongly recommends creating new access profiles or updating the default profiles with unique credentials. You cannot delete default profiles.
+By default, NVIDIA supplies two access profiles: Netq-Default and Nvl4-Default (for NVLink devices). NVIDIA strongly recommends creating new access profiles or updating the default profiles with unique credentials. You cannot delete default profiles.
 {{</notice>}}
 
 ## Create Access Profiles
@@ -173,7 +173,7 @@ To configure SSH authentication using a public/private key (requires sudoer perm
 
 ## Delete Access Profiles
 
-Any profile that is assigned to a switch can't be deleted. You must {{<link title="Switch Management/#assign-a-profile-to-a-switch" text="assign a different profile to the switch">}} first. Note that *Netq-default* and *Nvl4-Default* can't be deleted. 
+Any profile that is assigned to a switch can't be deleted. You must {{<link title="Switch Management/#assign-a-profile-to-a-switch" text="assign a different profile to the switch">}} first. Note that *Netq-Default* and *Nvl4-Default* can't be deleted. 
 
 {{<tabs "TabID247" >}}
 

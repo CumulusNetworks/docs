@@ -55,12 +55,6 @@
 <td></td>
 </tr>
 <tr>
-<td>3043146</td>
-<td>After you upgrade from NetQ 4.1 to NetQ 4.2, some streaming validation checks might erroneously report failures when services are running properly. This condition will resolve itself within 24 hours of the upgrade. </td>
-<td>4.2.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
 <td>4.1.0-4.3.0</td>

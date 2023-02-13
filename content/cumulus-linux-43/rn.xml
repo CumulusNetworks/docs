@@ -61,6 +61,16 @@
 <td></td>
 </tr>
 <tr>
+<td>3288343</td>
+<td>When you reboot a Broadcom switch with a static default route configured, the route might be installed in hardware without a next hop. This results in forwarded traffic to the CPU and drops. To recover from this issue, remove the default route configuration and reapply it. To prevent this issue, before rebooting the switch, split the default route configuration into two routes as below:
+
+ip route 0.0.0.0/1 10.1.1.1
+ip route 128.0.0.0/1 10.1.1.1
+</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3269538</td>
 <td>The {{cl-ecmpcalc}} command prints the following error when the egress interface is a bond or SVI:
 

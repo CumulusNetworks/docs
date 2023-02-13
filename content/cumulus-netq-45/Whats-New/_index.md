@@ -24,12 +24,12 @@ NetQ 4.5.0 includes the following new features and improvements:
 NetQ 4.5.0 images have been upgraded to Ubuntu 20.04. To {{<link title="Upgrade NetQ Appliances and Virtual Machines" text="upgrade to NetQ 4.5.0">}}, you must back up your current NetQ data and perform a new installation of NetQ 4.5.0. 
 ## Compatible Agent Versions
 
-NetQ 4.4.0 is compatible with NetQ Agent versions 4.3.0 and above. You can install NetQ Agents on switches and servers running:
+NetQ 4.5.0 is compatible with NetQ Agent versions 4.4.0 and above. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 3.7.12 and later
-- SONiC 202012 to 202106
+- Cumulus Linux 3.7.16 and later
+- SONiC 202012
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 18.04
 
-
+You must upgrade to the latest agent version to enable 4.5 features.

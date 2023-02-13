@@ -29,7 +29,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp
 
 ## nv show vrf \<vrf-id\> router bgp address-family
 
-Shows a summary of the BGP configuration information for the specified VRF for all address families: IPv4 unicast, IPv6 unicast, and layer 2 VPN - EVPN.
+Shows a summary of the BGP configuration information for the specified VRF for all address families: IPv4 unicast, IPv6 unicast, and layer 2 VPN EVPN.
 
 ### Command Syntax
 
@@ -1488,7 +1488,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES ttl-secu
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> capabilities
 
-Shows the capabilities for the specified BGP peer group, such as if extended-nexthop and 32-bit ASN transmission are enabled.
+Shows the capabilities for the specified BGP peer group, such as if extended next hop and 32-bit ASN transmission are enabled.
 
 ### Command Syntax
 
@@ -1581,7 +1581,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES timers
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family
 
-Shows configuraiton information for the address famlies (IPv4, IPv6, l2vpn-evpn).
+Shows configuration information for the address famlies (IPv4, IPv6, layer 2 VPN EVPN).
 
 ### Command Syntax
 
@@ -2159,7 +2159,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn
 
-Show configuration information for the specified BGP peer group for EVPN.
+Show configuration information for the specified BGP peer group for layer 2 VPN EVPN.
 
 ### Command Syntax
 
@@ -2182,7 +2182,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn attribute-mod
 
-Shows the attribute modification configuration settings for the specified BGP peer group for EVPN.
+Shows the attribute modification configuration settings for the specified BGP peer group for layer 2 VPN EVPN.
 
 ### Command Syntax
 
@@ -2205,7 +2205,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath
 
-Shows the configuration settings for handling the AS path for prefixes to and from the specified BGP peer group for EVPN.
+Shows the configuration settings for handling the AS path for prefixes to and from the specified BGP peer group for layer 2 VPN EVPN.
 
 ### Command Syntax
 
@@ -2228,7 +2228,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath allow-my-asn
 
-Shows if it is acceptable for a received AS path from the specified BGP peer group to contain the ASN of the local system for EVPN.
+Shows if it is acceptable for a received AS path from the specified BGP peer group to contain the ASN of the local system for layer 2 VPN EVPN.
 
 ### Command Syntax
 
@@ -2568,7 +2568,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 bfd
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> capabilities
 
-Shows the capabilities for the specified BGP neighbor, such as if extended-nexthop and 32-bit ASN transmission are enabled.
+Shows the capabilities for the specified BGP neighbor, such as if extended next hop and 32-bit ASN transmission are enabled.
 
 ### Command Syntax
 

@@ -7,8 +7,8 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 3.7.12 and later
-- SONiC 202012 and 202106
+- Cumulus Linux 3.7.16 and later
+- SONiC 202012
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 18.04

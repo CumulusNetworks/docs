@@ -352,6 +352,31 @@ cumulus@switch:~$ sudo systemctl start nvue-startup.service
 
 When you apply a configuration with `nv config apply`, NVUE also writes to underlying Linux files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE. If you need to configure certain network settings manually or use automation such as Ansible to configure the switch, see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}} below.
 
+## Configuration Files that NVUE Manages
+
+NVUE manages the following configuration files:
+
+| File  | Description|
+| ----- | ---------- |
+| - `/etc/network/interfaces` | Configures the network interfaces available on your system.|
+| - `/etc/frr/frr.conf` | Configures FRRouting.|
+| - `/etc/cumulus/switchd.conf` |  Configures `switchd` options.|
+| - `/etc/cumulus/switchd.d/ptp.conf` | Configures PTP time stamping.|
+| - `/etc/frr/daemons` | Configures FRRouting services.|
+| - `/etc/hosts` | Configures the hostname of the switch. |
+| - `/etc/dhcp/dhclient-exit-hooks.d/dhcp-sethostname` | Configures DHCP client options. |
+| - `/etc/hostname` | Configures the hostname of the switch. |
+| - `/etc/cumulus/datapath/qos/qos_features.conf` |Configures QoS settings, such as traffic marking, shaping and flow control.  |
+| - `/etc/mlx/datapath/qos/qos_infra.conf` |  Configures QoS platform specific configurations, such as buffer allocations and Alpha values.|
+| - `/etc/cumulus/switchd.d/qos.conf` | Configures QoS settings. |
+| - `/etc/cumulus/ports.conf` | Configures port breakouts.|
+| - `/etc/ntp.conf` | Configures NTP. |
+| - `/etc/ptp4l.conf` | Configures PTP settings.|
+
+{{%notice note%}}
+When you configure the switch with NVUE commands, NVUE overwrites the settings in any file it manages. Do not run NVUE commands and manually edit the configuration files at the same time to configure the switch. Either configure the switch with NVUE commands only or manually edit the configuration files.
+{{%/notice%}}
+
 ## Search for a Specific Configuration
 
 To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:

@@ -22,7 +22,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp
 ```
 
 - - -
@@ -44,7 +44,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family
 ```
 
 - - -
@@ -66,7 +66,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast
 ```
 
 - - -
@@ -88,7 +88,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute
 ```
 
 - - -
@@ -110,7 +110,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute static 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute static 
 ```
 
 - - -
@@ -132,7 +132,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute connected
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute connected
 ```
 
 - - -
@@ -154,7 +154,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute kernel
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute kernel
 ```
 
 - - -
@@ -176,7 +176,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute ospf
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast redistribute ospf
 ```
 
 - - -
@@ -199,7 +199,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast aggregate-route 10.1.0.0/16
 ```
 
 - - -
@@ -222,7 +222,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast 10.10.10.101/32
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast 10.10.10.101/32
 ```
 
 - - -
@@ -244,7 +244,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import
 ```
 
 - - -
@@ -266,7 +266,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf
 ```
 
 - - -
@@ -289,7 +289,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list BLUE
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-import from-vrf list BLUE
 ```
 
 - - -
@@ -311,7 +311,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast multipaths
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast multipaths
 ```
 
 - - -
@@ -333,7 +333,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast admin-distance
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast admin-distance
 ```
 
 - - -
@@ -355,7 +355,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-export
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-export
 ```
 
 - - -
@@ -377,7 +377,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-export to-evpn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast route-export to-evpn
 ```
 
 - - -
@@ -399,7 +399,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib
 ```
 
 - - -
@@ -422,7 +422,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32
 ```
 
 - - -
@@ -445,7 +445,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2
 ```
 
 - - -
@@ -469,7 +469,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path
 ```
 
 - - -
@@ -494,7 +494,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 nexthop 2
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 nexthop 2
 ```
 
 - - -
@@ -518,7 +518,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 peer
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 peer
 ```
 
 - - -
@@ -542,7 +542,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 flags
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 flags
 ```
 
 - - -
@@ -566,7 +566,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 bestpath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 bestpath
 ```
 
 - - -
@@ -590,7 +590,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 aspath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 aspath
 ```
 
 - - -
@@ -614,7 +614,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 community
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 community
 ```
 
 - - -
@@ -638,7 +638,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 large-community
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 large-community
 ```
 
 - - -
@@ -651,9 +651,9 @@ Shows the community names for the extended communities list for the specified IP
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    The VRF name.|
-| `<route-id>` | IPv4 address and route prefix in CIDR notation |
-| `<path-id>`  | Path Id |
+| `<vrf-id>` | The VRF name.|
+| `<route-id>` | The IPv4 address and route prefix in CIDR notation. |
+| `<path-id>`  | The path ID. |
 
 ### Version History
 
@@ -662,7 +662,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 ext-community
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicast loc-rib route 10.10.10.3/32 path 2 ext-community
 ```
 
 - - -
@@ -684,7 +684,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn
 ```
 
 - - -
@@ -706,7 +706,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast
 ```
 
 - - -
@@ -729,7 +729,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast aggregate-route 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast aggregate-route 
 ```
 
 - - -
@@ -752,7 +752,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast aggregate-route 0:0:0:0:0:ffff:0a01:0/128
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast aggregate-route 0:0:0:0:0:ffff:0a01:0/128
 ```
 
 - - -
@@ -775,7 +775,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast network 2001:db8::1/128
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast network 2001:db8::1/128
 ```
 
 - - -
@@ -797,7 +797,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-import
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-import
 ```
 
 - - -
@@ -819,7 +819,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-import from-vrf
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-import from-vrf
 ```
 
 - - -
@@ -841,7 +841,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-import from-vrf list
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-import from-vrf list
 ```
 
 - - -
@@ -863,7 +863,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast multipaths
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast multipaths
 ```
 
 - - -
@@ -885,7 +885,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast admin-distance
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast admin-distance
 ```
 
 - - -
@@ -907,7 +907,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-export
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-export
 ```
 
 - - -
@@ -929,7 +929,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-export to-evpn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast route-export to-evpn
 ```
 
 - - -
@@ -951,7 +951,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute
 ```
 
 - - -
@@ -973,7 +973,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute static
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute static
 ```
 
 - - -
@@ -995,7 +995,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute connected
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute connected
 ```
 
 - - -
@@ -1017,7 +1017,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute kernel
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute kernel
 ```
 
 - - -
@@ -1039,7 +1039,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute ospf6
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast redistribute ospf6
 ```
 
 - - -
@@ -1061,7 +1061,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib
 ```
 
 - - -
@@ -1084,7 +1084,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128
 ```
 
 - - -
@@ -1108,7 +1108,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2
 ```
 
 - - -
@@ -1133,7 +1133,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 nexthop 2
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 nexthop 2
 ```
 
 - - -
@@ -1157,7 +1157,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 peer
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 peer
 ```
 
 - - -
@@ -1181,7 +1181,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 flags
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 flags
 ```
 
 - - -
@@ -1205,7 +1205,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 bestpath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 bestpath
 ```
 
 - - -
@@ -1229,7 +1229,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 aspath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 aspath
 ```
 
 - - -
@@ -1253,7 +1253,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 community
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 community
 ```
 
 - - -
@@ -1277,7 +1277,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 large-community
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 large-community
 ```
 
 - - -
@@ -1301,7 +1301,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 ext-community
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicast loc-rib route 2001:db8::1/128 path 2 ext-community
 ```
 
 - - -
@@ -1323,7 +1323,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp path-selection
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp path-selection
 ```
 
 - - -
@@ -1345,7 +1345,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp aspath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp aspath
 ```
 
 - - -
@@ -1367,7 +1367,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp path-selection med
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp path-selection med
 ```
 
 - - -
@@ -1389,7 +1389,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp path-selection multipath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp path-selection multipath
 ```
 
 - - -
@@ -1411,7 +1411,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-reflection
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-reflection
 ```
 
 - - -
@@ -1425,7 +1425,7 @@ Shows global configuration for the specified peer group.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    The VRF name.|
-| `<peer-group-id>` |  Domain|
+| `<peer-group-id>` |  The peer group name. |
 
 ### Version History
 
@@ -1434,7 +1434,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES
 ```
 
 - - -
@@ -1457,7 +1457,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES bfd
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES bfd
 ```
 
 - - -
@@ -1465,7 +1465,6 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES bfd
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> ttl-security
 
 Shows BGP TTL security configuration for the specified BGP peer group. BGP TTL security prevents attacks against eBGP, such as denial of service (DoS) attacks.
-
 
 ### Command Syntax
 
@@ -1481,7 +1480,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES ttl-security
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES ttl-security
 ```
 
 - - -
@@ -1504,7 +1503,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES capabilities
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES capabilities
 ```
 
 - - -
@@ -1527,7 +1526,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES graceful-restart
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES graceful-restart
 ```
 
 - - -
@@ -1550,7 +1549,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES local-as
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES local-as
 ```
 
 - - -
@@ -1574,7 +1573,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES timers
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES timers
 ```
 
 - - -
@@ -1597,7 +1596,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family
 ```
 
 - - -
@@ -1620,7 +1619,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast 
 ```
 
 - - -
@@ -1643,7 +1642,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise
 ```
 
 - - -
@@ -1666,7 +1665,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast attribute-mod
 ```
 
 - - -
@@ -1689,7 +1688,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath
 ```
 
 - - -
@@ -1712,7 +1711,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath allow-my-asn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast aspath allow-my-asn
 ```
 
 - - -
@@ -1735,7 +1734,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits
 ```
 
 - - -
@@ -1758,7 +1757,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast prefix-limits inbound
 ```
 
 - - -
@@ -1781,7 +1780,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast default-route-origination
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast default-route-origination
 ```
 
 - - -
@@ -1804,7 +1803,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy
 ```
 
 - - -
@@ -1827,7 +1826,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound
 ```
 
 - - -
@@ -1850,7 +1849,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy outbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy outbound
 ```
 
 - - -
@@ -1873,7 +1872,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast conditional-advertise
 ```
 
 - - -
@@ -1896,7 +1895,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast
 ```
 
 - - -
@@ -1919,7 +1918,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy
 ```
 
 - - -
@@ -1942,7 +1941,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound
 ```
 
 - - -
@@ -1967,7 +1966,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound
 ```
 
 - - -
@@ -1990,7 +1989,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath
 ```
 
 - - -
@@ -2013,7 +2012,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath allow-my-asn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast aspath allow-my-asn
 ```
 
 - - -
@@ -2036,7 +2035,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits
 ```
 
 - - -
@@ -2059,7 +2058,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast prefix-limits inbound
 ```
 
 - - -
@@ -2082,7 +2081,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast default-route-origination
 ```
 
 - - -
@@ -2105,7 +2104,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast community-advertise
 ```
 
 - - -
@@ -2128,7 +2127,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast attribute-mod
 ```
 
 - - -
@@ -2136,7 +2135,6 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast conditional-advertise
 
 Shows conditional advertisement configuration information for the specified BGP IPv6 peer group. The BGP conditional advertisement option lets you advertise certain routes only if other routes either do or do not exist.
-
 
 ### Command Syntax
 
@@ -2152,7 +2150,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast conditional-advertise
 ```
 
 - - -
@@ -2175,7 +2173,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn
 ```
 
 - - -
@@ -2198,7 +2196,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn attribute-mod
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn attribute-mod
 ```
 
 - - -
@@ -2221,7 +2219,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath
 ```
 
 - - -
@@ -2244,7 +2242,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath allow-my-asn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath allow-my-asn
 ```
 
 - - -
@@ -2267,7 +2265,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy
 ```
 
 - - -
@@ -2290,7 +2288,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy outbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy outbound
 ```
 
 - - -
@@ -2313,7 +2311,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy outbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy outbound
 ```
 
 - - -
@@ -2335,7 +2333,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-export
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-export
 ```
 
 - - -
@@ -2357,7 +2355,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-export to-evpn route-target 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-export to-evpn route-target 
 ```
 
 - - -
@@ -2380,7 +2378,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-export to-evpn route-target 65101:10
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-export to-evpn route-target 65101:10
 ```
 
 - - -
@@ -2402,7 +2400,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-import
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-import
 ```
 
 - - -
@@ -2424,7 +2422,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-import from-evpn route-target
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-import from-evpn route-target
 ```
 
 - - -
@@ -2447,8 +2445,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp route-import from-evpn route-target 65102:4001
-
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp route-import from-evpn route-target 65102:4001
 ```
 
 - - -
@@ -2471,7 +2468,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp timers
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp timers
 ```
 
 - - -
@@ -2493,7 +2490,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp confederation
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp confederation
 ```
 
 - - -
@@ -2515,7 +2512,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp confederation member-as
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp confederation member-as
 ```
 
 - - -
@@ -2538,7 +2535,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51
 ```
 
 - - -
@@ -2561,7 +2558,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 bfd
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 bfd
 ```
 
 - - -
@@ -2584,7 +2581,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 capabilities
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 capabilities
 ```
 
 - - -
@@ -2607,7 +2604,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 local-as
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 local-as
 ```
 
 - - -
@@ -2630,7 +2627,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 graceful-restart
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 graceful-restart
 ```
 
 - - -
@@ -2653,7 +2650,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 ttl-security
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 ttl-security
 ```
 
 - - -
@@ -2669,7 +2666,6 @@ Shows the BGP neighbor next hop.
 | `<vrf-id>` |    The VRF name.|
 | `<neighbor-id>`  |  The BGP neighbor name or interface (for BGP unnumbered).  |
 
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -2677,7 +2673,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 nexthop
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 nexthop
 ```
 
 - - -
@@ -2700,7 +2696,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51
 ```
 
 - - -
@@ -2723,7 +2719,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 ebgp-policy
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 ebgp-policy
 ```
 
 - - -
@@ -2746,14 +2742,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast
 
-Show configuration information for the specified BGP IPv4 neighbor.
+Shows configuration information for the specified BGP IPv4 neighbor.
 
 ### Command Syntax
 
@@ -2769,7 +2765,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast
 ```
 
 - - -
@@ -2792,7 +2788,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast attribute-mod
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast attribute-mod
 ```
 
 - - -
@@ -2815,7 +2811,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath
 ```
 
 - - -
@@ -2838,7 +2834,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast aspath allow-my-asn
 ```
 
 - - -
@@ -2861,7 +2857,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy
 ```
 
 - - -
@@ -2884,7 +2880,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound
 ```
 
 - - -
@@ -2907,7 +2903,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound
 ```
 
 - - -
@@ -2930,7 +2926,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits
 ```
 
 - - -
@@ -2953,7 +2949,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits inbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits inbound
 ```
 
 - - -
@@ -2976,7 +2972,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast default-route-origination
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast default-route-origination
 ```
 
 - - -
@@ -2999,7 +2995,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast community-advertise
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast community-advertise
 ```
 
 - - -
@@ -3022,7 +3018,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast conditional-advertise
 ```
 
 - - -
@@ -3045,7 +3041,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast capabilities
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast capabilities
 ```
 
 - - -
@@ -3068,14 +3064,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast graceful-restart
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast graceful-restart
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast
 
-Show configuration information for the specified BGP IPv6 neighbor.
+Shows configuration information for the specified BGP IPv6 neighbor.
 
 ### Command Syntax
 
@@ -3091,7 +3087,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast
 ```
 
 - - -
@@ -3114,7 +3110,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast attribute-mod
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast attribute-mod
 ```
 
 - - -
@@ -3137,7 +3133,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath
 ```
 
 - - -
@@ -3160,7 +3156,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath allow-my-asn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath allow-my-asn
 ```
 
 - - -
@@ -3183,7 +3179,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast prefix-limits
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast prefix-limits
 ```
 
 - - -
@@ -3206,7 +3202,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast prefix-limits inbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast prefix-limits inbound
 ```
 
 - - -
@@ -3229,7 +3225,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast default-route-origination
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast default-route-origination
 ```
 
 - - -
@@ -3252,7 +3248,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy
 ```
 
 - - -
@@ -3275,7 +3271,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy inbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy inbound
 ```
 
 - - -
@@ -3298,7 +3294,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy outbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast policy outbound
 ```
 
 - - -
@@ -3321,7 +3317,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast community-advertise
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast community-advertise
 ```
 
 - - -
@@ -3344,7 +3340,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast conditional-advertise
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast conditional-advertise
 ```
 
 - - -
@@ -3367,7 +3363,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast capabilities
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast capabilities
 ```
 
 - - -
@@ -3390,7 +3386,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast graceful-restart
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv6-unicast graceful-restart
 ```
 
 - - -
@@ -3415,7 +3411,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn
 ```
 
 - - -
@@ -3438,7 +3434,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn attribute-mod
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn attribute-mod
 ```
 
 - - -
@@ -3461,7 +3457,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath
 ```
 
 - - -
@@ -3484,7 +3480,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath allow-my-asn
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath allow-my-asn
 ```
 
 - - -
@@ -3507,7 +3503,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy
 ```
 
 - - -
@@ -3530,7 +3526,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy inbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy inbound
 ```
 
 - - -
@@ -3554,7 +3550,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy outbound
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy outbound
 ```
 
 - - -
@@ -3578,7 +3574,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn capabilities
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn capabilities
 ```
 
 - - -
@@ -3601,7 +3597,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn graceful-restart
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn graceful-restart
 ```
 
 - - -
@@ -3624,7 +3620,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router bgp neighbor swp52 timers
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp52 timers
 ```
 
 - - -
@@ -3640,7 +3636,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router bgp
+cumulus@leaf01:mgmt:~$ nv show router bgp
 ```
 
 - - -
@@ -3656,7 +3652,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router bgp graceful-restart
+cumulus@leaf01:mgmt:~$ nv show router bgp graceful-restart
 ```
 
 - - -
@@ -3671,5 +3667,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router bgp convergence-wait
+cumulus@leaf01:mgmt:~$ nv show router bgp convergence-wait
 ```

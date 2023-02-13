@@ -9,9 +9,21 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## February 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0213-012
+- Updated Cumulus Linux 3.7.9 image
+- Updated Cumulus Linux 3.7.10 image
+- Updated Cumulus Linux 3.7.11 image
+- Updated Cumulus Linux 3.7.12 image
+- Updated Cumulus Linux 3.7.13 image
+- Updated Cumulus Linux 3.7.14 image
+- Updated Cumulus Linux 3.7.14.2 image
+- Updated Cumulus Linux 3.7.15 image
+- Updated Cumulus Linux 3.7.16 image
+- Fix for CVE-2022-25927
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0206-012
 - API updates to protect against unsupported changes for running simulations
-<!-- Air:WhatsNew -->
 
 ## January 2023
 ### 82.2023.0119-011

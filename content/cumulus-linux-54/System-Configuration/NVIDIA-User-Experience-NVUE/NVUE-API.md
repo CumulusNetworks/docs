@@ -482,7 +482,7 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-pro
 
 ## NVUE REST API Documentation
 
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-53/api/index.html" text="NVUE API documentation.">}}
+For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-54/api/index.html" text="NVUE API documentation.">}}
 
 ## Considerations
 

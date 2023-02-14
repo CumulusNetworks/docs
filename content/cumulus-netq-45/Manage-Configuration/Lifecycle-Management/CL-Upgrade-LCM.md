@@ -9,9 +9,9 @@ LCM lets you upgrade Cumulus Linux on one or more switches in your network via t
 
 You can upgrade Cumulus Linux from:
 
-- 3.7.12 to later versions of Cumulus Linux 3
-- 3.7.12 or later to 4.2.0 or later versions of Cumulus Linux 4
-- 4.0 to later versions of Cumulus Linux 4
+- 3.7.16 to later versions of Cumulus Linux 3
+- 3.7.16 or later to 4.2.0 or later versions of Cumulus Linux 4
+- 4.2 to later versions of Cumulus Linux 4
 - 4.4.0 or later to Cumulus Linux 5 releases
 - 5.0.0 or later to 5.1.0 or later versions of Cumulus Linux 5
 

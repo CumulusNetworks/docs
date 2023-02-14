@@ -7,7 +7,7 @@ toc: 3
 
 {{<notice note>}}
 
-PTP monitoring is an early access feature and is supported on NVIDIA Spectrum-2 switches and above. It requires a switch fabric running Cumulus Linux version 5.0 and above and NetQ Agent 4.5.
+PTP monitoring is an early access feature. It requires a switch fabric running Cumulus Linux version 5.0 and above and NetQ Agent 4.5.
 
 {{</notice>}}
 

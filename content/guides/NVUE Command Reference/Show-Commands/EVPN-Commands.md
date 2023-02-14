@@ -7,13 +7,13 @@ type: nojsscroll
 ---
 ## nv show interface \<interface-id\> evpn
 
-EVPN control plane config and info for VRF
+Shows EVPN control plane configuration for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>`    | The interface name. |
 
 ### Version History
 
@@ -22,20 +22,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface bond1 evpn
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> evpn multihoming
 
-Multihoming interface configuration parameters
+Shows the EVPN multihoming interface configuration parameters.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>`    |  The interface name. |
 
 ### Version History
 
@@ -44,20 +44,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface bond1 evpn multihoming
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> evpn multihoming segment
 
-Multihoming interface segment
+Shows EVPN multihoming interface segment configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>`    |  The interface name. |
 
 ### Version History
 
@@ -66,20 +66,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface bond1 evpn multihoming segment
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> evpn
 
-EVPN control plane config and info for VRF
+Shows EVPN control plane configuration for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` |  The VRF name. |
 
 ### Version History
 
@@ -88,21 +88,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf RED evpn
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> evpn vni \<vni-id\>
 
- VNI
+Shows EVPN configuration for a specific VNI in the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<vni-id>` |  VxLAN ID |
+| `<vrf-id>` |  The VRF name.|
+| `<vni-id>` | The VXLAN ID. |
 
 ### Version History
 
@@ -111,14 +111,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf RED evpn vni 
 ```
 
 - - -
 
 ## nv show evpn
 
-Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
+Shows global EVPN control plane information.
 
 ### Version History
 
@@ -127,13 +127,15 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn
 ```
 
 - - -
 
 ## nv show evpn route-advertise
 
+Shows EVPN route advertise information.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -141,14 +143,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn route-advertise
 ```
 
 - - -
 
 ## nv show evpn dad
 
-Duplicate address detection
+Shows EVPN duplicate address detection information.
 
 ### Version History
 
@@ -157,14 +159,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn dad
 ```
 
 - - -
 
 ## nv show evpn dad duplicate-action
 
-Handling of BUM traffic
+Shows the action to take when there is a duplicate address detected.
 
 ### Version History
 
@@ -173,14 +175,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn dad duplicate-action
 ```
 
 - - -
 
 ## nv show evpn dad duplicate-action freeze
 
-Advertise
+Shows all EVPN duplicate address freeze actions.
 
 ### Version History
 
@@ -189,19 +191,19 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn dad duplicate-action freeze
 ```
 
 - - -
 
-## nv show evpn evi
+## nv show evpn vni
 
-EVIs
+Shows information about the VNIs on the switch.
 
 ### Command Syntax
 
 | Syntax |  Description   |
-| `<evi-id>`    |  VRF |
+| `<vni-id>` |  The VNI name. |
 
 ### Version History
 
@@ -210,19 +212,19 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn vni
 ```
 
 - - -
 
-## nv show evpn evi \<evi-id\>
+## nv show evpn vni \<vni-id\>
 
-Enables the EVPN control plane.  When enabled, it also means that the EVPN service offered is vlan-based service and an EVI is auto-created for each extended VLAN.
+Shows information about the specified VNI.
 
 ### Command Syntax
 
 | Syntax |  Description   |
-| `<evi-id>`    |  VRF |
+| `<vni-id>` |  The VNI name. |
 
 ### Version History
 
@@ -231,19 +233,19 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn vni 10
 ```
 
 - - -
 
-## nv show evpn evi \<evi-id\> route-advertise
+## nv show evpn vni \<vni-id\> route-advertise
 
-Route advertise
+Shows route advertisement information for the specified EVPN VNI.
 
 ### Command Syntax
 
 | Syntax |  Description   |
-| `<evi-id>`    |  VRF |
+| `<vni-id>` |  The VNI name. |
 
 ### Version History
 
@@ -252,19 +254,19 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn vni 10 route-advertise
 ```
 
 - - -
 
-## nv show evpn evi \<evi-id\> route-target
+## nv show evpn vni \<vni-id\> route-target
 
-EVPN control plane config and info for VRF
+Shows route target information for the specified EVPN VNI.
 
 ### Command Syntax
 
 | Syntax |  Description   |
-| `<evi-id>`    |  VRF |
+| `<vni-id>` |  The VNI name. |
 
 ### Version History
 
@@ -273,44 +275,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn vni 10 route-target
 ```
 
 - - -
 
-## nv show evpn evi \<evi-id\> route-target export
+## nv show evpn vni \<vni-id\> route-target export
 
-Set of route target identifiers
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<evi-id>` |   VRF |
-| `<rt-id>` |    Route target ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ 
-```
-
-- - -
-
-## nv show evpn evi \<evi-id\> route-target export \<rt-id\>
-
-A route target identifier
+Shows export route target information for the specified EVPN VNI.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<evi-id>` |   VRF |
-| `<rt-id>` |    Route target ID |
+| `<vni-id>` |  The VNI name. |
+| `<rt-id>` | The route target ID. |
 
 ### Version History
 
@@ -319,21 +298,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn vni 10 route-target export
 ```
 
 - - -
 
-## nv show evpn evi \<evi-id\> route-target import
+## nv show evpn vni \<vni-id\> route-target export \<rt-id\>
 
-Set of route target identifiers
+Shows information for the specified export route target for the specified EVPN VNI.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<evi-id>` |   VRF |
-| `<rt-id>` |    Route target ID |
+| `<vni-id>` |  The VNI name. |
+| `<rt-id>` | The route target ID. |
 
 ### Version History
 
@@ -342,21 +321,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn vni 10  route-target export 65101:10
 ```
 
 - - -
 
-## nv show evpn evi \<evi-id\> route-target import \<rt-id\>
+## nv show evpn vni \<vni-id\> route-target import
 
-A route target identifier
+Shows import route target information for the specified EVPN VNI.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<evi-id>` |   VRF |
-| `<rt-id>` |    Route target ID |
+| `<vni-id>` |  The VNI name. |
+| `<rt-id>` | The route target ID. |
 
 ### Version History
 
@@ -365,21 +344,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn vni 10 route-target import
 ```
 
 - - -
 
-## nv show evpn evi \<evi-id\> route-target both
+## nv show evpn vni \<vni-id\> route-target import \<rt-id\>
 
-Set of route target identifiers
+Shows information about the specified import route target for the specified EVPN VNI.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<evi-id>` |   VRF |
-| `<rt-id>` |    Route target ID |
+| `<vni-id>` |  The VNI name. |
+| `<rt-id>` | The route target ID. |
 
 ### Version History
 
@@ -388,21 +367,44 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn vni 10 route-target import 65102:10
 ```
 
 - - -
 
-## nv show evpn evi \<evi-id\> route-target both \<rt-id\>
+## nv show evpn vni \<vni-id\> route-target both
 
-A route target identifier
+Shows both import and export route target information for the specified EVPN VNI.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+| `<rt-id>` | The route target ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show evpn vni 10 route-target both
+```
+
+- - -
+
+## nv show evpn vni \<vni-id\> route-target both \<rt-id\>
+
+Shows information about both the specified import and export route target for the specified EVPN VNI.
 
 ### Command Syntax
 
 |  Syntax |  Description   |
 | --------- | -------------- |
-| `<evi-id>` |  VRF |
-| `<rt-id>` |Route target ID |
+| `<vni-id>` |  The VNI name. |
+| `<rt-id>` | The route target ID. |
 
 ### Version History
 
@@ -411,14 +413,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn vni 10 route-target both 65101:10
 ```
 
 - - -
 
 ## nv show evpn multihoming
 
-Multihoming global configuration parameters
+Shows EVPM multihoming global configuration.
 
 ### Version History
 
@@ -427,13 +429,15 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn multihoming
 ```
 
 - - -
 
 ## nv show evpn multihoming ead-evi-route
 
+Shows EVPN multihoming Ethernet Auto-discovery per EVPN instance route information.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
@@ -441,14 +445,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn multihoming ead-evi-route
 ```
 
 - - -
 
 ## nv show evpn multihoming segment
 
-Multihoming interface segment
+Shows EVPN multihoming segment information.
 
 ### Version History
 
@@ -457,5 +461,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show evpn multihoming segment
 ```

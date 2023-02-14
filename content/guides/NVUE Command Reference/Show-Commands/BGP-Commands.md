@@ -273,14 +273,14 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf list \<leak-vrf-id\>
 
-Shows routes in the BGP IPv4 routing table of dynamic VRF to VRF route leaking.
+Shows IPv4 routes in the BGP RIB that leak between VRFs.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    The VRF name.|
-| `<leak-vrf-id>` |  VRF |
+| `<leak-vrf-id>` |  The VRF from which routes are leaked. |
 
 ### Version History
 
@@ -826,7 +826,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf list
 
-Shows routes in the BGP IPv4 routing table that are dynamically leaked between VRFs.
+Shows IPv6 routes in the BGP RIB that are dynamically leaked between VRFs.
 
 ### Command Syntax
 

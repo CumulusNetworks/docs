@@ -68,6 +68,49 @@ Created Keys                                                        FINISHED
 Verified installer version                                          FINISHED
 ...
 ```
+## Verify Connectivity between Agents and Appliances
+
+The `sudo opta-info.py` command displays the status of and connectivity between agents and appliances. This command is typically used when debugging NetQ.
+
+{{<tabs "TabID73" >}}
+
+{{<tab "Cloud Appliance">}}
+
+In the output below, the Opta Health Status column displays a healthy status, which indicates that the appliance is functioning properly. The Agent ID column displays the switches connected to the appliance.
+
+```
+cumulus@netq-appliance:~$ sudo opta-info.py
+[sudo] password for cumulus:
+Service IP:  10.102.57.27
+
+Opta Health Status    Opta-Gateway Channel Status
+--------------------  -----------------------------
+Healthy               READY
+
+Agent ID        Remote Address    Status      Messages Exchanged  Time Since Last Communicated
+----------      ----------------  --------  --------------------  ------------------------------
+switch1         /20.1.1.10:46420  UP                         906  2023-02-14 00:32:43.920000
+netq-appliance  /20.1.1.10:44717  UP                        1234  2023-02-14 00:32:31.757000
+```
+
+{{</tab>}}
+
+{{<tab "On-premises Appliance" >}}
+
+```
+cumulus@sm-telem-06:~$ sudo opta-info.py
+Service IP:  10.97.49.106
+
+Agent ID                                   Remote Address         Status      Messages Exchanged  Time Since Last Communicated
+-----------------------------------------  ---------------------  --------  --------------------  ------------------------------
+netq-lcm-executor-deploy-65c984fc7c-x97bl  /10.244.207.135:52314  UP                        1340  2023-02-13 19:31:37.311000
+sm-telem-06                                /10.188.47.228:2414    UP                        1449  2023-02-14 06:42:12.215000
+mlx-2010a1-14                              /10.188.47.228:12888   UP                          15  2023-02-14 06:42:27.003000
+```
+
+{{</tab>}}
+
+{{</tabs>}}
 ## Generate a Support File on the NetQ System
 
 The `opta-support` command generates information for troubleshooting issues with NetQ. It provides information about the NetQ Platform configuration and runtime statistics as well as output from the `docker ps` command.

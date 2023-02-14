@@ -5,20 +5,12 @@ weight: 123
 toc: 3
 ---
 NVUE supports both traditional snippets and flexible snippets:
-- Use snippets to add configuration to the `/etc/frr/frr.conf`, `/etc/network/interfaces`, or `/etc/cumulus/switchd.conf` file.
+- Use traditional snippets to add configuration to the `/etc/network/interfaces`, `/etc/frr/frr.conf`, `/etc/frr/daemons`, `/etc/cumulus/switchd.conf`, `/etc/cumulus/datapath/traffic.conf` or `/etc/ssh/sshd_config` files.
 - Use flexible snippets to manage any other text file on the system.
 
 ## Traditional Snippets
 
 Use traditional snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format, then add the configuration to the file with the `nv config patch` command.
-
-You can create traditional snippets in the following files:
-`/etc/frr/frr.conf`
-`/etc/frr/daemons`
-`/etc/network/interfaces`
-`/etc/cumulus/switchd.conf`
-`/etc/cumulus/datapath/traffic.conf`
-`/etc/ssh/sshd_config`
 
 {{%notice note%}}
 The `nv config patch` command requires you to use the fully qualified path name to the snippet `.yaml` file; for example you cannot use `./` with the `nv config patch` command.
@@ -242,7 +234,7 @@ NVUE does not provide options to configure link flap detection settings. The fol
 
 ## Flexible Snippets
 
-Flexible snippets are an extension of traditional snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file and add content.
+Flexible snippets are an extension of traditional snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file, then add content.
 
 Flexible snippets do *not* support:
 - Binary files.
@@ -256,7 +248,7 @@ Cumulus Linux runs flexible snippets as root. Exercise caution when creating and
 
 To create flexible snippets:
 
-1. Create a file in `yaml` format and add each flexible snippet you want to apply in the format shown below. NVUE appends the flexible snippet at the end of an existing file. If the file does not exist, NVUE creates the file and adds the content.
+1. Create a file in `yaml` format and add each flexible snippet you want to apply in the format shown below. NVUE appends the flexible snippet at the end of an existing file. If the file does not exist, NVUE creates the file, then adds the content.
 
    ```
    cumulus@leaf01:mgmt:~$ sudo nano <filename>.yaml>
@@ -291,6 +283,10 @@ To create flexible snippets:
    ```
 
 4. Verify the patched configuration.
+
+{{%notice note%}}
+The `nv config patch` command requires you to use the fully qualified path name to the snippet `.yaml` file; for example you cannot use `./` with the `nv config patch` command.
+{{%/notice%}}
 
 ### Flexible Snippet Examples
 

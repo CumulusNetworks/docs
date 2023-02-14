@@ -33,12 +33,6 @@ To work around this issue, run {{nv unset}} on the configured QoS settings, then
 <td></td>
 </tr>
 <tr>
-<td>3356645</td>
-<td>An all zero host address in a /64 IPv6 subnet is not usable.</td>
-<td>5.3.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3351941</td>
 <td>Cumulus Linux 5.4 package upgrade ({{apt-upgrade}}) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage.</td>
 <td>5.4.0</td>

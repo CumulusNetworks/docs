@@ -7,6 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3305144</td>
+<td>When you perform a {{netq trace}} between two hosts, the following message might be printed in the output even when the trace is successful:
+
+
+argument of type ‘NoneType’ is not iterable
+</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3290068</td>
 <td>When you back up NetQ data with the {{backuprestore.sh}} script, the operation fails with the following log messages:
 
@@ -16,6 +26,16 @@ Failed to execute /opt/backuprestore/createbackup.sh script on cassandra pod.
 Failed to proceed ahead with backup procedure. Exiting !
 
 Contact NVIDIA support for assistance performing a backup.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3266922</td>
+<td>When a NetQ agent sends your NetQ server or OPTA an unexpectedly large number for switch interface counters, {{netq check}} and {{netq show}} commands might fail with the following message:
+
+
+local variable ‘url’ referenced before assignment
+</td>
 <td>4.4.0</td>
 <td></td>
 </tr>

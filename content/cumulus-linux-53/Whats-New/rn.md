@@ -15,7 +15,6 @@ pdfhidden: True
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
 | <a name="3358909"></a> [3358909](#3358909) <a name="3358909"></a> <br /> | When you expand the <code>root</code> schema in the NVUE Swagger API, you see many errors in the Error panel at the top of the page. | 5.3.1-5.4.0 | |
-| <a name="3356645"></a> [3356645](#3356645) <a name="3356645"></a> <br /> | An all zero host address in a /64 IPv6 subnet is not usable. | 5.3.0-5.4.0 | |
 | <a name="3351953"></a> [3351953](#3351953) <a name="3351953"></a> <br /> | In rare circumstances, attempting to install a Cumulus Linux 5.3 image can fail during installation. The device stops at the (initramfs) prompt. To resume installation, enter the <code>exit</code> command at the (initramfs) prompt. | 5.3.0-5.3.1 | 5.4.0|
 | <a name="3351951"></a> [3351951](#3351951) <a name="3351951"></a> <br />None | Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit. | 4.2.1-5.3.1 | 5.4.0|
 | <a name="3351936"></a> [3351936](#3351936) <a name="3351936"></a> <br /> | Switch fans run at very high speed but the temperature is normal. | 5.2.0-5.3.1 | 5.4.0|
@@ -99,7 +98,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3356645"></a> [3356645](#3356645) <a name="3356645"></a> <br /> | An all zero host address in a /64 IPv6 subnet is not usable. | 5.3.0-5.4.0 | |
 | <a name="3351953"></a> [3351953](#3351953) <a name="3351953"></a> <br /> | In rare circumstances, attempting to install a Cumulus Linux 5.3 image can fail during installation. The device stops at the (initramfs) prompt. To resume installation, enter the <code>exit</code> command at the (initramfs) prompt. | 5.3.0-5.3.1 | 5.4.0|
 | <a name="3351951"></a> [3351951](#3351951) <a name="3351951"></a> <br />None | Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit. | 4.2.1-5.3.1 | 5.4.0|
 | <a name="3351936"></a> [3351936](#3351936) <a name="3351936"></a> <br /> | Switch fans run at very high speed but the temperature is normal. | 5.2.0-5.3.1 | 5.4.0|

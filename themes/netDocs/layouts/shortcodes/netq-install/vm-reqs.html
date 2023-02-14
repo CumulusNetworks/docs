@@ -39,12 +39,12 @@
 <td>Local disk storage</td>
 {{- if eq (.Get "version") "4.2.0" -}}
 {{- if eq (.Get "deployment") "onprem" -}}
-<td>500 GB (2 TB max) SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+<td>500 GB SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
 {{ end }}
 {{ end }}
 {{- if ne (.Get "version") "4.2.0" -}}
 {{- if eq (.Get "deployment") "onprem" -}}
-<td>256 GB (2 TB max) SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
+<td>256 GB SSD with minimum disk IOPS of 1000 for a standard 4kb block size<br>(<strong>Note</strong>: This <em>must</em> be an SSD; use of other storage options can lead to system instability and are not supported.)</td>
 {{ end }}
 {{ end }}
 {{- if eq (.Get "deployment") "cloud" -}}

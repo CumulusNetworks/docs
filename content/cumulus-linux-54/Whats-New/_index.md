@@ -52,7 +52,7 @@ The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Supp
   - New {{<link url="Troubleshooting-EVPN" text="EVPN show commands">}} to show {{<link url="Troubleshooting-EVPN#show-the-vni-evpn-routing-table" text="EVPN local RIB">}} and {{<link url="Troubleshooting-EVPN/#show-evpn-vnis" text="VNI">}} information
   - The `nv set evpn evi`, `nv unset evpn evi`, and `nv show evpn evi` commands are now `nv set evpn vni`, `nv unset evpn vni`, and `nv show evpn vni`
   - Obfuscated passwords to protect passwords from casual viewing
-  - The `nv show config` command shows NVUE version information in addition to the saved configuration
+  - The NVUE `startup.yaml` file shows NVUE version information in addition to saved configuration
   <!-- - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (Beta)-->
   - New commands:
    {{< tabs "TabID40 ">}}

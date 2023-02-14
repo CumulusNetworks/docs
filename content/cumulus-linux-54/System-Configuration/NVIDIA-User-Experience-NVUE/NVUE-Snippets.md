@@ -272,77 +272,11 @@ To create flexible snippets:
     - You can only set the umast permissions to a new file that you create. Adding the `permissions:` line is optional. The default umask persmissions are 644.
     - You can add a service with an action, such as start, restart, or stop. Adding the `services:` lines is optional.
 
-<!--### TACACS+ Client Example
+{{%notice warning%}}
 
-The following example creates a snippet called `tacacs-config` in a file called `tacacs.yaml`. The snippet adds the server 192.168.0.30 and the shared secret `tacacskey` to the `/etc/tacplus_servers` file.
+Use caution when creating flexible snippets:
+- If you configure flexible snippets incorrectly, they might impact switch functionality. For example, even though flexible snippet validation allows you to only add textual content, Cumulus Linux does not prevent you from creating a flexible snippet that adds to sensitive text files, such as `/boot/grub.cfg` and `/etc/fstab`  or add corrupt contents. Such snippets might render the box unusable or create a potential security vulnerability (the NVUE service (`nvued`) runs with superuser privileges).
+- Do not add flexible snippets to configuration files that NVUE already controls, such as the `/etc/hosts`, `/etc/ntp.conf`, or `/etc/ptp4l.conf` files. Cumulus Linux does not prevent you from creating and applying a flexible snippet to these files and does not show warnings or errors. Cumulus Linux might accept the snippet content without adding it in the file. For a list of the files that NVUE manages, refer to {{<link url="NVUE-CLI/#configuration-files-that-nvue-manages" text="Configuration Files that NVUE Manages">}}.
+- Do not manually update configuration files to which you add flexible snippets.
 
-1. Create the `tacacs.yaml` snippet:
-
-   ```
-   cumulus@leaf01:mgmt:~$ sudo nano tacacs.yaml
-   - set:
-       system:
-        config:
-          snippet:
-            tacacs-config:
-              file: "/etc/tacplus_servers"
-              content: |
-                secret=tacacskey
-                server=192.168.0.30
-   ```
-
-2. Run the following command to patch the configuration:
-
-   ```
-   cumulus@switch:~$ nv config patch tacacs.yaml
-   ```
-
-3. Run the `nv config apply` command to apply the configuration:
-
-   ```
-   cumulus@switch:~$ nv config apply
-   ```
-
-NVUE appends the snippet at the end of the `/etc/tacplus_servers` file.
-
-### SNMP Example
-
-The following example creates a snippet called `snmp-config` in a file called `snmp.yaml`. The snippet adds content to the `/etc/snmp/snmpd.conf` file to:
-- Configure the switch to listen on any interface on the management VRF.
-- Create a read-only community.
-- Restart the `snmpd` service.
-
-1. Create the `snmp.yaml` snippet:
-
-   ```
-   cumulus@leaf01:mgmt:~$ sudo nano snmp.yaml
-   - set:
-       system:
-         config:
-           snippet:
-             snmp-config:
-               file: /etc/snmp/snmpd.conf
-               content: |
-                 # Listen on any interface on MGMT VRF
-                 agentaddress udp:@mgmt:161
-                 # Create a Read-Only Community
-                 rocommunity cumuluspassword default
-               services:
-                 snmp:
-                   service: snmpd
-                   action: restart
-   ```
-
-2. Run the following command to patch the configuration:
-
-   ```
-   cumulus@switch:~$ nv config patch snmp.yaml
-   ```
-
-3. Run the `nv config apply` command to apply the configuration:
-
-   ```
-   cumulus@switch:~$ nv config apply
-   ```
-
-NVUE appends the snippet at the end of the `/etc/snmp/snmpd.conf` file.-->
+{{%/notice%}}

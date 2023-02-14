@@ -11,7 +11,7 @@ To upgrade the NetQ CLI:
 
 1. Log in to your switch or host.
 
-2. Update and install the new NetQ Debian package.
+2. Update and install the new NetQ Debian package:
 
     {{<tabs "Install Debian" >}}
 
@@ -35,7 +35,7 @@ sudo yum install netq-apps
 
 {{</tabs>}}
 
-3. Restart the CLI.
+3. Restart the CLI:
 
     ```
     netq config restart cli

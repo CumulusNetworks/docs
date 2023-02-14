@@ -8,9 +8,13 @@ To receive the event messages generated and processed by NetQ, you must integrat
 
 In an on-premises deployment, the NetQ On-premises Appliance or VM receives the raw data stream from the NetQ Agents, processes the data, then stores and delivers events to the Notification function. The Notification function filters and sends messages to any configured notification applications. In a cloud deployment, the NetQ Cloud Appliance or VM passes the raw data stream to the NetQ Cloud service for processing and delivery.
 
+<!--
+
 {{<figure src="/images/netq/event-notif-arch-onprem-330.png">}}
 
 {{<figure src="/images/netq/event-notif-arch-cloud-330.png">}}
+
+-->
 
 {{<notice note>}}
 
@@ -1567,6 +1571,7 @@ You can suppress events for the following types of messages:
 - configdiff: Messages related to the difference between two configurations
 - evpn: EVPN-related messages
 - link: Messages related to links, including state and interface name
+- lldp: LLDP-related messages
 - ntp: NTP-related messages
 - ospf: OSPF-related messages
 - sensor: Messages related to various sensors
@@ -1575,7 +1580,7 @@ You can suppress events for the following types of messages:
 
 {{<notice info>}} 
 
-NetQ suppresses BGP, EVPN, link, and sensor-related events with a severity level of "info" by default in the UI. You can {{<link url="#delete-an-event-suppression-rule" text="disable this rule">}} if you'd prefer to receive these event notifications.
+NetQ suppresses BGP, EVPN, link, and sensor-related events with a severity level of "info" by default in the UI. You can {{<link url="#delete-or-disable-an-event-suppression-rule" text="disable this rule">}} if you'd prefer to receive these event notifications.
 
 {{</notice>}}
 

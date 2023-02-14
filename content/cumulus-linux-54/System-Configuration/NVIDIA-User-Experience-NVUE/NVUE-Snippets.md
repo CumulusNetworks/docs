@@ -4,13 +4,21 @@ author: NVIDIA
 weight: 123
 toc: 3
 ---
-NVUE supports both snippets and flexible snippets:
+NVUE supports both traditional snippets and flexible snippets:
 - Use snippets to add configuration to the `/etc/frr/frr.conf`, `/etc/network/interfaces`, or `/etc/cumulus/switchd.conf` file.
 - Use flexible snippets to manage any other text file on the system.
 
-## Snippets
+## Traditional Snippets
 
-Use snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format, then add the configuration to the `/etc/frr/frr.conf`, `/etc/network/interfaces`, or `/etc/cumulus/switchd.conf` file with the `nv config patch` command.
+Use traditional snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format, then add the configuration to the file with the `nv config patch` command.
+
+You can create traditional snippets in the following files:
+`/etc/frr/frr.conf`
+`/etc/frr/daemons`
+`/etc/network/interfaces`
+`/etc/cumulus/switchd.conf`
+`/etc/cumulus/datapath/traffic.conf`
+`/etc/ssh/sshd_config`
 
 {{%notice note%}}
 The `nv config patch` command requires you to use the fully qualified path name to the snippet `.yaml` file; for example you cannot use `./` with the `nv config patch` command.
@@ -23,7 +31,7 @@ The `nv config patch` command requires you to use the fully qualified path name 
 
 NVUE does not support configuring BGP to peer across the default route. The following example configures BGP to peer across the default route from the default VRF:
 
-1. Create a `.yaml` file with the following snippet:
+1. Create a `.yaml` file with the following traditional snippet:
 
    ```
    cumulus@switch:~$ sudo nano bgp_snippet.yaml
@@ -61,7 +69,7 @@ NVUE does not support configuring BGP to peer across the default route. The foll
 
 NVUE does not support configuring EVPN route targets using auto derived values from RFC 8365. The following example configures BGP to enable RFC 8365 derived router targets:
 
-1. Create a `.yaml` file with the following snippet:
+1. Create a `.yaml` file with the following traditional snippet:
 
    ```
    cumulus@switch:~$ sudo nano bgp_snippet.yaml
@@ -101,7 +109,7 @@ Make sure to use spaces not tabs; the parser expects spaces in yaml format.
    autort rfc8365-compatible
    ```
 
-The snippets for FRR write content to the `/etc/frr/frr.conf` file. When you apply the configuration and snippet with the `nv config apply` command, the FRR service goes through and reads in the `/etc/frr/frr.conf` file.
+The traditional snippets for FRR write content to the `/etc/frr/frr.conf` file. When you apply the configuration and snippet with the `nv config apply` command, the FRR service goes through and reads in the `/etc/frr/frr.conf` file.
 
 ### /etc/network/interfaces Snippets
 
@@ -109,7 +117,7 @@ The snippets for FRR write content to the `/etc/frr/frr.conf` file. When you app
 
 NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#set-clagctl-timers" text="MLAG service timeouts">}} (initDelay). The following example configures the MLAG peer timeout to 400 seconds:
 
-1. Create a `.yaml` file and add the following snippet:
+1. Create a `.yaml` file and add the following traditional snippet:
 
    ```
    cumulus@switch:~$ sudo nano mlag_snippet.yaml
@@ -153,7 +161,7 @@ NVUE supports configuring only one of the {{<link url="Multi-Chassis-Link-Aggreg
 
 NVUE does not support configuring traditional bridges. The following example configures a traditional bridge called `br0` with the IP address 11.0.0.10/24. swp1, swp2 are members of the bridge.
 
-1. Create a `.yaml` file and add the following snippet:
+1. Create a `.yaml` file and add the following traditional snippet:
 
    ```
    cumulus@switch:~$ sudo nano bridge_snippet.yaml
@@ -198,7 +206,7 @@ NVUE does not support configuring traditional bridges. The following example con
 <!-- vale on -->
 NVUE does not provide options to configure link flap detection settings. The following example configures the link flap window to 10 seconds and the link flap threshold to 5 seconds:
 
-1. Create a `.yaml` file and add the following snippet:
+1. Create a `.yaml` file and add the following traditional snippet:
 
    ```
    cumulus@switch:~$ sudo nano switchd_snippet.yaml
@@ -234,7 +242,7 @@ NVUE does not provide options to configure link flap detection settings. The fol
 
 ## Flexible Snippets
 
-Flexible snippets are an extension of regular snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file and add content.
+Flexible snippets are an extension of traditional snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file and add content.
 
 Flexible snippets do *not* support:
 - Binary files.
@@ -248,7 +256,7 @@ Cumulus Linux runs flexible snippets as root. Exercise caution when creating and
 
 To create flexible snippets:
 
-1. Create a file in `yaml` format and add each flexible snippet you want to apply in the format shown below.
+1. Create a file in `yaml` format and add each flexible snippet you want to apply in the format shown below. NVUE appends the flexible snippet at the end of an existing file. If the file does not exist, NVUE creates the file and adds the content.
 
    ```
    cumulus@leaf01:mgmt:~$ sudo nano <filename>.yaml>
@@ -267,10 +275,57 @@ To create flexible snippets:
                    action: <action>
    ```
 
-    NVUE appends the flexible snippet at the end of an existing file. If the file does not exist, NVUE creates the file and adds the content.
-
     - You can only set the umast permissions to a new file that you create. Adding the `permissions:` line is optional. The default umask persmissions are 644.
-    - You can add a service with an action, such as start, restart, or stop. Adding the `services:` lines is optional.
+    - You can add a service with an action, such as `start`, `restart`, or `stop`. Adding the `services:` lines is optional; however, if you add the `service:` line, you must specify at least one service.
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch <filename>.yaml>
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify the patched configuration.
+
+### Flexible Snippet Examples
+
+The following example flexible snippet called `crontab-flex-snippet` appends the single line `@daily /opt/utils/run-backup.sh` to the existing `/etc/crontab` file, then restarts the `cron` service.
+
+```
+cumulus@leaf01:mgmt:~$ sudo nano crontab-flex-snippet.yaml
+- set:
+    system:
+      config:
+        snippet:
+          crontab-flex-snippet:
+            file: "/etc/crontab"
+            content: |
+              @daily /opt/utils/run-backup.sh
+            services:
+              schedule:
+                service: cron
+                action: restart
+```
+
+The following example flexible snippet called `apt-flex-snippet` creates a new file `/etc/apt/sources.list.d/microsoft-prod.list` with 0644 permissions and adds multi-line text:
+
+```
+- set:
+    system:
+      config:
+        snippet:
+          apt-flexible-snippet:
+            file: "/etc/apt/sources.list.d/microsoft-prod.list"
+            content: |
+              # Adding Microsoft SQL Server Sources
+              deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main
+            permissions: "0644"
+```
 
 {{%notice warning%}}
 

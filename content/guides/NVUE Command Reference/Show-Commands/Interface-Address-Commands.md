@@ -7,13 +7,13 @@ type: nojsscroll
 ---
 ## nv show interface \<interface-id\> ip
 
-IP configuration for an interface
+Shows IP address configuration for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -29,14 +29,14 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show interface \<interface-id\> ip address \<ip-prefix-id\>
 
-An IP address with prefix
+Shows details about the specified IP address for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<ip-prefix-id>`  |  IPv4 or IPv6 address and route prefix in CIDR notation|
+| `<interface-id>` | The interface name.|
+| `<ip-prefix-id>`  | The IPv4 or IPv6 address and route prefix in CIDR notation.|
 
 ### Version History
 
@@ -45,20 +45,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp1 ip address 10.10.10.1/32
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> ip neighbor
 
-IP neighbors
+Shows information about the IP neighbors configured for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -67,21 +67,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp51 ip neighbor
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> ip neighbor ipv4 \<neighbor-id\>
 
-A neighbor
+Shows information about the specified IPv4 neighbor for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<neighbor-id>`  | The IPv4 address of the neighbor node.|
+| `<interface-id>` | The interface name.|
+| `<neighbor-id>`  | The IPv4 address of the neighbor.|
 
 ### Version History
 
@@ -90,21 +90,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp51 ip neighbor ipv4 169.254.0.1
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> ip neighbor ipv6 \<neighbor-id\>
 
-A neighbor
+Shows information about the specified IPv6 neighbor for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<neighbor-id>`  | The IPv4 address of the neighbor node.|
+| `<interface-id>` | The interface name.|
+| `<neighbor-id>`  | The IPv4 address of the neighbor.|
 
 ### Version History
 
@@ -113,20 +113,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp51 ip neighbor ipv6 2001:db8:0002::0a00:0002
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> loopback
 
-The loopback IP interface associated with this VRF.
+Shows the loopback interfaces associated with this VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -135,20 +135,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default loopback
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> loopback ip
 
-IP addresses associated with the VRF's loopback interface.
+Shows the IP addresses associated with the loopback interface for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` | The VRF name. |
 
 ### Version History
 
@@ -157,21 +157,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default loopback ip
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> loopback ip address \<ip-prefix-id\>
 
-An IP address with prefix
+Shows details about the specified loopback IP address for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<ip-prefix-id>` |    IPv4 or IPv6 address and route prefix in CIDR notation |
+| `<vrf-id>` | The VRF name. |
+| `<ip-prefix-id>` | The IPv4 or IPv6 address and route prefix in CIDR notation. |
 
 ### Version History
 
@@ -180,5 +180,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default loopback ip address 10.10.10.1/32
 ```

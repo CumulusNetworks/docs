@@ -538,6 +538,34 @@ netq lcm install netq-image
 ```
 
 - - -
+<!-- NVLink command
+## netq lcm restart nvos
+
+### Syntax
+
+```
+netq lcm restart nvos 
+    job-name <text-job-name> 
+    ips <text-switch-ips> 
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| job-name | \<text-job-name\> | Name for the upgrade |
+| ips | <text-switch-ips\> | |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- netq lcm upgrade nvos
+- - -
+-->
 ## netq lcm show cl-images
 
 Displays all Cumulus Linux images in the lifecycle management repository. 
@@ -1103,3 +1131,38 @@ netq lcm upgrade netq-image
 - netq lcm show upgrade-jobs netq-image 
 
 - - -
+
+<!--NVLink command
+## netq lcm upgrade nvos-image
+
+### Syntax
+
+```
+netq lcm upgrade nvos-image 
+    job-name <text-job-name> 
+    nvos-version <text-nvos-version> 
+    ips <text-switch-ips> 
+    [restart_after_upgrade]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| nvos-image | NA |  |
+| job-name | \<text-job-name\> | Name for the upgrade |
+| nvos-version | <text-netq-version\> | |
+| ips | <text-switch-ips\> | |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| restart_after_upgrade | NA |  |
+
+### Sample Usage
+
+### Related Commands
+
+- netq lcm restart nvos
+
+-->

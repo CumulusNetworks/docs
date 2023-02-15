@@ -82,16 +82,6 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 <td></td>
 </tr>
 <tr>
-<td>3343766</td>
-<td>On the NVIDIA SN4800 switch, when you  run an {{apt upgrade}}, you see the following warning:
-
-W: Possible missing firmware /lib/firmware/mellanox/lc_ini_bundle_2008_9999.bin for module mlxsw_core
-
-This warning has no impact on switch functionality.</td>
-<td>5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3341214</td>
 <td>If you use the NVUE REST API to configure a local user with a hashed password, the user cannot log in and the {{/etc/nvue.d/startup.yaml}} file shows the password as plain text.</td>
 <td>5.4.0</td>

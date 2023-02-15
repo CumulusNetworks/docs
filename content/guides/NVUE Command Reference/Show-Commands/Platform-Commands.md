@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show platform
 
-Top-level container for the components in the system. This node represents a system component inventory, which includes hardware and software elements.
+Shows a list of all the software components on the switch.
 
 ### Version History
 
@@ -16,14 +16,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform
 ```
 
 - - -
 
 ## nv show platform capabilities
 
-Capabilities of this platform
+Shows the capabilities of the switch.
 
 ### Version History
 
@@ -32,14 +32,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform capabilities
 ```
 
 - - -
 
 ## nv show platform hardware
 
-The platform's hardware
+Shows platform hardware information on the switch, such as the base MAC address, model and manufacturer, memory, Cumulus Linux release, serial numner and system MAC address.
 
 ### Version History
 
@@ -48,20 +48,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform hardware
 ```
 
 - - -
 
 ## nv show platform hardware component
 
-Set of components making up the platform.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<component-id>`  |  Component identifier |
+Shows the platform type, such as VX.
 
 ### Version History
 
@@ -70,20 +64,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform hardware component
 ```
 
 - - -
 
 ## nv show platform hardware component \<component-id\>
 
-A component in the platform.
+Shows information about the specified platform component.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<component-id>`  |  Component identifier |
+| `<component-id>`  |  The component name. |
 
 ### Version History
 
@@ -92,20 +86,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform hardware component device
 ```
 
 - - -
 
 ## nv show platform hardware component \<component-id\> linecard
 
-Properties of a linecard component
+Shows information about the linecard for the specified platform component.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<component-id>`  |  Component identifier |
+| `<component-id>`  |  The component name. |
 
 ### Version History
 
@@ -114,21 +108,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform hardware component device linecard
 ```
 
 - - -
 
 ## nv show platform hardware component \<component-id\> port
 
-Set of physical ports on this component
+Shows the physical ports for the specified switch component.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<component-id>`  |  Component identifier |
-| `<port-id>` |  Physical port identifier |
+| `<component-id>`  |  The component name. |
 
 ### Version History
 
@@ -137,21 +130,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform hardware component device port
 ```
 
 - - -
 
 ## nv show platform hardware component \<component-id\> port \<port-id\>
 
-A physical port on the component.
+Shows information about the specified port on the specified switch component.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<component-id>`  |  Component identifier |
-| `<port-id>` |  Physical port identifier |
+| `<component-id>`  |  The component name. |
+| `<port-id>` |  The physical port name. |
 
 ### Version History
 
@@ -160,22 +153,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform hardware component device port
 ```
 
 - - -
 
 ## nv show platform hardware component \<component-id\> port \<port-id\> breakout-mode
 
-Set of breakout modes
+Shows the port breakout modes for the specified component on the switch.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<component-id>`  |  Component identifier |
-| `<port-id>` | Physical port identifier |
-| `<mode-id>` |  Breakout mode identifier |
+| `<component-id>`  |  The component name. |
+| `<port-id>` |  The physical port name. |
 
 ### Version History
 
@@ -184,22 +176,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform hardware component device port swp1 breakout-mode
 ```
 
 - - -
 
 ## nv show platform hardware component \<component-id\> port \<port-id\> breakout-mode \<mode-id\>
 
-A breakout mode
+Shows information about the specified port breakout.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<component-id>`  |  Component identifier |
-| `<port-id>` | Physical port identifier |
-| `<mode-id>` |  Breakout mode identifier |
+| `<component-id>`  |  The component name. |
+| `<port-id>` |  The physical port name. |
+| `<mode-id>` |  The breakout mode ID. |
 
 ### Version History
 
@@ -208,14 +200,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform hardware component device port swp1 breakout-mode 4x
 ```
 
 - - -
 
 ## nv show platform environment
 
-Platform environment information
+Shows a list of sensors, fans, LEDs, and PSUs on the switch.
 
 ### Version History
 
@@ -224,20 +216,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform environment
 ```
 
 - - -
 
 ## nv show platform environment fan
 
-The fans on the switch.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<fan-id>` |   Physical fan identifier |
+Shows information about the fans on the switch.
 
 ### Version History
 
@@ -246,20 +232,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform environment fan
 ```
 
 - - -
 
 ## nv show platform environment fan \<fan-id\>
 
-A physical fan on the component.
+Shows information about the specified fan on the switch.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<fan-id>` |   Physical fan identifier |
+| `<fan-id>` |   The physical fan identifier. |
 
 ### Version History
 
@@ -268,20 +254,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform environment fan Fan2
 ```
 
 - - -
 
 ## nv show platform environment sensor
 
-The sensors on the switch.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<sensor-id>` |  Physical sensor identifier |
+Shows information about the physical sensors on the switch.
 
 ### Version History
 
@@ -290,20 +270,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform environment sensor 
 ```
 
 - - -
 
 ## nv show platform environment sensor \<sensor-id\>
 
-A physical sensor on the component.
+Shows information about the specified physical sensor on the switch.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<sensor-id>` |  Physical sensor identifier |
+| `<sensor-id>` |  The physical sensor identifier. |
 
 ### Version History
 
@@ -312,20 +292,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform environment sensor Temp
 ```
 
 - - -
 
 ## nv show platform environment psu
 
-The PSUs on the switch.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<psu-id>` |  Physical PSU identifier |
+Shows information about the PSUs on the switch.
 
 ### Version History
 
@@ -334,20 +308,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform environment psu
 ```
 
 - - -
 
 ## nv show platform environment psu \<psu-id\>
 
-A PSU
+Shows information about the specified PSU on the switch.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<psu-id>` |  Physical PSU identifier |
+| `<psu-id>` |  The physical PSU identifier. |
 
 ### Version History
 
@@ -356,20 +330,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform environment psu PSU1
 ```
 
 - - -
 
 ## nv show platform environment led
 
-The LEDs on the switch.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<led-id>` |  Physical LED identifier |
+Shows information about the LEDs on the switch.
 
 ### Version History
 
@@ -378,20 +346,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform environment led
 ```
 
 - - -
 
 ## nv show platform environment led \<led-id\>
 
-A LED
+Shows information about the specified LED.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<led-id>` |  Physical LED identifier |
+| `<led-id>` |  The physical LED identifier. |
 
 ### Version History
 
@@ -400,14 +368,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform environment led Fan
 ```
 
 - - -
 
 ## nv show platform software
 
-The platform's software
+Shows the software installed on the switch.
 
 ### Version History
 
@@ -416,20 +384,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform software
 ```
 
 - - -
 
 ## nv show platform software installed
 
-List of installed software
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<installed-id>` | Package name |
+Shows a list of the installed software on the switch.
 
 ### Version History
 
@@ -438,20 +400,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform software installed
 ```
 
 - - -
 
 ## nv show platform software installed \<installed-id\>
 
-An installed package
+Shows information about the specified installed package, such the package description and version number.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<installed-id>` |  Package name |
+| `<installed-id>` |  The package name. |
 
 ### Version History
 
@@ -460,5 +422,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show platform software installed what-just-happened
 ```

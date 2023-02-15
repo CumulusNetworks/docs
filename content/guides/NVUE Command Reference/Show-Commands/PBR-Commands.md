@@ -7,13 +7,13 @@ type: nojsscroll
 ---
 ## nv show interface \<interface-id\> router pbr
 
-PBR interface configuration.
+Shows PBR configuration settings for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -22,21 +22,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp51 router pbr
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> router pbr map \<pbr-map-id\>
 
-Interface Pbr map
+Shows configuration settings for the specified PBR map on the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
-| `<pbr-map-id>`   |  Route Map ID |
+| `<interface-id>`    | The interface name. |
+| `<pbr-map-id>`   |  The route map name.|
 
 ### Version History
 
@@ -45,14 +45,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp51 router pbr map map1
 ```
 
 - - -
 
 ## nv show system global reserved routing-table pbr
 
-reserved routing table ranges for PBR
+Shows the PBR reserved routing table ranges.
 
 ### Version History
 
@@ -61,7 +61,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show system global reserved routing-table pbr
 ```
 
 - - -
@@ -145,7 +145,7 @@ cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1
 
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> match
 
-Shows the rule match criteria for a route map.
+Shows the rule match criteria for a PBR route map.
 
 ### Command Syntax
 
@@ -168,7 +168,7 @@ cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1 match
 
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action
 
-Shows the route with the next hop group.
+Shows the rule action for a PBR route map.
 
 ### Command Syntax
 
@@ -191,7 +191,7 @@ cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1 action
 
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
 
-Shows information about next hop group you specify, such as if the policy is installed and the IP route table number of the default route.
+Shows configuration for the specified next hop group including the IP route table number of the default route.
 
 ### Command Syntax
 

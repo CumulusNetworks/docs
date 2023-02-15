@@ -17,15 +17,14 @@ Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. I
 ### Syntax
 
 ```
-netq lcm add
-    cl-image <text-image-path>
+netq lcm add cl-image <text-cl-image-path>
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| cl-image | \<text-image-path\> | Add the Cumulus Linux .bin file from this location. You must specify the full path, including the file name. |
+| cl-image | \<text-cl-image-path\> | Add the Cumulus Linux .bin file from this location. You must specify the full path, including the file name. |
 
 ### Options
 
@@ -143,8 +142,7 @@ Adds a NetQ image (.deb package) to the lifecycle management repository. Images 
 ### Syntax
 
 ```
-netq lcm add
-    netq-image <text-netq-image-path>
+netq lcm add netq-image <text-netq-image-path>
 ```
 
 ### Required Arguments
@@ -172,7 +170,22 @@ cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.0.0-ub18
 - ```netq lcm add cl-image```
 
 - - -
+<!-- NVlink command
+## netq lcm add nvos-image
 
+### Syntax
+
+```
+ netq lcm add nvos-image <text-nvos-image-path> 
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| nvos-image | \<text-nvos-image-path\> |  |
+
+- - -
+-->
 ## netq lcm add role
 
 Assigns or changes a role for one or more switches that defines its placement in a Clos topology and influences the order in which you can upgrade switches.
@@ -256,15 +269,14 @@ Removes a selected Cumulus Linux image (.bin) from the NetQ lifecycle management
 ### Syntax
 
 ```
-netq lcm del
-    cl-image <text-image-id>
+netq lcm del cl-image <text-cl-image-id>
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| cl-image | \<text-image-id\> | Remove the Cumulus Linux image with this identifier |
+| cl-image | \<text-cl-image-id\> | Remove the Cumulus Linux image with this identifier |
 
 ### Options
 
@@ -337,15 +349,14 @@ Removes a selected NetQ image (.deb) from the NetQ lifecycle management reposito
 ### Syntax
 
 ```
-netq lcm del
-    netq-image <text-image-id>
+netq lcm del netq-image <text-netq-image-id>
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| netq-image | \<text-image-id\> | Remove the NetQ image with this identifier |
+| netq-image | \<text-netq-image-id\> | Remove the NetQ image with this identifier |
 
 ### Options
 
@@ -354,7 +365,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show netq-images json
+cumulus@switch:~$ netq lcm show netq-image json
 [
     {
         "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
@@ -379,6 +390,30 @@ cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494
 - ```netq lcm upgrade netq-image```
 
 - - -
+<!--NVLink command
+## netq lcm del nvos image
+
+### Syntax
+
+```
+netq lcm del nvos-image <text-nvos-image-id>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| nvis-image | \<text-nvos-image-id\> | Remove the NVOS image with this identifier |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- - -
+-->
 ## netq lcm detach credentials
 
 Detaches an access profile from a switch and restores the default profile. Obtain the hostname by running `netq lcm show switches`.
@@ -574,7 +609,7 @@ Displays all Cumulus Linux images in the lifecycle management repository.
 
 ```
 netq lcm show cl-images
-    [<text-image-id>]
+    [<text-cl-image-id>]
     [json]
 ```
 
@@ -588,7 +623,7 @@ netq lcm show cl-images
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-image-id\> | Only display Cumulus Linux image with this identifier |
+| NA | \<text-cl-image-id\> | Only display Cumulus Linux image with this identifier |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
@@ -617,8 +652,8 @@ cumulus@switch:~$ netq lcm show cl-images json
 
 ### Related Commands
 
-- ```netq lcm add cl-images```
-- ```netq lcm del cl-images```
+- ```netq lcm add cl-image```
+- ```netq lcm del cl-image```
 
 - - -
 
@@ -881,11 +916,37 @@ cumulus@switch:~$ netq lcm show netq-images json
 
 ### Related Commands
 
-- ```netq lcm add netq-images```
-- ```netq lcm del netq-images```
+- `netq lcm add netq-image`
+- `netq lcm del netq-image`
 
 - - -
+<!--NVLink command
+## netq lcm show nvos-images
 
+Displays all NVOS images in the lifecycle management repository.
+
+### Syntax
+
+```
+netq lcm show nvos-images
+    [<text-nvos-image-id>]
+    [json]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| nvos-images | NA | Display all NVOS images in the lifecycle management repository |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-nvos-image-id\> | Only display the NVOS image with this identifier |
+| json | NA | Display the output in JSON format |
+
+- - -
+-->
 ## netq lcm show status
 
 Displays status of Cumulus Linux or NetQ image upgrade jobs.

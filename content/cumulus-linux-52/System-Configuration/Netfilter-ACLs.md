@@ -685,7 +685,7 @@ cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=statistics` command or the Linux `mlxcmd traps show copp-stats` command.
+To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=statistics` command.
 
 {{%notice note%}}
 Cumulus Linux provides default control plane policer values. You can adjust these values to accommodate higher scale requirements for specific protocols as needed.

@@ -699,6 +699,7 @@ cumulus@switch:~# sudo netq config restart cli
 - ```netq config restart cli```
 
 - - -
+<!--
 ## netq config addons
 
 ### Syntax
@@ -730,6 +731,7 @@ Addons config added
 None
 
 - - -
+-->
 ## netq config color
 
 <!-- vale off -->
@@ -994,7 +996,7 @@ cumulus@switch:~$ netq config del cli server
 - ```netq config restart agent```
 
 - - -
-
+<!--
 ## netq config experimental
 
 ### Syntax
@@ -1019,7 +1021,7 @@ None
 None
 
 - - -
-
+-->
 ## netq config reload parser
 
 Loads the NetQ configuration file.

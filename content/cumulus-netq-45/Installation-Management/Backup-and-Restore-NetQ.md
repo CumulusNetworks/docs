@@ -30,8 +30,8 @@ To create a backup, refer to the following steps for your NetQ version.
 2. Copy the `vm-backuprestore.sh` script to your NetQ server:
 
 ```
-username@hostname:~$ scp ./vm-backuprestore.sh cumulus@netq-appliance:/home/cumulus/
-cumulus@10.213.30.9's password:
+username@hostname:~$ scp ./vm-backuprestore.sh cumulus@10.10.10.10:/home/cumulus/
+cumulus@10.10.10.10's password:
 vm-backuprestore.sh                                                                                       100%   15KB  54.0KB/s   00:00 
 ```
 

@@ -17,7 +17,6 @@ toc: 2
 - {{<link title="Network Topology">}}
 - {{<link title="NTP">}}
 - {{<link title="OSPF">}}
-- {{<link title="PTP">}}
 - {{<link title="RoCE">}}
 - {{<link title="STP">}}
 - {{<link title="Switches">}}

@@ -4,7 +4,11 @@ author: NVIDIA
 weight: 760
 toc: 4
 ---
+{{<notice note>}}
 
+DPU monitoring is an early access feature. 
+
+{{</notice>}}
 Use the UI to view your data processing unit (DPU) inventory. The Inventory/DPU card includes the DPU's operating system, ASIC, CPU model, disk, platform, and memory information.
 
 For DPU performance information, refer to {{<link title="DPUs" text="DPU Monitoring">}}.

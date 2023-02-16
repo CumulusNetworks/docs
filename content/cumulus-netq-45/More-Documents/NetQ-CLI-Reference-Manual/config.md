@@ -199,7 +199,28 @@ Restarting netq-agent... Success!
 - ```netq config restart agent```
 
 - - -
+## netq config add agent gnmi-port
 
+### Syntax
+
+```
+netq config add agent gnmi-port <text-gnmi-port>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| gnmi-port | \<text-gnmi-port\> |  |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- - -
 ## netq config add agent kubernetes-monitor
 
 Configures the NetQ Agent to monitor Kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent to enable the configuration.
@@ -345,6 +366,29 @@ Restarting netq-agent... Success!
 
 - - -
 
+## netq config add agent opta-enable
+
+### Syntax
+
+```
+ netq config add agent opta-enable [true|false]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| opta-enable | NA |  |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | true, false |  |
+
+### Sample Usage
+
+### Related Commands
+- - -
 ## netq config add agent sensors
 
 Configures the NetQ Agent to collect information from the sensors on the switch chassis, including fan, power supply, and temperature data. You must run this command from the chassis.
@@ -699,6 +743,84 @@ cumulus@switch:~# sudo netq config restart cli
 - ```netq config restart cli```
 
 - - -
+## netq config add opta config-key
+
+### Syntax
+
+```
+netq config add opta config-key <text-opta-key> 
+    [vrf <text-vrf-name>] 
+    [proxy-host <text-proxy-host> proxy-port <text-proxy-port>]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| config-key | \<text-opta-key\> |  |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| vrf | \<text-vrf-names\> |  |
+| proxy-host | \<text-proxy-host\> |  |
+| proxy-port | \<text-proxy-port\> |  |
+
+### Sample Usage
+
+### Related Commands
+
+- - -
+
+## netq config add opta generate-opta-ssl
+
+### Syntax
+
+```
+netq config add opta generate-opta-ssl 
+    [opta-hostnames <text-opta-hostnames>] 
+    [opta-ips <text-opta-ips>]
+```
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| opta-hostnames | \<text-opta-hostnames\> |  |
+| opta-ips | \<text-opta-ips\> |  |
+
+### Sample Usage
+
+### Related Commands
+- - -
+## netq config add opta proxy-host
+
+### Syntax
+
+```
+netq config add opta 
+    proxy-host <text-proxy-host> 
+    proxy-port <text-proxy-port>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| proxy-host | \<text-proxy-host\> |  |
+| proxy-port | \<text-proxy-port\> |  |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- - -
 <!--
 ## netq config addons
 
@@ -996,6 +1118,23 @@ cumulus@switch:~$ netq config del cli server
 - ```netq config restart agent```
 
 - - -
+## netq config del opta proxy-host
+
+### Syntax
+
+```
+netq config del opta proxy-host
+```
+### Required Arguments
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+- - -
 <!--
 ## netq config experimental
 
@@ -1022,6 +1161,28 @@ None
 
 - - -
 -->
+## netq config opta
+
+### Syntax
+
+```
+netq config (start|stop|status|restart) opta
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | start, stop, status, restart |  |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- - -
 ## netq config reload parser
 
 Loads the NetQ configuration file.
@@ -1461,7 +1622,6 @@ None
 ```
 cumulus@switch:~$ netq config status cli
 NetQ CLI... Running
-
 ```
 
 ### Related Commands

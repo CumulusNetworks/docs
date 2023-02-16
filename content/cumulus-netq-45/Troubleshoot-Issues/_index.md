@@ -76,7 +76,7 @@ The `sudo opta-info.py` command displays the status of and connectivity between 
 
 {{<tab "Cloud Appliance">}}
 
-In the output below, the Opta Health Status column displays a healthy status, which indicates that the appliance is functioning properly. The Agent ID column displays the switches connected to the appliance.
+In the output below, the Opta Health Status column displays a healthy status, which indicates that the appliance is functioning properly. The Opta-Gateway Channel Status column displays the connectivity status between the appliance and cloud endpoint. The Agent ID column displays the switches connected to the appliance.
 
 ```
 cumulus@netq-appliance:~$ sudo opta-info.py

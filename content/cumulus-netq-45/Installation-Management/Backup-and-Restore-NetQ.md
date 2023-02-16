@@ -15,20 +15,19 @@ These procedures <em>do not</em> apply to your NetQ Cloud Appliance or VM. The N
 
 NetQ stores its data in a Cassandra database. You perform backups by running scripts provided with the software and located in the `/usr/sbin` directory. When you run a backup, the script creates a single `tar` file in the `/opt/backuprestore/` directory. 
 
-To create a backup:
+To create a backup, refer to the following steps for your NetQ version.
+### Back up NetQ 4.4.1 or earlier
 
-1. Create a backup on a NetQ version earlier than NetQ 4.5.0: 
+1. Retrieve the `vm-backuprestore.sh` script:
 
-Retrieve the `vm-backuprestore.sh` script:
-
-<p style="text-indent: 40px">a. On the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}, log in to your account and select <b>NVIDIA Licensing Portal</b>.<br></p>
+<p style="text-indent: 40px">a. On the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}, log in to your account.<br></p>
 <p style="text-indent: 40px">b. Select <b>NVIDIA Licensing Portal</b>.<br></p>
 <p style="text-indent: 40px">c. Select <b>Software Downloads</b> from the menu.<br></p>
 <p style="text-indent: 40px">d. Click <b>Product Family</b> and select <b>NetQ</b>.<br></p>
 <p style="text-indent: 40px">e. Locate the <code>vm-backuprestore.sh</code> script and select Download.<br></p>
 <p style="text-indent: 40px">f. If prompted, agree to the license agreement and proceed with the download.<br></p>
 
-Copy the `vm-backuprestore.sh` script to your NetQ server:
+2. Copy the `vm-backuprestore.sh` script to your NetQ server:
 
 ```
 username@hostname:~$ scp ./vm-backuprestore.sh cumulus@netq-appliance:/home/cumulus/
@@ -36,13 +35,13 @@ cumulus@10.213.30.9's password:
 vm-backuprestore.sh                                                                                       100%   15KB  54.0KB/s   00:00 
 ```
 
-Log in to your NetQ server and set the script to executable:
+3. Log in to your NetQ server and set the script to executable:
 
 ```
 cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
-In the directory you copied the `vm-backuprestore.sh` script into, run the script:
+4. In the directory you copied the `vm-backuprestore.sh` script into, run the script:
 
 ```
 cumulus@netq-appliance:~$ sudo ./vm-backuprestore.sh --backup
@@ -63,9 +62,17 @@ Backup is successful, please scp it to the master node the below command:
 cumulus@netq-appliance:~$
 ```
 
-To create a backup on NetQ 4.5.0 or later:
+5. Verify the backup file creation was successful.
 
-Run the backup script `/usr/sbin/vm-backuprestore.sh`:
+   ```
+   cumulus@netq-appliance:~$ cd /opt/backuprestore/
+   cumulus@netq-appliance:~/opt/backuprestore$ ls
+   backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
+   ```
+
+### Back up NetQ 4.5.0 or later:
+
+1. Run the backup script `/usr/sbin/vm-backuprestore.sh`:
 
 ```
 cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup

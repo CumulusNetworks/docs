@@ -16,7 +16,7 @@ These procedures <em>do not</em> apply to your NetQ Cloud Appliance or VM. The N
 NetQ stores its data in a Cassandra database. You perform backups by running scripts provided with the software and located in the `/usr/sbin` directory. When you run a backup, the script creates a single `tar` file in the `/opt/backuprestore/` directory. 
 
 To create a backup, refer to the following steps for your NetQ version.
-### Back up NetQ 4.4.1 or earlier
+### Back Up NetQ 4.4.1 or Earlier
 
 1. Retrieve the `vm-backuprestore.sh` script:
 
@@ -70,7 +70,7 @@ cumulus@netq-appliance:~$
    backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
    ```
 
-### Back up NetQ 4.5.0 or later:
+### Back Up NetQ 4.5.0 or Later
 
 1. Run the backup script `/usr/sbin/vm-backuprestore.sh`:
 

@@ -97,12 +97,6 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td></td>
 </tr>
 <tr>
-<td>3336807</td>
-<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
-<td>5.2.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3331929</td>
 <td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf default router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
 <td>5.4.0</td>

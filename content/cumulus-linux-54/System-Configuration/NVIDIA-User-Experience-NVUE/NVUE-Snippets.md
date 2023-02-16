@@ -231,10 +231,149 @@ NVUE does not provide options to configure link flap detection settings. The fol
    link_flap_window = 10
    link_flap_threshold = 5
    ```
+<!--
+### /etc/frr/daemons Snippets
 
+You can create a traditional snippet to enable or disable all the FRR protocol daemons:
+
+1. Create a `.yaml` file and add the following traditional snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano frr_daemons_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             frr-daemons: |
+               bgpd=yes
+               ospfd=yes
+               isisd=yes
+               ospf6d=yes
+               vtysh_enable=yes
+               bgpd_options="   -M snmp -A 127.0.0.1"
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch frr_daemons_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the beginning of the `/etc/frr/daemons` file:
+
+  ```
+  cumulus@switch:~$ sudo cat /etc/frr/daemons
+  bgpd=yes
+  ospfd=yes
+  ospf6d=yes
+  isisd=yes
+  ...
+  vtysh_enable=yes
+  zebra_options="  -M cumulus_mlag -M snmp -A 127.0.0.1 -s 90000000"
+  bgpd_options="   -M snmp -A 127.0.0.1"
+  ospfd_options="  -M snmp -A 127.0.0.1"
+  ```
+
+You can also control additional FRR protocol daemon related configuration by creating an `frr-daemons-append` snippet:
+
+```
+cumulus@switch:~$ sudo nano frr_daemons_append_snippet.yaml
+- set:
+    system:
+      config:
+        snippet:
+          frr-daemons-append: |
+            MAX_FDS=1024
+            FRR_NO_ROOT="yes"
+```
+-->
+### /etc/cumulus/datapath/traffic.conf Snippets
+
+To add data path configuration for the Cumulus Linux `switchd` module that NVUE does not yet support, create a `traffic.conf` snippet.
+
+The following example creates a file called `traffic_conf_snippet.yaml` and enables the resilient hash setting.
+
+1. Create a `.yaml` file and add the following traditional snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano traffic_conf_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             traffic.conf: |
+               resilient_hash_enable = TRUE
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch traffic_conf_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the end of the `/etc/cumulus/datapath/traffic.conf` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/cumulus/datapath/traffic.conf
+   ...
+   !---- NVUE snippets ----
+   resilient_hash_enable = TRUE
+   ```
+<!--
+### /etc/ssh/sshd_config Snippets
+
+To add SSH daemon configuration for the Cumulus Linux SSH service that NVUE does not yet support, create a `sshd_config` snippet; for example:
+
+1. Create a `.yaml` file and add the following traditional snippet:
+
+   ```
+   cumulus@switch:~$ sudo nano sshd_config_snippet.yaml
+   - set:
+       system:
+         config:
+           snippet:
+             sshd_config: |
+               PermitRootLogin yes
+               X11Forwarding yes
+               Match User anoncvs
+                  X11Forwarding no
+                  AllowTcpForwarding no
+                  ForceCommand cvs server
+   ```
+
+2. Run the following command to patch the configuration:
+
+   ```
+   cumulus@switch:~$ nv config patch sshd_config_snippet.yaml
+   ```
+
+3. Run the `nv config apply` command to apply the configuration:
+
+   ```
+   cumulus@switch:~$ nv config apply
+   ```
+
+4. Verify that the configuration exists at the beginning of the `/etc/ssh/sshd_config` file:
+
+   ```
+   cumulus@switch:~$ sudo cat /etc/ssh/sshd_config
+   ```
+-->
 ## Flexible Snippets
 
-Flexible snippets are an extension of traditional snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file, then add content.
+Flexible snippets are an extension of traditional snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file, then add content. Cumulus Linux runs flexible snippets as root. 
 
 Flexible snippets do *not* support:
 - Binary files.
@@ -243,7 +382,12 @@ Flexible snippets do *not* support:
 - More than one flexible snippet in the same destination file.
 
 {{%notice warning%}}
-Cumulus Linux runs flexible snippets as root. Exercise caution when creating and editing flexible snippets.
+
+Use caution when creating flexible snippets:
+- If you configure flexible snippets incorrectly, they might impact switch functionality. For example, even though flexible snippet validation allows you to only add textual content, Cumulus Linux does not prevent you from creating a flexible snippet that adds to sensitive text files, such as `/boot/grub.cfg` and `/etc/fstab`  or add corrupt contents. Such snippets might render the box unusable or create a potential security vulnerability (the NVUE service (`nvued`) runs with superuser privileges).
+- Do not add flexible snippets to configuration files that NVUE already controls, such as the `/etc/hosts`, `/etc/ntp.conf`, or `/etc/ptp4l.conf` files. Cumulus Linux does not prevent you from creating and applying a flexible snippet to these files and does not show warnings or errors. Cumulus Linux might accept the snippet content without adding it in the file. For a list of the files that NVUE manages, refer to {{<link url="NVUE-CLI/#configuration-files-that-nvue-manages" text="Configuration Files that NVUE Manages">}}.
+- Do not manually update configuration files to which you add flexible snippets.
+
 {{%/notice%}}
 
 To create flexible snippets:
@@ -322,12 +466,3 @@ The following example flexible snippet called `apt-flex-snippet` creates a new f
               deb [arch=amd64] https://packages.microsoft.com/debian/10/prod buster main
             permissions: "0644"
 ```
-
-{{%notice warning%}}
-
-Use caution when creating flexible snippets:
-- If you configure flexible snippets incorrectly, they might impact switch functionality. For example, even though flexible snippet validation allows you to only add textual content, Cumulus Linux does not prevent you from creating a flexible snippet that adds to sensitive text files, such as `/boot/grub.cfg` and `/etc/fstab`  or add corrupt contents. Such snippets might render the box unusable or create a potential security vulnerability (the NVUE service (`nvued`) runs with superuser privileges).
-- Do not add flexible snippets to configuration files that NVUE already controls, such as the `/etc/hosts`, `/etc/ntp.conf`, or `/etc/ptp4l.conf` files. Cumulus Linux does not prevent you from creating and applying a flexible snippet to these files and does not show warnings or errors. Cumulus Linux might accept the snippet content without adding it in the file. For a list of the files that NVUE manages, refer to {{<link url="NVUE-CLI/#configuration-files-that-nvue-manages" text="Configuration Files that NVUE Manages">}}.
-- Do not manually update configuration files to which you add flexible snippets.
-
-{{%/notice%}}

@@ -31,6 +31,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3179145</td>
+<td>The NetQ agent does not collect VLAN information from WJH data. This has been resolved, however when you upgrade to a NetQ version with the fix, historical WJH data will not be displayed in the UI.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3157803</td>
 <td>The {{netq show}} commands to view MACs, IP addresses, neighbors, and routes might show a higher value compared to the corresponding entries in the NetQ UI. The {{netq show}} commands display additional values from the NetQ server or OPTA in addition to monitored devices in the NetQ inventory.</td>
 <td>4.2.0-4.3.0</td>

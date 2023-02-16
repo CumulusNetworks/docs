@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3368217</td>
+<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>4.4.4-4.4.5, 5.2.1-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3358909</td>
 <td>When you expand the {{root}} schema in the NVUE Swagger API, you see many errors in the Error panel at the top of the page.</td>
 <td>5.3.1-5.4.0</td>
@@ -50,12 +56,6 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
 <td>5.4.0</td>
-</tr>
-<tr>
-<td>3336807</td>
-<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
-<td>5.2.0-5.4.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -508,6 +508,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3368217</td>
+<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>4.4.4-4.4.5, 5.2.1-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3351953</td>
 <td>In rare circumstances, attempting to install a Cumulus Linux 5.3 image can fail during installation. The device stops at the (initramfs) prompt. To resume installation, enter the {{exit}} command at the (initramfs) prompt.</td>
 <td>5.3.0-5.3.1</td>
@@ -545,12 +551,6 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
 <td>5.4.0</td>
-</tr>
-<tr>
-<td>3336807</td>
-<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
-<td>5.2.0-5.4.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3330705</td>

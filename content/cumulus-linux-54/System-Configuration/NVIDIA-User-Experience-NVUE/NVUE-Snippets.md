@@ -8,6 +8,8 @@ NVUE supports both traditional snippets and flexible snippets:
 - Use traditional snippets to add configuration to the `/etc/network/interfaces`, `/etc/frr/frr.conf`, `/etc/frr/daemons`, `/etc/cumulus/switchd.conf`, `/etc/cumulus/datapath/traffic.conf` or `/etc/ssh/sshd_config` files.
 - Use flexible snippets to manage any other text file on the system.
 
+Cumulus Linux stores all snippets in the `/system/config/snippet` directory.
+
 ## Traditional Snippets
 
 Use traditional snippets if you configure Cumulus Linux with NVUE commands, then want to configure a feature that does not yet support the NVUE Object Model. You create a snippet in `yaml` format, then add the configuration to the file with the `nv config patch` command.

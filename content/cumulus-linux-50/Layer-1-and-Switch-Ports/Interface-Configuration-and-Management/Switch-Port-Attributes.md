@@ -1427,7 +1427,7 @@ If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *OFF*
 <!-- Vale issue #253 -->
 ### Auto-negotiation and Link Speed
 <!-- vale on -->
-If auto-negotiation is on and the link speed is set for a port, auto-negotiation takes precedence over the link speed setting.
+If auto-negotiation is on and you set the link speed for a port, Cumulus Linux disables auto-negotiation and uses the port speed setting you configure.
 
 ### Port Speed and the ifreload -a Command
 

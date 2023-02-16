@@ -17,13 +17,29 @@ NetQ stores its data in a Cassandra database. You perform backups by running scr
 
 To create a backup:
 
-1. To create a backup on a NetQ version earlier than NetQ 4.5.0: 
+1. Create a backup on a NetQ version earlier than NetQ 4.5.0: 
 
-Retrieve the `vm-backuprestore.sh` script onto your NetQ server and set it as executable:
+Retrieve the `vm-backuprestore.sh` script:
+
+<p style="text-indent: 40px">a. On the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}, log in to your account and select <b>NVIDIA Licensing Portal</b>.<br></p>
+<p style="text-indent: 40px">b. Select <b>NVIDIA Licensing Portal</b>.<br></p>
+<p style="text-indent: 40px">c. Select <b>Software Downloads</b> from the menu.<br></p>
+<p style="text-indent: 40px">d. Click <b>Product Family</b> and select <b>NetQ</b>.<br></p>
+<p style="text-indent: 40px">e. Locate the <code>vm-backuprestore.sh</code> script and select Download.<br></p>
+<p style="text-indent: 40px">f. If prompted, agree to the license agreement and proceed with the download.<br></p>
+
+Copy the `vm-backuprestore.sh` script to your NetQ server:
 
 ```
-cumulus@netq-appliance:~$ wget https://stu-stage.d3dxqk6ba5tq0p.amplifyapp.com/networking-ethernet-software/cumulus-netq-45/vm-backuprestore.sh
-cumulus@netq-appliance:~$ chmod +x vm-backuprestore.sh
+username@hostname:~$ scp ./vm-backuprestore.sh cumulus@netq-appliance:/home/cumulus/
+cumulus@10.213.30.9's password:
+vm-backuprestore.sh                                                                                       100%   15KB  54.0KB/s   00:00 
+```
+
+Log in to your NetQ server and set the script to executable:
+
+```
+cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
 In the directory you copied the `vm-backuprestore.sh` script into, run the script:

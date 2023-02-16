@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3368217</td>
+<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>4.4.4-4.4.5, 5.2.1-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
@@ -29,12 +35,6 @@
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
 <td>5.4.0</td>
-</tr>
-<tr>
-<td>3336807</td>
-<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
-<td>5.2.0-5.4.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3330705</td>
@@ -659,12 +659,6 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
 <td>5.4.0</td>
-</tr>
-<tr>
-<td>3336807</td>
-<td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
-<td>5.2.0-5.4.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3330705</td>

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3368217</td>
+<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>4.4.4-4.4.5, 5.2.1-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3364717</td>
 <td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
 <td>4.3.0-4.4.5</td>
@@ -2131,6 +2137,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3368217</td>
+<td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
+<td>4.4.4-4.4.5, 5.2.1-5.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3364717</td>

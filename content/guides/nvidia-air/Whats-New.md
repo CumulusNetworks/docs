@@ -9,6 +9,12 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## February 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0216-011
+- Added Cumulus Linux 5.4.0
+- Builder defaults to Cumulus Linux 5.4.0 for new nodes
+- API documentation fixes
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0213-012
 - Updated Cumulus Linux 3.7.9 image
 - Updated Cumulus Linux 3.7.10 image
@@ -20,7 +26,6 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 - Updated Cumulus Linux 3.7.15 image
 - Updated Cumulus Linux 3.7.16 image
 - Fix for CVE-2022-25927
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0206-012
 - API updates to protect against unsupported changes for running simulations

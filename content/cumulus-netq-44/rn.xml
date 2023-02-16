@@ -40,6 +40,18 @@ local variable ‘url’ referenced before assignment
 <td></td>
 </tr>
 <tr>
+<td>3241664</td>
+<td>When you start the {{netq-agent}} service, the WJH service is enabled by default.  However, when you run the {{netq config show agent wjh}} command, the output might reflect the WJH service as disabled.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3179145</td>
+<td>The NetQ agent does not collect VLAN information from WJH data. This has been resolved, however when you upgrade to a NetQ version with the fix, historical WJH data will not be displayed in the UI.</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3015875</td>
 <td>NetQ trace might report incomplete route information when there are multiple default routes in a VRF in the path between the source and destination.</td>
 <td>4.1.0-4.4.0</td>

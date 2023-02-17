@@ -7,11 +7,13 @@ type: nojsscroll
 ---
 ## nv show interface \<interface-id\> qos
 
+Shows QoS configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -20,20 +22,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counters
+## nv show interface \<interface-id\> qos counter
 
-Interface QoS counters
+Shows the QoS counters for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -42,20 +44,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counters port-stats
+## nv show interface \<interface-id\> qos counter port-stats
 
-QoS Statistics for Interface
+Shows QoS port statistics for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -64,20 +66,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter port-stats
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counters port-stats rx-stats
+## nv show interface \<interface-id\> qos counter port-stats rx-stats
 
-QoS Rx Statistics for Interface
+Shows QoS statistics for received packets on the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -86,20 +88,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter port-stats rx-stats
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counters port-stats tx-stats
+## nv show interface \<interface-id\> qos counter port-stats tx-stats
 
-QoS Tx Statistics for Interface
+Shows QoS statistics for transmitted packets on the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -108,20 +110,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter port-stats tx-stats
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counters egress-queue-stats
+## nv show interface \<interface-id\> qos counter egress-queue-stats
 
-Egress queue statistics per egress traffic-class
+Shows egress queue statistics per egress traffic class for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -130,20 +132,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter egress-queue-stats
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counters ingress-buffer-stats
+## nv show interface \<interface-id\> qos counter ingress-buffer-stats
 
-Ingress Buffer statistics per priority-group
+Shows ingress buffer statistics per priority group for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -152,20 +154,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter ingress-buffer-stats
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counters pfc-stats
+## nv show interface \<interface-id\> qos counter pfc-stats
 
-PFC statistics per internal switch-priority
+Shows PFC statistics per internal switch priority for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -174,18 +176,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter pfc-stats
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> qos roce
 
+Shows a summary of RoCE information for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -194,20 +198,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> qos roce counters
 
-Interface roce counters
+Shows RoCE counters for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -216,20 +220,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce counters
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> qos roce status
 
-Interface status
+Shows RoCE status information for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -238,20 +242,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce status
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> qos roce status pool-map
 
-Interface Roce pools
+Shows ingress and egress service pool configuration for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -260,20 +264,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce pool-map
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> qos roce status prio-map
 
-RoCE PCP/DSCP->SP mapping configurations
+Shows the RoCE PCP or DSCP to switch priority mapping configuration for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -282,20 +286,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce prio-map
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> qos roce status tc-map
 
-RoCE SP->TC mapping and ETS configurations
+ Shows the RoCE switch priority to traffic class mapping and ETS configurations for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>` | The interface name.|
 
 ### Version History
 
@@ -304,5 +308,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce status tc-map
 ```

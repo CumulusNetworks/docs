@@ -694,6 +694,17 @@ On border01:
 
 These commands create a summary route for all the routes in the range 172.16.1.0/24 in area 0:
 
+{{< tabs "TabID697 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv show vrf default router ospf area 0 range 172.16.1.0/24
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 ```
 cumulus@leaf01:~$ sudo vtysh
 ...
@@ -724,6 +735,9 @@ router ospf
  ospf router-id 10.10.10.63
  area 0 range 172.16.1.0/24
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Stub Areas
 
@@ -993,6 +1007,17 @@ For failure events, traffic loss can occur during reconvergence (until <span sty
 
 To configure the max-metric (for all interfaces):
 
+{{< tabs "TabID1010 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set vrf default router ospf max-metric administrative on
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
 ```
 cumulus@switch:~$ sudo vtysh
 ...
@@ -1003,6 +1028,9 @@ switch(config-router)# end
 switch# write memory
 switch# exit
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 To configure the cost (for a specific interface):
 

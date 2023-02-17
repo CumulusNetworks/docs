@@ -97,6 +97,12 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td></td>
 </tr>
 <tr>
+<td>3339278</td>
+<td>Using the NVUE REST API with a TACACS+ user account does not work due to authentication failures. There is no workaround.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3331929</td>
 <td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf default router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
 <td>5.4.0</td>

@@ -35,12 +35,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.4.0</td>
 </tr>
 <tr>
-<td>3336590</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3334036</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-4.4.5</td>
@@ -2165,12 +2159,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
 <td>5.4.0</td>
-</tr>
-<tr>
-<td>3336590</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -4442,12 +4430,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>5.4.0</td>
 </tr>
 <tr>
-<td>3336590</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
-</tr>
-<tr>
 <td>3334036</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-4.4.5</td>
@@ -6693,12 +6675,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
 <td>5.4.0</td>
-</tr>
-<tr>
-<td>3336590</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -9122,12 +9098,6 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
 <td>5.4.0</td>
-</tr>
-<tr>
-<td>3336590</td>
-<td>On the Trident 2+ and Trident 3 switch when using VXLAN layer 2 VPNs and sending tunneled traffic where the inner IP header has a TTL of 1, the egress VTEP incorrectly forwards this traffic through the software path instead of the hardware data plane. This traffic is rate-limited to 100pps by default.  To work around this issue, ensure that the traffic traversing the layer 2 tunnel has an inner IP header TTL value that is more than 1.  If this workaround is not possible, contact Nvidia Support to determine other options.</td>
-<td>4.3.0-4.4.5</td>
-<td></td>
 </tr>
 <tr>
 <td>3334036</td>

@@ -7,8 +7,10 @@ right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
 ---
-
+<!--
 ## netq add check-filter
+
+You can add filters to `netq check` commands to prevent them from generating events. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for step-by-step instructions. 
 
 ### Syntax
 
@@ -29,11 +31,11 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| check_filter_id | \<text-check-filter-id\> | |
-| check_name | \<text-check-name-anchor\> |  |
+| check_filter_id | \<text-check-filter-id\> | Identifier for filter |
+| check_name | \<text-check-name-anchor\> | Name of validation test |
 | test_name | \<text-test-name-anchor\> |  |
 | scope | \<text-check-scope-anchor\> |  |
-| scope-append | \<text-check-scope-anchor\> |  |
+| scope-append | \<text-check-scope-anchor\> | Appends defined scope to existing configuration |
 | is_active | true, false | Enables or disables configuration |
 | suppress_until | \<text-suppress-until\> | Amount of time, in seconds, to suppress the specified events |
 
@@ -45,8 +47,8 @@ None
 - netq show check-filter
 
  - - -
+ -->
 ## netq add events-config
-
 
 Suppresses system events, excluding them from event displays. You can suppress events for:
 
@@ -250,7 +252,7 @@ netq add notification filter
 | ---- | ---- | ---- |
 | severity | info, error | Only filter notifications with this severity. Default severity is *info*. |
 | rule | \<text-rule-name-anchor\> | Name of the rule for where to apply this filter |
-| channel | \<text-channel-name-anchor\> | Name of the rule for where to apply this filter.|
+| channel | \<text-channel-name-anchor\> | Name of the channel for where to apply this filter.|
 | before | \<text-filter-name-anchor\> | Insert this filter before the filter with this name. |
 | after | \<text-filter-name-anchor\> | Insert this filter after the filter with this name. |
 

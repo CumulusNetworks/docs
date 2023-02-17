@@ -7,8 +7,9 @@ right_toc_levels: 1
 pdfhidden: true
 type: nojsscroll
 ---
-
 ## netq del check-filter
+
+Removes filter from `netq check` command to reenable event notifications.
 
 ### Syntax
 
@@ -26,14 +27,13 @@ netq del check-filter
 
 None
 
-### Sample Usage
-
 ### Related Commands
 
-- netq add check-filter
-- netq show check-filter
+- `netq add check-filter`
+- `netq show check-filter`
 
 - - -
+-->
 ## netq del events-config
 
 Removes an events suppression configuration. Useful when you no longer want to suppress the specified events. Consider modifying the configuration to disable or temporarily suspend the configuration.

@@ -556,6 +556,7 @@ cd1be0fc123c5d7a42f8
 - `netq lcm show credentials`
 
 - - -
+<!--
 ## netq lcm install netq-image
 
 ### Syntax
@@ -573,6 +574,7 @@ netq lcm install netq-image
 ```
 
 - - -
+-->
 <!-- NVLink command
 ## netq lcm restart nvos
 
@@ -1117,13 +1119,12 @@ bad118cc7
 - - -
 ## netq lcm upgrade cl-image
 
-Upgrades Cumulus Linux on one or more switches in your network
+Upgrades Cumulus Linux on one or more switches in your network.
 
 ### Syntax
 
 ```
-netq lcm upgrade 
-    [cl-image] 
+netq lcm upgrade cl-image 
     job-name <text-job-name> 
     cl-version <text-cumulus-linux-version> 
     netq-version <text-netq-version> 
@@ -1136,27 +1137,31 @@ netq lcm upgrade
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | job-name | \<text-job-name\> | Name for the upgrade |
-| cl-version | \<text-cumulus-linux-version\> | |
-| netq-version | \<text-netq-version\> | |
+| cl-version | \<text-cumulus-linux-version\> | Upgrade to this CL version in x.y.z format |
+| netq-version | \<text-netq-version\> | Upgrade to this NetQ version in x.z.y format |
 | hostnames | \<text-switch-hostnames\> | Comma-separated list of the hostname(s) to be upgraded |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| cl-image | NA |  |
 | run-restore-on-failure | NA | Restore the previous version of Cumulus Linux if the upgrade fails (recommended) |
 | run-snapshot-before-after | NA | Generate a network snapshot before and after the upgrade |
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-cl430 cl-version 4.3.0 netq-version 4.4.0 hostnames spine01,spine02
+```
 
 ### Related Commands
 
-- netq lcm show discovery-job
+- `netq lcm show discovery-job`
 
 - - -
 ## netq lcm upgrade netq-image
+
+Upgrades NetQ Agents on one or more switches in your network.
 
 ### Syntax
 
@@ -1173,23 +1178,26 @@ netq lcm upgrade netq-image
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| netq-image | NA |  |
-| job-name | \<text-job-name\> | Name for the upgrade |
+| job-name | \<text-job-name\> | User-defined name for the upgrade |
 | hostnames | \<text-switch-hostnames\> | Comma-separated list of the hostname(s) to be upgraded |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| netq-version | <text-netq-version\> |  |
+| netq-version | <text-netq-version\> |  Upgrade to this NetQ version in x.y.z format |
 | upgrade-cli | True, False | Upgrade the NetQ CLI as part of the upgrade (True) |
-| config_profile | <text-config-profile\> |  |
+| config_profile | <text-config-profile\> | Configuration file applied after the upgrade |
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq450 netq-version 4.5.0 hostnames spine01,spine02
+```
+
 ### Related Commands
 
-- netq lcm show upgrade-jobs netq-image 
+- `netq lcm show upgrade-jobs netq-image`
 
 - - -
 

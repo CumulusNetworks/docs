@@ -672,18 +672,15 @@ Adds a new proxy server to the CLI configuration.
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| proxy | \<text-proxy-type\> | |
-| proxy | \<text-proxy-url\> |  |
+| NA | \<text-proxy-type\> | Proxy type (http, https) |
+| NA | \<text-proxy-url\> | Proxy server URL |
 
 ### Options
 
 None
-
-### Sample Usage
-
 ### Related Commands
 
-- netq config del cli proxy
+- `netq config del cli proxy`
 - - -
 ## netq config add cli server
 

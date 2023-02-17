@@ -295,7 +295,11 @@ leaf02            swp51(spine01)               default         65101      65199 
 - ```netq check bgp```
 <!-- vale on -->
 - - -
+
+<!--
 ## netq show check-filter
+
+Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for more information about filters for `netq check` commands. 
 
 ### Syntax
 
@@ -327,6 +331,8 @@ None
 - netq del check-filter
 
 - - -
+
+-->
 ## netq show cl-btrfs-info
 
 

@@ -66,6 +66,8 @@ cumulus@switch:~$ netq install cluster activate-job config-key ju8Kl4IhZ3cucHJvZ
 
 ## netq install cluster add-worker
 
+Add additional nodes to your server cluster in an on-premises deployment.
+
 ### Syntax
 
 ```
@@ -82,9 +84,9 @@ netq install cluster
 
 None
 
-### Sample Usage
-
 ### Related Commands
+
+- `netq install opta cluster add-worker`
 
 - - -
 ## netq install cluster full
@@ -307,6 +309,8 @@ cumulus@<hostname>:~$ netq install cluster install-job bundle /mnt/installables/
 - - -
 ## netq install cluster master-init
 
+After adding worker nodes to your cluster, run this command on your master node to initialize the cluster.
+
 ### Syntax
 
 ```
@@ -324,11 +328,20 @@ None
 
 ### Sample Usage
 
+```
+cumulus@<hostname>:~$ netq install cluster master-init
+    Please run the following command on all worker nodes:
+    netq install cluster worker-init c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDM2NjTTZPdVVUWWJ5c2Q3NlJ4SHdseHBsOHQ4N2VMRWVGR05LSWFWVnVNcy94OEE4RFNMQVhKOHVKRjVLUXBnVjdKM2lnMGJpL2hDMVhmSVVjU3l3ZmhvVDVZM3dQN1oySVZVT29ZTi8vR1lOek5nVlNocWZQMDNDRW0xNnNmSzVvUWRQTzQzRFhxQ3NjbndIT3dwZmhRYy9MWTU1a
+```
 ### Related Commands
+
+- `netq install cluster worker-init`
 
 - - -
 
 ## netq install cluster worker-init
+
+After initializing the cluster on the master node, run this command on each worker node.
 
 ### Syntax
 
@@ -341,14 +354,15 @@ netq install cluster worker-init
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | worker-init| NA | Initialize cluster worker node |
-| NA| \<text-ssh-key\> |  |
+| NA| \<text-ssh-key\> | Public SSH key |
 
 ### Options
 
 None
-### Sample Usage
 
 ### Related Commands
+
+- `netq install cluster master-init`
 
 - - -
 <!-- vale off -->
@@ -390,7 +404,7 @@ cumulus@switch:~$ netq install opta activate-job config-key ju8Kl4IhZ3cucHJvZDEu
 
 ## netq install opta cluster
 
-Installs the NetQ Collector software on a master node and two worker nodes. For cloud deployments, it installs the software on the NetQ Cloud Appliance or VM. For a multi-site on-premises deployment, it installs the software on one or two secondary servers at the external premises. You must have the hostname, IP address, or interface of the servers, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
+Installs the NetQ Collector software on a master node and two worker nodes. For cloud deployments, it installs the software on the VM. For a multi-site on-premises deployment, it installs the software on one or two secondary servers at the external premises. You must have the hostname, IP address, or interface of the servers, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
 
 Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
@@ -428,8 +442,8 @@ netq install opta cluster full
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a port |
-| proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a proxy host |
+| proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the VM; you must also specify a port |
+| proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the VM; you must also specify a proxy host |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 
 ### Sample Usage
@@ -447,6 +461,8 @@ cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/
 
 ## install opta cluster add-worker
 
+Add additional nodes to your server cluster in a cloud deployment.
+
 ### Syntax
 
 ```
@@ -463,14 +479,14 @@ cumulus@<hostname>:~$ netq install opta cluster full interface en01 bundle /mnt/
 
 None
 
-### Sample Usage
-
 ### Related Commands
+
+- `netq install cluster add-worker`
 
 - - -
 ## netq install opta standalone
 
-Installs the NetQ Collector software on a single cloud server (NetQ Cloud Appliance or VM) with a single command. You must have the hostname, IP address, or interface of the server, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
+Installs the NetQ Collector software on a single cloud server (VM) with a single command. You must have the hostname, IP address, or interface of the server, the NetQ software bundle, and configuration key to run the command. You can also configure a proxy.
 
 Obtain the software release bundle from the {{<exlink url="https://nvid.nvidia.com/" text="NVIDIA Application Hub">}}.
 
@@ -503,8 +519,8 @@ netq install opta standalone full
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a port |
-| proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the NetQ Cloud Appliance or VM; you must also specify a proxy host |
+| proxy-host | \<text-proxy-host\> | Use the proxy server with this hostname or IP address instead of directly connecting to the VM; you must also specify a port |
+| proxy-port | \<text-proxy-port\> | Use this port on the proxy server instead of directly connecting to the VM; you must also specify a proxy host |
 | pod-ip-range | \<text-pod-ip-range\> | Specify a range of IP addresses for the pod |
 
 ### Sample Usage
@@ -764,7 +780,9 @@ cumulus@<hostname>:~$ netq install standalone install-job bundle /mnt/installabl
 
 - - -
 
-## netq update-opta-ssl-setting
+## netq install update-opta-ssl-setting
+
+Replace or update the TSL/SSL settings on OPTA for agent-OPTA connection.
 
 ### Syntax
 
@@ -785,9 +803,9 @@ netq install update-opta-ssl-setting
 
 None
 
-### Sample Usage
-
 ### Related Commands
+
+None
 
 - - -
 

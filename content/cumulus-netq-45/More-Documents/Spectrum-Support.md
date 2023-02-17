@@ -1,7 +1,7 @@
 ---
 title: Spectrum Support
 author: NVIDIA
-weight: 1150
+weight: 1140
 toc: 3
 ---
 

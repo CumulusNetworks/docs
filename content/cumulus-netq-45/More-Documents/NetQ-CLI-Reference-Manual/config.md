@@ -38,11 +38,9 @@ netq config add agent cluster-servers
 | ---- | ---- | ---- |
 | port | \<text-opta-port\> | Use the port with this name on each switch to receive data; default is port 31980 |
 | vrf | \<text-vrf-names\> | Use the VRF with this name on each switch to receive data; default VRF is *default* |
-| ssl | true, false |  |
+| ssl | true, false | Establish an SSL connection between agent and OPTA (true) |
 | ssl-cert | \<text-ssl-cert-file\> | Use the SSL certificate contained in this file. Value must include entire path to the file. |
-| ssl-cert download | NA | |
-
-<!-- Need to add ssl definitions -->
+| ssl-cert download | NA | Download the SSL certificate |
 
 ### Sample Usage
 
@@ -57,8 +55,8 @@ cumulus@switch:~$ netq config restart agent
 
 ### Related Commands
 
-- netq config del agent cluster-servers
-- netq config restart agent
+- `netq config del agent cluster-servers`
+- `netq config restart agent`
 
 - - -
 
@@ -456,9 +454,9 @@ netq config add agent server
 | ---- | ---- | ---- |
 | port | \<text-opta-port\> | Use this port on the appliance or VM to receive NetQ Agent data and API requests |
 | vrf | \<text-vrf-name\> | Use this VRF on the appliance or VM to receive NetQ Agent data and API requests |
-| ssl | true, false |  |
+| ssl | true, false | Establish an SSL connection between agent and OPTA (true) |
 | ssl-cert | \<text-ssl-cert-file\> | Use the SSL certificate contained in this file. Value must include entire path to the file. |
-| ssl-cert download | NA | |
+| ssl-cert download | NA | Download the SSL certificate |
 
 ### Sample Usage
 
@@ -474,8 +472,8 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config del agent server
-- netq config restart agent
+- `netq config del agent server`
+- `netq config restart agent`
 
 - - -
 

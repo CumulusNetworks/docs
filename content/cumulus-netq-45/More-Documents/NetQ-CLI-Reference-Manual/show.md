@@ -834,7 +834,7 @@ netq <hostname> show ethtool-stats
 <!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| port | \<physical-port\> | Only display results for the port with this name |
+| port | \<physical-port\> | Only display results for the interface with this name |
 | rx | NA | Only display receive statistics |
 | tx | NA | Only display transmit statistics |
 <!-- vale on -->
@@ -1175,7 +1175,7 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name. You only need to specify a hostname when you use the `count` option. |
+| NA | \<hostname\> | Only display results for the switch or host with this name. |
 | alias | NA | Only display results for the specified interface alias |
 | physical | NA | Only display results for physical interfaces |
 | type | <!-- vale off -->bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan<!-- vale on --> | Only display results for the specified interface type |
@@ -1186,10 +1186,12 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 | ---- | ---- | ---- |
 | NA | \<remote-interface\> | Only display results for local interfaces with this remote interface |
 | state | \<remote-interface-state\> | Only display results for remote interfaces in the specified state&mdash;up or down |
-| NA | \<physical-port\> |  |
-| NA | empty, plugged |  |
-| NA | peer |  |
-| NA | vendor <module-vendor> model <module-model> module  |  |
+| NA | \<physical-port\> | Only display results for the interface with this name |
+| NA | empty, plugged | Display switch ports with attached cables (plugged) or those without connectivity (empty) |
+| NA | peer | Display connected peer ports |
+| vendor | \<module-vendor\> |  Only display results from a particular vendor (for example, Mellanox) |
+| model | \<module-model\> | Only display results from a particular model |
+| module | NA | Display interface module information |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | count | NA | Display the total number of interface on the specified switch or host. You must specify the `hostname` option. |
 | json | NA | Display the output in JSON format |
@@ -1236,9 +1238,9 @@ Count of matching link records: 10
 
 ### Related Commands
 
-- netq show events
-- netq check interfaces
-- netq show unit-tests interfaces
+- `netq show events`
+- `netq check interfaces`
+- `netq show unit-tests interfaces`
 
 - - -
 

@@ -3215,7 +3215,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
-| NA | \<text-port\> | |
+| NA | \<text-port\> | Filter by a specified port |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -3247,8 +3247,8 @@ ufm-switch23      swp30           Lossless   0,3          ECN      1505280  1536
 
 ### Related Commands
 
-- netq show roce-counters
-- netq check roce
+- `netq show roce-counters`
+- `netq check roce`
 
 - - -
 ## netq show roce-counters
@@ -3272,8 +3272,8 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
-| tx |  | |
-| rx | roce, general | |
+| NA | tx | Display tx info |
+| NA | rx | Display rx info |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -3317,10 +3317,10 @@ switch            swp63s2         0            0            0                  0
 
 ### Related Commands
 
-- netq show roce-config
-- netq show roce-counters pool
-- netq check roce
-- netq show events
+- `netq show roce-config`
+- `netq show roce-counters pool`
+- `netq check roce`
+- `netq show events`
 
 - - -
 
@@ -3864,10 +3864,10 @@ y               8-4ea2-8c09-                                               2020 
 
 ### Related Commands
 
-- netq add trace
-- netq del trace
-- netq trace (on-demand)
-- netq show events type trace
+- `netq add trace`
+- `netq del trace`
+- `netq trace`
+- `netq show events type trace`
 
 - - -
 

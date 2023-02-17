@@ -197,6 +197,8 @@ Restarting netq-agent... Success!
 - ```netq config restart agent```
 
 - - -
+
+<!--
 ## netq config add agent gnmi-port
 
 ### Syntax
@@ -219,6 +221,7 @@ None
 ### Related Commands
 
 - - -
+-->
 ## netq config add agent kubernetes-monitor
 
 Configures the NetQ Agent to monitor Kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent to enable the configuration.
@@ -363,6 +366,7 @@ Restarting netq-agent... Success!
 - ```netq config restart agent```
 
 - - -
+<!--
 
 ## netq config add agent opta-enable
 
@@ -387,6 +391,7 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 - - -
+-->
 ## netq config add agent sensors
 
 Configures the NetQ Agent to collect information from the sensors on the switch chassis, including fan, power supply, and temperature data. You must run this command from the chassis.
@@ -738,6 +743,7 @@ cumulus@switch:~# sudo netq config restart cli
 - ```netq config restart cli```
 
 - - -
+<!--
 ## netq config add opta config-key
 
 ### Syntax
@@ -766,7 +772,8 @@ netq config add opta config-key <text-opta-key>
 ### Related Commands
 
 - - -
-
+-->
+<!--
 ## netq config add opta generate-opta-ssl
 
 ### Syntax
@@ -791,6 +798,9 @@ None
 
 ### Related Commands
 - - -
+
+-->
+<!--
 ## netq config add opta proxy-host
 
 ### Syntax
@@ -816,6 +826,7 @@ None
 ### Related Commands
 
 - - -
+-->
 <!--
 ## netq config addons
 
@@ -1113,6 +1124,8 @@ cumulus@switch:~$ netq config del cli server
 - ```netq config restart agent```
 
 - - -
+
+<!--
 ## netq config del opta proxy-host
 
 ### Syntax
@@ -1130,6 +1143,7 @@ None
 
 ### Related Commands
 - - -
+-->
 <!--
 ## netq config experimental
 
@@ -1156,6 +1170,7 @@ None
 
 - - -
 -->
+<!--
 ## netq config opta
 
 ### Syntax
@@ -1178,6 +1193,7 @@ None
 ### Related Commands
 
 - - -
+-->
 ## netq config reload parser
 
 Loads the NetQ configuration file.
@@ -1656,4 +1672,4 @@ Stopping netq-agent... Success!
 - `netq config show agent`
 - `netq config start agent`
 - `netq config restart agent`
-- - -
+

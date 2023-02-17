@@ -33,7 +33,6 @@ None
 - `netq show check-filter`
 
 - - -
--->
 ## netq del events-config
 
 Removes an events suppression configuration. Useful when you no longer want to suppress the specified events. Consider modifying the configuration to disable or temporarily suspend the configuration.

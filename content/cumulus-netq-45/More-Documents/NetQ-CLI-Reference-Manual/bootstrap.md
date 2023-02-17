@@ -184,6 +184,5 @@ cumulus@switch:~$ netq bootstrap reset keep-db
 - ```netq bootstrap```
 - ```netq bootstrap master upgrade```
 
-- - -
 
 

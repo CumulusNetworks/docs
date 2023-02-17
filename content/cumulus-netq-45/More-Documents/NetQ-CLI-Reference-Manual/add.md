@@ -173,7 +173,7 @@ netq add notification channel generic
 | login | \<text-email-id\> | Email address for authentication |
 | password | \<text-email-password\> | Password for authentication |
 | severity | info, error | Only send notifications with this severity. Default severity is info. |
-| auth-type | <!-- Add these -->|  |
+| auth-type | <!-- Add these -->| Specify authentication method |
 | use-ssl | True, False | Enable SSL encryption |
 | tag | \<text-slack-tag\> | Short text appended to a Slack notification to highlight particular channels or people. You must introduce the tag value with the @ sign. For example, *@netq-info* or *@net-admin*. |
 
@@ -213,11 +213,11 @@ Refer to {{<link title="Configure System Event Notifications">}} for more inform
 
 ### Related Commands
 
-- netq del notification channel
-- netq add notification rule
-- netq add notification filter
-- netq add notification proxy
-- netq show notification
+- `netq del notification channel`
+- `netq add notification rule`
+- `netq add notification filter`
+- `netq add notification proxy`
+- `netq show notification`
 
  - - -
 
@@ -409,7 +409,6 @@ netq add tca tca_id
     [threshold_type user_set | threshold_type vendor_set]
     [threshold <text-threshold-value>]
     [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]
-
 ```
 
 ### Required Arguments

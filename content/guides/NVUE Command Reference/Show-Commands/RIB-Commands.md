@@ -7,14 +7,14 @@ type: nojsscroll
 ---
 ## nv show vrf \<vrf-id\> router rib \<afi\>
 
-Vrf aware Routing-table per address-family
+Shows the IPv4 or IPv6 routing table for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<afi>` |  Route address family. |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
 
 ### Version History
 
@@ -23,22 +23,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4
 ```
 
 - - -
 
-## nv show vrf \<vrf-id\> router rib \<afi\> protocol \<import-protocol-id\>
+## nv show vrf \<vrf-id\> router rib \<afi\> protocol \<protocol\>
 
-Import Protocols from where routes are known
+Shows the IPv4 or IPv6 routing table for the specified protocol (bgp, isis, ospf, rip, sharp, table, connected, kernel, ospf6, ripng, or static) for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<afi>` |   Route address family. |
-| `<import-protocol-id>` |  Import protocol list. |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<import-protocol-id>` |  The protocol name. |
 
 ### Version History
 
@@ -47,7 +47,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 protocol bgp
 ```
 
 - - -
@@ -60,9 +60,9 @@ A route
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<afi>` |   Route address family. |
-| `<route-id>`   | IP prefix |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<route-id>`   | The IP prefix. |
 
 ### Version History
 
@@ -71,7 +71,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default
 ```
 
 - - -
@@ -84,10 +84,10 @@ Protocol types from where routes are known
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<afi>`          | The route address family.|
-| `<route-id>`     | The IP prefix|
-| `<protocol-id>`  | The route entry list keys.|
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<route-id>`   | The IP prefix. |
+| `<protocol-id>`  | The protocol name.|
 
 ### Version History
 
@@ -96,7 +96,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp
 ```
 
 - - -

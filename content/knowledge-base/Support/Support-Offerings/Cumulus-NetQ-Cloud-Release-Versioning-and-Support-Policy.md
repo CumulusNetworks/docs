@@ -41,6 +41,8 @@ NetQ is offered with a per switch subscription that includes support for 1, 3, a
 Updates are automatically applied to the NetQ Server running in the Cloud. NVIDIA notifies customers before performing upgrades, and makes release notes available for each release.
 
 It is necessary to upgrade the NetQ Agents and NetQ Apps running on switches to the NetQ Server version that is running in the Cloud. NetQ Server compatibility is tested with the current version and one prior version of Agent and Apps software. Review the NetQ [user guide]({{<ref "/cumulus-netq-44/" >}}) for the supported Network Operating System (NOS) versions. 
+
+Note that when your Network Operating System is no longer supported, NetQ customer support ends along with it. Access to NetQ is permitted until the end of the subscription period.
 ## Upgrade Process
 
 For information regarding upgrading from previous NetQ releases, refer to the [NetQ Deployment Guide]({{<ref "/cumulus-netq-44/Installation-Management" >}}).

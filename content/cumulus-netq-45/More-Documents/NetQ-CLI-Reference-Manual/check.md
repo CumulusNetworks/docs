@@ -72,7 +72,7 @@ IPV6 Duplicate Address Test   : passed
 ### Related Commands
 - ```netq show address-history```
 - ```netq add validation```
-
+- - -
 ## netq check agents
 
 Validates the communication status of all nodes (leafs, spines, and hosts) running the NetQ Agent in your network fabric. The output displays the status (passed/failed/skipped) of all tests and a summary including:

@@ -37,7 +37,7 @@ For example:
 
 NetQ is offered with a per switch subscription that includes support for 1, 3, and 5 years options. The subscription model allows customers to upgrade the software as updates and new versions become available, for the period of the subscription.
 
-- Review the NetQ [user guide]({{<ref "/cumulus-netq-44/" >}}) for the supported Network Operating System (NOS) versions.
+- Review the NetQ [user guide]({{<ref "/cumulus-netq-44/" >}}) for the supported Network Operating System (NOS) versions. Note that when your Network Operating System is no longer supported, NetQ customer support ends along with it. Access to NetQ is permitted until the end of the subscription period.
 - Use matching versions of NetQ Server and both NetQ Agent and NetQ Apps packages on switches (e.g., NetQ 4.2.0 Server with NetQ 4.2.0 Agents and Apps on the switches).
 - The product is supported for the period of the subscription and bug fixes are received by upgrading to new versions of software.
 - A NetQ version is supported for two years from its release date. After that date, it is necessary to upgrade to a later release to continue receiving support for the period of the subscription.

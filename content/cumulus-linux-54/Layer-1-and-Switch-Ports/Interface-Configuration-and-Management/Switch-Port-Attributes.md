@@ -1298,7 +1298,9 @@ cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
 ```
 
 {{%notice note%}}
-Cumulus Linux supports breakout port configuration on odd numbered ports. When you configure a breakout port for 4x or 8x, you must disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command.
+Cumulus Linux supports breakout port configuration on odd numbered ports.
+- When you configure a breakout port for 8x, you must disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command.
+- When you configure a breakout port for 4x on certain switches such as SN2700, SN4600, and SN4600c, you must disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command. The SN3700, SN3700c, SN2201, SN2010, and SN2100 switches do not require you to disable the subsequent even-numbered port.
 {{%/notice%}}
 
 {{< /tab >}}

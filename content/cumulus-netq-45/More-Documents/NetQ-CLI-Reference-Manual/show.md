@@ -295,7 +295,11 @@ leaf02            swp51(spine01)               default         65101      65199 
 - ```netq check bgp```
 <!-- vale on -->
 - - -
+
+<!--
 ## netq show check-filter
+
+Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for more information about filters for `netq check` commands. 
 
 ### Syntax
 
@@ -327,6 +331,8 @@ None
 - netq del check-filter
 
 - - -
+
+-->
 ## netq show cl-btrfs-info
 
 
@@ -834,7 +840,7 @@ netq <hostname> show ethtool-stats
 <!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| port | \<physical-port\> | Only display results for the port with this name |
+| port | \<physical-port\> | Only display results for the interface with this name |
 | rx | NA | Only display receive statistics |
 | tx | NA | Only display transmit statistics |
 <!-- vale on -->
@@ -881,7 +887,7 @@ Display system events that have occurred in the last 24 hours. Optionally, view 
 ```
 netq [<hostname>] show events
     [severity info | severity error]
-    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_wjh|trace|vlan|vxlan]
+    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_wjh|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -896,7 +902,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | severity | info, error| Only display events with this severity level |
-| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
+| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON format |
 
@@ -1175,7 +1181,7 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name. You only need to specify a hostname when you use the `count` option. |
+| NA | \<hostname\> | Only display results for the switch or host with this name. |
 | alias | NA | Only display results for the specified interface alias |
 | physical | NA | Only display results for physical interfaces |
 | type | <!-- vale off -->bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan<!-- vale on --> | Only display results for the specified interface type |
@@ -1186,10 +1192,12 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 | ---- | ---- | ---- |
 | NA | \<remote-interface\> | Only display results for local interfaces with this remote interface |
 | state | \<remote-interface-state\> | Only display results for remote interfaces in the specified state&mdash;up or down |
-| NA | \<physical-port\> |  |
-| NA | empty, plugged |  |
-| NA | peer |  |
-| NA | vendor <module-vendor> model <module-model> module  |  |
+| NA | \<physical-port\> | Only display results for the interface with this name |
+| NA | empty, plugged | Display switch ports with attached cables (plugged) or those without connectivity (empty) |
+| NA | peer | Display connected peer ports |
+| vendor | \<module-vendor\> |  Only display results from a particular vendor (for example, Mellanox) |
+| model | \<module-model\> | Only display results from a particular model |
+| module | NA | Display interface module information |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | count | NA | Display the total number of interface on the specified switch or host. You must specify the `hostname` option. |
 | json | NA | Display the output in JSON format |
@@ -1236,9 +1244,9 @@ Count of matching link records: 10
 
 ### Related Commands
 
-- netq show events
-- netq check interfaces
-- netq show unit-tests interfaces
+- `netq show events`
+- `netq check interfaces`
+- `netq show unit-tests interfaces`
 
 - - -
 
@@ -3207,7 +3215,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
-| NA | \<text-port\> | |
+| NA | \<text-port\> | Filter by a specified port |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -3239,8 +3247,8 @@ ufm-switch23      swp30           Lossless   0,3          ECN      1505280  1536
 
 ### Related Commands
 
-- netq show roce-counters
-- netq check roce
+- `netq show roce-counters`
+- `netq check roce`
 
 - - -
 ## netq show roce-counters
@@ -3264,8 +3272,8 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
-| tx |  | |
-| rx | roce, general | |
+| NA | tx | Display tx info |
+| NA | rx | Display rx info |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -3309,10 +3317,10 @@ switch            swp63s2         0            0            0                  0
 
 ### Related Commands
 
-- netq show roce-config
-- netq show roce-counters pool
-- netq check roce
-- netq show events
+- `netq show roce-config`
+- `netq show roce-counters pool`
+- `netq check roce`
+- `netq show events`
 
 - - -
 
@@ -3856,10 +3864,10 @@ y               8-4ea2-8c09-                                               2020 
 
 ### Related Commands
 
-- netq add trace
-- netq del trace
-- netq trace (on-demand)
-- netq show events type trace
+- `netq add trace`
+- `netq del trace`
+- `netq trace`
+- `netq show events type trace`
 
 - - -
 
@@ -4154,7 +4162,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<1-4096\> | Only display results for the VLAN with this name |
+| NA | \<1-4096\> | Only display results for the VLANs within this range |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -4280,6 +4288,7 @@ netq [<hostname>] show wjh-drop <text-drop-type>
     [egress-port <text-egress-port>] 
     [traffic-class <text-traffic-class>] 
     [rule-id-acl <text-rule-id-acl>] 
+    [vlan <text-vlan>]
     [between <text-time> and <text-endtime>] 
     [around <text-time>] 
     [json]
@@ -4311,6 +4320,7 @@ netq [<hostname>] show wjh-drop <text-drop-type>
 | egress-port | \<text-egress-port\> | Only display drops for the egress port with this name |
 | traffic-class | \<text-traffic-class\> | Only display drops with this traffic class |
 | rule-id-acl | \<text-rule-id-acl\> | Only display ACL drops with this rule ID |
+| vlan | \<text-vlan\> | Display drops for the VLAN with this ID. VLANs range from 1-4096. |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |

@@ -1246,20 +1246,6 @@ Maximum 400G ports: 32
 - You can use a single SFP (10/25/50G) transceiver in a QSFP (100/200/400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface> link speed <speed>` command. Do not configure this port as a breakout port.
 - If you break out a port, then reload the `switchd` service on a switch running in *nonatomic* ACL mode, temporary disruption to traffic occurs while the ACLs reinstall.
 - Cumulus Linux does not support port ganging.
-- Switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out into 4 interfaces at 25G or 4 interfaces at 10G:
-  - You can only break out odd-numbered ports into four logical ports.
-  - You must disable the next even numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
-  These restrictions do *not* apply to a 2x50G breakout configuration or to the NVIDIA SN2100 and SN2010 switch.
-- Spectrum-2 and Spectrum-3 switches have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum-2 and Spectrum-3 switches with 64 interfaces, you must disable the next even numbered port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
-
-    ```
-    1=4x
-    2=disabled
-    ```
-
-   When you split a port into two interfaces, such as 2x, you do **not** have to disable the adjacent port.
-
-<!--For valid port configuration and breakout guidance, see the `/etc/cumulus/ports.conf` file.-->
 {{%/notice%}}
 
 ### Configure a Breakout Port
@@ -1298,9 +1284,8 @@ cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
 ```
 
 {{%notice note%}}
-Cumulus Linux supports breakout port configuration on odd numbered ports.
-- When you configure a breakout port for 8x, you must disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command.
-- When you configure a breakout port for 4x on certain switches such as SN2700, SN4600, and SN4600c, you must disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command. The SN3700, SN3700c, SN2201, SN2010, and SN2100 switches do not require you to disable the subsequent even-numbered port.
+- When you configure a breakout port for 8x, you must configure an odd-numbered port, then disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command.
+- When you configure a breakout port for 4x on certain switches such as SN2700, SN4600, and SN4600c, you must configure an odd-numbered port, then disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command. The SN3700, SN3700c, SN2201, SN2010, and SN2100 switches do not not have any port breakout limitations on odd or even-numbered ports.
 {{%/notice%}}
 
 {{< /tab >}}

@@ -125,7 +125,7 @@ cumulus@leaf04:mgmt:~$ nv show nve vxlan encapsulation
 
 ## nv show nve vxlan encapsulation dscp
 
-Shows the configured DSCP action during VXLAN encapsulation.
+Shows the configured DSCP action and value during VXLAN encapsulation.
 
 ### Version History
 
@@ -157,7 +157,7 @@ cumulus@leaf04:mgmt:~$ nv show nve vxlan decapsulation
 
 ## nv show nve vxlan decapsulation dscp
 
-Shows the configured DSCP action during VXLAN decapsulation.
+Shows the configured DSCP action and value during VXLAN decapsulation.
 
 ### Version History
 

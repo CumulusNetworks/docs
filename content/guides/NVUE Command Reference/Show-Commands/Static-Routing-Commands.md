@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show vrf \<vrf-id\> router static \<route-id\>
 
-Shows configuration information about the specified static route for the specified VRF.
+Shows configuration information about the static route for the specified VRF.
 
 ### Command Syntax
 
@@ -30,7 +30,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32
 
 ## nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\>
 
-Shows information about the administrative distance for the specified static route for the specified VRF.
+Shows information about the administrative distance for the static route for the specified VRF.
 
 ### Command Syntax
 
@@ -54,7 +54,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distanc
 
 ## nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\>
 
-Shows information about the next hop administrative distance in the specified static route for the specified VRF.
+Shows information about the administrative distance for the static route and next hop for the specified VRF.
 
 ### Command Syntax
 
@@ -79,7 +79,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distanc
 
 ## nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\> flag
 
-Shows information about the flag for the next hop administrative distance in the specified static route in the specified VRF.
+Shows the flag value for the static route with the specified route prefix and distance in the specified VRF.
 
 ### Command Syntax
 
@@ -104,7 +104,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32
 
 ## nv show vrf \<vrf-id\> router static \<route-id\> via \<via-id\>
 
-Shows information about the next hop for the specified static route in the specified VRF.
+Shows information about the next hop for the static route in the specified VRF.
 
 ### Command Syntax
 
@@ -128,7 +128,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 via 10.
 
 ## nv show vrf \<vrf-id\> router static \<route-id\> via \<via-id\> flag
 
-Shows information about the next hop flag for the specified static route in the specified VRF.
+Shows the flag value for the static route with the next hop in the specified VRF.
 
 ### Command Syntax
 

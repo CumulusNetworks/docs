@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show platform
 
-Shows a list of all the software components on the switch.
+Shows a list of all the software and hardware components on the switch.
 
 ### Version History
 

@@ -98,7 +98,11 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 </tr>
 <tr>
 <td>3339278</td>
-<td>Using the NVUE REST API with a TACACS+ user account does not work due to authentication failures. There is no workaround.</td>
+<td>Using the NVUE REST API with a TACACS+ user account does not work due to authentication failures.  To work around this problem, replace /etc/pam.d/nvueapi with the following content:
+
+@include common-auth
+@include common-account
+@include common-session-noninteractive</td>
 <td>5.4.0</td>
 <td></td>
 </tr>

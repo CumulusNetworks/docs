@@ -6,7 +6,7 @@ toc: 4
 ---
 ## gNMI Support on Cumulus Linux
 
-You can use *gNMI* {{<exlink url="https://github.com/openconfig/gnmi" text="(gRPC Network Management Interface)">}} to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
+You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
 
 ### Configure the gNMI Agent
 

@@ -694,7 +694,7 @@ sudo apt-get update
 sudo apt-get install netq-opta
 ```
 
-After the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the premises management configuration. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First-time Login for NetQ Cloud">}}.
+After the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the {{<link title="Premises Management" text="premises management configuration">}}.
 
 ```
 netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 

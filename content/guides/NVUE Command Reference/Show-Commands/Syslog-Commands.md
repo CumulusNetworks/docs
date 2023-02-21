@@ -7,13 +7,7 @@ type: nojsscroll
 ---
 ## nv show service syslog
 
-collection of syslog
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
+Shows the syslog configuration settings.
 
 ### Version History
 
@@ -22,20 +16,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service syslog
 ```
 
 - - -
 
 ## nv show service syslog \<vrf-id\>
 
-Domain Name Service
+Shows the syslog configuration settings for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
+| `<vrf-id>` | The VRF name.|
 
 ### Version History
 
@@ -44,21 +38,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service syslog default
 ```
 
 - - -
 
 ## nv show service syslog \<vrf-id\> server \<server-id\>
 
-A remote DNS server
+Shows information about the specified remote DNS server for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<server-id>` | Hostname or IP address of a syslog server |
+| `<vrf-id>` |  The VRF name. |
+| `<server-id>` | The hostname or IP address of a syslog server. |
 
 ### Version History
 
@@ -67,5 +61,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show service syslog default server 192.168.0.254
 ```

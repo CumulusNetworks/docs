@@ -7,14 +7,14 @@ type: nojsscroll
 ---
 ## nv show vrf \<vrf-id\> router static \<route-id\>
 
-A route 
+Shows configuration information about the specified static route for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<route-id>` |   IP prefix |
+| `<vrf-id>` |  The VRF name.|
+| `<route-id>` | The IP prefix. |
 
 ### Version History
 
@@ -23,22 +23,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\>
 
-A path
+Shows information about the administrative distance for the specified static route for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<route-id>` |   IP prefix |
-| `<distance-id>` |  A path distance |
+| `<vrf-id>` |  The VRF name.|
+| `<route-id>` | The IP prefix. |
+| `<distance-id>` | The path distance. |
 
 ### Version History
 
@@ -47,23 +47,23 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distance 2
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\>
 
-A via
+Shows information about the next hop administrative distance in the specified static route for the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<route-id>` |   IP prefix |
-| `<distance-id>` |  A path distance |
-| `<via-id>` | IP address, interface, or "blackhole". |
+| `<vrf-id>` |  The VRF name.|
+| `<route-id>` | The IP prefix. |
+| `<distance-id>` | The path distance. |
+| `<via-id>` | The IP address, interface, or "blackhole". |
 
 ### Version History
 
@@ -72,23 +72,23 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\> flag
 
-Nexthop flags
+Shows information about the flag for the next hop administrative distance in the specified static route in the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<route-id>` |   IP prefix |
-| `<distance-id>` |  A path distance |
-| `<via-id>` | IP address, interface, or "blackhole". |
+| `<vrf-id>` |  The VRF name.|
+| `<route-id>` | The IP prefix. |
+| `<distance-id>` |  The path distance. |
+| `<via-id>` | The IP address, interface, or "blackhole".|
 
 ### Version History
 
@@ -97,22 +97,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router static \<route-id\> via \<via-id\>
 
-A via
+Shows information about the next hop for the specified static route in the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<route-id>` |   IP prefix |
-| `<via-id>` | IP address, interface, or "blackhole". |
+| `<vrf-id>` |  The VRF name.|
+| `<route-id>` | The IP prefix. |
+| `<via-id>` | The IP address, interface, or "blackhole". |
 
 ### Version History
 
@@ -121,22 +121,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router static \<route-id\> via \<via-id\> flag
 
-Nexthop flags
+Shows information about the next hop flag for the specified static route in the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<route-id>` |   IP prefix |
-| `<via-id>` |   IP address, interface, or "blackhole". |
+| `<vrf-id>` |  The VRF name.|
+| `<route-id>` | The IP prefix. |
+| `<via-id>` | The IP address, interface, or "blackhole". |
 
 ### Version History
 
@@ -145,5 +145,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0 flag
 ```

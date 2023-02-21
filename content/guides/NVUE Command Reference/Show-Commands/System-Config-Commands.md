@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show system config
 
-Affect how config operations are performed.
+Shows the system configuration.
 
 ### Version History
 
@@ -16,14 +16,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show system config
 ```
 
 - - -
 
 ## nv show system config apply
 
-Affect how config apply operations are performed.
+Shows the system configuration apply settings.
 
 ### Version History
 
@@ -32,20 +32,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show system config apply
 ```
 
 - - -
 
 ## nv show system config apply ignore
 
-Set of files to ignore during config apply operations.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<ignore-id>` |   Ignored file |
+Shows which files are ignored when you run the `nv config apply` command.
 
 ### Version History
 
@@ -61,13 +55,13 @@ cumulus@leaf04:mgmt:~$
 
 ## nv show system config apply ignore \<ignore-id\>
 
-File to ignore during config apply operations.
+Shows information about the specified file you set to ignore when you run the `nv config apply` command.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<ignore-id>` |   Ignored file |
+| `<ignore-id>` | The ignored file. |
 
 ### Version History
 
@@ -76,14 +70,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show system config apply ignore /etc/frr/frr.conf
 ```
 
 - - -
 
 ## nv show system config snippet
 
-Configuration file snippets that will be loaded as written into the appropriate configuration file during a foundation unit's lifecycle.  This is essentially a copy-paste operation to handle gaps in the current CUE OM.
+Shows the file snippets you configure on the system.
 
 ### Version History
 
@@ -92,5 +86,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf04:mgmt:~$ nv show system config snippet
 ```

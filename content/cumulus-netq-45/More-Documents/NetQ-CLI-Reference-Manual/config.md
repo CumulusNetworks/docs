@@ -371,12 +371,12 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- ```netq config restart agent```
+- `netq config restart agent`
 
 - - -
-<!--
-
 ## netq config add agent opta-enable
+
+Enable or disable the NetQ Agent. Use this command to {{<link title="gNMI Streaming" text="collect data with gNMI">}}.
 
 ### Syntax
 
@@ -385,21 +385,18 @@ Restarting netq-agent... Success!
 ```
 ### Required Arguments
 
-| Argument | Value | Description |
-| ---- | ---- | ---- |
-| opta-enable | NA |  |
-
+None
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | true, false |  |
-
-### Sample Usage
+| NA | true, false |  Disable the NetQ Agent (false) or enable it (true)|
 
 ### Related Commands
+
+None
 - - -
--->
+
 ## netq config add agent sensors
 
 Configures the NetQ Agent to collect information from the sensors on the switch chassis, including fan, power supply, and temperature data. You must run this command from the chassis.
@@ -751,8 +748,10 @@ cumulus@switch:~# sudo netq config restart cli
 - ```netq config restart cli```
 
 - - -
-<!--
+
 ## netq config add opta config-key
+
+Adds the OPTA configuration key as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}. 
 
 ### Syntax
 
@@ -765,24 +764,31 @@ netq config add opta config-key <text-opta-key>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| config-key | \<text-opta-key\> |  |
+| config-key | \<text-opta-key\> | OPTA configuration key |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| vrf | \<text-vrf-names\> |  |
-| proxy-host | \<text-proxy-host\> |  |
-| proxy-port | \<text-proxy-port\> |  |
+| vrf | \<text-vrf-names\> | Specifies VRF used to communicate with the NetQ Cloud |
+| proxy-host | \<text-proxy-host\> | Specifies proxy host |
+| proxy-port | \<text-proxy-port\> | Specifies proxy port |
 
 ### Sample Usage
 
+```
+netq config add opta config-key tHkSI2d3LmRldjMubmV0cWRldi5jdW11bHVasdf29ya3MuY29tGLsDIiwzeUpNc3BwK1IyUjVXY2p2dDdPL3JHS3ZrZ1dDUkpFY2JkMVlQOGJZUW84PTIEZGV2MzoHbmV0cWRldr vrf mgmt
+```
+
 ### Related Commands
 
+- `netq config add opta proxy-host`
+
 - - -
--->
 <!--
 ## netq config add opta generate-opta-ssl
+
+For additional information, see {{<link title="gNMI Streaming">}}. 
 
 ### Syntax
 
@@ -806,10 +812,10 @@ None
 
 ### Related Commands
 - - -
-
 -->
-<!--
 ## netq config add opta proxy-host
+
+Adds a proxy host as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}.
 
 ### Syntax
 
@@ -822,19 +828,18 @@ netq config add opta
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| proxy-host | \<text-proxy-host\> |  |
-| proxy-port | \<text-proxy-port\> |  |
+| proxy-host | \<text-proxy-host\> | Specifies proxy host |
+| proxy-port | \<text-proxy-port\> | Specifies proxy port |
 
 ### Options
 
 None
 
-### Sample Usage
-
 ### Related Commands
 
+- `netq config del opta proxy-host`
+
 - - -
--->
 <!--
 ## netq config addons
 
@@ -1132,9 +1137,9 @@ cumulus@switch:~$ netq config del cli server
 - ```netq config restart agent```
 
 - - -
-
-<!--
 ## netq config del opta proxy-host
+
+Deletes a proxy host as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}.
 
 ### Syntax
 
@@ -1143,15 +1148,16 @@ netq config del opta proxy-host
 ```
 ### Required Arguments
 
+None
+
 ### Options
 
 None
-
-### Sample Usage
-
 ### Related Commands
+
+- `netq config add opta proxy-host`
 - - -
--->
+
 <!--
 ## netq config experimental
 

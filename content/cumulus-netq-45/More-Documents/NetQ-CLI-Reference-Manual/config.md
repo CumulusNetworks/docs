@@ -197,9 +197,9 @@ Restarting netq-agent... Success!
 - ```netq config restart agent```
 
 - - -
-
-<!--
 ## netq config add agent gnmi-port
+
+Configures the default port over which the gNMI Agent listens. For additional information, see {{<link title="gNMI Streaming">}}. 
 
 ### Syntax
 
@@ -210,7 +210,7 @@ netq config add agent gnmi-port <text-gnmi-port>
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| gnmi-port | \<text-gnmi-port\> |  |
+| gnmi-port | \<text-gnmi-port\> | Configure gNMI to listen over specified port |
 
 ### Options
 
@@ -218,10 +218,18 @@ None
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
+```
+
 ### Related Commands
 
+- `netq config add agent gnmi`
+- `netq config restart agent`
+
+
 - - -
--->
+
 ## netq config add agent kubernetes-monitor
 
 Configures the NetQ Agent to monitor Kubernetes containers on the switch and to set how often to collect this information (between 10 and 120 seconds). Note that you must restart the NetQ Agent to enable the configuration.

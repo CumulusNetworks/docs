@@ -83,9 +83,11 @@ To rename an existing premises:
 
 1. In the workbench header, select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown, then **Manage premises**.
 
-1. Select a premises to rename, then click {{<img src="/images/old_doc_images/pencil-2.png" width="16">}} Edit.
+1. Select a premises to rename, then click {{<img src="/images/old_doc_images/pencil-2.png" width="16">}} **Edit**.
 
 1. Enter the new name for the premises, then click **Done**.
+
+<!--Need to find new place for this
 
 ## System Server Information
 
@@ -100,3 +102,5 @@ To view the physical server or VM configuration:
     {{<figure src="/images/netq/system-server-info-card.png" alt="system server info card displaying appliance version, IP address, OS version, and NetQ version" width="500">}}
 
     If no data is present on this card, it is likely that the NetQ Agent on your server or VM is not running properly, or the underlying streaming services are impaired.
+
+-->

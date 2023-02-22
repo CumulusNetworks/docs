@@ -30,7 +30,7 @@ The following example shows a group name of "exit group" matching any device in 
 
 ## Updating a Device Group
 
-When new devices that match existing group riles are added to the inventory, those devices matching the rule criteria will be flagged for review to be added to the group inventory. The following example shows the switch "exit-2" being detected in the inventory after the group was already configured:
+When new devices that match existing group rules are added to the inventory, those devices matching the rule criteria will be flagged for review to be added to the group inventory. The following example shows the switch "exit-2" being detected in the inventory after the group was already configured:
 
 {{<figure src="/images/netq/device-in-review-initial-view.png" width="500">}}
 

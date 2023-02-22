@@ -54,7 +54,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 protocol bgp
 
 ## nv show vrf <\<vrf-id\> router rib \<afi\> route \<route-id\>
 
-A route
+Shows the routing table for the specified route.
 
 ### Command Syntax
 
@@ -78,7 +78,7 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\>
 
-Protocol types from where routes are known
+Shows the routing table for the specified protocol route.
 
 ### Command Syntax
 
@@ -87,7 +87,7 @@ Protocol types from where routes are known
 | `<vrf-id>` |  The VRF name.|
 | `<afi>` |  The route address family (IPv4 or IPv6). |
 | `<route-id>`   | The IP prefix. |
-| `<protocol-id>`  | The protocol name.|
+| `<protocol-id>`  | The protocol name, such as bgp or ospf.|
 
 ### Version History
 
@@ -103,78 +103,197 @@ cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protoco
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index
 
+Shows the routing table entry index for the specified protocol route.
+
 ### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<route-id>`   | The IP prefix. |
+| `<protocol-id>`  | The protocol name, such as bgp or ospf.|
 
 ### Version History
 
+Introduced in Cumulus Linux 5.0.0
+
 ### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index
+```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\>
 
+Shows information about the routing table entry for the specified protocol route.
+
 ### Command Syntax
+
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<route-id>`   | The IP prefix. |
+| `<protocol-id>`  | The protocol name, such as bgp or ospf.|
+| `<entry-index>` | The routing table entry index.|
 
 ### Version History
 
+Introduced in Cumulus Linux 5.0.0
+
 ### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10
+```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> flags
 
+Shows the routing table entry flags for the specified protocol route.
+
 ### Command Syntax
+
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<route-id>`   | The IP prefix. |
+| `<protocol-id>`  | The protocol name, such as bgp or ospf.|
+| `<entry-index>` | The routing table entry index.|
 
 ### Version History
 
+Introduced in Cumulus Linux 5.0.0
+
 ### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 flags
+```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via
 
+Shows
+
 ### Command Syntax
+
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<route-id>`   | The IP prefix. |
+| `<protocol-id>`  | The protocol name, such as bgp or ospf.|
+| `<entry-index>` | The routing table entry index.|
 
 ### Version History
 
+Introduced in Cumulus Linux 5.0.0
+
 ### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via
+```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\> flags
 
+Shows
+
 ### Command Syntax
+
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<route-id>`   | The IP prefix. |
+| `<protocol-id>`  | The protocol name, such as bgp or ospf.|
+| `<entry-index>` | The routing table entry index.|
+| `<via-id>` |  |
 
 ### Version History
 
+Introduced in Cumulus Linux 5.0.0
+
 ### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? flags
+```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\> label
 
+Shows
+
 ### Command Syntax
+
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<route-id>`   | The IP prefix. |
+| `<protocol-id>`  | The protocol name, such as bgp or ospf.|
+| `<entry-index>` | The routing table entry index.|
+| `<via-id>` |  |
 
 ### Version History
 
+Introduced in Cumulus Linux 5.0.0
+
 ### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? label
+```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index \<entry-index\> via \<via-id\> resolved-via
 
+Shows
+
 ### Command Syntax
+
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<route-id>`   | The IP prefix. |
+| `<protocol-id>`  | The protocol name, such as bgp or ospf.|
+| `<entry-index>` | The routing table entry index.|
+| `<via-id>` |  |
 
 ### Version History
 
+Introduced in Cumulus Linux 5.0.0
+
 ### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? resolved-via
+```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index via \<via-id\> resolved-via \<resolved-via-id\>
 
+Shows 
+
 ### Command Syntax
+
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+| `<route-id>`   | The IP prefix. |
+| `<protocol-id>`  | The protocol name, such as bgp or ospf.|
+| `<entry-index>` | The routing table entry index.|
+| `<via-id>` |  |
+| `<resolved-via-id>` |  |
 
 ### Version History
 
+Introduced in Cumulus Linux 5.0.0
+
 ### Example
+
+
+```
+cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? resolved-via ???
+```

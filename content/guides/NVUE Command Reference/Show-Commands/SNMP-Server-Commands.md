@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show service snmp-server
 
-Shows SNMP server configuration on the switch.
+Shows global SNMP server configuration on the switch, such as the listening addresses, trap link down and up check frequency, and the list of users.
 
 ### Version History
 
@@ -23,7 +23,7 @@ cumulus@switch:~$ nv show service snmp-server
 
 ## nv show service snmp-server listening-address
 
-Shows the SNMP server listening address configuration on the switch.
+Shows the SNMP server listening address configured on the switch.
 
 ### Version History
 
@@ -54,7 +54,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service snmp-server listening-address 192.168.200.11
+cumulus@switch:~$ nv show service snmp-server listening-address localhost
 ```
 
 - - -
@@ -719,7 +719,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 1
 
 ## nv show service snmp-server trap-destination
 
-Shows the the SNMP trap destinations.
+Shows theSNMP trap destinations.
 
 ### Version History
 
@@ -1119,7 +1119,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
 
-Shows information about the the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
+Shows information about the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
 
 ### Command Syntax
 
@@ -1146,7 +1146,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha
 
-Shows the SHA authentications for the for the user specified for the SNMP trap destination.
+Shows the SHA authentications for the user specified for the SNMP trap destination.
 
 ### Command Syntax
 
@@ -1195,7 +1195,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id
 
-Shows the engine IDs for the for the SNMP trap destination username and SHA password.
+Shows the engine IDs for the SNMP trap destination username and SHA password.
 
 ### Command Syntax
 
@@ -1271,6 +1271,8 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\
 
+Shows information about the DES encryption for SHA authentication for the SNMP trap destination username and SHA password.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1278,8 +1280,8 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 | `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
 |`<vrf-name>` | The VRF name. |
 |`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-|`<encrypt-id>` | The DES encryption ID for MD5 authentication. |
+|`<auth-id>` | The SHA password. |
+|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
 
 ### Version History
 
@@ -1288,19 +1290,240 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1 encrypt-des 
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username myv3user auth-sha SHApassword1 encrypt-des user666encryption
 ```
 
 - - -
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
+Shows the engine ID for the DES encryption for SHA authentication for the SNMP trap destination username and SHA password.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
 |`<vrf-name>` | The VRF name. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username user666password encrypt-aes user666encryption engine-id
+```
+
+- - -
+
+## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
+
+Shows information for the engine ID for the DES encryption for SHA authentication for the SNMP trap destination username and SHA password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<vrf-name>` | The VRF name. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
+|`<engine-id>` | The engine ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLUE username user666password encrypt-aes user666encryption engine-id 0x80001f888070939b14a514da5a00000000
+```
+
+- - -
+
+## nv show service snmp-server trap-destination \<trap-destination-id>\ username
+
+Shows the list of usernames for the SNMP trap destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost 
+```
+
+- - -
+
+## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\
+
+Shows information about the specified username for the SNMP trap destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user1
+```
+
+- - -
+
+## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5
+
+Shows the MD5 password for the specified username for the SNMP trap destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user1 auth-md5
+```
+
+- - -
+
+## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\
+
+Shows information about the specified username and MD5 password for the SNMP trap destination.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user1 auth-md5 user1password
+```
+
+- - -
+
+## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id
+
+Shows the engine ID for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user1 auth-md5 user1password engine-id
+
+```
+
+- - -
+
+## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id \<engine-id>\
+
+Shows information for the engine ID for MD5 authentication for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+|`<engine-id>` | The engine ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user1 auth-md5 user1password engine-id 0x80001f888070939b14a514da5a00000000
+```
+
+- - -
+
+## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des
+
+Shows the DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des
+```
+
+- - -
+
+## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\
+
+Shows information about the DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
 |`<username-id>` | The username. |
 |`<auth-id>` | The MD5 password. |
 |`<encrypt-id>` | The DES encryption ID for MD5 authentication. |
@@ -1312,19 +1535,44 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption
 ```
 
 - - -
+## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
-## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
+Shows the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<vrf-name>` | The VRF name. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The MD5 password. |
+|`<encrypt-id>` | The DES encryption ID for MD5 authentication. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption engine-id
+```
+
+- - -
+
+## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
+
+Shows information about the engine ID for DES encryption for MD5 authentication for the SNMP trap destination username and MD5 password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
 |`<username-id>` | The username. |
 |`<auth-id>` | The MD5 password. |
 |`<encrypt-id>` | The DES encryption ID for MD5 authentication. |
@@ -1337,362 +1585,21 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
-|`<vrf-name>` | The VRF name. |
-|`<username-id>` | The username. |
-|`<auth-id>` | The MD5 password. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id \<engine-id>\
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ engine-id \<engine-id>\
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id \<engine-id>\
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user3 auth-md5 user3password encrypt-des user3encryption engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
 - - -
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha
 
+Shows the SHA authentications for the user specified for the SNMP trap destination.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
 
 ### Version History
 
@@ -1701,17 +1608,22 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username limiteduser1 auth-sha
 ```
 
 - - -
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\
 
+Shows information about the specified SHA authentication for the user specified for the SNMP trap destination.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
 
 ### Version History
 
@@ -1720,17 +1632,22 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1
 ```
 
 - - -
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id
 
+Shows the engine IDs for the SNMP trap destination username and SHA password.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
 
 ### Version History
 
@@ -1739,17 +1656,23 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1 engine-id
 ```
 
 - - -
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id \<engine-id>\
 
+Shows information about the egine ID for the SNMP trap destination username and SHA password.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+|`<engine-id>` | The engine ID. |
 
 ### Version History
 
@@ -1758,17 +1681,22 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username limiteduser1 auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
 - - -
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des
 
+Shows the DES encryptions for the SNMP trap destination username and SHA password.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
 
 ### Version History
 
@@ -1777,17 +1705,23 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes
 ```
 
 - - -
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\
 
+Shows information about the DES encryptions for the SNMP trap destination username and SHA password.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
 
 ### Version History
 
@@ -1796,17 +1730,23 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption
 ```
 
 - - -
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id
 
+Shows the engine IDs for the DES encryptions for the SNMP trap destination username and SHA password.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
 
 ### Version History
 
@@ -1815,17 +1755,24 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption engine-id
 ```
 
 - - -
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-des \<encrypt-id>\ engine-id \<engine-id>\
 
+Shows information about the engine ID for the DES encryptions for the SNMP trap destination username and SHA password.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
+| `<trap-destination-id>` | The SNMP trap destination IP address or hostname. |
+|`<username-id>` | The username. |
+|`<auth-id>` | The SHA password. |
+|`<encrypt-id>` | The DES encryption ID for SHA authentication. |
+|`<engine-id>` | The engine ID. |
 
 ### Version History
 
@@ -1834,66 +1781,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show
+cumulus@switch:~$ nv show service snmp-server trap-destination localhost username user666 auth-sha user666password encrypt-aes user666encryption engine-id 0x80001f888070939b14a514da5a00000000
 ```
 
 - - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@switch:~$ nv show
-```
-
-- - -
-
-## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\ engine-id \<engine-id>\

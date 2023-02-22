@@ -26,7 +26,7 @@ To install Cumulus Linux, you use {{<exlink url="https://opencomputeproject.gith
 4. Power on the switch. The switch downloads the ONIE image installer and boots. You can watch the installation progress in your terminal. After the installation completes, the Cumulus Linux login prompt appears in the terminal window.
 
 {{%notice note%}}
-To prevent unauthorized access to the switch, NVIDIA recommends you {{<link url="Installing-a-New-Cumulus-Linux-Image/#change-the-default-bios-password" text="change the default BIOS password">}}.
+To prevent unauthorized access to the switch, NVIDIA recommends you {{<link url="Installing-a-New-Cumulus-Linux-Image/#change-the-default-bios-password" text="change the default BIOS password">}} during system boot.
 {{%/notice%}}
 
 {{%notice note%}}

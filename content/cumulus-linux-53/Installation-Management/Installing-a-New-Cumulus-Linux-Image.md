@@ -391,11 +391,11 @@ To provide a layer of security and to prevent unauthorized access to the switch,
 
 To change the default BIOS password:
 
-1. During system boot, press `Ctrl+B` through the serial console while the BIOS version prints:
+1. During system boot, press `Ctrl+B` through the serial console while the BIOS version prints.
 
     {{< img src = "/images/cumulus-linux/SB-BIOS-post.png" >}}
 
-2. Select **Administrator Password** from the **Security** menu:
+2. From the **Security** menu, select **Administrator Password**.
 
   {{< img src = "/images/cumulus-linux/SB-BIOS-sec-passwd.png" >}}
 
@@ -525,7 +525,7 @@ To access the BIOS menu, use `admin` which is the default BIOS password:
 
     {{< img src = "/images/cumulus-linux/SB-BIOS-main.png" >}}
 
-NVIDIA recommends changing the default BIOS password; select **Administrator Password** from the **Security** menu.
+NVIDIA recommends changing the default BIOS password; navigate to **Security** and select **Administrator Password**.
 
 To validate or change the Secure Boot mode, navigate to **Security** and select **Secure Boot**:
 

@@ -90,6 +90,12 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td></td>
 </tr>
 <tr>
+<td>3308248</td>
+<td>DHCP packets do not forward over VXLAN interfaces in multicast replication environments. This issue does not affect VXLAN environments using head end replication (HER).</td>
+<td>5.2.0-5.3.1</td>
+<td>5.4.0</td>
+</tr>
+<tr>
 <td>3303084</td>
 <td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward the BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
 <td>5.3.0-5.3.1</td>
@@ -575,6 +581,12 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3308248</td>
+<td>DHCP packets do not forward over VXLAN interfaces in multicast replication environments. This issue does not affect VXLAN environments using head end replication (HER).</td>
+<td>5.2.0-5.3.1</td>
+<td>5.4.0</td>
 </tr>
 <tr>
 <td>3303372</td>

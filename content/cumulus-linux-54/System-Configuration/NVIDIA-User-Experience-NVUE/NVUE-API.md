@@ -101,6 +101,7 @@ To make a configuration change with the NVUE API:
    ```
 
    {{%notice note%}}
+
 To allow the `cumulus` user access to the NVUE API, you must change the default password for the `cumulus` user.
 {{%/notice%}}
 
@@ -155,6 +156,14 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
    ```
    cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/?rev=applied&filled=false"
    ```
+
+### Save an Applied Configuration
+
+To save an applied configuration change to the startup configuration (`/etc/nvue.d/startup.yaml`) so that the changes persist after a reboot, use a PATCH to the applied revision with the `save` state. For example:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X PATCH -d '{"state": "save", "auto-prompt": {"ays": "ays_yes"}}' -H 'Content-Type: application/json'  https://127.0.0.1:8765/nvue_v1/revision/applied
+```
 
 ### Unset a Configuration Change
 

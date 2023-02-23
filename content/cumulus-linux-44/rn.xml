@@ -101,8 +101,8 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3288156</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>4.4.3-4.4.5</td>
-<td></td>
+<td>4.4.3-5.1.0</td>
+<td>5.2.0-5.4.0</td>
 </tr>
 <tr>
 <td>3284719</td>
@@ -2245,8 +2245,8 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3288156</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>4.4.3-4.4.5</td>
-<td></td>
+<td>4.4.3-5.1.0</td>
+<td>5.2.0-5.4.0</td>
 </tr>
 <tr>
 <td>3284719</td>
@@ -4520,8 +4520,8 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3288156</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>4.4.3-4.4.5</td>
-<td></td>
+<td>4.4.3-5.1.0</td>
+<td>5.2.0-5.4.0</td>
 </tr>
 <tr>
 <td>3284719</td>

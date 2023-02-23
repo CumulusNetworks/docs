@@ -385,6 +385,22 @@ The ZTP script must contain the `CUMULUS-AUTOPROVISIONING` string near the begin
 
 If you use the `--ztp` option together with any of the other command line options, the ZTP script takes precedence and the switch ignores other command line options.
 
+## Change the Default BIOS Password
+
+To provide a layer of security and to prevent unauthorized access to the switch, NVIDIA recommends you change the default BIOS password. The default BIOS password is `admin`.
+
+To change the default BIOS password:
+
+1. During system boot, press `Ctrl+B` through the serial console while the BIOS version prints.
+
+    {{< img src = "/images/cumulus-linux/SB-BIOS-post.png" >}}
+
+2. From the **Security** menu, select **Administrator Password**.
+
+  {{< img src = "/images/cumulus-linux/SB-BIOS-sec-passwd.png" >}}
+
+3. Follow the prompts.
+
 ## Edit the Cumulus Linux Image (Advanced)
 
 The Cumulus Linux disk image file contains a BASH script that includes a set of variables. You can set these variables to be able to install a fully configured system with a single image file.
@@ -509,9 +525,7 @@ To access the BIOS menu, use `admin` which is the default BIOS password:
 
     {{< img src = "/images/cumulus-linux/SB-BIOS-main.png" >}}
 
-NVIDIA recommends changing the default BIOS password. To change the BIOS password, select **Administrator Password** from the **Security** menu:
-
-  {{< img src = "/images/cumulus-linux/SB-BIOS-sec-passwd.png" >}}
+NVIDIA recommends changing the default BIOS password; navigate to **Security** and select **Administrator Password**.
 
 To validate or change the Secure Boot mode, navigate to **Security** and select **Secure Boot**:
 

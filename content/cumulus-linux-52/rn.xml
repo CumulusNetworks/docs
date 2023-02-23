@@ -55,6 +55,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3308248</td>
+<td>DHCP packets do not forward over VXLAN interfaces in multicast replication environments. This issue does not affect VXLAN environments using head end replication (HER).</td>
+<td>5.2.0-5.3.1</td>
+<td>5.4.0</td>
+</tr>
+<tr>
 <td>3303082</td>
 <td>When you delete a route under the following conditions, {{switchd}} might crash:
 - The minimum number of routes is set to a non-zero value.
@@ -677,6 +683,12 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>Using {{su}} to change to a user specified through TACACS+ results in becoming the local tacacs0 thru tacacs15 user instead of the named user to run sudo commands.  When {{sudo}} asks for the password of the named user, it is unlikely to match that of the local tacacs0 thru tacacs15 user.</td>
 <td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
+</tr>
+<tr>
+<td>3308248</td>
+<td>DHCP packets do not forward over VXLAN interfaces in multicast replication environments. This issue does not affect VXLAN environments using head end replication (HER).</td>
+<td>5.2.0-5.3.1</td>
+<td>5.4.0</td>
 </tr>
 <tr>
 <td>3303082</td>
@@ -1381,7 +1393,7 @@ To work around this issue, on the web server hosting the image, create an empty 
 <td>3102128</td>
 <td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
 To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>5.0.0-5.1.0</td>
+<td>4.4.3-5.1.0</td>
 </tr>
 <tr>
 <td>3085285</td>

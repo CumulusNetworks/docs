@@ -217,13 +217,6 @@ end vrf
 <td>5.2.0-5.4.0</td>
 </tr>
 <tr>
-<td>3102128</td>
-<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
-To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>5.0.0-5.1.0</td>
-<td>5.2.0-5.4.0</td>
-</tr>
-<tr>
 <td>3084476</td>
 <td>QOS traffic shaping doesn’t restore the default configuration after you disable traffic shaping in the {{/etc/cumulus/datapath/qos/qos_features.conf}} file. To work around this issue, restart {{switchd}}.</td>
 <td>4.4.3, 5.0.0-5.4.0</td>
@@ -974,13 +967,6 @@ end vrf
 <td>3112938</td>
 <td>In the Cumulus-BGPVRF-MIB, the {{bgpPeerFsmEstablishedTransitions}} OID always reports a value of 0.</td>
 <td>4.4.4-5.1.0</td>
-<td>5.2.0-5.4.0</td>
-</tr>
-<tr>
-<td>3102128</td>
-<td>When you configure a new VNI, the VLAN 1 VNI mapping is removed from the VXLAN device. 
-To work around this issue, set the VNI interface mapped to VLAN 1 down and up again.</td>
-<td>5.0.0-5.1.0</td>
 <td>5.2.0-5.4.0</td>
 </tr>
 <tr>

@@ -1,5 +1,5 @@
 ---
-title: IP
+title: IP Addresses
 author: NVIDIA
 weight: 850
 toc: 3

@@ -5,9 +5,31 @@ weight: 110
 product: Cumulus Linux
 type: nojsscroll
 ---
+## nv show interface \<interface-id\> acl
+
+Shows the Access Control Lists (ACLs) on the specified interface. You use ACLs to match packets and take actions.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface on which the ACL operates. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show interface swp1 acl
+```
+
+- - -
+
 ## nv show interface \<interface-id\> acl \<acl-id\>
 
-Shows information about Access Control Lists (ACLs) on the switch. You use ACLs to match packets and take actions.
+Shows information about the specified Access Control List (ACL) on the specified interface. You use ACLs to match packets and take actions.
 
 ### Command Syntax
 
@@ -23,14 +45,60 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 acl
+cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1
+```
+
+- - -
+
+## nv show interface \<interface-id\> acl \<acl-id\> statistics
+
+Shows statistics for the specified ACL on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface on which the ACL operates. |
+| `<acl-id>` | The ACL name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics
+```
+
+- - -
+
+## nv show interface \<interface-id\> acl \<acl-id\> statistics \<rule-id\>
+
+Shows statistics for the specified ACL rule on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface on which the ACL operates. |
+| `<acl-id>` | The ACL name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics 10
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> acl \<acl-id\> inbound
 
-Shows information about the ACL applied for inbound traffic.
+Shows information about the ACL applied for inbound traffic on the specified interface.
 
 ### Command Syntax
 
@@ -53,7 +121,7 @@ cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound
 
 ## nv show interface \<interface-id\> acl \<acl-id\> inbound control-plane
 
-Shows information about the ACL applied for the control plane.
+Shows information about the ACL applied for the control plane on the specified interface.
 
 ### Command Syntax
 
@@ -76,7 +144,7 @@ cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound control-plane
 
 ## nv show interface \<interface-id\> acl \<acl-id\> outbound
 
-Shows information about the ACL applied for outbound traffic.
+Shows information about the ACL applied for outbound traffic on the specified interface.
 
 ### Command Syntax
 
@@ -99,7 +167,7 @@ cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound
 
 ## nv show interface \<interface-id\> acl \<acl-id\> outbound control-plane
 
-Shows information about the ACL applied to the control plane for outbound traffic.
+Shows information about the ACL applied to the control plane for outbound traffic on the specified interface.
 
 ### Command Syntax
 
@@ -120,15 +188,25 @@ cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plan
 
 - - -
 
+## nv show system acl
+
+Shows the ACL mode setting; atomic or non-atomic
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show system acl
+```
+
+- - -
+
 ## nv show acl
 
 Shows the configured ACL rules on the switch.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<acl-id>` | The ACL name.|
 
 ### Version History
 
@@ -160,6 +238,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1
+```
+
+- - -
+
+## nv show acl \<acl-id\> rule
+
+Shows the rules for the specified ACL.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule
 ```
 
 - - -
@@ -233,6 +333,29 @@ cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip
 
 - - -
 
+## nv show acl \<acl-id\> rule \<rule-id\> match ip source-port
+
+Shows the source port match configuration for the ACL rule specified.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
+```
+
+- - -
+
 ## nv show acl \<acl-id\> rule \<rule-id\> match ip source-port \<ip-port-id\>
 
 Shows source port matches for the ACL rule specified.
@@ -253,6 +376,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
+```
+
+- - -
+
+## nv show acl \<acl-id\> rule \<rule-id\> match ip dest-port
+
+Shows destination port match configuration for the ACL rule specified.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<acl-id>` | The ACL name.|
+| `<rule-id>` | The rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port
 ```
 
 - - -

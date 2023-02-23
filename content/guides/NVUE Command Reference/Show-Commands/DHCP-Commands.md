@@ -16,7 +16,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-relay
+cumulus@leaf01:mgmt:~$ nv show service dhcp-relay
 ```
 
 - - -
@@ -38,7 +38,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default
+cumulus@leaf01:mgmt:~$ nv show service dhcp-relay default
 ```
 
 - - -
@@ -61,7 +61,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default server 172.16.1.102
+cumulus@leaf01:mgmt:~$ nv show service dhcp-relay default server 172.16.1.102
 ```
 
 - - -
@@ -84,7 +84,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default interface swp1
+cumulus@leaf01:mgmt:~$ nv show service dhcp-relay default interface swp1
 ```
 
 - - -
@@ -107,7 +107,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-relay default giaddress-interface lo
+cumulus@leaf01:mgmt:~$ nv show service dhcp-relay default giaddress-interface lo
 ```
 
 - - -
@@ -129,7 +129,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6
+cumulus@leaf01:mgmt:~$ nv show service dhcp-relay6
 ```
 
 - - -
@@ -151,7 +151,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default
+cumulus@leaf01:mgmt:~$ nv show service dhcp-relay6 default
 ```
 
 - - -
@@ -173,7 +173,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface swp1
+cumulus@leaf01:mgmt:~$ nv show service dhcp-relay6 default interface swp1
 ```
 
 - - -
@@ -196,7 +196,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface upstream swp51
+cumulus@leaf01:mgmt:~$ nv show service dhcp-relay6 default interface upstream swp51
 ```
 
 - - -
@@ -219,7 +219,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-relay6 default interface downstream swp1
+cumulus@leaf01:mgmt:~$ nv show service dhcp-relay6 default interface downstream swp1
 ```
 
 - - -
@@ -235,7 +235,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server
 ```
 
 - - -
@@ -257,7 +257,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default
 ```
 
 - - -
@@ -280,7 +280,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default interface swp1
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default interface swp1
 ```
 
 - - -
@@ -303,7 +303,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24
 ```
 
 - - -
@@ -327,14 +327,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name-server 192.168.200.53
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name-server 192.168.200.53
 ```
 
 - - -
 
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
 
-Shows information about the the IPv4 DHCP domain name in the pool.
+Shows information about the IPv4 DHCP domain name in the pool.
 
 ### Command Syntax
 
@@ -351,7 +351,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name example.com
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name example.com
 ```
 
 - - -
@@ -375,7 +375,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 gateway 10.1.10.1
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 gateway 10.1.10.1
 ```
 
 - - -
@@ -399,7 +399,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 range 10.1.10.100
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 range 10.1.10.100
 ```
 
 - - -
@@ -422,7 +422,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default domain-name my-domain
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default domain-name my-domain
 ```
 
 - - -
@@ -445,7 +445,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default domain-name-server 192.168.200.53
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default domain-name-server 192.168.200.53
 ```
 
 - - -
@@ -468,7 +468,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server default static server1
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static server1
 ```
 
 - - -
@@ -484,7 +484,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server6
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6
 ```
 
 - - -
@@ -506,7 +506,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server6 default
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default
 ```
 
 - - -
@@ -529,7 +529,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server6 default interface swp1
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default interface swp1
 ```
 
 - - -
@@ -552,7 +552,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server6 default storage-servers
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers
 ```
 
 - - -
@@ -576,14 +576,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server6 default storage-servers domain-name-server 0:0:0:0:0:ffff:c0a8:c835
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers domain-name-server 0:0:0:0:0:ffff:c0a8:c835
 ```
 
 - - -
 
 ## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
 
-Shows information about the the IPv6 DHCP domain name in the pool.
+Shows information about the IPv6 DHCP domain name in the pool.
 
 ### Command Syntax
 
@@ -600,7 +600,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server6 default storage-servers domain-name example.com
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers domain-name example.com
 ```
 
 - - -
@@ -624,7 +624,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server6 default storage-servers range 0:0:0:0:0:ffff:0a01:0a64
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers range 0:0:0:0:0:ffff:0a01:0a64
 ```
 
 - - -
@@ -647,7 +647,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server6 default domain-name example.com
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default domain-name example.com
 ```
 
 - - -
@@ -670,7 +670,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server6 default domain-name-server 0:0:0:0:0:ffff:c0a8:c835
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default domain-name-server 0:0:0:0:0:ffff:c0a8:c835
 ```
 
 - - -
@@ -693,5 +693,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dhcp-server6 default static server1
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default static server1
 ```

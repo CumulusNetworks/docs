@@ -17,12 +17,12 @@ Shows the Access Control Lists (ACLs) on the specified interface. You use ACLs t
 
 ### Version History
 
-Introduced in Cumulus Linux 5.2.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 acl
+cumulus@leaf01:mgmt:~$ nv show interface swp1 acl
 ```
 
 - - -
@@ -40,12 +40,12 @@ Shows information about the specified Access Control List (ACL) on the specified
 
 ### Version History
 
-Introduced in Cumulus Linux 5.2.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1
+cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1
 ```
 
 - - -
@@ -68,7 +68,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics
+cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics
 ```
 
 - - -
@@ -91,7 +91,7 @@ Introduced in Cumulus Linux 5.2.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics 10
+cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 statistics 10
 ```
 
 - - -
@@ -109,12 +109,12 @@ Shows information about the ACL applied for inbound traffic on the specified int
 
 ### Version History
 
-Introduced in Cumulus Linux 5.2.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound
+cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound
 ```
 
 - - -
@@ -137,7 +137,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound control-plane
+cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 inbound control-plane
 ```
 
 - - -
@@ -160,7 +160,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound
+cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound
 ```
 
 - - -
@@ -178,12 +178,12 @@ Shows information about the ACL applied to the control plane for outbound traffi
 
 ### Version History
 
-Introduced in Cumulus Linux 5.2.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plane
+cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1 outbound control-plane
 ```
 
 - - -
@@ -194,12 +194,12 @@ Shows the ACL mode setting; atomic or non-atomic
 
 ### Version History
 
-Introduced in Cumulus Linux 5.2.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system acl
+cumulus@leaf01:mgmt:~$ nv show system acl
 ```
 
 - - -
@@ -215,7 +215,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl
+cumulus@leaf01:mgmt:~$ nv show acl
 ```
 
 - - -
@@ -237,7 +237,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1
 ```
 
 - - -
@@ -259,7 +259,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule
 ```
 
 - - -
@@ -282,7 +282,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10
 ```
 
 - - -
@@ -305,7 +305,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match
 ```
 
 - - -
@@ -328,7 +328,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip
 ```
 
 - - -
@@ -351,7 +351,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
 ```
 
 - - -
@@ -375,7 +375,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip source-port ANY
 ```
 
 - - -
@@ -398,7 +398,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port
 ```
 
 - - -
@@ -422,7 +422,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port http
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip dest-port http
 ```
 
 - - -
@@ -445,7 +445,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip fragment
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip fragment
 ```
 
 - - -
@@ -468,7 +468,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn
 ```
 
 - - -
@@ -491,7 +491,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip ecn flags
 ```
 
 - - -
@@ -514,7 +514,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp
 ```
 
 - - -
@@ -537,7 +537,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp flags
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp flags
 ```
 
 - - -
@@ -560,7 +560,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp mask
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match ip tcp mask
 ```
 
 - - -
@@ -583,7 +583,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 match mac
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 match mac
 ```
 
 - - -
@@ -606,7 +606,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action
 ```
 
 - - -
@@ -629,7 +629,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action permit
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action permit
 ```
 
 - - -
@@ -652,7 +652,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action deny
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action deny
 ```
 
 - - -
@@ -675,7 +675,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action log
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action log
 ```
 
 - - -
@@ -698,7 +698,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action set
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action set
 ```
 
 - - -
@@ -721,7 +721,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action erspan
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action erspan
 ```
 
 - - -
@@ -744,5 +744,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show acl EXAMPLE1 rule 10 action police
+cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action police
 ```

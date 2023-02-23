@@ -22,7 +22,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip
 ```
 
 - - -
@@ -45,7 +45,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 ip address 10.10.10.1/32
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip address 10.10.10.1/32
 ```
 
 - - -
@@ -67,7 +67,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 ip neighbor
+cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor
 ```
 
 - - -
@@ -90,7 +90,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 ip neighbor ipv4 169.254.0.1
+cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor ipv4 169.254.0.1
 ```
 
 - - -
@@ -113,7 +113,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 ip neighbor ipv6 2001:db8:0002::0a00:0002
+cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor ipv6 2001:db8:0002::0a00:0002
 ```
 
 - - -
@@ -135,7 +135,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default loopback
+cumulus@leaf01:mgmt:~$ nv show vrf default loopback
 ```
 
 - - -
@@ -157,7 +157,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default loopback ip
+cumulus@leaf01:mgmt:~$ nv show vrf default loopback ip
 ```
 
 - - -
@@ -180,5 +180,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default loopback ip address 10.10.10.1/32
+cumulus@leaf01:mgmt:~$ nv show vrf default loopback ip address 10.10.10.1/32
 ```

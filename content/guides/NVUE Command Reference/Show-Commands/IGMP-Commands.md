@@ -22,7 +22,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 ip igmp
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip igmp
 ```
 
 - - -
@@ -44,7 +44,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 ip igmp static-group
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip igmp static-group
 ```
 
 - - -
@@ -67,7 +67,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 ip igmp static-group 224.10.0.0
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip igmp static-group 224.10.0.0
 ```
 
 - - -
@@ -83,5 +83,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router igmp
+cumulus@leaf01:mgmt:~$ nv show router igmp
 ```

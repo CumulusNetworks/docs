@@ -13,16 +13,16 @@ Shows adaptive routing interface configuration. This command shows if adaptive r
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>`    |    Interface |
+| `<interface-id>`  | The interface name. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 router adaptive-routing
+cumulus@leaf01:mgmt:~$ nv show interface swp1 router adaptive-routing
 ```
 
 - - -
@@ -33,10 +33,10 @@ Shows global adaptive routing configuration. This command shows if adaptive rout
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router adaptive-routing
+cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
 ```

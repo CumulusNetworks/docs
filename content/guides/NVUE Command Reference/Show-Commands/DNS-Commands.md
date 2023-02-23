@@ -22,7 +22,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dns
+cumulus@leaf01:mgmt:~$ nv show service dns
 ```
 
 - - -
@@ -44,7 +44,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dns default
+cumulus@leaf01:mgmt:~$ nv show service dns default
 ```
 
 - - -
@@ -67,5 +67,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service dns default server 192.0.2.1
+cumulus@leaf01:mgmt:~$ nv show service dns default server 192.0.2.1
 ```

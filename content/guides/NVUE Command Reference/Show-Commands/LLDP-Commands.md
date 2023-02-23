@@ -22,7 +22,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 lldp
+cumulus@leaf01:mgmt:~$ nv show interface swp1 lldp
 ```
 
 - - -
@@ -45,7 +45,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 lldp neighbor spine01
+cumulus@leaf01:mgmt:~$ nv show interface swp51 lldp neighbor spine01
 ```
 
 - - -
@@ -68,7 +68,30 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 lldp neighbor spine01 bridge
+cumulus@leaf01:mgmt:~$ nv show interface swp51 lldp neighbor spine01 bridge
+```
+
+- - -
+
+## nv show interface \<interface-id\> lldp neighbor \<neighbor-id\> bridge vlan
+
+Shows the VLANs for the specified LLDP neighbor.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`    |  The interface name.|
+| `<neighbor-id>` |  The LLDP neighbor name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 lldp neighbor leaf02 bridge vlan
 ```
 
 - - -
@@ -92,7 +115,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 lldp neighbor leaf02 bridge vlan 10
+cumulus@leaf01:mgmt:~$ nv show interface swp1 lldp neighbor leaf02 bridge vlan 10
 ```
 
 - - -
@@ -108,5 +131,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service lldp
+cumulus@leaf01:mgmt:~$ nv show service lldp
 ```

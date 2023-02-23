@@ -22,7 +22,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 link
+cumulus@leaf01:mgmt:~$ nv show interface swp1 link
 ```
 
 - - -
@@ -44,7 +44,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 link state
+cumulus@leaf01:mgmt:~$ nv show interface swp1 link state
 ```
 
 - - -
@@ -66,7 +66,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 link stats
+cumulus@leaf01:mgmt:~$ nv show interface swp1 link stats
 ```
 
 - - -
@@ -88,7 +88,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 link traffic-engineering
+cumulus@leaf01:mgmt:~$ nv show interface swp1 link traffic-engineering
 ```
 
 - - -
@@ -110,5 +110,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 link flag
+cumulus@leaf01:mgmt:~$ nv show interface swp1 link flag
 ```

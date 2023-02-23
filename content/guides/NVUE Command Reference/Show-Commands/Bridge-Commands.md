@@ -22,7 +22,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 bridge
+cumulus@leaf01:mgmt:~$ nv show interface bond3 bridge
 ```
 
 - - -
@@ -45,7 +45,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface bond3 bridge domain br_default 
+cumulus@leaf01:mgmt:~$ nv show interface bond3 bridge domain br_default 
 ```
 
 - - -
@@ -68,7 +68,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface bond3 bridge domain br_default stp
+cumulus@leaf01:mgmt:~$ nv show interface bond3 bridge domain br_default stp
 ```
 
 - - -
@@ -92,7 +92,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface bond3 bridge domain br_default vlan 30
+cumulus@leaf01:mgmt:~$ nv show interface bond3 bridge domain br_default vlan 30
 ```
 
 - - -
@@ -108,7 +108,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge
+cumulus@leaf01:mgmt:~$ nv show bridge
 ```
 
 - - -
@@ -124,7 +124,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain
+cumulus@leaf01:mgmt:~$ nv show bridge domain
 ```
 
 - - -
@@ -146,7 +146,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default
 ```
 
 - - -
@@ -168,7 +168,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default stp
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default stp
 ```
 
 - - -
@@ -190,7 +190,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default stp state
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default stp state
 ```
 
 - - -
@@ -212,7 +212,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default multicast
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default multicast
 ```
 
 - - -
@@ -234,7 +234,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default multicast snooping
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default multicast snooping
 ```
 
 - - -
@@ -256,7 +256,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default multicast snooping querier
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default multicast snooping querier
 ```
 
 - - -
@@ -279,7 +279,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10
 ```
 
 - - -
@@ -303,7 +303,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10
 ```
 
 - - -
@@ -328,7 +328,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding
 ```
 
 - - -
@@ -354,7 +354,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.0.1.34
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.0.1.34
 ```
 
 - - -
@@ -377,7 +377,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 ptp
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 ptp
 ```
 
 - - -
@@ -400,7 +400,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 multicast
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 multicast
 ```
 
 - - -
@@ -423,7 +423,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 multicast snooping
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 multicast snooping
 ```
 
 - - -
@@ -446,7 +446,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default vlan 10 multicast snooping querier
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 multicast snooping querier
 ```
 
 - - -
@@ -468,7 +468,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mac-table
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table
 ```
 
 - - -
@@ -490,7 +490,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default mdb
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mdb
 ```
 
 - - -
@@ -512,5 +512,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show bridge domain br_default router-port
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default router-port
 ```

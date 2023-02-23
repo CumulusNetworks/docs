@@ -387,7 +387,9 @@ If you use the `--ztp` option together with any of the other command line option
 
 ## Change the Default BIOS Password
 
-To provide a layer of security and to prevent unauthorized access to the switch, NVIDIA recommends you change the default BIOS password:
+To provide a layer of security and to prevent unauthorized access to the switch, NVIDIA recommends you change the default BIOS password. The default BIOS password is `admin`.
+
+To change the default BIOS password:
 
 1. During system boot, press `Ctrl+B` through the serial console while the BIOS version prints:
 

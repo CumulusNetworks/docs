@@ -262,6 +262,7 @@ nv set interface <interface-id> qos remark profile <profile-name>
 nv set interface <interface-id> qos egress-shaper
 nv set interface <interface-id> qos egress-shaper profile <profile-name>
 nv set service lldp mode
+nv set service ptp <instance-id> logging-level
 nv set system config auto-save
 nv set system config auto-save enable (on|off)
 nv set system aaa
@@ -398,6 +399,7 @@ nv unset interface <interface-id> qos remark profile
 nv unset interface <interface-id> qos egress-shaper
 nv unset interface <interface-id> qos egress-shaper profile
 nv unset service lldp mode
+nv unset service ptp <instance-id> logging-level
 nv unset system config auto-save
 nv unset system config auto-save enable
 nv unset system aaa

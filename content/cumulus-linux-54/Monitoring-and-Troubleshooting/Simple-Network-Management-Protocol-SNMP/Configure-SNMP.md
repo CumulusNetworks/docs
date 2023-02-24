@@ -30,7 +30,7 @@ cumulus@switch:~$ nv config apply
 {{< tab "Linux Commands ">}}
 
 {{%notice note%}}
-If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service.
+If you intend to run this service within a {{<link url="Virtual-Routing-and-Forwarding-VRF" text="VRF">}}, including the {{<link url="Management-VRF" text="management VRF">}}, follow {{<link url="Management-VRF#run-services-as-a-non-root-user" text="these steps">}} for configuring the service. It is not necessary to run SNMP within the management VRF if the goal is merely allow snmp communicaton via managment vrf interfaces. See secion below "SNMP and VRFs".
 {{%/notice%}}
 
 1. Start the `snmpd` service:

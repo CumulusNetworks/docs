@@ -12,26 +12,27 @@ Run the following commands to help you troubleshoot BGP.
 
 ## Show BGP configuration Summary
 
-To show a summary of the BGP configuration on the switch, run the vtysh `show ip bgp summary` command or the NVUE `nv show router bgp` command. For example:
+To show a summary of the BGP configuration on the switch, run the vtysh `show ip bgp summary` command or the NVUE `nv show vrf default router bgp neighbor` command. For example:
 
 ```
-cumulus@switch:~$ nv show router bgp
-                                applied    
-------------------------------  -----------
-enable                          on         
-autonomous-system               65101      
-graceful-shutdown               off        
-policy-update-timer             5          
-router-id                       10.10.10.1 
-wait-for-install                off        
-convergence-wait                           
-  establish-wait-time           0          
-  time                          0          
-graceful-restart                           
-  mode                          helper-only
-  path-selection-deferral-time  360        
-  restart-time                  120        
-  stale-routes-time             360        
+cumulus@switch:~$ sudo vtysh
+...
+switch# show ip bgp summary
+ipv4 Unicast Summary
+BGP router identifier 10.10.10.1, local AS number 65101 vrf-id 0
+BGP table version 88
+RIB entries 25, using 4800 bytes of memory
+Peers 5, using 106 KiB of memory
+Peer groups 1, using 64 bytes of memory
+
+Neighbor              V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd
+spine01(swp51)        4      65199     31122     31194        0    0    0 1d01h44m            7
+spine02(swp52)        4      65199     31060     31151        0    0    0 01:47:13            7
+spine03(swp53)        4      65199     31150     31207        0    0    0 01:48:31            7
+spine04(swp54)        4      65199     31042     31098        0    0    0 01:46:57            7
+leaf02(peerlink.4094) 4      65101     30919     30913        0    0    0 01:47:43           12
+
+Total number of neighbors 5
 ```
 
 To view the routing table as defined by BGP, run the vtysh `show ip bgp ipv4 unicast` command or the `net show bgp ipv4 unicast` command. For example:

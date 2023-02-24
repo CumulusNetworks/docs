@@ -7,6 +7,14 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3376552</td>
+<td>When you use a {{netq-agent}} version prior to 4.5.0 on Cumulus Linux 5.4.0, the netq agent might not export data to the NetQ server when a bridge fdb entry of all zeroes (00:00:00:00:00:00) on a device other than VxLAN type is present. Switches encountering this problem will appear as "rotten" in the NetQ UI. 
+
+To work around this issue, use NetQ agent 4.5.0 or later with Cumulus Linux 5.4.0.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3226405</td>
 <td>TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled.</td>
 <td>4.3.0</td>

@@ -32,7 +32,6 @@ Hostname          Interface                 Peer Hostname     Peer Interface    
 server01          eth0                      oob-mgmt-switch   swp2                      Thu Sep 17 20:27:48 2020
 server01          eth1                      leaf01            swp1                      Thu Sep 17 20:28:21 2020
 server01          eth2                      leaf02            swp1                      Thu Sep 17 20:28:21 2020
-
 ```
 
 Then, to see LLDP from the switch perspective:
@@ -52,7 +51,6 @@ leaf01            swp52                     spine02           swp1              
 leaf01            swp50                     leaf02            swp50                     Thu Sep 17 20:26:13 2020
 leaf01            swp1                      server01          mac:44:38:39:00:00:32     Thu Sep 17 20:28:14 2020
 leaf01            swp3                      server03          mac:44:38:39:00:00:36     Thu Sep 17 20:28:14 2020
-
 ```
 
 To get the routing table for a server, run:

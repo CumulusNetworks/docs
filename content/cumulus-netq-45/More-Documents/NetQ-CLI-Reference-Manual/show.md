@@ -574,6 +574,41 @@ netq [<hostname>] show cl-resource forwarding
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
+### Sample Usage
+
+Display the ACL resources for all configured switches:
+
+```
+cumulus@switch:~$ netq show cl-resource acl
+Matching cl_resource records:
+Hostname          In IPv4 filter       In IPv4 Mangle       In IPv6 filter       In IPv6 Mangle       In 8021x filter      In Mirror            In PBR IPv4 filter   In PBR IPv6 filter   Eg IPv4 filter       Eg IPv4 Mangle       Eg IPv6 filter       Eg IPv6 Mangle       ACL Regions          18B Rules Key        32B Rules Key        54B Rules Key        L4 Port range Checke Last Updated
+                                                                                                                                                                                                                                                                                                                                                                  rs
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+act-5712-09       40,512(7%)           0,0(0%)              30,768(3%)           0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              32,256(12%)          0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              2,24(8%)             Tue Aug 18 20:20:39 2020
+mlx-2700-04       0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              4,400(1%)            2,2256(0%)           0,1024(0%)           2,1024(0%)           0,0(0%)              Tue Aug 18 20:19:08 2020
+```
+
+Display forwarding resources for all configured switches:
+
+```
+cumulus@noc-pr:~$ netq show cl-resource forwarding
+Matching cl_resource records:
+Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+act-5712-09       0,16384(0%)          0,0(0%)              0,131072(0%)         23,20480(0%)         0,16330(0%)          0,32768(0%)          0,8192(0%)           Tue Aug 18 20:20:39 2020
+mlx-2700-04       0,32768(0%)          0,16384(0%)          0,65536(0%)          4,28672(0%)          0,4101(0%)           0,40960(0%)          0,1000(0%)           Tue Aug 18 20:19:08 2020
+```
+
+Display the forwarding resources used by the *spine02* switch:
+
+```
+cumulus@switch:~$ netq spine02 show cl-resource forwarding
+Matching cl_resource records:
+Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+spine02           9,16384(0%)          0,0(0%)              290,131072(0%)       173,20480(0%)        54,16330(0%)         26,32768(0%)         0,8192(0%)           Mon Jan 13 03:34:11 2020
+```
+
 ### Related Commands
 
 - ```netq show recommended-pkg-version```
@@ -1395,7 +1430,7 @@ Displays information about the hardware and software components deployed on a gi
 
 ### Syntax
 
-Eight forms of this command are available based on the inventory component you'd like to view:
+Several forms of this command are available based on the inventory component you'd like to view:
 
 ```
 netq [<hostname>] show inventory brief
@@ -1491,10 +1526,73 @@ spine02           VX                   CL              x86_64   VX              
 spine03           VX                   CL              x86_64   VX              N/A
 spine04           VX                   CL              x86_64   VX              N/A
 ```
+
+Display ASIC information for all devices with a vendor of *NVIDIA*:
+
+```
+cumulus@switch:~$ netq show inventory asic vendor NVIDIA
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+mlx-2100-05       NVIDIA               Spectrum                       MT52132                   N/A            16 x 100G-QSFP28
+mlx-2410a1-05     NVIDIA               Spectrum                       MT52132                   N/A            48 x 25G-SFP28 & 8 x 100G-QSFP28
+mlx-2700-11       NVIDIA               Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
+```
+
+Display only the devices with a *Celestica* motherboard:
+
+```
+cumulus@switch:~$ netq show inventory board vendor celestica
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+```
+
+Display all the currently deployed architectures in the network, and then display devices with an *x86\_64* architecture:
+
+```
+cumulus@switch:~$ netq show inventory cpu arch
+    x86_64  :  CPU Architecture
+    
+cumulus@switch:~$ netq show inventory cpu arch x86_64
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server03          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server04          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+```
 ### Related Commands
 
-- ```netq config agent cpu-limit```
-- ```netq show resource-util```
+- `netq config agent cpu-limit`
+- `netq show cl-manifest`
+- `netq show cl-pkg-info` 
+- `netq show dom type`
+- `netq show resource-util`
+- `netq show sensors`
 
 - - -
 
@@ -3397,7 +3495,6 @@ netq [<hostname>] show sensors
     [around <text-time>]
     [json]
 ```
-
 ### Required Arguments
 
 | Argument | Value | Description |
@@ -3417,7 +3514,7 @@ netq [<hostname>] show sensors
 
 ### Sample Usage
 
-Display data for the fan4 sensor on all nodes:
+Display data for the *fan4* sensor on all nodes:
 
 ```
 cumulus@switch:~$ netq show sensors fan fan4
@@ -3432,6 +3529,26 @@ spine03           fan4            fan tray 2, fan 2                   ok        
 spine04           fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:13:52 2020
 ```
 
+Display the state of all temperature sensors with the name *psu2temp1*:
+
+```
+cumulus@switch:~$ netq show sensors temp psu2temp1
+Matching sensors records:
+Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
+border01          psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:45:21 2020
+border02          psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:39:36 2020
+fw1               psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 00:08:01 2020
+fw2               psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 00:02:13 2020
+leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 18:30:07 2020
+leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 18:08:38 2020
+leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:20:34 2020
+leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 14:20:22 2020
+spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 10:53:17 2020
+spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 10:54:07 2020
+spine03           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 11:00:44 2020
+spine04           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 10:52:00 2020
+```
 ### Related Commands
 
 - ```netq show events```

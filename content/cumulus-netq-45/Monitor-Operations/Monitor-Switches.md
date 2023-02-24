@@ -591,4 +591,295 @@ netq <hostname> show dom type (module_temperature|module_voltage) [interface <te
 
 {{</tabs>}}
 
+<!--the following are UI instructions that need to be incorporated into this page. This documentation was previously in Networkwide Inventory
+
+### View Sensor Information
+
+Fan, power supply unit (PSU), and temperature sensors are available to provide additional data about the NetQ system operation.
+
+#### Power Supply Unit Information
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors**.
+
+2. The PSU tab is displayed by default.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-psu-310.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>PSU Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the power supply is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>PSU</em> in this table</td>
+</tr>
+<tr>
+<td>PIn(W)</td>
+<td>Input power (Watts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>POut(W)</td>
+<td>Output power (Watts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the PSU</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the PSU when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the PSU when data was last captured</td>
+</tr>
+<tr>
+<td>VIn(V)</td>
+<td>Input voltage (Volts) for the PSU on the switch or host</td>
+</tr>
+<tr>
+<td>VOut(V)</td>
+<td>Output voltage (Volts) for the PSU on the switch or host</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+#### Fan Information
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors** in the **Network** heading.
+
+2. Click **Fan**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-fan-320.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Fan Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the fan is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>Fan</em> in this table</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>User specified description of the fan</td>
+</tr>
+<tr>
+<td>Speed (RPM)</td>
+<td>Revolution rate of the fan (revolutions per minute)</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Maximum speed (RPM)</td>
+</tr>
+<tr>
+<td>Min</td>
+<td>Minimum speed (RPM)</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the fan</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the fan when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the fan when data was last captured</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+#### Temperature Information
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Sensors** in the **Network** heading.
+
+2. Click **Temperature**.
+
+    {{<figure src="/images/netq/main-menu-ntwk-sensors-temp-320.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Temperature Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the temperature sensor is installed</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Message Type</td>
+<td>Type of sensor message; always <em>Temp</em> in this table</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td>Current critical maximum temperature (&deg;C) threshold setting</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>User specified description of the temperature sensor</td>
+</tr>
+<tr>
+<td>Lower Critical</td>
+<td>Current critical minimum temperature (&deg;C) threshold setting</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Maximum temperature threshold setting</td>
+</tr>
+<tr>
+<td>Min</td>
+<td>Minimum temperature threshold setting</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>Message</td>
+</tr>
+<tr>
+<td>Sensor Name</td>
+<td>User-defined name for the temperature sensor</td>
+</tr>
+<tr>
+<td>Previous State</td>
+<td>State of the fan when data was captured in previous window</td>
+</tr>
+<tr>
+<td>State</td>
+<td>State of the fan when data was last captured</td>
+</tr>
+<tr>
+<td>Temperature(Celsius)</td>
+<td>Current temperature (&deg;C) measured by sensor</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+### View Digital Optics Information
+
+
+Use the filter option to view laser power and bias current for a given interface and channel on a switch, and temperature and voltage for a given module. Select the relevant tab to view the data.
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Digital Optics**.
+
+2. The **Laser Rx Power** tab is displayed by default.
+
+    {{<figure src="/images/netq/main-menu-ntwk-dom-laserrx-power-310.png" width="700">}}
+
+<div style="padding-left: 18px;">
+<table>
+<thead>
+<tr>
+<th>Laser Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the digital optics module resides</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>If Name</td>
+<td>Name of interface where the digital optics module is installed</td>
+</tr>
+<tr>
+<td>Units</td>
+<td>Measurement unit for the power (mW) or current (mA)</td>
+</tr>
+<tr>
+<td>Channel 1&ndash;8</td>
+<td>Value of the power or current on each channel where the digital optics module is transmitting</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<thead>
+<tr>
+<th>Module Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host where the digital optics module resides</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>If Name</td>
+<td>Name of interface where the digital optics module is installed</td>
+</tr>
+<tr>
+<td>Degree C</td>
+<td>Current module temperature, measured in degrees Celsius</td>
+</tr>
+<tr>
+<td>Degree F</td>
+<td>Current module temperature, measured in degrees Fahrenheit</td>
+</tr>
+<tr>
+<td>Units</td>
+<td>Measurement unit for module voltage; Volts</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>Current module voltage</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+3. Click each of the other Laser or Module tabs to view that information for all devices.
+
+->
 

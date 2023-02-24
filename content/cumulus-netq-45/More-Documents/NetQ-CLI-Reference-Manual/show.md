@@ -245,7 +245,8 @@ None
 
 ### Sample Usage
 
-Display BGP sessions across all network nodes:
+Display BGP sessions across all network nodes. This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and last time something changed.
+
 
 ```
 cumulus@switch:~$ netq show bgp
@@ -988,7 +989,42 @@ leaf02            services                 info             Service netqd status
                                                             nactive to active
 ...
 ```
+Display all BGP events between now and five days ago:
 
+```
+cumulus@switch:~$ netq show events message_type bgp between now and 5d
+Matching bgp records:
+Hostname          Message Type Severity Message                             Timestamp
+----------------- ------------ -------- ----------------------------------- -------------------------
+leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+...
+```
 ### Related Commands
 
 None

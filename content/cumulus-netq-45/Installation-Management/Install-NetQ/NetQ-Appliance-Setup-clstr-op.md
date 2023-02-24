@@ -93,11 +93,11 @@ Now that the appliances are up and running, verify that the software is availabl
 
 1. On the master node, verify that the needed packages are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-pkgs version="4.4" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.5" platform="appliance">}}
 
 2. Verify the installation images are present and of the correct release, version {{<version>}}.
 
-    {{<netq-install/verify-image deployment="onprem" version="4.4">}}
+    {{<netq-install/verify-image deployment="onprem" version="4.5">}}
 
 3. Verify the master node is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -105,7 +105,7 @@ Now that the appliances are up and running, verify that the software is availabl
 
 4. On one or your worker nodes, verify that the needed packages are present and of the correct release, version {{<version>}} and update 38 or later.
 
-    {{<netq-install/verify-pkgs version="4.4" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.5" platform="appliance">}}
 
 5. Configure the IP address, hostname, and password using the same steps as for the master node. Refer to {{<link title="#Configure the Password, Hostname and IP Address" text="Configure the Password, Hostname and IP Address">}}.
 
@@ -115,11 +115,11 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 6. Verify that the needed packages are present and of the correct release, version {{<version>}} and update 38.
 
-    {{<netq-install/verify-pkgs version="4.4" platform="appliance">}}
+    {{<netq-install/verify-pkgs version="4.5" platform="appliance">}}
 
 7. Verify that the needed files are present and of the correct release.
 
-    {{<netq-install/verify-image deployment="onprem" version="4.4">}}
+    {{<netq-install/verify-image deployment="onprem" version="4.5">}}
 
 8. Verify the appliance is ready for installation. Fix any errors indicated before installing the NetQ software.
 
@@ -129,6 +129,6 @@ Make a note of the private IP addresses you assign to the master and worker node
 
 10. The final step is to install and activate the NetQ software using the CLI:
 
-{{<netq-install/install-with-cli version="4.4" deployment="onprem-cluster">}}
+{{<netq-install/install-with-cli version="4.5" deployment="onprem-cluster">}}
 
 After NetQ is installed, you can {{<link title="Access the NetQ UI" text="log in to NetQ">}} from your browser.

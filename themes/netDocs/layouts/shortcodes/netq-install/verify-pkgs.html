@@ -284,3 +284,31 @@ ii  netq-apps    4.4.0-ub18.04u40~1667493385.97ef4c9_amd64   Cumulus NetQ Fabric
 {{ end }}
 
 {{ end }}
+
+{{- if  eq (.Get "version") "4.5" -}}
+
+{{- if  eq (.Get "platform") "appliance" -}}
+
+<pre>cumulus@hostname:~$ dpkg -l | grep netq
+ii  netq-agent   4.5.0-ub20.04u41~1677251815.f5b57862_amd64  Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    4.5.0-ub20.04u41~1677251815.f5b57862_amd64  Cumulus NetQ Fabric Validation Application for Ubuntu</pre>
+
+{{ end }}
+
+{{- if  eq (.Get "platform") "vm" -}}
+
+For Ubuntu 18.04, you should see:
+
+<pre>cumulus@hostname:~$ dpkg -l | grep netq
+ii  netq-agent   4.5.0-ub18.04u41~1677242576.f5b5786_amd64  Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    4.5.0-ub18.04u41~1677242576.f5b5786_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu</pre>
+
+For Ubuntu 20.04, you should see:
+
+<pre>cumulus@hostname:~$ dpkg -l | grep netq
+ii  netq-agent   4.5.0-ub20.04u41~1677251815.f5b57862_amd64  Cumulus NetQ Telemetry Agent for Ubuntu
+ii  netq-apps    4.5.0-ub20.04u41~1677251815.f5b57862_amd64   Cumulus NetQ Fabric Validation Application for Ubuntu</pre>
+
+{{ end }}
+
+{{ end }}

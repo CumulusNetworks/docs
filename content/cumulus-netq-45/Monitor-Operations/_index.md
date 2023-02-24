@@ -10,7 +10,7 @@ toc: 2
 - {{<link title="EVPN">}}
 - {{<link title="Hosts">}}
 - {{<link title="Interfaces">}}
-- {{<link title="IP">}}
+- {{<link title="IP Addresses">}}
 - {{<link title="LLDP">}}
 - {{<link title="MAC Addresses">}}
 - {{<link title="MLAG">}}

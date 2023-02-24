@@ -194,3 +194,19 @@ NetQ-4.4.0-opta.tgz</pre>
 {{ end }}
 
 {{ end }}
+
+{{- if  eq (.Get "version") "4.5" -}}
+
+{{- if eq (.Get "deployment") "onprem" -}}
+<pre>cumulus@hostname:~$ cd /mnt/installables/
+cumulus@hostname:/mnt/installables$ ls
+NetQ-4.5.0.tgz</pre>
+{{ end }}
+
+{{- if eq (.Get "deployment") "cloud" -}}
+<pre>cumulus@hostname:~$ cd /mnt/installables/
+cumulus@hostname:/mnt/installables$ ls
+NetQ-4.5.0-opta.tgz</pre>
+{{ end }}
+
+{{ end }}

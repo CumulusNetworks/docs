@@ -7,14 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3376552</td>
-<td>When you use a {{netq-agent}} version prior to 4.5.0 on Cumulus Linux 5.4.0, the netq agent might not export data to the NetQ server when a bridge fdb entry of all zeroes (00:00:00:00:00:00) on a device other than VxLAN type is present. Switches encountering this problem will appear as "rotten" in the NetQ UI. 
-
-To work around this issue, use NetQ agent 4.5.0 or later with Cumulus Linux 5.4.0.</td>
-<td>4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3305144</td>
 <td>When you perform a {{netq trace}} between two hosts, the following message might be printed in the output even when the trace is successful:
 

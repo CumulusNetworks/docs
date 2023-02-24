@@ -126,7 +126,7 @@ None
 ```
 cumulus@switch:~$ netq lcm add default-version cl-images 5.3.0
 
-cumulus@switch:~$ netq lcm add default-version netq-images 4.4.0
+cumulus@switch:~$ netq lcm add default-version netq-images 4.5.0
 ```
 
 ### Related Commands
@@ -1151,7 +1151,7 @@ netq lcm upgrade cl-image
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-cl430 cl-version 4.3.0 netq-version 4.4.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-cl430 cl-version 4.3.0 netq-version 4.5.0 hostnames spine01,spine02
 ```
 
 ### Related Commands

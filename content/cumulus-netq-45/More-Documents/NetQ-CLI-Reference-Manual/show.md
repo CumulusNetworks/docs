@@ -245,7 +245,8 @@ None
 
 ### Sample Usage
 
-Display BGP sessions across all network nodes:
+Display BGP sessions across all network nodes. This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and last time something changed.
+
 
 ```
 cumulus@switch:~$ netq show bgp
@@ -988,7 +989,42 @@ leaf02            services                 info             Service netqd status
                                                             nactive to active
 ...
 ```
+Display all BGP events between now and five days ago:
 
+```
+cumulus@switch:~$ netq show events message_type bgp between now and 5d
+Matching bgp records:
+Hostname          Message Type Severity Message                             Timestamp
+----------------- ------------ -------- ----------------------------------- -------------------------
+leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+...
+```
 ### Related Commands
 
 None
@@ -3714,8 +3750,8 @@ None
 cumulus@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 4.4.0
-Installer Version: 4.4.0
+Version: 4.5.0
+Installer Version: 4.5.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==

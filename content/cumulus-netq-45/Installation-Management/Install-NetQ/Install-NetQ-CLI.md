@@ -9,8 +9,8 @@ Installing the NetQ CLI on your NetQ Appliances, VMs, switches, or hosts gives y
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux 3.7.12 and later
-- SONiC 202012 and 202106
+- Cumulus Linux 3.7.16 and later
+- SONiC 202012
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 18.04

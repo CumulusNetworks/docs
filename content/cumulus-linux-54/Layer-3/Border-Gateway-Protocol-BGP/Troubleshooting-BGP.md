@@ -12,7 +12,7 @@ Run the following commands to help you troubleshoot BGP.
 
 ## Show BGP configuration Summary
 
-To show a summary of the BGP configuration on the switch, run the vtysh `show ip bgp summary` command or the NVUE `nv show vrf default router bgp neighbor` command. For example:
+To show a summary of the BGP configuration on the switch, run the vtysh `show ip bgp summary` command or the NVUE `nv show vrf <vrf> router bgp neighbor` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh

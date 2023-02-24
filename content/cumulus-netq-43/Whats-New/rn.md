@@ -14,7 +14,6 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
-| <a name="3376552"></a> [3376552](#3376552) <a name="3376552"></a> <br /> | When you use a <code>netq-agent</code> version prior to 4.5.0 on Cumulus Linux 5.4.0, the netq agent might not export data to the NetQ server when a bridge fdb entry of all zeroes (00:00:00:00:00:00) on a device other than VxLAN type is present. Switches encountering this problem will appear as "rotten" in the NetQ UI. To work around this issue, use NetQ agent 4.5.0 or later with Cumulus Linux 5.4.0. | 4.3.0 | |
 | <a name="3226405"></a> [3226405](#3226405) <a name="3226405"></a> <br /> | TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled. | 4.3.0 | |
 | <a name="3216161"></a> [3216161](#3216161) <a name="3216161"></a> <br /> | In an OPTA clustered environment, NetQ agents might appear as rotten after upgrading to NetQ 4.3.0. To work around this issue, configure the <code>spice: false</code> parameter in <code>/etc/netq/netq.yml</code>. | 4.3.0 | |
 | <a name="3211317"></a> [3211317](#3211317) <a name="3211317"></a> <br /> | Upgrading Cumulus Linux with NetQ LCM fails when you upgrade a switch with the MLAG primary role. | 4.3.0 | |

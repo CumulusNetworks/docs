@@ -18,7 +18,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ntp
+cumulus@leaf01:mgmt:~$ nv show service ntp
 ```
 
 - - -
@@ -40,7 +40,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ntp default
+cumulus@leaf01:mgmt:~$ nv show service ntp default
 ```
 
 - - -
@@ -63,7 +63,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ntp default server time.nist.gov
+cumulus@leaf01:mgmt:~$ nv show service ntp default server time.nist.gov
 ```
 
 - - -
@@ -86,5 +86,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ntp default pool 4.cumulusnetworks.pool.ntp.org
+cumulus@leaf01:mgmt:~$ nv show service ntp default pool 4.cumulusnetworks.pool.ntp.org
 ```

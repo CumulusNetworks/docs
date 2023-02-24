@@ -22,14 +22,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 bond mlag
+cumulus@leaf01:mgmt:~$ nv show interface swp1 bond mlag
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> bond mlag consistency-checker
 
-Shows inconsistencies on the interface that the MLAG consistency checker finds.
+Shows MLAG consistency checker inconsistencies on the bond interface.
 
 ### Command Syntax
 
@@ -44,7 +44,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 bond mlag consistency-checker
+cumulus@leaf01:mgmt:~$ nv show interface swp1 bond mlag consistency-checker
 ```
 
 - - -
@@ -60,7 +60,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag
+cumulus@leaf01:mgmt:~$ nv show mlag
 ```
 
 - - -
@@ -76,7 +76,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag consistency-checker
+cumulus@leaf01:mgmt:~$ nv show mlag consistency-checker
 ```
 
 - - -
@@ -92,14 +92,14 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag consistency-checker global
+cumulus@leaf01:mgmt:~$ nv show mlag consistency-checker global
 ```
 
 - - -
 
 ## nv show mlag backup
 
-Shows the backup IP address configured for the peer link. The switch uses this backup IP address if the peer link goes down.
+Shows the backup IP address configured for the MLAG peer link. The switch uses this backup IP address if MLAG the peer link goes down.
 
 ### Version History
 
@@ -108,14 +108,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag backup
+cumulus@leaf01:mgmt:~$ nv show mlag backup
 ```
 
 - - -
 
 ## nv show mlag backup \<backup-ip\>
 
-Shows information about the backup IP address specified.
+Shows information about the MLAG backup IP address specified, such as the VRF.
 
 ### Command Syntax
 
@@ -130,7 +130,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag backup 10.10.10.2
+cumulus@leaf01:mgmt:~$ nv show mlag backup 10.10.10.2
 ```
 
 - - -
@@ -146,7 +146,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag fdb
+cumulus@leaf01:mgmt:~$ nv show mlag fdb
 ```
 
 - - -
@@ -162,7 +162,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag fdb local
+cumulus@leaf01:mgmt:~$ nv show mlag fdb local
 ```
 
 - - -
@@ -178,7 +178,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag fdb peer
+cumulus@leaf01:mgmt:~$ nv show mlag fdb peer
 ```
 
 - - -
@@ -194,7 +194,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag fdb permanent
+cumulus@leaf01:mgmt:~$ nv show mlag fdb permanent
 ```
 
 - - -
@@ -210,14 +210,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag mdb
+cumulus@leaf01:mgmt:~$ nv show mlag mdb
 ```
 
 - - -
 
 ## nv show mlag mdb local
 
-Multicast Groups Info
+Shows the multicast database on the local switch.
 
 ### Version History
 
@@ -226,7 +226,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag mdb local
+cumulus@leaf01:mgmt:~$ nv show mlag mdb local
 ```
 
 - - -
@@ -242,7 +242,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag mdb peer
+cumulus@leaf01:mgmt:~$ nv show mlag mdb peer
 ```
 
 - - -
@@ -258,14 +258,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag multicast-router-port
+cumulus@leaf01:mgmt:~$ nv show mlag multicast-router-port
 ```
 
 - - -
 
 ## nv show mlag multicast-router-port local
 
-Shows the MLAG multicast router ports on the local switch.
+Shows MLAG multicast router port information on the local switch.
 
 ### Version History
 
@@ -274,14 +274,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag multicast-router-port local
+cumulus@leaf01:mgmt:~$ nv show mlag multicast-router-port local
 ```
 
 - - -
 
 ## nv show mlag multicast-router-port peer
 
-Shows the MLAG multicast router ports on the peer switch.
+Shows MLAG multicast router port information on the peer switch.
 
 ### Version History
 
@@ -290,7 +290,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag multicast-router-port peer
+cumulus@leaf01:mgmt:~$ nv show mlag multicast-router-port peer
 ```
 
 - - -
@@ -306,7 +306,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag vni
+cumulus@leaf01:mgmt:~$ nv show mlag vni
 ```
 
 - - -
@@ -322,7 +322,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag vni local
+cumulus@leaf01:mgmt:~$ nv show mlag vni local
 ```
 
 - - -
@@ -338,7 +338,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag vni peer
+cumulus@leaf01:mgmt:~$ nv show mlag vni peer
 ```
 
 - - -
@@ -354,7 +354,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag lacpdb
+cumulus@leaf01:mgmt:~$ nv show mlag lacpdb
 ```
 
 - - -
@@ -370,7 +370,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag lacpdb local
+cumulus@leaf01:mgmt:~$ nv show mlag lacpdb local
 ```
 
 - - -
@@ -386,14 +386,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag lacpdb peer
+cumulus@leaf01:mgmt:~$ nv show mlag lacpdb peer
 ```
 
 - - -
 
 ## nv show mlag neighbor
 
-Shows information about MLAG neighbors.
+Shows information about permanet and dynamic MLAG neighbors.
 
 ### Version History
 
@@ -402,7 +402,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag neighbor
+cumulus@leaf01:mgmt:~$ nv show mlag neighbor
 ```
 
 - - -
@@ -418,7 +418,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag neighbor dynamic
+cumulus@leaf01:mgmt:~$ nv show mlag neighbor dynamic
 ```
 
 - - -
@@ -434,5 +434,23 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show mlag neighbor permanent
+cumulus@leaf01:mgmt:~$ nv show mlag neighbor permanent
 ```
+
+- - -
+
+## nv show nve vxlan mlag
+
+Shows VXLAN source address information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show nve vxlan mlag
+```
+
+- - -

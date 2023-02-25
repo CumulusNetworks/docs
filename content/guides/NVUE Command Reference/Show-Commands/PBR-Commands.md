@@ -22,7 +22,29 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 router pbr
+cumulus@leaf01:mgmt:~$ nv show interface swp51 router pbr
+```
+
+- - -
+
+## nv show interface \<interface-id\> router pbr map
+
+Shows the PBR maps configured for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`    | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp51 router pbr map
 ```
 
 - - -
@@ -40,12 +62,12 @@ Shows configuration settings for the specified PBR map on the specified interfac
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 router pbr map map1
+cumulus@leaf01:mgmt:~$ nv show interface swp51 router pbr map map1
 ```
 
 - - -
@@ -61,7 +83,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system global reserved routing-table pbr
+cumulus@leaf01:mgmt:~$ nv show system global reserved routing-table pbr
 ```
 
 - - -
@@ -77,7 +99,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router pbr
+cumulus@leaf01:mgmt:~$ nv show router pbr
 ```
 
 - - -
@@ -93,7 +115,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router pbr map
+cumulus@leaf01:mgmt:~$ nv show router pbr map
 ```
 
 - - -
@@ -115,7 +137,29 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router pbr map map1
+cumulus@leaf01:mgmt:~$ nv show router pbr map map1
+```
+
+- - -
+
+## nv show router pbr map \<pbr-map-id\> rule
+
+Shows the rules for the specified PBR route map.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+|`<pbr-map-id>` | The name of the route map. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule
 ```
 
 - - -
@@ -138,7 +182,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1
+cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1
 ```
 
 - - -
@@ -161,7 +205,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1 match
+cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 match
 ```
 
 - - -
@@ -184,10 +228,31 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1 action
+cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 action
 ```
 
 - - -
+
+## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group
+
+Shows the next hop groups in the PBR route map rule action.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<pbr-map-id>` |  The route map name. |
+| `<rule-id>` | The PBR rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 action nexthop-group
+```
 
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
 
@@ -203,10 +268,10 @@ Shows configuration for the specified next hop group including the IP route tabl
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router pbr map map1 rule 1 action nexthop-group group1
+cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 action nexthop-group group1
 ```

@@ -22,7 +22,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface vlan10 router pim
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim
 ```
 
 - - -
@@ -44,7 +44,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface vlan10 router pim timers
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim timers
 ```
 
 - - -
@@ -66,7 +66,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface vlan10 router pim bfd
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim bfd
 ```
 
 - - -
@@ -88,7 +88,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface vlan10 router pim address-family
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim address-family
 ```
 
 - - -
@@ -110,7 +110,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface vlan10 router pim address-family ipv4-unicast
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim address-family ipv4-unicast
 ```
 
 - - -
@@ -132,7 +132,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface vlan10 router pim address-family ipv4-unicast allow-rp
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim address-family ipv4-unicast allow-rp
 ```
 
 - - -
@@ -148,7 +148,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router pim
+cumulus@leaf01:mgmt:~$ nv show router pim
 ```
 
 - - -
@@ -164,7 +164,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router pim timers
+cumulus@leaf01:mgmt:~$ nv show router pim timers
 ```
 
 - - -
@@ -186,7 +186,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router pim
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim
 ```
 
 - - -
@@ -208,7 +208,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router pim timers
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim timers
 ```
 
 - - -
@@ -230,7 +230,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router pim ecmp
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim ecmp
 ```
 
 - - -
@@ -253,7 +253,30 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router pim msdp-mesh-group pod1
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim msdp-mesh-group pod1
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router pim msdp-mesh-group \<msdp-mesh-group-id\> member-address
+
+Shows the MSDP mesh group members for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<msdp-mesh-group-id>` |  The MSDP mesh group name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim msdp-mesh-group pod1 member-address
 ```
 
 - - -
@@ -277,7 +300,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router pim msdp-mesh-group pod1 member-address 10.1.10.102
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim msdp-mesh-group pod1 member-address 10.1.10.102
 ```
 
 - - -
@@ -299,7 +322,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router pim address-family
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family
 ```
 
 - - -
@@ -321,7 +344,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast
 ```
 
 - - -
@@ -343,8 +366,30 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast spt-switchover
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast spt-switchover
 ```
+
+## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp
+
+Shows the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp
+```
+
+- - -
 
 - - -
 
@@ -366,7 +411,30 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.10.10.101
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.10.10.101
+```
+
+- - -
+
+# nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range
+
+Shows the group ranges for the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<rp-id>`  | RP IP address |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range
 ```
 
 - - -
@@ -390,5 +458,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
 ```

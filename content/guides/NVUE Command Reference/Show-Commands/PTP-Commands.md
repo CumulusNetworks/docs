@@ -5,6 +5,29 @@ weight: 240
 product: Cumulus Linux
 type: nojsscroll
 ---
+## nv show bridge domain \<domain-id\> vlan \<vid\> ptp
+
+Shows configuration and counters for the specified VLAN interface on the specified bridge domain.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`   |  The interface name. |
+| `<vid-id>`   |  The VLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$  nv show bridge domain br_default vlan 10 ptp
+```
+
+- - -
+
 ## nv show interface \<interface-id\> ptp
 
 Shows configuration and counters for the specified PTP interface.
@@ -22,7 +45,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 ptp
+cumulus@leaf01:mgmt:~$  nv show interface swp1 ptp
 ```
 
 - - -
@@ -44,7 +67,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 ptp timers
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ptp timers
 ```
 
 - - -
@@ -66,7 +89,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 counters
+cumulus@leaf01:mgmt:~$  nv show interface swp1 counters
 ```
 
 - - -
@@ -82,7 +105,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp
+cumulus@leaf01:mgmt:~$  nv show service ptp
 ```
 
 - - -
@@ -104,7 +127,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1
+cumulus@leaf01:mgmt:~$  nv show service ptp 1
 ```
 
 - - -
@@ -120,7 +143,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 acceptable-master
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 acceptable-master
 ```
 
 - - -
@@ -143,7 +166,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
 ```
 
 - - -
@@ -165,7 +188,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 monitor
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor
 ```
 
 - - -
@@ -187,7 +210,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 monitor timestamp-log
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor timestamp-log
 ```
 
 - - -
@@ -209,7 +232,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 monitor violations
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations
 ```
 
 - - -
@@ -231,7 +254,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 monitor violations log
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log
 ```
 
 - - -
@@ -253,7 +276,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$  nv show service ptp 1 monitor violations log acceptable-master
+cumulus@leaf01:mgmt:~$   nv show service ptp 1 monitor violations log acceptable-master
 ```
 
 - - -
@@ -275,7 +298,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 monitor violations log forced-master
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log forced-master
 ```
 
 - - -
@@ -297,7 +320,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 monitor violations log max-offset
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log max-offset
 ```
 
 - - -
@@ -319,7 +342,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 monitor violations log min-offset
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log min-offset
 ```
 
 - - -
@@ -341,7 +364,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 monitor violations log path-delay
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 monitor violations log path-delay
 ```
 
 - - -
@@ -363,7 +386,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 current
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 current
 ```
 
 - - -
@@ -385,7 +408,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 clock-quality
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 clock-quality
 ```
 
 - - -
@@ -407,7 +430,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 parent
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 parent
 ```
 
 - - -
@@ -429,7 +452,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 parent grandmaster-clock-quality
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 parent grandmaster-clock-quality
 ```
 
 - - -
@@ -451,5 +474,29 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service ptp 1 time-properties
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 time-properties
 ```
+
+- - -
+
+## nv show vrf \<vrf-id\> ptp
+
+Shows PTP configuration for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$  nv show vrf default ptp
+```
+
+- - -

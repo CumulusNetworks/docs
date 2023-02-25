@@ -16,14 +16,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform
+cumulus@leaf01:mgmt:~$ nv show platform
 ```
 
 - - -
 
 ## nv show platform capabilities
 
-Shows the capabilities of the switch.
+Shows the platform capabilities of the switch.
 
 ### Version History
 
@@ -32,7 +32,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform capabilities
+cumulus@leaf01:mgmt:~$ nv show platform capabilities
 ```
 
 - - -
@@ -48,14 +48,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform hardware
+cumulus@leaf01:mgmt:~$ nv show platform hardware
 ```
 
 - - -
 
 ## nv show platform hardware component
 
-Shows the platform type, such as VX.
+Shows the hardware components on the switch.
 
 ### Version History
 
@@ -64,7 +64,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform hardware component
+cumulus@leaf01:mgmt:~$ nv show platform hardware component
 ```
 
 - - -
@@ -86,121 +86,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform hardware component device
-```
-
-- - -
-
-## nv show platform hardware component \<component-id\> linecard
-
-Shows information about the linecard for the specified platform component.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<component-id>`  |  The component name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ nv show platform hardware component device linecard
-```
-
-- - -
-
-## nv show platform hardware component \<component-id\> port
-
-Shows the physical ports for the specified switch component.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<component-id>`  |  The component name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ nv show platform hardware component device port
-```
-
-- - -
-
-## nv show platform hardware component \<component-id\> port \<port-id\>
-
-Shows information about the specified port on the specified switch component.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<component-id>`  |  The component name. |
-| `<port-id>` |  The physical port name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ nv show platform hardware component device port
-```
-
-- - -
-
-## nv show platform hardware component \<component-id\> port \<port-id\> breakout-mode
-
-Shows the port breakout modes for the specified component on the switch.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<component-id>`  |  The component name. |
-| `<port-id>` |  The physical port name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ nv show platform hardware component device port swp1 breakout-mode
-```
-
-- - -
-
-## nv show platform hardware component \<component-id\> port \<port-id\> breakout-mode \<mode-id\>
-
-Shows information about the specified port breakout.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<component-id>`  |  The component name. |
-| `<port-id>` |  The physical port name. |
-| `<mode-id>` |  The breakout mode ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf04:mgmt:~$ nv show platform hardware component device port swp1 breakout-mode 4x
+cumulus@leaf01:mgmt:~$ nv show platform hardware component device
 ```
 
 - - -
@@ -216,7 +102,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform environment
+cumulus@leaf01:mgmt:~$ nv show platform environment
 ```
 
 - - -
@@ -232,7 +118,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform environment fan
+cumulus@leaf01:mgmt:~$ nv show platform environment fan
 ```
 
 - - -
@@ -254,7 +140,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform environment fan Fan2
+cumulus@leaf01:mgmt:~$ nv show platform environment fan Fan2
 ```
 
 - - -
@@ -270,7 +156,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform environment sensor 
+cumulus@leaf01:mgmt:~$ nv show platform environment sensor 
 ```
 
 - - -
@@ -292,7 +178,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform environment sensor Temp
+cumulus@leaf01:mgmt:~$ nv show platform environment sensor Temp
 ```
 
 - - -
@@ -308,7 +194,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform environment psu
+cumulus@leaf01:mgmt:~$ nv show platform environment psu
 ```
 
 - - -
@@ -330,7 +216,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform environment psu PSU1
+cumulus@leaf01:mgmt:~$ nv show platform environment psu PSU1
 ```
 
 - - -
@@ -346,7 +232,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform environment led
+cumulus@leaf01:mgmt:~$ nv show platform environment led
 ```
 
 - - -
@@ -368,7 +254,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform environment led Fan
+cumulus@leaf01:mgmt:~$ nv show platform environment led Fan
 ```
 
 - - -
@@ -384,7 +270,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform software
+cumulus@leaf01:mgmt:~$ nv show platform software
 ```
 
 - - -
@@ -400,7 +286,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform software installed
+cumulus@leaf01:mgmt:~$ nv show platform software installed
 ```
 
 - - -
@@ -422,5 +308,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show platform software installed what-just-happened
+cumulus@leaf01:mgmt:~$ nv show platform software installed what-just-happened
 ```
+
+- - -

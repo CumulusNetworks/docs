@@ -16,5 +16,5 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ show interface swp1 pluggable
+cumulus@leaf01:mgmt:~$ nv show interface swp1 pluggable
 ```

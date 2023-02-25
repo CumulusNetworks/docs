@@ -16,7 +16,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror
+cumulus@leaf01:mgmt:~$ nv show system port-mirror
 ```
 
 - - -
@@ -32,7 +32,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session
 ```
 
 - - -
@@ -54,7 +54,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1
 ```
 
 - - -
@@ -76,7 +76,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 span
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 span
 ```
 
 - - -
@@ -98,7 +98,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 span source-port
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 span source-port
 ```
 
 - - -
@@ -121,7 +121,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 span source-port swp1
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 span source-port swp1
 ```
 
 - - -
@@ -143,7 +143,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 span destination
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 span destination
 ```
 
 - - -
@@ -166,7 +166,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 span destination swp1
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 span destination swp1
 ```
 
 - - -
@@ -188,7 +188,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 span truncate
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 span truncate
 ```
 
 - - -
@@ -210,7 +210,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 erspan
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 erspan
 ```
 
 - - -
@@ -232,7 +232,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 erspan source-port
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 erspan source-port
 ```
 
 - - -
@@ -255,7 +255,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 erspan source-port swp1
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 erspan source-port swp1
 ```
 
 - - -
@@ -277,7 +277,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 erspan destination
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 erspan destination
 ```
 
 - - -
@@ -299,7 +299,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 erspan destination source-ip
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 erspan destination source-ip
 ```
 
 - - -
@@ -322,7 +322,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 erspan destination source-ip 10.10.10.1
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 erspan destination source-ip 10.10.10.1
 ```
 
 - - -
@@ -344,7 +344,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 erspan destination dest-ip
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 erspan destination dest-ip
 ```
 
 - - -
@@ -367,7 +367,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 erspan destination dest-ip 10.10.10.234
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 erspan destination dest-ip 10.10.10.234
 ```
 
 - - -
@@ -389,5 +389,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system port-mirror session 1 erspan truncate
+cumulus@leaf01:mgmt:~$ nv show system port-mirror session 1 erspan truncate
 ```

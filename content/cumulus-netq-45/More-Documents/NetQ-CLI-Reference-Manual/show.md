@@ -4336,28 +4336,43 @@ None
 
 ### Sample Usage
 
-Display the configuration for a particular VLAN:
+The following example shows the VLANs configured across a network based on the NVIDIA reference architecture:
 
 ```
-cumulus@switch:~$ netq show vlan 20
+cumulus@switch:~$ netq show vlan
+Matching vlan records:
+Hostname          VLANs                     SVIs                      Last Changed
+----------------- ------------------------- ------------------------- -------------------------
+border01          1,10,20,30,4001-4002                                Wed Oct 28 14:46:33 2020
+border02          1,10,20,30,4001-4002                                Wed Oct 28 14:46:33 2020
+leaf01            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+leaf02            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+leaf03            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+leaf04            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+```
+
+The following example shows that vlan 10 is running on the two border and four leaf switches:
+
+```
+cumulus@switch~$ netq show vlan 10
 Matching vlan records:
 Hostname          VLAN   Ports                               SVI  Last Changed
 ----------------- ------ ----------------------------------- ---- -------------------------
-border01          20                                         no   Tue Nov 24 20:50:46 2020
-border02          20                                         no   Tue Nov 24 20:50:47 2020
-leaf01            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
-leaf02            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
-leaf03            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
-leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
+border01          10                                         no   Wed Oct 28 15:20:27 2020
+border02          10                                         no   Wed Oct 28 15:20:28 2020
+leaf01            10     bond1,vni10                         yes  Wed Oct 28 15:20:28 2020
+leaf02            10     bond1,vni10                         yes  Wed Oct 28 15:20:28 2020
+leaf03            10     bond1,vni10                         yes  Wed Oct 28 15:20:29 2020
+leaf04            10     bond1,vni10                         yes  Wed Oct 28 15:20:29 2020
 ```
 
 ### Related Commands
 
-- ```netq show events```
-- ```netq show interfaces```
-- ```netq show macs```
-- ```netq check vlan```
-- ```netq show unit-tests vlan```
+- `netq show events message_type vlan`
+- `netq show interfaces type vlan`
+- `netq show macs`
+- `netq check vlan`
+- `netq show unit-tests vlan`
 
 - - -
 <!-- vale off -->

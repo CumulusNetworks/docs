@@ -5,6 +5,889 @@ weight: 260
 product: Cumulus Linux
 type: nojsscroll
 ---
+## nv show qos
+
+Shows detailed information about the configured buffers, utilization, and DSCP markings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos
+```
+
+- - -
+
+## nv show qos advance-buffer-config
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ??
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> ingress-pool
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-pool
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> ingress-pool <pool-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-pool ???
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> egress-pool
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-pool
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> egress-pool <pool-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-pool ???
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer priority-group
+```
+- - -
+
+## nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer priority-group ??? 
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> switch-priority
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer priority-group ??? switch-priority
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group <priority-group-id> switch-priority <qos-sp-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer priority-group ??? switch-priority ???
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> ingress-lossless-buffer
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> egress-lossless-buffer
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer
+```
+
+- - -
+
+
+## nv show qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer traffic-class
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> egress-lossy-buffer traffic-class <traffic-class-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer traffic-class ???
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer multicast-switch-priority
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-switch-priority <qos-sp-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer multicast-switch-priority ???
+```
+
+- - -
+
+## nv show qos advance-buffer-config <profile-id> egress-lossy-buffer multicast-port
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer multicast-port
+
+```
+
+- - -
+
+## nv show qos traffic-pool
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos traffic-pool
+```
+
+- - -
+
+## nv show qos traffic-pool <traffic-pool-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos traffic-pool ???
+```
+
+- - -
+
+## nv show qos traffic-pool <traffic-pool-id> switch-priority
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos traffic-pool ??? switch-priority
+```
+
+- - -
+
+## nv show qos traffic-pool <traffic-pool-id> switch-priority <qos-sp-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos traffic-pool ??? switch-priority ???
+```
+
+- - -
+
+## nv show qos link-pause
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos link-pause
+```
+
+- - -
+
+## nv show qos link-pause <profile-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos link-pause ??
+```
+
+- - -
+
+## nv show qos pfc
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos pfc
+```
+
+- - -
+
+## nv show qos pfc <profile-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos pfc ??
+```
+
+- - -
+
+## nv show qos pfc <profile-id> switch-priority
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos pfc ?? switch-priority
+```
+
+- - -
+
+## nv show qos pfc <profile-id> switch-priority <qos-sp-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos pfc ?? switch-priority ???
+```
+
+- - -
+
+## nv show qos mapping
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos mapping
+```
+
+- - -
+
+## nv show qos mapping <profile-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos mapping ??
+```
+
+- - -
+
+## nv show qos mapping <profile-id> pcp
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos mapping ?? pcp
+```
+
+- - -
+
+## nv show qos mapping <profile-id> pcp <qos-pcp-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos mapping ?? pcp ???
+```
+
+- - -
+
+## nv show qos mapping <profile-id> dscp
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos mapping ?? dscp
+```
+
+- - -
+
+## nv show qos mapping <profile-id> dscp <qos-dscp-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos mapping ?? dscp ???
+```
+
+- - -
+
+## nv show qos remark
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos remark
+```
+
+- - -
+
+## nv show qos remark <profile-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos remark ??
+```
+
+- - -
+
+## nv show qos remark <profile-id> switch-priority
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos remark ?? switch-priority
+```
+
+- - -
+
+## nv show qos remark <profile-id> switch-priority <qos-sp-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos remark ?? switch-priority ???
+```
+
+- - -
+
+## nv show qos congestion-control
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos congestion-control
+```
+
+- - -
+
+## nv show qos congestion-control <profile-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos congestion-control ??
+```
+
+- - -
+
+## nv show qos congestion-control <profile-id> traffic-class
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos congestion-control ?? traffic-class
+```
+
+- - -
+
+## nv show qos congestion-control <profile-id> traffic-class <qos-tc-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos congestion-control ?? traffic-class ???
+```
+
+- - -
+
+## nv show qos egress-queue-mapping
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-queue-mapping
+```
+
+- - -
+
+## nv show qos egress-queue-mapping <profile-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-queue-mapping ??
+```
+
+## nv show qos egress-queue-mapping <profile-id> switch-priority
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-queue-mapping ?? switch-priority
+```
+
+- - -
+
+## nv show qos egress-queue-mapping <profile-id> switch-priority <qos-sp-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-queue-mapping ?? switch-priority ???
+```
+
+- - -
+
+## nv show qos egress-scheduler
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-scheduler
+```
+
+- - -
+
+## nv show qos egress-scheduler <profile-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-scheduler ??
+```
+
+- - -
+
+## nv show qos egress-scheduler <profile-id> traffic-class
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-scheduler ?? traffic-class
+```
+
+- - -
+
+## nv show qos egress-scheduler <profile-id> traffic-class <qos-tc-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-scheduler ?? traffic-class ???
+```
+
+- - -
+
+## nv show qos egress-shaper
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-shaper
+```
+
+- - -
+
+## nv show qos egress-shaper <profile-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-shaper ??
+```
+
+- - -
+
+## nv show qos egress-shaper <profile-id> traffic-class
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-shaper ?? traffic-class
+```
+
+- - -
+
+## nv show qos egress-shaper <profile-id> traffic-class <qos-tc-id>
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos egress-shaper ?? traffic-class ???
+```
+
+- - -
+
+## nv show qos roce
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+```
+
+- - -
+
+## nv show qos roce prio-map
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+```
+
+- - -
+
+## nv show qos roce tc-map
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+```
+
+- - -
+
+## nv show qos roce pool-map
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+```
+
+- - -
+
+## nv show qos roce pool
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+```
+
+- - -
+
+## nv show qos buffer
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+```
+
+- - -
+
+## nv show qos buffer pool
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+```
+
+- - -
+
+## nv show qos buffer multicast-switch-priority
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+```
+
+- - -
+
 ## nv show interface \<interface-id\> qos
 
 Shows QoS configuration settings for the specified interface.
@@ -22,7 +905,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 ```
 
 - - -
@@ -44,7 +927,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter
 ```
 
 - - -
@@ -66,7 +949,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter port-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter port-stats
 ```
 
 - - -
@@ -88,7 +971,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter port-stats rx-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter port-stats rx-stats
 ```
 
 - - -
@@ -110,7 +993,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter port-stats tx-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter port-stats tx-stats
 ```
 
 - - -
@@ -132,7 +1015,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter egress-queue-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter egress-queue-stats
 ```
 
 - - -
@@ -154,7 +1037,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter ingress-buffer-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter ingress-buffer-stats
 ```
 
 - - -
@@ -176,7 +1059,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos counter pfc-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter pfc-stats
 ```
 
 - - -
@@ -198,7 +1081,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos roce
 ```
 
 - - -
@@ -220,7 +1103,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce counters
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos roce counters
 ```
 
 - - -
@@ -242,7 +1125,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce status
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos roce status
 ```
 
 - - -
@@ -264,7 +1147,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce pool-map
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos roce pool-map
 ```
 
 - - -
@@ -286,14 +1169,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce prio-map
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos roce prio-map
 ```
 
 - - -
 
 ## nv show interface \<interface-id\> qos roce status tc-map
 
- Shows the RoCE switch priority to traffic class mapping and ETS configurations for the specified interface.
+Shows the RoCE switch priority to traffic class mapping and ETS configurations for the specified interface.
 
 ### Command Syntax
 
@@ -308,5 +1191,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp5 qos roce status tc-map
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos roce status tc-map
 ```

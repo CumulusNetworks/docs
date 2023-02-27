@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3376552"></a> [3376552](#3376552) <a name="3376552"></a> <br /> | On switches running Cumulus Linux 5.4.0, the NetQ agent will crash when a frame is received on a bridge port sourcing from a MAC address of all zeroes (00:00:00:00:00:00). Switches experiencing this problem will appear as "rotten" in the NetQ UI. | 4.3.0-4.5.0 | |
 | <a name="3362224"></a> [3362224](#3362224) <a name="3362224"></a> <br /> | When you configure a new access profile with SSH authentication using the CLI, the command fails with the following log message:<pre>Expecting value: line 1 column 1 (char 0) </pre>To work around this issue, use the NetQ UI to configure the access profile. | 4.5.0 | |
 | <a name="3226405"></a> [3226405](#3226405) <a name="3226405"></a> <br /> | TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled. | 4.3.0-4.5.0 | |
 | <a name="3216161"></a> [3216161](#3216161) <a name="3216161"></a> <br /> | In an OPTA clustered environment, NetQ agents might appear as rotten after upgrading to NetQ 4.3.0. To work around this issue, configure the <code>spice: false</code> parameter in <code>/etc/netq/netq.yml</code>. | 4.3.0-4.5.0 | |

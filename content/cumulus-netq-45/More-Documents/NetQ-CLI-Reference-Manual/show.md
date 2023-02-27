@@ -2874,6 +2874,10 @@ None
 
 ### Sample Usage
 
+The following example shows the time synchronization status for all devices in the NVIDIA reference architecture. 
+
+All border, leaf, and spine switches rely on the out-of-band management server running *ntpq* to provide their time; they are all synchronized. The out-of-band management server uses the *titan.crash-ove* server running *ntpq* to obtain and maintain time synchronization. Meanwhile, the NetQ server uses the *eterna.binary.net* server running *chronyc* to obtain and maintain time synchronization. The firewall switches are not time synchronized (which is expected). The *Stratum* value indicates the number of hierarchical levels the switch or host is from the reference clock.
+
 ```
 cumulus@switch:~$ netq show ntp
 Matching ntp records:
@@ -2903,10 +2907,21 @@ spine03           yes      oob-mgmt-server   3       ntpq
 spine04           yes      oob-mgmt-server   3       ntpq
 ```
 
+Display all devices in the network that are out of time synchronization, and therefore need further investigation:
+
+```
+cumulus@switch:~$ netq show ntp out-of-sync
+Matching ntp records:
+Hostname          NTP Sync Current Server    Stratum NTP App
+----------------- -------- ----------------- ------- ---------------------
+internet          no       -                 16      ntpq
+```
+
 ### Related Commands
 
-- ```netq check ntp```
-- ```netq show unit-tests ntp```
+- `netq check ntp`
+- `netq show events message_type ntp`
+- `netq show unit-tests ntp`
 
 - - -
 
@@ -4321,28 +4336,43 @@ None
 
 ### Sample Usage
 
-Display the configuration for a particular VLAN:
+The following example shows the VLANs configured across a network based on the NVIDIA reference architecture:
 
 ```
-cumulus@switch:~$ netq show vlan 20
+cumulus@switch:~$ netq show vlan
+Matching vlan records:
+Hostname          VLANs                     SVIs                      Last Changed
+----------------- ------------------------- ------------------------- -------------------------
+border01          1,10,20,30,4001-4002                                Wed Oct 28 14:46:33 2020
+border02          1,10,20,30,4001-4002                                Wed Oct 28 14:46:33 2020
+leaf01            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+leaf02            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+leaf03            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+leaf04            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+```
+
+The following example shows that vlan 10 is running on the two border and four leaf switches:
+
+```
+cumulus@switch~$ netq show vlan 10
 Matching vlan records:
 Hostname          VLAN   Ports                               SVI  Last Changed
 ----------------- ------ ----------------------------------- ---- -------------------------
-border01          20                                         no   Tue Nov 24 20:50:46 2020
-border02          20                                         no   Tue Nov 24 20:50:47 2020
-leaf01            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
-leaf02            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
-leaf03            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
-leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
+border01          10                                         no   Wed Oct 28 15:20:27 2020
+border02          10                                         no   Wed Oct 28 15:20:28 2020
+leaf01            10     bond1,vni10                         yes  Wed Oct 28 15:20:28 2020
+leaf02            10     bond1,vni10                         yes  Wed Oct 28 15:20:28 2020
+leaf03            10     bond1,vni10                         yes  Wed Oct 28 15:20:29 2020
+leaf04            10     bond1,vni10                         yes  Wed Oct 28 15:20:29 2020
 ```
 
 ### Related Commands
 
-- ```netq show events```
-- ```netq show interfaces```
-- ```netq show macs```
-- ```netq check vlan```
-- ```netq show unit-tests vlan```
+- `netq show events message_type vlan`
+- `netq show interfaces type vlan`
+- `netq show macs`
+- `netq check vlan`
+- `netq show unit-tests vlan`
 
 - - -
 <!-- vale off -->
@@ -4381,6 +4411,30 @@ None
 
 ### Sample Usage
 
+The following example shows all configured VXLANs across the network. In this network, there are three VNIs (13, 24, and 104001) associated with three VLANs (13, 24, 4001), EVPN is the virtual protocol deployed, and the configuration was last changed around 23 hours ago:
+
+```
+cumulus@switch:~$ netq show vxlan
+Matching vxlan records:
+Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
+                                ol
+----------------- ---------- ------ ---------------- ------ ----------------------------------- -------------------------
+exit01            104001     EVPN   10.0.0.41        4001                                       Fri Feb  8 01:35:49 2019
+exit02            104001     EVPN   10.0.0.42        4001                                       Fri Feb  8 01:35:49 2019
+leaf01            13         EVPN   10.0.0.112       13     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf01            24         EVPN   10.0.0.112       24     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf01            104001     EVPN   10.0.0.112       4001                                       Fri Feb  8 01:35:49 2019
+leaf02            13         EVPN   10.0.0.112       13     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf02            24         EVPN   10.0.0.112       24     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf02            104001     EVPN   10.0.0.112       4001                                       Fri Feb  8 01:35:49 2019
+leaf03            13         EVPN   10.0.0.134       13     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf03            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf03            104001     EVPN   10.0.0.134       4001                                       Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf04            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Fri Feb  8 01:35:49 2019
+```
+
 Display configuration for a given VNI:
 
 ```
@@ -4399,8 +4453,8 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 ### Related Commands
 <!-- vale off -->
-- ```netq show events```
-- ```netq show interfaces```
+- ```netq show events message_type vxlan```
+- ```netq show interfaces type vxlan```
 - ```netq check vxlan```
 - ```netq show unit-tests vxlan```
 <!-- vale on -->

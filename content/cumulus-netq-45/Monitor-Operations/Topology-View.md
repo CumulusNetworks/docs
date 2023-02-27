@@ -9,7 +9,7 @@ NetQ lets you monitor your network by viewing performance and configuration data
 
 ## Access the Topology View
 
-To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> Topology in any workbench header. This opens the full-screen view of your network topology.
+To open the topology view, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/41-Hierachy-Organization/hierarchy.svg" height="18" width="18"/> **Topology** in any workbench header. This opens the full-screen view of your network topology.
 
 {{<figure src="/images/netq/full-screen-topology-updated.png" alt="view of a networkwide topology displaying connections between devices" width="900">}}
 

@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3376552</td>
+<td>On switches running Cumulus Linux 5.4.0, the NetQ agent will crash when a frame is received on a bridge port sourcing from a MAC address of all zeroes (00:00:00:00:00:00). Switches experiencing this problem will appear as "rotten" in the NetQ UI.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3226405</td>
 <td>TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled.</td>
 <td>4.3.0</td>

@@ -5,7 +5,7 @@ weight: 160
 toc: 4
 ---
 
-The NetQ CLI provides access to all network state and event information collected by NetQ Agents. It behaves similarly to typical CLIs, with groups of commands that display related information, and help commands that provide additional information.
+The NetQ CLI provides access to all network state and event information collected by NetQ Agents. It behaves similarly to typical CLIs, with groups of commands that display related information, and help commands that provide additional information. See the {{<link title="NetQ CLI Reference" text="command line reference">}} for a comprehensive list of NetQ commands, including examples, options, and definitions.
 
 {{<notice note>}}
 
@@ -28,16 +28,6 @@ To access the CLI from a switch or server:
 
 2. Enter your password to reach the command prompt. The default password is *CumulusLinux\!*
 
-    ```
-    Enter passphrase for key '/Users/<username>/.ssh/id_rsa': <enter CumulusLinux! here>
-    Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
-        * Documentation:  https://help.ubuntu.com
-        * Management:     https://landscape.canonical.com
-        * Support:        https://ubuntu.com/advantage
-    Last login: Tue Sep 15 09:28:12 2019 from 10.0.0.14
-    cumulus@switch:~$
-    ```
-
 3.  You can now run commands:
 
     ```
@@ -48,15 +38,7 @@ To access the CLI from a switch or server:
 
 ## Command Line Basics
 
-This section describes the core structure and behavior of the NetQ CLI. It includes the following:
-
-- {{<link url="#command-line-structure" text="Command Line Structure">}}
-- {{<link url="#command-syntax" text="Command Syntax">}}
-- {{<link url="#command-output" text="Command Output">}}
-- {{<link url="#command-prompts" text="Command Prompts">}}
-- {{<link url="#command-completion" text="Command Completion">}}
-- {{<link url="#command-help" text="Command Help">}}
-- {{<link url="#command-history" text="Command History">}}
+This section describes the core structure and behavior of the NetQ CLI.
 
 ### Command Line Structure
 
@@ -84,7 +66,7 @@ For example, in the `netq check` command:
 
 - \[\<hostname\>\] is an optional parameter with a variable value named *hostname*
 <!-- vale off -->
-- \<network-protocol-or-service\> represents a number of possible key words, such as *agents*, *bgp*, *evpn,* and so forth
+- \<network-protocol-or-service\> represents a number of possible keywords, such as *agents*, *bgp*, *evpn,* and so forth
 
 - \<options\> represents a number of possible conditions for the given object, such as *around*, *vrf,* or *json*
 <!-- vale on -->
@@ -96,7 +78,7 @@ Examples of valid commands include:
 
 ### Command Output
 
-The command output presents results in color for many commands. Results with errors appear in <span style="color: #ff0000;">red</span>, and warnings appear in <span style="color: #ffcc00;">yellow</span>. Results without errors or warnings appear in either black or <span style="color: #00ff00;">green</span>. VTEPs appear in <span style="color: #0000ff;">blue</span>. A node in the *pretty* output appears in **bold**, and angle brackets (\< \>) wrap around a router interface. To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
+The command output presents results in color for many commands. Results with errors appear in red, and warnings appear in yellow. Results without errors or warnings appear in either black or green. VTEPs appear in blue. A node in the *pretty* output appears in **bold**, and angle brackets (\< \>) wrap around a router interface. To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
 
 All check and show commands have a default timeframe of now to one hour ago, unless you specify an approximate time using the `around` keyword or a range using the `between` keyword. For example, running `netq check bgp` shows the status of BGP over the last hour. Running `netq show bgp around 3h` shows the status of BGP three hours ago.
 
@@ -120,13 +102,13 @@ When using the `between` option, you can enter the start time (`text-time`) and 
 NetQ code examples use the following prompts:
 
 <!-- vale off -->
-- `cumulus@switch:~$` Indicates the user *cumulus* is logged in to a switch to run the example command
-- `cumulus@host:~$` Indicates the user *cumulus* is logged in to a host to run the example command
-- `cumulus@netq-appliance:~$` Indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
-- `cumulus@hostname:~$` Indicates the user *cumulus* is logged in to a switch, host or appliance to run the example command
+- `cumulus@switch:~$` indicates the user *cumulus* is logged in to a switch to run the example command
+- `cumulus@host:~$` indicates the user *cumulus* is logged in to a host to run the example command
+- `cumulus@netq-appliance:~$` indicates the user *cumulus* is logged in to either the NetQ Appliance or NetQ Cloud Appliance to run the command
+- `cumulus@hostname:~$` indicates the user *cumulus* is logged in to a switch, host or appliance to run the example command
 <!-- vale on -->
 
-To use the NetQ CLI, the switches must be running the Cumulus Linux or SONiC operating system (OS), NetQ Platform or NetQ Collector software, the NetQ Agent, and the NetQ CLI. The hosts must be running CentOS, RHEL, or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to {{<link url="Install-NetQ">}} for additional information.
+To use the NetQ CLI, the switches must be running the Cumulus Linux or SONiC operating system, NetQ Platform or NetQ Collector software, the NetQ Agent, and the NetQ CLI. The hosts must be running CentOS, RHEL, or Ubuntu OS, the NetQ Agent, and the NetQ CLI. Refer to {{<link url="Install-NetQ">}} for additional information.
 
 ### Command Completion
 
@@ -152,7 +134,7 @@ cumulus@switch:~$ netq check
 
 ### Command Help
 
-As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out what options are available for a BGP check, enter `help` after entering some of the `netq check` command. In the following example, you can see that there are no additional required parameters and you can use three optional parameters &mdash; `hostnames`, `vrf`, and `around` &mdash; with a BGP check:
+As you enter commands, you can get help with command syntax by entering `help` at various points within a command entry. For example, to find out which options are available for a BGP check, enter `help` after entering some of the `netq check` command. In the following example, you can see that there are no additional required parameters and you can use three optional parameters &mdash; `hostnames`, `vrf`, and `around` &mdash; with a BGP check:
 
 ```
 cumulus@switch:~$ netq check bgp help
@@ -188,7 +170,7 @@ While the CLI has a flat structure, NetQ commands are conceptually grouped into 
 
 ### Validation Commands
 
-The `netq check` commands validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. You can perform validation checks for the following:
+The {{<link title="check" text="netq check commands">}} validate the current or historical state of the network by looking for errors and misconfigurations in the network. The commands run fabric-wide validations against various configured protocols and services to determine how well the network is operating. You can perform validation checks for the following:
 
 <!-- vale off -->
 - **addresses**: IPv4 and IPv6 addresses duplicates across devices
@@ -321,7 +303,7 @@ cumulus@switch:~$ netq check bgp json
 
 ### Monitoring Commands
 
-The `netq show` commands let you view details about the current or historical configuration and status of various protocols and services. You can view the configuration and status for the following:
+The {{<link title="show" text="netq show commands">}} let you view details about the current or historical configuration and status of various protocols and services. You can view the configuration and status for the following:
 
 <!-- vale off -->
 - **address-history**: Address history info for an IP address/prefix
@@ -339,7 +321,8 @@ The `netq show` commands let you view details about the current or historical co
 - **events**: Display changes over time
 - **events-config**: Event suppression configuration
 - **evpn**: EVPN status
-- **interface-stats**: Interface statistics
+- **interfaces**: Interface information
+- **interface-stats**: Interface performance statistics
 - **interface-utilization**: Interface statistics plus utilization
 - **interfaces**: network interface port status
 - **inventory**: hardware component information
@@ -358,12 +341,14 @@ The `netq show` commands let you view details about the current or historical co
 - **opta-health**: Display health of apps on the OPTA
 - **opta-platform**: NetQ Appliance version information and uptime
 - **ospf**: OSPF status
+- **ptp**: Precision Time Protocol status
 - **recommended-pkg-version**: Current host information to be considered
 - **resource-util**: Display usage of memory, CPU and disk resources
 - **roce-config**: Display RoCE configuration
 - **roce-counters**: Displays RDMA over Converged Ethernet counters for a given switch
 - **sensors**: Temperature/Fan/PSU sensor status
 - **services**: System services status
+- **stp topology**: Spanning Tree Protocol topology
 - **tca**: Threshold crossing alerts
 - **trace**: Control plane trace path across fabric
 - **unit-tests**: Show list of unit tests for `netq check`
@@ -596,7 +581,7 @@ The following example shows how to add a Cumulus Linux installation image to the
 
 ### Trace Commands
 
-The `trace` commands lets you view the available paths between two nodes on the network currently and at a time in the past. You can perform a layer 2 or layer 3 trace, and view the output in one of three formats: JSON, pretty, and detail. JSON output provides the output in a JSON file format for ease of importing to other applications or software. Pretty output lines up the paths in a pseudo-graphical manner to help visualize multiple paths. Detail output is useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. The detail output displays a table with a row for each path.
+The {{<link title="trace" text="netq trace commands">}} lets you view the available paths between two nodes on the network currently and at a time in the past. You can perform a layer 2 or layer 3 trace, and view the output in one of three formats: JSON, pretty, and detail. JSON output provides the output in a JSON file format for ease of importing to other applications or software. Pretty output lines up the paths in a pseudo-graphical manner to help visualize multiple paths. Detail output is useful for traces with higher hop counts where the pretty output wraps lines, making it harder to interpret the results. The detail output displays a table with a row for each path.
 
 The trace command syntax is:
 
@@ -689,3 +674,7 @@ Path MTU: 9152
                                                         swp3 -- swp3 Spine01 swp7 -- swp3 vni: 34 Leaf04 swp6 -- swp1.1001 Server03 <swp1.1001>
 ```
 {{< /expand >}}
+
+## Related Information
+
+- {{<link title="NetQ CLI Reference">}}

@@ -16,7 +16,7 @@ Use the UI or CLI to monitor Precision Time Protocol, including clock hierarchie
 
 ## PTP Commands
 
-Monitor PTP with the following commands.See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional options, definitions, and examples.
+Monitor PTP with the following commands. See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional options, definitions, and examples.
 
 ```
    netq show ptp clock-details

@@ -48,6 +48,7 @@ The following table depicts the NetQ release support matrix:
 
 | NetQ Release | Release Date | End of Support |
 | :--------: | --------- | --------- |
+| 4.5.z | 27-Feb-2023 | 27-Feb-2025 |
 | 4.4.z | 09-Nov-2022 | 09-Nov-2024 |
 | 4.3.z | 05-Aug-2022 | 05-Aug-2024 |
 | 4.2.z | 24-May-2022 | 24-May-2024 |

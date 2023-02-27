@@ -2874,6 +2874,10 @@ None
 
 ### Sample Usage
 
+The following example shows the time synchronization status for all devices in the NVIDIA reference architecture. 
+
+All border, leaf, and spine switches rely on the out-of-band management server running *ntpq* to provide their time; they are all synchronized. The out-of-band management server uses the *titan.crash-ove* server running *ntpq* to obtain and maintain time synchronization. Meanwhile, the NetQ server uses the *eterna.binary.net* server running *chronyc* to obtain and maintain time synchronization. The firewall switches are not time synchronized (which is expected). The *Stratum* value indicates the number of hierarchical levels the switch or host is from the reference clock.
+
 ```
 cumulus@switch:~$ netq show ntp
 Matching ntp records:
@@ -2903,10 +2907,21 @@ spine03           yes      oob-mgmt-server   3       ntpq
 spine04           yes      oob-mgmt-server   3       ntpq
 ```
 
+Display all devices in the network that are out of time synchronization, and therefore need further investigation:
+
+```
+cumulus@switch:~$ netq show ntp out-of-sync
+Matching ntp records:
+Hostname          NTP Sync Current Server    Stratum NTP App
+----------------- -------- ----------------- ------- ---------------------
+internet          no       -                 16      ntpq
+```
+
 ### Related Commands
 
-- ```netq check ntp```
-- ```netq show unit-tests ntp```
+- `netq check ntp`
+- `netq show events message_type ntp`
+- `netq show unit-tests ntp`
 
 - - -
 

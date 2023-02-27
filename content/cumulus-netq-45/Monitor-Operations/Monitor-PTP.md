@@ -16,25 +16,19 @@ Use the UI or CLI to monitor Precision Time Protocol, including clock hierarchie
 
 ## PTP Commands
 
-PTP commands include:
+Monitor PTP with the following commands.See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional options, definitions, and examples.
 
 ```
-   netq show ptp clock-details 
-
-   netq show ptp global-config
-
-   netq show ptp port-status 
-
+   netq show ptp clock-details
    netq show ptp counters (tx | rx) 
+   netq show ptp global-config
+   netq show ptp port-status 
 ```
-
-See the {{<link title="show/#netq-show-ptp" text="command line reference">}} for additional options, definitions, and examples.
-
 ## Access the PTP Dashboard
 
 1. Select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the **Network** heading, select **PTP**.
+2. Under the Network section, select **PTP**.
 
 The PTP summary dashboard displays:
 - clock count, type, and distribution

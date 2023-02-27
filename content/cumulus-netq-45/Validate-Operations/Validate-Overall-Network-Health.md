@@ -29,15 +29,13 @@ To view network health metrics:
 
 ## View Detailed Network Health
 
-To view details about your network's health:
-
-1. Open or locate the large Validation Summary card on your workbench.
+To view details about your network's health, open or locate the large Validation Summary card on your workbench.
 
 {{<tabs "View System Health">}}
 
 {{<tab "System Health">}}
 
-3. By default, the **System health tab** is displayed. 
+By default, the **System health tab** is displayed. 
 
    {{<figure src="/images/netq/validation-summary-l3-sys-health-42.png" width="500">}}
 
@@ -47,7 +45,7 @@ To view details about your network's health:
 
 {{<tab "Network Services Health">}}
 
-3. Click the **Network service health** tab.
+Click the **Network service health** tab.
 
    {{<figure src="/images/netq/validation-summary-l3-net-health-42.png" width="500">}}
 
@@ -57,7 +55,7 @@ To view details about your network's health:
 
 {{<tab "Interface Health">}}
 
-3. Click the **Interface health** tab.
+Click the **Interface health** tab.
 
    {{<figure src="/images/netq/validation-summary-l3-int-health-42.png" width="500">}}
 

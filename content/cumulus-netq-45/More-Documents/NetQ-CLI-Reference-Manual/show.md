@@ -4411,6 +4411,30 @@ None
 
 ### Sample Usage
 
+The following example shows all configured VXLANs across the network. In this network, there are three VNIs (13, 24, and 104001) associated with three VLANs (13, 24, 4001), EVPN is the virtual protocol deployed, and the configuration was last changed around 23 hours ago:
+
+```
+cumulus@switch:~$ netq show vxlan
+Matching vxlan records:
+Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
+                                ol
+----------------- ---------- ------ ---------------- ------ ----------------------------------- -------------------------
+exit01            104001     EVPN   10.0.0.41        4001                                       Fri Feb  8 01:35:49 2019
+exit02            104001     EVPN   10.0.0.42        4001                                       Fri Feb  8 01:35:49 2019
+leaf01            13         EVPN   10.0.0.112       13     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf01            24         EVPN   10.0.0.112       24     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf01            104001     EVPN   10.0.0.112       4001                                       Fri Feb  8 01:35:49 2019
+leaf02            13         EVPN   10.0.0.112       13     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf02            24         EVPN   10.0.0.112       24     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf02            104001     EVPN   10.0.0.112       4001                                       Fri Feb  8 01:35:49 2019
+leaf03            13         EVPN   10.0.0.134       13     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf03            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf03            104001     EVPN   10.0.0.134       4001                                       Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf04            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Fri Feb  8 01:35:49 2019
+```
+
 Display configuration for a given VNI:
 
 ```
@@ -4429,8 +4453,8 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 ### Related Commands
 <!-- vale off -->
-- ```netq show events```
-- ```netq show interfaces```
+- ```netq show events message_type vxlan```
+- ```netq show interfaces type vxlan```
 - ```netq check vxlan```
 - ```netq show unit-tests vxlan```
 <!-- vale on -->

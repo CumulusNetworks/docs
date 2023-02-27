@@ -24,7 +24,7 @@ To create a backup, refer to the following steps for your NetQ version.
 <p style="text-indent: 40px">b. Select <b>NVIDIA Licensing Portal</b>.<br></p>
 <p style="text-indent: 40px">c. Select <b>Software Downloads</b> from the menu.<br></p>
 <p style="text-indent: 40px">d. Click <b>Product Family</b> and select <b>NetQ</b>.<br></p>
-<p style="text-indent: 40px">e. Locate the <code>vm-backuprestore.sh</code> script and select Download.<br></p>
+<p style="text-indent: 40px">e. Locate the <code>NetQ Upgrade Backup Restore</code> file and select Download.<br></p>
 <p style="text-indent: 40px">f. If prompted, agree to the license agreement and proceed with the download.<br></p>
 
 2. Copy the `vm-backuprestore.sh` script to your NetQ server:

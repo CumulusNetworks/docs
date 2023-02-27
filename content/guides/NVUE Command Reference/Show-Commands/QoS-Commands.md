@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show qos
 
-Shows detailed information about the configured buffers, utilization, and DSCP markings.
+Shows detailed information about the configured buffers, utilization, and DSCP markings for QoS.
 
 ### Version History
 
@@ -23,6 +23,8 @@ cumulus@leaf01:mgmt:~$ nv show qos
 
 ## nv show qos advance-buffer-config
 
+Shows QoS advanced buffer configuration.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.4.0
@@ -37,6 +39,8 @@ cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config
 
 ## nv show qos advance-buffer-config <profile-id>
 
+Shows configuration for the specified QoS advanced buffer profile.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.4.0
@@ -44,13 +48,15 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ??
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global
 ```
 
 - - -
 
 ## nv show qos advance-buffer-config <profile-id> ingress-pool
 
+Shows all ingress service pool settings for the specified QoS advanced buffer profile.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.4.0
@@ -58,13 +64,15 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-pool
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-pool
 ```
 
 - - -
 
 ## nv show qos advance-buffer-config <profile-id> ingress-pool <pool-id>
 
+Shows the configuration settings for the specified ingress service pool for the specified QoS advanced buffer profile.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.4.0
@@ -72,13 +80,15 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-pool ???
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-pool ???
 ```
 
 - - -
 
 ## nv show qos advance-buffer-config <profile-id> egress-pool
 
+Shows all egress service pool settings for the specified QoS advanced buffer profile.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.4.0
@@ -86,13 +96,15 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-pool
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-pool
 ```
 
 - - -
 
 ## nv show qos advance-buffer-config <profile-id> egress-pool <pool-id>
 
+Shows the configuration settings for the specified egress service pool for the specified QoS advanced buffer profile.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.4.0
@@ -100,13 +112,15 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-pool ???
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-pool ???
 ```
 
 - - -
 
 ## nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer
 
+Shows ingress lossy configuration settings for the specified QoS advanced buffer profile.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.4.0
@@ -114,13 +128,15 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-lossy-buffer
 ```
 
 - - -
 
 ## nv show qos advance-buffer-config <profile-id> ingress-lossy-buffer priority-group
 
+Shows ingress lossy priority group configuration settings for the specified QoS advanced buffer profile.
+
 ### Version History
 
 Introduced in Cumulus Linux 5.4.0
@@ -128,7 +144,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer priority-group
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-lossy-buffer priority-group
 ```
 - - -
 
@@ -141,7 +157,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer priority-group ??? 
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-lossy-buffer priority-group ??? 
 ```
 
 - - -
@@ -155,7 +171,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer priority-group ??? switch-priority
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-lossy-buffer priority-group ??? switch-priority
 ```
 
 - - -
@@ -169,7 +185,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer priority-group ??? switch-priority ???
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-lossy-buffer priority-group ??? switch-priority ???
 ```
 
 - - -
@@ -183,7 +199,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? ingress-lossy-buffer
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-lossy-buffer
 ```
 
 - - -
@@ -197,7 +213,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-lossy-buffer
 ```
 
 - - -
@@ -212,7 +228,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer traffic-class
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-lossy-buffer traffic-class
 ```
 
 - - -
@@ -226,7 +242,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer traffic-class ???
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-lossy-buffer traffic-class ???
 ```
 
 - - -
@@ -240,7 +256,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer multicast-switch-priority
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority
 ```
 
 - - -
@@ -254,7 +270,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer multicast-switch-priority ???
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority ???
 ```
 
 - - -
@@ -268,7 +284,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config ?? egress-lossy-buffer multicast-port
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-lossy-buffer multicast-port
 
 ```
 

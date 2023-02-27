@@ -121,8 +121,7 @@ cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
 ...
 ```
 
-The following table describes the `/etc/cumulus/switchd.conf` parameters and indicates if you need to restart or reload `switchd`
-for the changes to take effect when you update the setting.
+The following table describes the `/etc/cumulus/switchd.conf` file parameters and indicates if you need to restart `switchd` with the `sudo systemctl restart switchd.service` command or reload `switchd` with the `sudo systemctl reload switchd.service` command for changes to take effect when you update the setting.
 
 {{%notice warning%}}
 Restarting the `switchd` service causes all network ports to reset in addition to resetting the switch hardware configuration.

@@ -235,9 +235,31 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router pim ecmp
 
 - - -
 
+## nv show vrf \<vrf-id\> router pim msdp-mesh-group
+
+Shows the MSDP mesh groups for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim msdp-mesh-group
+```
+
+- - -
+
 ## nv show vrf \<vrf-id\> router pim msdp-mesh-group \<msdp-mesh-group-id\>
 
-Shows information about the specified MSDP mesh group for the specified VRF.
+Shows specific MSDP mesh group information for the specified VRF.
 
 ### Command Syntax
 

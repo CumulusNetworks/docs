@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3376552</td>
-<td>On switches running Cumulus Linux 5.4.0, the NetQ agent will crash when a frame is received on a bridge port sourcing from a MAC address of all zeroes (00:00:00:00:00:00). Switches experiencing this problem will appear as "rotten" in the NetQ UI.</td>
-<td>4.3.0-4.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3305144</td>
 <td>When you perform a {{netq trace}} between two hosts, the following message might be printed in the output even when the trace is successful:
 

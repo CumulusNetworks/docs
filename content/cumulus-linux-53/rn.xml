@@ -278,6 +278,12 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 <td></td>
 </tr>
 <tr>
+<td>3142615</td>
+<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP in Cumulus Linux 5.0.0 through 5.2.1 and 5.4.0.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3135952</td>
 <td>PAM4 split cables (such as 2x100G, 4x100G, and 4x50G) do not work with a forced speed setting (when auto-negotiation is off) as the default speed enabled is for NRZ mode (such as 100G_4X). To work around this issue,  set the appropriate lanes for forced speed (with auto-negotation off) with the {{ethtool -s swpX speed &lt;port_speed&gt; autoneg off lanes &lt;no_of_lanes&gt;}} command. For example: 
 
@@ -783,6 +789,12 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 <td>3145204</td>
 <td>On the NVIDIA Spectum-1 switch, the {{nv show system forwarding}} command shows GTP hashing  output, which is not supported on this switch.</td>
 <td>5.2.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3142615</td>
+<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP in Cumulus Linux 5.0.0 through 5.2.1 and 5.4.0.</td>
+<td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>

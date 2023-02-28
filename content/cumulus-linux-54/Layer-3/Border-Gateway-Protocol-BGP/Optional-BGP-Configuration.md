@@ -2104,6 +2104,7 @@ You can apply the community list to a route map to define the routing policy:
 
 ```
 cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 10 match community-list COMMUNITY1
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 10 action permit
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -2114,9 +2115,9 @@ cumulus@leaf01:~$ nv config apply
 cumulus@leaf01:~$ sudo vtysh
 ...
 leaf01# configure terminal
-leaf01(config)# router bgp 65101
-leaf01(config-router)# table-map ROUTEMAP1
-leaf01(config-router)# end
+leaf01(config)# route-map ROUTEMAP1 
+leaf01(config-route-map)# match community COMMUNITY1
+leaf01(config-route-map)# end
 leaf01# write memory
 leaf01# exit
 ```

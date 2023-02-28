@@ -18,7 +18,7 @@ The gNMI Agent is disabled by default. To enable it, run:
 
 The gNMI Agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
 
-Use the following commands to adjust the default settings:
+Use the following commands to adjust the settings:
 
 1. Disable the gNMI Agent:
 

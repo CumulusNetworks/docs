@@ -128,7 +128,7 @@ cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-p
 
 ## nv show qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\>
 
-Shows the configuration settings for the specified egress service pool for the specified QoS advanced buffer profile.
+Shows configuration settings for a specific egress service pool for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -194,7 +194,7 @@ cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-
 
 ## nv show qos advance-buffer-config \<profile-id\> ingress-lossy-buffer priority-group \<priority-group-id\>
 
-Shows information about the specified ingress lossy buffer priority group configuration for the specified QoS advanced buffer profile.
+Shows configuration for a specific ingress lossy buffer priority group for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -217,7 +217,7 @@ cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-
 
 ## nv show qos advance-buffer-config \<profile-id\> ingress-lossy-buffer priority-group \<priority-group-id\> switch-priority
 
-Shows information about the specified ingress lossy buffer priority group switch priority configuration for the specified QoS advanced buffer profile.
+Shows ingress lossy buffer priority group switch priorities for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -240,7 +240,7 @@ cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-
 
 ## nv show qos advance-buffer-config \<profile-id\> ingress-lossy-buffer priority-group \<priority-group-id\> switch-priority \<qos-sp-id\>
 
-Shows information about a specific switch priority for the specified ingress lossy buffer priority group for the specified QoS advanced buffer profile.
+Shows configuration settings for a specific ingress lossy buffer priority group switch priority for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -1961,7 +1961,7 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter ingress-buffer-stats
 
 ## nv show interface \<interface-id\> qos counter pfc-stats
 
-Shows PFC statistics per internal switch priority for the specified interface.
+Shows PFC statistics per switch priority for the specified interface.
 
 {{%notice note%}}
 In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters pfc-stats`.
@@ -2075,7 +2075,7 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos roce pool-map
 
 ## nv show interface \<interface-id\> qos roce status prio-map
 
-Shows the RoCE PCP or DSCP to switch priority mapping configuration for the specified interface.
+Shows the RoCE 802.1p (PCP) or DSCP to switch priority mapping configuration for the specified interface.
 
 ### Command Syntax
 
@@ -2097,7 +2097,7 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos roce prio-map
 
 ## nv show interface \<interface-id\> qos roce status tc-map
 
-Shows the RoCE switch priority to traffic class mapping and ETS configuration for the specified interface.
+Shows the RoCE switch priority to traffic class mapping for the specified interface.
 
 ### Command Syntax
 

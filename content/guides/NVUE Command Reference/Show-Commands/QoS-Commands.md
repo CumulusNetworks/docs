@@ -1035,6 +1035,8 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ## nv show interface <interface-id> qos pfc
 
+Shows QoS PFC configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1043,18 +1045,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos pfc
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos link-pause
 
+Shows QoS link pause configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1063,18 +1067,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos link-pause
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos mapping
 
+Shows QoS mapping configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1083,18 +1089,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos mapping
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos mapping pcp
 
+Shows QoS 802.1p (PCP) mapping configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1103,17 +1111,19 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos mapping pcp
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos mapping pcp <qos-pcp-id>
+
+Shows specific QoS 802.1p (PCP) mapping configuration settings for the specified interface.
 
 ### Command Syntax
 
@@ -1124,17 +1134,19 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos mapping pcp 2
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos mapping dscp
+
+Shows DSCP mapping configuration settings for the specified interface.
 
 ### Command Syntax
 
@@ -1144,17 +1156,19 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos mapping dscp
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos mapping dscp <qos-dscp-id>
+
+Shows specific DSCP mapping configuration settings for the specified interface.
 
 ### Command Syntax
 
@@ -1165,18 +1179,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos qos mapping dscp 22
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos remark
 
+Shows QoS remarking configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1185,18 +1201,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos remark
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos remark switch-priority
 
+Shows QoS switch priority remarking configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1205,17 +1223,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos remark switch-priority
+
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos remark switch-priority <qos-sp-id>
+
+Shows specific QoS switch priority remarking configuration for the specified interface.
 
 ### Command Syntax
 
@@ -1226,18 +1247,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos remark switch-priority 2
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos congestion-control
 
+Shows QoS congestion control configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1246,18 +1269,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos congestion-control
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos congestion-control traffic-class
 
+Shows QoS congestion control traffic class configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1266,18 +1291,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos congestion-control traffic-class
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos congestion-control traffic-class <qos-tc-id>
 
+Shows specific QoS congestion control traffic class configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1287,18 +1314,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos congestion-control traffic-class 2
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos egress-scheduler
 
+Shows QoS egress scheduler configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1307,18 +1336,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos egress-scheduler
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos egress-scheduler traffic-class
 
+Shows QoS egress scheduler traffic class configuration settings for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1327,17 +1358,19 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos egress-scheduler traffic-class
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos egress-scheduler traffic-class <qos-tc-id>
+
+Shows specific QoS egress scheduler traffic class configuration settings for the specified interface.
 
 ### Command Syntax
 
@@ -1348,18 +1381,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos egress-scheduler traffic-class 2
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos egress-queue-mapping
 
+Shows QoS egress queue mapping configuration for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1368,18 +1403,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos egress-queue-mapping
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos egress-queue-mapping switch-priority
 
+Shows QoS egress queue switch priority mapping configuration for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1388,17 +1425,19 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos egress-queue-mapping switch-priority
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos egress-queue-mapping switch-priority <qos-sp-id>
+
+Shows specific QoS egress queue switch priority mapping configuration for the specified interface.
 
 ### Command Syntax
 
@@ -1409,18 +1448,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos egress-queue-mapping switch-priority 2
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos egress-shaper
 
+Shows QoS egress shaper configuration for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1429,18 +1470,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos egress-shaper
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos egress-shaper traffic-class
 
+Shows QoS egress shaper traffic class configuration for the specified interface.
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1449,17 +1492,20 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos egress-shaper traffic-class
+
 ```
 
 - - -
 
 ## nv show interface <interface-id> qos egress-shaper traffic-class <qos-tc-id>
+
+Shows specific QoS egress shaper traffic class configuration for the specified interface.
 
 ### Command Syntax
 
@@ -1470,12 +1516,12 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos egress-shaper traffic-class 2
 ```
 
 - - -
@@ -1483,6 +1529,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos
 ## nv show interface \<interface-id\> qos counter
 
 Shows the QoS counters for the specified interface.
+
+{{%notice note%}}
+In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters`.
+{{%/notice%}}
 
 ### Command Syntax
 
@@ -1492,7 +1542,7 @@ Shows the QoS counters for the specified interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -1506,6 +1556,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter
 
 Shows QoS port statistics for the specified interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters port-stats`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1514,7 +1568,7 @@ Shows QoS port statistics for the specified interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -1528,6 +1582,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter port-stats
 
 Shows QoS statistics for received packets on the specified interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters rx-stats`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1536,7 +1594,7 @@ Shows QoS statistics for received packets on the specified interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -1550,6 +1608,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter port-stats rx-stats
 
 Shows QoS statistics for transmitted packets on the specified interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters port-stats tx-stats`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1558,7 +1620,7 @@ Shows QoS statistics for transmitted packets on the specified interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -1572,6 +1634,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter port-stats tx-stats
 
 Shows egress queue statistics per egress traffic class for the specified interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters egress-queue-stats`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1580,7 +1646,7 @@ Shows egress queue statistics per egress traffic class for the specified interfa
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -1594,6 +1660,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter egress-queue-stats
 
 Shows ingress buffer statistics per priority group for the specified interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters ingress-buffer-stats`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1602,7 +1672,7 @@ Shows ingress buffer statistics per priority group for the specified interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -1616,6 +1686,10 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter ingress-buffer-stats
 
 Shows PFC statistics per internal switch priority for the specified interface.
 
+{{%notice note%}}
+In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters pfc-stats`.
+{{%/notice%}}
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -1624,7 +1698,7 @@ Shows PFC statistics per internal switch priority for the specified interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -1766,24 +1840,132 @@ cumulus@leaf01:mgmt:~$ nv show interface swp5 qos roce status tc-map
 
 ## nv show interface <interface-id> qos buffer
 
+Shows QoS buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos buffer
+```
+
 - - -
 
 ## nv show interface <interface-id> qos buffer ingress-port
+
+Shows QoS ingress port buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos buffer ingress-port
+```
 
 - - -
 
 ## nv show interface <interface-id> qos buffer ingress-priority-group
 
+Shows QoS priority port ingress buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos buffer ingress-priority-group
+```
+
 - - -
 
 ## nv show interface <interface-id> qos buffer egress-port
+
+Shows QoS egress port buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos buffer egress-port
+```
 
 - - -
 
 ## nv show interface <interface-id> qos buffer egress-traffic-class
 
+Shows QoS egress traffic class buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos buffer egress-traffic-class
+```
+
 - - -
 
 ## nv show interface <interface-id> qos buffer egress-multicast
+
+Shows QoS egress multicast traffic buffer configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp5 qos buffer egress-multicast
+```
 
 - - -

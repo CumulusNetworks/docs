@@ -180,6 +180,12 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 <td>5.2.0-5.4.0</td>
 </tr>
 <tr>
+<td>3142615</td>
+<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP in Cumulus Linux 5.0.0 through 5.2.1 and 5.4.0.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3141818</td>
 <td>If there is extensive and continuous next-hop group (NHG) churn when routes keep moving from one NHG to another NHG repeatedly, {{switchd}} increases in memory allocation until memory is exhausted. Other processes might be affected as they try to acquire memory which is unavailable.</td>
 <td>5.0.1-5.1.0</td>

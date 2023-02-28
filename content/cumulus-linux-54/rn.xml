@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3375047</td>
+<td>If you run the NVUE {{nv set service snmp-server readonly-community}} command to set an SNMP V2 trap community string that includes fewer than eight characters,  the configuration fails.  The SNMP V2 trap community string must include eight or more characters.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3362113</td>
 <td>If you restore an NVUE {{startup.yaml}} file after upgrade that includes breakout ports with QoS configured on the breakout interfaces or you run the {{nv config patch}} command to update a configuration with a {{yaml}} file that includes breakout ports with QoS configured on the breakout interfaces, the NVUE configuration fails to apply and subsequent attempts to run {{nv config apply}} fail with the following message: 
 
@@ -103,6 +109,22 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 @include common-auth
 @include common-account
 @include common-session-noninteractive
+</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3336808</td>
+<td>If you run the NVUE {{nv set interface &lt;interface&gt; description}} command  without providing a description, the {{nv config apply}} command fails with an error:
+
+root@cumulus:mgmt:~# nv set interface swp5 description ""
+root@cumulus:mgmt:~# nv config apply
+ Unable to restart services (ifreload-nvue.service):
+ Job for ifreload-nvue.service failed because the control process exited with error code.
+During restart of ifreload-nvue.service:
+error: /etc/network/interfaces: line28: iface swp5: invalid syntax 'alias'
+    &gt;&gt;&gt; Full logs available in: /var/log/ifupdown2/network_config_ifupdown2_104_Jan-20-2023_15:00:10.761330 &lt;&lt;&lt;
+ Failed to start ifreload wrapper service (for NVUE compatibility).
 </td>
 <td>5.4.0</td>
 <td></td>
@@ -235,6 +257,12 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 <td>3145204</td>
 <td>On the NVIDIA Spectum-1 switch, the {{nv show system forwarding}} command shows GTP hashing  output, which is not supported on this switch.</td>
 <td>5.2.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3142615</td>
+<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP in Cumulus Linux 5.0.0 through 5.2.1 and 5.4.0.</td>
+<td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>

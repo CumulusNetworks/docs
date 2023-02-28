@@ -10,10 +10,13 @@ You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Networ
 
 ### Configure the gNMI Agent
 
-The gNMI Agent is enabled by default and listens over port 9339. You can change the default port in case you use that port in another application.
+The gNMI Agent is disabled by default. To enable it, run:
 
+```
+ cumulus@switch:~$ netq config add agent gnmi-enable true
+ ```
 
-The `/etc/netq/netq.yml` file stores the configuration.
+The gNMI Agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
 
 Use the following commands to adjust the default settings:
 

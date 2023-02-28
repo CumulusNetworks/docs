@@ -23,7 +23,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32
+cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32
 ```
 
 - - -
@@ -47,7 +47,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distance 2
+cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distance 2
 ```
 
 - - -
@@ -72,7 +72,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0
+cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0
 ```
 
 - - -
@@ -97,7 +97,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32
+cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32
 ```
 
 - - -
@@ -121,7 +121,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0
+cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0
 ```
 
 - - -
@@ -145,5 +145,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0 flag
+cumulus@leaf01:mgmt:~$ nv show vrf default router static 10.10.10.101/32 via 10.0.1.0 flag
 ```

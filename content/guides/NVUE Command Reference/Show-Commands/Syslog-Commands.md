@@ -16,7 +16,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service syslog
+cumulus@leaf01:mgmt:~$ nv show service syslog
 ```
 
 - - -
@@ -38,7 +38,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service syslog default
+cumulus@leaf01:mgmt:~$ nv show service syslog default
 ```
 
 - - -
@@ -61,5 +61,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show service syslog default server 192.168.0.254
+cumulus@leaf01:mgmt:~$ nv show service syslog default server 192.168.0.254
 ```

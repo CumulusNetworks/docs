@@ -16,7 +16,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show nve vxlan
+cumulus@leaf01:mgmt:~$ nv show nve vxlan
 ```
 
 - - -
@@ -32,7 +32,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show nve vxlan mlag
+cumulus@leaf01:mgmt:~$ nv show nve vxlan mlag
 ```
 
 - - -
@@ -48,7 +48,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show nve vxlan source
+cumulus@leaf01:mgmt:~$ nv show nve vxlan source
 ```
 
 - - -
@@ -64,7 +64,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show nve vxlan flooding
+cumulus@leaf01:mgmt:~$ nv show nve vxlan flooding
 ```
 
 - - -
@@ -80,7 +80,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show nve vxlan flooding head-end-replication
+cumulus@leaf01:mgmt:~$ nv show nve vxlan flooding head-end-replication
 ```
 
 - - -
@@ -102,7 +102,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show nve vxlan flooding head-end-replication evpn
+cumulus@leaf01:mgmt:~$ nv show nve vxlan flooding head-end-replication evpn
 ```
 
 - - -
@@ -118,7 +118,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show nve vxlan encapsulation
+cumulus@leaf01:mgmt:~$ nv show nve vxlan encapsulation
 ```
 
 - - -
@@ -134,7 +134,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show nve vxlan encapsulation dscp
+cumulus@leaf01:mgmt:~$ nv show nve vxlan encapsulation dscp
 ```
 
 - - -
@@ -150,7 +150,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show nve vxlan decapsulation
+cumulus@leaf01:mgmt:~$ nv show nve vxlan decapsulation
 ```
 
 - - -
@@ -166,5 +166,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show nve vxlan decapsulation dscp
+cumulus@leaf01:mgmt:~$ nv show nve vxlan decapsulation dscp
 ```

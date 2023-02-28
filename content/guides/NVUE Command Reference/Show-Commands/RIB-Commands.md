@@ -23,7 +23,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4
 ```
 
 - - -
@@ -47,7 +47,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 protocol bgp
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 protocol bgp
 ```
 
 - - -
@@ -71,7 +71,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default
 ```
 
 - - -
@@ -96,7 +96,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp
 ```
 
 - - -
@@ -121,7 +121,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index
 ```
 
 - - -
@@ -145,7 +145,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10
 ```
 
 - - -
@@ -169,7 +169,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 flags
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 flags
 ```
 
 - - -
@@ -193,7 +193,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via
 ```
 
 - - -
@@ -218,7 +218,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? flags
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? flags
 ```
 
 - - -
@@ -243,7 +243,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? label
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? label
 ```
 
 - - -
@@ -268,7 +268,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? resolved-via
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? resolved-via
 ```
 
 - - -
@@ -295,5 +295,5 @@ Introduced in Cumulus Linux 5.0.0
 
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? resolved-via ???
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? resolved-via ???
 ```

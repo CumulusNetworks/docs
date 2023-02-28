@@ -314,7 +314,6 @@ Shows configuration settings for BUM traffic flooding for the specified VNI.
 
 ### Command Syntax
 
-| --------- | -------------- |
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The bridge domain. |
@@ -339,7 +338,6 @@ Shows the head-end-replication settings for the specified VNI.
 
 ### Command Syntax
 
-| --------- | -------------- |
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<domain-id>` | The bridge domain. |

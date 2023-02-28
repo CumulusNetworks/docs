@@ -9,12 +9,6 @@ type: nojsscroll
 
 Shows <span style="background-color:#F5F5DC">[DNS](## "Domain Name Service")</span> configuration settings.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0

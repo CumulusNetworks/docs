@@ -22,7 +22,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface vlan10 ip vrr
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 ip vrr
 ```
 
 - - -
@@ -45,7 +45,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface vlan10 ip vrr address 10.1.10.1/24
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 ip vrr address 10.1.10.1/24
 ```
 
 - - -
@@ -67,7 +67,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface vlan10 ip vrr state
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 ip vrr state
 ```
 
 - - -
@@ -89,7 +89,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 ip vrrp
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp
 ```
 
 - - -
@@ -112,7 +112,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44
 ```
 
 - - -
@@ -136,5 +136,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44 address 10.0.0.1
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44 address 10.0.0.1
 ```

@@ -16,7 +16,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system config
+cumulus@leaf01:mgmt:~$ nv show system config
 ```
 
 - - -
@@ -32,7 +32,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system config apply
+cumulus@leaf01:mgmt:~$ nv show system config apply
 ```
 
 - - -
@@ -48,7 +48,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ 
 ```
 
 - - -
@@ -70,7 +70,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system config apply ignore /etc/frr/frr.conf
+cumulus@leaf01:mgmt:~$ nv show system config apply ignore /etc/frr/frr.conf
 ```
 
 - - -
@@ -86,5 +86,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system config snippet
+cumulus@leaf01:mgmt:~$ nv show system config snippet
 ```

@@ -116,12 +116,6 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-relay default giaddress-interface lo
 
 Shows IPv6 DHVP relay configuration information on the switch.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |  The VRF name.|
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0

@@ -16,7 +16,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system wjh
+cumulus@leaf01:mgmt:~$ nv show system wjh
 ```
 
 - - -
@@ -32,7 +32,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system wjh channel
+cumulus@leaf01:mgmt:~$ nv show system wjh channel
 ```
 
 - - -
@@ -48,7 +48,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system wjh channel forwarding
+cumulus@leaf01:mgmt:~$ nv show system wjh channel forwarding
 ```
 
 - - -
@@ -64,7 +64,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system wjh channel forwarding trigger
+cumulus@leaf01:mgmt:~$ nv show system wjh channel forwarding trigger
 ```
 
 - - -
@@ -80,5 +80,5 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system wjh packet-buffer
+cumulus@leaf01:mgmt:~$ nv show system wjh packet-buffer
 ```

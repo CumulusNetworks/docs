@@ -16,7 +16,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system forwarding
+cumulus@leaf01:mgmt:~$ nv show system forwarding
 ```
 
 - - -
@@ -32,7 +32,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system forwarding lag-hash
+cumulus@leaf01:mgmt:~$ nv show system forwarding lag-hash
 ```
 
 - - -
@@ -48,7 +48,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system forwarding ecmp-hash
+cumulus@leaf01:mgmt:~$ nv show system forwarding ecmp-hash
 ```
 
 - - -
@@ -64,5 +64,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show system forwarding programming
+cumulus@leaf01:mgmt:~$ nv show system forwarding programming
 ```

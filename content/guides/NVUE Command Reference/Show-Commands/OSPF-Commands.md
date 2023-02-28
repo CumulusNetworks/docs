@@ -16,7 +16,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router ospf
+cumulus@leaf01:mgmt:~$ nv show router ospf
 ```
 
 - - -
@@ -32,7 +32,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router ospf timers
+cumulus@leaf01:mgmt:~$ nv show router ospf timers
 ```
 
 - - -
@@ -48,7 +48,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router ospf timers lsa
+cumulus@leaf01:mgmt:~$ nv show router ospf timers lsa
 ```
 
 - - -
@@ -64,7 +64,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show router ospf timers spf
+cumulus@leaf01:mgmt:~$ nv show router ospf timers spf
 ```
 
 - - -
@@ -86,7 +86,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 router ospf
+cumulus@leaf01:mgmt:~$ nv show interface swp51 router ospf
 ```
 
 - - -
@@ -108,7 +108,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 router ospf timers
+cumulus@leaf01:mgmt:~$ nv show interface swp51 router ospf timers
 ```
 
 - - -
@@ -130,7 +130,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 router ospf authentication
+cumulus@leaf01:mgmt:~$ nv show interface swp51 router ospf authentication
 ```
 
 - - -
@@ -152,7 +152,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show interface swp51 router ospf bfd
+cumulus@leaf01:mgmt:~$ nv show interface swp51 router ospf bfd
 ```
 
 - - -
@@ -174,7 +174,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf
 ```
 
 - - -
@@ -197,7 +197,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf area 0
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0
 ```
 
 - - -
@@ -220,7 +220,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf area 0 filter-list
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0 filter-list
 ```
 
 - - -
@@ -244,7 +244,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf area 0 range 172.16.1.0/24
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0 range 172.16.1.0/24
 ```
 
 - - -
@@ -268,7 +268,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf area 0 network 10.10.10.1/32
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0 network 10.10.10.1/32
 ```
 
 - - -
@@ -290,7 +290,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf default-originate
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf default-originate
 ```
 
 - - -
@@ -312,7 +312,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf distance
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf distance
 ```
 
 - - -
@@ -334,7 +334,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf max-metric
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf max-metric
 ```
 
 - - -
@@ -356,7 +356,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf log
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf log
 ```
 
 - - -
@@ -378,7 +378,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf redistribute
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute
 ```
 
 - - -
@@ -400,7 +400,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf redistribute static
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute static
 ```
 
 - - -
@@ -422,7 +422,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf redistribute connected
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute connected
 ```
 
 - - -
@@ -444,7 +444,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf redistribute kernel
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute kernel
 ```
 
 - - -
@@ -466,7 +466,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf redistribute bgp
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute bgp
 ```
 
 - - -
@@ -488,7 +488,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf timers 
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf timers 
 ```
 
 - - -
@@ -510,7 +510,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf timers lsa
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf timers lsa
 ```
 
 - - -
@@ -532,5 +532,5 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf04:mgmt:~$ nv show vrf default router ospf timers spf
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf timers spf
 ```

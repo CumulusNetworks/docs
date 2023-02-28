@@ -40,3 +40,5 @@ Introduced in Cumulus Linux 5.2.0
 ```
 cumulus@leaf01:mgmt:~$ nv show router adaptive-routing
 ```
+
+- - -

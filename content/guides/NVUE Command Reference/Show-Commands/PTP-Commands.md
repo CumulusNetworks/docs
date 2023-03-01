@@ -72,6 +72,28 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 ptp timers
 
 - - -
 
+## nv show interface \<interface-id\> ptp shaper
+
+Shows if PTP shaper is enabled on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`   |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ptp shaper
+```
+
+- - -
+
 ## nv show interface \<interface-id\> ptp counters
 
 Shows PTP counters for the specified PTP interface.
@@ -167,6 +189,142 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$  nv show service ptp 1 acceptable-master 24:8a:07:ff:fe:f4:16:06
+```
+
+- - -
+
+## nv show service ptp \<instance-id\> unicast-master
+
+Shows the PTP unicast master table configuration on the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$  nv show service ptp 1 unicast-master
+```
+
+- - -
+
+## nv show service ptp \<instance-id\> unicast-master \<table-id\>
+
+Shows information about a specific PTP unicast master table on the switch.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+| `<table-id>`  | The unicast master table ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service ptp 1 unicast-master 1
+```
+
+- - -
+
+## nv show service ptp \<instance-id\> unicast-master \<table-id\> address
+
+Shows the IP addresses of the specified PTP unicast master table.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+| `<table-id>`  | The unicast master table ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service ptp 1 unicast-master 1 address
+```
+
+- - -
+
+## nv show service ptp \<instance-id\> unicast-master \<table-id\> address \<ip-mac-address-id\>
+
+Shows information about a specific IP or MAC address for the specified PTP unicast master table.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+| `<table-id>`  | The unicast master table ID.|
+| `<ip-mac-address-id>`  | The IP or MAC address.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service ptp 1 unicast-master 1 address 10.10.10.1
+```
+
+- - -
+
+## nv show service ptp \<instance-id\> profile
+
+Shows the PTP profiles configured for the specified PTP instance. PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service ptp 1 profile
+```
+
+- - -
+
+## nv show service ptp \<instance-id\> profile \<profile-id\>
+
+Shows configuration settings for a specific PTP profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<instance-id>`  | The PTP instance number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service ptp 1 profile CUSTOM1
 ```
 
 - - -

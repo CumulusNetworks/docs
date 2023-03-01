@@ -24,7 +24,7 @@ To create a backup, refer to the following steps for your NetQ version.
 <p style="text-indent: 40px">b. Select <b>NVIDIA Licensing Portal</b>.<br></p>
 <p style="text-indent: 40px">c. Select <b>Software Downloads</b> from the menu.<br></p>
 <p style="text-indent: 40px">d. Click <b>Product Family</b> and select <b>NetQ</b>.<br></p>
-<p style="text-indent: 40px">e. Locate the <code>NetQ Upgrade Backup Restore</code> file and select Download.<br></p>
+<p style="text-indent: 40px">e. Locate the NetQ Upgrade Backup Restore file and select <b>Download</b>.<br></p>
 <p style="text-indent: 40px">f. If prompted, agree to the license agreement and proceed with the download.<br></p>
 
 2. Copy the `vm-backuprestore.sh` script to your NetQ server:
@@ -41,7 +41,7 @@ vm-backuprestore.sh                                                             
 cumulus@netq-appliance:/home/cumulus# chmod +x /usr/sbin/vm-backuprestore.sh
 ```
 
-4. In the directory you copied the `vm-backuprestore.sh` script into, run the script:
+4. In the directory you copied the `vm-backuprestore.sh` script, run:
 
 ```
 cumulus@netq-appliance:~$ sudo ./vm-backuprestore.sh --backup
@@ -62,7 +62,7 @@ Backup is successful, please scp it to the master node the below command:
 cumulus@netq-appliance:~$
 ```
 
-5. Verify the backup file creation was successful.
+5. Verify the backup file creation was successful:
 
    ```
    cumulus@netq-appliance:~$ cd /opt/backuprestore/
@@ -70,35 +70,19 @@ cumulus@netq-appliance:~$
    backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
    ```
 
-### Back Up NetQ 4.5.0 or Later
+### Back Up NetQ 4.5.0
 
 1. Run the backup script `/usr/sbin/vm-backuprestore.sh`:
 
 ```
 cumulus@netq-appliance:~$ sudo /usr/sbin/vm-backuprestore.sh --backup
-[sudo] password for cumulus:
-Mon Feb  6 12:37:18 2023 - Please find detailed logs at: /var/log/vm-backuprestore.log
-Mon Feb  6 12:37:18 2023 - Starting backup of data, the backup might take time based on the size of the data
-Mon Feb  6 12:37:19 2023 - Scaling static pods to replica 0
-Mon Feb  6 12:37:19 2023 - Scaling all pods to replica 0
-Mon Feb  6 12:37:28 2023 - Scaling all daemonsets to replica 0
-Mon Feb  6 12:37:29 2023 - Waiting for all pods to go down
-Mon Feb  6 12:37:29 2023 - All pods are down
-Mon Feb  6 12:37:29 2023 - Creating backup tar /opt/backuprestore/backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
-Backup is successful, please scp it to the master node the below command:
-      sudo scp /opt/backuprestore/backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar cumulus@<ip_addr>:/home/cumulus
- 
-  Restore the backup file using the below command:
-      ./vm-backuprestore.sh --restore --backupfile /opt/backuprestore/backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
-cumulus@netq-appliance:~$
 ```
 
-2. Verify the backup file creation was successful.
+2. Verify the backup file creation was successful:
 
    ```
    cumulus@netq-appliance:~$ cd /opt/backuprestore/
    cumulus@netq-appliance:~/opt/backuprestore$ ls
-   backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
    ```
 
 

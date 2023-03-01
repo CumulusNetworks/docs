@@ -2083,7 +2083,7 @@ When the neighbor receives the prefix, it examines the community value and takes
 
 Here is an example of a standard community list filter:
 
-{{< tabs "54 ">}}
+{{< tabs "2086 ">}}
 
 {{< tab "NCLU Commands ">}}
 
@@ -2110,14 +2110,6 @@ cumulus@switch:~$
 
 {{< /tab >}}
 
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
-```
-
-{{< /tab >}}
-
 {{< /tabs >}}
 
 You can apply the community list to a route map to define the routing policy:
@@ -2127,7 +2119,7 @@ You can apply the community list to a route map to define the routing policy:
 {{< tab "NCLU Commands ">}}
 
 ```
-cumulus@switch:~$ net add bgp table-map ROUTE-MAP1
+cumulus@switch:~$ net add routing protocol bgp route-map ROUTE-MAP1
 cumulus@switch:~$ net pending
 cumulus@switch:~$ net commit
 ```
@@ -2138,22 +2130,13 @@ cumulus@switch:~$ net commit
 
 ```
 cumulus@switch:~$ sudo vtysh
-
 switch# configure terminal
-switch(config)# router bgp 65101
-switch(config-router)# table-map ROUTE-MAP1
-switch(config-router)# end
+switch(config)# route-map ROUTEMAP1 
+switch(config-route-map)# match community COMMUNITY1
+switch(config-route-map)# end
 switch# write memory
 switch# exit
 cumulus@switch:~$
-```
-
-{{< /tab >}}
-
-{{< tab "CUE Commands ">}}
-
-```
-cumulus@switch:~$ NEED COMMAND
 ```
 
 {{< /tab >}}

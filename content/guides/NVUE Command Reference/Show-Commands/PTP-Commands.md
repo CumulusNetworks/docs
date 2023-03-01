@@ -148,7 +148,7 @@ cumulus@leaf01:mgmt:~$  nv show service ptp 1 acceptable-master
 
 - - -
 
-## nv show service ptp \<instance-id\> acceptable-master <clock-id>
+## nv show service ptp \<instance-id\> acceptable-master \<clock-id\>
 
 Shows the configuration settings for the specified acceptable master clock.
 

@@ -5,7 +5,7 @@ weight: 350
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show interface <interface-id\> ip vrr
+## nv show interface \<interface-id\> ip vrr
 
 Shows VRR configuration for the specified interface.
 

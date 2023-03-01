@@ -52,7 +52,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 protocol bgp
 
 - - -
 
-## nv show vrf <\<vrf-id\> router rib \<afi\> route \<route-id\>
+## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\>
 
 Shows the routing table for the specified route.
 

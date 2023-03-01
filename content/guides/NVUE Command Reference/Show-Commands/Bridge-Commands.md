@@ -332,7 +332,7 @@ cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding
 
 - - -
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication <hrep-id>
+## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication \<hrep-id\>
 
 Shows the head-end-replication settings for the specified VNI.
 

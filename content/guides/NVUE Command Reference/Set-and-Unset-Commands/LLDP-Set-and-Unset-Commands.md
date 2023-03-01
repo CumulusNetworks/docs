@@ -9,12 +9,12 @@ type: nojsscroll
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-nv set service lldp
-nv set service lldp tx-interval 10-300
-nv set service lldp tx-hold-multiplier 1-10
-nv set service lldp dot1-tlv (on|off)
-nv set acl <acl-id> rule <rule-id> match mac source-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
-nv set acl <acl-id> rule <rule-id> match mac dest-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
+## nv set service lldp
+## nv set service lldp tx-interval 10-300
+## nv set service lldp tx-hold-multiplier 1-10
+## nv set service lldp dot1-tlv (on|off)
+## nv set acl \<acl-id\> rule \<rule-id\> match mac source-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
+## nv set acl \<acl-id\> rule \<rule-id\> match mac dest-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
 
 ## nv set interface \<interface-id\> lldp
 

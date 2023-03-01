@@ -582,7 +582,7 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac
 
 - - -
 
-## nv show evpn vni \<vni-id\> mac <mac-address-id>
+## nv show evpn vni \<vni-id\> mac \<mac-address-id\>
 
 Shows configuration information about a specific VNI MAC address.
 
@@ -627,7 +627,7 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 host
 
 - - -
 
-## nv show evpn vni \<vni-id\> host <ip-address-id>
+## nv show evpn vni \<vni-id\> host \<ip-address-id\>
 
 Shows a specific ARP and ND table for the specific VNI.
 

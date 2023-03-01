@@ -2448,8 +2448,6 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 Shows the outbound policy for the specified BGP IPv6 peer group.
 
-`nv show vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast policy outbound [options]`
-
 ### Command Syntax
 
 | Syntax |  Description   |

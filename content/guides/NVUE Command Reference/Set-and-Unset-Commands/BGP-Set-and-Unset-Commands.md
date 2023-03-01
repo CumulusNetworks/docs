@@ -343,7 +343,7 @@ Provides commands to configure IPv4 route aggregation to minimize the size of th
 
 - - -
 
-## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> summary-only
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\> summary-only
 
 Configures BGP to suppress longer IPv4 prefixes inside the aggregate address before sending updates.
 
@@ -368,7 +368,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 - - -
 
-## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> as-set
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\> as-set
 
 Turns generation of an `AS_SET` for route aggregate on or off. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual routes to help BGP detect and avoid loops.
 
@@ -393,7 +393,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 - - -
 
-## nv set vrf <vrf-id> router bgp address-family ipv4-unicast aggregate-route <aggregate-route-id> route-map
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast aggregate-route \<aggregate-route-id\> route-map
 
 Applies a route map to the IPv4 aggregate route.
 
@@ -439,7 +439,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 - - -
 
-## nv set vrf <vrf-id> router bgp address-family ipv4-unicast network <static-network-id> route-map
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast network \<static-network-id\> route-map
 
 Applies a route map to the IPv4 prefixes that originate from a BGP node.
 
@@ -497,7 +497,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv4-unicast rou
 
 - - -
 
-## nv set vrf <vrf-id> router bgp address-family ipv4-unicast route-import from-vrf enable
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast route-import from-vrf enable
 
 Turns IPv4 route leaking on or off.
 
@@ -613,7 +613,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 - - -
 
-## nv set vrf <vrf-id> router bgp address-family ipv4-unicast multipaths compare-cluster-length
+## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast multipaths compare-cluster-length
 
 Turns on cluster length comparison for IPv4. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
 
@@ -882,7 +882,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 - - -
 
-## nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> as-set
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast aggregate-route \<aggregate-route-id\> as-set
 
 Turns generation of an `AS_SET` for the aggregate on or off. When `on`, BGP creates an aggregate address with a mathematical set of autonomous systems. The `AS_SET` option summarizes the `AS_PATH` attributes of all the individual IPv6 routes to help BGP detect and avoid loops.
 
@@ -907,7 +907,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 - - -
 
-## nv set vrf <vrf-id> router bgp address-family ipv6-unicast aggregate-route <aggregate-route-id> route-map 
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast aggregate-route \<aggregate-route-id\> route-map
 
 Applies a route map to the aggregate IPv6 route.
 
@@ -970,7 +970,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp address-family ipv6-unicast rou
 
 - - -
 
-## nv set vrf <vrf-id> router bgp address-family ipv6-unicast route-import from-vrf enable
+## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast route-import from-vrf enable
 
 Turns IPv6 route leaking on or off.
 
@@ -1066,7 +1066,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 - - -
 
-## nv set vrf <vrf-id> router bgp address-family ipv6-unicast multipaths compare-cluster-length
+## nv set vrf \<vrf-id> router bgp address-family ipv6-unicast multipaths compare-cluster-length
 
 Turns on cluster length comparison for IPv6. When `on` and iBGP paths have a cluster list, their lengths must be equal to be selected as multipaths.
 
@@ -1990,7 +1990,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINE bfd detect
 
 - - -
 
-## nv set vrf \<vrf-id\> router bgp peer-group <peer-group-id> bfd min-rx-interval
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> bfd min-rx-interval
 
 Configures the minimum interval between received BFD control packets for the BGP peer group. You can specify a value between 50 and 60000.
 
@@ -2522,7 +2522,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-f
 
 - - -
 
-## nv set vrf \<vrf-id\> router bgp peer-group <peer-group-id> address-family ipv4-unicast attribute-mod nexthop
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod nexthop
 
 Configures BGP to follow normal BGP procedures when generating the `NEXT_HOP` attribute for the specified peer group. You can specify `on` or `off`. If you set this attribute to `off`, BGP does not change `NEXT_HOP` when sending an update to the peer group.
 

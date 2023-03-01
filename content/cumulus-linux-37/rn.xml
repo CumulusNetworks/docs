@@ -289,7 +289,7 @@ MemoryError
 <tr>
 <td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -3012,7 +3012,7 @@ Fixed: 1.0.1t-1+deb8u16</td>
 <tr>
 <td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>

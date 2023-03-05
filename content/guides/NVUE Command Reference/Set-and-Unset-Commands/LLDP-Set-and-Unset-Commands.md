@@ -9,13 +9,6 @@ type: nojsscroll
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set service lldp
-## nv set service lldp tx-interval 10-300
-## nv set service lldp tx-hold-multiplier 1-10
-## nv set service lldp dot1-tlv (on|off)
-## nv set acl \<acl-id\> rule \<rule-id\> match mac source-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
-## nv set acl \<acl-id\> rule \<rule-id\> match mac dest-mac (ANY|bpdu|cdp|cisco-pvst|lacp|lldp|<mac>)
-
 ## nv set interface \<interface-id\> lldp
 
 Provides commands to configure Link Layer Discovery Protocol (LLDP) for an interface.
@@ -36,7 +29,7 @@ The default setting is `off`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -60,7 +53,7 @@ The default setting is `off`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -82,7 +75,7 @@ Configures ETS Recommendation TLV transmission on the interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
@@ -138,10 +131,31 @@ The default setting is `off`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.1.0
 
 ### Example
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service lldp dot1-tlv on
 ```
+
+- - -
+
+## nv set service lldp mode \<mode\>
+
+Configures the `lldpd` service to send only CDP frames or only LLDP frames. By default, the `lldpd` service sends LLDP frames unless it detects a CDP peer, then it sends CDP frames. You can set the following options:
+- `force-send-cdpv1` configures the `lldpd` service to send only CDPv1 frames.
+- `force-send-cdpv2` configures the `lldpd` service to send only CDPv2 frames.
+- `force-send-lldp` configures the `lldpd` service to send only LLDP frames.
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service lldp mode force-send-cdpv1
+```
+
+- - -

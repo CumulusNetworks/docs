@@ -37,58 +37,54 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link state up
 
 - - -
 
-## nv set interface \<interface-id\> link dot1x
+## nv set interface \<interface-id\> link breakout \<mode-id\>
 
-Provides commands to configure the IEEE 802.1X protocol for the specified interface.
+Configures a port break out (split) with the following options:
+- 1x does not split the port. This is the default port setting.
+- 2x splits the port into two interfaces.
+- 4x splits the port into four interfaces.
+- 8x splits the port into eight interfaces.
 
-- - -
-
-## nv set interface \<interface-id\> link dot1x mab
-
-Configures MAC authentication bypass (MAB), which enables bridge ports to allow devices to bypass authentication based on their MAC address. This is useful for devices that do not support PAE, such as printers or phones. You can specify `on` or `off`.
-
-The default setting is `off`.
+If you split a 100G port into four interfaces and auto-negotiation is on (the default setting), Cumulus Linux advertises the speed for each interface up to the maximum speed possible for a 100G port (100/4=25G). You can overide this configuration and set specific speeds for the split ports if necessary.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
+|`<interface-id>` | The interface you want to configure. |
+|`<mode-id>` | The breakout mode: 1x, 2x, 4x, 8x. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 link dot1x mab on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link breakout 4x
 ```
 
-- - -
+## nv set interface \<interface-id\> link breakout \<mode-id\> lanes-per-port \<lanes-per-port\>
 
-## nv set interface \<interface-id\> link dot1x parking-vlan
-
-Configures a Parking VLAN. If a non-authorized supplicant tries to communicate with the switch, you can route traffic from that device to a different VLAN and associate that VLAN with one of the switch ports to which the supplicant is attached. You can specify `on` or `off`.
-
-The default setting is `off`.
+Configures the number of lanes per split port. By default, to calculate the split port width, Cumulus Linux uses the formula: split port width = full port width / breakout. For example, a port split into two interfaces (2x breakout) => 8 lanes width / 2x breakout = 4 lanes per split port. If you need to use a different port width than the default, you can set the number of lanes per port.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
+|`<interface-id>` | The interface you want to configure. |
+|`<mode-id>` | The breakout mode: 1x, 2x, 4x, 8x. |
+|`<lanes-per-port>` | The breakout mode: 1x, 2x, 4x, 8x. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 link dot1x parking-vlan on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link breakout 2x lanes-per-port 2
 ```
-
 - - -
 
 ## nv set interface \<interface-id\> link auto-negotiate
@@ -115,28 +111,6 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link auto-negotiate off
 
 - - -
 
-## nv set interface \<interface-id\> link breakout
-
-Configures breakout ports for the interface. You can specify 1x, 2x20G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G, disabled, or loopback.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 link breakout 4x25G
-```
-
-- - -
-
 ## nv set interface \<interface-id\> link duplex
 
 Configures duplex mode for the interface; full or half.
@@ -157,6 +131,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp1 link duplex half
+```
+
+- - -
+
+## nv set interface \<interface-id\> link lanes
+
+Configures the number of lanes for a port to override the default behavior for supported speeds and platforms.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link lanes 1
 ```
 
 - - -
@@ -245,7 +241,7 @@ The default setting is `off`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 

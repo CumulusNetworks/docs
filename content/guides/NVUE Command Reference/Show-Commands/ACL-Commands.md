@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show interface \<interface-id\> acl
 
-Shows the Access Control Lists (ACLs) on the specified interface. You use ACLs to match packets and take actions.
+Shows the <span style="background-color:#F5F5DC">[ACLs](## "Access Control Lists")</span> on the specified interface. You use ACLs to match packets and take actions.
 
 ### Command Syntax
 
@@ -29,7 +29,7 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 acl
 
 ## nv show interface \<interface-id\> acl \<acl-id\>
 
-Shows information about the specified Access Control List (ACL) on the specified interface. You use ACLs to match packets and take actions.
+Shows information about the specified ACL on the specified interface. You use ACLs to match packets and take actions.
 
 ### Command Syntax
 
@@ -52,7 +52,7 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 acl EXAMPLE1
 
 ## nv show interface \<interface-id\> acl \<acl-id\> statistics
 
-Shows statistics for the specified ACL on the specified interface.
+Shows statistics for a specific ACL on the specified interface.
 
 ### Command Syntax
 

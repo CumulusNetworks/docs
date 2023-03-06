@@ -346,7 +346,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp unicast-request-duration 500
 ## nv set interface \<interface-id\> ptp unicast-master-table-id
 
 Configures the unicast table ID; a unique ID that identifies the unicast master table.
- 
+
 ### Command Syntax
 
 | Syntax |  Description   |

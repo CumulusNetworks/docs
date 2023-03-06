@@ -359,7 +359,7 @@ Shows configuration information about the specified VNI.
 
 ### Command Syntax
 
- Syntax |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | Syntax |  Description   |
 | `<vni-id>` |  The VNI name. |
@@ -382,7 +382,7 @@ Shows route advertisement information for the specified EVPN VNI.
 
 ### Command Syntax
 
- Syntax |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | Syntax |  Description   |
 | `<vni-id>` |  The VNI name. |
@@ -405,7 +405,7 @@ Shows route target information for the specified EVPN VNI.
 
 ### Command Syntax
 
- Syntax |  Description   |
+| Syntax |  Description   |
 | --------- | -------------- |
 | Syntax |  Description   |
 | `<vni-id>` |  The VNI name. |

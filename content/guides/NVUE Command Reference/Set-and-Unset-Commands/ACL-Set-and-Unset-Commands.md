@@ -13,9 +13,9 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Configures the ACL rule to apply in the inbound direction.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 | `<acl-id>` |   The name of the ACL. |
@@ -36,9 +36,9 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 inbound
 
 Configures the ACL rule to apply to a control plane interface in the inbound direction.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 | `<acl-id>` |   The name of the ACL. |
@@ -59,9 +59,9 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
 
 Configures the ACL rule to apply in the outbound direction.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 | `<acl-id>` |   The name of the ACL. |
@@ -82,9 +82,9 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound
 
 Configures the ACL rule to apply to a control plane interface in the outbound direction.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 |`<interface-id>` |  The interface you want to configure. |
 | `<acl-id>` |   The name of the ACL. |
@@ -121,9 +121,9 @@ cumulus@leaf01:mgmt:~$ nv set system acl mode atomic
 
 Configures the IP source port match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -144,9 +144,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 22
 
 Configures the IP destination port match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -168,9 +168,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
 
 Configures IP fragment packet match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -193,9 +193,9 @@ Configures the ACL to match on the ECT bit. The ECT codepoints negotiate if the 
 
 By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -218,9 +218,9 @@ Configures the ACL to match on the CWR bit (Window Reduced). The CWR bit notifie
 
 By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -243,9 +243,9 @@ Configures the ACL to match on the ECE bit. After an endpoint receives a packet 
 
 By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -266,9 +266,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags tcp-ece
 
 Configures the IP TCP flag you want match in the packet. You can specify: `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -289,9 +289,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip tcp flags syn
 
 Configures the IP TCP mask you want to match in the packet.  You can specify: `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -312,9 +312,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip tcp mask ack
 
 Configures the TCP established state you want to match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -335,9 +335,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip tcp state establishe
 
 Configures the source IP address you want to match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -359,9 +359,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/
 
 Configures the destination IP address you want to match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -383,9 +383,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
 
 Configures the IP protocol you want to match. You can specify `tcp`, `udp`, `ospf`, `pim`, `icmp`, `icmpv6`, or `igmp`.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -406,9 +406,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
 
 Configures the DSCP value you want to match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -429,9 +429,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dscp af13
 
 Configures the IP ICMP type you want to match. You can specify: `dest-unreachable`, `echo-reply`, `echo-request`, `port-unreachable`, or `time-exceeded`. Alternatively, you can specify an integer between 0 and 255.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -452,9 +452,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip icmp-type dest-unrea
 
 Configures the IP ICMPv6 type you want to match. You can specify: `router-solicitation`, `router-advertisement`, `neighbor-solicitation`, or `neighbor-advertisement`. Alternatively, you can specify an integer between 0 and 255.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -475,9 +475,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip icmpv6-type router-a
 
 Configures the source MAC address you want to match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -499,9 +499,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac source-mac any
 
 Configure the source MAC address mask you want to match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -523,9 +523,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac source-mac-mask 00:
 
 Configures the destination MAC address you want to match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -545,9 +545,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac dest-mac any
 
 Configures the destination MAC address mask you want to match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -569,9 +569,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac dest-mac-mask 00:00
 
 configures the MAC protocol you want to match. You can specify `ANY`, `arp`, `ipv4`, or `ipv6`. Alternatively you can specify a value between 0 and 255.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -590,9 +590,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac protocol ipv4
 
 Configures the VLAN ID to match.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -614,9 +614,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac vlan 10
 
 Configures a permit action to permit packets.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -637,9 +637,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action permit
 
 Configures a deny action to deny packets.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -660,9 +660,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action deny
 
 Configures logging for ACLs.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -683,9 +683,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action log
 
 Configures logging for packets with a specific prefix.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -705,9 +705,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action log log-prefix 10.10.1
 
 Modifies the class value for packet classification.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -728,9 +728,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set class 3
 
 Configures the DSCP value to modify in the packet.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -749,9 +749,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set dscp af12
 
 Configures the 802.1p CoS value to modify in the packet.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -772,9 +772,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set cos 6
 
 Configures the ERSPAN source IP address.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -795,9 +795,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action erspan source-ip 10.10
 
 Configures the ERSPAN destination IP address.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -818,9 +818,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action erspan dest-ip 10.10.1
 
 Configures the ERSPAN Time to Live (TTL). You can specify a value between 1 and 255.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -841,9 +841,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action erspan ttl 200
 
 Configures quality of service for traffic on the data plane. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the traffic mode. You can specify `packet`, `kbps`, `mbps` or `gbps`.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -864,9 +864,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police mode mbps
 
 Configures quality of service for traffic on the data plane. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the police burst rate; the number of packets or kilobytes (KB) allowed to arrive sequentially. You can specify a value between 1 and 2147483647.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -887,9 +887,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police burst 1000
 
 Configures quality of service for traffic on the data plane. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the policing rate. You can specify a value between 1 and 2147483647.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -910,9 +910,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police rate 2000
 
 Configures quality of service for traffic on the data plane. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the police action class. You can specify an integer between 0 and 7.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -933,9 +933,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police class 5
 
 Configures the SPAN session.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -956,9 +956,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action span swp1
 
 Configures an ACL rule remark (description) about deny or permit conditions in the rule. You must enclose multiple words in double quotes (").
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
@@ -981,9 +981,9 @@ Configures the ACL rule type. You can specify `ipv4`, `ipv6` or `mac`.
 
 This command is required when configuring other ACL settings.
 
-### Identifiers
+### Command Syntax
 
-| Identifier |  Description   |
+| Syntax |  Description   |
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |

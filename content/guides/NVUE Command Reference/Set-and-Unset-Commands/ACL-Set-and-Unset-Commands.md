@@ -101,9 +101,25 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound control-plane
 
 - - -
 
-## nv set acl \<acl-id\> rule \<rule-id\> match ip source-port \<ip-port-id\>
+## nv set system acl mode
 
-Configures the source port match.
+Configures the ACL mode; atomic or non-atomic.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system acl mode atomic
+```
+
+- - -
+
+## nv set acl \<acl-id\> rule \<rule-id\> match ip source-port
+
+Configures the IP source port match.
 
 ### Identifiers
 
@@ -111,7 +127,6 @@ Configures the source port match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<ip-port-id>` |  The IP port number. |
 
 ### Version History
 
@@ -127,7 +142,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip source-port 22
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match ip dest-port \<ip-port-id\>
 
-Configures the destination port match.
+Configures the IP destination port match.
 
 ### Identifiers
 
@@ -172,7 +187,11 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip fragment
 
 - - -
 
-## nv set acl <acl-id> rule <rule-id> match ip ecn flags \<type\>
+## nv set acl \<acl-id\> rule \<rule-id\> match ip ecn ip-ect
+
+Configures the ACL to match on the ECT bit. The ECT codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1.
+
+By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
 
 ### Identifiers
 
@@ -180,7 +199,56 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip fragment
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<type>` | The IP ECN flag type. You can specify `tcp-cwr` or `tcp-ece`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags ip-ect
+```
+
+- - -
+
+## nv set acl \<acl-id\> rule \<rule-id\> match ip ecn tcp-cwr
+
+Configures the ACL to match on the CWR bit (Window Reduced). The CWR bit notifies the other endpoint of the connection that it received and reacted to an ECE.
+
+By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags tcp-cwr
+```
+
+- - -
+
+## nv set acl \<acl-id\> rule \<rule-id\> match ip ecn tcp-ece
+
+Configures the ACL to match on the ECE bit. After an endpoint receives a packet with the CE bit set by a router, it sets the ECE bit in the returning ACK packet to notify the other endpoint that it needs to slow down.
+
+By default, ECN rules match a packet with the bit set. You can reverse the match by using an explanation point (!).
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
 
 ### Version History
 
@@ -192,32 +260,11 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags tcp-ece
 ```
 
-## nv set acl \<acl-id\> rule \<rule-id\> match ip ecn ip-ect
-
-Configures the ACL to match on the ECT bit. The ECT codepoints negotiate if the connection is ECN capable by setting one of the two bits to 1. Routers also use the ECT bit to indicate that they are experiencing congestion by setting both the ECT codepoints to 1.
-
-### Identifiers
-
-| Identifier |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip ecn ip-ect
-```
-
 - - -
 
-## nv set acl \<acl-id\> rule \<rule-id\> match ip tcp flags \<type\>
+## nv set acl \<acl-id\> rule \<rule-id\> match ip tcp flags
 
-Configures IP TCP flag packet match.
+Configures the IP TCP flag you want match in the packet. You can specify: `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.
 
 ### Identifiers
 
@@ -225,7 +272,6 @@ Configures IP TCP flag packet match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<type>` |  The IP TCP flag type. You can specify: `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.   |
 
 ### Version History
 
@@ -239,9 +285,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip tcp flags syn
 
 - - -
 
-## nv set acl \<acl-id\> rule \<rule-id\> match ip tcp mask \<type\>
+## nv set acl \<acl-id\> rule \<rule-id\> match ip tcp mask
 
-Configures IP TCP mask packet match.
+Configures the IP TCP mask you want to match in the packet.  You can specify: `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.
 
 ### Identifiers
 
@@ -249,7 +295,6 @@ Configures IP TCP mask packet match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<type>` |  The IP TCP mask type. You can specify: `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.   |
 
 ### Version History
 
@@ -286,7 +331,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip tcp state establishe
 
 - - -
 
-## nv unset acl \<acl-id\> rule \<rule-id\> match ip source-ip
+## nv unset acl \<acl-id\> rule \<rule-id\> match ip source-ip \<ip-address\>
 
 Configures the source IP address you want to match.
 
@@ -310,7 +355,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/
 
 - - -
 
-## nv unset acl <acl-id> rule <rule-id> match ip dest-ip \<ip-address-id\>
+## nv unset acl <acl-id> rule <rule-id> match ip dest-ip \<ip-address\>
 
 Configures the destination IP address you want to match.
 
@@ -320,7 +365,7 @@ Configures the destination IP address you want to match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<ip-address-id>` | The destination IP address. |
+| `<ip-address>` | The destination IP address. |
 
 ### Version History
 
@@ -334,9 +379,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
 
 - - -
 
-## nv unset acl \<acl-id\> rule \<rule-id\> match ip protocol \<protocol-id\>
+## nv unset acl \<acl-id\> rule \<rule-id\> match ip protocol
 
-Configures the IP protocol you want to match.
+Configures the IP protocol you want to match. You can specify `tcp`, `udp`, `ospf`, `pim`, `icmp`, `icmpv6`, or `igmp`.
 
 ### Identifiers
 
@@ -344,7 +389,6 @@ Configures the IP protocol you want to match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<protocol-id>` |  The IP protocol you want to match. You can specify `tcp`, `udp`, `ospf`, `pim`, `icmp`, `icmpv6`, or `igmp`.  |
 
 ### Version History
 
@@ -358,7 +402,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
 
 - - -
 
-## nv unset acl \<acl-id\> rule \<rule-id\> match ip dscp \<value\>
+## nv unset acl \<acl-id\> rule \<rule-id\> match ip dscp
 
 Configures the DSCP value you want to match.
 
@@ -368,7 +412,6 @@ Configures the DSCP value you want to match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<value>` |  The DSCP value.  |
 
 ### Version History
 
@@ -382,9 +425,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dscp af13
 
 - - -
 
-## nv unset acl \<acl-id\> rule \<rule-id\> match ip icmp-type \<value\>
+## nv unset acl \<acl-id\> rule \<rule-id\> match ip icmp-type
 
-Configures the IP ICMP type you want to match.
+Configures the IP ICMP type you want to match. You can specify: `dest-unreachable`, `echo-reply`, `echo-request`, `port-unreachable`, or `time-exceeded`. Alternatively, you can specify an integer between 0 and 255.
 
 ### Identifiers
 
@@ -392,7 +435,6 @@ Configures the IP ICMP type you want to match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<value>` |  The ICMP type. You can specify: `dest-unreachable`, `echo-reply`, `echo-request`, `port-unreachable`, or `time-exceeded`. Alternatively, you can specify an integer between 0 and 255. |
 
 ### Version History
 
@@ -408,7 +450,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip icmp-type dest-unrea
 
 ## nv unset acl \<acl-id\> rule \<rule-id\> match ip icmpv6-type
 
-Configures the IP ICMPv6 type you want to match.
+Configures the IP ICMPv6 type you want to match. You can specify: `router-solicitation`, `router-advertisement`, `neighbor-solicitation`, or `neighbor-advertisement`. Alternatively, you can specify an integer between 0 and 255.
 
 ### Identifiers
 
@@ -416,7 +458,6 @@ Configures the IP ICMPv6 type you want to match.
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<value>` |  The ICMPv6 type. You can specify: `router-solicitation`, `router-advertisement`, `neighbor-solicitation`, or `neighbor-advertisement`. Alternatively, you can specify an integer between 0 and 255. |
 
 ### Version History
 
@@ -429,27 +470,6 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip icmpv6-type router-a
 ```
 
 - - -
-
-## nv set acl \<acl-id\> rule \<rule-id\> match mac
-
-Configures the address type to MAC for the match.
-
-### Identifiers
-
-| Identifier |  Description   |
-| ---------  | -------------- |
-| `<acl-id>` |   The ACL name. |
-| `<rule-id>` |  The ACL rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac
-```
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match mac source-mac \<source-mac\>
 
@@ -545,9 +565,9 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac dest-mac-mask 00:00
 
 - - -
 
-## nv set acl \<acl-id\> rule \<rule-id\> match mac protocol \<protocol\>
+## nv set acl \<acl-id\> rule \<rule-id\> match mac protocol
 
- (0-255|ANY|arp|ipv4|ipv6)
+configures the MAC protocol you want to match. You can specify `ANY`, `arp`, `ipv4`, or `ipv6`. Alternatively you can specify a value between 0 and 255.
 
 ### Identifiers
 
@@ -555,7 +575,6 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac dest-mac-mask 00:00
 | ---------  | -------------- |
 | `<acl-id>` |   The ACL name. |
 | `<rule-id>` |  The ACL rule number. |
-| `<protocol>` |  The MAC protocol: `ANY`, `arp`, `ipv4`, or `ipv6`. Alternatively you can specify a value between o and 255.  |
 
 ### Version History
 
@@ -639,7 +658,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action deny
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action log
 
-Configures ACL logging.
+Configures logging for ACLs.
 
 ### Identifiers
 
@@ -662,7 +681,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action log
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action log log-prefix \<prefix\>
 
-Configures logging matching packets with a specific prefix.
+Configures logging for packets with a specific prefix.
 
 ### Identifiers
 
@@ -728,7 +747,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set dscp af12
 
 ## nv set acl \<acl-id\> rule\<rule-id\> action set cos
 
-Configures the CoS value to modify in the packet.
+Configures the 802.1p CoS value to modify in the packet.
 
 ### Identifiers
 

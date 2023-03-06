@@ -331,7 +331,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip tcp state establishe
 
 - - -
 
-## nv unset acl \<acl-id\> rule \<rule-id\> match ip source-ip \<ip-address\>
+## nv set acl \<acl-id\> rule \<rule-id\> match ip source-ip \<ip-address\>
 
 Configures the source IP address you want to match.
 
@@ -355,7 +355,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/
 
 - - -
 
-## nv unset acl <acl-id> rule <rule-id> match ip dest-ip \<ip-address\>
+## nv set acl <acl-id> rule <rule-id> match ip dest-ip \<ip-address\>
 
 Configures the destination IP address you want to match.
 
@@ -379,7 +379,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dest-ip 10.0.15.8/32
 
 - - -
 
-## nv unset acl \<acl-id\> rule \<rule-id\> match ip protocol
+## nv set acl \<acl-id\> rule \<rule-id\> match ip protocol
 
 Configures the IP protocol you want to match. You can specify `tcp`, `udp`, `ospf`, `pim`, `icmp`, `icmpv6`, or `igmp`.
 
@@ -402,7 +402,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
 
 - - -
 
-## nv unset acl \<acl-id\> rule \<rule-id\> match ip dscp
+## nv set acl \<acl-id\> rule \<rule-id\> match ip dscp
 
 Configures the DSCP value you want to match.
 
@@ -425,7 +425,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip dscp af13
 
 - - -
 
-## nv unset acl \<acl-id\> rule \<rule-id\> match ip icmp-type
+## nv set acl \<acl-id\> rule \<rule-id\> match ip icmp-type
 
 Configures the IP ICMP type you want to match. You can specify: `dest-unreachable`, `echo-reply`, `echo-request`, `port-unreachable`, or `time-exceeded`. Alternatively, you can specify an integer between 0 and 255.
 
@@ -448,7 +448,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip icmp-type dest-unrea
 
 - - -
 
-## nv unset acl \<acl-id\> rule \<rule-id\> match ip icmpv6-type
+## nv set acl \<acl-id\> rule \<rule-id\> match ip icmpv6-type
 
 Configures the IP ICMPv6 type you want to match. You can specify: `router-solicitation`, `router-advertisement`, `neighbor-solicitation`, or `neighbor-advertisement`. Alternatively, you can specify an integer between 0 and 255.
 
@@ -768,6 +768,52 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set cos 6
 
 - - -
 
+## nv set acl \<acl-id\> rule \<rule-id\> action erspan source-ip
+
+Configures the ERSPAN source IP address.
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action erspan source-ip 10.10.10.10
+```
+
+- - -
+
+## nv set acl \<acl-id\> rule \<rule-id\> action erspan dest-ip
+
+Configures the ERSPAN destination IP address.
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action erspan dest-ip 10.10.10.3
+```
+
+- - -
+
 ## nv set acl \<acl-id\> rule \<rule-id\> action erspan ttl
 
 Configures the ERSPAN Time to Live (TTL). You can specify a value between 1 and 255.
@@ -791,9 +837,32 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action erspan ttl 200
 
 - - -
 
+## nv set acl \<acl-id\> rule \<rule-id\> action police mode
+
+Configures quality of service for traffic on the data plane. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the traffic mode. You can specify `packet`, `kbps`, `mbps` or `gbps`.
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police mode mbps
+```
+
+- - -
+
 ## nv set acl \<acl-id\> rule \<rule-id\> action police burst
 
-Configures the police burst rate; the number of packets or kilobytes (KB) allowed to arrive sequentially. You can specify a value between 1 and 2147483647.
+Configures quality of service for traffic on the data plane. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the police burst rate; the number of packets or kilobytes (KB) allowed to arrive sequentially. You can specify a value between 1 and 2147483647.
 
 ### Identifiers
 
@@ -816,7 +885,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police burst 1000
 
 ## nv set acl \<acl-id\> rule \<rule-id\> action police rate
 
-Configures the policing rate. You can specify a value between 1 and 2147483647.
+Configures quality of service for traffic on the data plane. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the policing rate. You can specify a value between 1 and 2147483647.
 
 ### Identifiers
 
@@ -832,7 +901,30 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl SPAN rule 10 action police rate 2000
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police rate 2000
+```
+
+- - -
+
+## nv set acl \<acl-id\> rule \<rule-id\> action police class
+
+Configures quality of service for traffic on the data plane. Using QoS policers, you can rate limit traffic so incoming packets get dropped if they exceed specified thresholds. This command configures the police action class. You can specify an integer between 0 and 7.
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action police class 5
 ```
 
 - - -
@@ -855,7 +947,30 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl SPAN rule 10 action span swp1
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action span swp1
+```
+
+- - -
+
+## nv set acl \<acl-id\> rule \<rule-id\> remark
+
+Configures an ACL rule remark (description) about deny or permit conditions in the rule. You must enclose multiple words in double quotes (").
+
+### Identifiers
+
+| Identifier |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The ACL name. |
+| `<rule-id>` |  The ACL rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 remark "The following line permits TCP packets"
 ```
 
 - - -
@@ -880,7 +995,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set acl SPAN rule 10 type ipv4
+cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 type ipv4
 ```
 
 - - -

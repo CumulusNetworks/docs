@@ -1,7 +1,7 @@
 ---
 title: DNS Set and Unset Commands
 author: Cumulus Networks
-weight: 540
+weight: 530
 product: Cumulus Linux
 type: nojsscroll
 ---

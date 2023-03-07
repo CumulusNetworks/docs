@@ -217,7 +217,7 @@ To work around this issue, avoid restarting the {{switchd}} service in the ZTP s
 </tr>
 <tr>
 <td>3135714</td>
-<td>The {{tacplus}} package does not create the correct tacacs0-15 users in the right groups. </td>
+<td>The {{tacplus}} package does not create the correct tacacs0-15 users in the right groups. NVUE commands are rejected with the error: "You do not have permission to execute that command."</td>
 <td>5.1.0-5.2.1</td>
 <td>5.3.0-5.4.0</td>
 </tr>
@@ -826,7 +826,7 @@ The new behavior will make sure to apply the configuration delta without disrupt
 <td>2999253</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
 This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
-<td>4.3.0, 4.4.0-5.0.1</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2999243</td>

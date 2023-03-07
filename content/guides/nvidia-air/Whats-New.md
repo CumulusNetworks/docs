@@ -7,13 +7,17 @@ product: NVIDIA Air
 <!-- vale off -->
 Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA Air">}}.
 
-## February 2023
+## March 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0306-011
+- Added cookie management options
+<!-- Air:WhatsNew -->
+
+## February 2023
 ### 82.2023.0216-011
 - Added Cumulus Linux 5.4.0
 - Builder defaults to Cumulus Linux 5.4.0 for new nodes
 - API documentation fixes
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0213-012
 - Updated Cumulus Linux 3.7.9 image

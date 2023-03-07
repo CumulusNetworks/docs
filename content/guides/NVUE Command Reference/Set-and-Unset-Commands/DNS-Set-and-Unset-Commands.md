@@ -35,3 +35,28 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set service dns default server 192.0.2.44
 ```
+
+- - -
+
+## nv set service dns \<vrf-id\> search \<domain\>
+
+Configures the domains to search for name matches.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` | The VRF you want to configure. |
+| `<domain>` | The domain name or IPv4 address.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service dns default search nvidia.com
+```
+
+- - -

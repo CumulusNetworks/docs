@@ -184,6 +184,12 @@ systemd[1]: Failed to start Precision Time Protocol (PTP) service.
 <td></td>
 </tr>
 <tr>
+<td>3269691</td>
+<td>When you restart the LLDP service, you see a {{broken pipe}} error and a log message in the {{lldpd.service}} logs. This error does not affect LLDP functionality.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3258232</td>
 <td>If you use NVUE to configure multiple SNMP listener addresses at the same time, the SNMP service fails to start. To work around this issue, configure multiple SNMP listener addresses one at a time.</td>
 <td>5.3.0-5.4.0</td>

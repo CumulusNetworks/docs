@@ -1,7 +1,7 @@
 ---
 title: IGMP Set and Unset Commands
 author: Cumulus Networks
-weight: 590
+weight: 550
 product: Cumulus Linux
 type: nojsscroll
 ---

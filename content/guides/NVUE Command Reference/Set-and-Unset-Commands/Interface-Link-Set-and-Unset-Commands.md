@@ -1,7 +1,7 @@
 ---
 title: Interface Link Set and Unset Commands
 author: Cumulus Networks
-weight: 600
+weight: 570
 product: Cumulus Linux
 type: nojsscroll
 ---

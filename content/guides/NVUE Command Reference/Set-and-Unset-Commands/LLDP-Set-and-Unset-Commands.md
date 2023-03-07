@@ -1,7 +1,7 @@
 ---
 title: LLDP Set and Unset Commands
 author: Cumulus Networks
-weight: 610
+weight: 580
 product: Cumulus Linux
 type: nojsscroll
 ---

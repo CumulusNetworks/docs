@@ -1,7 +1,7 @@
 ---
 title: NTP Set and Unset Commands
 author: Cumulus Networks
-weight: 670
+weight: 610
 product: Cumulus Linux
 type: nojsscroll
 ---

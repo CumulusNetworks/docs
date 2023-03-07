@@ -1,7 +1,7 @@
 ---
 title: PTM Set and Unset Commands
 author: Cumulus Networks
-weight: 680
+weight: 640
 product: Cumulus Linux
 type: nojsscroll
 ---

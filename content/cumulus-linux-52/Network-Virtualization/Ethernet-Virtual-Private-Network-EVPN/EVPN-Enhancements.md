@@ -547,25 +547,18 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to set `bridge-arp-nd-suppress off` on the VNI, then run the `ifreload -a` command.
+Edit the `/etc/network/interfaces` file to set `bridge-arp-nd-suppress off` on the VXLAN device, then run the `ifreload -a` command.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
 
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    vxlan-local-tunnelip 10.10.10.1
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 10=10 20=20 30=30 4036=4002 4024=4001
+    bridge-learning off
     bridge-arp-nd-suppress off
 
-auto vni20
-iface vni20
-      bridge-access 20
-      vxlan-id 20
-      vxlan-local-tunnelip 10.10.10.1
-      bridge-arp-nd-suppress off
 ...
 ```
 

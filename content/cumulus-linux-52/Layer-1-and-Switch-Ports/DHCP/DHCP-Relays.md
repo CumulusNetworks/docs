@@ -417,4 +417,5 @@ To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay` file to re
 
 ## Considerations
 
-The `dhcrelay` command does not bind to an interface if the interface name is longer than 14 characters. This is a known limitation in `dhcrelay`.
+- The `dhcrelay` command does not bind to an interface if the interface name is longer than 14 characters. This is a known limitation in `dhcrelay`.
+- DHCP packets received on bridge ports and sent to the CPU for processing cause the RX_DROP counter to increment on the interface.

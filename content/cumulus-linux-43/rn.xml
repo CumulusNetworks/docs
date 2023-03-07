@@ -2183,9 +2183,8 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 </tr>
 <tr>
 <td>2993469</td>
-<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
-This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
-<td>4.3.0, 4.4.0-5.0.1</td>
+<td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>2991514</td>

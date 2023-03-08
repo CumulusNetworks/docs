@@ -1029,27 +1029,11 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance intra-area 150
 
 Configures an OSPF maximum metric to notify its neighbors not to use the router as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After you update the network, the max-metric router no longer receives any traffic and you can configure the max-metric setting.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf max-metric ???
-```
-
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf max-metric administrative
 
-(on|off)
+Turns OSPF maximum metric on or off administratively, for an indefinite period. The default setting is `off`.
 
 ### Command Syntax
 
@@ -1071,7 +1055,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf max-metric administrative 
 
 ## nv set vrf \<vrf-id\> router ospf max-metric on-shutdown
 
-(5-100|none)
+Configures the OSPF maximum metric on shutdown. You can specify a value between 5 and 100, or `none`.
 
 ### Command Syntax
 
@@ -1093,7 +1077,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf max-metric on-shutdown 20
 
 ## nv set vrf \<vrf-id\> router ospf max-metric on-startup
 
-You can specify a value between 5 and 86400, or `none`.
+Configures the OSPF maximum metric on startup. You can specify a value between 5 and 86400, or `none`.
 
 ### Command Syntax
 
@@ -1115,23 +1099,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf max-metric on-startup 200
 
 ## nv set vrf \<vrf-id\> router ospf log
 
-Log configuration
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` | The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Configures OSPF logging.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf log adjacency-changes
 
-(on|off|detail)
+Configures logging for adjacency changes. You can specify `on`, `off`, or `detail`.
 
 ### Command Syntax
 
@@ -1165,7 +1139,7 @@ Configures OSPF static route redistributution.
 
 ## nv set vrf \<vrf-id\> router ospf redistribute static enable
 
-Turns OSPF static redistribution on or off.
+Turns OSPF static route redistribution on or off.
 
 ### Command Syntax
 
@@ -1187,7 +1161,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute static enable
 
 ## nv set vrf \<vrf-id\> router ospf redistribute static metric
 
-You can specify a value between 0 and 16777214, or `none`.
+Configures the metric for OSPF static route redistribution. You can specify a value between 0 and 16777214, or `none`.
 
 ### Command Syntax
 
@@ -1209,7 +1183,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute static metric
 
 ## nv set vrf \<vrf-id\> router ospf redistribute static metric-type
 
-Set OSPF External Type 1 or 2 metrics
+Configures the metric type for OSPF static route redistribution; 1 or 2.
 
 ### Command Syntax
 
@@ -1229,7 +1203,9 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute static metric
 
 - - -
 
-## nv set vrf \<vrf-id\> router ospf redistribute static route-map
+## nv set vrf \<vrf-id\> router ospf redistribute static route-map \<route-map\>
+
+Applies the specified route map for OSPF static route redistribution.
 
 ### Command Syntax
 
@@ -1251,13 +1227,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute static route-
 
 ## nv set vrf \<vrf-id\> router ospf redistribute connected
 
-Source route type.
+Configures connected route redistribution.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf redistribute connected enable
 
-Turns (on|off)
+Turns OSPF connected route redistribution on or off. The default setting is `off`.
 
 ### Command Syntax
 
@@ -1279,7 +1255,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute connected ena
 
 ## nv set vrf \<vrf-id\> router ospf redistribute connected metric-type
 
-Configures the OSPF External Type 1 or 2 metrics.
+Configures the metric type for OSPF connected route redistribution; 1 or 2.
 
 ### Command Syntax
 
@@ -1299,15 +1275,16 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute connected met
 
 - - -
 
-## nv set vrf \<vrf-id\> router ospf redistribute connected route-map
+## nv set vrf \<vrf-id\> router ospf redistribute connected route-map \<route-map-id\>
 
-Configures
+Applies the specified route map for OSPF connected route redistribution.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<route-map-id>` |   The route map name. |
 
 ### Version History
 
@@ -1323,23 +1300,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute connected rou
 
 ## nv set vrf \<vrf-id\> router ospf redistribute kernel
 
-Source route type.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Configures OSPF kernel route redistribution.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf redistribute kernel enable
 
-(on|off)
+Turns OSPF kernel route redistribution on or off. The default setting is `off`.
 
 ### Command Syntax
 
@@ -1361,7 +1328,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute kernel enable
 
 ## nv set vrf \<vrf-id\> router ospf redistribute kernel metric
 
-You can specify a value between 0 and 16777214, or `none`.
+Configures the metric for OSPF kernel route redistribution. You can specify a value between 0 and 16777214, or `none`.
 
 ### Command Syntax
 
@@ -1383,7 +1350,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute kernel metric
 
 ## nv set vrf \<vrf-id\> router ospf redistribute kernel metric-type
 
-Configures the OSPF external metric type; 1 or 2.
+Configures the metric type for OSPF kernel route redistribution; 1 or 2.
 
 ### Command Syntax
 
@@ -1403,13 +1370,16 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute kernel metric
 
 - - -
 
-## nv set vrf \<vrf-id\> router ospf redistribute kernel route-map
+## nv set vrf \<vrf-id\> router ospf redistribute kernel route-map \<route-map-id\>
+
+Applies the specified route map for OSPF kernel route redistribution.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<route-map-id>` |   The route map name. |
 
 ### Version History
 
@@ -1425,13 +1395,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute kernel route-
 
 ## nv set vrf \<vrf-id\> router ospf redistribute bgp
 
-Source route type.
+Configures OSPF BGP route redistribution.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf redistribute bgp enable
 
-(on|off)
+Turns OSPF BGP route redistribution on or off. The default setting is `off`.
 
 ### Command Syntax
 
@@ -1446,12 +1416,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute bgp enable on
 ```
 
 ## nv set vrf \<vrf-id\> router ospf redistribute bgp metric
 
-You can specify a value between 0 and 16777214, or `none`.
+Configures the metric for OSPF BGP route redistribution. You can specify a value between 0 and 16777214, or `none`.
 
 ## Command Syntax
 
@@ -1473,7 +1443,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute bgp metric 20
 
 ## nv set vrf \<vrf-id\> router ospf redistribute bgp metric-type
 
-Set OSPF External Type 1/2 metrics
+Configures the metric type for OSPF BGP route redistribution; 1 or 2.
 
 ### Command Syntax
 
@@ -1493,16 +1463,16 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute bgp metric-ty
 
 - - -
 
-## nv set vrf \<vrf-id\> router ospf redistribute bgp route-map \<route-map-name\>
+## nv set vrf \<vrf-id\> router ospf redistribute bgp route-map \<route-map-id\>
 
-Configures 
+Applies the specified route map for OSPF BGP route redistribution.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-|`<route-map-name>` | The route map name. |
+|`<route-map-id>` | The route map name. |
 
 ### Version History
 
@@ -1528,9 +1498,7 @@ Configures OSPF LSA timers.
 
 ## nv set vrf \<vrf-id\> router ospf timers lsa min-arrival
 
-Configures the    
-
-You can specify a value between 0 and 600000.
+Configures the minimum interval for accepting the same LSA. You can specify a value between 0 and 600000.
 
 ### Command Syntax
 
@@ -1552,9 +1520,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf timers lsa min-arrival 300
 
 ## nv set vrf \<vrf-id\> router ospf timers lsa throttle
 
-Configures the OSPF 
-
-You can specify a value between 0 and 5000, or `auto`.
+Configures the minimum interval in milliseconds between LSA updates in OSPF during times of network instability. You can specify a value between 0 and 5000, or `auto`.
 
 ### Command Syntax
 
@@ -1582,9 +1548,7 @@ Configures OSPF SPF timers.
 
 ## nv set vrf \<vrf-id\> router ospf timers spf delay
 
-Configures the
-
-You can specify a value between 0 and 600000, or `auto`.
+Configures the number of milliseconds from the initial event until SPF runs. You can specify a value between 0 and 600000, or `auto`.
 
 ### Command Syntax
 
@@ -1606,9 +1570,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf timers spf delay 30000
 
 ## nv set vrf \<vrf-id\> router ospf timers spf holdtime
 
-Configures the 
-
-You can specify a value between 0 and 600000, or `auto`.
+Configures the number of milliseconds between consecutive SPF runs. You can specify a value between 0 and 600000, or `auto`.
 
 ### Command Syntax
 
@@ -1630,7 +1592,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf timers spf holdtime 30000
 
 ## nv set vrf \<vrf-id\> router ospf timers spf max-holdtime
 
-You can specify a value between 0 and 600000, or `auto`.
+Configures the maximum number of milliseconds between SPFs. You can specify a value between 0 and 600000, or `auto`.
 
 ### Command Syntax
 
@@ -1652,7 +1614,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf spf max-holdtime 3000
 
 ## nv set vrf \<vrf-id\> router ospf timers refresh
 
-You can specify a value between 10 and 1800, or `auto`.
+Configures the interval in seconds to re-send LSAs to keep from aging out. You can specify a value between 10 and 1800, or `auto`. `auto` inherits the global setting. The default is `auto`.
 
 ### Command Syntax
 
@@ -1696,9 +1658,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf enable on
 
 ## nv set vrf \<vrf-id\> router ospf reference-bandwidth
 
-Used to determine link cost/metric value relative to defined reference
-
-You can specify a value between 1 and 4294967.
+Configures the auto-cost reference bandwidth. When you set the auto-cost reference bandwidth, Cumulus Linux dynamically calculates the OSPF interface cost to support higher speed links. You can specify a value between 1 and 4294967. The default value is 100000 for 100Gbps link speed.
 
 ### Command Syntax
 
@@ -1713,14 +1673,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf reference-bandwidth
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf reference-bandwidth 9000
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf rfc1583-compatible
 
-Turns on or off
+Configures the OSPF router to be compatible with RFC1583 (OSPFv2).
 
 ### Command Syntax
 
@@ -1735,10 +1695,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf rfc1583-compatible on
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf rfc1583-compatible off
 ```
 
 ## nv set vrf \<vrf-id\> router ospf router-id
+
+Configures the OSPF router ID.
 
 ### Command Syntax
 

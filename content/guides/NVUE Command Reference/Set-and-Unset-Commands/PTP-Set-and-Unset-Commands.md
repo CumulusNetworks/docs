@@ -1,7 +1,7 @@
 ---
 title: PTP Set and Unset Commands
 author: Cumulus Networks
-weight: 690
+weight: 670
 product: Cumulus Linux
 type: nojsscroll
 ---

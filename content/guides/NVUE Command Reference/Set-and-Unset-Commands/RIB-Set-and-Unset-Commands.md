@@ -1,7 +1,7 @@
 ---
 title: RIB Set and Unset Commands
 author: Cumulus Networks
-weight: 800
+weight: 680
 product: Cumulus Linux
 type: nojsscroll
 ---

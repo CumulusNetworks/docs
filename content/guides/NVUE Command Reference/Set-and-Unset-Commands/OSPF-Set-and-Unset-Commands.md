@@ -17,7 +17,7 @@ Configures global OSPF settings on the switch.
 
 ## nv set router ospf timers
 
-Configures OSPF Link State Advertisement (LSA) and Shortest Path First (SPF) timers, and the refresh interval.
+Configures the OSPF Link State Advertisement (LSA) timers, Shortest Path First (SPF) timers, and the refresh interval.
 
 - - -
 
@@ -113,7 +113,7 @@ cumulus@leaf01:mgmt:~$ nv set router ospf timers spf max-holdtime 300000
 
 - - -
 
-## nv set router ospf timers refresh 10-1800
+## nv set router ospf timers refresh
 
 Configures the refresh interval in seconds to resend LSAs to prevent them from aging out. You can specify a value between 10 and 1800 seconds.
 
@@ -161,7 +161,7 @@ cumulus@leaf01:mgmt:~$ nv set router ospf router-id 10.10.10.1.
 
 - - -
 
-# nv set interface \<interface-id\> router ospf
+## nv set interface \<interface-id\> router ospf
 
 Configures OSPF on an interface.
 
@@ -627,40 +627,28 @@ Configures the OSPF area in the specified VRF.
 
 Introduced in Cumulus Linux 5.0.0
 
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf area 0
+```
+
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf area \<area-id\> filter-list
 
 Configures network filtering between OSPF areas.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<area-id>` | Area |
- 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 - - -
 
-## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\>
-
-- - -
-
-## nv set vrf \<vrf-id\> router ospf area \<area-id\> network \<network-id\>
-
-Filters out components of the prefix
+## nv set vrf \<vrf-id\> router ospf area \<area-id\> filter-list in
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<area-id>` | Area |
-| `<network-id>`  | Network|
+| `<area-id>` | The OSPF area. |
 
 ### Version History
 
@@ -669,7 +657,144 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 network ???
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf area 0 filter-list in none
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf area \<area-id\> filter-list out
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<area-id>` | The OSPF area. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf area 0 filter-list out none
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\>
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<area-id>` | The OSPF area. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf area 0 range 
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\> suppress
+
+Turns ???? on or off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<area-id>` | The OSPF area. |
+| `<range-id>`  | The range. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range ??? suppress on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\> cost
+
+You can specify a value between 0 and 16777215.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<area-id>` | The OSPF area. |
+| `<range-id>`  | The range. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range ??? cost ???
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf area \<area-id\> network \<network-id\>
+
+Configures prefix filters.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<area-id>` | The OSPF area. |
+| `<network-id>`  | The subnet prefix.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
+```
+
+- - -
+
+# nv set vrf \<vrf-id\> router ospf area \<area-id\> type
+
+(normal|stub|totally-stub|nssa|totally-nssa)
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<area-id>` |   The OSPF area. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 type totally-nssa
 ```
 
 - - -
@@ -683,7 +808,7 @@ Configures the default LSA cost. Only applies when type is non-normal.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<area-id>` |   Area |
+| `<area-id>` |   The OSPF area. |
 
 ### Version History
 
@@ -701,6 +826,12 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 default-lsa-cost
 
 Advertise a default route as external lsa
 
+- - -
+
+## nv set vrf \<vrf-id\> router ospf default-originate enable
+
+Turns 
+
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -710,6 +841,34 @@ Advertise a default route as external lsa
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf default-originate metric
+
+You can specify a value between 0 and 16777214, or `none`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate metric 16777214
+```
 
 - - -
 
@@ -730,7 +889,51 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate metric-type ????
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf default-originate route-map
+
+ (none|<generic-name>)
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate route-map ROUTEMAP1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf default-originate always
+
+ (on|off)
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate always on
 ```
 
 - - -
@@ -752,14 +955,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance ???
 ```
 
 - - -
 
-## nv set vrf \<vrf-id\> router ospf max-metric
+## nv set vrf \<vrf-id\> router ospf distance external
 
-Set maximum metric value in router lsa to make stub router
+(1-255|none)
 
 ### Command Syntax
 
@@ -770,6 +973,144 @@ Set maximum metric value in router lsa to make stub router
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance external ???
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf distance inter-area
+
+(1-255|none)
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance inter-area ???
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf distance intra-area
+
+You can specify a value between 1 and 255, or `none`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance intra-area ???
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf max-metric
+
+Configures the maximum metric value in router lsa to make stub router
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf max-metric ???
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf max-metric administrative
+
+(on|off)
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf max-metric administrative on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf max-metric on-shutdown
+
+(5-100|none)
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf max-metric on-shutdown 20
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf max-metric on-startup
+
+You can specify a value between 5 and 86400, or `none`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf max-metric on-startup 200
+```
 
 - - -
 
@@ -781,49 +1122,51 @@ Log configuration
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` | VRF |
+| `<vrf-id>` | The VRF you want to configure. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf log adjacency-changes
+
+(on|off|detail)
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` | The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf log adjacency-changes on
+```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf redistribute
 
-Route redistribute
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Configures OSPF route redistributution.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf redistribute static
 
-Source route type.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |S
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Configures OSPF static route redistributution.
 
 - - -
 
-## nv set vrf \<vrf-id\> router ospf redistribute static metric-type
+## nv set vrf \<vrf-id\> router ospf redistribute static enable
 
-Set OSPF External Type 1/2 metrics
+Turns OSPF static redistribution on or off.
 
 ### Command Syntax
 
@@ -838,7 +1181,71 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute static enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf redistribute static metric
+
+You can specify a value between 0 and 16777214, or `none`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute static metric 2000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf redistribute static metric-type
+
+Set OSPF External Type 1 or 2 metrics
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute static metric-type 2
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf redistribute static route-map
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute static route-map ROUTEMAP1
 ```
 
 - - -
@@ -847,21 +1254,11 @@ cumulus@leaf01:mgmt:~$ nv set
 
 Source route type.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 - - -
 
-## nv set vrf \<vrf-id\> router ospf redistribute connected metric-type
+## nv set vrf \<vrf-id\> router ospf redistribute connected enable
 
-Set OSPF External Type 1/2 metrics
+Turns (on|off)
 
 ### Command Syntax
 
@@ -876,7 +1273,51 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute connected enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf redistribute connected metric-type
+
+Configures the OSPF External Type 1 or 2 metrics.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute connected metric-type 1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf redistribute connected route-map
+
+Configures
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute connected route-map ROUTEMAP1
 ```
 
 - - -
@@ -897,9 +1338,101 @@ Introduced in Cumulus Linux 5.0.0
 
 - - -
 
+## nv set vrf \<vrf-id\> router ospf redistribute kernel enable
+
+(on|off)
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute kernel enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf redistribute kernel metric
+
+You can specify a value between 0 and 16777214, or `none`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute kernel metric 2000
+```
+
+- - -
+
 ## nv set vrf \<vrf-id\> router ospf redistribute kernel metric-type
 
-Set OSPF External Type 1/2 metrics
+Configures the OSPF external metric type; 1 or 2.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute kernel metric-type 2
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf redistribute kernel route-map
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute kernel route-map ROUTEMAP1
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf redistribute bgp
+
+Source route type.
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf redistribute bgp enable
+
+(on|off)
 
 ### Command Syntax
 
@@ -917,13 +1450,11 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set
 ```
 
-- - -
+## nv set vrf \<vrf-id\> router ospf redistribute bgp metric
 
-## nv set vrf \<vrf-id\> router ospf redistribute bgp
+You can specify a value between 0 and 16777214, or `none`.
 
-Source route type.
-
-### Command Syntax
+## Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
@@ -932,6 +1463,12 @@ Source route type.
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute bgp metric 2000
+```
 
 - - -
 
@@ -952,62 +1489,49 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute bgp metric-type
 ```
 
 - - -
 
-## nv set vrf \<vrf-id\> router ospf timers
+## nv set vrf \<vrf-id\> router ospf redistribute bgp route-map \<route-map-name\>
 
-Timers
+Configures 
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+|`<route-map-name>` | The route map name. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute bgp route-map ROUTEMAP1
+```
+
+## nv set vrf \<vrf-id\> router ospf timers
+
+Configures OSPF timers.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf timers lsa
 
-LSA timers
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
+Configures OSPF LSA timers.
 
 - - -
 
-## nv set vrf \<vrf-id\> router ospf timers spf
+## nv set vrf \<vrf-id\> router ospf timers lsa min-arrival
 
-SPF timers
+Configures the    
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-- - -
-
-## nv set vrf \<vrf-id\> router ospf reference-bandwidth
-
-Used to determine link cost/metric value relative to defined reference
+You can specify a value between 0 and 600000.
 
 ### Command Syntax
 
@@ -1022,7 +1546,215 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf timers lsa min-arrival 30000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf timers lsa throttle
+
+Configures the OSPF 
+
+You can specify a value between 0 and 5000, or `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf timers lsa throttle 3000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf timers spf
+
+Configures OSPF SPF timers.
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf timers spf delay
+
+Configures the
+
+You can specify a value between 0 and 600000, or `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf timers spf delay 30000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf timers spf holdtime
+
+Configures the 
+
+You can specify a value between 0 and 600000, or `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf timers spf holdtime 30000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf timers spf max-holdtime
+
+You can specify a value between 0 and 600000, or `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf spf max-holdtime 3000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf timers refresh
+
+You can specify a value between 10 and 1800, or `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf timers refresh 30
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf enable
+
+Turns OSPF on or off on the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf reference-bandwidth
+
+Used to determine link cost/metric value relative to defined reference
+
+You can specify a value between 1 and 4294967.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf reference-bandwidth
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf rfc1583-compatible
+
+Turns on or off
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf rfc1583-compatible on
+```
+
+## nv set vrf \<vrf-id\> router ospf router-id
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router-id 10.10.10.1 
 ```
 
 - - -

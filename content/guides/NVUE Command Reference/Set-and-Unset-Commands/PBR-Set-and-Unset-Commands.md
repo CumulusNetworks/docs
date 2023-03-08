@@ -1,7 +1,7 @@
 ---
-title: Adaptive Routing Set and Unset Commands
+title: PBR Set and Unset Commands
 author: Cumulus Networks
-weight: 630
+weight: 640
 product: Cumulus Linux
 type: nojsscroll
 ---

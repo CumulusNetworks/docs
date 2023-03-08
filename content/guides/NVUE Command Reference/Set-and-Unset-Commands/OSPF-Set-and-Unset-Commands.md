@@ -17,13 +17,13 @@ Configures global OSPF settings on the switch.
 
 ## nv set router ospf timers
 
-Configures the OSPF Link State Advertisement (LSA) timers, Shortest Path First (SPF) timers, and the refresh interval.
+Configures the OSPF <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers, <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers, and the refresh interval.
 
 - - -
 
 ## nv set router ospf timers lsa
 
-Configures LSA timers.
+Configures <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers.
 
 - - -
 
@@ -61,13 +61,13 @@ cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa throttle 3000
 
 ## nv set router ospf timers spf
 
-Configures the SPF timers.
+Configures OSPF <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers.
 
 - - -
 
 ## nv set router ospf timers spf delay
 
-Configures the amount of time to wait to do the SPF calculation after receiving the first topology change. You can specify a value between 0 and 600000 milliseconds.
+Configures the amount of time to wait before calculating the SPF after receiving the first topology change. You can specify a value between 0 and 600000 milliseconds.
 
 ### Version History
 
@@ -76,7 +76,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router ospf timers spf delay 300000
+cumulus@leaf01:mgmt:~$ nv set router ospf timers spf delay 80
 ```
 
 - - -
@@ -92,7 +92,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router ospf timers spf holdtime 300000
+cumulus@leaf01:mgmt:~$ nv set router ospf timers spf holdtime 100
 ```
 
 - - -
@@ -108,7 +108,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router ospf timers spf max-holdtime 300000
+cumulus@leaf01:mgmt:~$ nv set router ospf timers spf max-holdtime 100
 ```
 
 - - -
@@ -234,7 +234,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers hello-interval 600
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers hello-interval 5
 ```
 
 - - -
@@ -285,13 +285,13 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers retransmit-dela
 
 ## nv set interface \<interface-id\> router ospf authentication
 
-Configures OSPF MD5 authentication on an interface.
+Configures OSPF MD5 authentication for the specified interface.
 
 - - -
 
 ## nv set interface \<interface-id\> router ospf authentication enable
 
-The default setting is `off`.
+Turns OSPF authentication on or off on the specified interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -313,7 +313,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication enable 
 
 ## nv set interface \<interface-id\> router ospf authentication message-digest-key
 
-Configures the message digest key. You can specify a value between 1 and 255. The value must be consistent across all routers on a link.
+Configures the message digest key for the specified interface. You can specify a value between 1 and 255. The value must be consistent across all routers on a link.
 
 ### Command Syntax
 
@@ -335,7 +335,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication message
 
 ## nv set interface \<interface-id\> router ospf authentication md5-key \<value\>
 
-Configures the MD5 key.
+Configures the MD5 key for the specified interface.
 
 ### Command Syntax
 
@@ -358,13 +358,13 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication md5-key
 
 ## nv set interface \<interface-id\> router ospf bfd
 
-Configures Bidirectional Forwarding Detection (BFD) on an interface. BFD provides low overhead and rapid detection of failures in the paths between two network devices.
+Configures <span style="background-color:#F5F5DC">[BFD](## "Bidirectional Forwarding Detection")</span> on the specified interface. BFD provides low overhead and rapid detection of failures in the paths between two network devices.
 
 - - -
 
 ## nv set interface \<interface-id\> router ospf bfd enable
 
-Turns BFD on and off on the OSPF interface. The default setting is `off`.
+Turns BFD on and off on the specified OSPF interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -386,7 +386,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf bfd enable on
 
 ## nv set interface \<interface-id\> router ospf bfd detect-multiplier
 
-Configures the detection time multiplier. You can specify a value between 2 and 255.
+Configures the detection time multiplier on the specified OSPF interface. You can specify a value between 2 and 255.
 
 ### Command Syntax
 
@@ -408,7 +408,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf bfd detect-multiplier 
 
 ## nv set interface \<interface-id\> router ospf bfd min-receive-interval
 
-Configures the required minimum interval between the received BFD control packets. You can specify a value between 50 and 60000.
+Configures the required minimum interval between received BFD control packets on the specified OSPF interface. You can specify a value between 50 and 60000.
 
 ### Command Syntax
 
@@ -430,7 +430,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf bfd min-receive-interv
 
 ## nv set interface \<interface-id\> router ospf bfd min-transmit-interval
 
-Configures the minimum transmit interval in milliseconds. You can specify a value between 50 and 60000.
+Configures the minimum transmit interval in milliseconds on the specified OSPF interface. You can specify a value between 50 and 60000.
 
 ### Command Syntax
 
@@ -452,7 +452,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf bfd min-transmit-inter
 
 ## nv set interface \<interface-id\> router ospf enable
 
-Turns OSFP on and off on the interface. The default setting is `off`.
+Turns OSFP on and off on the specified OSPF interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -474,7 +474,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf enable on
 
 ## nv set interface \<interface-id\> router ospf area
 
-Configures the OSPF area on the interface.
+Configures the OSPF area on the specified OSPF interface.
 
 ### Command Syntax
 
@@ -564,7 +564,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf network-type point-to-
 
 ## nv set interface \<interface-id\> router ospf passive
 
-Configures the interface as passive. A passive interface creates a database entry but does not send or receive OSPF hello packets. The default setting is `off`.
+Configures the OSPF interface as passive. A passive interface creates a database entry but does not send or receive OSPF hello packets. The default setting is `off`.
 
 ### Command Syntax
 
@@ -620,8 +620,8 @@ Configures the OSPF area in the specified VRF.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<area-id>` | Area|
+| `<vrf-id>` | The VRF you want to configure. |
+| `<area-id>` | The OSPF area. |
 
 ### Version History
 
@@ -641,14 +641,17 @@ Configures network filtering between OSPF areas.
 
 - - -
 
-## nv set vrf \<vrf-id\> router ospf area \<area-id\> filter-list in
+## nv set vrf \<vrf-id\> router ospf area \<area-id\> filter-list in \<filter-id\>
+
+Configures the prefix list to use as an inbound filter for the OSPF area in the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
+| `<vrf-id>` | The VRF you want to configure. |
 | `<area-id>` | The OSPF area. |
+| `<filter-id>` | The filter name. |
 
 ### Version History
 
@@ -657,19 +660,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf area 0 filter-list in none
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 filter-list in MY-OSPF-IN-FILTER
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf area \<area-id\> filter-list out
 
+Configures the prefix list to use as an outbound filter for the OSPF area in the specified VRF.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<area-id>` | The OSPF area. |
+| `<filter-id>` | The filter name. |
 
 ### Version History
 
@@ -678,19 +684,28 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf area 0 filter-list out none
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 filter-list out MY-OSPF-OUT-FILTER
 ```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf area \<area-id\> range
+
+Configures the OSPF area prefix range settings.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\>
 
+Configures a summary route for all the routes in the specified range in the the specified VRF.
+
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<area-id>` | The OSPF area. |
+| `<range-id>` | The IPv4 prefix. |
 
 ### Version History
 
@@ -699,14 +714,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf area 0 range 
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\> suppress
 
-Turns ???? on or off.
+Configures OSPF to filter out components but not advertise the specified address range. The default setting is `off` (advertise the specified address range).
 
 ### Command Syntax
 
@@ -714,7 +729,7 @@ Turns ???? on or off.
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<area-id>` | The OSPF area. |
-| `<range-id>`  | The range. |
+| `<range-id>`  | The IPv4 prefix. |
 
 ### Version History
 
@@ -723,14 +738,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range ??? suppress on
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24 suppress on
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\> cost
 
-You can specify a value between 0 and 16777215.
+Configures the metric advertised for the specified address range. You can specify a value between 0 and 16777215, or `auto`. The default value is `auto` (the operational default value is derived from the components).
 
 ### Command Syntax
 
@@ -738,7 +753,7 @@ You can specify a value between 0 and 16777215.
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<area-id>` | The OSPF area. |
-| `<range-id>`  | The range. |
+| `<range-id>`  | The IPv4 prefix. |
 
 ### Version History
 
@@ -747,14 +762,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range ??? cost ???
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24 cost 65535
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf area \<area-id\> network \<network-id\>
 
-Configures prefix filters.
+Configures prefix filters for an OSPF area in the specified VRF.
 
 ### Command Syntax
 
@@ -778,7 +793,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 network 10.10.10.1/
 
 # nv set vrf \<vrf-id\> router ospf area \<area-id\> type
 
-(normal|stub|totally-stub|nssa|totally-nssa)
+Configures the OSPF area type. You can specify `normal`, `stub`, `totally-stub`, `nssa`, or `totally-nssa`.
 
 ### Command Syntax
 
@@ -794,14 +809,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 type totally-nssa
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 type stub
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf area \<area-id\> default-lsa-cost
 
-Configures the default LSA cost. Only applies when type is non-normal.
+Configures the default LSA cost. This setting applies only when the OSPF area type is not `normal`. You can specify a value between 0 and 16777215.
 
 ### Command Syntax
 
@@ -817,20 +832,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 default-lsa-cost
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 default-lsa-cost 2000
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf default-originate
 
-Advertise a default route as external lsa
+Configures OSPF to advertise the default route to its neighbors, regardless of whether it is in the routing table or not.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf default-originate enable
 
-Turns 
+Turns OSPF default originate on or off. The default value is `off`.
 
 ### Command Syntax
 
@@ -852,7 +867,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate enable o
 
 ## nv set vrf \<vrf-id\> router ospf default-originate metric
 
-You can specify a value between 0 and 16777214, or `none`.
+Configures the OSPF default originate metric. You can specify a value between 0 and 16777214, or `none`.
 
 ### Command Syntax
 
@@ -874,7 +889,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate metric 1
 
 ## nv set vrf \<vrf-id\> router ospf default-originate metric-type
 
-Set OSPF External Type 1/2 metrics
+Configures the OSPF default originate metric type; 1 or 2.
 
 ### Command Syntax
 
@@ -889,14 +904,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate metric-type ????
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate metric-type 1
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf default-originate route-map
 
- (none|<generic-name>)
+Applies the specified route map.
 
 ### Command Syntax
 
@@ -918,7 +933,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate route-ma
 
 ## nv set vrf \<vrf-id\> router ospf default-originate always
 
- (on|off)
+Configures OSPF to advertise a default route to other routers even if there is no default route in the routing table.
 
 ### Command Syntax
 
@@ -940,29 +955,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate always o
 
 ## nv set vrf \<vrf-id\> router ospf distance
 
-Administrative distance for installation into the rib
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance ???
-```
+Configures the aministrative distance for OSPF routes. Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf distance external
 
-(1-255|none)
+Configures the external administrative distance for OSPF routes. You can specify a value between 1 and 255, or `none`.
 
 ### Command Syntax
 
@@ -977,14 +976,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance external ???
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance external 220
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf distance inter-area
 
-(1-255|none)
+Configures the administrative distance for internal OSPF routes. You can specify a value between 1 and 255, or `none`.
 
 ### Command Syntax
 
@@ -999,14 +998,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance inter-area ???
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance inter-area 150
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf distance intra-area
 
-You can specify a value between 1 and 255, or `none`.
+Configures the administrative distance for internal OSPF routes. You can specify a value between 1 and 255, or `none`.
 
 ### Command Syntax
 
@@ -1021,14 +1020,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance intra-area ???
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf distance intra-area 150
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router ospf max-metric
 
-Configures the maximum metric value in router lsa to make stub router
+Configures an OSPF maximum metric to notify its neighbors not to use the router as part of the OSPF topology. While the network converges, all traffic forwarded to the max-metric router is still forwarded. After you update the network, the max-metric router no longer receives any traffic and you can configure the max-metric setting.
 
 ### Command Syntax
 

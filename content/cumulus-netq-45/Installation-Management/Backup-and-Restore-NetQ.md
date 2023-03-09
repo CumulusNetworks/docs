@@ -92,6 +92,10 @@ Restore NetQ data with the backup file you created in the steps above. The resto
 
 Run the restore script, referencing the directory where the backup file resides.
 
+{{<notice note>}}
+If you restore NetQ data to a server with an IP address that is different from the one used to back up the data, you must {{<link title="Install NetQ Agents/#configure-netq-agents-using-a-configuration-file" text="reconfigure the agents">}} on each switch as a final step.
+{{</notice>}}
+
 ```
 cumulus@netq-appliance:~$ sudo vm-backuprestore.sh --restore --backupfile /home/cumulus/backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
 Mon Feb  6 12:39:57 2023 - Please find detailed logs at: /var/log/vm-backuprestore.log

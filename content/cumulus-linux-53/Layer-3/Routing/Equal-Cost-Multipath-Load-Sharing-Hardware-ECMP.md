@@ -338,7 +338,6 @@ Cumulus Linux only supports adaptive routing with:
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
 - You cannot use adaptive routing with EVPN or VXLAN.
-- You can enable adaptive routing on a maximum of 16 ports.
 {{%/notice%}}
 
 Adaptive Routing is in Sticky Free mode, where packets route to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.

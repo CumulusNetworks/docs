@@ -323,7 +323,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 tag none
 
 ## nv set vrf \<vrf-id\> router static \<route-id\> address-family
 
-Enables and disables the address family (IPv4 or IPv6) for the static route in the specified VRF.
+Enables and disables the address family (`ipv4-unicast` or `ipv6-unicast`) for the static route in the specified VRF.
 
 ## Command Syntax
 
@@ -339,7 +339,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 address-family ipv6
+cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 address-family ipv6-unicast
 ```
 
 - - -

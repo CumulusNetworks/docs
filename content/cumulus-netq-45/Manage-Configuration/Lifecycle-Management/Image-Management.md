@@ -5,18 +5,18 @@ weight: 630
 toc: 4
 ---
 
-NetQ and network OS (Cumulus Linux and SONiC) images are managed with LCM. This section details how to check for missing images, upgrade images, and specify default images.
+NetQ and network operating system images (Cumulus Linux and SONiC) are managed with LCM. This section explains how to check for missing images, upgrade images, and specify default images.
 ## View and Upload Missing Images
 
 You should upload images for each network OS and NetQ version currently installed in your inventory so you can support rolling back to a known good version should an installation or upgrade fail. If you have specified a default network OS and/or NetQ version, the NetQ UI also verifies that the necessary versions of the default image are available based on the known switch inventory, and if not, lists those that are missing.
 
-To upload missing **network OS** images:
+To upload missing network OS images:
 
 {{<tabs "Upload Missing Network OS Images" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage switches**. Select the **Image management** tab.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**. Select the **Image management** tab.
 
 2. On the Cumulus Linux Images card, select *View # missing CL images* to see which images you need.
 
@@ -26,7 +26,7 @@ To upload missing **network OS** images:
 If you have already specified a default image, you must click <strong>Manage</strong> and then <strong>Missing</strong> to see the missing images.
     {{</notice>}}</div>
 
-3. Select one or more of the missing images and make note of the version, ASIC vendor, and CPU architecture for each.
+3. Select one or more of the missing images and take note of the version, ASIC vendor, and CPU architecture for each.
 
 4. Download the network OS disk images (*.bin* files) from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}}. Log in to the portal and from the **Downloads** tab, select **Switches and Gateways**. Under **Switch Software**, click **All downloads** next to **Cumulus Linux for Mellanox Switches**. Select the current version and the target version, then click **Show Downloads Path**. Download the file.
 
@@ -43,7 +43,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 9. (Optional) Click the **Uploaded** tab to verify the image is in the repository.
 
-10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" alt="close" height="14" width="14">}} to return to the LCM dashboard.
+10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" alt="close" height="14" width="14">}} **Close** to return to the LCM dashboard.
 
     The Cumulus Linux Images card reflects the number of images you uploaded.
 
@@ -77,7 +77,7 @@ To upload missing **NetQ** images:
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage switches**. Select the **Image management** tab.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Manage switches**. Select the **Image management** tab.
 
 2. On the NetQ Images card, select *View # missing NetQ images* to see which images you need.
 
@@ -103,7 +103,7 @@ If you have already specified a default image, you must click <strong>Manage</st
 
 9. (Optional) Click the **Uploaded** tab to verify that the image is in the repository.
 
-10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} to return to the LCM dashboard.
+10. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/33-Form-Validation/close.svg" height="14" width="14">}} **Close** to return to the LCM dashboard.
 
    The NetQ Images card reflects the number of images you uploaded.
 
@@ -132,7 +132,7 @@ netq lcm show netq-images
 
 ## Upload Upgrade Images
 
-To upload the network OS or NetQ images that you want to use for upgrade, first download the Cumulus Linux or SONiC disk images (*.bin* files) and NetQ Debian packages needed for upgrade from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}} and {{<exlink url="https://apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/p/python-netq/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
+To upload the network OS or NetQ images that you want to use for upgrade, first download the Cumulus Linux or SONiC disk images (*.bin* files) and NetQ Debian packages from the {{<exlink url="https://enterprise-support.nvidia.com/s/" text="NVIDIA Enterprise Support Portal">}} and {{<exlink url="https://apps3.cumulusnetworks.com/repos/deb/pool/netq-latest/p/python-netq/" text="NetQ repository">}}, respectively. Place them in an accessible part of your local network.
 
 If you are upgrading the network OS on switches with different ASIC vendors or CPU architectures, you need more than one image. For NetQ, you need both the `netq-apps` and `netq-agent` packages for each variant.
 
@@ -144,9 +144,9 @@ After obtaining the images, upload them to NetQ with the UI or CLI:
 
 1. From the LCM dashboard, select the **Image management** tab.
 
-2. Select the **Add image** button on the appropriate card:
+2. Select **Add image** on the appropriate card:
 
-    {{<img src="/images/netq/add-image-updated-450.png" alt="" width="500">}}
+    {{<img src="/images/netq/add-image-updated-450.png" alt="cumulus linux and netq image cards prompting the user to add an image" width="500">}}
 
 3. Provide one or more images from an external drive.
 
@@ -242,7 +242,7 @@ After you upgrade all your switches beyond a particular release, you can remove 
 
 3. On the **Uploaded** tab, select the images you want to remove. 
 
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> Delete. 
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> **Delete**. 
 
 {{</tab>}}
 

@@ -1329,6 +1329,85 @@ View an interface count on a given device.
 cumulus@switch:~$ netq spine01 show interfaces count
 Count of matching link records: 10
 ```
+Display only VLAN results. The output displays the interface, its specified MTU, whether it is running over a VRF, and the last time it changed.
+
+```
+cumulus@switch:~$ netq show interfaces type vlan
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+border01          vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:48 2020
+border01          vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:48 2020
+border01          peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:48 2020
+border02          vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:51 2020
+border02          vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:51 2020
+border02          peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:51 2020
+fw1               borderBond.20             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:25 2020
+fw1               borderBond.10             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:25 2020
+leaf01            vlan20                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf01            vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf01            vlan30                    vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf01            vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf01            vlan10                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf01            peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf02            vlan20                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf02            vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf02            vlan30                    vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf02            vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf02            vlan10                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf02            peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf03            vlan20                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf03            vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf03            vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf03            vlan30                    vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf03            vlan10                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf03            peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf04            vlan20                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:29:06 2020
+leaf04            vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:29:06 2020
+leaf04            vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:29:06 2020
+leaf04            vlan30                    vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:29:06 2020
+leaf04            vlan10                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:29:06 2020
+leaf04            peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:29:06 2020
+```
+
+Display all MAC addresses associated with your vRR (virtual route reflector) interface configuration. This is useful for determining if the specified MAC address inside a VLAN is the same or different across your vRR configuration.
+
+```
+cumulus@switch:~$ netq show interfaces type macvlan
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+yes    00:00:00:00:00:1a  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
+yes    44:38:39:00:00:37  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
+cumulus@netq-ts:~$ netq show interfaces type macvlan
+
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+leaf01            vlan10-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1a,             Tue Oct 27 22:28:42 2020
+                                                                                        Mode: Private
+leaf01            vlan20-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1b,             Tue Oct 27 22:28:42 2020
+                                                                                        Mode: Private
+leaf01            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:28:42 2020
+                                                                                        Mode: Private
+leaf02            vlan10-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1a,             Tue Oct 27 22:28:51 2020
+                                                                                        Mode: Private
+leaf02            vlan20-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1b,             Tue Oct 27 22:28:51 2020
+                                                                                        Mode: Private
+leaf02            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:28:51 2020
+                                                                                        Mode: Private
+leaf03            vlan10-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1a,             Tue Oct 27 22:28:23 2020
+                                                                                        Mode: Private
+leaf03            vlan20-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1b,             Tue Oct 27 22:28:23 2020
+                                                                                        Mode: Private
+leaf03            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:28:23 2020
+                                                                                        Mode: Private
+leaf04            vlan10-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1a,             Tue Oct 27 22:29:06 2020
+                                                                                        Mode: Private
+leaf04            vlan20-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1b,             Tue Oct 27 22:29:06 2020
+                                                                                        Mode: Private
+leaf04            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:29:06 2020
+```
 
 ### Related Commands
 
@@ -2634,6 +2713,46 @@ no     46:38:39:00:00:36  30     leaf01            bond3                        
 no     46:38:39:00:00:3c  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
 ```
 
+Display MAC addresses associated with VLAN 10. The command also provides the hostnames of the devices, the egress port for the interface, whether the MAC address originated from the given device, whether it learns the MAC address from the peer (`remote=yes`), and the last time the configuration changed.
+
+```
+cumulus@switch:~$ netq show macs vlan 10
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+yes    00:00:00:00:00:1a  10     leaf04            bridge                         no     Tue Oct 27 22:29:07 2020
+no     44:38:39:00:00:37  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
+no     44:38:39:00:00:59  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
+no     46:38:39:00:00:38  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
+no     44:38:39:00:00:3e  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
+no     46:38:39:00:00:3e  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
+yes    44:38:39:00:00:5e  10     leaf04            bridge                         no     Tue Oct 27 22:29:07 2020
+no     44:38:39:00:00:32  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
+no     44:38:39:00:00:5d  10     leaf04            peerlink                       no     Tue Oct 27 22:29:07 2020
+no     46:38:39:00:00:44  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
+no     46:38:39:00:00:32  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
+yes    36:ae:d2:23:1d:8c  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
+yes    00:00:00:00:00:1a  10     leaf03            bridge                         no     Tue Oct 27 22:28:24 2020
+no     44:38:39:00:00:59  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
+no     44:38:39:00:00:37  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
+no     46:38:39:00:00:38  10     leaf03            vni10                          yes    Tue Oct 27 22:28:24 2020
+yes    36:99:0d:48:51:41  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
+no     44:38:39:00:00:3e  10     leaf03            bond1                          no     Tue Oct 27 22:28:24 2020
+no     44:38:39:00:00:5e  10     leaf03            peerlink                       no     Tue Oct 27 22:28:24 2020
+no     46:38:39:00:00:3e  10     leaf03            bond1                          no     Tue Oct 27 22:28:24 2020
+...
+```
+
+The following example shows MAC addresses associated with the leaf02 switch and VLAN 10 that use the bridge port.
+
+```
+cumulus@netq-ts:~$ netq leaf02 show macs egress-port bridge vlan 10
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+yes    00:00:00:00:00:1a  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
+yes 
+```
 ### Related Commands
 
 - ```netq show mac-commentary```
@@ -4322,7 +4441,7 @@ ion                              2-4ee7-917e-
 
 ## netq show vlan
 
-Displays the configuration of all VLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+Displays the configuration of all VLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output displays:
 
 - The switch or hostname
 - The VLANs associated with that node
@@ -4367,7 +4486,20 @@ leaf02            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28
 leaf03            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
 leaf04            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
 ```
+The following example shows the VLANs configured on the leaf02 switch:
 
+```
+cumulus@switch:~$ netq leaf02 show vlan
+Matching vlan records:
+Hostname          VLAN   Ports                               SVI  Last Changed
+----------------- ------ ----------------------------------- ---- -------------------------
+leaf02            20     bond2,vni20                         yes  Wed Oct 28 15:14:11 2020
+leaf02            30     vni30,bond3                         yes  Wed Oct 28 15:14:11 2020
+leaf02            1      peerlink                            no   Wed Oct 28 15:14:11 2020
+leaf02            10     bond1,vni10                         yes  Wed Oct 28 15:14:11 2020
+leaf02            4001   vniRED                              yes  Wed Oct 28 15:14:11 2020
+leaf02            4002   vniBLUE                             yes  Wed Oct 28 15:14:11 2020
+```
 The following example shows that vlan 10 is running on the two border and four leaf switches:
 
 ```

@@ -689,113 +689,509 @@ Configures the egress lossy buffer.
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class \<traffic-class-id\>
 
+Configures the traffic classes for the egress lossy buffer.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<traffic-class-id>` |   The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3
+```
+
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class \<traffic-class-id\> reserved
 
-0-4294967295
+Configures the reserved buffer allocation in bytes for the egress lossy buffer traffic class. You can set a value between 0 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<traffic-class-id>` |   The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 reserved 10000
+```
 
 - - -
 
-## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class \<traffic-class-id\> shared-bytes 
+## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class \<traffic-class-id\> shared-bytes
 
-0-4294967295
+Configures the static shared buffer allocation in bytes for the egress lossy buffer traffic class. You can set a value between 0 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<traffic-class-id>` |   The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 shared-bytes 10000
+```
 
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class \<traffic-class-id\> shared-alpha
 
+Configures the dynamic shared buffer alpha allocation for the egress lossy buffer traffic class.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<traffic-class-id>` |   The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 shared-alpha alpha_2
+```
+
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer traffic-class \<traffic-class-id\> service-pool \<integer\>
+
+Configures the service pool ID for the egress lossy buffer traffic class.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<traffic-class-id>` |   The traffic class ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer traffic-class 3 service-pool 3
+```
 
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-switch-priority \<qos-sp-id\>
 
+Configures the multicast switch priority for the egress lossy buffer.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-sp-id>` |   The multicast switch priority. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7
+```
+
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-switch-priority \<qos-sp-id\> reserved 
 
-0-4294967295
+Configures the reserved buffer allocation in bytes for the egress lossy buffer multicast switch priority. You can set a value between 0 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-sp-id>` |   The multicast switch priority. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7
+```
 
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-switch-priority \<qos-sp-id\> shared-bytes 
 
-0-4294967295
+Configures the static shared buffer allocation in bytes for the egress lossy buffer multicast switch priority. You can set a value between 0 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-sp-id>` |   The multicast switch priority. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7 shared-bytes 10000
+```
 
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-switch-priority \<qos-sp-id\> shared-alpha
 
+Configures the dynamic shared buffer alpha allocation for the egress lossy buffer multicast switch priority.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-sp-id>` |   The multicast switch priority. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7 shared-alpha alpha_2
+```
+
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-switch-priority \<qos-sp-id\> service-pool \<integer\>
+
+Configures the service pool ID for the egress lossy buffer multicast switch priority.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-sp-id>` |   The multicast switch priority. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-switch-priority 5,7 service-pool 3
+```
 
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-port
 
+Configures the multicast port for the egress lossy buffer.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossy-buffer multicast-port 
+```
+
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-port reserved
 
-0-4294967295
+Configures the reserved multicast port buffer allocation in bytes for the egress lossy buffer. You can set a value between 0 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer reserved 10000
+```
 
 - - -
 
 ## nv set qos advance-buffer-config \<profile-id\> egress-lossy-buffer multicast-port shared-bytes
 
-0-4294967295
+Configures the multicast port static buffer allocation in bytes for the egress lossy buffer. You can set a value between 0 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos advance-buffer-config default-global egress-lossless-buffer shared-bytes 10000
+```
 
 - - -
 
 ## nv set qos traffic-pool \<traffic-pool-id\>
 
+Configures the Q0S traffic pool ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<traffic-pool-id>` | The traffic pool ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos traffic-pool 3
+```
+
 - - -
 
 ## nv set qos traffic-pool \<traffic-pool-id\> switch-priority \<qos-sp-id\>
+
+Configures the QoS switch priority for the specified traffic pool.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<traffic-pool-id>` | The traffic pool ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos traffic-pool 3
+```
 
 - - -
 
 ## nv set qos traffic-pool \<traffic-pool-id\> memory-percent
 
-1-100
+Configures the percent of memory allocated to the specified traffic pool.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<traffic-pool-id>` | The traffic pool ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos traffic-pool 3 memory percent 80
+```
 
 - - -
 
 ## nv set qos link-pause \<profile-id\>
 
+Configures QoS link pause; an older congestion control mechanism that causes all traffic on a link between two switches, or between a host and switch, to stop transmitting during times of congestion. Pause frames start and stop depending on buffer congestion. You configure pause frames on a per-direction, per-interface basis. You can receive pause frames to stop the switch from transmitting when requested, send pause frames to request neighboring devices to stop transmitting, or both.
+
+{{%notice note%}}
+Before configuring pause frames, you must first modify the switch buffer allocation.
+{{%/notice%}}
+
 - - -
 
 ## nv set qos link-pause \<profile-id\> xoff-threshold \<value\>
+
+Configures the frame transmission stop threshold in bytes for the specified link pause profile.
+
+NVIDIA recommends that you do not change this setting but, instead, let Cumulus Linux configure the settings dynamically. Only change the threshold setting if you are an advanced user who understands the buffer configuration requirements for lossless traffic to work seamlessly.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports xoff-threshold 1000
+```
 
 - - -
 
 ## nv set qos link-pause \<profile-id\> xon-threshold \<value\>
 
+Configures the frame transmission start threshold in bytes for the specified link pause profile.
+
+NVIDIA recommends that you do not change these settings but, instead, let Cumulus Linux configure the settings dynamically. Only change the threshold this setting if you are an advanced user who understands the buffer configuration requirements for lossless traffic to work seamlessly.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports xon-threshold 1000
+```
+
 - - -
 
 ## nv set qos link-pause \<profile-id\> port-buffer \<value\>
+
+Configures the port buffer allocation in bytes for the specified link pause profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports port-buffer 20
+```
 
 - - -
 
 ## nv set qos link-pause \<profile-id\> cable-length
 
-1-100000
+Configures the cable length in meters for the specified link pause profile. You can specify a value between 1 and 100000.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports cable-length 50
+```
 
 - - -
 
 ## nv set qos link-pause \<profile-id\> tx
 
-(enable|disable)
+Turns sending pause frames on and off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports tx enable
+```
 
 - - -
 
 ## nv set qos link-pause \<profile-id\> rx
 
-(enable|disable)
+Turns receiving pause frames on and off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports rx disable
+```
 
 - - -
 

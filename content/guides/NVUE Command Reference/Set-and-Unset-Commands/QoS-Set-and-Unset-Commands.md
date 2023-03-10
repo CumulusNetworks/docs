@@ -995,7 +995,7 @@ Configures the Q0S traffic pool ID.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -1017,7 +1017,7 @@ Configures the QoS switch priority for the specified traffic pool.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -1039,7 +1039,7 @@ Configures the percent of memory allocated to the specified traffic pool.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -1163,7 +1163,7 @@ Turns sending pause frames on and off.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -1185,7 +1185,7 @@ Turns receiving pause frames on and off.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -1317,7 +1317,7 @@ Configures the cable length in meters for the specified PFC profile. You can spe
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -1339,7 +1339,7 @@ Turns sending PFC frames on and off.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -1361,7 +1361,7 @@ Turns receiving PFC frames on and off.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.4.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
@@ -1373,38 +1373,113 @@ cumulus@leaf01:mgmt:~$ nv set qos pfc default-global rx enable
 
 ## nv set qos mapping \<profile-id\>
 
+Configures trust 802.1p and DSCP marking.
+
+When a frame or packet arrives on the switch, Cumulus Linux maps it to an internal COS (switch priority) value. This value never writes to the frame or packet but classifies and schedules traffic internally through the switch.
+
+You can define which values are trusted: 802.1p, DSCP, or both.
+
 - - -
 
 ## nv set qos mapping \<profile-id\> pcp \<qos-pcp-id\>
 
+Configures trust 802.1p marking.
 
 - - -
 
 ## nv set qos mapping \<profile-id\> pcp \<qos-pcp-id\> switch-priority
 
-0-7
+Configures the 802.1p to switch priority mapping.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-pcp-id>` |   The 802.1p value. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos mapping default-global pcp 0 switch-priority 4 
+```
 
 - - -
 
 ## nv set qos mapping \<profile-id\> dscp \<qos-dscp-id\>
 
+Configures trust DSCP marking.
+
 - - -
 
 ## nv set qos mapping \<profile-id\> dscp \<qos-dscp-id\> switch-priority
 
-0-7
+Configures the DSCP to switch priority mapping.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-dscp-id>` |   The DSCP value. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos mapping default-global dscp 10,21,36 switch-priority 0 
+```
 
 - - -
 
 ## nv set qos mapping \<profile-id\> port-default-sp
 
-0-7
+Assigns all traffic to a specific switch priority regardless of the ingress marking.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos mapping default-global port-default-sp 3
+```
 
 - - -
 
-## nv set qos mapping \<profile-id\> trust 
+## nv set qos mapping \<profile-id\> trust
 
-(l2|l3|port|both)
+Configures the port trust. You can specify `l2`, `l3`, `port`, or `both`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos mapping default-global trust l3 
+```
 
 - - -
 
@@ -1466,107 +1541,341 @@ cumulus@leaf01:mgmt:~$ nv set qos remark default-global switch-priority 0 dscp 2
 
 ## nv set qos remark \<profile-id\> rewrite
 
-(l2|l3|both)
+You can specify `l2`, `l3`, or `both`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos remark default-global rewrite
+```
 
 - - -
 
 ## nv set qos congestion-control \<profile-id\>
 
+Configures Explicit Congestion Notification (ECN); an end-to-end flow control technology. Instead of telling adjacent devices to stop transmitting during times of buffer congestion, ECN sets the ECN bits of the transit IPv4 or IPv6 header to indicate to end hosts that congestion might occur. As a result, the sending hosts reduce their sending rate until the transit switch no longer sets ECN bits.
+
+ECN operates by having a transit switch that marks packets between two end hosts.
+
+You use ECN with RDMA over Converged Ethernet - RoCE.
+
 - - -
 
 ## nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\>
+
+Configures traffic class settings for the specified ECN profile.
 
 - - -
 
 ## nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> min-threshold \<value\>
 
+Configures the minimum buffer threshold in bytes. Random ECN marking starts when buffer congestion crosses this threshold. The probability determines if ECN marking occurs.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos congestion-control default-global traffic-class 4,5,7 min-threshold 40000 
+```
+
 - - -
 
 ## nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> max-threshold \<value\>
+
+Configures the maximum buffer threshold in bytes. Cumulus Linux marks all ECN-capable packets when buffer congestion crosses this threshold.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos congestion-control default-global traffic-class 4,5,7 max-threshold 200000 
+```
 
 - - -
 
 ## nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> probability
 
-0-100
+Configures the probability that Cumulus Linux marks an ECN-capable packet when buffer congestion is between the minimum threshold and the maximum threshold. You can set a value between 1 and 100.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos congestion-control default-global traffic-class 4,5,7 probability 80 
+```
 
 - - -
 
 ## nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> red
 
-(enable|disable)
+Turns Random Early Detection (RED) on or off.
+
+ECN prevents packet drops in the network due to congestion by signaling hosts to transmit less. However, if congestion continues after ECN marking, packets drop after the switch buffer is full. By default, Cumulus Linux tail-drops packets when the buffer is full. You can enable RED to drop packets that are in the queue randomly instead of always dropping the last arriving packet. This might improve overall performance of TCP based flows.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos congestion-control default-global traffic-class 4,5,7 red enable
+```
 
 - - -
 
 ## nv set qos congestion-control \<profile-id\> traffic-class \<qos-tc-id\> ecn
 
-(enable|disable)
+Turns ECN bit marking on or off for the traffic class in the specified ECN profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The traffic class (egress queue). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos congestion-control default-global traffic-class 4,5,7 ecn enable
+```
 
 - - -
 
 ## nv set qos egress-queue-mapping \<profile-id\>
 
+Configures egress queues. Cumulus Linux supports eight egress queues to provide different classes of service. By default switch priority values map directly to the matching egress queue. For example, switch priority value 0 maps to egress queue 0.
+
+You can remap queues by changing the switch priority value to the corresponding queue value. You can map multiple switch priority values to a single egress queue.
+
 - - -
 
 ## nv set qos egress-queue-mapping \<profile-id\> switch-priority \<qos-sp-id\>
+
+Configures the switch priority for the egress queue profile.
 
 - - -
 
 ## nv set qos egress-queue-mapping \<profile-id\> switch-priority \<qos-sp-id\> traffic-class
 
-0-7
+Configures the switch priority to egress queue mapping.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-sp-id>` |   The switch priority. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos egress-queue-mapping default-global switch-priority 2 traffic-class 7
+```
 
 - - -
 
 ## nv set qos egress-scheduler \<profile-id\>
 
+Configures the egress scheduler. Cumulus Linux supports 802.1Qaz, Enhanced Transmission Selection, which allows the switch to assign bandwidth to egress queues and then schedule the transmission of traffic from each queue. 802.1Qaz supports Priority Queuing.
+
+Cumulus Linux provides a default egress scheduler that applies to all ports, where the bandwidth allocated to egress queues 0,2,4,6 is 12 percent and the bandwidth allocated to egress queues 1,3,5,7 is 13 percent.
+
 - - -
 
 ## nv set qos egress-scheduler \<profile-id\> traffic-class \<qos-tc-id\>
+
+Configures the traffic class for the specified egress scheduler profile. The traffic class defines the egress queue where you want to assign bandwidth. For example, traffic-class 2 defines the bandwidth allocation for egress queue 2.
 
 - - -
 
 ## nv set qos egress-scheduler \<profile-id\> traffic-class \<qos-tc-id\> mode
 
-(dwrr|strict)
+Configures the traffic class mode (`dwrr` or `strict`) for the specified egress scheduler profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The egress queue. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos egress-scheduler default-global traffic-class 2,6 mode dwrr 
+```
 
 - - -
 
 ## nv set qos egress-scheduler \<profile-id\> traffic-class \<qos-tc-id\> bw-percent
 
-0-100
+Configures the bandwidth percent value between 1 and 100 for the specified egress queue. If you do not specify a value for an egress queue, Cumulus Linux uses a DWRR value of 0 (no egress scheduling). The combined total of values you assign must be less than or equal to 100.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The egress queue. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos egress-scheduler default-global traffic-class 2,6 bw-percent 30
+```
 
 - - -
 
 ## nv set qos egress-shaper \<profile-id\>
 
+Configures traffic shaping, which allows a switch to send traffic at an average bitrate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts.
+
+Traffic shaping works by holding packets in the buffer and releasing them at specific time intervals.
+
 - - -
 
 ## nv set qos egress-shaper \<profile-id\> traffic-class \<qos-tc-id\>
+
+Configures the traffic class (egress queue) for the specified traffic shaper profile.
 
 - - -
 
 ## nv set qos egress-shaper \<profile-id\> traffic-class \<qos-tc-id\> min-rate
 
-0-2147483647
+Configures the minimum bandwidth for the specified egress queue for a traffic shaper profile. You can set a value between 0 and 2147483647.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The egress queue. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos egress-shaper shaper1 traffic-class 2 min-rate 100
+```
 
 - - -
 
 ## nv set qos egress-shaper \<profile-id\> traffic-class \<qos-tc-id\> max-rate
 
-0-2147483647
+Configures the maximum bandwidth for the specified egress queue for a traffic shaper profile. You can set a value between 0 and 2147483647.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+| `<qos-tc-id>` |   The egress queue. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos egress-shaper shaper1 traffic-class 2 max-rate 500
+```
 
 - - -
 
 ## nv set qos egress-shaper \<profile-id\> port-max-rate
 
-0-2147483647
+Configures the maximum packet shaper rate for the specified profile. You can set a value between 0 and 2147483647.
 
 - - -
 
 ## nv set qos roce
 
 Configures RDMA over Converged Ethernet lossless (RoCE).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos egress-shaper shaper1 port-max-rate 200000
+```
 
 - - -
 

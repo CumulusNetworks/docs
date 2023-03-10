@@ -1124,7 +1124,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports port-buffer 20
+cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports port-buffer 20000
 ```
 
 - - -
@@ -1197,39 +1197,177 @@ cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports rx disable
 
 ## nv set qos pfc \<profile-id\>
 
+Configures Priority flow control (PFC) settings. PFC extends the capabilities of pause frames by the frames for a specific 802.1p value instead of stopping all traffic on a link. If a switch supports PFC and receives a PFC pause frame for a given 802.1p value, the switch stops transmitting frames from that queue, but continues transmitting frames for other queues.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos pfc default-global
+```
+
 - - -
 
 ## nv set qos pfc \<profile-id\> switch-priority \<qos-sp-id\>
+
+Configures the switch priority for the specified PFC profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos pfc default-global switch-priority 0
+```
 
 - - -
 
 ## nv set qos pfc \<profile-id\> xoff-threshold \<value\>
 
+Configures the frame transmission stop threshold in bytes for the specified PFC profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos pfc default-global xoff-threshold 1000
+```
+
 - - -
 
 ## nv set qos pfc \<profile-id\> xon-threshold \<value\>
+
+Configures the frame transmission start threshold in bytes for the specified PFC profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos pfc default-global xon-threshold 10000
+```
 
 - - -
 
 ## nv set qos pfc \<profile-id\> port-buffer \<value\>
 
+Configures the port buffer allocation in bytes for the specified PFC profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos pfc default-global port-buffer 20000
+```
+
 - - -
 
 ## nv set qos pfc \<profile-id\> cable-length
 
-1-100000
+Configures the cable length in meters for the specified PFC profile. You can specify a value between 1 and 100000.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos pfc default-global cable-length 50
+```
 
 - - -
 
 ## nv set qos pfc \<profile-id\> tx
 
-(enable|disable)
+Turns sending PFC frames on and off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos pfc default-global tx enable
+```
 
 - - -
 
 ## nv set qos pfc \<profile-id\> rx
 
-(enable|disable)
+Turns receiving PFC frames on and off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos pfc default-global rx enable
+```
 
 - - -
 
@@ -1238,6 +1376,7 @@ cumulus@leaf01:mgmt:~$ nv set qos link-pause my_pause_ports rx disable
 - - -
 
 ## nv set qos mapping \<profile-id\> pcp \<qos-pcp-id\>
+
 
 - - -
 

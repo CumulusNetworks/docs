@@ -289,7 +289,7 @@ MemoryError
 <tr>
 <td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -3012,7 +3012,7 @@ Fixed: 1.0.1t-1+deb8u16</td>
 <tr>
 <td>2827336</td>
 <td>After bringing up a bridge port, there is a multi second delay before the bridge port is able to learn any MAC addresses or neighbors, which causes a forwarding delay (about six seconds with 300 or more VLANs).</td>
-<td>3.7.15-3.7.16, 4.3.0-4.4.5</td>
+<td>3.7.15-3.7.16</td>
 <td></td>
 </tr>
 <tr>
@@ -5357,11 +5357,6 @@ signature algorithm. The fix for that introduced a more severe regression that c
 CVE-2020-1971: A flaw in the GENERAL_NAME_cmp() function could cause a NULL dereference, resulting in denial of service.
 Vulnerable: &lt;= 1.0.1t-1+deb8u12
 Fixed: 1.0.1t-1+deb8u13</td>
-<td>3.7.14</td>
-</tr>
-<tr>
-<td>2555493</td>
-<td>On Broadcom switches, when WARN level {{switchd}} log messages are generated, {{switchd}} might crash resulting in a core file generated on the system.</td>
 <td>3.7.14</td>
 </tr>
 <tr>
@@ -8122,7 +8117,7 @@ Fixed: 1.0.1t-1+deb8u13</td>
 <td>3.7.14</td>
 </tr>
 <tr>
-<td>2555493</td>
+<td>2555494</td>
 <td>On Broadcom switches, when WARN level {{switchd}} log messages are generated, {{switchd}} might crash resulting in a core file generated on the system.</td>
 <td>3.7.14</td>
 </tr>
@@ -9332,7 +9327,7 @@ Fixed: 1.0.1t-1+deb8u13</td>
 <td>3.7.14.2-3.7.16</td>
 </tr>
 <tr>
-<td>2555493</td>
+<td>2555494</td>
 <td>On Broadcom switches, when WARN level {{switchd}} log messages are generated, {{switchd}} might crash resulting in a core file generated on the system.</td>
 <td>3.7.14</td>
 <td>3.7.14.2-3.7.16, 4.3.0-4.4.5</td>

@@ -7,6 +7,32 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3389198</td>
+<td>The NVUE {{nv unset}} command does not completely remove IPv6 DNS server configuration.
+</td>
+<td>5.3.1-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3388201</td>
+<td>Cumulus Linux does not let you add an interface to the bond interface when the "bridge-allow-untagged no" is present.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3388067</td>
+<td>TACACS+ packages in the local {{apt}} repository might be out of date; as a result, the upgrade does not install tacacs0 through tacacs15 users in the correct NVUE groups. When you run NVUE commands as a TACACS+ user, the commands fail and you see the error {{You do not have permission to execute that command}}.
+To obtain the correct packages, install the {{tacplus-client}} package and its dependencies from {{apt.cumulusnetworks.com}}.</td>
+<td>5.1.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3375047</td>
+<td>If you run the NVUE {{nv set service snmp-server readonly-community}} command to set an SNMP V2 trap community string that includes fewer than eight characters,  the configuration fails.  The SNMP V2 trap community string must include eight or more characters.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3362113</td>
 <td>If you restore an NVUE {{startup.yaml}} file after upgrade that includes breakout ports with QoS configured on the breakout interfaces or you run the {{nv config patch}} command to update a configuration with a {{yaml}} file that includes breakout ports with QoS configured on the breakout interfaces, the NVUE configuration fails to apply and subsequent attempts to run {{nv config apply}} fail with the following message: 
 
@@ -108,6 +134,22 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td></td>
 </tr>
 <tr>
+<td>3336808</td>
+<td>If you run the NVUE {{nv set interface &lt;interface&gt; description}} command  without providing a description, the {{nv config apply}} command fails with an error:
+
+root@cumulus:mgmt:~# nv set interface swp5 description ""
+root@cumulus:mgmt:~# nv config apply
+ Unable to restart services (ifreload-nvue.service):
+ Job for ifreload-nvue.service failed because the control process exited with error code.
+During restart of ifreload-nvue.service:
+error: /etc/network/interfaces: line28: iface swp5: invalid syntax 'alias'
+    &gt;&gt;&gt; Full logs available in: /var/log/ifupdown2/network_config_ifupdown2_104_Jan-20-2023_15:00:10.761330 &lt;&lt;&lt;
+ Failed to start ifreload wrapper service (for NVUE compatibility).
+</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3331929</td>
 <td>In a fairly high scale BGP EVPN route environment, running the NVUE {{nv show vrf default router bgp address-family l2vpn-evpn loc-rib}} command to obtain data leads to high resource usage. In some cases, there is an out of memory error, which leads to multiple daemon crashes.</td>
 <td>5.4.0</td>
@@ -158,6 +200,12 @@ systemd[1]: Failed to start Precision Time Protocol (PTP) service.
 <tr>
 <td>3293560</td>
 <td>If you run NVUE commands to break out a port into four interfaces, NVUE disables the subsequent port automatically. However, if you run NVUE commands to break out a port into eight interfaces, NVUE does not disable the subsequent port automatically; you have to run the NVUE command to disable the subsequent port.</td>
+<td>5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3269691</td>
+<td>When you restart the LLDP service, you see a {{broken pipe}} error and a log message in the {{lldpd.service}} logs. This error does not affect LLDP functionality.</td>
 <td>5.4.0</td>
 <td></td>
 </tr>
@@ -235,6 +283,12 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 <td>3145204</td>
 <td>On the NVIDIA Spectum-1 switch, the {{nv show system forwarding}} command shows GTP hashing  output, which is not supported on this switch.</td>
 <td>5.2.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3142615</td>
+<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP in Cumulus Linux 5.0.0 through 5.2.1 and 5.4.0.</td>
+<td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>

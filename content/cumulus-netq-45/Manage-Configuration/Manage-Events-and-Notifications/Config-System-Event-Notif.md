@@ -2069,8 +2069,6 @@ critTemp        6          error            pd-netq-events   switchLeaf
 
 You might need to modify event notification configurations at some point in the lifecycle of your deployment. You can add channels, rules, filters, and a proxy at any time. You can remove channels, rules, and filters if they are not part of an existing notification configuration.
 
-For integrations with threshold-based event notifications, refer to {{<link title="#Manage Threshold-based Event Notifications">}}.
-
 ### Remove an Event Notification Channel
 
 You can remove channels if they are not part of an existing notification configuration.

@@ -320,7 +320,7 @@ The hostname, reason/port down reason, ingress port, and drop type scope paramet
 
 9. (Optional) Select a notification channel where you want the events to be sent.
 
-    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure System Event Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify Threshold-crossing Rules">}}.
+    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule.
 
 10. Click **Finish**. The rules may take several minutes to appear in the UI.
 

@@ -101,7 +101,7 @@ cumulus@leaf01:mgmt:~$ nv set router pim timers rp-keep-alive 10000
 
 - - -
 
-## nv set router pim enable (on|off)
+## nv set router pim enable
 
 Turns PIM on or off. The default setting is `off`.
 
@@ -147,7 +147,7 @@ Configures PIM timers on an interface.
 
 ## nv set interface \<interface-id\> router pim timers hello-interval
 
-Configures the PIM Hello packets periodic interval. If `auto`, the interval is inherited from the VRF. The hold time is 3.5 times the `hello-interval`, the amount of time the neighbor must be in a reachable state.
+Configures the PIM Hello packets periodic interval on the enabled PIM interface. The hold time is 3.5 times the `hello-interval`, the amount of time the neighbor must be in a reachable state.
 
 ### Command Syntax
 
@@ -175,7 +175,7 @@ Configures BFD for the PIM enabled interface.
 
 ## nv set interface \<interface-id\> router pim bfd enable
 
-Turns BFD on or off on the PIM-enabled interface. The default setting is `off`.
+Turns BFD on or off on the PIM enabled interface. The default setting is `off`.
 
 ### Command Syntax
 
@@ -197,7 +197,7 @@ cumulus@leaf01:mgmt:~$ nv set interface router pim bfd on
 
 ## nv set interface \<interface-id\> router pim bfd detect-multiplier
 
-Configures the BFD detect multiplier value for a PIM-enabled interface. You can set a value between 2 and 255.
+Configures the BFD detect multiplier value for a PIM enabled interface. You can set a value between 2 and 255.
 
 ### Command Syntax
 
@@ -219,7 +219,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim bfd detect-multiplier  
 
 ## nv set interface \<interface-id\> router pim bfd min-receive-interval
 
-Configures the BFD minimum receive interval in milliseconds or a PIM-enabled interface. You can set a value between 50 and 60000.
+Configures the BFD minimum receive interval in milliseconds or a PIM enabled interface. You can set a value between 50 and 60000.
 
 ### Command Syntax
 
@@ -241,7 +241,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim bfd min-receive-interva
 
 ## nv set interface \<interface-id\> router pim bfd min-transmit-interval
 
-Configures the BFD minimum transmit interval in milliseconds or a PIM-enabled interface. You can set a value between 50 and 60000.
+Configures the BFD minimum transmit interval in milliseconds or a PIM enabled interface. You can set a value between 50 and 60000.
 
 ### Command Syntax
 
@@ -263,7 +263,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim bfd min-transmit-interv
 
 ## nv set interface \<interface-id\> router pim address-family
 
-Configures the address family on the PIM-enabled interface.
+Configures the address family on the PIM enabled interface.
 
 - - -
 
@@ -285,7 +285,7 @@ Configures the interface to ignore the RP check for all upstream neighbors. The 
 
 ## nv set interface \<interface-id\> router pim address-family ipv4-unicast allow-rp enable
 
-Turns allow RP on or off on the PIM-enabled interface. The default setting is `off`.
+Configures PIM to ignore the RP check for all upstream neighbors. The default setting is `off`.
 
 ### Command Syntax
 
@@ -307,7 +307,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim address-family ipv4-uni
 
 ## nv set interface \<interface-id\> router pim address-family ipv4-unicast allow-rp rp-list
 
-Configures the prefix list that provides the list of group addresses to accept downstream (*,G) joins and propogate towards the allowed RP.
+Configures PIM to only ignore the RP check for the upstream neighbors in the specified prefix list.
 
 ### Command Syntax
 
@@ -353,7 +353,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim address-family ipv4-uni
 
 ## nv set interface \<interface-id\> router pim address-family ipv4-unicast use-source
 
-Configures the PIM-enabled interface to use the unique source address in the PIM Hello source field.
+Configures the PIM enabled interface to use the unique source address in the PIM Hello source field.
 
 ### Command Syntax
 
@@ -397,7 +397,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router pim enable on
 
 ## nv set interface \<interface-id\> router pim dr-priority
 
-Configures the Designated Router Election priority. You can specify a value between 1 and 4294967295.
+Configures the Designated Router Election (DR) priority. You can specify a value between 1 and 4294967295.
 
 ### Command Syntax
 
@@ -451,26 +451,97 @@ Configures PIM timers on the specified VRF.
 
 - - -
 
-## nv set vrf \<vrf-id\> router pim ecmp
+## nv set vrf \<vrf-id\> router pim timers keep-alive
 
-Configures PIM ECMP on the specified VRF.
+Configures the timeout value for the S,G stream in seconds for the specified VRF. You can set a value between 31 and 60000. The default setting is 210 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim timers keep-alive 10000
+```
 
 - - -
 
-## nv set vrf \<vrf-id\> router pim msdp-mesh-group \<msdp-mesh-group-id\>
+## nv set vrf \<vrf-id\> router pim timers rp-keep-alive
 
-MSDP mesh-group
+Configures the timeout value for the RP in seconds on the specified VRF. You can specify a value between 31 and 60000. The default setting is 185 seconds.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<msdp-mesh-group-id>`  | MSDP mesh group name |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim timers rp-keep-alive 1000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router pim ecmp
+
+Configures PIM ECMP on the specified VRF.
+
+- - -
+
+## nv set vrf \<vrf-id\> router pim ecmp enable
+
+Turns ECMP for PIM on or off on the specified VRF. PIM uses RPF to choose an upstream interface to build a forwarding state. If you configure ECMP, PIM chooses the RPF based on the ECMP hash algorithm. The default value is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim ecmp enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router pim ecmp rebalance
+
+Turns ECMP rebalance on or off on the specified VRF. ECMP rebalance recalculate all stream paths over one of the ECMP paths if the switch loses a path.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim ecmp rebalance on 
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router pim msdp-mesh-group \<msdp-mesh-group-id\>
+
+Configures the MSDP mesh group on the specified VRF. The mesh group must include all RPs in the domain as members, with a unique address as the source. This configuration results in MSDP peerings between all RPs.
 
 - - -
 
@@ -531,19 +602,35 @@ Configures the address family for PIM.
 
 Configures the IPv4 unicast address family.
 
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
 - - -
 
 ## nv set vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover
 
-Configures PIM SPT switchover for the specified VRF.
-
-When the LHR receives the first multicast packet, it sends a PIM (S,G) join towards the FHR to forward traffic through the network. This builds the SPT, or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the RP. This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
+Configures PIM SPT switchover for the specified VRF. When the LHR receives the first multicast packet, it sends a PIM (S,G) join towards the FHR to forward traffic through the network. This builds the SPT, or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the RP. This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
 
 You can configure SPT switchover per group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
+
+- - -
+
+## nv set vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover action
+
+Configures the SPT switchover action in the specified VRF. You can set the action to be `immediate` or `infinite`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast spt-switchover action immediate
+```
 
 - - -
 
@@ -556,6 +643,7 @@ Applies the prefix list that specifies the multicast group range.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
+| `<instance-name>` |   The prefix list name. |
 
 ### Version History
 
@@ -571,13 +659,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\>
 
-RP
+Configures RP settings for the specified VRF.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range \<group-range-id\>
 
-A group range
+Configures the group to RP mapping using the anycast address.
 
 ### Command Syntax
 
@@ -594,7 +682,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
 ```
 
 - - -
@@ -609,9 +697,71 @@ Applies a prefix list that specifies the multicast group range.
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<rp-id>`  | The RP IP address. |
+| `<instance-name>`  | The name of the prefix list. |
 
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
 
+- - -
+
+## nv set vrf \<vrf-id\> router pim address-family ipv4-unicast register-accept-list
+
+Applies a prefix-list that specifies the source list to accept PIM register messages.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast register-accept-list MYACCEPTLIST
+```
+
+## nv set vrf \<vrf-id\> router pim address-family ipv4-unicast send-v6-secondary
+
+Turns sending IPv6 addresses as secondary addresses on or off. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast send-v6-secondary on
+```
+
+## nv set vrf \<vrf-id\> router pim enable
+
+Turns PIM on or off in the specified VRF. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router pim enable on
+```
 - - -

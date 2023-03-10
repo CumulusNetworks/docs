@@ -134,6 +134,12 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 <td>5.3.0-5.4.0</td>
 </tr>
 <tr>
+<td>3142615</td>
+<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP in Cumulus Linux 5.0.0 through 5.2.1 and 5.4.0.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3141818</td>
 <td>If there is extensive and continuous next-hop group (NHG) churn when routes keep moving from one NHG to another NHG repeatedly, {{switchd}} increases in memory allocation until memory is exhausted. Other processes might be affected as they try to acquire memory which is unavailable.</td>
 <td>5.0.1-5.1.0</td>
@@ -456,8 +462,8 @@ The new behavior will make sure to apply the configuration delta without disrupt
 <td>2999253</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
 This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
-<td>4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.4.0</td>
+<td>5.0.0-5.0.1</td>
+<td>5.1.0-5.4.0</td>
 </tr>
 <tr>
 <td>2999243</td>
@@ -905,6 +911,12 @@ sudo /usr/lib/cumulus/mlxcmd qos counters --clear --port &lt;swp&gt;
 <td>5.3.0-5.4.0</td>
 </tr>
 <tr>
+<td>3142615</td>
+<td>The {{BGP4-MIB.txt}} file is missing from Net-SNMP in Cumulus Linux 5.0.0 through 5.2.1 and 5.4.0.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3138746</td>
 <td>The switch duplicates DHCP packets that pass through the VTEP.</td>
 <td>4.3.0-5.1.0</td>
@@ -1107,8 +1119,8 @@ The new behavior will make sure to apply the configuration delta without disrupt
 <td>2999253</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload. 
 This occurs because removing NGINX also removes the libyaml-0-2 and python-yaml packages, which are required for the {{switchd}} consistency check.</td>
-<td>4.3.0, 4.4.0-5.0.1</td>
-<td>4.3.1, 5.1.0-5.4.0</td>
+<td>5.0.0-5.0.1</td>
+<td>5.1.0-5.4.0</td>
 </tr>
 <tr>
 <td>2999243</td>

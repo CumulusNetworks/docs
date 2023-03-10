@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3376552</td>
-<td>On switches running Cumulus Linux 5.4.0, the NetQ agent will crash when a frame is received on a bridge port sourcing from a MAC address of all zeroes (00:00:00:00:00:00). Switches experiencing this problem will appear as "rotten" in the NetQ UI.</td>
-<td>4.3.0-4.5.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3362224</td>
 <td>When you configure a new access profile with SSH authentication using the CLI, the command fails with the following log message:
 
@@ -114,6 +108,15 @@ argument of type ‘NoneType’ is not iterable
 <td></td>
 </tr>
 <tr>
+<td>3303284</td>
+<td>When you run the  {{netq show opta-health}} command, it might fail and produce the following error:
+
+
+ERROR: Expecting value: line 1 column 1 (char 0)
+</td>
+<td>4.3.0-4.4.0</td>
+</tr>
+<tr>
 <td>3290068</td>
 <td>When you back up NetQ data with the {{backuprestore.sh}} script, the operation fails with the following log messages:
 
@@ -137,6 +140,22 @@ local variable ‘url’ referenced before assignment
 <tr>
 <td>3241664</td>
 <td>When you start the {{netq-agent}} service, the WJH service is enabled by default.  However, when you run the {{netq config show agent wjh}} command, the output might reflect the WJH service as disabled.</td>
+<td></td>
+</tr>
+<tr>
+<td>3231404</td>
+<td>When you attempt to reinstall NetQ on a server with an existing NetQ installation using the {{netq install [opta]}} command, the installation fails with the following messages:
+
+
+master-node-installer: Plugged in release bundle ...    [ FAILED ]
+--------------------------------------
+ERROR: Failed to install the master node
+
+
+Command '['/usr/bin/dpkg', '-i', '']' returned non-zero exit status 2.
+
+
+To work around this issue, run the {{netq bootstrap reset}} command before attempting to reinstall NetQ on your existing server.</td>
 <td></td>
 </tr>
 <tr>

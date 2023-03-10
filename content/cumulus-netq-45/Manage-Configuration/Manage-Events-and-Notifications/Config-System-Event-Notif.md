@@ -26,13 +26,13 @@ Notifications are generated for the following types of events:
 
 | Category | Events |
 | --- | --- | 
-| Network Protocol Validations | <ul><li>BGP status and session state</li><li>MLAG (CLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state </li><li>VLAN status and session state </li><li>VXLAN status and session state </li></ul> |
+| Network Protocols | <ul><li>BGP status and session state</li><li>MLAG (CLAG) status and session state</li><li>EVPN status and session state</li><li>LLDP status</li><li>OSPF status and session state</li><li>PTP status and session state </li><li>VLAN status and session state </li><li>VXLAN status and session state </li></ul> |
 | Interfaces | <ul><li>Link status</li><li>Ports and cables status</li><li>MTU status</li></ul> |
 | Services | <ul><li>NetQ Agent status</li><li>PTM</li><li>SSH \*</li><li>NTP status</li></ul> |
 | Traces | <ul><li>On-demand trace status</li><li>Scheduled trace status</li></ul> |
 | Sensors | <ul><li>Fan status</li><li>PSU (power supply unit) status</li><li>Temperature status</li></ul> |
-| System Software | <ul><li>Configuration File changes</li><li>Running Configuration File changes</li><li>Cumulus Linux Support status</li><li>Software Package status</li><li>Operating System version</li><li>Lifecycle Management status</li></ul> |
-| System Hardware | <ul><li>Physical resources status</li><li>BTRFS status</li><li>SSD utilization status</li></ul> |
+| System Software | <ul><li>Configuration file changes</li><li>Running configuration file changes</li><li>Cumulus Linux support status</li><li>Software package status</li><li>Operating system version</li><li>Lifecycle management status</li></ul> |
+| System hardware | <ul><li>Physical resources status</li><li>BTRFS status</li><li>SSD utilization status</li></ul> |
 
 *\* CLI only*
 
@@ -45,18 +45,18 @@ Messages have the following structure:
 
 | Element  | Description  |
 | ----------- | -------------- |
-| message type | Category of event; *agent*, *bgp*, *clag*, *clsupport*, *configdiff*, *evpn*, *link*, *lldp*, *mtu*, *node*, *ntp*, *ospf*, *packageinfo*, *ptm*, *resource*, *runningconfigdiff*, *sensor*, *services*, *ssdutil*, *tca*, *trace*, *version*, *vlan* or *vxlan* |
+| message type | Category of event |
 | timestamp    | Date and time event occurred  |
 | opid         | Identifier of the service or process that generated the event |
 | hostname     | Hostname of network device where event occurred |
-| severity     | Severity level in which the given event is classified: *error* or *info* |
+| severity     | Severity classification: *error* or *info* |
 | message      | Text description of event  |
 
 For example:
 
 {{<figure src="/images/netq/event-msg-format.png">}}
 
-To set up the integrations, you must configure NetQ with at least one channel, one rule, and one filter. To refine what messages you want to view and where to send them, you can add additional rules and filters and set thresholds on supported event types. You can also configure a proxy server to receive, process, and forward the messages. This is accomplished using the NetQ UI and NetQ CLI in the following order:
+To set up the integrations, you must configure NetQ with at least one channel, one rule, and one filter. To refine what messages you want to view and where to send them, you can add additional rules and filters and set thresholds on supported event types. You can also configure a proxy server to receive, process, and forward the messages. This is accomplished in the following order:
 
 {{<figure src="/images/netq/notif-config-wkflow.png">}}
 
@@ -72,7 +72,7 @@ A notification configuration must contain one channel, one rule, and one filter.
 
 ### Create a Channel
 
-The first step is to create a PagerDuty, Slack, syslog, or email channel to receive the notifications.
+The first step is to create a Slack, PagerDuty, syslog, email, or generic channel to receive the notifications.
 
 {{<tabs "TabID81" >}}
 
@@ -84,18 +84,16 @@ You can use the NetQ UI or the NetQ CLI to create a Slack channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Notification channels**.
 
 2. The **Slack** tab is displayed by default.
 
 3. Add a channel.
 
-    - When no channels have been specified, click **Add Slack Channel**.
-    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+    - When no channels have been specified, click **Add Slack channel**.
+    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> **Add** above the table.
 
 4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-slack-300.png" width="250">}}
 
 5. Create an incoming webhook as described in the {{<exlink url="https://api.slack.com/messaging/webhooks#create_a_webhook" text="Slack documentation">}} Then copy and paste it in the *Webhook URL* field.
 
@@ -151,18 +149,16 @@ You can use the NetQ UI or the NetQ CLI to create a PagerDuty channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Notification channels**.
 
 2. Click **PagerDuty**.
 
 3. Add a channel.
 
-    - When no channels have been specified, click **Add PagerDuty Channel**.
-    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+    - When no channels have been specified, click **Add PagerDuty channel**.
+    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> **Add** above the table.
 
 4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-pagerduty-300.png" width="250">}}
 
 5. Obtain and enter an integration key (also called a service key or routing key).
 
@@ -216,18 +212,16 @@ You can use the NetQ UI or the NetQ CLI to create a syslog channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Notification channels**.
 
 2. Click **Syslog**.
 
 3. Add a channel.
 
-    - When no channels have been specified, click **Add Syslog Channel**.
-    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+    - When no channels have been specified, click **Add syslog channel**.
+    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> **Add** above the table.
 
 4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-syslog-300.png" width="250">}}
 
 5. Enter the IP address and port of the syslog server.
 
@@ -282,18 +276,16 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Notification channels**.
 
 2. Click **Email**.
 
 3. Add a channel.
 
-    - When no channels have been specified, click **Add Email Channel**.
-    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+    - When no channels have been specified, click **Add email channel**.
+    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> **Add** above the table.
 
 4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
-
-    {{<figure src="/images/netq/channels-add-email-320.png" width="250">}}
 
 5. Enter a list of emails for the people who you want to receive notifications from this channel.
 
@@ -304,7 +296,7 @@ You can use the NetQ UI or the NetQ CLI to create an email channel.
     - **Host**: hostname or IP address of the SMTP server
     - **Port**: port of the SMTP server (typically 587)
     - **User ID/Password**: your administrative credentials
-    - **From**: email address that indicates who sent the event messages
+    - **From**: email address that indicates who sent the notifications
 
     After the first time, any additional email channels you create can use this configuration, by clicking **Existing**.
 
@@ -417,20 +409,18 @@ You can use the NetQ UI or the NetQ CLI to create a generic channel.
 
 {{<tab "NetQ UI" >}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu, then click **Notification Channels**.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**, then click **Notification channels**.
 
 2. Click **Generic**.
 
 3. Add a channel.
 
     - When no channels have been specified, click **Add generic channel**.
-    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> above the table.
+    - When at least one channel has been specified, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18"/> **Add** above the table.
 
 4. Provide a unique name for the channel. Note that spaces are not allowed. Use dashes or camelCase instead.
 
-    {{<figure src="/images/netq/add-generic-channel-dialog.png" width="400">}}
-
-5. Enter a Webhook URL that you want to receive the notifications from this channel.
+5. Specify a webhook URL.
 
 6. Set the desired notification severity, SSL, and authentication parameters for this channel.
 
@@ -1428,7 +1418,7 @@ PSU: up, down</td>
 
 {{<notice note>}}
 
-Rule names are case sensitive, and you cannot use wildcards. Rule names can contain spaces, but you must enclose them with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use *bgpSessionChanges* or *BGP-session-changes* or *BGPsessions*, instead of *BGP Session Changes*. Use tab completion to view the command options syntax.
+Rule names are case sensitive, and you cannot use wildcards. Rule names can contain spaces, but you must enclose them with single quotes in commands. It is easier to use dashes in place of spaces or mixed case for better readability. For example, use 'bgpSessionChanges', 'BGP-session-changes', or 'BGPsessions', instead of 'BGP Session Changes'. Use tab completion to view the command options syntax.
 
 {{</notice>}}
 
@@ -1464,7 +1454,7 @@ Create a sensor rule based on a threshold:
     cumulus@switch:~$ netq add notification rule overTemp key new_s_crit value 24
     Successfully added/updated rule overTemp
 
-Create an interface rule based on port:
+Create an interface rule based on a port:
 
     cumulus@switch:~$ netq add notification rule swp52 key port value swp52
     Successfully added/updated rule swp52 
@@ -1580,7 +1570,7 @@ You can suppress events for the following types of messages:
 
 {{<notice info>}} 
 
-NetQ suppresses BGP, EVPN, link, and sensor-related events with a severity level of "info" by default in the UI. You can {{<link url="#delete-or-disable-an-event-suppression-rule" text="disable this rule">}} if you'd prefer to receive these event notifications.
+NetQ suppresses BGP, EVPN, link, and sensor-related events with a severity level of "info" by default in the UI. You can {{<link url="#delete-or-disable-an-event-suppression-rule" text="disable this rule">}} if you'd prefer to receive these notifications.
 
 {{</notice>}}
 
@@ -1592,7 +1582,7 @@ NetQ suppresses BGP, EVPN, link, and sensor-related events with a severity level
 
 To suppress events using the NetQ UI:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **Events**.
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then **Events**.
 2. In the top-right corner, select **Show suppression rules**.
 3. Select **Add rule**. You can configure individual suppression rules or you can create a group rule that suppresses events for all message types.
     {{<figure src="/images/netq/create-suppression-rule-modal.png" width="600">}}
@@ -1679,7 +1669,7 @@ You can delete or disable suppression rules. After you delete a rule, event noti
 
 To remove suppressed event configurations:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **Events**.
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then **Events**.
 2. Select **Show suppression rules** at the top of the page.
 3. Toggle between the **Single** and **All** tabs to view the suppression rules. Navigate to the rule you would like to delete or disable.
 4. Click the three-dot menu and select **Delete**. If you'd like to pause the rule instead of deleting it, click **Disable**.
@@ -1705,7 +1695,7 @@ Successfully deleted Events Config eventsconfig_10
 
 To view suppressed events:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then **Events**.
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then **Events**.
 2. Select **Show suppression rules** at the top of the page.
 3. Toggle between the **Single** and **All** tabs to view individual and group rules, respectively. 
 
@@ -2091,13 +2081,13 @@ You can remove channels if they are not part of an existing notification configu
 
 To remove notification channels:
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and select **Notification Channels**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and select **Notification channels**.
 
-2. Select the tab for the type of channel you want to remove (Slack, PagerDuty, Syslog, Email).
+2. Select the tab for the type of channel you want to remove.
 
 3. Select one or more channels.
 
-4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/>.
+4. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> **Delete**.
 
 {{</tab>}}
 

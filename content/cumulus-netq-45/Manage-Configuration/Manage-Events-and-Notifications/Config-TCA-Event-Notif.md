@@ -1,11 +1,11 @@
 ---
-title: Configure Threshold-Based Event Notifications
+title: Configure Threshold-Crossing Event Notifications
 author: NVIDIA
 weight: 790
 toc: 3
 ---
 
-NetQ supports *TCA events*, which are a set of events that trigger at the crossing of a user-defined threshold. These events detect and prevent network failures for selected ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="TCA Event Messages Reference">}}.
+Threshold-crossing events are user-defined events that detect and prevent network failures for ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="TCA Event Messages Reference" text="Threshold-crossing Events Reference">}}.
 
 A notification configuration must contain one rule. Each rule must contain a scope and a threshold. If you want to deliver events to one or more notification channels (for example, email or Slack), create them by following the instructions in {{<link title="Configure System Event Notifications#create-a-channel" text="Create a Channel">}}, and then return here to define your rule.
 
@@ -189,9 +189,9 @@ A rule's scope can include all monitored devices or a subset. You define scopes 
 
 {{<tab "NetQ UI" >}}
 
-You define the scope in the Choose Attributes step when creating a TCA event rule. You can choose to apply the rule to all devices or narrow the scope using attributes. If you choose to narrow the scope, but then do not enter any values for the available attributes, the result is all devices and attributes.
+You define the scope in the Choose Attributes step when creating an event rule. You can choose to apply the rule to all devices or narrow the scope using attributes. If you choose to narrow the scope, but then do not enter any values for the available attributes, the result is all devices and attributes.
 
-Scopes appear in TCA rule cards using the following format: Attribute, Operation, Value.
+Scopes appear in threshold-crossing rule cards using the following format: Attribute, Operation, Value.
 
 In this example, three attributes are available. For one or more of these attributes, select the operation (equals or starts with) and enter a value. For drop reasons, click in the value field to open a list of reasons, and select one from the list.
 
@@ -286,17 +286,15 @@ The hostname, reason/port down reason, ingress port, and drop type scope paramet
 
 {{</tabs>}}
 
-## Create a TCA Rule
+## Create a Threshold-crossing Rule
 
 {{<tabs "TCA Rule" >}}
 
 {{<tab "NetQ UI" >}}
 
-To create a TCA rule:
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and navigate to **Threshold crossing rules**.
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and navigate to **Threshold Crossing Rules**.
-
-2. Select the event type for the rule you want to create.
+2. Select the tab that reflects the event type for the rule.
 
 3. Click **Create a rule**. Enter a name for the rule and assign a severity, then click **Next**.
 
@@ -318,13 +316,11 @@ To create a TCA rule:
 
     - If you want the rule to apply to across the network, select the **Apply rule to entire network** toggle.
 
-    {{<figure src="/images/netq/tca-create-rule-apply-filters-330.png" alt="" width="450">}}
-
 8. Click **Next**.
 
 9. (Optional) Select a notification channel where you want the events to be sent.
 
-    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure System Event Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify TCA Rules">}}.
+    Only previously created channels are available for selection. If no channel is available or selected, the notifications can only be retrieved from the database. You can add a channel at a later time and then add it to the rule. Refer to {{<link title="Configure System Event Notifications/#create-a-channel" text="Create a Channel">}} and {{<link title="#change-add-or-remove-the-channels-on-a-tca-rule" text="Modify Threshold-crossing Rules">}}.
 
 10. Click **Finish**. The rules may take several minutes to appear in the UI.
 
@@ -368,7 +364,7 @@ For a Slack channel, the event messages should be similar to this:
 
 {{<figure src="/images/netq/tca-events-slack-example-240.png" width="500">}}
 
-### Set the Severity of a Threshold-based Event
+### Set the Severity of a Threshold-crossing Event
 
 In addition to defining a scope for TCA rule, you can also set a severity of either info or error. To add a severity to a rule, use the `severity` option.
 
@@ -388,14 +384,14 @@ cumulus@switch:~$ netq add tca event_id TCA_TXBYTES_UPPER scope leaf12,'*' sever
 
 Digital optics have the additional option of applying user- or vendor-defined thresholds, using the `threshold_type` and `threshold` options.
 
-This example shows how to send an alarm event on channel *ch1* when the upper threshold for module voltage exceeds the vendor-defined thresholds for interface *swp31* on the *mlx-2700-04* switch.
+This example shows how to send an error to channel *ch1* when the upper threshold for module voltage exceeds the vendor-defined thresholds for interface *swp31* on the *mlx-2700-04* switch.
 
 ```
 cumulus@switch:~$ netq add tca event_id TCA_DOM_MODULE_VOLTAGE_ALARM_UPPER scope 'mlx-2700-04,swp31' severity error is_active true threshold_type vendor_set channel ch1
 Successfully added/updated tca
 ```
 
-This example shows how to send an alarm event on channel *ch1* when the upper threshold for module voltage exceeds the user-defined threshold of *3V* for interface *swp31* on the *mlx-2700-04* switch.
+This example shows how to send an error to channel *ch1* when the upper threshold for module voltage exceeds the user-defined threshold of *3V* for interface *swp31* on the *mlx-2700-04* switch.
 
 ```
 cumulus@switch:~$ netq add tca event_id TCA_DOM_MODULE_VOLTAGE_ALARM_UPPER scope 'mlx-2700-04,swp31' severity error is_active true threshold_type user_set threshold 3 channel ch1
@@ -406,7 +402,7 @@ Successfully added/updated tca
 
 {{</tabs>}}
 
-## Create Multiple Rules for a TCA Event
+## Create Multiple Rules for a Single Event
 
 You may want to create more than one rule per event. For example, you might want to:
 
@@ -429,21 +425,21 @@ netq add tca event_id TCA_SENSOR_TEMPERATURE_UPPER scope leaf03,temp1 channel sy
 Now you have four rules created (the original one, plus these three new ones) all based on the TCA_SENSOR_TEMPERATURE_UPPER event. To identify the various rules, NetQ automatically generates a TCA name for each rule. As you create each rule, NetQ adds an *\_#* to the event name. The TCA Name for the first rule created is then TCA_SENSOR_TEMPERATURE_UPPER_1, the second rule created for this event is TCA_SENSOR_TEMPERATURE_UPPER_2, and so forth.
 
 <!-- vale off -->
-## Manage Threshold-based Event Notifications
+## Manage Threshold-crossing Event Notifications
 <!-- vale on -->
-### View TCA Rules
+### View Threshold-crossing Rules
 
 {{<tabs "View TCA rules">}}
 
 {{<tab "NetQ UI">}}
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu and navigate to **Threshold Crossing Rules**.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu** and navigate to **Threshold crossing rules**.
 
-2. The UI displays a card for each rule.
+2. Select the relevant tab. The UI displays each rule and its parameters as a card.
 
 After creating a rule, you can use the filters that appear above the rule cards to filter by status, severity, channel, and/or events.
 
-{{<figure src="/images/netq/tca-rules-filter-330.png" alt="" width="500">}}
+{{<figure src="/images/netq/threshold-filters-450.png" alt="" width="500">}}
 
 {{</tab>}}
 
@@ -491,7 +487,7 @@ TCA_TXMULTICAST_UPPER_1      TCA_TXMULTICAST_UPPE {"ifname":"swp3","hostname inf
 
 {{</tabs>}}
 
-### Change the Threshold on a TCA Rule
+### Change the Threshold on a Rule
 
 After receiving notifications based on a rule, you might want to increase or decrease the threshold value to limit or increase the number of events you receive.
 
@@ -503,7 +499,7 @@ To modify the threshold:
 
 1. Locate the rule you want to modify and hover over the top of the card.
 
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> Edit.
+2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> **Edit**.
 
     {{<figure src="/images/netq/edit-tca-card.png" alt="" width="200">}}
 
@@ -529,7 +525,7 @@ cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 threshold 96
 
 {{</tabs>}}
 
-### Change the Scope of a TCA Rule
+### Change the Scope of a Rule
 
 After receiving notifications based on a rule, you might find that you want to narrow or widen the scope value to limit or increase the number of events you receive.
 
@@ -541,13 +537,9 @@ To modify the scope:
 
 1. Locate the rule you want to modify and hover over the top of the card.
 
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> Edit.
+2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> **Edit**.
 
-3. Change the scope, applying the rule to all devices or broadening or narrowing the scope. Refer to {{<link title="#Specify the Scope" text="Specify the Scope">}} for details.
-
-4. Select the toggle or define one or more hosts on which to apply this rule.
-
-    {{<figure src="/images/netq/tca-create-rule-apply-toggle-241.png" width="450">}}
+3. Select the toggle to either apply the rule to the entire network or individual hosts.
 
 4. Click **Update rule**.
 
@@ -583,7 +575,7 @@ TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"hostname^leaf inf
 
 {{</tabs>}}
 
-### Change, Add, or Remove the Channels on a TCA Rule
+### Change, Add, or Remove Channels
 
 {{<tabs "TabID2638" >}}
 
@@ -591,7 +583,7 @@ TCA_CPU_UTILIZATION_UPPER_2  TCA_CPU_UTILIZATION_ {"hostname":"hostname^leaf inf
 
 1. Locate the rule you want to modify and hover over the top of the card.
 
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> Edit.
+2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18"/> **Edit**.
 
 3. Select the **Channels** tab.
 
@@ -635,15 +627,15 @@ Successfully added/updated tca TCA_DISK_UTILIZATION_UPPER_1
 
 {{</tabs>}}
 
-### Change the Name of a TCA Rule
+### Change the Name of a Rule
 
-You cannot change the name of a TCA rule using the NetQ CLI because the rules do not have names. They receive identifiers (the `tca_id`) automatically. In the NetQ UI, to change a rule name, you must delete the rule and re-create it with the new name. Refer to {{<link title="Configure Threshold-Based Event Notifications/#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="Configure Threshold-Based Event Notifications/#create-a-tca-rule" text="Create a TCA Rule">}}.
+You cannot change the name of a threshold-crossing rule using the NetQ CLI because the rules do not have names. They receive identifiers (the `tca_id`) automatically. In the NetQ UI, to change a rule name, you must delete the rule and re-create it with the new name.
 
-### Change the Severity of a TCA Rule
+### Change the Severity of a Rule
 
-TCA rules are categorized as either informational or error.
+Threshold-crossing rules are categorized as either info or error.
 
-In the NetQ UI, you must delete the rule and re-create it specifying the new severity. Refer to {{<link title="Configure Threshold-Based Event Notifications/#delete-a-tca-rule" text="Delete a TCA Rule">}} and then {{<link title="Configure Threshold-Based Event Notifications/#create-a-tca-rule" text="Create a TCA Rule">}}.
+In the NetQ UI, you must delete the rule and re-create it, specifying the new severity.
 
 In the NetQ CLI, to change the severity, run:
 
@@ -658,29 +650,17 @@ cumulus@switch:~$ netq add tca tca_id TCA_CPU_UTILIZATION_UPPER_1 severity info
 Successfully added/updated tca TCA_CPU_UTILIZATION_UPPER_1
 ```
 
-### Suppress a TCA Rule
+### Suppress a Rule
 
-During troubleshooting or switch maintenance, you might want to suppress a rule to prevent erroneous or excessive event messages.
+During troubleshooting or switch maintenance, you might want to suppress a rule to prevent erroneous or excessive notifications. This effectively pauses notifications for a specified time period.
 
 {{<tabs "TabID2718" >}}
 
 {{<tab "NetQ UI" >}}
 
-The TCA rules have three possible states in the NetQ UI:
+1. Locate the rule you want to disable and click **Disable**.
 
-<!-- vale off -->
-- **Active**: Rule is operating, delivering events. This is the normal operating state.
-- **Suppressed**: Rule is disabled until a designated date and time. When that time occurs, the rule is automatically reenabled.
-- **Disabled**: Rule is disabled until a user manually reenables it. This state is useful when you are unclear when you want the rule to be reenabled. This is not the same as deleting the rule.
-<!-- vale on -->
-
-To suppress a rule for a designated amount of time, you must change the state of the rule:
-
-1. Locate the rule you want to suppress.
-
-2. Click **Disable**.
-
-3. Click in the **Date/Time** field to set when you want the rule to be *reenabled*.
+3. Select the **Date/Time** field to set when you want the rule to be *reenabled*.
 
 4. Click **Disable**.
 
@@ -714,9 +694,9 @@ Successfully added/updated tca TCA_CPU_UTILIZATION_UPPER_2
 
 {{</tabs>}}
 
-### Disable a TCA Rule
+### Disable a Rule
 
-Whereas suppression temporarily disables a rule, you can deactivate a rule to disable it indefinitely.
+Whereas suppression temporarily disables a rule, you can also disable a rule indefinitely.
 {{<tabs "TabID2781" >}}
 
 {{<tab "NetQ UI" >}}
@@ -731,17 +711,15 @@ To disable a rule that is currently **active**:
 
 4. Click **Disable**.
 
-    {{<figure src="/images/netq/tca-disable-rule-example-300.png" width="200">}}
-
 <div style="padding-left: 18px;">Note the changes in the card:
 <ul>
-<li>The state is now marked as <em>Inactive</em> and is red</li>
+<li>The state changes to <em>Inactive</em>
 <li>The rule definition is grayed out</li>
 <li>The <strong>Disable</strong> option has changed to <strong>Enable</strong> to reactivate the rule when you are ready</li>
 </ul>
 </div>
 
-To disable a rule that is currently **suppressed**, click **Disable Forever**.
+To disable a rule that is currently **suppressed**, click **Disable forever**.
 
 {{</tab>}}
 
@@ -766,9 +744,7 @@ To reenable the rule, set the `is_active` option to *true*.
 
 {{</tabs>}}
 
-### Delete a TCA Rule
-
-You can either disable an event (if you think you might want to receive event messages again) or delete a rule altogether. Refer to {{<link title="#Disable a TCA Rule" text="Disable a TCA Rule">}} for the first case.
+### Delete a Rule
 
 {{<tabs "TabID2858" >}}
 
@@ -778,7 +754,7 @@ To delete a rule:
 
 1. Locate the rule you want to remove and hover over the card.
 
-2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> in the card's top-right corner.
+2. In the card's top-right corner, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> **Delete**.
 
 {{</tab>}}
 
@@ -803,7 +779,7 @@ Successfully deleted TCA TCA_RXBYTES_UPPER_1
 
 ## Resolve Scope Conflicts
 
-There might be occasions where the scope defined by the multiple rules for a given TCA event might overlap each other. In such cases, NetQ uses the TCA rule with the most specific scope that is still true to generate the event.
+There might be occasions where the scopes defined by multiple threshold-crossing rules overlap. In such cases, NetQ uses the rule with the most specific scope that is still true to generate the event.
 
 To clarify this, consider this example. Three events occurred:
 
@@ -811,7 +787,7 @@ To clarify this, consider this example. Three events occurred:
 - Second event on switch *leaf01*, interface *swp3*
 - Third event on switch *spine01*, interface *swp1*
 
-NetQ attempts to match the TCA event against hostname and interface name with three TCA rules with different scopes:
+NetQ attempts to match the threshold-crossing event against hostname and interface name with three threshold-crossing rules with different scopes:
 
 - Scope 1 send events for the *swp1* interface on switch *leaf01* (very specific)
 - Scope 2 send events for all interfaces on switches that start with *leaf* (moderately specific)
@@ -831,4 +807,4 @@ In summary:
 | leaf01,swp3 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 2 |
 | spine01,swp1 | Hostname, Interface | \'\*\',\'\*\' | leaf\*,\'\*\' | leaf01,swp1 | Scope 1 |
 
-Modify your TCA rules to remove the conflict.
+You can modify threshold-crossing rules to remove conflicts.

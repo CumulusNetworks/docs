@@ -4611,7 +4611,7 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 ## netq show wjh-drop
 
-Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems that WJH (What Just Happened) feature captures on NVIDIA switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by various attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
+Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems on NVIDIA Spectrum switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by various attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
 
 {{%notice note%}}
 Viewing WJH drop information requires Cumulus Linux 4.0.0 or later and NetQ Agent 2.4.0 or later. You must also configure the NetQ Agent to collect this data.

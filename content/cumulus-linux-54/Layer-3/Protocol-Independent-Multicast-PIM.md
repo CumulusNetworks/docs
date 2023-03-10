@@ -262,6 +262,10 @@ When the LHR receives the first multicast packet, it sends a <span style="backgr
 
 You can configure SPT switchover per group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
 
+{{%notice note%}}
+When using a prefix list in CL to match a multicast group destination address (GDA) range, you must include the /32 operator. As shown in the below examples, this is denoted as "max-prefix-len 32" in NVUE or "ge 32" in FRR after the group match/permit range is specified.
+{{%/notice%}}
+  
 To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list:
 
 {{< tabs "TabID307 ">}}
@@ -311,7 +315,7 @@ Source          Group           Proto   Input     Output     TTL  Uptime
 For <span style="background-color:#F5F5DC">[SSM](## "Source Specific Multicast")</span>, `232.0.0.0/8` is the default multicast group range. To change the multicast group range, define a prefix list and apply it. You can change the default group or add additional group ranges.
 
 {{%notice note%}}
-You must include `232.0.0.0/8` in the prefix list.
+You must include `232.0.0.0/8` in the prefix list. When using a prefix list in CL to match a multicast group destination address (GDA) range, you must include the /32 operator. As shown in the below examples, this is denoted as "max-prefix-len 32" in NVUE or "ge 32" in FRR after the group match/permit range is specified.
 {{%/notice%}}
 
 {{< tabs "TabID825 ">}}

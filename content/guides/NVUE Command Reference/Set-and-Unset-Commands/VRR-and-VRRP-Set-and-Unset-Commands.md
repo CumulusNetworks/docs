@@ -1,7 +1,7 @@
 ---
 title: VRR and VRRP Set and Unset Commands
 author: Cumulus Networks
-weight: 780
+weight: 740
 product: Cumulus Linux
 type: nojsscroll
 ---

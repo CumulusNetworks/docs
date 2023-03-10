@@ -1,7 +1,7 @@
 ---
 title: Syslog Set and Unset Commands
 author: Cumulus Networks
-weight: 700
+weight: 710
 product: Cumulus Linux
 type: nojsscroll
 ---

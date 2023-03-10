@@ -1,7 +1,7 @@
 ---
 title: System Forwarding Set and Unset Commands
 author: Cumulus Networks
-weight: 760
+weight: 730
 product: Cumulus Linux
 type: nojsscroll
 ---

@@ -12,7 +12,7 @@ The Display card contains the options for setting the application theme (light o
 
 To configure the display settings:
 
-1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
+1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** in the top-right corner.
 2. Select **Profile & Preferences**.
 3. Locate the Display card:
 
@@ -32,7 +32,7 @@ To configure the display settings:
 
 ## Change Your Password
 
-1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> in the application header to open the **User Settings** options.
+1. Click <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> **User Settings** in the top-right corner.
 2. Click **Profile & Preferences**.
 3. In the Basic Account Info card, select **Change password**.
 

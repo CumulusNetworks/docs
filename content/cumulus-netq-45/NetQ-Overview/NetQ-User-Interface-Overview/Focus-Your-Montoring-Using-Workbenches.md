@@ -14,7 +14,7 @@ Workbenches are dashboards where you collect and view data. Two types of workben
 Both types of workbenches display a set of cards. Default workbenches are public (accessible to all users), whereas custom workbenches are private (viewing is restricted to the user who created them).
 ## Default Workbenches
 
-The default workbench contains Device Inventory, Switch Inventory, Events, and Validation Summary cards, giving you a high-level view of how your network is operating.
+The default workbench contains Device Inventory, Switch Inventory, Events, and Validation Summary cards, giving you an overview of how your network is operating.
 
 {{<figure src="/images/netq/default-workbench.png" alt="default netq workbench" width="900">}}
 
@@ -35,11 +35,11 @@ People with either administrative or user roles can create and save an unlimited
 
 2. Enter a name for the workbench and choose whether to set it as your default home workbench.
 
-4. Select the cards you would like to display on your new workbench.
+4. Select the cards you would like displayed on your new workbench.
 
       {{<figure src="/images/netq/create-a-workbench.png" alt="interface displaying the cards a user can select to add to their workbench" width="800">}}
 
-5. Click **Create** to create your new workbench.
+5. Click **Create**.
 
 Refer to {{<link url="Access-Data-with-Cards">}} for information about interacting with cards on your workbenches.
 
@@ -53,11 +53,11 @@ To create a duplicate of an existing workbench:
 
 ### Remove a Workbench
 
-Admin accounts can remove any workbench, except for the default NetQ Workbench. User accounts can only remove workbenches they have created.
+Admins can remove any workbench, except for the default NetQ Workbench. User accounts can only remove workbenches they have created.
 
 To remove a workbench:
 
-1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="profile icon" height="18" width="18"/> in the upper-right corner to open the **User Settings** options.
+1. Select <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" alt="profile icon" height="18" width="18"/> **User Settings** in the top-right corner.
 
 2. Select **Profile & Preferences**.
 
@@ -76,7 +76,7 @@ There are several options for opening workbenches:
         - Search by workbench name
         - Click **All My WB** to open all workbenches and select it from the list
 - Open through the main menu
-    - Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18"/> Menu and select the workbench from the **Favorites** or **Workbenches** sections
+    - Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18"/> **Menu** and select the workbench from the **Favorites** or **Workbenches** sections
 - Open through the NVIDIA logo
     - Click the logo in the header to open your favorite workbench
 
@@ -98,4 +98,4 @@ To modify the auto-refresh setting:
 
     {{<figure src="/images/netq/wb-refresh-rate-set-400.png" alt="refresh rate dropdown listng rate options of 30 seconds, 1 minute, and 2 minutes" width="150">}}
 
-To disable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> Pause. When you're ready for the data to refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> Play.
+To disable auto-refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-pause.svg" alt="pause icon" width="18"/> **Pause**. When you're ready for the data to refresh, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/42-Multimedia-Controls/button-play-1.svg" alt="play icon" width="18"/> **Play**.

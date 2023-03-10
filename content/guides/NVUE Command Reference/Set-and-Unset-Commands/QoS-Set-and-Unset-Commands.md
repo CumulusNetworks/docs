@@ -1410,21 +1410,57 @@ cumulus@leaf01:mgmt:~$ nv set qos pfc default-global rx enable
 
 ## nv set qos remark \<profile-id\>
 
+Configures 802.1p or DSCP traffic marking.
+
 - - -
 
 ## nv set qos remark \<profile-id\> switch-priority \<qos-sp-id\>
+
+Configures switch priority to 802.1p or DSCP traffic marking.
 
 - - -
 
 ## nv set qos remark \<profile-id\> switch-priority \<qos-sp-id\> pcp
 
-0-7
+Configures switch priority to egress 802.1p (PCP) mapping for the specified remark profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos remark default-global switch-priority 0 pcp 4
+```
 
 - - -
 
 ## nv set qos remark \<profile-id\> switch-priority \<qos-sp-id\> dscp
 
-0-63
+Configures switch priority to egress DSCP mapping for the specified remark profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<profile-id>` |   The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set qos remark default-global switch-priority 0 dscp 22 
+```
 
 - - -
 
@@ -1531,10 +1567,6 @@ cumulus@leaf01:mgmt:~$ nv set qos pfc default-global rx enable
 ## nv set qos roce
 
 Configures RDMA over Converged Ethernet lossless (RoCE).
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
 
 - - -
 

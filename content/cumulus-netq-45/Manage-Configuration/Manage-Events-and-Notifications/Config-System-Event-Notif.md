@@ -472,9 +472,6 @@ Name            Rule Key         Rule Value
 --------------- ---------------- --------------------
 all-interfaces  ifname           ALL
 ```
-
-Refer to {{<link title="#Configure Threshold-based Event Notifications" text="Advanced Configuration">}} to create rules based on thresholds.
-
 ### Create a Filter
 
 The final step is to create a filter to tie the rule to the channel. You create filters for system events using the NetQ CLI.
@@ -553,8 +550,6 @@ notify-all-ifs  1          info             onprem-email all-ifs
 {{</tabs>}}
 
 NetQ is now configured to send all interface events to your selected channel.
-
-Refer to {{<link title="#Configure Threshold-based Event Notifications" text="Advanced Configuration">}} to create filters for threshold-based events.
 
 ## Configure Advanced NetQ Event Notifications
 

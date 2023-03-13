@@ -1,7 +1,7 @@
 ---
 title: Static Routing Set and Unset Commands
 author: Cumulus Networks
-weight: 700
+weight: 720
 product: Cumulus Linux
 type: nojsscroll
 ---

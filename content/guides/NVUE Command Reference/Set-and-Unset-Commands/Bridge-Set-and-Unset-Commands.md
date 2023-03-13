@@ -13,12 +13,6 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Configures a bridge on the switch.
 
-### Attributes
-
-| Atrribute |  Description   |
-| ---------  | -------------- |
-| `domain` |  Configures the bridge domain. |
-
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0

@@ -355,7 +355,7 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip source-ip 10.0.14.2/
 
 - - -
 
-## nv set acl <acl-id> rule <rule-id> match ip dest-ip \<ip-address\>
+## nv set acl \<acl-id\> rule \<rule-id\> match ip dest-ip \<ip-address\>
 
 Configures the destination IP address you want to match.
 

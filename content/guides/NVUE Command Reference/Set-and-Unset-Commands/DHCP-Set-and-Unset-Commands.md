@@ -13,14 +13,6 @@ The `nv unset` commands remove the configuration you set with the equivalent `nv
 
 Configures DHCP relays for IPv4 and IPv6.
 
-### Usage
-
-`nv set service dhcp-relay <vrf-id> [options] [<attribute> ...]`
-
-### Default Setting
-
-N/A
-
 ### Command Syntax
 
 | Syntax |  Description   |
@@ -507,7 +499,7 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 defa
 
 - - -
 
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> cumulus-provision-url <value>
+## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> cumulus-provision-url \<value\>
 
 Configures a specific URL for the provisioning script.
 

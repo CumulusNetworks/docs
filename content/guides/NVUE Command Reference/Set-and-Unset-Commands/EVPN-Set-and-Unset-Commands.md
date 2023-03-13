@@ -265,14 +265,6 @@ cumulus@leaf01:mgmt:~$ nv set evpn vni 10 route-target export 65101:10
 
 Configures the route targets you want to import for the specified VNI.
 
-### Usage
-
-`nv set evpn vni <vni-id> route-target import <rt-id> [options]`
-
-### Default Setting
-
-N/A
-
 ### Command Syntax
 
 | Command |  Description   |
@@ -315,7 +307,7 @@ cumulus@leaf01:mgmt:~$ nv set evpn vni 10 route-target both 65101:10
 
 - - -
 
-## nv set evpn vni <vni-id> rd
+## nv set evpn vni \<vni-id\> rd
 
 Configures the BGP Route Distinguisher to use for EVPN type-5 routes originated from this VNI.
 

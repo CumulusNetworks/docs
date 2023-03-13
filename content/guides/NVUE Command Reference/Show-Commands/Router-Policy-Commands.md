@@ -221,7 +221,7 @@ EBGP Policy RFC8212
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vrf-id>` |    VRF |
-| `<neighbor-id>`   Peer ID |
+| `<neighbor-id>`  |  Peer ID |
 
 ### Version History
 
@@ -616,7 +616,7 @@ cumulus@leaf01:mgmt:~$
 
 ## nv show router policy ext-community-list \<list-id\>
 
-A Extended Community list used for matching BGP communities
+An Extended Community list used for matching BGP communities
 
 ### Command Syntax
 
@@ -684,7 +684,7 @@ cumulus@leaf01:mgmt:~$
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
 
-A Extended community name
+An Extended community name
 
 ### Command Syntax
 
@@ -731,7 +731,7 @@ cumulus@leaf01:mgmt:~$
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\>
 
-A extended community name
+An extended community name
 
 ### Command Syntax
 
@@ -779,7 +779,7 @@ cumulus@leaf01:mgmt:~$
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo \<ext-community-id\>
 
-A extended community name
+An extended community name
 
 ### Command Syntax
 

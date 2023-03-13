@@ -1220,7 +1220,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost vrf BLU
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ vrf \<vrf-name>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id \<engine-id>\
 
-Shows information about the egine ID for the SNMP trap destination username and SHA password.
+Shows information about the engine ID for the SNMP trap destination username and SHA password.
 
 ### Command Syntax
 
@@ -1663,7 +1663,7 @@ cumulus@switch:~$ nv show service snmp-server trap-destination localhost usernam
 
 ## nv show service snmp-server trap-destination \<trap-destination-id>\ username \<username-id>\ auth-sha \<auth-id>\ engine-id \<engine-id>\
 
-Shows information about the egine ID for the SNMP trap destination username and SHA password.
+Shows information about the engine ID for the SNMP trap destination username and SHA password.
 
 ### Command Syntax
 

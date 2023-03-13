@@ -45,7 +45,7 @@ Configures a port break out (split) with the following options:
 - 4x splits the port into four interfaces.
 - 8x splits the port into eight interfaces.
 
-If you split a 100G port into four interfaces and auto-negotiation is on (the default setting), Cumulus Linux advertises the speed for each interface up to the maximum speed possible for a 100G port (100/4=25G). You can overide this configuration and set specific speeds for the split ports if necessary.
+If you split a 100G port into four interfaces and auto-negotiation is on (the default setting), Cumulus Linux advertises the speed for each interface up to the maximum speed possible for a 100G port (100/4=25G). You can override this configuration and set specific speeds for the split ports if necessary.
 
 ### Command Syntax
 

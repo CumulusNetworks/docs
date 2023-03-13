@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show router ptm
 
-Shows if PTM check link state is enabled. When enabled, PTM perfoms additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that `ptmd` defines.
+Shows if PTM check link state is enabled. When enabled, PTM performs additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that `ptmd` defines.
 
 ### Version History
 

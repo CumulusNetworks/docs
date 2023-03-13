@@ -1488,7 +1488,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 metric (0-4294967295|auto)
 
-Configures the metric you want to use for the redistributed OSPF routes. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch choses an appropriate value based on the type of route.
+Configures the metric you want to use for the redistributed OSPF routes. You can specify `auto` or a value between 0 and 4294967295. If you specify `auto`, the switch chooses an appropriate value based on the type of route.
 
 The default setting is `auto`.
 
@@ -1644,7 +1644,7 @@ Provides commands to configure BGP multi-exit discriminator (MED) path selection
 
 ## nv set vrf \<vrf-id\> router bgp path-selection med compare-always
 
-Configures BGP to always compare the MED on routes even when received from different neighbouring autonomous systems. When enabled, BGP compares MEDs for all paths.
+Configures BGP to always compare the MED on routes even when received from different neighboring autonomous systems. When enabled, BGP compares MEDs for all paths.
 
 ### Command Syntax
 

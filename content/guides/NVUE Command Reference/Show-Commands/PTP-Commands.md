@@ -617,7 +617,7 @@ cumulus@leaf01:mgmt:~$  nv show service ptp 1 parent grandmaster-clock-quality
 
 ## nv show service ptp \<instance-id\> time-properties
 
-Shows time properties for the specified PTP instance, such as he current UTC offset and the PTP time scale.
+Shows time properties for the specified PTP instance, such as the current UTC offset and the PTP time scale.
 
 ### Command Syntax
 

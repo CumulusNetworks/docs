@@ -160,7 +160,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip igmp query-max-response-time 100
 
 ## nv set interface \<interface-id\> ip igmp last-member-query-interval
 
-Configures the maximum response time advertised in IGMP group-specific queries . You can specify a value between 1 and 255 seconds.
+Configures the maximum response time advertised in IGMP group-specific queries. You can specify a value between 1 and 255 seconds.
 
 The default setting is `1`.
 

@@ -67,7 +67,7 @@ cumulus@leaf01:mgmt:~$ nv set service syslog default server 192.168.0.254 port 5
 
 ## nv set service syslog \<vrf-id\> server \<server-id\> protocol
 
-Configures the protocol you want to use to transmit syslog data. You can specify wither UDP or TCP.
+Configures the protocol you want to use to transmit syslog data. You can specify either UDP or TCP.
 
 ### Command Syntax
 

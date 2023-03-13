@@ -393,7 +393,7 @@ cumulus@leaf01:mgmt:~$ nv show mlag lacpdb peer
 
 ## nv show mlag neighbor
 
-Shows information about permanet and dynamic MLAG neighbors.
+Shows information about permanent and dynamic MLAG neighbors.
 
 ### Version History
 

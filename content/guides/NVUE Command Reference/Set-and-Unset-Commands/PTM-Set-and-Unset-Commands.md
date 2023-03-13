@@ -17,7 +17,7 @@ Provides commands to configure Prescriptive Topology Manager (PTM).
 
 ## nv set router ptm enable
 
-Turns PTM on or off. When on, PTM perfoms additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that `ptmd` defines.
+Turns PTM on or off. When on, PTM performs additional checks to ensure that routing adjacencies form only on links that have connectivity and that conform to the specification that `ptmd` defines.
 
 The default setting is `off`.
 

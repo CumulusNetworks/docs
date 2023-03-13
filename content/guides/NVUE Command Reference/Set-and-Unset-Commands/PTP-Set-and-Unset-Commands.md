@@ -205,7 +205,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp acceptable-master on
 
 ## nv set interface \<interface-id\> ptp delay-mechanism end-to-end
 
-Configures the PTP delay mechanism to be end-to-end, where the slave measures the delay between itself and the master. For PTP nodes to synchronize the time of day, each slave has to learn the delay between iteself and the master.
+Configures the PTP delay mechanism to be end-to-end, where the slave measures the delay between itself and the master. For PTP nodes to synchronize the time of day, each slave has to learn the delay between itself and the master.
 
 The default setting is `peer-to-peer`.
 
@@ -540,7 +540,7 @@ cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 local-priority 100
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> domain
 
-Configures the PTP domain for the custom profile. PTP domains allow different independent timing systems to be present in the same network without confusing each other. A PTP domain is a network or a portion of a network within which all the clocks synchronize. Every PTP message contains a domain number. A PTP instance works in only one domain and ignores messages that contain a different domain number.You can specify a value between 0 and 127.
+Configures the PTP domain for the custom profile. PTP domains allow different independent timing systems to be present in the same network without confusing each other. A PTP domain is a network or a portion of a network within which all the clocks synchronize. Every PTP message contains a domain number. A PTP instance works in only one domain and ignores messages that contain a different domain number. You can specify a value between 0 and 127.
 
 ### Command Syntax
 
@@ -563,7 +563,7 @@ cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 domain 28
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> delay-mechanism end-to-end
 
-Configures the method of calculating the delay within the network to end-to-end. For PTP nodes to synchronize the time of day, each slave has to learn the delay between iteself and the master.
+Configures the method of calculating the delay within the network to end-to-end. For PTP nodes to synchronize the time of day, each slave has to learn the delay between itself and the master.
 
 The default setting is `peer-to-peer`.
 
@@ -611,7 +611,7 @@ cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 transport ipv6
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> announce-interval
 
-Configures the interval at which PTP sends announce messages to the master. This is the mean time interval between successive Announce messages,  specified as a power of two in seconds. You can specify a value between -7 and 7.
+Configures the interval at which PTP sends announce messages to the master. This is the mean time interval between successive Announce messages, specified as a power of two in seconds. You can specify a value between -7 and 7.
 
 The default setting is `-3`.
 
@@ -636,7 +636,7 @@ cumulus@leaf01:mgmt:~$ nv set service ptp 1 profile CUSTOM1 announce-interval 5
 
 ## nv set service ptp \<instance-id\> profile \<profile-id\> sync-interval
 
-Configures how often PTP synchronizes with the master. This is the mean sync interval for multicast messages, specified as a power of two in seconds.You can specify a value between -7 and 7.
+Configures how often PTP synchronizes with the master. This is the mean sync interval for multicast messages, specified as a power of two in seconds. You can specify a value between -7 and 7.
 
 The default setting is `-4`.
 

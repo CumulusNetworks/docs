@@ -1881,7 +1881,7 @@ cumulus@leaf01:mgmt:~$ nv set qos egress-shaper shaper1 port-max-rate 200000
 
 ## nv set qos roce enable
 
-Turns QoS ROCE on or off on the switch. The default setting is `off`.
+Turns QoS RoCE on or off on the switch. The default setting is `off`.
 
 ### Version History
 
@@ -1897,7 +1897,7 @@ cumulus@leaf01:mgmt:~$ nv set qos roce enable off
 
 ## nv set qos roce mode
 
-Configures the Roce mode. You can specify `lossy` or `lossless`. The default setting is `lossless`.
+Configures the RoCE mode. You can specify `lossy` or `lossless`. The default setting is `lossless`.
 
 ### Version History
 
@@ -1913,7 +1913,7 @@ cumulus@leaf01:mgmt:~$ nv set qos roce mode lossy
 
 ## nv set qos roce cable-length
 
-Configures the cable length for Roce lossless. You can specify a value between 1 and 100000. The default setting is 100 meters.
+Configures the cable length for RoCE lossless. You can specify a value between 1 and 100000. The default setting is 100 meters.
 
 ### Version History
 

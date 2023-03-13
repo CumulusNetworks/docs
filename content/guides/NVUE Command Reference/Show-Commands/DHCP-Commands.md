@@ -561,7 +561,7 @@ Shows information about the IPv6 DHCP domain name server in the pool.
 | --------- | -------------- |
 | `<vrf-id>` |    The VRF name. |
 | `<pool-id>` |   The DHCP6 pool subnet. |
-| `<server-id>` |  The DNS server .|
+| `<server-id>` |  The DNS server.|
 
 ### Version History
 
@@ -654,7 +654,7 @@ Shows information about the specifies IPv6 domain name server.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    | `<vrf-id>` |    The VRF name. |
+| `<vrf-id>` |  The VRF name. |
 | `<server-id>` |  The IPv6 address of the DNS server.|
 
 ### Version History
@@ -677,7 +677,7 @@ Shows static configuration for hosts served by the IPv6 DHCP server.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    | `<vrf-id>` |    The VRF name. | |
+| `<vrf-id>` |   The VRF name. | 
 | `<static-id>` | The IDN host name.|
 
 ### Version History

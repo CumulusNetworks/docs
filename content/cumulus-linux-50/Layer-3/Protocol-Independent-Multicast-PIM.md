@@ -263,6 +263,10 @@ When the LHR receives the first multicast packet, it sends a [PIM (S,G) join](##
 
 You can configure SPT switchover per group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
 
+{{%notice note%}}
+When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
+{{%/notice%}}
+
 To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list:
 
 {{< tabs "TabID307 ">}}
@@ -312,7 +316,7 @@ Source          Group           Proto   Input     Output     TTL  Uptime
 For [SSM](## "Source Specific Multicast"), `232.0.0.0/8` is the default multicast group range. To change the multicast group range, define a prefix list and apply it. You can change the default group or add additional group ranges.
 
 {{%notice note%}}
-You must include `232.0.0.0/8` in the prefix list.
+You must include `232.0.0.0/8` in the prefix list. When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
 {{%/notice%}}
 
 {{< tabs "TabID825 ">}}

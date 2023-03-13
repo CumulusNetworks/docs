@@ -405,7 +405,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 
 
 - - -
 
-## nv set router policy large-community-list <list-id> rule <rule-id> action
+## nv set router policy large-community-list \<list-id\> rule \<rule-id\> action
 
 Configures the action for the large community list policy match. You can specify `permit` or `deny`.
 
@@ -1021,7 +1021,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match local-p
 
 - - -
 
-## nv set router policy route-map <route-map-id> rule <rule-id> match evpn-route-type
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-route-type
 
 Configures the EVPN route type you want to match in the route map. You can specify type 2 (MAC or IP advertisement routes), type 3 (Inclusive multicast Ethernet tag routes), or type 5 (IP prefix routes).
 
@@ -1067,6 +1067,27 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-vn
 
 - - -
 
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match evpn-default-route
+
+Configures Cumulus Linux to match the EVPN default route in the route map. You can set the value to `on` or `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match evpn-default-route on
+```
+
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match source-vrf \<vrf-name\>
 
 Configures the source VRF you want to use as a match in the route map.
@@ -1090,7 +1111,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-
 
 - - -
 
-## nv set router policy route-map <route-map-id> rule <rule-id> match type
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match type
 
 Configures the the route types you want to use as a match in the route map. You can specify IPv4 or IPv6 routes.
 
@@ -1505,7 +1526,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric ty
 
 - - -
 
-## nv set router policy route-map <route-map-id> rule <rule-id> set origin
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set origin
 
 Configures a set clause in the route map for the BGP origin code for the matched route. You can specify `egp` (the switch learns the origin of the route from an exterior routing protocol with the given autonomous system number) `igp` (the switch learns the the origin of the route from an interior routing protocol), or `incomplete` (the origin of the route is unknown).
 
@@ -1712,6 +1733,75 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-com
 
 - - -
 
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set originator-id
+
+Configures the BGP IPv4 address of originator you want to set for the route in the route map.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set originator-id 10.10.10.4
+```
+
+- - -
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set label-index
+
+Configures the label index value you want to set for the route in the route map. You can set a value between 0 and 1048560.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set label-index 1000
+```
+
+- - -
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set forwarding-address
+
+Configures the IPv6 forwarding address you want to set for the route in the route map.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set forwarding-address 2001:100::1/64
+```
+
+- - -
+
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action
 
 Configures the route map rule action; `permit` or `deny`.
@@ -1752,7 +1842,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 deny
 
 - - -
 
-## nv set router policy route-map <route-map-id> rule <rule-id> action permit
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> action permit
 
 Configures the route map rule action to permit.
 
@@ -1817,6 +1907,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 permit exit-policy rule 20
+```
+
+- - -
+
+## nv set router policy route-map \<route-map-id\> rule \<rule-id\> description
+
+Configures the route map rule description. If the description is more than one word, enclose it in double quotes (").
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` | The route map rule number.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 description none
 ```
 
 - - -

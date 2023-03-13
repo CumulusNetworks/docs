@@ -214,7 +214,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 my
 
 ## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> oid \<oid\>
 
-Configures the setting to restrict a user with a specific DES authentication password and encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
+Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
 
 ### Command Syntax
 
@@ -239,7 +239,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 my
 
 ## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> view \<view\>
 
-Configures the setting to restrict a user with a specific DES authentication password and encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
+Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
 
 ### Command Syntax
 
@@ -288,7 +288,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 my
 
 ## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> oid \<oid\>
 
-Configures the setting to restrict a user with a specific authentication password and AES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
+Configures the setting to restrict a user with a specific MD5 authentication password and AES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
 
 ### Command Syntax
 
@@ -313,7 +313,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 my
 
 ## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> view \<value\>
 
-Configures the setting to restrict a user with a specific AES authentication password and encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
+Configures the setting to restrict a user with a specific MD5 authentication password and AES encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
 
 ### Command Syntax
 
@@ -346,7 +346,7 @@ The OID can be either a string of decimal numbers separated by periods or a uniq
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The MD5 authentication password.|
 | `<oid>` | The OID tree that identifies an SNMP MIB object.|
 
 ### Version History
@@ -374,7 +374,7 @@ By default, the `snmpd.conf` file contains many views within the `systemonly` vi
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The MD5 authentication password.|
 | `<view>` | The SNMP view (subnet).|
 
 ### Version History
@@ -391,37 +391,225 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 my
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\>
 
+Configures SHA authentication for the specified SNMP user.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1
+```
+
 - - -
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\>
+
+Configures the DES encryption password for SHA authentication for the specified SNMP user to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret
+```
 
 - - -
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> oid \<oid\>
 
+Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
+```
+
 - - -
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> view \<value\>
+
+Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret view cumulusOnly
+```
 
 - - -
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\>
 
+Configures the AES encryption password for SHA authentication for the specified SNMP user to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret
+```
+
 - - -
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> oid \<oid\>
+
+Configures the setting to restrict a user with a specific SHA authentication password and AES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret oid 1.3.6.1.2.1.1
+```
 
 - - -
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> view \<value\>
 
+Configures the setting to restrict a user with a specific SHA% authentication password and AES encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret view cumulusOnly
+```
+
 - - -
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> oid \<oid\>
 
+Configures SNMP to restrict a specific user with the specified SHA authentication password to a particular OID tree.
+The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 oid 1.3.6.1.2.1
+```
+
 - - -
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> view \<value\>
+
+Configures MIB tree exposure restriction. You can define a view for an SNMPv3 username or community password, and a host from a restricted subnet. In doing so, any SNMP request with that username and SHA authentication password must have a source IP address within the configured subnet.
+
+You can define a specific view multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.
+
+By default, the `snmpd.conf` file contains many views within the `systemonly` view.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 view cumulusOnly
+```
 
 - - -
 

@@ -27,7 +27,7 @@ Cumulus Linux supports:
 - Only a single PTP domain per network.
 - PTP on layer 3 interfaces, trunk ports, bonds, and switch ports belonging to a VLAN.
 - Multicast, unicast, and mixed message mode.
-- End-to-End and Peer-to-Peer delay mechanism.
+- End-to-End delay mechanism only. Cumulus Linux does not support Peer-to-Peer.
 - Two-step clock correction mode, where PTP notes the time when the packet goes out of the port and sends the time in a separate (follow-up) message. Cumulus Linux does not support one-step mode.
 - Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
@@ -56,7 +56,7 @@ The basic configuration shown below uses the *default* PTP settings:
 - {{<link url="#Transport-mode" text="The PPT interface transport mode">}} is IPv4.
 - {{<link url="#Forced-master-mode" text="Announce messages from any master are accepted">}}.
 - {{<link url="#Message-mode" text="The PTP Interface Message Mode">}} is multicast.
-- The delay mechanism is End-to-End (E2E).
+- The delay mechanism is End-to-End (E2E), where the slave measures the delay between itself and the master. The master and slave send delay request and delay response messages between each other to measure the delay.
 - The hardware packet time stamping mode is two-step.
 
 To configure optional settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
@@ -1261,7 +1261,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tab >}}
 {{< /tabs >}}
 
-### Delay Mechanism
+<!--### Delay Mechanism
 
 For PTP nodes to synchronize the time of day, each slave has to learn the delay between iteself and the master. There are two delay mehanism modes:
 - Peer-to-peer, where each network device measures the delay between its input port and the device attached to the other end of the input port. This is the default mode. 
@@ -1311,7 +1311,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ### Acceptable Master Table
 
 The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. Cumulus Linux disables this option by default on PTP ports.

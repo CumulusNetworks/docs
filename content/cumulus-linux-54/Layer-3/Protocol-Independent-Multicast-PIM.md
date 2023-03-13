@@ -263,7 +263,7 @@ When the LHR receives the first multicast packet, it sends a <span style="backgr
 You can configure SPT switchover per group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
 
 {{%notice note%}}
-When using a prefix list in CL to match a multicast group destination address (GDA) range, you must include the /32 operator. As shown in the below examples, this is denoted as "max-prefix-len 32" in NVUE or "ge 32" in FRR after the group match/permit range is specified.
+When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
 {{%/notice%}}
   
 To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list:

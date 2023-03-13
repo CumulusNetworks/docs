@@ -875,16 +875,64 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SH
 
 ## nv set service snmp-server enable (on|off)
 
+Turns the SNMP server on or off.
+
+## Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server enable on
+```
+
 - - -
 
 ## nv set service snmp-server system-contact \<value\>
 
+Configures the username and email address of the contact person for this managed node.
+
+## Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server system-contact myemail@example.com
+```
+
 - - -
 
-## nv set service snmp-server system-location \<value\>
+## nv set service snmp-server system-location
+
+Configures the system physical location for the node in the SNMPv2-MIB system table.
+
+## Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server system-location my-private-bunker
+```
 
 - - -
 
-## nv set service snmp-server system-name \<value\>
+## nv set service snmp-server system-name
+
+Configures a name for the managed node. Typically, this is the fully qualified domain name of the node.
+
+## Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server system-name CumulusBox-1,543,567
+```
 
 - - -

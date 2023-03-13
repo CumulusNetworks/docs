@@ -53,7 +53,7 @@ After you complete the preparation steps, upgrade Cumulus Linux:
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} Devices in any workbench header, then select **Manage switches**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in any workbench header, then select **Manage switches**.
 
 2. Locate the Switches card and click **Manage**.
 
@@ -65,9 +65,9 @@ After you complete the preparation steps, upgrade Cumulus Linux:
 
     {{<figure src="/images/netq/upgrade-switches-450.png" alt="screen displaying 2 switches selected for upgrading" width="550">}}
 
-If you accidentally included a switch that you do *not* want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} Delete to remove it from the upgrade.
+If you accidentally included a switch that you do *not* want to upgrade, hover over the switch information card and click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete** to remove it from the upgrade.
    
-If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} Edit, then select a role for that switch from the dropdown. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} Cancel to discard the change.
+If the role is incorrect or missing, click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/22-Edit/pencil-1.svg" height="18" width="18">}} **Edit**, then select a role for that switch from the dropdown. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/delete-2.svg" height="18" width="18">}} **Cancel** to discard the change.
 
 7. Click **Next**.
 
@@ -145,7 +145,7 @@ Upon successful upgrade, you can:
 A successful upgrade can still have post-check warnings. For example, you updated the OS, but not all services are fully up and running after the upgrade. If one or more of the post-checks fail, warning messages appear in the Post-Upgrade Tasks section of the preview. Click the warning category to view the detailed messages.
 ## Upgrade Cumulus Linux on Switches Without NetQ Agent Installed
 
-To upgrade Cumulus Linux on switches without NetQ installed, create a switch discovery. The feature browses your network to find all Cumulus Linux switches (with and without NetQ currently installed) and determines the versions of Cumulus Linux and NetQ installed. These results are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure rather than in two steps. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
+To upgrade Cumulus Linux on switches without NetQ installed, create a switch discovery. The discovery searches your network for all Cumulus Linux switches (with and without NetQ currently installed) and determines the versions of Cumulus Linux and NetQ installed. These results are then used to install or upgrade Cumulus Linux and NetQ on all discovered switches in a single procedure rather than in two steps. You can run up to five jobs simultaneously; however, a given switch can only appear in one running job at a time.
 
 To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on those switches:
 
@@ -153,7 +153,7 @@ To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} Devices in the workbench header, then click **Manage switches**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in the workbench header, then click **Manage switches**.
 
 2. On the Switches card, click **Discover**.
 
@@ -161,7 +161,7 @@ To discover switches running Cumulus Linux and upgrade Cumulus Linux and NetQ on
 
     {{<figure src="/images/netq/discover-switches-profile-450.png" width="500">}}
 
-4. Choose whether you want to look for switches by entering IP address ranges OR import switches using a comma-separated values (CSV) file.
+4. Choose whether you want to look for switches by entering IP address ranges or import switches using a comma-separated values (CSV) file.
 
     {{<tabs "TabID314" >}}
 

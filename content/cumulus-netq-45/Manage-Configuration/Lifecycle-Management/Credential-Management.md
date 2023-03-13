@@ -5,7 +5,7 @@ weight: 640
 toc: 4
 ---
 
-Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles. After you create a profile, {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="assign it to individual switches">}} so that you can perform upgrades on those switches. 
+Authentication credentials are stored in access profiles which can be assigned to individual switches. You can create credentials with either basic (SSH username/password) or SSH (public/private key) authentication. This section describes how to create, edit, and delete access profiles. After you create a profile, {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="attach it to individual switches">}} so that you can perform upgrades on those switches. 
 
 {{<notice note>}}
 By default, NVIDIA supplies two access profiles: Netq-Default and Nvl4-Default (for NVLink devices). NVIDIA strongly recommends creating new access profiles or updating the default profiles with unique credentials. When you upgrade to NetQ 4.5 from 4.4, NetQ saves your 4.4 global access credentials to the Netq-Default profile.
@@ -175,7 +175,7 @@ To configure SSH authentication using a public/private key (requires sudoer perm
 
 ## Delete Access Profiles
 
-Any profile that is assigned to a switch can't be deleted. You must {{<link title="Switch Management/#assign-a-profile-to-a-switch" text="assign a different profile to the switch">}} first. Note that *Netq-Default* and *Nvl4-Default* can't be deleted. 
+Any profile that is assigned to a switch can't be deleted. You must {{<link title="Switch Management/#attach-a-profile-to-a-switch" text="attach a different profile to the switch">}} first. Note that *Netq-Default* and *Nvl4-Default* can't be deleted. 
 
 {{<tabs "TabID247" >}}
 
@@ -187,7 +187,7 @@ Any profile that is assigned to a switch can't be deleted. You must {{<link titl
 
 {{<figure src="/images/netq/delete-profile-450.png" alt="" width="600">}}
 
-The delete icon only appears next to custom profiles that are not assigned to a switch.
+The delete icon only appears next to custom profiles that are not already attached to a switch.
 
 3. Select **Remove**.
 

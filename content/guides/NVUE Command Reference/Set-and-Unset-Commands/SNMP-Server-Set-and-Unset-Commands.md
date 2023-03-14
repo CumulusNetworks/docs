@@ -1051,7 +1051,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> community-password \<community-password-id\>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps and the community password.
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, and the community password.
 
 ### Command Syntax
 
@@ -1099,153 +1099,758 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, and the SNMP username.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\>
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password 
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the trap server Engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the trap server Engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<engine-id>` | The trap server engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor engine-id  0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, and the DES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password encrypt-des user3encryption
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, the DES encryption password, and the trap server engine ID.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, the DES encryption password, and the trap server engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor encrypt-des user3encryption engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5passwor encrypt-aes myaessecret2
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\>
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, the AES encryption password, and the trap server engine ID.
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform (on|off)
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, the AES encryption password, and the trap server engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-md5 myauthmd5password encrypt-aes user3encryption engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\>
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<engine-id>` | The trap server engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the DES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-des mydessecret2
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-des mydessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-aes myaessecret1
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the SNMP trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<vrf-name>` | The VRF name.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf RED username myv3user auth-sha SHApassword1 encrypt-aes myaessecret1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\>
 
+Configures the SNMP trap receiver IP address and SNMP username.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\>
+
+Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password 
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\>
 
+Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password, and the DES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-des mydessecret2 
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the DES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the DES encryption password, and the engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-des mydessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\>
 
+Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password, and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the AES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the AES encryption password, and the engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\>
 
+Configures the SNMP trap receiver IP address, and the SNMP username and SHA authentication password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the DES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-des myencryptsecret
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the DES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the DES encryption password, and the engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-des myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret
+```
+
 - - -
 
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\>
 
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
 
 - - -
 

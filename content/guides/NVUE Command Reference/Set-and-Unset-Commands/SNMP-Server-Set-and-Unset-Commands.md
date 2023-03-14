@@ -1010,7 +1010,7 @@ Configures the trap receiver IP address for SNMPv1 and SNMPv2c traps and the com
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<community-password-id>` | The community password.|
 
 ### Version History
@@ -1035,7 +1035,7 @@ The default version is SNMPv2c.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<community-password-id>` | The community password.|
 
 ### Version History
@@ -1081,7 +1081,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, an
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<community-password-id>` | The community password.|
 
@@ -1105,7 +1105,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<community-password-id>` | The community password.|
 
@@ -1129,7 +1129,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, an
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 
@@ -1153,7 +1153,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
@@ -1170,25 +1170,17 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the trap server Engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform
 
 Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the trap server Engine ID.
 
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
@@ -1214,7 +1206,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
@@ -1232,12 +1224,6 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, the DES encryption password, and the trap server engine ID.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
 
 Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, the DES encryption password, and the trap server engine ID.
@@ -1246,7 +1232,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
@@ -1273,7 +1259,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
@@ -1291,13 +1277,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, the AES encryption password, and the trap server engine ID.
-
-- - -
-
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform (on|off)
+## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
 
 Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and MD5 authentication password, the AES encryption password, and the trap server engine ID.
 
@@ -1305,7 +1285,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
@@ -1332,7 +1312,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
@@ -1349,23 +1329,17 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform
 
 Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
@@ -1391,7 +1365,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
@@ -1409,23 +1383,17 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the DES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
@@ -1452,7 +1420,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
@@ -1470,23 +1438,17 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> vrf \<vrf-name\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
 
 Configures the SNMP trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<vrf-name>` | The VRF name.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
@@ -1513,7 +1475,7 @@ Configures the SNMP trap receiver IP address and SNMP username.
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 
 ### Version History
@@ -1536,7 +1498,7 @@ Configures the SNMP trap receiver IP address, and the SNMP username and MD5 auth
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
 
@@ -1552,23 +1514,17 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost use
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform
 
 Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
 | `<engine-id>` | The engine ID.|
@@ -1593,7 +1549,7 @@ Configures the SNMP trap receiver IP address, and the SNMP username and MD5 auth
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
 | `<encrypt-id>` | The DES encryption password.|
@@ -1610,23 +1566,17 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost use
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the DES encryption password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
 
 Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the DES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
 | `<encrypt-id>` | The DES encryption password.|
@@ -1652,7 +1602,7 @@ Configures the SNMP trap receiver IP address, and the SNMP username and MD5 auth
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
 | `<encrypt-id>` | The AES encryption password.|
@@ -1669,23 +1619,17 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost use
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the AES encryption password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
 
 Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the AES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The MD5 authentication password.|
 | `<encrypt-id>` | The AES encryption password.|
@@ -1711,7 +1655,7 @@ Configures the SNMP trap receiver IP address, and the SNMP username and SHA auth
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
 
@@ -1727,23 +1671,17 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost use
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform
 
 Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
 | `<engine-id>` | The engine ID.|
@@ -1768,7 +1706,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
 | `<encrypt-id>` | The DES encryption password.|
@@ -1785,23 +1723,17 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost use
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the DES encryption password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
 
 Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the DES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
 | `<encrypt-id>` | The DES encryption password.|
@@ -1827,7 +1759,7 @@ Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, th
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
 | `<encrypt-id>` | The AES encryption password.|
@@ -1844,23 +1776,17 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost use
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch snmpd daemon sending the trap and inform messages.
-
-- - -
-
 ## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
 
 Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or localhost.|
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
 | `<username-id>` | The SNMP username.|
 | `<auth-id>` | The SHA authentication password.|
 | `<encrypt-id>` | The AES encryption password.|

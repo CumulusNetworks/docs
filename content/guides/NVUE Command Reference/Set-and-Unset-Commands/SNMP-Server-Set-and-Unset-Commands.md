@@ -21,7 +21,7 @@ Configures the IP address on which the SNMP agent listens. You can set multiple 
 
 For security reasons, the listening address is the localhost by default so that the SNMP agent only responds to requests originating on the switch itself.
 
-You can configure an IPv4, IPv6 address, or to configure the `snmpd` daemon to listen on all interfaces for either IPv4 or IPv6 UDP port 161 SNMP requests, you can specify a value of `all`.
+You can configure an IPv4 or an IPv6 address. To configure the `snmpd` daemon to listen on all interfaces for either IPv4 or IPv6 UDP port 161 SNMP requests, you can specify a value of `all`.
 
 ### Command Syntax
 
@@ -71,7 +71,7 @@ Configures the SNMPv3 username for authentication.
 NVIDIA recommends you use an SNMPv3 username and password instead of the read-only community; SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
 
 {{%notice note%}}
-The default snmpd.conf file contains the default user _snmptrapusernameX. You cannot use this username for authentication. SNMP traps require this username.
+The default snmpd.conf file contains the default `user _snmptrapusernameX`. You cannot use this username for authentication. SNMP traps require this username.
 {{%/notice%}}
 
 ### Command Syntax
@@ -140,7 +140,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none o
 
 ## nv set service snmp-server username \<username-id\> auth-none view \<view\>
 
-Configures MIB tree exposure restriction. You can define a view for an SNMPv3 username or community password, and a host from a restricted subnet. In doing so, any SNMP request with that username and password must have a source IP address within the configured subnet.
+Configures MIB tree exposure restriction. You can define a view for the SNMPv3 username and a host from a restricted subnet so that any SNMP request with that username must have a source IP address within the configured subnet.
 
 You can define a specific view multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.
 
@@ -160,7 +160,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none auth-none view cumulusOnly
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none view cumulusOnly
 ```
 
 - - -
@@ -239,7 +239,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 my
 
 ## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> view \<view\>
 
-Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
+Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
 
 ### Command Syntax
 
@@ -363,7 +363,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 my
 
 ## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> view \<value\>
 
-Configures MIB tree exposure restriction. You can define a view for an SNMPv3 username or community password, and a host from a restricted subnet. In doing so, any SNMP request with that username and password must have a source IP address within the configured subnet.
+Configures SNMP to restrict a specific user with the specified MD5 password to a view so that any SNMP request with that username and password must have a source IP address within the configured subnet.
 
 You can define a specific view multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.
 
@@ -463,7 +463,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SH
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> view \<value\>
 
-Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
+Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
 
 ### Command Syntax
 
@@ -505,14 +505,14 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret
 ```
 
 - - -
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> oid \<oid\>
 
-Configures the setting to restrict a user with a specific SHA authentication password and AES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
+Configures SNMP to restrict a user with a specific SHA authentication password and AES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
 
 ### Command Syntax
 
@@ -537,7 +537,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SH
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> view \<value\>
 
-Configures the setting to restrict a user with a specific SHA% authentication password and AES encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
+Configures SNMP to restrict a user with a specific SHA authentication password and AES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
 
 ### Command Syntax
 
@@ -587,7 +587,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SH
 
 ## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> view \<value\>
 
-Configures MIB tree exposure restriction. You can define a view for an SNMPv3 username or community password, and a host from a restricted subnet. In doing so, any SNMP request with that username and SHA authentication password must have a source IP address within the configured subnet.
+Configures SNMP to restrict a specific user with the specified SHA authentication password to a particular SNMP view (subnet) so that any SNMP request with that username and SHA authentication password must have a source IP address within the configured subnet.
 
 You can define a specific view multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.
 
@@ -630,7 +630,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server mibs cumulus-status-mib
 
 ## nv set service snmp-server viewname \<viewname-id\>
 
-Configures the viewnames that restrict MIB tree exposure.
+Configures the view names that restrict MIB tree exposure.
 
 - - -
 
@@ -684,7 +684,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server viewname cumulusOnly included 
 
 Configures the SNMP read-only community string for SNMP requests.
 
-Cumulus Linux disables snmpd authentication for SNMPv1 and SNMPv2c by default. To enable authentication, provide a password (community string) for SNMPv1 or SNMPv2c environments so that the snmpd daemon can respond to requests. By default, this provides access to the full OID tree for such requests, regardless of their source. Cumulus Linux does not set a default password so snmpd does not respond to any requests that arrive unless you set the read-only community password.
+Cumulus Linux disables SNMP authentication for SNMPv1 and SNMPv2c by default. To enable authentication, provide a password (community string) for SNMPv1 or SNMPv2c environments so that the `snmpd` daemon can respond to requests. By default, this provides access to the full OID tree for such requests, regardless of their source. Cumulus Linux does not set a default password so `snmpd` does not respond to any requests that arrive unless you set the read-only community password.
 
 - - -
 
@@ -918,7 +918,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-snmp-auth-failures
 
 ## nv set service snmp-server trap-cpu-load-average
 
-Configures the switch to generate SNMP trap notifications for CPU load average thresholds.
+Configures the switch to generate SNMP trap notifications for CPU load average thresholds. 
 
 ### Version History
 
@@ -934,7 +934,7 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-cpu-load-average
 
 ## nv set service snmp-server trap-cpu-load-average one-minute \<one-minute-id\>
 
-Configures the number of one-minute load average thresholds to send SNMP traps.
+Configures SNMP to generate a trap when the one-minute interval reaches a specific threshold. You can only use integers or floating point numbers.
 
 ### Version History
 
@@ -943,16 +943,40 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-cpu-load-average 3 one-minute 5
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-cpu-load-average one-minute 5
 ```
 
 - - -
 
 ## nv set service snmp-server trap-cpu-load-average one-minute \<one-minute-id\> five-minute \<five-minute-id\>
 
+Configures SNMP to generate a trap when the one-minute or the five-minute intervals reach a specific threshold. You can only use integers or floating point numbers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-cpu-load-average one-minute 12 five-minute 10
+```
+
 - - -
 
 ## nv set service snmp-server trap-cpu-load-average one-minute \<one-minute-id\> five-minute \<five-minute-id\> fifteen-minute \<fifteen-minute-id\>
+
+Configures SNMP to generate a trap when the one-minute, the five-minute, or fifteen-minute intervals reach a specific threshold. You can only use integers or floating point numbers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-cpu-load-average one-minute 12 five-minute 10 fifteen-minute 5
+```
 
 - - -
 

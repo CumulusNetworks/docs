@@ -182,7 +182,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes
+cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-des
 ```
 
 - - -
@@ -197,7 +197,54 @@ Shows information about the specified SNMP server username and MD5 password and 
 | --------- | -------------- |
 | `<username-id>` | The username for authentication.|
 | `<auth-id>` | The MD5 password.|
-| `<encrypt-id>` | The AES or DES encryption password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-des myencryptsecret
+```
+
+- - -
+
+## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes
+
+Shows information about the specified SNMP server username and MD5 password that also includes an AES encryption password to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The MD5 password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server username testuserauth auth-md5 myauthmd5password encrypt-aes
+```
+
+- - -
+
+## nv show service snmp-server username \<username-id>\ auth-md5 \<auth-id>\ encrypt-aes \<encrypt-id>\
+
+Shows information about the specified SNMP server username and MD5 password and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The MD5 password.|
+| `<encrypt-id>` | The AES encryption password.|
 
 ### Version History
 
@@ -299,6 +346,53 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-des myencryptsecret
+```
+
+- - -
+
+## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes
+
+Shows information about the specified SNMP server username and SHA authentication password that also includes an AES encryption password to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-aes
+```
+
+- - -
+
+## nv show service snmp-server username \<username-id>\ auth-sha \<auth-id>\ encrypt-aes \<encrypt-id>\
+
+Shows information about the SNMP server username with the SHA authentication password and AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<username-id>` | The username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@switch:~$ nv show service snmp-server username limiteduser1 auth-sha SHApassword1 encrypt-aes myencryptsecret
 ```
 
 - - -

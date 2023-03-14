@@ -18,11 +18,11 @@ For switch inventory information (ASIC, platform, CPU, memory, disk, and OS), re
 
 To view events, metrics, and attributes per switch, open the Switch card:
 
-1. Select {{<img src="/images/netq/devices.svg" height="18" width="18">}} Devices in the header, then click **Open a device card**.
+1. In the header, select {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then click **Open a device card**.
 
-2. Begin typing the switch's hostname and select it from the list:
+2. Select a switch from the list:
 
-    {{<figure src="/images/netq/open-device-card-switch.png" alt="dropdown displaying switches" width="250">}}
+    {{<figure src="/images/netq/open-device-dropdown-450.png" alt="dropdown displaying switches" width="300">}}
 
 3. Click **Add**.
 
@@ -30,18 +30,18 @@ To view events, metrics, and attributes per switch, open the Switch card:
 
 Attributes are displayed as the default tab on the large Switch card. You can view the static information about the switch, including its hostname, addresses, server and ASIC vendors and models, OS and NetQ software information. You can also view the state of the interfaces and NetQ Agent on the switch.
 
-{{<figure src="/images/netq/switch-card-size-large.png" alt="large switch card displaying attributes" width="500">}}
+{{<figure src="/images/netq/switch-card-size-large.png" alt="large switch card displaying attributes" width="700">}}
 
 Hover over the top of the card, then select the appropriate icon to view utilization info, interface statistics, digital optics info, and RoCe metrics as graphs. The following card shows interface statistics:
 
-{{<figure src="/images/netq/interface-stats-large-card.png" alt="large switch card displaying attributes" width="500">}}
+{{<figure src="/images/netq/interface-stats-large-card.png" alt="large switch card displaying attributes" width="700">}}
 
 
 ## View System Configuration in the UI
 
 To view additional information in the NetQ UI, open a Switch card, then expand it to the full-screen view. From here, you can filter, sort, and view information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, software packages, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, and digital optics. 
 
-{{<figure src="/images/netq/updated-fullscreen-switch-card.png" width="900">}}
+{{<figure src="/images/netq/updated-fullscreen-switch-card.png" width="1200">}}
 
 ## View System Configuration in the CLI
 ### View All Switch Events

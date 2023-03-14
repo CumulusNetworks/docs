@@ -541,7 +541,7 @@ Refer to {{<link title="Configure System Event Notifications">}} for additional 
 #### Threshold-based Event Notification Commands
 <!-- vale on -->
 
-NetQ supports {{<link title="Configure Threshold-Based Event Notifications" text="TCA events">}}, a set of events that <!--vale off -->are triggered<!-- vale on --> by crossing a user-defined threshold. Configure and manage TCA events using the following commands:
+NetQ supports {{<link title="Configure Threshold-Crossing Event Notifications" text="TCA events">}}, a set of events that <!--vale off -->are triggered<!-- vale on --> by crossing a user-defined threshold. Configure and manage TCA events using the following commands:
 
 ```
 netq add tca [event_id <text-event-id-anchor>] [tca_id <text-tca-id-anchor>] [scope <text-scope-anchor>] [severity info | severity error] [is_active true | is_active false] [suppress_until <text-suppress-ts>] [threshold_type user_set | threshold_type vendor_set] [ threshold <text-threshold-value> ] [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]

@@ -390,7 +390,7 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast spt-switchover
 ```
-
+- - -
 ## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp
 
 Shows the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
@@ -410,8 +410,6 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp
 ```
-
-- - -
 
 - - -
 
@@ -438,7 +436,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicas
 
 - - -
 
-# nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range
+## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range
 
 Shows the group ranges for the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
 

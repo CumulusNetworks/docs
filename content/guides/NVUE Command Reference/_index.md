@@ -29,4 +29,4 @@ Cumulus Linux NVUE CLI commands uses the following syntax:
 | [ ] |  Brackets identify options you can use with a command.|
 |  \| |A vertical bar separates mutually exclusive options for a command. |
 | < >| Angle brackets identify variables that you must replace.|
-| ... | Elipses indicate that you can repeat the previous option multiple times with different values. |
+| ... | Ellipses indicate that you can repeat the previous option multiple times with different values. |

@@ -182,7 +182,7 @@ Configures the regular expression you want to use to match BGP AS paths.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<list-id>` | The AS path list name. |
-| `<rule-id> ` | Th AS path list rule number. |
+| `<rule-id> ` | The AS path list rule number. |
 | `bgp-regex` | The regular expression you want to use to match BGP AS paths.|
 
 ### Version History
@@ -1113,7 +1113,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 match source-
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> match type
 
-Configures the the route types you want to use as a match in the route map. You can specify IPv4 or IPv6 routes.
+Configures the route types you want to use as a match in the route map. You can specify IPv4 or IPv6 routes.
 
 ### Command Syntax
 
@@ -1505,7 +1505,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric me
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set metric type
 
-Configures a set clause in the route map for the metric type for routes that match the map. The metric type is used by the the OSPF protocol. You can set OSPF external type 1 metric or OSPF external type 2 metric.
+Configures a set clause in the route map for the metric type for routes that match the map. The metric type is used by the OSPF protocol. You can set OSPF external type 1 metric or OSPF external type 2 metric.
 
 ### Command Syntax
 
@@ -1528,7 +1528,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set metric ty
 
 ## nv set router policy route-map \<route-map-id\> rule \<rule-id\> set origin
 
-Configures a set clause in the route map for the BGP origin code for the matched route. You can specify `egp` (the switch learns the origin of the route from an exterior routing protocol with the given autonomous system number) `igp` (the switch learns the the origin of the route from an interior routing protocol), or `incomplete` (the origin of the route is unknown).
+Configures a set clause in the route map for the BGP origin code for the matched route. You can specify `egp` (the switch learns the origin of the route from an exterior routing protocol with the given autonomous system number) `igp` (the switch learns the origin of the route from an interior routing protocol), or `incomplete` (the origin of the route is unknown).
 
 ### Command Syntax
 

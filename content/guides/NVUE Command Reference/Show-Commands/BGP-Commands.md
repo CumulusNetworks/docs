@@ -609,7 +609,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast loc-rib
 
-Shows the IPv4 local RIB for the specifed VRF.
+Shows the IPv4 local RIB for the specified VRF.
 
 ### Command Syntax
 
@@ -1407,7 +1407,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast loc-rib
 
-Shows the IPv6 local RIB for the specifed VRF.
+Shows the IPv6 local RIB for the specified VRF.
 
 ### Command Syntax
 
@@ -2078,7 +2078,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES timers
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family
 
-Shows configuration information for the address famlies (IPv4, IPv6, layer 2 VPN EVPN).
+Shows configuration information for the address families (IPv4, IPv6, layer 2 VPN EVPN).
 
 ### Command Syntax
 

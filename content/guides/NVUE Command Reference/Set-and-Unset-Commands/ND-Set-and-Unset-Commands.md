@@ -110,7 +110,7 @@ Configures the amount of time that addresses generated from a prefix remain pref
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ipv6-address-id>` | The IPv6 address |
+| `<ipv6-address-id>` | The IPv6 address. |
 
 ### Version History
 
@@ -126,14 +126,14 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:d
 
 ## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> off-link
 
-Configures adverisement to make no statement about prefix on-link or off-link properties. The default setting is `off`.
+Configures advertisement to make no statement about prefix on-link or off-link properties. The default setting is `off`.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ipv6-address-id>` | The IPv6 address |
+| `<ipv6-address-id>` | The IPv6 address. |
 
 ### Version History
 
@@ -156,7 +156,7 @@ Configures automatic configuration to indicate to hosts on the local link that t
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ipv6-address-id>` | The IPv6 address |
+| `<ipv6-address-id>` | The IPv6 address. |
 
 ### Version History
 
@@ -172,7 +172,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery prefix 2001:d
 
 ## nv set interface \<interface-id\> ip neighbor-discovery prefix \<ipv6-prefix-id\> router-address
 
-Configures adverisement to indicates to hosts on the local link that the specified prefix contains a complete IP address by setting R flag.
+Configures advertisement to indicates to hosts on the local link that the specified prefix contains a complete IP address by setting R flag.
 
 The default setting is `off`.
 
@@ -181,7 +181,7 @@ The default setting is `off`.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ipv6-address-id>` | The IPv6 address |
+| `<ipv6-address-id>` | The IPv6 address. |
 
 ### Version History
 
@@ -271,7 +271,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip neighbor-discovery router-advert
 
 ## nv set interface \<interface-id\> ip neighbor-discovery router-advertisement interval
 
-Configures the maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface. You can set a value between 70 and 1800000 miliseconds. The default setting is 600000.
+Configures the maximum time in milliseconds allowed between sending unsolicited multicast RA from the interface. You can set a value between 70 and 1800000 milliseconds. The default setting is 600000.
 
 ### Command Syntax
 

@@ -121,7 +121,7 @@ cumulus@leaf01:mgmt:~$ nv set system forwarding lag-hash source-port on
 
 ## nv set system forwarding lag-hash destination-port
 
-Turns lag hashing on the destination port field on or off . The default setting is `off`.
+Turns lag hashing on the destination port field on or off. The default setting is `off`.
 
 ### Version History
 
@@ -137,7 +137,7 @@ cumulus@leaf01:mgmt:~$ nv set system forwarding lag-hash destination-port on
 
 ## nv set system forwarding lag-hash ether-type
 
-Turns lag hashing on the ether type field on or off . The default setting is `off`.
+Turns lag hashing on the ether type field on or off. The default setting is `off`.
 
 ### Version History
 
@@ -153,7 +153,7 @@ cumulus@leaf01:mgmt:~$ nv set system forwarding lag-hash ether-type on
 
 ## nv set system forwarding lag-hash vlan
 
-Turns lag hashing on the VLAN ID field on or off . The default setting is `off`.
+Turns lag hashing on the VLAN ID field on or off. The default setting is `off`.
 
 ### Version History
 

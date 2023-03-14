@@ -390,7 +390,7 @@ Some third party switch vendors do not advertise EAD-per-EVI routes; they only a
 
 ## nv set evpn multihoming segment mac-address \<mac-address\>
 
-Configures the MAC address per ethernet segment for EVPN multihoming. This setting is required.
+Configures the MAC address per Ethernet segment for EVPN multihoming. This setting is required.
 
 ### Version History
 
@@ -456,7 +456,7 @@ cumulus@leaf01:mgmt:~$ nv set evpn multihoming mac-holdtime 1000
 
 ## nv set evpn multihoming neighbor-holdtime
 
-Configures the neighbor hold times, which pecifies the duration for which a switch maintains SYNC neighbor entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. You can specify a value between between 0 and 86400 seconds.
+Configures the neighbor hold times, which specifies the duration for which a switch maintains SYNC neighbor entries after the switch deletes the EVPN type-2 route of the Ethernet segment peer. During this time, the switch attempts to independently establish reachability of the host on the local Ethernet segment. You can specify a value between between 0 and 86400 seconds.
 
 The default setting is 1080 seconds.
 

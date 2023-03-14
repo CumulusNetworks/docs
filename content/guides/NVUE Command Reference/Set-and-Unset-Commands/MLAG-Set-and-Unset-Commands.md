@@ -167,7 +167,7 @@ cumulus@leaf01:mgmt:~$ nv set mlag peer-ip linklocal
 
 ## nv set mlag priority
 
-Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a vlaue between 0-65535.
+Configures the MLAG priority. By default, the switch determines the role by comparing the MAC addresses of the two sides of the peering link; the switch with the lower MAC address assumes the primary role. You can override this by setting the priority option for the peer link. You can set a value between 0-65535.
 
 The default setting is 32768.
 
@@ -208,7 +208,7 @@ cumulus@leaf01:mgmt:~$ nv set mlag init-delay 100
 
 ## nv set mlag debug
 
-Turns MLAG degugging on or off.
+Turns MLAG debugging on or off.
 
 The default setting is `off`.
 

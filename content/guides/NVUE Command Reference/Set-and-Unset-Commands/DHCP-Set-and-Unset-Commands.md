@@ -302,7 +302,7 @@ Configures the remote DHCP domain name server you want to use in this pool.
 | ---------  | -------------- |
 | `<vrf-id>` |  The VRF you want to configure. |
 | `<pool-id>` | The DHCP pool subnet. |
-| `<server-id>` |  The remote DHCP domain name server . |
+| `<server-id>` |  The remote DHCP domain name server. |
 
 ### Version History
 
@@ -740,7 +740,7 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default interface swp1
 
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\>
 
-Configfures DHCP IP pools for IPv6.
+Configures DHCP IP pools for IPv6.
 
 - - -
 

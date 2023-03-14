@@ -697,7 +697,7 @@ Configures the OSPF area prefix range settings.
 
 ## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\>
 
-Configures a summary route for all the routes in the specified range in the the specified VRF.
+Configures a summary route for all the routes in the specified range in the specified VRF.
 
 ### Command Syntax
 
@@ -955,7 +955,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf default-originate always o
 
 ## nv set vrf \<vrf-id\> router ospf distance
 
-Configures the aministrative distance for OSPF routes. Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
+Configures the administrative distance for OSPF routes. Cumulus Linux uses the administrative distance to choose which routing protocol to use when two different protocols provide route information for the same destination. The smaller the distance, the more reliable the protocol. For example, if the switch receives a route from OSPF with an administrative distance of 110 and the same route from BGP with an administrative distance of 100, the switch chooses BGP.
 
 - - -
 

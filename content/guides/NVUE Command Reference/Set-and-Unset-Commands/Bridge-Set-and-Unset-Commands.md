@@ -227,7 +227,7 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding e
 
 ## nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding multicast-group \<ipv4-multicast\>
 
-Configures BUM traffic to go to the specified multicast group, where receivers who are interested in that group recieve the traffic. This requires PIM-SM to be used in the network.
+Configures BUM traffic to go to the specified multicast group, where receivers who are interested in that group receive the traffic. This requires PIM-SM to be used in the network.
 
 ### Command Syntax
 

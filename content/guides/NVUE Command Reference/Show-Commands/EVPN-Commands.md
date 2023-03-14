@@ -338,7 +338,6 @@ Shows information about the EVPN VNIs on the switch.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| Syntax |  Description   |
 | `<vni-id>` |  The VNI name. |
 
 ### Version History
@@ -361,7 +360,6 @@ Shows configuration information about the specified VNI.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| Syntax |  Description   |
 | `<vni-id>` |  The VNI name. |
 
 ### Version History
@@ -384,7 +382,6 @@ Shows route advertisement information for the specified EVPN VNI.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| Syntax |  Description   |
 | `<vni-id>` |  The VNI name. |
 
 ### Version History
@@ -407,7 +404,6 @@ Shows route target information for the specified EVPN VNI.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| Syntax |  Description   |
 | `<vni-id>` |  The VNI name. |
 
 ### Version History

@@ -227,8 +227,8 @@ The above commands configure the switch to send all multicast traffic to RP 10.1
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 224.10.0.0/16
-cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.102 224.10.2.0/24
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 group-range 224.10.0.0/16
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.102 group-range 224.10.2.0/24
 ```
 
 {{< /tab >}}

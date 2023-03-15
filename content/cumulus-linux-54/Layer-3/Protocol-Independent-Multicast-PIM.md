@@ -247,7 +247,42 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
+The following commands use a prefix list to configure PIM to send traffic from multicast group 224.10.0.0/16 to RP 10.10.10.101 and traffic from multicast group 224.10.2.0/24 to RP 10.10.10.102:
+
+{{< tabs "TabID252 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set router policy prefix-list MCAST1 rule 1 action permit
+cumulus@leaf01:~$ nv set router policy prefix-list MCAST1 rule 1 match 224.10.0.0/16
+cumulus@leaf01:~$ nv set router policy prefix-list MCAST2 rule 1 action permit
+cumulus@leaf01:~$ nv set router policy prefix-list MCAST2 rule 1 match 224.10.2.0/24
+cumulus@leaf01:~$ nv config apply
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 prefix-list MCAST1
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.102 prefix-list MCAST2
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+spine01# configure terminal
+switch(config)# ip prefix-list MCAST1 seq 1 permit 224.10.0.0/16
+switch(config)# ip prefix-list MCAST2 seq 1 permit 224.10.2.0/24
+spine01(config)# ip pim rp 10.10.10.101 prefix-list MCAST1
+spine01(config)# ip pim rp 10.10.10.102 prefix-list MCAST2
+spine01(config)# end
+spine01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
+- You can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use both methods at the same time.
 - NVIDIA recommends that you do not use a spine switch as an RP when using eBGP in a Clos network. See the [PIM Overview knowledge-base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
 - zebra does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or run the vtysh `ip nht resolve-via-default` configuration command to resolve the next hop for the RP through the default route.
 {{%/notice%}}

@@ -346,6 +346,10 @@ The default route created by the `gateway` parameter in ifupdown2 is not install
 
 Cumulus Linux provides a configuration option on Broadcom switches to disable forwarding of link-local multicast packets to the CPU so that such packets only flood the ASIC, which reduces CPU usage.
 
+{{%notice note%}}
+Switches with the Trident3 ASIC do not support this option.
+{{%/notice%}}
+
 To disable forwarding of link local multicast packets to the CPU on a Broadcom switch, run the following command:
 
 ```

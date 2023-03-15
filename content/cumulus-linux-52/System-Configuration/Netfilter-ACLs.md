@@ -823,7 +823,6 @@ cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 46
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
 cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```

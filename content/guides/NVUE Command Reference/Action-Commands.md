@@ -99,3 +99,40 @@ Introduced in Cumulus Linux 5.4.0
 ```
 cumulus@leaf01:mgmt:~$ nv action disconnect system aaa user admin2
 ```
+
+## nv show action
+
+Shows the actions taken, such interface counter resets, removed protodown MLAG bond conflicts, and disconnected system users.
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show action
+```
+ - - -
+
+## nv show action \<action-job-id\>
+
+Shows information about the specified action.
+
+## Command Syntax
+
+| <div style="width:250px">Syntax   |  Description  |
+| ----------    | ------------  |
+| `<action-job-id>` | The action ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show action 3
+```
+
+- - -

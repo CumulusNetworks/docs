@@ -5,6 +5,22 @@ weight: 350
 product: Cumulus Linux
 type: nojsscroll
 ---
+## nv show router vrr
+
+Shows global VRR configuration on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router vrr
+```
+
+- - -
+
 ## nv show interface \<interface-id\> ip vrr
 
 Shows VRR configuration for the specified interface.
@@ -68,6 +84,22 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface vlan10 ip vrr state
+```
+
+- - -
+
+## nv show router vrrp
+
+Shows global VRRP configuration on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router vrrp
 ```
 
 - - -

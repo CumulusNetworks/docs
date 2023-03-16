@@ -1,7 +1,7 @@
 ---
 title: RIB Commands
 author: Cumulus Networks
-weight: 370
+weight: 270
 product: Cumulus Linux
 type: nojsscroll
 ---

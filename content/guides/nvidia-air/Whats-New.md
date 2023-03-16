@@ -9,9 +9,13 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## March 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0316-011
+- Updated default resource limits
+- Fixed a bug impacting filtering in the Demo Marketplace
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0306-011
 - Added cookie management options
-<!-- Air:WhatsNew -->
 
 ## February 2023
 ### 82.2023.0216-011

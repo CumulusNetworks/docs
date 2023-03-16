@@ -237,7 +237,7 @@ Shows storm control configuration settings for the specified interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 

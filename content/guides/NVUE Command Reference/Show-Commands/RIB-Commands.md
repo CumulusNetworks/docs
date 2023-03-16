@@ -5,6 +5,28 @@ weight: 245
 product: Cumulus Linux
 type: nojsscroll
 ---
+## nv show vrf \<vrf-id\> router rib
+
+Shows the routing table for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib
+```
+
+- - -
+
 ## nv show vrf \<vrf-id\> router rib \<afi\>
 
 Shows the IPv4 or IPv6 routing table for the specified VRF.
@@ -24,6 +46,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4
+```
+
+- - -
+## nv show vrf \<vrf-id\> router rib \<afi\> protocol
+
+Shows the IPv4 or IPv6 routing table for all protocols for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<afi>` |  The route address family (IPv4 or IPv6). |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 protocol bgp
 ```
 
 - - -

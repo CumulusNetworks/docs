@@ -746,3 +746,117 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv show acl EXAMPLE1 rule 10 action police
 ```
+
+## nv show system control-plane
+
+Shows the control plane configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane
+```
+
+- - -
+
+## nv show system control-plane trap
+
+Shows the control plane trap configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane trap
+```
+
+- - -
+
+## nv show system control-plane trap \<trap-id\>
+
+Shows specific control plane trap configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<trap-id>` | The trap ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane trap l3-mtu-err
+```
+
+- - -
+
+## nv show system control-plane policer
+
+Shows control plane policer configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane policer
+```
+
+- - -
+
+## nv show system control-plane policer \<policer-id\>
+
+Shows configuration information for a specific control plane policer.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<policer-id>` | The policer ID: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `unknown-ipmc`, `catch-all`.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane policer bfd
+```
+
+- - -
+
+## nv show system control-plane policer \<policer-id\> statistics
+
+Shows statistics for a specific control plane policer.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<policer-id>` | The policer ID: `arp`, `bfd`, `pim-ospf-rip`, `bgp`, `clag`, `icmp-def`, `dhcp-ptp`, `igmp`, `ssh`, `icmp6-neigh`, `icmp6-def-mld`, `lacp`, `lldp`, `rpvst`, `eapol`, `ip2me`, `acl-log`, `nat`, `stp`, `l3-local`, `span-cpu`, `unknown-ipmc`, `catch-all`.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane policer bfd statistics
+```
+
+- - -

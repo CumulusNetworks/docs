@@ -1782,6 +1782,56 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 - - -
 
+## nv show vrf \<vrf-id\> router bgp dynamic-neighbor
+
+Shows BGP dynamic neighbor configuration on the switch. BGP dynamic neighbors provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
+
+After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp dynamic-neighbor
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp dynamic-neighbor listen-range
+
+Shows the address range configuration for BGP peering to remote neighbors.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp dynamic-neighbor listen-range
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp dynamic-neighbor listen-range \<ip-sub-prefix-id\>
+
+Shows information about a specific address range for BGP peering to remote neighbors.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp dynamic-neighbor listen-range 10.0.1.0/24
+```
+
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp path-selection
 
 Shows the BGP path selection configuration for the specified VRF.

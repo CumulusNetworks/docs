@@ -61,7 +61,7 @@ cumulus@leaf01:mgmt:~$ nv show router nexthop 1
 
 ## nv show router nexthop group \<nexthop-group-id\> via
 
-Shows information about the IP addresses for the specified next hop group.
+Shows information about the next hop addresses for the specified next hop group.
 
 ### Command Syntax
 
@@ -83,7 +83,7 @@ cumulus@leaf01:mgmt:~$ nv show router nexthop 1 via
 
 ## nv show router nexthop group \<nexthop-group-id\> via \<via-id\>
 
-Shows information about the specified IP address for a specific next hop group.
+Shows details of a particular next hop group specified by the next hop address.
 
 ### Command Syntax
 
@@ -144,7 +144,7 @@ cumulus@leaf01:mgmt:~$ nv show router next hop rib 10
 
 ## nv show router nexthop rib \<nhg-id\> resolved-via
 
-Shows the IP addresses for the specified next hop in the RIB.
+Shows details the next-hop address for a particular next hop.
 
 ### Command Syntax
 
@@ -234,7 +234,7 @@ cumulus@leaf01:mgmt:~$ nv show router nexthop rib 20 resolved-via-backup
 
 ## nv show router nexthop rib \<nhg-id\> depends
 
-Shows information about a next hop RIB depends.
+Shows information about the next hops on which a specific next hop relies on.
 
 ### Command Syntax
 
@@ -256,7 +256,7 @@ cumulus@leaf01:mgmt:~$ nv show router nexthop rib 10 depends
 
 ## nv show router nexthop rib \<nhg-id\> dependents
 
-Shows information about for next hop RIB dependents.
+Shows information about the next hop dependents on which a specific next hop relies on.
 
 ### Command Syntax
 

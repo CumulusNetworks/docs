@@ -53,6 +53,114 @@ cumulus@leaf01:mgmt:~$ nv show system cpu
 
 - - -
 
+## nv show system forwarding profile-option
+
+Shows forwarding profile information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system forwarding profile-option
+```
+
+## nv show system global
+
+Shows global system configuration, such as the anycast ID, anycast MAC address, fabric ID, fabric MAC address, system MAC address, routing table, VLAN, and VNI information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system global
+```
+
+## nv show system global reserved
+
+Shows global reserved configuration information, such as the VLAN internal range.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system global reserved
+```
+
+- - -
+
+## nv show system global reserved routing-table
+
+Shows global reserved routing table information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system global reserved routing-table
+```
+
+- - -
+
+## nv show system global reserved vlan
+
+Shows the reserved VLAN configuration settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system global reserved vlan
+```
+
+- - -
+
+## nv show system global reserved vlan internal
+
+Shows the reserved internal VLAN configuration settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system global reserved vlan internal
+```
+
+- - -
+
+## nv show system global reserved vlan l3-vni-vlan
+
+Shows the reserved VLAN layer 3 VNI to VLAN mapping settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system global reserved vlan l3-vni-vlan
+```
+
+- - -
+
 ## nv show system memory
 
 Shows information about the switch memory, such as the total amount of memory, the amount of free and used memory,and the percent of memory utilized.

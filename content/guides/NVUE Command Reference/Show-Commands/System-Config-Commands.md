@@ -1,7 +1,7 @@
 ---
 title: System Config Commands
 author: Cumulus Networks
-weight: 330
+weight: 280
 product: Cumulus Linux
 type: nojsscroll
 ---

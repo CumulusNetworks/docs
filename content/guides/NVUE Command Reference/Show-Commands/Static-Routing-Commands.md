@@ -1,7 +1,7 @@
 ---
 title: Static Routing Commands
 author: Cumulus Networks
-weight: 310
+weight: 265
 product: Cumulus Linux
 type: nojsscroll
 ---

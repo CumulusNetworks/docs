@@ -1,7 +1,7 @@
 ---
 title: PBR Commands
 author: Cumulus Networks
-weight: 200
+weight: 190
 product: Cumulus Linux
 type: nojsscroll
 ---

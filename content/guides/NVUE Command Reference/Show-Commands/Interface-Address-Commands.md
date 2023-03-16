@@ -1,7 +1,7 @@
 ---
 title: Interface Address Commands
 author: Cumulus Networks
-weight: 156
+weight: 150
 product: Cumulus Linux
 type: nojsscroll
 ---

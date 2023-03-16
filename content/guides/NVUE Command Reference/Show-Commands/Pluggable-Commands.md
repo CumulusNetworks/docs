@@ -1,7 +1,7 @@
 ---
 title: Pluggable Commands
 author: Cumulus Networks
-weight: 232
+weight: 220
 product: Cumulus Linux
 type: nojsscroll
 ---

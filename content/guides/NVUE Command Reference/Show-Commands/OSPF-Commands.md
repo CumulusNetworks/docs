@@ -1,7 +1,7 @@
 ---
 title: OSPF Commands
 author: Cumulus Networks
-weight: 190
+weight: 185
 product: Cumulus Linux
 type: nojsscroll
 ---

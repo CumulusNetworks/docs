@@ -1,7 +1,7 @@
 ---
 title: ZTP Commands
 author: Cumulus Networks
-weight: 390
+weight: 3250
 product: Cumulus Linux
 type: nojsscroll
 ---

@@ -1,7 +1,7 @@
 ---
 title: DHCP Commands
 author: Cumulus Networks
-weight: 140
+weight: 130
 product: Cumulus Linux
 type: nojsscroll
 ---

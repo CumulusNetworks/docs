@@ -1,7 +1,7 @@
 ---
 title: IGMP Commands
 author: Cumulus Networks
-weight: 155
+weight: 145
 product: Cumulus Linux
 type: nojsscroll
 ---

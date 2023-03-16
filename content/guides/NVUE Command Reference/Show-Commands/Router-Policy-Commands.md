@@ -1,7 +1,7 @@
 ---
 title: Router Policy Commands
 author: Cumulus Networks
-weight: 280
+weight: 255
 product: Cumulus Linux
 type: nojsscroll
 ---

@@ -1,7 +1,7 @@
 ---
 title: EVPN Commands
 author: Cumulus Networks
-weight: 150
+weight: 140
 product: Cumulus Linux
 type: nojsscroll
 ---

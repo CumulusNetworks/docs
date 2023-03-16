@@ -1,7 +1,7 @@
 ---
 title: Port Mirror Commands
 author: Cumulus Networks
-weight: 235
+weight: 225
 product: Cumulus Linux
 type: nojsscroll
 ---

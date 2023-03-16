@@ -1,7 +1,7 @@
 ---
 title: PIM Commands
 author: Cumulus Networks
-weight: 220
+weight: 200
 product: Cumulus Linux
 type: nojsscroll
 ---

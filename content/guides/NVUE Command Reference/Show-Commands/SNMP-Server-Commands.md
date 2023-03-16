@@ -1,7 +1,7 @@
 ---
 title: SNMP Server Commands
 author: Cumulus Networks
-weight: 300
+weight: 260
 product: Cumulus Linux
 type: nojsscroll
 ---

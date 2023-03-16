@@ -1,7 +1,7 @@
 ---
 title: VRR and VRRP Commands
 author: Cumulus Networkss
-weight: 350
+weight: 300
 product: Cumulus Linux
 type: nojsscroll
 ---

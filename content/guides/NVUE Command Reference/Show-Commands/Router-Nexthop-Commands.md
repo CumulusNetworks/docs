@@ -110,7 +110,7 @@ Shows information about the next hops in RIB, such as the IP address, VRF, inter
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -132,7 +132,7 @@ Shows information about the specified next hop in the RIB.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -154,7 +154,7 @@ Shows details the next-hop address for a particular next hop.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -177,7 +177,7 @@ Shows details of a particular next hop specified by the next hop IP address.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -199,7 +199,7 @@ Shows information about the backup next hops for the specified next hop.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -222,7 +222,7 @@ Shows information about a specific backup next hop.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -244,7 +244,7 @@ Shows information about the next hops on which a specific next hop relies on.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -266,7 +266,7 @@ Shows information about the next hop dependents on which a specific next hop rel
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 

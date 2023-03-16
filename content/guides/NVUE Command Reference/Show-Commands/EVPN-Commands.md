@@ -342,7 +342,7 @@ Shows information about the EVPN VNIs on the switch.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -364,7 +364,7 @@ Shows configuration information about the specified VNI.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -386,7 +386,7 @@ Shows route advertisement information for the specified EVPN VNI.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -408,7 +408,7 @@ Shows route target information for the specified EVPN VNI.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -431,7 +431,7 @@ Shows export route target information for the specified EVPN VNI.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -454,7 +454,7 @@ Shows configuration information about the a specific export route target for the
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -477,7 +477,7 @@ Shows import route target configuration for the specified EVPN VNI.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -500,7 +500,7 @@ Shows configuration information about a specific import route target for the spe
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -523,7 +523,7 @@ Shows both import and export route target information for the specified EVPN VNI
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 
@@ -546,7 +546,7 @@ Shows information about both the specified import and export route target for th
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.4.0
 
 ### Example
 

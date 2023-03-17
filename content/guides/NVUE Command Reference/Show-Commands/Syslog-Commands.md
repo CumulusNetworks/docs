@@ -45,7 +45,29 @@ cumulus@leaf01:mgmt:~$ nv show service syslog default
 
 ## nv show service syslog \<vrf-id\> server \<server-id\>
 
-Shows information about the specified remote DNS server for the specified VRF.
+Shows the remote DNS servers for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service syslog default server
+```
+
+- - -
+
+## nv show service syslog \<vrf-id\> server \<server-id\>
+
+Shows information about a specific remote DNS server for the specified VRF.
 
 ### Command Syntax
 

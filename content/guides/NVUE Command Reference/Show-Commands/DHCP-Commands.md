@@ -256,9 +256,30 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server default
 
 - - -
 
+## nv show service dhcp-server \<vrf-id\> interface
+
+Shows a list of interfaces on which IPv4 DHCP client is attached.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default interface
+```
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> interface \<interface-id\>
 
-Shows information about the interface on which IPv4 DHCP client is attached.
+Shows information about a specific interface on which IPv4 DHCP client is attached.
 
 ### Command Syntax
 
@@ -279,9 +300,31 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server default interface swp1
 
 - - -
 
+## nv show service dhcp-server \<vrf-id\> pool
+
+Shows a list of the IPv4 DHCP pool subnets and the applied configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool
+```
+
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\>
 
-Shows information about the IPv4 DHCP pool subnet.
+Shows information about a specific IPv4 DHCP pool subnet.
 
 ### Command Syntax
 
@@ -298,6 +341,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24
+```
+
+- - -
+
+## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name-server
+
+Shows a list of the IPv4 DHCP domain name servers in the pool.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<pool-id>` |  The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name-server
 ```
 
 - - -
@@ -326,6 +392,29 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 dom
 
 - - -
 
+## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name
+
+Shows the IPv4 DHCP domain names in the pool.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<pool-id>` |  The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 domain-name
+```
+
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
 
 Shows information about the IPv4 DHCP domain name in the pool.
@@ -350,9 +439,32 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 dom
 
 - - -
 
+## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> gateway
+
+Shows the IPv4 DHCP gateways in the pool.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<pool-id>` |  The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 gateway
+```
+
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> gateway \<gateway-id\>
 
-Shows information about the IPv4 DHCP gateway.
+Shows information about a specific IPv4 DHCP gateway.
 
 ### Command Syntax
 
@@ -374,9 +486,32 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 gat
 
 - - -
 
-## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\>
+## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> range
 
 Shows the IPv4 DHCP IP address range assignments.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<pool-id>` |  The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 range
+```
+
+- - -
+
+## nv show service dhcp-server \<vrf-id\> pool \<pool-id\> range \<range-id\>
+
+Shows information about a specific IPv4 DHCP IP address range assignment.
 
 ### Command Syntax
 
@@ -398,9 +533,31 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server default pool 10.1.10.0/24 ran
 
 - - -
 
-## nv show service dhcp-server \<vrf-id\> domain-name \<domain-name-id\>
+## nv show service dhcp-server \<vrf-id\> domain-name
 
 Shows the DNS attributes provided by the DHCP server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default domain-name
+```
+
+- - -
+
+## nv show service dhcp-server \<vrf-id\> domain-name \<domain-name-id\>
+
+Shows information about a specific DNS attribute provided by the DHCP server.
 
 ### Command Syntax
 
@@ -421,9 +578,31 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server default domain-name my-domain
 
 - - -
 
+## nv show service dhcp-server \<vrf-id\> domain-name-server
+
+Shows DNS configuration provided by the DHCP server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default domain-name-server
+```
+
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> domain-name-server \<server-id\>
 
-Shows DNS server configuration provided by the DHCP server.
+Shows specific DNS server configuration provided by the DHCP server.
 
 ### Command Syntax
 
@@ -444,9 +623,31 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server default domain-name-server 19
 
 - - -
 
+## nv show service dhcp-server \<vrf-id\> static
+
+Shows configuration for static hosts served by the DHCP server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server default static
+```
+
+- - -
+
 ## nv show service dhcp-server \<vrf-id\> static \<static-id\>
 
-Shows static configuration for hosts served by the DHCP server.
+Shows configuration for a specific static host served by the DHCP server.
 
 ### Command Syntax
 
@@ -505,9 +706,31 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default
 
 - - -
 
+## nv show service dhcp-server6 \<vrf-id\> interface
+
+Shows the interfaces on which IPv6 DHCP client is attached.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default interface
+```
+
+- - -
+
 ## nv show service dhcp-server6 \<vrf-id\> interface \<interface-id\>
 
-Shows information about the interface on which IPv6 DHCP client is attached.
+Shows information about a specific interface on which IPv6 DHCP client is attached.
 
 ### Command Syntax
 
@@ -528,9 +751,31 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default interface swp1
 
 - - -
 
+## nv show service dhcp-server6 \<vrf-id\> pool
+
+Shows the configured IPv6 DHCP pool subnets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default
+```
+
+- - -
+
 ## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\>
 
-Shows information about the IPv6 DHCP pool subnet.
+Shows information about a specific IPv6 DHCP pool subnet.
 
 ### Command Syntax
 
@@ -551,9 +796,32 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers
 
 - - -
 
+## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name-server
+
+Shows information about the IPv6 DHCP domain name servers in the pool.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    The VRF name. |
+| `<pool-id>` |   The DHCP6 pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers domain-name-server
+```
+
+- - -
+
 ## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name-server \<server-id\>
 
-Shows information about the IPv6 DHCP domain name server in the pool.
+Shows information about a specific IPv6 DHCP domain name server in the pool.
 
 ### Command Syntax
 
@@ -575,9 +843,32 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers doma
 
 - - -
 
+## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name
+
+Shows information about the IPv6 DHCP domain names in the pool.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    The VRF name. |
+| `<pool-id>` |   The DHCP6 pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers domain-name
+```
+
+- - -
+
 ## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> domain-name \<domain-name-id\>
 
-Shows information about the IPv6 DHCP domain name in the pool.
+Shows information about a specific IPv6 DHCP domain name in the pool.
 
 ### Command Syntax
 
@@ -599,9 +890,32 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers doma
 
 - - -
 
-## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\>
+## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> range>
 
 Shows the IPv6 DHCP IP address range assignments.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    The VRF name. |
+| `<pool-id>` |   The DHCP6 pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers range
+```
+
+- - -
+
+## nv show service dhcp-server6 \<vrf-id\> pool \<pool-id\> range \<range-id\>
+
+Shows information about a specific IPv6 DHCP IP address range assignment.
 
 ### Command Syntax
 
@@ -623,9 +937,31 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default storage-servers rang
 
 - - -
 
-## nv show service dhcp-server6 \<vrf-id\> domain-name \<domain-name-id\>
+## nv show service dhcp-server6 \<vrf-id\> domain-name
 
 Shows the DNS attributes provided by the DHCP server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default domain-name
+```
+
+- - -
+
+## nv show service dhcp-server6 \<vrf-id\> domain-name \<domain-name-id\>
+
+Shows information about a specific DNS attribute provided by the DHCP server.
 
 ### Command Syntax
 
@@ -646,9 +982,31 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default domain-name example.
 
 - - -
 
+## nv show service dhcp-server6 \<vrf-id\> domain-name-server
+
+Shows the IPv6 domain name servers.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default domain-name-server
+```
+
+- - -
+
 ## nv show service dhcp-server6 \<vrf-id\> domain-name-server \<server-id\>
 
-Shows information about the specifies IPv6 domain name server.
+Shows information about a specific IPv6 domain name server.
 
 ### Command Syntax
 
@@ -669,9 +1027,29 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default domain-name-server 0
 
 - - -
 
+## nv show service dhcp-server6 \<vrf-id\> static
+
+Shows configuration for static hosts served by the IPv6 DHCP server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |   The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default static
+```
+
 ## nv show service dhcp-server6 \<vrf-id\> static \<static-id\>
 
-Shows static configuration for hosts served by the IPv6 DHCP server.
+Shows configuration for a specific static host served by the IPv6 DHCP server.
 
 ### Command Syntax
 
@@ -689,3 +1067,5 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default static server1
 ```
+
+- - -

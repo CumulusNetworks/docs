@@ -813,7 +813,7 @@ cumulus@switch:~$ nv show service snmp-server trap-cpu-load-average one-minute 1
 
 ## nv show service snmp-server trap-destination
 
-Shows theSNMP trap destinations.
+Shows the SNMP trap destinations.
 
 ### Version History
 

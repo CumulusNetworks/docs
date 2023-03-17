@@ -65,38 +65,6 @@ cumulus@leaf01:mgmt:~$ nv show mlag
 
 - - -
 
-## nv show mlag consistency-checker
-
-Shows any MLAG inconsistencies on the MLAG peers.
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show mlag consistency-checker
-```
-
-- - -
-
-## nv show mlag consistency-checker global
-
-Shows global MLAG settings for each MLAG peer and indicates if there are any inconsistencies.
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show mlag consistency-checker global
-```
-
-- - -
-
 ## nv show mlag backup
 
 Shows the backup IP address configured for the MLAG peer link. The switch uses this backup IP address if MLAG the peer link goes down.
@@ -131,6 +99,38 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show mlag backup 10.10.10.2
+```
+
+- - -
+
+## nv show mlag consistency-checker
+
+Shows any MLAG inconsistencies on the MLAG peers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show mlag consistency-checker
+```
+
+- - -
+
+## nv show mlag consistency-checker global
+
+Shows global MLAG settings for each MLAG peer and indicates if there are any inconsistencies.
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show mlag consistency-checker global
 ```
 
 - - -
@@ -195,6 +195,54 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show mlag fdb permanent
+```
+
+- - -
+
+## nv show mlag lacpdb
+
+Shows the LACP database on the both MLAG peers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show mlag lacpdb
+```
+
+- - -
+
+## nv show mlag lacpdb local
+
+Shows the LACP database on the local switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show mlag lacpdb local
+```
+
+- - -
+
+## nv show mlag lacpdb peer
+
+Shows the LACP database on the peer switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show mlag lacpdb peer
 ```
 
 - - -
@@ -295,102 +343,6 @@ cumulus@leaf01:mgmt:~$ nv show mlag multicast-router-port peer
 
 - - -
 
-## nv show mlag vni
-
-Shows the MLAG VNIs on both MLAG peers.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show mlag vni
-```
-
-- - -
-
-## nv show mlag vni local
-
-Shows the MLAG VNIs configured on the local switch.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show mlag vni local
-```
-
-- - -
-
-## nv show mlag vni peer
-
-Shows the MLAG VNIs configured on the peer switch.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show mlag vni peer
-```
-
-- - -
-
-## nv show mlag lacpdb
-
-Shows the LACP database on the both MLAG peers.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show mlag lacpdb
-```
-
-- - -
-
-## nv show mlag lacpdb local
-
-Shows the LACP database on the local switch.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show mlag lacpdb local
-```
-
-- - -
-
-## nv show mlag lacpdb peer
-
-Shows the LACP database on the peer switch.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show mlag lacpdb peer
-```
-
-- - -
-
 ## nv show mlag neighbor
 
 Shows information about permanent and dynamic MLAG neighbors.
@@ -435,6 +387,54 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show mlag neighbor permanent
+```
+
+- - -
+
+## nv show mlag vni
+
+Shows the MLAG VNIs on both MLAG peers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show mlag vni
+```
+
+- - -
+
+## nv show mlag vni local
+
+Shows the MLAG VNIs configured on the local switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show mlag vni local
+```
+
+- - -
+
+## nv show mlag vni peer
+
+Shows the MLAG VNIs configured on the peer switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show mlag vni peer
 ```
 
 - - -

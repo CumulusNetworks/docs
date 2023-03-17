@@ -5,9 +5,9 @@ weight: 200
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show interface \<interface-id\> pluggable
+## nv show interface \<interface-id\> bond member
 
-Shows the SFP modules attched to the specified interface.
+Shows the bond member configuration for the specified interface.
 
 ### Command Syntax
 
@@ -22,7 +22,29 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 pluggable
+cumulus@leaf01:mgmt:~$ nv show interface swp1 bond member
+```
+
+- - -
+
+## nv show interface \<interface-id\> bond member \<member-id\>
+
+Shows specific bond member configuration for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 bond member bond1
 ```
 
 - - -
@@ -159,31 +181,9 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 ip ipv6
 
 - - -
 
-## nv show interface \<interface-id\> bond member
+## nv show interface \<interface-id\> pluggable
 
-Shows the bond member configuration for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 bond member
-```
-
-- - -
-
-## nv show interface \<interface-id\> bond member \<member-id\>
-
-Shows specific bond member configuration for the specified interface.
+Shows the SFP modules attched to the specified interface.
 
 ### Command Syntax
 
@@ -198,29 +198,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 bond member bond1
-```
-
-- - -
-
-## nv show interface \<interface-id\> tunnel
-
-Shows tunnel information for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 tunnel
+cumulus@leaf01:mgmt:~$ nv show interface swp1 pluggable
 ```
 
 - - -
@@ -243,6 +221,28 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 storm-control
+```
+
+- - -
+
+## nv show interface \<interface-id\> tunnel
+
+Shows tunnel information for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 tunnel
 ```
 
 - - -

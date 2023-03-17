@@ -27,9 +27,9 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery
 
 - - -
 
-## nv show interface \<interface-id\> ip neighbor-discovery rdnss
+## nv show interface \<interface-id\> ip neighbor-discovery dnssl
 
-Shows the <span style="background-color:#F5F5DC">[RDNSS](## "recursive DNS servers")</span> configured on the specified interface.
+Shows the <span style="background-color:#F5F5DC">[DNSSL](## "DNS search list")</span>domain suffixes configured on the specified interface.
 
 ### Command Syntax
 
@@ -44,21 +44,21 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery dnssl
 ```
 
 - - -
 
-## nv show interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\>
+## nv show interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\>
 
-Shows configuration for the specified <span style="background-color:#F5F5DC">[RDNSS](## "recursive DNS server")</span> configured on the specified interface.
+Shows configuration information for the specified <span style="background-color:#F5F5DC">[DNSSL](## "DNS search list")</span>domain suffix.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
-| `<ipv6-address-id>`  | The IPv6 address of the RDNSS.|
+| `<domain-name-id>`   |  The domain portion of a hostname (RFC 1123) or an internationalized hostname (RFC 5890).|
 
 ### Version History
 
@@ -67,7 +67,29 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
+```
+
+- - -
+
+## nv show interface \<interface-id\> ip neighbor-discovery home-agent
+
+Shows Home Agent configuration for an interface, such as the maximum amount of time the router acts as a Home Agent and the router preference.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery home-agent
 ```
 
 - - -
@@ -117,9 +139,9 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery prefix 2001:
 
 - - -
 
-## nv show interface \<interface-id\> ip neighbor-discovery dnssl
+## nv show interface \<interface-id\> ip neighbor-discovery rdnss
 
-Shows the <span style="background-color:#F5F5DC">[DNSSL](## "DNS search list")</span>domain suffixes configured on the specified interface.
+Shows the <span style="background-color:#F5F5DC">[RDNSS](## "recursive DNS servers")</span> configured on the specified interface.
 
 ### Command Syntax
 
@@ -134,21 +156,21 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery dnssl
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss
 ```
 
 - - -
 
-## nv show interface \<interface-id\> ip neighbor-discovery dnssl \<domain-name-id\>
+## nv show interface \<interface-id\> ip neighbor-discovery rdnss \<ipv6-address-id\>
 
-Shows configuration information for the specified <span style="background-color:#F5F5DC">[DNSSL](## "DNS search list")</span>domain suffix.
+Shows configuration for the specified <span style="background-color:#F5F5DC">[RDNSS](## "recursive DNS server")</span> configured on the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<interface-id>` | The interface name.|
-| `<domain-name-id>`   |  The domain portion of a hostname (RFC 1123) or an internationalized hostname (RFC 5890).|
+| `<ipv6-address-id>`  | The IPv6 address of the RDNSS.|
 
 ### Version History
 
@@ -157,7 +179,7 @@ Introduced in Cumulus Linux 5.1.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery dnssl accounting.nvidia.com
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery rdnss 2001:db8:1::100
 ```
 
 - - -
@@ -183,23 +205,3 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery router-adver
 ```
 
 - - -
-
-## nv show interface \<interface-id\> ip neighbor-discovery home-agent
-
-Shows Home Agent configuration for an interface, such as the maximum amount of time the router acts as a Home Agent and the router preference.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip neighbor-discovery home-agent
-```

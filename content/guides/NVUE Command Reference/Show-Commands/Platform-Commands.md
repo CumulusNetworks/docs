@@ -1,7 +1,7 @@
 ---
 title: Platform Commands
 author: Cumulus Networks
-weight: 210
+weight: 290
 product: Cumulus Linux
 type: nojsscroll
 ---

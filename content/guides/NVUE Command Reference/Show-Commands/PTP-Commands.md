@@ -1,7 +1,7 @@
 ---
 title: PTP Commands
 author: Cumulus Networks
-weight: 235
+weight: 330
 product: Cumulus Linux
 type: nojsscroll
 ---

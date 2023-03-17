@@ -1,7 +1,7 @@
 ---
 title: DNS Commands
 author: Cumulus Networks
-weight: 135
+weight: 160
 product: Cumulus Linux
 type: nojsscroll
 ---

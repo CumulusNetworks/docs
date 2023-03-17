@@ -1,7 +1,7 @@
 ---
 title: PTM Commands
 author: Cumulus Networks
-weight: 230
+weight: 320
 product: Cumulus Linux
 type: nojsscroll
 ---

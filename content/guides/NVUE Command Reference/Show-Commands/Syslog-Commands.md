@@ -1,7 +1,7 @@
 ---
 title: Syslog Commands
 author: Cumulus Networks
-weight: 270
+weight: 400
 product: Cumulus Linux
 type: nojsscroll
 ---

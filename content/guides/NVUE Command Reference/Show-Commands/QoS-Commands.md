@@ -1,7 +1,7 @@
 ---
 title: QoS Commands
 author: Cumulus Networks
-weight: 240
+weight: 340
 product: Cumulus Linux
 type: nojsscroll
 ---

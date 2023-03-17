@@ -142,6 +142,50 @@ cumulus@leaf01:mgmt:~$ nv show router next hop rib 10
 
 - - -
 
+## nv show router nexthop rib \<nhg-id\> depends
+
+Shows information about the next hops on which a specific next hop relies on.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<nhg-id>` | The next hop group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router nexthop rib 10 depends
+```
+
+- - -
+
+## nv show router nexthop rib \<nhg-id\> dependents
+
+Shows information about the next hop dependents on which a specific next hop relies on.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<nhg-id>` | The next hop group ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router nexthop rib 10 dependents
+```
+
+- - -
+
 ## nv show router nexthop rib \<nhg-id\> resolved-via
 
 Shows details the next-hop address for a particular next hop.
@@ -228,50 +272,6 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router nexthop rib 20 resolved-via-backup 
-```
-
-- - -
-
-## nv show router nexthop rib \<nhg-id\> depends
-
-Shows information about the next hops on which a specific next hop relies on.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<nhg-id>` | The next hop group ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show router nexthop rib 10 depends
-```
-
-- - -
-
-## nv show router nexthop rib \<nhg-id\> dependents
-
-Shows information about the next hop dependents on which a specific next hop relies on.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<nhg-id>` | The next hop group ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show router nexthop rib 10 dependents
 ```
 
 - - -

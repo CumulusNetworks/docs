@@ -5,6 +5,167 @@ weight: 370
 product: Cumulus Linux
 type: nojsscroll
 ---
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ebgp-policy
+
+EBGP Policy RFC8212
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<neighbor-id>`  |  Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ 
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy
+
+Policies for ipv4 unicast
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<neighbor-id>`  | Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ 
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound
+
+Outbound unicast policy
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<neighbor-id>`  | Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ 
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound
+
+Outbound unicast policy
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<neighbor-id>`  |  Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ 
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy
+
+Policies for l2vpn evpn
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<neighbor-id>`  |  Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ 
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound
+
+Inbound l2vpn-evpn policy
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<neighbor-id>`  |  Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ 
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound
+
+Outbound l2vpn-evpn policy
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |    VRF |
+| `<neighbor-id>`  |  Peer ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ 
+```
+
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy
 
 Policies for ipv4 unicast
@@ -212,170 +373,76 @@ cumulus@leaf01:mgmt:~$
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ebgp-policy
-
-EBGP Policy RFC8212
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  |  Peer ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ 
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy
-
-Policies for ipv4 unicast
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  | Peer ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ 
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound
-
-Outbound unicast policy
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  | Peer ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ 
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound
-
-Outbound unicast policy
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  |  Peer ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ 
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy
-
-Policies for l2vpn evpn
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  |  Peer ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ 
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound
-
-Inbound l2vpn-evpn policy
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  |  Peer ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ 
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound
-
-Outbound l2vpn-evpn policy
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  |  Peer ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ 
-```
-
-- - -
-
 ## nv show router policy
 
 Shows route filtering and distribution configuration information. You can see configuration settings for prefix lists, community lists, AS path lists, and route maps.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ 
+```
+
+- - -
+
+## nv show router policy as-path-list
+
+AS Path lists
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+|`<list-id>` | AS Path List ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ 
+```
+
+- - -
+
+## nv show router policy as-path-list \<list-id\>
+
+An AS Path list is used for matching BGP AS Path
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+|`<list-id>` |  AS Path List ID |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ 
+```
+
+- - -
+
+## nv show router policy as-path-list \<list-id>\ rule \<rule-id\>
+
+AS Path list Matching criteria and action rule
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<list-id>` | AS Path List ID |
+| `<rule-id>` | Prefix List rule number |
 
 ### Version History
 
@@ -512,73 +579,6 @@ A community name
 | `<list-id>` |  Community List ID |
 | `<rule-id>` |  Prefix List rule number |
 | `<community-id>` | Community number in AA:NN format or well known name |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ 
-```
-
-- - -
-
-## nv show router policy as-path-list
-
-AS Path lists
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-|`<list-id>` | AS Path List ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ 
-```
-
-- - -
-
-## nv show router policy as-path-list \<list-id\>
-
-An AS Path list is used for matching BGP AS Path
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-|`<list-id>` |  AS Path List ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ 
-```
-
-- - -
-
-## nv show router policy as-path-list \<list-id>\ rule \<rule-id\>
-
-AS Path list Matching criteria and action rule
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<list-id>` | AS Path List ID |
-| `<rule-id>` | Prefix List rule number |
 
 ### Version History
 
@@ -1352,3 +1352,5 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ 
 ```
+
+- - -

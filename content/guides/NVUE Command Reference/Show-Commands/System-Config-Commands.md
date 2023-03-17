@@ -73,6 +73,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show system config apply ignore /etc/frr/frr.conf
 ```
 
+- - -
+
 ## nv show system config auto-save
 
 Shows if configuration auto save is on or off.
@@ -104,3 +106,5 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv show system config snippet
 ```
+
+- - -

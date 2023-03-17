@@ -9,7 +9,7 @@ type: nojsscroll
 
 ## nv show service ntp
 
-Shows the Network Time Protocol (NTP) configuration on the switch.
+Shows the <span style="background-color:#F5F5DC">[NTP](## "Network Time Protocol")</span> configuration on the switch.
 
 ### Version History
 
@@ -45,6 +45,27 @@ cumulus@leaf01:mgmt:~$ nv show service ntp default
 
 - - -
 
+## nv show service ntp \<vrf-id\> pool \<server-id\>
+
+Shows information about the specified remote NTP server pool.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<server-id>` | The hostname or IP address of the NTP server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show service ntp default pool 4.cumulusnetworks.pool.ntp.org
+```
+
 ## nv show service ntp \<vrf-id\> server \<server-id\>
 
 Shows information about the specified remote NTP server.
@@ -67,24 +88,3 @@ cumulus@leaf01:mgmt:~$ nv show service ntp default server time.nist.gov
 ```
 
 - - -
-
-## nv show service ntp \<vrf-id\> pool \<server-id\>
-
-Shows information about the specified remote NTP server pool.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<server-id>` | The hostname or IP address of the NTP server. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show service ntp default pool 4.cumulusnetworks.pool.ntp.org
-```

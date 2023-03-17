@@ -37,60 +37,6 @@ cumulus@leaf01:mgmt:~$ nv show platform capabilities
 
 - - -
 
-## nv show platform hardware
-
-Shows platform hardware information on the switch, such as the base MAC address, model and manufacturer, memory, Cumulus Linux release, serial numner and system MAC address.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show platform hardware
-```
-
-- - -
-
-## nv show platform hardware component
-
-Shows the hardware components on the switch.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show platform hardware component
-```
-
-- - -
-
-## nv show platform hardware component \<component-id\>
-
-Shows information about the specified platform component.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<component-id>`  |  The component name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show platform hardware component device
-```
-
-- - -
-
 ## nv show platform environment
 
 Shows a list of sensors, fans, LEDs, and PSUs on the switch.
@@ -145,9 +91,9 @@ cumulus@leaf01:mgmt:~$ nv show platform environment fan Fan2
 
 - - -
 
-## nv show platform environment sensor
+## nv show platform environment led
 
-Shows information about the physical sensors on the switch.
+Shows information about the LEDs on the switch.
 
 ### Version History
 
@@ -156,20 +102,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show platform environment sensor 
+cumulus@leaf01:mgmt:~$ nv show platform environment led
 ```
 
 - - -
 
-## nv show platform environment sensor \<sensor-id\>
+## nv show platform environment led \<led-id\>
 
-Shows information about the specified physical sensor on the switch.
+Shows information about the specified LED.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<sensor-id>` |  The physical sensor identifier. |
+| `<led-id>` |  The physical LED identifier. |
 
 ### Version History
 
@@ -178,7 +124,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show platform environment sensor Temp
+cumulus@leaf01:mgmt:~$ nv show platform environment led Fan
 ```
 
 - - -
@@ -221,9 +167,9 @@ cumulus@leaf01:mgmt:~$ nv show platform environment psu PSU1
 
 - - -
 
-## nv show platform environment led
+## nv show platform environment sensor
 
-Shows information about the LEDs on the switch.
+Shows information about the physical sensors on the switch.
 
 ### Version History
 
@@ -232,20 +178,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show platform environment led
+cumulus@leaf01:mgmt:~$ nv show platform environment sensor 
 ```
 
 - - -
 
-## nv show platform environment led \<led-id\>
+## nv show platform environment sensor \<sensor-id\>
 
-Shows information about the specified LED.
+Shows information about the specified physical sensor on the switch.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<led-id>` |  The physical LED identifier. |
+| `<sensor-id>` |  The physical sensor identifier. |
 
 ### Version History
 
@@ -254,7 +200,61 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show platform environment led Fan
+cumulus@leaf01:mgmt:~$ nv show platform environment sensor Temp
+```
+
+- - -
+
+## nv show platform hardware
+
+Shows platform hardware information on the switch, such as the base MAC address, model and manufacturer, memory, Cumulus Linux release, serial numner and system MAC address.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show platform hardware
+```
+
+- - -
+
+## nv show platform hardware component
+
+Shows the hardware components on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show platform hardware component
+```
+
+- - -
+
+## nv show platform hardware component \<component-id\>
+
+Shows information about the specified platform component.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<component-id>`  |  The component name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show platform hardware component device
 ```
 
 - - -

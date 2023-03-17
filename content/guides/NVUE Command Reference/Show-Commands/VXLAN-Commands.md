@@ -21,9 +21,9 @@ cumulus@leaf01:mgmt:~$ nv show nve vxlan
 
 - - -
 
-## nv show nve vxlan mlag
+## nv show nve vxlan decapsulation
 
-Shows VXLAN specfic MLAG configuration on the switch.
+Show VXLAN decapsulation configuration.
 
 ### Version History
 
@@ -32,14 +32,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show nve vxlan mlag
+cumulus@leaf01:mgmt:~$ nv show nve vxlan decapsulation
 ```
 
 - - -
 
-## nv show nve vxlan source
+## nv show nve vxlan decapsulation dscp
 
-Shows the VXLAN source address.
+Shows the configured DSCP action and value during VXLAN decapsulation.
 
 ### Version History
 
@@ -48,7 +48,39 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show nve vxlan source
+cumulus@leaf01:mgmt:~$ nv show nve vxlan decapsulation dscp
+```
+
+- - -
+
+## nv show nve vxlan encapsulation
+
+Show VXLAN encapsulation configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show nve vxlan encapsulation
+```
+
+- - -
+
+# nv show nve vxlan encapsulation dscp
+
+Shows the configured DSCP action and value during VXLAN encapsulation.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show nve vxlan encapsulation dscp
 ```
 
 - - -
@@ -107,9 +139,9 @@ cumulus@leaf01:mgmt:~$ nv show nve vxlan flooding head-end-replication evpn
 
 - - -
 
-## nv show nve vxlan encapsulation
+## nv show nve vxlan mlag
 
-Show VXLAN encapsulation configuration.
+Shows VXLAN specfic MLAG configuration on the switch.
 
 ### Version History
 
@@ -118,14 +150,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show nve vxlan encapsulation
+cumulus@leaf01:mgmt:~$ nv show nve vxlan mlag
 ```
 
 - - -
 
-## nv show nve vxlan encapsulation dscp
+## nv show nve vxlan source
 
-Shows the configured DSCP action and value during VXLAN encapsulation.
+Shows the VXLAN source address.
 
 ### Version History
 
@@ -134,37 +166,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show nve vxlan encapsulation dscp
+cumulus@leaf01:mgmt:~$ nv show nve vxlan source
 ```
 
 - - -
-
-## nv show nve vxlan decapsulation
-
-Show VXLAN decapsulation configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show nve vxlan decapsulation
-```
-
-- - -
-
-## nv show nve vxlan decapsulation dscp
-
-Shows the configured DSCP action and value during VXLAN decapsulation.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show nve vxlan decapsulation dscp
-```

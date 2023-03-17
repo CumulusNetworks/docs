@@ -5,70 +5,6 @@ weight: 260
 product: Cumulus Linux
 type: nojsscroll
 ---
-## nv show router ospf
-
-Shows global OSPF configuration.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show router ospf
-```
-
-- - -
-
-## nv show router ospf timers
-
-Shows all OSPF timer settings, such as <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers and <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers that prevent consecutive SPF from overburdening the CPU.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show router ospf timers
-```
-
-- - -
-
-## nv show router ospf timers lsa
-
-Shows <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> throttle timer settings.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show router ospf timers lsa
-```
-
-- - -
-
-## nv show router ospf timers spf
-
-Shows <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timer settings.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show router ospf timers spf
-```
-
-- - -
-
 ## nv show interface \<interface-id\> router ospf
 
 Shows all OSPF configuration settings for the specified interface.
@@ -157,6 +93,70 @@ cumulus@leaf01:mgmt:~$ nv show interface swp51 router ospf bfd
 
 - - -
 
+## nv show router ospf
+
+Shows global OSPF configuration.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router ospf
+```
+
+- - -
+
+## nv show router ospf timers
+
+Shows all OSPF timer settings, such as <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers and <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers that prevent consecutive SPF from overburdening the CPU.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router ospf timers
+```
+
+- - -
+
+## nv show router ospf timers lsa
+
+Shows <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> throttle timer settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router ospf timers lsa
+```
+
+- - -
+
+## nv show router ospf timers spf
+
+Shows <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timer settings.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router ospf timers spf
+```
+
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf
 
 Shows the OSPF configuration settings for the specified VRF.
@@ -225,30 +225,6 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0 filter-list
 
 - - -
 
-## nv show vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\>
-
-Shows the configuration settings for the specified OSPF area prefix range for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<area-id>` |  The area ID. |
-| `<range-id>` |  The IPv4 prefix range. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0 range 172.16.1.0/24
-```
-
-- - -
-
 ## nv show vrf \<vrf-id\> router ospf area \<area-id\> network \<network-id\>
 
 Shows the configuration settings for the specified OSPF area network subnet for the specified VRF.
@@ -269,6 +245,30 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0 network 10.10.10.1/32
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\>
+
+Shows the configuration settings for the specified OSPF area prefix range for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<area-id>` |  The area ID. |
+| `<range-id>` |  The IPv4 prefix range. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf area 0 range 172.16.1.0/24
 ```
 
 - - -
@@ -317,28 +317,6 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router ospf distance
 
 - - -
 
-## nv show vrf \<vrf-id\> router ospf max-metric
-
-Shows the maximum metric configuration settings for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf max-metric
-```
-
-- - -
-
 ## nv show vrf \<vrf-id\> router ospf log
 
 Shows the OSPF log configuration for the specified VRF.
@@ -357,6 +335,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router ospf log
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf max-metric
+
+Shows the maximum metric configuration settings for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf max-metric
 ```
 
 - - -
@@ -383,9 +383,9 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute
 
 - - -
 
-## nv show vrf \<vrf-id\> router ospf redistribute static
+## nv show vrf \<vrf-id\> router ospf redistribute bgp
 
-Shows configuration settings for OSPF redistribute static routes for the specified VRF.
+Shows configuration settings for OSPF redistribute BGP routes for the specified VRF.
 
 ### Command Syntax
 
@@ -400,7 +400,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute static
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute bgp
 ```
 
 - - -
@@ -449,9 +449,9 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute kernel
 
 - - -
 
-## nv show vrf \<vrf-id\> router ospf redistribute bgp
+## nv show vrf \<vrf-id\> router ospf redistribute static
 
-Shows configuration settings for OSPF redistribute BGP routes for the specified VRF.
+Shows configuration settings for OSPF redistribute static routes for the specified VRF.
 
 ### Command Syntax
 
@@ -466,7 +466,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute bgp
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf redistribute static
 ```
 
 - - -
@@ -534,3 +534,5 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router ospf timers spf
 ```
+
+- - -

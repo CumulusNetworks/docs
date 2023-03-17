@@ -49,6 +49,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4
 ```
 
 - - -
+
 ## nv show vrf \<vrf-id\> router rib \<afi\> protocol
 
 Shows the IPv4 or IPv6 routing table for all protocols for the specified VRF.
@@ -319,7 +320,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protoco
 
 ## nv show vrf \<vrf-id\> router rib \<afi\> route \<route-id\> protocol \<protocol-id\> entry-index via \<via-id\> resolved-via \<resolved-via-id\>
 
-Shows 
+Shows
 
 ### Command Syntax
 
@@ -337,7 +338,8 @@ Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
-
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? resolved-via ???
 ```
+
+- - -

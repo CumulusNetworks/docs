@@ -72,22 +72,6 @@ cumulus@leaf01:mgmt:~$ nv show interface swp51 router pbr map map1
 
 - - -
 
-## nv show system global reserved routing-table pbr
-
-Shows the PBR reserved routing table ranges.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show system global reserved routing-table pbr
-```
-
-- - -
-
 ## nv show router pbr
 
 Shows global PBR configuration settings.
@@ -187,29 +171,6 @@ cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1
 
 - - -
 
-## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> match
-
-Shows the rule match criteria for a PBR route map.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<pbr-map-id>` | The route map name. |
-| `<rule-id>` | The PBR rule number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 match
-```
-
-- - -
-
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action
 
 Shows the rule action for a PBR route map.
@@ -275,3 +236,44 @@ Introduced in Cumulus Linux 5.1.0
 ```
 cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 action nexthop-group group1
 ```
+
+- - -
+
+## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> match
+
+Shows the rule match criteria for a PBR route map.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<pbr-map-id>` | The route map name. |
+| `<rule-id>` | The PBR rule number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 match
+```
+
+- - -
+
+## nv show system global reserved routing-table pbr
+
+Shows the PBR reserved routing table ranges.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system global reserved routing-table pbr
+```
+
+- - -

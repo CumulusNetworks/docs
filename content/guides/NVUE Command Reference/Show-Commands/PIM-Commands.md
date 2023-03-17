@@ -27,50 +27,6 @@ cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim
 
 - - -
 
-## nv show interface \<interface-id\> router pim timers
-
-Shows PIM timer settings for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>`    |  The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim timers
-```
-
-- - -
-
-## nv show interface \<interface-id\> router pim bfd
-
-Shows PIM BFD configuration settings for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>`    |  The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim bfd
-```
-
-- - -
-
 ## nv show interface \<interface-id\> router pim address-family
 
 Shows PIM configuration settings for all address families for the specified interface.
@@ -137,6 +93,50 @@ cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim address-family ipv4-u
 
 - - -
 
+## nv show interface \<interface-id\> router pim bfd
+
+Shows PIM BFD configuration settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`    |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim bfd
+```
+
+- - -
+
+## nv show interface \<interface-id\> router pim timers
+
+Shows PIM timer settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`    |  The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface vlan10 router pim timers
+```
+
+- - -
+
 ## nv show router pim
 
 Shows global PIM configuration on the switch.
@@ -191,9 +191,9 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router pim
 
 - - -
 
-## nv show vrf \<vrf-id\> router pim timers
+## nv show vrf \<vrf-id\> router pim address-family
 
-Shows PIM timer settings for the specified VRF.
+Shows address family specific PIM configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -208,7 +208,143 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router pim timers
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast
+
+Shows IPv4 PIM configuration for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp
+
+Shows the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\>
+
+Shows IPv4 PIM configuration for the specified <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<rp-id>` |  RP IP address |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.10.10.101
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range
+
+Shows the group ranges for the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<rp-id>`  | RP IP address |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range \<group-range-id\>
+
+Shows IPv4 PIM configuration for the specified <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> group range for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+| `<rp-id>`  | RP IP address |
+| `<group-range-id>`  |  The group range associated with the RP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover
+
+Shows IPv4 PIM <span style="background-color:#F5F5DC">[SPT](## "SPT Shortest Path Tree")</span> switchover configuration for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast spt-switchover
 ```
 
 - - -
@@ -327,9 +463,9 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router pim msdp-mesh-group pod1 membe
 
 - - -
 
-## nv show vrf \<vrf-id\> router pim address-family
+## nv show vrf \<vrf-id\> router pim timers
 
-Shows address family specific PIM configuration for the specified VRF.
+Shows PIM timer settings for the specified VRF.
 
 ### Command Syntax
 
@@ -344,139 +480,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family
+cumulus@leaf01:mgmt:~$ nv show vrf default router pim timers
 ```
 
 - - -
-
-## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast
-
-Shows IPv4 PIM configuration for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast spt-switchover
-
-Shows IPv4 PIM <span style="background-color:#F5F5DC">[SPT](## "SPT Shortest Path Tree")</span> switchover configuration for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast spt-switchover
-```
-- - -
-## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp
-
-Shows the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\>
-
-Shows IPv4 PIM configuration for the specified <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<rp-id>` |  RP IP address |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.10.10.101
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range
-
-Shows the group ranges for the IPv4 PIM <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<rp-id>`  | RP IP address |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> router pim address-family ipv4-unicast rp \<rp-id\> group-range \<group-range-id\>
-
-Shows IPv4 PIM configuration for the specified <span style="background-color:#F5F5DC">[RP](## "Rendezvous Point")</span> group range for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name.|
-| `<rp-id>`  | RP IP address |
-| `<group-range-id>`  |  The group range associated with the RP. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default router pim address-family ipv4-unicast rp 10.100.100.100 group-range 224.0.0.0/4
-```

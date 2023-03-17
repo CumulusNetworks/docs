@@ -9,6 +9,12 @@ type: nojsscroll
 
 Shows the <span style="background-color:#F5F5DC">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
 
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`  |  The interface name. |
+
 ### Version History
 
 Introduced in Cumulus Linux 5.3.0
@@ -18,3 +24,5 @@ Introduced in Cumulus Linux 5.3.0
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 pluggable
 ```
+
+- - -

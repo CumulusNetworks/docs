@@ -1782,6 +1782,237 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 - - -
 
+## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib
+
+Shows the layer 2 VPN EVPN local RIB for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd
+
+Shows the layer 2 VPN EVPN local RIB <span style="background-color:#F5F5DC">[RDs](## "Route Distinguisher")</span> for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\>
+
+Shows a specific layer 2 VPN EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<rd-id>` |  The route distinguisher ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type
+
+Shows the layer 2 VPN EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route distinguisher route types (`ead`, `macip`, `multicast`, `ethernet-segment`, `prefix`, or an integer between 1 and 5) for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<rd-id>` |  The route distinguisher ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\>
+
+Shows information about a specific layer 2 VPN EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route distinguisher route type for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<rd-id>` |  The route distinguisher ID.|
+| `<route-type-id>` |  The route type: `ead`, `macip`, `multicast`, `ethernet-segment`, `prefix`, or an integer between 1 and 5.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type multicast
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\> route
+
+Shows the routes in the layer 2 VPN EVPN local RIB for the specified VRF with a specific <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> and route type.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<rd-id>` |  The route distinguisher ID.|
+| `<route-type-id>` |  The route type: `ead`, `macip`, `multicast`, `ethernet-segment`, `prefix`, or an integer between 1 and 5.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type multicast route
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\> route \<evpn-route-id\>
+
+Shows the routes in the layer 2 VPN EVPN local RIB for the specified VRF with a specific <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route type and EVPN route type.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<rd-id>` |  The route distinguisher ID.|
+| `<route-type-id>` |  The route type: `ead`, `macip`, `multicast`, `ethernet-segment`, `prefix`, or an integer between 1 and 5.|
+| `<evpn-route-id>` |  The EVPN route type.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn loc-rib rd 10.10.10.1:20 route-type multicast route 
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn update-group
+
+Shows information about BGP layer 2 VPN EVPN update group events.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn update-group \<group-id\>
+
+Shows information about a specific BGP layer 2 VPN EVPN update group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<group ID>` |  The BGP group ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 5
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn update-group \<group-id\> sub-group
+
+Shows the subgroup information for a specific BGP layer 2 VPN EVPN update group.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` |  The VRF name.|
+| `<group ID>` |  The BGP group ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn update-group 5 sub-group
+```
+
+- - -
+
 ## nv show vrf \<vrf-id\> router bgp dynamic-neighbor
 
 Shows BGP dynamic neighbor configuration on the switch. BGP dynamic neighbors provides BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.

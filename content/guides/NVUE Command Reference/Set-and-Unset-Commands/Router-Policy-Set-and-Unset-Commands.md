@@ -86,7 +86,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy community-list COMMUNITY1 rule 10 co
 
 ## nv set router policy community-list \<list-id\> rule \<rule-id\> action
 
-Sets the action you want to take when you meet the match criteria; permit or deny.
+Sets the action you want to take when you meet the match criteria. You can set `permit` or `deny`.
 
 ### Command Syntax
 
@@ -152,7 +152,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy as-path-list mylist rule 10
 
 ## nv set router policy as-path-list \<list-id\> rule \<rule-id\> action
 
-Sets the action you want to take for a match; permit or deny.
+Sets the action you want to take for a match. You can set `permit` or `deny`.
 
 ### Command Syntax
 
@@ -244,7 +244,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
 
-Sets the Extended Community name.
+Configures the Extended Community name.
 
 ### Command Syntax
 
@@ -267,7 +267,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ex
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\>
 
-Configures the Route Target Extended Community.
+Configures the Route Target Extended Community number.
 
 ### Command Syntax
 
@@ -315,7 +315,7 @@ cumulus@leaf01:mgmt:~$ nv set router policy ext-community-list mylist rule 10 ex
 
 ## nv set router policy ext-community-list \<list-id\> rule \<rule-id\> action
 
-Configures the action to take on a match; permit or deny.
+Configures the action to take on a match. You can set `permit` or `deny`.
 
 ### Command Syntax
 

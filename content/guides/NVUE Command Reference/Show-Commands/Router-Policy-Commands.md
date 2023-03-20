@@ -7,7 +7,7 @@ type: nojsscroll
 ---
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ebgp-policy
 
-EBGP Policy RFC8212
+Shows the EBGP policy (RFC8212) configuration
 
 ### Command Syntax
 
@@ -23,14 +23,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 ebgp-policy
 ```
 
 - - -
 
-## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy
+## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family
 
-Policies for ipv4 unicast
+Shows configuration settings for IPv4, IPv6, and layer 2 VPN EVPN.
 
 ### Command Syntax
 
@@ -46,21 +46,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family address-family
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound
 
-Outbound unicast policy
+Shows the inbound policy configuration for a specifc IPv4 BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  | Peer ID |
+| `<vrf-id>` |  The VRF name. |
+| `<neighbor-id>`  | The BGP peer name (BGP numbered) or interface (for BGP unnumbered). |
 
 ### Version History
 
@@ -69,21 +69,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound
 
-Outbound unicast policy
+Shows the outbound policy configuration for a specifc IPv4 BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  |  Peer ID |
+| `<vrf-id>` |  The VRF name. |
+| `<neighbor-id>`  | The BGP peer name (BGP numbered) or interface (for BGP unnumbered). |
 
 ### Version History
 
@@ -92,21 +92,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy
 
-Policies for l2vpn evpn
+Shows the policy configuration for a specifc layer 2 VPN EVPN BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  |  Peer ID |
+| `<vrf-id>` |  The VRF name. |
+| `<neighbor-id>`  | The BGP peer name (BGP numbered) or interface (for BGP unnumbered). |
 
 ### Version History
 
@@ -115,21 +115,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound
 
-Inbound l2vpn-evpn policy
+Shows the inbound policy configuration for a specifc layer 2 VPN EVPN BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  |  Peer ID |
+| `<vrf-id>` |  The VRF name. |
+| `<neighbor-id>`  | The BGP peer name (BGP numbered) or interface (for BGP unnumbered). |
 
 ### Version History
 
@@ -138,21 +138,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy inbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound
 
-Outbound l2vpn-evpn policy
+Shows the outbound policy configuration for a specifc layer 2 VPN EVPN BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  |  Peer ID |
+| `<vrf-id>` |  The VRF name. |
+| `<neighbor-id>`  | The BGP peer name (BGP numbered) or interface (for BGP unnumbered). |
 
 ### Version History
 
@@ -161,21 +161,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-family l2vpn-evpn policy outbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy
 
-Policies for ipv4 unicast
+Shows the policy configuration for a specifc IPv4 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |  The VRF name. |
+| `<peer-group-id>`  | The BGP peer group name. |
 
 ### Version History
 
@@ -184,21 +184,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound
 
-Outbound unicast policy
+Shows the inbound policy configuration for a specifc IPv4 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |  The VRF name. |
+| `<peer-group-id>`  | The BGP peer group name. |
 
 ### Version History
 
@@ -207,21 +207,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy inbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound
 
-Outbound unicast policy
+Shows the outbound policy configuration for a specifc IPv4 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |  The VRF name. |
+| `<peer-group-id>`  | The BGP peer group name. |
 
 ### Version History
 
@@ -230,21 +230,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv4-unicast policy outbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy
 
-Policies for ipv6 unicast
+Shows the policy configuration for a specifc IPv6 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |  The VRF name. |
+| `<peer-group-id>`  | The BGP peer group name. |
 
 ### Version History
 
@@ -253,21 +253,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound
 
-Outbound unicast policy
+Shows the inbound policy configuration for a specifc IPv6 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |  The VRF name. |
+| `<peer-group-id>`  | The BGP peer group name. |
 
 ### Version History
 
@@ -276,21 +276,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy inbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound
 
-Outbound unicast policy
+Shows the outbound policy configuration for a specifc IPv6 BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>` | Domain |
+| `<vrf-id>` |  The VRF name. |
+| `<peer-group-id>`  | The BGP peer group name. |
 
 ### Version History
 
@@ -299,21 +299,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family ipv6-unicast policy outbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy
 
-Policies for l2vpn evpn
+Shows the policy configuration for a specifc layer 2 VPN EVPN BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>`  |   Domain |
+| `<vrf-id>` |  The VRF name. |
+| `<peer-group-id>`  | The BGP peer group name. |
 
 ### Version History
 
@@ -322,21 +322,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound
 
-Inbound l2vpn-evpn policy
+Shows the inbound policy configuration for a specifc layer 2 VPN EVPN BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>`  |   Domain |
+| `<vrf-id>` |  The VRF name. |
+| `<peer-group-id>`  | The BGP peer group name. |
 
 ### Version History
 
@@ -345,21 +345,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy inbound
 ```
 
 - - -
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy outbound
 
-Outbound l2vpn-evpn policy
+Shows the outbound policy configuration for a specifc layer 2 VPN EVPN BGP peer group.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<peer-group-id>`  |   Domain |
+| `<vrf-id>` |  The VRF name. |
+| `<peer-group-id>`  | The BGP peer group name. |
 
 ### Version History
 
@@ -368,7 +368,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-family l2vpn-evpn policy outbound
 ```
 
 - - -
@@ -384,20 +384,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy
 ```
 
 - - -
 
 ## nv show router policy as-path-list
 
-AS Path lists
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-|`<list-id>` | AS Path List ID |
+Shows the AS path list policy configuration. You use an AS path list to match BGP AS paths.
 
 ### Version History
 
@@ -406,20 +400,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy as-path-list
 ```
 
 - - -
 
 ## nv show router policy as-path-list \<list-id\>
 
-An AS Path list is used for matching BGP AS Path
+Shows the specified AS path list policy configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-|`<list-id>` |  AS Path List ID |
+|`<list-id>` | The AS path list name. |
 
 ### Version History
 
@@ -428,21 +422,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy as-path-list mylist 
 ```
 
 - - -
 
 ## nv show router policy as-path-list \<list-id>\ rule \<rule-id\>
 
-AS Path list Matching criteria and action rule
+Shows the specified AS path list policy rule configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` | AS Path List ID |
-| `<rule-id>` | Prefix List rule number |
+| `<list-id>` | The AS path list name. |
+| `<rule-id>` | The rule number. |
 
 ### Version History
 
@@ -451,18 +445,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy as-path-list mylist rule 10
 ```
 
 - - -
 
 ## nv show router policy community-list
 
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<list-id>` |  The Community List identifier. |
+Shows the configured community lists. A community list is used for matching BGP community policies.
 
 ### Version History
 
@@ -471,20 +461,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy community-list
 ```
 
 - - -
 
 ## nv show router policy community-list \<list-id\>
 
-A community list is used for matching BGP community policies.
+Shows the specified community list configuration. A community list is used for matching BGP community policies.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  The Community List identifier. |
+| `<list-id>` |  The community list name. |
 
 ### Version History
 
@@ -493,21 +483,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy community-list COMMUNITY1
 ```
 
 - - -
 
 ## nv show router policy community-list \<list-id\> rule
 
-Community list rules
+Shows the specified community list rules.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  The Community List identifier. |
-| `<rule-id>` |  The prefix list rule number. |
+| `<list-id>` |  The community list name. |
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -516,21 +506,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy community-list COMMUNITY1 rule
 ```
 
 - - -
 
 ## nv show router policy community-list \<list-id\> rule \<rule-id\>
 
-Community list Matching criteria and action rule
+Shows the specified rule configuration for a specific community list.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
+| `<list-id>` |  The community list name. |
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -539,22 +529,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy community-list COMMUNITY1 rule 10
 ```
 
 - - -
 
 ## nv show router policy community-list \<list-id\> rule \<rule-id\> community
 
-Set of community names for community-list
+Shows the community names for the specified community-list.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
-| `<community-id>` | Community number in AA:NN format or well known name |
+| `<list-id>` | The community list name. |
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -563,22 +552,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy community-list COMMUNITY1 rule 10 community
 ```
 
 - - -
 
 ## nv show router policy community-list \<list-id\> rule \<rule-id\> community \<community-id\>
 
-A community name
+Shows the configuration for the specified community name for the specified community-list.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
-| `<community-id>` | Community number in AA:NN format or well known name |
+| `<list-id>` | The community list name. |
+| `<rule-id>` |  The rule number. |
+| `<community-id>` | The community number in AA:NN format or well known name. |
 
 ### Version History
 
@@ -587,20 +576,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy community-list COMMUNITY1 rule 10 community 64980:0
 ```
 
 - - -
 
 ## nv show router policy ext-community-list
 
-Extended Community lists
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<list-id>` | Community List ID |
+Shows the extended community list configuration.
 
 ### Version History
 
@@ -609,20 +592,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy ext-community-list
 ```
 
 - - -
 
 ## nv show router policy ext-community-list \<list-id\>
 
-An Extended Community list used for matching BGP communities
+Shows configuration for the specified extended community list used for matching BGP communities.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
+| `<list-id>` |  The extended community list name. |
 
 ### Version History
 
@@ -631,21 +614,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy ext-community-list EXTCOMMUNITY1
 ```
 
 - - -
 
 ## nv show router policy ext-community-list \<list-id\> rule
 
-Extended Community list rules
+Shows the specified extended community list rules.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id> |` Community List ID |
-| `<rule-id>` |  Prefix List rule number |
+| `<list-id>` | The extended community list name. |
 
 ### Version History
 
@@ -654,21 +636,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy ext-community-list EXTCOMMUNITY1 rule
 ```
 
 - - -
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\>
 
-Extended Community list Matching criteria and action rule
+Shows the matching criteria for the specified extended community list rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
+| `<list-id>` |  The extended community list name. |
+| `<rule-id>` |  The extended community list rule number. |
 
 ### Version History
 
@@ -677,21 +659,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy ext-community-list EXTCOMMUNITY1 rule 10
 ```
 
 - - -
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
 
-An Extended community name
+Shows the matching criteria for a specific extended community for the specified extended community list rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
+| `<list-id>` |  The extended community list name. |
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -700,22 +682,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy ext-community-list MYEXTENDEDCOMMUNITYLIST rule 10 ext-community
 ```
 
 - - -
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt
 
-Set of extended communities
+Shows the specified extended community rule Route Target Extended Community configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |   Prefix List rule number |
-| `<ext-community-id>` |  Community number in AA:NN or IP:NN format |
+| `<list-id>` |  The extended community list name. |
+| `<rule-id>` |   The rule number. |
+| `<ext-community-id>` | The community number in AA:NN or IP:NN format. |
 
 ### Version History
 
@@ -724,22 +706,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy ext-community-list MYEXTENDEDCOMMUNITYLIST rule 10 ext-community rt
 ```
 
 - - -
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community rt \<ext-community-id\>
 
-An extended community name
+Shows the extended community Route Target Extended Community configuration for the specified rextended community list rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
-| `<ext-community-id>` |  Community number in AA:NN or IP:NN format |
+| `<list-id>` |  The extended community list name. |
+| `<rule-id>` |   The rule number. |
+| `<ext-community-id>` | The community number in AA:NN or IP:NN format. |
 
 ### Version History
 
@@ -748,22 +730,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy ext-community-list MYEXTENDEDCOMMUNITYLIST rule 10 ext-community rt 64510:1111
 ```
 
 - - -
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community
 
-Set of extended communities
+Shows the specified extended community list rule configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |   Community List ID |
-| `<rule-id>` |   Prefix List rule number |
-| `<ext-community-id>` |  Community number in AA:NN or IP:NN format |
+| `<list-id>` |  The extended community list name. |
+| `<rule-id>` |   The rule number. |
+| `<ext-community-id>` | The community number in AA:NN or IP:NN format. |
 
 ### Version History
 
@@ -772,22 +754,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy ext-community-list MYEXTENDEDCOMMUNITYLIST rule 10 ext-community
 ```
 
 - - -
 
 ## nv show router policy ext-community-list \<list-id\> rule \<rule-id\> ext-community soo \<ext-community-id\>
 
-An extended community name
+Shows the configuration for the specified site-of-origin (SoO) Extended Community rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
-| `<ext-community-id>` | Community number in AA:NN or IP:NN format |
+| `<list-id>` |  The extended community list name. |
+| `<rule-id>` |   The rule number. |
+| `<ext-community-id>` | The community number in AA:NN or IP:NN format. |
 
 ### Version History
 
@@ -796,20 +778,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy ext-community-list MYEXTENDEDCOMMUNITYLIST rule 10 ext-community soo 45000:3soo
 ```
 
 - - -
 
 ## nv show router policy large-community-list
 
-Large Community lists
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<list-id>` | The Community List ID. |
+Shows the large community lists used configured on the switch to match community based BGP policies.
 
 ### Version History
 
@@ -818,20 +794,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy large-community-list
 ```
 
 - - -
 
 ## nv show router policy large-community-list \<list-id\>
 
-A Large Community list used for matching community based BGP policies
+Shows the specified large community list configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` | The Community List ID. |
+| `<list-id>` |  The large community list name. |
 
 ### Version History
 
@@ -847,14 +823,14 @@ cumulus@leaf01:mgmt:~$
 
 ## nv show router policy large-community-list \<list-id\> rule
 
-Large Community list rules
+Shows the rules for the specified large community list.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
+| `<list-id>` |  The large community list name. |
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -863,21 +839,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy large-community-list MYLARGECOMMUNITY rule
 ```
 
 - - -
 
 ## nv show router policy large-community-list \<list-id\> rule \<rule-id\>
 
-Large Community list Matching criteria and action rule
+Shows the configuration for the specified large community list rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
+| `<list-id>` |  The large community list name. |
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -886,22 +862,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy large-community-list MYLARGECOMMUNITY rule 10
 ```
 
 - - -
 
 ## nv show router policy large-community-list \<list-id\> rule \<rule-id\> large-community
 
-Set of community names for large community list
+Shows the community names for the specified large community list rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
-| `<large-community-id>` |  Community number in AA:BB:CC format |
+| `<list-id>` |  The large community list name. |
+| `<rule-id>` |  The rule number. |
+| `<large-community-id>` | The large community number in AA:BB:CC format. |
 
 ### Version History
 
@@ -910,22 +886,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy large-community-list MYLARGECOMMUNITY rule 10 large-community
 ```
 
 - - -
 
 ## nv show router policy large-community-list \<list-id\> rule \<rule-id\> large-community \<large-community-id\>
 
-Set of community names for large community list
+Shows configuration for a specific large community list rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<list-id>` |  Community List ID |
-| `<rule-id>` |  Prefix List rule number |
-| `<large-community-id>` |  Community number in AA:BB:CC format |
+| `<list-id>` |  The large community list name. |
+| `<rule-id>` |  The rule number. |
+| `<large-community-id>` |  The large community number in AA:BB:CC format. |
 
 ### Version History
 
@@ -934,20 +910,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy large-community-list MYCOMMUNITYLIST rule 10 large-community 2914:65400:38016
 ```
 
 - - -
 
 ## nv show router policy prefix-list
 
-Prefix list rules
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<prefix-list-id>` |  Prefix List ID |
+Shows the configured prefix lists.
 
 ### Version History
 
@@ -963,13 +933,13 @@ cumulus@leaf01:mgmt:~$
 
 ## nv show router policy prefix-list \<prefix-list-id\>
 
-A prefix list is used for matching IPv4 and IPv6 address prefixes.
+Shows the specified prefix list configuration. A prefix list is used for matching IPv4 and IPv6 address prefixes.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<prefix-list-id>` |  Prefix List ID |
+| `<prefix-list-id>` |  The prefix list name. |
 
 ### Version History
 
@@ -978,20 +948,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy prefix-list MYPREFIXLIST
 ```
 
 - - -
 
 ## nv show router policy prefix-list \<prefix-list-id\> rule \<rule-id\>
 
-Prefix list Matching criteria and action rule
+Shows the specified prefix list rule configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<prefix-list-id>` |  Prefix List ID |
+| `<prefix-list-id>` |  The prefix list name. |
 | `<rule-id>` |   Prefix List rule number |
 
 ### Version History
@@ -1001,22 +971,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy prefix-list MYPREFIXLIST rule 10
 ```
 
 - - -
 
-## nv show router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match \<match-id\>
+## nv show router policy prefix-list \<prefix-list-id\> rule \<rule-id\> match
 
-A prefix matc
+Shows the specified prefix list rule match configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<prefix-list-id>` | Prefix List ID |
-| `<rule-id>` |  Prefix List rule number |
-| `<match-id>` |  ip v4/v6 prefix, or any |
+| `<prefix-list-id>` | The prefix list name.|
+| `<rule-id>` |  The rule number. |
+| `<match-id>` |  The IPv4 or IPv6 prefix. |
 
 ### Version History
 
@@ -1025,20 +995,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy prefix-list MYPREFIXLIST rule 10 match
 ```
 
 - - -
 
 ## nv show router policy route-map
 
-Collection of Route Maps
+Shows the route maps configured on the switch. A route map is used for policy configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
+| `<route-map-id>` |  The route map name. |
 
 ### Version History
 
@@ -1054,13 +1024,13 @@ cumulus@leaf01:mgmt:~$
 
 ## nv show router policy route-map \<route-map-id\>
 
-A route map is used for policy configuration.
+Shows the specified route map configuration. A route map is used for policy configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
+| `<route-map-id>` | The route map name.|
 
 ### Version History
 
@@ -1069,21 +1039,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\>
 
-Route Map Matching/setting criteria and action rule
+Shows the specified route map rule configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<route-map-id>` | The route map name.|
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -1092,21 +1062,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> match
 
-Route map rule match
+Shows the specified route map rule match configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<route-map-id>` | The route map name.|
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -1115,21 +1085,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 match
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set
 
-Route map rule set
+Shows the specified route map rule set configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<route-map-id>` | The route map name.|
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -1138,12 +1108,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 set
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set as-path-prepend
+
+Shows the set AS path prepend configuration for the specified route map rule.
 
 AS Path prepend
 
@@ -1151,8 +1123,8 @@ AS Path prepend
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<route-map-id>` | The route map name.|
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -1161,22 +1133,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 set as-path-prepend
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set community \<community-id\>
 
-BGP Community
+Shows the set configuration for a specific BGP community for the specified route map rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
-| `<community-id>` |  Community number |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+| `<community-id>` |  The BGP community ID. |
 
 ### Version History
 
@@ -1185,22 +1157,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 set community 64980:0
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set large-community \<large-community-id\>
 
-Large BGP Community
+Shows the set configuration for a specific large BGP community for the specified route map rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
-| `<large-community-id>` |  Large Community number |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+| `<large-community-id>` |  The BGP large community ID. |
 
 ### Version History
 
@@ -1209,22 +1181,22 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 set large-community 2914:65400:38016
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\>
 
-Aggregator AS Number
+Shows the set configuration for a specific aggregator ASN for the specified route map rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
-| `<asn-id>` |  Autonomous number |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+| `<asn-id>` |   The autonomous number (ASN). |
 
 ### Version History
 
@@ -1233,23 +1205,23 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 set aggregator-as 65101
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> set aggregator-as \<asn-id\> address \<ipv4-address-id\>
 
-An IPv4 address
+Shows the configuration for a specific ASN and IPv4 address for the specified route map rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
-| `<asn-id>` |   Autonomous number ` |
-| `<ipv4-address-id>`  | IPv4 address |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
+| `<asn-id>` |   The autonomous number (ASN). |
+| `<ipv4-address-id>`  | The IPv4 address. |
 
 ### Version History
 
@@ -1258,21 +1230,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 set aggregator-as 65101 address 10.10.10.01
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> action
 
-Route map rule action
+Shows the route map rule action.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -1281,21 +1253,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 action
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> action deny
 
-State details
+Shows the deny action for the specified route map rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -1304,21 +1276,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 action deny
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit
 
-permit action
+Shows the permit action for the specified route map rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -1327,21 +1299,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 action permit
 ```
 
 - - -
 
 ## nv show router policy route-map \<route-map-id\> rule \<rule-id\> action permit exit-policy
 
-Permit action exit policy
+Shopws the permit action exit policy for the specified route map rule.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<route-map-id>` |  Route Map ID |
-| `<rule-id>` |  Sequence to insert or delete from the route-map |
+| `<route-map-id>` | The route map name. |
+| `<rule-id>` |  The rule number. |
 
 ### Version History
 
@@ -1350,7 +1322,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy route-map MYROUTEMAP rule 10 action permit exit-policy
 ```
 
 - - -

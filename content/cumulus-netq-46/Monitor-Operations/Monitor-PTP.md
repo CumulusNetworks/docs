@@ -3,16 +3,15 @@ title: PTP
 author: NVIDIA
 weight: 930
 toc: 3
-bookhidden: true
 ---
 
 {{<notice note>}}
 
-PTP monitoring is an early access feature. It requires a switch fabric running Cumulus Linux version 5.0 and above and NetQ Agent 4.5.
+PTP monitoring requires a switch fabric running Cumulus Linux version 5.0 and above and NetQ Agent 4.5 and above.
 
 {{</notice>}}
 
-Use the UI or CLI to monitor Precision Time Protocol, including clock hierarchies and priorities, synchronization thresholds, and accuracy rates.
+Use the UI or CLI to monitor Precision Time Protocol (PTP), including clock hierarchies and priorities, synchronization thresholds, and accuracy rates.
 
 ## PTP Commands
 
@@ -64,4 +63,4 @@ Select the tabs above the chart to display information about domains, clocks, po
 
 ## Related Information
 
-- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-53/System-Configuration/Date-and-Time/Precision-Time-Protocol-PTP/" text="PTP and Cumulus Linux">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Date-and-Time/Precision-Time-Protocol-PTP/" text="PTP and Cumulus Linux">}}

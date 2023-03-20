@@ -254,7 +254,7 @@ Shows
 | `<route-id>`   | The IP prefix. |
 | `<protocol-id>`  | The protocol name, such as bgp or ospf.|
 | `<entry-index>` | The routing table entry index.|
-| `<via-id>` |  |
+| `<via-id>` | The IP address of the nexthop router.  |
 
 ### Version History
 
@@ -263,7 +263,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? flags
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via 10.0.1.0  flags
 ```
 
 - - -
@@ -279,7 +279,7 @@ Shows
 | `<route-id>`   | The IP prefix. |
 | `<protocol-id>`  | The protocol name, such as bgp or ospf.|
 | `<entry-index>` | The routing table entry index.|
-| `<via-id>` |  |
+| `<via-id>` | The IP address of the nexthop router.  |
 
 ### Version History
 
@@ -288,7 +288,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? label
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via 10.0.1.0 label
 ```
 
 - - -
@@ -304,7 +304,7 @@ Shows
 | `<route-id>`   | The IP prefix. |
 | `<protocol-id>`  | The protocol name, such as bgp or ospf.|
 | `<entry-index>` | The routing table entry index.|
-| `<via-id>` |  |
+| `<via-id>` | The IP address of the nexthop router.  |
 
 ### Version History
 
@@ -313,7 +313,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? resolved-via
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via 10.0.1.0 resolved-via
 ```
 
 - - -
@@ -329,8 +329,8 @@ Shows
 | `<route-id>`   | The IP prefix. |
 | `<protocol-id>`  | The protocol name, such as bgp or ospf.|
 | `<entry-index>` | The routing table entry index.|
-| `<via-id>` |  |
-| `<resolved-via-id>` |  |
+| `<via-id>` | The IP address of the nexthop router.  |
+| `<resolved-via-id>` | The IP address of the nexthop router that resolves the route. |
 
 ### Version History
 
@@ -339,7 +339,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via ??? resolved-via ???
+cumulus@leaf01:mgmt:~$ nv show vrf default router rib ipv4 route default protocol bgp entry-index 10 via 10.0.1.0 resolved-via 10.0.10.0
 ```
 
 - - -

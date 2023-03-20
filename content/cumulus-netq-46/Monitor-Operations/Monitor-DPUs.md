@@ -4,11 +4,7 @@ author: NVIDIA
 weight: 810
 toc: 3
 ---
-{{<notice note>}}
 
-DPU monitoring is an early access feature. 
-
-{{</notice>}}
 With the NetQ UI, you can monitor hardware resources of individual data processing units (DPUs), including CPU utilization, disk usage, and memory utilization.
 
 For DPU inventory information, refer to {{<link title="DPU Inventory" text="DPU Inventory">}}.
@@ -17,7 +13,7 @@ For DPU inventory information, refer to {{<link title="DPU Inventory" text="DPU 
 
 For an overview of the current or past health of DPU hardware resources, open the DPU device card. To open a DPU device card:
 
-1. Click {{<img src="/images/netq/devices.svg" alt="empty device card" height="18" width="18">}} Devices in the header, then click **Open a device card**.
+1. Click {{<img src="/images/netq/devices.svg" alt="empty device card" height="18" width="18">}} **Devices** in the header, then click **Open a device card**.
 
 2. Select a DPU from the dropdown.
 
@@ -31,11 +27,11 @@ For a quick look at the key attributes of a particular DPU, expand the DPU card.
 
 Attributes are displayed as the default tab on the large DPU card. You can view the static information about the DPU, including its hostname, ASIC vendor and model, CPU information, OS version, and agent version.
 
-{{<figure src="/images/netq/dev-dpu-large-attributes-tab-42.png" alt="large DPU card displaying static DPU information" width="500">}}
+{{<figure src="/images/netq/dev-dpu-large-attributes-tab-42.png" alt="large DPU card displaying static DPU information" width="700">}}
 
-To view a larger display of hardware resource utilization, select {{<img src="/images/netq/analytics-bars.svg" alt="large DPU card displaying hardware utilization data" height="18" width="18">}} Utilization.
+To view a larger display of hardware resource utilization, select {{<img src="/images/netq/analytics-bars.svg" alt="large DPU card displaying hardware utilization data" height="18" width="18">}} **Utilization**.
 
-{{<figure src="/images/netq/dev-dpu-large-utilization-42.png" width="500">}}
+{{<figure src="/images/netq/dev-dpu-large-utilization-42.png" width="700">}}
 ## View Installed Packages
 
 To view the list of installed packages on a particular DPU, expand the card to its largest size:

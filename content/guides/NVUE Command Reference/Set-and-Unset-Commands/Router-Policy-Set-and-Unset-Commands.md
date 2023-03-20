@@ -400,7 +400,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 large-community ?????
+cumulus@leaf01:mgmt:~$ nv set router policy large-community-list mylist rule 10 large-community 2914:65400:38016
 ```
 
 - - -
@@ -1263,7 +1263,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community ????
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set large-community 2914:65400:38016
 ```
 
 - - -
@@ -1406,7 +1406,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-soo ????
+cumulus@leaf01:mgmt:~$ nv set router policy route-map MAP1 rule 10 set ext-community-soo 100:30
 ```
 
 - - -

@@ -2224,7 +2224,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES local-as asn ????
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES local-as asn 65101
 ```
 
 - - -

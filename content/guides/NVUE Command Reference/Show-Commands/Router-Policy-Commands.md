@@ -7,14 +7,14 @@ type: nojsscroll
 ---
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ebgp-policy
 
-Shows the EBGP policy (RFC8212) configuration
+Shows the EBGP policy configuration on the switch.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  |  Peer ID |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -30,14 +30,14 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 ebgp-policy
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family
 
-Shows configuration settings for IPv4, IPv6, and layer 2 VPN EVPN.
+Shows the IPv4, IPv6, and layer 2 VPN EVPN configuration settings for the specified BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |    VRF |
-| `<neighbor-id>`  | Peer ID |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -53,14 +53,14 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound
 
-Shows the inbound policy configuration for a specifc IPv4 BGP neighbor.
+Shows the IPv4 inbound policy configuration for the specified BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
-| `<neighbor-id>`  | The BGP peer name (BGP numbered) or interface (for BGP unnumbered). |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -76,14 +76,14 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy outbound
 
-Shows the outbound policy configuration for a specifc IPv4 BGP neighbor.
+Shows the IPv4 outbound policy configuration for a specifc BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
-| `<neighbor-id>`  | The BGP peer name (BGP numbered) or interface (for BGP unnumbered). |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -99,14 +99,14 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy
 
-Shows the policy configuration for a specifc layer 2 VPN EVPN BGP neighbor.
+Shows the layer 2 VPN EVPN policy configuration for a specifc BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
-| `<neighbor-id>`  | The BGP peer name (BGP numbered) or interface (for BGP unnumbered). |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -122,14 +122,14 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound
 
-Shows the inbound policy configuration for a specifc layer 2 VPN EVPN BGP neighbor.
+Shows the layer 2 VPN EVPN inbound policy configuration for a specifc BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
-| `<neighbor-id>`  | The BGP peer name (BGP numbered) or interface (for BGP unnumbered). |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -145,14 +145,14 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound
 
-Shows the outbound policy configuration for a specifc layer 2 VPN EVPN BGP neighbor.
+Shows the layer 2 VPN EVPN outbound policy configuration for a specifc BGP neighbor.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<vrf-id>` |  The VRF name. |
-| `<neighbor-id>`  | The BGP peer name (BGP numbered) or interface (for BGP unnumbered). |
+| `<vrf-id>` |  The VRF name.|
+| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
@@ -168,7 +168,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy
 
-Shows the policy configuration for a specifc IPv4 BGP peer group.
+Shows the IPv4 policy configuration for a specifc BGP peer group.
 
 ### Command Syntax
 
@@ -191,7 +191,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy inbound
 
-Shows the inbound policy configuration for a specifc IPv4 BGP peer group.
+Shows the IPv4 inbound policy configuration for a specifc BGP peer group.
 
 ### Command Syntax
 
@@ -214,7 +214,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast policy outbound
 
-Shows the outbound policy configuration for a specifc IPv4 BGP peer group.
+Shows the IPv4 outbound policy configuration for a specifc BGP peer group.
 
 ### Command Syntax
 
@@ -237,7 +237,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy
 
-Shows the policy configuration for a specifc IPv6 BGP peer group.
+Shows the IPv6 policy configuration for a specifc BGP peer group.
 
 ### Command Syntax
 
@@ -260,7 +260,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy inbound
 
-Shows the inbound policy configuration for a specifc IPv6 BGP peer group.
+Shows the IPv6 inbound policy configuration for a specifc BGP peer group.
 
 ### Command Syntax
 
@@ -283,7 +283,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast policy outbound
 
-Shows the outbound policy configuration for a specifc IPv6 BGP peer group.
+Shows the IPv6 outbound policy configuration for a specifc BGP peer group.
 
 ### Command Syntax
 
@@ -306,7 +306,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy
 
-Shows the policy configuration for a specifc layer 2 VPN EVPN BGP peer group.
+Shows the layer 2 VPN EVPN policy configuration for a specifc BGP peer group.
 
 ### Command Syntax
 
@@ -329,7 +329,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound
 
-Shows the inbound policy configuration for a specifc layer 2 VPN EVPN BGP peer group.
+Shows the layer 2 VPN EVPN inbound policy configuration for a specifc BGP peer group.
 
 ### Command Syntax
 
@@ -352,7 +352,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy outbound
 
-Shows the outbound policy configuration for a specifc layer 2 VPN EVPN BGP peer group.
+Shows the layer 2 VPN EVPN outbound policy configuration for a specifc BGP peer group.
 
 ### Command Syntax
 
@@ -468,7 +468,7 @@ cumulus@leaf01:mgmt:~$ nv show router policy community-list
 
 ## nv show router policy community-list \<list-id\>
 
-Shows the specified community list configuration. A community list is used for matching BGP community policies.
+Shows the specified community list configuration.
 
 ### Command Syntax
 
@@ -513,7 +513,7 @@ cumulus@leaf01:mgmt:~$ nv show router policy community-list COMMUNITY1 rule
 
 ## nv show router policy community-list \<list-id\> rule \<rule-id\>
 
-Shows the specified rule configuration for a specific community list.
+Shows the configuration for the specified community list rule.
 
 ### Command Syntax
 
@@ -536,7 +536,7 @@ cumulus@leaf01:mgmt:~$ nv show router policy community-list COMMUNITY1 rule 10
 
 ## nv show router policy community-list \<list-id\> rule \<rule-id\> community
 
-Shows the community names for the specified community-list.
+Shows the community names for the specified community list rule.
 
 ### Command Syntax
 
@@ -816,7 +816,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ 
+cumulus@leaf01:mgmt:~$ nv show router policy large-community-list MYLARGECOMMUNITY 
 ```
 
 - - -

@@ -129,7 +129,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos mapping profile
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos mapping profile MYPROFILE
 ```
 
 - - -
@@ -174,7 +174,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos remark profile
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos remark profile MYPROFILE
 ```
 
 - - -
@@ -219,7 +219,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos congestion-control profile
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos congestion-control profile MYPROFILE
 ```
 
 - - -
@@ -265,7 +265,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-scheduler profile
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-scheduler profile MYPROFILE
 ```
 
 - - -
@@ -311,7 +311,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-shaper profile
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-shaper profile MYPROFILE
 ```
 
 - - -

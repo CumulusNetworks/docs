@@ -117,7 +117,7 @@ cumulus@switch:~$ sudo cl-acltool -L all
 ### Disable Insecure SSL and TLS Protocol Versions in NGINX
 
 {{%notice note%}}
-This procedure applies only to Cumulus Linux 5.3 and earlier, which supports the Cumulus HTTP API. Cumulus Linux 5.4 and later supports the NVUE API and includes the correct TLS configuration.
+This procedure applies only to Cumulus Linux 5.3 and earlier, which supports the Cumulus HTTP API. Cumulus Linux 5.4 and later supports the NVUE API and includes the correct TLS configuration. You can stop and disable the `nginx.service` with the `sudo systemctl stop nginx.service` and `sudo systemctl disable nginx.service` commands.
 {{%/notice%}}
 <!-- vale off -->
 Cumulus Linux contains a package for NGINX, an open source web server that supports the Cumulus Linux [RESTful HTTP API]({{<ref "/cumulus-linux-43/System-Configuration/HTTP-API" >}}) through HTTPS. By default, NGINX is enabled and listening on localhost (127.0.0.1 port 8080.

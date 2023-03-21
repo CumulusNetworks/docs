@@ -134,9 +134,9 @@ Changing the time period in this manner only changes the time period for the giv
 
 ### Table Settings
 
-You can manipulate the tabular data displayed in a full-screen card by filtering and sorting the columns. Hover over the column header and select it to sort the column. The data is sorted in ascending or descending order: A-Z, Z-A, 1-n, or n-1. The number of rows that can be sorted is limited to 10,000.
+You can manipulate the tabular data displayed in a full-screen card by filtering and sorting the columns. Hover over the column header and select it to sort the column. The data is sorted in ascending or descending order: A-Z, Z-A, 1-n, or n-1. The number of rows that can be sorted via the UI is limited to 10,000. To reposition the columns, drag and drop them using your mouse. 
 
-To reposition the columns, drag and drop them using your mouse. You can also export the data presented in the table by selecting <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> **Export**.
+Select <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> **Export** to download and export the tabular data. You can sort and filter tables that exceed 10,000 rows by exporting the data as a CSV file and opening it in a spreadsheet program.
 
 The following icons are common in the full-screen card view:
 

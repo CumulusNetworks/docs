@@ -557,7 +557,7 @@ If you want to create more granular notifications based on such items as selecte
 
 ### Configure a Proxy Server
 
-To send notification messages through a proxy server instead of directly to a notification channel, you configure NetQ with the hostname and optionally a port of a proxy server. If you do not specify a port, NetQ defaults to port 80. Only one proxy server is currently  supported. To simplify deployment, configure your proxy server before configuring channels, rules, or filters.
+To send notification messages through a proxy server instead of directly to a notification channel, you configure NetQ with the hostname and optionally a port of a proxy server. If you do not specify a port, NetQ defaults to port 80. NetQ supports one proxy server. To simplify deployment, configure your proxy server before configuring channels, rules, or filters.
 
 To configure and verify the proxy server, run:
 

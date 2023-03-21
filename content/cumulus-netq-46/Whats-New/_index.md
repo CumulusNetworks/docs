@@ -13,6 +13,9 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale on -->
 NetQ 4.6.0 includes the following new features and improvements:
 
+- Full support for {{<link title="PTP" text="Precision Time Protocol monitoring">}} via the UI and CLI
+- Expanded {{<link title="Access Data with Cards#table-settings" text="table options">}} that allow you to export and download tables that exceed 10,000 rows as a CSV file
+
 
 ## Upgrade Paths
 

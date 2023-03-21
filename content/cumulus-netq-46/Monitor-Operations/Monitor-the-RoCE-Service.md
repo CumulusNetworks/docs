@@ -64,7 +64,7 @@ You can view the following RoCE counters for a given switch through the UI or CL
 
 {{<tab "NetQ UI">}}
 
-1. To view Rx counters, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. To view Rx counters, open the large switch card, then click the RoCE icon {{<img src="/images/netq/roce-icon.svg" width="18px">}}.
 1. Expand the card to the largest size, then select **RoCE Counters** from the side menu:
 
 {{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" alt="full-size switch card with RoCe Counters tab selected" width="700">}}
@@ -119,7 +119,7 @@ switch            swp63s2         0            0            0                  0
 
 {{<tab "NetQ UI">}}
 
-1. To view Tx counters, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. To view Tx counters, open the large switch card, then click the RoCE icon {{<img src="/images/netq/roce-icon.svg" width="18px">}}.
 1. Expand the card to the largest size, then select **RoCE Counters** from the side menu.
 1. Select **Tx** from the toggle above the table:
 
@@ -176,7 +176,7 @@ switch            swp63s2         0          0          0                       
 
 {{<tab "NetQ UI">}}
 
-1. To view RoCE counter pools, open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. To view RoCE counter pools, open the large switch card, then click the RoCE icon {{<img src="/images/netq/roce-icon.svg" width="18px">}}.
 1. Switch to the full-screen card, then click **RoCE Counters**. Look for these columns: **Lossy Default Ingress Size**, **RoCE Reserved Ingress Size**, **Lossy Default Egress Size**, and **RoCE Reserved Egress Size**.
 
 {{<figure src="/images/netq/roce-rx-counters-fs-4.0.0.png" width="700">}}
@@ -206,7 +206,7 @@ switch            104823                         104823                         
 
 {{<tab "NetQ UI">}}
 
-1. Open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Open the large switch card, then click the RoCE icon {{<img src="/images/netq/roce-icon.svg" width="18px">}}.
 1. Select a port from the list on the left:
 
 {{<figure src="/images/netq/roce-l3-card-4.0.0.png" alt="switch card displaying list of ports" width="500">}}
@@ -238,7 +238,7 @@ switch            swp1s1               1643392              154094520           
 
 To view counters for a time period in the past:
 
-1. Open the large switch card, then click the RoCE icon ({{<img src="/images/netq/icon-roce-4.0.0.png" width="34px">}}).
+1. Open the large switch card, then click the RoCE icon {{<img src="/images/netq/roce-icon.svg" width="18px">}}.
 1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/18-Time/time-stopwatch.svg" height="18" width="18"/> in the header and select a different time period.
 
 {{</tab>}}

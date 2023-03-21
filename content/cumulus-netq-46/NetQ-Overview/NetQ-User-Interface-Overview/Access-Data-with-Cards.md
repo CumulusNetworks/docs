@@ -12,7 +12,7 @@ Cards present information about your network for monitoring and troubleshooting;
 Each card focuses on a particular aspect of your network. They include:
 
 - **Validation summary**: overview of your network's health
-- **Events**: system events and anomalies
+- **Events**: system anomalies and threshold-crossing events
 - **What Just Happened**: network issues and packet drops 
 - **Device groups**: distribution of device components
 - **Trace request**: discovery workflow for paths between two devices in the network fabric

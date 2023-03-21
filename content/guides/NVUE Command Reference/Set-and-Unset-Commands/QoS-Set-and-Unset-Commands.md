@@ -9,6 +9,313 @@ type: nojsscroll
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+## nv set interface \<interface-id\> qos
+
+Configures QoS on the specified interface.
+
+- - -
+
+## nv set interface \<interface-id\> qos pfc
+
+Configures QoS PFC on the specifies interface.
+
+- - -
+
+## nv set interface \<interface-id\> qos pfc profile \<profile-name\>
+
+Configures the QoS PFC profile on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+|`<profile-name>` | The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos pfc profile
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos link-pause
+
+Configures QoS link pause on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos link-pause
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos link-pause profile \<profile-name\>
+
+Configures the QoS link pause profile on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+|`<profile-name>` | The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos link-pause profile
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos mapping
+
+Configures QoS mapping on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos mapping
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos mapping profile \<profile-name\>
+
+Configures the QoS mapping profile on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+|`<profile-name>` | The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos mapping profile
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos remark
+
+Configures QoS remarking on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos remark
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos remark profile \<profile-name\>
+
+Configures the QoS mapping profile on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+|`<profile-name>` | The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos remark profile
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos congestion-control
+
+Configures QoS congestion control on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos congestion-control
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos congestion-control profile \<profile-name\>
+
+Configures the QoS congestion control profile on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+|`<profile-name>` | The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos congestion-control profile
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos egress-scheduler
+
+Configures QoS egress scheduling on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+|`<profile-name>` | The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-scheduler
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos egress-scheduler profile \<profile-name\>
+
+Configures the QoS egress scheduler profile on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+|`<profile-name>` | The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-scheduler profile
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos egress-shaper
+
+Configures QoS egress shapeing on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+|`<profile-name>` | The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-shaper
+```
+
+- - -
+
+## nv set interface \<interface-id\> qos egress-shaper profile \<profile-name\>
+
+Configures the QoS egress scheduler profile on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+|`<profile-name>` | The profile name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 qos egress-shaper profile
+```
+
+- - -
+
 ## nv set qos
 
 Configures global Quality of Service (QOS) settings.

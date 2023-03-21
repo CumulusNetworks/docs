@@ -36,7 +36,10 @@
       {{ $jsCustom := resources.Get "js/custom.js" }}
       {{ $jsMenu := slice $jsScroll $jsCollapse $jsCustom | resources.Concat "js/menuBundle.js"}}
       
-      <script src = "{{ $jsMenu.Permalink }}"> </script>
+      <script type="application/javascript" src = "{{ $jsMenu.Permalink }}"> </script>
+      <!-- Hack in additional reference to menuBundle.js with relative link from pages - can possibly remove the permalink in line 39 with this -->
+      {{ $jsMenuOffline := resources.Get "js/menuBundle.js" }}
+      <script type="application/javascript" src="{{ $jsMenuOffline.Permalink }}"></script>
       {{ end }}
 
       {{if eq .Page.Type "nojsscroll"}}

@@ -2,7 +2,8 @@ languageCode: "en-us"
 title: "NVIDIA Networking Documentation"
 theme: "netDocs"
 baseURL: "/"
-relURLs: True
+relativeURLs: True
+uglyURLs: true
 googleAnalytics: "G-HTM5Y02305"
 #Book configuration
 disablePathToLower: True

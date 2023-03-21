@@ -911,7 +911,7 @@ leaf01            swp50                     8749                 0              
 
 ## netq show events
 
-Display system events that have occurred in the last 24 hours. Optionally, view events for a time in the past. You can filter the output by event severity and event type. The output provides the following information for each device:
+Display system events that have occurred in the last 24 hours <!--is this 24 hours or 1 hour?-->. Optionally, view events for a time in the past. You can filter the output by event severity and event type. The output provides the following information for each device:
 
 - Message type
 - Event severity (info, error)
@@ -1024,6 +1024,22 @@ leaf01            bgp          info     BGP session with peer spine01 @desc 2h:1
                                         : state changed from failed to esta
                                         blished
 ...
+```
+
+Display events that have occurred on the leaf01 switch between now and an hour ago.
+
+```
+cumulus@switch:~$ netq leaf01 show events
+
+Matching events records:
+Hostname          Message Type             Severity         Message                             Timestamp
+----------------- ------------------------ ---------------- ----------------------------------- -------------------------
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:34:31 2020
+                                                            t after allocation greater than chu
+                                                            nk size 0.57 GB
+leaf01            btrfsinfo                error            data storage efficiency : space lef Wed Sep  2 20:04:30 2020
+                                                            t after allocation greater than chu
+                                                            nk size 0.57 GB
 ```
 ### Related Commands
 

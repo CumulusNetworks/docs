@@ -143,3 +143,77 @@ cumulus@leaf01:mgmt:~$ nv set interface swp5 bond up-delay 100
 ```
 
 - - -
+
+## nv set interface \<interface-id\> storm-control
+
+Configures storm control on the specified interface. Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.
+
+- - -
+
+## nv set interface \<interface-id\> storm-control broadcast
+
+Configures the number of broadcast packets per second (pps) that signifies a broadcast storm. You can set a value between 1 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 storm-control broadcast 400
+```
+
+- - -
+
+## nv set interface \<interface-id\> storm-control multicast
+
+Configures the number of multicast packets per second (pps) that signifies a multicast storm. You can set a value between 1 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 storm-control multicast 3000
+```
+
+- - -
+
+## nv set interface \<interface-id\> storm-control unknown-unicast
+
+- - -
+
+Configures the number of unknown unicast packets per second (pps) that signifies an unknown unicast storm. You can set a value between 1 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 storm-control unknown-unicast 2000
+```
+
+- - -

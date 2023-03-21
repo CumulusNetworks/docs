@@ -297,7 +297,7 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp mixed-multicast-unicast on
 
 - - -
 
-## nv set interface \<interface-id\>## nv set interface \<interface-id\> ptp unicast-service-mode
+## nv set interface \<interface-id\> ptp unicast-service-mode
 
 Configures the PTP interface on the switch to be a unicast client or a unicast server. Unicast mode reduces the amount of bandwidth consumed.
 

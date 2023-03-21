@@ -67,6 +67,28 @@ Configures IPv4 settings for an interface.
 
 - - -
 
+## nv set interface \<interface-id\> ip ipv4 enable
+
+Turns IPv4 on or off. The default setting is `on`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ip ipv4 enable off
+```
+
+- - -
+
 ## nv set interface \<interface-id\> ip ipv4 forward
 
 Turns IPv4 forwarding on or off for the specified interface. The default setting is `off`.

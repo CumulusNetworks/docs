@@ -31,7 +31,7 @@ Configures the bridge domain. The default bridge domain is `br_default`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0 
+Introduced in Cumulus Linux 5.0.0
 
 - - -
 
@@ -57,6 +57,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default stp priority 8192
+```
+
+- - -
+
+## nv set bridge domain \<domain-id\> stp state
+
+Configures the STP state on the bridge. You can set a value of `up`, or `down`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default stp state up
 ```
 
 - - -
@@ -467,6 +489,273 @@ Introduced in Cumulus Linux 5.1.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan-vni-offset 10000
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge
+
+Configures the bridged interface.
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\>
+
+Configures the bridged interface domain.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp
+
+Configures STP on the bridged interface domain.
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp bpdu-filter
+
+Turns `bpdufilter` on or off on a bridge domain. When on, `bpdufilter` filters BPDUs in both directions.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp bpdu-filter on
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp bpdu-guard
+
+Turns BPDU guard on or off on the bridged interface to protect the spanning tree topology from an unauthorized device affecting the forwarding path. For example, if you add a new host to an access port off a leaf switch and the host sends an STP BPDU, BPDU guard protects against undesirable topology changes in the environment.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp bpdu-guard on
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp admin-edge
+
+Turns STP PortAdminEdge on or off on the bridged interface. PortAdminEdge is equivalent to the PortFast feature offered by other vendors. It enables or disables the initial edge state of a port in a bridge. All ports with PortAdminEdge on bypass the listening and learning states and go straight to forwarding.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp admin-edge on
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp auto-edge
+
+Turns STP AutoEdge on or off on the bridged interface. PortAutoEdge is an enhancement to the standard PortAdminEdge (PortFast) mode, which allows for the automatic detection of edge ports. PortAutoEdge enables and disables the auto transition to and from the edge state of a port in a bridge.
+
+When a port with PortAutoEdge receives a BPDU, the port stops being in the edge port state and transitions into a normal STP port. When the interface no longer receives BPDUs, the port becomes an edge port, and transitions through the discarding and learning states before it resumes forwarding.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp auto-edge on
+```
+
+- - -
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp network
+
+Turns bridge assurance capability for a bridged port on or off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp network
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp restrrole
+
+Turns STP restricted role for the bridged port on or off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp restrrole
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\>
+
+Configures a VLAN for the bridged interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+| `<vid>` |  The VLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default vlan 10
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> learning
+
+Turns source MAC address learning on or off for this bridged interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default learning on
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> untagged
+
+Configures the VLAN in which untagged packets ingressing this bridged interface are in. Egress packets are always tagged. You can set a value between 1 and 4094, `none`, or `auto`. If you specify `none`, the switch drops untagged packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default untagged none
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> access
+
+Configures access ports to ignore all tagged packets. You can set a value between 1 and 4094, `none`, or `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default access 10
 ```
 
 - - -

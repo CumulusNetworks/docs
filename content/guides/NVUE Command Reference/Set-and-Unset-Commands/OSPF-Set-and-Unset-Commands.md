@@ -9,158 +9,6 @@ type: nojsscroll
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set router ospf
-
-Configures global OSPF settings on the switch.
-
-- - -
-
-## nv set router ospf timers
-
-Configures the OSPF <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers, <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers, and the refresh interval.
-
-- - -
-
-## nv set router ospf timers lsa
-
-Configures <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers.
-
-- - -
-
-## nv set router ospf timers lsa min-arrival
-
-Configures the minimum interval in seconds during which OSPF can accept the same LSA. You can specify a value between 0 and 600000.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa min-arrival 300000
-```
-
-- - -
-
-## nv set router ospf timers lsa throttle
-
-Configures the amount of time after which OSPF sends LSAs. You can specify a value between 0 and 5000 milliseconds.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa throttle 3000
-```
-
-- - -
-
-## nv set router ospf timers spf
-
-Configures OSPF <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers.
-
-- - -
-
-## nv set router ospf timers spf delay
-
-Configures the amount of time to wait before calculating the SPF after receiving the first topology change. You can specify a value between 0 and 600000 milliseconds.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set router ospf timers spf delay 80
-```
-
-- - -
-
-## nv set router ospf timers spf holdtime
-
-Configures the amount of time to wait between consecutive SPF calculations. You can specify a value between 0 and 600000 milliseconds.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set router ospf timers spf holdtime 100
-```
-
-- - -
-
-## nv set router ospf timers spf max-holdtime
-
-Configures the maximum amount of time to wait between consecutive SPF calculations. You can specify a value between 0 and 600000 milliseconds.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set router ospf timers spf max-holdtime 100
-```
-
-- - -
-
-## nv set router ospf timers refresh
-
-Configures the refresh interval in seconds to resend LSAs to prevent them from aging out. You can specify a value between 10 and 1800 seconds.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set router ospf timers refresh 100
-```
-
-- - -
-
-## nv set router ospf enable
-
-Turns OSPF on or off. The default setting is `off`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set router ospf enable on
-```
-
-- - -
-
-## nv set router ospf router-id
-
-Configures the OSPF router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures the router ID for all VRFs if a common one is used; otherwise, you must set the router ID for every VRF.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set router ospf router-id 10.10.10.1.
-```
-
-- - -
-
 ## nv set interface \<interface-id\> router ospf
 
 Configures OSPF on an interface.
@@ -195,28 +43,6 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers dead-interval 6
 
 - - -
 
-## nv set interface \<interface-id\> router ospf timers hello-multiplier
-
-Configures the multiplier to use if `dead-interval` is `minimal`. You can specify a value between 1 and 10.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers hello-multiplier 6
-```
-
-- - -
-
 ## nv set interface \<interface-id\> router ospf timers hello-interval
 
 Configures how often in seconds to transmit a hello packet. This setting is only valid if `dead-interval` is not `minimal`. You can specify a value between 1 and 65535.
@@ -235,6 +61,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers hello-interval 5
+```
+
+- - -
+
+## nv set interface \<interface-id\> router ospf timers hello-multiplier
+
+Configures the multiplier to use if `dead-interval` is `minimal`. You can specify a value between 1 and 10.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers hello-multiplier 6
 ```
 
 - - -
@@ -279,79 +127,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf timers retransmit-delay 600
-```
-
-- - -
-
-## nv set interface \<interface-id\> router ospf authentication
-
-Configures OSPF MD5 authentication for the specified interface.
-
-- - -
-
-## nv set interface \<interface-id\> router ospf authentication enable
-
-Turns OSPF authentication on or off on the specified interface. The default setting is `off`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication enable on
-```
-
-- - -
-
-## nv set interface \<interface-id\> router ospf authentication message-digest-key
-
-Configures the message digest key for the specified interface. You can specify a value between 1 and 255. The value must be consistent across all routers on a link.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication message-digest-key 1
-```
-
-- - -
-
-## nv set interface \<interface-id\> router ospf authentication md5-key \<value\>
-
-Configures the MD5 key for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-| `<value>` | The MD5 key. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication md5-key thisisthekey
 ```
 
 - - -
@@ -606,6 +381,231 @@ cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf priority 5
 
 - - -
 
+## nv set router ospf
+
+Configures global OSPF settings on the switch.
+
+- - -
+
+## nv set interface \<interface-id\> router ospf authentication
+
+Configures OSPF MD5 authentication for the specified interface.
+
+- - -
+
+## nv set interface \<interface-id\> router ospf authentication enable
+
+Turns OSPF authentication on or off on the specified interface. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication enable on
+```
+
+- - -
+
+# nv set interface \<interface-id\> router ospf authentication md5-key \<value\>
+
+Configures the MD5 key for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<value>` | The MD5 key. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication md5-key thisisthekey
+```
+
+- - -
+
+## nv set interface \<interface-id\> router ospf authentication message-digest-key
+
+Configures the message digest key for the specified interface. You can specify a value between 1 and 255. The value must be consistent across all routers on a link.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp51 router ospf authentication message-digest-key 1
+```
+
+- - -
+
+## nv set router ospf enable
+
+Turns OSPF on or off. The default setting is `off`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf enable on
+```
+
+- - -
+
+## nv set router ospf router-id
+
+Configures the OSPF router ID on the switch, which is a 32-bit value and is typically the address of the loopback interface. This command configures the router ID for all VRFs if a common one is used; otherwise, you must set the router ID for every VRF.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf router-id 10.10.10.1.
+```
+
+- - -
+
+## nv set router ospf timers
+
+Configures the OSPF <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers, <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers, and the refresh interval.
+
+- - -
+
+## nv set router ospf timers lsa
+
+Configures <span style="background-color:#F5F5DC">[LSA](## "Link State Advertisement")</span> timers.
+
+- - -
+
+## nv set router ospf timers lsa min-arrival
+
+Configures the minimum interval in seconds during which OSPF can accept the same LSA. You can specify a value between 0 and 600000.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa min-arrival 300000
+```
+
+- - -
+
+## nv set router ospf timers lsa throttle
+
+Configures the amount of time after which OSPF sends LSAs. You can specify a value between 0 and 5000 milliseconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers lsa throttle 3000
+```
+
+- - -
+
+## nv set router ospf timers refresh
+
+Configures the refresh interval in seconds to resend LSAs to prevent them from aging out. You can specify a value between 10 and 1800 seconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers refresh 100
+```
+
+- - -
+
+## nv set router ospf timers spf
+
+Configures OSPF <span style="background-color:#F5F5DC">[SPF](## "Shortest Path First")</span> timers.
+
+- - -
+
+## nv set router ospf timers spf delay
+
+Configures the amount of time to wait before calculating the SPF after receiving the first topology change. You can specify a value between 0 and 600000 milliseconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers spf delay 80
+```
+
+- - -
+
+## nv set router ospf timers spf holdtime
+
+Configures the amount of time to wait between consecutive SPF calculations. You can specify a value between 0 and 600000 milliseconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers spf holdtime 100
+```
+
+- - -
+
+## nv set router ospf timers spf max-holdtime
+
+Configures the maximum amount of time to wait between consecutive SPF calculations. You can specify a value between 0 and 600000 milliseconds.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router ospf timers spf max-holdtime 100
+```
+
+- - -
+
 ## nv set vrf \<vrf-id\> router ospf
 
 Configures OSPF in the specified VRF.
@@ -719,30 +719,6 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24
 
 - - -
 
-## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\> suppress
-
-Configures OSPF to filter out components but not advertise the specified address range. The default setting is `off` (advertise the specified address range).
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<area-id>` | The OSPF area. |
-| `<range-id>`  | The IPv4 prefix. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24 suppress on
-```
-
-- - -
-
 ## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\> cost
 
 Configures the metric advertised for the specified address range. You can specify a value between 0 and 16777215, or `auto`. The default value is `auto` (the operational default value is derived from the components).
@@ -763,6 +739,30 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24 cost 65535
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router ospf area \<area-id\> range \<range-id\> suppress
+
+Configures OSPF to filter out components but not advertise the specified address range. The default setting is `off` (advertise the specified address range).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<area-id>` | The OSPF area. |
+| `<range-id>`  | The IPv4 prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf area 0 range 172.16.1.0/24 suppress on
 ```
 
 - - -

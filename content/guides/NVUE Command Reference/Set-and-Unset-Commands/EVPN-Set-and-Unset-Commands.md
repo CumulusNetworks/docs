@@ -9,75 +9,9 @@ type: nojsscroll
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set evpn enable
+## nv set evpn
 
-Enables and disables the EVPN control plane. When enabled, the EVPN service offered is a VLAN-based service and an EVI is created automatically for each extended VLAN. The default setting is `off`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set evpn enable on
-```
-
-- - -
-
-## nv set evpn route-advertise
-
-Configures EVPN route advertising.
-
-- - -
-
-## nv set evpn route-advertise nexthop-setting
-
-Configures how to advertise type-5 routes. Each switch in an MLAG pair advertises type-5 routes with its own system IP address, which creates an additional next hop at the remote VTEPs. In a large multi-tenancy EVPN deployment, where additional resources are a concern, you can disable this feature. Set this command to `shared-ip-mac` if you do not want to advertise type-5 routes with the system IP address. Set this command to `system-ip-mac` to advertise type-5 routes with the system IP address. The default setting is `system-ip-mac`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set evpn route-advertise nexthop-setting shared-ip-mac
-```
-
-- - -
-
-## nv set evpn route-advertise svi-ip
-
-Configures the switch to announce the IP addresses of SVIs in all EVIs as type-2 routes. Only enable this option if you reuse SVI IP addresses in the network. The default setting is `off`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set evpn route-advertise svi-ip on
-```
-
-- - -
-
-## nv set evpn route-advertise default-gateway
-
-Configures the gateway VTEPs to advertise their IP and MAC address. Only turn this setting on in a centralized routing deployment and only on the centralized gateway router. When set to `on`, the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The remote layer 2 only VTEPs use ARP suppression and the hosts learn of the gateway's IP to MAC binding. The default setting is `off`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set evpn route-advertise default-gateway on
-```
-
-- - -
+Configures the EVPN control plane.
 
 ## nv set evpn dad
 
@@ -88,6 +22,22 @@ Configures EVPN duplicate address detection. The VTEP considers a host MAC or IP
 ## nv set evpn dad duplicate-action
 
 Configures the action to take when the switch flags a MAC address as a possible duplicate.
+
+- - -
+
+## nv set evpn dad enable
+
+Enables and disables duplicate address detection. The default setting is `off`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn dad enable on
+```
 
 - - -
 
@@ -109,22 +59,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set evpn dad duplicate-action freeze duration permanent
-```
-
-- - -
-
-## nv set evpn dad enable
-
-Enables and disables duplicate address detection. The default setting is `off`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set evpn dad enable on
 ```
 
 - - -
@@ -161,42 +95,9 @@ cumulus@leaf01:mgmt:~$ nv set evpn dad move-window 1200
 
 - - -
 
-## nv set evpn vni
+## nv set evpn enable
 
-Enables the EVPN control plane so that the EVPN service offered is VLAN-based and an EVI is created automatically for each extended VLAN.
-
-- - -
-
-## nv set evpn route-advertise
-
-Configures route advertisement for an EVPN instance.
-
-- - -
-
-## nv set evpn route-advertise nexthop-setting
-
-Turns advertise primary IP and MAC address on or off. Each switch in the MLAG pair advertises type-5 routes with its own system IP, which creates an additional next hop at the remote VTEPs. In a large multi-tenancy EVPN deployment, where additional resources are a concern, you can disable advertise primary IP address.
-
-To disable advertise primary IP address, set the command value to `shared-ip-mac`.
-To enable advertise primary IP address, set the command value to `system-ip-mac`.
-
-The default value is `system-ip-mac`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set evpn route-advertise nexthop-setting shared-ip-mac
-```
-
-- - -
-
-## nv set evpn route-advertise svi-ip
-
-Turns the advertise SVI IP and MAC address option on or off for the EVPN instance so you can advertise the SVI IP and MAC address as a type-2 route. This eliminates the need for any flooding over VXLAN to reach the IP address from a remote VTEP or rack. You typically turn this setting on if you use unique SVI IP addresses across multiple racks and you want the local SVI IP address to be reachable through remote VTEPs. You can specify `on`, `off`, or `auto`. If you specify `auto`, the EVI inherits from the global configuration. If you turn this setting `on`, the IP addresses of SVIs in all EVIs are announced as type-2 routes. Do not turn this setting `on` if you reuse SVI IP addresses in the network. The default setting is `auto`.
+Enables and disables the EVPN control plane. When enabled, the EVPN service offered is a VLAN-based service and an EVI is created automatically for each extended VLAN. The default setting is `off`.
 
 ### Version History
 
@@ -205,14 +106,20 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set evpn route-advertise svi-ip on
+cumulus@leaf01:mgmt:~$ nv set evpn enable on
 ```
+
+- - -
+
+## nv set evpn route-advertise
+
+Configures EVPN route advertising.
 
 - - -
 
 ## nv set evpn route-advertise default-gateway
 
-Turns centralized routing on or off. When you turn centralized routing on, the gateway VTEPs advertise their IP and MAC address. Only turn this setting `on` in a centralized-routing deployment and only on the centralized GW router. When you turn this setting `on`, the IP addresses of the SVIs in all EVPN instances announce as type-2 routes with the gateway extended community so that only remote layer 2 VTEPs run ARP suppression and hosts learn of the gateway IP to MAC binding.
+Configures the gateway VTEPs to advertise their IP and MAC address. Only turn this setting on in a centralized routing deployment and only on the centralized gateway router. When set to `on`, the IP addresses of SVIs in all EVIs are announced as type-2 routes with the gateway extended community. The remote layer 2 only VTEPs use ARP suppression and the hosts learn of the gateway's IP to MAC binding. The default setting is `off`.
 
 ### Version History
 
@@ -226,28 +133,9 @@ cumulus@leaf01:mgmt:~$ nv set evpn route-advertise default-gateway on
 
 - - -
 
-## nv set evpn vni
+## nv set evpn route-advertise nexthop-setting
 
-Configures EVPN VNIs.
-
-- - -
-
-## nv set evpn vni \<vni-id\> route-target
-
-Configures route targets for the specified VNI.
-
-- - -
-
-## nv set evpn vni \<vni-id\> route-target export \<rt-id\>
-
-Configures the route targets you want to export for the specified VNI.
-
-### Command Syntax
-
-| Command |  Description   |
-| ---------  | -------------- |
-| `<vni-id>` | The VNI ID. |
-| `<rt-id>` |  The route target. |
+Configures how to advertise type-5 routes. Each switch in an MLAG pair advertises type-5 routes with its own system IP address, which creates an additional next hop at the remote VTEPs. In a large multi-tenancy EVPN deployment, where additional resources are a concern, you can disable this feature. Set this command to `shared-ip-mac` if you do not want to advertise type-5 routes with the system IP address. Set this command to `system-ip-mac` to advertise type-5 routes with the system IP address. The default setting is `system-ip-mac`.
 
 ### Version History
 
@@ -256,21 +144,14 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set evpn vni 10 route-target export 65101:10
+cumulus@leaf01:mgmt:~$ nv set evpn route-advertise nexthop-setting shared-ip-mac
 ```
 
 - - -
 
-## nv set evpn vni \<vni-id\> route-target import \<rt-id\>
+## nv set evpn route-advertise svi-ip
 
-Configures the route targets you want to import for the specified VNI.
-
-### Command Syntax
-
-| Command |  Description   |
-| ---------  | -------------- |
-| `<vni-id>` | The VNI ID. |
-| `<rt-id>` |  The route target. |
+Configures the switch to announce the IP addresses of SVIs in all EVIs as type-2 routes. Only enable this option if you reuse SVI IP addresses in the network. The default setting is `off`.
 
 ### Version History
 
@@ -279,53 +160,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set evpn vni 10 route-target import 65102:10
-```
-
-- - -
-
-## nv set evpn vni \<vni-id\> route-target both \<rt-id\>
-
-Configures the route targets you want to both import and export for the specified VNI.
-
-### Command Syntax
-
-| Command |  Description   |
-| ---------  | -------------- |
-| `<vni-id>` | The VNI ID. |
-| `<rt-id>` |  The route target. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set evpn vni 10 route-target both 65101:10
-```
-
-- - -
-
-## nv set evpn vni \<vni-id\> rd
-
-Configures the BGP Route Distinguisher to use for EVPN type-5 routes originated from this VNI.
-
-### Command Syntax
-
-| Command |  Description   |
-| ---------  | -------------- |
-| `<vni-id>` | The VNI ID. |
-| `<rt-id>` |  The route target. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set evpn vni 10 rd 10.10.10.1:20
+cumulus@leaf01:mgmt:~$ nv set evpn route-advertise svi-ip on
 ```
 
 - - -
@@ -378,19 +213,9 @@ cumulus@leaf01:mgmt:~$ nv set evpn multihoming ead-evi-route tx off
 
 - - -
 
-## nv set evpn multihoming segment
+## nv set evpn multihoming enable
 
-Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes.
-
-{{%notice note%}}
-Some third party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
-{{%/notice%}}
-
-- - -
-
-## nv set evpn multihoming segment mac-address \<mac-address\>
-
-Configures the MAC address per Ethernet segment for EVPN multihoming. This setting is required.
+Turns EVPN multihoming on or off. The default setting is `off`.
 
 ### Version History
 
@@ -399,8 +224,18 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set evpn multihoming segment mac-address 00:00:00:00:00:10
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming enable on
 ```
+
+- - -
+
+## nv set evpn multihoming segment
+
+Configures the switch to advertise type-1/EAD (Ethernet Auto-discovery) routes as EAD-per-ES (Ethernet Auto-discovery per Ethernet segment) routes.
+
+{{%notice note%}}
+Some third party switch vendors do not advertise EAD-per-EVI routes; they only advertise EAD-per-ES routes. To interoperate with these vendors, you need to disable EAD-per-EVI route advertisements.
+{{%/notice%}}
 
 - - -
 
@@ -420,9 +255,9 @@ cumulus@leaf01:mgmt:~$ nv set evpn multihoming segment df-preference 50000
 
 - - -
 
-## nv set evpn multihoming enable (on|off)
+## nv set evpn multihoming segment mac-address \<mac-address\>
 
-Turns EVPN multihoming on or off. The default setting is `off`.
+Configures the MAC address per Ethernet segment for EVPN multihoming. This setting is required.
 
 ### Version History
 
@@ -431,7 +266,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set evpn multihoming enable on
+cumulus@leaf01:mgmt:~$ nv set evpn multihoming segment mac-address 00:00:00:00:00:10
 ```
 
 - - -
@@ -486,6 +321,110 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set evpn multihoming startup-delay 1000
+```
+
+- - -
+
+## nv set evpn vni
+
+Enables the EVPN control plane so that the EVPN service offered is VLAN-based and an EVI is created automatically for each extended VLAN.
+
+- - -
+
+## nv set evpn vni \<vni-id\> route-target
+
+Configures route targets for the specified VNI.
+
+- - -
+
+## nv set evpn vni \<vni-id\> route-target both \<rt-id\>
+
+Configures the route targets you want to both import and export for the specified VNI.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vni-id>` | The VNI ID. |
+| `<rt-id>` |  The route target. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn vni 10 route-target both 65101:10
+```
+
+- - -
+
+## nv set evpn vni \<vni-id\> route-target export \<rt-id\>
+
+Configures the route targets you want to export for the specified VNI.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vni-id>` | The VNI ID. |
+| `<rt-id>` |  The route target. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn vni 10 route-target export 65101:10
+```
+
+- - -
+
+## nv set evpn vni \<vni-id\> route-target import \<rt-id\>
+
+Configures the route targets you want to import for the specified VNI.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vni-id>` | The VNI ID. |
+| `<rt-id>` |  The route target. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn vni 10 route-target import 65102:10
+```
+
+- - -
+
+## nv set evpn vni \<vni-id\> rd
+
+Configures the BGP Route Distinguisher to use for EVPN type-5 routes originated from this VNI.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vni-id>` | The VNI ID. |
+| `<rt-id>` |  The route target. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set evpn vni 10 rd 10.10.10.1:20
 ```
 
 - - -

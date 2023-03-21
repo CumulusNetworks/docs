@@ -9,6 +9,224 @@ type: nojsscroll
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+## nv set router bgp
+
+Configures BGP globally on the switch.
+
+- - -
+
+## nv set router bgp autonomous-system
+
+Configures the BGP <span style="background-color:#F5F5DC">[ASN](## "Autonomous System Number ")</span> on the switch to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp autonomous-system 65101
+```
+
+- - -
+
+## nv set router bgp convergence-wait
+
+Configures BGP read-only mode. Sometimes, as Cumulus Linux establishes BGP peers and receives updates, it installs prefixes in the RIB and advertises them to BGP peers before receiving and processing information from all the peers. Also, depending on the timing of the updates, Cumulus Linux sometimes installs prefixes, then withdraws and replaces them with new routing information. Read-only mode minimizes this BGP route churn in both the local RIB and with BGP peers.
+
+Enable read-only mode to reduce CPU and network usage when restarting the BGP process. Because intermediate best paths are possible for the same prefix as peers establish and start receiving updates at different times, read-only mode is useful in topologies where BGP learns a prefix from a large number of peers and the network has a high number of prefixes.
+
+While in read-only mode, BGP does not run best-path or generate any updates to its peers.
+
+- - -
+
+## nv set router bgp convergence-wait establish-wait-time
+
+Configures BGP read-only mode by setting the establish wait time. You can set a value between 0 and 3600.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp convergence-wait establish-wait-time 200
+```
+
+- - -
+
+## nv set router bgp convergence-wait time
+
+Configures BGP read-only mode by setting the convergence wait time. You can set a value between 0 and 3600.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp convergence-wait time 300
+```
+
+- - -
+
+## nv set router bgp enable
+
+Turns BGP `on` or `off` on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp enable on
+```
+
+- - -
+
+## nv set router bgp graceful-restart
+
+Configures BGP graceful restart globally on the switch to minimize the negative effects that occur when BGP restarts. All BGP peers inherit the graceful restart capability.
+
+- - -
+
+## nv set router bgp graceful-restart mode
+
+Configures the BGP graceful restart mode globally on the switch. You can specify the following settings:
+- `off`, where graceful restart is not negotiated with peers.
+- `helper-only`, where the switch is in a helper role only, and routes originated and advertised from a BGP peer in the peer group are not deleted. - `full`, where the switch is in both a helper and restarter role.
+
+The default setting is `off`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart mode helper-only
+```
+
+- - -
+
+## nv set router bgp graceful-restart path-selection-deferral-time
+
+Configures the number of seconds a restarting peer defers path-selection when waiting for the EOR marker from peers. The default is 360 seconds. You can set a value between 0 and 3600.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart path-selection-deferral-time 300
+```
+
+- - -
+
+## nv set router bgp graceful-restart restart-time
+
+Configures the number of seconds to wait for a graceful restart capable peer to re-establish BGP peering. The default is 120 seconds. You can set a value between 1 and 4095.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart restart-time 400
+```
+
+- - -
+
+## nv set router bgp graceful-restart stale-routes-time
+
+Configures the number of seconds to hold stale routes for a restarting peer. The default is 360 seconds. You can set a value between 1 and 4095.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-restart stale-routes-time 400
+```
+
+- - -
+
+## nv set router bgp graceful-shutdown
+
+Turns BGP graceful shutdown on or off on the switch to reduce packet loss during planned maintenance of a router or link. BGP graceful shutdown  forces traffic to route around the BGP node:.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp graceful-shutdown on
+```
+
+- - -
+
+## nv set router bgp policy-update-timer
+
+Configures the BGP policy update timer globally on the switch to wait the specified number of seconds before processing updates to policies to ensure that a series of changes are processed together. You can set a value between 0 and 600.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp policy-update-timer 300
+```
+
+- - -
+
+## nv set router bgp router-id
+
+Configures the BGP router ID on the switch. NVUE automatically assigns the loopback address of the switch to be the router ID. FRR automatically assigns the router ID to be the loopback address or the highest IPv4 address for the interface. If you do not have a loopback address configured or want to use a specific router ID, set the router ID globally.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp router-id 10.10.10.1
+```
+
+- - -
+
+## nv set router bgp wait-for-install
+
+Turns BGP wait for install on or off. When BGP *wait for install* is on, BGP waits for a response from the RIB indicating that the routes installed in the RIB are also installed in the ASIC before sending updates to peers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router bgp wait-for-install on
+```
+
+- - -
+
 ## nv set vrf \<vrf-id\> router bgp
 
 Provides commands to configure BGP on the specified VRF.

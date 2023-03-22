@@ -225,6 +225,208 @@ cumulus@leaf01:mgmt:~$ nv set system counter polling-interval physical-interface
 
 - - -
 
+## nv set system global
+
+Configures global system settings.
+
+- - -
+
+## nv set system global reserved
+
+Configures reserved system settings, such as the reserved routing table ranges and reserved VLAN ranges.
+
+- - -
+
+## nv set system global reserved routing-table
+
+Configures the reserved routing table ranges.
+
+- - -
+
+## nv set system global reserved routing-table pbr
+
+Configures the PBR reserved routing table ranges.
+
+- - -
+
+## nv set system global reserved routing-table pbr begin
+
+Configures the PBR reserved routing table start range. You can set a value between 10000 and 4294966272.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global reserved routing-table pbr begin 10000
+```
+
+- - -
+
+## nv set system global reserved routing-table pbr end
+
+Configures the PBR reserved routing table end range. You can set a value between 10000 and 4294966272.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global reserved routing-table pbr end 4294966272
+```
+
+- - -
+
+## nv set system global reserved vlan
+
+Configures the reserved VLAN range.
+
+- - -
+
+## nv set system global reserved vlan internal
+
+Configures the reserved VLAN range.
+
+- - -
+
+## nv set system global reserved vlan internal range
+
+Configures the reserved VLAN range. You can set a value between 4064 and 4094.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global reserved vlan internal range 4064-4094
+```
+
+- - -
+
+## nv set system global reserved vlan l3-vni-vlan
+
+Configures the reserved VLANs to be used with layer 3 VNIs.
+
+- - -
+
+## nv set system global reserved vlan l3-vni-vlan begin
+
+Configures the reserved VLAN start range to be used with layer 3 VNIs. You can set a value between 1 and 4093.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global reserved vlan l3-vni-vlan begin 1
+```
+
+- - -
+
+## nv set system global reserved vlan l3-vni-vlan end
+
+Configures the reserved VLAN end range to be used with layer 3 VNIs. You can set a value between 2 and 4093.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global reserved vlan l3-vni-vlan begin 4093
+```
+
+- - -
+
+## nv set system global system-mac
+
+Configures the global system MAC address.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global system-mac 44:38:39:ff:00:ff
+```
+
+- - -
+
+## nv set system global anycast-mac
+
+Configures the global anycast MAC address for VXLAN active-active mode. You can set the anycast MAC address to a value in the reserved range between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff. Be sure to use an address in this reserved range to prevent MAC address conflicts with other interfaces in the same bridged network.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global anycast-mac 44:38:39:ff:00:ff
+```
+
+- - -
+
+## nv set system global anycast-id
+
+Configures the global system anycast ID for VXLAN active-active mode. Cumulus Linux derives the MAC address from the ID. You can specify a number between 1 and 65535. Cumulus Linux adds the number to the MAC address 44:38:39:ff:00:00 in hex. For example, if you specify 225, the anycast MAC address is 44:38:39:ff:00:FF.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global anycast-id 255
+```
+
+- - -
+
+## nv set system global fabric-mac
+
+Configures the VRR MAC address globally on the switch. The default fabric MAC address is 00:00:5E:00:01:01, which the switch derives from a fabric ID setting of 1.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global fabric-mac 00:00:5E:00:01:FF
+```
+
+- - -
+
+## nv set system global fabric-id
+
+Configures the fabric ID from which Cumulus Linux derives the MAC address. You can specify a number between 1 and 225. Cumulus Linux adds the number to the MAC address 00:00:5E:00:01:00 in hex. For example, if you specify 225, the VRR MAC address is 00:00:5E:00:01:FF.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global fabric-id 255
+```
+
+- - -
+
 ## nv set system message
 
 Configures the message you want users of the switch to see before and after they log in.

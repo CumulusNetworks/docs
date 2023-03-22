@@ -98,7 +98,7 @@ document.querySelectorAll('.cn-book-section-container').forEach(node => {
     node.setAttribute('class', '.cn-book-section-container expand')
   }
 
-  expand_more = '/icons/baseline-expand_more.svg'
+  expand_more = 'icons/baseline-expand_more.svg'
   eleToggler = document.createElement('input')
   eleToggler.setAttribute('type', 'image')
   eleToggler.setAttribute('class', 'menuControl')

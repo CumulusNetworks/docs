@@ -9,95 +9,9 @@ type: nojsscroll
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set interface \<interface-id\> acl \<acl-id\> inbound
+## nv set system acl
 
-Configures the ACL rule to apply in the inbound direction.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The name of the ACL. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 inbound
-```
-
-- - -
-
-## nv set interface \<interface-id\> acl \<acl-id\> inbound control-plane
-
-Configures the ACL rule to apply to a control plane interface in the inbound direction.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The name of the ACL. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
-```
-
-- - -
-
-## nv set interface \<interface-id\> acl \<acl-id\> outbound
-
-Configures the ACL rule to apply in the outbound direction.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The name of the ACL. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound 
-```
-
-- - -
-
-## nv set interface \<interface-id\> acl \<acl-id\> outbound control-plane
-
-Configures the ACL rule to apply to a control plane interface in the outbound direction.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-| `<acl-id>` |   The name of the ACL. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound control-plane
-```
+Configures Access Control lists (ACLs) on the switch.
 
 - - -
 
@@ -996,6 +910,98 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 type ipv4
+```
+
+- - -
+
+## nv set interface \<interface-id\> acl \<acl-id\> inbound
+
+Configures the ACL rule to apply in the inbound direction.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+| `<acl-id>` |   The name of the ACL. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 inbound
+```
+
+- - -
+
+## nv set interface \<interface-id\> acl \<acl-id\> inbound control-plane
+
+Configures the ACL rule to apply to a control plane interface in the inbound direction.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+| `<acl-id>` |   The name of the ACL. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 inbound control-plane
+```
+
+- - -
+
+## nv set interface \<interface-id\> acl \<acl-id\> outbound
+
+Configures the ACL rule to apply in the outbound direction.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+| `<acl-id>` |   The name of the ACL. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound 
+```
+
+- - -
+
+## nv set interface \<interface-id\> acl \<acl-id\> outbound control-plane
+
+Configures the ACL rule to apply to a control plane interface in the outbound direction.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+| `<acl-id>` |   The name of the ACL. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound control-plane
 ```
 
 - - -

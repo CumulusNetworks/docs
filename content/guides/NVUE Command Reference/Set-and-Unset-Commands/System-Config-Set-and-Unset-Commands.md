@@ -74,3 +74,195 @@ cumulus@leaf01:mgmt:~$ nv set system config apply overwrite controlled
 ```
 
 - - -
+
+## nv set system control-plane
+
+Configures control plane settings.
+
+- - -
+
+## nv set system control-plane trap \<trap-id\>
+
+Configures control plane traps.
+
+- - -
+
+## nv set system control-plane trap \<trap-id\> state
+
+Turns the specified control plane trap on or off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-id>` |  The trap ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system control-plane trap l3-mtu-err state on
+```
+
+- - -
+
+## nv set system control-plane policer \<policer-id\>
+
+Configures control plane policers.
+
+- - -
+
+## nv set system control-plane policer \<policer-id\> state
+
+Turns the specified control plane policer on or off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<policer-id>` |  The policer ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system control-plane policer acl-log state on
+```
+
+- - -
+
+## nv set system control-plane policer \<policer-id\> burst
+
+Configures the control plane policer burst rate, which is the number of packets or kilobytes (KB) allowed to arrive sequentially. You can specify a value between 10 and 10000.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<policer-id>` |  The policer ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system control-plane policer acl-log burst 1000
+```
+
+- - -
+
+## nv set system control-plane policer \<policer-id\> rate
+
+Configures the control plane policer forwarding rate, which is the maximum rate in kilobytes (KB) or packets. You can specify a value between 10 and 50000.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<policer-id>` |  The policer ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system control-plane policer acl-log burst 5000
+```
+
+- - -
+
+# nv set system counter
+
+Configures the system counter polling intervals.
+
+- - -
+
+## nv set system counter polling-interval
+
+Configures the system counter polling interval for logical and physical interfaces
+
+- - -
+
+## nv set system counter polling-interval logical-interface
+
+Configures the system counter polling interval in seconds for logical interfaces. You can set a value between 1 and 30.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system counter polling-interval logical-interface 20
+```
+
+- - -
+
+## nv set system counter polling-interval physical-interface
+
+Configures the system counter polling interval in seconds for physical interfaces. You can set a value between 1 and 10.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system counter polling-interval physical-interface 5
+```
+
+- - -
+
+## nv set system message
+
+Configures the message you want users of the switch to see before and after they log in.
+
+- - -
+
+## nv set system message pre-login
+
+Configures the message you want users to see before they log into the switch.
+
+If the message contains more than one word, you must enclose it in quotes (").
+
+## Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system message pre-login "This switch is under maintenance"
+```
+
+- - -
+
+## nv set system message post-login
+
+Configures the message you want users to see after they log into the switch.
+
+If the message contains more than one word, you must enclose it in quotes (").
+
+## Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system message post-login "This switch is being used for testing"
+```
+
+- - -

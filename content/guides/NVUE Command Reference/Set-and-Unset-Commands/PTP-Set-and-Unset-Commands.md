@@ -998,3 +998,97 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set service ptp 1 ip-dscp 22
 ```
+
+- - -
+
+## nv set service ptp \<instance-id\> unicast-master \<table-id\>
+
+Configures the PTP unicast master table.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+| `<table-id>` |  The unicast master table ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 unicast-master 1
+```
+
+- - -
+
+## nv set service ptp \<instance-id\> unicast-master \<table-id\> address
+
+Configures the IP addresses of the PTP master clocks for unicast requests. You can specify an IPv4, IPv6, or MAC address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+| `<table-id>` |  The PTPT unicast master table ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 unicast-master 1 address 10.10.1.1
+```
+
+- - -
+
+## nv set service ptp \<instance-id\> unicast-master \<table-id\> query-interval
+
+Configures how often to query for unicast sessions with each of the master clocks listed in the unicast master table. You can set the value between -3 and 4.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+| `<table-id>` |  The PTP unicast master table ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 unicast-master 1 query-interval 2
+```
+
+- - -
+
+## nv set service ptp \<instance-id\> unicast-master \<table-id\> peer-address
+
+Configues the IP address of the external peer from which to accept unicast requests. You can specify an IPv4 or IPv6 address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<instance-id>` |  The PTP instance number used for management purposes. |
+| `<table-id>` |  The PTP unicast master table ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp 1 unicast-master 1 peer-address 10.10.10.10
+```
+
+- - -

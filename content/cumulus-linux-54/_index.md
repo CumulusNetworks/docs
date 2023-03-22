@@ -35,9 +35,9 @@ You can find the most up-to-date hardware compatibility list (HCL) {{<exlink url
 
 The following options exist for downloading the user guide for offline use:
 
-1. Host the documentation on a local host {{<exlink url="https://github.com/CumulusNetworks/docs" text="using hugo.">}}.
+1. Host the documentation on a local host {{<exlink url="https://github.com/CumulusNetworks/docs" text="using hugo.">}}
 
 2. Download a zip file of a local {{<exlink url="https://offline-nbudocs.s3.us-east-2.amazonaws.com/offline-docs/CL54-html.zip" text="HTML documentation build">}} for offline use. Download the desired version, extract it locally, and open `cumulus-linux-54.html` in your web browser.
 <!-- vale off -->
-3. You can view the complete Cumulus Linux {{% version %}} user guide as a single page to print to PDF {{% pdf_link "here." %}}. Click on the link once and use your web browser's print-to-PDF functionality to save a PDF locally.
+3. You can view the complete Cumulus Linux {{% version %}} user guide as a single page to print to PDF {{% pdf_link "here." %}} Click on the link once and use your web browser's print-to-PDF functionality to save a PDF locally.
 <!-- vale on -->

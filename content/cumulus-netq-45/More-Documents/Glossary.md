@@ -70,11 +70,11 @@ user documentation.
 | NTP | Network Time Protocol |
 | OOB | Out of Band (management) |
 | OSPF | Open Shortest Path First |
+| PTP | Precision Time Protocol |
 | RFC | Remote Function Call |
+| RoCE | RDMA over Converged Ethernet |
 | SDN | Software-Defined Network |
 | SNMP | Simple Network Management Protocol |
-| SSH | Secure SHell |
-| SQL | Structured Query Language |
 | STP | Spanning Tree Protocol |
 | TCP | Transport Control Protocol |
 | ToR | Top of Rack |

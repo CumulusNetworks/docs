@@ -817,7 +817,6 @@ The following table shows the conflict types and actions that Cumulus Linux take
 | LACP partner MAC address | Interface | Protodown the MLAG bonds on the MLAG switch if there is an LACP partner MAC address mismatch or if there is a duplicate LACP partner MAC address. |
 | MLAG VLANs| Interface   |  Suspend the inconsistent VLANs on either MLAG peer if the VLANs are not part of the peer link or if there is mismatch of VLANs configured on the MLAG bonds between the MLAG peers. |
 | Peer link VLANs| Global | Suspend the inconsistent VLANs on either MLAG peer on all the dual-connected MLAG bonds and VXLAN interfaces. |
-| VLANs on VXLAN interface not part of peer link| VXLAN | Suspend the VLANs on the VXLAN interfaces that are inconsistent. |
 | VLAN on VXLAN interface | VXLAN | Suspend the inconsistent VLAN on either MLAG peer if there is a VLAN mismatch on VXLAN interfaces.|
 | MLAG protocol version | Global | The consistency check records an MLAG protocol version mismatch between the MLAG peers. Cumulus Linux does not take any distruptive action. |
 | MLAG package version | Global| The consistency check records an MLAG package version mismatch between the MLAG peers. Cumulus Linux does not take any disruptive action.|
@@ -1574,7 +1573,7 @@ iface swp2
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL53 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
+    {{< simulation name="Try It CL54 - MLAG" showNodes="leaf01,leaf02,spine01,server01,server02,server03" >}}
 
 This simulation starts with the example MLAG configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

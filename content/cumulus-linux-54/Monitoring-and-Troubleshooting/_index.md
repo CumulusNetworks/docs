@@ -93,7 +93,7 @@ cumulus@switch:~$ nv show system
           operational          applied  pending  description
 --------  -------------------  -------  -------  ------------------------------
 hostname  leaf01                                 Static hostname for the switch
-build     Cumulus Linux 5.3.0                    system build version
+build     Cumulus Linux 5.4.0                    system build version
 uptime    6 days, 22:03:49                       system uptime
 timezone  Etc/UTC                                system time zone
 ```
@@ -163,7 +163,13 @@ Usage: [-h (help)] [-cDjlMsv] [-d m1,m2,...] [-e m1,m2,...]
 
 ## Send Log Files to a syslog Server
 
-You can configure the remote syslog server on the switch using the following configuration, where `default` is the default VRF (you must specify a VRF in the command):
+You can configure Cumulus Linux to send log files to one or more remote syslog servers.
+
+The following example configures Cumulus Linux to send log files to the remote syslog server with the 192.168.0.254 address in the default VRF on port 514 using UDP.
+
+{{%notice note%}}
+You must specify a VRF in the command.
+{{%/notice%}}
 
 ```
 cumulus@switch:~$ nv set service syslog default server 192.168.0.254 port 514

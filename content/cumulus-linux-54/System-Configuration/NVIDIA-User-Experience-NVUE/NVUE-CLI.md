@@ -195,9 +195,9 @@ Additional options are available for the `nv show` commands. For example, you ca
 | `--output`        | Shows command output in table format (auto), `json` format or `yaml` format. For example:<br>`nv show --ouptut auto interface bond1`<br>`nv show --output json interface bond1`<br>`nv show --ouptut yaml interface bond1` |
 | `--paginate`      | Paginates the output. For example, `nv show --paginate on interface bond1`. |
 | `--pending`       | Shows configuration that is `set` and `unset` but not yet applied or saved. For example, `nv show --pending interface bond1`.|
-| `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev 1`. |
+| `--rev <revision>`| Shows a detached pending configuration. See the `nv config detach` configuration management command below. For example, `nv show --rev 1`. You can also show only applied or only operational information in the `nv show` output. For example, to show only the applied settings for swp1 configuration, run the `nv show interface swp1 --rev=applied` command. To show only the operational settings for swp1 configuration, run the `nv show interface swp1 --rev=operational` command. |
 | `--startup`  | Shows configuration saved with the `nv config save` command. This is the configuration after the switch boots. |
-| `--view` | Shows these different views: brief, lldp, mac, pluggables, and small. This option is available for the `nv show interface` command only. For example, the `nv show interface --view=small` command shows a list of the interfaces on the switch and the `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port. |
+| `--view` | Shows these different views: `acl-statistics`, `brief`, `lldp`, `mac`, `mlag-cc`, `pluggables`, `qos-profile`, and `small`. This option is available for the `nv show interface` command only.</br></b>For example, the `nv show interface --view=small` command shows a list of the interfaces on the switch and the `nv show interface --view=brief` command shows information about each interface on the switch, such as the interface type, speed, remote host and port.</br></b>The `nv show interface --view=mac` command shows the MAC address of each interface and the `nv show interface --view=qos-profile` command shows the QoS profile for the interfaces on the switch.</br></b>Note: The description column only shows in the output when you use the `--view=detail` option.|
 
 The following example shows *pending* BGP graceful restart configuration:
 
@@ -265,14 +265,14 @@ The NVUE configuration management commands manage and apply configurations.
 
 | <div style="width:450px">Command | Description |
 | ------- | ----------- |
-| `nv config apply` | Applies the pending configuration to become the applied configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}Cumulus Linux applies but does not save the configuration; the configuration does not persist after a reboot.{{%/notice%}}You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.|
+| `nv config apply` | Applies the pending configuration to become the applied configuration.<br>You can also use these prompt options:<ul><li>`--y` or `--assume-yes` to automatically reply `yes` to all prompts.</li><li>`--assume-no` to automatically reply `no` to all prompts.</li></ul> {{%notice note%}}Cumulus Linux applies but does not save the configuration; the configuration does not persist after a reboot.{{%/notice%}}You can also use these apply options:<br>`--confirm` applies the configuration change but you must confirm the applied configuration. If you do not confirm within ten minutes, the configuration rolls back automatically. You can change the default time with the apply `--confirm <time>` command. For example, `apply --confirm 60` requires you to confirm within one hour.<br>`--confirm-status` shows the amount of time left before the automatic rollback.</br></br>To save the pending configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command, enable {{<link url="#configure-auto-save" text="auto save">}}.|
 | `nv config detach` | Detaches the configuration from the current pending configuration and uses an integer to identify it; for example, `4`. To list all the current detached pending configurations, run `nv config diff <<press Tab>`.|
 | `nv config diff <revision> <revision>` | Shows differences between configurations, such as the pending configuration and the applied configuration or the detached configuration and the pending configuration.|
-| `nv config history <nvue-file>` | Shows the apply history for the revision. |
+| `nv config history <revision>` | Shows the apply history for the revision. |
 | `nv config patch <nvue-file>` | Updates the pending configuration with the specified YAML configuration file. |
 | `nv config replace <nvue-file>` | Replaces the pending configuration with the specified YAML configuration file. |
 | `nv config save` | Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot. |
-| `nv config show` | Shows the currently applied configuration in `yaml` format. |
+| `nv config show` | Shows the currently applied configuration in `yaml` format. This command also shows NVUE version information. |
 | `nv config show -o commands` | Shows the currently applied configuration commands. |
 | `nv config diff -o commands` | Shows differences between two configuration revisions. |
 
@@ -352,6 +352,31 @@ cumulus@switch:~$ sudo systemctl start nvue-startup.service
 
 When you apply a configuration with `nv config apply`, NVUE also writes to underlying Linux files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`. You can view these configuration files; however NVIDIA recommends that you do not manually edit them while using NVUE. If you need to configure certain network settings manually or use automation such as Ansible to configure the switch, see {{<link title="#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}} below.
 
+## Configuration Files that NVUE Manages
+
+NVUE manages the following configuration files:
+
+| File  | Description|
+| ----- | ---------- |
+| `/etc/network/interfaces` | Configures the network interfaces available on your system.|
+| `/etc/frr/frr.conf` | Configures FRRouting.|
+| `/etc/cumulus/switchd.conf` |  Configures `switchd` options.|
+| `/etc/cumulus/switchd.d/ptp.conf` | Configures PTP time stamping.|
+| `/etc/frr/daemons` | Configures FRRouting services.|
+| `/etc/hosts` | Configures the hostname of the switch. |
+| `/etc/dhcp/dhclient-exit-hooks.d/dhcp-sethostname` | Configures DHCP client options. |
+| `/etc/hostname` | Configures the hostname of the switch. |
+| `/etc/cumulus/datapath/qos/qos_features.conf` |Configures QoS settings, such as traffic marking, shaping and flow control.  |
+| `/etc/mlx/datapath/qos/qos_infra.conf` |  Configures QoS platform specific configurations, such as buffer allocations and Alpha values.|
+| `/etc/cumulus/switchd.d/qos.conf` | Configures QoS settings. |
+| `/etc/cumulus/ports.conf` | Configures port breakouts.|
+| `/etc/ntp.conf` | Configures NTP. |
+| `/etc/ptp4l.conf` | Configures PTP settings.|
+
+{{%notice note%}}
+When you configure the switch with NVUE commands, NVUE overwrites the settings in any file it manages. Do not run NVUE commands and manually edit the configuration files at the same time to configure the switch. Either configure the switch with NVUE commands only or manually edit the configuration files.
+{{%/notice%}}
+
 ## Search for a Specific Configuration
 
 To search for a specific portion of the NVUE configuration, run the `nv config find <search string>` command. The search shows all items above and below the search string. For example, to search the entire NVUE object model configuration for any mention of `ptm`:
@@ -374,6 +399,29 @@ The following example configures NVUE to ignore the Linux `/etc/ptp4l.conf` file
 cumulus@switch:~$ nv set system config apply ignore /etc/ptp4l.conf
 cumulus@switch:~$ nv config apply
 cumulus@switch:~$ nv config save
+```
+
+## Configure Auto Save
+
+By default, when you run the `nv config apply` command to apply a configuration setting, NVUE applies the pending configuration to become the applied configuration but does not update the startup configuration file (`/etc/nvue.d/startup.yaml`). To save the applied configuration to the startup configuration so that the changes persist after the reboot, you must run the `nv config save` command. The auto save option lets you save the pending configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+
+To enable auto save:
+
+```
+cumulus@switch:~$ nv set system config auto-save enable on
+cumulus@switch:~$ nv config apply
+```
+
+To disable auto save, run the `nv set system config auto-save enable off` command.
+
+## Add Configuration Apply Messages
+
+When you run the `nv config apply` command, you can add a message that describes the configuration updates you make. You can see the message when you run the `nv config history` command.
+
+To add a configuration apply message, run the `nv config apply -m <message>` command. If the message includes more than one word, enclose the message in quotes.
+
+```
+cumulus@switch:~$ nv config apply -m "this is my message"
 ```
 
 ## Clear Switch Configuration

@@ -5,6 +5,7 @@ weight: 1101
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
+type: nojsscroll
 ---
 
 ## netq bootstrap
@@ -107,9 +108,9 @@ cumulus@switch:~$ netq bootstrap master upgrade mnt/installables/netq-bootstrap-
 - ```netq bootstrap reset```
 
 - - -
-## netq bootstrap refresh
 
-<!-- Refresh NetQ installation artifacts -->
+<!--Refresh NetQ installation artifacts
+## netq bootstrap refresh
 
 ### Syntax
 
@@ -138,6 +139,8 @@ netq bootstrap refresh
 - netq bootstrap reset
 
 - - -
+
+-->
 ## netq bootstrap reset
 
 Reset the node to prepare it for loading the installation program. In on-premises deployments with database on site, you can choose whether to save the current data or discard it (default) during the reset process. NetQ saves all data by default in remotely hosted database deployments.
@@ -181,6 +184,5 @@ cumulus@switch:~$ netq bootstrap reset keep-db
 - ```netq bootstrap```
 - ```netq bootstrap master upgrade```
 
-- - -
 
 

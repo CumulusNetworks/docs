@@ -7,45 +7,80 @@ toc: 3
 
 Run the following commands to view the status of an agent, disable an agent, manage logging, and configure the events the agent collects.
 
+<!--the following section was in network inventory. It needs to be incorporated here.
+To view the NetQ Agents on all switches and hosts:
+
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu.
+
+2. Select **Agents** from the **Network** column.
+
+3. View the **Version** column to determine which release of the NetQ Agent is running on your devices. Ideally, this version should be the same as the NetQ release you are running, and is the same across all your devices.
+
+    {{<figure src="/images/netq/main-menu-ntwk-agents-310.png" width="700">}}
+
+<div style="padding-left: 18px;"><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hostname</td>
+<td>Name of the switch or host</td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>Date and time the data was captured</td>
+</tr>
+<tr>
+<td>Last Reinit</td>
+<td>Date and time that the switch or host was reinitialized</td>
+</tr>
+<tr>
+<td>Last Update Time</td>
+<td>Date and time that the switch or host was updated</td>
+</tr>
+<tr>
+<td>Lastboot</td>
+<td>Date and time that the switch or host was last booted up</td>
+</tr>
+<tr>
+<td>NTP State</td>
+<td>Status of NTP synchronization on the switch or host; yes = in synchronization, no = out of synchronization</td>
+</tr>
+<tr>
+<td>Sys Uptime</td>
+<td>Amount of time the switch or host has been continuously up and running</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>NetQ version running on the switch or host</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+-->
+
 ## View NetQ Agent Status
 
-To view NetQ Agent status, run:
+The syntax for the NetQ Agent status command is:
 
 ```
-netq [<hostname>] show agents [fresh | dead | rotten | opta] [around <text-time>] [json]
+netq [<hostname>] show agents
+    [fresh | dead | rotten | opta]
+    [around <text-time>]
+    [json]
 ```
 
 You can view the status for a given switch, host or NetQ Appliance or Virtual Machine. You can also filter by the status and view the status at a time in the past.
 
-To view the current status of all NetQ Agents:
+To view the current status of all NetQ Agents, run:
 
 ```
 cumulus@switch~:$ netq show agents
-Matching agents records:
-Hostname          Status           NTP Sync Version                              Sys Uptime                Agent Uptime              Reinitialize Time          Last Changed
------------------ ---------------- -------- ------------------------------------ ------------------------- ------------------------- -------------------------- -------------------------
-border01          Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:54 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:38 2020
-border02          Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:57 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:33 2020
-fw1               Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:44 2020  Tue Sep 29 21:24:48 2020  Tue Sep 29 21:24:48 2020   Thu Oct  1 16:07:26 2020
-fw2               Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:04:42 2020  Tue Sep 29 21:24:48 2020  Tue Sep 29 21:24:48 2020   Thu Oct  1 16:07:22 2020
-leaf01            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 16:49:04 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:10 2020
-leaf02            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:14 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:30 2020
-leaf03            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:37 2020  Tue Sep 29 21:24:49 2020  Tue Sep 29 21:24:49 2020   Thu Oct  1 16:07:24 2020
-leaf04            Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:35 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:13 2020
-oob-mgmt-server   Fresh            yes      3.1.1-ub18.04u29~1599111022.78b9e43  Mon Sep 21 16:43:58 2020  Mon Sep 21 17:55:00 2020  Mon Sep 21 17:55:00 2020   Thu Oct  1 16:07:31 2020
-server01          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:16 2020
-server02          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:24 2020
-server03          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:56 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:12 2020
-server04          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:07 2020  Tue Sep 29 21:13:07 2020   Thu Oct  1 16:07:17 2020
-server05          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:25 2020
-server06          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:19:57 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:21 2020
-server07          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:06:48 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:28 2020
-server08          Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e  Mon Sep 21 17:06:45 2020  Tue Sep 29 21:13:10 2020  Tue Sep 29 21:13:10 2020   Thu Oct  1 16:07:31 2020
-spine01           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:34 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:20 2020
-spine02           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:33 2020  Tue Sep 29 21:24:58 2020  Tue Sep 29 21:24:58 2020   Thu Oct  1 16:07:16 2020
-spine03           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:34 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:20 2020
-spine04           Fresh            yes      3.2.0-cl4u30~1601410518.104fb9ed     Mon Sep 21 17:03:32 2020  Tue Sep 29 21:25:07 2020  Tue Sep 29 21:25:07 2020   Thu Oct  1 16:07:33 2020
-
 ```
 
 To view NetQ Agents that are not communicating, run:
@@ -67,13 +102,15 @@ netq-ts           Fresh            yes      3.2.0-ub18.04u30~1601393774.104fb9e 
 
 ## View NetQ Agent Configuration
 
-You can view the current configuration of a NetQ Agent to determine what data it collects and where it sends that data. To view this configuration, run:
+You can view the current configuration of a NetQ Agent to determine what data it collects and where it sends that data. The syntax for this command is:
 
 ```
-netq config show agent [kubernetes-monitor|loglevel|stats|sensors|frr-monitor|wjh|wjh-threshold|cpu-limit] [json]
+netq config show agent 
+    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats||wjh|wjh-threshold] 
+    [json]
 ```
 
-This example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF. There is no special configuration to monitor Kubernetes, FRR, interface statistics, sensors, or WJH, and there are no limits on CPU usage or change to the default logging level.
+The following example shows a NetQ Agent in an on-premises deployment, talking to an appliance or VM at 127.0.0.1 using the default ports and VRF. There is no special configuration to monitor Kubernetes, FRR, interface statistics, sensors, or WJH, and there are no limits on CPU usage or change to the default logging level.
 
 ```
 cumulus@switch:~$ netq config show agent
@@ -93,7 +130,7 @@ vrf                    default    default
 
 To view the configuration of a particular aspect of a NetQ Agent, use the various options.
 
-This example show a NetQ Agent configured with a CPU limit of 60%.
+This example shows a NetQ Agent configured with a CPU limit of 60%.
 
 ```
 cumulus@switch:~$ netq config show agent cpu-limit
@@ -121,7 +158,7 @@ Commands apply to one agent at a time, and you run them on the switch or host wh
 
 ### Add and Remove a NetQ Agent
 
-Adding or removing a NetQ Agent is to add or remove the IP address (and port and VRF when specified) from the NetQ configuration file (at */etc/netq/netq.yml*). This adds or removes the information about the appliance or VM where the agent sends the data it collects.
+To add or remove a NetQ Agent, you must add or remove the IP address (and port and VRF when specified) from the NetQ configuration file (at */etc/netq/netq.yml*). This adds or removes the information about the appliance or VM where the agent sends the data it collects.
 
 To use the NetQ CLI to add or remove a NetQ Agent on a switch or host, run:
 
@@ -181,7 +218,7 @@ cumulus@switch:~$ netq config restart agent
 
 You can enable and disable data collection about FRR (FRRouting), Kubernetes, sensors, and WJH (What Just Happened).
 
-To configure the agent to start or stop collecting **FRR** data, run:
+To configure the agent to start or stop collecting FRR data, run:
 
 ```
 cumulus@chassis~:$ netq config add agent frr-monitor
@@ -191,7 +228,7 @@ cumulus@chassis~:$ netq config del agent frr-monitor
 cumulus@switch:~$ netq config restart agent
 ```
 
-To configure the agent to start or stop collecting **Kubernetes** data, run:
+To configure the agent to start or stop collecting Kubernetes data, run:
 
 ```
 cumulus@switch:~$ netq config add agent kubernetes-monitor
@@ -201,7 +238,7 @@ cumulus@switch:~$ netq config del agent kubernetes-monitor
 cumulus@switch:~$ netq config restart agent
 ```
 
-To configure the agent to start or stop collecting chassis **sensor** data, run:
+To configure the agent to start or stop collecting chassis sensor data, run:
 
 ```
 cumulus@chassis~:$ netq config add agent sensors
@@ -215,7 +252,7 @@ cumulus@switch:~$ netq config restart agent
 This command is only valid when run on a chassis, not a switch.
 {{</notice>}}
 
-To configure the agent to start or stop collecting **WJH** data, run:
+To configure the agent to start or stop collecting WJH data, run:
 
 ```
 cumulus@chassis~:$ netq config add agent wjh

@@ -106,8 +106,10 @@ When you enable EVPN-MH, all SVI MAC addresses advertise as type-2 routes. You d
 ### Enable EVPN-MH
 
 {{%notice note%}}
-On a switch with the Spectrum 1 ASIC, you must enable EVPN-MH with the Linux commands. On a switch with Spectrum-2 and later, you can use the NVUE command.
+- On a switch with the Spectrum 1 ASIC, you must enable EVPN-MH with the Linux commands. On a switch with Spectrum-2 and later, you can use the NVUE command.
+- NVIDIA recommends that you enable EVPN-MH on all VTEPs throughout the fabric to avoid duplicate packets.
 {{%/notice%}}
+
 <!-- vale on -->
 {{< tabs "TabID105 ">}}
 {{<tab "NVUE Commands">}}
@@ -3278,7 +3280,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL53 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
+    {{< simulation name="Try It CL54 - EVPN Multihoming" showNodes="leaf01,leaf02,leaf03,leaf04,spine01,spine02,server01,server02,server03,server04" >}}
 
 This simulation starts with the EVPN-MH with Head End Replication configuration. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

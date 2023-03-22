@@ -27,7 +27,7 @@ Cumulus Linux supports:
 - Only a single PTP domain per network.
 - PTP on layer 3 interfaces, trunk ports, and switch ports belonging to a VLAN. Cumulus Linux does *not* support PTP on bonds.
 - Multicast and mixed message mode. Cumulus Linux does *not* support PTP unicast only message mode.
-- End-to-End delay mechanism (not Peer-to-Peer).
+- End-to-End delay mechanism. Cumulus Linux does not support Peer-to-Peer.
 - Two-step clock correction mode, where PTP notes time when the packet goes out of the port and sends the time in a separate (follow-up) message. Cumulus Linux does not support one-step mode.
 - Hardware time stamping for PTP packets. This allows PTP to avoid inaccuracies caused by message transfer delays and improves the accuracy of time synchronization.
 
@@ -1305,3 +1305,11 @@ network_transport       UDPv4
 
 {{< /tab >}}
 {{< /tabs >}}
+
+## Considerations
+
+### Spanning Tree and PTP
+
+PTP frames are affected by <span style="background-color:#F5F5DC">[STP](## "Spanning Tree Protocol")</span> filtering; events, such as an STP topology change (where ports temporarily go into the blocking state), can cause interruptions to PTP communications.
+
+If you configure PTP on bridge ports, NVIDIA recommends that the bridge ports are spanning tree edge ports or in a bridge domain where spanning tree is disabled.

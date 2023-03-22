@@ -777,7 +777,7 @@ iface bond1.30
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL53 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
+    {{< simulation name="Try It CL54 - VRR" showNodes="leaf01,leaf02,server01,server02" >}}
 
 This demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 
@@ -793,7 +793,6 @@ mac-id                          none               Override anycast-id
 [address]    10.1.10.1/24       10.1.10.1/24       Virtual addresses with prefixes
 state        up                 up                 The state of the interface
 ```
-
 
 {{< /tab >}}
 {{< /tabs >}}

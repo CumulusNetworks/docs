@@ -5,11 +5,35 @@ weight: 1103
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
+type: nojsscroll
 ---
+## netq del check-filter
 
-<!-- vale off -->
+Removes filter from `netq check` command to reenable event notifications.
+
+### Syntax
+
+```
+netq del check-filter 
+    check_filter_id <text-check-filter-id>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| check_filter_id | \<text-check-filter-id\> | Delete the specified validation filter |
+
+### Options
+
+None
+
+### Related Commands
+
+- `netq add check-filter`
+- `netq show check-filter`
+
+- - -
 ## netq del events-config
-<!-- vale on -->
 
 Removes an events suppression configuration. Useful when you no longer want to suppress the specified events. Consider modifying the configuration to disable or temporarily suspend the configuration.
 
@@ -257,5 +281,5 @@ Successfully deleted validation Bgp15m
 
 ### Related Commands
 
-- ```netq add validation name```
+- ```netq add validation```
 - ```netq show validation settings```

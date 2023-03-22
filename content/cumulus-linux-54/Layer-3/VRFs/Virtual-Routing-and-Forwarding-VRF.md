@@ -170,10 +170,10 @@ cumulus@switch:~$ sudo ip vrf exec BLUE ssh user@host
 
 ### Services in VRFs
 
-For services that need to run against a specific VRF, Cumulus Linux uses `systemd` instances, where the instance is the VRF. You start a service within a VRF with the `systemctl start <service>@<vrf-name>` command. For example, to run the NTP service in the BLUE VRF:
+For services that need to run against a specific VRF, Cumulus Linux uses `systemd` instances, where the instance is the VRF. You start a service within a VRF with the `systemctl start <service>@<vrf-name>` command. For example, to run the `dhcpd` service in the BLUE VRF:
 
 ```
-cumulus@switch:~$ sudo systemctl start ntp@BLUE
+cumulus@switch:~$ sudo systemctl start dhcpd@BLUE
 ```
 
 In most cases, you need to stop the instance running in the default VRF before a VRF instance can start. This is because the instance running in the default VRF owns the port across all VRFs (it is VRF global). Cumulus Linux stops `systemd`-based services when you restart networking or run an `ifdown`/`ifup` sequence. Refer to {{<link url="Management-VRF" text="management VRF">}} for details.
@@ -186,7 +186,7 @@ The following services work with VRF instances:
 - `dhcrelay`
 - `hsflowd`
 - `netq-agent`
-- `ntp`
+- `ntp` (can only run in the default or management VRF)
 - `puppet`
 - `snmptrapd`
 - `ssh`
@@ -319,22 +319,27 @@ switch# exit
 
 ### Verify Route Leaking Configuration
 
-To check the status of VRF route leaking, run the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command or the `net show bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
+To check the status of VRF route leaking, run the NVUE `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast route-leak` command. For example:
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# show ip bgp vrf RED ipv4 unicast route-leak
-This VRF is importing IPv4 Unicast routes from the following VRFs:
-  BLUE
-Import RT(s): 0.0.0.0:3
-This VRF is exporting IPv4 Unicast routes to the following VRFs:
-  RED
-RD: 10.1.1.1:2
-Export RT: 10.1.1.1:2
+cumulus@switch:~$ nv show vrf RED router bgp address-family ipv4-unicast route-import
+                operational   applied  
+--------------  ------------  ---------
+from-vrf                               
+  enable                      on       
+  route-map                   BLUEtoRED
+  [list]        BLUE          BLUE     
+[route-target]  10.10.10.1:3    
 ```
 
-- To view the BGP routing table, run the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command or the `net show bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
-- To view the FRR IP routing table, run the vtysh `show ip route vrf <vrf-name>` command or the `net show route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
+To show more detailed status information, you can run the following NVUE commands:
+- `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import from-vrf`
+- `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import from-vrf list`
+- `nv show vrf <vrf-name> router bgp address-family ipv4-unicast route-import from-vrf list <leak-vrf-id>`
+
+To view the BGP routing table, run the NVUE `nv show vrf <vrf-name> router bgp address-family ipv4-unicast` command or the vtysh `show ip bgp vrf <vrf-name> ipv4|ipv6 unicast` command.
+
+To view the FRR IP routing table, run the vtysh `show ip route vrf <vrf-name>` command or the `net show route vrf <vrf-name>` command. These commands show all routes, including routes leaked from other VRFs.
 
 The following example commands show all routes in VRF `RED`, including routes leaked from VRF `BLUE`:
 
@@ -550,7 +555,7 @@ router ospf vrf RED
 
 ## DHCP with VRF
 
-Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services. `systemd` must manage these services and the `/etc/vrf/systemd.conf` file must list the services. By default, this file already lists these two services, as well as others like `ntp`. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
+Because you can use VRF to bind IPv4 and IPv6 sockets to non-default VRF tables, you can start DHCP servers and relays in any non-default VRF table using the `dhcpd` and `dhcrelay` services. `systemd` must manage these services and the `/etc/vrf/systemd.conf` file must list the services. By default, this file already lists these two services, as well as others. You can add more services as needed, such as `dhcpd6` and `dhcrelay6` for IPv6.
 
 If you edit `/etc/vrf/systemd.conf`, run `sudo systemctl daemon-reload` to generate the `systemd` instance files for the newly added services. Then you can start the service in the VRF using `systemctl start <service>@<vrf-name>.service`, where `<service>` is the name of the service (such as `dhcpd` or `dhcrelay`) and `<vrf-name>` is the name of the VRF.
 

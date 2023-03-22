@@ -45,7 +45,7 @@ You can configure custom hashing to specify what to include in the hash calculat
 - Multiple next hops of a layer 3 route (ECMP hashing).
 - Multiple interfaces that are members of the same bond (bond or LAG hashing). For bond hashing, see {{<link url="Bonding-Link-Aggregation/#load-balancing" text="Bonding - Link Aggregation" >}}.
 
-For ECMP load balancing between multiple next-hops of a layer 3 route, you can hash on these fields:
+For ECMP load balancing between multiple next hops of a layer 3 route, you can hash on these fields:
 
 |   <div style="width:190px">Field   | Default Setting | NVUE Command | `traffic.conf`|
 | -------- | --------------- | ------------ | --------------------------------------------- |
@@ -338,7 +338,6 @@ Cumulus Linux only supports adaptive routing with:
 {{%notice note%}}
 - Adaptive routing does not make use of resilient hashing.
 - You cannot use adaptive routing with EVPN or VXLAN.
-- NVIDIA has tested adaptive routing on a maxumum of 16 ports.
 {{%/notice%}}
 
 Adaptive Routing is in Sticky Free mode, where packets route to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.

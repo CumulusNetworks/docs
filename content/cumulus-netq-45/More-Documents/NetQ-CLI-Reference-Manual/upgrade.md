@@ -5,6 +5,7 @@ weight: 1107
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
+type: nojsscroll
 ---
 
 ## netq upgrade
@@ -30,7 +31,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.4.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.5.0.tgz
 ```
 
 ### Related Commands

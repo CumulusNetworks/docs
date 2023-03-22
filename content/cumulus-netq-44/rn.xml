@@ -7,9 +7,64 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3043146</td>
-<td>After you upgrade from NetQ 4.1 to NetQ 4.2, some streaming validation checks might erroneously report failures when services are running properly. This condition will resolve itself within 24 hours of the upgrade. </td>
-<td>4.2.0-4.4.0</td>
+<td>3360627</td>
+<td>When the switch RoCE egress pool buffer limit is configured as unlimited, the maximum buffer usage for RoCE counters might display incorrect values in the NetQ UI.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3305144</td>
+<td>When you perform a {{netq trace}} between two hosts, the following message might be printed in the output even when the trace is successful:
+
+
+argument of type ‘NoneType’ is not iterable
+</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3303284</td>
+<td>When you run the  {{netq show opta-health}} command, it might fail and produce the following error:
+
+
+ERROR: Expecting value: line 1 column 1 (char 0)
+</td>
+<td>4.3.0-4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3290068</td>
+<td>When you back up NetQ data with the {{backuprestore.sh}} script, the operation fails with the following log messages:
+
+Failed to clear all earlier snapshot for keyspace:master. Exiting!
+command terminated with exit code 1
+Failed to execute /opt/backuprestore/createbackup.sh script on cassandra pod.
+Failed to proceed ahead with backup procedure. Exiting !
+
+Contact NVIDIA support for assistance performing a backup.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3266922</td>
+<td>When a NetQ agent sends your NetQ server or OPTA an unexpectedly large number for switch interface counters, {{netq check}} and {{netq show}} commands might fail with the following message:
+
+
+local variable ‘url’ referenced before assignment
+</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3241664</td>
+<td>When you start the {{netq-agent}} service, the WJH service is enabled by default.  However, when you run the {{netq config show agent wjh}} command, the output might reflect the WJH service as disabled.</td>
+<td>4.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3179145</td>
+<td>The NetQ agent does not collect VLAN information from WJH data. This has been resolved, however when you upgrade to a NetQ version with the fix, historical WJH data will not be displayed in the UI.</td>
+<td>4.3.0-4.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -73,6 +128,11 @@
 <td>3205778</td>
 <td>In some high scale environments, NetQ agents might appear as rotten during high load.</td>
 <td>4.3.0</td>
+</tr>
+<tr>
+<td>3203960</td>
+<td>When you add an LDAP user, the operation will fail and return an error: {{Parameter error}}. This has been resolved in NetQ 4.4.0 and later. If you configured LDAP authentication prior to NetQ 4.4.0, you must reconfigure LDAP after upgrading.</td>
+<td></td>
 </tr>
 <tr>
 <td>3157803</td>

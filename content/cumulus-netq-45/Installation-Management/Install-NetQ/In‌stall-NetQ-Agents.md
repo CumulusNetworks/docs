@@ -7,8 +7,8 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 3.7.12 and later
-- SONiC 202012 and 202106
+- Cumulus Linux 3.7.16 and later
+- SONiC 202012
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 18.04
@@ -484,7 +484,7 @@ Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To ins
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.4.0" opsys="cl">}}
+    {{<netq-install/agent-version version="4.5.0" opsys="cl">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -540,7 +540,7 @@ To install the NetQ Agent:
     root@rhel7:~# rpm -qa | grep -i netq
     ```
 
-    {{<netq-install/agent-version version="4.4.0" opsys="rh">}}
+    {{<netq-install/agent-version version="4.5.0" opsys="rh">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -569,7 +569,7 @@ To install the NetQ Agent:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
     ```
 
-    {{<netq-install/agent-version version="4.4.0" opsys="ub">}}
+    {{<netq-install/agent-version version="4.5.0" opsys="ub">}}
 
 3. Restart `rsyslog` so it sends log files to the correct destination.
 
@@ -694,7 +694,7 @@ sudo apt-get update
 sudo apt-get install netq-opta
 ```
 
-After the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the premises management configuration. For more information, see {{<link title="Access the NetQ UI#log-in-to-netq" text="First-time Login for NetQ Cloud">}}.
+After the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the {{<link title="Premises Management" text="premises management configuration">}}.
 
 ```
 netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 
@@ -717,3 +717,6 @@ The final step is configuring the local NetQ Agent on the switch to connect to t
 ```
 netq config add agent server localhost vrf mgmt
 ```
+
+## Related Information
+- {{<link title="Manage NetQ Agents">}}

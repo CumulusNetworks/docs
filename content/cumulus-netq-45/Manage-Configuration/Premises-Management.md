@@ -5,102 +5,95 @@ weight: 500
 toc: 2
 ---
 
-Managing premises involves renaming existing premises or creating multiple premises.
+The NetQ management dashboard lets you configure a single NetQ UI and CLI for monitoring data from multiple premises. This means you do not need to log in to each premises individually to view the data.
 ## Configure Multiple Premises
 
-The NetQ management dashboard lets you configure a single NetQ UI and CLI for monitoring data from multiple premises. This mean you do not need to log in to each premises to view the data.
+There are two ways to implement a multi-site, on-premises deployment: (1) as a full deployment at the primary premises and each of the external premises or (2) as a full deployment at the primary premises with smaller deployments at the secondary premises. 
 
-There are two ways to implement a multi-site, on-premises deployment: either as a full deployment at each premises or as a full deployment at the primary site with a smaller deployment at secondary sites.
+<div class="notices note"><p>The primary premises is called OPID0 by default in the UI. </p></div>
 
-**Full NetQ Deployment at Each Premises**<br/>
-  In this implementation, there is a NetQ appliance or VM running the NetQ Platform software with a database. Each premises operates independently, with its own NetQ UI and CLI. The NetQ appliance or VM at one of the deployments acts as the primary premises for the premises in the other deployments. A list of these secondary premises is stored with the primary deployment.
+### Full NetQ Deployment at Each Premises
 
-{{<figure src="/images/netq/appmgmt-multisite-onprem-fulldeploy-330.png" width="500">}}
+In this implementation, there is a NetQ appliance or VM running the NetQ Platform software with a database. Each premises operates independently as an external premises, with its own NetQ UI and CLI. The NetQ appliance or VM at one of the deployments acts as the primary premises. A list of external premises is stored with the primary deployment.
 
-**Full NetQ Deployment at Primary Site and Smaller Deployment at Secondary Sites**<br/>
-In this implementation, there is a NetQ appliance or VM at one of the deployments acting as the primary premises for the premises in the other deployments. The primary premises runs the NetQ Platform software (including the NetQ UI and CLI) and houses the database. All other deployments are secondary premises; they run the NetQ Controller software and send their data to the primary premises for storage and processing. A list of these secondary premises is stored with the primary deployment.
+{{<figure src="/images/netq/appmgmt-multisite-onprem-fulldeploy-330.png" alt="" width="600">}}
 
-{{<figure src="/images/netq/appmgmt-multisite-onprem-mixeddeploy-330.png" width="500">}}
+To configure a single UI to monitor multiple premises:
+
+1. From the UI of the primary premises (*OPID0*), select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown in the top-right corner of the screen. 
+
+2. Select **Manage premises**, then select the **External premises** tab.
+
+    {{<figure src="/images/netq/add-external-premises.png" alt="" width="900">}}
+
+3. Select **Add external premises**.
+
+    {{<figure src="/images/netq/external-premises-credentials.png" alt="dialog prompting the user to enter the external server's IP and credentials" width="350">}}
+
+4. Enter the IP address for the external server.
+
+5. Enter the username and password for the external server, then click **Next**. These are the same credentials used to log in to the UI for the external server.
+
+6. Select the premises you want to connect, then click **Finish**.
+
+    {{<figure src="/images/netq/additional-external-premises.png" alt="dialog displaying two premises" width="350">}}
+
+You can also reduce the number of premises that can be displayed in the UI by hovering over a deployment and selecting {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} Delete.
+
+To view the premises you just added, return to the home workbench and select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown in the top-right corner of the screen.
+
+
+### Full NetQ Deployment at Primary Premises and Smaller Deployments at Secondary Premises
+
+In this implementation, there is a NetQ appliance or VM at one of the deployments acting as the primary premises for the other deployments. The primary premises runs the NetQ software (including the NetQ UI and CLI) and houses the database. All other deployments are secondary premises; they run the NetQ Collector software and send their data to the primary premises for storage and processing. A list of these secondary premises is stored with the primary deployment.
+
+{{<figure src="/images/netq/appmgmt-multisite-onprem-mixeddeploy-330.png" alt="" width="500">}}
 
 After the multiple premises are configured, you can view this list of premises in the NetQ UI at the primary premises, change the name of premises on the list, and delete premises from the list.
-
-To configure secondary premises so that you can view their data using the primary site NetQ UI, follow the instructions for the relevant deployment type of the *secondary* premises.
-
-{{<tabs "Multiple Premises">}}
-
-{{<tab "NetQ Platform">}}
-
-In this deployment model, each NetQ deployment can be installed separately. The data is stored and can be viewed from the NetQ UI at each premises.
-
-To configure a these premises so that their data can be viewed from one premises:
-
-1. In the workbench header, select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown.
-
-2. Select **Manage Premises**, then **External Premises**.
-
-    {{<figure src="/images/netq/premises-card-external-prems-tab-330.png" width="700">}}
-
-3. Select **Add External Premises**.
-
-    {{<figure src="/images/netq/premises-card-add-external-prems-330.png" width="350">}}
-
-4. Enter the IP address for the API gateway on the NetQ appliance or VM for one of the secondary premises.
-
-5. Enter the access credentials for this host then click **Next**.
-
-6. Select the premises you want to connect then click **Finish**.
-
-    {{<figure src="/images/netq/premises-card-select-external-prems-330.png" width="350">}}
-
-7. Add additional secondary premises by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}}.
-
-{{</tab>}}
-
-{{<tab "NetQ Collector">}}
 
 In this deployment model, the data is stored and can be viewed only from the NetQ UI at the primary premises.
 
 <div class="notices note"><p>The primary NetQ premises must be installed and operational before the secondary premises can be added. </p></div>
 
-1. In the workbench header, select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown.
+To create and add secondary premises:
 
-2. Click **Manage Premises**. Your primary premises (*OPID0*) is shown by default.
+1. In the workbench header, select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown.
 
-3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} (Add Premises).
+2. Click **Manage premises**. Your primary premises (*OPID0*) is shown by default.
 
-   {{<figure src="/images/netq/premises-create-prem-330.png" width="300">}}
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" height="18" width="18">}} **Add premises**.
 
-4. Enter the name of one of the secondary premises you want to add, then click **Done**.
+{{<figure src="/images/netq/create-new-premises.png" alt="" width="350">}}
 
-   {{<figure src="/images/netq/premises-card-premises-tab-list-330.png" width="700">}}
+4. Enter the name of a secondary premises you'd like to add, then click **Done**.
 
-5. Select the premises you just created.
+5. From the confirmation dialog, select **View config key**.
 
-6. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} to generate a configuration key.
+{{<figure src="/images/netq/premises-view-config-key.png" alt="" width="350">}}
 
-   {{<figure src="/images/netq/premises-card-premises-tab-generate-key-330.png" width="400">}}
+6. Click the copy icon, then save the key to a safe place, or click **e-mail** to send it to yourself or others. Then click **Confirm activation**.
 
-7. Click **Copy** and save the key to a safe place, or click **e-mail** to send it to yourself or other administrator as appropriate. Then click **Done**
+{{<figure src="/images/netq/new-premises-config-key.png" alt="dialog displaying configuration key with options to copy or share the key" width="650">}}
 
-{{</tab>}}
-
-{{</tabs>}}
+To view the premises you just added, return to the home workbench and select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown at the top-right corner of the screen.
 
 ## Rename a Premises
 
 To rename an existing premises:
 
-1. In the workbench header, select the **Premises** <img src="/images/netq/Down.svg" width="14"> dropdown, then **Manage premises**.
+1. In the workbench header, select the **Premises** {{<img src="/images/netq/Down.svg" width="14">}} dropdown, then **Manage premises**.
 
-1. Select a premises to rename, then click {{<img src="/images/old_doc_images/pencil-2.png" width="16">}} Edit.
+1. Select a premises to rename, then click {{<img src="/images/old_doc_images/pencil-2.png" width="16">}} **Edit**.
 
 1. Enter the new name for the premises, then click **Done**.
+
+<!--Need to find new place for this
 
 ## System Server Information
 
 To view the physical server or VM configuration:
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu"> Menu.
+1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} Menu.
 
 2. Under **Admin**, select **Management**.
 
@@ -108,4 +101,6 @@ To view the physical server or VM configuration:
 
     {{<figure src="/images/netq/system-server-info-card.png" alt="system server info card displaying appliance version, IP address, OS version, and NetQ version" width="500">}}
 
-    If no data is present on this card, it is likely that the NetQ Agent on your server or VM is not running properly or the underlying streaming services are impaired.
+    If no data is present on this card, it is likely that the NetQ Agent on your server or VM is not running properly, or the underlying streaming services are impaired.
+
+-->

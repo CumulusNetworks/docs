@@ -68,11 +68,13 @@ You can configure one LDAP server per bind DN (distinguished name). After you co
 
 To create an LDAP configuration:
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/> Menu. Under **Admin**, select **Management**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/> **Menu** and select **Management**.
 
 2. Locate the LDAP Server Info card, and click **Configure LDAP**.
 
 3. Fill out the LDAP server configuration form according to your particular configuration.
+
+{{<figure src="/images/netq/ldap-server-info-card-450.png" alt="" width="500" >}}
 
 4. Click **Save** to complete the configuration, or click **Cancel** to discard the configuration.
 
@@ -82,11 +84,11 @@ LDAP config cannot be changed after it is configured. If you need to change the 
 
 ## Example LDAP Configurations
 
-A variety of example configurations are provided here. Scenarios 1-3 are based on using an OpenLDAP or similar authentication service. Scenario 4 is based on using the Active Directory service for authentication.
+This section lists a variety of example configurations. Scenarios 1-3 are based on using an OpenLDAP or similar authentication service. Scenario 4 is based on using the Active Directory service for authentication.
 
 ### Scenario 1: Base Configuration
 
-In this scenario, we are configuring the LDAP server with anonymous authentication, a User ID based on an email address, and a search scope of base.
+In this scenario, we are configuring the LDAP server with anonymous authentication, a user ID based on an email address, and a search scope of base.
 
 | Parameter | Value |
 | ------------- |  ------ |
@@ -100,7 +102,7 @@ In this scenario, we are configuring the LDAP server with anonymous authenticati
 
 ### Scenario 2: Basic Authentication and Subset of Users
 
-In this scenario, we are configuring the LDAP server with basic authentication, for access only by the persons in the network operators group, and a limited search scope.
+In this scenario, we are configuring the LDAP server with basic authentication, accessible only to users in the network operators group, and with a limited search scope.
 
 | Parameter | Value |
 | ------------- |  ------ |
@@ -116,7 +118,7 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 
 ### Scenario 3: Scenario 2 with Widest Search Capability
 
-In this scenario, we are configuring the LDAP server with basic authentication, for access only by the persons in the network administrators group, and an unlimited search scope.
+In this scenario, we are configuring the LDAP server with basic authentication, accessible only to users in the network administrators group, and with an unlimited search scope.
 
 | Parameter | Value |
 | ------------- |  ------ |
@@ -132,7 +134,7 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 
 ### Scenario 4: Scenario 3 with Active Directory Service
 
-In this scenario, we are configuring the LDAP server with basic authentication, for access only by the persons in the given Active Directory group, and an unlimited search scope.
+In this scenario, we are configuring the LDAP server with basic authentication, accessible only to users in the given Active Directory group, and with an unlimited search scope.
 
 | Parameter | Value |
 | ------------- | ------ |
@@ -148,13 +150,11 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 
 ## Add LDAP Users to NetQ
 
-1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/> Menu. Under **Admin**, select **Management**.
+1. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/> **Menu** and select **Management**.
 
 2. Locate the User Accounts card, and click **Manage**.
 
-3. On the User Accounts tab, click **Add User**.
-
-    {{<figure src="/images/netq/netq-mgmt-user-acct-add-new-user-modal-230.png" width="250" alt="">}}
+3. From the User accounts tab, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/43-Remove-Add/add-circle.svg" alt="add" height="18" width="18">}} **Add user** above the table.
 
 4. Select **LDAP User**, then enter the user's ID.
 
@@ -165,30 +165,25 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
     {{<figure src="/images/netq/netq-mgmt-user-acct-ldap-search-result-230.png" width="300">}}
 
     {{%notice tip%}}
-If the fields are not automatically filled in, and searching is enabled on the LDAP server, you might require changes to the mapping file.
+If the fields are not automatically filled in, and searching is enabled on the LDAP server, you might need to edit the mapping file.
     {{%/notice%}}
-
-7. Select the role for this user, *admin* or *user*.
-
-8. Enter your admin password, and click **Save**, or click **Cancel** to discard the user account.
-
     {{%notice tip%}}
 
 LDAP user passwords are not stored in the NetQ database and are always authenticated against LDAP.
 
     {{%/notice%}}
 
-9. Repeat these steps to add additional LDAP users.
+8. Repeat these steps to add additional LDAP users.
 
 ## Remove LDAP Users from NetQ
 
 You can remove LDAP users in the same manner as local users.
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/> Menu. Under **Admin**, select **Management**.
+1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" width="18" height="18"/> **Menu** and select **Management**.
 
 2. Locate the User Accounts card, and click **Manage**.
 
-3. Select the user(s) you want to remove, then select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="delete" width="18" height="18"/>.
+3. Select the user(s) you want to remove, then select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" alt="delete" width="18" height="18"/> **Delete**.
 
 {{%notice tip%}}
 If you delete an LDAP user in LDAP it is not automatically deleted from NetQ; however, the login credentials for these LDAP users stop working immediately.

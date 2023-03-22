@@ -301,10 +301,6 @@ To apply a custom profile to specific interfaces, see [Port Groups](#port-groups
 
 ## Mark and Remark Traffic
 
-{{%notice note%}}
-NVUE does not currently provide commands to mark or remark traffic.
-{{%/notice%}}
-
 You can mark or remark traffic in two ways:
 
  * Use [iptables](#iptables) to match packets and set 802.1p COS or DSCP values.
@@ -379,7 +375,50 @@ To set traffic leaving interface swp11 to DSCP class value `CS6`:
 <!-- vale off -->
 ### 802.1p or DSCP for Marking
 <!-- vale on -->
-To enable global remarking of 802.1p, DSCP or both 802.1p and DSCP values, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. For example, to enable the remarking of only 802.1p values:
+
+To enable global remarking of 802.1p, DSCP or both 802.1p and DSCP values:
+
+{{< tabs "TabID383 ">}}
+{{< tab "NVUE Commands">}}
+
+To remark switch priority 0 to egress 802.1p 4
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l2
+cumulus@switch:~$ nv set qos remark default-global switch-priority 0 pcp 4
+cumulus@switch:~$ nv config apply
+```
+
+To remark switch priority 0 to egress DSCP 22:
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l3
+cumulus@switch:~$ nv set qos remark default-global switch-priority 0 dscp 22
+cumulus@switch:~$ nv config apply
+```
+
+You can remap multiple switch priority values to the same external 802.1p or DSCP value. For example, to map switch priority 1 and 2 to 802.1p 3:
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l2
+cumulus@switch:~$ nv set qos remark default-global switch-priority 1 pcp 3
+cumulus@switch:~$ nv set qos remark default-global switch-priority 2 pcp 3
+cumulus@switch:~$ nv config apply
+```
+
+To map switch priority 1 and 2 to DSCP 40:
+
+```
+cumulus@switch:~$ nv set qos remark default-global rewrite l3
+cumulus@switch:~$ nv set qos remark default-global switch-priority 1 dscp 40
+cumulus@switch:~$ nv set qos remark default-global switch-priority 2 dscp 40
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+In the `/etc/cumulus/datapath/qos/qos_features.conf` file, modify the `traffic.packet_priority_remark_set` value to `[802.1p]`, `[dscp]` or `[802.1p,dscp]`. For example, to enable the remarking of only 802.1p values:
 
 ```
 traffic.packet_priority_remark_set = [802.1p]
@@ -415,6 +454,9 @@ traffic.cos_1.priority_remark.dscp = [40]
 traffic.cos_2.priority_remark.dscp = [40]
 ```
 
+{{< /tab >}}
+{{< /tabs >}}
+
 To apply a custom profile to specific interfaces, see [Port Groups](#remarking).
 
 ## Flow Control
@@ -426,6 +468,10 @@ Cumulus Linux supports the following congestion control mechanisms:
 - Pause Frames (IEEE 802.3x), sends specialized ethernet frames to an adjacent layer 2 switch to stop or *pause* **all** traffic on the link during times of congestion.
 - Priority Flow Control (PFC), which is an upgrade of Pause Frames that IEEE 802.1bb defines, extends the pause frame concept to act on a per-COS value basis instead of an entire link. A PFC pause frame indicates to the peer which specific COS value to pause, while other COS values or queues continue transmitting.
 - Explicit Congestion Notification (ECN). Unlike Pause Frames and PFC that operate only at layer 2, ECN is an end-to-end layer 3 congestion control protocol. Defined by RFC 3168, ECN relies on bits in the IPv4 header Traffic Class to signal congestion conditions. ECN requires one or both server endpoints to support ECN to be effective.
+
+{{%notice note%}}
+You can not configure link pause and PFC on the same port.
+{{%/notice%}}
 
 ### Flow Control Buffers
 
@@ -485,39 +531,46 @@ Pause frames are an older congestion control mechanism that causes all traffic o
 - Before configuring pause frames, you must first modify the switch buffer allocation. Refer to {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}}.
 {{% /notice %}}
 
+{{% notice warning %}}
+Pause frame buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
+
+Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
+{{% /notice %}}
+
 The following example configuration:
 - Creates a profile (port group) called `my_pause_ports`.
-- Configures frame transmission to stop when the buffer is at 1500 bytes and to start when the buffer is at 1000 bytes.
 - Enables sending pause frames and disables receiving pause frames.
-- Sets the amount of reserved port buffer space to 2000 bytes.
 - Sets the cable length to 50 meters.
 - Sets link pause on swp1 through swp4, and swp6.
+
+{{% notice note %}}
+Cumulus Linux also includes frame transmission start and stop threshold, and port buffer settings. NVIDIA recommends that you do not change these settings but, instead, let Cumulus Linux configure the settings dynamically. Only change the threshold and buffer settings if you are an advanced user who understands the buffer configuration requirements for lossless traffic to work seamlessly.
+{{% /notice %}}
 
 {{< tabs "TabID495 ">}}
 {{< tab "NVUE Commands">}}
 
 ```
-cumulus@switch:~$ nv set qos link-pause my_pause_ports xoff-threshold 1500
-cumulus@switch:~$ nv set qos link-pause my_pause_ports xon-threshold 1000
 cumulus@switch:~$ nv set qos link-pause my_pause_ports tx enable
 cumulus@switch:~$ nv set qos link-pause my_pause_ports rx disable
-cumulus@switch:~$ nv set qos link-pause my_pause_ports port-buffer 2000
 cumulus@switch:~$ nv set qos link-pause my_pause_ports cable-length 50
 cumulus@switch:~$ nv set interface swp1-swp4,swp6 qos link-pause profile my_pause_ports
 cumulus@switch:~$ nv config apply
 ```
 
+To show the pause frame settings for a profile, run the `nv show qos link-pause <profile>` command
+
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `link_pause` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
+Uncomment and edit the `link_pause` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 
 ```
 link_pause.port_group_list = [my_pause_ports]
 link_pause.my_pause_ports.port_set = swp1-swp4,swp6
-link_pause.my_pause_ports.port_buffer_bytes = 2000
-link_pause.my_pause_ports.xoff_size = 1500
-link_pause.my_pause_ports.xon_delta = 1000
+link_pause.my_pause_ports.port_buffer_bytes = 25000
+link_pause.my_pause_ports.xoff_size = 10000
+link_pause.my_pause_ports.xon_delta = 2000
 link_pause.my_pause_ports.rx_enable = false
 link_pause.my_pause_ports.tx_enable = true
 link_pause.my_pause_ports.cable_length = 10
@@ -527,12 +580,6 @@ To process pause frames, you must enable link pause on the specific interfaces.
 
 {{< /tab >}}
 {{< /tabs >}}
-
-{{% notice warning %}}
-Pause frame buffer calculation is a complex topic that IEEE 802.1Q-2012 defines. This attempts to incorporate the delay between signaling congestion and the reception of the signal by the neighboring device. This calculation includes the delay that the PHY and MAC layers (interface delay) introduce as well as the distance between end points (cable length).
-
-Incorrect cable length settings can cause wasted buffer space (triggering congestion too early) or packet drops (congestion occurs before flow control activates).
-{{% /notice %}}
 
 ### Priority Flow Control (PFC)
 
@@ -553,20 +600,20 @@ To apply PFC settings on all ports, modify the default PFC profile (`default-glo
 
 The following example modifies the default profile and configures:
 - PFC on egress queue 0.
-- The buffer limit that triggers PFC frame transmission to stop to 1500 bytes and to start to 1000 bytes.
-- The amount of reserved buffer space to 2000 bytes.
+- Enables sending pause frames and disables receiving pause frames.
 - The cable length to 50 meters.
+
+{{% notice note %}}
+Cumulus Linux also includes frame transmission start and stop threshold, and port buffer settings. NVIDIA recommends that you do not change these settings but, instead, let Cumulus Linux configure the settings dynamically. Only change the threshold and buffer settings if you are an advanced user who understands the buffer configuration requirements for lossless traffic to work seamlessly.
+{{% /notice %}}
 
 {{< tabs "TabID535 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set qos pfc default-global switch-priority 0 
-cumulus@switch:~$ nv set qos pfc default-global xoff-threshold 1500 
-cumulus@switch:~$ nv set qos pfc default-global xon-threshold 1000 
 cumulus@switch:~$ nv set qos pfc default-global tx enable 
 cumulus@switch:~$ nv set qos pfc default-global rx disable 
-cumulus@switch:~$ nv set qos pfc default-global port-buffer 2000 
 cumulus@switch:~$ nv set qos pfc default-global cable-length 50
 cumulus@switch:~$ nv config apply
 ```
@@ -578,11 +625,11 @@ cumulus@switch:~$ nv show qos pfc default-global
                    operational  applied  description
 -----------------  -----------  -------  --------------------------------
 cable-length       50           50       Cable Length (in meters)
-port-buffer        2000 B       2000 B   Port Buffer (in bytes)
+port-buffer        25000 B      25000 B  Port Buffer (in bytes)
 rx                 disable      disable  PFC Rx State
 tx                 enable       enable   PFC Tx State
-xoff-threshold     1500 B       1500 B   Xoff Threshold (in bytes)
-xon-threshold      1000 B       1000 B   Xon Threshold (in bytes)
+xoff-threshold     10000 B      10000 B  Xoff Threshold (in bytes)
+xon-threshold      2000 B       2000 B   Xon Threshold (in bytes)
 [switch-priority]  0            0        Collection of switch priorities.
 ```
 
@@ -595,9 +642,9 @@ Edit the `priority flow control` section of the `/etc/cumulus/datapath/qos/qos_f
 pfc.port_group_list = [default-global]
 pfc.default-global.port_set = allports
 pfc.default-global.cos_list = [0]
-pfc.default-global.port_buffer_bytes = 2000
-pfc.default-global.xoff_size = 1500
-pfc.default-global.xon_delta = 500
+pfc.default-global.port_buffer_bytes = 25000
+pfc.default-global.xoff_size = 10000
+pfc.default-global.xon_delta = 2000
 pfc.default-global.tx_enable = true
 pfc.default-global.rx_enable = false
 pfc.default-global.cable_length = 50
@@ -786,7 +833,7 @@ The following example modifies the default profile. The commands change the band
 {{< tab "NVUE Commands ">}}
 
 - The `traffic-class` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `traffic-class 2` defines the bandwidth allocation for egress queue 2.
-- For each egress queue, you can either define the mode as `dwrr` or `strict`. In `dwrr` mode, you must define a bandwidth percent value between 1 and 100. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues. The combined total of values you assign to `bw_percent` must be less than or equal to 100.
+- For each egress queue, you can either define the mode as `dwrr` or `strict`. In `dwrr` mode, you must define a bandwidth percent value between 1 and 100. If you do not specify a value for an egress queue, Cumulus Linux uses a DWRR value of 0 (no egress scheduling). The combined total of values you assign to `bw_percent` must be less than or equal to 100.
 
 ```
 cumulus@switch:~$ nv set qos egress-scheduler default-global traffic-class 2,6 mode dwrr 
@@ -823,7 +870,7 @@ TC->DWRR weight configuration
 
 You configure the egress scheduling policy in the `egress scheduling` section of the `/etc/cumulus/datapath/qos/qos_features.conf` file.
 - The `egr_queue_` value defines the [egress queue](#egress-queues) where you want to assign bandwidth. For example, `egr_queue_0` defines the bandwidth allocation for egress queue 0.
-- The `bw_percent` value defines the bandwidth allocation you want to assign to an egress queue. If you do not specify a value for an egress queue, Cumulus Linux assigns a DWRR weight of 0 (no egress scheduling), which indicates `strict` priority mode and always processes ahead of other queues. The combined total of values you assign to `bw_percent` must be less than or equal to 100.
+- The `bw_percent` value defines the bandwidth allocation you want to assign to an egress queue. If you do not specify a value for an egress queue, there is no egress scheduling. If you specify a value of 0 for an egress queue, Cumulus Linux assigns `strict` priority mode to the egress queue and always processes it ahead of other queues. The combined total of values you assign to `bw_percent` must be less than or equal to 100.
 
 ```
 default_egress_sched.egr_queue_0.bw_percent = 0
@@ -855,11 +902,11 @@ Traffic shaping typically occurs at egress and traffic policing at ingress.
 
 ### Shaping
 
-Traffic shaping allows a switch to send traffic at an average bitrate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts; for example, an ISP.
+Traffic shaping allows a switch to send traffic at an average bitrate lower than the physical interface. Traffic shaping prevents a receiving device from dropping bursty traffic if the device is either not capable of that rate of traffic or has a policer that limits what it accepts.
 
 Traffic shaping works by holding packets in the buffer and releasing them at specific time intervals.
 
-Cumulus Linux supports two levels of hierarchical traffic shaping: one at the egress queue level and one at the port level. This allows for minimum and maximum bandwidth guarantees for each egress-queue and a defined port traffic shaping rate.
+Cumulus Linux supports two levels of hierarchical traffic shaping: one at the egress queue level and one at the port level. This allows for minimum and maximum bandwidth guarantees for each egress queue and a defined port traffic shaping rate.
 
 The following example configuration:
 - Sets the profile name (port group) to use with the traffic shaping settings to `shaper1`.
@@ -872,6 +919,7 @@ The following example configuration:
 - When the minimum bandwidth for an egress queue is `0`, there is no bandwidth guarantee for this queue.
 - The maximum bandwidth for an egress queue must not exceed the maximum packet shaper rate for the port group.
 - The maximum packet shaper rate for the port group must not exceed the physical interface speed.
+- Cumulus Linux only shapes traffic for the traffic classes in a profile that include shaper configuration.
 {{% /notice %}}
 
 {{< tabs "TabID868 ">}}
@@ -892,55 +940,11 @@ Edit the `shaping` section of the `qos_features.conf` file.
 
 Cumulus Linux bases the `egr_queue` value on the configured [egress queue](#egress-queues).
 
-Traffic shaping configuration supports [Port Groups](#using-port-groups) so that you can apply different shaping profiles to different ports.
-
 ```
 shaping.port_group_list = [shaper1]
 shaping.shaper1.port_set = swp1-swp3,swp5
 shaping.shaper1.egr_queue_0.shaper = [50000, 100000]
 shaping.shaper1.port.shaper = 900000
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### PTP Shaping
-
-To improve performance on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G, you can configure traffic shaping.
-
-{{%notice note%}}
-PTP shaping is not supported on Spectrum-2 and later.
-{{%/notice%}}
-
-{{< tabs "TabID1387 ">}}
-{{< tab "NVUE Commands ">}}
-
-For each PTP-enabled port, run the `nv set interface <swp> qos egress-shaper ptp-shaper profile <profile-name>` command.
-
-```
-cumulus@switch:~$ nv set interface swp1 qos egress-shaper ptp-shaper profile ptp-profile
-cumulus@switch:~$ nv set interface swp2 qos egress-shaper ptp-shaper profile ptp-profile
-cumulus@switch:~$ nv set interface swp3 qos egress-shaper ptp-shaper profile ptp-profile
-cumulus@switch:~$ nv set interface swp5 qos egress-shaper ptp-shaper profile ptp-profile
-cumulus@switch:~$ nv config apply
-```
-
-The NVUE command adds the PTP shaping configuration for the specified ports to the `qos_features.conf` file. To see the profile settings, run the `nv show qos egress-shaper ptp-shaper profile <profile-name>` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-In the `shaping` section of the `qos_features.conf` file, add the following:
-- A port group to use with traffic shaping settings.
-- The set of interfaces to which you want apply traffic shaping.
-- The minimum and maximum bandwidth value in kbps for internal COS group 0.
-- The maximum packet shaper rate at the interface level.
-
-```
-ptp_shaping.port_group_list = [ptp_shaper_port_group_speed_1G]
-ptp_shaping.shaper_port_group.port_set = swp1-swp3,swp5
-ptp_shaping.shaper_port_group.egr_queue_0.shaper = [50000, 100000]
-ptp_shaping.shaper_port_group.port.shaper = 900000
 ```
 
 {{< /tab >}}
@@ -1078,11 +1082,28 @@ source.customports.port_set = swp1,swp2,swp3
 
 ### Remarking
 
-You can use profiles to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value. You define these profiles with `remark.port_group_list` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. The name is a label for configuration settings.
+You can use profiles to remark 802.1p or DSCP on egress according to the switch priority (internal COS) value.
 
 To change the marked value on a packet, the switch ASIC reads the enable or disable rewrite flag on the ingress port and refers to the mapping configuration on the egress port to change the marked value. To remark 802.1p or DSCP values, you have to enable the rewrite on the ingress port and configure the mapping on the egress port.
 
 In the following example configuration, only packets that *ingress* on swp1 and *egress* on swp2 change the marked value of the packet. Packets that ingress on other ports and egress on swp2 do **not** change the marked value of the packet. The commands map switch priority 0 and 1 to egress DSCP 37.
+
+{{< tabs "TabID1129 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set qos remark remark_port_group1 rewrite l3
+cumulus@switch:~$ nv set interface swp1 qos remark profile remark_port_group1
+cumulus@switch:~$ nv set qos remark remark_port_group2 switch-priority 0 dscp 37
+cumulus@switch:~$ nv set qos remark remark_port_group2 switch-priority 1 dscp 37
+cumulus@switch:~$ nv set interface swp2 qos remark profile remark_port_group2
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+You define these profiles with `remark.port_group_list` in the `/etc/cumulus/datapath/qos/qos_features.conf` file. The name is a label for configuration settings.
 
 ```
 remark.port_group_list = [remark_port_group1,remark_port_group2]
@@ -1093,6 +1114,9 @@ remark.remark_port_group2.port_set = swp2
 remark.remark_port_group2.cos_0.priority_remark.dscp = [37]
 remark.remark_port_group2.cos_1.priority_remark.dscp = [37]
 ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ### Egress Scheduling
 
@@ -1327,6 +1351,12 @@ Cumulus Linux supports adjusting the following traffic pools:
 | `roce-lossy` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossy mode. |
 | `roce-lossless` | The traffic pool for {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}} lossless mode. |
 
+{{%notice note%}}
+-  You can only have a single lossless pool configured on the switch at a time. Configure the `roce-lossless` pool when you are using RoCE, otherwise configure the `default-lossless` pool.
+
+- You can configure multiple lossy pools concurrently.
+{{%/notice%}}
+
 You configure a traffic pool by associating switch priorities and defining the buffer memory percentages allocated to the pools. The following example associates switch priority 2 and allocates a memory percentage of 30 for the `mc-lossy` pool:
 
 {{< tabs "TabID1166 ">}}
@@ -1391,7 +1421,113 @@ egress_buffer.cos_2.mc.dynamic_quota = ALPHA_8
 {{< /tab >}}
 {{< /tabs >}}
 
-For additional `default-lossless` and RoCE pool examples, see {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}} and {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}}.
+For additional `default-lossless` and RoCE pool examples, see {{<link title="#Flow Control Buffers" text="Flow Control Buffers">}} and {{<link title="RDMA over Converged Ethernet - RoCE" text="RoCE">}}. You can view traffic-pool configuration with the `nv show qos traffic-pool <pool name>` command:
+
+```
+cumulus@switch:~$  nv show qos traffic-pool default-lossy
+                   applied
+-----------------  -------
+memory-percent     80     
+[switch-priority]  0      
+[switch-priority]  1      
+[switch-priority]  2      
+[switch-priority]  3      
+[switch-priority]  4      
+[switch-priority]  5      
+[switch-priority]  6      
+[switch-priority]  7      
+```
+
+## Advanced Buffer Tuning
+
+You can use NVUE commands to tune advanced buffer properties in addition to the supported {{<link title="#Traffic Pools" text="traffic pool">}} configurations. Advanced buffer configuration can override the base traffic-pool profiles configured on the system.
+
+{{%notice note%}}
+You can only configure advanced buffer settings for the `default-global` profile.
+{{%/notice%}}
+
+### Buffer Regions
+
+You can adjust advanced buffer settings with the following NVUE command:
+
+- `nv set qos advance-buffer-config default-global <buffer> <priority-group | property> <value>`
+
+You can adjust settings for the following supported buffer regions and properties:
+
+|Buffers | Supported Property Values |
+|------------- |----------- |
+|`ingress-lossy-buffer` | <ul>The following properties are supported for the `bulk`, `control`, and `service[1-6]` priority groups: <br> `name` - The priority group alias name.<br>`reserved` -  The reserved buffer allocation in bytes. <br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.<br>`switch-priority` - Switch priority values. |
+|`egress-lossless-buffer` | <ul>`reserved` -  The reserved buffer allocation in bytes.<br>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> | 
+|`ingress-lossless-buffer` | <ul>`service-pool` - Service pool mapping. <br>`shared-alpha` - The dynamic shared buffer alpha allocation.<br>`shared-bytes` - The static shared buffer allocation in bytes.</ul> |
+|`egress-lossy-buffer` | <ul> `multicast-port` - Multicast port `reserved` or `shared-bytes` allocation in bytes. <br> `multicast-switch-priority [0-7]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each multicast switch priority.<br>`traffic-class [0-15]` - Set the `reserved`, `service-pool`,`shared-alpha`, or `shared-bytes` properties for each traffic class.</ul> |
+
+{{%notice note%}}
+Configure `shared-bytes` for buffer regions mapped to static service pools, and `shared-alpha` for buffer regions mapped to dynamic service pools.
+{{%/notice%}}
+
+The shared buffer alpha value determines the proportion of available shared memory allocated across buffer regions. Regions with higher alpha values receive a higher proportion of available shared buffer memory. The following example changes the `ingress-lossless-buffer` shared alpha value to `alpha_2` when using RoCE lossless mode:
+
+```
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-lossless-buffer shared-alpha alpha_2
+cumulus@switch:~$ nv config apply
+```
+### Service Pools
+
+You can configure ingress and egress service pool profile properties with the following NVUE commands:
+
+- `nv set qos advance-buffer-config default-global ingress-pool <pool-id> <property> <value>`
+- `nv set qos advance-buffer-config default-global egress-pool <pool-id> <property> <value>`
+
+You can adjust the following properties for each pool:
+
+|Property | Description |
+|------------- |----------- |
+| `infinite`	| The pool infinite flag. |
+| `memory-percent` | The pool memory percent allocation. |
+| `mode` | The pool mode: static or dynamic. |
+| `reserved ` |The reserved buffer allocation in bytes. |
+| `shared-alpha ` | The dynamic shared buffer alpha allocation. |
+| `shared-bytes` | The static shared buffer allocation in bytes. |
+
+
+A relationship exists between the default traffic pools and the advanced buffer configuration settings.  
+
+{{%notice note%}}
+Use caution when configuring advanced buffer settings. NVUE presents a warning if you attempt to apply incompatible traffic pool and advanced buffer configurations. NVUE performs the following validation checks before applying advanced buffer configurations:
+
+- You must map all switch priorities (0-7) to a priority group. You can map more than one switch priority to the same priority group.
+- The sum of `memory-percent` values across all ingress pools must be less than or equal to 100 percent.
+- The sum of `memory-percent` values across all egress pools must be less than or equal to 100 percent.
+{{%/notice%}}
+
+Reference the table below to view the mappings between the default traffic pool and advanced buffer properties:
+
+| Default Traffic Pool | Default Traffic Pool Properties | Advanced Buffer Region or Service Pool | Advanced Buffer Properties |
+|------------- |----------- | ----------- | ----------- | 
+| `default-lossy` | `memory-percent` | `ingress-pool 0`<br>`egress-pool 0` | `memory-percent` |
+| `default-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group bulk switch-priority` |
+| `default-lossless` | `memory-percent` | `ingress-pool 1`<br>`egress-pool 1` | `memory-percent` |
+| `roce-lossless` | `memory-percent` | `ingress-pool 1`<br>`egress-pool 1` | `memory-percent` |
+| `mc-lossy` | `memory-percent` | `ingress-pool 2`<br>`egress-pool 2` | `memory-percent` | 
+| `mc-lossy` | `switch-priority` | `ingress-lossy-buffer` | `priority-group service2 switch-priority` | 
+
+For example, to assign 20 percent of memory to a new static service pool you must allow 20 percent of memory to be available from the default traffic pools. The following commands reduce the `default-lossy` traffic pool to 80 percent memory, allowing you to allocate the memory to `ingress-pool 3`:
+
+```
+cumulus@switch:~$ nv set qos traffic-pool default-lossy memory-percent 80
+cumulus@switch:~$ nv set qos advance-buffer-config default-global ingress-pool 3 memory-percent 20
+cumulus@switch:~$ nv config apply
+```
+
+You can view advanced buffer configuration with the `nv show qos advance-buffer-config default-global <buffer/pool name>` command:
+
+```
+cumulus@switch:~$ nv show qos advance-buffer-config default-global ingress-pool
+Pool-Id  infinite  memory-percent  mode     reserved  shared-alpha  shared-bytes
+-------  --------  --------------  -------  --------  ------------  ------------
+0                  80              dynamic                                      
+3                  20    
+```
 
 ## Syntax Checker
 
@@ -1951,9 +2087,9 @@ cos_egr_queue.cos_7.cpu = 7
 
 ### Configure QoS and Breakout Ports Simultaneously
 
-If you configure both breakout ports by modifying `ports.conf` and QoS settings by modifying `qos_features.conf`, then apply the settings with `reload switchd`, errors might occur.
+If you configure btoh breakout ports and QoS settings for breakout interfaces at the same time, errors might occur.
 
-You must apply breakout port configuration before QoS configuration on the breakout ports. Modify `ports.conf` first, `reload switchd`, then modify `qos_features.conf` and `reload switchd` a second time.
+You must apply breakout port configuration before QoS configuration on the breakout ports. If you are using NVUE, configure breakout ports and perform an `nv config apply` first, then configure QoS settings on the breakout ports followed by another `nv config apply`. If you are using linux file configuration, modify `ports.conf` first, `reload switchd`, then modify `qos_features.conf` and `reload switchd` a second time.
 
 ### QoS Settings on Bond Member Interfaces
 

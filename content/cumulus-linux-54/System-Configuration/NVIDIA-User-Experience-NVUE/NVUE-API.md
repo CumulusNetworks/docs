@@ -41,9 +41,9 @@ To access the NVUE REST API from a front panel port (swp) on the switch:
 {{%/notice%}}
 
 ## Transport Layer Security
-
+<!-- vale off -->
 Cumulus Linux contains a self-signed certificate and private key used server-side in this application so that it works out of the box; however, NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format.
-
+<!-- vale on -->
 For step by step documentation on generating self-signed certificates and keys, and installing them on the switch, refer to the {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}.
 
 After installing the certificates and keys, edit the `/etc/nginx/sites-available/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys, then restart NGINX with the `sudo systemctl restart nginx` command.
@@ -101,6 +101,7 @@ To make a configuration change with the NVUE API:
    ```
 
    {{%notice note%}}
+
 To allow the `cumulus` user access to the NVUE API, you must change the default password for the `cumulus` user.
 {{%/notice%}}
 
@@ -155,6 +156,14 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
    ```
    cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/?rev=applied&filled=false"
    ```
+
+### Save an Applied Configuration
+
+To save an applied configuration change to the startup configuration (`/etc/nvue.d/startup.yaml`) so that the changes persist after a reboot, use a PATCH to the applied revision with the `save` state. For example:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X PATCH -d '{"state": "save", "auto-prompt": {"ays": "ays_yes"}}' -H 'Content-Type: application/json'  https://127.0.0.1:8765/nvue_v1/revision/applied
+```
 
 ### Unset a Configuration Change
 
@@ -482,7 +491,11 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-pro
 
 ## NVUE REST API Documentation
 
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-53/api/index.html" text="NVUE API documentation.">}}
+For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-54/api/index.html" text="NVUE API documentation.">}}
+
+## Considerations
+
+Unlike the NVUE CLI, the NVUE API does not support configuring a plain text password for a user account; you must configure a hashed password for a user account with the NVUE API.
 
 ## Related Information
 

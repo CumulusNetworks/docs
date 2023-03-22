@@ -152,7 +152,7 @@ You can upgrade Cumulus Linux in one of two ways:
 Cumulus Linux also provides ISSU to upgrade an active switch with minimal disruption to the network. See {{<link url="In-Service-System-Upgrade-ISSU" text="ISSU">}}.
 
 {{%notice note%}}
-- To upgrade to Cumulus Linux 5.3.0 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
+- To upgrade to Cumulus Linux 5.4.0 from Cumulus Linux 4.x or 3.x, you must install a disk image of the new release using ONIE. You *cannot* upgrade packages with the `apt-get upgrade` command.
 - Upgrading an MLAG pair requires additional steps. If you are using MLAG to dual connect two Cumulus Linux switches in your environment, follow the steps in [Upgrade Switches in an MLAG Pair](#upgrade-switches-in-an-mlag-pair) below to ensure a smooth upgrade.
 {{%/notice%}}
 
@@ -160,7 +160,7 @@ Cumulus Linux also provides ISSU to upgrade an active switch with minimal disrup
 
 The decision to upgrade Cumulus Linux by either installing a Cumulus Linux image or upgrading packages depends on your environment and your preferences. Here are some recommendations for each upgrade method.
 
-**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.3.0).
+**Install a Cumulus Linux image** if you are performing a rolling upgrade in a production environment and if are using up-to-date and comprehensive automation scripts. This upgrade method enables you to choose the exact release to which you want to upgrade and is the *only* method available to upgrade your switch to a new release train (for example, from 4.4.3 to 5.4.0).
 
 Be aware of the following when installing the Cumulus Linux image:
 
@@ -201,6 +201,16 @@ To upgrade the switch:
 6. Reinstall third party applications and associated configurations.
 
 ### Package Upgrade
+
+{{%notice warning%}}
+- Cumulus Linux 5.4 and later uses a new format for port splitting but continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, see {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
+- Cumulus Linux 5.4 package upgrade does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. The following table shows which upgrade paths support warm restart to complete the upgrade.
+
+  | From   | To   | Warm Restart Mode |
+  |------- | ---- | ----------------- |
+  | 5.0.0 - 5.3.0 | 5.3.1 | Yes       |
+  | 5.0.0 - 5.3.1 | 5.4.0 | No        |
+{{%/notice%}}
 
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
 
@@ -276,26 +286,26 @@ To upgrade the switch using package upgrade:
 
 6. Verify correct operation with the old configurations on the new version.
 
+{{%notice info%}}
+The first time you run the NVUE `nv config apply` command after upgrading to Cumulus Linux 5.4, NVUE might override certain existing configuration for features that are now configurable with NVUE. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you either:
+- Run NVUE commands to configure these features.
+- Configure NVUE to ignore changes to the relevant configuration files for these features; refer to {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}.
+{{%/notice%}}
+
 ### Upgrade Notes
 
 *Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.0.0 and run the `sudo -E apt-get upgrade` command on that switch, the packages upgrade to the latest releases in the latest 5.x release.
 
 Because Cumulus Linux is a collection of different Debian Linux packages, be aware of the following:
 
-- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 5.3.0, these two files display the release as 5.3.0 after the upgrade.
-- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.0.0, followed by a package upgrade to 5.3.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.0.0, which is the originally installed base image.
+- The `/etc/os-release` and `/etc/lsb-release` files update to the currently installed Cumulus Linux release when you upgrade the switch using either *package upgrade* or *Cumulus Linux image install*. For example, if you run `sudo -E apt-get upgrade` and the latest Cumulus Linux release on the repository is 5.4.0, these two files display the release as 5.4.0 after the upgrade.
+- The `/etc/image-release` file updates **only** when you run a Cumulus Linux image install. Therefore, if you run a Cumulus Linux image install of Cumulus Linux 5.0.0, followed by a package upgrade to 5.4.0 using `sudo -E apt-get upgrade`, the `/etc/image-release` file continues to display Cumulus Linux 5.0.0, which is the originally installed base image.
 
 ## Upgrade Switches in an MLAG Pair
 
 If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} to dual connect two switches in your environment, follow the steps below to upgrade the switches.
 
 You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
-
-{{%notice info%}}
-During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 4.4.0 and leaf02 is running 5.3.0.
-
-The bonding driver changes how it derives the *actor port key*, which causes the port key to have a different value for links with the same speed or duplex settings across different major releases. The port key from the LACP partner must remain consistent between all bond members for all bonds to synchronize. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch synchronize.
-{{%/notice%}}
 
 1. Verify the switch is in the secondary role:
 

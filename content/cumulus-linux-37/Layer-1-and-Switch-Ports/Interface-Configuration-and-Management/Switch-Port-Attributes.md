@@ -34,8 +34,7 @@ unsupported error is shown.
 
 {{%/notice%}}
 
-For switches with **{{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until
-the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
+For switches with **{{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Spectrum ASICs">}}**, the firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 For **Broadcom-based switches,** enable auto-negotiation on each port. When enabled, Cumulus Linux automatically configures the best link parameter settings based on the module type (speed, duplex, auto-negotiation, and FEC where supported). To understand the default configuration for the various port and cable types, see the {{<link url="#interface-configuration-recommendations-for-broadcom-platforms" text="table below">}}. If you need to troubleshoot further to bring the link up, follow the sections below to set the specific link parameters.
 

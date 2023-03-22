@@ -4,9 +4,6 @@ author: NVIDIA
 weight: 420
 toc: 4
 ---
-Upgrading the NetQ Agents is optional, but recommended.
-
-## Upgrade NetQ Agent
 
 To upgrade the NetQ Agent:
 
@@ -58,7 +55,7 @@ Run the following command to view the NetQ Agent version.
 cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-{{<netq-install/agent-version version="4.4.0" opsys="cl">}}
+{{<netq-install/agent-version version="4.5.0" opsys="cl">}}
 
 {{</tab>}}
 
@@ -68,7 +65,7 @@ cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 ```
 
-{{<netq-install/agent-version version="4.4.0" opsys="ub">}}
+{{<netq-install/agent-version version="4.5.0" opsys="ub">}}
 
 {{</tab>}}
 
@@ -78,10 +75,13 @@ root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-agent
 root@rhel7:~# rpm -q -netq-agent
 ```
 
-{{<netq-install/agent-version version="4.4.0" opsys="rh">}}
+{{<netq-install/agent-version version="4.5.0" opsys="rh">}}
 
 {{</tab>}}
 
 {{</tabs>}}
 
 If you see an older version, upgrade the NetQ Agent, as described above.
+
+## Related Information
+- {{<link title="Manage NetQ Agents">}}

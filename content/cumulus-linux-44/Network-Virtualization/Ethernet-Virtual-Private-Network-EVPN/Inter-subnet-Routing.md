@@ -902,13 +902,6 @@ cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp router-id 10.10.10.63
 cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@border01:~$ nv set evpn multihoming enable on
-cumulus@border01:~$ nv set interface bond1 evpn multihoming segment local-id 1
-cumulus@border01:~$ nv set interface bond2 evpn multihoming segment local-id 2
-cumulus@border01:~$ nv set interface bond3 evpn multihoming segment local-id 3
-cumulus@border01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:FF
-cumulus@border01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
-cumulus@border01:~$ nv set interface swp51-52 evpn multihoming uplink on
 cumulus@border01:~$ nv config apply
 ```
 
@@ -1078,7 +1071,6 @@ iface swp52
 auto bond1
 iface bond1
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:FF
     bond-slaves swp1
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -1086,7 +1078,6 @@ iface bond1
 auto bond2
 iface bond2
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:FF
     bond-slaves swp2
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -1094,7 +1085,6 @@ iface bond2
 auto bond3
 iface bond3
     mtu 9000
-    es-sys-mac 44:38:39:BE:EF:FF
     bond-slaves swp3
     bond-mode 802.3ad
     bond-lacp-bypass-allow yes
@@ -1253,25 +1243,14 @@ vrf VRF10
  exit-vrf
 !
 interface bond1
- evpn mh es-df-pref 50000
- evpn mh es-id 1
- evpn mh es-sys-mac 44:38:39:be:ef:ff
 !
 interface bond2
- evpn mh es-df-pref 50000
- evpn mh es-id 2
- evpn mh es-sys-mac 44:38:39:be:ef:ff
 !
 interface bond3
- evpn mh es-df-pref 50000
- evpn mh es-id 3
- evpn mh es-sys-mac 44:38:39:be:ef:ff
 !
 interface swp51
- evpn mh uplink
 !
 interface swp52
- evpn mh uplink
 !
 router bgp 65163
  bgp router-id 10.10.10.63

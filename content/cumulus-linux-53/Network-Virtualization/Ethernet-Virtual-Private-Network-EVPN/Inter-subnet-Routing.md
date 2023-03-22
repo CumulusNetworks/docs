@@ -576,7 +576,7 @@ To configure a downstream VNI, you configure tenant VRFs as usual; however, to c
 
 ### Configure Route Targets
 
-The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. For route target *import* statements, you can use `route-target import *:<vni>` as an alternative. The asterisk (*) uses any ASN as a wildcard.
+The route target import or export statement is in the format `route-target import|export <asn>:<vni>`; for example, `route-target import 65101:6000`. For route target *import* statements, you can use `route-target import ANY:<vni>` for NVUE commands or `route-target import *:<vni>` in the `/etc/frr/frr.conf` file. `ANY` in NVUE commands or the asterisk (*) in the `/etc/frr/frr.conf` file uses any ASN as a wildcard.
 
 The NVUE commands are as follows:
 - To configure a route import statement: `nv set vrf <vrf> router bgp route-import from-evpn route-target <asn>:<vni>`
@@ -593,11 +593,11 @@ The following example shows a configuration with downstream VNI on leaf01 thru l
 <!-- vale off -->
 |   Traffic Flow between VRF RED and VRF 10  |     |
 | ----------------------------------------------| ----|
-| <img width=1300/> {{< img src="/images/cumulus-linux/evpn-downstream-vni.png"  >}}| <br><ol><li>server01 forwards traffic to leaf01.</li><li>leaf01 encapsulates the packet with the VNI in its route-target import statement (6000) and tunnels the traffic over to border01.</li><li> border01 uses the VNI received from leaf01 to forward the packet.</li><li> The reverse traffic from border01 to server01 is encapsulated with the VNI in the route-target import statement on border01 (4001) and tunneled over to leaf01, where routing occurs in VRF RED.</li></ul> |
+| <img width=1300/> {{< img src="/images/cumulus-linux/evpn-downstream-vni-new.png"  >}}| <br><ol><li>server01 forwards traffic to leaf01.</li><li>leaf01 encapsulates the packet with the VNI in its route-target import statement (6000) and tunnels the traffic over to border01.</li><li> border01 uses the VNI received from leaf01 to forward the packet.</li><li> The reverse traffic from border01 to server01 is encapsulated with the VNI in the route-target import statement on border01 (4001) and tunneled over to leaf01, where routing occurs in VRF RED.</li></ul> |
 <!-- vale on -->
 The configuration for the example is below.
-- On leaf01, you can see the route target (`route-target import *:6000`) under the `router bgp 65101 vrf RED` and `router bgp 65101 vrf BLUE` stanza of the `/etc/frr/frr.conf` file.
-- On border01, you can see the route targets (`route-target import *:4001` and `route-target import *:4002`) under the `router bgp 65163 vrf VRF10` stanza of the `/etc/frr/frr.conf` file.
+- On leaf01, you can see the route target (`route-target import 65163:6000`) under the `router bgp 65101 vrf RED` and `router bgp 65101 vrf BLUE` stanza of the `/etc/frr/frr.conf` file.
+- On border01, you can see the route targets (`route-target import 65101:4001` and `route-target import 65101:4002`) under the `router bgp 65163 vrf VRF10` stanza of the `/etc/frr/frr.conf` file.
 
 Because the configuration is similar on all the leafs, the example only shows configuration files for leaf01 and border01. For brevity, the example do not show the spine configuration files.
 
@@ -738,13 +738,6 @@ cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp router-id 10.10.10.63
 cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp address-family ipv4-unicast redistribute connected enable on
 cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp peer-group underlay address-family l2vpn-evpn enable on
 cumulus@border01:~$ nv set vrf EXTERNAL2 router bgp address-family ipv4-unicast route-export to-evpn
-cumulus@border01:~$ nv set evpn multihoming enable on
-cumulus@border01:~$ nv set interface bond1 evpn multihoming segment local-id 1
-cumulus@border01:~$ nv set interface bond2 evpn multihoming segment local-id 2
-cumulus@border01:~$ nv set interface bond3 evpn multihoming segment local-id 3
-cumulus@border01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:FF
-cumulus@border01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
-cumulus@border01:~$ nv set interface swp51-52 evpn multihoming uplink on
 cumulus@border01:~$ nv config apply
 ```
 
@@ -1007,8 +1000,7 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
                 '2010': {}
     evpn:
       enable: on
-      multihoming:
-        enable: on
+      multihoming: {}
     interface:
       bond1:
         bond:
@@ -1020,12 +1012,7 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
             br_default:
               access: 2001
         evpn:
-          multihoming:
-            segment:
-              df-preference: 50000
-              enable: on
-              local-id: 1
-              mac-address: 44:38:39:BE:EF:FF
+          multihoming: {}
         link:
           mtu: 9000
         type: bond
@@ -1039,12 +1026,7 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
             br_default:
               access: 2002
         evpn:
-          multihoming:
-            segment:
-              df-preference: 50000
-              enable: on
-              local-id: 2
-              mac-address: 44:38:39:BE:EF:FF
+          multihoming: {}
         link:
           mtu: 9000
         type: bond
@@ -1058,12 +1040,7 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
             br_default:
               access: 2010
         evpn:
-          multihoming:
-            segment:
-              df-preference: 50000
-              enable: on
-              local-id: 3
-              mac-address: 44:38:39:BE:EF:FF
+          multihoming: {}
         link:
           mtu: 9000
         type: bond
@@ -1080,13 +1057,11 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
         type: swp
       swp51:
         evpn:
-          multihoming:
-            uplink: on
+          multihoming: {}
         type: swp
       swp52:
         evpn:
-          multihoming:
-            uplink: on
+          multihoming: {}
         type: swp
       vlan2001:
         ip:
@@ -1123,6 +1098,8 @@ cumulus@border01:~$ sudo cat /etc/nvue.d/startup.yaml
     system:
       global:
         anycast-mac: 44:38:39:BE:EF:FF
+        system-mac: 44:38:39:22:01:74
+      hostname: border01
     vrf:
       EXTERNAL1:
         router:
@@ -1357,20 +1334,41 @@ iface mgmt
     address 127.0.0.1/8
     address ::1/128
     vrf-table auto
-auto VRF10
-iface VRF10
-    vrf-table auto
 auto EXTERNAL1
 iface EXTERNAL1
     vrf-table auto
 auto EXTERNAL2
 iface EXTERNAL2
     vrf-table auto
+auto VRF10
+iface VRF10
+    vrf-table auto
 auto eth0
 iface eth0 inet dhcp
     ip-forward off
     ip6-forward off
     vrf mgmt
+auto bond1
+iface bond1
+    mtu 9000
+    bond-slaves swp1
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    bridge-access 2001
+auto bond2
+iface bond2
+    mtu 9000
+    bond-slaves swp2
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    bridge-access 2002
+auto bond3
+iface bond3
+    mtu 9000
+    bond-slaves swp3
+    bond-mode 802.3ad
+    bond-lacp-bypass-allow yes
+    bridge-access 2010
 auto swp1
 iface swp1
 auto swp2
@@ -1381,55 +1379,30 @@ auto swp51
 iface swp51
 auto swp52
 iface swp52
-auto bond1
-iface bond1
-    mtu 9000
-    es-sys-mac 44:38:39:BE:EF:FF
-    bond-slaves swp1
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
-    bridge-access 2001
-auto bond2
-iface bond2
-    mtu 9000
-    es-sys-mac 44:38:39:BE:EF:FF
-    bond-slaves swp2
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
-    bridge-access 2002
-auto bond3
-iface bond3
-    mtu 9000
-    es-sys-mac 44:38:39:BE:EF:FF
-    bond-slaves swp3
-    bond-mode 802.3ad
-    bond-lacp-bypass-allow yes
-    bridge-access 2010
 auto vlan2001
 iface vlan2001
     address 10.1.201.1/24
-    hwaddress 44:38:39:22:01:b3
+    hwaddress 44:38:39:22:01:74
     vrf EXTERNAL1
     vlan-raw-device br_default
     vlan-id 2001
 auto vlan2002
 iface vlan2002
     address 10.1.202.1/24
-    hwaddress 44:38:39:22:01:b3
+    hwaddress 44:38:39:22:01:74
     vrf EXTERNAL2
     vlan-raw-device br_default
     vlan-id 2002
 auto vlan2010
 iface vlan2010
     address 10.1.210.1/24
-    hwaddress 44:38:39:22:01:b3
+    hwaddress 44:38:39:22:01:74
     vrf VRF10
     vlan-raw-device br_default
     vlan-id 2010
 auto vxlan48
 iface vxlan48
     bridge-vlan-vni-map 2001=2001 2002=2002 2010=2010
-    bridge-vids 2001 2002 2010
     bridge-learning off
 auto vlan336_l3
 iface vlan336_l3
@@ -1439,19 +1412,18 @@ iface vlan336_l3
 auto vxlan99
 iface vxlan99
     bridge-vlan-vni-map 336=6000
-    bridge-vids 336
     bridge-learning off
 auto br_default
 iface br_default
     bridge-ports bond1 bond2 bond3 vxlan48
-    hwaddress 44:38:39:22:01:b3
+    hwaddress 44:38:39:22:01:74
     bridge-vlan-aware yes
     bridge-vids 2001 2002 2010
     bridge-pvid 1
 auto br_l3vni
 iface br_l3vni
     bridge-ports vxlan99
-    hwaddress 44:38:39:22:01:b3
+    hwaddress 44:38:39:22:01:74
     bridge-vlan-aware yes
 ```
 
@@ -1575,26 +1547,6 @@ exit-address-family
 
 ```
 cumulus@border01:~$ sudo cat /etc/frr/frr.conf
-...
-evpn mh mac-holdtime 1080
-evpn mh neigh-holdtime 1080
-evpn mh startup-delay 180
-interface bond1
-evpn mh es-df-pref 50000
-evpn mh es-id 1
-evpn mh es-sys-mac 44:38:39:BE:EF:FF
-interface bond2
-evpn mh es-df-pref 50000
-evpn mh es-id 2
-evpn mh es-sys-mac 44:38:39:BE:EF:FF
-interface bond3
-evpn mh es-df-pref 50000
-evpn mh es-id 3
-evpn mh es-sys-mac 44:38:39:BE:EF:FF
-interface swp51
-evpn mh uplink
-interface swp52
-evpn mh uplink
 vrf EXTERNAL1
 exit-vrf
 vrf EXTERNAL2
@@ -1644,31 +1596,6 @@ neighbor swp52 activate
 neighbor underlay activate
 exit-address-family
 ! end of router bgp 65163 vrf default
-router bgp 65163 vrf VRF10
-bgp router-id 10.10.10.63
-timers bgp 3 9
-bgp deterministic-med
-! Neighbors
-neighbor underlay peer-group
-neighbor underlay timers 3 9
-neighbor underlay timers connect 10
-neighbor underlay advertisement-interval 0
-no neighbor underlay capability extended-nexthop
-! Address families
-address-family ipv4 unicast
-redistribute connected
-maximum-paths ibgp 64
-maximum-paths 64
-distance bgp 20 200 200
-neighbor underlay activate
-exit-address-family
-address-family l2vpn evpn
-advertise ipv4 unicast
-route-target import 65101:4001
-route-target import 65101:4002
-neighbor underlay activate
-exit-address-family
-! end of router bgp 65163 vrf VRF10
 router bgp 65163 vrf EXTERNAL1
 bgp router-id 10.10.10.63
 timers bgp 3 9
@@ -1715,6 +1642,31 @@ advertise ipv4 unicast
 neighbor underlay activate
 exit-address-family
 ! end of router bgp 65163 vrf EXTERNAL2
+router bgp 65163 vrf VRF10
+bgp router-id 10.10.10.63
+timers bgp 3 9
+bgp deterministic-med
+! Neighbors
+neighbor underlay peer-group
+neighbor underlay timers 3 9
+neighbor underlay timers connect 10
+neighbor underlay advertisement-interval 0
+no neighbor underlay capability extended-nexthop
+! Address families
+address-family ipv4 unicast
+redistribute connected
+maximum-paths ibgp 64
+maximum-paths 64
+distance bgp 20 200 200
+neighbor underlay activate
+exit-address-family
+address-family l2vpn evpn
+advertise ipv4 unicast
+route-target import 65101:4001
+route-target import 65101:4002
+neighbor underlay activate
+exit-address-family
+! end of router bgp 65163 vrf VRF10
 ```
 
 {{< /tab >}}
@@ -1722,7 +1674,7 @@ exit-address-family
 
 {{< /tab >}}
 {{< tab "Try It " >}}
-    {{< simulation name="Try It CL53 - DVNI" showNodes="leaf01,spine01,border01,server01,fw1" >}}
+    {{< simulation name="Try It CL53 - DVNIv3" showNodes="leaf01,spine01,border01,server01,fw1" >}}
 
 This simulation starts with the example downstream VNI configuration. To simplify the example, only one spine is in the topology. The demo is pre-configured using {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/NVIDIA-User-Experience-NVUE/" text="NVUE">}} commands.
 

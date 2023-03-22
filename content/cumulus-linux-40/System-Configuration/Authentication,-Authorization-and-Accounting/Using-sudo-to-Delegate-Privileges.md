@@ -66,11 +66,11 @@ When executed by an unprivileged user, the example commands below must be prefix
 | Netfilter | List iptables rules | iptables -L | %noc ALL=(ALL) NOPASSWD:/sbin/iptables |
 | L1 + 2 features|Any LLDP command | lldpcli show neighbors / configure | %noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli |
 | L1 + 2 features | Just show neighbors | lldpcli show neighbors | %noc ALL=(ALL) NOPASSWD:/usr/sbin/lldpcli show neighbors* |
-| Interfaces | Modify any interface | ip link set dev swp1 {up|down} | %noc ALL=(ALL) NOPASSWD:/sbin/ip link set * |
+| Interfaces | Modify any interface | ip link set dev swp1 {up\|down} | %noc ALL=(ALL) NOPASSWD:/sbin/ip link set * |
 | Interfaces | Up any interface | ifup swp1 | %noc ALL=(ALL) NOPASSWD:/sbin/ifup |
 | Interfaces | Down any interface | ifdown swp1 | %noc ALL=(ALL) NOPASSWD:/sbin/ifdown |
 | Interfaces | Up/down only swp2 | ifup swp2 / ifdown swp2 | %noc ALL=(ALL) NOPASSWD:/sbin/ifup swp2,/sbin/ifdown swp2 |
-| Interfaces | Any IP address change | ip addr {add|del} 192.0.2.1/30 dev swp1 | %noc ALL=(ALL) NOPASSWD:/sbin/ip addr * |
+| Interfaces | Any IP address change | ip addr {add\|del} 192.0.2.1/30 dev swp1 | %noc ALL=(ALL) NOPASSWD:/sbin/ip addr * |
 | Interfaces | Only set IP address | ip addr add 192.0.2.1/30 dev swp1 | %noc ALL=(ALL) NOPASSWD:/sbin/ip addr add * |
 | Ethernet bridging | Any bridge command | brctl addbr br0 / brctl delif br0 swp1 | %noc ALL=(ALL) NOPASSWD:/sbin/brctl |
 | Ethernet bridging | Add bridges and interfaces | brctl addbr br0 / brctl addif br0 swp1 | %noc ALL=(ALL) NOPASSWD:/sbin/brctl addbr *,/sbin/brctl addif * |

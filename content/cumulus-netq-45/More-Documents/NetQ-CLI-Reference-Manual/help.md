@@ -5,6 +5,7 @@ weight: 1103
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
+type: nojsscroll
 ---
 
 ## netq help
@@ -33,6 +34,8 @@ netq help verbose
 | NA | \<text-keywords\> | Display syntax for commands with these keywords |
 
 ### Sample Usage
+
+<!--need updated example-->
 
 Display syntax for all commands with the `agent` keyword:
 

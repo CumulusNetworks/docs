@@ -1,11 +1,11 @@
 ---
-title: Switch Inventory and Roles
+title: Switch Management
 author: NVIDIA
 weight: 650
 toc: 4
 ---
 
-Upon installation, lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.7.12 or later, SONiC 202012 and 202106, and NetQ Agent 4.1.0 or later in your network. You can assign network roles to switches and select switches for software installation and upgrades from this inventory listing.
+Upon installation, lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.7.12 or later, SONiC 202012 and 202106, and NetQ Agent 4.1.0 or later in your network. From this list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades.
 
 ## View the LCM Switch Inventory
 
@@ -13,15 +13,11 @@ Upon installation, lifecycle management displays an inventory of switches that a
 
 {{<tab "NetQ UI" >}}
 
-The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
+From the LCM dashboard, select the **Switch management** tab. The Switches card displays the number of switches that NetQ discovered and the network OS versions that are running on those switches:
 
-{{<figure src="/images/netq/lcm-switches-card-with-labels-320.png" alt="switches card displaying 12 discovered switches with Cumulus Linux version 4.1.0" width="400">}}
+{{<figure src="/images/netq/lcm-dashboard-switches-450.png" alt="switches card displaying 14 discovered switches with Cumulus Linux version 4.4.4" width="400">}}
 
-To view a list of all discovered switches, select **Manage** on the Switches card.
-
-Review the list:
-- Sort the list by any column; hover over column title and click to toggle between ascending and descending order
-- Filter the list: click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18" alt="Filter Switch List">}} and enter parameter value of interest
+To view a table of all discovered switches and their attributes, select **Manage** on the Switches card.
 
 {{<notice tip>}}
 If you have more than one network OS version running on your switches, you can click a version segment on the Switches card graph to open a list of switches pre-filtered by that version.
@@ -34,42 +30,14 @@ If you have more than one network OS version running on your switches, you can c
 To view a list of all switches discovered by lifecycle management, run:
 
 ```
-netq lcm show switches [version <text-cumulus-linux-version>] [json]
+netq lcm show switches
+    [cl-version <text-cumulus-linux-version>]
+    [netq-version <text-netq-version>]
+    [json]
 ```
-<!-- vale off -->
-Use the `version` option to only show switches with a given network OS version, X.Y.Z.
-<!-- vale on -->
-The following example shows all switches discovered by lifecycle management:
+Use the `version` options to display switches with a given OS version, X.Y.Z.
 
-```
-cumulus@switch:~$ netq lcm show switches
-Hostname          Role       IP Address                MAC Address        CPU      CL Version           NetQ Version             Last Changed
------------------ ---------- ------------------------- ------------------ -------- -------------------- ------------------------ -------------------------
-leaf01            leaf       192.168.200.11            44:38:39:00:01:7A  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:37 2020
-                                                                                                        104fb9ed
-spine04           spine      192.168.200.24            44:38:39:00:01:6C  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:16 2020
-                                                                                                        104fb9ed
-leaf03            leaf       192.168.200.13            44:38:39:00:01:84  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:56 2020
-                                                                                                        104fb9ed
-leaf04            leaf       192.168.200.14            44:38:39:00:01:8A  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:07 2020
-                                                                                                        104fb9ed
-border02                     192.168.200.64            44:38:39:00:01:7C  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:56:49 2020
-                                                                                                        104fb9ed
-border01                     192.168.200.63            44:38:39:00:01:74  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:56:37 2020
-                                                                                                        104fb9ed
-fw2                          192.168.200.62            44:38:39:00:01:8E  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:24:58 2020
-                                                                                                        104fb9ed
-spine01           spine      192.168.200.21            44:38:39:00:01:82  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:07 2020
-                                                                                                        104fb9ed
-spine02           spine      192.168.200.22            44:38:39:00:01:92  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:08 2020
-                                                                                                        104fb9ed
-spine03           spine      192.168.200.23            44:38:39:00:01:70  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:25:16 2020
-                                                                                                        104fb9ed
-fw1                          192.168.200.61            44:38:39:00:01:8C  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Tue Sep 29 21:24:58 2020
-                                                                                                        104fb9ed
-leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:53 2020
-                                                                                                        104fb9ed
-```
+For additional details, refer to the {{<link title="lcm/#netq-lcm-show-switches" text="command line reference">}}.
 
 {{</tab>}}
 
@@ -78,43 +46,133 @@ leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64
 This list is the starting point for network OS upgrades or NetQ installations and upgrades. If the switches you want to upgrade are not present in the list, you can:
 
 - Verify the missing switches are reachable using `ping`
-- Verify the NetQ Agent is fresh and version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} Menu, then click **Agents** or run `netq show agents`)
+- Verify the NetQ Agent is fresh and version 4.1.0 or later for switches that already have the agent installed (click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18" alt="Main Menu">}} **Menu**, then click **Agents** or run `netq show agents`)
 - {{<link title="Install NetQ Agents" text="Install NetQ on the switch">}}
 - {{<link title="Upgrade NetQ Agents" text="Upgrade NetQ Agents">}} (if needed)
+
+## Attach a Profile to a Switch
+
+After creating {{<link title="Credentials and Profiles" text="access profiles">}} from your credentials, you can attach a profile to one or more switches.
+
+{{<tabs "TabID85" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. On the Switches card, select **Manage**.
+
+2. The table displays a list of switches. The **Access type** column specifies whether the type of authentication is basic or SSH. The **Profile name** column displays the access profile that is assigned to the switch.
+
+Select the switches you'd like to assign access profiles, then select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/04-Login-Logout/login-key-1.svg" height="18" width="18">}} **Manage access profile** above the table: 
+
+{{<figure src="/images/netq/manage-access-profile-450.png" alt="" width="500">}}
+
+3. Select the profile from the list, then click **Done**.
+
+If the profile you want to use isn't listed, select **Add new profile** and {{<link title="Credentials and Profiles/#create-access-profiles" text="follow the steps to create an access profile">}}.
+
+4. Select **Ok** on the confirmation dialog. The updated access profiles are now reflected in the **Profile name** column:
+
+{{<figure src="/images/netq/updated-access-profile-450.png" alt="" width="500">}}
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+The command syntax to attach a profile to a switch is:
+
+```
+netq lcm attach credentials 
+    profile_id <text-switch-profile-id> 
+    hostnames <text-switch-hostnames>
+```
+
+1. Run `netq lcm show credentials` to display a list of access profiles. Note the profile ID that you'd like to assign to a switch.
+
+2. Run `netq lcm show switches` to display a list of switches. Note the hostname of the switch(es) you'd like to attach a profile to.
+
+3. Next, attach the credentials to the switch:
+
+```
+netq lcm attach credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 hostnames tor-1,tor-2
+Attached profile to switch(es).
+```
+
+4. Run `netq lcm show switches` and verify the change in the credential profile column.
+
+{{</tab>}}
+
+{{</tabs>}}
+
+## Reassign or Detach an Access Profile
+
+Detaching a profile from a switch restores it to the default access profile, Netq-Default.
+
+{{<tabs "TabID110" >}}
+
+{{<tab "NetQ UI" >}}
+
+1. On the Switches card, click **Manage**.
+
+2. The table displays a list of switches. In the profile name column, locate the access profile. Hover over the access type column and select **Manage access**:
+
+{{<figure src="/images/netq/detach-manage-access-450.png" alt="" width="500">}}
+
+3. To assign a different access profile to the switch, select it from the list. To detach the access profile, select <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" width="18" height="18"/> **Detach**.
+
+{{<figure src="/images/netq/manage-access-profile-spine-450.png" alt="" width="500">}}
+
+After you detach the profile from the switch, NetQ reassigns it to the Netq-Default profile.
+
+{{</tab>}}
+
+{{<tab "NetQ CLI" >}}
+
+The syntax for the detach command is `netq lcm detach credentials hostname <text-switch-hostname>`.
+
+1. To obtain a list of hostnames, run `netq lcm show switches`.
+
+2. Detach the access profile and specify the hostname. The following example detaches spine-1 from its assigned access profile:
+
+```
+cumulus@switch:~$ netq lcm detach credentials hostname spine-1
+Detached profile from switch.
+```
+
+3. Run `netq lcm show switches` and verify the change in the credential profile column.
+
+{{</tab>}}
+
+{{</tabs>}}
 
 ## Role Management
 
 You can assign switches one of four roles: superspine, spine, leaf, and exit.
 
-Switch roles identify switch dependencies and determine the order in which switches are upgraded. The upgrade process begins with switches assigned the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally, switches with no role assigned. Upgrades for all switches with a given role must be successful before the upgrade process for switches with the closest dependent role can begin.
+Switch roles identify switch dependencies and determine the order in which switches are upgraded. The upgrade process begins with switches assigned the superspine role, then continues with the spine switches, leaf switches, exit switches, and finally, switches with no role assigned. Upgrades for all switches with a given role must be successful before the upgrade proceeds to the switches with the closest dependent role.
 
-Role assignment is optional, but recommended. Using roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. Additionally, when you deploy MLAG pairs, assigned roles avoid upgrade conflicts.
+Role assignment is optional, but recommended. Assigning roles can prevent switches from becoming unreachable due to dependencies between switches or single attachments. Additionally, when you deploy MLAG pairs, assigned roles avoid upgrade conflicts.
 
 ### Assign Roles to Switches
 
-{{<tabs "TabID99" >}}
+{{<tabs "TabID136" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**.
+1. On the Switches card, click **Manage**.
 
-2. On the Switches card, click **Manage**.
+2. Select one switch or multiple switches to assign to the same role.
 
-3. Select one switch or multiple switches to assign to the same role.
+3. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role**.
 
-4. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
+4. Select the role (superspine, leaf, spine, or exit) that applies to the selected switch(es).
 
-5. Select the role that applies to the selected switch(es):
-
-    {{<figure src="/images/netq/lcm-role-assign-role-selection-320.png" alt="dialog showing role options including superspine, leaf, spine, and exit" width="300">}}
-
-6. Click **Assign**.
+5. Click **Assign**.
 
     Note that the **Role** column is updated with the role assigned to the selected switch(es). To return to the full list of switches, click **All**.
 
-    {{<figure src="/images/netq/lcm-switches-listing-role-assigned-320.png" alt="table displaying role column with updated switch role assignments" width="700">}}
+    {{<figure src="/images/netq/role-column-450.png" alt="table displaying role column with updated role assignments" width="700">}}
 
-7. Continue selecting switches and assigning roles until most or all switches have roles assigned.
+6. Continue selecting switches and assigning roles until most or all switches have roles assigned.
 
 {{</tab>}}
 
@@ -137,25 +195,6 @@ To assign multiple switches to the same role, separate the hostnames with commas
 ```
 netq lcm add role leaf switches leaf01,leaf02,leaf03,leaf04
 ```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-### View Switch Roles
-
-{{<tabs "TabID151" >}}
-
-{{<tab "NetQ UI" >}}
-
-1. Expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage Switches**.
-
-2. On the Switches card, click **Manage**. The assigned role appears in the table's **Role** column.
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
 To view all switch roles, run:
 
 ```
@@ -164,7 +203,7 @@ netq lcm show switches [version <text-cumulus-linux-version>] [json]
 <!-- vale off -->
 Use the `version` option to only show switches with a given network OS version, X.Y.Z.
 <!-- vale on -->
-This example shows the role of all switches in the **Role** column of the listing.
+The **Role** column displays assigned roles:
 
 ```
 cumulus@switch:~$ netq lcm show switches
@@ -195,34 +234,31 @@ fw1                          192.168.200.61            44:38:39:00:01:8C  x86_64
 leaf02            leaf       192.168.200.12            44:38:39:00:01:78  x86_64   4.1.0                3.2.0-cl4u30~1601410518. Wed Sep 30 21:55:53 2020
                                                                                                         104fb9ed
 ```
-
 {{</tab>}}
 
 {{</tabs>}}
 
 ### Reassign Roles to Switches
 
-{{<tabs "TabID179" >}}
+{{<tabs "TabID222" >}}
 
 {{<tab "NetQ UI" >}}
 
-1. Open the LCM dashboard.
+1. On the Switches card, click **Manage**.
 
-2. On the Switches card, click **Manage**.
+2. Select the switches with the incorrect role from the list.
 
-3. Select the switches with the incorrect role from the list.
+3. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}} **Assign role**.
 
-4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/58-Tags-Bookmarks/tags.svg" height="18" width="18" alt="Assign Role">}}.
+4. Select the correct role. To leave a switch unassigned, select **No Role**. 
 
-5. Select the correct role. (Note that you can select **No Role** here as well to remove the role from the switches.)
-
-6. Click **Assign**.
+5. Click **Assign**.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-You use the same command to assign a role as you use to change the role.
+You use the same command to both assign a role and change a role.
 
 For a single switch, run:
 
@@ -234,40 +270,6 @@ To assign multiple switches to the same role, separate the hostnames with commas
 
 ```
 cumulus@switch:~$ netq lcm add role exit switches border01,border02
-```
-
-{{</tab>}}
-
-{{</tabs>}}
-
-## Export a List of Switches
-
-{{<tabs "TabID223" >}}
-
-{{<tab "NetQ UI" >}}
-
-1. Open the LCM dashboard.
-
-2. On the Switches card, click **Manage**.
-
-3. Select one or more switches.
-
-4. Click <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/>.
-
-5. Choose the export file type and click **Export**:
-
-    {{<figure src="/images/netq/export-data-dialog-300.png" alt="dialog prompting user to export data as a CSV or in JSON format" width="250">}}
-
-{{</tab>}}
-
-{{<tab "NetQ CLI" >}}
-
-Use the `json` option with the `netq lcm show switches` command to output a list of all switches in the LCM repository. Alternately, output only switches running a particular network OS version by including the `version` option.
-
-```
-cumulus@switch:~$ netq lcm show switches json
-
-cumulus@switch:~$ netq lcm show switches version 3.7.11 json
 ```
 
 {{</tab>}}

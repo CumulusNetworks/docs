@@ -224,11 +224,16 @@ You can match on VLAN IDs on layer 2 interfaces for ingress rules. The following
 
 ```
 [ebtables]
--A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 0x66
+-A FORWARD -p 802_1Q --vlan-id 100 -j mark --mark-set 102
 
 [iptables]
--A FORWARD -i swp31 -m mark --mark 0x66 -m dscp --dscp-class CS1 -j SETCLASS --class 2
+-A FORWARD -i swp31 -m mark --mark 102 -m dscp --dscp-class CS1 -j SETCLASS --class 2
 ```
+
+{{%notice note%}}
+- Cumulus Linux reserves `mark` values between 0 and 100; for example, if you use `--mark-set 10`, you see an error. Use mark values between 101 and 4196.
+- You cannot mark multiple VLANs with the same value.
+{{%/notice%}}
 
 ## Install and Manage ACL Rules with NVUE
 
@@ -680,7 +685,7 @@ cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=statistics` command or the Linux `mlxcmd traps show copp-stats` command.
+To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=statistics` command.
 
 {{%notice note%}}
 Cumulus Linux provides default control plane policer values. You can adjust these values to accommodate higher scale requirements for specific protocols as needed.
@@ -818,7 +823,6 @@ cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 46
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
 cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```

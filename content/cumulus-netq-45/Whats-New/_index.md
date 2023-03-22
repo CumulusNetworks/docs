@@ -11,30 +11,29 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 <!-- vale off -->
 ## What's New in NetQ 4.5.0
 <!-- vale on -->
-This release includes several performance and infrastructure improvements that make NetQ faster and more reliable. It also includes extensive security enhancements and bug fixes. NVIDIA recommends upgrading to this release to improve software security and reliability. Additional updates include:
+NetQ 4.5.0 includes the following new features and improvements:
 
-Command line updates: 
-
-- `netq check` validation commands are now streaming checks by default.
-- `netq show events` commands have an updated syntax: `type` is now `message_type` and `level` is now `severity`. These commands are updated in their respective categories in this user guide.
-
-User guide updates:
-
-- New section defining {{<link title="Accounts and Roles" text="NetQ admin and user roles">}}
+ - {{<link title="Credentials and Profiles" text="Access credentials">}} that can be applied to individual switches for better security and increased flexibility
+ - RoCE {{<link title="check/#netq-check-roce" text="check">}} and {{<link title="show/#netq-show-roce-config" text="show">}} commands that display priority code point (PCP) and switch priority (SP) mapping misconfigurations and recommendations
+ - Lifecycle management for NVUE-enabled {{<link title="Upgrade Cumulus Linux Using LCM" text="upgrades to Cumulus Linux 5.0.0 and later">}}
+ - Initial support for Precision Time Protocol monitoring via the UI and CLI (not intended for use in production)
+ - User guide enhancements, including a {{<link title="Troubleshoot NetQ" text="NetQ troubleshooting guide">}} and updated {{<link title="NetQ CLI Reference" text="command line reference">}}
 
 ## Upgrade Paths
 
-You can upgrade to NetQ 4.4.0 directly from versions 4.1.0 or later. Upgrades from releases earlier than NetQ 4.1.0 require a fresh installation or an incremental upgrade to version 4.1.0 first.
+NetQ 4.5.0 images have been upgraded to Ubuntu 20.04. 
 
-NetQ no longer supports the Admin UI for installation and upgrades. Follow the {{<link title="Installation Management" text="updated instructions">}} according to your deployment model.
+To {{<link title="Upgrade NetQ Appliances and Virtual Machines" text="upgrade to NetQ 4.5.0">}}, you must back up your current NetQ data and perform a new installation of NetQ 4.5.0. This process is supported when upgrading from NetQ 4.3.0 or above.
+
+Upgrades from releases earlier than NetQ 4.3.0 require an incremental {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="upgrade to version 4.3.0">}} before you {{<link title="Upgrade NetQ Appliances and Virtual Machines" text="back up your data">}} and perform a new installation of NetQ 4.5.0.
 ## Compatible Agent Versions
 
-NetQ 4.4.0 is compatible with NetQ Agent versions 4.3.0 and above. You can install NetQ Agents on switches and servers running:
+NetQ 4.5.0 is compatible with NetQ Agent versions 4.4.0 and above. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 3.7.12 and later
-- SONiC 202012 to 202106
+- Cumulus Linux 3.7.16 and later
+- SONiC 202012
 - CentOS 7
 - RHEL 7.1
 - Ubuntu 18.04
 
-
+You must upgrade to the latest agent version to enable 4.5 features.

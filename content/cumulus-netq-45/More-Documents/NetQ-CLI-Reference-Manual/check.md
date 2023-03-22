@@ -5,21 +5,74 @@ weight: 1102
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
+type: nojsscroll
 ---
 <!-- vale NVIDIA.HeadingTitles = NO -->
 
-**About Validation Commands**
-
 Three sets of validation commands are available, all for verifying the health and performance of network protocols and services:
 
-- The original on-demand validation commands. These commands all begin with `netq check`. You use them to validate various elements in your network fabric at the current time or a time in the past. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results appear in the NetQ CLI immediately.
-- Use the newer set of validation commands to create on-demand or scheduled validations with the results appearing in the NetQ UI Validation Result cards. These commands begin with `netq add validation`. You use them to validate various elements in your network fabric currently or on a regular basis. No filtering on results is available within the commands as you do that through the NetQ UI.
-- The validation management commands. These present a list of all jobs and job settings, and the ability to remove validations.
+- `netq check` commands. These commands validate various elements in your network fabric. They allow filtering by hostname, can include or exclude selected tests, and some have additional options. The results appear in the NetQ CLI. Commands with a `streaming` option run streaming checks by default to return results faster. To run a non-streaming validation, include the `legacy` option.  
+- `netq add validation` commands. Use {{<link url="add/#netq-add-validation-name" text="these commands">}} to validate various elements in your network fabric. The results appear in the Validation Result cards in the UI, where you can filter them.
+- Validation management commands. `netq show validation settings` displays a list of all jobs and job settings and `netq del validation` allows you to remove validations.
 
-Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation. This topic describes the `netq check` commands, with the others described elsewhere based on the command names.
+Refer to {{<link title="Validation Checks">}} for a description of the tests run as part of each validation.
 
 - - -
+## netq check addresses
 
+Searches for duplicate IPv4 and IPv6 addresses assigned to interfaces across devices in the inventory, and checks for duplicate /32 host routes in each VRF.
+
+### Syntax
+
+```
+netq check addresses 
+    [label <text-label-name> | hostnames <text-list-hostnames>] 
+    [check_filter_id <text-check-filter-id>] 
+    [include <addr-number-range-list> | exclude <addr-number-range-list>]
+    [around <text-time>] 
+    [json | summary]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| label | \<text-label-name\> | Reserved |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
+| include | \<agent-number-range-list\> | Include the specified validation tests |
+| exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
+
+### Sample Usage
+
+```
+cumulus@switch:mgmt:~$ netq check addresses
+addr check result summary:
+
+Total nodes         : 25
+Checked nodes       : 25
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+Skipped Nodes       : 0
+
+
+IPV4 Duplicate Address Test   : passed
+IPV6 Duplicate Address Test   : passed
+
+```
+
+### Related Commands
+- ```netq show address-history```
+- ```netq add validation```
+- - -
 ## netq check agents
 
 Validates the communication status of all nodes (leafs, spines, and hosts) running the NetQ Agent in your network fabric. The output displays the status (passed/failed/skipped) of all tests and a summary including:
@@ -33,13 +86,12 @@ Validates the communication status of all nodes (leafs, spines, and hosts) runni
 ### Syntax
 
 ```
-netq check agents
-    [label <text-label-name> | hostnames <text-list-hostnames>]
+netq check agents streaming
+    [hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <agents-number-range-list> | exclude <agents-number-range-list>]
     [around <text-time>]
-    [streaming]
-    [json]
+    [json | summary]
 ```
 
 ### Required Arguments
@@ -50,14 +102,13 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| label | \<text-label-name\> | Reserved |
-| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames with to include in validation |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| streaming | NA | Perform a streaming query check |
 | json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
 
@@ -111,7 +162,6 @@ Agent Health Test   : passed
 - ```netq show agents```
 - ```netq show unit-tests agent```
 - ```netq add validation```
-- ```netq add validation name```
 - ```netq config agent```
 
 - - -
@@ -134,13 +184,13 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 ### Syntax
 
 ```
-netq check bgp
+netq check bgp 
     [label <text-label-name> | hostnames <text-list-hostnames>]
     [vrf <vrf>]
     [check_filter_id <text-check-filter-id>]
     [include <bgp-number-range-list> | exclude <bgp-number-range-list>]
     [around <text-time>]
-    [streaming]
+    [streaming | legacy]
     [json | summary]
 ```
 
@@ -160,12 +210,11 @@ None
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
+| legacy | NA | Perform a non-streaming query check |
+| json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check bgp
@@ -188,10 +237,9 @@ Router ID Test               : passed
 
 ### Related Commands
 <!-- vale off -->
-- netq show bgp
-- netq show unit-tests bgp
-- netq add validation
-- netq add validation name
+- ```netq show bgp```
+- ```netq show unit-tests bgp```
+- ```netq add validation```
 <!-- vale on -->
 - - -
 
@@ -229,12 +277,10 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
+| json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
-
-Basic validation: All devices have the same version
 
 ```
 cumulus@switch:~$ netq check cl-version
@@ -297,13 +343,13 @@ Cumulus Linux Image Version Test   : passed
 
 ### Related Commands
 
-- netq show unit-tests cl-version
+- ```netq show unit-tests cl-version```
 
 - - -
 
 ## netq check clag
 
-Verifies CLAG session consistency by identifying all CLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for such items as:
+Verifies CLAG session consistency by identifying all CLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for:
 
 - multiple link pairs with the same system MAC address
 - any interfaces with only a single attachment
@@ -327,7 +373,7 @@ netq check clag
     [check_filter_id <text-check-filter-id>]
     [include <clag-number-range-list> | exclude <clag-number-range-list>]
     [around <text-time>]
-    [streaming]
+    [streaming | legacy]
     [json | summary]
 ```
 
@@ -346,12 +392,11 @@ None
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
+| legacy | NA | Perform a non-streaming query check |
+| json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check clag
@@ -376,7 +421,7 @@ ProtoDown Bonds Test     : passed
 SVI Test                 : passed
 ```
 
-Validate only selected devices
+Validate only selected devices:
 
 ```
 cumulus@switch:~$ netq check clag hostnames leaf01,leaf02
@@ -428,16 +473,15 @@ SVI Test                 : passed
 
 ### Related Commands
 
-- netq show clag
-- netq show unit-tests clag
-- netq add validation
-- netq add validation name
+- ```netq show clag```
+- ```netq show unit-tests clag```
+- ```netq add validation```
 
 - - -
 <!-- vale off -->
 ## netq check evpn
 <!-- vale on -->
-Verifies communication status for all nodes (leafs, spines, and hosts) running instances of Ethernet VPN (EVPN) in your network fabric. In particular, it looks for such items as:
+Verifies communication status for all nodes (leafs, spines, and hosts) running instances of Ethernet VPN (EVPN) in your network fabric. In particular, it looks for:
 
 - BGP and EVPN session establishment
 - VNI type consistency
@@ -459,11 +503,11 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 
 ```
 netq check evpn
-    [mac-consistency]
     [label <text-label-name> | hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <evpn-number-range-list> | exclude <evpn-number-range-list>]
     [around <text-time>]
+    [streaming | legacy]
     [json | summary]
 ```
 
@@ -475,20 +519,18 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| mac-consistency | NA | Verifies if the MAC address associated with each end of the EVPN connection is
-the same |
 | label | \<text-label-name\> | Reserved |
 | hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
 | check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
+| streaming | NA | Perform a streaming query check |
+| legacy | NA | Perform a non-streaming query check |
+| json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check evpn
@@ -517,20 +559,19 @@ L3 VNI RMAC Test                 : skipped
 
 ### Related Commands
 <!-- vale off -->
-- netq show evpn
-- netq show unit-tests evpn
-- netq add validation
-- netq add validation name
+- ```netq show evpn```
+- ```netq show unit-tests evpn```
+- ```netq add validation```
 <!-- vale on -->
 - - -
 
 ## netq check interfaces
 
-Verifies interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. In particular, it looks for such items as:
+Verifies interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. In particular, it looks for:
 
 - Administrative and operational state status
 - Link speed consistency
-- Autonegotiation settings consistency
+- Autonegotiation-settings consistency
 
 The output displays the status (passed/failed/skipped) of all tests and a summary including:
 
@@ -551,7 +592,7 @@ netq check interfaces
     [check_filter_id <text-check-filter-id>]
     [include <interface-number-range-list> | exclude <interface-number-range-list>]
     [around <text-time>]
-    [streaming]
+    [streaming | legacy]
     [json | summary]
 ```
 
@@ -570,12 +611,11 @@ None
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
+| legacy | NA | Perform a non-streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings.. |
 
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check interfaces
@@ -614,7 +654,7 @@ server06          eth1                      leaf03            swp3              
 server06          eth2                      leaf04            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
 ```
 
-Basic validation without error information
+Basic validation without error information:
 
 ```
 cumulus@switch:~$ netq check interfaces summary
@@ -639,16 +679,15 @@ Autoneg Test       : 0 warnings, 12 errors
 
 ### Related Commands
 
-- netq show interfaces
-- netq show unit-tests interfaces
-- netq add validation
-- netq add validation name
+- ```netq show interfaces```
+- ```netq show unit-tests interfaces```
+- ```netq add validation```
 
 - - -
 
 ## netq check mlag
 
-Verifies MLAG session consistency by identifying all MLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for such items as:
+Verifies MLAG session consistency by identifying all MLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for:
 
 - multiple link pairs with the same system MAC address
 - any interfaces with only a single attachment
@@ -672,7 +711,7 @@ netq check mlag
     [check_filter_id <text-check-filter-id>]
     [include <mlag-number-range-list> | exclude <mlag-number-range-list>]
     [around <text-time>]
-    [streaming]
+    [streaming | legacy]
     [json | summary]
 ```
 
@@ -691,11 +730,10 @@ None
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
+| legacy | NA | Perform a non-streaming query check |
 | json | NA | Display the output in JSON file format instead of default on-screen text format |
-| summary | NA | Display only the summary informationand test results. Do not display details for tests that failed or had warnings.. |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check mlag
@@ -720,7 +758,7 @@ ProtoDown Bonds Test     : passed
 SVI Test                 : passed
 ```
 
-Validate only selected devices
+Validate only selected devices:
 
 ```
 cumulus@switch:~$ netq check mlag hostnames leaf01,leaf02
@@ -745,7 +783,7 @@ ProtoDown Bonds Test     : passed
 SVI Test                 : passed
 ```
 
-Exclude selected validation tests
+Exclude selected validation tests:
 
 ```
 cumulus@switch:~$ netq check mlag exclude 2
@@ -772,10 +810,9 @@ SVI Test                 : passed
 
 ### Related Commands
 
-- netq show mlag
-- netq show unit-tests mlag
-- netq add validation
-- netq add validation name
+- ```netq show mlag```
+- ```netq show unit-tests mlag```
+- ```netq add validation```
 
 - - -
 
@@ -803,7 +840,7 @@ netq check mtu
     [check_filter_id <text-check-filter-id>]
     [include <mtu-number-range-list> | exclude <mtu-number-range-list>]
     [around <text-time>]
-    [streaming]
+    [streaming | legacy]
     [json | summary]
 ```
 
@@ -823,12 +860,11 @@ None
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| legacy | NA | Perform a non-streaming query check |
+| json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check mtu
@@ -862,7 +898,7 @@ fw1               swp1                      9216   border01          swp3       
 fw1               swp2                      9216   border02          swp3                      9000     MTU Mismatch       
 ```
 
-Add nodes without peer links to output.
+Add nodes without peer links to output:
 
 ```
 cumulus@switch:~$ netq check mtu unverified
@@ -903,9 +939,8 @@ oob-mgmt-server   vagrant                   1500   -                 -          
 
 ### Related Commands
 
-- netq show unit-tests mtu
-- netq add validation
-- netq add validation name
+- ```netq show unit-tests mtu```
+- ```netq add validation```
 
 - - -
 
@@ -950,12 +985,10 @@ None
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check ntp
@@ -982,10 +1015,9 @@ fw2               no       2020-11-18 19:50:46
 
 ### Related Commands
 
-- netq show ntp
-- netq show unit-tests ntp
-- netq add validation
-- netq add validation name
+- ```netq show ntp```
+- ```netq show unit-tests ntp```
+- ```netq add validation```
 
 - - -
 <!-- vale off -->
@@ -1029,12 +1061,10 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~# netq check ospf
@@ -1075,13 +1105,71 @@ tor-2             uplink-2                  0.0.0.20                  27.0.0.20 
 
 ### Related Commands
 <!-- vale off -->
-- netq show ospf
-- netq show unit-tests ospf
-- netq add validation
-- netq add validation name
+- ```netq show ospf```
+- ```netq show unit-tests ospf```
+- ```netq add validation```
 <!-- vale on -->
 - - -
+## netq check roce
 
+Searches for consistent RoCE and QoS configurations across nodes.
+### Syntax
+
+```
+netq check roce
+    [streaming]
+    [hostnames <text-list-hostnames>] 
+    [check_filter_id <text-check-filter-id>] 
+    [include <roce-number-range-list> | exclude <roce-number-range-list>] 
+    [around <text-time>] 
+    [json | summary]
+```
+
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| hostnames | \<text-list-hostnames\> | Comma-separated list (no spaces) of hostnames to include in validation |
+| check_filter_id | \<text-check-filter-id> | Include the specific filter for a validation |
+| include | \<roce-number-range-list\> | Include the specified validation tests |
+| exclude | \<roce-number-range-list\> | Exclude the specified validation tests |
+| around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
+| json | NA | Display the output in JSON format |
+| summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
+
+### Sample Usage
+
+```
+cumulus@switch:mgmt:~$ netq check roce
+roce check result summary:
+
+Total nodes         : 12
+Checked nodes       : 12
+Failed nodes        : 0
+Rotten nodes        : 0
+Warning nodes       : 0
+Skipped nodes       : 0
+
+
+RoCE mode Test                 : passed
+RoCE Classification Test       : passed
+RoCE Congestion Control Test   : passed
+RoCE Flow Control Test         : passed
+RoCE ETS mode Test             : passed
+```
+### Related Commands
+
+- `netq show roce-counters`
+- `netq show roce-config`
+- `netq show roce-counters pool`
+- `netq show events`
+- `netq show unit-tests`
+
+- - -
 ## netq check sensors
 
 Verifies the status of temperature, cooling fan, and power supply sensors for all nodes in your network fabric.
@@ -1123,12 +1211,10 @@ None
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | streaming | NA | Perform a streaming query check |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check sensors
@@ -1152,10 +1238,9 @@ Temperature sensors Test   : passed
 
 ### Related Commands
 
-- netq show sensors
-- netq show unit-tests sensors
-- netq add validation
-- netq add validation name
+- ```netq show sensors```
+- ```netq show unit-tests sensors```
+- ```netq add validation```
 
 - - -
 
@@ -1182,6 +1267,7 @@ netq check vlan
     [check_filter_id <text-check-filter-id>] 
     [include <vlan-number-range-list> | exclude <vlan-number-range-list>]
     [around <text-time>]
+    [streaming | legacy]
     [json | summary]
 ```
 
@@ -1200,12 +1286,12 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| streaming | NA | Perform a streaming query check |
+| legacy | NA | Perform a non-streaming query check |
+| json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check vlan
@@ -1249,10 +1335,9 @@ border02          bond3                     10,20,30                  -         
 
 ### Related Commands
 
-- netq show vlan
-- netq show unit-tests vlan
-- netq add validation
-- netq add validation name
+- ```netq show vlan```
+- ```netq show unit-tests vlan```
+- ```netq add validation```
 
 - - -
 <!-- vale off -->
@@ -1276,6 +1361,7 @@ netq check vxlan
     [check_filter_id <text-check-filter-id>]
     [include <vxlan-number-range-list> | exclude <vxlan-number-range-list>]
     [around <text-time>]
+    [streaming | legacy]
     [json | summary]
 ```
 
@@ -1293,12 +1379,12 @@ None
 | include | \<agent-number-range-list\> | Include the specified validation tests |
 | exclude | \<agent-number-range-list\> | Exclude the specified validation tests |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
-| json | NA | Display the output in JSON file format instead of default on-screen text format |
+| streaming | NA | Perform a streaming query check |
+| legacy | NA | Perform a non-streaming query check |
+| json | NA | Display the output in JSON format |
 | summary | NA | Display only the summary information and test results. Do not display details for tests that failed or had warnings. |
 
 ### Sample Usage
-
-Basic validation: All devices, all tests, currently
 
 ```
 cumulus@switch:~$ netq check vxlan
@@ -1316,9 +1402,8 @@ BUM replication Test    : passed
 
 ### Related Commands
 <!-- vale off -->
-- netq show vxlan
-- netq show unit-tests vxlan
-- netq add validation
-- netq add validation name
+- ```netq show vxlan```
+- ```netq show unit-tests vxlan```
+- ```netq add validation```
 <!-- vale on -->
 <!-- vale NVIDIA.HeadingTitles = YES -->

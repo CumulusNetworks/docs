@@ -4,6 +4,9 @@ author: Cumulus Networks
 weight: 709
 toc: 4
 ---
+{{%notice note%}}
+The term early access (EA) is used in Cumulus Linux 5.3 and earlier. In Cumulus Linux 5.4 and later, early access is called Beta.
+{{%/notice%}}
 
 Cumulus Linux is Linux; as an operating system, it enables a vast number of applications. A set of core networking functions integrates with the main Cumulus Linux distribution or validated as add-on applications. In addition, NVIDIA provides a set of early access features with the goal to ensure faster feature velocity, solve customer-specific challenges and collect feedback.  
   

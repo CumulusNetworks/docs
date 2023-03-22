@@ -23,9 +23,9 @@ If you do *not* want to derive RDs and RTs automatically, you can define them ma
 {{< tab "leaf01 ">}}
 
 ``` 
-cumulus@leaf01:~$ nv set evpn evi 10 rd 10.10.10.1:20
-cumulus@leaf01:~$ nv set evpn evi 10 route-target export 65101:10
-cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:10
+cumulus@leaf01:~$ nv set evpn vni 10 rd 10.10.10.1:20
+cumulus@leaf01:~$ nv set evpn vni 10 route-target export 65101:10
+cumulus@leaf01:~$ nv set evpn vni 10 route-target import 65102:10
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -33,9 +33,9 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ nv set evpn evi 10 rd 10.10.10.3:20
-cumulus@leaf03:~$ nv set evpn evi 10 route-target export 65102:10
-cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
+cumulus@leaf03:~$ nv set evpn vni 10 rd 10.10.10.3:20
+cumulus@leaf03:~$ nv set evpn vni 10 route-target export 65102:10
+cumulus@leaf03:~$ nv set evpn vni 10 route-target import 65101:10
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -130,9 +130,9 @@ You can configure multiple RT values. In addition, you can configure both the im
 {{< tab "leaf01 ">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:10
-cumulus@leaf01:~$ nv set evpn evi 10 route-target import 65102:20
-cumulus@leaf01:~$ nv set evpn evi 20 route-target both 65101:10
+cumulus@leaf01:~$ nv set evpn vni 10 route-target import 65102:10
+cumulus@leaf01:~$ nv set evpn vni 10 route-target import 65102:20
+cumulus@leaf01:~$ nv set evpn vni 20 route-target both 65101:10
 cumulus@leaf01:~$ nv config apply
 ```
 
@@ -140,9 +140,9 @@ cumulus@leaf01:~$ nv config apply
 {{< tab "leaf03 ">}}
 
 ```
-cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:10
-cumulus@leaf03:~$ nv set evpn evi 10 route-target import 65101:20
-cumulus@leaf03:~$ nv set evpn evi 20 route-target both 65102:10
+cumulus@leaf03:~$ nv set evpn vni 10 route-target import 65101:10
+cumulus@leaf03:~$ nv set evpn vni 10 route-target import 65101:20
+cumulus@leaf03:~$ nv set evpn vni 20 route-target both 65102:10
 cumulus@leaf03:~$ nv config apply
 ```
 
@@ -547,25 +547,18 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/network/interfaces` file to set `bridge-arp-nd-suppress off` on the VNI, then run the `ifreload -a` command.
+Edit the `/etc/network/interfaces` file to set `bridge-arp-nd-suppress off` on the VXLAN device, then run the `ifreload -a` command.
 
 ```
 cumulus@leaf01:~$ sudo nano /etc/network/interfaces
 ...
 
-auto vni10
-iface vni10
-    bridge-access 10
-    vxlan-id 10
-    vxlan-local-tunnelip 10.10.10.1
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 10=10 20=20 30=30 4036=4002 4024=4001
+    bridge-learning off
     bridge-arp-nd-suppress off
 
-auto vni20
-iface vni20
-      bridge-access 20
-      vxlan-id 20
-      vxlan-local-tunnelip 10.10.10.1
-      bridge-arp-nd-suppress off
 ...
 ```
 
@@ -737,7 +730,7 @@ To advertise a *specific* SVI IP/MAC address, run these commands:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set evpn evi 10 route-advertise svi-ip on
+cumulus@leaf01:~$ nv set evpn vni 10 route-advertise svi-ip on
 cumulus@leaf01:~$ nv config apply
 ```
 

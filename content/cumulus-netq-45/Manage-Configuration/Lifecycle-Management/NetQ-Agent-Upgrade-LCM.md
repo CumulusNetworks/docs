@@ -21,21 +21,19 @@ Before you upgrade, make sure you have the appropriate files and credentials:
 
 {{<tab "NetQ UI" >}}
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} (Upgrade) in the workbench header.
+1. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
 
-2. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="upgrade images">}}.
+2. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
 
-3. (Optional) Specify a {{<link title="NetQ and Network OS Images/#specify-a-default-upgrade-version" text="default upgrade version">}}.
-
-4. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
+3. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
 {{</tab>}}
 
 {{<tab "NetQ CLI" >}}
 
-1. Verify or add {{<link title="Switch Credentials/#specify-switch-credentials" text="switch access credentials">}}.
+1. Verify or add {{<link title="Credentials and Profiles" text="switch access credentials">}}.
 
-2. Configure {{<link title="Switch Credentials/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
+2. Configure {{<link title="Credentials and Profiles/#role-management" text="switch roles">}} to determine the order in which the switches get upgraded.
 
 3. Upload the {{<link title="NetQ and Network OS Images/#upload-upgrade-images" text="Cumulus Linux upgrade images">}}.
 
@@ -51,11 +49,11 @@ After you complete the preparation steps, upgrade the NetQ Agents:
 
 {{<tab "NetQ UI" >}}
 
-1. In the **Switch Management** tab, locate the Switches card and click **Manage**.
+1. From the LCM dashboard, select the **Switch management** tab. Locate the Switches card and click **Manage**.
 
-2. Select the switches you want to upgrade. You can filter by role or sort by column heading to narrow down the list.
+2. Select the switches you want to upgrade.
 
-3. Click {{<img src="/images/netq/netq-upgrade-icon-blk.png" height="18" width="18">}} (Upgrade NetQ) above the table and follow the steps in the UI.
+3. Click {{<img src="/images/netq/netq-upgrade-icon-blk.png" height="18" width="18">}} **Upgrade NetQ** above the table and follow the steps in the UI.
 
 4. Verify that the number of switches selected for upgrade matches your expectation.
 
@@ -97,13 +95,18 @@ By default, the NetQ Agent and CLI are upgraded on the selected switches. If you
 To upgrade the NetQ Agent on one or more switches, run:
 
 ```
-netq-image job-name <text-job-name> [netq-version <text-netq-version>] [upgrade-cli True | upgrade-cli False] hostnames <text-switch-hostnames> [config_profile <text-config-profile>]
+netq lcm upgrade netq-image 
+    job-name <text-job-name> 
+    [netq-version <text-netq-version>] 
+    [upgrade-cli True | upgrade-cli False] 
+    hostnames <text-switch-hostnames> 
+    [config_profile <text-config-profile>]
 ```
 
-The following example creates a NetQ Agent upgrade job called *upgrade-cl430-nq330*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.1.0.
+The following example creates a NetQ Agent upgrade job called *upgrade-cl530-nq450*. It upgrades the *spine01* and *spine02* switches with NetQ Agents version 4.5.0.
 
 ```
-cumulus@switch:~$ netq lcm upgrade name upgrade-cl430-nq330 netq-version 4.1.0 hostnames spine01,spine02
+cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq450 netq-version 4.5.0 hostnames spine01,spine02
 ```
 
 <!-- You can assign an order for which switches to upgrade based on the switch roles defined above. For example, to upgrade the spines before the leafs, add the `order ROLE1,ROLE2` option to the command:
@@ -125,9 +128,8 @@ To view the progress of upgrade jobs using the CLI, run:
 ```
 netq lcm show upgrade-jobs netq-image [json]
 netq lcm show status <text-lcm-job-id> [json]
-
 ```
-{{<expand "Example show upgrade-jobs command">}}
+{{<expand "Example netq lcm show upgrade-jobs">}}
 
 You can view the progress of one upgrade job at a time. This requires the job identifier.
 
@@ -214,11 +216,12 @@ leaf02            4.2.1       4.1.0         3.2.1         ['NetQ default config'
                                                                                                                          gain."]
 ```
 {{</expand>}}
+
+<!--
 ### Reasons for NetQ Agent Upgrade Failure
 
 Upgrades can fail at any stage of the process. The following table lists common reasons for upgrade failures:
 
-<!-- vale off -->
 | Reason | Error Message |
 | --- | --- |
 | Switch is not reachable via SSH | Data could not be sent to remote host "192.168.0.15." Make sure this host can be reached over ssh: ssh: connect to host 192.168.0.15 port 22: No route to host |
@@ -226,4 +229,5 @@ Upgrades can fail at any stage of the process. The following table lists common 
 | Upgrade task could not be run | Failure message depends on the why the task could not be run. For example: /etc/network/interfaces: No such file or directory |
 | Upgrade task failed | Failed at- \<task that failed\>. For example: Failed at- MLAG check for the peerLink interface status |
 | Retry failed after five attempts | FAILED In all retries to process the LCM Job |
-<!-- vale off -->
+
+-->

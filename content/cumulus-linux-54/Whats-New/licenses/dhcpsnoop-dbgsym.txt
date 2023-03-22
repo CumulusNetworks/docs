@@ -1,1 +1,0 @@
-dhcpsnoop-dbgsym has no copyright file

@@ -2,7 +2,7 @@ BSD 3-clause "New" or "Revised" License
 Source: http://pypi.python.org/pypi/colorama/
 
 Files: *
-Copyright: Â© 2010 Jonathan Hartley <tartley@tartley.com>
+Copyright: © 2010 Jonathan Hartley <tartley@tartley.com>
 License: BSD-3
  All rights reserved.
  .

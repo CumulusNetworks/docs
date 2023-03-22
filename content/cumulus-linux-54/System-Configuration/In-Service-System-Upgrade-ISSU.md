@@ -26,7 +26,7 @@ You can restart the switch in one of the following modes.
    When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is on. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
 {{%notice note%}}
-Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
+- Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
 {{%/notice%}}
 
 The following command restarts the system in cold mode:
@@ -63,10 +63,10 @@ cumulus@switch:~$ sudo csmgrctl -f
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command restarts the system in warm mode.
+The following command restarts the system in warm restart mode.
 
 {{< notice warning >}}
-Warm boot resets any manually configured FEC settings.
+Warm restart mode resets any manually configured FEC settings.
 {{< /notice >}}
 
 {{< tabs "76 ">}}
@@ -86,11 +86,15 @@ cumulus@switch:~$ sudo csmgrctl -w
 
 ## Upgrade Mode
 
-Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux release without traffic loss. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="cold or fast restart">}}.
+Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux release without traffic loss. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="warm, cold, or fast restart">}}.
 
 Upgrade mode includes the following options:
 - **all** runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
 - **dry-run** provides information on the components you want to upgrade.
+
+{{%notice warning%}}
+Cumulus Linux 5.4 package upgrade (`apt-get upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
+{{%/notice%}}
 
 The following command upgrades all the system components:
 

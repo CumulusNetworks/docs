@@ -5,11 +5,50 @@ weight: 1101
 toc: 3
 right_toc_levels: 1
 pdfhidden: true
+type: nojsscroll
 ---
+<!--
+## netq add check-filter
 
-<!-- vale off -->
+You can add filters to `netq check` commands to prevent them from generating events. Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for step-by-step instructions. 
+
+### Syntax
+
+```
+ netq add check-filter 
+    [check_filter_id <text-check-filter-id>] 
+    [check_name <text-check-name-anchor>] 
+    [test_name <text-test-name-anchor>] 
+    [scope <text-check-scope-anchor> | scope-append <text-check-scope-anchor>] 
+    [is_active true | is_active false] 
+    [suppress_until <text-suppress-until>]
+```
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| check_filter_id | \<text-check-filter-id\> | Identifier for filter |
+| check_name | \<text-check-name-anchor\> | Name of validation test |
+| test_name | \<text-test-name-anchor\> |  |
+| scope | \<text-check-scope-anchor\> |  |
+| scope-append | \<text-check-scope-anchor\> | Appends defined scope to existing configuration |
+| is_active | true, false | Enables or disables configuration |
+| suppress_until | \<text-suppress-until\> | Amount of time, in seconds, to suppress the specified events |
+
+### Sample Usage
+
+### Related Commands
+
+- netq del check-filter
+- netq show check-filter
+
+ - - -
+ -->
 ## netq add events-config
-<!-- vale on -->
 
 Suppresses system events, excluding them from event displays. You can suppress events for:
 
@@ -134,7 +173,7 @@ netq add notification channel generic
 | login | \<text-email-id\> | Email address for authentication |
 | password | \<text-email-password\> | Password for authentication |
 | severity | info, error | Only send notifications with this severity. Default severity is info. |
-| auth-type | <!-- Add these -->|  |
+| auth-type | <!-- Add these -->| Specify authentication method |
 | use-ssl | True, False | Enable SSL encryption |
 | tag | \<text-slack-tag\> | Short text appended to a Slack notification to highlight particular channels or people. You must introduce the tag value with the @ sign. For example, *@netq-info* or *@net-admin*. |
 
@@ -174,11 +213,11 @@ Refer to {{<link title="Configure System Event Notifications">}} for more inform
 
 ### Related Commands
 
-- netq del notification channel
-- netq add notification rule
-- netq add notification filter
-- netq add notification proxy
-- netq show notification
+- `netq del notification channel`
+- `netq add notification rule`
+- `netq add notification filter`
+- `netq add notification proxy`
+- `netq show notification`
 
  - - -
 
@@ -213,7 +252,7 @@ netq add notification filter
 | ---- | ---- | ---- |
 | severity | info, error | Only filter notifications with this severity. Default severity is *info*. |
 | rule | \<text-rule-name-anchor\> | Name of the rule for where to apply this filter |
-| channel | \<text-channel-name-anchor\> | Name of the rule for where to apply this filter.|
+| channel | \<text-channel-name-anchor\> | Name of the channel for where to apply this filter.|
 | before | \<text-filter-name-anchor\> | Insert this filter before the filter with this name. |
 | after | \<text-filter-name-anchor\> | Insert this filter after the filter with this name. |
 
@@ -370,7 +409,6 @@ netq add tca tca_id
     [threshold_type user_set | threshold_type vendor_set]
     [threshold <text-threshold-value>]
     [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]
-
 ```
 
 ### Required Arguments
@@ -548,7 +586,7 @@ Successfully added/updated Svr01toSvr04x3Hrs running every 180m
 
 - - -
 
-## netq add validation name
+## netq add validation
 
 Creates a validation for various protocols and services to run on a regular interval, with results displayed inline. You can configure a maximum of 15 scheduled validations, not including the default scheduled validations.
 
@@ -627,7 +665,7 @@ cumulus@switch:~$ netq add validation type bgp
 
 ### Related Commands
 
-- ```netq add validation name```
+- ```netq add validation```
 - ```netq del validation```
 - ```netq show validation settings```
 - ```netq show validation summary```

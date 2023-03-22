@@ -15,26 +15,6 @@ Configures system configuration settings.
 
 - - -
 
-## nv set system config auto-save
-
-Configures the configuration auto save feature.
-
-- - -
-
-## nv set system config auto-save enable
-
-Turns auto save on or off. The auto save option lets you save the pending configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
-
-## Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system config auto-save enable on
-```
-
 - - -
 
 ## nv set system config apply
@@ -75,65 +55,35 @@ cumulus@leaf01:mgmt:~$ nv set system config apply overwrite controlled
 
 - - -
 
+## nv set system config auto-save
+
+Configures the configuration auto save feature.
+
+- - -
+
+## nv set system config auto-save enable
+
+Turns auto save on or off. The auto save option lets you save the pending configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+
+## Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system config auto-save enable on
+```
+
 ## nv set system control-plane
 
 Configures control plane settings.
 
 - - -
 
-## nv set system control-plane trap \<trap-id\>
-
-Configures control plane traps.
-
-- - -
-
-## nv set system control-plane trap \<trap-id\> state
-
-Turns the specified control plane trap on or off.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<trap-id>` |  The trap ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system control-plane trap l3-mtu-err state on
-```
-
-- - -
-
 ## nv set system control-plane policer \<policer-id\>
 
 Configures control plane policers.
-
-- - -
-
-## nv set system control-plane policer \<policer-id\> state
-
-Turns the specified control plane policer on or off.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<policer-id>` |  The policer ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system control-plane policer acl-log state on
-```
 
 - - -
 
@@ -177,6 +127,56 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set system control-plane policer acl-log burst 5000
+```
+
+- - -
+
+## nv set system control-plane policer \<policer-id\> state
+
+Turns the specified control plane policer on or off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<policer-id>` |  The policer ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system control-plane policer acl-log state on
+```
+
+- - -
+
+## nv set system control-plane trap \<trap-id\>
+
+Configures control plane traps.
+
+- - -
+
+## nv set system control-plane trap \<trap-id\> state
+
+Turns the specified control plane trap on or off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-id>` |  The trap ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system control-plane trap l3-mtu-err state on
 ```
 
 - - -
@@ -228,6 +228,70 @@ cumulus@leaf01:mgmt:~$ nv set system counter polling-interval physical-interface
 ## nv set system global
 
 Configures global system settings.
+
+- - -
+
+## nv set system global anycast-id
+
+Configures the global system anycast ID for VXLAN active-active mode. Cumulus Linux derives the MAC address from the ID. You can specify a number between 1 and 65535. Cumulus Linux adds the number to the MAC address 44:38:39:ff:00:00 in hex. For example, if you specify 225, the anycast MAC address is 44:38:39:ff:00:FF.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global anycast-id 255
+```
+
+- - -
+
+## nv set system global anycast-mac
+
+Configures the global anycast MAC address for VXLAN active-active mode. You can set the anycast MAC address to a value in the reserved range between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff. Be sure to use an address in this reserved range to prevent MAC address conflicts with other interfaces in the same bridged network.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global anycast-mac 44:38:39:ff:00:ff
+```
+
+- - -
+
+## nv set system global fabric-mac
+
+Configures the VRR MAC address globally on the switch. The default fabric MAC address is 00:00:5E:00:01:01, which the switch derives from a fabric ID setting of 1.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global fabric-mac 00:00:5E:00:01:FF
+```
+
+- - -
+
+## nv set system global fabric-id
+
+Configures the fabric ID from which Cumulus Linux derives the MAC address. You can specify a number between 1 and 225. Cumulus Linux adds the number to the MAC address 00:00:5E:00:01:00 in hex. For example, if you specify 225, the VRR MAC address is 00:00:5E:00:01:FF.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system global fabric-id 255
+```
 
 - - -
 
@@ -363,25 +427,9 @@ cumulus@leaf01:mgmt:~$ nv set system global system-mac 44:38:39:ff:00:ff
 
 - - -
 
-## nv set system global anycast-mac
+## nv set system hostname
 
-Configures the global anycast MAC address for VXLAN active-active mode. You can set the anycast MAC address to a value in the reserved range between 44:38:39:ff:00:00 and 44:38:39:ff:ff:ff. Be sure to use an address in this reserved range to prevent MAC address conflicts with other interfaces in the same bridged network.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system global anycast-mac 44:38:39:ff:00:ff
-```
-
-- - -
-
-## nv set system global anycast-id
-
-Configures the global system anycast ID for VXLAN active-active mode. Cumulus Linux derives the MAC address from the ID. You can specify a number between 1 and 65535. Cumulus Linux adds the number to the MAC address 44:38:39:ff:00:00 in hex. For example, if you specify 225, the anycast MAC address is 44:38:39:ff:00:FF.
+Configures the hostname of the switch.
 
 ### Version History
 
@@ -390,39 +438,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system global anycast-id 255
-```
-
-- - -
-
-## nv set system global fabric-mac
-
-Configures the VRR MAC address globally on the switch. The default fabric MAC address is 00:00:5E:00:01:01, which the switch derives from a fabric ID setting of 1.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system global fabric-mac 00:00:5E:00:01:FF
-```
-
-- - -
-
-## nv set system global fabric-id
-
-Configures the fabric ID from which Cumulus Linux derives the MAC address. You can specify a number between 1 and 225. Cumulus Linux adds the number to the MAC address 00:00:5E:00:01:00 in hex. For example, if you specify 225, the VRR MAC address is 00:00:5E:00:01:FF.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system global fabric-id 255
+cumulus@leaf01:mgmt:~$ nv set system hostname leaf01
 ```
 
 - - -
@@ -430,6 +446,24 @@ cumulus@leaf01:mgmt:~$ nv set system global fabric-id 255
 ## nv set system message
 
 Configures the message you want users of the switch to see before and after they log in.
+
+- - -
+
+## nv set system message post-login
+
+Configures the message you want users to see after they log into the switch.
+
+If the message contains more than one word, you must enclose it in quotes (").
+
+## Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system message post-login "This switch is being used for testing"
+```
 
 - - -
 
@@ -451,11 +485,11 @@ cumulus@leaf01:mgmt:~$ nv set system message pre-login "This switch is under mai
 
 - - -
 
-## nv set system message post-login
+## nv set system timezone
 
-Configures the message you want users to see after they log into the switch.
+Configures the switch timezone.
 
-If the message contains more than one word, you must enclose it in quotes (").
+To see all the available time zones, run `nv set system timezone` and press the Tab key.
 
 ## Version History
 
@@ -464,7 +498,7 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system message post-login "This switch is being used for testing"
+cumulus@leaf01:mgmt:~$ nv set system timezone US/Eastern
 ```
 
 - - -

@@ -209,7 +209,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv4-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf
 
-Shows configuration information for redistributing IPv4 OSPF routes into BGP for the specified VRF.
+Shows configuration information for redistributing OSPF IPv4 routes into BGP for the specified VRF.
 
 ### Command Syntax
 
@@ -1252,7 +1252,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6
 
-Shows configuration information for BGP IPv6 OSPF6 route redistribution for the specified VRF.
+Shows configuration information for BGP OSPF IPv6 route redistribution for the specified VRF.
 
 ### Command Syntax
 
@@ -3189,7 +3189,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4
 
 ## nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address
 
-Shows IPv4 or IPv6 BGP next hops for the specified VRF.
+Shows BGP IPv4 or IPv6 next hops for the specified VRF.
 
 ### Command Syntax
 
@@ -3212,7 +3212,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address
 
 ## nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address-id\>
 
-Shows information about a specific IPv4 or IPv6 BGP next hop for the specified VRF.
+Shows information about a specific BGP IPv4 or IPv6 next hop for the specified VRF.
 
 ### Command Syntax
 
@@ -3236,7 +3236,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10
 
 ## nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address-id\> resolved-via
 
-Shows the recursive IPv4 or IPv6 BGP next hops for the specified VRF.
+Shows the recursive BGP IPv4 or IPv6 next hops for the specified VRF.
 
 ### Command Syntax
 
@@ -3260,7 +3260,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10
 
 ## nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address-id\> path
 
-Shows all paths associated with IPv4 or IPv6 BGP nexthops for the specified VRF.
+Shows all paths associated with BGP IPv4 or IPv6 nexthops for the specified VRF.
 
 ### Command Syntax
 
@@ -3284,7 +3284,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 20
 
 ## nv show vrf \<vrf-id\> router bgp nexthop \<afi\> ip-address \<ip-address-id\> path \<path-id\>
 
-Shows information about a specific path associated with IPv4 or IPv6 BGP nexthops for the specified VRF.
+Shows information about a specific path associated with BGP IPv4 or IPv6 nexthops for the specified VRF.
 
 ### Command Syntax
 

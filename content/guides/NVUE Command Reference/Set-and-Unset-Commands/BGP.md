@@ -481,7 +481,7 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv4-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv4-unicast redistribute ospf
 
-Provides commands to configure IPv4 OSPF route redistribution.
+Provides commands to configure OSPF IPv4 route redistribution.
 
 - - -
 
@@ -1676,13 +1676,13 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6
 
-Provides commands to configure redistribution of IPv6 OSPF routes.
+Provides commands to configure redistribution of OSPF IPv6 routes.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp address-family ipv6-unicast redistribute ospf6 enable
 
-Turns redistribution of IPv6 OSPF routes on or off.
+Turns redistribution of OSPF IPv6 routes on or off.
 
 The default setting is `off`.
 
@@ -4879,7 +4879,7 @@ cumulus@leaf01:mgmt:~$ nv set
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound reestablish-wait
 
-Specifes the time in seconds to wait before establishing the IPv6 BGP session again with the peer. 
+Specifes the time in seconds to wait before establishing the BGP IPv6 session again with the peer. 
 
 The defaults is `auto`, which uses standard BGP timers and processing (typically between 2 and 3 seconds).
 

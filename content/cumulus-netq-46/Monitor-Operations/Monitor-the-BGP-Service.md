@@ -45,13 +45,11 @@ Before adding a BGP single-session card, verify that both the peer hostname and 
 
 The BGP single-session card displays the node, its peer, its status (established or unestablished), and its router ID. This information can help you determine the stability of the BGP session between two devices. The heat map indicates the status of the session over the designated time period. In this example, the session has been established throughout the entire time period:
 
-{{<figure src="/images/netq/ntwk-svcs-single-bgp-medium-session-status-highlight-230.png" width="200">}}
+{{<figure src="/images/netq/bgp-single-450.png" width="200">}}
 
 ### Understanding the Heat Map
 
-On the medium and large single BGP session cards, vertically stacked heat maps represent the status of the sessions: one for established sessions, and one for unestablished sessions. Depending on the time period of data on the card, the number of smaller time blocks indicate that the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results appear by how saturated the color is for each block. If only established sessions occurred during that time period for the entire time block, then the top block is 100% saturated (white) and the unestablished block is 0% saturated (gray). As unestablished sessions increase in saturation, the established sessions block is proportionally reduced in saturation. An example heat map for a time period of 24 hours appears here with the most common time periods in the table showing the resulting time blocks.
-
-{{<figure src="/images/netq/ntwk-svcs-single-bgp-result-granularity-230.png" width="300">}}
+On the medium and large single-session cards, vertically stacked heat maps represent the status of the sessions: one for established sessions, and one for unestablished sessions. Depending on the time period of data on the card, the number of smaller time blocks indicate that the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results appear by how saturated the color is for each block. If only established sessions occurred during that time period for the entire time block, then the top block is 100% saturated (white) and the unestablished block is 0% saturated (gray). As unestablished sessions increase in saturation, the established sessions block is proportionally reduced in saturation. The following table lists the most common time periods, their corresponding number of blocks, and the amount of time represented by one block:
 
 | Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
 | ----------- | -------------- | ------------------ | ---------------------------- |
@@ -75,11 +73,11 @@ Each time a change is made to the configuration file for the BGP service, NetQ l
 
     The File view displays the content of the file:
 
-    {{<figure src="/images/netq/ntwk-svcs-single-bgp-large-config-tab-file-selected-230.png" width="500">}}
+    {{<figure src="/images/netq/bgp-file-view-450.png" width="600">}}
 
-    The Diff view highlights the changes between this version (on left) and the most recent version (on right) side by side:
+    The Diff view highlights the changes (if any) between this version (on left) and the most recent version (on right) side by side:
 
-    {{<figure src="/images/netq/ntwk-svcs-single-bgp-large-config-tab-diff-selected-230.png" width="500">}}
+    {{<figure src="/images/netq/bgp-diff-view-450.png" width="600">}}
 
 ## Related Information
 

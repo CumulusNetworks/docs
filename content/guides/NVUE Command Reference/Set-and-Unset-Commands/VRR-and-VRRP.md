@@ -46,7 +46,7 @@ Configures the virtual address and prefix.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<interface-id>` | The interface you want to configure. |
-| `<ip-prefix-id>` | IPv4 or IPv6 address and route prefix in CIDR notation. |
+| `<ip-prefix-id>` | The IPv4 or IPv6 address and route prefix in CIDR notation. |
 
 ### Version History
 

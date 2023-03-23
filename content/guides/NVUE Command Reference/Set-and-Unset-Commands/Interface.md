@@ -31,28 +31,6 @@ cumulus@leaf01:mgmt:~$ nv set interface swp5 base-interface
 
 - - -
 
-## nv set interface \<interface-id\> description
-
-Configures a description for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 description hypervisor_port_1
-```
-
-- - -
-
 ## nv set interface \<interface-id\> bond down-delay
 
 Configures the down delay on the bonded interface. You can set a value between 0 and 65535.
@@ -188,15 +166,9 @@ cumulus@leaf01:mgmt:~$ nv set interface swp5 bond up-delay 100
 
 - - -
 
-## nv set interface \<interface-id\> storm-control
+## nv set interface \<interface-id\> description
 
-Configures storm control on the specified interface. Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.
-
-- - -
-
-## nv set interface \<interface-id\> storm-control broadcast
-
-Configures the number of broadcast packets per second (pps) that signifies a broadcast storm. You can set a value between 1 and 4294967295.
+Configures a description for the specified interface.
 
 ### Command Syntax
 
@@ -211,207 +183,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 storm-control broadcast 400
-```
-
-- - -
-
-## nv set interface \<interface-id\> storm-control multicast
-
-Configures the number of multicast packets per second (pps) that signifies a multicast storm. You can set a value between 1 and 4294967295.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 storm-control multicast 3000
-```
-
-- - -
-
-## nv set interface \<interface-id\> storm-control unknown-unicast
-
-- - -
-
-Configures the number of unknown unicast packets per second (pps) that signifies an unknown unicast storm. You can set a value between 1 and 4294967295.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 storm-control unknown-unicast 2000
-```
-
-- - -
-
-## nv set interface \<interface-id\> tunnel
-
-Configures GRE tunneling.
-
-- - -
-
-## nv set interface \<interface-id\> tunnel source-ip
-
-Configures the source IP address for the GRE tunnel on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel source-ip 10.10.10.1
-```
-
-- - -
-
-## nv set interface \<interface-id\> tunnel dest-ip
-
-Configures the destination IP address for the GRE tunnel on the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel dest-ip 10.10.10.3
-```
-
-- - -
-
-## nv set interface \<interface-id\> tunnel ttl
-
-Configures the TTL for the GRE tunnel on the specified interface. You can set a value between 1 and 255.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel ttl 50
-```
-
-- - -
-
-## nv set interface \<interface-id\> tunnel mode gre
-
-Enables GRE mode for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel mode gre 
-```
-
-- - -
-
-## nv set interface \<interface-id\> tunnel interface \<interface-name\>
-
-Configures the GRE tunnel interface name.
-
-## Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel interface MYGRETUNNEL
-```
-
-- - -
-
-## nv set interface \<interface-id\> type
-
-Configures the interface type. The typ can be `swp`, `eth`, `bond`, `loopback`, `svi`, `sub`, `peerlink`, `tunnel`, `bridge` or `vrf`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 type swp
-```
-
-- - -
-
-## nv set interface \<interface-id\> vlan
-
-Configures the VLAN on the interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 vlan 10
+cumulus@leaf01:mgmt:~$ nv set interface swp1 description hypervisor_port_1
 ```
 
 - - -
@@ -571,21 +343,24 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ip ipv6 forward off
 ```
 
 - - -
+
 ## nv set interface \<interface-id\> link
 
 Provides commands to configure physical interface settings, such as the link state, auto-negotiation, breakouts, FEC, MTU, speed, 802.1X, and MAC authentication bypass (MAB).
 
 - - -
 
-## nv set interface \<interface-id\> link state
+## nv set interface \<interface-id\> link auto-negotiate
 
-Brings an interface up or down administratively (admin up or admin down). You can specify `up` or `down`.
+Configures auto-negotiation for the interface.
+
+The default setting is `on`.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<interface-id>` | The interface you want to configure. |
+|`<interface-id>` |  The interface you want to configure. |
 
 ### Version History
 
@@ -594,7 +369,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 link state up
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link auto-negotiate off
 ```
 
 - - -
@@ -649,29 +424,6 @@ Introduced in Cumulus Linux 5.4.0
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp1 link breakout 2x lanes-per-port 2
 ```
-- - -
-
-## nv set interface \<interface-id\> link auto-negotiate
-
-Configures auto-negotiation for the interface.
-
-The default setting is `on`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 link auto-negotiate off
-```
 
 - - -
 
@@ -699,31 +451,11 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link duplex half
 
 - - -
 
-## nv set interface \<interface-id\> link lanes
+## nv set interface \<interface-id\> link fast-linkup
 
-Configures the number of lanes for a port to override the default behavior for supported speeds and platforms.
+Configures fast linkup on interfaces on NVIDIA Spectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards. You can specify `on` or `off`.
 
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 link lanes 1
-```
-
-- - -
-
-## nv set interface \<interface-id\> link speed
-
-Configures the speed for the interface.
+The default setting is `off`.
 
 ### Command Syntax
 
@@ -733,12 +465,12 @@ Configures the speed for the interface.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.0.0
+Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 link speed 10G
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link fast-linkup on
 ```
 
 - - -
@@ -767,6 +499,28 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link fec baser
 
 - - -
 
+## nv set interface \<interface-id\> link lanes
+
+Configures the number of lanes for a port to override the default behavior for supported speeds and platforms.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link lanes 1
+```
+
+- - -
+
 ## nv set interface \<interface-id\> link mtu
 
 Configures the maximum transmission unit (MTU) for the interface. You can set a value between 552 and 9216.
@@ -791,11 +545,9 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 link mtu 1500
 
 - - -
 
-## nv set interface \<interface-id\> link fast-linkup
+## nv set interface \<interface-id\> link speed
 
-Configures fast linkup on interfaces on NVIDIA Spectrum1 switches. Fast linkup enables you to bring up ports with cards that require links to come up fast, such as certain 100G optical network interface cards. You can specify `on` or `off`.
-
-The default setting is `off`.
+Configures the speed for the interface.
 
 ### Command Syntax
 
@@ -805,12 +557,295 @@ The default setting is `off`.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.3.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 link fast-linkup on
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link speed 10G
+```
+
+- - -
+
+## nv set interface \<interface-id\> link state
+
+Brings an interface up or down administratively (admin up or admin down). You can specify `up` or `down`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` | The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 link state up
+```
+
+- - -
+
+## nv set interface \<interface-id\> storm-control
+
+Configures storm control on the specified interface. Storm control provides protection against excessive inbound BUM (broadcast, unknown unicast, multicast) traffic on layer 2 switch port interfaces, which can cause poor network performance.
+
+- - -
+
+## nv set interface \<interface-id\> storm-control broadcast
+
+Configures the number of broadcast packets per second (pps) that signifies a broadcast storm. You can set a value between 1 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 storm-control broadcast 400
+```
+
+- - -
+
+## nv set interface \<interface-id\> storm-control multicast
+
+Configures the number of multicast packets per second (pps) that signifies a multicast storm. You can set a value between 1 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 storm-control multicast 3000
+```
+
+- - -
+
+## nv set interface \<interface-id\> storm-control unknown-unicast
+
+- - -
+
+Configures the number of unknown unicast packets per second (pps) that signifies an unknown unicast storm. You can set a value between 1 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 storm-control unknown-unicast 2000
+```
+
+- - -
+
+## nv set interface \<interface-id\> tunnel
+
+Configures GRE tunneling.
+
+- - -
+
+## nv set interface \<interface-id\> tunnel dest-ip
+
+Configures the destination IP address for the GRE tunnel on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel dest-ip 10.10.10.3
+```
+
+- - -
+
+## nv set interface \<interface-id\> tunnel interface \<interface-name\>
+
+Configures the GRE tunnel interface name.
+
+## Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel interface MYGRETUNNEL
+```
+
+- - -
+
+## nv set interface \<interface-id\> tunnel mode gre
+
+Enables GRE mode for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel mode gre 
+```
+
+- - -
+
+## nv set interface \<interface-id\> tunnel source-ip
+
+Configures the source IP address for the GRE tunnel on the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel source-ip 10.10.10.1
+```
+
+- - -
+
+## nv set interface \<interface-id\> tunnel ttl
+
+Configures the TTL for the GRE tunnel on the specified interface. You can set a value between 1 and 255.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface tunnelR2 tunnel ttl 50
+```
+
+- - -
+
+## nv set interface \<interface-id\> type
+
+Configures the interface type. The typ can be `swp`, `eth`, `bond`, `loopback`, `svi`, `sub`, `peerlink`, `tunnel`, `bridge` or `vrf`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 type swp
+```
+
+- - -
+
+## nv set interface \<interface-id\> vlan
+
+Configures the VLAN on the interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 vlan 10
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> loopback
+
+Configures the loopback address in the specified VRF.
+
+- - -
+
+## nv set vrf \<vrf-id\> loopback ip
+
+Configures the loopback IP address in the specified VRF.
+
+- - -
+
+## nv set vrf \<vrf-id\> loopback ip address \<ip-prefix-id\>
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF name. |
+| `<ip-prefix-id>` |  The IPv4 or IPv6 address and route prefix in CIDR notation.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default loopback ip address 10.10.10.1/32
 ```
 
 - - -

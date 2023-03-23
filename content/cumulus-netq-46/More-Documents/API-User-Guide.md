@@ -36,9 +36,7 @@ You can access the API gateway and execute requests from the Swagger UI or a ter
 
 {{<tab "Swagger UI">}}
 
-1. Download {{<exlink url="https://swagger.io/tools/swagger-ui/download/" text="Swagger UI 2.0">}}.
-
-2. Open a new browser tab or window, and enter one of the following in the address bar:
+1. Open a new browser tab or window, and enter one of the following in the address bar:
 
     - Cloud deployments:  https://api.netq.nvidia.com/swagger/
     - On-premises deployments: https://\<hostname-or-ipaddr\>/swagger/
@@ -46,7 +44,7 @@ You can access the API gateway and execute requests from the Swagger UI or a ter
 
     This opens the Swagger interface.
 
-3. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.
+2. Select *auth* from the **Select a definition** dropdown at the top right of the window. This opens the authorization API.
 
     {{<figure src="/images/netq/api-swagger-onopen-320.png" alt="" width="700">}}
 

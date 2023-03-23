@@ -64,6 +64,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show service dhcp-relay default giaddress-interface lo
 ```
 
+- - -
+
 ## nv show service dhcp-relay \<vrf-id\> interface \<interface-id\>
 
 Shows IPv4 DHCP relay configuration information for the interface that handles DHCP relay traffic.
@@ -1044,6 +1046,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv show service dhcp-server6 default static
 ```
+
+- - -
 
 ## nv show service dhcp-server6 \<vrf-id\> static \<static-id\>
 

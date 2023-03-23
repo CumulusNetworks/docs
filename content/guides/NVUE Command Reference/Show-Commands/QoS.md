@@ -1546,6 +1546,8 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show qos egress-queue-mapping default-global
 ```
 
+- - -
+
 ## nv show qos egress-queue-mapping \<profile-id\> switch-priority
 
 Shows switch priority configuration settings for the specified egress queue mapping profile.

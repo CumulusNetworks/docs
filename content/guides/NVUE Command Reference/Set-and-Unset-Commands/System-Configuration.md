@@ -35,6 +35,8 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv set system config apply ignore /etc/ptp4l.conf
 ```
 
+- - -
+
 ## nv set system config apply overwrite
 
 Configures which files NVUE overwrites during `nv config apply`. You can specify:
@@ -72,6 +74,8 @@ Introduced in Cumulus Linux 5.4.0
 ```
 cumulus@leaf01:mgmt:~$ nv set system config auto-save enable on
 ```
+
+- - -
 
 ## nv set system control-plane
 

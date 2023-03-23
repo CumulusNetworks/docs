@@ -725,6 +725,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast register-accept-list MYACCEPTLIST
 ```
 
+- - -
+
 ## nv set vrf \<vrf-id\> router pim address-family ipv4-unicast send-v6-secondary
 
 Turns sending IPv6 addresses as secondary addresses on or off. The default setting is `off`.
@@ -744,6 +746,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router pim address-family ipv4-unicast send-v6-secondary on
 ```
+
+- - -
 
 ## nv set vrf \<vrf-id\> router pim enable
 

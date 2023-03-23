@@ -67,6 +67,8 @@ Introduced in Cumulus Linux 5.3.0
 cumulus@leaf01:mgmt:~$ nv show system forwarding profile-option
 ```
 
+- - -
+
 ## nv show system global
 
 Shows global system configuration, such as the anycast ID, anycast MAC address, fabric ID, fabric MAC address, system MAC address, routing table, VLAN, and VNI information.
@@ -80,6 +82,8 @@ Introduced in Cumulus Linux 5.3.0
 ```
 cumulus@leaf01:mgmt:~$ nv show system global
 ```
+
+- - -
 
 ## nv show system global reserved
 

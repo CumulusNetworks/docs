@@ -469,6 +469,8 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show interface swp1 link breakout 2x
 ```
 
+- - -
+
 ## nv show interface \<interface-id\> link breakout \<mode-id\>
 
 Shows information about a specific port breakout for the specified interface.

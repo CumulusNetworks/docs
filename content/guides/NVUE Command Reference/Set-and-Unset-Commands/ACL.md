@@ -455,6 +455,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac dest-mac any
 ```
 
+- - -
+
 ## nv set acl \<acl-id\> rule \<rule-id\> match mac dest-mac-mask \<mac\>
 
 Configures the destination MAC address mask you want to match.
@@ -499,6 +501,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac protocol ipv4
 ```
+
+- - -
 
 ## nv set acl \<acl-id\> rule \<rule-id\> match mac vlan \<vlan-id\>
 
@@ -615,6 +619,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action log log-prefix 10.10.10.1/32
 ```
 
+- - -
+
 ## nv set acl \<acl-id\> rule \<rule-id\> action set class
 
 Modifies the class value for packet classification.
@@ -658,6 +664,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 action set dscp af12
 ```
+
+- - -
 
 ## nv set acl \<acl-id\> rule\<rule-id\> action set cos
 

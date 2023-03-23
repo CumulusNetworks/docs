@@ -100,6 +100,8 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv action disconnect system aaa user admin2
 ```
 
+- - -
+
 ## nv show action
 
 Shows the actions taken, such interface counter resets, removed protodown MLAG bond conflicts, and disconnected system users.

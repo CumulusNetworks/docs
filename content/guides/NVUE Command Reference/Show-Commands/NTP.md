@@ -66,6 +66,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv show service ntp default pool 4.cumulusnetworks.pool.ntp.org
 ```
 
+- - -
+
 ## nv show service ntp \<vrf-id\> server \<server-id\>
 
 Shows information about the specified remote NTP server.

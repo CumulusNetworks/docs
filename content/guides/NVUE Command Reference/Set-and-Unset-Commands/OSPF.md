@@ -1419,6 +1419,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute bgp enable on
 ```
 
+- - -
+
 ## nv set vrf \<vrf-id\> router ospf redistribute bgp metric
 
 Configures the metric for OSPF BGP route redistribution. You can specify a value between 0 and 16777214, or `none`.
@@ -1483,6 +1485,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute bgp route-map ROUTEMAP1
 ```
+
+- - -
 
 ## nv set vrf \<vrf-id\> router ospf timers
 
@@ -1697,6 +1701,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router ospf rfc1583-compatible off
 ```
+
+- - -
 
 ## nv set vrf \<vrf-id\> router ospf router-id
 

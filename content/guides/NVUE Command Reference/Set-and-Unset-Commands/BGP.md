@@ -2644,6 +2644,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise regular off
 ```
 
+- - -
+
 ### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise extended
 
 Configures BGP to announce the `EXT_COMMUNITIES` attribute to the peer group. You can specify `on` or `off`.
@@ -2667,6 +2669,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise extended off
 ```
 
+- - -
+
 ### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast community-advertise large
 
 Configures BGP to announce the `LARGE_COMMUNITIES` attribute to the peer group. You can specify `on` or `off`.
@@ -2689,6 +2693,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast community-advertise large off
 ```
+
+- - -
 
 ### nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast attribute-mod
 

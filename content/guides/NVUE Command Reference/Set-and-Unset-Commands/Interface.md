@@ -51,6 +51,8 @@ Introduced in Cumulus Linux 5.0.0
 cumulus@leaf01:mgmt:~$ nv set interface swp1 description hypervisor_port_1
 ```
 
+- - -
+
 ## nv set interface \<interface-id\> bond down-delay
 
 Configures the down delay on the bonded interface. You can set a value between 0 and 65535.
@@ -623,6 +625,8 @@ Introduced in Cumulus Linux 5.4.0
 ```
 cumulus@leaf01:mgmt:~$ nv set interface swp1 link breakout 4x
 ```
+
+- - -
 
 ## nv set interface \<interface-id\> link breakout \<mode-id\> lanes-per-port \<lanes-per-port\>
 

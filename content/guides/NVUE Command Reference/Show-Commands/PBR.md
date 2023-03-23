@@ -215,6 +215,8 @@ Introduced in Cumulus Linux 5.1.0
 cumulus@leaf01:mgmt:~$ nv show router pbr map map1 rule 1 action nexthop-group
 ```
 
+- - -
+
 ## nv show router pbr map \<pbr-map-id\> rule \<rule-id\> action nexthop-group \<nexthop-group-id\>
 
 Shows configuration for the specified next hop group including the IP route table number of the default route.

@@ -181,7 +181,7 @@ cumulus@leaf01:mgmt:~$ nv set system control-plane trap l3-mtu-err state on
 
 - - -
 
-# nv set system counter
+## nv set system counter
 
 Configures the system counter polling intervals.
 

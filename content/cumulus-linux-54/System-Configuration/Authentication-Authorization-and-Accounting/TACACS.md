@@ -53,14 +53,14 @@ NVUE commands require you to specify the priority for each TACACS+ server. You m
 The following example commmands set:
 - The TACACS+ server priority to 5.
 - The IP address of the server to 192.168.0.30.
-- The secret to `mytacacskey`.
+- The secret to `mytacac$key`. Note that single quotes are required to use special characters such as "$".
 - The VRF to `mgmt`.
 - The authentication order so that TACACS+ authentication has priority over local (the lower number has priority).
 - TACACS+ to enabled.
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
-cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey
+cumulus@switch:~$ nv set system aaa tacacs server 5 secret 'mytacac$key'
 cumulus@switch:~$ nv set system aaa tacacs vrf mgmt 
 cumulus@switch:~$ nv set system aaa authentication-order 5 tacacs
 cumulus@switch:~$ nv set system aaa authentication-order 10 local
@@ -72,9 +72,9 @@ If you configure more than one TACACS+ server, you need to set the priority for 
 
 ```
 cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
-cumulus@switch:~$ nv set system aaa tacacs server 5 secret mytacacskey 
+cumulus@switch:~$ nv set system aaa tacacs server 5 secret 'mytacac$key' 
 cumulus@switch:~$ nv set system aaa tacacs server 10 host 192.168.1.30
-cumulus@switch:~$ nv set system aaa tacacs server 10 secret mytacacskey2 
+cumulus@switch:~$ nv set system aaa tacacs server 10 secret 'mytacac$key2'
 cumulus@switch:~$ nv config apply
 ```
 
@@ -85,7 +85,7 @@ cumulus@switch:~$ nv config apply
 
    ```
    cumulus@switch:~$ sudo nano /etc/tacplus_servers
-   secret=tacacskey
+   secret=mytacac$key
    server=192.168.0.30
    ```
 
@@ -93,9 +93,9 @@ cumulus@switch:~$ nv config apply
 
    ```
    cumulus@switch:~$ sudo nano /etc/tacplus_servers
-   secret=tacacskey
+   secret=mytacac$key
    server=192.168.0.30
-   secret=mytacacskey2
+   secret=mytacac$key2
    server=192.168.1.30
    ```
 
@@ -174,7 +174,7 @@ The following example sets the server port to 32, the authentication type to CHA
 ```
 cumulus@switch:~$ sudo nano /etc/tacplus_servers
 ...
-secret=tacacskey
+secret=mytacac$key
 server=192.168.0.30:32
 ...
 # Sets the IPv4 address used as the source IP address when communicating with

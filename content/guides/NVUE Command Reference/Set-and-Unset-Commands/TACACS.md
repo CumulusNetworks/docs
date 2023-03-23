@@ -31,55 +31,167 @@ cumulus@leaf01:mgmt:~$ nv set system aaa authentication-order 1 tacacs
 
 - - -
 
-## nv set system aaa tacacs
-
-- - -
-
 ## nv set system aaa tacacs authentication
+
+Configures TACACS+ authentication.
 
 - - -
 
 ## nv set system aaa tacacs authentication mode
 
-pap|chap|login)
+Configures the TACACS+ authentication mode. You can specify `pap` to send clear text between the user and the server, `chap` to establish a PPP connection between the user and the server, or `login`. The default is `pap`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0 (beta)
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa tacacs authentication mode chap
+```
 
 - - -
 
 ## nv set system aaa tacacs authentication per-user-homedir
 
-on|off)
+Turns per user home directory on or off to create a separate home directory for each TACACS+ user when the TACACS+ user first logs in. The default setting os `off`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0 (beta)
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa tacacs authentication per-user-homedir on
+```
 
 - - -
 
 ## nv set system aaa tacacs accounting
 
+Configures TACACS+ accounting. TACACS+ accounting uses the `audisp` module, with an additional plugin for `auditd` and `audisp`. The plugin maps the `auid` in the accounting record to a TACACS login, which it bases on the `auid` and sessionid.
+
 - - -
 
 ## nv set system aaa tacacs accounting enable
 
-on|off)
+Turns TACACS+ accounting on or off.
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0 (beta)
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa tacacs accounting enable on
+```
 
 - - -
 
 ## nv set system aaa tacacs accounting send-records
 
-all|first-response)
+Configures Cumulus Linux to send accounting records to all servers (`all`) or to the server that is first to respond (`first-response`). By default, Cumulus Linux sends accounting records to all servers.
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0 (beta)
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa tacacs accounting send-records first-response
+```
 
 - - -
 
 ## nv set system aaa tacacs server \<priority-id\>
 
+Configures the TACACS server priority number. You must set a priority even if you only specify one server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<priority-id>`  |  TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0 (beta)
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5
+```
+
 - - -
 
-## nv set system aaa tacacs server \<priority-id\> host (<idn-hostname\>|<ipv4\>)
+## nv set system aaa tacacs server \<priority-id\> host
+
+Configures the IPv4 address or hostname of at least one TACACS+ server.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<priority-id>`  |  TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0 (beta)
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 host 192.168.0.30
+```
 
 - - -
 
-## nv set system aaa tacacs server \<priority-id\> port 0-65535
+## nv set system aaa tacacs server \<priority-id\> port
+
+Configures the TACACS+ server port to use for communication between the TACACS+ server and client. You can set a value between 0 and 65535. The default port is 49.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<priority-id>`  |  TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0 (beta)
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 port 32
+```
 
 - - -
 
 ## nv set system aaa tacacs server \<priority-id\> secret \<value\>
+
+Configures the shared secret between the TACACS server and client. The TACACS client on the switch and the TACACS server must have the same shared secret key.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<priority-id>`  |  TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0 (beta)
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 secret mytacacskey
+```
 
 - - -
 

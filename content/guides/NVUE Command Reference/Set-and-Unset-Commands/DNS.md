@@ -1,7 +1,7 @@
 ---
 title: DNS
 author: Cumulus Networks
-weight: 530
+weight: 550
 product: Cumulus Linux
 type: nojsscroll
 ---

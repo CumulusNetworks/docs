@@ -1,7 +1,7 @@
 ---
 title: NTP
 author: Cumulus Networks
-weight: 610
+weight: 620
 product: Cumulus Linux
 type: nojsscroll
 ---

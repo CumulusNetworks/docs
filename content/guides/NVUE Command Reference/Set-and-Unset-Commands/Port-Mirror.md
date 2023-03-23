@@ -1,7 +1,7 @@
 ---
 title: Port Mirror
 author: Cumulus Networks
-weight: 650
+weight: 660
 product: Cumulus Linux
 type: nojsscroll
 ---

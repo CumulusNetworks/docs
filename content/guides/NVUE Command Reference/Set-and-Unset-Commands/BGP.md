@@ -1,7 +1,7 @@
 ---
 title: BGP
 author: Cumulus Networks
-weight: 510
+weight: 520
 product: Cumulus Linux
 type: nojsscroll
 ---

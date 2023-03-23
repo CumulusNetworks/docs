@@ -1,7 +1,7 @@
 ---
 title: QoS
 author: Cumulus Networks
-weight: 680
+weight: 690
 product: Cumulus Linux
 type: nojsscroll
 ---

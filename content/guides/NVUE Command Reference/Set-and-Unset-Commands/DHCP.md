@@ -1,7 +1,7 @@
 ---
 title: DHCP
 author: Cumulus Networks
-weight: 520
+weight: 540
 product: Cumulus Linux
 type: nojsscroll
 ---

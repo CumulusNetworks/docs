@@ -43,8 +43,6 @@ cumulus@leaf01:mgmt:~$ nv show service dhcp-relay default
 
 - - -
 
-- - -
-
 ## nv show service dhcp-relay \<vrf-id\> giaddress-interface \<interface-id\>
 
 Shows the IPv4 DHCP relay gateway IP address (giaddress) interface configuration.

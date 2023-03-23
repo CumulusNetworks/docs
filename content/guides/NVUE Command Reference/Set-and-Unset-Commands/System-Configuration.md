@@ -15,8 +15,6 @@ Configures system configuration settings.
 
 - - -
 
-- - -
-
 ## nv set system config apply
 
 Configures how NVUE performs `config apply` operations.

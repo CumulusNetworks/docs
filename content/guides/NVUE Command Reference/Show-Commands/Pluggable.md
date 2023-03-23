@@ -1,7 +1,7 @@
 ---
 title: Pluggable
 author: Cumulus Networks
-weight: 300
+weight: 280
 product: Cumulus Linux
 type: nojsscroll
 ---

@@ -1,7 +1,7 @@
 ---
 title: MLAG
 author: Cumulus Networks
-weight: 230
+weight: 210
 product: Cumulus Linux
 type: nojsscroll
 ---

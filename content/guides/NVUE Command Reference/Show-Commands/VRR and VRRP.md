@@ -1,7 +1,7 @@
 ---
 title: VRR and VRRP
 author: Cumulus Networkss
-weight: 400
+weight: 440
 product: Cumulus Linux
 type: nojsscroll
 ---

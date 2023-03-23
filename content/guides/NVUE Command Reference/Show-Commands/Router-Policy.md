@@ -1,7 +1,7 @@
 ---
 title: Router Policy
 author: Cumulus Networks
-weight: 370
+weight: 350
 product: Cumulus Linux
 type: nojsscroll
 ---

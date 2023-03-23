@@ -121,7 +121,7 @@ Shows information about a specific user account, such as the role and full name.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<user-id>`    |  The user ID. |
+| `<user-id>`    |  The user account. |
 
 ### Version History
 
@@ -143,7 +143,7 @@ Shows SSH information about the specified user account.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<user-id>`    |  The user ID. |
+| `<user-id>`    |  The user account. |
 
 ### Version History
 
@@ -164,7 +164,7 @@ Shows the SSH authorized key for the specified user account.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<user-id>`    |  The user ID. |
+| `<user-id>`    |  The user account. |
 
 ### Version History
 
@@ -186,7 +186,7 @@ Shows information about a specific SSH authorized key for the specified user acc
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<user-id>`    |  The user ID. |
+| `<user-id>`    |  The user account. |
 | `<ssh-authorized-key-id>`    |  The SSH authorized key ID. |
 
 ### Version History

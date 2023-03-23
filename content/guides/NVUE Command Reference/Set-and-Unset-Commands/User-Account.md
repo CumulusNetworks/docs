@@ -1,0 +1,124 @@
+---
+title: User Account
+author: Cumulus Networks
+weight: 790
+product: Cumulus Linux
+type: nojsscroll
+---
+{{%notice note%}}
+The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
+{{%/notice%}}
+
+## nv set system aaa user \<user-id\> role
+
+Configures the role for the user accounts configured on the switch and the groups to which they belong. You can specify `system-admin`, `nvue-admin`, and `nvue-monitor`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 nvue-monitor
+```
+
+- - -
+
+## nv set system aaa user \<user-id\> full-name \<value\>
+
+Configures the full name for the specified user account. If the full name includes more than one name, either separate the names with a hyphen (FIRST-LAST) or enclose the full name in quotes ("FIRST LAST").
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 full-name "FIRST LAST"
+```
+
+- - -
+
+## nv set system aaa user \<user-id\> password
+
+Configures a plain text password for the specified user account by prompting you to enter a new password and to confirm the password.
+
+You can also run the `nv set system aaa user <user-id> password <plain-text-password>` command to specify the plain text password inline. This command bypasses the Enter new password and Confirm password prompts but displays the plain text password as you type it.
+
+NVUE hashes the plain text password and stores the value as a hashed password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 password
+```
+
+- - -
+
+## nv set system aaa user \<user-id\> hashed-password
+
+Configures a hashed text password for the specified user account. You must specify the hashed password in Linux crypt format; the password must be a minimum of 15 to 20 characters long and must include special characters, digits, lower case alphabetic letters, and more.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 hashed-password '$1$/ETjhZMJ$P73qhBZEYP20mKnRkhBol0'
+```
+
+- - -
+
+## nv set system aaa user \<user-id\> enable
+
+Turns the user account on or off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 enable on
+```
+
+- - -

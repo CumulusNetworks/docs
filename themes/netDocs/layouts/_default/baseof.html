@@ -37,6 +37,8 @@
       {{ $jsMenu := slice $jsScroll $jsCollapse $jsCustom | resources.Concat "js/menuBundle.js"}}
       
       <script type="application/javascript" src = "{{ $jsMenu.Permalink }}"> </script>
+      {{ $jsMenuOffline := resources.Get "js/menuBundle.js" }}
+      <script type="application/javascript" src="{{ $jsMenuOffline.Permalink }}"></script>
       {{ end }}
 
       {{if eq .Page.Type "nojsscroll"}}

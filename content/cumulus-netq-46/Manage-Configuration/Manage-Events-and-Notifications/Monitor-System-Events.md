@@ -1,7 +1,7 @@
 ---
 title: Monitor Events
 author: NVIDIA
-weight: 800
+weight: 775
 toc: 4
 ---
 Use the UI or CLI to monitor events: you can view all events across the entire network or all events on a device, then filter events according to their type, severity, or timeframe.

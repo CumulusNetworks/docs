@@ -428,3 +428,99 @@ cumulus@leaf01:mgmt:~$ nv set evpn vni 10 rd 10.10.10.1:20
 ```
 
 - - -
+
+## nv set vrf \<vrf-id\> evpn
+
+Configures the EVPN control plane on the specified VRF.
+
+- - -
+
+## nv set vrf \<vrf-id\> evpn enable
+
+Turns the EVPN control plane on  or off in the specified VRF.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED evpn enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> evpn vlan
+
+Configures the VLAN for the EVPN instance in the specified VRF. You can specify a value between 1 and 4094, or `auto`.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<vlan-id>` | The VLAN ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED evpn vlan 10
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> evpn vni \<vni-id\>
+
+Configures the layer 3 VNI for the EVPN instance in the specified VRF. You can specify a value between 1 and 16777214, or `auto`.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<vni-id>` | The layer 3 VNI ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED evpn vni 10
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> evpn prefix-routes-only
+
+Confiures the switch to advertise IP prefix routes (type 5 routes) only in the specified VRF. You can specify `on` or `off`.
+
+### Command Syntax
+
+| Command |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED evpn prefix-routes-only on
+```
+
+- - -

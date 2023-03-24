@@ -4491,7 +4491,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp route-import from-evpn route-target 
 ```
 
 - - -
@@ -4502,9 +4502,11 @@ Provides commands to configure timer values for all peers in this VRF.
 
 - - -
 
-## nv set vrf \<vrf-id\> router bgp timers connection-retry
+## nv set vrf \<vrf-id\> router bgp timers keepalive
 
-Time interval at which connection attempts are retried upon a failure.
+Configures the rate (in seconds) at which BGP sends keepalive messages to all the peers in the specified VRF. BGP exchanges periodic keepalive messages to measure and ensure that a peer is still alive and functioning. You can specify a value between 0 and 65535 or `none`. The default value is 3 seconds.
+
+The keepalive interval can be less than or equal to one third of the hold time, but cannot be less than 1 second. Setting the keepalive and hold time values to 0 disables the exchange of keepalives.
 
 ### Command Syntax
 
@@ -4519,7 +4521,99 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp timers keepalive 10
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp timers hold
+
+Configures the hold time (in seconds). By default, BGP exchanges periodic keepalive messages to measure and ensure that a peer is still alive and functioning. If BGP does not receive a keepalive or update message from the peer within the hold time, it declares the peer down and withdraws all routes received by this peer from the local BGP table. 
+
+You can specify a value between 03and 65535 or `none`. The default value is 9 seconds.
+
+The keepalive interval can be less than or equal to one third of the hold time, but cannot be less than 1 second. Setting the keepalive and hold time values to 0 disables the exchange of keepalives.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp timers hold 30
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp timers connection-retry
+
+Configures the time interval (in seconds) at which BGP connection attempts are retried after a failure. The default value is 10.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp timers connection-retry 
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp timers route-advertisement
+
+Configures the delay to insert before advertising the new results to a peer after making a new best path decision for a prefix. This delay rate limits the amount of changes advertised to downstream peers and lowers processing requirements by slowing down convergence. You can set a value between 1 and 600 or `none`. The default value is 0 for both eBGP and iBGP sessions, which allows for fast convergence. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp timers route-advertisement 5
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp timers conditional-advertise
+
+Configures the time interval at which the BGP table is scanned for a condition that is met. You can sepcify a value between 5 and 240 or `none`.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp timers conditional-advertise 20
 ```
 
 - - -
@@ -4745,6 +4839,8 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast allow-my-asn enable on
 ```
+
+- - - 
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn occurrences
 

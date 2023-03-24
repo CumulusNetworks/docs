@@ -1315,36 +1315,11 @@ None
 
 Displays the configuration of the NetQ Agent on a switch. Several forms of this command are available.
 
-
-
-<!-- CPU Limit: Displays the maximum percentage of CPU resources of the switch that a NetQ Agent might use. When restricted by the `netq config add agent cpu-limit` command, the value is between 40 and 60 percent. For more detail about this feature, refer to this [Knowledge Base]({{<ref "knowledge-base/Configuration-and-Usage/Cumulus-NetQ/NetQ-Agent-CPU-Utilization-on-Cumulus-Linux-Switches">}}) article.
-
-FRR Monitor: Displays the NetQ Agent Free Range Router (FRR) function monitoring configuration on a switch. If configured, FRR monitoring occurs on FRR running in a Docker container. If not configured, FRR is likely running as a service.
-
-Kubernetes Monitor: Displays the NetQ Agent Kubernetes monitoring configuration on a switch, included whether it is enabled and the polling period.
-
-Log Level: Displays the amount of information logged about the NetQ Agent activity, from only critical issues to every available message. Identified issues get logged to the `/var/log/netq-agent.log` file. The default log level is *info*.
-
-- Error: Logs only events classified as errors
-- Warning: Logs events classified as warnings and errors
-- Info: Logs events classified as info, warning, and errors
-- Debug: Logs all events
-
-Sensors: Displays the NetQ Agent sensors configuration on a chassis.
-
-SSL: 
-
-Stats: Displays whether you configured the NetQ Agent for interface statistics monitoring on a switch (true) or not (false).
-
-WJH: Displays whether you configured the NetQ Agent for What Just Happened event monitoring on an NVIDIA Spectrum switch. Refer to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for setting up WJH monitoring.
-
-WJH Threshold: Displays whether you configured the NetQ Agent with WJH latency and congestion thresholds on an NVIDIA Spectrum switch. -->
-
 ### Syntax
 
 ```
 netq config show agent 
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats||wjh|wjh-threshold] 
+    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
 ### Required Arguments
@@ -1364,7 +1339,7 @@ None
 | stats | NA | Display status of interface statistics |
 | wjh | NA | Display NetQ Agent What Just Happened monitoring configuration |
 | wjh-threshold | NA | Display NetQ Agent WJH latency and congestion thresholds configuration |
-| json | NA | Display the output in JSON file format |
+| json | NA | Display the output in JSON format |
 ### Sample Usage
 
 ```

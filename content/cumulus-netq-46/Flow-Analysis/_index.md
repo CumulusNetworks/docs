@@ -19,11 +19,11 @@ You must enable {{<link title="Lifecycle Management" text="Lifecycle Management"
 
 To start a new flow analysis, click the **Flow analysis** icon and select **Create new flow analysis**.
 
-{{<figure src="/images/netq/new-flow-analysis.png" alt="flow analysis menu with options to create a new flow analysis or view a previous analysis" width="350">}}
+{{<figure src="/images/netq/flow-analysis-select-icon-450.png" alt="flow analysis menu with options to create a new flow analysis or view a previous analysis" width="350">}}
 
 In the dialog, enter the application parameters, including the source IP address, destination IP address, source port, and destination port of the flow you wish to analyze. Select the protocol and VRF for the flow from the dropdown menus.
 
-{{<figure src="/images/netq/flow-analysis-create-dialog-42.png" alt="flow analysis wizard prompting user to enter application parameters" width="600">}}
+{{<figure src="/images/netq/create-new-flow-450.png" alt="flow analysis wizard prompting user to enter application parameters" width="600">}}
 
 After you enter the application parameters, enter the monitor settings, including the sampling rate and time parameters.
 

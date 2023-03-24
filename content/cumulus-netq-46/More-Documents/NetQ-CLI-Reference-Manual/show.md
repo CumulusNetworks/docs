@@ -380,7 +380,7 @@ Hostname          Device Allocated     Unallocated Space    Largest Chunk Size  
 ----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------------
 leaf01            37.79 %              3.58 GB              588.5 MB             771.91 MB            yes                  Wed Sep 16 21:25:17 2020
 ```
-
+Look for the **Rebalance Recommended** column. If the value in that column says *Yes*, then you are strongly encouraged to rebalance the BTRFS partitions. If it says *No*, then you can review the other values in the output to determine if you are getting close to needing a rebalance, and come back to view this data at a later time.
 ### Related Commands
 
 - ```netq show cl-ssd-util```
@@ -1237,6 +1237,7 @@ The output provides the following for each device:
 - The associated VRF, VLANs, PVID, MTU, and LLDP peer
 - When the last change occurred for any of these items
 - The total number of interfaces on a given device
+- The module, vendor, part number, and performance info. for physical interfaces
 
 ### Syntax
 
@@ -1423,6 +1424,100 @@ leaf04            vlan10-v0                 macvlan          up         RED     
 leaf04            vlan20-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1b,             Tue Oct 27 22:29:06 2020
                                                                                         Mode: Private
 leaf04            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:29:06 2020
+```
+
+Display cable information and status for all interface ports on all devices:
+
+```
+cumulus@switch:~$ netq show interfaces physical
+Matching cables records:
+Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
+----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
+border01          vagrant                   down       Unknown    off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp54                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp49                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp2                      down       Unknown    off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp3                      up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp52                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp1                      down       Unknown    off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp53                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp4                      down       Unknown    off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp50                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          eth0                      up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border01          swp51                     up         1G         off     RJ45      n/a                  n/a              Fri Sep 18 20:08:05 2020
+border02          swp49                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp54                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp52                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp53                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp4                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp3                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          vagrant                   down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp1                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp2                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp51                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          swp50                     up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+border02          eth0                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:54 2020
+fw1               swp49                     down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:37 2020
+fw1               eth0                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:37 2020
+fw1               swp1                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:37 2020
+fw1               swp2                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:37 2020
+fw1               vagrant                   down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:37 2020
+fw2               vagrant                   down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
+fw2               eth0                      up         1G         off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
+fw2               swp49                     down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
+fw2               swp2                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
+fw2               swp1                      down       Unknown    off     RJ45      n/a                  n/a              Thu Sep 17 21:07:38 2020
+...
+```
+
+The following example displays detailed module information for the interface ports on the leaf02 switch:
+
+```
+cumulus@switch:~$ netq leaf02 show interfaces physical module
+Matching cables records are:
+Hostname          Interface                 Module    Vendor               Part No          Serial No                 Transceiver      Connector        Length Last Changed
+----------------- ------------------------- --------- -------------------- ---------------- ------------------------- ---------------- ---------------- ------ -------------------------
+leaf02            swp1                      RJ45      n/a                  n/a              n/a                       n/a              n/a              n/a    Thu Feb  7 22:49:37 2019
+leaf02            swp2                      SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     Thu Feb  7 22:49:37 2019
+                                                                                                                        er Passive,Twin
+                                                                                                                        Axial Pair (TW)
+leaf02            swp47                     QSFP+     CISCO                AFBR-7IER05Z-CS1 AVE1823402U               n/a              n/a              5m     Thu Feb  7 22:49:37 2019
+leaf02            swp48                     QSFP28    TE Connectivity      2231368-1        15250052                  100G Base-CR4 or n/a              3m     Thu Feb  7 22:49:37 2019
+                                                                                                                        25G Base-CR CA-L
+                                                                                                                        ,40G Base-CR4               
+leaf02            swp49                     SFP       OEM                  SFP-10GB-LR      ACSLR130408               10G Base-LR      LC               10km,  Thu Feb  7 22:49:37 2019
+                                                                                                                                                        10000m
+leaf02            swp50                     SFP       JDSU                 PLRXPLSCS4322N   CG03UF45M                 10G Base-SR,Mult LC               80m,   Thu Feb  7 22:49:37 2019
+                                                                                                                        imode,                            30m,  
+                                                                                                                        50um (M5),Multim                  300m  
+                                                                                                                        ode,            
+                                                                                                                        62.5um (M6),Shor
+                                                                                                                        twave laser w/o
+                                                                                                                        OFC (SN),interme
+                                                                                                                        diate distance (
+                                                                                                                        I)              
+leaf02            swp51                     SFP       Mellanox             MC2609130-003    MT1507VS05177             1000Base-CX,Copp Copper pigtail   3m     Thu Feb  7 22:49:37 2019
+                                                                                                                        er Passive,Twin
+                                                                                                                        Axial Pair (TW)
+leaf02            swp52                     SFP       FINISAR CORP.        FCLF8522P2BTL    PTN1VH2                   1000Base-T       RJ45             100m   Thu Feb  7 22:49:37 2019
+```
+
+The following example first determines which models (part numbers) exist on all the devices and then displays devices with a part number of QSFP-H40G-CU1M installed:
+
+```
+cumulus@switch:~$ netq show interfaces physical model
+    2231368-1         :  2231368-1
+    624400001         :  624400001
+    QSFP-H40G-CU1M    :  QSFP-H40G-CU1M
+    QSFP-H40G-CU1MUS  :  QSFP-H40G-CU1MUS
+    n/a               :  n/a
+
+cumulus@switch:~$ netq show interfaces physical model QSFP-H40G-CU1M
+Matching cables records:
+Hostname          Interface                 State      Speed      AutoNeg Module    Vendor               Part No          Last Changed
+----------------- ------------------------- ---------- ---------- ------- --------- -------------------- ---------------- -------------------------
+leaf01            swp50                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
+leaf02            swp52                     up         1G         off     QSFP+     OEM                  QSFP-H40G-CU1M   Thu Feb  7 18:31:20 2019
 ```
 
 ### Related Commands

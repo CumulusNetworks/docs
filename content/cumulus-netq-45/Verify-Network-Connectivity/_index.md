@@ -66,7 +66,7 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 <div style="padding-left: 18px;"><div class="notices tip"><p>If you mistype an address, you must double-click it, or backspace over the error, and retype the address. You cannot select the address by dragging over it as this action attempts to move the card to another location.</p></div></div>
 
-5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench.
+5. Click **Run now**. A corresponding Trace Results card is opened on your workbench.
 
 {{</tab>}}
 
@@ -333,7 +333,7 @@ cumulus@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
 ### Create a Layer 2 On-demand Trace
 <!-- vale on -->
 
-It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. It you cannot find a path through a layer 2 path, you might also try checking connectivity through a layer 3 path.
+It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. If you cannot find a path through a layer 2 path, you might also try checking connectivity through a layer 3 path.
 
 {{<tabs "Create Layer 2 On-demand Trace">}}
 

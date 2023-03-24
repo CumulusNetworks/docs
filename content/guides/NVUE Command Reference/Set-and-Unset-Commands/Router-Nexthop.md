@@ -87,3 +87,97 @@ cumulus@leaf01:mgmt:~$ nv set router nexthop group 10 via 10.10.10.101 vrf defau
 ```
 
 - - -
+
+## nv set vrf \<vrf-id> router nexthop-tracking \<afi> resolved-via-default
+
+Turns nexthop tracking resolved via default on or off.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-name>`  | The VRF name.  |
+| `<afi>`  | The address family: IPv4 or IPv6.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router nexthop-tracking ipv4 resolved-via-default on
+```
+
+- - -
+
+## nv set vrf \<vrf-id> router nexthop-tracking \<afi\>
+
+Configures next hop tracking for the specified address family. Next hop tracking reduces the BGP convergence time by monitoring next hop address changes in the routing table.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-name>`  | The VRF name.  |
+| `<afi>`  | The address family: IPv4 or IPv6.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router nexthop-tracking ipv4
+```
+
+- - -
+
+## nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\>
+
+Applies the specified nexthop tracking route map.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-name>`  | The VRF name.  |
+| `<afi>`  | The address family: IPv4 or IPv6.  |
+| `<nht-routemap-id>`  | The next hop tracking route map name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set router nexthop-tracking ipv4 route-map ROUTEMAP1
+```
+
+- - -
+
+## nv set vrf \<vrf-id> router nexthop-tracking \<afi> route-map \<nht-routemap-id\> protocol
+
+Applies the specified nexthop tracking route map for the specified protocol. You can specify `bgp`, `ospf`, `ospf6`, or `static`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-name>`  | The VRF name.  |
+| `<afi>`  | The address family: IPv4 or IPv6.  |
+| `<nht-routemap-id>`  | The next hop tracking route map name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 bgp
+```
+
+- - -

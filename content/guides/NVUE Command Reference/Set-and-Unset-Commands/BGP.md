@@ -99,7 +99,8 @@ Configures BGP graceful restart globally on the switch to minimize the negative 
 
 Configures the BGP graceful restart mode globally on the switch. You can specify the following settings:
 - `off`, where graceful restart is not negotiated with peers.
-- `helper-only`, where the switch is in a helper role only, and routes originated and advertised from a BGP peer in the peer group are not deleted. - `full`, where the switch is in both a helper and restarter role.
+- `helper-only`, where the switch is in a helper role only, and routes originated and advertised from a BGP peer in the peer group are not deleted.
+- `full`, where the switch is in both a helper and restarter role.
 
 The default setting is `off`.
 
@@ -4357,7 +4358,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family l2vpn-evpn aspath allow-my-asn occurrences 50
 ```
 
 - - -
@@ -4398,12 +4399,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES password none
 ```
 
 - - -
 
-## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> description none
+## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> description
 
 Configures a description for the peer group.
 
@@ -4421,7 +4422,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES description none
 ```
 
 - - -
@@ -4456,7 +4457,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp route-export to-evpn route-target 10.10.10.1:20
 ```
 
 - - -
@@ -4491,7 +4492,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router bgp route-import from-evpn route-target 
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp route-import from-evpn route-target 10.10.10.1:20
 ```
 
 - - -
@@ -4795,15 +4796,61 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 capabilities
 
 - - -
 
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> capabilities extended-nexthop
+
+Turns on or off advertisement of IPv4 prefixes with IPv6 next hops over global IPv6 peerings. You must add the extended nexthop capability to the global IPv6 neighbor statements on each end of the BGP sessions.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 capabilities extended-nexthop on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> capabilities source-address
+
+Configures the source IP address of the TCP connection, which is often used as the BGP next hop for updates.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 capabilities source-address 10.10.10.1
+```
+
+- - -
+
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as
 
-Configures the BGP local AS number, which allows the switch to appear to be a member of a second autonomous system (AS), in addition to its real AS.
+Configures BGP local AS, which allows the switch to appear to be a member of a second autonomous system (AS), in addition to its real AS.
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as asn
 
-ASN to use to establish the peering if different from the ASN of the BGP instance.  This configuration finds use during AS renumbering.  The local-as configured is also attached to incoming and outgoing updates.
+Configures the ASN to use to establish the peering if different from the ASN of the BGP instance. The local configured AS is also attached to incoming and outgoing updates.
 
 ### Command Syntax
 
@@ -4819,26 +4866,148 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 local-as asn 65532
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as enable
+
+Turns BGP local AS on or off, which allows the switch to appear to be a member of a second autonomous system (AS), in addition to its real AS.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 local-as enable on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as prepend
+
+Turns local AS prepend on or off. When on, BGP prepends the configured local AS to received updates.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 local-as prepend on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as replace
+
+Turns local AS replace on or off. When on, BGP attaches only the configured local AS to generated updates, *replacing* the AS number configured for the BGP instance with the local AS applicable for the peering. When off, BGP attach the AS number of the BGP instance and then prepends it with the configured local AS.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 local-as replace on
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> graceful-restart
 
-Provides commands to configure BGP Graceful restart per neighbor.
+Provides commands to configure BGP graceful restart per neighbor.
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> graceful-restart mode
+
+Configures the BGP graceful restart mode for the peer session. You can specify the following settings:
+- `off`, where graceful restart is not negotiated with peers.
+- `helper-only`, where the switch is in a helper role only, and routes originated and advertised from a BGP peer in the peer group are not deleted. 
+- `full`, where the switch is in both a helper and restarter role.
+
+The default setting is `off`.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 graceful-restart mode helper-only
+```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security
 
-Provides commands to configure RFC 5082.
+Provides commands to configure TTL security (RFC 5082).
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security enable
+
+Turns TTL security on or off for the peer session.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 ttl-security enable on
+```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> ttl-security hops
 
-Number of hops
+Configures the TTL security hop count to prevent attacks against eBGP, such as denial of service (DoS) attacks. By default, BGP messages to eBGP neighbors have an IP time-to-live (TTL) of 1, which requires the peer to be directly connected, otherwise, the packets expire along the way. You can adjust the TTL with the eBGP multihop option. An attacker can adjust the TTL of packets so that they look like they originate from a directly connected peer.
+
+The BGP TTL security hops option inverts the direction in which BGP counts the TTL. Instead of accepting only packets with a TTL of 1, Cumulus Linux accepts BGP messages with a TTL greater than or equal to 255 minus the specified hop count.
 
 ### Command Syntax
 
@@ -4854,7 +5023,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 ttl-security hops 200
 ```
 
 - - -
@@ -4867,7 +5036,7 @@ Provides commands to configure the IPv4 or IPv6 address family.
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast
 
-Provides commands to configure the peer IPv4 unicast address family.  Always on, unless disabled globally.
+Provides commands to configure the peer IPv4 unicast address family. The peer IPv4 unicast address family is always on, unless you disable it globally.
 
 - - -
 
@@ -4889,7 +5058,7 @@ Turns on or off the option for a received AS_PATH to contain the ASN of the loca
 
 - - -
 
-## nv set vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast aspath allow-my-asn enable
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast aspath allow-my-asn enable
 
 Configures BGP to allow a received AS path to contain the ASN of the local system.
 
@@ -4907,7 +5076,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router bgp peer-group SPINES address-family ipv4-unicast allow-my-asn enable on
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast allow-my-asn enable on
 ```
 
 - - - 
@@ -4921,7 +5090,7 @@ Configues the maximum number of times the local system's AS number can occur in 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4930,7 +5099,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast allow-my-asn occurrences 5
 ```
 
 - - -
@@ -4947,16 +5116,16 @@ Provides commands to configure outbound unicast policies.
 
 - - -
 
-## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound aspath-list none
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast policy inbound aspath-list
 
-Configures the AS-Path filter list to apply to updates received from this peer.
+Configures the AS Path filter list to apply to updates received from this peer.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4965,7 +5134,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy inbound aspath-list ASPATHIN
 ```
 
 - - -
@@ -4984,7 +5153,7 @@ Provides commands to configure outbound unicast policies.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4993,7 +5162,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast policy outbound aspath-list ASPATHOUT
 ```
 
 - - -
@@ -5012,14 +5181,14 @@ Provides commands to configure limits on inbound IPv4 prefixes from the peer.
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound warning-threshold
 
-Configures the percentage of the maximum at which a warning syslog is generated.
+Configures the percentage of the maximum at which a warning syslog is generated. You can set a value between 1 and 100.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5028,23 +5197,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits inbound warning-threshold 30
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast prefix-limits inbound reestablish-wait
 
-Specifes the time in seconds to wait before establishing the IPv4 BGP session again with the peer. 
-
-The default setting is auto, which uses standard BGP timers and processing (typically be 2-3 seconds).
+Specifes the time in seconds to wait before establishing the IPv4 BGP session again with the peer. You can set avalue between 1 and 4294967295. The default setting is auto, which uses standard BGP timers and processing (typically be 2-3 seconds).
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5053,7 +5220,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv4-unicast prefix-limits inbound reestablish-wait 50
 ```
 
 - - -
@@ -5085,7 +5252,7 @@ Configures the route map that contains the prefix list with a list of IPv4 route
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5109,7 +5276,7 @@ Configures a route map that uses a prefix list with the IPv4 routes that must ex
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5132,7 +5299,7 @@ Configures a route map that uses a prefix list with the IPv4 routes that must no
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5155,7 +5322,7 @@ Configures the weights to apply to IPv4 routes from the peer; this is used in th
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv4 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5202,13 +5369,13 @@ Configures the maximum number of times the local system's AS number can be in th
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast aspath allow-my-asn occurrences
 ```
 
 - - -
@@ -5227,14 +5394,14 @@ Provides commands to configure limits on inbound IPv6 prefixes from the peer.
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast prefix-limits inbound warning-threshold
 
-Configures the percentage of the maximum at which a warning syslog is generated.
+Configures the percentage of the maximum at which a warning syslog is generated. You can set a value between 1 and 100.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5243,7 +5410,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp1 address-family ipv6-unicast prefix-limits inbound warning-threshold 50
 ```
 
 - - -
@@ -5259,7 +5426,7 @@ The defaults is `auto`, which uses standard BGP timers and processing (typically
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5268,7 +5435,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast prefix-limits inbound reestablish-wait 50
 ```
 
 - - -
@@ -5300,7 +5467,7 @@ Configures the AS-Path filter list to apply to updates received from the peer.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5314,7 +5481,7 @@ Provides commands to configure IPv6 outbound unicast policies.
 
 - - -
 
-## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound aspath-list none
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast policy outbound aspath-list
 
 Configures the AS-Path filter list to apply to updates sent to this peer.
 
@@ -5323,7 +5490,7 @@ Configures the AS-Path filter list to apply to updates sent to this peer.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5332,7 +5499,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast policy outbound aspath-list LISTOUT
 ```
 
 - - -
@@ -5358,7 +5525,7 @@ Configures the route map that contains the prefix-list with the list of IPv6 rou
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5367,21 +5534,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast conditional-advertise advertise-map MAP2
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast conditional-advertise exist-map \<instance-name\>
 
-Configures a route map that uses a prefix list with the IPv6 routes that must exist in the routing table.
+Applies a route map that uses a prefix list with the IPv6 routes that must exist in the routing table.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5390,7 +5557,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast conditional-advertise exist-map MAP3
 ```
 
 - - -
@@ -5404,7 +5571,7 @@ Configures a route map that uses a prefix list with the IPv6 routes that must no
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5413,21 +5580,21 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast conditional-advertise non-exist-map MAP4
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast weight
 
-Configures the weight applied to IPv6 routes from the peer; this is used in the BGP route selection algorithm.
+Configures the weight applied to IPv6 routes from the peer; this is used in the BGP route selection algorithm. You can set a value between 0 and 65535.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+| `<neighbor-id>`   | The IPv6 address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5436,7 +5603,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family ipv6-unicast weight 200
 ```
 
 - - -
@@ -5467,7 +5634,7 @@ Turns on and off the option for a received AS_PATH to contain the ASN of the loc
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn occurrences
 
-Configures the maximum number of times the local system's AS number can be in the received AS_PATH.
+Configures the maximum number of times the local system's AS number can be in the received AS_PATH. You can set a value between 1 and 10.
 
 ### Command Syntax
 
@@ -5483,7 +5650,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 address-family l2vpn-evpn aspath allow-my-asn occurrences
 ```
 
 - - -

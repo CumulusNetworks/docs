@@ -616,7 +616,7 @@ Shows information about a specific EVPN next hop VTEP for the specified VRF.
 
 ### Version History
 
-Introduced in Cumulus Linux 5.?.0
+Introduced in Cumulus Linux 5.2.0
 
 ### Example
 

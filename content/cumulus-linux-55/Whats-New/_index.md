@@ -42,9 +42,9 @@ Early access features are now called beta features.
   - Zebra - Phase 2
   - Support Reboot Operations
   - Interface Counter Parity for NVUE
-  - Support Bridge Aging Timers
+  - {{<link url="VLAN-aware-Bridge-Mode#mac-address-ageing" text="Bridge aging timer">}}
   - LTTng Enhacements Switchd
-  - SyncE Support
+  - {{<link url="SyncE" text="SyncE">}}
   - BGP Phase 3
   - Additional Community Options for Route Policy
   - COPP Rule Definition with Control-Plane ACLs

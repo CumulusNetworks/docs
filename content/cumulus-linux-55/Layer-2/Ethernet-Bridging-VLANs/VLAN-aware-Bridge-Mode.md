@@ -579,6 +579,44 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 {{< /tab >}}
 {{< /tabs >}}
 
+## MAC Address Ageing
+
+By default, Cumulus Linux stores MAC addresses in the Ethernet switching table for 1800 seconds (30 minutes). You can change this setting to a value between 0 and 65535. A value of 0 turns MAC ageing off.
+
+The following command example changes the MAC ageing setting to 600 seconds:
+
+{{< tabs "TabID588 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set bridge domain br_default ageing 600 
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file to add the `bridge-ageing` parameter to the bridge interface:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto br_default
+iface br_default
+    bridge-ageing 600
+...
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To show the bridge ageing configuration setting, run the `nv show bridge domain <domain>` command:
+
+```
+cumulus@switch:~$ nv show bridge domain br_default
+
+```
+
 ## Static MAC Address Entries
 
 You can add a static MAC address entry to the layer 2 table for an interface within the VLAN-aware bridge by running a command similar to the following:

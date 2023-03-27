@@ -1,0 +1,586 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: OpenSC
+Upstream-Contact: opensc-devel@lists.sourceforge.net
+Source: https://github.com/OpenSC/OpenSC
+
+Files: *
+Copyright: 2001-2002, Juha Yrjölä <juha.yrjola@iki.fi>
+License: LGPL-2.1+
+
+Files: src/libopensc/authentic.h
+ src/libopensc/card-authentic.c
+ src/libopensc/iasecc-sdo.c
+ src/libopensc/iasecc-sdo.h
+ src/libopensc/iasecc-sm.c
+ src/libopensc/iasecc.h
+ src/libopensc/sm.h
+ src/libsm/sm-common.c
+ src/smm/sm-card-authentic.c
+ src/smm/sm-card-iasecc.c
+ src/smm/sm-cwa14890.c
+ src/smm/sm-global-platform.c
+ src/smm/sm-module.h
+ src/smm/smm-local.c
+Copyright: 2010, Viktor Tarasov <vtarasov@opentrust.com>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-gpk.c
+ src/libopensc/card-openpgp.c
+ src/libopensc/cardctl.h
+ src/libopensc/ctbcs.c
+ src/libopensc/pkcs15-algo.c
+ src/libopensc/pkcs15-openpgp.c
+ src/libopensc/pkcs15-syn.c
+ src/libopensc/reader-openct.c
+ src/pkcs11/debug.c
+ src/pkcs15init/pkcs15-gpk.c
+ src/pkcs15init/pkcs15-lib.c
+ src/pkcs15init/profile.c
+ src/tools/pkcs11-tool.c
+ src/tools/pkcs15-init.c
+ src/common/libpkcs11.c
+ src/pkcs11/mechanism.c
+ src/pkcs11/openssl.c
+ src/pkcs15init/pkcs15-init.h
+ src/pkcs15init/profile.h
+Copyright: 2001-2003, Olaf Kirch <okir@lst.de>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-dnie.c
+ src/libopensc/cwa-dnie.c
+ src/libopensc/cwa14890.c
+ src/libopensc/cwa14890.h
+ src/libopensc/user-interface.c
+ src/libopensc/user-interface.h
+ src/tools/dnie-tool.c
+Copyright: 2010-2011, Juan Antonio Martinez <jonsito@terra.es>
+License: LGPL-2.1+
+
+Files: src/pkcs11/framework-pkcs15.c
+ src/pkcs11/framework-pkcs15init.c
+ src/pkcs11/misc.c
+ src/pkcs11/pkcs11-global.c
+ src/pkcs11/pkcs11-object.c
+ src/pkcs11/pkcs11-session.c
+ src/pkcs11/sc-pkcs11.h
+Copyright: 2001-2002, Timo Teräs <timo.teras@iki.fi>
+License: LGPL-2.1+
+
+Files: src/scconf/*
+Copyright: 2002, 2003, Antti Tapaninen <aet@cc.hut.fi>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-entersafe.c
+ src/libopensc/card-gemsafeV1.c
+ src/libopensc/cwa-dnie.h
+ src/libopensc/pkcs15-esinit.c
+ src/libopensc/pkcs15-gemsafeV1.c
+ src/pkcs15init/pkcs15-entersafe.c
+Copyright: 2008, Weitao Sun <weitao@ftsafe.com>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-muscle.c
+ src/libopensc/muscle-filesystem.c
+ src/libopensc/muscle-filesystem.h
+ src/libopensc/muscle.c
+ src/libopensc/muscle.h
+ src/libopensc/compression.c
+ src/libopensc/compression.h
+ src/libopensc/p15card-helper.c
+ src/libopensc/p15card-helper.h
+ src/pkcs15init/pkcs15-muscle.c
+Copyright: 2006, Identity Alliance, Thomas Harning <support@identityalliance.com>
+License: LGPL-2.1+
+
+Files: src/tests/lottery.c
+ src/tests/p15dump.c
+ src/tests/pintest.c
+ src/tests/print.c
+ src/tests/prngtest.c
+ src/tests/sc-test.c
+Copyright:  2001-2002, Juha Yrjölä <juha.yrjola@iki.fi>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-westcos.c
+ src/libopensc/pkcs15-westcos.c
+ src/minidriver/minidriver.c
+ src/pkcs15init/pkcs15-westcos.c
+ src/tools/westcos-tool.c
+Copyright: 2009-2010, francois.leblanc@cev-sa.com
+License: LGPL-2.1+
+
+Files: src/libopensc/card-sc-hsm.h
+ src/libopensc/pkcs15-sc-hsm.c
+ src/pkcs15init/pkcs15-sc-hsm.c
+Copyright: 2012, Andreas Schwier, CardContact, Minden, Germany
+License: LGPL-2.1+
+
+Files: src/libopensc/ef-atr.c
+ src/pkcs15init/pkcs15-authentic.c
+ src/pkcs15init/pkcs15-iasecc.c
+Copyright: 2001-2002, Juha Yrjölä <juha.yrjola@iki.fi>
+  2010, Viktor Tarasov <vtarasov@opentrust.com>
+License: LGPL-2.1+
+
+Files: src/pkcs11/pkcs11-display.c
+ src/pkcs11/pkcs11-display.h
+ src/pkcs11/pkcs11-spy.c
+Copyright: 2003, Mathias Brossard <mathias.brossard@idealx.com>
+License: LGPL-2.1+
+
+Files: src/common/compat_getopt_main.c
+Copyright: 1997, 2000-2002, Benjamin Sittler
+License: public-domain
+ This program is in the public domain.
+
+Files: src/common/compat_getopt.c
+ src/common/compat_getopt.h
+Copyright: 1997, 2000-2002, Benjamin Sittler
+License: Expat
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation
+ files (the "Software"), to deal in the Software without
+ restriction, including without limitation the rights to use, copy,
+ modify, merge, publish, distribute, sublicense, and/or sell copies
+ of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
+
+Files: src/common/simclist.c
+ src/common/simclist.h
+Copyright: 2007-2010, Mij <mij@bitchx.it>
+License: ISC
+
+Files: src/libopensc/card-rtecp.c
+ src/pkcs15init/pkcs15-rtecp.c
+Copyright: 2009, Aleksey Samsonov <samsonov@guardant.ru>
+License: LGPL-2.1+
+
+Files: src/libopensc/log.c
+ src/libopensc/log.h
+Copyright: 2001-2002, Juha Yrjölä <juha.yrjola@iki.fi>
+  2003, Antti Tapaninen <aet@cc.hut.fi>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-asepcos.c
+ src/pkcs15init/pkcs15-asepcos.c
+Copyright: 2007, Athena Smartcard Solutions Inc
+License: LGPL-2.1+
+
+Files: src/libopensc/card-myeid.c
+ src/pkcs15init/pkcs15-myeid.c
+Copyright: 2008-2009, Aventra Ltd
+License: LGPL-2.1+
+
+Files: src/libopensc/card-rutoken.c
+ src/pkcs15init/pkcs15-rutoken.c
+Copyright: 2007, Eugene Hermann <rutoken@rutoken.ru>
+  2007, Pavel Mironchik <rutoken@rutoken.ru>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-atrust-acos.c
+ src/libopensc/pkcs15-atrust-acos.c
+Copyright: 2005, Franz Brandl <brandl@a-trust.at> based on work from
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-skey.c
+ src/pkcs15init/pkcs15-oberthur.c
+Copyright: 2002, Juha Yrjölä <juha.yrjola@iki.fi>
+  2009, 2011, Viktor Tarasov <viktor.tarasov@opentrust.com>
+License: LGPL-2.1+
+
+Files: src/common/libpkcs11.h
+ src/common/libscdl.c
+ src/common/libscdl.h
+ src/tools/eidenv.c
+Copyright: 2004, 2010, Martin Paljak <martin@martinpaljak.net>
+License: LGPL-2.1+
+
+Files: src/libopensc/apdu.c
+ src/libopensc/pkcs15-tccardos.c
+Copyright: 2005, Nils Larsch <nils@larsch.net>
+License: LGPL-2.1+
+
+Files: src/libopensc/sm.c
+ src/libsm/sm-common.h
+Copyright: 2013, Viktor Tarasov <viktor.tarasov@gmail.com>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-epass2003.c
+ src/pkcs15init/pkcs15-epass2003.c
+Copyright: 2008, 2011 Weitao Sun <weitao@ftsafe.com>
+License: LGPL-2.1+
+
+Files: src/common/compat_strlcat.c
+Copyright: 1998, Todd C. Miller <Todd.Miller@courtesan.com>
+License: BSD-3-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. The name of the author may not be used to endorse or promote products
+    derived from this software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL
+ THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Files: src/scconf/test-conf.c
+Copyright: 2002
+License: GPL-2+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
+
+Files: src/common/compat_strlcpy.c
+Copyright: 1998, Todd C. Miller <Todd.Miller@courtesan.com>
+License: ISC
+
+Files: src/libopensc/ctbcs.h
+Copyright: 1998, 1999 2000, Carlos Prados <cprados@yahoo.com>
+License: LGPL-2+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian systems, the full text of the GNU Lesser General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/LGPL-2'.
+
+Files: src/libopensc/pkcs15-piv.c
+Copyright: 2005-2010
+  2006, Identity Alliance
+  2007, EMC, Russell Larner <rlarner@rsa.com>
+License: LGPL-2.1+
+
+Files: src/libopensc/pace.h
+Copyright: 2012, Frank Morgner <morgner@informatik.hu-berlin.de>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-dnie.c
+Copyright: 2011, Andre Zepezauer <andre.zepezauer@student.uni-halle.de>
+  2011, Juan Antonio Martinez <jonsito@terra.es>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-actalis.c
+Copyright: 2003, Olaf Kirch <okir@suse.de>
+  2004, Antonino Iacono <ant_iacono@tin.it>
+  2005, Andrea Frigido <andrea@frisoft.it>
+  2005, Sirio Capizzi <graaf@virgilio.it>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-oberthur.c
+Copyright: 2003, Olaf Kirch <okir@suse.de>
+  2004, Antonino Iacono <ant_iacono@tin.it>
+  2005, Andrea Frigido <andrea@frisoft.it>
+  2005, Sirio Capizzi <graaf@virgilio.it>
+  2010, Viktor Tarasov <vtarasov@opentrust.com>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-itacns.c
+Copyright: 2001, Juha Yrjölä <juha.yrjola@iki.fi>
+  2002, Andreas Jellinghaus <aj@dungeon.inka.de>
+  2005, ST Incard srl, Giuseppe Amato <giuseppe.amato@st.com>, <midori3@gmail.com>
+  2008-2010, Emanuele Pucciarelli <ep@acm.org>
+License: LGPL-2.1+
+
+Files: src/tools/cardos-tool.c
+Copyright: 2001, Juha Yrjölä <juha.yrjola@iki.fi>
+  2003, 2008, Andreas Jellinghaus <aj@dungeon.inka.de>
+  2007, Jean-Pierre Szikora <jean-pierre.szikora@uclouvain.be>
+License: LGPL-2.1+
+
+Files: src/tools/pkcs15-tool.c
+Copyright: 2001, Juha Yrjölä <juha.yrjola@iki.fi>
+  2008, Andreas Jellinghaus <aj@dungeon.inka.de>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-cardos.c
+Copyright: 2001, Juha Yrjölä <juha.yrjola@iki.fi>
+  2002, Andreas Jellinghaus <aj@dungeon.inka.de>
+  2005, Nils Larsch <nils@larsch.net>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-incrypto34.c
+Copyright: 2001, Juha Yrjölä <juha.yrjola@iki.fi>
+  2002, Andreas Jellinghaus <aj@dungeon.inka.de>
+  2005, ST Incard srl, Giuseppe Amato <giuseppe.amato@st.com>, <midori3@gmail.com>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-sc-hsm.c
+Copyright: 2012, Andreas Schwier, CardContact, Minden, Germany, and others
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-esteid.c
+Copyright: 2003, Olaf Kirch <okir@suse.de>
+  2004, Antonino Iacono <ant_iacono@tin.it>
+  2004, Bud P. Bruegger <bud@comune.grosseto.it>
+  2004, Martin Paljak <martin@martinpaljak.net>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-postecert.c
+Copyright: 2003, Olaf Kirch <okir@suse.de>
+  2004, Antonino Iacono <ant_iacono@tin.it>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-infocamere.c
+Copyright: 2003, Olaf Kirch <okir@suse.de>
+  2004, Antonino Iacono <ant_iacono@tin.it>
+  2005, Sirio Capizzi <graaf@virgilio.it>
+License: LGPL-2.1+
+
+Files: src/libopensc/cards.h
+Copyright: 2005, Antti Tapaninen <aet@cc.hut.fi>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-setcos.c
+Copyright: 2001-2002, Juha Yrjölä <juha.yrjola@iki.fi>
+  2005, Antti Tapaninen <aet@cc.hut.fi>
+  2005, Zetes
+License: LGPL-2.1+
+
+Files: src/libopensc/card-jcop.c
+Copyright: 2003, Chaskiel Grundman <cg2v@andrew.cmu.edu>
+License: LGPL-2.1+
+
+Files: src/pkcs15init/pkcs15-jcop.c
+Copyright: 2002, Olaf Kirch <okir@lst.de>
+  2003, Chaskiel Grundman <cg2v@andrew.cmu.edu>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-data.c
+Copyright: 2002, Danny De Cock <daniel.decock@postbox.be>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-gemsafeGPK.c
+Copyright: 2005, Douglas E. Engert <deengert@anl.gov>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-piv.c
+Copyright: 2001-2002, Juha Yrjölä <juha.yrjola@iki.fi>
+  2005-2010, Douglas E. Engert <deengert@anl.gov>
+  2006, Identity Alliance, Thomas Harning <thomas.harning@identityalliance.com>
+  2007, EMC, Russell Larner <rlarner@rsa.com>
+License: LGPL-2.1+
+
+Files: src/tools/piv-tool.c
+Copyright: 2001, Juha Yrjölä <juha.yrjola@iki.fi>
+  2005,2010, Douglas E. Engert <deengert@anl.gov>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-itacns.c
+Copyright: 2008, Emanuele Pucciarelli <ep@acm.org>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-acos5.c
+Copyright: 2007, Ian A. Young <ian@iay.org.uk>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-ias.c
+Copyright: 2009, Joao Poupino <joao.poupino@ist.utl.pt>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-pteid.c
+Copyright: 2004, Martin Paljak <martin@martinpaljak.net>
+  2009, Joao Poupino <joao.poupino@ist.utl.pt>
+License: LGPL-2.1+
+
+Files: src/pkcs15init/pkcs15-oberthur-awp.c
+Copyright: 2002, Juha Yrjola <juha.yrjola@iki.fi>
+  2010, Viktor Tarasov <viktor.tarasov@opentrust.com>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-mcrd.c
+Copyright: 2001, Juha Yrjölä <juha.yrjola@iki.fi>
+  2002, g10 Code GmbH
+  2003, Marie Fischer <marie@vtl.ee>
+  2004, Martin Paljak <martin@martinpaljak.net>
+  2004, Priit Randla <priit.randla@eyp.ee>
+License: LGPL-2.1+
+
+Files: src/libopensc/reader-pcsc.c
+Copyright: 2002, Juha Yrjölä <juha.yrjola@iki.fi>
+  2009-2010, Martin Paljak <martin@martinpaljak.net>
+License: LGPL-2.1+
+
+Files: src/libopensc/padding.c
+Copyright: 2001-2002, Juha Yrjölä <juha.yrjola@iki.fi>
+  2003, - 2007, Nils Larsch <larsch@trustcenter.de>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-sec.c
+Copyright: 2001-2002, Juha Yrjölä <juha.yrjola@iki.fi>
+  2007, Nils Larsch <nils@larsch.net>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-tcos.c
+Copyright: 2001, Juha Yrjölä <juha.yrjola@iki.fi>
+  2002, g10 Code GmbH
+  2011, Peter Koch <pk@opensc-project.org>
+License: LGPL-2.1+
+
+Files: src/tools/iasecc-tool.c
+Copyright: 2001, Juha Yrjölä <juha.yrjola@iki.fi>
+  2011, Viktor TARASOV <viktor.tarasov@gmail.com>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-oberthur.c
+Copyright: 2001-2002, Juha Yrjölä <juha.yrjola@iki.fi>
+  2009, Viktor Tarasov <viktor.tarasov@opentrust.com>
+License: LGPL-2.1+
+
+Files: src/tools/sc-hsm-tool.c
+Copyright: 2001, Juha Yrjölä <juha.yrjola@iki.fi>
+  2012, www.CardContact.de, Andreas Schwier, Minden, Germany
+License: LGPL-2.1+
+
+Files: src/libopensc/card-starcos.c
+Copyright: 2003, Jörn Zukowski <zukowski@trustcenter.de> and
+License: LGPL-2.1+
+
+Files: src/pkcs11/slot.c
+Copyright: 2002, Timo Teräs <timo.teras@iki.fi>
+  2009, Martin Paljak <martin@martinpaljak.net>
+License: LGPL-2.1+
+
+Files: src/pkcs15init/pkcs15-openpgp.c
+Copyright: 2012, Nguyen Hong Quan <ng.hong.quan@gmail.com>
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-starcert.c
+ src/pkcs15init/pkcs15-starcos.c
+Copyright: 2004, Nils Larsch <larsch@trustcenter.de>
+License: LGPL-2.1+
+
+Files: src/pkcs15init/pkcs15-cardos.c
+Copyright: 2002, Olaf Kirch <okir@lst.de>
+  2005, Nils Larsch <nils@larsch.net>
+License: LGPL-2.1+
+
+Files: src/pkcs15init/pkcs15-incrypto34.c
+Copyright: 2002, Olaf Kirch <okir@lst.de>
+  2005, ST Incard srl, Giuseppe Amato <giuseppe.amato@st.com>
+License: LGPL-2.1+
+
+Files: src/tools/util.c
+Copyright: 2011, OpenSC Project developers
+License: LGPL-2.1+
+
+Files: src/libopensc/pkcs15-tcos.c
+Copyright: 2005, 2011, Peter Koch <pk@opensc-project.org>
+License: LGPL-2.1+
+
+Files: src/tools/openpgp-tool.c
+Copyright: 2012, Peter Marschall <peter@adpm.de>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-akis.c
+Copyright: 2007, TUBITAK / UEKAE <bilgi@pardus.org.tr>
+License: LGPL-2.1+
+
+Files: src/libopensc/card-iasecc.c
+Copyright: 2010, Viktor Tarasov <vtarasov@gmail.com>
+License: LGPL-2.1+
+
+Files: src/pkcs15init/pkcs15-setcos.c
+Copyright: 2003, 2005 Zetes
+License: LGPL-2.1+
+
+Files: src/libopensc/card-belpic.c
+Copyright: 2003, Zetes Belgium
+License: LGPL-2.1+
+
+Files: src/common/compat_strlcpy.h
+Copyright: 2004, Ludovic Rousseau <ludovic.rousseau@free.fr>
+License: LGPL-2.1+
+
+Files: src/pkcs11/pkcs11.h
+Copyright: 2006, Andreas Jellinghaus
+  2006-2007, g10 Code GmbH
+License: permissive
+ This file is free software; as a special exception the author gives
+ unlimited permission to copy and/or distribute it, with or without
+ modifications, as long as this notice is preserved.
+ .
+ This file is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY, to the extent permitted by law; without even
+ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.
+
+License: LGPL-2.1+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+ .
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian systems, the full text of the GNU Lesser General Public
+ License version 2.1 can be found in the file
+ `/usr/share/common-licenses/LGPL-2.1'.
+
+License: ISC
+ Permission to use, copy, modify, and distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.

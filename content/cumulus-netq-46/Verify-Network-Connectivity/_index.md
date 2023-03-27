@@ -66,7 +66,7 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 <div style="padding-left: 18px;"><div class="notices tip"><p>If you mistype an address, you must double-click it, or backspace over the error, and retype the address. You cannot select the address by dragging over it as this action attempts to move the card to another location.</p></div></div>
 
-5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench.
+5. Click **Run now**. A corresponding Trace Results card is opened on your workbench.
 
 {{</tab>}}
 
@@ -333,7 +333,7 @@ cumulus@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
 ### Create a Layer 2 On-demand Trace
 <!-- vale on -->
 
-It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. It you cannot find a path through a layer 2 path, you might also try checking connectivity through a layer 3 path.
+It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. If you cannot find a path through a layer 2 path, you might also try checking connectivity through a layer 3 path.
 
 {{<tabs "Create Layer 2 On-demand Trace">}}
 
@@ -562,31 +562,12 @@ After you have started an on-demand trace or run the `netq add trace` command, t
 
 {{<tab "Trace Results card" >}}
 
-After you click **Run Now**, the corresponding results card opens on your workbench. While it is working on the trace, a notice appears on the card indicating it is running.
+After you click **Run now**, the corresponding results card opens on your workbench. While it is working on the trace, a notice appears on the card indicating it is running. When it is finished, the results are displayed: 
+{{<figure src="/images/netq/trace-results-med-450.png" width="200">}}
 
-After it is finished, the results are displayed. The following results use the example previously outlined:
+To view additional information, expand the card to its largest size and click on a trace. From this screen, you can view configuration details, error and warning messages, and granular data for individual paths.
 
-{{<figure src="/images/netq/od-trace-result-medium-320.png" width="200">}}
-
-To view additional information:
-
-1. Expand the card to its largest size and double-click a trace to open the detailed view:
-
-    {{<figure src="/images/netq/od-trace-result-fullscr-details-320.png" width="700">}}
-
-This view displays:
-
-- Configuration details for the trace:
-
-    {{<figure src="/images/netq/od-trace-fullscr-details-trace-config-320.png" width="300">}}
-
-- Errors and warnings for all paths (visible above the table). If the trace was run on a Mellanox switch and What Just Happened drops were detected, they are also included here.
-
-- Path details: walk through the path, host by host, viewing the interfaces, ports, tunnels, VLANs, and so forth used to traverse the network from the source to the destination. Scroll down to view all paths.
-
-Note that in our example, paths 9-12 have only three hops because they do not traverse through the *border02* switch, but go directly from *spine04* to *border01*. Routing would likely choose these paths over the four-hop paths.
-
-{{<figure src="/images/netq/od-trace-result-fullscr-details-more-paths-320.png" width="700">}}
+    {{<figure src="/images/netq/trace-results-details-450.png" width="1100">}}
 
 {{</tab>}}
 
@@ -607,11 +588,11 @@ Follow steps 1 through 4 as outlined in the {{<link url="#Create a Layer 3 On-de
 
 5. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
-    {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
+    {{<figure src="/images/netq/trace-schedule-450.png" width="300">}}
 
 6. Accept the default starting time, or click in the **Starting** field to specify the day you want the trace to run for the first time.
 
-7. Verify your entries are correct, then click **Save As new**.
+7. Verify your entries are correct, then click **Save as new**.
 
 8. Provide a name for the trace. **Note**: This name must be unique for a given user.
 
@@ -656,11 +637,11 @@ Follow steps 1 through 4 as outlined in the {{<link url="#Create a Layer 3 On-de
 
 6. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
-    {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
+    {{<figure src="/images/netq/trace-schedule-450.png" width="300">}}
 
 6. Accept the default starting time, or click in the **Starting** field to specify the day you want the trace to run for the first time.
 
-7. Verify your entries are correct, then click **Save As new**.
+7. Verify your entries are correct, then click **Save as new**.
 
 8. Provide a name for the trace. **Note**: This name must be unique for a given user.
 
@@ -704,11 +685,11 @@ Follow steps 1 through 4 as outlined in the {{<link url="#Create a Layer 3 On-de
 
 6. Select a timeframe under **Schedule** to specify how often you want to run the trace.
 
-    {{<figure src="/images/netq/schedule-frequency-selection-222.png" width="300">}}
+    {{<figure src="/images/netq/trace-schedule-450.png" width="300">}}
 
 7. Accept the default starting time, or click in the **Starting** field to specify the day you want the trace to run for the first time.
 
-8. Verify your entries are correct, then click **Save As new**.
+8. Verify your entries are correct, then click **Save as new**.
 
 9. Provide a name for the trace. **Note**: This name must be unique for a given user.
 
@@ -739,91 +720,19 @@ View the results in the NetQ UI.
 
 {{</tabs>}}
 
-### Run a Scheduled Trace On-demand
-
-To run a scheduled trace now:
-
-1. Open the a Trace Request card.
-
-2. Select the scheduled trace from the **Select Trace** or **New Trace Request** list. **Note**: In the medium and large cards, the trace details are filled in on selection of the scheduled trace.
-
-3. Click **Go** or **Run Now**. A corresponding Trace Results card is opened on your workbench.
-
 ## View Scheduled Trace Results
 
 {{<tabs "TabID1166" >}}
 
 {{<tab "NetQ UI" >}}
 
-The results of scheduled traces are displayed on the Scheduled Trace Result card.
+The results of scheduled traces are displayed on the Scheduled Trace Results card. To view the results:
 
-### Granularity of Data Shown Based on Time Period
+1. Locate the Scheduled Trace Request card on your workbench and expand it to its largest size:
 
-On the medium and large Trace Result cards, the status of the runs is represented in heat maps stacked vertically; one for runs with warnings and one for runs with failures. Depending on the time period of data on the card, the number of smaller time blocks used to indicate the status varies. A vertical stack of time blocks, one from each map, includes the results from all checks during that time. The results are shown by how saturated the color is for each block. If all traces run during that time period pass, then both blocks are 100% gray. If there are only failures, the associated lower blocks are 100% saturated white and the warning blocks are 100% saturated gray. As warnings and failures increase, the blocks increase their white saturation. As warnings or failures decrease, the blocks increase their gray saturation. An example heat map for a time period of 24 hours is shown here with the most common time periods in the table showing the resulting time blocks.
+    {{<figure src="/images/netq/scheduled-trace-results-450.png" width="900">}}
 
-{{<figure src="/images/netq/sch-trace-result-granularity-230.png" width="300">}}
-
-| Time Period | Number of Runs | Number Time Blocks | Amount of Time in Each Block |
-| ----------- | -------------- | ------------------ | ---------------------------- |
-| 6 hours     | 18             | 6                  | 1 hour                       |
-| 12 hours    | 36             | 12                 | 1 hour                       |
-| 24 hours    | 72             | 24                 | 1 hour                       |
-| 1 week      | 504            | 7                  | 1 day                        |
-| 1 month     | 2,086          | 30                 | 1 day                        |
-| 1 quarter   | 7,000          | 13                 | 1 week                       |
-
-### View Detailed Scheduled Trace Results
-
-After a scheduled trace request has completed, the results are available in the corresponding Trace Results card.
-
-To view the results:
-
-1. Open the Trace Request card.
-
-    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} **Add card** and select the **Trace** card.
-
-2. Change to the full-screen card using the card size picker to view all scheduled traces.
-
-    {{<figure src="/images/netq/sch-trace-result-fullscr-230.png" width="700">}}
-
-3. Select the scheduled trace results you want to view.
-
-4. Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} **Open card**. This opens the medium Scheduled Trace Results card(s) for the selected items.
-
-    {{<figure src="/images/netq/sch-trace-result-medium.png" width="200">}}
-
-5. Note the distribution of results. Are there many failures? Are they concentrated together in time? Has the trace begun passing again?
-
-6. Hover over the heat maps to view the status numbers and what percentage of the total results that represents for a given region.
-
-7. Switch to the large Scheduled Trace Result card.
-
-    {{<figure src="/images/netq/sch-trace-result-large-sum-tab.png" width="500">}}
-
-8. If there are a large number of warnings or failures, view the associated messages by selecting **Failures** or **Warning** in the filter above the table. This might help narrow the failures down to a particular device or small set of devices that you can investigate further.
-
-9. Look for a consistent number of paths, MTU, hops in the small charts under the heat map. Changes over time here might correlate with events. Note if the number of bad nodes changes over time. Devices that become unreachable are often the cause of trace failures.
-
-10. View the available paths for each run, by selecting **Paths** in the filter above the table.
-
-11. You can view the configuration of the request that produced the results shown on this card workflow, by hovering over the card and clicking <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/12-Settings/cog-1.svg" height="18" width="18"/>. If you want to change the configuration, click **Edit** to open the large Trace Request card, pre-populated with the current configuration. Follow the instructions in {{<link url="#create-a-trace-to-run-on-a-regular-basis-scheduled-trace" text="Create a Scheduled Trace Request">}} to make your changes in the same way you created a new scheduled trace.
-
-12. To view a summary of all scheduled trace results, switch to the full screen card.
-
-13. Look for changes and patterns in the results for additional clues to isolate root causes of trace failures. Select and view related traces using the Edit menu.
-
-14. View the details of any specific trace result by clicking on the trace. A new window opens similar to the following:
-
-    {{<figure src="/images/netq/sch-trace-result-fullscr-trace-detail-230.png" width="700">}}
-
-<div style="padding-left: 18px;">Scroll to the right to view the information for a given hop. Scroll down to view additional paths. This display shows each of the hosts and detailed steps the trace takes to validate a given path between two devices. Using Path 1 as an example, each path can be interpreted as follows:
-<ul>
-<li>Hop 1 is from the source device, server02 in this case.</li>
-<li>It exits this device at switch port bond0 with an MTU of 9000 and over the default VRF to get to leaf02.</li>
-<li>The trace goes in to swp2 with an MTU of 9216 over the vrf1 interface.</li>
-<li>It exits leaf02 through switch port 52 and so on.</li>
-</ul>
-</div>
+2. Select the scheduled trace results you want to view. Above the table, select {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} **Open card**. This opens the medium Scheduled Trace Results card(s) for the selected items.
 
 {{</tab>}}
 
@@ -921,17 +830,9 @@ To modify a scheduled trace:
 
 3. Edit the schedule, VLAN, or VRF and select **Update**.
 
-4. Click **Yes** to complete the changes, or change the name of the previous version of this scheduled trace.
+4. From the confirmation dialog, click **Yes** to complete the changes or select the link to change the name of the previous version of this scheduled trace.
 
-    {{<figure src="/images/netq/sch-trace-modify-confirmation-320.png" width="250">}}
-
-    1. Click the *change name* link.
-
-    2. Edit the name, then click **Update**.
-
-    3. Click **Yes** to complete the changes, or repeat these steps until you have the name you want.
-
-    The validation can now be selected from the New Trace listing and run immediately using **Go** or **Run Now**, or you can wait for it to run the first time according to the schedule you specified.
+    The validation can now be selected from the New Trace listing and run immediately by selecting **Go** or **Run now**. Alternately, you can wait for it to run the first time according to the schedule you specified.
 
 ## Remove Scheduled Traces
 

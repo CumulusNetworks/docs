@@ -34,19 +34,7 @@ After the collected data is sent to and stored in the NetQ database, you can:
 
 ### Validate Configurations
 
-The NetQ CLI lets you validate your network's health through two sets of commands: `netq check` and `netq show`. They extract the information from the network service component and event service. The network service component is continually validating the connectivity and configuration of the devices and protocols running on the network. Using the `netq check` and `netq show` commands displays the status of the various components and services on a networkwide and complete software stack basis. `netq check` and `netq show` commands are available for the following components and services:
-
-| Component or Service | Check | Show | Component or Service | Check | Show |
-| -------------------- | :---: | :---:| -------------------- | :---: | :---: |
-| Agents | X | X | LLDP |  | X |
-| BGP | X | X | MACs |   | X |
-| MLAG (CLAG) | X | X | MTU | X |  |
-| Events |  | X | NTP | X | X |
-| EVPN | X | X | OSPF | X | X |
-| Interfaces | X | X | Sensors | X | X |
-| Inventory  |  | X | Services |   | X |
-| IPv4/v6 |  | X | VLAN | X | X |
-| Kubernetes |  | X | VXLAN | X | X |
+You can monitor and validate your network's health in the UI or through two sets of commands: `netq check` and `netq show`. They extract the information from the network service component and event service. The network service component is continually validating the connectivity and configuration of the devices and protocols running on the network. Using the `netq check` and `netq show` commands displays the status of the various components and services on a networkwide and complete software stack basis. See the command line reference for an exhaustive list of {{<link title="check" text="netq check">}} and {{<link title="show" text="netq show">}} commands. 
 
 ### Monitor Communication Paths
 
@@ -409,11 +397,11 @@ Restarting a NetQ Agent on a device does not update the timestamps for existing 
 You can export data from the NetQ Platform in the CLI or UI:
 
 - In the CLI, use the `json` option to output command results to JSON format for parsing in other applications
-- In the UI, expand the cards to a full-screen, tabular view and select export <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> 
+- In the UI, expand the cards to a full-screen, tabular view and select <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> **Export**. 
 
 ## Important File Locations
 
-The following configuration and log files can help with troubleshooting:
+The following configuration and log files can help with troubleshooting. See {{<link title="Troubleshoot NetQ">}} for more information.
 
 | File | Description |
 | ---- | ---- |

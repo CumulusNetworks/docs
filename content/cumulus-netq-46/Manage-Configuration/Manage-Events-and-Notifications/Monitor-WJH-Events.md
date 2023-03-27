@@ -4,27 +4,29 @@ author: Cumulus Networks
 weight: 810
 toc: 4
 ---
-The *What Just Happened* (WJH) feature, available on NVIDIA Spectrum switches, streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. 
-
-For a list of supported WJH events, refer to the {{<link title="WJH Event Messages Reference">}}.
-
-To use a gNMI client to export WJH data to a collector, refer to {{<link title="gNMI Streaming#collect-wjh-data-using-gnmi" text="Collect WJH Data with gNMI.">}}
-
-
-{{<notice info>}}
-
-WJH is only supported on NVIDIA Spectrum switches. WJH latency and congestion monitoring is supported on NVIDIA Spectrum 2 switches and above. WJH requires Cumulus Linux 4.4.0 or later. SONiC only supports collection of WJH data with gNMI.
-
-{{</notice>}}
+What Just Happened (WJH) streams detailed and contextual telemetry data for analysis. This provides real-time visibility into problems in the network, such as hardware packet drops due to buffer congestion, incorrect routing, and ACL or layer 1 problems. 
 
 Using WJH in combination with NetQ helps you identify losses anywhere in the fabric. From a single management console you can:
 
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pinpoint where communication is failing in the network
 
+For a list of supported WJH events, refer to the {{<link title="WJH Event Messages Reference">}}.
+
+To use a gNMI client to export WJH data to a collector, refer to {{<link title="gNMI Streaming#collect-wjh-data-using-gnmi" text="Collect WJH Data with gNMI.">}}
+
+
+{{<notice note>}}
+
+WJH is only supported on NVIDIA Spectrum switches. WJH latency and congestion monitoring is supported on NVIDIA Spectrum 2 switches and above. WJH requires Cumulus Linux 4.4.0 or later. SONiC only supports collection of WJH data with gNMI.
+
+{{</notice>}}
+
+
+
 {{%notice info%}}
 
-By default, Cumulus Linux 4.4.0 and later provides the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and CLI to the latest release:
+By default, Cumulus Linux 4.4.0 and later includes the NetQ Agent and CLI. Depending on the version of Cumulus Linux running on your NVIDIA switch, you might need to upgrade the NetQ Agent and CLI to the latest release:
 
 ```
 cumulus@<hostname>:~$ sudo apt-get update
@@ -36,7 +38,7 @@ cumulus@<hostname>:~$ sudo netq config restart cli
 
 {{%/notice%}}
 
-## Configure the WJH Feature
+## Configure What Just Happened
 
 <!-- vale off -->
 WJH is enabled by default on NVIDIA switches and Cumulus Linux 4.4.0 requires no configuration; however, you must enable the NetQ Agent to collect the data.
@@ -44,23 +46,23 @@ WJH is enabled by default on NVIDIA switches and Cumulus Linux 4.4.0 requires no
 
 To enable WJH in NetQ on any switch or server:
 
-1. Configure the NetQ Agent on the NVIDIA switch.
+1. Configure the NetQ Agent on the NVIDIA switch:
 
     ```
     cumulus@switch:~$ sudo netq config add agent wjh
     ```
 
-2. Restart the NetQ Agent to start collecting the WJH data.
+2. Restart the NetQ Agent to begin collecting WJH data:
 
     ```
     cumulus@switch:~$ sudo netq config restart agent
     ```
 
-When you finish viewing the WJH metrics, you might want to stop the NetQ Agent from collecting WJH data to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
+When you finish viewing WJH metrics, you can stop the NetQ Agent from collecting WJH data to reduce network traffic. Use `netq config del agent wjh` followed by `netq config restart agent` to disable the WJH feature on the given switch.
 
 {{<notice note>}}
 
-Using <em>wjh_dump.py</em> on an NVIDIA platform that is running Cumulus Linux and the NetQ agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run <em>wjh_dump.py</em> on a different system than the one where the NetQ Agent has WJH enabled, or disable <em>wjh_dump.py</em> and restart the NetQ Agent (run <code>netq config restart agent</code>).
+Using <em>wjh_dump.py</em> on an NVIDIA platform that is running Cumulus Linux and the NetQ Agent causes the NetQ WJH client to stop receiving packet drop call backs. To prevent this issue, run <em>wjh_dump.py</em> on a different system than the one where the NetQ Agent has WJH enabled, or disable <em>wjh_dump.py</em> and restart the NetQ Agent (run <code>netq config restart agent</code>).
 
 {{</notice>}}
 
@@ -90,7 +92,7 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 
 ## Configure Filters
 
-You can filter WJH events by drop type at the NetQ Agent before the NetQ system processes it. You can filter the drop type further by specifying one or more drop reasons or severity. Filter events by creating a NetQ configuration profile in the NetQ UI or using the `netq config add agent wjh-drop-filter` command in the NetQ CLI.
+You can filter WJH events by drop type at the NetQ Agent before the NetQ system processes it. You can filter the drop type further by specifying one or more drop reasons or severity. Filter events by creating a NetQ configuration profile in the NetQ UI or with the `netq config add agent wjh-drop-filter` command.
 
 For a complete list of drop types and reasons, refer to the {{<link title="WJH Event Messages Reference">}}.
 
@@ -100,11 +102,11 @@ For a complete list of drop types and reasons, refer to the {{<link title="WJH E
 
 To configure the NetQ Agent to filter WJH drops:
 
-1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} Upgrade in a workbench header.
+1. Click {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/06-Servers/server-upload.svg" width="18" height="18">}} **Upgrade** in a workbench header.
 
-2. Select **NetQ Agent Configurations**.
+2. Select the **NetQ agent configurations** tab.
 
-3. On the NetQ Configurations card, click **Add Config**.
+3. On the NetQ Agent Configurations card, click **Add config**.
 
 4. Click **Enable** to enable WJH, then click **Customize**:
 
@@ -166,31 +168,31 @@ cumulus@netq-ts:~$ netq config add agent wjh-drop-filter drop-type router drop-r
 
 ## View What Just Happened Metrics
 
-You can view the WJH metrics from the NetQ UI or the NetQ CLI. WJH metrics are visible on the WJH card and the Events card. To view the metrics on the Events card, open the medium-sized card and hover over most-active devices. For a more detailed view, open the WJH card.
+You can view the WJH metrics from the NetQ UI or the NetQ CLI. WJH metrics are visible on the WJH card and the Events card. To view the metrics on the Events card, open the large card and select the WJH tab at the top of the card. For a more detailed view, open the WJH card.
 
 {{<tabs "WJH metrics">}}
 
 {{<tab "NetQ UI">}}
 
-Open the **What Just Happened** card on your workbench:
+To add the WJH card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Events** > **What Just Happened** > **Open cards**:
 
-   {{<figure src="/images/netq/WJH-default-card.png" alt="what just happened card displaying errors and warnings" width="200">}}
+   {{<figure src="/images/netq/wjh-med-450.png" alt="what just happened card displaying errors and warnings" width="200">}}
 
-You can expand the card to see a detailed summary of WJH data:
+You can expand the card to see a detailed summary of WJH data, including devices with the most drops, the number of drops, their distribution, and a timeline:
 
-   {{<figure src="/images/netq/WJH-expanded-card.png" alt="expanded what just happened card displaying devices with the most drops" width="600">}}
+   {{<figure src="/images/netq/wjh-large-450.png" alt="expanded what just happened card displaying devices with the most drops" width="700">}}
 
-Expanding the card to its largest size will open the advanced WJH dashboard. You can also access this dashboard by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu and selecting **What Just Happened** under the **Network** column:
+Expanding the card to its largest size will open the advanced WJH dashboard. You can also access this dashboard by clicking {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then **What Just Happened**:
 
-   {{<figure src="/images/netq/WJH-advanced-view.png" alt="fully expanded what just happened card with detailed drop information" width="800">}}
+   {{<figure src="/images/netq/wjh-fullscreen-450.png" alt="fully expanded what just happened card with detailed drop information" width="1000">}}
 
-Hover over the color-coded chart to view and expand individual WJH event categories:
+The table beneath the charts displays WJH events and recommendations for resolving them. Hover over the color-coded chart to view WJH event categories:
 
-   {{<figure src="/images/netq/WJH-adv-highlight-reason.png" alt="donut chart displaying types of drops" width="200">}}
+   {{<figure src="/images/netq/donut-chart-450.png" alt="donut chart displaying types of drops" width="300">}}
 
 Click on a category in the chart for a detailed view:
 
-   {{<figure src="/images/netq/wjh-chart-graph.png" alt="donut chart and graph displaying detailed drop information" width="800">}}
+   {{<figure src="/images/netq/wjh-detailed-chart-450.png" alt="donut chart and graph displaying detailed drop information" width="1000">}}
 
 {{</tab>}}
 

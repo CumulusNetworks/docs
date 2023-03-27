@@ -1,0 +1,577 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Nmap
+Source: https://nmap.org/
+ The mswin32/IPExport.h file needs to be removed because it is not licensed
+ under the terms of a DFSG compatible license.  Other libraries shipped with
+ nmap have been removed as well, specifically: liblinear, liblua, libpcap,
+ libpcre, libssh2, and libz.  The Debian package depends on the respective
+ packages of these libraries.
+Files-Excluded: mswin32
+ liblinear
+ liblua
+ libpcap
+ libpcre
+ libz
+ nselib/data/jdwp-class/*.class
+
+Files: *
+Copyright: 1996-2017, Insecure.Com LLC ("The Nmap Project")
+License: nmap-GPL-2
+
+Files: debian/*
+Copyright: 1997-1999, Bdale Garbee <bdale@gag.com>
+           1999-2010, LaMont Jones <lamont@debian.org>
+           2012-2018, Hilko Bengen <bengen@debian.org>
+           2016-2018, Samuel Henrique <samueloph@debian.org>
+           2017, Lukas Schwaighofer <lukas@schwaighofer.name>
+           2018, Raphaël Hertzog <hertzog@debian.org>
+License: nmap-GPL-2
+
+Files: aclocal.m4 configure depcomp ltmain.sh nbase/configure ncat/Makefile.in
+ ncat/configure ncat/missing nmap-update/configure nping/configure
+ nsock/src/aclocal.m4 nsock/src/configure
+Copyright: 1991-2015, Free Software Foundation, Inc.
+Comment: May be distributed under the same license as the rest of the program.
+License: nmap-GPL-2
+
+Files: docs/nmap.xsl docs/nmap-fo.xsl
+Copyright: 2004-2006, Benjamin Erb
+License: BSD-3-clause-author1
+
+Files: docs/nmap.dtd
+Copyright: 2001-2008, Insecure.Com LLC
+           2001, Cisco systems, Inc.
+License: retain-copyright-cisco
+
+Files: docs/style/*
+copyright: 2011, Patrick Joseph Donnelly
+License: unlimited-retain-copyright
+
+Files: libdnet-stripped/*
+Copyright: 2000-2006, Dug Song <dugsong@monkey.org>
+           1996, David Mazieres <dm@lcs.mit.edu>
+           2008, 2009, Daniel Roethlisberger <daniel@roe.ch>
+           1999, Masaki Hirabaru <masaki@merit.edu>
+License: BSD-3-clause-authors-copyright-holders
+
+Files: libdnet-stripped/Makefile.in libdnet-stripped/aclocal.m4
+ libdnet-stripped/configure libdnet-stripped/include/Makefile.in
+ libdnet-stripped/include/dnet/Makefile.in libdnet-stripped/src/Makefile.in
+Copyright: 1991-2015, Free Software Foundation, Inc.
+Comment: May be distributed under the same license as the rest of the program.
+License: BSD-3-clause-authors-copyright-holders
+
+Files: libdnet-stripped/include/err.h libdnet-stripped/include/queue.h
+ libdnet-stripped/src/err.c libdnet-stripped/src/memcmp.c
+ libdnet-stripped/src/strsep.c
+Copyright: 2000, Dug Song <dugsong@monkey.org>
+           1980, 1982, 1983, 1986-1998, The Regents of the University of California.
+License: BSD-4-clause
+
+Files: libdnet-stripped/src/strlcat.c
+  libdnet-stripped/src/strlcpy.c
+Copyright: 1998, Todd C. Miller <Todd.Miller@courtesan.com>
+License: BSD-3-clause-author2
+
+Files: lpeg.c nselib/re.lua
+Copyright: 2007-2010, Lua.org & PUC-Rio
+License: Expat
+
+Files: nbase/getopt.c
+  nbase/getopt.h
+Copyright: 1997, 2000-2002, 2006, Benjamin Sittler
+License: Expat
+
+Files: nbase/inet_ntop.c
+  nbase/inet_pton.c
+Copyright: 1996, Internet Software Consortium.
+License: ISC
+
+Files: nbase/nbase_rnd.c
+Copyright: 1996-2017, Insecure.Com LLC ("The Nmap Project")
+           2000, Dug Song <dugsong@monkey.org>
+           1996, David Mazieres <dm@lcs.mit.edu>
+License: nmap-GPL-2
+
+Files: nbase/snprintf.c
+Copyright: 1995-1999, Kungliga Tekniska Högskolan
+License: BSD-3-clause-institute
+
+Files: nmap-update/svn_auth.c
+Copyright: 2003-2006, 2008, CollabNet
+License: BSD-like-SVN
+
+Files: nse_fs.cc
+Copyright: Kepler Project 2003, (http://www.keplerproject.org/luafilesystem)
+License: Expat
+
+Files: nselib/base32.lua nselib/base64.lua
+Copyright: 2016, Patrick Joseph Donnelly (batrick@batbytes.com)
+License: Expat
+
+Files: nselib/slaxml.lua
+Copyright: 2013-2014 Gavin Kistner <!@phrogz.net>
+License: Expat
+
+Files: nsock/src/acinclude.m4
+Copyright: 2008, Peter Simons <simons@cryp.to>
+License: preserve-copyright
+
+Files: shtool
+Copyright: 1994-2008, Ralf S. Engelschall <rse@engelschall.com>
+License: GPL-2+
+
+Files: libssh2/*
+Copyright: 2004-2007 Sara Golemon <sarag@libssh2.org>
+  2005,2006 Mikhail Gusarov <dottedmag@dottedmag.net>
+  2006-2007 The Written Word, Inc.
+  2007 Eli Fant <elifantu@mail.ru>
+  2009-2014 Daniel Stenberg
+  2008, 2009 Simon Josefsson
+License: BSD-3-clause-copyright-holders-contributors
+
+Files: libssh2/Makefile.in libssh2/aclocal.m4 libssh2/configure libssh2/m4/*
+ libssh2/src/Makefile.in
+Copyright: 1991-2015, Free Software Foundation, Inc.
+Comment: May be distributed under the same license as the rest of the program.
+License: BSD-3-clause-copyright-holders-contributors
+
+Files: libssh2/m4/autobuild.m4
+Copyright: 2004, 2006, Simon Josefsson
+Comment: May be distributed under the same license as the rest of the program.
+License: BSD-3-clause-copyright-holders-contributors
+
+Files: libssh2/nw/*
+Copyright: Guenter Knauf, Ulrich Neumann
+License: BSD-3-clause-copyright-holders-contributors
+
+Files: libssh2/os400/* libssh2/src/os400qc3.c libssh2/src/os400qc3.h
+Copyright: 2015, Patrick Monnerat, D+H <patrick.monnerat@dh.com>
+License: BSD-3-clause-copyright-holders-contributors
+
+Files: libssh2/src/libssh2_config_cmake.h.in
+Copyright: 2014, Alexander Lamaison <alexander.lamaison@gmail.com>
+  1999-2011, Douglas Gilbert
+License: BSD-3-clause-copyright-holders-contributors
+
+Files: libssh2/src/wincng.c
+  libssh2/src/wincng.h
+Copyright: 2013-2015, Marc Hoersken <info@marc-hoersken.de>
+License: BSD-3-clause-copyright-holders-contributors
+
+License: nmap-GPL-2
+ This program is free software; you may redistribute and/or modify it
+ under the terms of the GNU General Public License as published by the
+ Free Software Foundation; Version 2 ("GPL"), BUT ONLY WITH ALL OF THE
+ CLARIFICATIONS AND EXCEPTIONS DESCRIBED HEREIN.  This guarantees your
+ right to use, modify, and redistribute this software under certain
+ conditions.  If you wish to embed Nmap technology into proprietary
+ software, we sell alternative licenses (contact sales@nmap.com).
+ Dozens of software vendors already license Nmap technology such as
+ host discovery, port scanning, OS detection, version detection, and
+ the Nmap Scripting Engine.
+ .
+ Note that the GPL places important restrictions on "derivative works",
+ yet it does not provide a detailed definition of that term.  To avoid
+ misunderstandings, we interpret that term as broadly as copyright law
+ allows.  For example, we consider an application to constitute a
+ derivative work for the purpose of this license if it does any of the
+ following with any software or content covered by this license
+ ("Covered Software"):
+ .
+ - Integrates source code from Covered Software.
+ - Reads or includes copyrighted data files, such as Nmap's nmap-os-db
+   or nmap-service-probes.
+ - Is designed specifically to execute Covered Software and parse the
+   results (as opposed to typical shell or execution-menu apps, which
+   will execute anything you tell them to).
+ - Includes Covered Software in a proprietary executable installer.  The
+   installers produced by InstallShield are an example of this.
+   Including Nmap with other software in compressed or archival form
+   does not trigger this provision, provided appropriate open source
+   decompression or de-archiving software is widely available for no
+   charge.  For the purposes of this license, an installer is considered
+   to include Covered Software even if it actually retrieves a copy of
+   Covered Software from another source during runtime (such as by
+   downloading it from the Internet).
+ - Links (statically or dynamically) to a library which does any of the
+   above.
+ - Executes a helper program, module, or script to do any of the above.
+ .
+ This list is not exclusive, but is meant to clarify our interpretation
+ of derived works with some common examples.  Other people may interpret
+ the plain GPL differently, so we consider this a special exception to
+ the GPL that we apply to Covered Software.  Works which meet any of
+ these conditions must conform to all of the terms of this license,
+ particularly including the GPL Section 3 requirements of providing
+ source code and allowing free redistribution of the work as a whole.
+ .
+ As another special exception to the GPL terms, the Nmap Project grants
+ permission to link the code of this program with any version of the
+ OpenSSL library which is distributed under a license identical to that
+ listed in the included docs/licenses/OpenSSL.txt file, and distribute
+ linked combinations including the two.
+ .
+ The Nmap Project has permission to redistribute Npcap, a packet
+ capturing driver and library for the Microsoft Windows platform.
+ Npcap is a separate work with it's own license rather than this Nmap
+ license.  Since the Npcap license does not permit redistribution
+ without special permission, our Nmap Windows binary packages which
+ contain Npcap may not be redistributed without special permission.
+ .
+ Any redistribution of Covered Software, including any derived works,
+ must obey and carry forward all of the terms of this license, including
+ obeying all GPL rules and restrictions.  For example, source code of
+ the whole work must be provided and free redistribution must be
+ allowed.  All GPL references to "this License", are to be treated as
+ including the terms and conditions of this license text as well.
+ .
+ Because this license imposes special exceptions to the GPL, Covered
+ Work may not be combined (even as part of a larger work) with plain GPL
+ software.  The terms, conditions, and exceptions of this license must
+ be included as well.  This license is incompatible with some other open
+ source licenses as well.  In some cases we can relicense portions of
+ Nmap or grant special permissions to use it in other open source
+ software.  Please contact fyodor@nmap.org with any such requests.
+ Similarly, we don't incorporate incompatible open source software into
+ Covered Software without special permission from the copyright holders.
+ .
+ If you have any questions about the licensing restrictions on using
+ Nmap in other works, are happy to help.  As mentioned above, we also
+ offer alternative license to integrate Nmap into proprietary
+ applications and appliances.  These contracts have been sold to dozens
+ of software vendors, and generally include a perpetual license as well
+ as providing for priority support and updates.  They also fund the
+ continued development of Nmap.  Please email sales@nmap.com for further
+ information.
+ .
+ If you have received a written license agreement or contract for
+ Covered Software stating terms other than these, you may choose to use
+ and redistribute Covered Software under those terms instead of these.
+ .
+ Source is provided to this software because we believe users have a
+ right to know exactly what a program is going to do before they run it.
+ This also allows you to audit the software for security holes.
+ .
+ Source code also allows you to port Nmap to new platforms, fix bugs,
+ and add new features.  You are highly encouraged to send your changes
+ to the dev@nmap.org mailing list for possible incorporation into the
+ main distribution.  By sending these changes to Fyodor or one of the
+ Insecure.Org development mailing lists, or checking them into the Nmap
+ source code repository, it is understood (unless you specify
+ otherwise) that you are offering the Nmap Project the unlimited,
+ non-exclusive right to reuse, modify, and relicense the code.  Nmap
+ will always be available Open Source, but this is important because
+ the inability to relicense code has caused devastating problems for
+ other Free Software projects (such as KDE and NASM).  We also
+ occasionally relicense the code to third parties as discussed above.
+ If you wish to specify special license conditions of your
+ contributions, just say so when you send them.
+ .
+ This program is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the Nmap
+ license file for more details (it's in a COPYING file included with
+ Nmap, and also available from https://svn.nmap.org/nmap/COPYING)
+ .
+ On Debian systems, the complete text of version 2 of the GNU General
+ Public License can be found in '/usr/share/common-licenses/GPL-2'.
+
+License: BSD-3-clause-author1
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. The name of the author may not be used to endorse or promote products
+    derived from this software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+ IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-3-clause-author2
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. The name of the author may not be used to endorse or promote products
+    derived from this software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL
+ THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-3-clause-authors-copyright-holders
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions 
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following
+    disclaimer in the documentation and/or other materials provided
+    with the distribution.
+ .
+ 3. The names of the authors and copyright holders may not be used 
+    to endorse or promote products derived from this software 
+    without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+ INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-3-clause-institute
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ .
+ 3. Neither the name of the Institute nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: BSD-3-clause-copyright-holders-contributors
+ Redistribution and use in source and binary forms,
+ with or without modification, are permitted provided
+ that the following conditions are met:
+ .
+   Redistributions of source code must retain the above
+   copyright notice, this list of conditions and the
+   following disclaimer.
+ .
+   Redistributions in binary form must reproduce the above
+   copyright notice, this list of conditions and the following
+   disclaimer in the documentation and/or other materials
+   provided with the distribution.
+ .
+   Neither the name of the copyright holder nor the names
+   of any other contributors may be used to endorse or
+   promote products derived from this software without
+   specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+ CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+ INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+ USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+ OF SUCH DAMAGE.
+
+License: BSD-4-clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+ 3. All advertising materials mentioning features or use of this software
+    must display the following acknowledgement:
+        This product includes software developed by the University of
+        California, Berkeley and its contributors.
+ 4. Neither the name of the University nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ SUCH DAMAGE.
+
+License: retain-copyright-cisco
+ Permission to use, copy, modify, and distribute modified and unmodified
+ copies of this software for any purpose and without fee is hereby
+ granted, provided that (a) this copyright and permission notice appear
+ on all copies of the software and supporting documentation, (b) the
+ name of Cisco Systems, Inc. not be used in advertising or publicity
+ pertaining to distribution of the program without specific prior
+ permission, and (c) notice be given in supporting documentation that
+ use, modification, copying and distribution is by permission of Cisco
+ Systems, Inc.
+ .
+ Cisco Systems, Inc. makes no representations about the suitability of
+ this software for any purpose.  THIS SOFTWARE IS PROVIDED ``AS IS'' AND
+ WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT
+ LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ PARTICULAR PURPOSE.
+
+License: unlimited-retain-copyright
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy of
+ this software and associated documentation files (the "Software"), to deal in
+ the Software without restriction, including without limitation the rights to
+ use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+ of the Software, and to permit persons to whom the Software is furnished to do
+ so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+License: preserve-copyright
+ Copying and distribution of this file, with or without modification, are
+ permitted in any medium without royalty provided the copyright notice
+ and this notice are preserved. This file is offered as-is, without any
+ warranty.
+
+License: GPL-2+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ can be found in /usr/share/common-licenses/GPL-2 file.
+
+License: BSD-like-SVN
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1. Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+ .
+ 2. Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the
+    distribution.
+ .
+ 3. The end-user documentation included with the redistribution,
+    if any, must include the following acknowledgment:
+       "This product includes software developed by
+        CollabNet (http://www.Collab.Net/)."
+    Alternately, this acknowledgment may appear in the software itself,
+    if and wherever such third-party acknowledgments normally appear.
+ .
+ 4. The hosted project names must not be used to endorse or promote
+    products derived from this software without prior written
+    permission. For written permission, please contact info@collab.net.
+ .
+ 5. Products derived from this software may not use the "Tigris" name
+    nor may "Tigris" appear in their names without prior written
+    permission of CollabNet.
+ .
+ THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED
+ WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ IN NO EVENT SHALL COLLABNET OR ITS CONTRIBUTORS BE LIABLE FOR ANY
+ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: ISC
+ Permission to use, copy, modify, and distribute this software for any
+ purpose with or without fee is hereby granted, provided that the above
+ copyright notice and this permission notice appear in all copies.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS" AND INTERNET SOFTWARE CONSORTIUM DISCLAIMS
+ ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
+ OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL INTERNET SOFTWARE
+ CONSORTIUM BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
+ DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+ PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS
+ ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
+ SOFTWARE.

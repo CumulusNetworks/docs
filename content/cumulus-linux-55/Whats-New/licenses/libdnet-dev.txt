@@ -1,0 +1,10 @@
+Copyright: 
+
+(C) 1996-2001 Eduardo Serrat
+(C) 1996-2003 Christine Caulfield
+(C) 1999      Steve Whitehouse
+
+You are free to distribute this software under the terms of the GNU Lesser 
+Public License. The full text of this license can be found in the file
+/usr/share/common-licenses/LGPL
+

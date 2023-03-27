@@ -1,1 +1,0 @@
-iptables-dbgsym has no copyright file

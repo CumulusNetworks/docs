@@ -1,1 +1,0 @@
-linux-cpupower-dbgsym has no copyright file

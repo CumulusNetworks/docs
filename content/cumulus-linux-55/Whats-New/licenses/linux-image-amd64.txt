@@ -1,1 +1,0 @@
-linux-image-amd64 has no copyright file

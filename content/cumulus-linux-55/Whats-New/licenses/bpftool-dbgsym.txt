@@ -1,1 +1,0 @@
-bpftool-dbgsym has no copyright file

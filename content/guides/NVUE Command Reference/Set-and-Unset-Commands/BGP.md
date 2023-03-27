@@ -4624,9 +4624,9 @@ Provides commands to configure BGP Confederation options in this VRF.
 
 - - -
 
-## nv set vrf \<vrf-id\> router bgp confederation member-as
+## nv set vrf \<vrf-id\> router bgp confederation id
 
-Set of autonomous numbers
+Configures the Confederation Identifier to advertise routes outside the confederation; sub-AS numbers are not visible externally. You can set a value between 1 and 4294967295 or `none`.
 
 ### Command Syntax
 
@@ -4641,7 +4641,29 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp confederation id 100
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp confederation member-as
+
+Configures the confederation peer ASNs. You can set a value between 1 and 4294967295.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp confederation member-as 65101
 ```
 
 - - -
@@ -4660,14 +4682,14 @@ Provides commands to configure tracking BGP peering sessions using this configur
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd detect-multiplier
 
-Detect multiplier
+Configures the BFD detect multiplier that determines the maximum number of concurrent BFD packets (including control packets and echo packets) that BGP can discard. You can set a value between 2 and 255.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4676,38 +4698,44 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 bfd detect-multiplier 200
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd enable
+
+Turns BFD on or off to configure tracking BGP peering sessions using this configuration.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 bfd enable on
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd min-rx-interval
 
-Minimum receive interval
+Configures the minimum interval for receiving single-hop BFD control packets. You can specify a value between 50 and 60000.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-- - -
-
-## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd min-tx-interval
-
-Minimum transmit interval.  The actual value used is the smaller of this or what the peer expects.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`  | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4716,18 +4744,60 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 bfd min-rx-interval 30000
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> bfd min-tx-interval
+
+Configures the minimum interval for transmitting single-hop BFD control packets. You can specify a value between 50 and 60000. The actual value used is the smaller of this value or the value that the peer expects.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 bfd min-tx-interval 30000
 ```
 
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> capabilities
 
+Configures BGP capabilities, which the switch advertises to its BGP peers to inform them about the feature it can support and tries to negotiate that capability with its neighbours.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 capabilities
+```
+
 - - -
 
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as
 
-Provides commands to configure the local AS feature.
+Configures the BGP local AS number, which allows the switch to appear to be a member of a second autonomous system (AS), in addition to its real AS.
 
 - - -
 
@@ -4740,7 +4810,7 @@ ASN to use to establish the peering if different from the ASN of the BGP instanc
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4775,7 +4845,7 @@ Number of hops
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4851,7 +4921,7 @@ Configues the maximum number of times the local system's AS number can occur in 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4886,7 +4956,7 @@ Configures the AS-Path filter list to apply to updates received from this peer.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4914,7 +4984,7 @@ Provides commands to configure outbound unicast policies.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4949,7 +5019,7 @@ Configures the percentage of the maximum at which a warning syslog is generated.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -4974,7 +5044,7 @@ The default setting is auto, which uses standard BGP timers and processing (typi
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5015,7 +5085,7 @@ Configures the route map that contains the prefix list with a list of IPv4 route
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5039,7 +5109,7 @@ Configures a route map that uses a prefix list with the IPv4 routes that must ex
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5062,7 +5132,7 @@ Configures a route map that uses a prefix list with the IPv4 routes that must no
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5085,7 +5155,7 @@ Configures the weights to apply to IPv4 routes from the peer; this is used in th
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5132,7 +5202,7 @@ Configures the maximum number of times the local system's AS number can be in th
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 
 ### Example
@@ -5164,7 +5234,7 @@ Configures the percentage of the maximum at which a warning syslog is generated.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5189,7 +5259,7 @@ The defaults is `auto`, which uses standard BGP timers and processing (typically
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5230,7 +5300,7 @@ Configures the AS-Path filter list to apply to updates received from the peer.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5253,7 +5323,7 @@ Configures the AS-Path filter list to apply to updates sent to this peer.
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5288,7 +5358,7 @@ Configures the route map that contains the prefix-list with the list of IPv6 rou
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5311,7 +5381,7 @@ Configures a route map that uses a prefix list with the IPv6 routes that must ex
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5334,7 +5404,7 @@ Configures a route map that uses a prefix list with the IPv6 routes that must no
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5357,7 +5427,7 @@ Configures the weight applied to IPv6 routes from the peer; this is used in the 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5404,7 +5474,7 @@ Configures the maximum number of times the local system's AS number can be in th
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The Peer ID |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
 
 ### Version History
 
@@ -5588,11 +5658,17 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 spine01
 
 - - -
 
+## nv set vrf \<vrf-id\> router bgp dynamic-neighbor
+
+Configures BGP dynamic neighbors that provide BGP peering to remote neighbors within a specified range of IPv4 or IPv6 addresses for a BGP peer group. You can configure each range as a subnet IP address.
+
+After you configure the dynamic neighbors, a BGP speaker can listen for, and form peer relationships with, any neighbor that is in the IP address range and maps to a peer group. 
+
 ## nv set vrf \<vrf-id\> router bgp dynamic-neighbor limit
 
 Configures the maximum number of dynamic neighbors from which you can accept a connection. You must also set the `nv set vrf <vrf> router bgp dynamic-neighbor listen-range` command.
 
-The default value is 100.
+You can specify a value between 1 and 5000. The default value is 100.
 
 ### Command Syntax
 
@@ -5608,6 +5684,29 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp dynamic-neighbor limit 5
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp dynamic-neighbor listen-range \<ip-sub-prefix-id\> peer-group
+
+Configures the dynamic neighbor listen range. 
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<ip-sub-prefix-id>` |   The IP address and prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp dynamic-neighbor listen-range 10.0.1.0/24 peer-group SPINE
 ```
 
 - - -

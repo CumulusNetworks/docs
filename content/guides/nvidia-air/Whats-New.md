@@ -9,10 +9,20 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## March 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0323-011
+- Added Cumulus Linux 4.3.1
+- Added Cumulus Linux 4.4.5
+- Added NetQ 4.5.0
+- Updated Cumulus Linux 5.4.0
+<!-- Air:WhatsNew -->
+
+### 82.2023.0321-012
+- Fixed a bug impacting automatic NetQ instructions impacting certain versions of Cumulus Linux
+- Fixed a bug related to resource budget calculation
+
 ### 82.2023.0316-011
 - Updated default resource limits
 - Fixed a bug impacting filtering in the Demo Marketplace
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0306-011
 - Added cookie management options

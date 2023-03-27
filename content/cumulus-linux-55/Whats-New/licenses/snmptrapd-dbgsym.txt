@@ -1,1 +1,0 @@
-snmptrapd-dbgsym has no copyright file

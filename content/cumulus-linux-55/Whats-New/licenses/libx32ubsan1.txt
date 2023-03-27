@@ -1,1 +1,0 @@
-libx32ubsan1 has no copyright file

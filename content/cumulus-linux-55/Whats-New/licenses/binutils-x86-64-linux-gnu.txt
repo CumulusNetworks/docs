@@ -1,1 +1,0 @@
-binutils-x86-64-linux-gnu has no copyright file

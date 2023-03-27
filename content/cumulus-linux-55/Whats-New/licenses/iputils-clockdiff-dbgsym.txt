@@ -1,1 +1,0 @@
-iputils-clockdiff-dbgsym has no copyright file

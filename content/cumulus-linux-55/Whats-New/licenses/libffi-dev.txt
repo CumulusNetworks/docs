@@ -1,1 +1,0 @@
-libffi-dev has no copyright file

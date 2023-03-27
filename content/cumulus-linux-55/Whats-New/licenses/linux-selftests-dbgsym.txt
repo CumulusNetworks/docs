@@ -1,1 +1,0 @@
-linux-selftests-dbgsym has no copyright file

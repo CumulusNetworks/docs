@@ -1,1 +1,0 @@
-libcpupower1-dbgsym has no copyright file

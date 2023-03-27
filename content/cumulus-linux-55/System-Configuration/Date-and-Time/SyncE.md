@@ -2,22 +2,17 @@
 title: SyncE 
 author: NVIDIA
 weight: 129
-draft: true
 toc: 3
 
 ---
-{{%notice note%}}
-SyncE is available for early access only.
-{{%/notice%}}
-
 <span style="background-color:#F5F5DC">[SyncE](## "Synchronous Ethernet")</span> is a standard for transmitting clock signals over the Ethernet physical layer to synchronize clocks across the network by propagating frequency using the transmission rate of symbols in the network. A dedicated Ethernet channel, (<span style="background-color:#F5F5DC">[ESMC](## "Ethernet Synchronization Messaging Channel")</span>), manages this synchronization.
 
 The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
-- The SyncE controller reads performance counters to calculate the differences between TX and RX ethernet symbols on the physical layer to fine tune the clock frequency.
+- The SyncE controller reads performance counters to calculate the differences between transmit and receive ethernet symbols on the physical layer to fine tune the clock frequency.
 - The SyncE daemon (`syncd`) manages:
   - Transmitting and receiving <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
   - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
-  - Using to the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
+  - Using the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
   - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
 
 ## Basic Configuration
@@ -32,13 +27,43 @@ The basic configuration shown below uses the default settings:
 - The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using it for synchronization is set to 5 minutes.
 
 ```
-cumulus@switch:~$ nv set synce enable on
+cumulus@switch:~$ nv set service synce enable on
 cumulus@switch:~$ nv set interface swp2 synce enable on
 cumulus@switch:~$ nv config apply
 ```
 
 ## Optional Global Configuration
 
+### Wait to Restore Time
+
+The wait to restore time is the amount of time SyncE waits after the interfaces come up before synchronization. You can set a value betwen 0 and 12 minutes. The default value is 5 minutes.
+
+The following command example sets the wait to restore time to 3 minutes:
+
+{{< tabs "TabID169 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service synce wait-to-restore-time 3
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced.conf` file to change the wait to restore time setting, then restart the `syncd` service.
+
+```
+EXAMPLE FILE HERE
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart syncd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+<!--
 ### QL for the Switch
 
 You can specify the ITU-T QL for the switch. You can specify one of the following values. The default is `option 1`.
@@ -71,10 +96,42 @@ cumulus@switch:~$ sudo systemctl restart syncd
 
 {{< /tab >}}
 {{< /tabs >}}
+-->
+
+### Wait to Restore Time
+
+To set the number of minutes that each port has to be up before opening the Ethernet Synchronization Message Channel (ESMC) for messages:
+
+```
+cumulus@switch:~$ nv set service synce wait-to-restore-time 100
+cumulus@switch:~$ nv config apply
+```
+
+You can set a value between 1 and 720.
+
+### Priority
+
+The priority for the clock source. The lowest priority is 1 and the the highest priority is 256. If two clock sources has the same priority, the switch uses the lowest clock source.
+
+```
+cumulus@switch:~$ nv set service synce provider-default-priority 256
+cumulus@switch:~$ nv config apply
+```
 
 ### Logging
 
-By default, SyncE logging is off on the switch. You can enable logging to write a log message:
+You can set the logging level that the Synce service uses:
+- `debug` level logs fine-grained informational events that are most useful to debug an application.
+- `info` level logs informational messages.
+
+The following example command set the lgging level to `debug`.
+
+```
+cumulus@switch:~$ nv set service synce log-level debug
+cumulus@switch:~$ nv config apply
+```
+
+<!--By default, SyncE logging is off on the switch. You can enable logging to write a log message:
 - Every time there is a change to the selected source in addition to errors
 - Only when there are no available frequency sources or when the only available frequency source is the internal oscillator
 
@@ -129,7 +186,7 @@ cumulus@switch:~$ sudo systemctl restart syncd
 
 {{< /tab >}}
 {{< /tabs >}}
-
+-->
 ## Optional Interface Configuration
 
 ### Frequency Source Priority
@@ -142,7 +199,7 @@ The following command example sets the priority on swp2 to 254:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp2 synce priority 254
+cumulus@switch:~$ nv set interface swp2 synce provider-priority 254
 cumulus@switch:~$ nv config apply
 ```
 
@@ -162,36 +219,7 @@ cumulus@switch:~$ sudo systemctl restart syncd
 {{< /tab >}}
 {{< /tabs >}}
 
-### Wait to Restore Time
-
-The wait to restore time is the amount of time SyncE waits after the interface comes up before using it for synchronization. You can set a value betwen 0 and 12 minutes. The default value is 5 minutes.
-
-The following command example sets the wait to restore time to 3 minutes:
-
-{{< tabs "TabID169 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp2 synce wait-to-restore 3
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/synced.conf` file to change the wait to restore time setting, then restart the `syncd` service.
-
-```
-EXAMPLE FILE HERE
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart syncd
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
+<!--
 ### Disable Synchronization Status Messages
 
 You can disable <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on an interface to prevent sending ESMC packets and ignore any received ESMC packets.
@@ -295,27 +323,20 @@ cumulus@switch:~$ sudo systemctl restart syncd
 {{%notice note%}}
 The QL to receive must match the globally configured QL set with the `network-type` command.
 {{%/notice%}}
-
+-->
 ## Troubleshooting
 
-To show SyncE configuration, run the `nv show synce` command:
+To show SyncE configuration, run the `nv show service synce` command:
 
 ```
-cumulus@switch:~$ nv show synce
+cumulus@switch:~$ nv show service synce
 ADD OUTPUT
 ```
 
-To show SyncE statistics for all the enabled interfaces, run the `nv show synce interface statistics` command:
+To show SyncE statistics for a specific interface, run the `nv show interface <interface-id> synce counters` command:
 
 ```
-cumulus@switch:~$ nv show synce interface statistics
-ADD OUTPUT
-```
-
-To show SyncE statistics for a specific interfaces, run the `nv show synce interface statistics <interface>` command:
-
-```
-cumulus@switch:~$ nv show synce interface statistics swp2
+cumulus@switch:~$ nv show interface swp2 synce counters
 ADD OUTPUT
 ```
 

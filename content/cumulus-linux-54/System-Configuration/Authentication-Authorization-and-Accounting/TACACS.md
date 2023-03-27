@@ -53,7 +53,10 @@ NVUE commands require you to specify the priority for each TACACS+ server. You m
 The following example commmands set:
 - The TACACS+ server priority to 5.
 - The IP address of the server to 192.168.0.30.
-- The secret to `mytacac$key`. Note that single quotes are required to use special characters such as "$".
+- The secret to `mytacac$key`.
+  {{%notice note%}}
+  If you include special characters in the password (such as $), you must enclose the password in single quotes (').
+  {{%/notice%}}
 - The VRF to `mgmt`.
 - The authentication order so that TACACS+ authentication has priority over local (the lower number has priority).
 - TACACS+ to enabled.

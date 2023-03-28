@@ -12,7 +12,7 @@ The `lldpd` daemon implements the IEEE802.1AB LLDP standard and starts at system
 
 ## Configure LLDP Timers
 
-You can configure the frequency of LLDP updates (between 10 and 300 seconds) and the amount of time (between 1 and 10 seconds) to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.
+You can configure the frequency of LLDP updates (between 5 and 32768 seconds) and the amount of time (between 1 and 8192 seconds) to hold the information before discarding it. The hold time interval is a multiple of the `tx-interval`.
 
 The following example commands configure the frequency of LLDP updates to 100 and the hold time to 3.
 
@@ -32,7 +32,7 @@ Create the `/etc/lldpd.conf` file or create a file in the `/etc/lldpd.d/` direct
 
 ```
 cumulus@switch:~$ sudo nano /etc/lldpd.conf
-configure lldp tx-interval 40
+configure lldp tx-interval 100
 configure lldp tx-hold 3
 ...
 ```

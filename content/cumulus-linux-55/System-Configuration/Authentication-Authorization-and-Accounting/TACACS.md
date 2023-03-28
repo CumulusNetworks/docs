@@ -12,10 +12,6 @@ TACACS+ in Cumulus Linux:
 - Allows users with privilege level 15 to run NVUE `nv set`, `nv unset`, and `nv apply` commands in addition to `nv show` commands. TACACS+ users with a lower privilege level can only execute `nv show` commands.
 - Supports up to seven TACACS+ servers. Be sure to configure your TACACS+ servers in addition to the TACACS+ client. Refer to your TACACS+ server documentation.
 
-{{%notice note%}}
-NVUE commands for TACACS+ are currently in Beta.
-{{%/notice%}}
-
 ## Install the TACACS+ Client Packages
 
 {{%notice note%}}

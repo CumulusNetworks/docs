@@ -170,28 +170,28 @@ To enable RFC 3527 support and control the giaddr:
 {{< tabs "TabID203 ">}}
 {{< tab "NVUE Commands ">}}
 
-Run the `nv set service dhcp-relay default giaddress-interface` command with the interface or IP address you want to use. The following example uses the first IP address on the loopback interface as the gateway IP address:
+Run the `nv set service dhcp-relay default gateway-interface` command with the interface or IP address you want to use. The following example uses the first IP address on the loopback interface as the gateway IP address:
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default giaddress-interface lo
+cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface lo
 ```
 
 The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default giaddress-interface address lo 10.10.10.1
+cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface address lo 10.10.10.1
 ```
 
 This example uses the first IP address on swp2 as the giaddr:
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default giaddress-interface swp2
+cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2
 ```
 
 This example uses IP address 10.0.0.4 on swp2 as the giaddr:
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default giaddress-interface swp2 address 10.0.0.4
+cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 address 10.0.0.4
 ```
 
 {{< /tab >}}
@@ -336,7 +336,7 @@ Run the `nv show service dhcp-relay` command for IPv4 or the `nv show service dh
 cumulus@leaf01:~$ nv show service dhcp-relay
            source-ip  Summary
 ---------  ---------  -----------------------
-+ default  auto       giaddress-interface: lo
++ default  auto       gateway-interface: lo
   default             interface:        swp51
   default             interface:        swp52
   default             interface:        vlan10

@@ -4,12 +4,11 @@ author: NVIDIA
 weight: 775
 toc: 4
 ---
-Use the UI or CLI to monitor events: you can view all events across the entire network or all events on a device, then filter events according to their type, severity, or timeframe.
-
-Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Crossing Event Notifications">}} for information about configuring third-party applications to broadcast NetQ events.
+Use the UI or CLI to monitor events: you can view all events across the entire network or all events on a device, then filter events according to their type, severity, or time frame. You can view events up to 30 days in the past, but the total time frame cannot exceed 72 hours.
 
 Note that in the UI, it can take several minutes for NetQ to process and accurately display network events. The delay is caused by events with multiple network dependencies. It takes between 5 and 10 minutes for NetQ to consolidate and display these events.
 
+Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Crossing Event Notifications">}} for information about configuring third-party applications to broadcast NetQ events.
 ## Event Commands
 
 Monitor events with the following command. See the {{<link title="show/#netq-show-events" text="command line reference">}} for additional options, definitions, and examples.
@@ -50,20 +49,27 @@ netq show events
 
 You can suppress events for the following types of messages:
 
-- agent: NetQ Agent messages
-- bgp: BGP-related messages
-- btrfsinfo: Messages related to the BTRFS file system in Cumulus Linux
-- clag: MLAG-related messages
-- clsupport: Messages generated when creating the `cl-support script`
-- configdiff: Messages related to the difference between two configurations
-- evpn: EVPN-related messages
-- link: Messages related to links, including state and interface name
-- lldp: LLDP-related messages
-- ntp: NTP-related messages
-- ospf: OSPF-related messages
-- sensor: Messages related to various sensors
-- services: Service-related information, including whether a service is active or inactive
-- ssdutil: Messages related to the storage on the switch
+- agent: NetQ Agent events
+- bgp: BGP events
+- btrfsinfo: Events related to the BTRFS file system in Cumulus Linux
+- clsupport: Events generated when creating the `cl-support script`
+- configdiff: Events generated when a configuration file has changed
+- evpn: EVPN events
+- lcm: Lifecycle management events
+- license: Software license events
+- link: Events related to links, including state and interface name
+- lldp: LLDP events
+- mlag: MLAG events
+- ntp: NTP events
+- ospf: OSPF events
+- packageinfo:
+- ptm: Prescriptive Topology Manager events
+- ptp: PTP events
+- roceconfig: RoCE configuration events
+- runningconfigdiff: Events related to the difference between two configurations
+- sensor: Sensor events
+- services: Service-related events, including whether a service is active or inactive
+- ssdutil: Events related to the storage on a switch
 
 {{<notice info>}} 
 

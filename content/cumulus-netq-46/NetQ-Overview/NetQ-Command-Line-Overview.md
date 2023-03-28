@@ -62,20 +62,6 @@ netq trace <destination> from <source> [options]
 | Angle brackets \< \> | Required variable. Value for a keyword or option; enter according to your deployment nomenclature. |
 | Pipe \| | Separates object and keyword options, also separates value options; enter one object or keyword and zero or one value. |
 
-For example, in the `netq check` command:
-
-- \[\<hostname\>\] is an optional parameter with a variable value named *hostname*
-<!-- vale off -->
-- \<network-protocol-or-service\> represents a number of possible keywords, such as *agents*, *bgp*, *evpn,* and so forth
-
-- \<options\> represents a number of possible conditions for the given object, such as *around*, *vrf,* or *json*
-<!-- vale on -->
-Examples of valid commands include:
-
-- `netq show bgp`
-- `netq config restart cli`
-- `netq trace 10.0.0.5 from 10.0.0.35`
-
 ### Command Output
 
 The command output presents results in color for many commands. Results with errors appear in red, and warnings appear in yellow. Results without errors or warnings appear in either black or green. VTEPs appear in blue. A node in the *pretty* output appears in **bold**, and angle brackets (\< \>) wrap around a router interface. To view the output with only black text, run the `netq config del color` command. You can view output with colors again by running `netq config add color`.
@@ -519,23 +505,7 @@ For information and examples on installing and upgrading the NetQ system, see {{
 
 #### Event Notification Commands
 
-The notification configuration commands can add, remove, and show notification application integrations. These commands create the channels, filters, and rules needed to control event messaging. The commands include:
-
-    netq (add|del|show) notification channel
-    netq (add|del|show) notification rule
-    netq (add|del|show) notification filter
-    netq (add|del|show) notification proxy
-
-An integration includes at least one channel (PagerDuty, Slack, or syslog), at least one filter (defined by rules you create), and at least one rule.
-
-The following example shows how to configure a PagerDuty channel:
-
-```
-cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
-Successfully added/updated channel pd-netq-events
-```
-
-Refer to {{<link title="Configure System Event Notifications">}} for additional examples.
+The notification configuration commands can add, remove, and show notification via third-party integrations. These commands create the channels, filters, and rules that display event messages. Refer to {{<link title="Configure System Event Notifications">}} for step-by-step instructions and examples.
 
 <!-- vale off -->
 #### Threshold-based Event Notification Commands
@@ -544,14 +514,14 @@ Refer to {{<link title="Configure System Event Notifications">}} for additional 
 NetQ supports {{<link title="Configure Threshold-Crossing Event Notifications" text="TCA events">}}, a set of events that <!--vale off -->are triggered<!-- vale on --> by crossing a user-defined threshold. Configure and manage TCA events using the following commands:
 
 ```
-netq add tca [event_id <text-event-id-anchor>] [tca_id <text-tca-id-anchor>] [scope <text-scope-anchor>] [severity info | severity error] [is_active true | is_active false] [suppress_until <text-suppress-ts>] [threshold_type user_set | threshold_type vendor_set] [ threshold <text-threshold-value> ] [channel <text-channel-name-anchor> | channel drop <text-drop-channel-name>]
+netq add tca
 netq del tca tca_id <text-tca-id-anchor>
-netq show tca [tca_id <text-tca-id-anchor>] [json]
+netq show tca
 ```
 
 #### Lifecycle Management Commands
 
-The `netq lcm` {{<link title="Lifecycle Management" text="lifecycle management">}} commands help you efficiently manage the deployment of NVIDIA product software onto your network devices (servers, appliances, and switches).
+The {{<link title="Lifecycle Management" text="lifecycle management">}} commands help you efficiently manage the deployment of NVIDIA product software onto your network devices (servers, appliances, and switches).
 
 LCM commands allow you to:
 

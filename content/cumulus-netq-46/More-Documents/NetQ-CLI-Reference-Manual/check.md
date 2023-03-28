@@ -295,7 +295,7 @@ Warning nodes       : 0
 Cumulus Linux Image Version Test   : passed
 ```
 
-List devices which do not match a version
+List devices which do not match a version:
 
 ```
 cumulus@switch:~$ netq check cl-version match-version 3.7.12
@@ -326,7 +326,7 @@ spine03           OS           4.2.1                                unexpected o
 spine04           OS           4.2.1                                unexpected os version 4.2.1, should be 3.7.12
 ```
 
-List devices with a version greater than or equal to a version
+List devices with a version greater than or equal to a version:
 
 ```
 cumulus@switch:~$ netq check cl-version min-version 3.7.12

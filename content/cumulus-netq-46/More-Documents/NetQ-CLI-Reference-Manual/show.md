@@ -78,16 +78,6 @@ Last Changed              Hostname          Ifname       Prefix                 
 Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3                     32       default
 ```
 
-Show only the differences between now and four months ago:
-
-```
-cumulus@switch:~$ netq show address-history 10.10.10.3 between now and 120d
-Matching addresshistory records:
-Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
-------------------------- ----------------- ------------ ------------------------------ -------- ---------------
-Thu Oct 15 22:28:16 2020  leaf03            lo           10.10.10.3                     32       default
-```
-
 Show changes grouped by VRF:
 
 ```
@@ -245,7 +235,7 @@ None
 
 ### Sample Usage
 
-Display BGP sessions across all network nodes. This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and last time something changed.
+Display BGP sessions across all network nodes. This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and the last time something changed.
 
 
 ```
@@ -911,7 +901,7 @@ leaf01            swp50                     8749                 0              
 
 ## netq show events
 
-Display system events that have occurred in the last 24 hours <!--is this 24 hours or 1 hour?-->. Optionally, view events for a time in the past. You can filter the output by event severity and event type. The output provides the following information for each device:
+Display system events that have occurred in the last 24 hours <!--is this 24 hours or 1 hour?-->. Optionally, view events up to 30 days in the past, with a time frame not exceeding 72 hours. You can filter the output by event severity and event type. The output provides the following information for each device:
 
 - Message type
 - Event severity (info, error)
@@ -987,42 +977,6 @@ leaf02            services                 info             Service netqd status
                                                             nactive to active
 leaf02            services                 info             Service netqd status changed from i Thu Dec 10 06:14:06 2020
                                                             nactive to active
-...
-```
-Display all BGP events between now and five days ago:
-
-```
-cumulus@switch:~$ netq show events message_type bgp between now and 5d
-Matching bgp records:
-Hostname          Message Type Severity Message                             Timestamp
------------------ ------------ -------- ----------------------------------- -------------------------
-leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
 ...
 ```
 
@@ -2368,11 +2322,11 @@ netq [<hostname>] show kubernetes service
 | cluster | NA | Only display Kubernetes cluster information |
 | node | NA | Only display Kubernetes node information |
 | daemon-set | NA |  Only display Kubernetes daemon-set information |
-| deployment | NA | Only display Kubernetes node information |
-| pod | NA | Only display Kubernetes node information |
-| replication-controller | NA | Only display Kubernetes node information |
-| replica-set | NA | Only display Kubernetes node information |
-| service | NA | Only display Kubernetes node information |
+| deployment | NA | Only display Kubernetes deployment information |
+| pod | NA | Only display Kubernetes pod information |
+| replication-controller | NA | Only display Kubernetes replicaiton controller information |
+| replica-set | NA | Only display Kubernetes replication set information |
+| service | NA | Only display Kubernetes service information |
 | connectivity | NA | Only display connectivity information for the daemon-set, deployment, or service |
 
 ### Options

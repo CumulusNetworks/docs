@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 811
 toc: 4
 ---
-The following table lists all system event messages organized by type. You can view these messages through third-party notification applications. For details about configuring notifications for these events, refer to {{<link title="Configure System Event Notifications">}}.
+The following table lists all system event messages organized by type. You can {{<link title="Monitor Events" text="view these messages with the NetQ UI or CLI">}}, or receive them through {{<link title="Configure System Event Notifications" text="third-party notification applications">}}.
 
 ## Agent Events
 

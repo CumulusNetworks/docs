@@ -176,6 +176,12 @@ cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match ip ecn flags tcp-ece
 
 - - -
 
+## nv set acl \<acl-id\> rule \<rule-id\> match ip tcp
+
+Configures the IP TCP properties you want match.
+
+- - -
+
 ## nv set acl \<acl-id\> rule \<rule-id\> match ip tcp flags
 
 Configures the IP TCP flag you want match in the packet. You can specify: `ack`, `all`, `fin`, `none`, `psh`, `rst`, `syn`, or `urg`.
@@ -525,6 +531,12 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set acl EXAMPLE1 rule 10 match mac vlan 10
 ```
+
+- - -
+
+## nv set acl \<acl-id\> rule \<rule-id\> action
+
+Configures the ACL action.
 
 - - -
 

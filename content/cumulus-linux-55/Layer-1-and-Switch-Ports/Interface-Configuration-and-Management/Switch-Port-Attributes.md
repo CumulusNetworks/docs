@@ -1284,7 +1284,8 @@ cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
 ```
 
 {{%notice note%}}
-When you configure a breakout port for 4x on certain switches such as SN2700, SN4600, and SN4600c, you must configure an odd-numbered port, then disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command. The SN3700, SN3700c, SN2201, SN2010, and SN2100 switches do not not have any port breakout limitations on odd or even-numbered ports.
+
+Certain switches, such as the SN2700, SN4600, and SN4600c, require that you disable the subsequent even-numbered port when you configure a breakout port for 4x or 8x. NVUE automatically disables the subsequent even-numbered port on any switch with this requirement.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -1303,7 +1304,7 @@ When you configure a breakout port for 4x on certain switches such as SN2700, SN
    ```
 
    {{%notice note%}}
-Cumulus Linux supports breakout port configuration on odd numbered ports. When you configure a breakout port for 4x or 8x, you must set the subsequent even-numbered port to `disabled` in the `/etc/cumulus/ports.conf` file.
+When you configure a breakout port to 4x or 8x on certain switches such as the SN2700, SN4600, and SN4600c, you must set the subsequent even-numbered port to `disabled` in the `/etc/cumulus/ports.conf` file.  The SN3700, SN3700c, SN2201, SN2010, and SN2100 switch does not not have this requirement.
 {{%/notice%}}
 
 2. Reload `switchd` with the `sudo systemctl reload switchd.service` command. The reload does **not** interrupt network services.

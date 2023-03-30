@@ -629,6 +629,7 @@ Always enable STP in your layer 2 network and {{<link url="Spanning-Tree-and-Rap
 - The STP configuration for dual-connected ports must be the same on both peer switches.
 - The STP priority must be the same on both peer switches.
 - To minimize convergence times when a link transitions to the forwarding state, configure the edge ports (for tagged and untagged frames) with PortAdminEdge and BPDU guard enabled.
+- Do not use a multicast MAC address for the LACP ID on systems connected to MLAG bonds; the switch drops STP BPDUs from a multicast MAC address.
 
 ### Peer Link Sizing
 

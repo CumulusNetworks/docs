@@ -77,11 +77,6 @@ Consistent with this two-pronged approach, the mainline and ESR code branches ar
 <td>New functionality, security updates, bug fixes</td>
 <td>Security updates and critical bug fixes</td>
 </tr>
-<tr class="odd">
-<td>Security Updates</td>
-<td>ASAP</td>
-<td>ASAP</td>
-</tr>
 </tbody>
 </table>
 

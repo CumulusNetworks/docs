@@ -1344,7 +1344,7 @@ WJH Threshold: Displays whether you configured the NetQ Agent with WJH latency a
 
 ```
 netq config show agent 
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats||wjh|wjh-threshold] 
+    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
 ### Required Arguments

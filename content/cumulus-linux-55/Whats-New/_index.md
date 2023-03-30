@@ -48,6 +48,9 @@ Early access features are now called beta features.
   - BGP Phase 3
   - Additional Community Options for Route Policy
   - COPP Rule Definition with Control-Plane ACLs
+  - Changed commands:
+    - The `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>`
+    - The `nv set service dhcp-relay6 blue interface downstream <interface> address <ipv6-address>` command is now`nv set service dhcp-relay6 blue interface downstream <interface> link-address <ipv6-address>`
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

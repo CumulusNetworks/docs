@@ -777,7 +777,7 @@ Maximum 100G ports: 32
 {{< /tabs >}}
 {{< tab "SN3420">}}
 
-48x SFP28 25G and 12x QSFP28 100G interfaces only support NRZ encoding.
+48x SFP28 25G and 12x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
 
 All 12x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 
@@ -893,7 +893,7 @@ Maximum 400G ports: 6
 
 {{< tab "SN3700C">}}
 
-32x QSFP28 100G interfaces only support NRZ encoding.
+32x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
 
 All 32x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 
@@ -938,7 +938,7 @@ Maximum 100G ports: 32
 {{< /tabs >}}
 {{< tab "SN3700">}}
 
-32x QSFP56 200G interfaces support both PAM4 and NRZ encodings.
+32x QSFP56 200G interfaces support both PAM4 and NRZ encodings. You can set all speeds down to 1G.
 
 For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.
 
@@ -992,7 +992,7 @@ Maximum 200G ports: 32
 {{< /tabs >}}
 {{< tab "SN4410">}}
 
-SN4410 24xQSFP28-DD (100GbE) interfaces [ports 1-24] only support NRZ encoding and wll speeds down to 1G.
+SN4410 24xQSFP28-DD (100GbE) interfaces [ports 1-24] only support NRZ encoding with all speeds down to 1G.
 
 The 8xQSFP-DD (400GbE) interfaces [ports 25-32] support both PAM4 and NRZ encodings with all speeds down to 1G.
 
@@ -1069,7 +1069,7 @@ Maximum 400G ports: 8
 {{< /tabs >}}
 {{< tab "SN4600C">}}
 
-64x QSFP28 100G interfaces only support NRZ encoding.
+64x QSFP28 100G interfaces only support NRZ encoding. You can set all speeds down to 1G.
 
 Only 32x QSFP28 ports can break out into 4x SFP28. You must disable the adjacent QSFP28 port. Only the first and third or second and forth rows can break out into 4xSFP28.
 
@@ -1173,7 +1173,7 @@ Maximum 200G ports: 64
 {{< /tabs >}}
 {{< tab "SN4700">}}
 
-SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings.
+SN4700 32x QSFP-DD 400GbE interfaces support both PAM4 and NRZ encodings. You can set all speeds down to 1G.
 
 For lower speed interface configurations, PAM4 is automatically converted to NRZ encoding.
 

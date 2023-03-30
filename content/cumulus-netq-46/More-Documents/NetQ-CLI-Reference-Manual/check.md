@@ -1147,19 +1147,56 @@ None
 cumulus@switch:mgmt:~$ netq check roce
 roce check result summary:
 
-Total nodes         : 12
-Checked nodes       : 12
-Failed nodes        : 0
+Total nodes         : 2
+Checked nodes       : 2
+Failed nodes        : 2
 Rotten nodes        : 0
 Warning nodes       : 0
 Skipped nodes       : 0
 
 
-RoCE mode Test                 : passed
-RoCE Classification Test       : passed
+RoCE mode Test                 : 0 warnings, 1 errors
+RoCE Classification Test       : 0 warnings, 6 errors
 RoCE Congestion Control Test   : passed
-RoCE Flow Control Test         : passed
+RoCE Flow Control Test         : 0 warnings, 3 errors
 RoCE ETS mode Test             : passed
+
+
+RoCE mode Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+mlx-3700c-24      RoCE Lossy mode inconsistent with mlx-3700c-2
+                  3                                            
+
+
+RoCE Classification Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+mlx-3700c-23      DSCP mapping config invalid for switch-prio 2.
+                  Expected DSCP: 16,17,18,19,20,21,22,23.  
+                  DSCP mapping config invalid for switch-prio 3.
+                  Expected DSCP: 24,25,26,27,28,29,30,31.        
+mlx-3700c-23      Invalid traffic-class mapping for switch-prio
+                  rity 3.Expected 3 Got 2                      
+mlx-3700c-23      RoCE SP->DSCP mapping 2->26 inconsistent with
+                  mlx-3700c-24                                 
+mlx-3700c-23      RoCE SP->PCP mapping 2->2 inconsistent with m
+                  lx-3700c-24                                  
+mlx-3700c-23      RoCE SP->TC mapping 2->0 inconsistent with ml
+                  x-3700c-24                                   
+mlx-3700c-24      RoCE SP->PG mapping 3->1 inconsistent with ml
+                  x-3700c-23                                   
+
+
+RoCE Flow Control Test details:
+Hostname          Reason
+----------------- ---------------------------------------------
+mlx-3700c-23      Invalid RoCE PFC rx-enabled flag.Expected: en
+                  abled.                                       
+mlx-3700c-23      RoCE PFC Priority Mismatch.Expected pfc-prior
+                  ity: 3.                                      
+mlx-3700c-23      RoCE PFC cable-length Mismatch.Expected cable
+                  -length: 100. 
 ```
 ### Related Commands
 

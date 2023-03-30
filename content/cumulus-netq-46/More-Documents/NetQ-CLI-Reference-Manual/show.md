@@ -3555,7 +3555,7 @@ Displays RoCE configuration.
 
 {{<notice note>}}
 
-Priority code point (PCP) monitoring requires NetQ Agent 4.5.
+Priority code point (PCP) monitoring requires NetQ Agent 4.5 or later.
 
 {{</notice>}}
 
@@ -3582,26 +3582,31 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show roce-config 
+cumulus@switch:~$ netq show roce-config
 
 Matching roce records:
-Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  DSCP->SP   PCP->SP  SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
+Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  SP->DSCP   SP->PCP  SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
 ----------------- --------------- ---------- ------------ -------- -------- -------- ---------- -------- -------- -------- -------- ---------- ---------- ---------- -------------------------
-mlx-2700a1-19     swp2            Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-mlx-2700a1-19     swp24           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-mlx-2700a1-19     swp23           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-mlx-2700a1-19     swp31           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-ufm-switch23      swp32           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp1            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp8            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp11           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp22           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp15           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp18           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp26           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp29           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp4            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp30           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+mlx-3700c-23      swp16           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp27           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp32           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp23           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp25           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp5            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp26           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp4            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp18           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp12           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp9            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp30           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp21           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp13           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp1            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp24           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp15           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp17           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp22           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-24      swp8            Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Wed Mar 29 11:00:51 2023
 ...
 ```
 

@@ -9,6 +9,362 @@ type: nojsscroll
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
+## nv set interface \<interface-id\> ptp
+
+Provides PTP configuration commands for the interface.
+
+- - -
+
+## nv set interface \<interface-id\> ptp acceptable-master
+
+Turns the acceptable master table option on or off for the interface. You must configure the clock IDs of known Grandmasters in the acceptable master table before turning on the acceptable master table option. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp acceptable-master on
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp delay-mechanism end-to-end
+
+Configures the PTP delay mechanism to be end-to-end, where the slave measures the delay between itself and the master. For PTP nodes to synchronize the time of day, each slave has to learn the delay between itself and the master.
+
+The default setting is `peer-to-peer`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp delay-mechanism end-to-end
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp enable
+
+Turns PTP on the specified PTP interface on or off.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp enable on
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp forced-master
+
+Configures PTP interfaces to always be in a master state. This interface ignores any Announce messages it receives.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp forced-master on
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp instance \<value\>
+
+Configures the PTP instance number for the specified PTP interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service ptp 1
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp mixed-multicast-unicast
+
+Configures the mode in which PTP delay messages transmit for the specified PTP interface; mixed (multicast and unicast) or multicast only. Specify `on` for mixed mode or `off` for multicast mode.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.2.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp mixed-multicast-unicast on
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp timers
+
+Provides PTP configuration commands to set timers for PTP messages for the specified PTP interface. The commands include the average interval between successive Announce messages, the number of announce intervals that have to occur without receiving an Announce message before a timeout occurs, the minimum average time interval allowed between successive Delay Required messages, and the interval between PTP synchronization messages on an interface.
+
+- - -
+
+## nv set interface \<interface-id\> ptp timers announce-interval
+
+Configures the average interval between successive Announce messages for the specified PTP interface. You specify the value as a power of two in seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers announce-interval -1
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp timers announce-timeout
+
+The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs. Make sure that this value is longer than the `announce-interval` in your network.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers announce-interval 2
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp timers delay-req-interval
+
+The minimum average time interval allowed between successive Delay Required messages for the specified PTP interface. You specify the value as a power of two in seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers delay-req-interval -5
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp timers sync-interval
+
+The interval between PTP synchronization messages on the specified PTP interface. You specify the value as a power of two in seconds.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers sync-interval -5
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp transport
+
+Configures the transport method for PTP messages for the specified PTP interface. You can encapsulate PTP messages in UDP/IPV4 frames or UDP/IPV6 frames.
+
+The default setting is IPv4.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp transport ipv6
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp ttl
+
+Configures the maximum number of hops the PTP messages can travel for the specified PTP interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp ttl 20
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp unicast-master-table-id
+
+Configures the unicast table ID for the specified PTP interface; a unique ID that identifies the unicast master table.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp unicast-master-table-id 1
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp unicast-request-duration
+
+Configures the unicast request duration for the specified PTP interface; the service time in seconds requested during discovery.
+
+The default setting is `300`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp unicast-request-duration 500
+```
+
+- - -
+
+## nv set interface \<interface-id\> ptp unicast-service-mode
+
+Configures the specified PTP interface to be a unicast client or a unicast server. Unicast mode reduces the amount of bandwidth consumed.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp unicast-service-mode server
+```
+
+- - -
+
 ## nv set service ptp \<instance-id\>
 
 Provides commands to configure global Precision Time Protocol (PTP) settings. The NVUE PTP commands require an instance number for management purposes.
@@ -761,23 +1117,21 @@ cumulus@leaf01:mgmt:~$ nv set service ptp 1 unicast-master 1 query-interval 2
 
 - - -
 
-## nv set interface \<interface-id\> ptp
+## nv set vrf \<vrf-id\> ptp
 
-Provides PTP configuration commands for the interface.
+Configures PTP in the specified VRF.
 
 - - -
 
-## nv set interface \<interface-id\> ptp acceptable-master
+## nv set vrf \<vrf-id\> ptp enable
 
-Turns the acceptable master table option on or off for the interface. You must configure the clock IDs of known Grandmasters in the acceptable master table before turning on the acceptable master table option. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection.
-
-The default setting is `off`.
+Turns PTP on or off in the specified VRF.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
+| `<vrf>` |  The VRF name. |
 
 ### Version History
 
@@ -786,333 +1140,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp acceptable-master on
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp delay-mechanism end-to-end
-
-Configures the PTP delay mechanism to be end-to-end, where the slave measures the delay between itself and the master. For PTP nodes to synchronize the time of day, each slave has to learn the delay between itself and the master.
-
-The default setting is `peer-to-peer`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp delay-mechanism end-to-end
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp enable
-
-Turns PTP on the specified PTP interface on or off.
-
-The default setting is `off`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service ptp enable on
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp forced-master
-
-Configures PTP interfaces to always be in a master state. This interface ignores any Announce messages it receives.
-
-The default setting is `off`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp forced-master on
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp instance \<value\>
-
-Configures the PTP instance number for the specified PTP interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service ptp 1
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp mixed-multicast-unicast
-
-Configures the mode in which PTP delay messages transmit for the specified PTP interface; mixed (multicast and unicast) or multicast only. Specify `on` for mixed mode or `off` for multicast mode.
-
-The default setting is `off`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.2.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp mixed-multicast-unicast on
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp timers
-
-Provides PTP configuration commands to set timers for PTP messages for the specified PTP interface. The commands include the average interval between successive Announce messages, the number of announce intervals that have to occur without receiving an Announce message before a timeout occurs, the minimum average time interval allowed between successive Delay Required messages, and the interval between PTP synchronization messages on an interface.
-
-- - -
-
-## nv set interface \<interface-id\> ptp timers announce-interval
-
-Configures the average interval between successive Announce messages for the specified PTP interface. You specify the value as a power of two in seconds.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers announce-interval -1
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp timers announce-timeout
-
-The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs. Make sure that this value is longer than the `announce-interval` in your network.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers announce-interval 2
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp timers delay-req-interval
-
-The minimum average time interval allowed between successive Delay Required messages for the specified PTP interface. You specify the value as a power of two in seconds.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers delay-req-interval -5
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp timers sync-interval
-
-The interval between PTP synchronization messages on the specified PTP interface. You specify the value as a power of two in seconds.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp timers sync-interval -5
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp transport
-
-Configures the transport method for PTP messages for the specified PTP interface. You can encapsulate PTP messages in UDP/IPV4 frames or UDP/IPV6 frames.
-
-The default setting is IPv4.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp transport ipv6
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp ttl
-
-Configures the maximum number of hops the PTP messages can travel for the specified PTP interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp ttl 20
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp unicast-master-table-id
-
-Configures the unicast table ID for the specified PTP interface; a unique ID that identifies the unicast master table.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp unicast-master-table-id 1
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp unicast-request-duration
-
-Configures the unicast request duration for the specified PTP interface; the service time in seconds requested during discovery.
-
-The default setting is `300`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp unicast-request-duration 500
-```
-
-- - -
-
-## nv set interface \<interface-id\> ptp unicast-service-mode
-
-Configures the specified PTP interface to be a unicast client or a unicast server. Unicast mode reduces the amount of bandwidth consumed.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp unicast-service-mode server
+cumulus@leaf01:mgmt:~$ nv set vrf RED ptp enable on
 ```
 
 - - -

@@ -1253,6 +1253,28 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute connected ena
 
 - - -
 
+## nv set vrf \<vrf-id\> router ospf redistribute connected metric
+
+Configures the metric for OSPF connected route redistribution. You can specify a value between 0 and 16777214 or `none`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router ospf redistribute connected metric 2000
+```
+
+- - -
+
 ## nv set vrf \<vrf-id\> router ospf redistribute connected metric-type
 
 Configures the metric type for OSPF connected route redistribution; 1 or 2.

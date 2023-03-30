@@ -428,6 +428,19 @@ Cumulus Linux does not provide NVUE commands for this setting.
 <!-- vale off -->
 {{<cl/restart-switchd>}}
 <!-- vale on -->
+
+3. Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of nexthops changes. To work around this issue, configure zebra not to install next hop IDs in the kernel with the following vtysh command:
+
+  ```
+  cumulus@switch:~$ sudo vtysh
+  switch# configure terminal
+  switch(config)# zebra nexthop proto only
+  switch(config)# exit
+  switch# write memory
+  switch# exit
+  cumulus@switch:~$
+  ```
+
 {{< /tab >}}
 {{< /tabs >}}
 

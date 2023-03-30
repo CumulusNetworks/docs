@@ -9,12 +9,15 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## March 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0330-011
+- Added new mechanism for anonymous simulation handling
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0323-011
 - Added Cumulus Linux 4.3.1
 - Added Cumulus Linux 4.4.5
 - Added NetQ 4.5.0
 - Updated Cumulus Linux 5.4.0
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0321-012
 - Fixed a bug impacting automatic NetQ instructions impacting certain versions of Cumulus Linux

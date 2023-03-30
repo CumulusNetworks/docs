@@ -548,7 +548,6 @@ You need to copy several files to the NMS server for it to recognize the custom 
 
 The pass persist scripts in Cumulus Linux use the {{<exlink url="http://net-snmp.sourceforge.net/wiki/index.php/Tut:Extending_snmpd_using_shell_scripts#Pass_persist" text="pass_persist extension">}} to Net-SNMP. The scripts are in `/usr/share/snmp` and include:
 
-- `bgp4_pp.py`
 - `bridge_pp.py`
 - `cl_drop_cntrs_pp.py`
 - `cl_poe_pp.py`
@@ -558,6 +557,7 @@ The pass persist scripts in Cumulus Linux use the {{<exlink url="http://net-snmp
 - `resq_pp.py`
 - `snmpifAlias_pp.py`
 - `sysDescr_pass.py`
+- `vrf_bgpun_pp.py`
 
 Cumulus Linux enables all the scripts by default except for `bgp4_pp.py`, which {{<link url="FRRouting" text="FRR">}} uses.
 

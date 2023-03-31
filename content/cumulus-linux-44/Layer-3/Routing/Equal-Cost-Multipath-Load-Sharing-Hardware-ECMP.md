@@ -204,7 +204,7 @@ Cumulus Linux enables symmetric hashing by default. Make sure that the settings 
 
 In Cumulus Linux, when a next hop fails or you remove the next hop from an ECMP pool, the hashing or hash bucket assignment can change. If you have a deployment where you need flows to always use the same next hop, like TCP anycast deployments, this can create session failures.
 
-*Resilient hashing* is an alternate way to manage ECMP groups. The ECMP hash performed with resilient hashing is the same as the default hashing mode. Only the method in which Cumulus Linux assigns next hops to hash buckets differs &mdash; Cumulus Linux assigns next hops to buckets by hashing their header fields and using the resulting hash to index into the table of 2^n hash buckets. Because all packets in a given flow have the same header hash value, they all use the same flow bucket.
+*Resilient hashing* is an alternate way to manage ECMP groups. The ECMP hash that Cumulus Linux performs with resilient hashing is the same as the default hashing mode except that the method in which Cumulus Linux assigns next hops to hash buckets differs &mdash; Cumulus Linux assigns next hops to buckets by hashing their header fields and using the resulting hash to index into the table of 2^n hash buckets. Because all packets in a given flow have the same header hash value, they all use the same flow bucket.
 
 {{%notice note%}}
 - Resilient hashing supports both IPv4 and IPv6 routes.
@@ -307,6 +307,19 @@ To enable resilient hashing, edit `/etc/cumulus/datapath/traffic.conf`:
 <!-- vale off -->
     {{<cl/restart-switchd>}}
 <!-- vale on -->
+
+4. Resilient hashing in hardware does not work with next hop groups; the switch remaps flows to new next hops when the set of nexthops changes. To work around this issue, configure zebra not to install next hop IDs in the kernel with the following vtysh command:
+
+  ```
+  cumulus@switch:~$ sudo vtysh
+  switch# configure terminal
+  switch(config)# zebra nexthop proto only
+  switch(config)# exit
+  switch# write memory
+  switch# exit
+  cumulus@switch:~$
+  ```
+
 ## Considerations
 
 ### IPv6 Route Replacement

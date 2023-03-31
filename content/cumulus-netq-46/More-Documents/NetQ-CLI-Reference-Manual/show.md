@@ -3680,6 +3680,35 @@ switch            swp63s0         0            0            0                  0
 switch            swp63s2         0            0            0                  0                  0                  0            0                  0            0
 ```
 
+Display RoCE-specific Tx counters:
+
+```
+cumulus@switch:~$ netq show roce-counters tx roce 
+
+Matching roce records:
+Hostname          Interface       TC packets TC bytes   unicast no buffer discard PFC pause packets  PFC pause duration buffer usage buffer max usage   TC usage   TC max usage
+----------------- --------------- ---------- ---------- ------------------------- ------------------ ------------------ ------------ ------------------ ---------- ---------------
+switch            swp1s1          0          0          0                         0                  0                  0            0                  0          0
+switch            swp1s2          0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s1         0          0          0                         0                  0                  0            0                  0          0
+switch            swp1s0          0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s3         0          0          0                         0                  0                  0            0                  0          0
+switch            swp1s3          0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s0         0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s2         0          0          0                         0                  0                  0            0                  0          0
+```
+
+To view counters for a specific switch port, include the switch name with the command:
+
+```
+cumulus@switch:~$ netq show roce-counters swp1s1 rx general 
+
+Matching roce records:
+Hostname          Interface            PG packets           PG bytes             no buffer discard    buffer usage         buffer max usage     PG usage             PG max usage
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
+```
+
 ### Related Commands
 
 - `netq show roce-config`

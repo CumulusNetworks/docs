@@ -4,6 +4,10 @@ author: Cumulus Networks
 weight: 50
 product: Cumulus Linux
 ---
+{{%notice note%}}
+This document is in Beta.
+{{%/notice%}}
+
 ## nv config apply
 
 Applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:

@@ -13,7 +13,7 @@ For DPU inventory information, refer to {{<link title="DPU Inventory" text="DPU 
 
 For an overview of the current or past health of DPU hardware resources, open the DPU device card. To open a DPU device card:
 
-1. Click {{<img src="/images/netq/devices.svg" alt="empty device card" height="18" width="18">}} **Devices** in the header, then click **Open a device card**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices** in the header, then click **Open a device card**.
 
 2. Select a DPU from the dropdown.
 

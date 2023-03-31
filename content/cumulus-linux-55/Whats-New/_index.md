@@ -32,7 +32,7 @@ Early access features are now called beta features.
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
 - PTP
   - PPS In or Out
-  - ITU-T G.8275.2 Profile
+  - {{<link url="Precision-Time-Protocol-PTP##ptp-profiles" text="ITU-T G.8275.2 Profile">}}
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - TACACS+ commands are now generally available
   - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1
@@ -40,7 +40,7 @@ Early access features are now called beta features.
   - Routing Policy Phase 2
   - EVPN Operational commands
   - Zebra - Phase 2
-  - Support Reboot Operations
+  - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}}  restart mode
   - Interface Counter Parity for NVUE
   - {{<link url="VLAN-aware-Bridge-Mode#mac-address-ageing" text="Bridge aging timer">}}
   - LTTng Enhacements Switchd

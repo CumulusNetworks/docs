@@ -282,21 +282,21 @@ Cumulus Linux supports the following predefined profiles:
 
 The following table shows the default parameter values for the predefined profiles.
 
-| Parameter | IEEE 1588 | ITU 8275-1 |
-| --------- | --------- | ---------- |
-| Announce rate | 1 | -3 |
-| Sync rate | 0  | -4 |
-| Delay rate | 0 | -4 |
-| Announce Timeout | 3  | 3 |
-| Domain | 0  | 24 |
-| Priority1 | 128 | 128 |
-| Priority2 |  128 | 128 |
-| Local priority | NA | 128  |
-| Transport | UDPv4 (UDPv6 supported) |802.3 |
-| Transmission | Multicast (unicast supported) | Multicast |
-| <span style="background-color:#F5F5DC">[BMCA](## "Best Master Clock Algorythm")</span> | IEEE 1588 | G.8275.x |
+| Parameter | IEEE 1588 | ITU 8275-1 | ITU 8275-2 |
+| --------- | --------- | ---------- | ---------- |
+| Announce rate | 1 | -3 |? |
+| Sync rate | 0  | -4 | ?|
+| Delay rate | 0 | -4 |? |
+| Announce Timeout | 3  | 3 | ? |
+| Domain | 0  | 24 | ?|
+| Priority1 | 128 | 128 | ? |
+| Priority2 |  128 | 128 |  ?|
+| Local priority | NA | 128  | ? |
+| Transport | UDPv4 (UDPv6 supported) |802.3 | ? |
+| Transmission | Multicast (unicast supported) | Multicast | ? |
+| <span style="background-color:#F5F5DC">[BMCA](## "Best Master Clock Algorythm")</span> | IEEE 1588 | G.8275.x | ? |
 
-The switch has a predefined default profile of each profile type, one for IEEE1588 and one for ITU8275.1.
+The switch has a predefined default profile of each profile type, one for IEEE1588, one for ITU8275.1, and one for ITU8275.2.
 You can configure the switch to use a predefined profile or you can create a custom profile. You can change the profile settings of the predfined profiles, such as the announce rate, sync rate, domain, priority, transport, and so on. These changes conform to the ranges and allowed values of the profile type. You can also configure these parameters for individual PTP interfaces. When you configure parameters for an individual interface, the configuration takes precedence over the profile configuration. The interface is not part of the profile.
 
 {{%notice note%}}
@@ -311,14 +311,17 @@ To set a predefined profile:
 {{< tabs "TabID276 ">}}
 {{< tab "NVUE Commands ">}}
 
-To use the ITU 8275.1 profile:
+- To set the ITU 8275.1 profile, run the `nv set service ptp <instance-id> current-profile default-itu-8275-1` command.
+- To set the ITU 8275.2 profile, run the `nv set service ptp <instance-id> current-profile default-itu-8275-2` command.
+
+The following example sets the profile to ITU 8275.1
 
 ```
 cumulus@switch:~$ nv set service ptp 1 current-profile default-itu-8275-1
 cumulus@switch:~$ nv config apply
 ```
 
-To use the IEEE 1588 profile:
+To set the IEEE 1588 profile:
 
 ```
 cumulus@switch:~$ nv set service ptp 1 current-profile default-1588
@@ -328,7 +331,10 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To use the predefined ITU 8275.1 profile, edit the `/etc/ptp4l.conf` file, then restart the `ptp4l` service. Here is an example:
+- To set the predefined ITU 8275.1 profile, edit the `/etc/ptp4l.conf` file and set the `dataset_comparison` parameter to G.8275.1, then restart the `ptp4l` service.
+- To set the predefined ITU 8275.2 profile, edit the `/etc/ptp4l.conf` file and set the `dataset_comparison` parameter to G.8275.2, then restart the `ptp4l` service.
+
+The following example sets the profile to ITU 8275.1
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -345,7 +351,7 @@ domainNumber                   24
 twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
-dataset_comparison             G.8275.x
+dataset_comparison             G.8275.1
 G.8275.defaultDS.localPriority 128
 G.8275.portDS.localPriority    128
 ptp_dst_mac                    01:80:C2:00:00:0E
@@ -417,7 +423,7 @@ network_transport       L2
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To use the predefined IEEE 1588 profile, edit the `/etc/ptp4l.conf` file, then restart the `ptp4l` service. Here is an example:
+To use the predefined IEEE 1588 profile, edit the `/etc/ptp4l.conf` file and set the `dataset_comparison` parameter to ieee1588, then restart the `ptp4l` service. Here is an example:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -510,7 +516,7 @@ To create a custom profile:
 {{< tab "NVUE Commands ">}}
 
 - Create a profile name.
-- Set the profile type on which to base the new profile (`itu-g-8275-1` or `ieee-1588`).
+- Set the profile type on which to base the new profile (`itu-g-8275-1` `itu-g-8275-2`, or `ieee-1588`).
 - Update any of the profile settings you want to change (`announce-interval`, `delay-req-interval`, `priority1`, `sync-interval`, `announce-timeout`, `domain`, `priority2`, `transport`, `delay-mechanism`, `local-priority`).
 - Set the custom profile to be the current profile.
 

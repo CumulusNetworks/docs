@@ -75,7 +75,7 @@ cumulus@leaf01:mgmt:~$ nv set router bgp convergence-wait time 300
 
 ## nv set router bgp enable
 
-Turns BGP `on` or `off` on the switch.
+Turns BGP `on` or `off` globally on the switch.
 
 ### Version History
 
@@ -1799,6 +1799,48 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp address-family ipv6-unicast
 
 - - -
 
+## nv set vrf \<vrf-id\> router bgp autonomous-system
+
+Configures the BGP <span style="background-color:#F5F5DC">[ASN](## "Autonomous System Number ")</span> in the specified VRF to identify the BGP node. You can set a value between 1 and 4294967295. To use auto BGP to assign an ASN automatically on the leaf, set the value to `leaf`. To use auto BGP to assign an ASN automatically on the spine, set the value to `spine`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp autonomous-system 65101
+```
+
+## nv set vrf \<vrf-id\> router bgp enable
+
+Turns BGP on or off in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp enable on
+```
+
+- - -
+
 ## nv set vrf \<vrf-id\> router bgp path-selection
 
 Provides commands to configure BGP best path selection.
@@ -2145,6 +2187,48 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp route-reflection outbound-policy on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp rd
+
+Configures the BGP route distinguisher (RD) in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf RED router bgp rd 10.1.20.2:5
+```
+
+## nv set vrf \<vrf-id\> router bgp router-id
+
+Configures the router ID in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example 
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp router-id 10.10.10.1
 ```
 
 - - -
@@ -4842,6 +4926,51 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 capabilities
 
 - - -
 
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> description
+
+Configures a description for the BGP peer in the specified VRF. If the description is more than one word, enclose it in double quotes (").
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 description SPINE01
+```
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> enforce-first-as
+
+Configures BGP to check that first AS matches peer's AS when BGP updates are received from eBGP peers with this configuration. You can specify `on` or `off`.
+
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 enforce-first-as on
+```
+
+- - -
+
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> local-as
 
 Configures BGP local AS, which allows the switch to appear to be a member of a second autonomous system (AS), in addition to its real AS.
@@ -4913,6 +5042,75 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 local-as prepend on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> multihop-ttl
+
+Configures the maximum number of hops allowed. You can specify a value between 1 and 255 or `auto`. The default setting is `auto`, where the type of peer determines the appropriate value (255 for iBGP and 1 for eBGP).
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 multihop-ttl 25
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> nexthop-connected-check
+
+Turns next hop connected check on or off. If you set the value to `on`, BGP disables checking that a non-multihop eBGP peer is directly connected and only announces connected next hops.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 nexthop-connected-check on
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> passive-mode
+
+Turns passive mode on so that the switch does not initiate the BGP connection but waits for an incoming connection. If you set the command to `off`, the switch initiates the BGP connection without waiting for an incoming connection.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 passive-mode on
 ```
 
 - - -
@@ -5673,6 +5871,48 @@ Provides commands to configure outbound l2vpn EVPN policies.
 
 - - -
 
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> enable
+
+Turns the exchange of information with a BGP neighbor on or off in the specified VRF. The default value is `on`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 enable on
+```
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> shutdown
+
+Administratively shuts down a specific neighbor in the specified VRF. You can specify `on` or `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 shutdown on
+```
+
 ## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> timers
 
 Provides commands to configure BGP peer timers.
@@ -5802,25 +6042,94 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 mypassword
 
 - - -
 
-## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> description
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> peer-group
 
-Configures a BGP peer description. If the description is more than one word, enclose the description in double quotes (").
+Configures the peer group in which the specified BGP peer belongs. The BGP peer inherits the group's configuration.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
-| `<neighbor-id>`   |  The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.1.0
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 spine01
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 peer-group SPINES
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> remote-as
+
+Configures BGP to establish a connection between two eBGP peers that are not directly connected. You can set a value between 1 and 4294967295, `auto`, `internal`, or `external`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor 10.10.10.101 peer-group remote-as external
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> type
+
+Configures the BGP peer type in the specified VRF. You can set a value of `numbered` or `unnumbered`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 type unnumbered
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> update-source 
+
+Configures the BGP source of routing updates. You can specify an interface, or an IPv4 or IPv6 address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<neighbor-id>`   | The IP address of the BGP peer or the interface if you are using unnumbered BGP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router bgp neighbor swp51 update-source 10.10.10.5
 ```
 
 - - -

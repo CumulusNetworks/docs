@@ -36,25 +36,28 @@ cumulus@switch:~$ nv config apply
 
 ### Wait to Restore Time
 
-The wait to restore time is the amount of time SyncE waits after the interfaces come up before synchronization. You can set a value betwen 0 and 12 minutes. The default value is 5 minutes.
+The wait to restore time is the number of seconds SyncE waits for each port to be up before opening the Ethernet Synchronization Message Channel (ESMC) for messages. You can set a value betwen 0 and 720 (12) minutes. The default value is 300 seconds (5 minutes).
 
-The following command example sets the wait to restore time to 3 minutes:
+The following command example sets the wait to restore time to 180 seconds (3 minutes):
 
 {{< tabs "TabID169 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service synce wait-to-restore-time 3
+cumulus@switch:~$ nv set service synce wait-to-restore-time 180
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced.conf` file to change the wait to restore time setting, then restart the `syncd` service.
+Edit the `/etc/synced/synced.conf` file to change the `twtr_seconds setting`, then restart the `syncd` service.
 
 ```
-EXAMPLE FILE HERE
+cumulus@switch:~$ sudo nano /etc/synced/synced.conf
+...
+[global]
+twtr_seconds=180
 ```
 
 ```
@@ -63,95 +66,72 @@ cumulus@switch:~$ sudo systemctl restart syncd
 
 {{< /tab >}}
 {{< /tabs >}}
-<!--
-### QL for the Switch
-
-You can specify the ITU-T QL for the switch. You can specify one of the following values. The default is `option 1`.
-- `option 1` includes PRC, SSU-A, SSU-B, SEC and DNU.
-- `option 2` includes PRS, STU, ST2, ST3, SMC, ST4, RES and DUS.
-- `option 3` includes PRS, STU, ST2, ST3, TNC, ST3E, SMC, ST4, PROV and DUS.
-
-The following command example sets the QL for the switch to `option 2`:
-
-{{< tabs "TabID49 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set synce network-type option 2
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/synced.conf` file to change the QL setting, then restart the `syncd` service.
-
-```
-EXAMPLE FILE HERE
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart syncd
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
-
-### Wait to Restore Time
-
-To set the number of minutes that each port has to be up before opening the Ethernet Synchronization Message Channel (ESMC) for messages:
-
-```
-cumulus@switch:~$ nv set service synce wait-to-restore-time 100
-cumulus@switch:~$ nv config apply
-```
-
-You can set a value between 1 and 720.
 
 ### Priority
 
 The priority for the clock source. The lowest priority is 1 and the the highest priority is 256. If two clock sources has the same priority, the switch uses the lowest clock source.
+
+The following example command sets the priority to 256:
+
+{{< tabs "TabID74 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set service synce provider-default-priority 256
 cumulus@switch:~$ nv config apply
 ```
 
+{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/synced/synced.conf` file to change the `priority` setting, then restart the `syncd` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/synced/synced.conf
+...
+[global]
+twtr_seconds=180
+priority=256
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart syncd
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ### Logging
 
-You can set the logging level that the Synce service uses:
+You can set the logging level that the SyncE service uses:
 - `debug` level logs fine-grained informational events that are most useful to debug an application.
 - `info` level logs informational messages.
+- `notice` level logs notices.
+- `error` level logs errors.
+- `critical` level logs critical errors and notices.
 
-The following example command set the lgging level to `debug`.
+The following example command sets the lgging level to `debug`.
+
+{{< tabs "TabID108 ">}}
+{{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set service synce log-level debug
 cumulus@switch:~$ nv config apply
 ```
 
-<!--By default, SyncE logging is off on the switch. You can enable logging to write a log message:
-- Every time there is a change to the selected source in addition to errors
-- Only when there are no available frequency sources or when the only available frequency source is the internal oscillator
-
-The following command example sets logging to write a log message every time there is a change to the selected source in addition to errors:
-
-{{< tabs "TabID81 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set synce changes
-cumulus@switch:~$ nv config apply
-```
-
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced.conf` file to change the logging setting, then restart the `syncd` service.
+Edit the `/etc/synced.conf` file to change the `log-level` setting, then restart the `syncd` service.
 
 ```
-EXAMPLE FILE HERE
+cumulus@switch:~$ sudo nano /etc/synced/synced.conf
+...
+[global]
+twtr_seconds=180
+priority=256
+log-level=debug
 ```
 
 ```
@@ -161,32 +141,6 @@ cumulus@switch:~$ sudo systemctl restart syncd
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command example sets logging to write a log message only when there are no available frequency sources or when the only available frequency source is the internal oscillator:
-
-{{< tabs "TabID107 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set synce errors
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/synced.conf` file to change the logging setting, then restart the `syncd` service.
-
-```
-EXAMPLE FILE HERE
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart syncd
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
 ## Optional Interface Configuration
 
 ### Frequency Source Priority
@@ -206,41 +160,12 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced.conf` file to change the priority setting, then restart the `syncd` service.
+Edit the `/etc/synced.conf` file to change the `priority` setting for the interface, then restart the `syncd` service.
 
 ```
-EXAMPLE FILE HERE
-```
+cumulus@switch:~$ sudo nano /etc/synced/synced.conf
+...
 
-```
-cumulus@switch:~$ sudo systemctl restart syncd
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-<!--
-### Disable Synchronization Status Messages
-
-You can disable <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on an interface to prevent sending ESMC packets and ignore any received ESMC packets.
-
-The following command example disables SSMs on swp2:
-
-{{< tabs "TabID199 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp2 synce ssm disable
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/synced.conf` file to disable SSMs, then restart the `syncd` service.
-
-```
-EXAMPLE FILE HERE
 ```
 
 ```
@@ -250,80 +175,6 @@ cumulus@switch:~$ sudo systemctl restart syncd
 {{< /tab >}}
 {{< /tabs >}}
 
-### QL to Transmit in Status Messages
-
-To override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) transmitted in SSM messages, you can set the following options:
-- `exact <ql>` specifies the exact QL regardless of the value received.
-- `highest <ql>` specifies an upper limit on the QL. If the selected source has a higher QL than the QL specified here, the switch transmits this QL instead.
-- `lowest <ql>` specifies a lower limit on the QL. If the selected source has a lower QL than the QL specified here, the switch transmits DNU instead.
-
-The following command example specifies an upper limit of `option 1`:
-
-{{< tabs "TabID232 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp2 synce highest option 1
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/synced.conf` file to specify an upper limit of `option 1`, then restart the `syncd` service.
-
-```
-EXAMPLE FILE HERE
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart syncd
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice note%}}
-The QL must match the globally configured QL with the `network-type` command.
-{{%/notice%}}
-
-### QL to Receive in Status Messages
-
-To override the QL (`option 1`, `option 2 generation 1`, or `option 2 generation 2`) received in SSM messages before using it in the selection algorithm, you can set one of the following options:
-- `exact <quality-level>`  specifies the exact QL regardless of the value received unless the received value is DNU.
-- `highest <quality-level>` specifies an upper limit on the received QL. If the received value is higher than this specified QL, the switch transmits this QL instead.
-- `lowest <quality-level>` specifies a lower limit on the received QL. If the received value is lower than this specified QL, the switch transmits DNU instead.
-
-The following command example specifies a lower limit of `option 2 generation 1`:
-
-{{< tabs "TabID269 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp2 synce lowest option 2 generation 1
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `/etc/synced.conf` file to specify a lower limit of `option 2 generation 1`, then restart the `syncd` service.
-
-```
-EXAMPLE FILE HERE
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart syncd
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice note%}}
-The QL to receive must match the globally configured QL set with the `network-type` command.
-{{%/notice%}}
--->
 ## Troubleshooting
 
 To show SyncE configuration, run the `nv show service synce` command:

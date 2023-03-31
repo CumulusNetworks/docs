@@ -14,7 +14,8 @@ You can also manage NVLink4 devices, perform upgrades, and manage events via the
 
 - {{<link title="Domain Management" text="Domain management">}}: create and manage multiple NVLink4 domains. After you create and configure a domain, run Global Fabric Manager (GFM), then collect telemetry data which can be visualized in the UI.
 - {{<link title="NVLink4 Inventory" text="Inventory management">}}: manage your inventory of NVLink4 switches and GPU nodes, and view statistics and data for each device.
-- {{<link title="NVOS Images" text="NVOS image management">}}: check for missing images and upload NVOS images to NetQ.
+- NVLink4 events: monitor events related to the local fabric manager, global fabric manager, and NVSwitch devices.
+- {{<link title="NVOS Images" text="NVOS images">}}: check for missing images and upload NVOS images to NetQ.
 - {{<link title="Upgrade NVOS with LCM" text="NVOS upgrades">}}: upgrade NVLink4 switches and GPU nodes to the latest NVOS version.
  
 

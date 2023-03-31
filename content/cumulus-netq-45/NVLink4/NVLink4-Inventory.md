@@ -21,7 +21,7 @@ Add inventory cards to your workbench to:
 
  Select the cards to add them to your workbench. There are two NVLink4 inventory cards---NVL4 switches and NVL4 GPUs.
 
- Select **Open cards**, then locate the cards on the workbench. Fully expand the card with to reveal a table with device statistics and data. The following image displays device statistics for an NVLink4 GPU:
+ Select **Open cards**, then locate the cards on the workbench. Fully expand the card to reveal a table with device statistics and data. The following image displays device statistics for an NVLink4 GPU:
 
   {{<figure src="/images/netq/nvl4-inventory-gpu.png" width="1050">}}
 

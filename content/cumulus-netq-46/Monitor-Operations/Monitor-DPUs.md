@@ -34,7 +34,7 @@ To view a larger display of hardware resource utilization, select {{<img src="/i
 {{<figure src="/images/netq/dev-dpu-large-utilization-42.png" width="700">}}
 ## View Installed Packages
 
-To view the list of installed packages on a particular DPU, expand the card to its largest size:
+To view, filter, or export the list of installed packages on a particular DPU, expand the card to its largest size:
 
 {{<figure src="/images/netq/dpu-hwresources-l4-installed-packages-42.png" alt="list of packages installed on a DPU" width="1100">}}
 

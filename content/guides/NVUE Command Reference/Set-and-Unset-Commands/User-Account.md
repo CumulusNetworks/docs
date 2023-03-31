@@ -9,9 +9,9 @@ type: nojsscroll
 The `nv unset` commands remove the configuration you set with the equivalent `nv set` commands. This guide only describes an `nv unset` command if it differs from the `nv set` command.
 {{%/notice%}}
 
-## nv set system aaa user \<user-id\> role
+## nv set system aaa user \<user-id\> enable
 
-Configures the role for the user accounts configured on the switch and the groups to which they belong. You can specify `system-admin`, `nvue-admin`, and `nvue-monitor`.
+Turns the user account on or off.
 
 ### Command Syntax
 
@@ -26,7 +26,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 nvue-monitor
+cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 enable on
 ```
 
 - - -
@@ -49,6 +49,28 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 full-name "FIRST LAST"
+```
+
+- - -
+
+## nv set system aaa user \<user-id\> hashed-password
+
+Configures a hashed text password for the specified user account. You must specify the hashed password in Linux crypt format; the password must be a minimum of 15 to 20 characters long and must include special characters, digits, lower case alphabetic letters, and more.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<user-id>`  |  The user account. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 hashed-password '$1$/ETjhZMJ$P73qhBZEYP20mKnRkhBol0'
 ```
 
 - - -
@@ -79,31 +101,9 @@ cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 password
 
 - - -
 
-## nv set system aaa user \<user-id\> hashed-password
+## nv set system aaa user \<user-id\> role
 
-Configures a hashed text password for the specified user account. You must specify the hashed password in Linux crypt format; the password must be a minimum of 15 to 20 characters long and must include special characters, digits, lower case alphabetic letters, and more.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<user-id>`  |  The user account. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 hashed-password '$1$/ETjhZMJ$P73qhBZEYP20mKnRkhBol0'
-```
-
-- - -
-
-## nv set system aaa user \<user-id\> enable
-
-Turns the user account on or off.
+Configures the role for the user accounts configured on the switch and the groups to which they belong. You can specify `system-admin`, `nvue-admin`, and `nvue-monitor`.
 
 ### Command Syntax
 
@@ -118,7 +118,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 enable on
+cumulus@leaf01:mgmt:~$ nv set system aaa user admin2 nvue-monitor
 ```
 
 - - -

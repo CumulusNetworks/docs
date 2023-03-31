@@ -15,15 +15,9 @@ Configures VXLAN settings on the switch.
 
 - - -
 
-## nv set nve vxlan mlag shared-address \<shared-address\>
+## nv set nve vxlan arp-nd-suppress
 
-Configures the anycast IP address for VXLAN active-active.
-
-### Command Syntax
-
-| Syntax  | Description |
-| ------- | ----------- |
-| `<shared-address>` | The anycast IP address. |
+Turns VXLAN ARP and ND suppression on or off. The default setting is `on`.
 
 ### Version History
 
@@ -32,20 +26,35 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan mlag shared-address 10.0.1.12
+cumulus@leaf01:mgmt:~$ nv set nve vxlan arp-nd-suppress off
 ```
 
 - - -
 
-## nv set nve vxlan source address \<source-address\>
+## nv set nve vxlan decapsulation
 
-Configures the local tunnel IP address for VXLAN tunnels.
+Configures VXLAN decapsulation.
 
-### Command Syntax
+- - -
 
-| Syntax  | Description |
-| ------- | ----------- |
-| `<source-address>` | The IPv4 address or `auto`. `auto` sets the address to the primary loopback address of the switch. |
+## nv set nve vxlan decapsulation dscp action
+
+Configures the VXLAN decapsulation DSCP/COS action. You can specify one of the following options:
+- `copy` (if the inner packet is IP).
+- `preserve` (the inner DSCP does not change).
+- `derive` (from the switch priority).
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set nve vxlan decapsulation dscp action derive
+```
+
+- - -
+
+## nv set nve vxlan enable
+
+Turns VXLAN on or off globally.
 
 ### Version History
 
@@ -54,35 +63,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan source address 10.10.10.1
-```
-
-- - -
-
-## nv set nve vxlan flooding
-
-Configures VXLAN flooding (how to handle BUM traffic).
-
-- - -
-
-## nv set nve vxlan flooding head-end-replication \<hrep-id\>
-
-Configures VXLAN head end replication where BUM traffic is replicated and individual copies sent to remote destinations.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<hrep-id>` |  The IPv4 unicast address or `evpn`. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
+cumulus@leaf01:mgmt:~$ nv set nve vxlan enable on
 ```
 
 - - -
@@ -90,22 +71,6 @@ cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
 ## nv set nve vxlan encapsulation
 
 Configures VXLAN encapsulation.
-
-- - -
-
-## nv set nve vxlan encapsulation dscp value
-
-Configures the DSCP value to put in outer VXLAN packet.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan encapsulation dscp 16
-```
 
 - - -
 
@@ -130,24 +95,25 @@ cumulus@leaf01:mgmt:~$ nv set nve vxlan encapsulation dscp action derive
 
 - - -
 
-## nv set nve vxlan decapsulation
+## nv set nve vxlan encapsulation dscp value
 
-Configures VXLAN decapsulation.  You can specify one of the following options:
+Configures the DSCP value to put in outer VXLAN packet.
 
-- - -
+### Version History
 
-## nv set nve vxlan decapsulation dscp action
-
-Configures the VXLAN decapsulation DSCP/COS action. You can specify one of the following options:
-- `copy` (if the inner packet is IP).
-- `preserve` (the inner DSCP does not change).
-- `derive` (from the switch priority).
+Introduced in Cumulus Linux 5.0.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan decapsulation dscp action derive
+cumulus@leaf01:mgmt:~$ nv set nve vxlan encapsulation dscp 16
 ```
+
+- - -
+
+## nv set nve vxlan flooding
+
+Configures VXLAN flooding (how to handle BUM traffic).
 
 - - -
 
@@ -163,6 +129,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding enable on
+```
+
+- - -
+
+## nv set nve vxlan flooding head-end-replication \<hrep-id\>
+
+Configures VXLAN head end replication where BUM traffic is replicated and individual copies sent to remote destinations.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<hrep-id>` |  The IPv4 unicast address or `evpn`. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding head-end-replication 10.10.10.2
 ```
 
 - - -
@@ -191,21 +179,6 @@ cumulus@leaf01:mgmt:~$ nv set nve vxlan flooding multicast-group 224.0.0.10
 
 - - -
 
-## nv set nve vxlan enable
-
-Turns VXLAN on or off globally.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan enable on
-```
-
-- - -
 ## nv set nve vxlan mac-learning
 
 Turns VXLAN MAC learning on or off.
@@ -218,6 +191,44 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set nve vxlan mac-learning on
+```
+
+- - -
+
+## nv set nve vxlan mlag shared-address \<shared-address\>
+
+Configures the anycast IP address for VXLAN active-active.
+
+### Command Syntax
+
+| Syntax  | Description |
+| ------- | ----------- |
+| `<shared-address>` | The anycast IP address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set nve vxlan mlag shared-address 10.0.1.12
+```
+
+- - -
+
+## nv set nve vxlan mtu
+
+Configures the MTU for VXLAN interfaces.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set nve vxlan mtu 1500
 ```
 
 - - -
@@ -238,25 +249,15 @@ cumulus@leaf01:mgmt:~$ nv set nve vxlan port 1024
 
 - - -
 
-## nv set nve vxlan arp-nd-suppress
+## nv set nve vxlan source address \<source-address\>
 
-Turns VXLAN ARP and ND suppression on or off. The default setting is `on`.
+Configures the local tunnel IP address for VXLAN tunnels.
 
-### Version History
+### Command Syntax
 
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan arp-nd-suppress off
-```
-
-- - -
-
-## nv set nve vxlan mtu
-
-Configures the MTU for VXLAN interfaces.
+| Syntax  | Description |
+| ------- | ----------- |
+| `<source-address>` | The IPv4 address or `auto`. `auto` sets the address to the primary loopback address of the switch. |
 
 ### Version History
 
@@ -265,7 +266,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set nve vxlan mtu 1500
+cumulus@leaf01:mgmt:~$ nv set nve vxlan source address 10.10.10.1
 ```
 
 - - -

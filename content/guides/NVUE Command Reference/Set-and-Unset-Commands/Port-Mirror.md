@@ -47,29 +47,6 @@ Introduced in Cumulus Linux 5.0.0
 
 - - -
 
-## nv set system port-mirror session \<session-id\> span source-port \<port-id\>
-
-Configures the port mirror source port (switch ports or bonds only).
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-| `<port-id>`  |  The interface. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span source-port swp1
-```
-
-- - -
-
 ## nv set system port-mirror session \<session-id\> span destination \<port-id\>
 
 Configures the SPAN destination port.
@@ -89,6 +66,73 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span destination swp2
+```
+
+- - -
+
+## nv set system port-mirror session \<session-id\> span direction
+
+Configures the SPAN direction. You can specify ingress or egress.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span direction ingress
+```
+
+- - -
+
+## nv set system port-mirror session \<session-id\> span enable
+
+Turns port mirroring on or off. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span enable on
+```
+
+- - -
+
+## nv set system port-mirror session \<session-id\> span source-port \<port-id\>
+
+Configures the port mirror source port (switch ports or bonds only).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+| `<port-id>`  |  The interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span source-port swp1
 ```
 
 - - -
@@ -153,50 +197,6 @@ cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span truncate size 40
 
 - - -
 
-## nv set system port-mirror session \<session-id\> span enable
-
-Turns port mirroring on or off. The default setting is `off`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span enable on
-```
-
-- - -
-
-## nv set system port-mirror session \<session-id\> span direction
-
-Configures the SPAN direction. You can specify ingress or egress.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 span direction ingress
-```
-
-- - -
-
 ## nv set system port-mirror session \<session-id\> erspan
 
 Configures Encapsulated Remote Switched Port Analyzer (ERSPAN).
@@ -213,29 +213,6 @@ Introduced in Cumulus Linux 5.0.0
 
 - - -
 
-## nv set system port-mirror session \<session-id\> erspan source-port \<port-id\>
-
-Configures the ERSPAN source port (switch ports or bonds only).
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-| `<port-id>`   |  The interface. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan source-port swp1
-```
-
-- - -
-
 ## nv set system port-mirror session \<session-id\> erspan destination
 
 Configures the ERSPAN destination.
@@ -249,6 +226,29 @@ Configures the ERSPAN destination.
 ### Version History
 
 Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## nv set system port-mirror session \<session-id\> erspan destination dest-ip \<dest-ip\>
+
+Configures the destination IP address to which you want to transmit packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+| `<dest-ip>` | The destination IP address. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan destination dest-ip 10.10.10.234
+```
 
 - - -
 
@@ -275,16 +275,15 @@ cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan destination so
 
 - - -
 
-## nv set system port-mirror session \<session-id\> erspan destination dest-ip \<dest-ip\>
+## nv set system port-mirror session \<session-id\> erspan direction
 
-Configures the destination IP address to which you want to transmit packets.
+Configures the ERSPAN direction. You can specify ingress or egress.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
 | `<session-id>` | The port mirror session number. |
-| `<dest-ip>` | The destination IP address. |
 
 ### Version History
 
@@ -293,7 +292,52 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan destination dest-ip 10.10.10.234
+cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 direction ingress
+```
+
+- - -
+
+## nv set system port-mirror session \<session-id\> erspan enable
+
+Turns ERSPAN on or off. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan enable on
+```
+
+- - -
+
+## nv set system port-mirror session \<session-id\> erspan source-port \<port-id\>
+
+Configures the ERSPAN source port (switch ports or bonds only).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<session-id>` | The port mirror session number. |
+| `<port-id>`   |  The interface. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan source-port swp1
 ```
 
 - - -
@@ -354,50 +398,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan truncate size 4000
-```
-
-- - -
-
-## nv set system port-mirror session \<session-id\> erspan enable
-
-Turns ERSPAN on or off. The default setting is `off`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 erspan enable on
-```
-
-- - -
-
-## nv set system port-mirror session \<session-id\> erspan direction
-
-Configures the ERSPAN direction. You can specify ingress or egress.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<session-id>` | The port mirror session number. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set system port-mirror session 1 direction ingress
 ```
 
 - - -

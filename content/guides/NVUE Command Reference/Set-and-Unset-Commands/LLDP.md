@@ -15,30 +15,6 @@ Provides commands to configure Link Layer Discovery Protocol (LLDP) for an inter
 
 - - -
 
-## nv set interface \<interface-id\> lldp dcbx-pfc-tlv
-
-Configures PFC TLV transmission on the interface.
-
-The default setting is `off`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<interface-id>` |  The interface you want to configure. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.1.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
-```
-
-- - -
-
 ## nv set interface \<interface-id\> lldp dcbx-ets-config-tlv
 
 Configures ETS TLV transmission on the interface.
@@ -85,41 +61,33 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 lldp dcbx-ets-recomm-tlv on
 
 - - -
 
+## nv set interface \<interface-id\> lldp dcbx-pfc-tlv
+
+Configures PFC TLV transmission on the interface.
+
+The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<interface-id>` |  The interface you want to configure. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.1.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 lldp dcbx-pfc-tlv on
+```
+
+- - -
+
 ## nv set service lldp
 
 Provides commands to configure Link Layer Discovery Protocol LLDP globally on the switch.
-
-- - -
-
-## nv set service lldp tx-interval
-
-Configures the frequency of LLDP updates. You can specify a value between 10 and 300.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service lldp tx-interval 100
-```
-
-- - -
-
-## nv set service lldp tx-hold-multiplier
-
-Configures the amount of time to hold LLDP information before discarding it. The hold time interval is a multiple of the tx-interval.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service lldp tx-hold-multiplier 3
-```
 
 - - -
 
@@ -156,6 +124,38 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service lldp mode force-send-cdpv1
+```
+
+- - -
+
+## nv set service lldp tx-hold-multiplier
+
+Configures the amount of time to hold LLDP information before discarding it. The hold time interval is a multiple of the tx-interval.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service lldp tx-hold-multiplier 3
+```
+
+- - -
+
+## nv set service lldp tx-interval
+
+Configures the frequency of LLDP updates. You can specify a value between 10 and 300.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service lldp tx-interval 100
 ```
 
 - - -

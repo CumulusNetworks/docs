@@ -503,6 +503,29 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 leas
 
 - - -
 
+## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> ping-check
+
+Configures the DHCP server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |  The VRF you want to configure. |
+| `<pool-id>` |  The DHCP pool subnet. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 ping-check on
+```
+
+- - -
+
 ## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> pool-name \<value\>
 
 Configures the pool name.
@@ -565,29 +588,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 range 10.1.10.100 to 10.1.10.199
-```
-
-- - -
-
-## nv set service dhcp-server \<vrf-id\> pool \<pool-id\> ping-check
-
-Configures the DHCP server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range. The default setting is `off`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |  The VRF you want to configure. |
-| `<pool-id>` |  The DHCP pool subnet. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server default pool 10.1.10.0/24 ping-check on
 ```
 
 - - -
@@ -957,6 +957,29 @@ cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 
 
 - - -
 
+## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> ping-check
+
+Configures the DHCP6 server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<pool-id>` |  The DHCP6 pool subnet.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 ping-check on
+```
+
+- - -
+
 ## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> pool-name \<value\>
 
 Configures the DHCP pool name for IPv6.
@@ -1025,29 +1048,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 range 2002:a01:a64:: to 2002:a01:ac7::
-```
-
-- - -
-
-## nv set service dhcp-server6 \<vrf-id\> pool \<pool-id\> ping-check
-
-Configures the DHCP6 server to ping the address you want to assign to a client before issuing the IP address. If there is no response, DHCP delivers the IP address; otherwise, it attempts the next available address in the range.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<pool-id>` |  The DHCP6 pool subnet.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service dhcp-server6 default pool 2001:db8::1/128 ping-check on
 ```
 
 - - -

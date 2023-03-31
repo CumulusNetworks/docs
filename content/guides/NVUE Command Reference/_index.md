@@ -17,7 +17,7 @@ This document is a reference for the Cumulus Linux NVUE CLI commands.
 
 ## Command Types
 
-The NVUE CLI provides the following commands:
+The NVUE CLI provides descriptions and examples for the following commands:
 - {{<link url="Show-Commands" text="nv show">}} commands show various parts of the network configuration.
 - {{<link url="Set-and-Unset-Commands" text="nv set">}} commands set configuration options on the switch.
 - {{<link url="Set-and-Unset-Commands" text="nv unset">}} commands unset configuration options on the switch.

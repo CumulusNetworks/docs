@@ -19,6 +19,29 @@ Cumulus Linux adds static routes to the FRR routing table and then to the kernel
 
 - - -
 
+## nv set vrf \<vrf-id\> router static \<route-id\> address-family
+
+Enables and disables the address family (`ipv4-unicast` or `ipv6-unicast`) for the static route in the specified VRF.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<route-id>` |  The IP prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 address-family ipv6-unicast
+```
+
+- - -
+
 ## nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\>
 
 Configures static route settings with the destination path distance.
@@ -101,9 +124,9 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 distance
 
 - - -
 
-## nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\> vrf
+## nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> tag
 
-Configures the destination path distance and next hop for a specific static route in the specified VRF and the VRF to use for egress.
+Configures the destination path distance and tag for a specific static route in the specified VRF. The tag provides additional information about the static route, such as the community tag or a route metric, and is included with the route in the routing table. The tag can be a value between 1 and 4294967295, or `none`.
 
 ## Command Syntax
 
@@ -112,8 +135,6 @@ Configures the destination path distance and next hop for a specific static rout
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IP prefix. |
 | `<distance-id>` |  The path distance. |
-| `<via-id>`       | The IP address of the nexthop router. |
-| `<vrf-id>`  | The VRF name. |
 
 ### Version History
 
@@ -122,7 +143,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 vrf RED
+cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 distance 2 tag none
 ```
 
 - - -
@@ -152,9 +173,9 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 distance
 
 - - -
 
-## nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> tag
+## nv set vrf \<vrf-id\> router static \<route-id\> distance \<distance-id\> via \<via-id\> vrf
 
-Configures the destination path distance and tag for a specific static route in the specified VRF. The tag provides additional information about the static route, such as the community tag or a route metric, and is included with the route in the routing table. The tag can be a value between 1 and 4294967295, or `none`.
+Configures the destination path distance and next hop for a specific static route in the specified VRF and the VRF to use for egress.
 
 ## Command Syntax
 
@@ -163,6 +184,8 @@ Configures the destination path distance and tag for a specific static route in 
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IP prefix. |
 | `<distance-id>` |  The path distance. |
+| `<via-id>`       | The IP address of the nexthop router. |
+| `<vrf-id>`  | The VRF name. |
 
 ### Version History
 
@@ -171,7 +194,30 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 distance 2 tag none
+cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 distance 2 via 10.0.1.0 vrf RED
+```
+
+- - -
+
+## nv set vrf \<vrf-id\> router static \<route-id\> tag
+
+Configures the static route tag in the specified VRF. The tag provides additional information about the static route, such as the community tag or a route metric, and is included with the route in the routing table. The tag can be a value between 1 and 4294967295, or `none`.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vrf-id>` |   The VRF you want to configure. |
+| `<route-id>` |  The IP prefix. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 tag none
 ```
 
 - - -
@@ -249,31 +295,6 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 via 10.0
 
 - - -
 
-## nv set vrf \<vrf-id\> router static \<route-id\> via \<via-id\> vrf \<vrf-id\>
-
-Configures the next hop for a specific static route in the specified VRF, and the VRF to use for egress. If you do not specify a VRF, Cumulus Linux uses the default VRF.
-
-## Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
-| `<via-id>`   | The IP address of the nexthop router. |
-| `<vrf-id>`   | The egress VRF. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 vrf RED
-```
-
-- - -
-
 ## nv set vrf \<vrf-id\> router static \<route-id\> via \<via-id\> type
 
 Configures the next hop type for a specific static route in the specified VRF. The next hop type can be `interface`, `ipv4-address`, `ipv6-address`, `blackhole`, or `reject`.
@@ -298,9 +319,9 @@ cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 via 10.0
 
 - - -
 
-## nv set vrf \<vrf-id\> router static \<route-id\> tag
+## nv set vrf \<vrf-id\> router static \<route-id\> via \<via-id\> vrf \<vrf-id\>
 
-Configures the static route tag in the specified VRF. The tag provides additional information about the static route, such as the community tag or a route metric, and is included with the route in the routing table. The tag can be a value between 1 and 4294967295, or `none`.
+Configures the next hop for a specific static route in the specified VRF, and the VRF to use for egress. If you do not specify a VRF, Cumulus Linux uses the default VRF.
 
 ## Command Syntax
 
@@ -308,6 +329,8 @@ Configures the static route tag in the specified VRF. The tag provides additiona
 | ---------  | -------------- |
 | `<vrf-id>` |   The VRF you want to configure. |
 | `<route-id>` |  The IP prefix. |
+| `<via-id>`   | The IP address of the nexthop router. |
+| `<vrf-id>`   | The egress VRF. |
 
 ### Version History
 
@@ -316,30 +339,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 tag none
-```
-
-- - -
-
-## nv set vrf \<vrf-id\> router static \<route-id\> address-family
-
-Enables and disables the address family (`ipv4-unicast` or `ipv6-unicast`) for the static route in the specified VRF.
-
-## Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<vrf-id>` |   The VRF you want to configure. |
-| `<route-id>` |  The IP prefix. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 address-family ipv6-unicast
+cumulus@leaf01:mgmt:~$ nv set vrf default router static 10.10.10.101/32 via 10.0.1.0 vrf RED
 ```
 
 - - -

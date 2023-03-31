@@ -15,6 +15,22 @@ Configures SNMP settings on the switch.
 
 - - -
 
+## nv set service snmp-server enable (on|off)
+
+Turns the SNMP server on or off.
+
+## Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server enable on
+```
+
+- - -
+
 ## nv set service snmp-server listening-address \<listening-address-id\>
 
 Configures the IP address on which the SNMP agent listens. You can set multiple IP addresses.
@@ -64,555 +80,6 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server listening-address localhost vr
 
 - - -
 
-## nv set service snmp-server username \<username-id\>
-
-Configures the SNMPv3 username for authentication.
-
-NVIDIA recommends you use an SNMPv3 username and password instead of the read-only community; SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
-
-{{%notice note%}}
-The default snmpd.conf file contains the default `user _snmptrapusernameX`. You cannot use this username for authentication. SNMP traps require this username.
-{{%/notice%}}
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-none
-
-Configures the SNMP username to not require a password for authentication.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-none oid \<oid\>
-
-Configures SNMP to restrict a user with no password authentication to a particular OID tree.
-The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<oid>` | The OID tree that identifies an SNMP MIB object.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none oid 1.3.6.1.2.1
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-none view \<view\>
-
-Configures MIB tree exposure restriction. You can define a view for the SNMPv3 username and a host from a restricted subnet so that any SNMP request with that username must have a source IP address within the configured subnet.
-
-You can define a specific view multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.
-
-By default, the `snmpd.conf` file contains many views within the `systemonly` view.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<view>` | The SNMP view (subnet).|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none view cumulusOnly
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\>
-
-Configures MD5 authentication for the specified SNMP user.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\>
-
-Configures the DES encryption password for MD5 authentication for the specified SNMP user to encrypt the contents of the request and response packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> oid \<oid\>
-
-Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-| `<oid>` | The OID tree that identifies an SNMP MIB object.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> view \<view\>
-
-Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-| `<view>` | The SNMP view (subnet).|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret view cumulusOnly
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\>
-
-Configures the AES encryption password for MD5 authentication for the specified SNMP user to encrypt the contents of the request and response packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> oid \<oid\>
-
-Configures the setting to restrict a user with a specific MD5 authentication password and AES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-| `<oid>` | The OID tree that identifies an SNMP MIB object.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret oid 1.3.6.1.2.1.1
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> view \<value\>
-
-Configures the setting to restrict a user with a specific MD5 authentication password and AES encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-| `<view>` | The SNMP view (subnet).|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret view cumulusOnly
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> oid \<oid\>
-
-Configures SNMP to restrict a specific user with the specified password to a particular OID tree.
-The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<oid>` | The OID tree that identifies an SNMP MIB object.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password oid 1.3.6.1.2.1
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> view \<value\>
-
-Configures SNMP to restrict a specific user with the specified MD5 password to a view so that any SNMP request with that username and password must have a source IP address within the configured subnet.
-
-You can define a specific view multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.
-
-By default, the `snmpd.conf` file contains many views within the `systemonly` view.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<view>` | The SNMP view (subnet).|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password view cumulusOnly
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\>
-
-Configures SHA authentication for the specified SNMP user.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\>
-
-Configures the DES encryption password for SHA authentication for the specified SNMP user to encrypt the contents of the request and response packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> oid \<oid\>
-
-Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-| `<oid>` | The OID tree that identifies an SNMP MIB object.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> view \<value\>
-
-Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The DES encryption password.|
-| `<view>` | The SNMP view (subnet).|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret view cumulusOnly
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\>
-
-Configures the AES encryption password for SHA authentication for the specified SNMP user to encrypt the contents of the request and response packets.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> oid \<oid\>
-
-Configures SNMP to restrict a user with a specific SHA authentication password and AES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-| `<oid>` | The OID tree that identifies an SNMP MIB object.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret oid 1.3.6.1.2.1.1
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> view \<value\>
-
-Configures SNMP to restrict a user with a specific SHA authentication password and AES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<encrypt-id>` | The AES encryption password.|
-| `<view>` | The SNMP view (subnet).|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret view cumulusOnly
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> oid \<oid\>
-
-Configures SNMP to restrict a specific user with the specified SHA authentication password to a particular OID tree.
-The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<oid>` | The OID tree that identifies an SNMP MIB object.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 oid 1.3.6.1.2.1
-```
-
-- - -
-
-## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> view \<value\>
-
-Configures SNMP to restrict a specific user with the specified SHA authentication password to a particular SNMP view (subnet) so that any SNMP request with that username and SHA authentication password must have a source IP address within the configured subnet.
-
-You can define a specific view multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.
-
-By default, the `snmpd.conf` file contains many views within the `systemonly` view.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<username-id>` | The SNMP username for authentication.|
-| `<auth-id>` | The SHA authentication password.|
-| `<view>` | The SNMP view (subnet).|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 view cumulusOnly
-```
-
-- - -
-
 ## nv set service snmp-server mibs
 
 Configures the SNMP server MIBs. You can specify `cumulus-sensor-mib` or `cumulus-status-mib`.
@@ -625,57 +92,6 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service snmp-server mibs cumulus-status-mib
-```
-- - -
-
-## nv set service snmp-server viewname \<viewname-id\>
-
-Configures the view names that restrict MIB tree exposure.
-
-- - -
-
-## nv set service snmp-server viewname \<viewname-id\> excluded \<snmp-branch\>
-
-Configures the SNMP tree branches to exclude.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<viewname-id>` | The SNMP view (subnet) name.|
-| `<snmp-branch>` | SNMP tree branch to exclude.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server viewname cumulusOnly excluded .1.3.6.1.4.1.40310
-```
-
-- - -
-
-## nv set service snmp-server viewname \<viewname-id\> included \<snmp-branch\>
-
-Configures the SNMP tree branches to include.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<viewname-id>` | The SNMP view (subnet) name.|
-| `<snmp-branch>` | SNMP tree branch to include.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310.2
 ```
 
 - - -
@@ -836,82 +252,50 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server readonly-community-v6 simplepa
 
 - - -
 
-## nv set service snmp-server trap-link-down
+## nv set service snmp-server system-contact \<value\>
 
-Configures the switch to generate notifications when the operational status of the link changes to down.
+Configures the username and email address of the contact person for this managed node.
 
-### Version History
+## Version History
 
 Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-down
+cumulus@leaf01:mgmt:~$ nv set service snmp-server system-contact myemail@example.com
 ```
 
 - - -
 
-## nv set service snmp-server trap-link-down check-frequency
+## nv set service snmp-server system-location
 
-Configures how often in seconds to check if the link is down to trigger notifications when the operational status of the link changes. You can specify a value between 5 and 300.
+Configures the system physical location for the node in the SNMPv2-MIB system table.
 
-### Version History
+## Version History
 
 Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-down check-frequency 10
+cumulus@leaf01:mgmt:~$ nv set service snmp-server system-location my-private-bunker
 ```
 
 - - -
 
-## nv set service snmp-server trap-link-up
+## nv set service snmp-server system-name
 
-Configures the switch to generate notifications when the operational status of the link changes to up.
+Configures a name for the managed node. Typically, this is the fully qualified domain name of the node.
 
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-up
-```
-
-- - -
-
-## nv set service snmp-server trap-link-up check-frequency
-
-Configures how often in seconds to check if the link is up to trigger notifications when the operational status of the link changes. You can specify a value between 5 and 300.
-
-### Version History
+## Version History
 
 Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-up check-frequency 10
-```
-
-- - -
-
-## nv set service snmp-server trap-snmp-auth-failures
-
-Configures the switch to generate SNMP trap notifications for every SNMP authentication failure.
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-snmp-auth-failures
+cumulus@leaf01:mgmt:~$ nv set service snmp-server system-name CumulusBox-1,543,567
 ```
 
 - - -
@@ -976,6 +360,70 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-cpu-load-average one-minute 12 five-minute 10 fifteen-minute 5
+```
+
+- - -
+
+## nv set service snmp-server trap-link-down
+
+Configures the switch to generate notifications when the operational status of the link changes to down.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-down
+```
+
+- - -
+
+## nv set service snmp-server trap-link-down check-frequency
+
+Configures how often in seconds to check if the link is down to trigger notifications when the operational status of the link changes. You can specify a value between 5 and 300.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-down check-frequency 10
+```
+
+- - -
+
+## nv set service snmp-server trap-link-up
+
+Configures the switch to generate notifications when the operational status of the link changes to up.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-up
+```
+
+- - -
+
+## nv set service snmp-server trap-link-up check-frequency
+
+Configures how often in seconds to check if the link is up to trigger notifications when the operational status of the link changes. You can specify a value between 5 and 300.
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-link-up check-frequency 10
 ```
 
 - - -
@@ -1046,6 +494,343 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost community-password mynotsosecretpassword version 1
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\>
+
+Configures the SNMP trap receiver IP address and SNMP username.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\>
+
+Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password 
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\>
+
+Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password, and the DES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-des mydessecret2 
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the DES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-des mydessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\>
+
+Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password, and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the AES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\>
+
+Configures the SNMP trap receiver IP address, and the SNMP username and SHA authentication password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\>
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the DES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-des myencryptsecret
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the DES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-des myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\>
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the AES encryption password.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret
+```
+
+- - -
+
+## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
+
+Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
+
+The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
+| `<username-id>` | The SNMP username.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<engine-id>` | The engine ID.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
 ```
 
 - - -
@@ -1467,16 +1252,9 @@ cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost vrf
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\>
+## nv set service snmp-server trap-snmp-auth-failures
 
-Configures the SNMP trap receiver IP address and SNMP username.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+Configures the switch to generate SNMP trap notifications for every SNMP authentication failure.
 
 ### Version History
 
@@ -1485,21 +1263,48 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user
+cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-snmp-auth-failures
 ```
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\>
+## nv set service snmp-server username \<username-id\>
 
-Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password.
+Configures the SNMPv3 username for authentication.
+
+NVIDIA recommends you use an SNMPv3 username and password instead of the read-only community; SNMPv3 does not expose the password in the `GetRequest` and `GetResponse` packets and can also encrypt packet contents. You can configure multiple usernames for different user roles with different levels of access to various MIBs.
+
+{{%notice note%}}
+The default snmpd.conf file contains the default `user _snmptrapusernameX`. You cannot use this username for authentication. SNMP traps require this username.
+{{%/notice%}}
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+| `<username-id>` | The SNMP username for authentication.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1
+```
+
+- - -
+
+## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\>
+
+Configures MD5 authentication for the specified SNMP user.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
 | `<auth-id>` | The MD5 authentication password.|
 
 ### Version History
@@ -1509,48 +1314,20 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password 
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password
 ```
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> engine-id \<engine-id\> inform
+## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+Configures the DES encryption password for MD5 authentication for the specified SNMP user to encrypt the contents of the request and response packets.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
-| `<auth-id>` | The MD5 authentication password.|
-| `<engine-id>` | The engine ID.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password engine-id 0x80001f888070939b14a514da5a00000000 inform
-```
-
-- - -
-
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\>
-
-Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password, and the DES encryption password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+| `<username-id>` | The SNMP username for authentication.|
 | `<auth-id>` | The MD5 authentication password.|
 | `<encrypt-id>` | The DES encryption password.|
 
@@ -1561,26 +1338,23 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-des mydessecret2 
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret
 ```
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
+## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> oid \<oid\>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the DES encryption password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+| `<username-id>` | The SNMP username for authentication.|
 | `<auth-id>` | The MD5 authentication password.|
 | `<encrypt-id>` | The DES encryption password.|
-| `<engine-id>` | The engine ID.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
 
 ### Version History
 
@@ -1589,21 +1363,45 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-des mydessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
 ```
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\>
+## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-des \<encrypt-id\> view \<view\>
 
-Configures the SNMP trap receiver IP address, and the SNMP username and MD5 authentication password, and the AES encryption password.
+Configures the setting to restrict a user with a specific MD5 authentication password and DES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-des myencryptsecret view cumulusOnly
+```
+
+- - -
+
+## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\>
+
+Configures the AES encryption password for MD5 authentication for the specified SNMP user to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
 | `<auth-id>` | The MD5 authentication password.|
 | `<encrypt-id>` | The AES encryption password.|
 
@@ -1614,26 +1412,23 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret
 ```
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
+## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> oid \<oid\>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the MD5 authentication password, the AES encryption password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+Configures the setting to restrict a user with a specific MD5 authentication password and AES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+| `<username-id>` | The SNMP username for authentication.|
 | `<auth-id>` | The MD5 authentication password.|
 | `<encrypt-id>` | The AES encryption password.|
-| `<engine-id>` | The engine ID.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
 
 ### Version History
 
@@ -1642,21 +1437,171 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-md5 myauthmd5password encrypt-aes myaessecret2 engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret oid 1.3.6.1.2.1.1
 ```
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\>
+## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> encrypt-aes \<encrypt-id\> view \<value\>
 
-Configures the SNMP trap receiver IP address, and the SNMP username and SHA authentication password.
+Configures the setting to restrict a user with a specific MD5 authentication password and AES encryption password to a defined view. Any SNMP request with that username and password must have a source IP address within the configured subnet.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password encrypt-aes myencryptsecret view cumulusOnly
+```
+
+- - -
+
+## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> oid \<oid\>
+
+Configures SNMP to restrict a specific user with the specified password to a particular OID tree.
+The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password oid 1.3.6.1.2.1
+```
+
+- - -
+
+## nv set service snmp-server username \<username-id\> auth-md5 \<auth-id\> view \<value\>
+
+Configures SNMP to restrict a specific user with the specified MD5 password to a view so that any SNMP request with that username and password must have a source IP address within the configured subnet.
+
+You can define a specific view multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.
+
+By default, the `snmpd.conf` file contains many views within the `systemonly` view.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The MD5 authentication password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-md5 myauthmd5password view cumulusOnly
+```
+
+- - -
+
+## nv set service snmp-server username \<username-id\> auth-none
+
+Configures the SNMP username to not require a password for authentication.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none
+```
+
+- - -
+
+## nv set service snmp-server username \<username-id\> auth-none oid \<oid\>
+
+Configures SNMP to restrict a user with no password authentication to a particular OID tree.
+The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none oid 1.3.6.1.2.1
+```
+
+- - -
+
+## nv set service snmp-server username \<username-id\> auth-none view \<view\>
+
+Configures MIB tree exposure restriction. You can define a view for the SNMPv3 username and a host from a restricted subnet so that any SNMP request with that username must have a source IP address within the configured subnet.
+
+You can define a specific view multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.
+
+By default, the `snmpd.conf` file contains many views within the `systemonly` view.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-none view cumulusOnly
+```
+
+- - -
+
+## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\>
+
+Configures SHA authentication for the specified SNMP user.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
 | `<auth-id>` | The SHA authentication password.|
 
 ### Version History
@@ -1666,48 +1611,20 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1
 ```
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> engine-id \<engine-id\> inform
+## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+Configures the DES encryption password for SHA authentication for the specified SNMP user to encrypt the contents of the request and response packets.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
-| `<auth-id>` | The SHA authentication password.|
-| `<engine-id>` | The engine ID.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 engine-id 0x80001f888070939b14a514da5a00000000 inform
-```
-
-- - -
-
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\>
-
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the DES encryption password.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+| `<username-id>` | The SNMP username for authentication.|
 | `<auth-id>` | The SHA authentication password.|
 | `<encrypt-id>` | The DES encryption password.|
 
@@ -1718,26 +1635,23 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-des myencryptsecret
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret
 ```
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> engine-id \<engine-id\> inform
+## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> oid \<oid\>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the DES encryption password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian snmp-mibs-downloader package.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+| `<username-id>` | The SNMP username for authentication.|
 | `<auth-id>` | The SHA authentication password.|
 | `<encrypt-id>` | The DES encryption password.|
-| `<engine-id>` | The engine ID.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
 
 ### Version History
 
@@ -1746,21 +1660,45 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-des myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret oid 1.3.6.1.2.1.1
 ```
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\>
+## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-des \<encrypt-id\> view \<value\>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, and the AES encryption password.
+Configures the setting to restrict a user with a specific SHA authentication password and DES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The DES encryption password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-des myencryptsecret view cumulusOnly
+```
+
+- - -
+
+## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\>
+
+Configures the AES encryption password for SHA authentication for the specified SNMP user to encrypt the contents of the request and response packets.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
 | `<auth-id>` | The SHA authentication password.|
 | `<encrypt-id>` | The AES encryption password.|
 
@@ -1771,26 +1709,23 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret
 ```
 
 - - -
 
-## nv set service snmp-server trap-destination \<trap-destination-id\> username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> engine-id \<engine-id\> inform
+## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> oid \<oid\>
 
-Configures the trap receiver IP address and VRF for SNMPv1 and SNMPv2c traps, the SNMP username and the SHA authentication password, the AES encryption password, and the engine ID.
-
-The SNMP trap receiving daemon must have usernames, authentication passwords, and encryption passwords created with its own EngineID. You must configure this trap server EngineID in the switch `snmpd` daemon sending the trap and inform messages.
+Configures SNMP to restrict a user with a specific SHA authentication password and AES encryption password to a particular OID tree. The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | ---------  | -------------- |
-| `<trap-destination-id>` | The IP address of the SNMP trap destination or `localhost`.|
-| `<username-id>` | The SNMP username.|
+| `<username-id>` | The SNMP username for authentication.|
 | `<auth-id>` | The SHA authentication password.|
 | `<encrypt-id>` | The AES encryption password.|
-| `<engine-id>` | The engine ID.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
 
 ### Version History
 
@@ -1799,71 +1734,137 @@ Introduced in Cumulus Linux 5.3.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server trap-destination localhost username myv3user auth-sha SHApassword1 encrypt-aes myencryptsecret engine-id 0x80001f888070939b14a514da5a00000000 inform
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret oid 1.3.6.1.2.1.1
 ```
 
 - - -
 
-## nv set service snmp-server enable (on|off)
+## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> encrypt-aes \<encrypt-id\> view \<value\>
 
-Turns the SNMP server on or off.
+Configures SNMP to restrict a user with a specific SHA authentication password and AES encryption password to a defined view (subnet). Any SNMP request with that username and password must have a source IP address within the configured subnet.
 
-## Version History
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<encrypt-id>` | The AES encryption password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
 
 Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server enable on
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 encrypt-aes myencryptsecret view cumulusOnly
 ```
 
 - - -
 
-## nv set service snmp-server system-contact \<value\>
+## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> oid \<oid\>
 
-Configures the username and email address of the contact person for this managed node.
+Configures SNMP to restrict a specific user with the specified SHA authentication password to a particular OID tree.
+The OID can be either a string of decimal numbers separated by periods or a unique text string that identifies an SNMP MIB object. The MIBs that Cumulus Linux includes are in the `/usr/share/snmp/mibs/` directory. If the MIB you want to use does not install by default, you can install it with the latest Debian `snmp-mibs-downloader` package.
 
-## Version History
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<oid>` | The OID tree that identifies an SNMP MIB object.|
+
+### Version History
 
 Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server system-contact myemail@example.com
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 oid 1.3.6.1.2.1
 ```
 
 - - -
 
-## nv set service snmp-server system-location
+## nv set service snmp-server username \<username-id\> auth-sha \<auth-id\> view \<value\>
 
-Configures the system physical location for the node in the SNMPv2-MIB system table.
+Configures SNMP to restrict a specific user with the specified SHA authentication password to a particular SNMP view (subnet) so that any SNMP request with that username and SHA authentication password must have a source IP address within the configured subnet.
 
-## Version History
+You can define a specific view multiple times and fine tune to provide or restrict access using the included or excluded command to specify branches of certain MIB trees.
+
+By default, the `snmpd.conf` file contains many views within the `systemonly` view.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<username-id>` | The SNMP username for authentication.|
+| `<auth-id>` | The SHA authentication password.|
+| `<view>` | The SNMP view (subnet).|
+
+### Version History
 
 Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server system-location my-private-bunker
+cumulus@leaf01:mgmt:~$ nv set service snmp-server username testuser1 auth-sha SHApassword1 view cumulusOnly
 ```
 
 - - -
 
-## nv set service snmp-server system-name
+## nv set service snmp-server viewname \<viewname-id\>
 
-Configures a name for the managed node. Typically, this is the fully qualified domain name of the node.
+Configures the view names that restrict MIB tree exposure.
 
-## Version History
+- - -
+
+## nv set service snmp-server viewname \<viewname-id\> excluded \<snmp-branch\>
+
+Configures the SNMP tree branches to exclude.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<viewname-id>` | The SNMP view (subnet) name.|
+| `<snmp-branch>` | SNMP tree branch to exclude.|
+
+### Version History
 
 Introduced in Cumulus Linux 5.3.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set service snmp-server system-name CumulusBox-1,543,567
+cumulus@leaf01:mgmt:~$ nv set service snmp-server viewname cumulusOnly excluded .1.3.6.1.4.1.40310
+```
+
+- - -
+
+## nv set service snmp-server viewname \<viewname-id\> included \<snmp-branch\>
+
+Configures the SNMP tree branches to include.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<viewname-id>` | The SNMP view (subnet) name.|
+| `<snmp-branch>` | SNMP tree branch to include.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service snmp-server viewname cumulusOnly included .1.3.6.1.4.1.40310.2
 ```
 
 - - -

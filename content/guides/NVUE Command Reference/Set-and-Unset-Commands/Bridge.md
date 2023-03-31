@@ -35,6 +35,112 @@ Introduced in Cumulus Linux 5.0.0
 
 - - -
 
+## nv set bridge domain \<domain-id\> encap 802.1Q
+
+Configures any interfaces in this bridge domain to use 802.1Q encapsulation by default.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default encap 802.1Q
+```
+
+- - -
+
+## nv set bridge domain \<domain-id\> mac-address
+
+Configures any interfaces in this bridge domain to use this MAC address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default mac-address 00:00:00:00:00:10
+```
+
+- - -
+
+## nv set bridge domain \<domain-id\> multicast
+
+Configures multicast on the bridge domain.
+
+- - -
+
+## nv set bridge domain \<domain-id\> multicast snooping
+
+Configures IGMP and MLD snooping to prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
+
+- - -
+
+## nv set bridge domain \<domain-id\> multicast snooping enable
+
+Turns IGMP and MLD snooping on or off. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default multicast snooping enable on
+```
+
+- - -
+
+## nv set bridge domain \<domain-id\> multicast snooping querier
+
+Configures the IGMP and MLD querier. Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
+
+- - -
+
+## nv set bridge domain \<domain-id\> multicast snooping querier enable
+
+Turns the multicast querier on or off. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` |  The bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default multicast snooping querier enable on
+```
+
+- - -
+
 ## nv set bridge domain \<domain-id\> stp
 
 Configures STP on the bridge domain.
@@ -83,27 +189,9 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default stp state up
 
 - - -
 
-## nv set bridge domain \<domain-id\> multicast
+## nv set bridge domain \<domain-id\> type vlan-aware
 
-Configures multicast on the bridge domain.
-
-- - -
-
-## nv set bridge domain \<domain-id\> multicast snooping
-
-Configures IGMP and MLD snooping to prevent hosts on a local network from receiving traffic for a multicast group they have not explicitly joined. IGMP snooping is for IPv4 environments and MLD snooping is for IPv6 environments.
-
-- - -
-
-## nv set bridge domain \<domain-id\> multicast snooping querier
-
-Configures the IGMP and MLD querier. Without a multicast router, a single switch in an IP subnet can coordinate multicast traffic flows. This switch is the querier or the designated router. The querier generates query messages to check group membership, and processes membership reports and leave messages.
-
-- - -
-
-## nv set bridge domain \<domain-id\> multicast snooping querier enable
-
-Turns the multicast querier on or off. The default setting is `off`.
+Configures the bridge domain to be VLAN-aware.
 
 ### Command Syntax
 
@@ -118,14 +206,12 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set bridge domain br_default multicast snooping querier enable on
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default type vlan-aware
 ```
 
 - - -
 
-## nv set bridge domain \<domain-id\> multicast snooping enable
-
-Turns IGMP and MLD snooping on or off. The default setting is `off`.
+## nv set bridge domain \<domain-id\> untagged
 
 ### Command Syntax
 
@@ -140,7 +226,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set bridge domain br_default multicast snooping enable on
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default untagged none
 ```
 
 - - -
@@ -164,6 +250,46 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10
+```
+
+- - -
+
+## nv set bridge domain \<domain-id\> vlan \<vid\> ptp
+
+Configures Precision Time Protocol (PTP) on the VLAN (all interfaces in this VLAN).
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` | The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+- - -
+
+## nv set bridge domain \<domain-id\> vlan \<vid\> ptp enable
+
+Turns PTP on or off for the specified VLAN. The default setting is `off`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` | The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan vlan10 ptp enable on
 ```
 
 - - -
@@ -198,6 +324,30 @@ Configures how to handle BUM traffic.
 
 - - -
 
+## nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding enable
+
+Turns flooding on or off for the VNI.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+|`<domain-id>` | The bridge domain. |
+| `<vid>`   |  The VLAN identifier.
+| `<vni-id>` | The VXLAN ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding enable on
+```
+
+- - -
+
 ## nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication \<hrep-id\>
 
 Configures replication of BUM traffic where individual copies send to remote destinations.
@@ -219,30 +369,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding head-end-replication 10.10.10.2
-```
-
-- - -
-
-## nv set bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding enable
-
-Turns flooding on or off for the VNI.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
-| `<vid>`   |  The VLAN identifier.
-| `<vni-id>` | The VXLAN ID. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 flooding enable on
 ```
 
 - - -
@@ -296,46 +422,6 @@ cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan 10 vni 10 mac-learni
 
 - - -
 
-## nv set bridge domain \<domain-id\> vlan \<vid\> ptp
-
-Configures Precision Time Protocol (PTP) on the VLAN (all interfaces in this VLAN).
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
-| `<vid>`   |  The VLAN identifier.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-- - -
-
-## nv set bridge domain \<domain-id\> vlan \<vid\> ptp enable
-
-Turns PTP on or off for the specified VLAN. The default setting is `off`.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<domain-id>` | The bridge domain. |
-| `<vid>`   |  The VLAN identifier.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan vlan10 ptp enable on
-```
-
-- - -
-
 ## nv set bridge domain \<domain-id\> vlan \<vid\> multicast
 
 Configures multicast on the VLAN.
@@ -381,92 +467,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set bridge domain br_default vlan vlan10 multicast snooping querier source-ip 10.10.10.1
-```
-
-- - -
-
-## nv set bridge domain \<domain-id\> type vlan-aware
-
-Configures the bridge domain to be VLAN-aware.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set bridge domain br_default type vlan-aware
-```
-
-- - -
-
-## nv set bridge domain \<domain-id\> untagged
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set bridge domain br_default untagged none
-```
-
-- - -
-
-## nv set bridge domain \<domain-id\> encap 802.1Q
-
-Configures any interfaces in this bridge domain to use 802.1Q encapsulation by default.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set bridge domain br_default encap 802.1Q
-```
-
-- - -
-
-## nv set bridge domain \<domain-id\> mac-address
-
-Configures any interfaces in this bridge domain to use this MAC address.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-|`<domain-id>` |  The bridge domain. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set bridge domain br_default mac-address 00:00:00:00:00:10
 ```
 
 - - -
@@ -522,55 +522,55 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default
 
 - - -
 
+## nv set interface \<interface-id\> bridge domain \<domain-id\> access
+
+Configures access ports to ignore all tagged packets. You can set a value between 1 and 4094, `none`, or `auto`.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default access 10
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> learning
+
+Turns source MAC address learning on or off for this bridged interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default learning on
+```
+
+- - -
+
 ## nv set interface \<interface-id\> bridge domain \<domain-id\> stp
 
 Configures STP on the bridged interface domain.
-
-- - -
-
-## nv set interface \<interface-id\> bridge domain \<domain-id\> stp bpdu-filter
-
-Turns `bpdufilter` on or off on a bridge domain. When on, `bpdufilter` filters BPDUs in both directions.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp bpdu-filter on
-```
-
-- - -
-
-## nv set interface \<interface-id\> bridge domain \<domain-id\> stp bpdu-guard
-
-Turns BPDU guard on or off on the bridged interface to protect the spanning tree topology from an unauthorized device affecting the forwarding path. For example, if you add a new host to an access port off a leaf switch and the host sends an STP BPDU, BPDU guard protects against undesirable topology changes in the environment.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp bpdu-guard on
-```
 
 - - -
 
@@ -621,6 +621,53 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp auto-edge
 ```
 
 - - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp bpdu-filter
+
+Turns `bpdufilter` on or off on a bridge domain. When on, `bpdufilter` filters BPDUs in both directions.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp bpdu-filter on
+```
+
+- - -
+
+## nv set interface \<interface-id\> bridge domain \<domain-id\> stp bpdu-guard
+
+Turns BPDU guard on or off on the bridged interface to protect the spanning tree topology from an unauthorized device affecting the forwarding path. For example, if you add a new host to an access port off a leaf switch and the host sends an STP BPDU, BPDU guard protects against undesirable topology changes in the environment.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<interface-id>` |  The interface you want to configure. |
+| `<domain-id>` |  The bridge domain name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp bpdu-guard on
+```
+
+- - -
+
 ## nv set interface \<interface-id\> bridge domain \<domain-id\> stp network
 
 Turns bridge assurance capability for a bridged port on or off.
@@ -667,53 +714,6 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default stp restrrole
 
 - - -
 
-## nv set interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\>
-
-Configures a VLAN for the bridged interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
-| `<vid>` |  The VLAN name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default vlan 10
-```
-
-- - -
-
-## nv set interface \<interface-id\> bridge domain \<domain-id\> learning
-
-Turns source MAC address learning on or off for this bridged interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| ---------  | -------------- |
-| `<interface-id>` |  The interface you want to configure. |
-| `<domain-id>` |  The bridge domain name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default learning on
-```
-
-- - -
-
 ## nv set interface \<interface-id\> bridge domain \<domain-id\> untagged
 
 Configures the VLAN in which untagged packets ingressing this bridged interface are in. Egress packets are always tagged. You can set a value between 1 and 4094, `none`, or `auto`. If you specify `none`, the switch drops untagged packets.
@@ -737,9 +737,9 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default untagged none
 
 - - -
 
-## nv set interface \<interface-id\> bridge domain \<domain-id\> access
+## nv set interface \<interface-id\> bridge domain \<domain-id\> vlan \<vid\>
 
-Configures access ports to ignore all tagged packets. You can set a value between 1 and 4094, `none`, or `auto`.
+Configures a VLAN for the bridged interface.
 
 ### Command Syntax
 
@@ -747,6 +747,7 @@ Configures access ports to ignore all tagged packets. You can set a value betwee
 | ---------  | -------------- |
 | `<interface-id>` |  The interface you want to configure. |
 | `<domain-id>` |  The bridge domain name. |
+| `<vid>` |  The VLAN name. |
 
 ### Version History
 
@@ -755,7 +756,7 @@ Introduced in Cumulus Linux 5.0.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default access 10
+cumulus@leaf01:mgmt:~$ nv set interface swp1 bridge domain default vlan 10
 ```
 
 - - -

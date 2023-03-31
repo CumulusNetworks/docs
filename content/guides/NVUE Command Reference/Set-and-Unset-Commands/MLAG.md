@@ -113,6 +113,24 @@ cumulus@leaf01:mgmt:~$ nv set mlag backup 10.10.10.2 vrf RED
 
 - - -
 
+## nv set mlag debug
+
+Turns MLAG debugging on or off.
+
+The default setting is `off`.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag debug on
+```
+
+- - -
+
 ## nv set mlag enable
 
 Turns MLAG on or off.
@@ -127,6 +145,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag enable on
+```
+
+- - -
+
+## nv set mlag init-delay
+
+Configures the number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. You can set a value between 0 and 9000.
+
+This timer sets to 0 automatically under the following conditions:
+- When the peer is not alive and the backup link is not active after a reload timeout.
+- When the peer sends a goodbye (through the peer link or the backup link).
+- When both MLAG sessions come up at the same time.
+
+The default setting is 180.
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set mlag init-delay 100
 ```
 
 - - -
@@ -183,47 +224,6 @@ cumulus@leaf01:mgmt:~$ nv set mlag priority 2084
 
 - - -
 
-## nv set mlag init-delay
-
-Configures the number of seconds `clagd` delays bringing up MLAG bonds and anycast IP addresses. You can set a value between 0 and 9000.
-
-This timer sets to 0 automatically under the following conditions:
-- When the peer is not alive and the backup link is not active after a reload timeout.
-- When the peer sends a goodbye (through the peer link or the backup link).
-- When both MLAG sessions come up at the same time.
-
-The default setting is 180.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set mlag init-delay 100
-```
-
-- - -
-
-## nv set mlag debug
-
-Turns MLAG debugging on or off.
-
-The default setting is `off`.
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set mlag debug on
-```
-
-- - -
-
 ## nv set nve vxlan mlag
 
 Provides commands to configure MLAG for VXLAN.
@@ -243,3 +243,5 @@ Introduced in Cumulus Linux 5.0.0
 ```
 cumulus@leaf01:mgmt:~$ nv set mlag vxlan mlag shared-address 10.10.10.2
 ```
+
+- - -

@@ -604,7 +604,7 @@ Max 1G ports: 64
 {{< /tab >}}
 {{< tab "10G ">}}
 
-64x 10G - 16x QSFP28 break out into 4x 25G and set to 10G
+64x 10G - 16x QSFP28 break out into 4x and set to 10G
 
 Maximum 10G ports: 64
 
@@ -680,7 +680,7 @@ Maximum 40G ports: 4
 {{< /tab >}}
 {{< tab "50G ">}}
 
-8x 50G - 4x QSFP28 break out into 2x 50G
+8x 50G - 4x QSFP28 break out into 2x
 
 Maximum 50G ports: 8
 
@@ -715,7 +715,7 @@ Max 1G ports: 64
 {{< tab "10G ">}}
 
 - 48x 10G - 48x SFP28 set to 10G
-- 16x 10G - 4x QSPF28 break out into 4x25G and set to 10G
+- 16x 10G - 4x QSPF28 break out into 4x and set to 10G
 
 Maximum 10G ports: 64
 
@@ -737,7 +737,7 @@ Maximum 40G ports: 8
 {{< /tab >}}
 {{< tab "50G ">}}
 
-16x 50G - 8x QSFP28 break out into 2x 50G
+16x 50G - 8x QSFP28 break out into 2x
 
 Maximum 50G ports: 16
 
@@ -777,7 +777,7 @@ Maximum 10G ports: 64
 {{< /tab >}}
 {{< tab "25G ">}}
 
-64x 25G - Top 16x QSFP28 break out into 4x 25G (bottom 16x QSFP28 disabled)
+64x 25G - Top 16x QSFP28 break out into 4x (bottom 16x QSFP28 disabled)
 
 Maximum 25G ports: 64
 
@@ -791,7 +791,7 @@ Maximum 40G ports: 32
 {{< /tab >}}
 {{< tab "50G ">}}
 
-64x 50G - 64x QSFP28 break out into 2x 50G
+64x 50G - 64x QSFP28 break out into 2x
 
 Maximum 50G ports: 64
 
@@ -824,7 +824,7 @@ Max 1G ports: 96
 {{< tab "10G ">}}
 
 - 48x 10G - 48x SFP28 set to 10G
-- 48x 10G - 12x QSPF28 break out into 4x 25G and set to 10G
+- 48x 10G - 12x QSPF28 break out into 4x and set to 10G
 
 Maximum 10G ports: 96
 
@@ -1073,7 +1073,7 @@ Max 1G ports: 128
 
 Maximum 10G ports: 128
 
-*Other QSFP-DD breakout combinations are available up to maximum of 128x10G ports.
+*Other QSFP-DD breakout combinations are available up to maximum of 128x ports.
 
 {{< /tab >}}
 {{< tab "25G ">}}
@@ -1083,7 +1083,7 @@ Maximum 10G ports: 128
 
 Maximum 25G ports: 128
 
-*Other QSFP-DD breakout combinations are available up to maximum of 128x 25G ports.
+*Other QSFP-DD breakout combinations are available up to maximum of 128x ports.
 
 {{< /tab >}}
 {{< tab "40G ">}}
@@ -1100,7 +1100,7 @@ Maximum 40G ports: 32
 
 Maximum 50G ports: 80
 
-*Other QSFP-DD breakout combinations are available up to maximum of 80x50G ports.
+*Other QSFP-DD breakout combinations are available up to maximum of 80x ports.
 
 {{< /tab >}}
 {{< tab "100G ">}}
@@ -1146,7 +1146,7 @@ Max 1G ports: 128
 {{< /tab >}}
 {{< tab "10G ">}}
 
-128x 10G - 32x QSFP28 break out into 4x 25G and set to 10G
+128x 10G - 32x QSFP28 break out into 4x and set to 10G
 
 Maximum 10G ports: 128
 
@@ -1270,7 +1270,7 @@ Maximum 1G ports: 128
 
 Maximum 10G ports: 128
 
-*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x 10G ports.
+*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x ports.
 
 {{< /tab >}}
 {{< tab "25G ">}}
@@ -1279,7 +1279,7 @@ Maximum 10G ports: 128
 
 Maximum 25G ports: 128
 
-*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x 25G ports.
+*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x ports.
 
 {{< /tab >}}
 {{< tab "40G ">}}
@@ -1295,7 +1295,7 @@ Maximum 40G ports: 32
 
 Maximum 50G ports: 128
 
-*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x 50G ports.
+*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x ports.
 
 {{< /tab >}}
 {{< tab "100G ">}}

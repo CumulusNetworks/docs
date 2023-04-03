@@ -35,7 +35,7 @@ The following command restarts the system in cold mode:
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv set nv set system reboot mode cold
+cumulus@switch:~$ nv set system reboot mode cold
 cumulus@switch:~$ nv config apply
 ```
 
@@ -55,7 +55,7 @@ The following command restarts the system in fast mode:
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv set nv set system reboot mode fast
+cumulus@switch:~$ nv set system reboot mode fast
 cumulus@switch:~$ nv config apply
 ```
 
@@ -79,7 +79,7 @@ Warm restart mode resets any manually configured FEC settings.
 {{< tab "NVUE Command ">}}
 
 ```
-cumulus@switch:~$ nv set nv set system reboot mode warm
+cumulus@switch:~$ nv set system reboot mode warm
 cumulus@switch:~$ nv config apply
 ```
 

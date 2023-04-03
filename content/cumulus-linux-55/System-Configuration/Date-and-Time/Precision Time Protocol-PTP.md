@@ -284,17 +284,17 @@ The following table shows the default parameter values for the predefined profil
 
 | Parameter | IEEE 1588 | ITU 8275-1 | ITU 8275-2 |
 | --------- | --------- | ---------- | ---------- |
-| Announce rate | 1 | -3 |? |
-| Sync rate | 0  | -4 | ?|
-| Delay rate | 0 | -4 |? |
-| Announce Timeout | 3  | 3 | ? |
-| Domain | 0  | 24 | ?|
-| Priority1 | 128 | 128 | ? |
-| Priority2 |  128 | 128 |  ?|
-| Local priority | NA | 128  | ? |
-| Transport | UDPv4 (UDPv6 supported) |802.3 | ? |
-| Transmission | Multicast (unicast supported) | Multicast | ? |
-| <span style="background-color:#F5F5DC">[BMCA](## "Best Master Clock Algorythm")</span> | IEEE 1588 | G.8275.x | ? |
+| Announce rate | 1 | -3 | -4 |
+| Sync rate | 0  | -4 | -6 |
+| Delay rate | 0 | -4 | -6 |
+| Announce Timeout | 3  | 3 | 3 |
+| Domain | 0  | 24 | 44 |
+| Priority1 | 128 | 128 | 128 |
+| Priority2 |  128 | 128 |  128|
+| Local priority | NA | 128  | 128 |
+| Transport | UDPv4 (UDPv6 supported) |802.3 | UDPv4 |
+| Transmission | Multicast (unicast supported) | Multicast | Unicast |
+| <span style="background-color:#F5F5DC">[BMCA](## "Best Master Clock Algorythm")</span> | IEEE 1588 | G.8275.x | G.8275.x |
 
 The switch has a predefined default profile of each profile type, one for IEEE1588, one for ITU8275.1, and one for ITU8275.2.
 You can configure the switch to use a predefined profile or you can create a custom profile. You can change the profile settings of the predfined profiles, such as the announce rate, sync rate, domain, priority, transport, and so on. These changes conform to the ranges and allowed values of the profile type. You can also configure these parameters for individual PTP interfaces. When you configure parameters for an individual interface, the configuration takes precedence over the profile configuration. The interface is not part of the profile.

@@ -17,12 +17,12 @@ Cumulus Linux 5.5.0 supports new platforms, provides bug fixes, and contains sev
 {{%notice note%}}
 Early access features are now called beta features.
 {{%/notice%}}
-
+<!--
 {{%notice warning%}}
 - If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the new port configuration changes might impact your Cumulus Linux 5.5 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
 - Cumulus Linux 5.4 package upgrade (`apt-upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
 {{%/notice%}}
-
+-->
 ### Platforms
 
 - NVIDIA SN3750-SX (100G Spectrum-2) is now generally available
@@ -31,8 +31,8 @@ Early access features are now called beta features.
 
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
 - PTP
-  - PPS In or Out
-  - {{<link url="Precision-Time-Protocol-PTP##ptp-profiles" text="ITU-T G.8275.2 Profile">}}
+  <!-- - PPS In or Out-->
+  - {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="ITU-T G.8275.2 Profile">}}
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - TACACS+ commands are now generally available
   - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1

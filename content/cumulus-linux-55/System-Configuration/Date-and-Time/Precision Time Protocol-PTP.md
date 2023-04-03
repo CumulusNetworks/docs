@@ -279,6 +279,7 @@ PTP profiles are a standardized set of configurations and rules intended to meet
 Cumulus Linux supports the following predefined profiles:
 - *IEEE 1588* is the profile specified in the IEEE 1588 standard. This profile addresses some common applications and does not have any network restrictions.
 - *ITU 8275.1* is the PTP profile for use in telecom networks that require phase or time-of-day synchronization. Each device in the network must participate in the PTP protocol.
+- *ITU 8275.2* is similar to ITU 8275.1 but each device in the network does not need to participate in the PTP protocol.
 
 The following table shows the default parameter values for the predefined profiles.
 

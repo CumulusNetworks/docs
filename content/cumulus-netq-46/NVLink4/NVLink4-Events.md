@@ -28,6 +28,8 @@ All events are categorized according to two severity levels: info or error. Even
 
   Select the NVL4 tab below the controls to display all NVLink events.
 
+    {{<figure src="/images/netq/nvl4-events-tab-460.png" width="600" alt="">}}
+
 {{</tab>}}
 
 {{</tabs>}}

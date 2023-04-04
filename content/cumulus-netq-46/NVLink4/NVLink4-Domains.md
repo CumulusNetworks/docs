@@ -40,9 +40,6 @@ For GFM to run, the topology file must reflect how the network is wired. The sam
 
 Next, upload your fabric node configuration. This is a text file listing the IP addresses for the nodes (GPU nodes and NVL4 switches) that comprise the domain.
 
-{{<figure src="/images/netq/nvl4-ip-address-file.png" alt="wizard prompting user to upload file containing IP adressess" width="550">}}
-
-
 The final screen displays a summary of the domain's parameters. In addition to the summary, you can toggle GFM to run after creating the domain. If you are not ready to start GFM, you can save the configuration and start it later.
 
 After reviewing the summary, select **Finish**. NetQ adds the domain to a list of all NVLink4 domains:
@@ -71,8 +68,8 @@ The Devices tab displays the device health (healthy or unhealthy) and the LFM st
 
 ## Edit a Domain
 
-Select the three-dot menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}} to edit a domain's configuration. This menu only appears when GFM is not running. You must stop GFM to edit the domain.
+You must stop GFM to edit a domain. To edit a domain's configuration, select the three-dot menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}}. This menu only appears when GFM is not running. Note that you cannot edit or delete a topology file that is in use by a domain. 
 
 ## Delete a Domain
 
-Select the three-dot menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}}, then select **Delete**. You cannot delete a topology file that is in use by a domain.
+Select the three-dot menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}}, then select **Delete**. Deleting a domain also deletes any log or system dump files associated with that domain.

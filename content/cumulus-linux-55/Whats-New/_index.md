@@ -17,12 +17,12 @@ Cumulus Linux 5.5.0 supports new platforms, provides bug fixes, and contains sev
 {{%notice note%}}
 Early access features are now called beta features.
 {{%/notice%}}
-
+<!--
 {{%notice warning%}}
 - If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the new port configuration changes might impact your Cumulus Linux 5.5 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
 - Cumulus Linux 5.4 package upgrade (`apt-upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
 {{%/notice%}}
-
+-->
 ### Platforms
 
 - NVIDIA SN3750-SX (100G Spectrum-2) is now generally available
@@ -30,27 +30,27 @@ Early access features are now called beta features.
 ### New Features and Enhancements
 
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
-- PTP
-  - PPS In or Out
-  - ITU-T G.8275.2 Profile
+- New PTP {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="ITU-T G.8275.2 Profile">}}
+  <!-- - PPS In or Out-->
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - TACACS+ commands are now generally available
-  - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1
-  - PBR Operational Data
-  - Routing Policy Phase 2
-  - EVPN Operational commands
-  - Zebra - Phase 2
-  - Support Reboot Operations
-  - Interface Counter Parity for NVUE
+  - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}}  restart mode
   - {{<link url="VLAN-aware-Bridge-Mode#mac-address-ageing" text="Bridge aging timer">}}
-  - LTTng Enhacements Switchd
   - {{<link url="SyncE" text="SyncE">}}
+  - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
+  - COPP Rule Definition with Control-Plane ACLs
+  - LTTng Enhacements Switchd
+  - Interface Counter Parity for NVUE
+  - Updated PBR show commands show operational data
+  - Updated EVPN commands show operational data
+  - Routing Policy Phase 2
+  - The `nv show router nexthop rib`, `nv show router nexthop rib <ngh-id>`, and `nv show vrf <vrf> router nexthop-tracking ip-address` commands show operational data
   - BGP Phase 3
   - Additional Community Options for Route Policy
-  - COPP Rule Definition with Control-Plane ACLs
   - Changed commands:
     - The `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>`
-    - The `nv set service dhcp-relay6 blue interface downstream <interface> address <ipv6-address>` command is now`nv set service dhcp-relay6 blue interface downstream <interface> link-address <ipv6-address>`
+    - The `nv set service dhcp-relay6 blue interface downstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 blue interface downstream <interface> link-address <ipv6-address>`
+    - The `nv set service dhcp-relay <vrf> giaddress-interface` is now `nv set service dhcp-relay <vrf> gateway-interface`
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}

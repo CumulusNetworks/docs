@@ -30,7 +30,7 @@ Early access features are now called beta features.
 ### New Features and Enhancements
 
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
-- New PTP {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="ITU-T G.8275.2 Profile">}}
+- {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 Profile">}}
   <!-- - PPS In or Out-->
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - TACACS+ commands are now generally available
@@ -39,12 +39,11 @@ Early access features are now called beta features.
   - {{<link url="SyncE" text="SyncE">}}
   - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
   - COPP Rule Definition with Control-Plane ACLs
-  - LTTng Enhacements Switchd
-  - Interface Counter Parity for NVUE
+  - Interface Counter commands
   - Updated PBR show commands show operational data
   - Updated EVPN commands show operational data
   - Updated `nv show router nexthop rib`, `nv show router nexthop rib <ngh-id>`, and `nv show vrf <vrf> router nexthop-tracking ip-address` commands show operational data
-  - Updated `nv show vrf <vrf> router bgp neighbor` and `nv show vrf <vrf> router bgp neighbor` commands show operational data
+  - Updated {{<link url="Troubleshooting-BGP" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data
   - Routing Policy Phase 2
   - Additional Community Options for Route Policy
   - Changed commands:

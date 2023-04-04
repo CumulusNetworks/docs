@@ -78,16 +78,6 @@ Last Changed              Hostname          Ifname       Prefix                 
 Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3                     32       default
 ```
 
-Show only the differences between now and four months ago:
-
-```
-cumulus@switch:~$ netq show address-history 10.10.10.3 between now and 120d
-Matching addresshistory records:
-Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
-------------------------- ----------------- ------------ ------------------------------ -------- ---------------
-Thu Oct 15 22:28:16 2020  leaf03            lo           10.10.10.3                     32       default
-```
-
 Show changes grouped by VRF:
 
 ```
@@ -245,7 +235,7 @@ None
 
 ### Sample Usage
 
-Display BGP sessions across all network nodes. This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and last time something changed.
+Display BGP sessions across all network nodes. This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and the last time something changed.
 
 
 ```
@@ -911,7 +901,7 @@ leaf01            swp50                     8749                 0              
 
 ## netq show events
 
-Display system events that have occurred in the last 24 hours <!--is this 24 hours or 1 hour?-->. Optionally, view events for a time in the past. You can filter the output by event severity and event type. The output provides the following information for each device:
+Display system events that have occurred in the last 24 hours <!--is this 24 hours or 1 hour?-->. Optionally, view events up to 30 days in the past, with a time frame not exceeding 72 hours. You can filter the output by event severity and event type. The output provides the following information for each device:
 
 - Message type
 - Event severity (info, error)
@@ -987,42 +977,6 @@ leaf02            services                 info             Service netqd status
                                                             nactive to active
 leaf02            services                 info             Service netqd status changed from i Thu Dec 10 06:14:06 2020
                                                             nactive to active
-...
-```
-Display all BGP events between now and five days ago:
-
-```
-cumulus@switch:~$ netq show events message_type bgp between now and 5d
-Matching bgp records:
-Hostname          Message Type Severity Message                             Timestamp
------------------ ------------ -------- ----------------------------------- -------------------------
-leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
-leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
-                                        : state changed from failed to esta
-                                        blished
 ...
 ```
 
@@ -1700,6 +1654,13 @@ netq [<hostname>] show inventory disk
     [opta]
     [json]
 
+netq [<hostname>] show inventory license 
+    [cumulus] 
+    [status ok | status missing] 
+    [around <text-time>] 
+    [opta] 
+    [json]
+
 netq [<hostname>] show inventory memory
     [type <memory-type>|vendor <memory-vendor>]
     [opta]
@@ -1720,6 +1681,7 @@ netq [<hostname>] show inventory os
 | board | NA | Only display motherboard information: hostname, vendor, model, base MAC address, serial number, part number, revision, manufacturing date |
 | cpu | NA | Only display processor information: hostname, architecture, model, frequency, number of cores |
 | disk | NA | Only display disk information: hostname, disk name and type, transport, size, vendor, model |
+| license | NA | Only display license information: hostname, disk name and type, transport, size, vendor, model |
 | memory | NA | Only display memory information: hostname, memory name, type, size, speed, vendor, serial number |
 | os | NA | Only display operating system information: hostname, OS name, version, when changed |
 
@@ -1733,6 +1695,8 @@ netq [<hostname>] show inventory os
 | model-id | \<asic-model-id\> | Only display results for ASIC models with this ID |
 | arch | \<cpu-arch\> | Only display results for CPUs with this architecture |
 | transport | \<disk-transport\> | Only display results for disks with this transport method |
+| cumulus | NA | Only display Cumulus Linux licenses |
+| status | \<ok\>, \<missing\>, | Only display results for devices with valid (ok) or missing licenses |
 | type | \<memory-type\> | Only display results for memory of this type |
 | version | \<os-version\> | Only display results for operating systems of this version |
 | name | \<os-name\> | Only display results for operating systems with this name |
@@ -2358,11 +2322,11 @@ netq [<hostname>] show kubernetes service
 | cluster | NA | Only display Kubernetes cluster information |
 | node | NA | Only display Kubernetes node information |
 | daemon-set | NA |  Only display Kubernetes daemon-set information |
-| deployment | NA | Only display Kubernetes node information |
-| pod | NA | Only display Kubernetes node information |
-| replication-controller | NA | Only display Kubernetes node information |
-| replica-set | NA | Only display Kubernetes node information |
-| service | NA | Only display Kubernetes node information |
+| deployment | NA | Only display Kubernetes deployment information |
+| pod | NA | Only display Kubernetes pod information |
+| replication-controller | NA | Only display Kubernetes replicaiton controller information |
+| replica-set | NA | Only display Kubernetes replication set information |
+| service | NA | Only display Kubernetes service information |
 | connectivity | NA | Only display connectivity information for the daemon-set, deployment, or service |
 
 ### Options
@@ -3591,7 +3555,7 @@ Displays RoCE configuration.
 
 {{<notice note>}}
 
-Priority code point (PCP) monitoring requires NetQ Agent 4.5.
+Priority code point (PCP) monitoring requires NetQ Agent 4.5 or later.
 
 {{</notice>}}
 
@@ -3618,26 +3582,31 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq show roce-config 
+cumulus@switch:~$ netq show roce-config
 
 Matching roce records:
-Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  DSCP->SP   PCP->SP  SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
+Hostname          Interface       RoCE Mode  Enabled TCs  Mode     ECN Max  ECN Min  SP->DSCP   SP->PCP  SP->PG   SP->TC   PFC SPs  PFC Rx     PFC Tx     ETS Mode   Last Changed
 ----------------- --------------- ---------- ------------ -------- -------- -------- ---------- -------- -------- -------- -------- ---------- ---------- ---------- -------------------------
-mlx-2700a1-19     swp2            Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-mlx-2700a1-19     swp24           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-mlx-2700a1-19     swp23           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-mlx-2700a1-19     swp31           Lossless   0,3          ECN      1505280  153600   26 -> 2    4 -> 3   3 -> 1   3 -> 3   -        disabled   enabled    dwrr       Thu Jan 12 11:43:49 2023
-ufm-switch23      swp32           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp1            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp8            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp11           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp22           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp15           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp18           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp26           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp29           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp4            Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
-ufm-switch23      swp30           Lossless   0,3          ECN      1505280  153600   26 -> 3    3 -> 3   3 -> 1   3 -> 3   3        enabled    enabled    dwrr       Thu Jan 12 12:12:39 2023
+mlx-3700c-23      swp16           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp27           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp32           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp23           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp25           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp5            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp26           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp4            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp18           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp12           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp9            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp30           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp21           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp13           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp1            Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp24           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp15           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp17           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-23      swp22           Lossless   0,3          ECN      1502208  156672   2 -> 26    2 -> 2   2 -> 1   2 -> 0   2        disabled   enabled    dwrr       Thu Mar 30 04:42:18 2023
+mlx-3700c-24      swp8            Lossy      0,3          ECN      1502208  156672   3 -> 26    3 -> 3   3 -> 1   3 -> 3   -        disabled   disabled   dwrr       Wed Mar 29 11:00:51 2023
 ...
 ```
 
@@ -3709,6 +3678,35 @@ switch            swp63s3         0            0            0                  0
 switch            swp1s3          0            0            0                  0                  0                  0            0                  0            0
 switch            swp63s0         0            0            0                  0                  0                  0            0                  0            0
 switch            swp63s2         0            0            0                  0                  0                  0            0                  0            0
+```
+
+Display RoCE-specific Tx counters:
+
+```
+cumulus@switch:~$ netq show roce-counters tx roce 
+
+Matching roce records:
+Hostname          Interface       TC packets TC bytes   unicast no buffer discard PFC pause packets  PFC pause duration buffer usage buffer max usage   TC usage   TC max usage
+----------------- --------------- ---------- ---------- ------------------------- ------------------ ------------------ ------------ ------------------ ---------- ---------------
+switch            swp1s1          0          0          0                         0                  0                  0            0                  0          0
+switch            swp1s2          0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s1         0          0          0                         0                  0                  0            0                  0          0
+switch            swp1s0          0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s3         0          0          0                         0                  0                  0            0                  0          0
+switch            swp1s3          0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s0         0          0          0                         0                  0                  0            0                  0          0
+switch            swp63s2         0          0          0                         0                  0                  0            0                  0          0
+```
+
+To view counters for a specific switch port, include the switch name with the command:
+
+```
+cumulus@switch:~$ netq show roce-counters swp1s1 rx general 
+
+Matching roce records:
+Hostname          Interface            PG packets           PG bytes             no buffer discard    buffer usage         buffer max usage     PG usage             PG max usage
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+switch            swp1s1               1643392              154094520            0                    0                    1                    0                    1
 ```
 
 ### Related Commands

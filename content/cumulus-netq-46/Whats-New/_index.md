@@ -14,6 +14,7 @@ This page summarizes new features and improvements for the NetQ {{<version>}} re
 NetQ 4.6.0 includes the following new features and improvements:
 
 - Full support for {{<link title="PTP" text="Precision Time Protocol monitoring">}} via the UI and CLI
+- Enhanced RoCE {{<link title="check/#netq-check-roce" text="validation checks">}} and {{<link title="RoCE" text="monitoring">}} for NVUE-enabled switches. The `netq check roce` command now checks for mismatches for switch priority, cable length, and congestion control.
 - Expanded {{<link title="Access Data with Cards#table-settings" text="table options">}} that allow you to export and download tables that exceed 10,000 rows as a CSV file
 
 

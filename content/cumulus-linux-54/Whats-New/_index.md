@@ -10,6 +10,17 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 - For a list of open and fixed issues in Cumulus Linux 5.4, see the {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
+## What's New in Cumulus Linux 5.4.0+B
+<!-- vale on -->
+Cumulus Linux 5.4.0+B supports the following new platform only:
+
+- NVIDIA SN5600 (800G and 200G Spectrum-4)
+
+{{%notice note%}}
+Cumulus Linux 5.4.0+B does not support package upgrade; you must intall the Cumulus Linux 5.4.0+B image.
+{{%/notice%}}
+
+<!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0
 <!-- vale on -->
 Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.

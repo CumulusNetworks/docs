@@ -5,22 +5,33 @@ weight: 760
 toc: 4
 ---
 
-Use the UI to view your data processing unit (DPU) inventory. The Inventory/DPU card includes the DPU's operating system, ASIC, CPU model, disk, platform, and memory information.
+Use the UI or CLI to view your data processing unit (DPU) inventory. 
 
 For DPU performance information, refer to {{<link title="DPUs" text="DPU Monitoring">}}.
-## Access and View DPU Inventory Data
 
-The Inventory/DPU card displays the hardware- and software-component inventory on DPUs running NetQ in your network.
+## DPU Inventory Commands
+
+Several forms of this command are available based on the inventory component you'd like to view. See the {{<link title="show/#netq-show-inventory" text="command line reference">}} for additional options, definitions, and examples.
+
+```
+netq show inventory (brief | asic | board | cpu | disk | memory | license | os)
+```
+
+## View DPU Inventory in the UI
+
+The Inventory/DPU card displays the hardware- and software-component inventory on DPUs running NetQ in your network, including operating system, ASIC, CPU model, disk, platform, and memory information. 
+
+To add this card to your workbench, select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Inventory** > **Inventory/DPU card** > **Open cards**.
 
 {{<figure src="/images/netq/dpu-inventory-updated.png" alt="DPU inventory card with chart" width="200">}}
 
-Hover over the chart in the default card view to view component details. To view the distribution of components, hover over the card header and increase the card's size. Select the corresponding icon to view a detailed chart for ASIC, platform, or software components:
+Hover over the chart to view component details. To view the distribution of components, hover over the card header and increase the card's size. Select the corresponding icon to view a detailed chart for ASIC, platform, or software components:
 
-{{<figure src="/images/netq/dpu-inventory-l3-42.png" alt="medium DPU inventory card displaying component distribution" width="600">}}
+{{<figure src="/images/netq/dpu-inventory-l3-42.png" alt="medium DPU inventory card displaying component distribution" width="650">}}
 
-To display detailed information as a table, expand the card to its largest size:
+Expand the card to its largest size to view, filter, and export detailed information: 
 
-{{<figure src="/images/netq/dpu-inventory-l4-42.png" alt="fully expanded DPU inventory card displaying a table with data" width="1000">}}
+{{<figure src="/images/netq/dpu-inventory-l4-42.png" alt="fully expanded DPU inventory card displaying a table with data" width="1100">}}
 
 ## Related Information
 

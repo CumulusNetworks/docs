@@ -19,7 +19,7 @@ In earlier Cumulus Linux releases, ISSU was Smart System Manager.
 
 You can restart the switch in one of the following modes.
 
-- **cold** Restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
+- **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
 - **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintains the forwarding entries of the switching ASIC and the data plane is not affected. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, after `switchd` restarts.
 - **warm** restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
 
@@ -34,7 +34,10 @@ The following command restarts the system in cold mode:
 {{< tabs "28 ">}}
 {{< tab "NVUE Command ">}}
 
-The NVUE command is not supported.
+```
+cumulus@switch:~$ nv set system reboot mode cold
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -51,7 +54,10 @@ The following command restarts the system in fast mode:
 {{< tabs "52 ">}}
 {{< tab "NVUE Command ">}}
 
-The NVUE command is not supported.
+```
+cumulus@switch:~$ nv set system reboot mode fast
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}
@@ -72,7 +78,10 @@ Warm restart mode resets any manually configured FEC settings.
 {{< tabs "76 ">}}
 {{< tab "NVUE Command ">}}
 
-The NVUE command is not supported.
+```
+cumulus@switch:~$ nv set system reboot mode warm
+cumulus@switch:~$ nv config apply
+```
 
 {{< /tab >}}
 {{< tab "Linux Command ">}}

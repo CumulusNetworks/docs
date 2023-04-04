@@ -151,21 +151,21 @@ To configure DHCP Agent Information Option 82:
 
 ### Control the Gateway IP Address with RFC 3527
 
-When you need DHCP relay in an environment that relies on an anycast gateway (such as EVPN), a unique IP address is necessary on each device for return traffic. By default, in a BGP unnumbered environment with DHCP relay, the source IP address is the loopback IP address and the gateway IP address (giaddr) is the SVI IP address. However with anycast traffic, the SVI IP address is not unique to each rack; it is typically shared between racks. Most EVPN ToR deployments only use a single unique IP address, which is the loopback IP address.
+When you need DHCP relay in an environment that relies on an anycast gateway (such as EVPN), a unique IP address is necessary on each device for return traffic. By default, in a BGP unnumbered environment with DHCP relay, the source IP address is the loopback IP address and the gateway IP address is the SVI IP address. However with anycast traffic, the SVI IP address is not unique to each rack; it is typically shared between racks. Most EVPN ToR deployments only use a single unique IP address, which is the loopback IP address.
 
-{{<exlink url="https://tools.ietf.org/html/rfc3527" text="RFC 3527">}} enables the DHCP server to react to these environments by introducing a new parameter to the DHCP header called the link selection sub-option, which the DHCP relay agent builds. The link selection sub-option takes on the normal role of the giaddr in relaying to the DHCP server which subnet correlates to the DHCP request. When using this sub-option, the giaddr continues to be present but only relays the return IP address that the DHCP server uses; the giaddr becomes the unique loopback IP address.
+{{<exlink url="https://tools.ietf.org/html/rfc3527" text="RFC 3527">}} enables the DHCP server to react to these environments by introducing a new parameter to the DHCP header called the link selection sub-option, which the DHCP relay agent builds. The link selection sub-option takes on the normal role of the gateway address in relaying to the DHCP server which subnet correlates to the DHCP request. When using this sub-option, the gateway address continues to be present but only relays the return IP address that the DHCP server uses; the gateway address becomes the unique loopback IP address.
 
-When enabling RFC 3527 support, you can specify an interface, such as the loopback interface or a switch port interface to use as the giaddr. The relay picks the first IP address on that interface. If the interface has multiple IP addresses, you can specify a specific IP address for the interface.
+When enabling RFC 3527 support, you can specify an interface, such as the loopback interface or a switch port interface to use as the gateway address. The relay picks the first IP address on that interface. If the interface has multiple IP addresses, you can specify a specific IP address for the interface.
 
 {{%notice note%}}
 RFC 3527 supports IPv4 DHCP relays only.
 {{%/notice%}}
 
-<!--The following illustration demonstrates how you can control the giaddr with RFC 3527.
+<!--The following illustration demonstrates how you can control the gateway address with RFC 3527.
 
 {{< img src = "/images/cumulus-linux/dhcp-relay-RFC3527.png" >}}-->
 
-To enable RFC 3527 support and control the giaddr:
+To enable RFC 3527 support and control the gateway address:
 
 {{< tabs "TabID203 ">}}
 {{< tab "NVUE Commands ">}}
@@ -176,19 +176,19 @@ Run the `nv set service dhcp-relay default gateway-interface` command with the i
 cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface lo
 ```
 
-The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
+The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the gateway address:
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface address lo 10.10.10.1
+cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface lo address 10.10.10.1
 ```
 
-This example uses the first IP address on swp2 as the giaddr:
+This example uses the first IP address on swp2 as the gateway address:
 
 ```
 cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2
 ```
 
-This example uses IP address 10.0.0.4 on swp2 as the giaddr:
+This example uses IP address 10.0.0.4 on swp2 as the gateway address:
 
 ```
 cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 address 10.0.0.4
@@ -197,9 +197,9 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay` file and provide the `-U` option with the interface or IP address you want to use as the giaddr.
+1. Edit the `/etc/default/isc-dhcp-relay` file and provide the `-U` option with the interface or IP address you want to use as the gateway address.
 
-   This example uses the first IP address on the loopback interface as the giaddr:
+   This example uses the first IP address on the loopback interface as the gateway address:
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -208,7 +208,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
    OPTIONS="-U lo"
    ```
 
-   The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the giaddr:
+   The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the gateway address:
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -217,7 +217,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
    OPTIONS="-U 10.10.10.1%lo"
    ```
 
-   This example uses the first IP address on swp2 as the giaddr:
+   This example uses the first IP address on swp2 as the gateway address:
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -226,7 +226,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
    OPTIONS="-U swp2"
    ```
 
-   This example uses IP address 10.0.0.4 on swp2 as the giaddr:
+   This example uses IP address 10.0.0.4 on swp2 as the gateway address:
 
    ```
    cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
@@ -258,7 +258,7 @@ To use the gateway IP address as the source IP address:
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set service dhcp-relay default source-ip giaddress
+cumulus@leaf01:~$ nv set service dhcp-relay default source-ip gateway
 cumulus@leaf01:~$ nv config apply
 ```
 

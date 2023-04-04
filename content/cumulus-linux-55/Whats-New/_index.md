@@ -34,7 +34,7 @@ Early access features are now called beta features.
   <!-- - PPS In or Out-->
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - TACACS+ commands are now generally available
-  - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}}  restart mode
+  - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}} restart mode
   - {{<link url="VLAN-aware-Bridge-Mode#mac-address-ageing" text="Bridge aging timer">}}
   - {{<link url="SyncE" text="SyncE">}}
   - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
@@ -43,9 +43,9 @@ Early access features are now called beta features.
   - Interface Counter Parity for NVUE
   - Updated PBR show commands show operational data
   - Updated EVPN commands show operational data
+  - Updated `nv show router nexthop rib`, `nv show router nexthop rib <ngh-id>`, and `nv show vrf <vrf> router nexthop-tracking ip-address` commands show operational data
+  - Updated `nv show vrf <vrf> router bgp neighbor` and `nv show vrf <vrf> router bgp neighbor` commands show operational data
   - Routing Policy Phase 2
-  - The `nv show router nexthop rib`, `nv show router nexthop rib <ngh-id>`, and `nv show vrf <vrf> router nexthop-tracking ip-address` commands show operational data
-  - BGP Phase 3
   - Additional Community Options for Route Policy
   - Changed commands:
     - The `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>`

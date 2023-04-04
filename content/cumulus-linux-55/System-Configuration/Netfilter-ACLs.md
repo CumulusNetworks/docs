@@ -782,6 +782,68 @@ copp.catch_all.burst = 100
 ```
 {{< /expand >}}
 
+### Control Plane ACLs
+
+You can configure control plane ACLs to apply a single rule for all packets forwarded to the CPU regardless of the source interface or destination interface on the switch. Control plane ACLs allow you to regulate traffic forwarded to applications on the switch with more granularity than traps and to configure ACLs to block SSH from specific addresses or subnets.
+
+Cumulus Linux applies inbound control plane ACLs in the INPUT chain and outbound control plane ACLs in the OUTPUT chain.
+
+The following example command applies the input control plane ACL called ACL1.
+
+```
+cumulus@switch:~$ nv set system control-plane acl ACL1 inbound
+cumulus@switch:~$ nv config apply
+```
+
+The following example command applies the output control plane ACL called ACL2.
+
+```
+cumulus@switch:~$ nv set system control-plane acl ACL2 outbound
+cumulus@switch:~$ nv config apply
+```
+
+To show statistics for all control-plane ACLs, run the `nv show system control-plane acl` command:
+
+```
+cumulus@switch:~$ nv show system control-plane acl
+ACL Name  Rule ID  In Stats   Out Stats  Match  Action 
+
+--------  -------  ---------  ---------  -----  ------ 
+
+acl1      1        byte: 0               ip     set 
+
+                   packet: 0 
+
+          2        byte: 0               ip     permit 
+
+                   packet: 0 
+
+          29       byte: 0               ip     deny 
+
+                   packet: 0 
+
+acl2      1                   byte: 0    ip     permit 
+
+                              packet: 0 
+
+          2                   byte: 0    ip     permit 
+
+                              packet: 0 
+```
+
+To show statistics for a specific control-plane ACL, run the `nv show system control-plane acl <acl_name> statistics` command:
+
+```
+cumulus@switch:~$ nv show system control-plane acl ACL1 statistics
+Rule  In Packet  In Byte  Out Packet  Out Byte  Summary 
+
+----  ---------  -------  ----------  --------  --------------------------- 
+
+1     0          0 Bytes  0           0 Bytes   match.ip.dest-ip:   9.1.2.3 
+
+2     0          0 Bytes  0           0 Bytes   match.ip.source-ip: 7.8.2.3 
+```
+
 ### Set DSCP on Transit Traffic
 
 The examples here use the *mangle* table to modify the packet as it transits the switch. DSCP is in {{<exlink url="https://en.wikipedia.org/wiki/Differentiated_services#Configuration_guidelines" text="decimal notation">}} in the examples below.

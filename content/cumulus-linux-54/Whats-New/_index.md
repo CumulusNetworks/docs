@@ -12,9 +12,9 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0+B
 <!-- vale on -->
-Cumulus Linux 5.4.0+B supports the following platform, which is available as a proof of concept:
+Cumulus Linux 5.4.0+B supports the following platform, which is available as a proof of concept (POC):
 
-- NVIDIA SN5600 (800G Spectrum-4)
+- NVIDIA SN5600 (800G Spectrum-4) currently supports 800G, 400G, and 100G speeds only.
 
 {{%notice note%}}
 Cumulus Linux 5.4.0+B does not support package upgrade; you must intall the Cumulus Linux 5.4.0+B image.

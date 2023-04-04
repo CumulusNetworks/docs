@@ -44,7 +44,7 @@ Early access features are now called beta features.
   - Updated PBR show commands show operational data
   - Updated EVPN commands show operational data
   - Routing Policy Phase 2
-  - Zebra - Phase 2
+  - The `nv show router nexthop rib`, `nv show router nexthop rib <ngh-id>`, and `nv show vrf <vrf> router nexthop-tracking ip-address` commands show operational data
   - BGP Phase 3
   - Additional Community Options for Route Policy
   - Changed commands:

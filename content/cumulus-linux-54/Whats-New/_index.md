@@ -9,9 +9,9 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 - For a list of all the platforms supported in Cumulus Linux 5.4, see the {{<exlink url="www.nvidia.com/en-us/networking/ethernet-switching/hardware-compatibility-list/" text="Hardware Compatibility List (HCL)">}}.
 - For a list of open and fixed issues in Cumulus Linux 5.4, see the {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
-
+<!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0+B
-
+<!-- vale on -->
 Cumulus Linux 5.4.0+B supports the following new platform only:
 
 - NVIDIA SN5600 (800G and 200G Spectrum-4)

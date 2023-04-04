@@ -81,7 +81,7 @@ cumulus@switch:~$ nv set service synce provider-default-priority 256
 cumulus@switch:~$ nv config apply
 ```
 
-{< /tab >}}
+{{< /tab >}}
 {{< tab "Linux Commands ">}}
 
 Edit the `/etc/synced/synced.conf` file to change the `priority` setting, then restart the `syncd` service.
@@ -110,7 +110,7 @@ You can set the logging level that the SyncE service uses:
 - `error` level logs errors.
 - `critical` level logs critical errors and notices.
 
-The following example command sets the lgging level to `debug`.
+The following example command sets the logging level to `debug`.
 
 {{< tabs "TabID108 ">}}
 {{< tab "NVUE Commands ">}}

@@ -436,6 +436,16 @@ cumulus@switch:~$ nv set router policy route-map routemap1 rule 10 description s
 cumulus@switch:~$ nv config apply
 ```
 
+### Clear Matches Against a Route Map
+
+If you make changes to a route map, you can re-evaluate the routes by running the `nv action clear router policy route-map <route-map>` command to clear the number of matches shown against the route map.
+
+The following example clears the number of matches shown against the route map called ROUTEMAP1.
+
+```
+cumulus@switch:~$ nv action clear router policy route-map ROUTEMAP1
+```
+
 ## Route Redistribution
 
 Route redistribution allows a network to use a routing protocol to route traffic dynamically based on the information learned from a different routing protocol or from static routes. Route redistribution helps increase accessibility within networks.

@@ -993,7 +993,7 @@ cumulus@switch:~$ nv set acl example2 rule 10 action permit
 cumulus@switch:~$ nv set acl example2 rule 20 match ip source-ip ANY 
 cumulus@switch:~$ nv set acl example2 rule 20 match ip dest-ip 10.10.10.1/32
 cumulus@switch:~$ nv set acl example2 rule 20 action deny
-cumulus@switch:~$ nv set interface swp1-48 acl example2 inbound control-plane
+cumulus@switch:~$ nv set system control-plane acl example2 inbound
 cumulus@switch:~$ nv config apply
 ```
 

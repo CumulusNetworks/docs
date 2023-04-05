@@ -10,7 +10,7 @@ This document is in Beta.
 
 ## nv action
 
-Resets counters for interfaces, QoS buffers and pools, removes conflicts from protodown MLAG bonds, and disconnects system users.
+Resets counters for interfaces, BGP, QoS buffers and pools, removes conflicts from protodown MLAG bonds, and disconnects system users.
 
 - - -
 
@@ -38,6 +38,8 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp1 bond mlag lacp-conflict
 
 ## nv action clear interface \<interface-id\> ptp counters
 
+Clears PTP counters on the specified interface.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -57,6 +59,8 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp1 ptp counters
 - - -
 
 ## nv action clear interface \<interface-id\> qos buffer
+
+Clears QoS buffer counters on the specified interface.
 
 ### Command Syntax
 
@@ -78,6 +82,8 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp1 qos buffer
 
 ## nv action clear interface \<interface-id\> qos counter
 
+Clears QoS counters on the specified interface.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -98,6 +104,8 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp1 qos counter
 
 ## nv action clear interface \<interface-id\> qos roce counters
 
+Clears QoS RoCE counters on the specified interface.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -117,6 +125,8 @@ cumulus@leaf01:mgmt:~$ nv action clear interface swp1 qos roce counter
 - - -
 
 ## nv action clear interface \<interface-id\> synce counters
+
+Clears Synce counters on the specified interface.
 
 ### Command Syntax
 
@@ -186,6 +196,8 @@ cumulus@leaf01:mgmt:~$ nv action clear qos buffer pool
 
 ## nv action clear router policy route-map \<route-map-id\>
 
+Clears counters for the specified route map.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -203,6 +215,8 @@ cumulus@leaf01:mgmt:~$ nv action clear router policy route-map ROUTEMAP1
 ```
 
 ## nv action clear service ptp \<instance-id\> monitor violations log max-offset
+
+Clears PTP maximum offset monitor violation logs.
 
 ### Command Syntax
 
@@ -224,6 +238,8 @@ cumulus@leaf01:mgmt:~$ nv action clear service ptp 1 monitor violations log max-
 
 ## nv action clear service ptp \<instance-id\> monitor violations log min-offset
 
+Clears PTP minumum offset monitor violation logs.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -243,6 +259,8 @@ cumulus@leaf01:mgmt:~$ nv action clear service ptp 1 monitor violations log min-
 - - -
 
 ## nv action clear service ptp \<instance-id\> monitor violations log path-delay
+
+Clears PTP path delay monitor violation logs.
 
 ### Command Syntax
 
@@ -264,6 +282,8 @@ cumulus@leaf01:mgmt:~$ nv action clear service ptp 1 monitor violations log path
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv4-unicast in
 
+Clears BGP IPv4 *in* counters.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -283,6 +303,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv4-unicast out
+
+Clears BGP IPv4 *out* counters.
 
 ### Command Syntax
 
@@ -304,6 +326,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv4-unicast soft in
 
+Clears BGP IPv4 soft *in* counters.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -323,6 +347,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family sof
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv4-unicast soft out
+
+Clears BGP IPv4 soft *out* counters.
 
 ### Command Syntax
 
@@ -344,6 +370,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family sof
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv6-unicast in
 
+Clears BGP IPv6 *in* counters.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -363,6 +391,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv6-unicast out
+
+Clears BGP IPv6 *out* counters.
 
 ### Command Syntax
 
@@ -384,6 +414,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv6-unicast soft in
 
+Clears BGP IPv6 soft *in* counters.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -403,6 +435,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family ipv6-unicast soft out
+
+Clears BGP IPv6 soft *out* counters.
 
 ## Command Syntax
 
@@ -424,6 +458,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family l2vpn-evpn in
 
+Clears BGP layer 2 VPN EVPN *in* counters.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -443,6 +479,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family l2vpn-evpn out
+
+Clears BGP layer 2 VPN EVPN *out* counters.
 
 ### Command Syntax
 
@@ -464,6 +502,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family l2vpn-evpn soft in
 
+Clears BGP layer 2 VPN EVPN soft *in* counters.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -484,6 +524,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family l2vpn-evpn soft out
 
+Clears BGP layer 2 VPN EVPN soft *out* counters.
+
 ### Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -503,6 +545,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> in
+
+Clears *in* counters for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
@@ -525,6 +569,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 in
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> out
 
+Clears *out* counters for a specific BGP peer in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -545,6 +591,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 out
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> soft in
+
+Clears soft *in* counters for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
@@ -567,6 +615,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 sof
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> soft out
 
+Clears soft *out* counters for a specific BGP peer in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -587,6 +637,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 sof
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast in
+
+Clears *in* counters for a specific IPv4 BGP peer in the specified VRF.
 
 ## Command Syntax
 
@@ -609,6 +661,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast out
 
+Clears *out* counters for a specific IPv4 BGP peer in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -629,6 +683,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast soft in
+
+Clears soft *in* counters for a specific IPv4 BGP peer in the specified VRF.
 
 ## Command Syntax
 
@@ -651,6 +707,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv4-unicast soft out
 
+Clears soft *out* counters for a specific IPv4 BGP peer in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -671,6 +729,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast in
+
+Clears *in* counters for a specific IPv6 BGP peer in the specified VRF.
 
 ## Command Syntax
 
@@ -693,6 +753,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast out
 
+Clears *out* counters for a specific IPv6 BGP peer in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -713,6 +775,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast soft in
+
+Clears soft *in* counters for a specific IPv6 BGP peer in the specified VRF.
 
 ## Command Syntax
 
@@ -735,6 +799,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family ipv6-unicast soft out
 
+Clears soft *out* counters for a specific IPv6 BGP peer in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -755,6 +821,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn in
+
+Clears *in* counters for a specific layer 2 VPN EVPN BGP peer in the specified VRF.
 
 ## Command Syntax
 
@@ -777,6 +845,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn out
 
+Clears *out* counters for a specific layer 2 VPN EVPN BGP peer in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -797,6 +867,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn soft in
+
+Clears soft *in* counters for a specific layer 2 VPN EVPN BGP peer in the specified VRF.
 
 ## Command Syntax
 
@@ -819,6 +891,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn soft out
 
+Clears soft *out* counters for a specific layer 2 VPN EVPN BGP peer in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -839,6 +913,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> in
+
+Clears *in* counters for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
@@ -861,6 +937,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> out
 
+Clears *out* counters for a specific BGP peer group in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -881,6 +959,9 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> soft in
+
+Clears soft *in* counters for a specific BGP peer group in the specified VRF.
+
 
 ## Command Syntax
 
@@ -903,6 +984,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> soft out
 
+Clears soft *out* counters for a specific BGP peer group in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -923,6 +1006,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast in
+
+Clears IPv4 *in* counters for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
@@ -945,6 +1030,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast out
 
+Clears IPv4 *out* counters for a specific BGP peer group in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -965,6 +1052,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast soft in
+
+Clears IPv4 soft *in* counters for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
@@ -987,6 +1076,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv4-unicast soft out
 
+Clears IPv4 soft *out* counters for a specific BGP peer group in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -1007,6 +1098,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast in
+
+Clears IPv6 *in* counters for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
@@ -1029,6 +1122,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast out
 
+Clears IPv4 *out* counters for a specific BGP peer group in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -1049,6 +1144,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast soft in
+
+Clears IPv6 soft *in* counters for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
@@ -1071,6 +1168,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family ipv6-unicast soft out
 
+Clears IPv6 soft *out* counters for a specific BGP peer group in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -1091,6 +1190,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn in
+
+Clears layer 2 VPN EVPN *in* counters for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
@@ -1113,6 +1214,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn out
 
+Clears layer 2 VPN EVPN *out* counters for a specific BGP peer group in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -1133,6 +1236,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 - - -
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn soft in
+
+Clears layer 2 VPN EVPN soft *in* counters for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
@@ -1155,6 +1260,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn soft out
 
+Clears layer 2 VPN EVPN soft *out* counters for a specific BGP peer group in the specified VRF.
+
 ## Command Syntax
 
 | \<div style="width:250px">Syntax   |  Description  |
@@ -1175,6 +1282,8 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 - - -
 
 ## nv action clear vrf \<vrf-id\> router ospf interface \<interface-id\>
+
+Clears OSPF counters on the specified interface.
 
 ## Command Syntax
 

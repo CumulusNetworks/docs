@@ -12,8 +12,12 @@ The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 - The SyncE daemon (`syncd`) manages:
   - Transmitting and receiving <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
   - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
-  - Using the next best clock when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
+  - The next best clock to use when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
   - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
+
+{{%notice note%}}
+Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
+{{%/notice%}}
 
 ## Basic Configuration
 
@@ -21,10 +25,10 @@ Basic SyncE configuration requires you:
 - Enable SyncE on the switch.
 - Configure SyncE on at least one interface or bond so that the interface is a timing source that passes to the selection algorithm.
 
-The basic configuration shown below uses the default settings:
-- The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.
+The basic configuration shown below uses the default SyncE settings:
+<!-- - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.-->
 - The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is set to 100.
-- The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using it for synchronization is set to 5 minutes.
+- The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using the interface for synchronization is set to 5 minutes.
 
 ```
 cumulus@switch:~$ nv set service synce enable on
@@ -69,7 +73,7 @@ cumulus@switch:~$ sudo systemctl restart syncd
 
 ### Priority
 
-The priority for the clock source. The lowest priority is 1 and the the highest priority is 256. If two clock sources has the same priority, the switch uses the lowest clock source.
+You can set the priority for the clock source. The lowest priority is 1 and the the highest priority is 256. If two clock sources has the same priority, the switch uses the lowest clock source.
 
 The following example command sets the priority to 256:
 
@@ -104,11 +108,11 @@ cumulus@switch:~$ sudo systemctl restart syncd
 ### Logging
 
 You can set the logging level that the SyncE service uses:
+- `critical` level logs critical errors and notices.
 - `debug` level logs fine-grained informational events that are most useful to debug an application.
+- `error` level logs errors.
 - `info` level logs informational messages.
 - `notice` level logs notices.
-- `error` level logs errors.
-- `critical` level logs critical errors and notices.
 
 The following example command sets the logging level to `debug`.
 
@@ -145,7 +149,7 @@ cumulus@switch:~$ sudo systemctl restart syncd
 
 ### Frequency Source Priority
 
-The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same QL. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 100.
+The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 100.
 
 The following command example sets the priority on swp2 to 254:
 

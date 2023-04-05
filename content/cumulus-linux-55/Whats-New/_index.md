@@ -39,7 +39,7 @@ Early access features are now called beta features.
   - {{<link url="SyncE" text="SyncE">}}
   - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
   - {{<link url="Netfilter-ACLs/#control-plane-acls" text="Control plane ACLs">}}
-  - Interface Counter commands
+  - Commands to clear counters and routes
   - Support for the named well known communities for `no-export`, `no-advertise`, and `additive` options.
   - Updated PBR show commands show operational data
   - Updated EVPN commands show operational data

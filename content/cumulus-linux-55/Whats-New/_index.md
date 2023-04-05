@@ -40,12 +40,11 @@ Early access features are now called beta features.
   - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
   - {{<link url="Netfilter-ACLs/#control-plane-acls" text="Control plane ACLs">}}
   - Commands to clear counters and routes
-  - Support for the named well known communities for `no-export`, `no-advertise`, and `additive` options.
+  - Support for the named well known BGP communities for `no-export`, `no-advertise`, and `additive` options.
   - Updated PBR show commands show operational data
   - Updated EVPN commands show operational data
   - Updated `nv show router nexthop rib`, `nv show router nexthop rib <ngh-id>`, and `nv show vrf <vrf> router nexthop-tracking ip-address` commands show operational data
   - Updated {{<link url="Troubleshooting-BGP" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data
-  - Routing Policy Phase 2
   - Changed commands:
     - The `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>`
     - The `nv set service dhcp-relay6 blue interface downstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 blue interface downstream <interface> link-address <ipv6-address>`

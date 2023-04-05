@@ -30,23 +30,22 @@ Early access features are now called beta features.
 ### New Features and Enhancements
 
 - 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
-- New PTP {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="ITU-T G.8275.2 Profile">}}
+- {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 Profile">}}
   <!-- - PPS In or Out-->
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - TACACS+ commands are now generally available
-  - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}}  restart mode
+  - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}} restart mode
   - {{<link url="VLAN-aware-Bridge-Mode#mac-address-ageing" text="Bridge aging timer">}}
   - {{<link url="SyncE" text="SyncE">}}
   - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
-  - COPP Rule Definition with Control-Plane ACLs
-  - LTTng Enhacements Switchd
-  - Interface Counter Parity for NVUE
+  - {{<link url="Netfilter-ACLs/#control-plane-acls" text="Control plane ACLs">}}
+  - Interface Counter commands
+  - Support for the named well known communities for `no-export`, `no-advertise`, and `additive` options.
   - Updated PBR show commands show operational data
   - Updated EVPN commands show operational data
+  - Updated `nv show router nexthop rib`, `nv show router nexthop rib <ngh-id>`, and `nv show vrf <vrf> router nexthop-tracking ip-address` commands show operational data
+  - Updated {{<link url="Troubleshooting-BGP" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data
   - Routing Policy Phase 2
-  - The `nv show router nexthop rib`, `nv show router nexthop rib <ngh-id>`, and `nv show vrf <vrf> router nexthop-tracking ip-address` commands show operational data
-  - BGP Phase 3
-  - Additional Community Options for Route Policy
   - Changed commands:
     - The `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>`
     - The `nv set service dhcp-relay6 blue interface downstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 blue interface downstream <interface> link-address <ipv6-address>`

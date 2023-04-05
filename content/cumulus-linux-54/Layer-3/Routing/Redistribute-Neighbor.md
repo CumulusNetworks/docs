@@ -2,7 +2,7 @@
 title: Redistribute Neighbor
 author: NVIDIA
 weight: 790
-toc: 3
+toc: 4
 ---
 *Redistribute neighbor* provides a way for IP subnets to span racks without forcing the end hosts to run a routing protocol by announcing individual host /32 routes in the routed fabric. Other hosts on the fabric can use this new path to access the hosts in the fabric. If <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span> is available, traffic can load balance across the available paths natively.
 

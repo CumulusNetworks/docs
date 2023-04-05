@@ -2,7 +2,7 @@
 title: DHCP Servers
 author: NVIDIA
 weight: 350
-toc: 3
+toc: 4
 ---
 A DHCP server automatically provides and assigns IP addresses and other network parameters to client devices. It relies on <span style="background-color:#F5F5DC">[DHCP](## "Dynamic Host Configuration Protocol")</span> to respond to broadcast requests from clients.
 

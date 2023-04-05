@@ -2,7 +2,7 @@
 title: Network Time Protocol - NTP
 author: NVIDIA
 weight: 126
-toc: 3
+toc: 4
 ---
 The `ntpd` daemon running on the switch implements the NTP protocol. It synchronizes the system time with time servers in the `/etc/ntp.conf` file. The `ntpd` daemon starts at boot by default.
 

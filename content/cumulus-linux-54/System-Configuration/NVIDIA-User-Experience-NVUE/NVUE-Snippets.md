@@ -2,7 +2,7 @@
 title: NVUE Snippets
 author: NVIDIA
 weight: 123
-toc: 3
+toc: 4
 ---
 NVUE supports both traditional snippets and flexible snippets:
 - Use traditional snippets to add configuration to the `/etc/network/interfaces`, `/etc/frr/frr.conf`, `/etc/frr/daemons`, `/etc/cumulus/switchd.conf`, `/etc/cumulus/datapath/traffic.conf` or `/etc/ssh/sshd_config` files.

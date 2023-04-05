@@ -2,7 +2,7 @@
 title: Configuration Example
 author: NVIDIA
 weight: 880
-toc: 3
+toc: 4
 ---
 This section shows a BGP configuration example based on the reference topology. The example configures BGP *unnumbered* on all leafs and spines, and MLAG on leaf01 and leaf02, and on leaf03 and leaf04.
 

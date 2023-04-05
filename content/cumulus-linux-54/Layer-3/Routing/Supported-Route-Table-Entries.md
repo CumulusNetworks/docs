@@ -2,7 +2,7 @@
 title: Supported Route Table Entries
 author: NVIDIA
 weight: 740
-toc: 3
+toc: 4
 ---
 Cumulus Linux advertises the maximum number of route table entries supported on the switch, including:
 

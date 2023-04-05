@@ -2,7 +2,7 @@
 title: Route Filtering and Redistribution
 author: NVIDIA
 weight: 750
-toc: 3
+toc: 4
 ---
 Route filtering lets you exclude routes that neighbors advertise or receive. You can use route filtering to manipulate traffic flows, reduce memory utilization, and improve security.
 

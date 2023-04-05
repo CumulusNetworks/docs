@@ -2,7 +2,7 @@
 title: NVUE Commands
 author: NVIDIA
 weight: 121
-toc: 2
+toc: 4
 ---
 This section shows you how to list all the NVUE commands and see command descriptions.
 

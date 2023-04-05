@@ -2,7 +2,7 @@
 title: Management VRF
 author: NVIDIA
 weight: 950
-toc: 3
+toc: 4
 ---
 *Management VRF* is a subset of {{<link url="Virtual-Routing-and-Forwarding-VRF">}} (virtual routing tables and forwarding) and provides a separation between the out-of-band management network and the in-band data plane network. For VRFs, the *main* routing table is the default table for the data plane switch ports. With management VRF, the switch uses a second table, *mgmt*, for routing through the Ethernet ports of the switch. The *mgmt* name is special cased to identify the management VRF from a data plane VRF.
 

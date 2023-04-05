@@ -2,7 +2,7 @@
 title: OSPF Configuration Example
 author: NVIDIA
 weight: 920
-toc: 3
+toc: 4
 ---
 This section shows an OSPF configuration example based on the reference topology.
 

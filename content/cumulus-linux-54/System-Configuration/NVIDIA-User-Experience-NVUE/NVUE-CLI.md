@@ -2,7 +2,7 @@
 title: NVUE CLI
 author: NVIDIA
 weight: 119
-toc: 3
+toc: 4
 ---
 The NVUE CLI has a flat structure as opposed to a modal structure. This means that you can run all commands from the primary prompt instead of only in a specific mode.
 

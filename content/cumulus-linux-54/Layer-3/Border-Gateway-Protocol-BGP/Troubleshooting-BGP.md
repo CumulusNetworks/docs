@@ -2,7 +2,7 @@
 title: Troubleshooting BGP
 author: NVIDIA
 weight: 870
-toc: 3
+toc: 4
 ---
 Use the following commands to troubleshoot BGP.
 

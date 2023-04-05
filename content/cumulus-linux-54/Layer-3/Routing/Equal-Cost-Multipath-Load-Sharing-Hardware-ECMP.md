@@ -2,7 +2,7 @@
 title: Equal Cost Multipath Load Sharing - Hardware ECMP
 author: NVIDIA
 weight: 770
-toc: 3
+toc: 4
 ---
 Cumulus Linux enables hardware <span style="background-color:#F5F5DC">[ECMP](## "Equal Cost Multi Path")</span> by default. Load sharing occurs automatically for all routes with multiple next hops installed. ECMP load sharing supports both IPv4 and IPv6 routes.
 

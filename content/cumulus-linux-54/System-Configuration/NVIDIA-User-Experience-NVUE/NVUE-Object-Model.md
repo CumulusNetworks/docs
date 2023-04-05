@@ -2,7 +2,7 @@
 title: NVUE Object Model
 author: NVIDIA
 weight: 117
-toc: 3
+toc: 4
 ---
 
 The NVUE object model definition uses the {{<exlink url="https://github.com/OAI/OpenAPI-Specification" text="OpenAPI specification (OAS)">}}. Similar to YANG {{<exlink url="https://datatracker.ietf.org/doc/html/rfc6020" text="(RFC 6020">}} and {{<exlink url="https://datatracker.ietf.org/doc/html/rfc7950" text="RFC 7950)">}}, OAS is a data definition, manipulation, and modeling language (DML) that lets you build model-driven interfaces for both humans and machines. Although the computer networking and telecommunications industry commonly uses YANG (standardized by IETF) as a DML, the adoption of OpenAPI is broader, spanning cloud to compute to storage to IoT and even social media. The {{<exlink url="https://www.openapis.org/about" text="OpenAPI Initiative (OAI) consortium">}} leads OpenAPI standardization, a chartered project under the Linux Foundation.

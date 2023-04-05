@@ -3,7 +3,7 @@ title: SyncE
 author: NVIDIA
 weight: 129
 draft: true
-toc: 3
+toc: 4
 
 ---
 {{%notice note%}}

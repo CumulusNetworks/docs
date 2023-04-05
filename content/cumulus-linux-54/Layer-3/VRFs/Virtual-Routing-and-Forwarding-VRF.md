@@ -2,7 +2,7 @@
 title: Virtual Routing and Forwarding - VRF
 author: NVIDIA
 weight: 940
-toc: 3
+toc: 4
 ---
 Virtual routing and forwarding (VRF) enables you to use multiple independent routing tables that work simultaneously on the same switch. Other implementations call this feature *VRF-Lite*.
 

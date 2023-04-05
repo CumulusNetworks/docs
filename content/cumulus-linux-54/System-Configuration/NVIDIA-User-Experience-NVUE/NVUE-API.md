@@ -2,7 +2,7 @@
 title: NVUE API
 author: NVIDIA
 weight: 125
-toc: 3
+toc: 4
 ---
 In addition to the CLI, NVUE supports a REST API. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL or a web browser.
 

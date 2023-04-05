@@ -2,7 +2,7 @@
 title: Troubleshoot Layer 1
 author: NVIDIA
 weight: 1095
-toc: 3
+toc: 4
 ---
 
 This chapter describes how to troubleshoot layer 1 issues that can affect the port modules connecting a switch to a network.

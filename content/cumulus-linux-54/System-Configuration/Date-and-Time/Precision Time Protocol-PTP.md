@@ -2,7 +2,7 @@
 title: Precision Time Protocol - PTP
 author: NVIDIA
 weight: 128
-toc: 3
+toc: 4
 ---
 Cumulus Linux supports IEEE 1588-2008 Precision Timing Protocol (PTPv2), which defines the algorithm and method for synchronizing clocks of various devices across packet-based networks, including Ethernet switches and IP routers.
 

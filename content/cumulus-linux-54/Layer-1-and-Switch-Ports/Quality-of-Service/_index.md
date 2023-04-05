@@ -2,7 +2,7 @@
 title: Quality of Service
 author: NVIDIA
 weight: 320
-right_toc_levels: 2
+toc: 3
 ---
 
 This section refers to frames for all internal QoS functionality. Unless explicitly stated, the actions are independent of layer 2 frames or layer 3 packets.

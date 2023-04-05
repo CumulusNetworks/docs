@@ -2,7 +2,7 @@
 title: Open Shortest Path First v3 - OSPFv3
 author: NVIDIA
 weight: 910
-toc: 3
+toc: 4
 ---
 OSPFv3 is a revised version of OSPFv2 and supports the IPv6 address family.
 

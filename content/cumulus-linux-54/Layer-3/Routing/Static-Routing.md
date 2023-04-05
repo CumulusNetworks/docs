@@ -2,7 +2,7 @@
 title: Static Routing
 author: NVIDIA
 weight: 730
-toc: 3
+toc: 4
 ---
 You can use static routing if you do not require the complexity of a dynamic routing protocol (such as <span style="background-color:#F5F5DC">[BGP](## "Border Gateway Protocol")</span> or <span style="background-color:#F5F5DC">[OSPF](## "Open Shortest Path First")</span>), if you have routes that do not change frequently and for which the destination is only one or two paths away.
 

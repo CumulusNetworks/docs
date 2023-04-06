@@ -584,28 +584,31 @@ cumulus@switch:~$ nv config apply
 cumulus@switch:~$ sudo vtysh
 
 switch# configure terminal
+switch(config)# nexthop-group group1
+switch(config-nh-group)#  nexthop 192.168.0.32
+switch(config-nh-group)# exit
 switch(config)# pbr-map map1 seq 1
-switch(config-pbr-map)# match src-ip 0.0.0.0/0
-switch(config-pbr-map)# set nexthop 192.168.0.32
+switch(config-pbr-map)#  match src-ip 0.0.0.0/0
+switch(config-pbr-map)#  set nexthop-group group1
 switch(config-pbr-map)# exit
 switch(config)# interface swp51
-switch(config-if)# pbr-policy map1
+switch(config-if)#  pbr-policy map1
 switch(config-if)# end
 switch# write memory
 switch# exit
-cumulus@switch:~$
+cumulus@switch:mgmt:~$
 ```
 
 The vtysh commands save the configuration in the `/etc/frr/frr.conf` file. For example:
 
 ```
+interface swp51
+pbr-policy map1
 nexthop-group group1
 nexthop 192.168.0.32
 pbr-map map1 seq 1
 match src-ip 0.0.0.0/0
 set nexthop-group group1
-interface swp51
-pbr-policy map1
 ...
 ```
 

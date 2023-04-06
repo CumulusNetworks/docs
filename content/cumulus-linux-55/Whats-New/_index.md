@@ -35,11 +35,11 @@ Early access features are now called beta features.
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - TACACS+ commands are now generally available
   - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}} restart mode
-  - {{<link url="VLAN-aware-Bridge-Mode#mac-address-ageing" text="Bridge aging timer">}}
+  - {{<link url="VLAN-aware-Bridge-Mode#mac-address-ageing" text="MAC address aging timer">}}
   - {{<link url="SyncE" text="SyncE">}}
   - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
   - {{<link url="Netfilter-ACLs/#control-plane-acls" text="Control plane ACLs">}}
-  - Interface Counter commands
+  - Commands to clear counters and routes
   - Support for the named well known communities for `no-export`, `no-advertise`, and `additive` options.
   - Updated PBR show commands show operational data
   - Updated EVPN commands show operational data

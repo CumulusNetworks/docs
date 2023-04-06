@@ -317,6 +317,236 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router ospf distance
 
 - - -
 
+## nv show vrf \<vrf-id\> router ospf interface
+
+Shows the OSPF interfaces in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf interface \<interface-id\>
+
+Shows information about a specific OSPF interface in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<interface-id>`    | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface swp51
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf interface \<interface-id\> local-ip
+
+Shows the local IP addresses for a specific OSPF interface in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<interface-id>`    | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface swp51 local-ip
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf interface \<interface-id\> local-ip 
+
+Shows information about a specific local IP address for the specified OSPF interface in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<interface-id>`    | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface swp51 local-ip 10.0.1.9
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf neighbor
+
+Shows the OSPF neighbors in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\>
+
+Shows information about a specific OSPF neighbor in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>` | The IP address of the OSPF neighbor.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\> interface
+
+Shows the interfaces for a specific OSPF neighbor in the specified VRF.
+
+### Command Syntax
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>` | The IP address of the OSPF neighbor.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\> interface \<interface-id\>
+
+Shows information about a specific OSPF neighbor interface in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>` | The IP address of the OSPF neighbor.|
+| `<interface-id>` | The OSPF neighbor interface.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\> interface \<interface-id\> local-ip
+
+Show the local IP address for a specific OSPF neighbor interface in the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>` | The IP address of the OSPF neighbor.|
+| `<interface-id>` | The OSPF neighbor interface.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> router ospf neighbor \<neighbor-id\>  interface \<interface-id\> local-ip \<address\>
+
+Show information about a specific local IP address for the specified OSPF neighbor interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<neighbor-id>` | The IP address of the OSPF neighbor.|
+| `<interface-id>` | The OSPF neighbor interface.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 
+```
+
+- - -
+
 ## nv show vrf \<vrf-id\> router ospf log
 
 Shows the OSPF log configuration for the specified VRF.

@@ -1280,6 +1280,28 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 - - -
 
+## nv action clear vrf \<vrf-id\> router ospf interface
+
+Clears all counters for the OSPF interfaces.
+
+## Command Syntax
+
+| \<div style="width:250px">Syntax   |  Description  |
+| ----------    | ------------  |
+| `<vrf-id>` |  The VRF name.  |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv action clear vrf default router ospf interface
+```
+
+- - -
+
 ## nv action clear vrf \<vrf-id\> router ospf interface \<interface-id\>
 
 Clears OSPF neighbor adjacency on the specified interface.

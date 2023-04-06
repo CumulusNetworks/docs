@@ -21,6 +21,22 @@ cumulus@leaf01:mgmt:~$ nv show evpn
 
 - - -
 
+## nv show evpn access-vlan-info vlan \<vlan-id\>
+
+Shows access VLAN information for the specified VLAN.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info vlan 10
+```
+
+- - -
+
 ## nv show evpn dad
 
 Shows EVPN duplicate address detection information.
@@ -69,6 +85,22 @@ cumulus@leaf01:mgmt:~$ nv show evpn dad duplicate-action freeze
 
 - - -
 
+## nv show evpn l2-nhg vtep-ip \<vtep-id\>
+
+Shows EVPN layer 2 nexthop group information for the specified VTEP.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn l2-nhg vtep-ip 10.10.10.2
+```
+
+- - -
+
 ## nv show evpn multihoming
 
 Shows EVPM multihoming global configuration.
@@ -81,6 +113,22 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming
+```
+
+- - -
+
+## nv show evpn multihoming bgp-info esi \<esi-id\>
+
+Shows EVPN multihoming BGP information for the specified ESI.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02
 ```
 
 - - -
@@ -100,6 +148,40 @@ cumulus@leaf01:mgmt:~$ nv show evpn multihoming ead-evi-route
 ```
 
 - - -
+
+## nv show evpn multihoming esi
+
+Shows EVPN multihoming Ethernet segment ID information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi
+```
+
+## nv show evpn multihoming esi \<esi-id\>
+
+Shows information about the specified EVPN multihoming Ethernet segment ID.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02
+```
 
 ## nv show evpn multihoming segment
 
@@ -285,6 +367,52 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac 50:88:b2:3c:08:f9
+```
+
+- - -
+
+## nv show evpn vni \<vni-id\> multihoming bgp-info esi \<es-identifier\>
+
+Shows BGP information for a specific multihoming Ethernet segment for the specified EVPN VNI.
+
+### Command Syntax
+
+|  Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+| `<es-identifier>` |  The Ethernet segment ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02
+```
+
+- - -
+
+## nv show evpn vni \<vni-id\> multihoming esi \<es-identifier\>
+
+Shows information for a specific multihoming Ethernet segment for the specified EVPN VNI.
+
+### Command Syntax
+
+|  Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+| `<es-identifier>` |  The Ethernet segment ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02
 ```
 
 - - -
@@ -605,7 +733,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf RED evpn nexthop-vtep
 
 ## nv show vrf \<vrf-id\> evpn nexthop-vtep \<nexthop-vtep-id\>
 
-Shows information about a specific EVPN next hop VTEP for the specified VRF.
+Shows information about a specific EVPN next hop VTEP in the specified VRF.
 
 ### Command Syntax
 

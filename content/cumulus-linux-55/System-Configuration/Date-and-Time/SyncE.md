@@ -30,11 +30,27 @@ The basic configuration shown below uses the default SyncE settings:
 - The {{<link url="#frequency-source-priority" text="frequency source priority">}} on the interface is set to 100.
 - The {{<link url="#wait-to-restore-time" text="amount of time SyncE waits">}} after the interface comes up before using the interface for synchronization is set to 5 minutes.
 
+{{< tabs "TabID33 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
 cumulus@switch:~$ nv set service synce enable on
 cumulus@switch:~$ nv set interface swp2 synce enable on
 cumulus@switch:~$ nv config apply
 ```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Start the synce service:
+
+```
+cumulus@switch:~$ sudo systemctl enable synce
+cumulus@switch:~$ sudo systemctl start synce
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Optional Global Configuration
 
@@ -44,7 +60,7 @@ The wait to restore time is the number of seconds SyncE waits for each port to b
 
 The following command example sets the wait to restore time to 180 seconds (3 minutes):
 
-{{< tabs "TabID169 ">}}
+{{< tabs "TabID63 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -77,7 +93,7 @@ You can set the priority for the clock source. The lowest priority is 1 and the 
 
 The following example command sets the priority to 256:
 
-{{< tabs "TabID74 ">}}
+{{< tabs "TabID96 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -116,7 +132,7 @@ You can set the logging level that the SyncE service uses:
 
 The following example command sets the logging level to `debug`.
 
-{{< tabs "TabID108 ">}}
+{{< tabs "TabID135 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
@@ -153,7 +169,7 @@ The clock selection algorithm uses the frequency source priority on an interface
 
 The following command example sets the priority on swp2 to 254:
 
-{{< tabs "TabID139 ">}}
+{{< tabs "TabID172 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```

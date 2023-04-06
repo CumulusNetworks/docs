@@ -614,7 +614,15 @@ To show the bridge ageing configuration setting, run the `nv show bridge domain 
 
 ```
 cumulus@switch:~$ nv show bridge domain br_default
-
+                 operational  applied   
+---------------  -----------  ----------
+ageing                        600
+encap                         802.1Q
+mac-address                   auto
+type                          vlan-aware
+untagged                      1
+vlan-vni-offset               0
+...
 ```
 
 ## Static MAC Address Entries

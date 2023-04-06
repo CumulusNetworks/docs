@@ -25,16 +25,13 @@ Validation support is available in the NetQ UI and the NetQ CLI for the followin
 | VLAN | Yes | Yes |
 | VXLAN | Yes | Yes |
 
-## Validation with the NetQ UI
+## View and Run Validations in the UI
 
-The NetQ UI uses the following cards to create validations and view results for these protocols and services:
+The Validation Summary card displays a summary of validation checks from the past 24 hours:
 
-- Network Health
-- Validation Request
-- On-demand and Scheduled Validation Results
+{{<figure src="/images/netq/val-summary-460.png" width="200">}}
 
-For a general understanding of how well your network is operating, the Network Health card workflow is the best place to start as it contains the highest-level view and performance roll-ups.
-
+Select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation** in the header to create or schedule new validation checks, as well as view previous checks.
 ## Validation with the NetQ CLI
 
 The NetQ CLI uses the {{<link title="check" text="netq check commands">}} to validate the various elements of your network fabric, looking for inconsistencies in configuration across your fabric, connectivity faults, missing configurations, and so forth. You can run commands from any node in the network.
@@ -42,10 +39,10 @@ The NetQ CLI uses the {{<link title="check" text="netq check commands">}} to val
 
 To view the list of tests run for a given protocol or service by default, use either `netq show unit-tests <protocol/service>` or perform a tab completion on `netq check <protocol/service> [include|exclude]`. Refer to {{<link title="Validation Tests Reference">}} for a description of the individual tests.
 
-### Select the Tests to Run
+### Select Which Tests to Run
 
 <!-- vale off -->
-You can include or exclude one or more of the various tests performed during the validation. Each test is assigned a number, which is used to identify which tests to run. By default, all tests are run. The `<protocol-number-range-list>` value is used with the `include` and `exclude` options to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
+You can include or exclude one or more of the various tests performed during the validation. Each test is assigned a number, which is used to identify the tests. By default, all tests are run. The `<protocol-number-range-list>` value is used with the `include` and `exclude` options to indicate which tests to include. It is a number list separated by commas, or a range using a dash, or a combination of these. Do not use spaces after commas. For example:
 <!-- vale on -->
 
 - include 1,3,5
@@ -59,10 +56,10 @@ The output indicates whether a given test passed, failed, or was <!-- vale off -
 
 ## Validation Check Result Filtering
 
-You can create filters to suppress false alarms or uninteresting errors and warnings that can be a nuisance in CI workflows. For example, certain configurations permit a singly connected MLAG bond, which generates a standard error that is not useful.
+You can create filters to suppress false alarms or uninteresting errors and warnings. For example, certain configurations permit a singly connected MLAG bond, which generates a standard error that is not useful.
 
 {{%notice note%}}
-Filtered errors and warnings related to validation checks do NOT generate notifications and do not get counted in the alarm and info event totals. They do get counted as part of suppressed notifications instead.
+Filtered errors and warnings related to validation checks do NOT generate notifications and are not counted in events totals. They are counted as part of suppressed notifications instead.
 {{%/notice%}}
 
 You define these filters in the `/etc/netq/check-filter.yml` file. You can create a rule for individual check commands or you can create a global rule that applies to all tests run by the check command. Additionally, you can create a rule specific to a particular test run by the check command.

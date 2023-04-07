@@ -43,4 +43,4 @@ When fully expanded, NVLink4 device cards display an events summary. Select the 
 ## Related Information
 
 - {{<link title="Access Data with Cards">}}
-- {{<link title="NVLink4 Events">}}
+- {{<link title="NVLink Events">}}

@@ -40,7 +40,7 @@ Early access features are now called beta features.
   - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
   - {{<link url="Netfilter-ACLs/#control-plane-acls" text="Control plane ACLs">}}
   - New commands to clear counters and routes
-  - New OSPF show commands
+  - {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="New OSPF">}} show commands
   - Updated PBR show commands show operational data
   - Support for the named well known BGP communities for `no-export`, `no-advertise`, and `additive` options.
   - New EVPN commands to show multihoming ESI information and layer 2 nexthop group VTEP IP addresses, and to show remote router MAC addresses and nexthop VTEP

@@ -9,7 +9,7 @@ toc: 3
 NetQ collects data that validates the health of your network fabric, devices, and interfaces. You can create and run validations with either the NetQ UI or the NetQ CLI. The number of checks and the type of checks are tailored to the particular protocol or element being validated.
 <!-- vale on -->
 
-Use the value in the Test Number column in the tables below with the NetQ CLI when you want to include or exclude specific tests with the `netq check` command. You can get the test numbers by running the `netq show unit-tests` command.
+Use the value in the Test Number column in the tables below with the CLI when you want to include or exclude specific tests with the {{<link title="check" text="netq check">}} command. You can get the test numbers by running the {{<link title="show/#netq-show-unit-tests" text="netq show unit-tests">}} command.
 
 ## Addresses Validation Tests
 

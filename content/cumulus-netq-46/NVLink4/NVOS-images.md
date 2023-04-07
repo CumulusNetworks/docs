@@ -7,7 +7,7 @@ toc: 4
 
 NVOS images are managed with lifecycle management in the NetQ UI. This section details how to check for missing images, upload images, and specify default images.
 
-To complete the tasks outlined in this section, expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu. Under **Admin**, select **Manage switches**:
+To complete the tasks outlined in this section, expand the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> **Menu**. Under Admin, select **Manage switches**:
 
 {{<figure src="/images/netq/lcm-nvos-450.png" alt="" width="300">}}
 
@@ -98,7 +98,6 @@ To specify a default version:
 
 4. Click **Save**. The default version is now displayed on the card.
 
-
 {{</tab>}}
 
 {{</tabs>}}
@@ -115,8 +114,12 @@ After you upgrade all your switches beyond a particular release, you can remove 
 
 2. On the **Uploaded** tab, select the images you want to remove. 
 
-3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> Delete.
+3. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18"/> **Delete**.
 
 {{</tab>}}
 
 {{</tabs>}}
+
+## Related Information
+
+- {{<link title="Upgrade NVOS">}}

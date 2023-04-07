@@ -56,11 +56,13 @@ From the list of NVLink4 domains, you can view and manage multiple domains. Per 
 - Total number of nodes (GPU nodes and NVL4 switches)
 - Number of healthy and unhealthy nodes
 
-You can also stop and start GFM by selecting the stop and play buttons. Stopping GFM gradually shuts down monitoring operations and stops the telemetry agent.
+You can also {{<link title="Gather Files for Troubleshooting/#download-gfm-logs" text="download GFM logs">}} for debugging or troubleshooting. 
+
+Stop and start GFM by selecting the stop and play buttons. Stopping GFM gradually shuts down monitoring operations and stops the telemetry agent.
 
 Select **View details** to review the domain's configuration and associated devices:
 
-{{<figure src="/images/netq/nvlink4-view-details.png" alt="configuration summary for a selected domain" width="700">}}
+{{<figure src="/images/netq/nvl4-configuration-460.png" alt="configuration summary for a selected domain" width="700">}}
 
 The Devices tab displays the device health (healthy or unhealthy) and the LFM status. Hover over unhealthy devices to view the time at which they were last healthy. The timestamp updates continuously at a polling frequency of 60 seconds:
 
@@ -73,3 +75,7 @@ You must stop GFM to edit a domain. To edit a domain's configuration, select the
 ## Delete a Domain
 
 Select the three-dot menu {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-vertical.svg" height="14" width="14">}}, then select **Delete**. Deleting a domain also deletes any log or system dump files associated with that domain.
+
+## Related Information
+
+- {{<link title="Gather Files for Troubleshooting">}}

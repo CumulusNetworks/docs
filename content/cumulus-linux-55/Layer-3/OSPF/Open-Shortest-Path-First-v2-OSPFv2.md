@@ -1061,6 +1061,18 @@ switch# exit
 
 ## Troubleshooting
 
+`nv show vrf <vrf> router ospf neighbor`
+
+`nv show vrf <vrf> router ospf neighbor <IPv4-address>`
+
+`nv show vrf <vrf> router ospf neighbor <IPv4-address>  interface`
+
+`nv show vrf <vrf> router ospf neighbor <IPv4-address>  interface <interface>`
+
+`nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip`
+
+`nv show vrf <vrf> router ospf neighbor <IPv4-address>  interface <interface> local-ip <IPv4-address>`
+<!-->
 Cumulus Linux provides several OSPF troubleshooting commands:
 
 | Description | <div style="width:330px">vtysh Command |
@@ -1098,7 +1110,7 @@ O   10.10.10.1/32 [110/0] is directly connected, lo, weight 1, 00:02:37
 O>* 10.10.10.101/32 [110/100] via 10.0.1.1, swp51, weight 1, 00:00:57
 ```
 
-To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf` command.
+To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf` command.-->
 
 ## Related Information
 <!-- vale off -->

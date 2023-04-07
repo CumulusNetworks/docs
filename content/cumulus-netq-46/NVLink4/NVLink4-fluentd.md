@@ -39,7 +39,7 @@ Examples for configuring one switch to append two fluent destinations:
         ./netq_telemetry_agent_handler -add -address 192.168.0.17 -destination 10.188.44.17,30001,tcp -destination 10.188.44.43,30001,tcp -user admin -password admin -domain_id 1 -domain my_domain
 Examples for configuring two switches to replace with one fluent destination:
         ./netq_telemetry_agent_handler -replace -address 192.168.0.17 -address 192.168.0.21 -destination 10.188.44.17,30001,tcp -user admin -password admin -domain_id 1 -domain my_domain
-Examples for configuring one switche to delete a fluent destination:
+Examples for configuring one switch to delete a fluent destination:
         ./netq_telemetry_agent_handler -delete -address 192.168.0.17 -destination 10.188.44.17,30001,tcp -user admin -password admin -domain_id 1 -domain my_domain
 Examples for configuring one switch to delete all fluent destinations:
         ./netq_telemetry_agent_handler -delete_all -address 192.168.0.17 -user admin -password admin -domain_id 1 -domain my_domain

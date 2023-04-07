@@ -707,7 +707,7 @@ All 8x QSFP28 ports can break out into 2x QSFP28 without disabling ports.
 {{< tab "1G ">}}
 
 - 48x 1G - 48x SFP28 set to 10G
-- 16x 1G - 4x QSPF28 break out into 4x and set to 1G
+- 16x 1G - 4x QSFP28 break out into 4x and set to 1G
 
 Max 1G ports: 64
 
@@ -715,7 +715,7 @@ Max 1G ports: 64
 {{< tab "10G ">}}
 
 - 48x 10G - 48x SFP28 set to 10G
-- 16x 10G - 4x QSPF28 break out into 4x and set to 10G
+- 16x 10G - 4x QSFP28 break out into 4x and set to 10G
 
 Maximum 10G ports: 64
 
@@ -744,7 +744,7 @@ Maximum 50G ports: 16
 {{< /tab >}}
 {{< tab "100G ">}}
 
-8x 100G - 16x QSFP28 (native speed)
+8x 100G - 8x QSFP28 (native speed)
 
 Maximum 100G ports: 8
 
@@ -770,7 +770,7 @@ Max 1G ports: 64
 {{< /tab >}}
 {{< tab "10G ">}}
 
-64x 10G - Top 16x QSFP28 break out into 4x 25G and set to 10G (bottom 16x QSFP28 disabled)
+64x 10G - Top 16x QSFP28 break out into 4x and set to 10G (bottom 16x QSFP28 disabled)
 
 Maximum 10G ports: 64
 
@@ -824,7 +824,7 @@ Max 1G ports: 96
 {{< tab "10G ">}}
 
 - 48x 10G - 48x SFP28 set to 10G
-- 48x 10G - 12x QSPF28 break out into 4x and set to 10G
+- 48x 10G - 12x QSFP28 break out into 4x and set to 10G
 
 Maximum 10G ports: 96
 
@@ -832,7 +832,7 @@ Maximum 10G ports: 96
 {{< tab "25G ">}}
 
 - 48x 25G - 48x SFP28 (native speed)
-- 48x 25G - 12x QSPF28 break out into 4x
+- 48x 25G - 12x QSFP28 break out into 4x
 
 Maximum 25G ports: 96
 
@@ -883,7 +883,7 @@ Maximum 10G ports: 96
 {< tab "25G ">}}
 
 - 48x25G - 48xSFP56 set to 25G
-- 48x25G - 6xQSPF-DD break out into 8x50G and set to 25G
+- 48x25G - 6xQSFP-DD break out into 8x50G and set to 25G
 
 Maximum 25G ports: 96
 
@@ -993,7 +993,7 @@ All 32x QSFP56 ports can break out into 4xSFP56 or 2x QSFP56.
 {{< tabs "3700_ports ">}}
 {{< tab "1G ">}}
 
-128x 1G - 32XQSFP28 break out into 4x and set to 1G
+128x 1G - 32XQSFP56 break out into 4x and set to 1G
 
 Max 1G ports: 128
 
@@ -1176,7 +1176,7 @@ Maximum 50G ports: 128
 
 64x 100G - 64x QSFP28 (native speed)
 
-Maximum 100G ports: 80
+Maximum 100G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}
@@ -1195,7 +1195,7 @@ All 64xQSFP56 ports can break out into 2xQSFP56 (2x100GbE) without blocking port
 {{< tabs "4600_ports ">}}
 {{< tab "1G ">}}
 
-128x 1G - 32XQSFP28 break out into 4x and set to 1G
+128x 1G - 32XQSFP56 break out into 4x and set to 1G
 
 Max 1G ports: 128
 

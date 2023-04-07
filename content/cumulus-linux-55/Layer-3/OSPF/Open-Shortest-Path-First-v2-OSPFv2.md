@@ -1083,45 +1083,47 @@ Interface  Summary
 ---------  --------------------
 lo         local-ip: 10.10.10.1
 swp51      local-ip:   10.0.1.0
+           local-ip: 10.10.10.1
+swp52      local-ip: 10.10.10.1
 ```
 
 The following example shows the `nv show vrf <vrf> router ospf neighbor` command output:
 
 ```
 cumulus@switch:~$ nv show vrf default router ospf neighbor
-              Summary          
----------     ----------------- 
+              Summary         
+------------  ----------------
 10.10.10.101  Interface: swp51
-10.10.10.102  Interface: swp52 
+10.10.10.102  Interface: swp52
 ```
 
 The following example shows the `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface` command output:
 
 ```
 cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101
-Interface  Summary           
----------  ------------------
-swp51      local-ip: 10.0.1.0
+Interface  Summary             
+---------  --------------------
+swp51      local-ip: 10.10.10.1
 ```
 
 The following example shows the `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip <IPv4-address>` command output:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 10.0.1.0
-                   operational  applied
------------------  -----------  -------
-bdr-router-id      10.0.1.1            
-dead-timer-expiry  34337               
-dr-router-id       10.0.1.0            
-neighbor-ip        10.0.1.1            
-priority           1                   
-role               BDR                 
-state              full                
-statistics                             
-  db-summary-qlen  0                   
-  ls-request-qlen  0                   
-  ls-retrans-qlen  0                   
-  state-changes    5    
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 10.10.10.1
+                   operational   applied
+-----------------  ------------  -------
+bdr-router-id      0.0.0.0              
+dead-timer-expiry  59820                
+dr-router-id       0.0.0.0              
+neighbor-ip        10.10.10.101         
+priority           1                    
+role               DROther              
+state              init                 
+statistics                              
+  db-summary-qlen  0                    
+  ls-request-qlen  0                    
+  ls-retrans-qlen  0                    
+  state-changes    318     
 ```
 
 FRR (vtysh) provides several OSPF troubleshooting commands:
@@ -1171,7 +1173,8 @@ You can run the following commands to clear the OSPF counters shown in the NVUE 
 
 ```
 cumulus@leaf01:mgmt:~$ nv action clear vrf defaukt router ospf interface swp51
-
+...
+Action succeeded
 ```
 
 ## Related Information

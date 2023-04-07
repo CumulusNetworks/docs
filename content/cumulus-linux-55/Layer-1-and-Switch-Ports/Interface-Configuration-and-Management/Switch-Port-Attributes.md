@@ -114,6 +114,13 @@ To show the MTU setting for an interface:
 
 ```
 cumulus@switch:~$ nv show interface swp1
+...
+link                                                   
+  auto-negotiate           off                on       
+  duplex                   full               full     
+  speed                    1G                 auto     
+  fec                                         auto     
+  mtu                      9216               9216
 ```
 
 {{< /tab >}}

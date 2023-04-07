@@ -7,10 +7,22 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -524,8 +536,8 @@ Fixed: 1.14.2-2+deb10u4</td>
 <tr>
 <td>2669873</td>
 <td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
-<td></td>
+<td>4.3.0-4.3.2</td>
+<td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2669858</td>
@@ -1937,6 +1949,29 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
+<td>3410952</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-4.3.1</td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.3.1</td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-4.3.1</td>
+</tr>
+<tr>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1</td>
@@ -2018,6 +2053,44 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.5</td>
@@ -2045,7 +2118,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -2063,7 +2136,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3319919</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3291548</td>
@@ -2709,8 +2782,8 @@ Fixed: 1.14.2-2+deb10u4</td>
 <tr>
 <td>2669873</td>
 <td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
-<td></td>
+<td>4.3.0-4.3.1</td>
+<td>4.4.0-4.4.5</td>
 </tr>
 <tr>
 <td>2669858</td>
@@ -4190,8 +4263,13 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 </tr>
 <tr>
 <td>3031235</td>
-<td>Static VXLAN configuration prevents NCLU from working.</td>
-<td>4.3.0, 4.4.3</td>
+<td>Static VXLAN configuration prevents NCLU from working.
+
+In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
+
+warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
+</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>3020254</td>

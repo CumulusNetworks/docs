@@ -14,6 +14,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3367267"></a> [3367267](#3367267) <a name="3367267"></a> <br /> | When you upgrade a switch with NetQ LCM using the <code>root</code> user, the upgrade fails with the following message: <pre> Destination /home/root does not exist. </pre> To work around this issue, perform the upgrade using a different user account. | 4.5.0 | |
 | <a name="3362224"></a> [3362224](#3362224) <a name="3362224"></a> <br /> | When you configure a new access profile with SSH authentication using the CLI, the command fails with the following log message:<pre>Expecting value: line 1 column 1 (char 0) </pre>To work around this issue, use the NetQ UI to configure the access profile. | 4.5.0 | |
 | <a name="3226405"></a> [3226405](#3226405) <a name="3226405"></a> <br /> | TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled. | 4.3.0-4.5.0 | |
 | <a name="3216161"></a> [3216161](#3216161) <a name="3216161"></a> <br /> | In an OPTA clustered environment, NetQ agents might appear as rotten after upgrading to NetQ 4.3.0. To work around this issue, configure the <code>spice: false</code> parameter in <code>/etc/netq/netq.yml</code>. | 4.3.0-4.5.0 | |
@@ -24,7 +25,6 @@ pdfhidden: True
 | <a name="3085064"></a> [3085064](#3085064) <a name="3085064"></a> <br /> | When you attempt to install NetQ on a device using LCM and configure the incorrect VRF, the installation will be reflected as successful but the switch will not be present in the inventory in the LCM UI. | 4.1.0-4.5.0 | |
 | <a name="3053143"></a> [3053143](#3053143) <a name="3053143"></a> <br /> | The MLAG Session card might not show all MLAG events. | 4.2.0-4.5.0 | |
 | <a name="2885312"></a> [2885312](#2885312) <a name="2885312"></a> <br /> | EVPN Validation Type 2 checks might show false Duplicate MAC events for MAC addresses that are not duplicated. An example of this is shown below:<br />  <pre>EVPN Type 2 Test details:<br />  Hostname          Peer Name         Peer Hostname     Reason                                        Last Changed<br />  ----------------- ----------------- ----------------- --------------------------------------------- -------------------------<br />  torc-11           -                 -                 Duplicate Mac 00:02:00:00:00:55 VLAN 1249 at  Sun Dec  5 18:26:14 2021<br />                                                        torc-21:vx-282 and torc-11:peerlink-3<br />  </pre> | 4.1.0-4.5.0 | |
-| <a name="2872288"></a> [2872288](#2872288) <a name="2872288"></a> <br /> | When a NetQ agent sends messages with validation check data, there might be a delay of up to 120 seconds before the new data is displayed in streaming validation checks. | 4.2.0-4.5.0 | |
 | <a name="2605545"></a> [2605545](#2605545) <a name="2605545"></a> <br /> | Sort functionality is disabled when the number of records exceeds 10,000 entries in a full-screen, tabular view.  | 4.3.0-4.5.0 | |
 
 ### Fixed Issues in 4.5.0

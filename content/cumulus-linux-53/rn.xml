@@ -7,6 +7,34 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418103</td>
+<td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3402935</td>
+<td>For layer 3 interfaces configured on the switch, certain triggers, such as port flaps and subinterface flaps, or when configuring the ports to and from layer 2 and layer 3, cause the dummy internal VLAN to not free up, which can result in exhaustion of the dummy internal VLANs designated for the layer 3 interfaces. When this occurs, you see the following {{switchd}} log messages:
+
+ERR dummy internal vlans exhausted
+ERR cannot allocate vlan for sub-interface
+</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3390758</td>
+<td>The {{neighmgrd}} service does not enable the snooper unless ARP suppression is enabled on at least one VXLAN interface. This can result in missing ARP and NDP entries if the host does not directly interact with the switch.</td>
+<td>5.3.1-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3389198</td>
 <td>The NVUE {{nv unset}} command does not completely remove IPv6 DNS server configuration.
 </td>
@@ -21,34 +49,34 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td></td>
 </tr>
 <tr>
+<td>3379873</td>
+<td>{{apt source linux}} fails to download the Linux kernel source code.  To work around this issue, run the {{sudo apt update &amp;&amp; sudo apt install linux-source-5.10}} command or download the desired version from {{https://apt.cumulusnetworks.com/repo/pool/cumulus/l/linux/}} and install it with the {{sudo dpkg -i $filename}} command.  The source code in a {{tar.xz}} file will then be located in the {{/usr/src/}} directory.</td>
+<td>5.2.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3368217</td>
 <td>When daylight saving time changes the time, the MLAG {{initDelay}} timer resets and all MLAG bonds go down.</td>
 <td>4.4.4-4.4.5, 5.2.1-5.4.0</td>
 <td></td>
 </tr>
 <tr>
-<td>3358909</td>
-<td>When you expand the {{root}} schema in the NVUE Swagger API, you see many errors in the Error panel at the top of the page.</td>
-<td>5.3.1-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3351953</td>
 <td>In rare circumstances, attempting to install a Cumulus Linux 5.3 image can fail during installation. The device stops at the (initramfs) prompt. To resume installation, enter the {{exit}} command at the (initramfs) prompt.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3351936</td>
 <td>Switch fans run at very high speed but the temperature is normal.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3349207</td>
@@ -69,13 +97,13 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3339336</td>
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -87,7 +115,7 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3330600</td>
 <td>The SNMP monitor might fail to send the expected traps.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3329494</td>
@@ -107,55 +135,55 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3308248</td>
 <td>DHCP packets do not forward over VXLAN interfaces in multicast replication environments. This issue does not affect VXLAN environments using head end replication (HER).</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3303084</td>
 <td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward the BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3301988</td>
 <td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3301950</td>
 <td>When upgrading from Cumulus Linux 5.0.0 thru 5.2.1 to Cumulus Linux 5.3.0 or 5.3.1, the {{babeltrace}} and {{python3-babeltrace}} packages are not added automatically even though they are in the default image in Cumulus Linux 5.3.0 and later. You may need these packages to decode LTTNG traces with {{/usr/lib/frr/frr_babeltrace.py.}}. If you need to use this script, run the {{sudo apt update &amp;&amp; sudo apt install babeltrace python3-babeltrace}} command to install the packages.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3298616</td>
 <td>NVUE gracefully detects and handles upgrades that include valid flexible snippets. For any invalid (incompatible) flexible snippets, you must delete the snippets before you {{apt upgrade}} Cumulus Linux; otherwise, the NVUE {{nv config apply}} command and the equivalent REST API, do not run.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3293039</td>
 <td>When you add the {{/etc/frr/frr.conf}} file to the ignore list for NVUE, any configuration change causes FRR to restart because a check is done to see if any running configuration has changed since the previously applied configuration in the vtysh shell. </td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3292773</td>
 <td>NVUE requires the SNMPv2 community string to be a minimum of eight characters.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3289972</td>
 <td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3289646</td>
 <td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3283598</td>
@@ -168,19 +196,19 @@ Tenant VRF: BLUE
 Vlan: 0
 </td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267328</td>
 <td>On Spectrum 1 switches when configuring ACLs in non-atomic mode, if there are too many IPv6 matches due to rules with both {{input-interface}} and {{output-interface}} matches on SVIs, the ACL install fails and {{switchd}} crashes.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3266050</td>
 <td>Due to a race at the initial configuration, the SDK RDQ test may test RDQ configured for WJH and fail the test resulting in a fatal health event.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3258232</td>
@@ -192,13 +220,13 @@ Vlan: 0
 <td>3255899</td>
 <td>The Linux utility that sends ARP packets is constrained to 512 interfaces on the system. In large scale deployments, the warm boot process fails repeatedly as it sends gratuitous ARP requests for each local address. This issue does not impact the functionality and can be ignored.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3244955</td>
 <td>ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3241567</td>
@@ -213,7 +241,7 @@ Vlan: 0
 - KVD utilization is higher than sixty percent.
 - The number of routes currently configured is less than the minimum reserved value, and multiple KVD linear resources have just been freed and are waiting in the Garbage Collector queue.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3234814</td>
@@ -228,13 +256,13 @@ Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID.
 <td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>5.0.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3226525</td>
 <td>When using TACACS+, if you configure per-command authorization with the {{tacplus-restrict}} command, NVUE configuration commands fail for any user with a privilege level lower than 15. This occurs because NVUE is not able to create a {{.local}} user directory.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3226506</td>
@@ -283,7 +311,7 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 <td>3145222</td>
 <td>The NVUE {{nv show system forwarding --output json}} command does not provide any output. To work around this issue, run the {{nv show system forwarding}} command.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3145204</td>
@@ -343,7 +371,7 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
 </td>
 <td>5.0.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3071652</td>
@@ -385,7 +413,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>3037824</td>
 <td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3034435</td>
@@ -397,7 +425,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>3015393</td>
 <td>The NVUE {{nv show interface &lt;tunnel-name&gt;}} command shows the operational state of the tunnel as down even though the tunnel is up, and encapsulation and decapsulation occurs correctly.</td>
 <td>5.1.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>2972540</td>
@@ -449,7 +477,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2859015</td>
-<td>In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
+<td>In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
 
 warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
 </td>
@@ -479,7 +507,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2821929</td>
 <td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>2736108</td>
@@ -534,10 +562,38 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418103</td>
+<td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3402935</td>
+<td>For layer 3 interfaces configured on the switch, certain triggers, such as port flaps and subinterface flaps, or when configuring the ports to and from layer 2 and layer 3, cause the dummy internal VLAN to not free up, which can result in exhaustion of the dummy internal VLANs designated for the layer 3 interfaces. When this occurs, you see the following {{switchd}} log messages:
+
+ERR dummy internal vlans exhausted
+ERR cannot allocate vlan for sub-interface
+</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3388067</td>
 <td>TACACS+ packages in the local {{apt}} repository might be out of date; as a result, the upgrade does not install tacacs0 through tacacs15 users in the correct NVUE groups. When you run NVUE commands as a TACACS+ user, the commands fail and you see the error {{You do not have permission to execute that command}}.
 To obtain the correct packages, install the {{tacplus-client}} package and its dependencies from {{apt.cumulusnetworks.com}}.</td>
 <td>5.1.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3379873</td>
+<td>{{apt source linux}} fails to download the Linux kernel source code.  To work around this issue, run the {{sudo apt update &amp;&amp; sudo apt install linux-source-5.10}} command or download the desired version from {{https://apt.cumulusnetworks.com/repo/pool/cumulus/l/linux/}} and install it with the {{sudo dpkg -i $filename}} command.  The source code in a {{tar.xz}} file will then be located in the {{/usr/src/}} directory.</td>
+<td>5.2.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -550,19 +606,19 @@ To obtain the correct packages, install the {{tacplus-client}} package and its d
 <td>3351953</td>
 <td>In rare circumstances, attempting to install a Cumulus Linux 5.3 image can fail during installation. The device stops at the (initramfs) prompt. To resume installation, enter the {{exit}} command at the (initramfs) prompt.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3351936</td>
 <td>Switch fans run at very high speed but the temperature is normal.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3349207</td>
@@ -583,13 +639,13 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3339336</td>
 <td>The {{ethtool -m}} command does not show Digital Optical Monitoring (DOM) for SFP transceivers. To work around this issue, run the {{l1-show or mlxlink}} command instead.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -601,7 +657,7 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3330600</td>
 <td>The SNMP monitor might fail to send the expected traps.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3327477</td>
@@ -613,7 +669,7 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3308248</td>
 <td>DHCP packets do not forward over VXLAN interfaces in multicast replication environments. This issue does not affect VXLAN environments using head end replication (HER).</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3303372</td>
@@ -625,7 +681,7 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3303084</td>
 <td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward the BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3303082</td>
@@ -640,43 +696,43 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td>3301988</td>
 <td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3301950</td>
 <td>When upgrading from Cumulus Linux 5.0.0 thru 5.2.1 to Cumulus Linux 5.3.0 or 5.3.1, the {{babeltrace}} and {{python3-babeltrace}} packages are not added automatically even though they are in the default image in Cumulus Linux 5.3.0 and later. You may need these packages to decode LTTNG traces with {{/usr/lib/frr/frr_babeltrace.py.}}. If you need to use this script, run the {{sudo apt update &amp;&amp; sudo apt install babeltrace python3-babeltrace}} command to install the packages.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3298616</td>
 <td>NVUE gracefully detects and handles upgrades that include valid flexible snippets. For any invalid (incompatible) flexible snippets, you must delete the snippets before you {{apt upgrade}} Cumulus Linux; otherwise, the NVUE {{nv config apply}} command and the equivalent REST API, do not run.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3293039</td>
 <td>When you add the {{/etc/frr/frr.conf}} file to the ignore list for NVUE, any configuration change causes FRR to restart because a check is done to see if any running configuration has changed since the previously applied configuration in the vtysh shell. </td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3292773</td>
 <td>NVUE requires the SNMPv2 community string to be a minimum of eight characters.</td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3289972</td>
 <td>When the switch needs to forward a frame that has a source MAC address of 00:00:00:00:00:00, the {{dmesg}} log might report the message {{bridge: RTM_NEWNEIGH with invalid ether address}} in a loop every 30 seconds. The log message is harmless and frames with that MAC forward correctly. </td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3289646</td>
 <td>The memory consumption in {{ptmd}} can grow when the socket being used for a BFD session needs to be recreated. This is often seen when the route being used to forward BFD packets is removed; for example, if the connected route is removed when an interface goes down, over which a single hop BFD session is formed.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3283598</td>
@@ -689,19 +745,19 @@ Tenant VRF: BLUE
 Vlan: 0
 </td>
 <td>5.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267328</td>
 <td>On Spectrum 1 switches when configuring ACLs in non-atomic mode, if there are too many IPv6 matches due to rules with both {{input-interface}} and {{output-interface}} matches on SVIs, the ACL install fails and {{switchd}} crashes.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3266050</td>
 <td>Due to a race at the initial configuration, the SDK RDQ test may test RDQ configured for WJH and fail the test resulting in a fatal health event.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3258232</td>
@@ -713,13 +769,13 @@ Vlan: 0
 <td>3255899</td>
 <td>The Linux utility that sends ARP packets is constrained to 512 interfaces on the system. In large scale deployments, the warm boot process fails repeatedly as it sends gratuitous ARP requests for each local address. This issue does not impact the functionality and can be ignored.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3244955</td>
 <td>ACL configurations fail when the TCAM memory is exhausted because the CTCAM profile is configured with duplicate entries.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3241567</td>
@@ -734,7 +790,7 @@ Vlan: 0
 - KVD utilization is higher than sixty percent.
 - The number of routes currently configured is less than the minimum reserved value, and multiple KVD linear resources have just been freed and are waiting in the Garbage Collector queue.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3234814</td>
@@ -749,13 +805,13 @@ Can't set non-static MAC address for non-vPort 0x0001006B when VID is VFID.
 <td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>5.0.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3226525</td>
 <td>When using TACACS+, if you configure per-command authorization with the {{tacplus-restrict}} command, NVUE configuration commands fail for any user with a privilege level lower than 15. This occurs because NVUE is not able to create a {{.local}} user directory.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3226506</td>
@@ -804,7 +860,7 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 <td>3145222</td>
 <td>The NVUE {{nv show system forwarding --output json}} command does not provide any output. To work around this issue, run the {{nv show system forwarding}} command.</td>
 <td>5.2.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3145204</td>
@@ -864,7 +920,7 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
 </td>
 <td>5.0.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3071652</td>
@@ -906,7 +962,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>3037824</td>
 <td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3034435</td>
@@ -918,7 +974,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>3015393</td>
 <td>The NVUE {{nv show interface &lt;tunnel-name&gt;}} command shows the operational state of the tunnel as down even though the tunnel is up, and encapsulation and decapsulation occurs correctly.</td>
 <td>5.1.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>2972540</td>
@@ -970,7 +1026,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2859015</td>
-<td>In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
+<td>In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
 
 warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
 </td>
@@ -1000,7 +1056,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2821929</td>
 <td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>2736108</td>

@@ -7,6 +7,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.6</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.6</td>
+<td></td>
+</tr>
+<tr>
 <td>3366612</td>
 <td>The base version of the Linux kernel is updated to the v4.19.273 stable release, which includes fixes for several CVE issues.</td>
 <td>4.3.1-4.4.6</td>
@@ -32,13 +52,13 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>4.3.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334031</td>
@@ -50,7 +70,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -69,6 +89,12 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>On the EdgeCore AS7326-56X and AS7726-32X switch, the fan speed reports a minimum threshold in the logs.</td>
 <td>4.3.1-4.4.6</td>
 <td></td>
+</tr>
+<tr>
+<td>3270988</td>
+<td>After restarting {{switchd}} on the NVIDIA SN2100 switch, the FAN speeds are at one hundred percent. To work around this issue, restart the {{hw-management}} service.</td>
+<td>4.4.5-5.2.0</td>
+<td>5.2.1-5.4.0</td>
 </tr>
 <tr>
 <td>3269538</td>
@@ -758,12 +784,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.6, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.6</td>
 <td></td>
 </tr>
 <tr>
@@ -1969,6 +1989,25 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
+<td>3418045</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-4.4.5</td>
+</tr>
+<tr>
+<td>3395411</td>
+<td>For layer 3 interfaces configured on the switch, certain triggers, such as port flaps and subinterface flaps, or when configuring the ports to and from layer 2 and layer 3, cause the dummy internal VLAN to not free up, which can result in exhaustion of the dummy internal VLANs designated for the layer 3 interfaces. When this occurs, you see the following {{switchd}} log messages:
+
+ERR dummy internal vlans exhausted
+ERR cannot allocate vlan for sub-interface
+</td>
+<td>5.0.0-5.4.0</td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+</tr>
+<tr>
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-4.4.5</td>
@@ -2036,7 +2075,7 @@ Vlan: 0
 </tr>
 <tr>
 <td>3236366</td>
-<td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands or   running {{apt upgrade}} to upgrade to Cumulus Linux 4.4.5.</td>
+<td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands.</td>
 <td>4.4.5</td>
 </tr>
 <tr>
@@ -2066,9 +2105,47 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -2103,7 +2180,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -2121,13 +2198,13 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -2184,8 +2261,8 @@ To work around this issue, set the VNI interface mapped to VLAN 1 down and up ag
 <tr>
 <td>3270988</td>
 <td>After restarting {{switchd}} on the NVIDIA SN2100 switch, the FAN speeds are at one hundred percent. To work around this issue, restart the {{hw-management}} service.</td>
-<td>4.4.5</td>
-<td></td>
+<td>4.4.5-5.2.0</td>
+<td>5.2.1-5.4.0</td>
 </tr>
 <tr>
 <td>3269538</td>
@@ -2206,7 +2283,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267353</td>
@@ -2228,7 +2305,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 </tr>
 <tr>
 <td>3236366</td>
-<td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands or   running {{apt upgrade}} to upgrade to Cumulus Linux 4.4.5.</td>
+<td>When you run docker commands, the command process might crash. The crash can occur during the {{apt upgrade}} process, where you can run docker commands implicitly. To work around this issue, run {{ulimit -v unlimited}} before running docker commands.</td>
 <td>4.4.5</td>
 <td></td>
 </tr>
@@ -2967,12 +3044,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4191,9 +4262,47 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4228,7 +4337,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -4246,13 +4355,13 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -4343,7 +4452,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267353</td>
@@ -5114,12 +5223,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -6402,8 +6505,13 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 </tr>
 <tr>
 <td>3031228</td>
-<td>Static VXLAN configuration prevents NCLU from working.</td>
-<td>4.3.0, 4.4.3</td>
+<td>Static VXLAN configuration prevents NCLU from working.
+
+In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
+
+warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
+</td>
+<td>4.3.0</td>
 </tr>
 <tr>
 <td>3023256</td>
@@ -6465,9 +6573,47 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -6496,7 +6642,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -6514,13 +6660,13 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -6617,7 +6763,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267353</td>
@@ -6919,12 +7065,6 @@ To resolve this issue, restart FRR with the {{sudo systemctl restart frr}} comma
 <td>In BGP unnumbered, when you try to remove an interface from the underlay default VRF with the NVUE {{nv unset vrf default router bgp neighbor &lt;interface&gt;}} command, the command fails to apply.</td>
 <td>4.4.2-5.0.1</td>
 <td>5.1.0-5.4.0</td>
-</tr>
-<tr>
-<td>3031228</td>
-<td>Static VXLAN configuration prevents NCLU from working.</td>
-<td>4.3.0, 4.4.3-4.4.5</td>
-<td>4.3.1</td>
 </tr>
 <tr>
 <td>3023256</td>
@@ -7449,12 +7589,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -8711,9 +8845,47 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -8742,7 +8914,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -8760,13 +8932,13 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -8856,7 +9028,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267353</td>
@@ -9679,12 +9851,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -11133,9 +11299,47 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413826</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3401121</td>
+<td>sFlow is not able to sample packets in the egress direction. To work around this issue, add the following to the {{hsflowd.conf}} file to enable egress sampling:
+
+samplingDirection=out
+psample { group=1 }
+</td>
+<td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3389994</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
+<td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3387852</td>
 <td>If you remove NGINX from the switch, then run {{apt autoremove}}, switchd does not reload because the {{libyaml-0-2}} and {{python-yaml }} packages are missing; these packages are required for {{switchd}} consistency checking. To work around this issue, reinstall the {{libyaml-0-2}} and {{python-yaml }}packages.</td>
 <td>4.4.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -11164,7 +11368,7 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3334036</td>
@@ -11182,13 +11386,13 @@ ip route 128.0.0.0/1 10.1.1.1
 <td>3333064</td>
 <td>The traffic control rules that the EVPN multihoming configuration adds to an interface are deleted when the {{hsflowd}} service restarts. The {{hsflowd}} service deletes the EVPN multihoming traffic control filters after you stop {{hsflowd}}, then adds back the {{match-all}} filters with the {{psample}} action; however, {{hsflowd}} does not add back the EVPN multihoming traffic control rules.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -11251,7 +11455,7 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3269537</td>
 <td>When an FRR routing service (such as {{bgpd}}) becomes unresponsive, {{watchfrr}} might fail to stop and restart service. To work around this issue, restart FRR with the {{systemctl restart frr}} command.</td>
 <td>4.4.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3267353</td>
@@ -12218,12 +12422,6 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 <td>2684925</td>
 <td>The NVUE {{nv show vrf default router bgp peer}} command produces a 404 not found error.</td>
 <td>4.4.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2669873</td>
-<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
-<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -13516,6 +13714,11 @@ result in denial of service and potentially the execution of arbitrary code.
 Vulnerable: &lt;= 1.14.2-2+deb10u3
 Fixed: 1.14.2-2+deb10u4</td>
 <td>4.0.0-4.3.1</td>
+</tr>
+<tr>
+<td>2669873</td>
+<td>In an EVPN multihoming configuration, ARP/ND traffic coming in one switch is being sent back out the originating bond on the other switches in the ES on remote PE switches. Normally Split Horizon filtering prevents this kind of traffic at the remote PE. </td>
+<td>4.3.0-4.3.1</td>
 </tr>
 <tr>
 <td>2669073</td>

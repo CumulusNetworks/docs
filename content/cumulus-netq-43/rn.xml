@@ -90,12 +90,6 @@ ERROR: Expecting value: line 1 column 1 (char 0)
 <td></td>
 </tr>
 <tr>
-<td>2872288</td>
-<td>When a NetQ agent sends messages with validation check data, there might be a delay of up to 120 seconds before the new data is displayed in streaming validation checks.</td>
-<td>4.2.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2605545</td>
 <td>Sort functionality is disabled when the number of records exceeds 10,000 entries in a full-screen, tabular view. </td>
 <td>4.3.0</td>

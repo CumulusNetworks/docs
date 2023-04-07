@@ -7,16 +7,38 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418103</td>
+<td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3402935</td>
+<td>For layer 3 interfaces configured on the switch, certain triggers, such as port flaps and subinterface flaps, or when configuring the ports to and from layer 2 and layer 3, cause the dummy internal VLAN to not free up, which can result in exhaustion of the dummy internal VLANs designated for the layer 3 interfaces. When this occurs, you see the following {{switchd}} log messages:
+
+ERR dummy internal vlans exhausted
+ERR cannot allocate vlan for sub-interface
+</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -34,7 +56,13 @@
 <td>3301988</td>
 <td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
+</tr>
+<tr>
+<td>3270988</td>
+<td>After restarting {{switchd}} on the NVIDIA SN2100 switch, the FAN speeds are at one hundred percent. To work around this issue, restart the {{hw-management}} service.</td>
+<td>4.4.5-5.2.0</td>
+<td>5.2.1-5.4.0</td>
 </tr>
 <tr>
 <td>3235368</td>
@@ -46,7 +74,7 @@
 <td>3234085</td>
 <td>When you configure or unconfigure a BGP peer and interface towards a host, memory corruption can cause BGP to crash.</td>
 <td>5.0.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3228899</td>
@@ -270,7 +298,7 @@ cumulus@switch:~$ nv config apply
 exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,quagga,frr,nvue,snmp,www-data,ntp,man,_lldpd,*
 </td>
 <td>5.0.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3066664</td>
@@ -374,7 +402,7 @@ Failure during apply. Ignore? [y/N]
 <td>3037824</td>
 <td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3035855</td>
@@ -674,7 +702,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2859015</td>
-<td>In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
+<td>In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
 
 warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
 </td>
@@ -716,7 +744,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2821929</td>
 <td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>2815646</td>
@@ -808,16 +836,38 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418103</td>
+<td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413827</td>
+<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3402935</td>
+<td>For layer 3 interfaces configured on the switch, certain triggers, such as port flaps and subinterface flaps, or when configuring the ports to and from layer 2 and layer 3, cause the dummy internal VLAN to not free up, which can result in exhaustion of the dummy internal VLANs designated for the layer 3 interfaces. When this occurs, you see the following {{switchd}} log messages:
+
+ERR dummy internal vlans exhausted
+ERR cannot allocate vlan for sub-interface
+</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3351951</td>
 <td>Currently, the default core dump size limit on Cumulus Linux is 256M but the SDK generates core dumps around 800M. To avoid incomplete core files, you can increase the core dump size limit.</td>
 <td>4.2.1-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -835,7 +885,13 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <td>3301988</td>
 <td>Some EVPN multihoming show commands might cause BGP to crash if you use the {{json}} flag and attempt to reference the default VRF by name. For example, {{show bgp l2vpn evpn es-vrf json}}.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
+</tr>
+<tr>
+<td>3270988</td>
+<td>After restarting {{switchd}} on the NVIDIA SN2100 switch, the FAN speeds are at one hundred percent. To work around this issue, restart the {{hw-management}} service.</td>
+<td>4.4.5-5.2.0</td>
+<td>5.2.1-5.4.0</td>
 </tr>
 <tr>
 <td>3235368</td>
@@ -1050,7 +1106,7 @@ export HOME
 <td>3037824</td>
 <td>The NVUE {{nv show interface &lt;interface-id&gt; link state}} command shows an empty table instead of showing the port link state.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3032234</td>
@@ -1321,7 +1377,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2859015</td>
-<td>In a static VXLAN configuration with a traditional VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
+<td>In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
 
 warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
 </td>
@@ -1363,7 +1419,7 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 <td>2821929</td>
 <td>FRR restarts even when the NVUE configuration overwrite mode is set.</td>
 <td>5.0.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>2815646</td>

@@ -7,10 +7,26 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -2485,10 +2501,26 @@ Fixed: 6.8.9.9-5+deb8u24</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -5458,10 +5490,26 @@ These messages are harmless and can be ignored.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -8148,10 +8196,26 @@ You can see the temperature reading in the output of the {{sensors}} command.</t
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -11204,10 +11268,26 @@ To work around this issue, modify the routing design or policy such that routes 
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -14315,10 +14395,26 @@ Typically, the destination MAC address 01:00:5e:xx:xx:xx is used only for PIM/IG
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -17391,10 +17487,26 @@ net.ipv6.ip6frag_high_thresh = 262144
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -20082,10 +20194,26 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -22304,10 +22432,26 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -24847,10 +24991,26 @@ To work around this issue, run the {{sudo ethtool -S swp1}} command to collect i
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -26817,10 +26977,26 @@ To work around this issue, use {{net show interface}} command for LLDP output wh
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -29126,10 +29302,26 @@ If you need link pause or PFC functionality, you must use a switch that does not
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -31180,10 +31372,26 @@ This issue was discovered on the Helix4 switch but applies to all switches.
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -32879,10 +33087,26 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -34605,10 +34829,26 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -36437,10 +36677,26 @@ The NetQ agent has been removed from Cumulus VX 3.7.7. The NetQ agent will be bu
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -38313,10 +38569,26 @@ Permanent MAC address sync between MLAG peers is now supported.</td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>
@@ -39495,10 +39767,26 @@ To work around this issue, remove the matching {{network}} statement. </td>
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3418046</td>
+<td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
+<td>3.7.0-3.7.16</td>
+<td></td>
+</tr>
+<tr>
+<td>3376798</td>
+<td>On Broadcom switches, Cumulus Linux does not create the hardware bridging domain for a traditional bridge with a VXLAN interface during {{switchd}} restart. The {{/var/log/switchd.log}} file includes the following exception logs shortly after {{switchd}} restarts:
+
+switchd[30158]: hal_bcm_l3.c:1617 find_egr_path_if_vxlan_overlay:vxlan overlay : nh PORT: port &lt;#&gt;, vlan &lt;x&gt;.&lt;y&gt; not yet ready
+
+MAC learning looks correct, but traffic does not flow as expected.</td>
+<td>3.7.0-3.7.16, 4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3330705</td>
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
-<td>5.4.0</td>
+<td>5.4.0-5.4.0</td>
 </tr>
 <tr>
 <td>3330654</td>

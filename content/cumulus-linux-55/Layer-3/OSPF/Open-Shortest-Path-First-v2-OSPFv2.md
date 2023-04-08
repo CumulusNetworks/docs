@@ -1061,19 +1061,72 @@ switch# exit
 
 ## Troubleshooting
 
-`nv show vrf <vrf> router ospf neighbor`
+NVUE provides several commands to show OSPF interface and OSPF neighbor configuration and statistics.
 
-`nv show vrf <vrf> router ospf neighbor <IPv4-address>`
+| Description | <div style="width:330px">NVUE Command |
+| ----------- | ------------------------------------- |
+| Show all OSPF interfaces | `nv show vrf <vrf> router ospf interface` |
+| Show information about a specific OSPF interface | `nv show vrf <vrf> router ospf interface <interface>` |
+| Show the local IP addresses for the specified OSPF interface | `nv show vrf <vrf> router ospf interface <interface> local-ip` |
+| Show statistics for a specific OSPF interface local IP address | `nv show vrf <vrf> router ospf interface <interface> local-ip <IPv4_address>` |
+| Show the OSPF neighbor ID and the OSPF interface for all OSPF neighbors |`nv show vrf <vrf> router ospf neighbor` |
+| Show the interface and local IP addresses for a specific OSPF neighbor | `nv show vrf <vrf> router ospf neighbor <IPv4-address>` |
+| Show the local IP addresses of all the interfaces for an OSPF neighbor | `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface` |
+| Show the local IP addresses for a specific OSPF neighbor interface | `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip` |
+| Show statistics for a specific OSPF neighbor interface local IP address | `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip <IPv4-address>` |
 
-`nv show vrf <vrf> router ospf neighbor <IPv4-address>  interface`
+The following example shows the `nv show vrf <vrf> router ospf interface` command output:
 
-`nv show vrf <vrf> router ospf neighbor <IPv4-address>  interface <interface>`
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface
+Interface  Summary             
+---------  --------------------
+lo         local-ip: 10.10.10.1
+swp51      local-ip:   10.0.1.0
+           local-ip: 10.10.10.1
+swp52      local-ip: 10.10.10.1
+```
 
-`nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip`
+The following example shows the `nv show vrf <vrf> router ospf neighbor` command output:
 
-`nv show vrf <vrf> router ospf neighbor <IPv4-address>  interface <interface> local-ip <IPv4-address>`
-<!-->
-Cumulus Linux provides several OSPF troubleshooting commands:
+```
+cumulus@switch:~$ nv show vrf default router ospf neighbor
+              Summary         
+------------  ----------------
+10.10.10.101  Interface: swp51
+10.10.10.102  Interface: swp52
+```
+
+The following example shows the `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface` command output:
+
+```
+cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101
+Interface  Summary             
+---------  --------------------
+swp51      local-ip: 10.10.10.1
+```
+
+The following example shows the `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip <IPv4-address>` command output:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 10.10.10.1
+                   operational   applied
+-----------------  ------------  -------
+bdr-router-id      0.0.0.0              
+dead-timer-expiry  59820                
+dr-router-id       0.0.0.0              
+neighbor-ip        10.10.10.101         
+priority           1                    
+role               DROther              
+state              init                 
+statistics                              
+  db-summary-qlen  0                    
+  ls-request-qlen  0                    
+  ls-retrans-qlen  0                    
+  state-changes    318     
+```
+
+FRR (vtysh) provides several OSPF troubleshooting commands:
 
 | Description | <div style="width:330px">vtysh Command |
 | ----------- | ------------------------------------- |
@@ -1110,7 +1163,19 @@ O   10.10.10.1/32 [110/0] is directly connected, lo, weight 1, 00:02:37
 O>* 10.10.10.101/32 [110/100] via 10.0.1.1, swp51, weight 1, 00:00:57
 ```
 
-To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf` command.-->
+To capture OSPF packets, run the `sudo tcpdump -v -i swp1 ip proto ospf` command.
+
+### Clear OSPF Counters
+
+You can run the following commands to clear the OSPF counters shown in the NVUE show commands.
+- `nv action clear vrf <vrf> router ospf interface` clears all counters for all OSPF interfaces.
+- `nv action clear vrf <vrf> router ospf interface <interface>` clears all counters for a specific OSPF interface.
+
+```
+cumulus@leaf01:mgmt:~$ nv action clear vrf defaukt router ospf interface swp51
+...
+Action succeeded
+```
 
 ## Related Information
 <!-- vale off -->

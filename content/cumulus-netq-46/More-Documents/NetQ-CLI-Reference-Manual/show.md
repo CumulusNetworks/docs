@@ -901,13 +901,14 @@ leaf01            swp50                     8749                 0              
 
 ## netq show events
 
-Display system events that have occurred in the last 24 hours <!--is this 24 hours or 1 hour?-->. Optionally, view events up to 30 days in the past, with a time frame not exceeding 72 hours. You can filter the output by event severity and event type. The output provides the following information for each device:
+Display system events that have occurred in the last 24 hours. <!--is this 24 hours or 1 hour?--> You can filter the output by event severity and event type. The output provides the following information for each device:
 
 - Message type
 - Event severity (info, error)
 - Descriptive event message
 - When the event occurred
 
+Event querying is supported for a 72-hour window within the past 30 days.
 ### Syntax
 
 ```

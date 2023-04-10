@@ -1617,10 +1617,10 @@ This section shows basic commands for troubleshooting switch ports. For a more c
 
 ### Statistics
 
-To show interface statistics, run the NVUE `nv show interface <interface> stats` command or the Linux `sudo ethtool -S <interface>` command.
+To show interface statistics, run the NVUE `nv show interface <interface> counters` command or the Linux `sudo ethtool -S <interface>` command.
 
 ```
-cumulus@switch:~$ nv show interface swp1 stats
+cumulus@switch:~$ nv show interface swp1 counters
                     operational  applied
 -------------------  -----------  -------
 carrier-transitions  4                   
@@ -1635,9 +1635,11 @@ out-pkts             43945
 ...
 ```
 
-### Query SFP Port Information
+For more information about showing and clearing interface counters, refer to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE" text="Monitoring Interfaces and Transceivers with NVUE">}}.
 
-To verify SFP settings, run the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
+### Show SFP Port Information
+
+To verify SFP settings, run the NVUE `nv show interface <interface> pluggable` command or the `ethtool -m` command. The following example shows the vendor, type and power output for swp1.
 
 ```
 cumulus@switch:~$ sudo ethtool -m swp1 | egrep 'Vendor|type|power\s+:'

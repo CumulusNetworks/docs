@@ -137,6 +137,182 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 counters pktdist
 
 - - -
 
+## nv show interface \<interface-id\> counters qos
+
+Shows all QoS statistics for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos
+```
+
+- - -
+
+## nv show interface \<interface-id\> counters qos egress-queue-stats
+
+Shows all QoS egress queue statistics for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos egress-queue-stats
+```
+
+- - -
+
+## nv show interface \<interface-id\> counters qos ingress-buffer-stats
+
+Shows all QoS ingress buffer statistics for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters ingress-buffer-stats
+```
+
+- - -
+
+## nv show interface \<interface-id\> counters qos pfc-stats
+
+Shows all QoS PFC statistics for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos pfc-stats
+```
+
+- - -
+
+## nv show interface \<interface-id\> counters qos port-stats
+
+Shows all QoS port statistics for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos port-stats
+```
+
+- - -
+
+## nv show interface \<interface-id\> counters qos port-stats rx-stats
+
+Shows all QoS port received statistics for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos port-stats rx-stats
+```
+
+- - -
+
+## nv show interface \<interface-id\> counters qos port-stats tx-stats
+
+Shows all QoS port transmitted statistics for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos port-stats tx-stats
+```
+
+- - -
+
+## nv show interface \<interface-id\> counters ptp
+
+Shows PTP statistics for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters ptp
+```
+
+- - -
+
 ## nv show interface \<interface-id\> ip
 
 Shows the IP address configuration for the specified interface.
@@ -517,7 +693,7 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 link traffic-engineering
 
 ## nv show interface \<interface-id\> pluggable
 
-Shows the <span style="background-color:#F5F5DC">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
+Shows the \<span style="background-color:#F5F5DC">[SFP](## "Small Form-Factor Pluggable")</span> module information for the specified interface.
 
 ### Command Syntax
 

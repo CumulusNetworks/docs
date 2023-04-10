@@ -1,11 +1,11 @@
 ---
 title: Monitoring Interfaces and Transceivers with ethtool
 author: NVIDIA
-weight: 1100
+weight: 1105
 toc: 4
 ---
 
-The `ethtool` command enables you to query or control the network driver and hardware settings and takes the device name ( swp1) as an argument. When the device name is the only argument, `ethtool` prints the network device settings. See `man ethtool(8)` for details.
+The `ethtool` command enables you to query or control the network driver and hardware settings and takes the device name, such as swp1, as an argument. When the device name is the only argument, `ethtool` prints the network device settings. See `man ethtool(8)` for details.
 
 {{%notice tip%}}
 NVIDIA recommends using the `l1-show` command to monitor Ethernet data; refer to {{<link url="Troubleshoot-Layer-1">}}.
@@ -13,7 +13,7 @@ NVIDIA recommends using the `l1-show` command to monitor Ethernet data; refer to
 
 ## Monitor Interface Status
 
-To check the status of an interface:
+To check the status of an interface, run the `ethtool <interface>` command:
 
 ```
 cumulus@switch:~$ ethtool swp1
@@ -38,80 +38,81 @@ Link detected: yes
 ```
 
 {{%notice note%}}
-The switch hardware includes the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool swpXX` shows the port settings in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected). However, some fields in `ethtool`, such as Supported Link Modes and Advertised Link Modes, do not update based on the actual module in the port and might show incorrect or misleading results.
+The switch hardware includes the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool <interface>` shows the port settings in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected). However, some fields in `ethtool`, such as Supported Link Modes and Advertised Link Modes, do not update based on the actual module in the port and might show incorrect or misleading results.
 {{%/notice%}}
 
-To query interface statistics:
+To query interface statistics, run the `ethtool -S <interface>` command:
 
 ```
-cumulus@switch:~$ sudo ethtool -S swp1
+cumulus@switch:~$ ethtool -S swp1
 NIC statistics:
-        HwIfInOctets: 1435339
-        HwIfInUcastPkts: 11795
-        HwIfInBcastPkts: 3
-        HwIfInMcastPkts: 4578
-        HwIfOutOctets: 14866246
-        HwIfOutUcastPkts: 11791
-        HwIfOutMcastPkts: 136493
-        HwIfOutBcastPkts: 0
-        HwIfInDiscards: 0
-        HwIfInL3Drops: 0
-        HwIfInBufferDrops: 0
-        HwIfInAclDrops: 28
-        HwIfInDot3LengthErrors: 0
-        HwIfInErrors: 0
-        SoftInErrors: 0
-        SoftInDrops: 0
-        SoftInFrameErrors: 0
-        HwIfOutDiscards: 0
-        HwIfOutErrors: 0
-        HwIfOutQDrops: 0
-        HwIfOutNonQDrops: 0
-        SoftOutErrors: 0
-        SoftOutDrops: 0
-        SoftOutTxFifoFull: 0
-        HwIfOutQLen: 0
+     rx_queue_0_packets: 5
+     rx_queue_0_bytes: 300
+     rx_queue_0_drops: 0
+     rx_queue_0_xdp_packets: 0
+     rx_queue_0_xdp_tx: 0
+     rx_queue_0_xdp_redirects: 0
+     rx_queue_0_xdp_drops: 0
+     rx_queue_0_kicks: 1
+     tx_queue_0_packets: 144957
+     tx_queue_0_bytes: 10546468
+     tx_queue_0_xdp_tx: 0
+     tx_queue_0_xdp_tx_drops: 0
+     tx_queue_0_kicks: 144950
 ```
 
 ## View and Clear Interface Counters
 
-Interface counters provide information about an interface. You can view this information when you run `cl-netstat`, `ifconfig`, or `cat /proc/net/dev`. You can also run `cl-netstat` to save or clear this information:
+Interface counters provide information about an interface. You can view this information when you run `cl-netstat`, `ifconfig`, or `cat /proc/net/dev`. You can also run `sudo cl-netstat -c` to save or clear the interface counters.
 
 ```
 cumulus@switch:~$ sudo cl-netstat
 Kernel Interface table
-Iface   MTU Met        RX_OK RX_ERR RX_DRP RX_OVR        TX_OK TX_ERR TX_DRP TX_OVR    Flg
----------------------------------------------------------------------------------------------
-eth0   1500   0          611      0      0      0          487      0      0      0   BMRU
-lo    16436   0            0      0      0      0            0      0      0      0    LRU
-swp1   1500   0            0      0      0      0            0      0      0      0    BMU
+Iface            MTU    RX_OK    RX_ERR    RX_DRP    RX_OVR    TX_OK    TX_ERR    TX_DRP    TX_OVR  Flg
+-------------  -----  -------  --------  --------  --------  -------  --------  --------  --------  -----
+lo             65536   185932         0         0         0   185932         0         0         0  LRU
+eth0            1500   151883         0         0         0    13504         0         0         0  BMRU
+swp1            9216        5         0         5         0   144986         0         0         0  BMsRU
+swp2            9216        5         0         5         0   144988         0         0         0  BMsRU
+swp3            9216        5         0         5         0   144944         0         0         0  BMsRU
+swp49           9216   502662         0         5         0   502629         0         0         0  BMsRU
+swp50           9216   507636         0         5         0   507666         0         0         0  BMsRU
+swp51           9216   749122         0         5         0   794080         0         0         0  BMRU
+swp52           9216   216057         0         5         0   212567         0         0         0  BMRU
+bond1           9216        0         0         0         0   144942         0         0         0  BMmRU
+bond2           9216        0         0         0         0   144944         0         0         0  BMmRU
+bond3           9216        0         0         0         0   144944         0         0         0  BMmRU
+br_default      9216     5072         0         0         0     5074         0         0         0  BMRU
+mgmt           65575     3365         0         0         0        0         0       936         0  OmRU
+peerlink        9216  1010288         0         0         0  1010295         0         0         0  BMmRU
+peerlink.4094   9216   506672         0         0         0   506668         0         0         0  BMRU
+vlan10          9216     1687         0         0         0     1687         0         0         0  BMRU
+vlan10-v0       9216     1678         0         0         0     1677         0         0         0  BMRU
+vlan20          9216     1688         0         0         0     1688         0         0         0  BMRU
+vlan20-v0       9216     1678         0         0         0     1677         0         0         0  BMRU
+vlan30          9216     1687         0         0         0     1689         0         0         0  BMRU
+vlan30-v0       9216     1678         0         0         0     1678         0         0         0  BMRU
+```
 
+```
 cumulus@switch:~$ sudo cl-netstat -c
 Cleared counters
 ```
 
-| Option<img width=300/> | Description<img width=600/> |
-|----------------------- |---------------------------- |
-| `-c` | Copies and clears statistics but does not clear counters in the kernel or hardware.<br><br>**Note**: The -c argument applies per user ID. You can override it with the `-t` argument to save statistics to a different directory. |
-| `-d` | Deletes saved statistics, either the uid or the specified tag.<br><br>**Note**: The `-d` argument applies per user ID. You can override it with the `-t` argument to save statistics to a different directory. |
-| `-D` | Deletes all saved statistics. |
-| `-l` | Lists saved tags. |
-| `-r` | Displays raw statistics (unmodified output of `cl-netstat`). |
-| `-t <tag name>`|Saves statistics with `<tag name>`. |
-| `-v`|Prints `cl-netstat` version and exits. |
+To see the `cl-netstat` command options, run the `cl-netstat -h` command.
 
 {{%notice note%}}
 Some services, such as {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#large-packet-drops-on-the-peer-link-interface" text="MLAG">}} and {{<link url="DHCP-Relays/#considerations" text="DHCP">}} can cause drop counters to increment as expected and do not cause a problem on the switch.
 {{%/notice%}}
 
-## Monitor Switch Port SFP/QSFP Hardware Information
+## Monitor Switch Port SFP and QSFP Hardware Information
 
-To see hardware capabilities and measurement information on the SFP or QSFP module in a particular port, use the `ethtool -m` command. If the SFP/QSFP supports Digital Optical Monitoring (the `Optical diagnostics support` field is *Yes* in the output below), the optical power levels and thresholds also show below the standard hardware details.
+To see hardware capabilities and measurement information on the SFP or QSFP module in a particular port, use the `ethtool -m` command. If the SFP or QSFP supports Digital Optical Monitoring (the `Optical diagnostics support` field is *Yes* in the output below), the optical power levels and thresholds also show below the standard hardware details.
 
 In the sample output below, you can see that this module is a 1000BASE-SX short-range optical module, manufactured by JDSU, part number PLRXPL-VI-S24-22. The second half of the output displays the current readings of the `Tx` power levels (`Laser output power`) and Rx power (`Receiver signal average optical power`), temperature, voltage and alarm threshold settings.
 
 ```
-cumulus@switch$ sudo ethtool -m swp3
+cumulus@switch$ ethtool -m swp3
         Identifier                                : 0x03 (SFP)
         Extended identifier                       : 0x04 (GBIC/SFP defined by 2-wire interface ID)
         Connector                                 : 0x07 (LC)

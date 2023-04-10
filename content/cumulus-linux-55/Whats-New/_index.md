@@ -39,7 +39,7 @@ Early access features are now called beta features.
   - {{<link url="SyncE" text="SyncE">}}
   - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
   - {{<link url="Netfilter-ACLs/#control-plane-acls" text="Control plane ACLs">}}
-  - New commands to clear counters and routes
+  - New commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE" text="show and clear interface counters">}}
   - {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="New OSPF">}} show commands to show interface and neighbor configuration and statistics
   - Updated PBR show commands show operational data
   - Support for the named well known BGP communities for `no-export`, `no-advertise`, and `additive` options.

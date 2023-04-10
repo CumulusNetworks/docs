@@ -49,9 +49,97 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 bond member bond1
 
 - - -
 
+## nv show interface \<interface\> counters
+
+Shows all statistics for a specific interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters
+```
+
+- - -
+
+## nv show interface \<interface\> counters drops
+
+Shows packet drop counters for a specific interface.
+
+## Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters drops
+```
+
+- - -
+
+## nv show interface \<interface\> counters errors
+
+Shows error counters for a specific interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters errors
+```
+
+- - -
+
+## nv show interface \<interface\> counters pktdist
+
+Shows packet distribution counters for a specific interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters pktdist
+```
+
+- - -
+
 ## nv show interface \<interface-id\> ip
 
-Shows the IP configuration for the specified interface.
+Shows the IP address configuration for the specified interface.
 
 ### Command Syntax
 
@@ -89,6 +177,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip address
+```
+
+- - -
+
+## nv show interface \<interface-id\> ip address \<ip-prefix-id\>
+
+Shows details about the specified IP address for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+| `<ip-prefix-id>`  | The IPv4 or IPv6 address and route prefix in CIDR notation.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip address 10.10.10.1/32
 ```
 
 - - -
@@ -181,117 +292,6 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 ip ipv6
 
 - - -
 
-## nv show interface \<interface-id\> pluggable
-
-Shows the SFP modules attched to the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 pluggable
-```
-
-- - -
-
-## nv show interface \<interface-id\> storm-control
-
-Shows storm control configuration settings for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.3.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 storm-control
-```
-
-- - -
-
-## nv show interface \<interface-id\> tunnel
-
-Shows tunnel information for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 tunnel
-```
-
-- - -
-
-## nv show interface \<interface-id\> ip
-
-Shows IP address configuration for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip
-```
-
-- - -
-
-## nv show interface \<interface-id\> ip address \<ip-prefix-id\>
-
-Shows details about the specified IP address for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name.|
-| `<ip-prefix-id>`  | The IPv4 or IPv6 address and route prefix in CIDR notation.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 ip address 10.10.10.1/32
-```
-
-- - -
-
 ## nv show interface \<interface-id\> ip neighbor
 
 Shows information about the IP neighbors configured for the specified interface.
@@ -356,73 +356,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor ipv6 2001:db8:0002::0a00:0002
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> loopback
-
-Shows the loopback interfaces associated with this VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default loopback
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> loopback ip
-
-Shows the IP addresses associated with the loopback interface for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default loopback ip
-```
-
-- - -
-
-## nv show vrf \<vrf-id\> loopback ip address \<ip-prefix-id\>
-
-Shows details about the specified loopback IP address for the specified VRF.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<vrf-id>` | The VRF name. |
-| `<ip-prefix-id>` | The IPv4 or IPv6 address and route prefix in CIDR notation. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show vrf default loopback ip address 10.10.10.1/32
 ```
 
 - - -
@@ -600,6 +533,133 @@ Introduced in Cumulus Linux 5.3.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 pluggable
+```
+
+- - -
+
+## nv show interface \<interface-id\> storm-control
+
+Shows storm control configuration settings for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.3.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 storm-control
+```
+
+- - -
+
+## nv show interface \<interface-id\> tunnel
+
+Shows tunnel information for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 tunnel
+```
+
+- - -
+
+## nv show interface --view=counters
+
+Shows all statistics for all the interfaces configured on the switch.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface --view=counters
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> loopback
+
+Shows the loopback interfaces associated with this VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default loopback
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> loopback ip
+
+Shows the IP addresses associated with the loopback interface for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default loopback ip
+```
+
+- - -
+
+## nv show vrf \<vrf-id\> loopback ip address \<ip-prefix-id\>
+
+Shows details about the specified loopback IP address for the specified VRF.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vrf-id>` | The VRF name. |
+| `<ip-prefix-id>` | The IPv4 or IPv6 address and route prefix in CIDR notation. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default loopback ip address 10.10.10.1/32
 ```
 
 - - -

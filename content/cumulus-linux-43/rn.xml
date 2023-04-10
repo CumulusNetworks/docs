@@ -53,6 +53,13 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>4.4.5, 5.1.0-5.4.0</td>
 </tr>
 <tr>
+<td>3168564</td>
+<td>In a large scale VXLAN configuration (for example if you have more than 8500 VLANs across ports), {{switchd}} might crash when you restart {{clagd}} or when all bonds go operationally down, then up.
+On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scale limit for VXLAN deployments with 8500 VLANs across ports with LACP bypass disabled.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3163845</td>
 <td>If bond slaves listed in the {{/etc/network/interfaces}} file are not in alphabetical order, the bond interface MAC address can change when you run {{ifreload}}. For example, if the bond slaves in the {{/etc/network/interfaces}} file are listed as {{swp32 swp31}}, the switch initially uses the MAC address for swp32 as the bond MAC address. An another {{ifreload}} can cause this to change to use the MAC address for swp31 as the bond MAC address, which can cause protocol issues, such as IPv6 link-local address changes.</td>
 <td>4.3.1-4.4.5</td>
@@ -1497,6 +1504,14 @@ To work around this issue, remove the interface alias description from {{iproute
 <td>3.7.11-3.7.16</td>
 </tr>
 <tr>
+<td>2543915</td>
+<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+<td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>2543900</td>
 <td>On the Mellanox switch, static VXLAN tunnels incorrectly allow traffic from any remote tunnel IP address.</td>
 <td>3.7.8-3.7.16, 4.0.0-4.4.5</td>
@@ -1949,6 +1964,11 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <th> Affects </th>
 </tr>
 <tr>
+<td>3419953</td>
+<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
+<td>4.3.1</td>
+</tr>
+<tr>
 <td>3410952</td>
 <td>If MLAG is configured but disconnected from an MLAG peer for an extended period of time (days or more), there is a long delay (up to a minute per day) before traffic forwarding stabilizes after the MLAG peer connection re-establishes.</td>
 <td>3.7.0-4.3.1</td>
@@ -2051,6 +2071,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3419953</td>
+<td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>3413827</td>
@@ -2235,6 +2261,13 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 <td>5.3.0-5.4.0</td>
 </tr>
 <tr>
+<td>3168564</td>
+<td>In a large scale VXLAN configuration (for example if you have more than 8500 VLANs across ports), {{switchd}} might crash when you restart {{clagd}} or when all bonds go operationally down, then up.
+On Trident3 switches running Cumulus Linux 4.3.1, NVIDIA validates the VLAN scale limit for VXLAN deployments with 8500 VLANs across ports with LACP bypass disabled.</td>
+<td>4.3.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>3163845</td>
 <td>If bond slaves listed in the {{/etc/network/interfaces}} file are not in alphabetical order, the bond interface MAC address can change when you run {{ifreload}}. For example, if the bond slaves in the {{/etc/network/interfaces}} file are listed as {{swp32 swp31}}, the switch initially uses the MAC address for swp32 as the bond MAC address. An another {{ifreload}} can cause this to change to use the MAC address for swp31 as the bond MAC address, which can cause protocol issues, such as IPv6 link-local address changes.</td>
 <td>4.3.1-4.4.5</td>
@@ -2379,6 +2412,12 @@ Fixed: 1.9.2-1+deb10u1</td>
 <td>2902013</td>
 <td>The NCLU commit  command adds a five second delay.</td>
 <td>4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2896450</td>
+<td>On the Dell N3248PXE switch, fixed RJ45 interfaces with PoE neighbors can end up in {{Paused}} mode after a {{switchd}} restart, which blocks traffic on that interface. To work around this issue, restart {{switchd}} a second or third time until all interfaces are functioning correctly, or reboot the switch.</td>
+<td>4.3.0-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -3741,6 +3780,14 @@ To work around this issue, disable MAC learning on QinQ VLANs by adding {{bridge
 To work around this issue, remove the interface alias description from {{iproute2}}.</td>
 <td>3.7.8-3.7.10, 4.0.0-4.4.5</td>
 <td>3.7.11-3.7.16</td>
+</tr>
+<tr>
+<td>2543915</td>
+<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+<td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>2543900</td>

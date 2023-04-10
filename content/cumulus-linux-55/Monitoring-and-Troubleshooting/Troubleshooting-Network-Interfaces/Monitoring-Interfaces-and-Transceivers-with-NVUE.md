@@ -106,7 +106,7 @@ NVUE provides the following commands to show counters for the interfaces on the 
 
 | NVUE Command | Description |
 | ----------- | ------------ |
-| `nv show interface --view counters` |  Shows all statistics for all the interfaces configured on the switch 
+| `nv show interface --view counters` |  Shows all statistics for all the interfaces configured on the switch.
 | `nv show interface <interface> counters` | Shows all statistics for a specific interface.|
 | `nv show interface <interface> counters errors`| Shows error counters for a specific interface. |
 | `nv show interface <interface> counters drops` | Shows packet drop counters for a specific interface.|
@@ -135,6 +135,12 @@ NVUE does not provide statistics for logical interfaces, such as bonds and break
 {{%/notice%}}
 
 ## Clear Interface Statistics
+
+To clear counters for all interfaces, run the `nv action clear interface counters` command:
+
+```
+cumulus@switch$ nv action clear interface counters
+```
 
 To clear the counters for an interface, run the `nv action clear interface <interface> counters` command:
 

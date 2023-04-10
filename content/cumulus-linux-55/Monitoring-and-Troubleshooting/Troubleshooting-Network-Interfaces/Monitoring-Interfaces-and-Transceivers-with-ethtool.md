@@ -1,19 +1,19 @@
 ---
-title: Monitoring Interfaces and Transceivers Using ethtool
+title: Monitoring Interfaces and Transceivers with ethtool
 author: NVIDIA
 weight: 1100
 toc: 4
 ---
 
-The `ethtool` command enables you to query or control the network driver and hardware settings. It takes the device name (like swp1) as an argument. When the device name is the only argument to `ethtool`, it prints the network device settings. See `man ethtool(8)` for details.
+The `ethtool` command enables you to query or control the network driver and hardware settings and takes the device name ( swp1) as an argument. When the device name is the only argument, `ethtool` prints the network device settings. See `man ethtool(8)` for details.
 
 {{%notice tip%}}
-The `l1-show` command is the preferred tool for monitoring Ethernet data. See the {{<link url="Troubleshoot-Layer-1">}} guide for details.
+NVIDIA recommends using the `l1-show` command to monitor Ethernet data; refer to {{<link url="Troubleshoot-Layer-1">}}.
 {{%/notice%}}
 
-## Monitor Interface Status Using ethtool
+## Monitor Interface Status
 
-To check the status of an interface with `ethtool`:
+To check the status of an interface:
 
 ```
 cumulus@switch:~$ ethtool swp1
@@ -38,7 +38,7 @@ Link detected: yes
 ```
 
 {{%notice note%}}
-The switch hardware contains the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool swpXX` shows the port settings in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected). However, some fields in `ethtool`, such as Supported Link Modes and Advertised Link Modes, do not update based on the actual module in the port and therefore can show incorrect or misleading results.
+The switch hardware includes the {{<link url="Switch-Port-Attributes" text="active port settings">}}. The output of `ethtool swpXX` shows the port settings in the kernel. The `switchd` process keeps the hardware and kernel in sync for the important port settings (speed, auto-negotiation, and link detected). However, some fields in `ethtool`, such as Supported Link Modes and Advertised Link Modes, do not update based on the actual module in the port and might show incorrect or misleading results.
 {{%/notice%}}
 
 To query interface statistics:
@@ -103,7 +103,8 @@ Cleared counters
 {{%notice note%}}
 Some services, such as {{<link url="Multi-Chassis-Link-Aggregation-MLAG/#large-packet-drops-on-the-peer-link-interface" text="MLAG">}} and {{<link url="DHCP-Relays/#considerations" text="DHCP">}} can cause drop counters to increment as expected and do not cause a problem on the switch.
 {{%/notice%}}
-## Monitor Switch Port SFP/QSFP Hardware Information Using ethtool
+
+## Monitor Switch Port SFP/QSFP Hardware Information
 
 To see hardware capabilities and measurement information on the SFP or QSFP module in a particular port, use the `ethtool -m` command. If the SFP/QSFP supports Digital Optical Monitoring (the `Optical diagnostics support` field is *Yes* in the output below), the optical power levels and thresholds also show below the standard hardware details.
 

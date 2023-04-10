@@ -25,6 +25,8 @@ The NVIDIA SN5600 switch is available as a POC and open to customer feedback. Do
 - The NVIDIA SN5600 switch currently supports 800G, 400G, and 100G speeds only.
 {{%/notice%}}
 
+For information about NetQ features supported for Spectrum-4, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-45/More-Documents/Spectrum-Support/" text="NetQ Spectrum-4 Support">}}.
+
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0
 <!-- vale on -->

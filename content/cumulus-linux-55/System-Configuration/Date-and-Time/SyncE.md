@@ -167,13 +167,16 @@ cumulus@switch:~$ sudo systemctl restart syncd
 
 The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 100.
 
-The following command example sets the priority on swp2 to 254:
+The following command example sets the priority on swp2 to 1, on swp2 to 10, and on swp3 to 1:
 
 {{< tabs "TabID172 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set interface swp2 synce provider-priority 254
+cumulus@switch:~$ nv set interface swp1 synce provider-priority 1
+cumulus@switch:~$ nv set interface swp2 synce provider-priority 10
+cumulus@switch:~$ nv set interface swp3 synce provider-priority 1
+
 cumulus@switch:~$ nv config apply
 ```
 
@@ -185,7 +188,19 @@ Edit the `/etc/synced.conf` file to change the `priority` setting for the interf
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
 ...
+[global]
+twtr_seconds=180
+priority=256
+log-level=debug
 
+[swp1]
+priority=1
+ 
+[swp2]
+priority=10
+ 
+[swp3]
+priority=1
 ```
 
 ```
@@ -201,14 +216,44 @@ To show SyncE configuration, run the `nv show service synce` command:
 
 ```
 cumulus@switch:~$ nv show service synce
-ADD OUTPUT
+                     operational                                                         applied
+-------------------  ------------------------------------------------------------------  -------
+clock-identity       0x913500fffe00d100
+local-clock-quality  eec1
+network-type         1
+summary              Group #0: TRACKING holdover acquired on swp1. freq_diff: -51 (ppb)
 ```
 
 To show SyncE statistics for a specific interface, run the `nv show interface <interface-id> synce counters` command:
 
 ```
 cumulus@switch:~$ nv show interface swp2 synce counters
-ADD OUTPUT
+                 operational  applied
+---------------  -----------  -------
+rx-esmc          248899
+rx-esmc-dnu      0
+rx-esmc-e-eec    0
+rx-esmc-e-prc    241259
+rx-esmc-e-prtc   0
+rx-esmc-eec1     0
+rx-esmc-error    0
+rx-esmc-prc      4125
+rx-esmc-prtc     0
+rx-esmc-ssu-a    0
+rx-esmc-ssu-b    0
+rx-esmc-unknown  3515
+tx-esmc          249107
+tx-esmc-dnu      245111
+tx-esmc-e-eec    0
+tx-esmc-e-prc    107
+tx-esmc-e-prtc   0
+tx-esmc-eec1     2488
+tx-esmc-error    4
+tx-esmc-prc      1401
+tx-esmc-prtc     0
+tx-esmc-ssu-a    0
+tx-esmc-ssu-b    0
+tx-esmc-unknown  0
 ```
 
 ## Related Information

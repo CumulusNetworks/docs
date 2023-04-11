@@ -19,33 +19,19 @@ You can choose to configure Cumulus Linux either with the NVUE CLI **or** with L
 Do **not** run both NVUE configuration commands and Linux commands to configure the switch. NVUE replaces certain configuration in the files, and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet.
 {{%/notice%}}
 
-## Install Cumulus Linux
+## Get Started
 
-To install Cumulus Linux, you use {{<exlink url="https://opencomputeproject.github.io/onie" text="ONIE">}} (Open Network Install Environment), an extension to the traditional U-Boot software that allows for automatic discovery of a network installer image. This facilitates the ecosystem model of procuring switches with an operating system choice, such as Cumulus Linux. The easiest way to install Cumulus Linux with ONIE is with local HTTP discovery:
+Cumulus Linux is installed on the switch by default. To upgrade to a different Cumulus Linux release or re-install Cumulus Linux, refer to {{<link url="Installation-Management" text="Installation Management">}}. To show the Cumulus Linux release installed on the switch, run the NVUE `nv show system` command.
 
-1. Make sure your host (laptop or server) is running DHCP in addition to a web server.
+When starting Cumulus Linux for the first time, the management port makes a DHCPv4 request. To determine the IP address of the switch, you can cross reference the MAC address of the switch with your DHCP server. The MAC address is typically located on the side of the switch or on the <!-- vale off -->box<!-- vale on --> in which the unit ships.
 
-2. {{<exlink url="https://enterprise-support.nvidia.com/s/downloader" text="Download">}} the Cumulus Linux installation file to the root directory of the web server and rename the downloaded file to `onie-installer`.
-
-3. Connect your host using an Ethernet cable to the management Ethernet port of the switch.
-
-4. Power on the switch. The switch downloads the ONIE image installer and boots. You can watch the installation progress in your terminal. After the installation completes, the Cumulus Linux login prompt appears in the terminal window.
-
-{{%notice note%}}
-To prevent unauthorized access to the switch, NVIDIA recommends you {{<link url="Installing-a-New-Cumulus-Linux-Image/#change-the-default-bios-password" text="change the default BIOS password">}} during system boot.
-{{%/notice%}}
-
-{{%notice note%}}
-These steps describe a flexible unattended installation method; you do not need a console cable. A fresh install with ONIE using a local web server typically completes in less than ten minutes. However, you have more options for installing Cumulus Linux with ONIE, such as using a local file, FTP or USB. See {{<link url="Installing-a-New-Cumulus-Linux-Image">}} for more options.
-{{%/notice%}}
-
-After installing Cumulus Linux, you are ready to:
+To get started:
 - Log in to Cumulus Linux on the switch and change the default credentials.
 - Configure Cumulus Linux. This quick start guide provides instructions on changing the hostname of the switch, setting the date and time, and configuring switch ports and a loopback interface.
 
-## Get Started
-
-When starting Cumulus Linux for the first time, the management port makes a DHCPv4 request. To determine the IP address of the switch, you can cross reference the MAC address of the switch with your DHCP server. The MAC address is typically located on the side of the switch or on the <!-- vale off -->box<!-- vale on --> in which the unit ships.
+{{%notice warning%}}
+You can choose to configure Cumulus Linux either with NVUE commands **or** Linux commands (with vtysh or by manually editing configuration files). Do **not** run both NVUE configuration commands (such as `nv set`, `nv unset`, `nv action`, and `nv config`) and Linux commands to configure the switch. NVUE commands replace the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf`, and remove any configuration you add manually or with automation tools like Ansible, Chef, or Puppet.
+{{%/notice%}}
 
 ### Login Credentials
 

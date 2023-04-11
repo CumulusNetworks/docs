@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 1100
 toc: 4
 ---
-NVUE enables you to check the status of an interface, and view and clear interface counters. Interface counters provide information about an interface, such as the number of packets intentionally or intentionally dropped, the number of inbound and outbound packets discarded even though the switch detected no errors, the number of inbound and outbound packets not transmitted because of errors, and so on.
+NVUE enables you to check the status of an interface, and view and clear interface counters. Interface counters provide information about an interface, such as the number of packets dropped, the number of inbound and outbound packets not transmitted because of errors, and so on.
 
 ## Monitor Interface Status
 
@@ -131,7 +131,7 @@ cumulus@switch$ nv show interface swp1 counters errors
 ```
 
 {{%notice note%}}
-- NVUE does not provide statistics for logical interfaces, such as bonds and breakout interfaces. 
+- NVUE does not provide statistics for logical interfaces, such as bonds, VLAN interfaces or sub-interfaces. 
 - To show statistics for all VNIs in a single VXLAN device, run the `nv show nve counters` command. To show statistics for a specific VNI in a single VXLAN device,run the `nv show nve counters vni <vni>` command.
 {{%/notice%}}
 
@@ -149,4 +149,4 @@ To clear the counters for an interface, run the `nv action clear interface <inte
 cumulus@switch$ nv action clear interface swp1 counters
 ```
 
-The `nv action clear interface <interface> counters` command does not clear counters in the kernel or hardware.
+The `nv action clear interface <interface> counters` command does not clear counters in the hardware.

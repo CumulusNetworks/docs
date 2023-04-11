@@ -45,8 +45,8 @@ cumulus@switch:~$ nv config apply
 Start the synce service:
 
 ```
-cumulus@switch:~$ sudo systemctl enable synce
-cumulus@switch:~$ sudo systemctl start synce
+cumulus@switch:~$ sudo systemctl enable synced.service
+cumulus@switch:~$ sudo systemctl start synced.service
 ```
 
 {{< /tab >}}
@@ -81,7 +81,7 @@ twtr_seconds=180
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart syncd
+cumulus@switch:~$ sudo systemctl restart synced.service
 ```
 
 {{< /tab >}}
@@ -115,7 +115,7 @@ priority=256
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart syncd
+cumulus@switch:~$ sudo systemctl restart synced.service
 ```
 
 {{< /tab >}}
@@ -151,11 +151,11 @@ cumulus@switch:~$ sudo nano /etc/synced/synced.conf
 [global]
 twtr_seconds=180
 priority=256
-log-level=debug
+loglevel=debug
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart syncd
+cumulus@switch:~$ sudo systemctl restart synced.service
 ```
 
 {{< /tab >}}
@@ -176,7 +176,6 @@ The following command example sets the priority on swp2 to 1, on swp2 to 10, and
 cumulus@switch:~$ nv set interface swp1 synce provider-priority 1
 cumulus@switch:~$ nv set interface swp2 synce provider-priority 10
 cumulus@switch:~$ nv set interface swp3 synce provider-priority 1
-
 cumulus@switch:~$ nv config apply
 ```
 
@@ -204,7 +203,7 @@ priority=1
 ```
 
 ```
-cumulus@switch:~$ sudo systemctl restart syncd
+cumulus@switch:~$ sudo systemctl restart synced.service
 ```
 
 {{< /tab >}}

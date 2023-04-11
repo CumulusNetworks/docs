@@ -73,7 +73,7 @@ cumulus@netq-appliance:~$
    backup-netq-standalone-onprem-4.4.0-2023-02-06_12_37_29_UTC.tar
    ```
 
-### Back Up NetQ 4.5.0
+### Back Up NetQ 4.5.0 or Later
 
 1. Run the backup script `/usr/sbin/vm-backuprestore.sh`:
 

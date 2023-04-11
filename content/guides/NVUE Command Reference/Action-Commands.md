@@ -3,6 +3,7 @@ title: Action Commands
 author: Cumulus Networks
 weight: 55
 product: Cumulus Linux
+type: nojsscroll
 ---
 {{%notice note%}}
 This document is in Beta.

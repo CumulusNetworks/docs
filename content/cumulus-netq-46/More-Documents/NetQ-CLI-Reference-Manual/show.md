@@ -3858,26 +3858,44 @@ spine04           psu2temp1       psu2 temp sensor                    ok        
 Displays configuration and health of system-level services for one or all switches and hosts, currently or for a time in the past. You can filter the output by switch, service, VRF, and status. 
 
 Supported services include:
-<!-- vale off -->
+
+- **aclinit**: `aclinit` service
+- **acltool**: `acltool` service
+- **bgp**: BGP (Border Gateway Protocol) service
 - **bgpd**: BGP daemon
-- **clagd**: MLAG daemon
-- **helpledmgrd**: Switch LED manager daemon
+- **chrony**:  `chrony` service
+- **clagd**: MLAG (Multi-chassis Link Aggregation) daemon
+- **cumulus-chassis-ssh**: cumulus-chassis-ssh
+- **cumulus-chassisd**: cumulus-chassisd
+- **database**: database
+- **dhcp_relay**: DHCP relay service
+- **docker**: Docker container service
+- **ledmgrd**: Switch LED manager daemon
+- **lldp**: LLDP (Link Layer Discovery Protocol) service
 - **lldpd**: LLDP daemon
-- **mstpd**: MSTP daemon
-- **neighmgrd**: Neighbor Manager daemon for BGP and OSPF
+- **mstpd**: MSTP (Multiple Spanning Tree Protocol) daemon
+- **neighmgrd**: Neighbor manager daemon for BGP and OSPF
 - **netq-agent**: NetQ Agent service
 - **netqd**: NetQ application daemon
-- **ntp**: NTP service
-- **ntpd**: NTP daemon
+- **ntp**: Network Time Protocol (NTP) service
+- **pmon**: Process monitor service
+- **portwd**: Port watch daemon
 - **ptmd**: PTM (Prescriptive Topology Manager) daemon
-- **pwmd**: PWM (Password Manager) daemon
+- **pwmd**: Password manager daemon
+- **radv**: Route advertiser service
 - **rsyslog**: Rocket-fast system event logging processing service
 - **smond**: System monitor daemon
-- **ssh**: Secure Shell service for switches and servers
+- **ssh**: Secure shell service for switches and servers
+- **status**: Show services with a given status (*ok*, *error*, *warning*, *fail*)
+- **switchd**: Cumulus Linux `switchd` service for hardware acceleration
+- **swss**: SONiC switch state service daemon
+- **sx_sdk**: Spectrum ASIC SDK service
+- **syncd**: Synchronization service
 - **syslog**: System event logging service
-- **vrf**: VRF service
+- **teamd**: Network team service
+- **vrf**: VRF (Virtual Route Forwarding) service
+- **wd_keepalive**: Software watchdog service
 - **zebra**: GNU Zebra routing daemon
-<!-- vale on -->
 
 The output provides the following information for each switch and host:
 
@@ -3981,7 +3999,7 @@ leaf02            rsyslog              11937 default         yes     yes    no  
 
 ### Related Commands
 
-None
+- `netq show events`
 
 - - -
 ## netq show status verbose

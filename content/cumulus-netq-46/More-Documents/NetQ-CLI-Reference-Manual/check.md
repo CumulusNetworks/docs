@@ -1066,19 +1066,11 @@ None
 
 ### Sample Usage
 
+The default validation runs a networkwide OSPF connectivity and configuration check on all nodes running the OSPF service. This example shows errors in the timers and interface MTU tests.
+
 ```
 cumulus@switch:~# netq check ospf
-ospf check result summary:
-
-Total nodes: 8
-Checked nodes: 8
-Failed nodes: 4
-Rotten nodes: 0
-Warning nodes: 0
-
-Additional summary:
-Failed Adjacencies: 4
-Total Adjacencies: 24
+Checked nodes: 8, Total nodes: 8, Rotten nodes: 0, Failed nodes: 4, Warning nodes: 0, Failed Adjacencies: 4, Total Adjacencies: 24
 
 Router ID Test        : passed
 Adjacency Test        : passed

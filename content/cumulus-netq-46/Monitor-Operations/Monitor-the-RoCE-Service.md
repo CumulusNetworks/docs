@@ -28,9 +28,7 @@ Priority code point (PCP) monitoring requires a switch running NetQ Agent 4.5 or
 
 1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the Network heading, select **RoCE counters**. Use the tabs to view receive (Rx), transmit (Tx), and pool counters networkwide:
-
-{{<figure src="/images/netq/placeholder-roce-460.png" alt="" width="1100">}}
+2. Under the Network heading, select **RoCE counters**. Use the tabs to view receive (Rx), transmit (Tx), and pool counters networkwide.
 ## View RoCE Counters for a Given Switch
 
 You can view the following RoCE counters for a given switch:

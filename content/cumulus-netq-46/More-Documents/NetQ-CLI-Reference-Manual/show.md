@@ -2564,6 +2564,47 @@ None
 
 ### Sample Usage
 
+This example shows the Cumulus reference topology, where LLDP runs on all border, firewall, leaf and spine switches, servers, including the out-of-band management server.
+
+```
+cumulus@switch:~$ netq show lldp
+
+Matching lldp records:
+Hostname          Interface                 Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ----------------- ------------------------- -------------------------
+border01          swp3                      fw1               swp1                      Mon Oct 26 04:13:29 2020
+border01          swp49                     border02          swp49                     Mon Oct 26 04:13:29 2020
+border01          swp51                     spine01           swp5                      Mon Oct 26 04:13:29 2020
+border01          swp52                     spine02           swp5                      Mon Oct 26 04:13:29 2020
+border01          eth0                      oob-mgmt-switch   swp20                     Mon Oct 26 04:13:29 2020
+border01          swp53                     spine03           swp5                      Mon Oct 26 04:13:29 2020
+border01          swp50                     border02          swp50                     Mon Oct 26 04:13:29 2020
+border01          swp54                     spine04           swp5                      Mon Oct 26 04:13:29 2020
+border02          swp49                     border01          swp49                     Mon Oct 26 04:13:11 2020
+border02          swp3                      fw1               swp2                      Mon Oct 26 04:13:11 2020
+border02          swp51                     spine01           swp6                      Mon Oct 26 04:13:11 2020
+border02          swp54                     spine04           swp6                      Mon Oct 26 04:13:11 2020
+border02          swp52                     spine02           swp6                      Mon Oct 26 04:13:11 2020
+border02          eth0                      oob-mgmt-switch   swp21                     Mon Oct 26 04:13:11 2020
+border02          swp53                     spine03           swp6                      Mon Oct 26 04:13:11 2020
+border02          swp50                     border01          swp50                     Mon Oct 26 04:13:11 2020
+fw1               eth0                      oob-mgmt-switch   swp18                     Mon Oct 26 04:38:03 2020
+fw1               swp1                      border01          swp3                      Mon Oct 26 04:38:03 2020
+fw1               swp2                      border02          swp3                      Mon Oct 26 04:38:03 2020
+fw2               eth0                      oob-mgmt-switch   swp19                     Mon Oct 26 04:46:54 2020
+leaf01            swp1                      server01          mac:44:38:39:00:00:32     Mon Oct 26 04:13:57 2020
+leaf01            swp2                      server02          mac:44:38:39:00:00:34     Mon Oct 26 04:13:57 2020
+leaf01            swp52                     spine02           swp1                      Mon Oct 26 04:13:57 2020
+leaf01            swp49                     leaf02            swp49                     Mon Oct 26 04:13:57 2020
+leaf01            eth0                      oob-mgmt-switch   swp10                     Mon Oct 26 04:13:57 2020
+leaf01            swp3                      server03          mac:44:38:39:00:00:36     Mon Oct 26 04:13:57 2020
+leaf01            swp53                     spine03           swp1                      Mon Oct 26 04:13:57 2020
+leaf01            swp50                     leaf02            swp50                     Mon Oct 26 04:13:57 2020
+leaf01            swp54                     spine04           swp1                      Mon Oct 26 04:13:57 2020
+leaf01            swp51                     spine01           swp1                      Mon Oct 26 04:13:57 2020
+...
+```
+
 Display session for a given host interface port:
 
 ```
@@ -2579,8 +2620,8 @@ spine04           swp5                      border01          swp54             
 
 ### Related Commands
 
-- ```netq show events```
-- ```netq check lldp```
+- `netq show events`
+- `netq check lldp`
 
 - - -
 

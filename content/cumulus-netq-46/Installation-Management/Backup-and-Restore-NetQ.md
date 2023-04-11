@@ -8,7 +8,7 @@ toc: 3
 The following sections describe how to back up and restore your NetQ data and VMs.
 
 {{<notice note>}}
-These procedures <em>do not</em> apply to your NetQ Cloud Appliance or VM. The NetQ cloud service handles data backups automatically.
+These procedures only apply to on-premises deployments. Cloud deployments are backed up automatically.
 {{</notice>}}
 {{<notice note>}}
 You must run backup and restore scripts with sudo privileges.

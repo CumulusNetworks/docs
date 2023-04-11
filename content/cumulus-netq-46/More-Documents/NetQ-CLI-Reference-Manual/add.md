@@ -186,14 +186,14 @@ cumulus@switch:~$ netq add notification channel email onprem-email to netq-notif
 Successfully added/updated channel onprem-email
 ```
 
-Create a PagerDuty channel
+Create a PagerDuty channel:
 
 ```
 cumulus@switch:~$ netq add notification channel pagerduty pd-netq-events integration-key c6d666e210a8425298ef7abde0d1998
 Successfully added/updated channel pd-netq-events
 ```
 
-Create a Slack channel
+Create a Slack channel:
 
 ```
 cumulus@switch:~$ netq add notification channel slack slk-netq-events webhook https://hooks.slack.com/services/text/moretext/evenmoretext
@@ -201,7 +201,7 @@ Successfully added/updated channel slk-netq-events
 ```
 
 <!-- vale off -->
-Create a Syslog channel
+Create a Syslog channel:
 <!-- vale on -->
 
 ```

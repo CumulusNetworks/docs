@@ -1,6 +1,6 @@
 ---
 title: gNMI Streaming
-author: Cumulus Networks
+author: NVIDIA
 weight: 811
 toc: 4
 ---
@@ -13,6 +13,8 @@ You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Networ
 The gNMI Agent is included in the `netq-agent` package and is disabled by default. To enable it, run:
 
 ```
+ cumulus@switch:~$ sudo systemctl enable netq-agent.service
+ cumulus@switch:~$ sudo systemctl start netq-agent.service
  cumulus@switch:~$ netq config add agent gnmi-enable true
  ```
 
@@ -27,6 +29,7 @@ Use the following commands to adjust the settings:
 2. Change the default port over which the gNMI Agent listens:
 
        cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
+       
 3. Restart the NetQ Agent to incorporate the configuration changes:
 
        cumulus@switch:~$ netq config restart agent
@@ -53,7 +56,7 @@ cumulus@switch:mgmt:~$ sudo systemctl start nvued.service
 {{%/notice%}}
 ### Using the gNMI Agent Exclusively
 
-NVIDIA recommends collecting data with both the gNMI and NetQ Agents. However, if you do not want to collect data with both Agents, you can disable the NetQ Agent. Data is then sent exclusively to the gNMI Agent.
+NVIDIA recommends collecting data with both the gNMI and NetQ Agents. However, if you do not want to collect data with both Agents or you are not streaming data to NetQ, you can disable the NetQ Agent. Data is then sent exclusively to the gNMI Agent.
 
 To disable the NetQ Agent, use the following command:
 
@@ -279,9 +282,6 @@ module nvidia-if-ethernet-counters-ext {
 }
 ```
 {{</expand>}}
-{{%notice note%}}
-SONiC only supports collection of [WJH data](#collect-wjh-data-using-gnmi) with gNMI.
-{{%/notice%}}
 <!-- vale on -->
 ## Collect WJH Data Using gNMI
 

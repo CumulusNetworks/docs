@@ -79,20 +79,6 @@ cumulus@leaf01:mgmt:~$ nv set service synce enable on
 
 - - -
 
-## nv set service synce wait-to-restore-time
-
-Configures the number of seconds SyncE waits for each port to be up before opening the Ethernet Synchronization Message Channel (ESMC) for messages. You can set a value betwen 0 and 720 (12) minutes. The default value is 300 seconds (5 minutes).
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv set service synce wait-to-restore-time 180
-```
-
 ## nv set service synce log-level
 
 Configures the logging level that the SyncE service uses. You can set the following values:
@@ -126,6 +112,22 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv set service synce provider-default-priority 256
+```
+
+- - -
+
+## nv set service synce wait-to-restore-time
+
+Configures the number of seconds SyncE waits for each port to be up before opening the Ethernet Synchronization Message Channel (ESMC) for messages. You can set a value betwen 0 and 720 (12) minutes. The default value is 300 seconds (5 minutes).
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set service synce wait-to-restore-time 180
 ```
 
 - - -

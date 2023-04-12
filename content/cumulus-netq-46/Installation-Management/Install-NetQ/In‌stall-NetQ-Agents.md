@@ -85,7 +85,7 @@ deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-{{<version>}
 ```
 
 {{<notice tip>}}
-You  can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
 {{</notice>}}
 
 {{</tab>}}
@@ -172,7 +172,7 @@ To install the NetQ Agent you need to install `netq-agent` on each switch or hos
 
 To obtain the NetQ Agent package:
 
-1. Install the `wget` utility so you can install the GPG keys in step 3.
+1. Install the `wget` utility so that you can install the GPG keys in step 3.
 
        admin@switch:~$ sudo apt-get update
        admin@switch:~$ sudo apt-get install wget -y
@@ -201,7 +201,7 @@ Before you install the NetQ Agent on a Red Hat or CentOS server, make sure you i
 
 ### Verify the Server is Running lldpd and wget
 
-Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`; however,the installation requires it.
+Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`; however, the installation requires it.
 
 To install this package, run the following commands:
 

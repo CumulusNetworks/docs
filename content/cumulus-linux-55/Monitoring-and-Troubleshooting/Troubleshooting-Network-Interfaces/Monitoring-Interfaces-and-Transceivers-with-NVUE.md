@@ -132,7 +132,7 @@ cumulus@switch$ nv show interface swp1 counters errors
 
 {{%notice note%}}
 - NVUE does not provide statistics for logical interfaces, such as bonds, VLAN interfaces or sub-interfaces. 
-- To show statistics for all VNIs in a single VXLAN device, run the `nv show nve counters` command. To show statistics for a specific VNI in a single VXLAN device,run the `nv show nve counters vni <vni>` command.
+<!--- To show statistics for all VNIs in a single VXLAN device, run the `nv show nve counters` command. To show statistics for a specific VNI in a single VXLAN device,run the `nv show nve counters vni <vni>` command.-->
 {{%/notice%}}
 
 ## Clear Interface Statistics

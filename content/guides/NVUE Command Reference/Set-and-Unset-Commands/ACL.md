@@ -1025,3 +1025,53 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 acl EXAMPLE1 outbound control-plane
 ```
 
 - - -
+
+## nv set system control-plane acl \<acl-id\>
+
+Configures a control plane ACL to apply a single rule for all packets forwarded to the CPU regardless of the source interface or destination interface on the switch. Control plane ACLs allow you to regulate traffic forwarded to applications on the switch with more granularity than traps and to configure ACLs to block SSH from specific addresses or subnets.
+
+- - -
+
+## nv set system control-plane acl \<acl-id\> inbound control-plane
+
+Configures an inbound control plane ACL.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The name of the ACL. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system control-plane acl ACL1 inbound control-plane
+```
+
+- - -
+
+## nv set system control-plane acl \<acl-id\> outbound control-plane
+
+Configures an outbound control plane ACL.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<acl-id>` |   The name of the ACL. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system control-plane acl ACL1 outbound control-plane
+```
+
+- - -

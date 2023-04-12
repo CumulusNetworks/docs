@@ -765,6 +765,102 @@ cumulus@leaf01:mgmt:~$ nv show system control-plane
 
 - - -
 
+## nv show system control-plane acl
+
+Shows the control plane ACLs configured on the switch. You use control plane ACLs to apply a single rule for all packets forwarded to the CPU regardless of the source interface or destination interface on the switch. Control plane ACLs allow you to regulate traffic forwarded to applications on the switch with more granularity than traps and to configure ACLs to block SSH from specific addresses or subnets.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane acl
+```
+
+- - -
+
+## nv show system control-plane acl \<acl-id\>
+
+Shows information about the specified control plane ACL.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1
+```
+
+- - -
+
+## nv show system control-plane acl \<acl-id\> inbound
+
+Shows configuration information for the specified inbound control plane ACL.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 inbound
+```
+
+- - -
+
+## nv show system control-plane acl \<acl-id\> outbound
+
+Shows configuration information for the specified outbound control plane ACL.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 outbound
+```
+
+- - -
+
+## nv show system control-plane acl \<acl-id\> statistics
+
+Shows statistics for the specified control plane ACL.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 statistics
+```
+
+- - -
+
+## nv show system control-plane acl \<acl-id\> statistics \<rule-id\>
+
+Shows statistics for the specified control plane ACL rule.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show system control-plane acl ACL1 statistics 10
+```
+
+- - -
+
 ## nv show system control-plane policer
 
 Shows control plane policer configuration.

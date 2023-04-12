@@ -211,7 +211,7 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ## Troubleshooting
 
-To show SyncE configuration, run the `nv show service synce` command:
+To show global SyncE configuration, run the `nv show service synce` command. To show SyncE configuration for a specific interface, run the `nv show interface <interface-id> synce` command.
 
 ```
 cumulus@switch:~$ nv show service synce

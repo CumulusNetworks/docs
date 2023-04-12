@@ -228,19 +228,27 @@ To upgrade the switch using package upgrade:
 
 1. Back up the configurations from the switch.
 
-2. Fetch the latest update metadata from the repository.
+2. To upgrade to Cumulus Linux 3.7.16, you must download the new repository keys:
+
+   ```
+   cumulus@switch:~$ wget http://repo3.cumulusnetworks.com/public-key/repo3-2023-key
+   cumulus@switch:~$ sudo apt-key add repo3-2023-key
+   cumulus@switch:~$ sudo apt update
+   ```
+
+3. Fetch the latest update metadata from the repository.
 
 ```
 cumulus@switch:~$ sudo -E apt-get update
 ```
 
-3. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded.
+4. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded.
 
 ```
 cumulus@switch:~$ sudo -E apt-get install --dry-run
 ```
 
-4. Upgrade all the packages to the latest distribution.
+5. Upgrade all the packages to the latest distribution.
 
 ```
 cumulus@switch:~$ sudo -E apt-get upgrade
@@ -289,7 +297,7 @@ If you see errors for expired GPG keys that prevent you from upgrading packages,
 
 {{%/notice%}}
 
-5. Reboot the switch if the upgrade messages indicate that a system restart is required.
+6. Reboot the switch if the upgrade messages indicate that a system restart is required.
 
 ```
 cumulus@switch:~$ sudo -E apt-get upgrade
@@ -300,7 +308,7 @@ cumulus@switch:~$ sudo -E apt-get upgrade
 cumulus@switch:~$ sudo reboot
 ```
 
-6. Verify correct operation with the old configurations on the new version.
+7. Verify correct operation with the old configurations on the new version.
 
 ### Upgrade Notes
 

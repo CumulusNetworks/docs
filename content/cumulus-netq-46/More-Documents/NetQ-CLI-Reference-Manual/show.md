@@ -78,6 +78,24 @@ Last Changed              Hostname          Ifname       Prefix                 
 Mon Nov 23 22:28:42 2020  leaf03            lo           10.10.10.3                     32       default
 ```
 
+The following example displays a full chronology of changes for an IP address. If a caret (^) notation appeared, it would indicate that there was no change in value from the row above.
+
+```
+cumulus@switch:~$ netq show address-history 10.1.10.2/24
+
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Tue Sep 29 15:35:21 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 15:35:24 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:07 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:08 2020  leaf01            vlan10       10.1.10.2                      24       RED
+```
+
 Show changes grouped by VRF:
 
 ```
@@ -87,7 +105,23 @@ Last Changed              Hostname          Ifname       Prefix                 
 ------------------------- ----------------- ------------ ------------------------------ -------- ---------------
 Tue Nov 24 19:51:11 2020  server04          uplink       10.1.10.104                    24       default
 ```
+The following example displays the history of an IP address between now and two hours ago. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
 
+```
+cumulus@switch:~$ netq show address-history 10.1.10.2/24 between 2h and now
+
+Matching addresshistory records:
+Last Changed              Hostname          Ifname       Prefix                         Mask     Vrf
+------------------------- ----------------- ------------ ------------------------------ -------- ---------------
+Tue Sep 29 15:35:21 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 15:35:24 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:24:59 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:05 2020  leaf01            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:07 2020  leaf03            vlan10       10.1.10.2                      24       RED
+Tue Sep 29 17:25:08 2020  leaf01            vlan10       10.1.10.2                      24       RED
+```
 ### Related Commands
 
 - ```netq show mac-history```
@@ -1877,6 +1911,39 @@ netq show ipv6 addresses
 
 ### Sample Usage
 
+The following example shows all IPv4 addresses in the reference topology:
+
+```
+cumulus@switch:~$ netq show ip addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+10.10.10.104/32           spine04           lo                        default         Mon Oct 19 22:28:23 2020
+192.168.200.24/24         spine04           eth0                                      Tue Oct 20 15:46:20 2020
+10.10.10.103/32           spine03           lo                        default         Mon Oct 19 22:29:01 2020
+192.168.200.23/24         spine03           eth0                                      Tue Oct 20 15:19:24 2020
+192.168.200.22/24         spine02           eth0                                      Tue Oct 20 15:40:03 2020
+10.10.10.102/32           spine02           lo                        default         Mon Oct 19 22:28:45 2020
+192.168.200.21/24         spine01           eth0                                      Tue Oct 20 15:59:36 2020
+10.10.10.101/32           spine01           lo                        default         Mon Oct 19 22:28:48 2020
+192.168.200.38/24         server08          eth0                      default         Mon Oct 19 22:28:50 2020
+192.168.200.37/24         server07          eth0                      default         Mon Oct 19 22:28:43 2020
+192.168.200.36/24         server06          eth0                      default         Mon Oct 19 22:40:52 2020
+10.1.20.105/24            server05          uplink                    default         Mon Oct 19 22:41:08 2020
+10.1.10.104/24            server04          uplink                    default         Mon Oct 19 22:40:45 2020
+192.168.200.33/24         server03          eth0                      default         Mon Oct 19 22:41:04 2020
+192.168.200.32/24         server02          eth0                      default         Mon Oct 19 22:41:00 2020
+10.1.10.101/24            server01          uplink                    default         Mon Oct 19 22:40:36 2020
+10.255.1.228/24           oob-mgmt-server   vagrant                   default         Mon Oct 19 22:28:20 2020
+192.168.200.1/24          oob-mgmt-server   eth1                      default         Mon Oct 19 22:28:20 2020
+10.1.20.3/24              leaf04            vlan20                    RED             Mon Oct 19 22:28:47 2020
+10.1.10.1/24              leaf04            vlan10-v0                 RED             Mon Oct 19 22:28:47 2020
+192.168.200.14/24         leaf04            eth0                                      Tue Oct 20 15:56:40 2020
+10.10.10.4/32             leaf04            lo                        default         Mon Oct 19 22:28:47 2020
+10.1.20.1/24              leaf04            vlan20-v0                 RED             Mon Oct 19 22:28:47 2020
+...
+```
+
 Display all IP addresses on the *spine01* switch:
 
 ```
@@ -1899,10 +1966,80 @@ Address                   Hostname          Interface                 VRF       
 10.1.30.2/24              leaf03            vlan30                    BLUE            Thu Sep 17 20:25:08 2020
 ```
 
+The following example shows all IPv6 addresses in the reference topology:
+
+```
+cumulus@switch:~$ netq show ipv6 addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+fe80::4638:39ff:fe00:16c/ spine04           eth0                                      Mon Oct 19 22:28:23 2020
+64
+fe80::4638:39ff:fe00:27/6 spine04           swp5                      default         Mon Oct 19 22:28:23 2020
+4
+fe80::4638:39ff:fe00:2f/6 spine04           swp6                      default         Mon Oct 19 22:28:23 2020
+4
+fe80::4638:39ff:fe00:17/6 spine04           swp3                      default         Mon Oct 19 22:28:23 2020
+4
+fe80::4638:39ff:fe00:1f/6 spine04           swp4                      default         Mon Oct 19 22:28:23 2020
+4
+fe80::4638:39ff:fe00:7/64 spine04           swp1                      default         Mon Oct 19 22:28:23 2020
+fe80::4638:39ff:fe00:f/64 spine04           swp2                      default         Mon Oct 19 22:28:23 2020
+fe80::4638:39ff:fe00:2d/6 spine03           swp6                      default         Mon Oct 19 22:29:01 2020
+4
+fe80::4638:39ff:fe00:25/6 spine03           swp5                      default         Mon Oct 19 22:29:01 2020
+4
+fe80::4638:39ff:fe00:170/ spine03           eth0                                      Mon Oct 19 22:29:01 2020
+64
+fe80::4638:39ff:fe00:15/6 spine03           swp3                      default         Mon Oct 19 22:29:01 2020
+4
+...
+```
+The following example shows the IPv6 address information for the leaf01 switch:
+
+```
+cumulus@switch:~$ netq leaf01 show ipv6 addresses
+Matching address records:
+Address                   Hostname          Interface                 VRF             Last Changed
+------------------------- ----------------- ------------------------- --------------- -------------------------
+fe80::4638:39ff:febe:efaa leaf01            vlan4002                  BLUE            Mon Oct 19 22:28:22 2020
+/64
+fe80::4638:39ff:fe00:8/64 leaf01            swp54                     default         Mon Oct 19 22:28:22 2020
+fe80::4638:39ff:fe00:59/6 leaf01            vlan10                    RED             Mon Oct 19 22:28:22 2020
+4
+fe80::4638:39ff:fe00:59/6 leaf01            vlan20                    RED             Mon Oct 19 22:28:22 2020
+4
+fe80::4638:39ff:fe00:59/6 leaf01            vlan30                    BLUE            Mon Oct 19 22:28:22 2020
+4
+fe80::4638:39ff:fe00:2/64 leaf01            swp51                     default         Mon Oct 19 22:28:22 2020
+fe80::4638:39ff:fe00:4/64 leaf01            swp52                     default         Mon Oct 19 22:28:22 2020
+fe80::4638:39ff:febe:efaa leaf01            vlan4001                  RED             Mon Oct 19 22:28:22 2020
+/64
+fe80::4638:39ff:fe00:6/64 leaf01            swp53                     default         Mon Oct 19 22:28:22 2020
+fe80::200:ff:fe00:1c/64   leaf01            vlan30-v0                 BLUE            Mon Oct 19 22:28:22 2020
+fe80::200:ff:fe00:1b/64   leaf01            vlan20-v0                 RED             Mon Oct 19 22:28:22 2020
+fe80::200:ff:fe00:1a/64   leaf01            vlan10-v0                 RED             Mon Oct 19 22:28:22 2020
+fe80::4638:39ff:fe00:59/6 leaf01            peerlink.4094             default         Mon Oct 19 22:28:22 2020
+4
+fe80::4638:39ff:fe00:59/6 leaf01            bridge                    default         Mon Oct 19 22:28:22 2020
+4
+fe80::4638:39ff:fe00:17a/ leaf01            eth0                                      Mon Oct 19 22:28:22 2020
+64
+```
+The following example shows the number of IPv4 and IPv6 addresses on the leaf01 switch:
+
+```
+cumulus@switch:~$ netq leaf01 show ip addresses count
+Count of matching address records: 9
+
+cumulus@switch:~$ netq leaf01 show ipv6 addresses count
+Count of matching address records: 17
+```
+
 ### Related Commands
 
-- ```netq show ip/ipv6 neighbors```
-- ```netq show ip/ipv6 routes```
+- `netq show ip/ipv6 neighbors`
+- `netq show ip routes`
 
 - - -
 
@@ -1998,6 +2135,22 @@ IP Address                Hostname          Interface                 MAC Addres
 169.254.0.1               spine03           swp5                      44:38:39:00:00:26  default         no     Thu Dec  3 22:31:27 2020
 ...
 ```
+The following example shows all IPv4 neighbors using the RED VRF. Note that the VRF name is case sensitive.
+
+```
+cumulus@switch:~$ netq show ip neighbors vrf RED
+Matching neighbor records:
+IP Address                Hostname          Interface                 MAC Address        VRF             Remote Last Changed
+------------------------- ----------------- ------------------------- ------------------ --------------- ------ -------------------------
+10.1.10.2                 leaf04            vlan10                    44:38:39:00:00:5d  RED             no     Mon Oct 19 22:28:47 2020
+10.1.20.2                 leaf04            vlan20                    44:38:39:00:00:5d  RED             no     Mon Oct 19 22:28:47 2020
+10.1.10.3                 leaf03            vlan10                    44:38:39:00:00:5e  RED             no     Mon Oct 19 22:28:18 2020
+10.1.20.3                 leaf03            vlan20                    44:38:39:00:00:5e  RED             no     Mon Oct 19 22:28:18 2020
+10.1.10.2                 leaf02            vlan10                    44:38:39:00:00:59  RED             no     Mon Oct 19 22:28:30 2020
+10.1.20.2                 leaf02            vlan20                    44:38:39:00:00:59  RED             no     Mon Oct 19 22:28:30 2020
+10.1.10.3                 leaf01            vlan10                    44:38:39:00:00:37  RED             no     Mon Oct 19 22:28:22 2020
+10.1.20.3                 leaf01            vlan20                    44:38:39:00:00:37  RED             no     Mon Oct 19 22:28:22 2020
+```
 
 Display all IPv6 addresses on the *leaf03* switch:
 
@@ -2031,8 +2184,8 @@ fe80::4638:39ff:fe00:180  leaf03            eth0                      44:38:39:0
 
 ### Related Commands
 
-- ```netq show ip/ipv6 addresses```
-- ```netq show ip/ipv6 routes```
+- `netq show ip/ipv6 addresses`
+- `netq show ip routes`
 
 - - -
 
@@ -2137,6 +2290,36 @@ no     default         10.0.1.1/32                    spine04           169.254.
 yes    default         10.10.10.104/32                spine04           lo                                  Thu Dec  3 22:29:17 2020
 ...
 ```
+The following example shows the routes available for an IP address of 10.0.0.12. The result shows nine available routes:
+
+```
+cumulus@switch:~$ netq show ip routes 10.0.0.12
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+no                     0.0.0.0/0                      spine04           Blackhole                           Mon Oct 19 22:28:23 2020
+no                     0.0.0.0/0                      spine03           Blackhole                           Mon Oct 19 22:29:01 2020
+no                     0.0.0.0/0                      spine02           Blackhole                           Mon Oct 19 22:28:46 2020
+no                     0.0.0.0/0                      spine01           Blackhole                           Mon Oct 19 22:28:48 2020
+no     default         0.0.0.0/0                      server08          192.168.200.1: eth0                 Mon Oct 19 22:28:50 2020
+no     default         0.0.0.0/0                      server07          192.168.200.1: eth0                 Mon Oct 19 22:28:43 2020
+no     default         10.0.0.0/8                     server06          10.1.30.1: uplink                   Mon Oct 19 22:40:52 2020
+no     default         10.0.0.0/8                     server05          10.1.20.1: uplink                   Mon Oct 19 22:41:08 2020
+no     default         10.0.0.0/8                     server04          10.1.10.1: uplink                   Mon Oct 19 22:40:45 2020
+no     default         10.0.0.0/8                     server03          10.1.30.1: uplink                   Mon Oct 19 22:41:04 2020
+no     default         10.0.0.0/8                     server02          10.1.20.1: uplink                   Mon Oct 19 22:41:00 2020
+no     default         10.0.0.0/8                     server01          10.1.10.1: uplink                   Mon Oct 19 22:40:36 2020
+no     default         0.0.0.0/0                      oob-mgmt-server   10.255.1.1: vagrant                 Mon Oct 19 22:28:20 2020
+no     BLUE            0.0.0.0/0                      leaf04            Blackhole                           Mon Oct 19 22:28:47 2020
+no                     0.0.0.0/0                      leaf04            Blackhole                           Mon Oct 19 22:28:47 2020
+no     RED             0.0.0.0/0                      leaf04            Blackhole                           Mon Oct 19 22:28:47 2020
+no     BLUE            0.0.0.0/0                      leaf03            Blackhole                           Mon Oct 19 22:28:18 2020
+no                     0.0.0.0/0                      leaf03            Blackhole                           Mon Oct 19 22:28:18 2020
+no     RED             0.0.0.0/0                      leaf03            Blackhole                           Mon Oct 19 22:28:18 2020
+no     BLUE            0.0.0.0/0                      leaf02            Blackhole                           Mon Oct 19 22:28:30 2020
+no                     0.0.0.0/0                      leaf02            Blackhole                           Mon Oct 19 22:28:30 2020
+...
+```
 
 Display all IPv6 routes on the *leaf03* switch:
 
@@ -2149,11 +2332,30 @@ no     RED             ::/0                           leaf03            Blackhol
 no                     ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
 no     BLUE            ::/0                           leaf03            Blackhole                           Thu Dec  3 22:28:58 2020
 ```
+The following example shows all IPv4 routes owned by spine01 switch:
 
+```
+cumulus@switch:~$ netq spine01 show ip routes origin
+Matching routes records:
+Origin VRF             Prefix                         Hostname          Nexthops                            Last Changed
+------ --------------- ------------------------------ ----------------- ----------------------------------- -------------------------
+yes                    192.168.200.0/24               spine01           eth0                                Mon Oct 19 22:28:48 2020
+yes                    192.168.200.21/32              spine01           eth0                                Mon Oct 19 22:28:48 2020
+yes    default         10.10.10.101/32                spine01           lo                                  Mon Oct 19 22:28:48 2020
+```
+This example shows the total number of IPv4 and IPv6 routes for all devices on the leaf01 switch.
+
+```
+cumulus@switch:~$ netq leaf01 show ip routes count
+Count of matching routes records: 27
+    
+cumulus@switch:~$ netq leaf01 show ipv6 routes count
+Count of matching routes records: 3
+```
 ### Related Commands
 
-- ```netq show ip/ipv6 addresses```
-- ```netq show ip/ipv6 neighbors```
+- `netq show ip/ipv6 addresses`
+- `netq show ip/ipv6 neighbors`
 
 - - -
 
@@ -2982,28 +3184,43 @@ None
 
 ### Sample Usage
 
-```
-cumulus@switch:~$ netq show macs
-Matching mac records:
-Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
------- ------------------ ------ ----------------- ------------------------------ ------ -------------------------
-no     46:38:39:00:00:46  20     leaf04            bond2                          no     Mon Dec  7 22:30:15 2020
-yes    00:00:00:00:00:1a  10     leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
-yes    44:38:39:00:00:5e  4002   leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
-yes    44:38:39:00:00:5e  20     leaf04            bridge                         no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:5d  30     leaf04            peerlink                       no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:59  30     leaf04            vni30                          no     Mon Dec  7 22:30:15 2020
-yes    7e:1a:b3:4f:05:b8  20     leaf04            vni20                          no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:37  30     leaf04            vni30                          no     Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:36  30     leaf04            vni30                          yes    Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:37  20     leaf04            vni20                          no     Mon Dec  7 22:30:15 2020
-no     44:38:39:be:ef:aa  4001   leaf04            vniRED                         yes    Mon Dec  7 22:30:15 2020
-no     44:38:39:00:00:37  10     leaf04            vni10                          no     Mon Dec  7 22:30:15 2020
-yes    36:6a:10:4a:41:02  4001   leaf04            vniRED                         no     Mon Dec  7 22:30:15 2020
-...
-```
+The following example displays a full chronology of changes for an IP address neighbor. If a caret (^) notation appeared, it would indicate that there was no change in this value from the row above.
 
+```
+cumulus@switch:~$ netq show neighbor-history 10.1.10.2
 
+Matching neighborhistory records:
+Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
+------------------------- ----------------- ------------ --------------- ------ -------------- ------------------ -------- -------------------------
+Tue Sep 29 17:25:08 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:17 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+```
+The following example displays the history of an IP address neighbor by hostname.
+
+```
+cumulus@switch:~$ netq show neighbor-history 10.1.10.2 listby hostname
+
+Matching neighborhistory records:
+Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
+------------------------- ----------------- ------------ --------------- ------ -------------- ------------------ -------- -------------------------
+Tue Sep 29 17:25:08 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:17 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+```
+The following example displays the history of an IP address neighbor between now and two hours ago.
+
+```
+cumulus@switch:~$ netq show neighbor-history 10.1.10.2 between 2h and now
+
+Matching neighborhistory records:
+Last Changed              Hostname          Ifname       Vrf             Remote Ifindex        Mac Address        Ipv6     Ip Address
+------------------------- ----------------- ------------ --------------- ------ -------------- ------------------ -------- -------------------------
+Tue Sep 29 15:35:18 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 15:35:22 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+Tue Sep 29 17:25:00 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:08 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+Tue Sep 29 17:25:08 2020  leaf02            vlan10       RED             no     24             44:38:39:00:00:59  no       10.1.10.2
+Tue Sep 29 17:25:14 2020  leaf04            vlan10       RED             no     24             44:38:39:00:00:5d  no       10.1.10.2
+```
 ### Related Commands
 
 - ```netq show address-history```

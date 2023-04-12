@@ -157,6 +157,28 @@ cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp mixed-multicast-unicast on
 
 - - -
 
+## nv set interface \<interface-id\> ptp shaper
+
+Configures PTP shaping on the NVIDA Spectrum 1 switch for PTP-enabled ports with speeds lower than 100G to improve performance.
+
+- - -
+
+## nv set interface \<interface-id\> ptp shaper enable
+
+Turns PTP shaping on or off on the specified interface to improve performance. This command is available for the NVIDA Spectrum 1 switch only for PTP-enabled ports with speeds lower than 100G. For example, if you see that the PTP timing offset varies widely and is does not stabilize, enable PTP shaping on all PTP enabled ports to reduce the bandwidth on the ports slightly and improve timing stabilization.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set interface swp1 ptp shaper enable on
+```
+
+- - -
+
 ## nv set interface \<interface-id\> ptp timers
 
 Provides PTP configuration commands to set timers for PTP messages for the specified PTP interface. The commands include the average interval between successive Announce messages, the number of announce intervals that have to occur without receiving an Announce message before a timeout occurs, the minimum average time interval allowed between successive Delay Required messages, and the interval between PTP synchronization messages on an interface.

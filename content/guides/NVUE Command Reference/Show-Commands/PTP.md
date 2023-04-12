@@ -72,10 +72,11 @@ cumulus@leaf01:mgmt:~$  nv show interface swp1 ptp
 
 - - -
 
-
 ## nv show interface \<interface-id\> ptp shaper
 
-Shows if PTP shaper is enabled on the specified interface.
+Shows if PTP shaper is enabled on the specified PTP interface.
+
+This command is available for the NVIDA Spectrum 1 switch only for PTP-enabled ports with speeds lower than 100G.
 
 ### Command Syntax
 

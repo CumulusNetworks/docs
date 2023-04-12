@@ -35,6 +35,22 @@ Introduced in Cumulus Linux 5.0.0
 
 - - -
 
+## nv set bridge domain br_default ageing
+
+Configures the number of seconds that Cumulus Linux stores MAC addresses in the Ethernet switching table. You can set a value between 0 and 65535. The default setting is 1800 seconds (30 minutes). A value of 0 turns MAC ageing off.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set bridge domain br_default ageing 600
+```
+
+- - -
+
 ## nv set bridge domain \<domain-id\> encap 802.1Q
 
 Configures any interfaces in this bridge domain to use 802.1Q encapsulation by default.

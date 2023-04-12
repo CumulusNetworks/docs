@@ -385,7 +385,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface swp51 local-ip
 
 - - -
 
-## nv show vrf \<vrf-id\> router ospf interface \<interface-id\> local-ip 
+## nv show vrf \<vrf-id\> router ospf interface \<interface-id\> local-ip \<ipv4-address\>
 
 Shows information about a specific local IP address for the specified OSPF interface in the specified VRF.
 
@@ -395,6 +395,7 @@ Shows information about a specific local IP address for the specified OSPF inter
 | --------- | -------------- |
 | `<vrf-id>` | The VRF name. |
 | `<interface-id>`    | The interface name. |
+| `<interface-id>`    | The local IPv4 address. |
 
 ### Version History
 

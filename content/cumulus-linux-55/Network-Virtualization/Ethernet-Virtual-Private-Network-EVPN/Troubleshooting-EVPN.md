@@ -343,7 +343,7 @@ fe80::74ed:2aff:fe8a:6724 local        active   76:ed:2a:8a:67:24               
 
 Run the vtysh `show evpn arp-cache vni all` command or the `net show evpn arp-cache vni all` command to examine neighbor entries for all VNIs.
 
-## Show Statistics for a VNI
+<!--## Show Statistics for a VNI
 
 For a single VXLAN device, you can show VNI statistics, such as the number of received and transmitted bytes, packets, packet drops and errors.
 
@@ -355,7 +355,7 @@ The following example command shows statistics for VNI 10:
 ```
 cumulus@leaf01:mgmt:~$ nv show nve counters vni 10
 ```
-
+-->
 ## Examine Remote Router MACs
 
 For symmetric routing, run the vtysh `show evpn rmac vni <vni>` command or the `net show evpn rmac vni <vni>` command to examine the router MACs corresponding to all remote VTEPs. This command is only relevant for a layer 3 VNI:

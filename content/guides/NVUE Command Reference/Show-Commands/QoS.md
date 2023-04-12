@@ -224,186 +224,156 @@ Introduced in Cumulus Linux 5.4.0
 cumulus@leaf01:mgmt:~$ nv show interface swp5 qos congestion-control traffic-class 2
 ```
 
-- - -
+## nv show interface \<interface-id\> counters qos
 
-## nv show interface \<interface-id\> qos counter
-
-Shows the QoS counters for the specified interface.
-
-{{%notice note%}}
-In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters`.
-{{%/notice%}}
+Shows all QoS statistics for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>` | The interface name.|
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.1.0
+Introduced in Cumulus Linux 5.5.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counter egress-queue-stats
+## nv show interface \<interface-id\> counters qos egress-queue-stats
 
-Shows egress queue statistics per egress traffic class for the specified interface.
-
-{{%notice note%}}
-In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters egress-queue-stats`.
-{{%/notice%}}
+Shows all QoS egress queue statistics for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>` | The interface name.|
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.1.0
+Introduced in Cumulus Linux 5.5.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter egress-queue-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos egress-queue-stats
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counter ingress-buffer-stats
+## nv show interface \<interface-id\> counters qos ingress-buffer-stats
 
-Shows ingress buffer statistics per priority group for the specified interface.
-
-{{%notice note%}}
-In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters ingress-buffer-stats`.
-{{%/notice%}}
+Shows all QoS ingress buffer statistics for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>` | The interface name.|
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.1.0
+Introduced in Cumulus Linux 5.5.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter ingress-buffer-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters ingress-buffer-stats
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counter pfc-stats
+## nv show interface \<interface-id\> counters qos pfc-stats
 
-Shows PFC statistics per switch priority for the specified interface.
-
-{{%notice note%}}
-In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters pfc-stats`.
-{{%/notice%}}
+Shows all QoS PFC statistics for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>` | The interface name.|
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.1.0
+Introduced in Cumulus Linux 5.5.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter pfc-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos pfc-stats
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counter port-stats
+## nv show interface \<interface-id\> counters qos port-stats
 
-Shows QoS port statistics for the specified interface.
-
-{{%notice note%}}
-In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters port-stats`.
-{{%/notice%}}
+Shows all QoS port statistics for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>` | The interface name.|
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.1.0
+Introduced in Cumulus Linux 5.5.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter port-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos port-stats
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counter port-stats rx-stats
+## nv show interface \<interface-id\> counters qos port-stats rx-stats
 
-Shows QoS statistics for received packets on the specified interface.
-
-{{%notice note%}}
-In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters rx-stats`.
-{{%/notice%}}
+Shows all QoS port received statistics for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>` | The interface name.|
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.1.0
+Introduced in Cumulus Linux 5.5.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter port-stats rx-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos port-stats rx-stats
 ```
 
 - - -
 
-## nv show interface \<interface-id\> qos counter port-stats tx-stats
+## nv show interface \<interface-id\> counters qos port-stats tx-stats
 
-Shows QoS statistics for transmitted packets on the specified interface.
-
-{{%notice note%}}
-In Cumulus Linux 5.1, this command is `nv show interface <interface-id> qos counters port-stats tx-stats`.
-{{%/notice%}}
+Shows all QoS port transmitted statistics for the specified interface.
 
 ### Command Syntax
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<interface-id>` | The interface name.|
+| `<interface-id>` | The interface name. |
 
 ### Version History
 
-Introduced in Cumulus Linux 5.1.0
+Introduced in Cumulus Linux 5.5.0
 
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show interface swp5 qos counter port-stats tx-stats
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos port-stats tx-stats
 ```
 
 - - -

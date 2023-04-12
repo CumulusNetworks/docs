@@ -28,6 +28,28 @@ cumulus@leaf01:mgmt:~$  nv show bridge domain br_default vlan 10 ptp
 
 - - -
 
+## nv show interface \<interface-id\> counters ptp
+
+Shows PTP statistics for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 counters ptp
+```
+
+- - -
+
 ## nv show interface \<interface-id\> ptp
 
 Shows configuration and counters for the specified PTP interface.
@@ -50,27 +72,6 @@ cumulus@leaf01:mgmt:~$  nv show interface swp1 ptp
 
 - - -
 
-## nv show interface \<interface-id\> ptp counters
-
-Shows PTP counters for the specified PTP interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>`   |  The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.0.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$  nv show interface swp1 counters
-```
-
-- - -
 
 ## nv show interface \<interface-id\> ptp shaper
 

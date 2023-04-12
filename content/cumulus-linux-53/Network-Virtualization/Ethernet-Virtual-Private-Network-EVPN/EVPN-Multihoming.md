@@ -84,7 +84,6 @@ The following features are not supported with EVPN-MH:
 To configure EVPN-MH, you must complete **all** the following steps:
 1. Enable EVPN multihoming.
 2. Set the Ethernet segment ID.
-3. Set the Ethernet segment system MAC address.
 4. Configure multihoming uplinks.
 
 These settings apply to interfaces, typically bonds.
@@ -140,10 +139,12 @@ cumulus@leaf01:~$ sudo systemctl restart switchd.service
 <!-- vale off -->
 ### Configure the EVPN-MH Bonds
 <!-- vale on -->
-To configure bond interfaces for EVPN-MH, run commands similar to the following:
+To configure bond interfaces for EVPN-MH:
 
 {{<tabs "bond configuration">}}
 {{<tab "NVUE Commands">}}
+
+The following example commands configure bond interfaces using the local discriminator ID and the system MAC address to generate a unique ESI automatically:
 
 ```
 cumulus@leaf01:~$ nv set interface bond1 bond member swp1
@@ -153,6 +154,19 @@ cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment local-id 1
 cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment local-id 2
 cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment local-id 3
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment mac-address 44:38:39:BE:EF:AA
+cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
+cumulus@leaf01:~$ nv config apply
+```
+
+As an alternative, you can configure the ESI manually using the Ethernet segment identifier; a 24-bit integer that must be unique. The following example commands configure the bond interfaces manually using Ethernet segment IDs:
+
+```
+cumulus@leaf01:~$ nv set interface bond1 bond member swp1
+cumulus@leaf01:~$ nv set interface bond2 bond member swp2
+cumulus@leaf01:~$ nv set interface bond3 bond member swp3
+cumulus@leaf01:~$ nv set interface bond1 evpn multihoming segment identifier 44:38:39:BE:EF:AA:00:00:01
+cumulus@leaf01:~$ nv set interface bond2 evpn multihoming segment identifier 44:38:39:BE:EF:AA:00:00:02
+cumulus@leaf01:~$ nv set interface bond3 evpn multihoming segment identifier 44:38:39:BE:EF:AA:00:00:03
 cumulus@leaf01:~$ nv set interface bond1-3 evpn multihoming segment df-preference 50000
 cumulus@leaf01:~$ nv config apply
 ```

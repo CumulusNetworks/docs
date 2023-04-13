@@ -15,6 +15,24 @@ Resets counters for interfaces, BGP, QoS buffers and pools, removes conflicts fr
 
 - - -
 
+## nv action clear interface counters
+
+Clears all interface-specific counters from all interfaces. Interface counters provide information about an interface, such as the number of packets intentionally or intentionally dropped, the number of inbound and outbound packets discarded even though the switch detected no errors, the number of inbound and outbound packets not transmitted because of errors, and so on.
+
+This command does not clear counters in the kernel or hardware.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv action clear interface counters
+```
+
+- - -
+
 ## nv action clear interface \<interface\> bond mlag lacp-conflict
 
 Clears the MLAG LACP conflict on the specified interface bond. A conflict can be an LACP partner MAC address mismatch or a duplicate LACP partner MAC address.
@@ -33,24 +51,6 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv action clear interface swp1 bond mlag lacp-conflict 
-```
-
-- - -
-
-## nv action clear interface counters
-
-Clears all interface-specific counters from all interfaces. Interface counters provide information about an interface, such as the number of packets intentionally or intentionally dropped, the number of inbound and outbound packets discarded even though the switch detected no errors, the number of inbound and outbound packets not transmitted because of errors, and so on.
-
-This command does not clear counters in the kernel or hardware.
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv action clear interface counters
 ```
 
 - - -

@@ -57,12 +57,12 @@ sudo netq config restart agent
 
 ## Configure the LCM Executor
 
-The on-switch OPTA service supports the following {{<link title="Lifecycle Management" text="LCM">}} functions:
+The on-switch OPTA service supports the following {{<link title="Lifecycle Management" text="lifecycle management">}} functions:
 
 - Switch discovery
 - NetQ agent and CLI installation
 - Switch upgrade and configuration restoration
-- Switch decommision
+- Switch decommission
 - Flow analysis
 
 {{<notice note>}}
@@ -78,6 +78,6 @@ netq config restart opta
 
 ### Considerations
 
-- You can not enable the LCM executor on more than one switch running the OPTA service
-- You can not decommission a switch from the NetQ UI while it is running the OPTA service. To decommision a switch running the OPTA service, stop the service with the {{netq config stop opta}} command and reconfigure any NetQ agents to connect to a different OPTA before decommisioning the switch. 
-- You can not upgrade a switch using NetQ LCM if it is the only switch in your network running the OPTA service with LCM executor enabled. To upgrade the switch, reconfigure OPTA and LCM executor on a different switch and redirect NetQ agents to the new OPTA before upgrading the original switch.
+- You cannot enable the LCM executor on more than one switch running the OPTA service.
+- You cannot decommission a switch from the NetQ UI while it is running the OPTA service. To decommission a switch running the OPTA service, stop the service with the `netq config stop opta` command and reconfigure any NetQ agents to connect to a different OPTA before decommissioning the switch. 
+- You cannot upgrade a switch using NetQ LCM if it is the only switch in your network running the OPTA service with the LCM executor enabled. To upgrade the switch, reconfigure OPTA and the LCM executor on a different switch and redirect NetQ agents to the new OPTA before upgrading the original switch.

@@ -23,20 +23,19 @@ Cumulus Linux 5.4.0b only supports the following platform, which is available as
 - For information about NetQ features supported for Spectrum-4, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-45/More-Documents/Spectrum-Support/" text="NetQ Spectrum-4 Support">}}.
 {{%/notice%}}
 
-The following list describes the open issues specific to the NVIDIA SN5600 (Spectrum-4) switch. See also {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4.0 Release Notes">}} for additional open issues that are not fixed in this release.
+The following list describes open issues specific to the NVIDIA SN5600 (Spectrum-4) switch. See also {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4.0 Release Notes">}} for additional open issues that are not fixed in this release.
 
 {{< expand "NVIDIA SN5600 Open Issues" >}}
 | Issue ID | Description |
 | -------  | ---------- |
 | 3436305  |Auto-negotiation and link-training is not supported at 25G between the NVIDIA SN5600 and non-NVIDIA devices.|
 | 3436298  | On rare occasions, when you use the MMS4X00-NS transceiver with the NVIDIA SN5600 switch, the port might not come up.|
-| 3436298  | On rare occasions, when you use the MMS4X00-NS transceiver with the NVIDIA SN5600 switch, the port might not come up.|
-| 3436296  | On the NVIDIA SN5600 switch, the 8x port breakout is not supported on the MCP4Y10-N00A cable .
-|
-|3436291   | The NVIDIA SN5600 switch does not support connecting to a Spectrum-2 or Spectrum-3 switch with an MCP7Y70-H001 4X  breakout cable.|
-| 3436287  | The NVIDIA SN5600 switch does not support connecting to a Spectrum-1 switch using a 2x breakout with the MCP7Y60-H001 copper cable at 25G. |
+| 3436296  | On the NVIDIA SN5600 switch, the 8x port breakout is not supported on the MCP4Y10-N00A cable.|
+| 3436291  | The NVIDIA SN5600 switch does not support connecting to a Spectrum-2 or Spectrum-3 switch with an MCP7Y70-H001 4X  breakout cable.|
+| 3436288  | When you connect two ports together on the same NVIDIA SN5600 switch with an MCP4Y10-N001 cable, you might see link flaps after the ports come up.|
+| 3436287  | The NVIDIA SN5600 switch does not support connecting to a Spectrum-1 switch using a 2x breakout with the MCP7Y60-H001 cable at 25G. |
 | 3436229  | On the NVIDIA SN5600 switch, when you connect a Service port to non-NVIDIA devices, auto-negotiation is not supported for 25G links.|
-| 3436215  | On the SN5600 switch, the thermal control service crashes  when you remove a fan tray.|
+| 3436215  | On the NVIDIA SN5600 switch, the thermal control service crashes when you remove a fan tray.|
 | 3434855  | NEED DESCRIPTION |
 | 3419124  | NEED DESCRIPTION |
 | 3395489  | On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.|

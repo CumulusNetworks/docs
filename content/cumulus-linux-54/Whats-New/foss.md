@@ -11,7 +11,8 @@ pdfhidden: True
 
 ## 5.4.0b Open Source Software Licenses
 
-The following package versions have been updated in the Cumulus Linux 5.4.0b POC release compared to the original packages in [Cumulus Linux 5.4.0](#540-open-source-software-licenses):
+The following list only shows the updated packages for Cumulus Linux 5.4.0b. Refer to [Cumulus Linux 5.4.0](#540-open-source-software-licenses) to view version and license information for packages with no changes in 5.4.0b.
+
 
 | Package | Version | License(s) |
 |---	        |---	        |---	    |

@@ -1594,7 +1594,7 @@ You can drill down with the following `nv show service ptp <instance>` commands:
 - `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> time-properties` shows the clock time attributes.
 
-To check configuration and counters for a PTP interface, run the `nv show interface <interface> ptp` command:
+To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command. This command also shows PTP counters (statistics, such as the number of announce messages received, the number of Sync messages received, and so on).
 
 ```
 cumulus@leaf03:mgmt:~$ nv show interface swp1 ptp
@@ -1640,7 +1640,9 @@ counters
   tx-sync                  21099                    Number of Sync messages transmitted
 ```
 
-To view PTP status information, including the delta in nanoseconds from the master clock:
+To show PTP counters only for an interface, run the `nv show interface <interface> counters ptp` command.
+
+To show PTP status information, including the delta in nanoseconds from the master clock:
 
 ```
 cumulus@switch:~$ sudo pmc -u -b 0 'GET TIME_STATUS_NP'
@@ -1694,10 +1696,8 @@ min-offset-count  0                     Number of min offset violations
 path-delay-count  0                     Number of Path delay violations
 ```
 
-### PTP Show Commands
-
-- To see the list of NVUE show commands for PTP, run the `nv list-commands service ptp` command.
-- To show the list of show commands for a PTP interface, run the `nv list-commands interface` command, then scroll to see PTP.
+- To see a full list of NVUE show commands for PTP, run the `nv list-commands service ptp` command.
+- To show a full list of show commands for a PTP interface, run the `nv list-commands interface` command, then scroll to see PTP.
 
 ```
 cumulus@switch:~$ nv list-commands service ptp
@@ -1709,22 +1709,6 @@ nv show service ptp <instance-id> unicast-master
 nv show service ptp <instance-id> unicast-master <table-id>
 nv show service ptp <instance-id> unicast-master <table-id> address
 nv show service ptp <instance-id> unicast-master <table-id> address <ip-mac-address-id>
-nv show service ptp <instance-id> profile
-nv show service ptp <instance-id> profile <profile-id>
-nv show service ptp <instance-id> monitor
-nv show service ptp <instance-id> monitor timestamp-log
-nv show service ptp <instance-id> monitor violations
-nv show service ptp <instance-id> monitor violations log
-nv show service ptp <instance-id> monitor violations log acceptable-master
-nv show service ptp <instance-id> monitor violations log forced-master
-nv show service ptp <instance-id> monitor violations log max-offset
-nv show service ptp <instance-id> monitor violations log min-offset
-nv show service ptp <instance-id> monitor violations log path-delay
-nv show service ptp <instance-id> current
-nv show service ptp <instance-id> clock-quality
-nv show service ptp <instance-id> parent
-nv show service ptp <instance-id> parent grandmaster-clock-quality
-nv show service ptp <instance-id> time-properties
 ...
 ```
 

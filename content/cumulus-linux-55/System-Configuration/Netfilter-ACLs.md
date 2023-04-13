@@ -791,14 +791,14 @@ Cumulus Linux applies inbound control plane ACLs in the INPUT chain and outbound
 The following example command applies the input control plane ACL called ACL1.
 
 ```
-cumulus@switch:~$ nv set system control-plane acl ACL1 inbound
+cumulus@switch:~$ nv set system control-plane acl ACL1 inbound control-plane
 cumulus@switch:~$ nv config apply
 ```
 
 The following example command applies the output control plane ACL called ACL2.
 
 ```
-cumulus@switch:~$ nv set system control-plane acl ACL2 outbound
+cumulus@switch:~$ nv set system control-plane acl ACL2 outbound control-plane
 cumulus@switch:~$ nv config apply
 ```
 

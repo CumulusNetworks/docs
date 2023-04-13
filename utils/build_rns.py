@@ -12,6 +12,7 @@ This will also write the XML files that are used to generate xls files for the r
 from operator import itemgetter
 import re
 import requests
+from distutils.version import LooseVersion
 
 def get_json(product, version, json_file):
     '''
@@ -409,8 +410,8 @@ def build_rn_markdown_files(product, version_list):
     # Sort the lists based on semver, most recent first.
     # I don't know what this does but that's what Stackoverflow is for
     # https://stackoverflow.com/a/2574090
-    version_list.sort(key=lambda s: list(map(int, s.split('.'))), reverse=True)
-
+    #version_list.sort(key=lambda s: list(map(int, s.split('.'))), reverse=True)
+    version_list.sort(key=LooseVersion, reverse=True)
     # We need to map major.minors to full release list,
     # { 3.7: [3.7.1, 3.7.2, 3.7.3...]
     major_minor = {}
@@ -518,8 +519,8 @@ def build_rn_xls_files(product, version_list):
     # Sort the lists based on semver, most recent first.
     # I don't know what this does but that's what Stackoverflow is for
     # https://stackoverflow.com/a/2574090
-    version_list.sort(key=lambda s: list(map(int, s.split('.'))), reverse=True)
-
+    #version_list.sort(key=lambda s: list(map(int, s.split('.'))), reverse=True)
+    version_list.sort(key=LooseVersion, reverse=True)
     # We need to map major.minors to full release list,
     # { 3.7: [3.7.1, 3.7.2, 3.7.3...]
     major_minor = {}

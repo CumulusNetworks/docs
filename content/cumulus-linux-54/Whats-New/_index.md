@@ -23,12 +23,12 @@ Cumulus Linux 5.4.0b only supports the following platform, which is available as
 - For information about NetQ features supported for Spectrum-4, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-45/More-Documents/Spectrum-Support/" text="NetQ Spectrum-4 Support">}}.
 {{%/notice%}}
 
-The following list describes open issues specific to the NVIDIA SN5600 (Spectrum-4) switch. See also {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4.0 Release Notes">}} for additional open issues that are not fixed in this release.
+The following list describes open issues specific to the NVIDIA SN5600 (Spectrum-4) switch. See {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4.0 Release Notes">}} for additional open issues that are not fixed in this release.
 
 {{< expand "NVIDIA SN5600 Open Issues" >}}
 | Issue ID | Description |
 | -------  | ---------- |
-| 3436305  |Auto-negotiation and link-training is not supported at 25G between the NVIDIA SN5600 and non-NVIDIA devices.|
+| 3436305  | Auto-negotiation and link-training is not supported at 25G between the NVIDIA SN5600 switch and non-NVIDIA devices.|
 | 3436298  | On rare occasions, when you use the MMS4X00-NS transceiver with the NVIDIA SN5600 switch, the port might not come up.|
 | 3436296  | On the NVIDIA SN5600 switch, the 8x port breakout is not supported on the MCP4Y10-N00A cable.|
 | 3436291  | The NVIDIA SN5600 switch does not support connecting to a Spectrum-2 or Spectrum-3 switch with an MCP7Y70-H001 4X  breakout cable.|

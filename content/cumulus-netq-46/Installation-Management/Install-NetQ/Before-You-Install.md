@@ -11,30 +11,20 @@ This overview is designed to help you understand the various NetQ deployment and
 
 Consider the following before you install the NetQ system:
 
-1. Determine whether to deploy the solution fully **on premises** or as a **remote** solution.
-2. Decide whether to deploy a **virtual machine** on your own hardware or use one of the **NetQ appliances**.
-3. Choose whether to install the software on a **single server** or as a **server cluster**.
-
-The following decision tree reflects these steps:
-
-{{<figure src="/images/netq/install-decision-tree-330.png" alt="NetQ system deployment options" width="400">}}
+1. Determine whether to deploy fully **on premises** or as a **remote** solution.
+2. Choose whether to install the software on a **single server** or as a **server cluster**.
 
 ## Deployment Type: On Premises or Remote
 
 You can deploy NetQ in one of two ways.
 
-<!-- vale off -->
-- **Hosted on premises**: Choose this deployment if you want to host all required hardware and software at your location, and you have the in-house skill set to install, configure, and maintain it---including performing data backups, acquiring and maintaining hardware and software, and integration management. This model is also a good choice if you want very limited or no access to the internet from switches and hosts in your network or you have data residency requirements like GDPR.
+- **Hosted on premises**: Choose this deployment if you want to host all required hardware and software at your location, and you have the in-house skill set to install, configure, and maintain it---including performing data backups, acquiring and maintaining hardware and software, and integration management. This model is also a good choice if you want very limited or no access to the internet from switches and hosts in your network, or you have data residency requirements like GDPR.
 - **Hosted remotely**: Choose this deployment to host a multi-site, on-premises deployment or use the NetQ Cloud service. In the multi-site deployment, you host multiple small servers at each site and a large server and database at another site. In the cloud service deployment, you host only a small local server on your premises that connects to the NetQ Cloud service over selected ports or through a proxy server. The cloud service supports only data aggregation and forwarding locally, and the majority of the NetQ applications use a hosted deployment strategy, storing data in the cloud. NVIDIA handles the backups and maintenance of the application and storage. This remote cloud service model is often chosen when it is untenable to support deployment in-house or if you need the flexibility to scale quickly, while also reducing capital expenses.
-<!-- vale on -->
 
-With either deployment model, the NetQ Agents reside on the switches and hosts they monitor in your network.
+Refer to {{<link title="Install the NetQ System">}} for a comprehensive list of deployment types and their respective requirements.
 
-## System: Virtual Machine or NetQ Appliances
 
-The next installation consideration is whether you plan to use NetQ Cloud Appliances or your own servers with VMs. Both options provide the same services and features. The difference is in the implementation. When you install NetQ software on your own hardware, you create and maintain a KVM or VMware VM, and the software runs from there. This requires you to scope and order an appropriate hardware server to support the NetQ requirements, but might allow you to reuse an existing server in your stock.
-
-When you choose to purchase and install NetQ Cloud Appliances, the initial configuration of the server with Ubuntu OS is already done for you, and the NetQ software components are pre-loaded, saving you time during the physical deployment.
+In all deployment models, the NetQ Agents reside on the switches and hosts they monitor in your network.
 
 ### Data Flow
 
@@ -74,7 +64,7 @@ However, you need to be mindful of where you {{<link title="Install a Custom Sig
 
 If you are using a load balancer in your deployment, we recommend you install the certificates directly on the load balancer for SSL offloading. However, if you install the certificates on the master node, then configure the load balancer to allow for SSL passthrough.
 
-## Where to Go Next
+## Next Steps
 
 After you've decided on your deployment type, you're ready to {{<link title="Install the NetQ System" text="install NetQ">}}.
 

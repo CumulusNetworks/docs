@@ -15,7 +15,7 @@
 <tr>
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -676,15 +676,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2859015</td>
-<td>In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
-
-warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
-</td>
-<td>5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2847919</td>
 <td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only.
 To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
@@ -1034,6 +1025,14 @@ Fixed: 2.8.90-1-cl4u6, 2.8.90-1-cl4.4.0u1, 2.8.90-1-cl5.0.0u8</td>
 <td>2860323</td>
 <td>If two FDB entries are added in hardware with a single API call (at the same time), when one entry already exists in hardware and the additional entry has a tunnel type, the resulting FDB entry might be configured improperly in hardware. This can cause corruption of the packets that match the FDB entry.</td>
 <td>4.4.0-5.0.1</td>
+</tr>
+<tr>
+<td>2859015</td>
+<td>In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
+
+warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
+</td>
+<td>5.0.0-5.0.1</td>
 </tr>
 <tr>
 <td>2855908</td>

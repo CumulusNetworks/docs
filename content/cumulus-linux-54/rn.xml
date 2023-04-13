@@ -15,7 +15,7 @@
 <tr>
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -150,6 +150,12 @@ Error: GET /nvue_v1/service/snmp-server/viewname/cumulusOnly/included?pointers=%
 
 To work around this problem, reference the OID without the preceding period ( {{.}} ) in the command.</td>
 <td>5.3.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3145869</td>
+<td>In Spectrum-3 systems, PTP offset in 10GbE changes between +-27. The average offset is about 7.</td>
+<td>5.2.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -316,15 +322,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <td></td>
 </tr>
 <tr>
-<td>2859015</td>
-<td>In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
-
-warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
-</td>
-<td>5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>2847919</td>
 <td>Configuring a router with the REST API through the switch front panel ports (swps) is supported in the default VRF only.
 To work around this issue, use the localHost IP address or the MGMT IP address to configure router using the Rest API.</td>
@@ -399,7 +396,7 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <tr>
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -666,16 +663,6 @@ error: /etc/network/interfaces: line28: iface swp5: invalid syntax 'alias'
 <td></td>
 </tr>
 <tr>
-<td>3312240</td>
-<td>On the Spectrum 1 switch if PTP is configured on a bond, the {{ptp4l}} service fails to start and you see a message similar to the following:
-
-systemd[1]: ptp4l.service: Failed with result 'exit-code'.
-systemd[1]: Failed to start Precision Time Protocol (PTP) service.
-</td>
-<td>5.4.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3308191</td>
 <td>If you try to set an unsupported interface speed and FEC combination, the {{nv config apply}} command succeeds but Cumulus Linux ignores the FEC configuration and configures the default FEC setting for chosen speed. There is no warning or error message.</td>
 <td>5.4.0-5.4.0</td>
@@ -753,6 +740,12 @@ Error: GET /nvue_v1/service/snmp-server/viewname/cumulusOnly/included?pointers=%
 
 To work around this problem, reference the OID without the preceding period ( {{.}} ) in the command.</td>
 <td>5.3.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3145869</td>
+<td>In Spectrum-3 systems, PTP offset in 10GbE changes between +-27. The average offset is about 7.</td>
+<td>5.2.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -915,15 +908,6 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 <tr>
 <td>2867042</td>
 <td>When connecting the SN4600V to an SNxxxx system, it must run in auto-negotiation mode (not force mode) otherwise the wrong Tx configuration might be chosen.</td>
-<td>5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>2859015</td>
-<td>In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
-
-warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
-</td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>

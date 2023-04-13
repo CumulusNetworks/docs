@@ -545,6 +545,12 @@ To work around this issue, increase the burst value of the ARP policers to 200 o
 <td>4.3.0-4.4.5</td>
 </tr>
 <tr>
+<td>2555175</td>
+<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
+<td></td>
+</tr>
+<tr>
 <td>2554785</td>
 <td>After you reboot a Broadcom switch, {{switchd}} might fail to restart and you see logs in {{switchd.log}} similar to the following:
 
@@ -3714,6 +3720,12 @@ To recover from this condition, restart {{clagd}} with the {{sudo systemctl rest
 To work around this issue, increase the burst value of the ARP policers to 200 or higher.</td>
 <td>3.7.14-4.2.1</td>
 <td>4.3.0-4.4.5</td>
+</tr>
+<tr>
+<td>2555175</td>
+<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
+<td></td>
 </tr>
 <tr>
 <td>2554785</td>

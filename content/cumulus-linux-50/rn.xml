@@ -15,7 +15,7 @@
 <tr>
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -727,8 +727,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 
 warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
 </td>
-<td>5.0.0-5.4.0</td>
-<td></td>
+<td>5.0.0-5.0.1</td>
+<td>5.1.0-5.4.0</td>
 </tr>
 <tr>
 <td>2855908</td>
@@ -873,7 +873,7 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <tr>
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -1417,8 +1417,8 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 
 warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
 </td>
-<td>5.0.0-5.4.0</td>
-<td></td>
+<td>5.0.0-5.0.1</td>
+<td>5.1.0-5.4.0</td>
 </tr>
 <tr>
 <td>2855908</td>

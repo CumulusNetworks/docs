@@ -233,7 +233,6 @@ To upgrade the switch using package upgrade:
    ```
    cumulus@switch:~$ wget http://repo3.cumulusnetworks.com/public-key/repo3-2023-key
    cumulus@switch:~$ sudo apt-key add repo3-2023-key
-   cumulus@switch:~$ sudo apt update
    ```
 
 3. Fetch the latest update metadata from the repository.

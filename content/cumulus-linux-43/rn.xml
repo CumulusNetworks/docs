@@ -7,12 +7,6 @@
 <th> Fixed </th>
 </tr>
 <tr>
-<td>3413827</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3389994</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
 <td>4.2.1-4.4.5</td>
@@ -2079,12 +2073,6 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td></td>
 </tr>
 <tr>
-<td>3413827</td>
-<td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
-<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3413826</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
 <td>4.2.1-4.4.5</td>
@@ -3132,6 +3120,12 @@ The correct NCLU command to disable IPv6 forwarding is {{net add vlan 1 ipv6 for
 
 This error has no functional impact.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>2555175</td>
+<td>Control Plane Traffic (example - BGP peering from Leaf to Spine) goes down on Leaf due to Hold Down Timer Expiration of peer following prolonged link flaps on downlinks when vxlan enabled vlans are carried on the flapping link.</td>
+<td>3.7.15-3.7.16, 4.2.1-4.4.5</td>
 <td></td>
 </tr>
 <tr>
@@ -4310,9 +4304,7 @@ To work around this issue, remove the blank spaces in the commented lines, then 
 </tr>
 <tr>
 <td>3031235</td>
-<td>Static VXLAN configuration prevents NCLU from working.
-
-In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
+<td>In a static VXLAN configuration with a traditional or single VXLAN device, enabling bridge learning on the VNI leads to an incorrect warning and the setting is removed in the next commit. The warning is similar to the following:
 
 warning: vni10: possible mis-configuration detected: l2-vni configured with bridge-learning ON while EVPN is also configured - these two parameters conflict with each other.
 </td>

@@ -28,13 +28,14 @@ The following list describes the open issues specific to the NVIDIA SN5600 (Spec
 {{< expand "NVIDIA SN5600 Open Issues" >}}
 | Issue ID | Description |
 | -------  | ---------- |
-|3436291 | The NVIDIA SN5600 switch does not support connecting to a Spectrum-2 or Spectrum-3 switch with a copper cable that has the part number MCP7Y70-H001 (4X splitter).|
-| 3436287  | The NVIDIA SN5600 switch does not support connecting to a Spectrum-1 switch using a 2X breakout with the MCP7Y60-H001 copper cable. |
-| 3436229  | On the NVIDIA Spectrum-4 switch, when you connect the Service port to non-Nvidia connections, auto-negotiation is not supported on 25G. |
-| 3436215  | When you remove a fan tray, the thermal control service crashes.|
+| 3436296| 
+|3436291 | he NVIDIA SN5600 switch does not support connecting to a Spectrum-2 or Spectrum-3 switch with an MCP7Y70-H001 4X  breakout cable.|
+| 3436287  | The NVIDIA SN5600 switch does not support connecting to a Spectrum-1 switch using a 2x breakout with the MCP7Y60-H001 copper cable at 25G. |
+| 3436229  | On the NVIDIA SN5600 switch, when you connect a Service port to non-NVIDIA devices, auto-negotiation is not supported for 25G links.|
+| 3436215  | On the SN5600 switch, the thermal control service crashes  when you remove a fan tray.|
 | 3434855  | NEED DESCRIPTION |
 | 3419124  | NEED DESCRIPTION |
-| 3395489  | When you configure QoS buffer settings, the {{clagd}} service restarts.|
+| 3395489  | On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.|
 {{< /expand >}}
 
 {{%notice warning%}}

@@ -39,7 +39,7 @@ Hover over the top of the card, then select the appropriate icon to view utiliza
 
 Expand the Switch card to full-screen to view, filter or export information about events, interfaces, MAC addresses, VLANs, IP routes, IP neighbors, IP addresses, BTRFS utilization, software packages, SSD utilization, forwarding resources, ACL resources, What Just Happened events, sensors, RoCE counters, digital optics, and PTP: 
 
-{{<figure src="/images/netq/updated-fullscreen-switch-card.png" width="1200">}}
+{{<figure src="/images/netq/fullscreen-switch-460.png" width="1200">}}
 
 ## Switch Commands
 

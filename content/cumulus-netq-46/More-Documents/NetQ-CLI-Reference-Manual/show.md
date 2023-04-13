@@ -3543,12 +3543,36 @@ spine02           swp3                      0.0.0.0      Unnumbered       Full  
 spine02           swp4                      0.0.0.0      Unnumbered       Full       leaf04            swp52                     Thu Feb  7 14:42:16 2019
 ```
 
+This example show OSPF sessions on the *leaf01* switch:
+
+```
+cumulus@switch:~$ netq leaf01 show ospf
+Matching ospf records:
+Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
+leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      Thu Feb  7 14:42:16 2019
+leaf01            swp52                     0.0.0.0      Unnumbered       Full       spine02           swp1                      Thu Feb  7 14:42:16 2019
+```
+
+This example shows OSPF sessions for all devices using the *swp51* interface on the host node.
+
+```
+cumulus@switch:~$ netq show ospf swp51
+Matching ospf records:
+Hostname          Interface                 Area         Type             State      Peer Hostname     Peer Interface            Last Changed
+----------------- ------------------------- ------------ ---------------- ---------- ----------------- ------------------------- -------------------------
+leaf01            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp1                      Thu Feb  7 14:42:16 2019
+leaf02            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp2                      Thu Feb  7 14:42:16 2019
+leaf03            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp3                      Thu Feb  7 14:42:16 2019
+leaf04            swp51                     0.0.0.0      Unnumbered       Full       spine01           swp4                      Thu Feb  7 14:42:16 2019
+```
+
 ### Related Commands
-<!-- vale off -->
+
 - ```netq show events```
 - ```netq check ospf```
 - ```netq show unit-tests ospf```
-<!-- vale on -->
+
 - - -
 
 ## netq show ptp

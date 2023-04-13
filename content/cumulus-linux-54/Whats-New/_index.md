@@ -16,17 +16,30 @@ Cumulus Linux 5.4.0b only supports the following platform, which is available as
 
 - NVIDIA SN5600 (800G Spectrum-4)
 
-{{%notice warning%}}
-The NVIDIA SN5600 switch is available as a POC and open to customer feedback. Do not use this switch in production; it is not supported through NVIDIA networking support.
-{{%/notice%}}
-
 {{%notice note%}}
 - Cumulus Linux 5.4.0b does not support package upgrade; you must intall the Cumulus Linux 5.4.0b image.
 - If you install a new Cumulus Linux 5.4.0b image, you must power cycle the switch after installation.
 - Cumulus Linux 5.4.0b does not support forced link speed; the switch uses auto-negotiation only.
+- For information about NetQ features supported for Spectrum-4, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-45/More-Documents/Spectrum-Support/" text="NetQ Spectrum-4 Support">}}.
 {{%/notice%}}
 
-For information about NetQ features supported for Spectrum-4, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-45/More-Documents/Spectrum-Support/" text="NetQ Spectrum-4 Support">}}.
+The following list describes the open issues specific to the NVIDIA SN5600 (Spectrum-4) switch. See also {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4.0 Release Notes">}} for additional open issues that are not fixed in this release.
+
+{{< expand "NVIDIA SN5600 Open Issues" >}}
+| Issue ID | Description |
+| -------  | ---------- |
+|3436291 | The NVIDIA SN5600 switch does not support connecting to a Spectrum-2 or Spectrum-3 switch with a copper cable that has the part number MCP7Y70-H001 (4X splitter).|
+| 3436287  | The NVIDIA SN5600 switch does not support connecting to a Spectrum-1 switch using a 2X breakout with the MCP7Y60-H001 copper cable. |
+| 3436229  | On the NVIDIA Spectrum-4 switch, when you connect the Service port to non-Nvidia connections, auto-negotiation is not supported on 25G. |
+| 3436215  | When you remove a fan tray, the thermal control service crashes.|
+| 3434855  | NEED DESCRIPTION |
+| 3419124  | NEED DESCRIPTION |
+| 3395489  | When you configure QoS buffer settings, the {{clagd}} service restarts.|
+{{< /expand >}}
+
+{{%notice warning%}}
+The NVIDIA SN5600 switch is available as a POC and open to customer feedback. Do not use this switch in production; it is not supported through NVIDIA networking support.
+{{%/notice%}}
 
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0

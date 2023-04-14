@@ -30,11 +30,11 @@ The following list describes open issues specific to the NVIDIA SN5600 (Spectrum
 | -------  | ---------- |
 | 3436305  | Auto-negotiation and link-training is not supported at 25G between the NVIDIA SN5600 switch and non-NVIDIA devices.|
 | 3436298  | On rare occasions, when you use the MMS4X00-NS transceiver with the NVIDIA SN5600 switch, the port might not come up.|
-| 3436296  | On the NVIDIA SN5600 switch, the 8x port breakout is not supported on the MCP4Y10-N00A cable.|
+| 3436296  | On the NVIDIA SN5600 switch, the 8x port breakout is not supported with the MCP4Y10-N00A cable.|
 | 3436291  | The NVIDIA SN5600 switch does not support connecting to a Spectrum-2 or Spectrum-3 switch with an MCP7Y70-H001 4X  breakout cable.|
 | 3436288  | When you connect two ports together on the same NVIDIA SN5600 switch with an MCP4Y10-N001 cable, you might see link flaps after the ports come up.|
-| 3436287  | The NVIDIA SN5600 switch does not support connecting to a Spectrum-1 switch using a 2x breakout with the MCP7Y60-H001 cable at 25G. |
-| 3436229  | On the NVIDIA SN5600 switch, when you connect a Service port to non-NVIDIA devices, auto-negotiation is not supported for 25G links.|
+| 3436287  | The NVIDIA SN5600 switch does not support connecting to a Spectrum 1 switch using a 2x breakout with the MCP7Y60-H001 cable at 25G. |
+| 3436229  | On the NVIDIA SN5600 switch, when you connect a service port to non-NVIDIA devices, auto-negotiation is not supported for 25G links.|
 | 3436215  | On the NVIDIA SN5600 switch, the thermal control service crashes when you remove a fan tray.|
 | 3434855  | NEED DESCRIPTION |
 | 3419124  | NEED DESCRIPTION |

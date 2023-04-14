@@ -17,7 +17,7 @@ Cumulus Linux 5.4.0b only supports the following platform, which is available as
 - NVIDIA SN5600 (800G Spectrum-4)
 
 {{%notice note%}}
-- Cumulus Linux 5.4.0b does not support package upgrade; you must intall the Cumulus Linux 5.4.0b image.
+- Cumulus Linux 5.4.0b does not support package upgrade; you must install the Cumulus Linux 5.4.0b image.
 - If you install a new Cumulus Linux 5.4.0b image, you must power cycle the switch after installation.
 - Cumulus Linux 5.4.0b does not support forced link speed; the switch uses auto-negotiation only.
 - For information about NetQ features supported for Spectrum-4, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-45/More-Documents/Spectrum-Support/" text="NetQ Spectrum-4 Support">}}.

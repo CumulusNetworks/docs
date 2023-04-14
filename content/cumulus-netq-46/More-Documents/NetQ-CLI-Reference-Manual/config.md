@@ -11,6 +11,13 @@ type: nojsscroll
 
 You must run the `netq config` commands with sudo privileges.
 
+<!--expose when CLI/UI is supported
+## netq config add agent asic-monitor
+
+Configures ASIC buffer monitoring.
+
+-->
+
 ## netq config add agent cluster-servers
 
 Configures the server cluster where the NetQ Agents on monitored switches and hosts should send their collected data. You can also provide a specific port or VRF to use for the communication. Note that you must restart the NetQ Agent to enable the configuration.
@@ -751,7 +758,7 @@ cumulus@switch:~# sudo netq config restart cli
 
 ## netq config add opta config-key
 
-Adds the OPTA configuration key as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}. 
+Adds the OPTA configuration key as part of the {<link title="Install On-switch OPTA" text="on-switch OPTA configuration">}}.
 
 ### Syntax
 
@@ -973,8 +980,7 @@ WJH: Disables the NetQ Agent from collecting What Just Happened events on a swit
 
 ```
 netq config del agent 
-    [cluster-servers]
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|ssl|stats|wjh] 
+    [asic-monitor| cluster-serveres| cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|server|ssl|stats|wjh] 
     [json]
 ```
 ### Required Arguments
@@ -985,6 +991,7 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| asic-monitor | NA | Stop the NetQ Agent from monitoring ASICs |
 | cluster-servers | NA | Remove all cluster servers configured to receive NetQ Agent data |
 | cpu-limit | NA | Remove CPU usage limit for the NetQ Agent on this device | 
 | frr-monitor | NA | Stop the NetQ Agent from monitoring FRR when running in a container |
@@ -1184,9 +1191,41 @@ None
 
 - - -
 -->
-<!--
+
+## netq config lcm-executor
+
+Configures support for lifecycle management features for on-switch OPTA. Read more about {{<link title="Install On-switch OPTA/#configure-the-lcm-executor" text="configuring the LCM executor">}}.
+
+### Syntax
+
+```
+netq config (start|stop|status|restart) lcm-executor
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | start, stop, status, restart | NA |
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+netq config restart lcm-executor
+```
+
+### Related Commands
+
+- `netq config opta`
+
+- - -
+
 ## netq config opta
 
+Configures the OPTA (on-premises telemetry aggregator) service in cloud environments. Read more about {{<link title="Install On-switch OPTA" text="configuring the OPTA service">}}.
 ### Syntax
 
 ```
@@ -1196,7 +1235,7 @@ netq config (start|stop|status|restart) opta
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| NA | start, stop, status, restart |  |
+| NA | start, stop, status, restart | NA |
 
 ### Options
 
@@ -1204,10 +1243,16 @@ None
 
 ### Sample Usage
 
+```
+netq config restart opta
+```
+
 ### Related Commands
 
+- `netq config lcm-executor`
+
 - - -
--->
+
 ## netq config reload parser
 
 Loads the NetQ configuration file.
@@ -1341,6 +1386,8 @@ None
 | wjh-threshold | NA | Display NetQ Agent WJH latency and congestion thresholds configuration |
 | json | NA | Display the output in JSON format |
 ### Sample Usage
+
+<!--need updated example-->
 
 ```
 cumulus@switch:~$ netq config show agent 

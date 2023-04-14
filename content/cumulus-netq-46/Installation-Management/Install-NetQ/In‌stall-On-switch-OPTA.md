@@ -20,31 +20,31 @@ sudo apt-get install netq-opta
 After the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the {{<link title="Premises Management" text="premises management configuration">}}.
 
 ```
-netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 
+sudo netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 
 ```
 
 The VRF name should be the VRF used to communicate with the NetQ Cloud. Specifying a proxy host and port is optional. For example:
 
 ```
-netq config add opta config-key tHkSI2d3LmRldjMubmV0cWRldi5jdW11bHVasdf29ya3MuY29tGLsDIiwzeUpNc3BwK1IyUjVXY2p2dDdPL3JHS3ZrZ1dDUkpFY2JkMVlQOGJZUW84PTIEZGV2MzoHbmV0cWRldr vrf mgmt
+sudo netq config add opta config-key tHkSI2d3LmRldjMubmV0cWRldi5jdW11bHVasdf29ya3MuY29tGLsDIiwzeUpNc3BwK1IyUjVXY2p2dDdPL3JHS3ZrZ1dDUkpFY2JkMVlQOGJZUW84PTIEZGV2MzoHbmV0cWRldr vrf mgmt
 ```
 
 You can also add a proxy host separately with the following command:
 
 ```
-netq config add opta proxy-host <text-proxy-host> proxy-port <text-proxy-port>
+sudo netq config add opta proxy-host <text-proxy-host> proxy-port <text-proxy-port>
 ```
 
 After adding the `config-key`, restart the OPTA service:
 
 ```
-netq config restart opta
+sudo netq config restart opta
 ```
 
-The final step is configuring NetQ Agents to connect to the the OPTA service. To configure the agent on a switch to connect locally to the OPTA service running on that switch, configure the agent to connect to `localhost` with the following command:
+The final step is configuring NetQ Agents to connect to the OPTA service. To configure the agent on a switch to connect locally to the OPTA service running on that switch, configure the agent to connect to `localhost` with the following command:
 
 ```
-netq config add agent server localhost vrf mgmt
+sudo netq config add agent server localhost vrf mgmt
 sudo netq config restart agent
 ```
 
@@ -72,10 +72,9 @@ LCM with the on-switch OPTA service is supported on NVIDIA Spectrum-2 platforms 
 After installing and configuring the `netq-opta` package, enable the LCM executor with the following commands:
 
 ```
-netq config add opta executor-enabled true
-netq config restart opta
+sudo netq config add opta executor-enabled true
+sudo netq config restart lcm-executor
 ```
-
 ### Considerations
 
 - You cannot enable the LCM executor on more than one switch running the OPTA service.

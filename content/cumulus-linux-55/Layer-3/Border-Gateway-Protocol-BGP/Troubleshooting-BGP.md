@@ -529,9 +529,9 @@ Cumulus Linux records the changes that a neighbor goes through in `syslog` and i
 ## Clear BGP Counters
 
 NVUE provides commands to clear BGP counters (route statistics). You can clear:
-- All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes.
-- All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for a specific BGP peer.
+- All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for all BGP peers.
 - All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for all BGP peers without resetting the peer sessions.
+- All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for a specific BGP peer.
 - All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for a specific BGP peer without resetting the peer session.
 - All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for a specific BGP peer group.
 - All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for a specific BGP peer group without resetting the peer sessions.
@@ -551,7 +551,7 @@ To clear all IPv6 outbound routes:
 cumulus@leaf01:~$ nv action clear vrf default router bgp address-family ipv6-unicast out
 ```
 
-To clear all layer 2 VPN EVPN  inbound routes without resetting the peer sessions:
+To clear all layer 2 VPN EVPN inbound routes without resetting the peer sessions:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp address-family l2vpn-evpn soft in
@@ -575,13 +575,13 @@ To clear all outbound routes for all address families (IPv4, IPv6, and l2vpn-evp
 cumulus@leaf01:~$ nv action clear vrf default router bgp peer-group SPINES out
 ```
 
-To clear the inbound 10.10.10.1/32 route for the BGP neighbor 10.10.10.1 without resetting the peer session:
+To clear the inbound 10.10.10.1/32 routes for the BGP neighbor 10.10.10.1 without resetting the peer session:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp neighbor 10.10.10.1 soft in 10.10.10.1/32
 ```
 
-To clear the inbound 10.1.10.0/24 IPv4 route for the BGP peer group SPINES:
+To clear the inbound 10.1.10.0/24 IPv4 routes for the BGP peer group SPINES:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp peer-group SPINES address-family ipv4-unicast in 10.1.10.0/24

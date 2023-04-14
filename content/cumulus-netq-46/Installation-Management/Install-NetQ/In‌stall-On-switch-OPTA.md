@@ -10,7 +10,20 @@ Instead of installing a dedicated OPTA VM, you can enable the OPTA service on on
 
 On-switch OPTA (on-premises telemetry aggregator) is intended for use in small NetQ Cloud deployments where a dedicated OPTA VM might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
 
-To configure a switch for OPTA functionality, install the `netq-opta` package.
+To configure a switch for OPTA functionality, install the `netq-opta` package. To obtain the package, add or uncomment the NetQ repository in `/etc/apt/sources.list` as needed:
+
+```
+cumulus@switch:~$ sudo nano /etc/apt/sources.list
+...
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-{{<version>}}
+...
+```
+
+{{<notice tip>}}
+You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+{{</notice>}}
+
+After adding the repository, install the `netq-opta` package with the following commands:
 
 ```
 sudo apt-get update
@@ -78,5 +91,5 @@ sudo netq config restart lcm-executor
 ### Considerations
 
 - You cannot enable the LCM executor on more than one switch running the OPTA service.
-- You cannot decommission a switch from the NetQ UI while it is running the OPTA service. To decommission a switch running the OPTA service, stop the service with the `netq config stop opta` command and reconfigure any NetQ agents to connect to a different OPTA before decommissioning the switch. 
+- You cannot decommission a switch from the NetQ UI while it is running the OPTA service. To decommission a switch running the OPTA service, stop services with the `sudo netq config stop opta` and `sudo netq config stop lcm-executor` commands and then reconfigure any NetQ agents to connect to a different OPTA before decommissioning the switch.
 - You cannot upgrade a switch using NetQ LCM if it is the only switch in your network running the OPTA service with the LCM executor enabled. To upgrade the switch, reconfigure OPTA and the LCM executor on a different switch and redirect NetQ agents to the new OPTA before upgrading the original switch.

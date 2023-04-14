@@ -90,6 +90,6 @@ sudo netq config restart lcm-executor
 ```
 ### Considerations
 
-- You cannot enable the LCM executor on more than one switch running the OPTA service.
+- You cannot enable the LCM executor on more than one switch that is running the OPTA service.
 - You cannot decommission a switch from the NetQ UI while it is running the OPTA service. To decommission a switch running the OPTA service, stop services with the `sudo netq config stop opta` and `sudo netq config stop lcm-executor` commands and then reconfigure any NetQ agents to connect to a different OPTA before decommissioning the switch.
 - You cannot upgrade a switch using NetQ LCM if it is the only switch in your network running the OPTA service with the LCM executor enabled. To upgrade the switch, reconfigure OPTA and the LCM executor on a different switch and redirect NetQ agents to the new OPTA before upgrading the original switch.

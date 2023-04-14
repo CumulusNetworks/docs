@@ -36,8 +36,8 @@ The following list describes open issues specific to the NVIDIA SN5600 (Spectrum
 | 3436287  | The NVIDIA SN5600 switch does not support connecting to a Spectrum 1 switch using a 2x breakout with the MCP7Y60-H001 cable at 25G. |
 | 3436229  | On the NVIDIA SN5600 switch, when you connect a service port to non-NVIDIA devices, auto-negotiation is not supported for 25G links.|
 | 3436215  | On the NVIDIA SN5600 switch, the thermal control service crashes when you remove a fan tray.|
-| 3434855  | NEED DESCRIPTION |
-| 3419124  | NEED DESCRIPTION |
+| 3434855  | If the SDK becomes stuck and not able to process API calls, the {{systemd}} watchdog stops {{switchd}} and Cumulus Linux generates a {{cl-support}} file. {{switchd}} restarts after the watchdog timeout and then runs without issues. |
+| 3419124  | On rare occasions, LLDP and other CPU originated IP packets that egress a port might get replicated in the data plane and forwarded out of another port as well. The peer node might discard the unicast packets on the wrong port because of destination MAC address; however, there might be problems with multicast packets, such as LLDP, which uses a multicast MAC address as the destination MAC address. To work around this issue, reboot the switch. |
 | 3395489  | On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.|
 {{< /expand >}}
 

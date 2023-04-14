@@ -560,7 +560,7 @@ cumulus@leaf01:~$ nv action clear vrf default router bgp address-family l2vpn-ev
 To clear all outbound IPv4 routes without resetting peer sessions:
 
 ```
-cumulus@leaf01:~$ nv action clear vrf default router bgp address-family IPv4 soft out
+cumulus@leaf01:~$ nv action clear vrf default router bgp address-family ipv4-unicast soft out
 ```
 
 To clear all IPv6 outbound routes for BGP neighbor 10.10.10.101:

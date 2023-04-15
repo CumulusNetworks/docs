@@ -29,11 +29,11 @@ Early access features are now called beta features.
 
 ### New Features and Enhancements
 
-- 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
+- {{<link url="Switch-Port-Attributes/#breakout-ports" text="1G support">}} for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
 - {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 Profile">}}
   <!-- - PPS In or Out-->
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
-  - TACACS+ commands are now generally available
+  - {{<link url="TACACS" text="TACACS+">}} commands are now generally available
   - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}} restart mode
   - {{<link url="VLAN-aware-Bridge-Mode#mac-address-ageing" text="MAC address aging timer">}}
   - {{<link url="SyncE" text="SyncE">}}
@@ -41,7 +41,8 @@ Early access features are now called beta features.
   - {{<link url="Netfilter-ACLs/#control-plane-acls" text="Control plane ACLs">}}
   - New commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE" text="show and clear interface counters">}}
   - New OSPF commands to {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="show interface and neighbor configuration and statistics">}}, and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/##clear-ospf-counters" text="clear OSPF interface statistics">}}
-  - Updated PBR commands show operational data and a new clear command to clear PBR counters.
+  - New commands to {{<link url="Precision-Time-Protocol-PTP/#ptp-configuration-and-status" text="show PTP counters">}}
+  - Updated PBR commands show operational data
   - Support for the {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="named well known BGP communities">}} for `no-export`, `no-advertise`, and `additive` options.
   - New {{<link url="Troubleshooting-BGP/#clear-bgp-counters" text="BGP clear commands">}} to clear BGP counters.
   - New EVPN commands to show multihoming ESI information, layer 2 nexthop group VTEP IP addresses, remote router MAC addresses, and nexthop VTEPs

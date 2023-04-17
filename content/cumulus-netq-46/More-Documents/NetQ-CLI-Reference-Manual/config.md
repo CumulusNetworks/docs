@@ -758,7 +758,7 @@ cumulus@switch:~# sudo netq config restart cli
 
 ## netq config add opta config-key
 
-Adds the OPTA configuration key as part of the {<link title="Install On-switch OPTA" text="on-switch OPTA configuration">}}.
+Adds the OPTA configuration key as part of the {{<link title="Install On-switch OPTA" text="on-switch OPTA configuration">}}.
 
 ### Syntax
 
@@ -1364,7 +1364,7 @@ Displays the configuration of the NetQ Agent on a switch. Several forms of this 
 
 ```
 netq config show agent 
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats|wjh|wjh-threshold] 
+    [asic-monitor|cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
 ### Required Arguments
@@ -1375,6 +1375,7 @@ None
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
+| asic-monitor | NA | Display NetQ Agent ASIC monitoring configuration |
 | cpu-limit | NA | View the maximum percentage of CPU resource that the NetQ Agent can use |
 | frr-monitor | NA | Display FRR monitoring configuration |
 | kubernetes-monitor | NA | Display the Kubernetes monitoring configuration |

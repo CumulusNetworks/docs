@@ -31,30 +31,35 @@ Early access features are now called beta features.
 
 - {{<link url="Switch-Port-Attributes/#breakout-ports" text="1G support">}} for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
 - {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 Profile">}}
-  <!-- - PPS In or Out-->
+- {{<link url="SyncE" text="SyncE">}}
+- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="TACACS" text="TACACS+">}} commands are now generally available
   - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}} restart mode
   - {{<link url="VLAN-aware-Bridge-Mode#mac-address-ageing" text="MAC address aging timer">}}
-  - {{<link url="SyncE" text="SyncE">}}
-  - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
   - {{<link url="Netfilter-ACLs/#control-plane-acls" text="Control plane ACLs">}}
   - New commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE" text="show and clear interface counters">}}
-  - New OSPF commands to {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="show interface and neighbor configuration and statistics">}}, and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/##clear-ospf-counters" text="clear OSPF interface statistics">}}
+  - New OSPF commands to {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="show interface and neighbor configuration and statistics">}}, and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="clear OSPF interface statistics">}}
+  - New command to {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="clear matches against a route map">}}
+  - New {{<link url="Troubleshooting-BGP/#clear-bgp-counters" text="BGP clear commands">}} to clear BGP counters
   - New commands to {{<link url="Precision-Time-Protocol-PTP/#ptp-configuration-and-status" text="show PTP counters">}}
-  - Updated {{<link url="Policy-based-Routing/#troubleshooting" text="PBR commands">}} show operational data
-  - Support for the {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="named well known BGP communities">}} for `no-export`, `no-advertise`, and `additive` options.
-  - New {{<link url="Troubleshooting-BGP/#clear-bgp-counters" text="BGP clear commands">}} to clear BGP counters.
   - New EVPN commands to show {{<link url="EVPN-Multihoming/#troubleshooting" text="multihoming ESI information">}}, layer 2 nexthop group VTEP IP addresses, remote router MAC addresses, and nexthop VTEPs
   - Updated EVPN commands show operational data
+  - Updated {{<link url="Policy-based-Routing/#troubleshooting" text="PBR commands">}} show operational data
   - Updated `nv show router nexthop rib` and `nv show vrf <vrf> router nexthop-tracking ipv4|ipv6 ip-address` commands show operational data
   - Updated {{<link url="Troubleshooting-BGP" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data
-  - Changed commands:
-    - The `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>`
-    - The `nv set service dhcp-relay6 <vrf> interface downstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface downstream <interface> link-address <ipv6-address>`
-    - The `nv set service dhcp-relay <vrf> giaddress-interface` is now `nv set service dhcp-relay <vrf> gateway-interface`
-    - The `nv show interface <intf> ptp counters` command is now `nv show interface <intf> counters ptp`
-  - New command list:
+  - Support for the {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="named well known BGP communities">}} for `no-export`, `no-advertise`, and `additive` options
+
+{{< expand "Updated commands" >}}
+| Previous Command | New Command |
+| ---------------- | ----------- |
+| `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>`| `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>` |
+| `nv set service dhcp-relay6 <vrf> interface downstream <interface> address <ipv6-address>` | `nv set service dhcp-relay6 <vrf> interface downstream <interface> server-address <ipv6-address>` |
+| `nv set service dhcp-relay <vrf> giaddress-interface`| `nv set service dhcp-relay <vrf> gateway-interface`|
+| `nv show interface <intf> ptp counters` | `nv show interface <intf> counters ptp`|
+{{< /expand >}}
+
+{{< expand "New Commands" >}}
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}
 
@@ -78,7 +83,9 @@ Coming soon
 
 {{< /tab >}}
 {{< /tabs >}}
-  
+
+{{< /expand >}}
+
 {{%notice info%}}
 Cumulus Linux 5.5 includes the NVUE object model. After you upgrade to Cumulus Linux 5.5, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 

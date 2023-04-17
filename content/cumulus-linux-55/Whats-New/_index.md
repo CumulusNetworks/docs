@@ -51,7 +51,7 @@ Early access features are now called beta features.
   - Updated {{<link url="Troubleshooting-BGP" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data
   - Changed commands:
     - The `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>`
-    - The `nv set service dhcp-relay6 blue interface downstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 blue interface downstream <interface> link-address <ipv6-address>`
+    - The `nv set service dhcp-relay6 <vrf> interface downstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface downstream <interface> link-address <ipv6-address>`
     - The `nv set service dhcp-relay <vrf> giaddress-interface` is now `nv set service dhcp-relay <vrf> gateway-interface`
     - The `nv show interface <intf> ptp counters` command is now `nv show interface <intf> counters ptp`
   - New command list:

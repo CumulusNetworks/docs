@@ -11,7 +11,7 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 <!-- Air:WhatsNew -->
 ### 82.2023.0410-012
 - Added Ubuntu 22.04
-- Added SONiC 202204_2
+- Added SONiC 202205_2
 - Backend infrastructure improvements
 <!-- Air:WhatsNew -->
 

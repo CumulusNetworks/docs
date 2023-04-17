@@ -13,19 +13,23 @@ Get started by selecting the NVL4 icon in the UI header.
 
 To generate and download a system dump as a tar file:
 
-1. From the **Domains** tab, select the **View details**
+1. From the **Domains** tab, select the **View details** button.
 
 {{<figure src="/images/netq/file-manager-domains-460.png" alt="" width="1150">}}
 
 2. Navigate to the **Devices** tab.
 
-3. Select up to five switches, then select the **Generate sysdump** icon above the table. It can take several minutes to generate the system dump file.
+3. Select up to five switches, then select **Generate sysdump** {{<img src="/images/netq/generate-sysdump-icon.svg" alt="" height="18" width="18">}} above the table. It can take several minutes to generate the system dump file.
 
-{{<figure src="/images/netq/generate-sysdump-460.png" alt="" width="1150">}}
+4. After the file is generated, a download icon {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" alt="download" height="18" width="18">}} appears above the devices table. Select it to download the file(s).
 
-4. Downloaded files appear in the file manager, located at the top-right corner of the dashboard. Select it to display a list of files. Choose the files you'd like to download, then select the download icon from above the list.
+{{<figure src="/images/netq/downloadsysdumps-460.png" alt="" width="1150">}}
+
+Alternately, download the files via the file manager, located at the top-right corner of the dashboard. Click the file manager, then choose the files you'd like to download. Download them by selecting the download icon {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" alt="download" height="18" width="18">}} from above the list of files.
 
 {{<figure src="/images/netq/file-manager-download-460.png" alt="" width="650">}}
+
+Note that you can download and delete all generated files---including sysdumps and GFM logs---via the file manager.
 
 ## Download GFM Logs
 
@@ -33,6 +37,4 @@ To generate and download a system dump as a tar file:
 
 {{<figure src="/images/netq/fetch-gfm-log-460.png" alt="" width="1000">}}
 
-2. After the log is generated, a download icon {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" alt="download" height="18" width="18">}} appears in place of the Fetch button. Select {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" alt="download" height="18" width="18">}} **Download**.
-
-3. (Optional) You can also view, delete, and download files via the file manager, as described in step 4 of the previous section.
+2. After the log is generated, a download icon {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" alt="download" height="18" width="18">}} appears in place of the Fetch button. Select it to download the files.

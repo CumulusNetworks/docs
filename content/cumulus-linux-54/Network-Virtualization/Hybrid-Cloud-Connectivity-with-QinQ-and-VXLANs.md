@@ -14,7 +14,7 @@ In Cumulus Linux, you map QinQ packets to VXLANs through:
 - *Double tag translation*, where you map a customer and service to a VNI.
 
 {{%notice note%}}
-You must disable ARP adn ND suppression on VXLAN bridges when using QinQ.
+You must disable ARP and ND suppression on VXLAN bridges when using QinQ.
 {{%/notice%}}
 
 ## Single Tag Translation

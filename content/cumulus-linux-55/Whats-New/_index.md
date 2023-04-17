@@ -42,7 +42,7 @@ Early access features are now called beta features.
   - New commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE" text="show and clear interface counters">}}
   - New OSPF commands to {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="show interface and neighbor configuration and statistics">}}, and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/##clear-ospf-counters" text="clear OSPF interface statistics">}}
   - New commands to {{<link url="Precision-Time-Protocol-PTP/#ptp-configuration-and-status" text="show PTP counters">}}
-  - Updated PBR commands show operational data
+  - Updated {{<link url="Policy-based-Routing/#troubleshooting" text="PBR commands">}} show operational data
   - Support for the {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="named well known BGP communities">}} for `no-export`, `no-advertise`, and `additive` options.
   - New {{<link url="Troubleshooting-BGP/#clear-bgp-counters" text="BGP clear commands">}} to clear BGP counters.
   - New EVPN commands to show multihoming ESI information, layer 2 nexthop group VTEP IP addresses, remote router MAC addresses, and nexthop VTEPs

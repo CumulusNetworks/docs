@@ -15,7 +15,7 @@ To generate and download a system dump as a tar file:
 
 1. From the **Domains** tab, select the **View details**
 
-{{<figure src="/images/netq/nvlink4-domains-list.png" alt="list of three NVL4 domains" width="1150">}}
+{{<figure src="/images/netq/file-manager-domains-460.png" alt="" width="1150">}}
 
 2. Navigate to the **Devices** tab.
 
@@ -25,13 +25,13 @@ To generate and download a system dump as a tar file:
 
 4. Downloaded files appear in the file manager, located at the top-right corner of the dashboard. Select it to display a list of files. Choose the files you'd like to download, then select the download icon from above the list.
 
-{{<figure src="/images/netq/file-manager-log-and-tar-460.png" alt="" width="650">}}
+{{<figure src="/images/netq/file-manager-download-460.png" alt="" width="650">}}
 
 ## Download GFM Logs
 
 1. From the **Domains** tab, select **Fetch**.
 
-{{<figure src="/images/netq/nvl4-fetch-460.png" alt="" width="1000">}}
+{{<figure src="/images/netq/fetch-gfm-log-460.png" alt="" width="1000">}}
 
 2. After the log is generated, a download icon {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" alt="download" height="18" width="18">}} appears in place of the Fetch button. Select {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" alt="download" height="18" width="18">}} **Download**.
 

@@ -13,7 +13,7 @@ You can access NVLink4 features via the NetQ UI. This section describes how to l
 1. Open a new Chrome or Firefox browser window or tab.
 2. Enter the following URL into the address bar: *https://\<hostname-or-ipaddress\>:443*  
 
- {{<figure src="/images/netq/netq-splash-screen-450.png" alt="NetQ login screen" width="700">}}
+ {{<figure src="/images/netq/login-splash-460.png" alt="NetQ login screen" width="700">}}
 
 3. Log in. 
 

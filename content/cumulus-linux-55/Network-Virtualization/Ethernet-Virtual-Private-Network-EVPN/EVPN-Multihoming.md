@@ -582,9 +582,22 @@ cumulus@switch:~$
 
 Use the following commands to troubleshoot your EVPN multihoming configuration.
 
+### Show Global EVPN-MH Information
+
+To show global EVPN-MH information, such as the uplink count, startup delay timer, neighbor holdtime, and MAC entry hold time, run the NVUE `nv show evpn multihoming` command:
+
+```
+cumulus@switch:~$ nv show evpn multihoming
+```
+To show BGP multihoming for a specific ESI, run the `nv show evpn multihoming bgp-info esi <esi>` command:
+
+```
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi 00:44:38:39:BE:EF:AA:00:00:01
+```
+
 ### Show Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs, run the vtysh `show evpn es` command. For example:
+To display the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi` commandor the vtysh `show evpn es` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -597,9 +610,15 @@ ESI                            Type ES-IF                 VTEPs
 03:44:38:39:be:ef:aa:00:00:03  LB   bond3
 ```
 
+To show information about a specific Ethernet segment ID (ESI), run the `nv show evpn multihoming esi <esi>` command:
+
+```
+cumulus@switch:~$ nv show evpn multihoming esi 00:44:38:39:BE:EF:AA:00:00:01
+```
+
 ### Show Ethernet Segment per VNI Information
 
-To display the Ethernet segments learned for each VNI, run the vtysh `show evpn es-evi` command. For example:
+To display the Ethernet segments learned for each VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command or the vtysh `show evpn es-evi` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -611,6 +630,12 @@ VNI      ESI                            Type
 20       03:44:38:39:be:ef:aa:00:00:02  L   
 30       03:44:38:39:be:ef:aa:00:00:03  L   
 10       03:44:38:39:be:ef:aa:00:00:01  L 
+```
+
+You can also show information about a specific ESI for a VNI with the `nv show evpn vni <vni> multihoming esi <esi>` command:
+
+```
+cumulus@switch:~$ nv show evpn vni 10 multihoming esi 00:44:38:39:BE:EF:AA:00:00:01
 ```
 
 ### Show BGP Ethernet Segment Information

@@ -42,7 +42,7 @@ Early access features are now called beta features.
   - New commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE" text="show and clear interface counters">}}
   - New OSPF commands to {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="show interface and neighbor configuration and statistics">}}, and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/##clear-ospf-counters" text="clear OSPF interface statistics">}}
   - New commands to {{<link url="Precision-Time-Protocol-PTP/#ptp-configuration-and-status" text="show PTP counters">}}
-  - Updated PBR commands show operational data
+  - Updated {{<link url="Policy-based-Routing/#troubleshooting" text="PBR commands">}} show operational data
   - Support for the {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="named well known BGP communities">}} for `no-export`, `no-advertise`, and `additive` options.
   - New {{<link url="Troubleshooting-BGP/#clear-bgp-counters" text="BGP clear commands">}} to clear BGP counters.
   - New EVPN commands to show multihoming ESI information, layer 2 nexthop group VTEP IP addresses, remote router MAC addresses, and nexthop VTEPs
@@ -51,7 +51,7 @@ Early access features are now called beta features.
   - Updated {{<link url="Troubleshooting-BGP" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data
   - Changed commands:
     - The `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>`
-    - The `nv set service dhcp-relay6 blue interface downstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 blue interface downstream <interface> link-address <ipv6-address>`
+    - The `nv set service dhcp-relay6 <vrf> interface downstream <interface> address <ipv6-address>` command is now `nv set service dhcp-relay6 <vrf> interface downstream <interface> link-address <ipv6-address>`
     - The `nv set service dhcp-relay <vrf> giaddress-interface` is now `nv set service dhcp-relay <vrf> gateway-interface`
     - The `nv show interface <intf> ptp counters` command is now `nv show interface <intf> counters ptp`
   - New command list:

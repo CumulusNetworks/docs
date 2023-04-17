@@ -1,5 +1,5 @@
 ---
-title: Back up Existing Ansible Configurations
+title: Back up Existing Ansible Configurations - NVUE
 author: Cumulus Networks
 weight: 323
 toc: 4
@@ -45,16 +45,9 @@ The content of the file is very simple:
       become: yes
       tasks:
         - name: Fetch ports.conf
-          fetch: dest=save/{{ansible_hostname}}/ports.conf src=/etc/cumulus/ports.conf flat=yes
+          fetch: dest=save/{{ansible_hostname}}/startup.yaml src=/etc/nvue.d/startup.yaml flat=yes
 
-        - name: Fetch interfaces Configuration
-          fetch: dest=save/{{ansible_hostname}}/interfaces src=/etc/network/interfaces flat=yes
 
-        - name: Fetch FRR daemons file
-          fetch: dest=save/{{ansible_hostname}}/daemons src=/etc/frr/daemons flat=yes
-
-        - name: Fetch frr.conf
-          fetch: dest=save/{{ansible_hostname}}/frr.conf src=/etc/frr/frr.conf flat=yes
 
 To run the playbook, run the `ansible-playbook` command:
 
@@ -65,31 +58,20 @@ To run the playbook, run the `ansible-playbook` command:
     GATHERING FACTS ***************************************************************
     ok: [leaf1]
 
-    TASK: [Fetch ports.conf] ******************************************************
+    TASK: [Fetch startup.yaml] ******************************************************
     changed: [leaf1]
-
-    TASK: [Fetch interfaces Configuration] ******************************************************
-    changed: [leaf1]
-
-    TASK: [Fetch FRR daemons file] **********************************************
-    changed: [leaf1]
-
-    TASK: [Fetch frr.conf] ******************************************************
-    ok: [leaf1]
 
     PLAY RECAP ********************************************************************
     leaf1                      : ok=5    changed=3    unreachable=0    failed=0
 
-The playbook copies these four commonly used Cumulus Linux files to the server:
+The playbook copies startup.yaml file used as Cumulus Linux NVUE startup configuration to the server:
 
 | File Name               | Description                        |
 | ----------------------- | ---------------------------------- |
-| /etc/cumulus/ports.conf | Configuration for breakout ports   |
-| /etc/network/interfaces | Network configuration File         |
-| /etc/frr/daemons        | Daemons configuration file for FRR |
-| /etc/frr/frr.conf       | FRR Configuration file             |
+| /etc/nvue.d/startup.yaml | Configuration file for NVUE       |
 
-For more information on which files to back up and what Cumulus Linux uses, read [Upgrading Cumulus Linux]({{<ref "/cumulus-linux-43/Installation-Management/Upgrading-Cumulus-Linux#before-you-upgrade" >}}).
+
+For more information on which files to back up and what Cumulus Linux uses, read [Upgrading Cumulus Linux]({{<ref "/cumulus-linux-54/Installation-Management/Upgrading-Cumulus-Linux#back-up-and-restore-configuration-with-nvue" >}}).
 
 The playbook copies the files to a directory called `save`:
 
@@ -104,7 +86,7 @@ The playbook puts the files into a directory based on the hostname. This particu
 The playbook stores all the files in the `leaf1` directory:
 
     user@server ~/consulting/fetch/save/leaf1 $ ls
-    daemons  interfaces  ports.conf  frr.conf
+    startup.yaml
 
 ## Example Copy
 
@@ -114,23 +96,13 @@ On the server, Ansible added a file called `copy.yml` to the directory; the file
     - hosts: leaf1
       become: yes
       tasks:
-        - name: Restore ports.conf
-          copy: src=save/{{ansible_hostname}}/ports.conf dest=/etc/cumulus/
-        - name: Restore Interface Configuration
-          copy: src=save/{{ansible_hostname}}/interfaces dest=/etc/network/
-        - name: Restore FRR daemons file
-          copy: src=save/{{ansible_hostname}}/daemons dest=/etc/frr/daemons
-        - name: Restore frr.conf
-          copy: src=save/{{ansible_hostname}}/frr.conf dest=/etc/frr/frr.conf
+        - name: Restore startup.yaml
+          copy: src=save/{{ansible_hostname}}/startup.yaml dest=/etc/nvue.d/
+       
+        - name : Switch - Config apply
+          command: nv config apply startup -y
 
-        - name: reload switchd
-          service: name=switchd state=restarted
-        - name: reload networking
-          command: /sbin/ifreload -a
-        - name: restart frr
-          service: name=frr state=restart
-
-This file just pushes back the already saved files, then restarts the corresponding services using the service and command module. Instead of issuing a `service=networking` command, the `ifreload -a` command ran directly.
+This file just pushes back the already saved startup.yaml file, then applies the configuration from startup.yaml file and this restarts the related processes and daemons in the background.  Instead of issuing a `service=networking` command, the `ifreload -a` command ran directly.
 
     user@server ~/consulting/fetch $ ansible-playbook copy.yml
 
@@ -139,25 +111,10 @@ This file just pushes back the already saved files, then restarts the correspond
     GATHERING FACTS ***************************************************************
     ok: [leaf1]
 
-    TASK: [Restore ports.conf] *******************************************************
+    TASK: [Restore startup.yaml] *******************************************************
     ok: [leaf1]
 
-    TASK: [Restore Interface Configuration] *******************************************************
-    ok: [leaf1]
-
-    TASK: [Restore FRR daemons file] ***************************************************
-    ok: [leaf1]
-
-    TASK: [Restore frr.conf] ******************************************************
-    changed: [leaf1]
-
-    TASK: [reload switchd] ********************************************************
-    changed: [leaf1]
-
-    TASK: [reload networking] *****************************************************
-    changed: [leaf1]
-
-    TASK: [restart frr] *********************************************************
+        TASK: [Switch - Config apply] *********************************************************
     changed: [leaf1]
 
 
@@ -166,7 +123,7 @@ This file just pushes back the already saved files, then restarts the correspond
 
     leaf1                      : ok=8    changed=4    unreachable=0    failed=0
 
-With the files pushed back to the switch, it now operates on the previous snapshot.
+With the startup.yaml file pushed back to the switch, it now operates on the previous snapshot.
 
 You could base the `save` directory on the time of day rather than a generic folder called `save` by using:
 

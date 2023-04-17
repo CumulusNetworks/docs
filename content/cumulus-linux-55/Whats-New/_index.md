@@ -45,7 +45,7 @@ Early access features are now called beta features.
   - Updated {{<link url="Policy-based-Routing/#troubleshooting" text="PBR commands">}} show operational data
   - Support for the {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="named well known BGP communities">}} for `no-export`, `no-advertise`, and `additive` options.
   - New {{<link url="Troubleshooting-BGP/#clear-bgp-counters" text="BGP clear commands">}} to clear BGP counters.
-  - New EVPN commands to show multihoming ESI information, layer 2 nexthop group VTEP IP addresses, remote router MAC addresses, and nexthop VTEPs
+  - New EVPN commands to show {{<link url="EVPN-Multihoming/#troubleshooting" text="multihoming ESI information">}}, layer 2 nexthop group VTEP IP addresses, remote router MAC addresses, and nexthop VTEPs
   - Updated EVPN commands show operational data
   - Updated `nv show router nexthop rib` and `nv show vrf <vrf> router nexthop-tracking ipv4|ipv6 ip-address` commands show operational data
   - Updated {{<link url="Troubleshooting-BGP" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data

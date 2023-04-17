@@ -30,8 +30,8 @@ Early access features are now called beta features.
 ### New Features and Enhancements
 
 - {{<link url="Switch-Port-Attributes/#breakout-ports" text="1G support">}} for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
-- {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 Profile">}}
 - {{<link url="SyncE" text="SyncE">}}
+- {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 Profile">}}
 - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} for Spectrum 1
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="TACACS" text="TACACS+">}} commands are now generally available
@@ -39,7 +39,7 @@ Early access features are now called beta features.
   - {{<link url="VLAN-aware-Bridge-Mode#mac-address-ageing" text="MAC address aging timer">}}
   - {{<link url="Netfilter-ACLs/#control-plane-acls" text="Control plane ACLs">}}
   - New commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE" text="show and clear interface counters">}}
-  - New OSPF commands to {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="show interface and neighbor configuration and statistics">}}, and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="clear OSPF interface statistics">}}
+  - New OSPF commands to {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="show interface and neighbor configuration and counters">}}, and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="clear OSPF interface counters">}}
   - New command to {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="clear matches against a route map">}}
   - New {{<link url="Troubleshooting-BGP/#clear-bgp-counters" text="BGP clear commands">}} to clear BGP counters
   - New commands to {{<link url="Precision-Time-Protocol-PTP/#ptp-configuration-and-status" text="show PTP counters">}}
@@ -47,7 +47,7 @@ Early access features are now called beta features.
   - Updated EVPN commands show operational data
   - Updated {{<link url="Policy-based-Routing/#troubleshooting" text="PBR commands">}} show operational data
   - Updated `nv show router nexthop rib` and `nv show vrf <vrf> router nexthop-tracking ipv4|ipv6 ip-address` commands show operational data
-  - Updated {{<link url="Troubleshooting-BGP" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data
+  - Updated {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data
   - Support for the {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="named well known BGP communities">}} for `no-export`, `no-advertise`, and `additive` options
 
 {{< expand "Updated commands" >}}

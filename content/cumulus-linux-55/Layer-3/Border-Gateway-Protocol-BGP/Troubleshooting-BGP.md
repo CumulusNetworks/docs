@@ -69,8 +69,6 @@ Origin codes:  i - IGP, e - EGP, ? - incomplete
 *=                  swp53                                  0 65199 65102 ?
 *>                  swp51                                  0 65199 65102 ?
 ...
-
-Displayed 13 routes and 42 total paths
 ```
 
 To show a more detailed breakdown of a specific neighbor, run the vtysh `show ip bgp neighbor <neighbor>` command or the NVUE `nv show vrf <vrf> router bgp neighbor <neighbor>` command:
@@ -192,6 +190,32 @@ sub-group
                                                                                                                                                                                       Neighbor: 
                                                                                                                                                                                       swp52
 ...
+```
+
+## Show BGP Route Information
+
+You can run NVUE commands to show route statistics for a BGP neighbor, such as the number routes, and information about advertised and received routes.
+
+To show the route count, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast route-counters` command for IPv4 or the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast route-counters` command for IPv6.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast route-counters
+```
+
+To show all the advertised routes, run the `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast advertised-routes` command for IPv4 or the  `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast advertised-routes` command for IPv6.
+
+To show information about a specific advertised route, add the route at the end of the command.
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast advertised-routes
+```
+
+To show all the received routes, run the `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast received-routes` command for IPv4 or the  `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast received-routes` command for IPv6.
+
+To show information about a specific received route, add the route at the end of the command:
+
+```
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast received-routes 10.0.1.2/32 
 ```
 
 ## Show Next Hop Information

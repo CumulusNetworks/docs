@@ -149,6 +149,55 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
+You can associate different SVIs with each bridge by changing the `base-interface` value. The following example creates SVIs(link VLAN layer 3 addressing) for VLAN 10 in both bridge1 and bridge2:
+
+{{< tabs "TabID154 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface bridge2_vlan10 type svi
+cumulus@switch:~$ nv set interface bridge2_vlan10 vlan 10
+cumulus@switch:~$ nv set interface bridge2_vlan10 base-interface bridge2
+cumulus@switch:~$ nv set interface bridge2_vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface bridge1_vlan10 type svi
+cumulus@switch:~$ nv set interface bridge1_vlan10 vlan 10
+cumulus@switch:~$ nv set interface bridge1_vlan10 base-interface bridge1
+cumulus@switch:~$ nv set interface bridge1_vlan10 ip address 192.168.10.2/24
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file and add the bridge:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto bridge2_vlan10
+iface bridge2_vlan10
+    address 10.1.10.2/24
+    hwaddress 1c:34:da:1d:e6:fd
+    vlan-raw-device bridge2
+    vlan-id 10
+auto bridge1_vlan10
+iface bridge1_vlan10
+    address 192.168.10.2/24
+    hwaddress 1c:34:da:1d:e6:fd
+    vlan-raw-device bridge1
+    vlan-id 10
+...
+```
+
+Run the `ifreload -a` command to load the new configuration:
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
 NVIDIA Spectrum 1 switches support a maximum of 10000 VLAN elements. NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements when {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm restart mode ">}} is `off` or 7934 VLAN elements when warm restart mode is `on`.
 Cumulus Linux calculates the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 2600 VLANs totals 15600 VLAN elements.

@@ -27,14 +27,14 @@ To generate and download a system dump as a tar file:
 
 Alternately, download the files via the file manager, located at the top-right corner of the dashboard. Click the file manager, then choose the files you'd like to download. Download them by selecting the download icon {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" alt="download" height="18" width="18">}} from above the list of files.
 
-{{<figure src="/images/netq/file-manager-download-460.png" alt="" width="650">}}
+{{<figure src="/images/netq/file-manager-download-460.png" alt="" width="450">}}
 
 Note that you can download and delete all generated files---including sysdumps and GFM logs---via the file manager.
 
 ## Download GFM Logs
 
-1. From the **Domains** tab, select **Fetch**.
+1. From the **Domains** tab, select the **Fetch** button.
 
-{{<figure src="/images/netq/fetch-gfm-log-460.png" alt="" width="1000">}}
+{{<figure src="/images/netq/fetch-gfm-log-460.png" alt="" width="900">}}
 
 2. After the log is generated, a download icon {{<img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/download-bottom.svg" alt="download" height="18" width="18">}} appears in place of the Fetch button. Select it to download the files.

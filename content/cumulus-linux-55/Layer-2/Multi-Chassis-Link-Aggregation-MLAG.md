@@ -523,6 +523,78 @@ Run the `sudo ifreload -a` command to apply all the configuration changes:
 cumulus@leaf01:~$ sudo ifreload -a
 ```
 
+## Unconfigure MLAG
+
+To unconfigure MLAG:
+
+{{< tabs "TabID532 ">}}
+{{< tab "NVUE Commands ">}}
+
+You must unset MLAG, the peerlink, and the peerlink VLAN subinterface at the same time with the `nv config apply` command.
+
+```
+cumulus@leaf01:~$ nv unset mlag
+cumulus@leaf01:~$ nv unset interface peerlink
+cumulus@leaf01:~$ nv unset interface peerlink.4094
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file.
+
+1. Remove the `auto peerlink` stanza; for example, remove lines similar to the following:
+
+  ```
+  ...
+  auto peerlink
+  iface peerlink
+      bond-slaves swp49 swp50
+  auto peerlink.4094
+  iface peerlink.4094
+  clagd-backup-ip 10.10.10.2
+  clagd-peer-ip linklocal
+  clagd-sys-mac 44:38:39:BE:EF:AA
+  ...
+  ```
+
+2. Remove the `clag-id` line from the bond stanzas. In the following example, remove `clag-id 1` from the `auto bond1` stanza and `clag-id 2` from the `auto bond2` stanza:
+
+  ```
+  ...
+  auto bond1
+  iface bond1
+      alias bond1 on swp1
+      bond-slaves swp1
+      clag-id 1
+
+  auto bond2
+  iface bond2
+      alias bond2 on swp2
+      bond-slaves swp2
+      clag-id 2
+  ...
+  ```
+
+3. Remove `peerlink` from the `bridge-ports` line of the bridge stanza. In the following example, remove `peerlink` from the `auto br_default` stanza:
+
+  ```
+  auto br_default
+  iface br_default
+      bridge-ports bond1 bond2 peerlink
+      bridge-vlan-aware yes
+  ```
+
+4. Run the `sudo ifreload -a` command:
+
+  ```
+  cumulus@leaf01:~$ sudo ifreload -a
+  ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Best Practices
 
 Follow these best practices when configuring MLAG on your switches.

@@ -843,7 +843,7 @@ Copy an image into another organization.
 
 **Arguments**:
 
-  - `organization` _str_, Organization where the image should be copied
+  - `organization` _str | `Organization`_ - Organization where the image should be copied
 
 **Returns**:
 

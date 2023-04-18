@@ -54,6 +54,8 @@ After adding the `config-key`, restart the OPTA service:
 sudo netq config restart opta
 ```
 
+## Connect NetQ Agents to the OPTA Service
+
 The final step is configuring NetQ Agents to connect to the OPTA service. To configure the agent on a switch to connect locally to the OPTA service running on that switch, configure the agent to connect to `localhost` with the following command:
 
 ```
@@ -78,6 +80,8 @@ The on-switch OPTA service supports the following {{<link title="Lifecycle Manag
 - Switch decommission
 - Flow analysis
 
+The {{<link title="Install On-switch OPTA/#connect-netq-agents-to-the-opta-service" text="NetQ Agent must be running">}} for lifecycle management functions to work properly. 
+
 {{<notice note>}}
 LCM with the on-switch OPTA service is supported on NVIDIA Spectrum-2 platforms and above.
 {{</notice>}}
@@ -88,8 +92,16 @@ After installing and configuring the `netq-opta` package, enable the LCM executo
 sudo netq config add opta executor-enabled true
 sudo netq config restart lcm-executor
 ```
+
+To disable the LCM executor, first stop the service, then restart the OPTA service:
+
+```
+sudo netq config stop lcm-executor
+sudo netq config add opta executor-enabled false
+sudo netq config restart opta
+```
 ### Considerations
 
-- You cannot enable the LCM executor on more than one switch that is running the OPTA service.
+- You cannot enable the LCM executor on more than one switch running the OPTA service.
 - You cannot decommission a switch from the NetQ UI while it is running the OPTA service. To decommission a switch running the OPTA service, stop services with the `sudo netq config stop opta` and `sudo netq config stop lcm-executor` commands and then reconfigure any NetQ agents to connect to a different OPTA before decommissioning the switch.
 - You cannot upgrade a switch using NetQ LCM if it is the only switch in your network running the OPTA service with the LCM executor enabled. To upgrade the switch, reconfigure OPTA and the LCM executor on a different switch and redirect NetQ agents to the new OPTA before upgrading the original switch.

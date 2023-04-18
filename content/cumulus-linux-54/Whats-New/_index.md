@@ -73,7 +73,7 @@ The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Supp
    - New format for {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} in the `/etc/cumulus/ports.conf` file
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
    - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} and {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="breakout port lane">}} configuration settings
-- 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches (beta)
+- 1G support (beta) for all NVIDIA Spectrum-2 and Spectrum-3 switches
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="User-Accounts" text="User management">}} commands
   - {{<link url="TACACS" text="TACACS+">}} commands (beta)

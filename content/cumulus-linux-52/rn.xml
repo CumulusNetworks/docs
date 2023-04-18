@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3432897</td>
+<td>When you remove the restriction from a TACACS+ mapped user to remove per command authorization, the {{tacplus-restrict -R}} command does not restore ownership of restored files correctly. As a result, some commands might fail due to permission errors in the files or directories under the home directory. To work around this issue, run the {{sudo chown}} command  to correct the ownership of the affected files and directories.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3418103</td>
 <td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
 <td>5.0.0-5.4.0</td>
@@ -503,6 +509,12 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td></td>
 </tr>
 <tr>
+<td>3069069</td>
+<td>When you run the {{systemctl reload switchd}} command, there is momentary traffic loss after a port configured with lossless buffers goes down. This is only temporary and the traffic stabilizes after the initial drops.</td>
+<td>5.1.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3061656</td>
 <td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
 <td>5.1.0-5.4.0</td>
@@ -713,6 +725,12 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3432897</td>
+<td>When you remove the restriction from a TACACS+ mapped user to remove per command authorization, the {{tacplus-restrict -R}} command does not restore ownership of restored files correctly. As a result, some commands might fail due to permission errors in the files or directories under the home directory. To work around this issue, run the {{sudo chown}} command  to correct the ownership of the affected files and directories.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3418103</td>
@@ -1214,6 +1232,12 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>4.4.4-4.4.5, 5.1.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3069069</td>
+<td>When you run the {{systemctl reload switchd}} command, there is momentary traffic loss after a port configured with lossless buffers goes down. This is only temporary and the traffic stabilizes after the initial drops.</td>
+<td>5.1.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>

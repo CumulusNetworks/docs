@@ -192,7 +192,7 @@ B>* 10.10.10.104/32 [20/0] via fe80::ae56:f0ff:fef3:590c, swp54, weight 1, 00:42
 
 ## Show EVPN Address Family Peers
 
-Run the vtysh `show bgp l2vpn evpn summary` command or the `net show bgp l2vpn evpn summary` command to see the BGP peers participating in the layer 2 VPN or EVPN address family and their states. The following example output from a leaf switch shows eBGP peering with four spine switches to exchange EVPN routes; all peering sessions are in the *established* state.
+Run the vtysh `show bgp l2vpn evpn summary` command or the `net show bgp l2vpn evpn summary` command to see the BGP peers participating in the EVPN address family and their states. The following example output from a leaf switch shows eBGP peering with four spine switches to exchange EVPN routes; all peering sessions are in the *established* state.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh

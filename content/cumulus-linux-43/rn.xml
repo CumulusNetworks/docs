@@ -485,6 +485,17 @@ Fixed: 3.4.1-1+deb10u1</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>
+<td>2690017</td>
+<td>When you remove a bond member, then re-add it, you might see a {{Parameter Error}} failure in {{{syslog}} and {{switchd.log}}:
+
+sx_sdk: LAG: Can't add port (0x00012400) to lag. Port has vports configured for it (Parameter Error).
+switchd[4529]: hal_mlx_bond.c:582 ERR bond32 member swp32 add failed: Parameter Error
+
+To work around this issue, restart {{switchd}}.</td>
+<td>4.3.0-4.3.2</td>
+<td>4.4.0-4.4.5</td>
+</tr>
+<tr>
 <td>2687159</td>
 <td>CVE-2018-25009 CVE-2018-25010 CVE-2018-25011 CVE-2018-25012 CVE-2018-25013 CVE-2018-25014 CVE-2020-36328 CVE-2020-36329 CVE-2020-36330 CVE-2020-36331 CVE-2020-36332: Multiple vulnerabilities were discovered in libwebp, the implementation of the WebP image format, which could result in denial of service, memory disclosure or potentially the execution of arbitrary code if malformed images are processed.
 Vulnerable: 0.6.1-2
@@ -2754,6 +2765,17 @@ To work around this issue, change the TCAM profile to {{acl-heavy}} or {{ip-acl-
 Vulnerable: 3.4.1-1
 Fixed: 3.4.1-1+deb10u1</td>
 <td>4.0.0-4.3.1</td>
+<td>4.4.0-4.4.5</td>
+</tr>
+<tr>
+<td>2690017</td>
+<td>When you remove a bond member, then re-add it, you might see a {{Parameter Error}} failure in {{{syslog}} and {{switchd.log}}:
+
+sx_sdk: LAG: Can't add port (0x00012400) to lag. Port has vports configured for it (Parameter Error).
+switchd[4529]: hal_mlx_bond.c:582 ERR bond32 member swp32 add failed: Parameter Error
+
+To work around this issue, restart {{switchd}}.</td>
+<td>4.3.0-4.3.1</td>
 <td>4.4.0-4.4.5</td>
 </tr>
 <tr>

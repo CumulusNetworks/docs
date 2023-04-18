@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3432897</td>
+<td>When you remove the restriction from a TACACS+ mapped user to remove per command authorization, the {{tacplus-restrict -R}} command does not restore ownership of restored files correctly. As a result, some commands might fail due to permission errors in the files or directories under the home directory. To work around this issue, run the {{sudo chown}} command  to correct the ownership of the affected files and directories.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3418103</td>
 <td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
 <td>5.0.0-5.4.0</td>
@@ -863,6 +869,12 @@ To work around this issue, if you run {{apt dist-upgrade}} and {{switchd}} no lo
 <th> Description </th>
 <th> Affects </th>
 <th> Fixed </th>
+</tr>
+<tr>
+<td>3432897</td>
+<td>When you remove the restriction from a TACACS+ mapped user to remove per command authorization, the {{tacplus-restrict -R}} command does not restore ownership of restored files correctly. As a result, some commands might fail due to permission errors in the files or directories under the home directory. To work around this issue, run the {{sudo chown}} command  to correct the ownership of the affected files and directories.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
 </tr>
 <tr>
 <td>3418103</td>

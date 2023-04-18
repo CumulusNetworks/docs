@@ -7,6 +7,74 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3436305</td>
+<td>Auto-negotiation and link-training is not supported at 25G between the NVIDIA SN5600 switch and non-NVIDIA devices.</td>
+<td>5.4.0b0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3436298</td>
+<td>On rare occasions, when you use the MMS4X00-NS transceiver with the NVIDIA SN5600 switch, the port might not come up.</td>
+<td>5.4.0b0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3436296</td>
+<td>On the NVIDIA SN5600 switch, the 8x port breakout is not supported with the MCP4Y10-N00A cable .
+</td>
+<td>5.4.0b0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3436291</td>
+<td>The NVIDIA SN5600 switch does not support connecting to a Spectrum-2 or Spectrum-3 switch with an MCP7Y70-H001 4X  breakout cable.</td>
+<td>5.4.0b0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3436288</td>
+<td>When you connect two ports together on the same NVIDIA SN5600 switch with an MCP4Y10-N001 cable, you might see link flaps after the ports come up.</td>
+<td>5.4.0b0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3436287</td>
+<td>The NVIDIA SN5600 switch does not support connecting to a Spectrum-1 switch using a 2x breakout with the MCP7Y60-H001 copper cable at 25G.</td>
+<td>5.4.0b0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3436229</td>
+<td>On the NVIDIA SN5600 switch, when you connect a Service port to non-NVIDIA devices, auto-negotiation is not supported for 25G links.</td>
+<td>5.4.0b0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3436215</td>
+<td>On the NVIDIA SN5600 switch, the thermal control service crashes  when you remove a fan tray.</td>
+<td>5.4.0b0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3434855</td>
+<td>If the SDK becomes stuck and not able to process API calls, the {{systemd}} watchdog stops {{switchd}} and Cumulus Linux generates a {{cl-support}} file. {{switchd}} restarts after the watchdog timeout and then runs without issues.
+</td>
+<td>5.4.0b0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3432897</td>
+<td>When you remove the restriction from a TACACS+ mapped user to remove per command authorization, the {{tacplus-restrict -R}} command does not restore ownership of restored files correctly. As a result, some commands might fail due to permission errors in the files or directories under the home directory. To work around this issue, run the {{sudo chown}} command  to correct the ownership of the affected files and directories.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3419124</td>
+<td>On rare occasions, LLDP and other CPU originated IP packets that egress a port might get replicated in the data plane and forwarded out of another port as well. The peer node might discard the unicast packets on the wrong port because of destination MAC address; however, there might be problems with multicast packets, such as LLDP, which uses a multicast MAC address as the destination MAC address. To work around this issue, reboot the switch.</td>
+<td>5.4.0b0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3418103</td>
 <td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
 <td>5.0.0-5.4.0</td>
@@ -26,6 +94,12 @@ ERR dummy internal vlans exhausted
 ERR cannot allocate vlan for sub-interface
 </td>
 <td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3395489</td>
+<td>On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.</td>
+<td>5.4.0b0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -238,6 +312,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td></td>
 </tr>
 <tr>
+<td>3069069</td>
+<td>When you run the {{systemctl reload switchd}} command, there is momentary traffic loss after a port configured with lossless buffers goes down. This is only temporary and the traffic stabilizes after the initial drops.</td>
+<td>5.1.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3061656</td>
 <td>When the CPU load is high during a warm boot, bonds with a slow LACP rate fail to forward layer 2 traffic for up to 60 seconds (depending on the duration of the CPU load) and static bonds fail to forward layer 2 traffic for up to 5 seconds.</td>
 <td>5.1.0-5.4.0</td>
@@ -388,6 +468,12 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3432897</td>
+<td>When you remove the restriction from a TACACS+ mapped user to remove per command authorization, the {{tacplus-restrict -R}} command does not restore ownership of restored files correctly. As a result, some commands might fail due to permission errors in the files or directories under the home directory. To work around this issue, run the {{sudo chown}} command  to correct the ownership of the affected files and directories.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3418103</td>
 <td>On Spectrum-2 and Spectrum-3 switches, link up might take more than 60 seconds at times. To work around this issue, make sure you configure both sides of the link for auto-negotiation, when possible. Alternatively, if the media supports it, turn off FEC manually on the switch. </td>
 <td>5.0.0-5.4.0</td>
@@ -430,6 +516,12 @@ ERR cannot allocate vlan for sub-interface
 <tr>
 <td>3397649</td>
 <td>When an ECMP route is present in a non-default VRF, resilient hashing does not work as expected and flows might get remapped to a new next hop when the set of nexthops changes.</td>
+<td>5.4.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3395489</td>
+<td>On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.</td>
 <td>5.4.0-5.4.0</td>
 <td></td>
 </tr>
@@ -825,6 +917,12 @@ ethtool -s swp1 speed 100000 autoneg off lanes 2
 <td>3071652</td>
 <td>On rare occasions, after you reboot or restart {{switchd}} on a Spectrum 1 switch, any 25G connections with Direct Attach Copper (DAC) cables that connect from the switch to a non-NVIDIA device might flap continuously. To work around this issue, bring the affected link administratively down for a few seconds on the non-NVIDIA device, then bring the link back up.</td>
 <td>4.4.4-4.4.5, 5.1.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3069069</td>
+<td>When you run the {{systemctl reload switchd}} command, there is momentary traffic loss after a port configured with lossless buffers goes down. This is only temporary and the traffic stabilizes after the initial drops.</td>
+<td>5.1.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>

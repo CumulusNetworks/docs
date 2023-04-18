@@ -501,7 +501,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family ipv
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family l2vpn-evpn in
 
-Clears BGP layer 2 VPN EVPN inbound routes.
+Clears BGP EVPN inbound routes.
 
 ### Command Syntax
 
@@ -523,7 +523,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family l2vpn-evpn out
 
-Clears BGP layer 2 VPN EVPN outbound routes.
+Clears BGP EVPN outbound routes.
 
 ### Command Syntax
 
@@ -545,7 +545,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family l2vpn-evpn soft in
 
-Clears BGP layer 2 VPN EVPN inbound routes for all BGP peers without resetting the peer sessions.
+Clears BGP EVPN inbound routes for all BGP peers without resetting the peer sessions.
 
 ### Command Syntax
 
@@ -567,7 +567,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp address-family l2v
 
 ## nv action clear vrf \<vrf-id\> router bgp address-family l2vpn-evpn soft out
 
-Clears BGP layer 2 VPN EVPN outbound routes for all BGP peers without resetting the peer sessions.
+Clears BGP EVPN outbound routes for all BGP peers without resetting the peer sessions.
 
 ### Command Syntax
 
@@ -865,7 +865,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn in
 
-Clears layer 2 VPN EVPN inbound routes for a specific BGP peer in the specified VRF.
+Clears EVPN inbound routes for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
@@ -888,7 +888,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn out
 
-Clears layer 2 VPN EVPN outbound routes for a specific BGP peer in the specified VRF.
+Clears EVPN outbound routes for a specific BGP peer in the specified VRF.
 
 ## Command Syntax
 
@@ -911,7 +911,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn soft in
 
-Clears layer 2 VPN EVPN inbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
+Clears EVPN inbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
 
 ## Command Syntax
 
@@ -934,7 +934,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp neighbor swp51 add
 
 ## nv action clear vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn soft out
 
-Clears layer 2 VPN EVPN outbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
+Clears EVPN outbound routes for a specific BGP peer in the specified VRF without resetting the peer session.
 
 ## Command Syntax
 
@@ -1233,7 +1233,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn in
 
-Clears layer 2 VPN EVPN inbound routes for a specific BGP peer group in the specified VRF.
+Clears EVPN inbound routes for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
@@ -1256,7 +1256,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn out
 
-Clears layer 2 VPN EVPN outbound routes for a specific BGP peer group in the specified VRF.
+Clears EVPN outbound routes for a specific BGP peer group in the specified VRF.
 
 ## Command Syntax
 
@@ -1279,7 +1279,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn soft in
 
-Clears layer 2 VPN EVPN inbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
+Clears EVPN inbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
 
 ## Command Syntax
 
@@ -1302,7 +1302,7 @@ cumulus@leaf01:mgmt:~$ nv action clear vrf default router bgp peer-group SPINES 
 
 ## nv action clear vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn soft out
 
-Clears layer 2 VPN EVPN outbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
+Clears EVPN outbound routes for a specific BGP peer group in the specified VRF without resetting the peer sessions.
 
 ## Command Syntax
 

@@ -77,7 +77,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp
 
 ## nv show vrf \<vrf-id\> router bgp address-family
 
-Shows a summary of the BGP configuration information for the specified VRF for all address families: IPv4 unicast, IPv6 unicast, and layer 2 VPN EVPN.
+Shows a summary of the BGP configuration information for the specified VRF for all address families: IPv4 unicast, IPv6 unicast, and EVPN.
 
 ### Command Syntax
 
@@ -1651,7 +1651,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family ipv6-unicas
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn
 
-Shows layer 2 VPN EVPN BGP configuration for the specified VRF.
+Shows EVPN BGP configuration for the specified VRF.
 
 ### Command Syntax
 
@@ -1673,7 +1673,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib
 
-Shows the layer 2 VPN EVPN local RIB for the specified VRF.
+Shows the EVPN local RIB for the specified VRF.
 
 ### Command Syntax
 
@@ -1695,7 +1695,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn 
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd
 
-Shows the layer 2 VPN EVPN local RIB <span style="background-color:#F5F5DC">[RDs](## "Route Distinguisher")</span> for the specified VRF.
+Shows the EVPN local RIB <span style="background-color:#F5F5DC">[RDs](## "Route Distinguisher")</span> for the specified VRF.
 
 ### Command Syntax
 
@@ -1717,7 +1717,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn 
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\>
 
-Shows a specific layer 2 VPN EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> for the specified VRF.
+Shows a specific EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> for the specified VRF.
 
 ### Command Syntax
 
@@ -1740,7 +1740,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn 
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type
 
-Shows the layer 2 VPN EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route distinguisher route types (`ead`, `macip`, `multicast`, `ethernet-segment`, `prefix`, or an integer between 1 and 5) for the specified VRF.
+Shows the EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route distinguisher route types (`ead`, `macip`, `multicast`, `ethernet-segment`, `prefix`, or an integer between 1 and 5) for the specified VRF.
 
 ### Command Syntax
 
@@ -1763,7 +1763,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn 
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\>
 
-Shows information about a specific layer 2 VPN EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route distinguisher route type for the specified VRF.
+Shows information about a specific EVPN local RIB <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route distinguisher route type for the specified VRF.
 
 ### Command Syntax
 
@@ -1787,7 +1787,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn 
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\> route
 
-Shows the routes in the layer 2 VPN EVPN local RIB for the specified VRF with a specific <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> and route type.
+Shows the routes in the EVPN local RIB for the specified VRF with a specific <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> and route type.
 
 ### Command Syntax
 
@@ -1811,7 +1811,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn 
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn loc-rib rd \<rd-id\> route-type \<route-type-id\> route \<evpn-route-id\>
 
-Shows the routes in the layer 2 VPN EVPN local RIB for the specified VRF with a specific <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route type and EVPN route type.
+Shows the routes in the EVPN local RIB for the specified VRF with a specific <span style="background-color:#F5F5DC">[RD](## "Route Distinguisher")</span> route type and EVPN route type.
 
 ### Command Syntax
 
@@ -1836,7 +1836,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn 
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn update-group
 
-Shows information about BGP layer 2 VPN EVPN update group events.
+Shows information about BGP EVPN update group events.
 
 ### Command Syntax
 
@@ -1858,7 +1858,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn 
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn update-group \<group-id\>
 
-Shows information about a specific BGP layer 2 VPN EVPN update group.
+Shows information about a specific BGP EVPN update group.
 
 ### Command Syntax
 
@@ -1881,7 +1881,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp address-family l2vpn-evpn 
 
 ## nv show vrf \<vrf-id\> router bgp address-family l2vpn-evpn update-group \<group-id\> sub-group
 
-Shows the subgroup information for a specific BGP layer 2 VPN EVPN update group.
+Shows the subgroup information for a specific BGP EVPN update group.
 
 ### Command Syntax
 
@@ -2916,7 +2916,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn
 
-Shows layer 2 VPN EVPN configuration for the specified BGP neighbor.
+Shows EVPN configuration for the specified BGP neighbor.
 
 - - -
 
@@ -2941,7 +2941,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn attribute-mod
 
-Shows the attribute modification configuration settings for the specified neighbor for layer 2 VPN EVPN.
+Shows the attribute modification configuration settings for the specified neighbor for EVPN.
 
 ### Command Syntax
 
@@ -2964,7 +2964,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath
 
-Shows the configuration options for handling the AS path for prefixes to and from the specified BGP neighbor for layer 2 VPN EVPN.
+Shows the configuration options for handling the AS path for prefixes to and from the specified BGP neighbor for EVPN.
 
 ### Command Syntax
 
@@ -2987,7 +2987,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn aspath allow-my-asn
 
-Shows if it is acceptable for a received AS path to contain the ASN of the local system for layer 2 VPN EVPN.
+Shows if it is acceptable for a received AS path to contain the ASN of the local system for EVPN.
 
 ### Command Syntax
 
@@ -3010,7 +3010,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy
 
-Shows layer 2 VPN EVPN policies for the specified neighbor.
+Shows EVPN policies for the specified neighbor.
 
 ### Command Syntax
 
@@ -3033,7 +3033,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy inbound
 
-Shows the inbound layer 2 VPN EVPN policy for the specified BGP neighbor.
+Shows the inbound EVPN policy for the specified BGP neighbor.
 
 ### Command Syntax
 
@@ -3056,7 +3056,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn policy outbound
 
-Shows the outbound layer 2 VPN EVPN policy for the specified BGP neighbor.
+Shows the outbound EVPN policy for the specified BGP neighbor.
 
 
 ### Command Syntax
@@ -3080,7 +3080,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn capabilities
 
-Shows all advertised and received layer 2 VPN EVPN capabilities for the specified BGP neighbor.
+Shows all advertised and received EVPN capabilities for the specified BGP neighbor.
 
 
 ### Command Syntax
@@ -3104,7 +3104,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp neighbor swp51 address-fam
 
 ## nv show vrf \<vrf-id\> router bgp neighbor \<neighbor-id\> address-family l2vpn-evpn graceful-restart
 
-Shows graceful restart configuration for the specified BGP peer for layer 2 VPN EVPN.
+Shows graceful restart configuration for the specified BGP peer for EVPN.
 
 ### Command Syntax
 
@@ -3581,7 +3581,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES timers
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family
 
-Shows configuration information for the address families (IPv4, IPv6, layer 2 VPN EVPN).
+Shows configuration information for the address families (IPv4, IPv6, EVPN).
 
 ### Command Syntax
 
@@ -4156,7 +4156,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn
 
-Show configuration information for the specified BGP peer group for layer 2 VPN EVPN.
+Show configuration information for the specified BGP peer group for EVPN.
 
 ### Command Syntax
 
@@ -4179,7 +4179,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn attribute-mod
 
-Shows the attribute modification configuration settings for the specified BGP peer group for layer 2 VPN EVPN.
+Shows the attribute modification configuration settings for the specified BGP peer group for EVPN.
 
 ### Command Syntax
 
@@ -4202,7 +4202,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath
 
-Shows the configuration settings for handling the AS path for prefixes to and from the specified BGP peer group for layer 2 VPN EVPN.
+Shows the configuration settings for handling the AS path for prefixes to and from the specified BGP peer group for EVPN.
 
 ### Command Syntax
 
@@ -4225,7 +4225,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn aspath allow-my-asn
 
-Shows if it is acceptable for a received AS path from the specified BGP peer group to contain the ASN of the local system for layer 2 VPN EVPN.
+Shows if it is acceptable for a received AS path from the specified BGP peer group to contain the ASN of the local system for EVPN.
 
 ### Command Syntax
 
@@ -4248,7 +4248,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy
 
-Shows the layer 2 VPN EVPN policies for the specified BGP peer group.
+Shows the EVPN policies for the specified BGP peer group.
 
 ### Command Syntax
 
@@ -4271,7 +4271,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy inbound
 
-Shows the inbound layer 2 VPN EVPN policy for the specified BGP peer group.
+Shows the inbound EVPN policy for the specified BGP peer group.
 
 ### Command Syntax
 
@@ -4294,7 +4294,7 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp peer-group SPINES address-
 
 ## nv show vrf \<vrf-id\> router bgp peer-group \<peer-group-id\> address-family l2vpn-evpn policy outbound
 
-Shows the outbound layer 2 VPN EVPN policy for the specified BGP peer group.
+Shows the outbound EVPN policy for the specified BGP peer group.
 
 ### Command Syntax
 

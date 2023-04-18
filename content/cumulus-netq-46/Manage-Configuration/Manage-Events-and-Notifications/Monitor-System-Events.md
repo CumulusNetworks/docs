@@ -4,7 +4,7 @@ author: NVIDIA
 weight: 775
 toc: 4
 ---
-Use the UI or CLI to monitor events: you can view all events across the entire network or all events on a device, then filter events according to their type, severity, or time frame. You can view events up to 30 days in the past, but the total time frame cannot exceed 72 hours.
+Use the UI or CLI to monitor events: you can view all events across the entire network or all events on a device, then filter events according to their type, severity, or time frame. Event querying is supported for a 72-hour window within the past 30 days.
 
 Note that in the UI, it can take several minutes for NetQ to process and accurately display network events. The delay is caused by events with multiple network dependencies. It takes between 5 and 10 minutes for NetQ to consolidate and display these events.
 

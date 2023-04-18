@@ -195,7 +195,7 @@ The delete icon only appears next to custom profiles that are not already attach
 
 {{<tab "NetQ CLI" >}}
 
-1. Run `netq lcm show credentials`. Identify the profile you'd like to delete and copy its identifier from the Profile ID column. The following example deletes the n-1000 profile:
+1. Run `netq lcm show credentials`. Identify the profiles you'd like to delete and copy their identifiers from the Profile ID column. The following example deletes the n-1000 profile:
 
 ```
 cumulus@switch:~$ netq lcm show credentials
@@ -218,10 +218,10 @@ cd1be0fc123c5d7a42f8
 289
 ```
 
-2. Run `netq lcm del credentials profile_id <text-credential-profile-id>`:
+2. Run `netq lcm del credentials profile_ids <text-credential-profile-ids>`:
 
 ```
-cumulus@switch:~$ netq lcm del credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
+cumulus@switch:~$ netq lcm del credentials profile_ids credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
 ```
 
 3. Verify that the profile is deleted with `netq lcm show credentials`.

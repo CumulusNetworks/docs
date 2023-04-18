@@ -5,7 +5,7 @@ weight: 395
 toc: 3
 ---
 
-The NetQ UI ships with a self-signed certificate that is sufficient for non-production environments or cloud deployments. For on-premises deployments, however, you receive a warning from your browser that this default certificate is not trusted when you first log in to the NetQ UI. You can avoid this by installing your own signed certificate.
+When you first log in to the NetQ UI via an on-premises deployment, your browser will display a warning indicating that the default certificate is not trusted. You can avoid this warning by installing your own signed certificate using the steps outlined on this page. The self-signed certificate is sufficient for non-production environments or cloud deployments. 
 
 {{%notice note%}}
 If you already have a certificate installed and want to change or update it, run the `kubectl delete secret netq-gui-ingress-tls [name] --namespace default` command.
@@ -28,9 +28,9 @@ You need the following items to perform the certificate installation:
 
 {{<tab "NetQ CLI">}}
 
-1. Log in to the NetQ On-premises Appliance or VM via SSH and copy your certificate and key file there.
+1. Log in to the NetQ VM via SSH and copy your certificate and key file there.
 
-1. Generate a Kubernetes secret called `netq-gui-ingress-tls`.
+1. Generate a Kubernetes secret called `netq-gui-ingress-tls`:
 
     ```
     cumulus@netq-ts:~$ kubectl create secret tls netq-gui-ingress-tls \
@@ -39,7 +39,7 @@ You need the following items to perform the certificate installation:
         --cert <name of your cert file>.crt
     ```
 
-1. Verify that you created the secret successfully.
+1. Verify that you created the secret successfully:
 
     ```
     cumulus@netq-ts:~$ kubectl get secret
@@ -52,7 +52,7 @@ You need the following items to perform the certificate installation:
 
     1. Create a new file called `ingress.yaml`.
 
-    2. Copy and add this content to the file.
+    2. Copy and add the following content to the file:
 
        ```
        apiVersion: extensions/v1beta1
@@ -83,16 +83,16 @@ You need the following items to perform the certificate installation:
            secretName: netq-gui-ingress-tls
         ```
 
-    3. Replace `<your-hostname>` with the FQDN of the NetQ On-premises Appliance or VM.
+    3. Replace `<your-hostname>` with the FQDN of the NetQ VM.
 
-1. Apply the new rule.
+1. Apply the new rule:
 
     ```
     cumulus@netq-ts:~$ kubectl apply -f ingress.yaml
     ingress.extensions/netq-gui-ingress-external configured
     ```
     
-    A message like the one above appears if your ingress rule is successfully configured.
+    The message above appears if your ingress rule is successfully configured.
 
 1. Configure the NetQ API to use the new certificate.
 

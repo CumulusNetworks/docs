@@ -18,11 +18,11 @@ netq show events-config message_type bgp
 
 To add the BGP card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Network services** > **All BGP Sessions card** > **Open cards**. In this example, there are 13 nodes running the BGP protocol, 0 open events (from the last 24 hours), and 10 nodes with unestablished sessions.
 
-{{<figure src="/images/netq/bgp-med-card-450.png" width="200" >}}
+{{<figure src="/images/netq/bgp-med-card-450.png" alt="" width="200" >}}
 
 Expand to the large card for additional BGP info. By default, the card displays the **Sessions summary** tab. From here you can see which devices are handling the most BGP sessions, or select the dropdown to view nodes with the most unestablished BGP sessions. You can view BGP-related events by selecting the <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/20-Alert/alarm-bell.svg" height="18" width="18"/> **Events** tab.
 
-{{<figure src="/images/netq/bgp-large-card-450.png" width="650">}}
+{{<figure src="/images/netq/bgp-large-card-450.png" alt="" width="650">}}
 
 Expand the BGP card to full-screen to view, filter, or export:
 
@@ -65,7 +65,9 @@ On the medium and large single-session cards, vertically stacked heat maps repre
 
 Each time a change is made to the configuration file for the BGP service, NetQ logs the change and lets you compare it with the previous version. This can be useful when you are troubleshooting potential causes for events or sessions losing their connections.
 
-1. From the large single-session card, select the <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> **BGP Configuration File Evolution** tab.
+To view the configuration file changes:
+
+1. From the large single-session card, select the <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> **Configuration File Evolution** tab.
 
 2. Select the time.
 

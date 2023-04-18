@@ -5,7 +5,7 @@ weight: 320
 toc: 4
 --- 
 
-Installing the NetQ CLI on your NetQ Appliances, VMs, switches, or hosts gives you access to new features and bug fixes, and allows you to manage your network from multiple points in the network.
+Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to new features and bug fixes, and allows you to manage your network from multiple points in the network.
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 

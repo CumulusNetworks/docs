@@ -17,7 +17,7 @@ Accounts with admin privileges can perform the same actions as user accounts. Ad
 - Manage switches' lifecycles.
 
 The following image displays the management dashboard. Accounts with *user* privileges cannot perform the functions described above and do not have access to the management dashboard.
-{{<figure src="/images/netq/admin-management-dashboard.png" alt="netq management dashboard" width="1100" >}}
+{{<figure src="/images/netq/management-dash-460.png" alt="netq management dashboard" width="1100" >}}
 
 ## Related Information
 

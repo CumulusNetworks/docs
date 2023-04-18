@@ -7,8 +7,6 @@ version: "5.4"
 toc: 1
 pdfhidden: True
 ---
-
-
 ## 5.4.0b Open Source Software Licenses
 
 The following list only shows the updated packages for Cumulus Linux 5.4.0b. Refer to [Cumulus Linux 5.4.0](#540-open-source-software-licenses) to view version and license information for packages with no changes in 5.4.0b.
@@ -65,13 +63,22 @@ The following list only shows the updated packages for Cumulus Linux 5.4.0b. Ref
 | {{<foss_file text="switchd" url="cumulus-linux-54/Whats-New/licenses/switchd.txt" >}} | 1.0-cl5.4.0+spc4au92.1681228248.72953bfe2b40 | NVIDIA Cumulus Networks Proprietary(&#42; ); GPL-2(debian/&#42; ); The MIT License(include/kvec.h); CC0-1.0(lib/ccan/&#42; ) |
 | {{<foss_file text="switchd-halmlx" url="cumulus-linux-54/Whats-New/licenses/switchd-halmlx.txt" >}} | 1.0-cl5.4.0+spc4au92.1681228248.72953bfe2b40 | NVIDIA Cumulus Networks Proprietary(&#42; ); GPL-2(debian/&#42; ); The MIT License(include/kvec.h); CC0-1.0(lib/ccan/&#42; ) |
 | {{<foss_file text="sx-kernel-5.10.0-cl-1-amd64" url="cumulus-linux-54/Whats-New/licenses/sx-kernel-5.10.0-cl-1-amd64.txt" >}} | 1.mlnx.4.6.0202-cl5.4.0+spc4au4.1681225708.ab0a4744f1e5 | NO OR UNKNOWN LICENSE FOUND IN COPYRIGHT FILE |
+<<<<<<< HEAD
 | {{<foss_file text="sx-sdk-eth" url="cumulus-linux-54/Whats-New/licenses/sx-sdk-eth.txt" >}} | 1.mlnx.4.6.0204-cl5.4.0+spc4au4.1681225708.ab0a4744f1e5 | Mellanox Proprietary(&#42; ) |
 | {{<foss_file text="sx-sdk-eth-dev" url="cumulus-linux-54/Whats-New/licenses/sx-sdk-eth-dev.txt" >}} | 1.mlnx.4.6.0204-cl5.4.0+spc4au4.1681225708.ab0a4744f1e5 | Mellanox Proprietary(&#42; ) |
+=======
+| {{<foss_file text="sx-sdk-eth" url="cumulus-linux-54/Whats-New/licenses/sx-sdk-eth.txt" >}} | 1.mlnx.4.6.0208-cl5.4.0+spc4au4.1681225708.ab0a4744f1e5 | Mellanox Proprietary(&#42; ) |
+| {{<foss_file text="sx-sdk-eth-dev" url="cumulus-linux-54/Whats-New/licenses/sx-sdk-eth-dev.txt" >}} | 1.mlnx.4.6.0208-cl5.4.0+spc4au4.1681225708.ab0a4744f1e5 | Mellanox Proprietary(&#42; ) |
+>>>>>>> origin/stage
 | {{<foss_file text="systemd" url="cumulus-linux-54/Whats-New/licenses/systemd.txt" >}} | 241-7~deb10u9 | LGPL-2.1+(&#42; ); CC0-1.0(src/basic/siphash24.h); GPL-2(src/basic/securebits.h); GPL-2(src/basic/ioprio.h); GPL-2+(src/shared/linux/auto_dev-ioctl.h); Expat(src/basic/sparse-endian.h); public-domain(src/journal/lookup3.c); GPL-2+(src/udev/&#42; ); LGPL-2.1+(src/udev/udev-ctrl.c); GPL-2(src/udev/scsi_id/scsi.h); LGPL-2.1+(debian/&#42; ); Expat(debian/&#42; ); GPL-2(debian/&#42; ); GPL-2+(debian/&#42; ); LGPL-2.1+(debian/&#42; ); CC0-1.0(debian/&#42; ) |
 | {{<foss_file text="systemd-sysv" url="cumulus-linux-54/Whats-New/licenses/systemd-sysv.txt" >}} | 241-7~deb10u9 | LGPL-2.1+(&#42; ); CC0-1.0(src/basic/siphash24.h); GPL-2(src/basic/securebits.h); GPL-2(src/basic/ioprio.h); GPL-2+(src/shared/linux/auto_dev-ioctl.h); Expat(src/basic/sparse-endian.h); public-domain(src/journal/lookup3.c); GPL-2+(src/udev/&#42; ); LGPL-2.1+(src/udev/udev-ctrl.c); GPL-2(src/udev/scsi_id/scsi.h); LGPL-2.1+(debian/&#42; ); Expat(debian/&#42; ); GPL-2(debian/&#42; ); GPL-2+(debian/&#42; ); LGPL-2.1+(debian/&#42; ); CC0-1.0(debian/&#42; ) |
 | {{<foss_file text="tzdata" url="cumulus-linux-54/Whats-New/licenses/tzdata.txt" >}} | 2021a-0+deb10u10 | public domain |
 | {{<foss_file text="udev" url="cumulus-linux-54/Whats-New/licenses/udev.txt" >}} | 241-7~deb10u9 | LGPL-2.1+(&#42; ); CC0-1.0(src/basic/siphash24.h); GPL-2(src/basic/securebits.h); GPL-2(src/basic/ioprio.h); GPL-2+(src/shared/linux/auto_dev-ioctl.h); Expat(src/basic/sparse-endian.h); public-domain(src/journal/lookup3.c); GPL-2+(src/udev/&#42; ); LGPL-2.1+(src/udev/udev-ctrl.c); GPL-2(src/udev/scsi_id/scsi.h); LGPL-2.1+(debian/&#42; ); Expat(debian/&#42; ); GPL-2(debian/&#42; ); GPL-2+(debian/&#42; ); LGPL-2.1+(debian/&#42; ); CC0-1.0(debian/&#42; ) |
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/stage
 ## 5.4.0 Open Source Software Licenses 
 | Package | Version | License(s) |
 |---	        |---	        |---	    |

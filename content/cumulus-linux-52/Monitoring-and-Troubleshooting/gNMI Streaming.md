@@ -4,13 +4,11 @@ author: NVIDIA
 weight: 811
 toc: 4
 ---
-## gNMI Support on Cumulus Linux
-
 You can use {{<exlink url="https://github.com/openconfig/gnmi" text="gRPC Network Management Interface">}} (gNMI) to collect system resource, interface, and counter information from Cumulus Linux and export it to your own gNMI client.
 
 ### Configure the gNMI Agent
 
-The gNMI Agent is included in the `netq-agent` package and is disabled by default. To enable it, run:
+The `netq-agent` package includes the gNMI agent, which is disabled by default. To enable the gNMI agent:
 
 ```
  cumulus@switch:~$ sudo systemctl enable netq-agent.service
@@ -18,26 +16,30 @@ The gNMI Agent is included in the `netq-agent` package and is disabled by defaul
  cumulus@switch:~$ netq config add agent gnmi-enable true
  ```
 
-The gNMI Agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
+The gNMI agent listens over port 9339. You can change the default port in case you use that port in another application. The `/etc/netq/netq.yml` file stores the configuration.
 
 Use the following commands to adjust the settings:
 
-1. Disable the gNMI Agent:
+1. Disable the gNMI agent:
 
-       cumulus@switch:~$ netq config add agent gnmi-enable false
+   ```
+   cumulus@switch:~$ netq config add agent gnmi-enable false
+   ```
 
-2. Change the default port over which the gNMI Agent listens:
+2. Change the default port over which the gNMI agent listens:
 
-       cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
-       
+   ```
+   cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
+   ```
+
 3. Restart the NetQ Agent to incorporate the configuration changes:
 
-       cumulus@switch:~$ netq config restart agent
+   ```
+   cumulus@switch:~$ netq config restart agent
+   ```
 
 {{%notice note%}}
-
-The gNMI agent relies on data collected from the NVUE service. For complete data collection with gNMI, the NVUE service must be enabled. To check the status of the `nvued` service, run the `sudo systemctl status nvued.service` command:
-
+The gNMI agent relies on the data it collects from the NVUE service. For complete data collection with gNMI, you must enable the NVUE service. To check the status of the `nvued` service, run the `sudo systemctl status nvued.service` command:
 
 ```
 cumulus@switch:mgmt:~$ sudo systemctl status nvued.service
@@ -54,25 +56,26 @@ cumulus@switch:mgmt:~$ sudo systemctl start nvued.service
 ```
 
 {{%/notice%}}
-### Using the gNMI Agent Exclusively
 
-NVIDIA recommends collecting data with both the gNMI and NetQ Agents. However, if you do not want to collect data with both Agents or you are not streaming data to NetQ, you can disable the NetQ Agent. Data is then sent exclusively to the gNMI Agent.
+### Use the gNMI Agent Exclusively
 
-To disable the NetQ Agent, use the following command:
+NVIDIA recommends that you collect data with both the gNMI and NetQ agents. However, if you do not want to collect data with both agents or you are not streaming data to NetQ, you can disable the NetQ agent. Cumulus Linux then sents data exclusively to the gNMI agent.
 
-    cumulus@switch:~$ netq config add agent opta-enable false
+To disable the NetQ agent:
+
+```
+cumulus@switch:~$ netq config add agent opta-enable false
+```
 
 {{%notice note%}}
-
-You cannot disable both the NetQ and gNMI Agents. If both Agents are enabled on Cumulus Linux and a NetQ server is unreachable, the data from the following models are not sent to gNMI:
+You cannot disable both the NetQ and gNMI agent. If you enable both agents on Cumulus Linux and a NetQ server is unreachable, the switch does not send the data to gNMI from the following models:
 - openconfig-interfaces
-- openconfig-if-ethernet 
+- openconfig-if-ethernet
 - openconfig-if-ethernet-ext
 - openconfig-system
 - nvidia-if-ethernet-ext
 
-WJH, `openconfig-platform`, and `openconfig-lldp` data continue streaming to gNMI in this state. If you are only using gNMI and a NetQ telemetry server does not exist, you should disable the NetQ agent by setting `opta-enable` to `false`.
-
+WJH, `openconfig-platform`, and `openconfig-lldp` data continue streaming to gNMI in this state. If you are only using gNMI and a NetQ telemetry server does not exist, disable the NetQ agent by setting `opta-enable` to `false`.
 {{%/notice%}}
 
 ### Supported Subscription Modes
@@ -82,6 +85,7 @@ Cumulus Linux supports the following gNMI {{<exlink url="https://github.com/open
 - `POLL` mode
 - `ONCE` mode
 - `STREAM` mode, supported for `ON_CHANGE` subscriptions only
+
 ### Supported Models
 
 Cumulus Linux supports the following OpenConfig models:
@@ -283,11 +287,11 @@ module nvidia-if-ethernet-counters-ext {
 ```
 {{</expand>}}
 <!-- vale on -->
-## Collect WJH Data Using gNMI
+## Collect WJH Data with gNMI
 
-You can export What Just Happened data from the NetQ Agent to your own gNMI client.
+You can export WJH data from the NetQ agent to your own gNMI client.
 
-The client should use the following YANG model as a reference:
+The client must use the following YANG model as a reference:
 <!-- vale off -->
 {{<expand "nvidia-if-wjh-drop-aggregate">}}
 
@@ -604,11 +608,11 @@ module wjh-drop-types {
 <!-- vale on -->
 ### Supported Features
 
-The gNMI Agent currently supports `Capabilities` and `STREAM` subscribe requests for WJH events.
+The gNMI Agent supports `Capabilities` and `STREAM` subscribe requests for WJH events.
 
 ### WJH Drop Reasons
 <!-- vale off -->
-The data NetQ sends to the gNMI Agent is in the form of WJH drop reasons. The reasons are generated by the SDK and are stored in the `/usr/etc/wjh_lib_conf.xml` file on the switch. Use this file as a guide to filter for specific reason types (L1, ACL, and so forth), reason IDs, or event severities.
+The data that NetQ sends to the gNMI agent is in the form of WJH drop reasons. The SDK generates the drop reasons and Cumulus Linux stores them in the `/usr/etc/wjh_lib_conf.xml` file. Use this file as a guide to filter for specific reason types (L1, ACL, and so on), reason IDs, or event severities.
 
 #### L1 Drop Reasons
 
@@ -618,14 +622,14 @@ The data NetQ sends to the gNMI Agent is in the form of WJH drop reasons. The re
 | --------- | ------ | ----------- |
 | 10021 | Port admin down | Validate port configuration |
 | 10022 | Auto-negotiation failure | Set port speed manually, disable auto-negotiation |
-| 10023 | Logical mismatch with peer link | Check cable/transceiver |
-| 10024 | Link training failure | Check cable/transceiver |
-| 10025 | Peer is sending remote faults | Replace cable/transceiver |
-| 10026 | Bad signal integrity | Replace cable/transceiver |
-| 10027 | Cable/transceiver is not supported | Use supported cable/transceiver |
-| 10028 | Cable/transceiver is unplugged | Plug cable/transceiver |
-| 10029 | Calibration failure | Check cable/transceiver |
-| 10030 | Cable/transceiver bad status | Check cable/transceiver |
+| 10023 | Logical mismatch with peer link | Check cable or transceiver |
+| 10024 | Link training failure | Check cable or transceiver |
+| 10025 | Peer is sending remote faults | Replace cable or transceiver |
+| 10026 | Bad signal integrity | Replace cable or transceiver |
+| 10027 | Cable or transceiver is not supported | Use supported cable or transceiver |
+| 10028 | Cable or transceiver is unplugged | Plug cable or transceiver |
+| 10029 | Calibration failure | Check cable or transceiver |
+| 10030 | Cable or transceiver bad status | Check cable or transceiver |
 | 10031 | Other reason | Other L1 drop reason|
 
 #### L2 Drop Reasons
@@ -633,15 +637,15 @@ The data NetQ sends to the gNMI Agent is in the form of WJH drop reasons. The re
 | Reason ID | Reason | Severity | Description |
 | --------- | ------ | -------- | ----------- |
 | 201 | MLAG port isolation | Notice | Expected behavior |
-| 202 | Destination MAC is reserved (DMAC=01-80-C2-00-00-0x) | Error | Bad packet was received from the peer |
+| 202 | Destination MAC is reserved (DMAC=01-80-C2-00-00-0x) | Error | Bad packet received from the peer |
 | 203 | VLAN tagging mismatch | Error | Validate the VLAN tag configuration on both ends of the link |
 | 204 | Ingress VLAN filtering | Error | Validate the VLAN membership configuration on both ends of the link |
 | 205 | Ingress spanning tree filter | Notice | Expected behavior |
 | 206 | Unicast MAC table action discard | Error | Validate MAC table for this destination MAC |
 | 207 | Multicast egress port list is empty | Warning | Validate why IGMP join or multicast router port does not exist |
 | 208 | Port loopback filter | Error | Validate MAC table for this destination MAC |
-| 209 | Source MAC is multicast | Error | Bad packet was received from peer |
-| 210 | Source MAC equals destination MAC | Error | Bad packet was received from peer |
+| 209 | Source MAC is multicast | Error | Bad packet received from peer |
+| 210 | Source MAC equals destination MAC | Error | Bad packet received from peer |
 
 #### Router Drop Reasons
 
@@ -649,22 +653,22 @@ The data NetQ sends to the gNMI Agent is in the form of WJH drop reasons. The re
 | --------- | ------ | -------- | ----------- |
 | 301 | Non-routable packet | Notice | Expected behavior |
 | 302 | Blackhole route | Warning | Validate routing table for this destination IP |
-| 303 | Unresolved neighbor/next hop | Warning | Validate ARP table for the neighbor/next hop |
-| 304 | Blackhole ARP/neighbor | Warning | Validate ARP table for the next hop |
+| 303 | Unresolved neighbor or next hop | Warning | Validate ARP table for the neighbor or next hop |
+| 304 | Blackhole ARP or neighbor | Warning | Validate ARP table for the next hop |
 | 305 | IPv6 destination in multicast scope FFx0:/16 | Notice | Expected behavior - packet is not routable |
 | 306 | IPv6 destination in multicast scope FFx1:/16 | Notice | Expected behavior - packet is not routable |
 | 307 | Non-IP packet | Notice | Destination MAC is the router, packet is not routable |
-| 308 | Unicast destination IP but multicast destination MAC | Error | Bad packet was received from the peer |
-| 309 | Destination IP is loopback address | Error | Bad packet was received from the peer |
-| 310 | Source IP is multicast | Error | Bad packet was received from the peer |
-| 311 | Source IP is in class E | Error | Bad packet was received from the peer |
-| 312 | Source IP is loopback address | Error | Bad packet was received from the peer |
-| 313 | Source IP is unspecified | Error | Bad packet was received from the peer |
-| 314 | Checksum or IPver or IPv4 IHL too short | Error | Bad cable or bad packet was received from the peer |
-| 315 | Multicast MAC mismatch | Error | Bad packet was received from the peer |
-| 316 | Source IP equals destination IP | Error | Bad packet was received from the peer |
-| 317 | IPv4 source IP is limited broadcast | Error | Bad packet was received from the peer |
-| 318 | IPv4 destination IP is local network (destination=0.0.0.0/8) | Error | Bad packet was received from the peer || 319 | IPv4 destination IP is link local (destination in 169.254.0.0/16) | Error | Bad packet was received from the peer |
+| 308 | Unicast destination IP but multicast destination MAC | Error | Bad packet received from the peer |
+| 309 | Destination IP is loopback address | Error | Bad packet received from the peer |
+| 310 | Source IP is multicast | Error | Bad packet received from the peer |
+| 311 | Source IP is in class E | Error | Bad packet received from the peer |
+| 312 | Source IP is loopback address | Error | Bad packet received from the peer |
+| 313 | Source IP is unspecified | Error | Bad packet received from the peer |
+| 314 | Checksum or IPver or IPv4 IHL too short | Error | Bad cable or bad packet received from the peer |
+| 315 | Multicast MAC mismatch | Error | Bad packet received from the peer |
+| 316 | Source IP equals destination IP | Error | Bad packet received from the peer |
+| 317 | IPv4 source IP is limited broadcast | Error | Bad packet received from the peer |
+| 318 | IPv4 destination IP is local network (destination=0.0.0.0/8) | Error | Bad packet received from the peer || 319 | IPv4 destination IP is link local (destination in 169.254.0.0/16) | Error | Bad packet received from the peer |
 | 320 | Ingress router interface is disabled | Warning | Validate your configuration |
 | 321 | Egress router interface is disabled | Warning | Validate your configuration |
 | 323 | IPv4 routing table (LPM) unicast miss | Warning | Validate routing table for this destination IP |
@@ -703,7 +707,7 @@ The data NetQ sends to the gNMI Agent is in the form of WJH drop reasons. The re
 ### gNMI Client Requests
 
 <!-- vale off -->
-You can use your gNMI client on a host to request capabilities and data that the Agent is subscribed to. The examples below use the {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMIc client.">}}.
+You can use your gNMI client on a host to request capabilities and data to which the Agent subscribes. The examples below use the {{<exlink url="https://github.com/openconfig/reference/blob/master/rpc/gnmi/gnmi-specification.md#3515-creating-subscriptions" text="gNMIc client.">}}.
 <!-- vale on -->
 
 The following example shows a gNMIc `STREAM` request for WJH data:
@@ -800,6 +804,7 @@ received sync response 'true' from '10.209.37.123:9339'
   ]
 }
 ```
+
 ## Related Information
 
 - {{<exlink url="https://datatracker.ietf.org/meeting/101/materials/slides-101-netconf-grpc-network-management-interface-gnmi-00" text="gNMI presentation to IETF">}}

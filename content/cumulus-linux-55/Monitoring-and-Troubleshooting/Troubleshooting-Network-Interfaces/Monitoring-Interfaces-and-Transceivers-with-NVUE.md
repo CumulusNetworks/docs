@@ -100,9 +100,9 @@ link
 ifindex                    3
 ```
 
-## Show Interface Statistics
+## Show Interface Counters
 
-NVUE provides the following commands to show counters for the interfaces on the switch.
+NVUE provides the following commands to show counters (statistics) for the interfaces on the switch.
 
 | NVUE Command | Description |
 | ----------- | ------------ |
@@ -131,13 +131,13 @@ cumulus@switch$ nv show interface swp1 counters errors
 ```
 
 {{%notice note%}}
-- NVUE does not provide statistics for logical interfaces, such as bonds, VLAN interfaces or sub-interfaces. 
+NVUE does not provide statistics for logical interfaces, such as bonds, VLAN interfaces or sub-interfaces.
 <!--- To show statistics for all VNIs in a single VXLAN device, run the `nv show nve counters` command. To show statistics for a specific VNI in a single VXLAN device,run the `nv show nve counters vni <vni>` command.-->
 {{%/notice%}}
 
-## Clear Interface Statistics
+## Clear Interface Counters
 
-To clear counters for all interfaces, run the `nv action clear interface counters` command:
+To clear counters (statistics) for all interfaces, run the `nv action clear interface counters` command:
 
 ```
 cumulus@switch$ nv action clear interface counters

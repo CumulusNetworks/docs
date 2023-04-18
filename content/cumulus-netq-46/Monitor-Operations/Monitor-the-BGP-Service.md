@@ -65,7 +65,9 @@ On the medium and large single-session cards, vertically stacked heat maps repre
 
 Each time a change is made to the configuration file for the BGP service, NetQ logs the change and lets you compare it with the previous version. This can be useful when you are troubleshooting potential causes for events or sessions losing their connections.
 
-1. From the large single-session card, select the <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> **BGP Configuration File Evolution** tab.
+To view the configuration file changes:
+
+1. From the large single-session card, select the <img src="https://icons.cumulusnetworks.com/16-Files-Folders/01-Common-Files/common-file-settings-1.svg" height="18" width="18"/> **Configuration File Evolution** tab.
 
 2. Select the time.
 

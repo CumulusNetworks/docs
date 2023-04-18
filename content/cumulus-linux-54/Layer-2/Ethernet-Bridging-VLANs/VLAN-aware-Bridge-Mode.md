@@ -149,7 +149,8 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
-You can associate different SVIs with each bridge by changing the `base-interface` value. The following example creates SVIs(link VLAN layer 3 addressing) for VLAN 10 in both bridge1 and bridge2:
+You can associate different [SVIs](#vlan-layer-3-addressing) with each bridge by changing the `base-interface` value. The following example creates SVIs for VLAN 10 in both bridge1 and bridge2:
+
 
 {{< tabs "TabID154 ">}}
 {{< tab "NVUE Commands ">}}

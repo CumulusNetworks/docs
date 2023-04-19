@@ -530,7 +530,7 @@ To unconfigure MLAG:
 {{< tabs "TabID532 ">}}
 {{< tab "NVUE Commands ">}}
 
-You must unset MLAG, the peerlink, and the peerlink VLAN subinterface at the same time with the `nv config apply` command.
+Run the following commands to unset MLAG, and unset the peerlink and the peerlink VLAN subinterface that Cumulus Linux creates automatically. You must run the commands at the same time with the `nv config apply` command.
 
 ```
 cumulus@leaf01:~$ nv unset mlag

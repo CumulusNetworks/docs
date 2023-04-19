@@ -54,7 +54,7 @@ Early access features are now called beta features.
 | Previous Command | New Command |
 | ---------------- | ----------- |
 | `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>`| `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>` |
-| `nv set service dhcp-relay6 <vrf> interface downstream <interface> address <ipv6-address>` | `nv set service dhcp-relay6 <vrf> interface downstream <interface> server-address <ipv6-address>` |
+| `nv set service dhcp-relay6 <vrf> interface downstream <interface> address <ipv6-address>` | `nv set service dhcp-relay6 <vrf> interface downstream <interface> link-address <ipv6-address>` |
 | `nv set service dhcp-relay <vrf> giaddress-interface`| `nv set service dhcp-relay <vrf> gateway-interface`|
 | `nv show interface <intf> ptp counters` | `nv show interface <intf> counters ptp`|
 {{< /expand >}}

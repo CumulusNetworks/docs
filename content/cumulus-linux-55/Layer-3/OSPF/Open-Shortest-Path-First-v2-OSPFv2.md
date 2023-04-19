@@ -1171,6 +1171,8 @@ You can run the following commands to clear the OSPF counters shown in the NVUE 
 - `nv action clear vrf <vrf> router ospf interface` clears all counters for all OSPF interfaces.
 - `nv action clear vrf <vrf> router ospf interface <interface>` clears all counters for a specific OSPF interface.
 
+The following example command clears all counters for OSPF interface swp51:
+
 ```
 cumulus@leaf01:mgmt:~$ nv action clear vrf default router ospf interface swp51
 ...

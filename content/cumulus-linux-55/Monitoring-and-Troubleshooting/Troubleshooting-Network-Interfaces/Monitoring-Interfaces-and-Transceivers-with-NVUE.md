@@ -104,30 +104,124 @@ ifindex                    3
 
 NVUE provides the following commands to show counters (statistics) for the interfaces on the switch.
 
-| NVUE Command | Description |
+| <div style="width:430px">NVUE Command | Description |
 | ----------- | ------------ |
-| `nv show interface --view counters` |  Shows all statistics for all the interfaces configured on the switch.
-| `nv show interface <interface> counters` | Shows all statistics for a specific interface.|
-| `nv show interface <interface> counters errors`| Shows error counters for a specific interface. |
-| `nv show interface <interface> counters drops` | Shows packet drop counters for a specific interface.|
-| `nv show interface <interface> counters pktdist` | Shows packet distribution counters for a specific interface. |
+| `nv show interface --view counters` |  Shows all statistics for all the interfaces configured on the switch, such as the total number of received and transmitted packets, and the number of received and transmitted dropped packets and error packets.
+| `nv show interface <interface> counters` | Shows all statistics for a specific interface, such as the number of received and transmitted unicast, multicast and broadcast packets, the number of received and transmitted dropped packets and error packets, and the number of received and transmitted packets of a certain size.|
+| `nv show interface <interface> counters errors`| Shows the number of error packets for a specific interface, such as the number of received and transmitted packet alignment, oversize, undersize, and jabber errors. |
+| `nv show interface <interface> counters drops` | Shows the number of received and transmitted packet drops for a specific interface, such as ACL drops, buffer drops, queue drops, and non-queue drops.|
+| `nv show interface <interface> counters pktdist` | Shows the number of received and transmitted packets of a certain size for a specific interface. |
 
 The following example shows all statistics for all the interfaces configured on the switch:
 
 ```
 cumulus@switch$ nv show interface --view counters
+Interface       MTU    RX_OK  RX_ERR  RX_DRP  RX_OVR  TX_OK  TX_ERR  TX_DRP  TX_OVR  Flg  
+--------------  -----  -----  ------  ------  ------  -----  ------  ------  ------  -----
+BLUE            65575  1      0       0       0       0      0       4       0       OmRU 
+RED             65575  1      0       0       0       0      0       4       0       OmRU 
+bond1           9000   718    0       0       0       1091   0       0       0       BMmRU
+bond2           9000   727    0       0       0       1088   0       0       0       BMmRU
+bond3           9000   722    0       0       0       1089   0       0       0       BMmRU
+br_default      9216   360    0       10      0       475    0       0       0       BMRU 
+eth0            1500   946    0       0       0       299    0       0       0       BMRU 
+lo              65536  651    0       0       0       651    0       0       0       LRU  
+mgmt            65575  283    0       0       0       0      0       4       0       OmRU 
+peerlink        9216   4972   0       0       0       5028   0       0       0       BMmRU
+peerlink.4094   9216   3263   0       0       0       3224   0       0       0       BMRU 
+swp1            9000   721    0       0       0       1091   0       0       0       BMsRU
+swp2            9000   730    0       0       0       1088   0       0       0       BMsRU
+swp3            9000   725    0       0       0       1089   0       0       0       BMsRU
+swp49           9216   2807   0       0       0       2691   0       0       0       BMsRU
+swp50           9216   2165   0       0       0       2337   0       0       0       BMsRU
+swp51           9216   685    0       0       0       690    0       0       0       BMRU 
+swp52           9216   703    0       0       0       722    0       0       0       BMRU 
+swp53           9216   738    0       0       0       710    0       0       0       BMRU 
+swp54           9216   682    0       0       0       730    0       0       0       BMRU 
+vlan10          9216   108    0       20      0       91     0       0       0       BMRU 
+vlan10-v0       9216   63     0       20      0       45     0       0       0       BMRU 
+vlan20          9216   104    0       20      0       88     0       0       0       BMRU 
+vlan20-v0       9216   58     0       20      0       44     0       0       0       BMRU 
+vlan30          9216   112    0       20      0       94     0       0       0       BMRU 
+vlan30-v0       9216   61     0       20      0       44     0       0       0       BMRU 
+vlan4024_l3     9216   1      0       0       0       82     0       0       0       BMRU 
+vlan4024_l3-v0  9216   0      0       0       0       36     0       0       0       BMRU 
+vlan4036_l3     9216   1      0       0       0       85     0       0       0       BMRU 
+vlan4036_l3-v0  9216   0      0       0       0       37     0       0       0       BMRU 
+vxlan48         9216   45     0       0       0       21     0       0       0       BMRU
 ```
 
 The following example shows all statistics for swp1:
 
 ```
 cumulus@switch$ nv show interface swp1 counters
+                     operational  applied
+-------------------  -----------  -------
+carrier-transitions  4                   
+
+Detailed Counters
+====================
+    Counter            Receive  Transmit
+    -----------------  -------  --------
+    Broadcast Packets  0        0       
+    Multicast Packets  0        0       
+    Total Octets       0        0       
+    Total Packets      0        0       
+    Unicast Packets    0        0       
+
+Drop Counters
+================
+    Counter          Receive  Transmit
+    ---------------  -------  --------
+    ACL Drops        0        n/a     
+    Buffer Drops     0        n/a     
+    Non-Queue Drops  n/a      0       
+    Queue Drops      n/a      0       
+    Total Drops      0        0       
+
+Error Counters
+=================
+    Counter           Receive  Transmit
+    ----------------  -------  --------
+    Alignment Errors  0        n/a     
+    FCS Errors        0        n/a     
+    Jabber Errors     0        n/a     
+    Length Errors     0        n/a     
+    Oversize Errors   0        n/a     
+    Symbol Errors     0        n/a     
+    Total Errors      0        0       
+    Undersize Errors  0        n/a     
+
+Packet Size Statistics
+=========================
+    Counter     Receive  Transmit
+    ----------  -------  --------
+    64          0        0       
+    65-127      0        0       
+    128-255     0        0       
+    256-511     0        0       
+    512-1023    0        0       
+    1024-1518   0        0       
+    1519-2047   0        0       
+    2048-4095   0        0       
+    4096-16383  0        0
+...
 ```
 
 The following example shows error counters for swp1:
 
 ```
 cumulus@switch$ nv show interface swp1 counters errors
+Counter           Receive  Transmit
+----------------  -------  --------
+Alignment Errors  0        n/a     
+FCS Errors        0        n/a     
+Jabber Errors     0        n/a     
+Length Errors     0        n/a     
+Oversize Errors   0        n/a     
+Symbol Errors     0        n/a     
+Total Errors      0        0       
+Undersize Errors  0        n/a   
 ```
 
 {{%notice note%}}
@@ -141,12 +235,18 @@ To clear counters (statistics) for all interfaces, run the `nv action clear inte
 
 ```
 cumulus@switch$ nv action clear interface counters
+all interface counters cleared
+Action succeeded
 ```
 
 To clear the counters for an interface, run the `nv action clear interface <interface> counters` command:
 
 ```
 cumulus@switch$ nv action clear interface swp1 counters
+swp1 counters cleared
+Action succeeded
 ```
 
+{{%notice note%}}
 The `nv action clear interface <interface> counters` command does not clear counters in the hardware.
+{{%/notice%}}

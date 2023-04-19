@@ -438,12 +438,14 @@ cumulus@switch:~$ nv config apply
 
 ### Clear Matches Against a Route Map
 
-To clear the number of matches shown against the route map, run the `nv action clear router policy route-map <route-map>` command.
+To clear the number of matches shown against a route map, run the `nv action clear router policy route-map <route-map>` command.
 
 The following example clears the number of matches shown against the route map called ROUTEMAP1.
 
 ```
 cumulus@switch:~$ nv action clear router policy route-map ROUTEMAP1
+Running handle_clear_route_map ROUTEMAP1
+Action succeeded
 ```
 
 ## Route Redistribution

@@ -589,11 +589,6 @@ To show global EVPN-MH information, such as the uplink count, startup delay time
 ```
 cumulus@switch:~$ nv show evpn multihoming
 ```
-To show BGP multihoming for a specific ESI, run the `nv show evpn multihoming bgp-info esi <esi>` command:
-
-```
-cumulus@switch:~$ nv show evpn multihoming bgp-info esi 00:44:38:39:BE:EF:AA:00:00:01
-```
 
 ### Show Ethernet Segment Information
 
@@ -640,7 +635,7 @@ cumulus@switch:~$ nv show evpn vni 10 multihoming esi 00:44:38:39:BE:EF:AA:00:00
 
 ### Show BGP Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs learned via type-1 and type-4 routes, run the vtysh `show bgp l2vpn evpn es` command. For example:
+To display the Ethernet segments across all VNIs learned via type-1 and type-4 routes, run the NVUE `nv show evpn vni <vni> multihoming bgp-info esi` or the vtysh `show bgp l2vpn evpn es` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -679,7 +674,7 @@ VNI      ESI                            Flags VTEPs
 
 ### Show EAD Route Types
 
-To view type-1 EAD routes, run the vtysh `show bgp l2vpn evpn route` command with the `ead` route type option. For example:
+To view type-1 EAD routes, run the NVUE `nv show evpn multihoming ead-evi-route esi` command or the vtysh `show bgp l2vpn evpn route type ead` command. For example:
 
 ```
 cumulus@switch:~$ sudo vtysh

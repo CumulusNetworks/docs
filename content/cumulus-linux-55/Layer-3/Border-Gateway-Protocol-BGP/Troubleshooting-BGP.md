@@ -199,7 +199,20 @@ You can run NVUE commands to show route statistics for a BGP neighbor, such as t
 To show the route count, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast route-counters` command for IPv4 or the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast route-counters` command for IPv6.
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast route-counters
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast route-counters
+               operational  applied
+--------------  -----------  -------
+adj-rib-in      0                   
+all-rib         8                   
+best-routes     2                   
+damped          0                   
+history         0                   
+removed         0                   
+route-count     8                   
+routes-counted  8                   
+stale           0                   
+usable          8                   
+valid           8
 ```
 
 To show all the advertised routes, run the `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast advertised-routes` command for IPv4 or the  `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast advertised-routes` command for IPv6.
@@ -207,7 +220,28 @@ To show all the advertised routes, run the `nv show vrf default router bgp neigh
 To show information about a specific advertised route, add the route at the end of the command.
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast advertised-routes
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes
+IPv4 Prefix      Summary
+---------------  -------
+10.0.1.12/32     Path: 1
+                 Path: 2
+10.0.1.34/32     Path: 1
+                 Path: 2
+                 Path: 3
+                 Path: 4
+                 Path: 5
+10.0.1.255/32    Path: 1
+                 Path: 2
+                 Path: 3
+                 Path: 4
+                 Path: 5
+10.10.10.1/32    Path: 1
+10.10.10.2/32    Path: 1
+                 Path: 2
+                 Path: 3
+                 Path: 4
+                 Path: 5
+...
 ```
 
 To show all the received routes, run the `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast received-routes` command for IPv4 or the  `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast received-routes` command for IPv6.
@@ -215,7 +249,7 @@ To show all the received routes, run the `nv show vrf default router bgp neighbo
 To show information about a specific received route, add the route at the end of the command:
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast received-routes 10.0.1.2/32 
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 
 ```
 
 ## Show Next Hop Information

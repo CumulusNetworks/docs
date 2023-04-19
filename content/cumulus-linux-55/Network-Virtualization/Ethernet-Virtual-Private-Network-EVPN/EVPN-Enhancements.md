@@ -614,7 +614,7 @@ iface br10
 ...
 ```
 
-## Use a Site ID for MLAG
+## Configure a Site ID for MLAG
 
 When you use EVPN with MLAG, temporary loop conditions can occur during the time between when a system comes online and the VXLAN anycast loopback IP address comes online. To avoid these temporary loop conditions, you can associate all local layer 2 VNIs with a unique site ID, which represents an MLAG pair.
 

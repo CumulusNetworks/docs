@@ -110,9 +110,31 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp
 
 - - -
 
+## nv show interface \<interface-id\> ip vrrp virtual-router
+
+Shows the virtual gateways implemented with VRRP for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`    | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router
+```
+
+- - -
+
 ## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\>
 
-Shows information about the virtual gateway implemented with VRRP for the specified interface.
+Shows information about a specific virtual gateway implemented with VRRP for the specified interface.
 
 ### Command Syntax
 
@@ -129,6 +151,29 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44
+```
+
+- - -
+
+## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address
+
+Shows the IP addresses of the virtual gateway implemented with VRRP for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+|| `<interface-id>`    | The interface name. |
+| `<virtual-router-id>` |  The Virtual Router IDentifier (VRID) that identifies the group of VRRP routers.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44 address
 ```
 
 - - -
@@ -153,6 +198,53 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44 address 10.0.0.1
+```
+
+- - -
+
+## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address-family
+
+Shows the IP addresses for all address families for the virtual gateway implemented with VRRP for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+|| `<interface-id>`    | The interface name. |
+| `<virtual-router-id>` |  The Virtual Router IDentifier (VRID) that identifies the group of VRRP routers.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44 address-family
+```
+
+- - -
+
+## nv show interface \<interface-id\> ip vrrp virtual-router \<virtual-router-id\> address-family \<afi\>
+
+Shows the IP addresses for a specific address family (IPv4 or IPv6) for the virtual gateway implemented with VRRP for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>`    | The interface name. |
+| `<virtual-router-id>` |  The Virtual Router IDentifier (VRID) that identifies the group of VRRP routers.|
+| `<afi>` |  The address family; `ipv4` or `ipv6`.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1 ip vrrp virtual-router 44 address-family ipv4
 ```
 
 - - -

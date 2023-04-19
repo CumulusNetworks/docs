@@ -359,9 +359,31 @@ cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor
 
 - - -
 
+## nv show interface \<interface-id\> ip neighbor ipv4
+
+Shows the IPv4 neighbors for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor ipv4
+```
+
+- - -
+
 ## nv show interface \<interface-id\> ip neighbor ipv4 \<neighbor-id\>
 
-Shows information about the specified IPv4 neighbor for the specified interface.
+Shows information about a specific IPv4 neighbor for the specified interface.
 
 ### Command Syntax
 
@@ -378,6 +400,28 @@ Introduced in Cumulus Linux 5.0.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor ipv4 169.254.0.1
+```
+
+- - -
+
+## nv show interface \<interface-id\> ip neighbor ipv6
+
+Shows the IPv6 neighbors for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp51 ip neighbor ipv6
 ```
 
 - - -

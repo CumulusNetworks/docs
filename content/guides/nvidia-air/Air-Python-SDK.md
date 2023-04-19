@@ -919,6 +919,21 @@ Raised when accessing a previously instantiated object that has since been delet
 ## Image
 Manage an image
 
+### copy
+Copy an image into another organization.
+
+**Arguments**:
+
+  - `organization` _str | `Organization`_ - Organization where the image should be copied
+
+**Returns**:
+
+  [`Image`](#image)
+
+**Raises**:
+
+  [`AirUnexpectedresponse`](#airerror) - Copy failed
+
 ### delete
 Delete the image. Once successful, the object should no longer be used and will raise
 [`AirDeletedObject`](#airerror) when referenced.

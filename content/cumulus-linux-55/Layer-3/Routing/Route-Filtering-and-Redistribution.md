@@ -438,7 +438,7 @@ cumulus@switch:~$ nv config apply
 
 ### Clear Matches Against a Route Map
 
-If you make changes to a route map, you can re-evaluate the routes by running the `nv action clear router policy route-map <route-map>` command to clear the number of matches shown against the route map.
+To clear the number of matches shown against the route map, run the `nv action clear router policy route-map <route-map>` command.
 
 The following example clears the number of matches shown against the route map called ROUTEMAP1.
 

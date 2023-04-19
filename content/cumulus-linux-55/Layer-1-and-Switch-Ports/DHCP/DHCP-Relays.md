@@ -55,10 +55,10 @@ cumulus@leaf01:~$ nv config apply
 {{< tabs "TabID89 ">}}
 {{< tab "IPv4 ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay.
+1. Edit the `/etc/default/isc-dhcp-relay-default` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay.
 
    ```
-   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
+   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    SERVERS="172.16.1.102"
    INTF_CMD="-i vlan10 -i swp51 -i swp52 -i peerlink.4094"
    OPTIONS=""
@@ -67,17 +67,17 @@ cumulus@leaf01:~$ nv config apply
 2. Enable, then restart the `dhcrelay` service so that the configuration persists between reboots:
 
    ```
-   cumulus@leaf01:~$ sudo systemctl enable dhcrelay.service
-   cumulus@leaf01:~$ sudo systemctl restart dhcrelay.service
+   cumulus@leaf01:~$ sudo systemctl enable dhcrelay@default.service
+   cumulus@leaf01:~$ sudo systemctl restart dhcrelay@default.service
    ```
 
 {{< /tab >}}
 {{< tab "IPv6 ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay6` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay.
+1. Edit the `/etc/default/isc-dhcp-relay6-default` file to add the IP address of the DHCP server and the interfaces participating in DHCP relay.
 
    ```
-   cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6
+   cumulus@leaf01:$ sudo nano /etc/default/isc-dhcp-relay6-default
    SERVERS=" -u 2001:db8:100::2%swp51 -u 2001:db8:100::2%swp52"
    INTF_CMD="-l vlan10 -l peerlink.4094"
    ```
@@ -85,8 +85,8 @@ cumulus@leaf01:~$ nv config apply
 2. Enable, then restart the `dhcrelay6` service so that the configuration persists between reboots:
 
    ```
-   cumulus@switch:~$ sudo systemctl enable dhcrelay6.service
-   cumulus@switch:~$ sudo systemctl restart dhcrelay6.service
+   cumulus@switch:~$ sudo systemctl enable dhcrelay6@default.service
+   cumulus@switch:~$ sudo systemctl restart dhcrelay6@default.service
    ```
 
 {{< /tab >}}
@@ -114,12 +114,12 @@ Cumulus Linux supports DHCP Agent Information Option 82, which allows a DHCP rel
 
 To configure DHCP Agent Information Option 82:
 
-1. Edit the `/etc/default/isc-dhcp-relay` file and add one of the following options:
+1. Edit the `/etc/default/isc-dhcp-relay-default` file and add one of the following options:
 
    To inject the ingress *SVI interface* against which DHCP processes the relayed DHCP discover packet, add `-a` to the `OPTIONS` line:
 
    ```
-   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
+   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-a"
@@ -128,7 +128,7 @@ To configure DHCP Agent Information Option 82:
    To inject the *physical switch port* on which the relayed DHCP discover packet arrives instead of the SVI, add `-a --use-pif-circuit-id` to the `OPTIONS` line:
 
    ```
-   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
+   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-a --use-pif-circuit-id"
@@ -137,7 +137,7 @@ To configure DHCP Agent Information Option 82:
    To customize the Remote ID sub-option, add `-a -r` to the `OPTIONS` line followed by a custom string (up to 255 characters):
 
    ```
-   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
+   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-a -r CUSTOMVALUE"
@@ -146,7 +146,7 @@ To configure DHCP Agent Information Option 82:
 2. Restart the `dhcrelay` service to apply the new configuration:
 
    ```
-   cumulus@leaf01:~$ sudo systemctl restart dhcrelay.service
+   cumulus@leaf01:~$ sudo systemctl restart dhcrelay@default.service
    ```
 
 ### Control the Gateway IP Address with RFC 3527
@@ -197,12 +197,12 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay` file and provide the `-U` option with the interface or IP address you want to use as the gateway address.
+1. Edit the `/etc/default/isc-dhcp-relay-default` file and provide the `-U` option with the interface or IP address you want to use as the gateway address.
 
    This example uses the first IP address on the loopback interface as the gateway address:
 
    ```
-   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
+   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-U lo"
@@ -211,7 +211,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
    The first IP address on the loopback interface is typically the 127.0.0.1 address. This example uses IP address 10.10.10.1 on the loopback interface as the gateway address:
 
    ```
-   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
+   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-U 10.10.10.1%lo"
@@ -220,7 +220,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
    This example uses the first IP address on swp2 as the gateway address:
 
    ```
-   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
+   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-U swp2"
@@ -229,7 +229,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
    This example uses IP address 10.0.0.4 on swp2 as the gateway address:
 
    ```
-   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
+   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    ...
    # Additional options that are passed to the DHCP relay daemon?
    OPTIONS="-U 10.0.0.4%swp2"
@@ -238,7 +238,7 @@ cumulus@leaf01:~$ nv set service dhcp-relay default gateway-interface swp2 addre
 2. Restart the `dhcrelay` service to apply the configuration change:
 
    ```
-   cumulus@leaf01:~$ sudo systemctl restart dhcrelay.service
+   cumulus@leaf01:~$ sudo systemctl restart dhcrelay@default.service
    ```
 
 {{< /tab >}}
@@ -265,10 +265,10 @@ cumulus@leaf01:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Edit the `/etc/default/isc-dhcp-relay` file to add `--giaddr-src` to the `OPTIONS` line.
+1. Edit the `/etc/default/isc-dhcp-relay-default` file to add `--giaddr-src` to the `OPTIONS` line.
 
    ```
-   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay
+   cumulus@leaf01:~$ sudo nano /etc/default/isc-dhcp-relay-default
    SERVERS="172.16.1.102"
    INTF_CMD="-i vlan10 -i swp51 -i swp52 -U swp2"
    OPTIONS="--giaddr-src"
@@ -277,7 +277,7 @@ cumulus@leaf01:~$ nv config apply
 2. Restart the `dhcrelay` service to apply the configuration change:
 
    ```
-   cumulus@leaf01:~$ sudo systemctl restart dhcrelay.service
+   cumulus@leaf01:~$ sudo systemctl restart dhcrelay@default.service
    ```
 
 {{< /tab >}}
@@ -346,17 +346,22 @@ cumulus@leaf01:~$ nv show service dhcp-relay
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Run the Linux `systemctl status dhcrelay.service` command for IPv4 or the `systemctl status dhcrelay6.service` command for IPv6:
+Run the Linux `systemctl status dhcrelay@default.service` command for IPv4 or the `systemctl status dhcrelay6@default.service` command for IPv6:
 
 ```
-cumulus@leaf01:~$ sudo systemctl status dhcrelay.service
-● dhcrelay.service - DHCPv4 Relay Agent Daemon
-    Loaded: loaded (/lib/systemd/system/dhcrelay.service; enabled)
-    Active: active (running) since Fri 2016-12-02 17:09:10 UTC; 2min 16s ago
-      Docs: man:dhcrelay(8)
-Main PID: 1997 (dhcrelay)
-    CGroup: /system.slice/dhcrelay.service
-            └─1997 /usr/sbin/dhcrelay --nl -d -q -i vlan10 -i swp51 -i swp52 172.16.1.102
+cumulus@leaf01:~$ sudo systemctl status dhcrelay@default.service
+● dhcrelay@default.service - DHCPv4 Relay Agent Daemon default in vrf default
+   Loaded: loaded (/lib/systemd/system/dhcrelay@.service; enabled; vendor preset: enabled)
+  Drop-In: /run/systemd/generator/dhcrelay@.service.d
+           └─vrf.conf
+   Active: active (running) since Tue 2023-04-18 18:23:55 UTC; 9min ago
+     Docs: man:dhcrelay(8)
+ Main PID: 30904 (dhcrelay)
+    Tasks: 1 (limit: 2056)
+   Memory: 2.3M
+   CGroup: /system.slice/system-dhcrelay.slice/dhcrelay@default.service
+           └─vrf
+             └─30904 /usr/sbin/dhcrelay --nl -d -i swp51 -i swp52 -i vlan10 -i peerlink.4094 172.16.1.102
 ```
 
 {{< /tab >}}
@@ -404,7 +409,7 @@ Dec 05 21:08:55 leaf01 dhcrelay[6152]: sending upstream swp51
 
 ### Configuration Errors
 
-If you configure DHCP relays by editing the `/etc/default/isc-dhcp-relay` file manually, you can introduce configuration errors that cause the switch to crash.
+If you configure DHCP relays by editing the `/etc/default/isc-dhcp-relay-default` file manually, you can introduce configuration errors that cause the switch to crash.
 
 For example, if you see an error similar to the following, check that there is no space between the DHCP server address and the interface you use as the uplink.
 
@@ -413,7 +418,7 @@ Core was generated by /usr/sbin/dhcrelay --nl -d -i vx-40 -i vlan10 10.0.0.4 -U 
 Program terminated with signal SIGSEGV, Segmentation fault.
 ```
 
-To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay` file to remove the space, then run the `systemctl restart dhcrelay.service` command to restart the `dhcrelay` service and apply the configuration change.
+To resolve the issue, manually edit the `/etc/default/isc-dhcp-relay-default` file to remove the space, then run the `systemctl restart dhcrelay@default.service` command to restart the `dhcrelay` service and apply the configuration change.
 
 ## Considerations
 

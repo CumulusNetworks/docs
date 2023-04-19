@@ -29,13 +29,14 @@ You can restart the switch in one of the following modes.
 - Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
 {{%/notice%}}
 
-The following command restarts the system in cold mode:
+The following command configures the switch to restart in cold mode:
 
 {{< tabs "28 ">}}
 {{< tab "NVUE Command ">}}
 
 ```
 cumulus@switch:~$ nv set system reboot mode cold
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -48,13 +49,14 @@ cumulus@switch:~$ sudo csmgrctl -c
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command restarts the system in fast mode:
+The following command configures the switch to restart in fast mode:
 
 {{< tabs "52 ">}}
 {{< tab "NVUE Command ">}}
 
 ```
 cumulus@switch:~$ nv set system reboot mode fast
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
@@ -67,7 +69,7 @@ cumulus@switch:~$ sudo csmgrctl -f
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command restarts the system in warm restart mode.
+The following command configures the switch to restart in warm mode.
 
 {{< notice warning >}}
 Warm restart mode resets any manually configured FEC settings.
@@ -78,6 +80,7 @@ Warm restart mode resets any manually configured FEC settings.
 
 ```
 cumulus@switch:~$ nv set system reboot mode warm
+cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}

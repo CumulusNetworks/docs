@@ -550,16 +550,13 @@ Cumulus Linux records the changes that a neighbor goes through in `syslog` and i
 2020-10-05T15:51:33.627958-07:00 leaf01 bgpd[10104]: %ADJCHANGE: neighbor peerlink.4094(leaf02) in vrf default Up
 ```
 
-## Clear BGP Counters
+## Clear BGP Routes
 
-NVUE provides commands to clear BGP counters (route statistics). You can clear:
-- All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for all BGP peers.
-- All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for all BGP peers without resetting the peer sessions.
-- All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for a specific BGP peer.
-- All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for a specific BGP peer without resetting the peer session.
-- All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for a specific BGP peer group.
-- All IPv4, IPv6, and layer 2 VPN EVPN inbound and outbound routes for a specific BGP peer group without resetting the peer sessions.
-- An IPv4, IPv6, or layer 2 VPN EVPN route for a specific BGP neighbor or peer group.
+NVUE provides commands to clear BGP routes from the BGP table. You can clear:
+- All IPv4, IPv6, and EVPN inbound and outbound routes for all BGP peers with or without resetting the peer sessions.
+- All IPv4, IPv6, and EVPN inbound and outbound routes for a specific BGP peer with or without resetting the peer sessions.
+- All IPv4, IPv6, and EVPN inbound and outbound routes for a specific BGP peer group with or without resetting the peer sessions.
+- An IPv4, IPv6, or EVPN route for a specific BGP neighbor or peer group.
 
 The clear commands do not clear counters in the kernel or hardware.
 
@@ -575,7 +572,7 @@ To clear all IPv6 outbound routes:
 cumulus@leaf01:~$ nv action clear vrf default router bgp address-family ipv6-unicast out
 ```
 
-To clear all layer 2 VPN EVPN inbound routes without resetting the peer sessions:
+To clear all EVPN inbound routes without resetting the peer sessions:
 
 ```
 cumulus@leaf01:~$ nv action clear vrf default router bgp address-family l2vpn-evpn soft in

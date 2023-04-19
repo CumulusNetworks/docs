@@ -614,6 +614,36 @@ iface br10
 ...
 ```
 
+## Use a Site ID for MLAG
+
+When you use EVPN with MLAG, temporary loop conditions can occur during the time between when a system comes online and the VXLAN anycast loopback IP address comes online. To avoid these temporary loop conditions, you can associate all local layer 2 VNIs with a unique site ID, which represents an MLAG pair.
+
+When you configure a site ID, Cumulus Linux:
+- Adds a `Site-of-Origin` extended community encoded with the local site ID to EVPN routes that originate from local layer 2 VNIs. Cumulus Linux adds the `Site-of-Origin` extended community when creating the route.
+- Filters all received EVPN routes with a `Site-of-Origin` extended community that matches the local site ID. Cumulus Linux filters the routes when importing the routes from the global table to the layer 2 VNI or layer 3 VNI table.
+
+The site ID is in the format `<IPv4 address>:<2-byte Value>`, where the IPv4 address is the anycast IP address (a virtual IP address for VXLAN data-path termination) and the 2-byte value is an integer between 0 and 65535. For example: 10.0.1.12:10
+
+There are no NVUE commands yet for this feature.
+
+To configure a unique site ID, run the following vtysh commands:
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+leaf01# configure terminal
+leaf01(config)# router bgp 65101
+leaf01(config-router)# address-family l2vpn evpn
+leaf01(config-router-af)# mac-vrf soo 10.0.1.12:10
+leaf01(config-router-af)# end
+leaf01# write memory
+leaf01# exit
+```
+
+{{%notice note%}}
+NVIDIA recommends you do not configure a site ID on a standalone or multihoming VTEP.
+{{%/notice%}}
+
 ## Filter EVPN Routes
 
 It is common to subdivide the data center into multiple pods with full host mobility within a pod but only do prefix-based routing across pods. You can achieve this by only exchanging EVPN type-5 routes across pods.

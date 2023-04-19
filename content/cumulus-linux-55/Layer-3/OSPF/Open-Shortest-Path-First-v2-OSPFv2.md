@@ -1065,17 +1065,17 @@ NVUE provides several commands to show OSPF interface and OSPF neighbor configur
 
 | Description | <div style="width:330px">NVUE Command |
 | ----------- | ------------------------------------- |
-| Show all OSPF interfaces | `nv show vrf <vrf> router ospf interface` |
-| Show information about a specific OSPF interface | `nv show vrf <vrf> router ospf interface <interface>` |
-| Show the local IP addresses for the specified OSPF interface | `nv show vrf <vrf> router ospf interface <interface> local-ip` |
-| Show statistics for a specific OSPF interface local IP address | `nv show vrf <vrf> router ospf interface <interface> local-ip <IPv4_address>` |
-| Show the OSPF neighbor ID and the OSPF interface for all OSPF neighbors |`nv show vrf <vrf> router ospf neighbor` |
-| Show the interface and local IP addresses for a specific OSPF neighbor | `nv show vrf <vrf> router ospf neighbor <IPv4-address>` |
-| Show the local IP addresses of all the interfaces for an OSPF neighbor | `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface` |
-| Show the local IP addresses for a specific OSPF neighbor interface | `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip` |
-| Show statistics for a specific OSPF neighbor interface local IP address | `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip <IPv4-address>` |
+| `nv show vrf <vrf> router ospf interface` | Shows all OSPF interfaces. |
+| `nv show vrf <vrf> router ospf interface <interface>` | Shows information about a specific OSPF interface. |
+| `nv show vrf <vrf> router ospf interface <interface> local-ip` | Shows the local IP addresses for the specified OSPF interface. | 
+| `nv show vrf <vrf> router ospf interface <interface> local-ip <IPv4_address>` | Shows statistics for a specific OSPF interface local IP address. |
+| `nv show vrf <vrf> router ospf neighbor` | Shows the OSPF neighbor ID and the OSPF interface for all OSPF neighbors. |
+| `nv show vrf <vrf> router ospf neighbor <IPv4-address>` | Shows the interface and local IP addresses for a specific OSPF neighbor. |
+| `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface` | Shows the local IP addresses of all the interfaces for an OSPF neighbor. |
+| `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip` | Shows the local IP addresses for a specific OSPF neighbor interface. |
+| `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip <IPv4-address>` | Shows statistics for a specific OSPF neighbor interface local IP address. |
 
-The following example shows the `nv show vrf <vrf> router ospf interface` command output:
+The following example shows all OSPF interfaces:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router ospf interface
@@ -1087,7 +1087,7 @@ swp51      local-ip:   10.0.1.0
 swp52      local-ip: 10.10.10.1
 ```
 
-The following example shows the `nv show vrf <vrf> router ospf neighbor` command output:
+The following example shows the OSPF neighbor ID and the OSPF interface for all OSPF neighbors:
 
 ```
 cumulus@switch:~$ nv show vrf default router ospf neighbor
@@ -1097,7 +1097,7 @@ cumulus@switch:~$ nv show vrf default router ospf neighbor
 10.10.10.102  Interface: swp52
 ```
 
-The following example shows the `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface` command output:
+The following example shows the interface and local IP addresses for OSPF neighbor 10.10.10.101.
 
 ```
 cumulus@switch:~$ nv show vrf default router ospf neighbor 10.10.10.101
@@ -1106,7 +1106,7 @@ Interface  Summary
 swp51      local-ip: 10.10.10.1
 ```
 
-The following example shows the `nv show vrf <vrf> router ospf neighbor <IPv4-address> interface <interface> local-ip <IPv4-address>` command output:
+The following example shows configuration and statistics for OSPF neighbor 10.10.10.101 on interface swp51 with the local IP address 10.10.10.1:
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router ospf neighbor 10.10.10.101 interface swp51 local-ip 10.10.10.1
@@ -1130,23 +1130,23 @@ FRR (vtysh) provides several OSPF troubleshooting commands:
 
 | Description | <div style="width:330px">vtysh Command |
 | ----------- | ------------------------------------- |
-| Show neighbor states | `show ip ospf neighbor` |
-| Verify that the LSDB synchronizes across all routers in the network | `show ip ospf database` |
-| Determine why Cumulus Linux does not forward an OSPF route properly | `show ip route ospf` |
-| Show OSPF interfaces | `show ip ospf interface` |
-| Show information about the OSPF process | `show ip ospf` |
+| `show ip ospf neighbor` | Shows OSPF neighbor information. |
+| `show ip ospf database` | Shows if the LSDB synchronizes across all routers in the network. |
+| `show ip route ospf` | Shows if Cumulus Linux does not forward an OSPF route properly. |
+| `show ip ospf interface` | Shows OSPF interfaces. |
+| `show ip ospf` | Shows information about the OSPF process. |
 
-The following example shows the `show ip ospf neighbor` command output:
+The following example shows OSPF neighbor information:
 
 ```
-cumulus@leaf01:mgmt:~$sudo vtysh
+cumulus@leaf01:mgmt:~$ sudo vtysh
 ...
 leaf01# show ip ospf neighbor
 Neighbor ID     Pri State           Dead Time Address         Interface                        RXmtL RqstL DBsmL
 10.10.10.101      1 Full/Backup       30.307s 10.0.1.1        swp51:10.0.1.0                       0     0     0
 ```
 
-The following example shows the `show ip route ospf` command output:
+The following example shows if Cumulus Linux does not forward an OSPF route properly:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh

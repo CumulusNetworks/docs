@@ -616,7 +616,7 @@ iface br10
 
 ## Configure a Site ID for MLAG
 
-When you use EVPN with MLAG, temporary loop conditions can occur during the time between when a system comes online and the VXLAN anycast loopback IP address comes online. To avoid these temporary loop conditions, you can associate all local layer 2 VNIs with a unique site ID, which represents an MLAG pair.
+When you use EVPN with MLAG, EVPN might install local MAC addresses or neighbor entries as remote entries. To prevent EVPN from taking ownership of local MAC addresses or neighbor entries from MLAG, you can associate all local layer 2 VNIs with a unique site ID, which represents an MLAG pair.
 
 When you configure a site ID, Cumulus Linux:
 - Adds a `Site-of-Origin` extended community encoded with the local site ID to EVPN routes that originate from local layer 2 VNIs. Cumulus Linux adds the `Site-of-Origin` extended community when creating the route.

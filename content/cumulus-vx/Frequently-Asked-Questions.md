@@ -3,7 +3,7 @@ title: Frequently Asked Questions
 author: Cumulus Networks
 weight: 50
 product: Cumulus VX
-version: '4.x'
+version: '5.x'
 ---
 
 <!-- vale off -->

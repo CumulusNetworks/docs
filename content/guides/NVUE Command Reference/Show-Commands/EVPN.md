@@ -21,9 +21,47 @@ cumulus@leaf01:mgmt:~$ nv show evpn
 
 - - -
 
+## nv show evpn access-vlan-info
+
+Shows access VLAN information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info
+```
+
+- - -
+
+## nv show evpn access-vlan-info vlan
+
+Shows all EVPN access VLANs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info vlan
+```
+
+- - -
+
 ## nv show evpn access-vlan-info vlan \<vlan-id\>
 
-Shows access VLAN information for the specified VLAN.
+Shows EVPN access VLAN information for the specified VLAN.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vlan-id>` |  The VLAN name. |
 
 ### Version History
 
@@ -33,6 +71,28 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info vlan 10
+```
+
+- - -
+
+## nv show evpn access-vlan-info vlan \<vlan-id\> member-interface
+
+Shows EVPN access VLAN member interface information.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| ---------  | -------------- |
+| `<vlan-id>` |  The VLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn access-vlan-info vlan 10 member-interface
 ```
 
 - - -
@@ -85,9 +145,41 @@ cumulus@leaf01:mgmt:~$ nv show evpn dad duplicate-action freeze
 
 - - -
 
+## nv show evpn l2-nhg
+
+Shows EVPN nexthop groups.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn l2-nhg
+```
+
+- - -
+
+## nv show evpn l2-nhg vtep-ip
+
+Shows EVPN nexthop group information for all VTEPs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn l2-nhg vtep-ip
+```
+
+- - -
+
 ## nv show evpn l2-nhg vtep-ip \<vtep-id\>
 
-Shows EVPN layer 2 nexthop group information for the specified VTEP.
+Shows EVPN nexthop group information for the specified VTEP.
 
 ### Version History
 
@@ -117,6 +209,38 @@ cumulus@leaf01:mgmt:~$ nv show evpn multihoming
 
 - - -
 
+## nv show evpn multihoming bgp-info
+
+Shows EVPN multihoming BGP information.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info
+```
+
+- - -
+
+## nv show evpn multihoming bgp-info esi
+
+Shows EVPN multihoming BGP information for all ESIs.
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi
+```
+
+- - -
+
 ## nv show evpn multihoming bgp-info esi \<esi-id\>
 
 Shows EVPN multihoming BGP information for the specified ESI.
@@ -129,6 +253,96 @@ Introduced in Cumulus Linux 5.5.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02
+```
+
+- - -
+
+## nv show evpn multihoming bgp-info esi \<esi-id\> remote-vtep
+
+Shows EVPN multihoming BGP information for the specified ESI for all VTEPs.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<esi-id>` |  The ESI identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
+```
+
+- - -
+
+## nv show evpn multihoming bgp-info esi \<esi-id\> remote-vtep \<ipv4-address-id\>
+
+Shows EVPN multihoming BGP information for the specified ESI for a specific VTEP.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<esi-id>` |  The ESI identifier. |
+| `<ipv4-address-id>` |  The IPv4 address of the VTEP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
+```
+
+- - -
+
+## nv show evpn multihoming bgp-info esi \<esi-id\> fragments
+
+Shows EVPN multihoming BGP remote VTEP fragment information for a specific ESI.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<esi-id>` |  The ESI identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments
+```
+
+- - -
+
+## nv show evpn multihoming bgp-info esi \<esi-id\> fragments \<fragment-id\>
+
+Shows specific EVPN multihoming BGP remote VTEP fragment information for a specific ESI.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<esi-id>` |  The ESI identifier. |
+| `<fragment-id>` |  The route-distinguisher. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming bgp-info esi 03:44:38:39:be:ef:aa:00:00:02 fragments 10.10.10.1:20
 ```
 
 - - -
@@ -172,6 +386,7 @@ Shows information about the specified EVPN multihoming Ethernet segment ID.
 | Syntax |  Description   |
 | --------- | -------------- |
 | `<vni-id>` |  The VNI name. |
+| `<esi-id>` |  The ESI identifier. |
 
 ### Version History
 
@@ -182,6 +397,52 @@ Introduced in Cumulus Linux 5.5.0
 ```
 cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02
 ```
+
+## nv show evpn multihoming esi \<esi-id\> remote-vtep
+
+Shows information about the specified EVPN multihoming Ethernet segment ID for remote VTEPs.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+| `<esi-id>` |  The ESI identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
+```
+
+- - -
+
+## nv show evpn multihoming esi \<esi-id\> remote-vtep \<ipv4-address-id\>
+
+Shows information about a specific EVPN multihoming Ethernet segment ID for the specified remote VTEP.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+| `<esi-id>` |  The ESI identifier. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
+```
+
+- - -
 
 ## nv show evpn multihoming segment
 
@@ -371,16 +632,60 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 mac 50:88:b2:3c:08:f9
 
 - - -
 
-## nv show evpn vni \<vni-id\> multihoming bgp-info esi \<es-identifier\>
+## nv show evpn vni \<vni-id\> multihoming
 
-Shows BGP information for a specific multihoming Ethernet segment for the specified EVPN VNI.
+Shows multihoming Ethernet configuration for the specified EVPN VNI.
 
 ### Command Syntax
 
 |  Syntax |  Description   |
 | --------- | -------------- |
 | `<vni-id>` |  The VNI name. |
-| `<es-identifier>` |  The Ethernet segment ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming
+```
+
+- - -
+
+## nv show evpn vni \<vni-id\> multihoming bgp-info esi
+
+Shows BGP information for the multihoming Ethernet segments for the specified VNI.
+
+### Command Syntax
+
+|  Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming bgp-info esi
+```
+
+- - -
+
+## nv show evpn vni \<vni-id\> multihoming bgp-info esi \<es-id\>
+
+Shows BGP information for a specific multihoming Ethernet segment for the specified VNI.
+
+### Command Syntax
+
+|  Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+| `<es-id>` |  The Ethernet segment ID. |
 
 ### Version History
 
@@ -394,7 +699,76 @@ cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming bgp-info esi 03:44:38:39:
 
 - - -
 
-## nv show evpn vni \<vni-id\> multihoming esi \<es-identifier\>
+## nv show evpn vni <vni-id> multihoming bgp-info esi \<esi-id\> remote-vtep
+
+Shows BGP information for a specific multihoming Ethernet segment for the specified VNI on all remote VTEPs.
+
+### Command Syntax
+
+|  Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+| `<es-id>` |  The Ethernet segment ID. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep
+```
+
+- - -
+
+## nv show evpn vni <vni-id> multihoming bgp-info esi \<esi-id\> remote-vtep \<ipv4-address-id\>
+
+Shows BGP information for a specific multihoming Ethernet segment for the specified VNI on a specific remote VTEP.
+
+### Command Syntax
+
+|  Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+| `<es-id>` |  The Ethernet segment ID. |
+| `<ipv4-address-id>` |  The IPv4 address of the remote VTEP. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi 03:44:38:39:be:ef:aa:00:00:02 remote-vtep 10.10.10.101
+```
+
+- - -
+
+## nv show evpn vni \<vni-id\> multihoming esi
+
+Shows the EVPN multihoming ESIs for the specified VNI.
+
+### Command Syntax
+
+|  Syntax |  Description   |
+| --------- | -------------- |
+| `<vni-id>` |  The VNI name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming esi
+```
+
+- - -
+
+## nv show evpn vni \<vni-id\> multihoming esi \<es-id\>
 
 Shows information for a specific multihoming Ethernet segment for the specified EVPN VNI.
 
@@ -403,7 +777,7 @@ Shows information for a specific multihoming Ethernet segment for the specified 
 |  Syntax |  Description   |
 | --------- | -------------- |
 | `<vni-id>` |  The VNI name. |
-| `<es-identifier>` |  The Ethernet segment ID. |
+| `<es-id>` |  The Ethernet segment ID. |
 
 ### Version History
 

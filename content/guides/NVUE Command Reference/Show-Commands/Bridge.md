@@ -235,6 +235,28 @@ cumulus@leaf01:mgmt:~$ nv show bridge domain br_default stp state
 
 - - -
 
+## nv show bridge domain \<domain-id\> vlan
+
+Shows the VLANs on the specified bridge domain.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>`   | The bridge domain. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan
+```
+
+- - -
+
 ## nv show bridge domain \<domain-id\> vlan \<vid\>
 
 Shows configuration settings for the specified VLAN on the specified bridge domain.
@@ -350,6 +372,29 @@ cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 ptp
 
 - - -
 
+## nv show bridge domain \<domain-id\> vlan \<vid\> vni
+
+Shows VNIs on a specific VLAN on the specified bridge domain.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>`   | The bridge domain. |
+| `<vid>` |   The VLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni
+```
+
+- - -
+
 ## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\>
 
 Shows configuration settings for the specified VLAN VNI on the specified bridge domain.
@@ -398,9 +443,33 @@ cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding
 
 - - -
 
-## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication \<hrep-id\>
+## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication
 
 Shows the head-end-replication settings for the specified VNI.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<domain-id>` | The bridge domain. |
+| `<vid>` | The VLAN name. |
+| `<vni-id>` | The VXLAN name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default vlan 10 vni 10 flooding head-end-replication
+```
+
+- - -
+
+## nv show bridge domain \<domain-id\> vlan \<vid\> vni \<vni-id\> flooding head-end-replication \<hrep-id\>
+
+Shows specific head-end-replication settings for the specified VNI.
 
 ### Command Syntax
 

@@ -334,50 +334,6 @@ cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos port-stats
 
 - - -
 
-## nv show interface \<interface-id\> counters qos port-stats rx-stats
-
-Shows all QoS port received statistics for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos port-stats rx-stats
-```
-
-- - -
-
-## nv show interface \<interface-id\> counters qos port-stats tx-stats
-
-Shows all QoS port transmitted statistics for the specified interface.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<interface-id>` | The interface name. |
-
-### Version History
-
-Introduced in Cumulus Linux 5.5.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show interface swp1 counters qos port-stats tx-stats
-```
-
-- - -
-
 ## nv show interface \<interface-id\> qos egress-queue-mapping
 
 Shows QoS egress queue mapping configuration for the specified interface.

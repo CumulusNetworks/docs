@@ -990,51 +990,6 @@ cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global
 
 - - -
 
-## nv show qos advance-buffer-config \<profile-id\> egress-pool
-
-Shows all egress service pool settings for the specified QoS advanced buffer profile.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<profile-id>` | The profile name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-pool
-```
-
-- - -
-
-## nv show qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\>
-
-Shows configuration settings for a specific egress service pool for the specified QoS advanced buffer profile.
-
-### Command Syntax
-
-| Syntax |  Description   |
-| --------- | -------------- |
-| `<profile-id>` | The profile name.|
-| `<pool-id>` | The service pool name.|
-
-### Version History
-
-Introduced in Cumulus Linux 5.4.0
-
-### Example
-
-```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-pool 3
-```
-
-- - -
-
 ## nv show qos advance-buffer-config \<profile-id\> egress-lossless-buffer
 
 Shows egress lossless buffer configuration settings for the specified QoS advanced buffer profile.
@@ -1169,9 +1124,9 @@ cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-l
 
 - - -
 
-## nv show qos advance-buffer-config \<profile-id\> ingress-pool
+## nv show qos advance-buffer-config \<profile-id\> egress-pool
 
-Shows all ingress service pool settings for the specified QoS advanced buffer profile.
+Shows all egress service pool settings for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -1186,14 +1141,14 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-pool
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-pool
 ```
 
 - - -
 
-## nv show qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\>
+## nv show qos advance-buffer-config \<profile-id\> egress-pool \<pool-id\>
 
-Shows configuration settings for a specific ingress service pool for the specified QoS advanced buffer profile.
+Shows configuration settings for a specific egress service pool for the specified QoS advanced buffer profile.
 
 ### Command Syntax
 
@@ -1209,7 +1164,7 @@ Introduced in Cumulus Linux 5.4.0
 ### Example
 
 ```
-cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-pool 3
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global egress-pool 3
 ```
 
 - - -
@@ -1345,6 +1300,51 @@ Introduced in Cumulus Linux 5.4.0
 
 ```
 cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-lossy-buffer priority-group service1 switch-priority 2
+```
+
+- - -
+
+## nv show qos advance-buffer-config \<profile-id\> ingress-pool
+
+Shows all ingress service pool settings for the specified QoS advanced buffer profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-pool
+```
+
+- - -
+
+## nv show qos advance-buffer-config \<profile-id\> ingress-pool \<pool-id\>
+
+Shows configuration settings for a specific ingress service pool for the specified QoS advanced buffer profile.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<profile-id>` | The profile name.|
+| `<pool-id>` | The service pool name.|
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show qos advance-buffer-config default-global ingress-pool 3
 ```
 
 - - -

@@ -5,6 +5,51 @@ weight: 190
 product: Cumulus Linux
 type: nojsscroll
 ---
+
+## nv show interface
+
+Shows information about all the interfaces on the switch, such as the name, type (swp,bond,vrf and so on), state (up or down), speed, MTU, remote host and remote port (if available), and IP address.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface
+```
+
+- - -
+
+## nv show interface \<interface-id\>
+
+Shows the configuration information for the specified interface.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<interface-id>` | The interface name. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.0.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv show interface swp1
+```
+
+- - -
+
 ## nv show interface \<interface-id\> bond member
 
 Shows the bond member configuration for the specified interface.

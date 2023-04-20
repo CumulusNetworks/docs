@@ -9,10 +9,14 @@ Check the latest updates to {{<exlink url="https://air.nvidia.com" text="NVIDIA 
 
 ## April 2023
 <!-- Air:WhatsNew -->
+### 82.2023.0420-012
+- Updated sleep handling for longer running simulations
+- Fixed an issue related to reporting current state when loading larger simulations
+<!-- Air:WhatsNew -->
+
 ### 82.2023.0418-011
 - Added support for copying images between organizations
 - Updated default resource limits
-<!-- Air:WhatsNew -->
 
 ### 82.2023.0410-012
 - Added Ubuntu 22.04

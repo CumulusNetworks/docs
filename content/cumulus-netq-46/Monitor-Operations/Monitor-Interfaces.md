@@ -27,21 +27,21 @@ netq show interfaces physical
 
 Utilization statistics can indicate whether resources are becoming dangerously close to their maximum capacity or other, user-defined thresholds. Depending on the function of the switch, the acceptable thresholds can vary.
 
-### View Compute Resources Utilization
+### Compute Resources Utilization
 
  View how many compute resources&mdash;CPU, disk, and memory&mdash;the switches on your network consume with {{<link title="show/#netq-show-resource-util" text="netq show resource-util">}}:
 
 ```
 netq show resource-util 
 ```
-### View Port Statistics
+### Port Statistics
 
  View statistics about a given node and interface, including frame errors, ACL drops, and buffer drops with {{<link title="show/#netq-show-ethtool-stats" text="netq show ethtool-stats">}}:
 
 ```
 netq show ethtool-stats
 ```
-### View Interface Statistics and Utilization
+### Interface Statistics and Utilization
 
 NetQ Agents collect performance statistics every 30 seconds for the physical interfaces on switches in your network. The NetQ Agent does not collect statistics for non-physical interfaces, such as bonds, bridges, and VXLANs. The NetQ Agent collects the following statistics:
 
@@ -58,21 +58,21 @@ To view interface statistics and utilization, run the {{<link title="show/#netq-
 netq show interface-stats 
 netq show interface-utilization
 ```
-### View ACL Resource Utilization Networkwide
+### ACL Resource Utilization Networkwide
 
  View incoming and outgoing access control lists (ACLs) configured on all switches and host with {{<link title="show/#netq-show-cl-resource" text="netq show cl-resource acl">}}:
 
 ```
 netq show cl-resource acl
 ```
-### View Forwarding Resources Utilization Networkwide
+### Forwarding Resources Utilization Networkwide
 
 View forwarding resources on all devices with {{<link title="show/#netq-show-cl-resource" text="netq show cl-resource forwarding">}}:
 
 ```
 netq show cl-resource forwarding
 ```
-### View SSD Utilization Networkwide
+### SSD Utilization Networkwide
 
 For NetQ Appliances that have 3ME3 solid state drives (SSDs) installed (primarily in on-premises deployments), you can view the utilization of the drive on demand. A warning is generated when a drive drops below 10% health, or has more than a 2% loss of health in 24 hours, indicating the need to rebalance the drive. Tracking SSD utilization over time lets you see any downward trend or drive instability before you receive a warning message.
 
@@ -81,7 +81,7 @@ View SDD utilization with {{<link title="show/#netq-show-cl-ssd-util" text="netq
 ```
 netq show cl-ssd-util
 ```
-### View Disk Storage After BTRFS Allocation Networkwide
+### Disk Storage After BTRFS Allocation Networkwide
 
 Customers running Cumulus Linux 3 which uses the BTRFS (b-tree file system) might experience issues with disk space management. This is a known problem of BTRFS because it does not perform periodic garbage collection, or rebalancing. If left unattended, these errors can make it impossible to rebalance the partitions on the disk. To avoid this issue, NVIDIA recommends rebalancing the BTRFS partitions in a preemptive manner, but only when absolutely needed to avoid reduction in the lifetime of the disk. By tracking the state of the disk space usage, users can determine when to rebalance.
 
@@ -100,6 +100,11 @@ View interface (link) state, type, count, aliases, and additional information wi
 netq show interfaces
 netq show interfaces type
 netq show events message_type interfaces 
+```
+The {{<link title="check/#netq check interfaces" text="netq check interfaces">}} command verifies interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. 
+
+```
+netq check interfaces
 ```
 ## View Link Interfaces in the UI 
 

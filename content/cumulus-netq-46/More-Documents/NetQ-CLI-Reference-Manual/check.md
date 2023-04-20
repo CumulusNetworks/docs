@@ -709,7 +709,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 
 ```
 netq check mlag
-    [label <text-label-name> | hostnames <text-list-hostnames> ]
+    [label <text-label-name> | hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <mlag-number-range-list> | exclude <mlag-number-range-list>]
     [around <text-time>]

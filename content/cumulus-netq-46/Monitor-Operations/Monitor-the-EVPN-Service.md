@@ -15,6 +15,12 @@ netq show evpn
 netq show events message_type evpn
 netq show events-config message_type evpn
 ```
+
+The {{<link title="check/#netq check evpn" text="netq check evpn">}} command verifies the communication status for all nodes (leafs, spines, and hosts) running instances of EVPN in your network fabric:
+
+```
+netq check evpn
+```
 ## View EVPN in the UI
 
 To add the EVPN card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Network services** > **All EVPN Sessions card** > **Open cards**. In this example, there are 6 nodes running the EVPN service, 0 open events (from the last 24 hours), and 48 VNIs.

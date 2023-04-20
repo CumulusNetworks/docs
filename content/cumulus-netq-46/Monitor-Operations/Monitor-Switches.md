@@ -45,7 +45,7 @@ Expand the Switch card to full-screen to view, filter or export information abou
 
 The information available in the UI can also be displayed via the CLI with a corresponding {{<link title="show" text="netq show">}} command. Each command that begins with `netq show` includes the option `<hostname>`. When the `<hostname>` option is included in the command, the output displays results limited to the switch or host you specified.
 
-For example, you can view all events across you network with the {{<link title="show/#netq-show-events" text="netq show events">}} command. To view all events on a particular switch, specify its name in the `<hostname>` field:
+For example, you can view all events across your network with the {{<link title="show/#netq-show-events" text="netq show events">}} command. To view all events on a particular switch, specify its name in the `<hostname>` field in `netq <hostname> show events`. The following example displays all events on the leaf01 switch:
 
 ```
 cumulus@switch:~$ netq leaf01 show events

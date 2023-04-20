@@ -12,7 +12,7 @@ type: nojsscroll
 ## netq lcm add cl-image
 <!-- vale on -->
 
-Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade. For detailed instructions, see {{<link title="Upgrade Cumulus Linux Using LCM">}}.
+Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade. For detailed instructions, see {{<link title="Upgrade Cumulus Linux">}}.
 
 ### Syntax
 

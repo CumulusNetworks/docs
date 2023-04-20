@@ -793,9 +793,23 @@ netq config add opta config-key tHkSI2d3LmRldjMubmV0cWRldi5jdW11bHVasdf29ya3MuY2
 
 - - -
 <!--
+## netq config add opta executor-enabled
+
+### Syntax
+
+```
+netq config add opta executor-enabled
+    [true|false]
+```
+
+### Required Arguments
+
+### Sample Usage
+-->
+<!--
 ## netq config add opta generate-opta-ssl
 
-For additional information, see {{<link title="gNMI Streaming">}}. 
+Generates OPTA TLS/SSL certificates. For additional information, see {{<link title="gNMI Streaming">}}. 
 
 ### Syntax
 
@@ -813,11 +827,11 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | opta-hostnames | \<text-opta-hostnames\> |  |
-| opta-ips | \<text-opta-ips\> |  |
-
-### Sample Usage
+| opta-ips | \<text-opta-ips\> | Specifies OPTA IP addresses |
 
 ### Related Commands
+
+None
 - - -
 -->
 ## netq config add opta proxy-host
@@ -1144,6 +1158,22 @@ cumulus@switch:~$ netq config del cli server
 - ```netq config restart agent```
 
 - - -
+<!--
+## netq config del opta executor-enabled
+
+### Syntax
+
+### Required Arguments
+
+### Options
+
+### Related Commands
+
+- `netq config add opta executor-enabled`
+
+-->
+
+- - -
 ## netq config del opta proxy-host
 
 Deletes a proxy host as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}.
@@ -1191,7 +1221,7 @@ None
 
 - - -
 -->
-
+<!--
 ## netq config lcm-executor
 
 Configures support for lifecycle management features for on-switch OPTA. Read more about {{<link title="Install On-switch OPTA/#configure-the-lcm-executor" text="configuring the LCM executor">}}.
@@ -1222,6 +1252,8 @@ netq config restart lcm-executor
 - `netq config opta`
 
 - - -
+
+-->
 
 ## netq config opta
 

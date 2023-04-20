@@ -69,7 +69,7 @@ To configure the agent on a switch to connect to the OPTA service on another swi
 sudo netq config add agent server 192.168.1.254 vrf mgmt
 sudo netq config restart agent
 ```
-
+<!-- moved to 4.7
 ## Configure the LCM Executor
 
 When the LCM executor is configured, the on-switch OPTA service supports the following {{<link title="Lifecycle Management" text="lifecycle management">}} functions:
@@ -107,3 +107,4 @@ sudo netq config stop lcm-executor
 sudo netq config add opta executor-enabled false
 sudo netq config restart opta
 ```
+-->

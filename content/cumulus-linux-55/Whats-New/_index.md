@@ -41,7 +41,7 @@ Early access features are now called beta features.
   - New commands to {{<link url="Monitoring-Interfaces-and-Transceivers-with-NVUE" text="show and clear interface counters">}}
   - New OSPF commands to {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#troubleshooting" text="show interface and neighbor configuration and counters">}}, and {{<link url="Open-Shortest-Path-First-v2-OSPFv2/#clear-ospf-counters" text="clear OSPF interface counters">}}
   - New command to {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="clear matches against a route map">}}
-  - New {{<link url="Troubleshooting-BGP/#clear-bgp-counters" text="BGP clear commands">}} to clear BGP counters
+  - New {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP commands">}} to clear BGP routes
   - New commands to {{<link url="Precision-Time-Protocol-PTP/#ptp-configuration-and-status" text="show PTP counters">}}
   - New EVPN commands to show {{<link url="EVPN-Multihoming/#troubleshooting" text="multihoming ESI information">}}, layer 2 nexthop group VTEP IP addresses, remote router MAC addresses, and nexthop VTEPs
   - Updated EVPN commands show operational data

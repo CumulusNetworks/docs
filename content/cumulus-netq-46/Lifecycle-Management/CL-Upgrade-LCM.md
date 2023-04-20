@@ -1,5 +1,5 @@
 ---
-title: Upgrade Cumulus Linux Using LCM
+title: Upgrade Cumulus Linux
 author: NVIDIA
 weight: 680
 toc: 4
@@ -25,7 +25,7 @@ When NVUE is enabled, LCM supports upgrades from Cumulus Linux 5.0.0 to later ve
 
 ## Prepare for a Cumulus Linux Upgrade
 
-If the NetQ Agent is already installed on the switches you'd like to upgrade, follow the steps below. If the NetQ Agent is *not* installed on the switches you'd like to upgrade, run a {{<link title="Upgrade Cumulus Linux Using LCM/#Upgrade-Cumulus-Linux-on-Switches-Without NetQ-Agent-Installed" text="switch discovery">}}, then proceed with the upgrade.
+If the NetQ Agent is already installed on the switches you'd like to upgrade, follow the steps below. If the NetQ Agent is *not* installed on the switches you'd like to upgrade, run a {{<link title="Upgrade Cumulus Linux/#Upgrade-Cumulus-Linux-on-Switches-Without NetQ-Agent-Installed" text="switch discovery">}}, then proceed with the upgrade.
 
 Before you upgrade, make sure you have the appropriate files and credentials:
 

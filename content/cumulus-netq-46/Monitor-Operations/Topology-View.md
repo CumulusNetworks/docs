@@ -31,11 +31,11 @@ There are a number of ways in which you can interact with the topology.
 
 ### Move the Topology Focus
 
-You can move the focus on the topology closer to view a smaller number of nodes, or further out to view a larger number of nodes. As with mapping applications, the node labels appear and disappear as you move in and out on the diagram for better readability. To zoom, you can use:
+You can zoom in on a topology to view fewer nodes, or zoom out to view more nodes. As with mapping applications, the node labels appear and disappear as you move in and out on the diagram for better readability. To zoom, you can use:
 
-- The zoom controls, {{<img src="/images/netq/topo-zoom-widget-230.png" width="18">}}, in the bottom right corner of the screen; the '+' zooms you in closer, the '-' moves you further out, and the 'o' resets to the default size.
-- A scrolling motion on your mouse.
-- Your trackpad.
+- The zoom controls {{<img src="/images/netq/topo-zoom-widget-230.png" width="18">}} at the bottom-right corner of the screen
+- A scrolling motion on your mouse
+- Your trackpad
 
 You can also click anywhere on the topology, and drag it left, right, up, or down to view a different portion of the network diagram.
 

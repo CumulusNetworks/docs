@@ -1,5 +1,5 @@
 ---
-title: Upgrade NetQ Agent Using LCM
+title: Upgrade NetQ Agent
 author: NVIDIA
 weight: 670
 toc: 4
@@ -61,7 +61,7 @@ After you complete the preparation steps, upgrade the NetQ Agents:
 
 6. Review each switch:
 
-    - Is the NetQ Agent version 2.4.0 or later? If not, this switch can only be upgraded through the {{<link title="Upgrade Cumulus Linux Using LCM/#upgrade-cumulus-linux-on-switches-without-netq-agent-installed" text="switch discovery">}} process.
+    - Is the NetQ Agent version 2.4.0 or later? If not, this switch can only be upgraded through the {{<link title="Upgrade Cumulus Linux/#upgrade-cumulus-linux-on-switches-without-netq-agent-installed" text="switch discovery">}} process.
     - Is the configuration profile the one you want to apply? If not, click **Change config**, then select an alternate profile to apply to all selected switches.
 
 <div style="padding-left: 18px;">

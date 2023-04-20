@@ -1,5 +1,5 @@
 ---
-title: User Management
+title: Manage Users
 author: NVIDIA
 weight: 600
 toc: 2

@@ -5,7 +5,7 @@ weight: 790
 toc: 3
 ---
 
-Threshold-crossing events are user-defined events that detect and prevent network failures for ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="TCA Event Messages Reference" text="Threshold-crossing Events Reference">}}.
+Threshold-crossing events are user-defined events that detect and prevent network failures for ACL resources, digital optics, forwarding resources, interface errors and statistics, link flaps, resource utilization, and sensor events. You can find a complete list in the {{<link title="Threshold-Crossing Events Reference" text="Threshold-crossing Events Reference">}}.
 
 A notification configuration must contain one rule. Each rule must contain a scope and a threshold. If you want to deliver events to one or more notification channels (for example, email or Slack), create them by following the instructions in {{<link title="Configure System Event Notifications#create-a-channel" text="Create a Channel">}}, and then return here to define your rule.
 
@@ -210,7 +210,7 @@ In this example, three attributes are available. For one or more of these attrib
 | Set of interfaces | ifname  | Starts with | \<partial-interface-name\> such as *swp* or *eth* |
 | Set of sensors | s_name | Starts with | \<partial-sensor-name\> such as *fan*, *temp*, or *psu* |
 
-Refer to {{<link title="WJH Event Messages Reference">}} for WJH drop types and reasons. Leaving an attribute value blank defaults to *all*: all hostnames, interfaces, sensors, forwarding resources, ACL resources, and so forth.
+Refer to {{<link title="WJH Events Reference">}} for WJH drop types and reasons. Leaving an attribute value blank defaults to *all*: all hostnames, interfaces, sensors, forwarding resources, ACL resources, and so forth.
 
 Each attribute is displayed on the rule card as a regular expression equivalent to your choices above:
 

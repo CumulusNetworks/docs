@@ -11,7 +11,7 @@ Using WJH in combination with NetQ helps you identify losses anywhere in the fab
 - View any current or historic drop information, including the reason for the drop
 - Identify problematic flows or endpoints, and pinpoint where communication is failing in the network
 
-For a list of supported WJH events, refer to the {{<link title="WJH Event Messages Reference">}}.
+For a list of supported WJH events, refer to the {{<link title="WJH Events Reference">}}.
 
 To use a gNMI client to export WJH data to a collector, refer to {{<link title="gNMI Streaming#collect-wjh-data-using-gnmi" text="Collect WJH Data with gNMI.">}}
 
@@ -94,7 +94,7 @@ cumulus@switch:~$ sudo netq config add agent wjh-threshold congestion 4 swp1 200
 
 You can filter WJH events by drop type at the NetQ Agent before the NetQ system processes it. You can filter the drop type further by specifying one or more drop reasons or severity. Filter events by creating a NetQ configuration profile in the NetQ UI or with the `netq config add agent wjh-drop-filter` command.
 
-For a complete list of drop types and reasons, refer to the {{<link title="WJH Event Messages Reference">}}.
+For a complete list of drop types and reasons, refer to the {{<link title="WJH Events Reference">}}.
 
 {{<tabs "WJH Filters">}}
 

@@ -22,9 +22,9 @@ You can implement a proxy server (that sits between the NetQ Appliance or VM and
 
 {{</notice>}}
 
-NetQ generates notifications for network protocols, interfaces, services, traces, sensors, system software, and system hardware. Refer to the {{<link title="System Event Messages Reference">}} for descriptions and examples of these events.
+NetQ generates notifications for network protocols, interfaces, services, traces, sensors, system software, and system hardware. Refer to the {{<link title="System Events Reference">}} for descriptions and examples of these events.
 
-Event filters are based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold. Refer to the {{<link title="TCA Event Messages Reference">}} for descriptions and examples of these events.
+Event filters are based on rules you create. You must have at least one rule per filter. A select set of events can be triggered by a user-configured threshold. Refer to the {{<link title="Threshold-Crossing Events Reference">}} for descriptions and examples of these events.
 
 ## Event Message Format
 

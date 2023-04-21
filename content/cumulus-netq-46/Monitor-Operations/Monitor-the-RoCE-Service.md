@@ -76,6 +76,5 @@ To disable RoCE monitoring:
 
 ## Related Information
 
-- {{<link title="Configure Threshold-Crossing Event Notifications" text="Configure notifications for TCA events">}}
-- {{<link title="TCA Event Messages Reference#roce" text="RoCE TCA event reference">}}
+- {{<link title="Threshold-Crossing Events Reference#roce" text="RoCE threshold-crossing events reference">}}
 - {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE and Cumulus Linux">}}

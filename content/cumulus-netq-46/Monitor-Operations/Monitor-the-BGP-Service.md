@@ -14,6 +14,11 @@ netq show bgp
 netq show events message_type bgp
 netq show events-config message_type bgp
 ```
+The {{<link title="check/#netq check bgp" text="netq check bgp">}} command checks for consistency across BGP sessions in your network fabric.
+
+```
+netq check bgp
+```
 ## View BGP in the UI
 
 To add the BGP card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Network services** > **All BGP Sessions card** > **Open cards**. In this example, there are 13 nodes running the BGP protocol, 0 open events (from the last 24 hours), and 10 nodes with unestablished sessions.

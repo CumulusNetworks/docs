@@ -24,6 +24,12 @@ Priority code point (PCP) monitoring requires a switch running NetQ Agent 4.5 or
 
 {{</notice>}}
 
+The {{<link title="check/#netq check roce" text="netq check roce">}} command checks for consistent RoCE and QoS configurations across all nodes in your network fabric.
+
+```
+netq check roce
+```
+
 ## View RoCE Counters Networkwide in the UI
 
 1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
@@ -72,4 +78,4 @@ To disable RoCE monitoring:
 
 - {{<link title="Configure Threshold-Crossing Event Notifications" text="Configure notifications for TCA events">}}
 - {{<link title="TCA Event Messages Reference#roce" text="RoCE TCA event reference">}}
-- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-53/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE and Cumulus Linux">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE and Cumulus Linux">}}

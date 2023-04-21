@@ -25,6 +25,11 @@ Monitor MLAG with the following commands. See the {{<link title="show/#netq-show
 netq show mlag
 netq show events message_type mlag
 ```
+The {{<link title="check/#netq check mlag" text="netq check mlag">}} command verifies MLAG session consistency by identifying all MLAG peers with errors or misconfigurations in the NetQ domain.
+
+```
+netq check mlag
+```
 ## View MLAG in the UI
 
 To add the MLAG card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Network services** > **All MLAG Sessions card** > **Open cards**. This example shows the following for the last 24 hours:

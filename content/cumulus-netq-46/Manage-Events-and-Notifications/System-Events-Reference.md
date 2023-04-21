@@ -286,14 +286,14 @@ The following table lists all system event messages organized by type. You can {
 <tr>
 <td>clag</td>
 <td>CLAG SVI on VLAN is missing from remote peer state</td>
-<td>Warning</td>
+<td>Error</td>
 <td>SVI on vlan @vlan is missing from peer</td>
 <td>SVI on vlan vlan4 is missing from peer</td>
 </tr>
 <tr>
 <td>clag</td>
 <td>CLAG peerlink is not opperating at full capacity. At least one link is down.</td>
-<td>Warning</p></td>
+<td>Error</p></td>
 <td>Clag peerlink not at full redundancy, member link @slave is down</td>
 <td>Clag peerlink not at full redundancy, member link swp40 is down</td>
 </tr>
@@ -716,14 +716,14 @@ The following table lists all system event messages organized by type. You can {
 <tr>
 <td>mtu</td>
 <td>VLAN interface link MTU is smaller than that of its parent MTU</td>
-<td>Warning</td>
+<td>Error</td>
 <td>vlan interface @link mtu @mtu is smaller than parent @parent mtu @parent_mtu</td>
 <td>vlan interface swp3 mtu 1500 is smaller than parent peerlink-1 mtu 1690</td>
 </tr>
 <tr>
 <td>mtu</td>
 <td>Bridge interface MTU is smaller than the member interface with the smallest MTU</td>
-<td>Warning</td>
+<td>Error</td>
 <td>bridge @link mtu @mtu is smaller than least of member interface mtu @min</td>
 <td>bridge swp0 mtu 1280 is smaller than least of member interface mtu 1500</td>
 </tr>

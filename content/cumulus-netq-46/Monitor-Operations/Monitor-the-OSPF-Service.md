@@ -14,7 +14,14 @@ Monitor OSPF with the following commands. See the {{<link title="show/#netq-show
 ```
 netq show ospf
 netq show events message_type ospf
+netq show events-config message_type ospf
 ```
+The {{<link title="check/#netq check ospf" text="netq check ospf">}} command checks for consistency across OSPF sessions in your network fabric.
+
+```
+netq check ospf
+```
+
 ## View OSPF in the UI
 
  To add the OSPF card to your workbench, navigate to the header and select <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** > **Network services** > **All OSPF Sessions card** > **Open cards**. In this example, there are 9 nodes running the service with a total of 40 sessions.

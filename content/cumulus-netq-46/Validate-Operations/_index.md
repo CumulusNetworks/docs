@@ -1,7 +1,7 @@
 ---
 title: Validation Checks
 author: NVIDIA
-weight: 1000
+weight: 750
 toc: 2
 ---
 When you discover operational anomalies, you can check whether the devices, hosts, network protocols, and services are operating as expected. NetQ lets you see when changes have occurred to the network, devices, and interfaces by viewing their operation, configuration, and status at an earlier point in time.

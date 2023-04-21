@@ -412,7 +412,7 @@ Obtain the config-key as follows:
 
 <!-- vale off -->
 - Cloud: Locate and retrieve key from email titled *A new site has been added to your NVIDIA NetQ account* (sent to your NetQ administrator)
-- Remote: Follow the instructions in {{<link title="Premises Management" text="Configure Multiple Premises">}}
+- Remote: Follow the instructions in {{<link title="Configure Premises" text="Configure Multiple Premises">}}
 <!-- vale on -->
 
 ### Syntax

@@ -18,7 +18,11 @@ netq show interfaces type vlan
 netq show macs
 netq show events message_type vlan 
 ```
+The {{<link title="check/#netq check vlan" text="netq check vlan">}} command verifies consistency of the VLAN nodes and interfaces across all links in your network fabric:
 
+```
+netq check vlan
+```
 ## View VLAN in the UI
 
 To view VLAN information, select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then **VLAN**.

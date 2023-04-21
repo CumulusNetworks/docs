@@ -1,5 +1,5 @@
 ---
-title: Premises Management
+title: Configure Premises
 author: NVIDIA
 weight: 500
 toc: 2

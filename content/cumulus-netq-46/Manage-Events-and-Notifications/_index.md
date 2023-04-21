@@ -1,7 +1,7 @@
 ---
 title: Events and Notifications
 author: NVIDIA
-weight: 770
+weight: 700
 toc: 3
 ---
 Events provide information about how a network and its devices are operating during a given time period. They help with troubleshooting and alert network administrators to potential network problems before they become critical. You can view events in the UI or CLI and receive notifications about events via Slack, PagerDuty, syslog, email, or a generic webhook channel. 

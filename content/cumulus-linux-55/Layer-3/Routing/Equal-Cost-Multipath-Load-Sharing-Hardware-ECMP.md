@@ -353,11 +353,9 @@ Cumulus Linux only supports adaptive routing with:
 - You cannot use adaptive routing with EVPN or VXLAN.
 {{%/notice%}}
 
-Adaptive Routing is in Sticky Free mode, where packets route to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.
+With adaptive routing, packets are routed to the less loaded path on a per packet basis to best utilize the fabric resources and avoid congestion for the specific time duration. This mode is more time effective and restricts the port selection change decision to a predefined time.
 
 The change decision for port selection is set to one microsecond; you cannot change it.
-<!--Adaptive Routing is in Sticky Free mode, which uses a periodic grades-based egress port selection process.
-- The grade on each port, which is a value between 0 and 4, depends on buffer usage and link utilization. A higher grade, such as 4, indicates that the port is more congested or that the port is down. Each packet routes to the less loaded path to best utilize the fabric resources and avoid congestion. The adaptive routing engine always selects the least congested port (with the lowest grade). If there are multiple ports with the same grade, the engine randomly selects between them.-->
 
 {{%notice note%}}
 You must configure adaptive routing on *all* ports that are part of the same ECMP route. Make sure the ports are physical uplink ports.

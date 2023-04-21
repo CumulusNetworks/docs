@@ -1,5 +1,5 @@
 ---
-title: System Event Messages Reference
+title: System Events Reference
 author: NVIDIA
 weight: 811
 toc: 4

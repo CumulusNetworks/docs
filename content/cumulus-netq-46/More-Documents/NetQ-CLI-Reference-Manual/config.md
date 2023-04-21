@@ -534,7 +534,7 @@ Restarting netq-agent... Success!
 
 ## netq config add agent wjh
 
-Configures the NetQ Agent to collect and send What Just Happened events from  NVIDIA Spectrum&trade; switches. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}} for a list of supported WJH events and to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for configuration information.
+Configures the NetQ Agent to collect and send What Just Happened events from  NVIDIA Spectrum&trade; switches. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}} for a list of supported WJH events and to {{<link title="Configure and Monitor What Just Happened" text="WJH configuration">}} for configuration information.
 
 ### Syntax
 
@@ -598,7 +598,7 @@ netq config add agent wjh-drop-filter
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. To specify more than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
+| drop-reasons | \<text-wjh-drop-reasons\> | Only collect and send WJH events with these drop reasons. To specify more than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}}. |
 | severity | \<text-drop-severity-list\> | Only collect and send WJH events with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
 ### Sample Usage
@@ -1062,7 +1062,7 @@ netq config del agent wjh-drop-filter
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. To specify than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Event Messages Reference" text="WJH events reference">}}. |
+| drop-reasons | \<text-wjh-drop-reasons\> | Delete WJH event filter with these drop reasons. To specify than one drop reason, format this value as a comma-separated list, without spaces. Valid drop reasons vary according to the drop type. Refer to the {{<link title="WJH Events Reference" text="WJH events reference">}}. |
 | severity | \<text-drop-severity-list\> | Delete WJH event filter with these severities. To specify more than one severity, format this value as a comma-separated list, without spaces. Valid severities include *Notice*, *Warning*, and *Error*. |
 
 ### Sample Usage

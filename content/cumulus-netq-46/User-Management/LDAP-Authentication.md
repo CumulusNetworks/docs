@@ -74,12 +74,12 @@ To create an LDAP configuration:
 
 3. Fill out the LDAP server configuration form according to your particular configuration.
 
-{{<figure src="/images/netq/ldap-server-info-card-450.png" alt="" width="500" >}}
+{{<figure src="/images/netq/ldap-server-config-460.png" alt="" width="500" >}}
 
 4. Click **Save** to complete the configuration, or click **Cancel** to discard the configuration.
 
 {{%notice info%}}
-LDAP config cannot be changed after it is configured. If you need to change the configuration, you must delete the current LDAP configuration and create a new one. Note that if you change the LDAP server configuration, all users created against that LDAP server remain in the NetQ database and continue to be visible, but are no longer viable. You must manually delete those users if you do not want to see them.
+The LDAP configuration cannot be changed after it is configured. If you need to change the configuration, you must delete the current LDAP configuration and create a new one. Note that if you change the LDAP server configuration, all users created against that LDAP server remain in the NetQ database and continue to be visible, but are no longer viable. You must manually delete those users if you do not want to see them.
 {{%/notice%}}
 
 ## Example LDAP Configurations
@@ -161,8 +161,6 @@ In this scenario, we are configuring the LDAP server with basic authentication, 
 5. Enter your administrator password, then select **Search**.
 
 6. If the user is found, the email address, first, and last name fields are automatically populated. If searching is not enabled on the LDAP server, you must enter the information manually.
-
-    {{<figure src="/images/netq/netq-mgmt-user-acct-ldap-search-result-230.png" width="300">}}
 
     {{%notice tip%}}
 If the fields are not automatically filled in, and searching is enabled on the LDAP server, you might need to edit the mapping file.

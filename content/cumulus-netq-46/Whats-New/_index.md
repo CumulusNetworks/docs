@@ -27,9 +27,9 @@ To {{<link title="Upgrade NetQ Appliances and Virtual Machines" text="upgrade to
 Upgrades from releases earlier than NetQ 4.3.0 require an incremental {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="upgrade to version 4.3.0">}} before you {{<link title="Upgrade NetQ Appliances and Virtual Machines" text="back up your data">}} and perform a new installation of NetQ 4.5.0.
 ## Compatible Agent Versions
 
-NetQ 4.5.0 is compatible with NetQ Agent versions 4.4.0 and above. You can install NetQ Agents on switches and servers running:
+NetQ 4.6.0 is compatible with NetQ Agent versions 4.5.0 and above. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 3.7.16 and later
+- Cumulus Linux 4.3.1 (Broadcom switches) and 4.4.0 and above (Spectrum switches)
 - SONiC 202012
 - CentOS 7
 - RHEL 7.1

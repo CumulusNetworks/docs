@@ -1,15 +1,15 @@
 ---
-title: WJH Event Messages Reference
+title: WJH Events Reference
 author: NVIDIA
 weight: 813
 toc: 4
 ---
-This reference lists all the NetQ-supported WJH metrics and provides a brief description of each. The full outputs vary slightly based on the type of drop and whether you are viewing the results in the NetQ UI or through one of the NetQ CLI commands.
+This reference lists all the NetQ-supported What Just Happened (WJH) metrics and provides a brief description of each. The full outputs vary slightly based on the type of drop and whether you are viewing the results in the NetQ UI or through one of the NetQ CLI commands.
 
 For instructions on how to configure and monitor What Just Happened events, refer to {{<link title="Configure and Monitor What Just Happened">}}.
 ## Layer 1 Drops
 
-Displays why a port is in the down state.
+Describes why a port is in the down state.
 
 | Reason | Description|
 | --- | --- |
@@ -40,7 +40,7 @@ In addition to the reason, the information provided for these drops includes:
 
 ## Layer 2 Drops
 
-Displays the reason for a link to be down.
+Describes why a link is down.
 
 | Reason | Severity | Description |
 | --- | --- | --- |
@@ -73,7 +73,7 @@ In addition to the reason, the information provided for these drops includes:
 <!-- vale on -->
 ## Router Drops
 
-Displays the reason why the server is unable to route a packet.
+Describes why the server is unable to route a packet.
 
 <!-- vale off -->
 | Reason | Severity | Description |
@@ -96,7 +96,7 @@ Displays the reason why the server is unable to route a packet.
 | Source IP equals destination IP | Error | Packet has a source IP address equal to the destination IP address |
 | IPv4 source IP is limited broadcast | Error | Packet has broadcast source IP address |
 | IPv4 destination IP is local network (destination = 0.0.0.0/8) | Error | Packet has IPv4 destination address that is a local network (destination=0.0.0.0/8) |
-| IPv4 destination IP is link-local  (destination in 169.254.0.0/16) | Error | Packet has IPv4 destination address that is a local link |
+| IPv4 destination IP is link-local (destination in 169.254.0.0/16) | Error | Packet has IPv4 destination address that is a local link |
 | Ingress router interface is disabled | Warning | Packet destined to a different subnet cannot be routed because ingress router interface is disabled |
 | Egress router interface is disabled | Warning | Packet destined to a different subnet cannot be routed because egress router interface is disabled |
 | IPv4 routing table (LPM) unicast miss | Warning | No route available in routing table for packet |
@@ -107,7 +107,7 @@ Displays the reason why the server is unable to route a packet.
 <!-- vale on -->
 ## Tunnel Drops
 
-Displays the reason for a tunnel to be down.
+Describes why a tunnel is down.
 
 | Reason | Severity | Description |
 | --- | --- | --- |
@@ -118,7 +118,7 @@ Displays the reason for a tunnel to be down.
 
 ## Buffer Drops
 
-Displays the reason why the server buffer has dropped packets.
+Describes why the server buffer has dropped packets.
 
 <!-- vale off -->
 | Reason | Severity | Description |
@@ -129,7 +129,7 @@ Displays the reason why the server buffer has dropped packets.
 | Packet Latency Threshold Crossed | Warning | Time a packet spent within the switch exceeded or dropped below the specified high or low threshold |
 ## ACL Drops
 
-Displays the reason why an ACL has dropped packets.
+Describes why an ACL has dropped packets.
 
 | Reason | Severity | Description|
 | --- | --- | --- |

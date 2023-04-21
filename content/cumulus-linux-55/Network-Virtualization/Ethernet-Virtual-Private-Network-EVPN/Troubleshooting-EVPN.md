@@ -6,15 +6,13 @@ toc: 4
 ---
 This section provides various commands to help you examine your EVPN configuration and provides troubleshooting tips.
 
-The following outputs are from the {{<exlink url="https://gitlab.com/cumulus-consulting/goldenturtle/cumulus_ansible_modules/-/tree/master/inventories/evpn_symmetric" text="EVPN Symmetric Cumulus in the Cloud" >}} demo.
-
 ## General Commands
 
 You can use various NVUE or Linux commands to examine interfaces, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
 
 - `nv show nve vxlan` (NVUE) or `ip [-d] link show type vxlan` (Linux)
-- `net show net show bridge macs` or `bridge [-s] fdb show` (Linux)
-- `net show net show bridge vlan` or `bridge vlan show` (Linux)
+- `nv show bridge domain <domain> mac-table` (NVUE) or `bridge [-s] fdb show` (Linux)
+- `nv show bridge domain <domain> vlan` (NVUE) or `bridge vlan show` (Linux)
 - `ip neighbor show` (Linux)
 - `ip route show [table <vrf-name>]` (Linux)
 
@@ -29,41 +27,72 @@ cumulus@leaf01:~$ ip -d link show type vxlan
 ...
 ```
 
-The following example output for the `net show bridge macs` command shows:
-
-- bond1 is in VLAN ID 10, which maps to VXLAN interface vni10.
-- 26:76:e6:93:32:78 is the host MAC learned on bond1.
-- A remote VTEP that participates in VLAN ID 10 is 10.0.1.2 (the FDB entries have a MAC address of 00:00:00:00:00:00). BUM traffic replication uses these entries.
-- 68:0f:31:ae:3d:7a is a remote host MAC reachable over the VXLAN tunnel via VTEP 10.0.1.2.
-
+The following shows example output for the `nv show bridge domain <domain> mac-table` command:
+<!-->
+- bond1 is in VLAN ID 10.
+- 48:b0:2d:d8:33 is the host MAC address learned on bond1.
+- A remote VTEP that participates in VLAN ID 10 is 10.0.1.34 (the FDB entries have a MAC address of 48:b0:2d:b4:4e). BUM traffic replication uses these entries.
+- 44:38:39:22:01 is a remote host MAC reachable over the VXLAN tunnel via VTEP 10.0.1.2.
+-->
 ```
-cumulus@leaf01:mgmt:~$ net show bridge macs
-
-VLAN      Master  Interface  MAC                TunnelDest  State      Flags               LastSeen
---------  ------  ---------  -----------------  ----------  ---------  ------------------  --------
-10        bridge  bond1      00:60:08:69:97:ef                                             00:01:40
-10        bridge  bond1      26:76:e6:93:32:78                                             <1 sec
-10        bridge  bridge     00:00:00:00:00:1a              permanent                      00:13:08
-10        bridge  bridge     76:ed:2a:8a:67:24              permanent                      00:13:08
-10        bridge  peerlink   c0:8a:e6:03:96:d0              static     sticky              00:12:58
-10        bridge  vni10      50:88:b2:3c:08:f9              static     sticky              00:10:01
-10        bridge  vni10      68:0f:31:ae:3d:7a                         extern_learn        00:09:58
-10        bridge  vni10      94:8e:1c:0d:77:93                         extern_learn        00:09:58
-10        bridge  vni10      c8:7d:bc:96:71:f3              static     sticky              00:10:01
-20        bridge  bond2      cc:6e:fa:8d:ff:92                                             00:00:26
-20        bridge  bond2      f0:9d:d0:59:60:5d                                             00:00:08
-20        bridge  bridge     00:00:00:00:00:1b              permanent                      00:36:50
-20        bridge  bridge     76:ed:2a:8a:67:24              permanent                      00:36:50
-20        bridge  peerlink   c0:8a:e6:03:96:d0              static     sticky              00:36:41
-20        bridge  vni20      12:15:9a:9c:f2:e1                         extern_learn        00:33:41
-20        bridge  vni20      50:88:b2:3c:08:f9              static     sticky              00:33:44
-20        bridge  vni20      c8:7d:bc:96:71:f3              static     sticky              00:33:44
-20        bridge  vni20      f8:4f:db:ef:be:8b                         extern_learn        00:33:40
-untagged          vni10      00:00:00:00:00:00  10.0.1.2    permanent  self                00:10:01
-untagged          vni10      50:88:b2:3c:08:f9  10.0.1.2    static     self, sticky        00:10:01
-untagged          vni10      68:0f:31:ae:3d:7a  10.0.1.2               self, extern_learn  00:09:58
-untagged          vni10      94:8e:1c:0d:77:93  10.0.1.2               self, extern_learn  00:09:58
-untagged          vni10      c8:7d:bc:96:71:f3  10.0.1.2    static     self, sticky        00:10:01
+cumulus@leaf01:mgmt:~$ nv show bridge domain br_default mac-table
+    age     bridge-domain  entry-type  interface   last-update  MAC address      src-vni  vlan  vni   Summary          
+--  ------  -------------  ----------  ----------  -----------  --------------…  -------  ----  ----  ----------------…
+0   32107   br_default                 vxlan48     32107        44:38:39:22:01…           4036  None                   
+1   32107   br_default                 vxlan48     32107        44:38:39:22:01…           4036  None                   
+2   32107   br_default                 vxlan48     32107        44:38:39:22:01…           4036  None                   
+3   32107   br_default                 vxlan48     32107        44:38:39:be:ef…           4036  None  remote-dst:      
+                                                                                                      10.0.1.34        
+4   32107   br_default                 vxlan48     32107        44:38:39:22:01…           4036  None                   
+5   32107   br_default                 vxlan48     32107        44:38:39:22:01…           4036  None                   
+6   32107   br_default                 vxlan48     32107        44:38:39:22:01…           10    None                   
+7   32107   br_default                 vxlan48     32107        48:b0:2d:b4:4e…           10    None  remote-dst:      
+                                                                                                      10.0.1.34        
+8   32107   br_default                 vxlan48     32107        48:b0:2d:93:17…           10    None  remote-dst:      
+                                                                                                      10.0.1.34        
+9   32107   br_default     static      vxlan48     32107        44:38:39:22:01…           10    None                   
+10  32107   br_default                 vxlan48     32107        44:38:39:22:01…           30    None                   
+11  32107   br_default                 vxlan48     32107        48:b0:2d:64:0b…           30    None  remote-dst:      
+                                                                                                      10.0.1.34        
+12  32107   br_default                 vxlan48     32107        48:b0:2d:33:52…           30    None  remote-dst:      
+                                                                                                      10.0.1.34        
+13  32107   br_default     static      vxlan48     32107        44:38:39:22:01…           30    None                   
+14  32107   br_default                 vxlan48     32107        44:38:39:22:01…           20    None                   
+15  32107   br_default                 vxlan48     32107        48:b0:2d:c8:93…           20    None  remote-dst:      
+                                                                                                      10.0.1.34        
+16  32107   br_default                 vxlan48     32107        48:b0:2d:08:5b…           20    None  remote-dst:      
+                                                                                                      10.0.1.34        
+17  32107   br_default     static      vxlan48     32107        44:38:39:22:01…           20    None                   
+18  32107   br_default                 vxlan48     32107        44:38:39:22:01…           4024  None  remote-dst:      
+                                                                                                      10.10.10.64      
+19  32107   br_default                 vxlan48     32107        44:38:39:22:01…           4024  None  remote-dst:      
+                                                                                                      10.10.10.63      
+20  32107   br_default                 vxlan48     32107        44:38:39:22:01…           4024  None  remote-dst:      
+                                                                                                      10.0.1.34        
+                                                                                                      remote-dst:      
+                                                                                                      10.10.10.4       
+21  32107   br_default                 vxlan48     32107        44:38:39:22:01…           4024  None  remote-dst:      
+                                                                                                      10.0.1.34        
+                                                                                                      remote-dst:      
+                                                                                                      10.10.10.3       
+22  32107   br_default                 vxlan48     32107        44:38:39:22:01…           4024  None  remote-dst:      
+                                                                                                      10.10.10.2       
+23  170012  br_default     permanent   vxlan48     170012       62:a9:08:f4:f6…                 None                   
+24  32107                  permanent   vxlan48     32107        00:00:00:00:00…  20             None  remote-dst:      
+                                                                                                      10.0.1.34        
+25  170012  br_default     permanent   peerlink    170012       48:b0:2d:b2:89…                                        
+26  121     br_default                 bond2       31625        48:b0:2d:29:8f…           20                           
+27  6       br_default                 bond2       169980       48:b0:2d:44:90…           20                           
+28  170012  br_default     permanent   bond2       170012       48:b0:2d:b2:35…                                        
+29  121     br_default                 bond3       31625        48:b0:2d:a9:57…           30                           
+30  15      br_default                 bond3       169970       48:b0:2d:f5:cf…           30                           
+31  170012  br_default     permanent   bond3       170012       48:b0:2d:2c:b6…                                        
+32  121     br_default                 bond1       31625        48:b0:2d:d8:33…           10                           
+33  14      br_default                 bond1       169976       48:b0:2d:fd:48…           10                           
+34  170012  br_default     permanent   bond1       170012       48:b0:2d:2b:8b…                                        
+35                         permanent   br_default               00:00:00:00:00…                                        
+36                         permanent   br_default               44:38:39:be:ef…                                        
+37                         permanent   br_default               00:00:00:00:00… 
 ...
 ```
 
@@ -214,26 +243,19 @@ Total number of neighbors 4
 
 ## Show EVPN VNIs
 
-Run the vtysh `show bgp l2vpn evpn vni` command or the NVUE `net show bgp l2vpn evpn vni` command to display the configured VNIs on a network device participating in BGP EVPN. This command is only relevant on a VTEP. For symmetric routing, this command displays the special layer 3 VNIs for each tenant VRF.
-
-The following example from leaf01 shows three layer 2 VNIs (10, 20 and 30) as well as two layer 3 VNIs (4001, 4002).
+To display the configured VNIs on a network device participating in BGP EVPN, run the NVUE `nv show vrf <vrf> evpn bgp-info` command or the vtysh `show bgp l2vpn evpn vni` command. This command is only relevant on a VTEP. For symmetric routing, this command displays the special layer 3 VNIs for each tenant VRF.
 
 ```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-leaf01# show bgp l2vpn evpn vni
-Advertise Gateway Macip: Disabled
-Advertise SVI Macip: Disabled
-Advertise All VNI flag: Enabled
-BUM flooding: Head-end replication
-Number of L2 VNIs: 3
-Number of L3 VNIs: 2
-Flags: * - Kernel
-  VNI        Type RD                    Import RT                 Export RT                 Tenant VRF
-* 20         L2   10.10.10.1:4          65101:20                  65101:20                 RED
-* 30         L2   10.10.10.1:6          65101:30                  65101:30                 BLUE
-* 10         L2   10.10.10.1:3          65101:10                  65101:10                 RED
-* 4002       L3   10.1.30.2:2           65101:4002                65101:4002               BLUE
-* 4001       L3   10.1.20.2:5           65101:4001                65101:4001               RED
+cumulus@border01:mgmt:~$ nv show vrf RED evpn bgp-info
+                       operational        applied
+---------------------  -----------------  -------
+local-vtep             10.0.1.255                
+rd                     10.10.10.63:3             
+router-mac             44:38:39:be:ef:ff         
+system-ip              10.10.10.63               
+system-mac             44:38:39:22:01:74         
+[export-route-target]  65253:4001                
+[import-route-target]  65253:4001
 ```
 
 Run the NVUE `nv show evpn vni` command or the vtysh `show evpn vni` command to see a summary of VNIs and the number of MAC or ARP entries associated with each VNI.
@@ -356,37 +378,41 @@ The following example command shows statistics for VNI 10:
 cumulus@leaf01:mgmt:~$ nv show nve counters vni 10
 ```
 -->
-## Examine Remote Router MACs
+## Examine Remote Router MAC Addresses
 
-For symmetric routing, run the vtysh `show evpn rmac vni <vni>` command or the `net show evpn rmac vni <vni>` command to examine the router MACs corresponding to all remote VTEPs. This command is only relevant for a layer 3 VNI:
+To examine the router MACs corresponding to all remote VTEPs for symmetric routing, run the NVUE `nv show vrf <vrf> evpn remote-router-mac` command or the vtysh `show evpn rmac vni all` command. This command is only relevant for a layer 3 VNI:
 
 ```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# show evpn rmac vni 4001
-Number of Remote RMACs known for this VNI: 1
-MAC               Remote VTEP
-44:38:39:be:ef:bb 10.0.1.2
+cumulus@border01:mgmt:~$ nv show vrf RED evpn remote-router-mac
+MAC address        remote-vtep
+-----------------  -----------
+44:38:39:22:01:7a  10.10.10.1 
+44:38:39:22:01:7c  10.10.10.64
+44:38:39:22:01:8a  10.10.10.4 
+44:38:39:22:01:78  10.10.10.2 
+44:38:39:22:01:84  10.10.10.3 
+44:38:39:be:ef:aa  10.0.1.12
 ```
-
-Run the vtysh `show evpn rmac vni all` command or the `net show evpn rmac vni all` command to examine router MACs for all layer 3 VNIs.
 
 ## Examine Gateway Next Hops
 
-For symmetric routing, you can run the vtysh `show evpn next-hops vni <vni>` command or the `net show evpn next-hops vni <vni>` command to examine the gateway next hops. This command is only relevant for a layer 3 VNI. The gateway next hop IP addresses correspond to the remote VTEP IP addresses. Cumulus Linux installs the remote host and prefix routes using these next hops:
+To examine the gateway next hops for symmetric routing, run the NVUE `nv show vrf <vrf> evpn nexthop-vtep` command or the vtysh `show evpn next-hops vni <vni>` command. This command is only relevant for a layer 3 VNI. The gateway next hop IP addresses correspond to the remote VTEP IP addresses. Cumulus Linux installs the remote host and prefix routes using these next hops:
 
 ```
-cumulus@leaf01:mgmt:~$ sudo vtysh
-...
-leaf01# show evpn next-hops vni 4001
-Number of NH Neighbors known for this VNI: 1
-IP              RMAC
-10.0.1.2        44:38:39:be:ef:bb
+cumulus@border01:mgmt:~$ nv show vrf RED evpn nexthop-vtep
+Nexthop      router-mac       
+-----------  -----------------
+10.0.1.12    44:38:39:be:ef:aa
+10.10.10.1   44:38:39:22:01:7a
+10.10.10.2   44:38:39:22:01:78
+10.10.10.3   44:38:39:22:01:84
+10.10.10.4   44:38:39:22:01:8a
+10.10.10.64  44:38:39:22:01:7c
 ```
 
-Run the vtysh `show evpn next-hops vni all` command or the `net show evpn next-hops vni` `all` command to examine gateway next hops for all layer 3 VNIs.
+Run the vtysh `show evpn next-hops vni all` command to examine gateway next hops for all layer 3 VNIs.
 
-You can query a specific next hop; the output displays the remote host and prefix routes through this next hop:
+With vtysh, you can query a specific next hop; the output displays the remote host and prefix routes through this next hop:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -399,6 +425,26 @@ Ip: 10.0.1.2
     10.1.10.104/32
     10.1.20.105/32
 ```
+
+## Show EVPN Access VLANs
+
+To show EVPN access VLAN information, run the NVUE `nv show evpn access-vlan-info vlan` command or the vtysh `show evpn access-vlan` command.
+
+```
+cumulus@border01:mgmt:~$ nv show evpn access-vlan-info vlan
+Vlan-id  member-interface-count  vni  vni-count  vxlan-interface  Summary                   
+-------  ----------------------  ---  ---------  ---------------  --------------------------
+1        2                                                        member-interface:    bond3
+                                                                  member-interface: peerlink
+101      2                                                        member-interface:    bond3
+                                                                  member-interface: peerlink
+102      2                                                        member-interface:    bond3
+                                                                  member-interface: peerlink
+4024                                  1          vxlan48                                    
+4036                                  1          vxlan48      
+```
+
+You can drill down and show information about a specific vlan with the `nv show evpn access-vlan-info vlan <vlan>` command.
 
 ## Show the VRF Routing Table in FRR
 

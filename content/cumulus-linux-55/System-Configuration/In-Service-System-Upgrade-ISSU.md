@@ -47,7 +47,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Linux Command ">}}
+{{< tab "csmgrctl Command ">}}
 
 ```
 cumulus@switch:~$ sudo csmgrctl -c
@@ -67,7 +67,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Linux Command ">}}
+{{< tab "csmgrctl Command ">}}
 
 ```
 cumulus@switch:~$ sudo csmgrctl -f
@@ -91,7 +91,7 @@ cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
-{{< tab "Linux Command ">}}
+{{< tab "csmgrctl Command ">}}
 
 ```
 cumulus@switch:~$ sudo csmgrctl -w
@@ -132,7 +132,7 @@ The following command upgrades all the system components:
 The NVUE command is not supported.
 
 {{< /tab >}}
-{{< tab "Linux Command ">}}
+{{< tab "csmgrctl Command ">}}
 
 ```
 cumulus@switch:~$ sudo csmgrctl -u
@@ -149,7 +149,7 @@ The following command provides information on the components you want to upgrade
 The NVUE command is not supported.
 
 {{< /tab >}}
-{{< tab "Linux Command ">}}
+{{< tab "csmgrctl Command ">}}
 
 ```
 cumulus@switch:~$ sudo csmgrctl -d
@@ -177,7 +177,7 @@ Run the following command to enable maintenance mode. When maintenance mode is o
 The NVUE command is not supported.
 
 {{< /tab >}}
-{{< tab "Linux Command ">}}
+{{< tab "csmgrctl Command ">}}
 
 ```
 cumulus@switch:~$ sudo csmgrctl -m1
@@ -194,7 +194,7 @@ You can run additional commands to bring all the ports down, then up to restore 
 The NVUE command is not supported.
 
 {{< /tab >}}
-{{< tab "Linux Commands ">}}
+{{< tab "csmgrctl Commands ">}}
 
 ```
 cumulus@switch:~$ sudo csmgrctl -p0
@@ -218,7 +218,7 @@ Run the following command to disable maintenance mode and restore normal operati
 The NVUE command is not supported.
 
 {{< /tab >}}
-{{< tab "Linux Command ">}}
+{{< tab "csmgrctl Command ">}}
 
 ```
 cumulus@switch:~$ sudo csmgrctl -m0

@@ -9,7 +9,7 @@ Installing the NetQ CLI on your NetQ VMs, switches, or hosts gives you access to
 
 After installing the NetQ software and agent on each switch you want to monitor, you can also install the NetQ CLI on switches running:
 
-- Cumulus Linux 3.7.16 and later
+- Cumulus Linux 4.3.1 (Broadcom switches) and 4.4.0 and above (Spectrum switches)
 - SONiC 202012
 - CentOS 7
 - RHEL 7.1
@@ -312,57 +312,21 @@ Follow these steps to install the NetQ CLI on a switch or host.
 
 {{<tab "Cumulus Linux">}}
 
-To install the NetQ CLI you need to install `netq-apps` on each switch. This is available from the NVIDIA networking repository.
+Cumulus Linux 4.4 and later includes the `netq-apps` package by default. To upgrade the NetQ CLI to the latest version:
 
-Cumulus Linux 4.4 and later includes the `netq-apps` package by default.
-
-{{<notice note>}}
-If your network uses a proxy server for external connections, you should first {{<kb_link latest="cl" url="System-Configuration/Configuring-a-Global-Proxy.md" text="configure a global proxy">}} so <code>apt-get</code> can access the software package in the NVIDIA networking repository.
-{{</notice>}}
-
-To obtain the NetQ CLI package:
-
-Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
-
-*Note that NetQ has a separate repository from Cumulus Linux.*
-
-{{<tabs "TabID327" >}}
-
-{{<tab "Cumulus Linux 3.7" >}}
+1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-4.5
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ...
 ```
 
 {{<notice tip>}}
-You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository to always retrieve the latest version of NetQ.
+You can specify a NetQ CLI version in the repository configuration. The following example shows the repository configuration to retrieve NetQ CLI v4.3: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.3</pre>
 {{</notice>}}
 
-{{</tab>}}
-
-{{<tab "Cumulus Linux 4.0 and later" >}}
-
-Cumulus Linux 4.4 and later includes the `netq-apps` package by default.
-
-To add the repository, uncomment or add the following line in `/etc/apt/sources.list`:
-
-```
-cumulus@switch:~$ sudo nano /etc/apt/sources.list
-...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.5
-...
-```
-
-{{<notice tip>}}
-You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
-{{</notice>}}
-
-{{</tab>}}
-
-{{</tabs>}}
 
 2. Update the local `apt` repository and install the software on the switch.
 

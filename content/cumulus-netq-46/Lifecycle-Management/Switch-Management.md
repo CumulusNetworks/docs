@@ -5,7 +5,7 @@ weight: 650
 toc: 4
 ---
 
-Upon installation, lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. This includes all switches running Cumulus Linux 3.7.12 or later, SONiC 202012 and 202106, and NetQ Agent 4.1.0 or later in your network. From this list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades.
+Upon installation, lifecycle management displays an inventory of switches that are available for software installation or upgrade through NetQ. From the inventory list, you can assign access profiles and roles to switches, and select switches for software installation and upgrades.
 
 ## View the LCM Switch Inventory
 

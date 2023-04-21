@@ -65,57 +65,26 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Obtain NetQ Agent Software Package
 
-To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
+Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upgrade the NetQ Agent to the latest version: 
 
-To obtain the NetQ Agent package:
-
-Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
-
-*Note that NetQ has a separate repository from Cumulus Linux.*
-
-{{<tabs "Get Agent Package" >}}
-
-{{<tab "Cumulus Linux 3.7" >}}
+1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-{{<version>}}
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ...
 ```
 
 {{<notice tip>}}
-You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.3: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.3</pre>
 {{</notice>}}
 
-{{</tab>}}
-
-{{<tab "Cumulus Linux 4.0 and later">}}
-
-Cumulus Linux 4.4 and later includes the `netq-agent` package by default.
-
-To add the repository, uncomment or add the following line in `/etc/apt/sources.list`:
-
-```
-cumulus@switch:~$ sudo nano /etc/apt/sources.list
-...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-{{<version>}}
-...
-```
-
-{{<notice tip>}}
-You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
-{{</notice>}}
-
-Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
+2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
 
 ```
 cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
 ```
-
-{{</tab>}}
-
-{{</tabs>}}
 
 {{</tab>}}
 

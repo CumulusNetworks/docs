@@ -148,7 +148,7 @@ Sample Window : 2021/06/16 12:57:23.046 - 2021/06/16 14:46:17.701
 The following command saves dropped packets to a file in PCAP format
 
 ```
-cumulus@switch:~$ what-just-happened poll --export
+cumulus@switch:~$ what-just-happened poll --export --no_metadata
 PCAP file path : /var/log/mellanox/wjh/wjh_user_2021_06_16_12_03_15.pcap
 
 #    Timestamp              sPort  dPort  VLAN  sMAC               dMAC               EthType  Src IP:Port  Dst IP:Port  IP Proto  Drop   Severity  Drop reason - Recommended action

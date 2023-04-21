@@ -363,7 +363,7 @@ The first `adduser` command prompts for information and a password. You can skip
 
 {{%notice note%}}
 - NVUE does not provide commands to configure per-command authorization.
-- TACACS+ per command authorization does not work when you set the VRF to default in the `/etc/tacplus_servers` file. To work around this issue, specify the interface name that the default VRF uses in the `vrf=` setting of the `/etc/tacplus_servers` file or use the NVUE `nv set system aaa tacacs vrf` command.
+- Per command authorization with TACACS+ does not work when you want to reach the TACACS+ server through the default VRF (with `vrf=default` set in the `/etc/tacplus_servers` file). To work around this issue, specify the egress interface name you use in the default VRF to reach your TACACS+ server in the `vrf=` setting of the `/etc/tacplus_servers` file; for example, `vrf=swp51`. Alternatively, run the NVUE `nv set system aaa tacacs vrf` command; for example, `nv set system aaa tacacs vrf swp51`.
 {{%/notice%}}
 
 The `tacplus-auth` command handles authorization for each command. To make this an enforced authorization, change the TACACS+ login to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The `tacplus-restrict` utility simplifies setting up the restricted environment. The example below initializes the environment for the *tacacs0* user account. This is the account for TACACS+ users at privilege level `0`.

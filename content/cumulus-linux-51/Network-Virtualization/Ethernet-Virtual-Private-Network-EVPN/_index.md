@@ -25,7 +25,7 @@ Cumulus Linux fully supports EVPN as the control plane for VXLAN, including for 
 - Layer 3 multi-tenancy.
 - IPv6 tenant routing.
 - [ECMP](## "Equal Cost Multi Path") for overlay networks on NVIDIA Spectrum-A1 ASICs. ECMP occurs in the overlay when there are multiple next hops.
-- Head end replication is on by default. Cumulus Linux supports up to 128 VTEPs with head end replication.
+- Head end replication is on by default.
 
 Cumulus Linux supports the EVPN address family with both [eBGP](## "external BGP") and [iBGP](## "internal BGP") peering. If you configure underlay routing with eBGP, you can use the same eBGP session to carry EVPN routes. In a typical 2-tier Clos network where the leafs are VTEPs, if you use eBGP sessions between the leafs and spines for underlay routing, the same sessions exchange EVPN routes. The spine switches act as *route forwarders* and do not install any forwarding state as they are not VTEPs. When the switch exchanges EVPN routes over iBGP peering, you can use OSPF as the IGP or resolve next hops using iBGP.
 

@@ -375,7 +375,9 @@ To add SSH daemon configuration for the Cumulus Linux SSH service that NVUE does
 -->
 ## Flexible Snippets
 
-Flexible snippets are an extension of traditional snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file, then add content. Cumulus Linux runs flexible snippets as root. 
+Flexible snippets are an extension of traditional snippets that let you manage any text file on the system. You can add content to an existing text file or create a new text file, then add content. Cumulus Linux runs flexible snippets as root.
+
+To configure and manage flexible snippets, your user account must be in the sudo group, which includes the NVUE `system-admin` role, or you must be the root user.
 
 Flexible snippets do *not* support:
 - Binary files.

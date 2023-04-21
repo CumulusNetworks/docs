@@ -29,12 +29,22 @@ You can configure the switch to restart in one of the following modes.
 Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
 {{%/notice%}}
 
-NVIDIA recommends you use NVUE commands to configure restart mode and reboot the system. If you prefer to use `csmgrctl` commands, you must stop NVUE from managing the `/etc/cumulus/csmgrd.conf` file before you set restart mode. Either edit the `/etc/cumulus/csmgrd.conf` file and set the `csmgrctl_override=true` option or run the following NVUE commands:
+NVIDIA recommends you use NVUE commands to configure restart mode and reboot the system. If you prefer to use `csmgrctl` commands, you must stop NVUE from managing the `/etc/cumulus/csmgrd.conf` file before you set restart mode:
 
-```
-cumulus@switch:~$ nv set system config apply ignore /etc/cumulus/csmgrd.conf
-cumulus@switch:~$ nv config apply
-```
+1. Run the following NVUE commands:
+
+   ```
+   cumulus@switch:~$ nv set system config apply ignore /etc/cumulus/csmgrd.conf
+   cumulus@switch:~$ nv config apply
+   ```
+
+2. Edit the `/etc/cumulus/csmgrd.conf` file and set the `csmgrctl_override` option to `true`:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/csmgrd.conf
+   csmgrctl_override=true
+   ...
+   ```
 
 The following command configures the switch to restart in cold mode:
 
@@ -77,10 +87,10 @@ cumulus@switch:~$ sudo csmgrctl -f
 {{< /tabs >}}
 
 The following command configures the switch to restart in warm mode.
-
+<!-->
 {{< notice warning >}}
 Warm restart mode resets any manually configured FEC settings.
-{{< /notice >}}
+{{< /notice >}}-->
 
 {{< tabs "76 ">}}
 {{< tab "NVUE Command ">}}

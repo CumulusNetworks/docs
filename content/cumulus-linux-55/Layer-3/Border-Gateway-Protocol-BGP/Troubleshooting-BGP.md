@@ -194,7 +194,7 @@ sub-group
 
 ## Show BGP Route Information
 
-You can run NVUE commands to show route statistics for a BGP neighbor, such as the number routes, and information about advertised and received routes.
+You can run NVUE commands to show route statistics for a BGP neighbor, such as the number of routes, and information about advertised and received routes.
 
 To show the route count, run the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast route-counters` command for IPv4 or the `nv show vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast route-counters` command for IPv6.
 
@@ -252,11 +252,50 @@ To show information about a specific received route, add the route at the end of
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 
 ```
 
+You can also specify `-o json` at the end of the command to see the output in json format.
+
 ## Show Next Hop Information
+
+To show a summary of all the BGP IPv4 or IPv6 next hops, run the `nv show vrf <vrf> router bgp nexthop ipv4` or `nv show vrf <vrf> router bgp nexthop ipv6` command. The output shows the IGP metric, the number of paths pointing to a next hop, and the address or interface used to reach a next hop.
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4
+Nexthops
+===========
+                                                                                 
+    PathCnt - Number of paths pointing to this Nexthop, ResolvedVia - Resolved via   
+    address or interface, Interface - Resolved via interface                         
+                                                                                 
+    Address      IGPMetric  Valid  PathCnt  ResolvedVia                Interface    
+    -----------  ---------  -----  -------  -------------------------  -------------
+    10.0.1.34    0          on     160      fe80::4ab0:2dff:fe60:910e  swp54        
+                                            fe80::4ab0:2dff:fea7:7852  swp53        
+                                            fe80::4ab0:2dff:fec8:8fb9  swp52        
+                                            fe80::4ab0:2dff:feff:e147  swp51        
+    10.10.10.2   0          on     15       fe80::4ab0:2dff:fe2d:495c  peerlink.4094
+    10.10.10.3   0          on     15       fe80::4ab0:2dff:fe60:910e  swp54        
+                                            fe80::4ab0:2dff:fea7:7852  swp53        
+                                            fe80::4ab0:2dff:fec8:8fb9  swp52        
+                                            fe80::4ab0:2dff:feff:e147  swp51        
+    10.10.10.4   0          on     15       fe80::4ab0:2dff:fe60:910e  swp54        
+                                            fe80::4ab0:2dff:fea7:7852  swp53        
+                                            fe80::4ab0:2dff:fec8:8fb9  swp52        
+                                            fe80::4ab0:2dff:feff:e147  swp51        
+    10.10.10.63  0          on     15       fe80::4ab0:2dff:fe60:910e  swp54        
+                                            fe80::4ab0:2dff:fea7:7852  swp53        
+                                            fe80::4ab0:2dff:fec8:8fb9  swp52        
+                                            fe80::4ab0:2dff:feff:e147  swp51        
+    10.10.10.64  0          on     15       fe80::4ab0:2dff:fe60:910e  swp54        
+                                            fe80::4ab0:2dff:fea7:7852  swp53        
+                                            fe80::4ab0:2dff:fec8:8fb9  swp52        
+                                            fe80::4ab0:2dff:feff:e147  swp51    
+```
 
 To show information about a specific next hop, run the vtysh `show bgp vrf default nexthop <ip-address>` command or run these NVUE commands:
 - `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address>` for IPv4
 - `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address>` for IPv6
+
+Add the `-o json` option to the command to show the information in json format:
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2
@@ -287,7 +326,68 @@ path
     6     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
 ```
 
-To show the paths for a specific next hop, run these NVUE commands:
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 -o json
+{
+  "complete": "on",
+  "igp-metric": 0,
+  "last-update-time": 1681940481,
+  "path": {
+    "1": {
+      "address-family": "l2vpn-evpn",
+      "flags": {
+        "damped": "off",
+        "deterministic-med-selected": "on",
+        "history": "off",
+        "multipath": "off",
+        "nexthop-self": "off",
+        "removed": "off",
+        "selected": "off",
+        "stale": "off",
+        "valid": "on"
+      },
+      "prefix": "[5]:[0]:[10.1.20.0/24]/352",
+      "rd": "10.10.10.2:3",
+      "vrf": "default"
+    },
+    "10": {
+      "address-family": "l2vpn-evpn",
+      "flags": {
+        "damped": "off",
+        "deterministic-med-selected": "off",
+        "history": "off",
+        "multipath": "off",
+        "nexthop-self": "off",
+        "removed": "off",
+        "selected": "off",
+        "stale": "off",
+        "valid": "on"
+      },
+      "prefix": "[5]:[0]:[10.1.30.0/24]/352",
+      "rd": "10.10.10.2:2",
+      "vrf": "default"
+    },
+    "11": {
+      "address-family": "l2vpn-evpn",
+      "flags": {
+        "damped": "off",
+        "deterministic-med-selected": "off",
+        "history": "off",
+        "multipath": "off",
+        "nexthop-self": "off",
+        "removed": "off",
+        "selected": "off",
+        "stale": "off",
+        "valid": "on"
+      },
+      "prefix": "[5]:[0]:[10.1.20.0/24]/352",
+      "rd": "10.10.10.2:3",
+      "vrf": "default"
+    },
+...
+```
+
+To show specific next hop path information, run these NVUE commands:
 - `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> path` for IPv4
 - `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> path` for IPv6
 
@@ -303,7 +403,49 @@ Path  addres…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.�
 6     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
 ```
 
-To show how BGP resolves a specific next hop, run these NVUE commands:
+Add the `-o json` option to the command to show the information in json format:
+
+```
+cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 path -o json
+{
+  "1": {
+    "address-family": "l2vpn-evpn",
+    "flags": {
+      "damped": "off",
+      "deterministic-med-selected": "on",
+      "history": "off",
+      "multipath": "off",
+      "nexthop-self": "off",
+      "removed": "off",
+      "selected": "off",
+      "stale": "off",
+      "valid": "on"
+    },
+    "prefix": "[5]:[0]:[10.1.20.0/24]/352",
+    "rd": "10.10.10.2:3",
+    "vrf": "default"
+  },
+  "10": {
+    "address-family": "l2vpn-evpn",
+    "flags": {
+      "damped": "off",
+      "deterministic-med-selected": "off",
+      "history": "off",
+      "multipath": "off",
+      "nexthop-self": "off",
+      "removed": "off",
+      "selected": "off",
+      "stale": "off",
+      "valid": "on"
+    },
+    "prefix": "[5]:[0]:[10.1.30.0/24]/352",
+    "rd": "10.10.10.2:2",
+    "vrf": "default"
+  },
+...
+```
+
+To through which address and interface BGP resolves a specific next hop, run these NVUE commands:
 - `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> resolved-via` for IPv4
 - `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> resolved-via` for IPv6
 

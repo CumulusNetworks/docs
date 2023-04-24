@@ -101,7 +101,7 @@ netq show interfaces
 netq show interfaces type
 netq show events message_type interfaces 
 ```
-The {{<link title="check/#netq check interfaces" text="netq check interfaces">}} command verifies interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. 
+The {{<link title="check/#netq check interfaces" text="netq check interfaces">}} command verifies interface communication status for all nodes (leafs, spines, and hosts) or an interface between specific nodes in your network fabric. This command only checks the physical interfaces; it does not check bridges, bonds, or other software constructs.
 
 ```
 netq check interfaces

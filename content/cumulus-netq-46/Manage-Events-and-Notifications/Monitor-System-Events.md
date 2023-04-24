@@ -19,29 +19,21 @@ netq show events
 
 ## Monitor Events in the UI
 
-{{<tabs "TabID29" >}}
+Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then select **Events**.
 
-{{<tab "NetQ UI" >}}
+The dashboard presents a timeline of events alongside the devices that are causing the most events. 
 
-1. Expand the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then select **Events**.
+  {{<figure src="/images/netq/events-full-460.png" width="1200" alt="Events dashboard with networkwide error and info events.">}}
 
-    The dashboard presents a timeline of events alongside the devices that are causing the most events. 
-
-    {{<figure src="/images/netq/events-full-460.png" width="1200" alt="Events dashboard with networkwide error and info events.">}}
-
-  Use the controls above the summary to filter events by time, device (hostname), type, severity, or state.
+Use the controls above the summary to filter events by time, device (hostname), type, severity, or state.
 
   {{<figure src="/images/netq/event-controls-460.png" width="500" alt="">}}
 
-  Select the tabs below the controls to display all events networkwide, interface events, network services events, system events, or threshold-crossing events. The charts and tables update according to the tab you've selected. In this example, the TCA tab is selected; the chart and tables update to reflect only threshold-crossing events:
+Select the tabs below the controls to display all events networkwide, interface events, network services events, system events, or threshold-crossing events. The charts and tables update according to the tab you've selected. In this example, the TCA tab is selected; the chart and tables update to reflect only threshold-crossing events:
 
-      {{<figure src="/images/netq/tca-events-full-460.png" width="1200" alt="Events dashboard with networkwide error and info events.">}}
+  {{<figure src="/images/netq/tca-events-full-460.png" width="1200" alt="Events dashboard with networkwide error and info events.">}}
 
-  Events are also generated when streaming {{<link title="Validate Overall Network Health" text="validation checks">}} detect a failure. If an event is generated from a failed validation check, it will be marked resolved automatically the next time the check runs successfully.
-
-{{</tab>}}
-
-{{</tabs>}}
+Events are also generated when streaming {{<link title="Validate Overall Network Health" text="validation checks">}} detect a failure. If an event is generated from a failed validation check, it will be marked resolved automatically the next time the check runs successfully.
 
   ## Suppress Events
 

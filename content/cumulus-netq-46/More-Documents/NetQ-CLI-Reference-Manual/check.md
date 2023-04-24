@@ -479,9 +479,10 @@ SVI Test                 : passed
 
 ### Related Commands
 
-- ```netq show clag```
-- ```netq show unit-tests clag```
-- ```netq add validation```
+- `netq check mlag`
+- `netq show clag`
+- `netq show unit-tests clag`
+- `netq add validation`
 
 - - -
 <!-- vale off -->
@@ -590,6 +591,8 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 - Number of ports that failed validation
 - Number of unverified ports (no peer found for the node)
 
+This command only checks the physical interfaces; it does not check bridges, bonds, or other software constructs.
+
 ### Syntax
 
 ```
@@ -660,8 +663,6 @@ server06          eth1                      leaf03            swp3              
 server06          eth2                      leaf04            swp3                      Autoneg mismatch (on, off)          Wed Nov 18 21:58:07 2020 
 ```
 
-Basic validation without error information:
-
 ```
 cumulus@switch:~$ netq check interfaces summary
 interface check result summary:
@@ -682,12 +683,35 @@ Oper State Test    : passed
 Speed Test         : passed
 Autoneg Test       : 0 warnings, 12 errors
 ```
+This example checks for configuration mismatches and finds a link speed mismatch on server03. The link speed on swp49 is *40G* and the peer port swp50 shows as *unknown*.
+
+```
+cumulus@switch:~$ netq check interfaces
+Checked Nodes: 10, Failed Nodes: 1
+Checked Ports: 125, Failed Ports: 2, Unverified Ports: 35
+Hostname          Interface                 Peer Hostname     Peer Interface            Message
+----------------- ------------------------- ----------------- ------------------------- -----------------------------------
+server03          swp49                     server03          swp50                     Speed mismatch (40G, Unknown)      
+server03          swp50                     server03          swp49                     Speed mismatch (Unknown, 40G)  
+```
+
+```
+cumulus@switch:~$ netq check interfaces
+Checked Nodes: 18, Failed Nodes: 8
+Checked Ports: 741, Failed Ports: 1, Unverified Ports: 414
+ 
+Matching cables records:
+Hostname          Interface                 Peer Hostname     Peer Interface            Message
+----------------- ------------------------- ----------------- ------------------------- -----------------------------------
+leaf02            -                         -                 -                         Link flapped 11 times in last 5
+                                                                                        mins                    
+```
 
 ### Related Commands
 
-- ```netq show interfaces```
-- ```netq show unit-tests interfaces```
-- ```netq add validation```
+- `netq show interfaces physical`
+- `netq show unit-tests interfaces`
+- `netq add validation`
 
 - - -
 

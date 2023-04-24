@@ -228,19 +228,26 @@ To upgrade the switch using package upgrade:
 
 1. Back up the configurations from the switch.
 
-2. Fetch the latest update metadata from the repository.
+2. To upgrade to Cumulus Linux 3.7.16, you must download the new repository keys:
+
+   ```
+   cumulus@switch:~$ wget http://repo3.cumulusnetworks.com/public-key/repo3-2023-key
+   cumulus@switch:~$ sudo apt-key add repo3-2023-key
+   ```
+
+3. Fetch the latest update metadata from the repository.
 
 ```
 cumulus@switch:~$ sudo -E apt-get update
 ```
 
-3. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded.
+4. Review potential upgrade issues (in some cases, upgrading new packages might also upgrade additional existing packages due to dependencies). Run the following command to see the additional packages that will be installed or upgraded.
 
 ```
 cumulus@switch:~$ sudo -E apt-get install --dry-run
 ```
 
-4. Upgrade all the packages to the latest distribution.
+5. Upgrade all the packages to the latest distribution.
 
 ```
 cumulus@switch:~$ sudo -E apt-get upgrade
@@ -289,7 +296,7 @@ If you see errors for expired GPG keys that prevent you from upgrading packages,
 
 {{%/notice%}}
 
-5. Reboot the switch if the upgrade messages indicate that a system restart is required.
+6. Reboot the switch if the upgrade messages indicate that a system restart is required.
 
 ```
 cumulus@switch:~$ sudo -E apt-get upgrade
@@ -300,7 +307,7 @@ cumulus@switch:~$ sudo -E apt-get upgrade
 cumulus@switch:~$ sudo reboot
 ```
 
-6. Verify correct operation with the old configurations on the new version.
+7. Verify correct operation with the old configurations on the new version.
 
 ### Upgrade Notes
 
@@ -315,7 +322,13 @@ Because Cumulus Linux is a collection of different Debian Linux packages, be awa
 
 If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} to dual connect two switches in your environment, follow the steps below according to the version of Cumulus Linux from which you are upgrading.
 
+{{%notice info%}}
 You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
+
+Only during the upgrade process does Cumulus Linux supports different software versions between MLAG peer switches. After you upgrade the first MLAG switch in the pair, run the `clagctl showtimers` command to monitor the `init-delay` timer. When the timer expires, make the upgraded MLAG switch the primary, then upgrade the peer to the same version of Cumulus Linux.
+
+Running different versions of Cumulus Linux on MLAG peer switches outside of the upgrade time period is untested and might have unexpected results.
+{{%/notice%}}
 
 {{%notice info%}}
 For Cumulus Linux 3.7.10 and later, MLAG bonds stay single-connected during upgrade while the switches are running different major releases; for example, while leaf01 is running 3.7.12 and leaf02 is running 4.1.1.

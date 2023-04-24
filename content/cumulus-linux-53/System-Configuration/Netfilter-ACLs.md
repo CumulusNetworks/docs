@@ -683,7 +683,7 @@ cumulus@switch:~$ switchdctl --load /etc/cumulus/control-plane/policers.conf
 {{< /tab >}}
 {{< /tabs >}}
 
-To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=statistics` command or the Linux `mlxcmd traps show copp-stats` command.
+To show the control plane police configuration and statistics, run the NVUE `nv show system control-plane policer --view=statistics` command.
 
 {{%notice note%}}
 Cumulus Linux provides default control plane policer values. You can adjust these values to accommodate higher scale requirements for specific protocols as needed.
@@ -821,7 +821,6 @@ cumulus@switch:~$ nv set acl EXAMPLE1 type ipv4
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip protocol tcp
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 match ip dest-port 22
 cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action set dscp 46
-cumulus@switch:~$ nv set acl EXAMPLE1 rule 10 action permit
 cumulus@switch:~$ nv set interface swp1-48 acl EXAMPLE1 inbound
 cumulus@switch:~$ nv config apply
 ```

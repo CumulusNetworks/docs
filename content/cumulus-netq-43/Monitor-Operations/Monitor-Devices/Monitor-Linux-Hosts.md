@@ -22,7 +22,6 @@ The NetQ Agent monitors the following on Linux hosts:
 - netlink
 - Layer 2: LLDP and VLAN-aware bridge
 - Layer 3: IPv4, IPv6
-- Routing on the Host: BGP, OSPF
 - systemctl for services
 - Docker containers - refer to the {{<link title="Monitor Container Environments Using Kubernetes API Server">}} topic
 

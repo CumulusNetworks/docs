@@ -142,7 +142,13 @@ Usage: [-h (help)] [-cDjlMsv] [-d m1,m2,...] [-e m1,m2,...]
 
 ## Send Log Files to a syslog Server
 
-You can configure the remote syslog server on the switch using the following configuration, where `default` is the default VRF (you must specify a VRF in the command):
+You can configure Cumulus Linux to send log files to one or more remote syslog servers.
+
+The following example configures Cumulus Linux to send log files to the remote syslog server with the 192.168.0.254 address in the default VRF on port 514 using UDP.
+
+{{%notice note%}}
+You must specify a VRF in the command.
+{{%/notice%}}
 
 ```
 cumulus@switch:~$ nv set service syslog default server 192.168.0.254 port 514
@@ -246,12 +252,26 @@ action(type="omfwd" Target="10.0.0.1" Device="mgmt" Port="514" Protocol="udp")
 ```
 
 {{%notice warning%}}
-If you configure remote logging to use the TCP protocol, local logging might stop when the remote syslog server is unreachable. To avoid this behavior, configure a disk queue size and maximum retry count in your `rsyslog` configuration:
+If you configure remote logging to use the TCP protocol, local logging might stop when the remote syslog server is unreachable. Also, if you configure remote logging to use the UDP protocol, local logging might stop if the UDP servers are unreachable because there are no routes available for the destination IP addresses.
+
+To avoid this behavior, configure a disk queue size and maximum retry count in your `rsyslog` configuration:
+
+{{< tabs "TabID35 ">}}
+{{< tab "TCP Configuration ">}}
 
 ```
 action(type="omfwd" Target="172.28.240.15" Device="mgmt" Port="1720" Protocol="tcp" action.resumeRetryCount="100" queue.type="linkedList" queue.size="10000")
 ```
-{{%/notice%}}
+
+{{< /tab >}}
+{{< tab "UDP Configuration ">}}
+
+```
+action(type="omfwd" Target="172.28.240.15" Device="mgmt" Port="540" Protocol="udp" action.resumeRetryCount="100" queue.type="linkedList" queue.size="10000")
+```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 <!-- vale off -->
 ### Rate-limit syslog Messages

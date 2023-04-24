@@ -4,11 +4,11 @@ author: NVIDIA
 weight: 800
 toc: 4
 ---
-You can monitor both system and threshold-based (TCA) events with the UI or CLI. System events include events associated with network protocols and services operation, hardware and software status, and system services. TCA events include events associated with digital optics, ACL and forwarding resources, interface statistics, resource utilization, and sensors. You can view all events across the entire network or all events on a device, then filter your view of events based on event type, severity, and timeframe.
+You can monitor both system and threshold-crossing events with the UI or CLI. You can view all events across the entire network or all events on a device, then filter your view of events based on event type, severity, and timeframe.
 
-Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Based Event Notifications">}} for information about configuring and managing these events.
+Refer to {{<link title="Configure System Event Notifications">}} and {{<link title="Configure Threshold-Crossing Event Notifications">}} for information about configuring and managing these events.
 
-Note that in the UI, it can take several minutes for NetQ to process and accurately display network validation events. The delay is caused by events with multiple network dependencies. It takes between 5 and 10 minutes for NetQ to consolidate and display these events.
+Note that in the UI, it can take several minutes for NetQ to process and accurately display network events. The delay is caused by events with multiple network dependencies. It takes between 5 and 10 minutes for NetQ to consolidate and display these events.
 
 ## Monitor All System and TCA Events Networkwide
 

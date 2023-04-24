@@ -203,7 +203,13 @@ To upgrade the switch:
 ### Package Upgrade
 
 {{%notice warning%}}
-Cumulus Linux 5.4 and later uses a new format for port splitting but continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, see {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
+- Cumulus Linux 5.4 and later uses a new format for port splitting but continues to support the old port split configuration in the `/etc/cumulus/ports.conf` file. However, NVUE has deprecated the port split command options (2x10G, 2x25G, 2x40G, 2x50G, 2x100G, 2x200G, 4x10G, 4x25G, 4x50G, 4x100G, 8x50G) available in Cumulus Linux 5.3 and earlier, with no backwards compatibility. If you used NVUE to configure port breakout speeds in Cumulus 5.3 or earlier, see {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
+- Cumulus Linux 5.4 package upgrade does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. The following table shows which upgrade paths support warm restart to complete the upgrade.
+
+  | From   | To   | Warm Restart Mode |
+  |------- | ---- | ----------------- |
+  | 5.0.0 - 5.3.0 | 5.3.1 | Yes       |
+  | 5.0.0 - 5.3.1 | 5.4.0 | No        |
 {{%/notice%}}
 
 Cumulus Linux completely embraces the Linux and Debian upgrade workflow, where you use an installer to install a base image, then perform any upgrades within that release train with `sudo -E apt-get update` and `sudo -E apt-get upgrade` commands. Any packages that have changed after the base install get upgraded in place from the repository. All switch configuration files remain untouched, or in rare cases merged (using the Debian merge function) during the package upgrade.
@@ -280,6 +286,12 @@ To upgrade the switch using package upgrade:
 
 6. Verify correct operation with the old configurations on the new version.
 
+{{%notice info%}}
+The first time you run the NVUE `nv config apply` command after upgrading to Cumulus Linux 5.4, NVUE might override certain existing configuration for features that are now configurable with NVUE. Immediately after you reboot the switch to complete the upgrade, NVIDIA recommends you either:
+- Run NVUE commands to configure these features.
+- Configure NVUE to ignore changes to the relevant configuration files for these features; refer to {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to Ignore Linux Files">}}.
+{{%/notice%}}
+
 ### Upgrade Notes
 
 *Package upgrade* always updates to the latest available release in the Cumulus Linux repository. For example, if you are currently running Cumulus Linux 5.0.0 and run the `sudo -E apt-get upgrade` command on that switch, the packages upgrade to the latest releases in the latest 5.x release.
@@ -293,12 +305,12 @@ Because Cumulus Linux is a collection of different Debian Linux packages, be awa
 
 If you are using {{<link url="Multi-Chassis-Link-Aggregation-MLAG" text="MLAG">}} to dual connect two switches in your environment, follow the steps below to upgrade the switches.
 
+{{%notice info%}}
 You must upgrade both switches in the MLAG pair to the same release of Cumulus Linux.
 
-{{%notice info%}}
-During upgrade, MLAG bonds stay single-connected while the switches are running different major releases; for example, while leaf01 is running 4.4.0 and leaf02 is running 5.4.0.
+Only during the upgrade process does Cumulus Linux supports different software versions between MLAG peer switches. After you upgrade the first MLAG switch in the pair, run the `clagctl showtimers` command to monitor the `init-delay` timer. When the timer expires, make the upgraded MLAG switch the primary, then upgrade the peer to the same version of Cumulus Linux.
 
-The bonding driver changes how it derives the *actor port key*, which causes the port key to have a different value for links with the same speed or duplex settings across different major releases. The port key from the LACP partner must remain consistent between all bond members for all bonds to synchronize. When each MLAG switch sends LACPDUs with different port keys, only links to one MLAG switch synchronize.
+Running different versions of Cumulus Linux on MLAG peer switches outside of the upgrade time period is untested and might have unexpected results.
 {{%/notice%}}
 
 1. Verify the switch is in the secondary role:

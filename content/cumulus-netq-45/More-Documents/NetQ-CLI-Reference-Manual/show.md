@@ -245,7 +245,8 @@ None
 
 ### Sample Usage
 
-Display BGP sessions across all network nodes:
+Display BGP sessions across all network nodes. This example shows each node, their neighbor, VRF, ASN, peer ASN, received address IPv4/IPv6/EVPN prefix, and last time something changed.
+
 
 ```
 cumulus@switch:~$ netq show bgp
@@ -295,7 +296,11 @@ leaf02            swp51(spine01)               default         65101      65199 
 - ```netq check bgp```
 <!-- vale on -->
 - - -
+
+<!--
 ## netq show check-filter
+
+Refer to {{<link title="Validation Checks/#validation-check-result-filtering">}} for more information about filters for `netq check` commands. 
 
 ### Syntax
 
@@ -327,6 +332,8 @@ None
 - netq del check-filter
 
 - - -
+
+-->
 ## netq show cl-btrfs-info
 
 
@@ -568,6 +575,41 @@ netq [<hostname>] show cl-resource forwarding
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
+### Sample Usage
+
+Display the ACL resources for all configured switches:
+
+```
+cumulus@switch:~$ netq show cl-resource acl
+Matching cl_resource records:
+Hostname          In IPv4 filter       In IPv4 Mangle       In IPv6 filter       In IPv6 Mangle       In 8021x filter      In Mirror            In PBR IPv4 filter   In PBR IPv6 filter   Eg IPv4 filter       Eg IPv4 Mangle       Eg IPv6 filter       Eg IPv6 Mangle       ACL Regions          18B Rules Key        32B Rules Key        54B Rules Key        L4 Port range Checke Last Updated
+                                                                                                                                                                                                                                                                                                                                                                  rs
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+act-5712-09       40,512(7%)           0,0(0%)              30,768(3%)           0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              32,256(12%)          0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              2,24(8%)             Tue Aug 18 20:20:39 2020
+mlx-2700-04       0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              0,0(0%)              4,400(1%)            2,2256(0%)           0,1024(0%)           2,1024(0%)           0,0(0%)              Tue Aug 18 20:19:08 2020
+```
+
+Display forwarding resources for all configured switches:
+
+```
+cumulus@noc-pr:~$ netq show cl-resource forwarding
+Matching cl_resource records:
+Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+act-5712-09       0,16384(0%)          0,0(0%)              0,131072(0%)         23,20480(0%)         0,16330(0%)          0,32768(0%)          0,8192(0%)           Tue Aug 18 20:20:39 2020
+mlx-2700-04       0,32768(0%)          0,16384(0%)          0,65536(0%)          4,28672(0%)          0,4101(0%)           0,40960(0%)          0,1000(0%)           Tue Aug 18 20:19:08 2020
+```
+
+Display the forwarding resources used by the *spine02* switch:
+
+```
+cumulus@switch:~$ netq spine02 show cl-resource forwarding
+Matching cl_resource records:
+Hostname          IPv4 host entries    IPv6 host entries    IPv4 route entries   IPv6 route entries   ECMP nexthops        MAC entries          Total Mcast Routes   Last Updated
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- ------------------------
+spine02           9,16384(0%)          0,0(0%)              290,131072(0%)       173,20480(0%)        54,16330(0%)         26,32768(0%)         0,8192(0%)           Mon Jan 13 03:34:11 2020
+```
+
 ### Related Commands
 
 - ```netq show recommended-pkg-version```
@@ -754,7 +796,7 @@ spine01           swp53s2    module_temperature   {‘degree_c’: 85,     {‘d
 None
 
 - - -
-
+<!--
 ## netq show ecmp
 
 ### Syntax
@@ -811,6 +853,7 @@ None
 
 ### Related Commands
 - - -
+-->
 ## netq show ethtool-stats
 
 Displays transmit and receive statistics for network interfaces on one or all devices, including frame errors, ACL drops, buffer drops, and more. You can filter the output by device and view the statistics for a time in the past.
@@ -833,7 +876,7 @@ netq <hostname> show ethtool-stats
 <!-- vale off -->
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| port | \<physical-port\> | Only display results for the port with this name |
+| port | \<physical-port\> | Only display results for the interface with this name |
 | rx | NA | Only display receive statistics |
 | tx | NA | Only display transmit statistics |
 <!-- vale on -->
@@ -880,7 +923,7 @@ Display system events that have occurred in the last 24 hours. Optionally, view 
 ```
 netq [<hostname>] show events
     [severity info | severity error]
-    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_wjh|trace|vlan|vxlan]
+    [message_type agent|bgp|btrfsinfo|cable|clsupport|configdiff|evpn|interfaces|lcm|license|link|lldp|mlag|mtu|node|ntp|ospf|port|ptm|ptp|resource|roceconfig|runningconfigdiff|sensor|services|ssdutil|tca_bgp|tca_dom|tca_ecmp|tca_ethtool|tca_link|tca_procdevstats|tca_resource|tca_roce|tca_sensors|tca_wjh|trace|vlan|vxlan]
     [between <text-time> and <text-endtime>]
     [json]
 ```
@@ -895,7 +938,7 @@ None
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
 | severity | info, error| Only display events with this severity level |
-| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
+| message_type | agent, bgp, btrfsinfo, cable, clsupport, configdiff, evpn, interfaces, lcm, license, link, lldp, mlag, mtu, node, ntp, ospf, port, ptm, ptp, resource, roceconfig, runningconfigdiff, sensor, services, ssdutil, tca_bgp, tca_dom, tca_ecmp, tca_ethtool, tca_link, tca_procdevstats, tca_resource, tca_roce, tca_sensors, tca_wjh, trace, vlan, vxlan | Display events for the type with this name |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | json | NA | Display the output in JSON format |
 
@@ -946,7 +989,42 @@ leaf02            services                 info             Service netqd status
                                                             nactive to active
 ...
 ```
+Display all BGP events between now and five days ago:
 
+```
+cumulus@switch:~$ netq show events message_type bgp between now and 5d
+Matching bgp records:
+Hostname          Message Type Severity Message                             Timestamp
+----------------- ------------ -------- ----------------------------------- -------------------------
+leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine03 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine02 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+leaf01            bgp          info     BGP session with peer spine01 @desc 2h:10m:11s
+                                        : state changed from failed to esta
+                                        blished
+...
+```
 ### Related Commands
 
 None
@@ -1074,43 +1152,60 @@ None
 
 ### Sample Usage
 
+The example below shows the configuration and status for all devices, including the associated VNI, VTEP address, the import and export route (showing the BGP ASN and VNI path), and the last time a change occurred for each device running EVPN.
+
+This example shows the Cumulus reference topology, where EVPN runs on all border and leaf switches. Each session is represented by a single row.
+
 ```
 cumulus@switch:~$ netq show evpn
-
 Matching evpn records:
 Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
 ----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
-border01          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Fri Nov 20 01:50:53 2020
-border01          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Fri Nov 20 01:50:53 2020
-border02          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Fri Nov 20 01:50:19 2020
-border02          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Fri Nov 20 01:50:19 2020
-leaf01            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Fri Nov 20 02:18:42 2020
-leaf01            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Fri Nov 20 02:18:42 2020
-leaf01            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Fri Nov 20 02:18:42 2020
-leaf01            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Fri Nov 20 02:18:42 2020
-leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Fri Nov 20 02:18:42 2020
-leaf02            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Fri Nov 20 02:10:38 2020
-leaf02            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Fri Nov 20 02:10:38 2020
-leaf02            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Fri Nov 20 02:10:38 2020
-leaf02            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Fri Nov 20 02:10:38 2020
-leaf02            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Fri Nov 20 02:10:38 2020
-leaf03            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Fri Nov 20 02:05:00 2020
-leaf03            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Fri Nov 20 02:05:00 2020
-leaf03            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Fri Nov 20 02:05:00 2020
-leaf03            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Fri Nov 20 02:05:00 2020
-leaf03            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Fri Nov 20 02:05:00 2020
-leaf04            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Fri Nov 20 11:08:16 2020
-leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Fri Nov 20 11:08:16 2020
-leaf04            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Fri Nov 20 11:08:16 2020
-leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Fri Nov 20 11:08:16 2020
-leaf04            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Fri Nov 20 11:08:16 2020
+border01          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Wed Oct  7 00:49:27 2020
+border01          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Wed Oct  7 00:49:27 2020
+border02          4002       10.0.1.254       L3               Vrf BLUE       yes       65132:4002       65132:4002       Wed Oct  7 00:48:47 2020
+border02          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Wed Oct  7 00:48:47 2020
+leaf01            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Wed Oct  7 00:49:30 2020
+leaf01            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Wed Oct  7 00:49:30 2020
+leaf01            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Wed Oct  7 00:49:30 2020
+leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Wed Oct  7 00:49:30 2020
+leaf01            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Wed Oct  7 00:49:30 2020
+leaf02            10         10.0.1.1         L2               Vlan 10        yes       65101:10         65101:10         Wed Oct  7 00:48:25 2020
+leaf02            20         10.0.1.1         L2               Vlan 20        yes       65101:20         65101:20         Wed Oct  7 00:48:25 2020
+leaf02            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Wed Oct  7 00:48:25 2020
+leaf02            4002       10.0.1.1         L3               Vrf BLUE       yes       65101:4002       65101:4002       Wed Oct  7 00:48:25 2020
+leaf02            30         10.0.1.1         L2               Vlan 30        yes       65101:30         65101:30         Wed Oct  7 00:48:25 2020
+leaf03            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Wed Oct  7 00:50:13 2020
+leaf03            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Wed Oct  7 00:50:13 2020
+leaf03            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:13 2020
+leaf03            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct  7 00:50:13 2020
+leaf03            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Wed Oct  7 00:50:13 2020
+leaf04            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Wed Oct  7 00:50:09 2020
+leaf04            4002       10.0.1.2         L3               Vrf BLUE       yes       65102:4002       65102:4002       Wed Oct  7 00:50:09 2020
+leaf04            20         10.0.1.2         L2               Vlan 20        yes       65102:20         65102:20         Wed Oct  7 00:50:09 2020
+leaf04            10         10.0.1.2         L2               Vlan 10        yes       65102:10         65102:10         Wed Oct  7 00:50:09 2020
+leaf04            30         10.0.1.2         L2               Vlan 30        yes       65102:30         65102:30         Wed Oct  7 00:50:09 2020
 ```
 
+This example displays the EVPN configuration and status for VNI *4001*.
+
+```
+cumulus@switch:~$ netq show evpn vni 4001
+Matching evpn records:
+Hostname          VNI        VTEP IP          Type             Mapping        In Kernel Export RT        Import RT        Last Changed
+----------------- ---------- ---------------- ---------------- -------------- --------- ---------------- ---------------- -------------------------
+border01          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Mon Oct 12 03:45:45 2020
+border02          4001       10.0.1.254       L3               Vrf RED        yes       65132:4001       65132:4001       Mon Oct 12 03:45:11 2020
+leaf01            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Mon Oct 12 03:46:15 2020
+leaf02            4001       10.0.1.1         L3               Vrf RED        yes       65101:4001       65101:4001       Mon Oct 12 03:44:18 2020
+leaf03            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Mon Oct 12 03:48:22 2020
+leaf04            4001       10.0.1.2         L3               Vrf RED        yes       65102:4001       65102:4001       Mon Oct 12 03:47:47 2020
+```
 ### Related Commands
 <!-- vale off -->
-- ```netq show unit-tests evpn```
-- ```netq show events```
-- ```netq check evpn```
+- `netq show events message_type evpn`
+- `netq show unit-tests evpn`
+- `netq check evpn`
 <!-- vale on -->
 - - -
 
@@ -1174,7 +1269,7 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<hostname\> | Only display results for the switch or host with this name. You only need to specify a hostname when you use the `count` option. |
+| NA | \<hostname\> | Only display results for the switch or host with this name. |
 | alias | NA | Only display results for the specified interface alias |
 | physical | NA | Only display results for physical interfaces |
 | type | <!-- vale off -->bond, bridge, eth, loopback, macvlan, swp, vlan, vrf, or vxlan<!-- vale on --> | Only display results for the specified interface type |
@@ -1185,10 +1280,12 @@ netq <hostname> show interfaces type (bond|bridge|eth|loopback|macvlan|swp|vlan|
 | ---- | ---- | ---- |
 | NA | \<remote-interface\> | Only display results for local interfaces with this remote interface |
 | state | \<remote-interface-state\> | Only display results for remote interfaces in the specified state&mdash;up or down |
-| NA | \<physical-port\> |  |
-| NA | empty, plugged |  |
-| NA | peer |  |
-| NA | vendor <module-vendor> model <module-model> module  |  |
+| NA | \<physical-port\> | Only display results for the interface with this name |
+| NA | empty, plugged | Display switch ports with attached cables (plugged) or those without connectivity (empty) |
+| NA | peer | Display connected peer ports |
+| vendor | \<module-vendor\> |  Only display results from a particular vendor (for example, Mellanox) |
+| model | \<module-model\> | Only display results from a particular model |
+| module | NA | Display interface module information |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | count | NA | Display the total number of interface on the specified switch or host. You must specify the `hostname` option. |
 | json | NA | Display the output in JSON format |
@@ -1232,12 +1329,91 @@ View an interface count on a given device.
 cumulus@switch:~$ netq spine01 show interfaces count
 Count of matching link records: 10
 ```
+Display only VLAN results. The output displays the interface, its specified MTU, whether it is running over a VRF, and the last time it changed.
+
+```
+cumulus@switch:~$ netq show interfaces type vlan
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+border01          vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:48 2020
+border01          vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:48 2020
+border01          peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:48 2020
+border02          vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:51 2020
+border02          vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:51 2020
+border02          peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:51 2020
+fw1               borderBond.20             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:25 2020
+fw1               borderBond.10             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:25 2020
+leaf01            vlan20                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf01            vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf01            vlan30                    vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf01            vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf01            vlan10                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf01            peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:42 2020
+leaf02            vlan20                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf02            vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf02            vlan30                    vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf02            vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf02            vlan10                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf02            peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:51 2020
+leaf03            vlan20                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf03            vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf03            vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf03            vlan30                    vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf03            vlan10                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf03            peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:28:23 2020
+leaf04            vlan20                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:29:06 2020
+leaf04            vlan4002                  vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:29:06 2020
+leaf04            vlan4001                  vlan             up         RED             MTU: 9216                           Tue Oct 27 22:29:06 2020
+leaf04            vlan30                    vlan             up         BLUE            MTU: 9216                           Tue Oct 27 22:29:06 2020
+leaf04            vlan10                    vlan             up         RED             MTU: 9216                           Tue Oct 27 22:29:06 2020
+leaf04            peerlink.4094             vlan             up         default         MTU: 9216                           Tue Oct 27 22:29:06 2020
+```
+
+Display all MAC addresses associated with your vRR (virtual route reflector) interface configuration. This is useful for determining if the specified MAC address inside a VLAN is the same or different across your vRR configuration.
+
+```
+cumulus@switch:~$ netq show interfaces type macvlan
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+yes    00:00:00:00:00:1a  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
+yes    44:38:39:00:00:37  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
+cumulus@netq-ts:~$ netq show interfaces type macvlan
+
+Matching link records:
+Hostname          Interface                 Type             State      VRF             Details                             Last Changed
+----------------- ------------------------- ---------------- ---------- --------------- ----------------------------------- -------------------------
+leaf01            vlan10-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1a,             Tue Oct 27 22:28:42 2020
+                                                                                        Mode: Private
+leaf01            vlan20-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1b,             Tue Oct 27 22:28:42 2020
+                                                                                        Mode: Private
+leaf01            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:28:42 2020
+                                                                                        Mode: Private
+leaf02            vlan10-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1a,             Tue Oct 27 22:28:51 2020
+                                                                                        Mode: Private
+leaf02            vlan20-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1b,             Tue Oct 27 22:28:51 2020
+                                                                                        Mode: Private
+leaf02            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:28:51 2020
+                                                                                        Mode: Private
+leaf03            vlan10-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1a,             Tue Oct 27 22:28:23 2020
+                                                                                        Mode: Private
+leaf03            vlan20-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1b,             Tue Oct 27 22:28:23 2020
+                                                                                        Mode: Private
+leaf03            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:28:23 2020
+                                                                                        Mode: Private
+leaf04            vlan10-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1a,             Tue Oct 27 22:29:06 2020
+                                                                                        Mode: Private
+leaf04            vlan20-v0                 macvlan          up         RED             MAC: 00:00:00:00:00:1b,             Tue Oct 27 22:29:06 2020
+                                                                                        Mode: Private
+leaf04            vlan30-v0                 macvlan          up         BLUE            MAC: 00:00:00:00:00:1c,             Tue Oct 27 22:29:06 2020
+```
 
 ### Related Commands
 
-- netq show events
-- netq check interfaces
-- netq show unit-tests interfaces
+- `netq show events`
+- `netq check interfaces`
+- `netq show unit-tests interfaces`
 
 - - -
 
@@ -1386,7 +1562,7 @@ Displays information about the hardware and software components deployed on a gi
 
 ### Syntax
 
-Eight forms of this command are available based on the inventory component you'd like to view:
+Several forms of this command are available based on the inventory component you'd like to view:
 
 ```
 netq [<hostname>] show inventory brief
@@ -1482,10 +1658,73 @@ spine02           VX                   CL              x86_64   VX              
 spine03           VX                   CL              x86_64   VX              N/A
 spine04           VX                   CL              x86_64   VX              N/A
 ```
+
+Display ASIC information for all devices with a vendor of *NVIDIA*:
+
+```
+cumulus@switch:~$ netq show inventory asic vendor NVIDIA
+Matching inventory records:
+Hostname          Vendor               Model                          Model ID                  Core BW        Ports
+----------------- -------------------- ------------------------------ ------------------------- -------------- -----------------------------------
+mlx-2100-05       NVIDIA               Spectrum                       MT52132                   N/A            16 x 100G-QSFP28
+mlx-2410a1-05     NVIDIA               Spectrum                       MT52132                   N/A            48 x 25G-SFP28 & 8 x 100G-QSFP28
+mlx-2700-11       NVIDIA               Spectrum                       MT52132                   N/A            32 x 100G-QSFP28
+```
+
+Display only the devices with a *Celestica* motherboard:
+
+```
+cumulus@switch:~$ netq show inventory board vendor celestica
+Matching inventory records:
+Hostname          Vendor               Model                          Base MAC           Serial No                 Part No          Rev    Mfg Date
+----------------- -------------------- ------------------------------ ------------------ ------------------------- ---------------- ------ ----------
+st1-l1            CELESTICA            Arctica 4806xp                 00:E0:EC:27:71:37  D2060B2F044919GD000011    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+st1-l2            CELESTICA            Arctica 4806xp                 00:E0:EC:27:6B:3A  D2060B2F044919GD000060    R0854-F1004-01   Redsto 09/20/2014
+                                                                                                                                    ne-XP
+```
+
+Display all the currently deployed architectures in the network, and then display devices with an *x86\_64* architecture:
+
+```
+cumulus@switch:~$ netq show inventory cpu arch
+    x86_64  :  CPU Architecture
+    
+cumulus@switch:~$ netq show inventory cpu arch x86_64
+Matching inventory records:
+Hostname          Arch     Model                          Freq       Cores
+----------------- -------- ------------------------------ ---------- -----
+leaf01            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+leaf02            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+leaf03            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+leaf04            x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+oob-mgmt-server   x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server01          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server02          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server03          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+server04          x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+spine01           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+spine02           x86_64   Intel Core i7 9xx (Nehalem Cla N/A        1
+                            ss Core i7)
+```
 ### Related Commands
 
-- ```netq config agent cpu-limit```
-- ```netq show resource-util```
+- `netq config agent cpu-limit`
+- `netq show cl-manifest`
+- `netq show cl-pkg-info` 
+- `netq show dom type`
+- `netq show resource-util`
+- `netq show sensors`
 
 - - -
 
@@ -2186,7 +2425,7 @@ nginx -- nginx-8586cf59-wjwgp -- server22:swp1:torbond1 -- swp7:hostbond3:torc-2
 - ```netq show kubernetes```
 
 - - -
-
+<!--
 ## netq show line-utilization
 
 ### Syntax
@@ -2216,7 +2455,7 @@ None
 
 ### Related Commands
 - - -
-
+-->
 ## netq show lldp
 
 Displays the health of all LLDP sessions or a single session on all nodes or a specific node in your network fabric currently or for a time in the past. You can filter the output to show sessions for a particular peer interface port. The output provides the following for each session:
@@ -2474,6 +2713,46 @@ no     46:38:39:00:00:36  30     leaf01            bond3                        
 no     46:38:39:00:00:3c  30     leaf01            bond3                          no     Mon Dec  7 22:29:47 2020
 ```
 
+Display MAC addresses associated with VLAN 10. The command also provides the hostnames of the devices, the egress port for the interface, whether the MAC address originated from the given device, whether it learns the MAC address from the peer (`remote=yes`), and the last time the configuration changed.
+
+```
+cumulus@switch:~$ netq show macs vlan 10
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+yes    00:00:00:00:00:1a  10     leaf04            bridge                         no     Tue Oct 27 22:29:07 2020
+no     44:38:39:00:00:37  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
+no     44:38:39:00:00:59  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
+no     46:38:39:00:00:38  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
+no     44:38:39:00:00:3e  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
+no     46:38:39:00:00:3e  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
+yes    44:38:39:00:00:5e  10     leaf04            bridge                         no     Tue Oct 27 22:29:07 2020
+no     44:38:39:00:00:32  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
+no     44:38:39:00:00:5d  10     leaf04            peerlink                       no     Tue Oct 27 22:29:07 2020
+no     46:38:39:00:00:44  10     leaf04            bond1                          no     Tue Oct 27 22:29:07 2020
+no     46:38:39:00:00:32  10     leaf04            vni10                          yes    Tue Oct 27 22:29:07 2020
+yes    36:ae:d2:23:1d:8c  10     leaf04            vni10                          no     Tue Oct 27 22:29:07 2020
+yes    00:00:00:00:00:1a  10     leaf03            bridge                         no     Tue Oct 27 22:28:24 2020
+no     44:38:39:00:00:59  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
+no     44:38:39:00:00:37  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
+no     46:38:39:00:00:38  10     leaf03            vni10                          yes    Tue Oct 27 22:28:24 2020
+yes    36:99:0d:48:51:41  10     leaf03            vni10                          no     Tue Oct 27 22:28:24 2020
+no     44:38:39:00:00:3e  10     leaf03            bond1                          no     Tue Oct 27 22:28:24 2020
+no     44:38:39:00:00:5e  10     leaf03            peerlink                       no     Tue Oct 27 22:28:24 2020
+no     46:38:39:00:00:3e  10     leaf03            bond1                          no     Tue Oct 27 22:28:24 2020
+...
+```
+
+The following example shows MAC addresses associated with the leaf02 switch and VLAN 10 that use the bridge port.
+
+```
+cumulus@netq-ts:~$ netq leaf02 show macs egress-port bridge vlan 10
+Matching mac records:
+Origin MAC Address        VLAN   Hostname          Egress Port                    Remote Last Changed
+------ ------------------ ------ ----------------- ------------------------------ ------ -------------------------
+yes    00:00:00:00:00:1a  10     leaf02            bridge                         no     Tue Oct 27 22:28:51 2020
+yes 
+```
 ### Related Commands
 
 - ```netq show mac-commentary```
@@ -2731,6 +3010,10 @@ None
 
 ### Sample Usage
 
+The following example shows the time synchronization status for all devices in the NVIDIA reference architecture. 
+
+All border, leaf, and spine switches rely on the out-of-band management server running *ntpq* to provide their time; they are all synchronized. The out-of-band management server uses the *titan.crash-ove* server running *ntpq* to obtain and maintain time synchronization. Meanwhile, the NetQ server uses the *eterna.binary.net* server running *chronyc* to obtain and maintain time synchronization. The firewall switches are not time synchronized (which is expected). The *Stratum* value indicates the number of hierarchical levels the switch or host is from the reference clock.
+
 ```
 cumulus@switch:~$ netq show ntp
 Matching ntp records:
@@ -2760,10 +3043,21 @@ spine03           yes      oob-mgmt-server   3       ntpq
 spine04           yes      oob-mgmt-server   3       ntpq
 ```
 
+Display all devices in the network that are out of time synchronization, and therefore need further investigation:
+
+```
+cumulus@switch:~$ netq show ntp out-of-sync
+Matching ntp records:
+Hostname          NTP Sync Current Server    Stratum NTP App
+----------------- -------- ----------------- ------- ---------------------
+internet          no       -                 16      ntpq
+```
+
 ### Related Commands
 
-- ```netq check ntp```
-- ```netq show unit-tests ntp```
+- `netq check ntp`
+- `netq show events message_type ntp`
+- `netq show unit-tests ntp`
 
 - - -
 
@@ -2925,6 +3219,12 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 ## netq show ptp
 
+Displays PTP clock and configuration details, including:
+
+- Clock identifications and hierarchies
+- Quality and accuracy information
+- PTP port counters
+
 ### Syntax
 
 ```
@@ -2941,7 +3241,7 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
     [json]
 
    netq [<hostname>] show ptp counters [<text-port>]
-    tx | rx 
+   (tx | rx)
    [around <text-time>] 
    [json]
 ```
@@ -2950,10 +3250,11 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| clock-details | NA |  |
-| global-config | NA |  |
-| port-status | NA |  |
-| counters | NA |  |
+| clock-details | NA | Display grandmaster, parent, and clock IDs and clock quality and accurarcy |
+| global-config | NA | Display priority, offset from master, and mean path delay thresholds |
+| port-status | NA | Display hierarchy information (master, slave) |
+| counters | NA | Display PTP port counters |
+| NA | tx, rx | Display transmit (Tx) or receive (Rx) data |
 
 ### Options
 
@@ -2965,7 +3266,44 @@ spine02           swp4                      0.0.0.0      Unnumbered       Full  
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq show ptp clock-details
+Matching ptp records:
+Hostname          Clock Domain             Clock Identity               Parent Clock Id                GrandMaster ID               Clock Quality              Clock Accuracy               PTP Ports Configured                     Steps Removed
+----------------- ------------------------ ---------------------------- ------------------------------ ---------------------------- -------------------------- ---------------------------- ---------------------------------------- --------------------------
+mlx-3700c-21      0                        1c:34:da:ff:fe:2d:a1:48      1c34da.fffe.2da148-0           1c:34:da:ff:fe:2d:a1:48      248                        254                          1                                        0
+mlx-3700c-22      0                        1c:34:da:ff:fe:2d:a0:48      1c34da.fffe.2da148-1           1c:34:da:ff:fe:2d:a1:48      248                        254                          1                                        1
+```
+
+```
+cumulus@switch:~$ netq show ptp global-config
+Matching ptp records:
+Hostname          Slave Only           Priority1          Priority2          Domain Number              Two Step Flag              OffSet From Master Max Threshold                                 OffSet From Master Min Threshold                                 Mean Path Delay Threshold
+----------------- -------------------- ------------------ ------------------ -------------------------- -------------------------- ---------------------------------------------------------------- ---------------------------------------------------------------- --------------------------------------------------
+mlx-3700c-21      0                    128                128                0                          0                          51                                                               -49                                                              200
+mlx-3700c-22      0                    129                128                0                          0                          50                                                               -50                                                              200
+```
+```
+cumulus@switch:~$ netq show ptp port-status
+Matching ptp records:
+Hostname          Interface                 PTP Status
+----------------- ------------------------- --------------------
+mlx-3700c-21      swp29                     MASTER
+mlx-3700c-22      swp29                     SLAVE
+```
+```
+cumulus@netq-appliance:~$ netq show ptp counters tx
+Matching ptp records:
+Hostname          Interface            Announce             Delay Request        Delay Response       Follow Up            Delay Resp. Follow U Peer Delay Request   Peer Delay Response  Management           Signaling
+                                                                                                                           p
+----------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- -------------------- --------------------
+mlx-3700c-21      swp29                114997               0                    200863               229985               0                    0                    0                    0                    229985
+mlx-3700c-22      swp29                12                   0                    0                    16                   0                    0                    0                    0                    16
+```
+
 ### Related Commands
+
+None
 
 - - -
 
@@ -3140,6 +3478,12 @@ server08          /dev/vda1            486105088            80372736            
 
 Displays RoCE configuration.
 
+{{<notice note>}}
+
+Priority code point (PCP) monitoring requires NetQ Agent 4.5.
+
+{{</notice>}}
+
 ### Syntax
 ```
 netq [<hostname>] show roce-config
@@ -3156,7 +3500,7 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
-| NA | \<text-port\> | |
+| NA | \<text-port\> | Filter by a specified port |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -3188,8 +3532,8 @@ ufm-switch23      swp30           Lossless   0,3          ECN      1505280  1536
 
 ### Related Commands
 
-- netq show roce-counters
-- netq check roce
+- `netq show roce-counters`
+- `netq check roce`
 
 - - -
 ## netq show roce-counters
@@ -3213,8 +3557,8 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the device with this name |
-| tx | \<text-port\> | |
-| rx | roce, general | |
+| NA | tx | Display tx info |
+| NA | rx | Display rx info |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the disk utilization information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
@@ -3258,10 +3602,10 @@ switch            swp63s2         0            0            0                  0
 
 ### Related Commands
 
-- netq show roce-config
-- netq show roce-counters pool
-- netq check roce
-- netq show events
+- `netq show roce-config`
+- `netq show roce-counters pool`
+- `netq check roce`
+- `netq show events`
 
 - - -
 
@@ -3338,7 +3682,6 @@ netq [<hostname>] show sensors
     [around <text-time>]
     [json]
 ```
-
 ### Required Arguments
 
 | Argument | Value | Description |
@@ -3358,7 +3701,7 @@ netq [<hostname>] show sensors
 
 ### Sample Usage
 
-Display data for the fan4 sensor on all nodes:
+Display data for the *fan4* sensor on all nodes:
 
 ```
 cumulus@switch:~$ netq show sensors fan fan4
@@ -3373,6 +3716,26 @@ spine03           fan4            fan tray 2, fan 2                   ok        
 spine04           fan4            fan tray 2, fan 2                   ok         2500       29000    2500                                         Tue Nov 24 04:13:52 2020
 ```
 
+Display the state of all temperature sensors with the name *psu2temp1*:
+
+```
+cumulus@switch:~$ netq show sensors temp psu2temp1
+Matching sensors records:
+Hostname          Name            Description                         State      Temp     Critical Max      Min      Message                             Last Changed
+----------------- --------------- ----------------------------------- ---------- -------- -------- -------- -------- ----------------------------------- -------------------------
+border01          psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:45:21 2020
+border02          psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:39:36 2020
+fw1               psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 00:08:01 2020
+fw2               psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 00:02:13 2020
+leaf01            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 18:30:07 2020
+leaf02            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 18:08:38 2020
+leaf03            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Tue Aug 25 21:20:34 2020
+leaf04            psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 14:20:22 2020
+spine01           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 10:53:17 2020
+spine02           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 10:54:07 2020
+spine03           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 11:00:44 2020
+spine04           psu2temp1       psu2 temp sensor                    ok         25       85       80       5                                            Wed Aug 26 10:52:00 2020
+```
 ### Related Commands
 
 - ```netq show events```
@@ -3538,8 +3901,8 @@ None
 cumulus@netq:~$ netq show status verbose
 NetQ Live State: Active
 Installation Status: FINISHED
-Version: 4.4.0
-Installer Version: 4.4.0
+Version: 4.5.0
+Installer Version: 4.5.0
 Installation Type: Standalone
 Activation Key: EhVuZXRxLWasdW50LWdhdGV3YXkYsagDIixkWUNmVmhVV2dWelVUOVF3bXozSk8vb2lSNGFCaE1FR2FVU2dHK1k3RzJVPQ==
 Master SSH Public Key: c3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCfdsaHpjKzcwNmJiNVROOExRRXdLL3l5RVNLSHRhUE5sZS9FRjN0cTNzaHh1NmRtMkZpYmg3WWxKUE9lZTd5bnVlV2huaTZxZ0xxV3ZMYkpLMGdkc3RQcGdzNUlqanNMR3RzRTFpaEdNa3RZNlJYenQxLzh4Z3pVRXp3WTBWZDB4aWJrdDF3RGQwSjhnbExlbVk1RDM4VUdBVFVkMWQwcndLQ3gxZEhRdEM5L1UzZUs5cHFlOVdBYmE0ZHdiUFlaazZXLzM0ZmFsdFJxaG8rNUJia0pkTkFnWHdkZGZ5RXA1Vjc3Z2I1TUU3Q1BxOXp2Q1lXZW84cGtXVS9Wc0gxWklNWnhsa2crYlZ4MDRWUnN4ZnNIVVJHVmZvckNLMHRJL0FrQnd1N2FtUGxObW9ERHg2cHNHaU1EQkM0WHdud1lmSlNleUpmdTUvaDFKQ2NuRXpOVnVWRjUgcm9vdEBhbmlscmVzdG9yZQ==
@@ -3805,10 +4168,10 @@ y               8-4ea2-8c09-                                               2020 
 
 ### Related Commands
 
-- netq add trace
-- netq del trace
-- netq trace (on-demand)
-- netq show events type trace
+- `netq add trace`
+- `netq del trace`
+- `netq trace`
+- `netq show events type trace`
 
 - - -
 
@@ -4078,7 +4441,7 @@ ion                              2-4ee7-917e-
 
 ## netq show vlan
 
-Displays the configuration of all VLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output provides:
+Displays the configuration of all VLANs on all nodes or a specific node in your network fabric currently or for a time in the past. The output displays:
 
 - The switch or hostname
 - The VLANs associated with that node
@@ -4103,34 +4466,62 @@ None
 | Option | Value | Description |
 | ---- | ---- | ---- |
 | NA | \<hostname\> | Only display results for the switch or host with this name |
-| NA | \<1-4096\> | Only display results for the VLAN with this name |
+| NA | \<1-4096\> | Only display results for the VLANs within this range |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. You write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
 
-Display the configuration for a particular VLAN:
+The following example shows the VLANs configured across a network based on the NVIDIA reference architecture:
 
 ```
-cumulus@switch:~$ netq show vlan 20
+cumulus@switch:~$ netq show vlan
+Matching vlan records:
+Hostname          VLANs                     SVIs                      Last Changed
+----------------- ------------------------- ------------------------- -------------------------
+border01          1,10,20,30,4001-4002                                Wed Oct 28 14:46:33 2020
+border02          1,10,20,30,4001-4002                                Wed Oct 28 14:46:33 2020
+leaf01            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+leaf02            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+leaf03            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+leaf04            1,10,20,30,4001-4002      10 20 30                  Wed Oct 28 14:46:34 2020
+```
+The following example shows the VLANs configured on the leaf02 switch:
+
+```
+cumulus@switch:~$ netq leaf02 show vlan
 Matching vlan records:
 Hostname          VLAN   Ports                               SVI  Last Changed
 ----------------- ------ ----------------------------------- ---- -------------------------
-border01          20                                         no   Tue Nov 24 20:50:46 2020
-border02          20                                         no   Tue Nov 24 20:50:47 2020
-leaf01            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
-leaf02            20     bond2,vni20                         yes  Tue Nov 24 20:50:47 2020
-leaf03            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
-leaf04            20     bond2,vni20                         yes  Tue Nov 24 20:50:48 2020
+leaf02            20     bond2,vni20                         yes  Wed Oct 28 15:14:11 2020
+leaf02            30     vni30,bond3                         yes  Wed Oct 28 15:14:11 2020
+leaf02            1      peerlink                            no   Wed Oct 28 15:14:11 2020
+leaf02            10     bond1,vni10                         yes  Wed Oct 28 15:14:11 2020
+leaf02            4001   vniRED                              yes  Wed Oct 28 15:14:11 2020
+leaf02            4002   vniBLUE                             yes  Wed Oct 28 15:14:11 2020
+```
+The following example shows that vlan 10 is running on the two border and four leaf switches:
+
+```
+cumulus@switch~$ netq show vlan 10
+Matching vlan records:
+Hostname          VLAN   Ports                               SVI  Last Changed
+----------------- ------ ----------------------------------- ---- -------------------------
+border01          10                                         no   Wed Oct 28 15:20:27 2020
+border02          10                                         no   Wed Oct 28 15:20:28 2020
+leaf01            10     bond1,vni10                         yes  Wed Oct 28 15:20:28 2020
+leaf02            10     bond1,vni10                         yes  Wed Oct 28 15:20:28 2020
+leaf03            10     bond1,vni10                         yes  Wed Oct 28 15:20:29 2020
+leaf04            10     bond1,vni10                         yes  Wed Oct 28 15:20:29 2020
 ```
 
 ### Related Commands
 
-- ```netq show events```
-- ```netq show interfaces```
-- ```netq show macs```
-- ```netq check vlan```
-- ```netq show unit-tests vlan```
+- `netq show events message_type vlan`
+- `netq show interfaces type vlan`
+- `netq show macs`
+- `netq check vlan`
+- `netq show unit-tests vlan`
 
 - - -
 <!-- vale off -->
@@ -4169,6 +4560,30 @@ None
 
 ### Sample Usage
 
+The following example shows all configured VXLANs across the network. In this network, there are three VNIs (13, 24, and 104001) associated with three VLANs (13, 24, 4001), EVPN is the virtual protocol deployed, and the configuration was last changed around 23 hours ago:
+
+```
+cumulus@switch:~$ netq show vxlan
+Matching vxlan records:
+Hostname          VNI        Protoc VTEP IP          VLAN   Replication List                    Last Changed
+                                ol
+----------------- ---------- ------ ---------------- ------ ----------------------------------- -------------------------
+exit01            104001     EVPN   10.0.0.41        4001                                       Fri Feb  8 01:35:49 2019
+exit02            104001     EVPN   10.0.0.42        4001                                       Fri Feb  8 01:35:49 2019
+leaf01            13         EVPN   10.0.0.112       13     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf01            24         EVPN   10.0.0.112       24     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf01            104001     EVPN   10.0.0.112       4001                                       Fri Feb  8 01:35:49 2019
+leaf02            13         EVPN   10.0.0.112       13     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf02            24         EVPN   10.0.0.112       24     10.0.0.134(leaf04, leaf03)          Fri Feb  8 01:35:49 2019
+leaf02            104001     EVPN   10.0.0.112       4001                                       Fri Feb  8 01:35:49 2019
+leaf03            13         EVPN   10.0.0.134       13     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf03            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf03            104001     EVPN   10.0.0.134       4001                                       Fri Feb  8 01:35:49 2019
+leaf04            13         EVPN   10.0.0.134       13     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf04            24         EVPN   10.0.0.134       24     10.0.0.112(leaf02, leaf01)          Fri Feb  8 01:35:49 2019
+leaf04            104001     EVPN   10.0.0.134       4001                                       Fri Feb  8 01:35:49 2019
+```
+
 Display configuration for a given VNI:
 
 ```
@@ -4187,8 +4602,8 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 ### Related Commands
 <!-- vale off -->
-- ```netq show events```
-- ```netq show interfaces```
+- ```netq show events message_type vxlan```
+- ```netq show interfaces type vxlan```
 - ```netq check vxlan```
 - ```netq show unit-tests vxlan```
 <!-- vale on -->
@@ -4196,7 +4611,7 @@ leaf04            4001       EVPN   10.0.1.2         4001                       
 
 ## netq show wjh-drop
 
-Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems that WJH (What Just Happened) feature captures on NVIDIA switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by various attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
+Displays packet drops due to buffer congestion, incorrect routing, tunnel, ACL and layer 1 and 2 problems on NVIDIA Spectrum switches. You can filter all drops by ingress port and severity. You can filter drops of a particular type by various attributes. The output varies according to the type of drop. Refer to the {{<link title="WJH Event Messages Reference">}} for descriptions of the supported drop reasons.
 
 {{%notice note%}}
 Viewing WJH drop information requires Cumulus Linux 4.0.0 or later and NetQ Agent 2.4.0 or later. You must also configure the NetQ Agent to collect this data.
@@ -4229,6 +4644,7 @@ netq [<hostname>] show wjh-drop <text-drop-type>
     [egress-port <text-egress-port>] 
     [traffic-class <text-traffic-class>] 
     [rule-id-acl <text-rule-id-acl>] 
+    [vlan <text-vlan>]
     [between <text-time> and <text-endtime>] 
     [around <text-time>] 
     [json]
@@ -4260,6 +4676,7 @@ netq [<hostname>] show wjh-drop <text-drop-type>
 | egress-port | \<text-egress-port\> | Only display drops for the egress port with this name |
 | traffic-class | \<text-traffic-class\> | Only display drops with this traffic class |
 | rule-id-acl | \<text-rule-id-acl\> | Only display ACL drops with this rule ID |
+| vlan | \<text-vlan\> | Display drops for the VLAN with this ID. VLANs range from 1-4096. |
 | between | \<text-time\> and \<text-endtime\> | <p>Only display results between these two times. Times must include a numeric value <em>and</em> the unit of measure:<ul><li><strong>w</strong>: weeks</li><li><strong>d</strong>: days</li><li><strong>h</strong>: hours</li><li><strong>m</strong>: minutes</li><li><strong>s</strong>: seconds</li><li><strong>now</strong></li></ul></p><p>You can enter the start time (<code>text-time</code>) and end time (<code>text-endtime</code>) values as most recent first and least recent second, or vice versa. The values do not have to have the same unit of measure.</p> |
 | around | \<text-time\> | <p>Indicates how far to go back in time for the network state information. Write the value using text (versus a UTP representation for example). Note there is no space between the number and unit of time. </p><p>Valid values include:<ul><li><1-xx>s: number of seconds</li><li><1-xx>m: number of minutes</li><li><1-xx>h: number of hours</li><li><1-xx>d: number of days</li></ul></p> |
 | json | NA | Display the output in JSON format |

@@ -19,14 +19,14 @@ In earlier Cumulus Linux releases, ISSU was Smart System Manager.
 
 You can restart the switch in one of the following modes.
 
-- **cold** Restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
-- **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintains the forwarding entries of the switching ASIC and the data plane is not affected. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, after `switchd` restarts.
-- **warm** restarts the system with minimal impact to traffic and without affecting the data plane. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
+- **cold** restarts the system and resets all the hardware devices on the switch (including the switching ASIC).
+- **fast** restarts the system more efficiently with minimal impact to traffic by reloading the kernel and software stack without a hard reset of the hardware. During a fast restart, the system decouples from the network to the extent possible using existing protocol extensions before recovering to the operational mode of the system. The restart process maintains the forwarding entries of the switching ASIC and the data plane is not affected. Traffic outage is much lower in this mode as there is a momentary interruption after reboot, while the system reinitializes.
+- **warm** restarts the system with no interruption to traffic for existing entries. Warm mode diverts traffic from itself and restarts the system without a hardware reset of the switch ASIC. While this process does not affect the data plane, the control plane is absent during restart and is unable to process routing updates. However, if no alternate paths exist, the switch continues forwarding with the existing entries with no interruptions.
 
    When you restart the switch in warm mode, BGP performs a graceful restart if the BGP Graceful Restart option is on. To enable BGP Graceful Restart, refer to {{<link url="Optional-BGP-Configuration/#graceful-bgp-restart" text="Optional BGP Configuration">}}.
 
 {{%notice note%}}
-Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
+- Cumulus Linux supports fast mode for all protocols; however only supports warm mode for layer 2 forwarding, and layer 3 forwarding with BGP and static routing.
 {{%/notice%}}
 
 The following command restarts the system in cold mode:
@@ -63,10 +63,10 @@ cumulus@switch:~$ sudo csmgrctl -f
 {{< /tab >}}
 {{< /tabs >}}
 
-The following command restarts the system in warm mode.
+The following command restarts the system in warm restart mode.
 
 {{< notice warning >}}
-Warm boot resets any manually configured FEC settings.
+Warm restart mode resets any manually configured FEC settings.
 {{< /notice >}}
 
 {{< tabs "76 ">}}
@@ -86,11 +86,15 @@ cumulus@switch:~$ sudo csmgrctl -w
 
 ## Upgrade Mode
 
-Upgrade mode updates all the components and services on the switch to the latest Cumulus Linux release without traffic loss. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="cold or fast restart">}}.
+Upgrade mode updates all the components and services on the switch to the latest Cumulus minor Linux release without impacting traffic. After upgrade is complete, you must restart the switch with either a {{<link url="#restart-mode" text="warm, cold, or fast restart">}}.
 
 Upgrade mode includes the following options:
 - **all** runs `apt-get upgrade` to upgrade all the system components to the latest release without affecting traffic flow. You must restart the system after the upgrade completes with one of the {{<link url="#restart-mode" text="restart modes">}}.
 - **dry-run** provides information on the components you want to upgrade.
+
+{{%notice warning%}}
+Cumulus Linux 5.4 package upgrade (`apt-get upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
+{{%/notice%}}
 
 The following command upgrades all the system components:
 
@@ -131,7 +135,7 @@ cumulus@switch:~$ sudo csmgrctl -d
 Maintenance mode isolates the system from the rest of the network so that you can perform intrusive troubleshooting tasks and data collection or perform system changes, such as break out ports and replace optics or cables with minimal disruption.
 
 {{%notice note%}}
-- Cumulus Linux supports maintenance mode with BGP, MLAG, and OSPF only.
+- Cumulus Linux supports maintenance mode with BGP and MLAG only.
 - Complete isolation depends on your configuration and network topology.
 {{%/notice%}}
 

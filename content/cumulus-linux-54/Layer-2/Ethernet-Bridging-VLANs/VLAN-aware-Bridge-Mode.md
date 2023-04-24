@@ -149,13 +149,63 @@ cumulus@switch:~$ ifreload -a
 {{< /tab >}}
 {{< /tabs >}}
 
+You can associate different [SVIs](#vlan-layer-3-addressing) with each bridge by changing the `base-interface` value. The following example creates SVIs for VLAN 10 in both bridge1 and bridge2:
+
+
+{{< tabs "TabID154 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface bridge2_vlan10 type svi
+cumulus@switch:~$ nv set interface bridge2_vlan10 vlan 10
+cumulus@switch:~$ nv set interface bridge2_vlan10 base-interface bridge2
+cumulus@switch:~$ nv set interface bridge2_vlan10 ip address 10.1.10.2/24
+cumulus@switch:~$ nv set interface bridge1_vlan10 type svi
+cumulus@switch:~$ nv set interface bridge1_vlan10 vlan 10
+cumulus@switch:~$ nv set interface bridge1_vlan10 base-interface bridge1
+cumulus@switch:~$ nv set interface bridge1_vlan10 ip address 192.168.10.2/24
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `/etc/network/interfaces` file and add the bridge:
+
+```
+cumulus@switch:~$ sudo nano /etc/network/interfaces
+...
+auto bridge2_vlan10
+iface bridge2_vlan10
+    address 10.1.10.2/24
+    hwaddress 1c:34:da:1d:e6:fd
+    vlan-raw-device bridge2
+    vlan-id 10
+auto bridge1_vlan10
+iface bridge1_vlan10
+    address 192.168.10.2/24
+    hwaddress 1c:34:da:1d:e6:fd
+    vlan-raw-device bridge1
+    vlan-id 10
+...
+```
+
+Run the `ifreload -a` command to load the new configuration:
+
+```
+cumulus@switch:~$ ifreload -a
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
-NVIDIA Spectrum 1 switches support a maximum of 10000 VLAN elements. NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements when {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm boot mode ">}} is `off` or 7934 VLAN elements when warm boot mode is `on`.
+NVIDIA Spectrum 1 switches support a maximum of 10000 VLAN elements. NVIDIA Spectrum-2 switches and later support a maximum of 15996 VLAN elements when {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="warm restart mode ">}} is `off` or 7934 VLAN elements when warm restart mode is `on`.
 Cumulus Linux calculates the total number of VLAN elements as the number of VLANs times the number of configured bridges. For example, 6 bridges, each containing 2600 VLANs totals 15600 VLAN elements.
 
 On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridges and want to use more VLAN elements than the default, you must update the number of VLAN elements in the `/etc/mlx/datapath/broadcast_domains.conf` file.
-  - To specify the total number of bridge domains you want to use, uncomment and edit the `broadcast_domain.max_vlans` parameter. The default value is 6143 when warm boot mode is `off` or 4096 when warm boot mode is `on`.
-  - To specify the total number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872 when warm boot mode is `off` or 1872 when warm boot mode is `on`.
+  - To specify the total number of bridge domains you want to use, uncomment and edit the `broadcast_domain.max_vlans` parameter. The default value is 6143 when warm restart mode is `off` or 4096 when warm restart mode is `on`.
+  - To specify the total number of subinterfaces you want to use, uncomment and edit the `broadcast_domain.max_subinterfaces` parameter. The default value is 3872 when warm restart mode is `off` or 1872 when warm restart mode is `on`.
 
   You must restart `switchd` with the `systemctl restart switchd` command to apply the configuration.
 
@@ -168,11 +218,38 @@ On NVIDIA Spectrum-2 switches and later, if you enable multiple VLAN-aware bridg
 
 For hardware data plane internal operations, the switching silicon requires VLANs for every physical port, Linux bridge, and layer 3 subinterface. Cumulus Linux reserves a range of VLANs by default; the reserved range is 3725-3999.
 
-{{%notice tip%}}
 If the reserved VLAN range conflicts with any user-defined VLANs, you can modify the range. The new range must be a contiguous set of VLANs with IDs between 2 and 4094. For a single VLAN-aware bridge, the minimum size of the range is 2 VLANs. For multiple VLAN-aware bridges, the minimum size of the range is the number of VLAN-aware bridges on the system plus one.
-{{%/notice%}}
 
-To configure the reserved range, edit the `/etc/cumulus/switchd.conf` file to uncomment the `resv_vlan_range` line and specify a new range. After you save the file, you must restart `switchd`.
+The following example changes the reserved VLAN range to be between 4064 and 4094:
+
+{{< tabs "TabID177 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set system global reserved vlan internal range 4064-4094
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Edit the `/etc/cumulus/switchd.conf` file to uncomment the `resv_vlan_range` line and specify a new range.
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
+   ...
+   # global reserved vlan internal range
+   resv_vlan_range = 4064-4094
+   ```
+
+2. After you save the file, you must restart `switchd`:
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart switchd.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
 
 ## VLAN Pruning
 

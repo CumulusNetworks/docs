@@ -7,6 +7,16 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3303284</td>
+<td>When you run the  {{netq show opta-health}} command, it might fail and produce the following error:
+
+
+ERROR: Expecting value: line 1 column 1 (char 0)
+</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3226405</td>
 <td>TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled.</td>
 <td>4.3.0</td>
@@ -31,6 +41,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3179145</td>
+<td>The NetQ agent does not collect VLAN information from WJH data. This has been resolved, however when you upgrade to a NetQ version with the fix, historical WJH data will not be displayed in the UI.</td>
+<td>4.3.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3157803</td>
 <td>The {{netq show}} commands to view MACs, IP addresses, neighbors, and routes might show a higher value compared to the corresponding entries in the NetQ UI. The {{netq show}} commands display additional values from the NetQ server or OPTA in addition to monitored devices in the NetQ inventory.</td>
 <td>4.2.0-4.3.0</td>
@@ -51,12 +67,6 @@
 <tr>
 <td>3053143</td>
 <td>The MLAG Session card might not show all MLAG events.</td>
-<td>4.2.0-4.3.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3043146</td>
-<td>After you upgrade from NetQ 4.1 to NetQ 4.2, some streaming validation checks might erroneously report failures when services are running properly. This condition will resolve itself within 24 hours of the upgrade. </td>
 <td>4.2.0-4.3.0</td>
 <td></td>
 </tr>

@@ -4,13 +4,11 @@ author: NVIDIA
 weight: 760
 toc: 4
 ---
-
 {{<notice note>}}
 
 DPU monitoring is an early access feature. 
 
 {{</notice>}}
-
 Use the UI to view your data processing unit (DPU) inventory. The Inventory/DPU card includes the DPU's operating system, ASIC, CPU model, disk, platform, and memory information.
 
 For DPU performance information, refer to {{<link title="DPUs" text="DPU Monitoring">}}.
@@ -18,7 +16,7 @@ For DPU performance information, refer to {{<link title="DPUs" text="DPU Monitor
 
 The Inventory/DPU card displays the hardware- and software-component inventory on DPUs running NetQ in your network.
 
-{{<figure src="/images/netq/dpu-inventory-platform-l2-42.png" alt="DPU inventory card with chart" width="200">}}
+{{<figure src="/images/netq/dpu-inventory-updated.png" alt="DPU inventory card with chart" width="200">}}
 
 Hover over the chart in the default card view to view component details. To view the distribution of components, hover over the card header and increase the card's size. Select the corresponding icon to view a detailed chart for ASIC, platform, or software components:
 

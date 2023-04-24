@@ -21,7 +21,7 @@ Each physical network interface (port) has several settings:
 - [MTU](## "Maximum Transmission Unit")
 - [FEC](## "Forward Error Correction")
 
-For NVIDIA **Spectrum ASICs**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
+For NVIDIA Spectrum ASICs, the firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. You can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 ## MTU
 
@@ -1427,7 +1427,7 @@ If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *OFF*
 <!-- Vale issue #253 -->
 ### Auto-negotiation and Link Speed
 <!-- vale on -->
-If auto-negotiation is on and the link speed is set for a port, auto-negotiation takes precedence over the link speed setting.
+If auto-negotiation is on and you set the link speed for a port, Cumulus Linux disables auto-negotiation and uses the port speed setting you configure.
 
 ### Port Speed and the ifreload -a Command
 

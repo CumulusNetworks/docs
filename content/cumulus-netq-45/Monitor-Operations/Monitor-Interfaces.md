@@ -542,7 +542,7 @@ netq show interface-utilization [<text-port>] [tx|rx] [around <text-time>] [json
 Options include:
 
 - `errors` limits the output to only the transmit and receive errors found on the designated interfaces
-- `physical-port` limits the output to a particular port
+- `physical-port` limits the output to a particular port (interface)
 - `around` enables viewing of the data at a time in the past
 - `json` outputs results in JSON format
 - `text-port` limits output to a particular host and port; this option requires a `hostname`

@@ -38,11 +38,9 @@ netq config add agent cluster-servers
 | ---- | ---- | ---- |
 | port | \<text-opta-port\> | Use the port with this name on each switch to receive data; default is port 31980 |
 | vrf | \<text-vrf-names\> | Use the VRF with this name on each switch to receive data; default VRF is *default* |
-| ssl | true, false |  |
+| ssl | true, false | Establish an SSL connection between agent and OPTA (true) |
 | ssl-cert | \<text-ssl-cert-file\> | Use the SSL certificate contained in this file. Value must include entire path to the file. |
-| ssl-cert download | NA | |
-
-<!-- Need to add ssl definitions -->
+| ssl-cert download | NA | Download the SSL certificate |
 
 ### Sample Usage
 
@@ -57,8 +55,8 @@ cumulus@switch:~$ netq config restart agent
 
 ### Related Commands
 
-- netq config del agent cluster-servers
-- netq config restart agent
+- `netq config del agent cluster-servers`
+- `netq config restart agent`
 
 - - -
 
@@ -197,6 +195,38 @@ Restarting netq-agent... Success!
 - ```netq config show agent frr-monitor```
 - ```netq config del agent frr-monitor```
 - ```netq config restart agent```
+
+- - -
+## netq config add agent gnmi-port
+
+Configures the default port over which the gNMI Agent listens. For additional information, see {{<link title="gNMI Streaming">}}. 
+
+### Syntax
+
+```
+netq config add agent gnmi-port <text-gnmi-port>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| gnmi-port | \<text-gnmi-port\> | Configure gNMI to listen over specified port |
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq config add agent gnmi-port <gnmi_port>
+```
+
+### Related Commands
+
+- `netq config add agent gnmi`
+- `netq config restart agent`
+
 
 - - -
 
@@ -341,8 +371,30 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- ```netq config restart agent```
+- `netq config restart agent`
 
+- - -
+## netq config add agent opta-enable
+
+Enable or disable the NetQ Agent. Use this command to {{<link title="gNMI Streaming" text="collect data with gNMI">}}.
+
+### Syntax
+
+```
+ netq config add agent opta-enable [true|false]
+```
+### Required Arguments
+
+None
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | true, false |  Disable the NetQ Agent (false) or enable it (true)|
+
+### Related Commands
+
+None
 - - -
 
 ## netq config add agent sensors
@@ -412,9 +464,9 @@ netq config add agent server
 | ---- | ---- | ---- |
 | port | \<text-opta-port\> | Use this port on the appliance or VM to receive NetQ Agent data and API requests |
 | vrf | \<text-vrf-name\> | Use this VRF on the appliance or VM to receive NetQ Agent data and API requests |
-| ssl | true, false |  |
+| ssl | true, false | Establish an SSL connection between agent and OPTA (true) |
 | ssl-cert | \<text-ssl-cert-file\> | Use the SSL certificate contained in this file. Value must include entire path to the file. |
-| ssl-cert download | NA | |
+| ssl-cert download | NA | Download the SSL certificate |
 
 ### Sample Usage
 
@@ -430,8 +482,8 @@ Restarting netq-agent... Success!
 
 ### Related Commands
 
-- netq config del agent server
-- netq config restart agent
+- `netq config del agent server`
+- `netq config restart agent`
 
 - - -
 
@@ -630,18 +682,15 @@ Adds a new proxy server to the CLI configuration.
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| proxy | \<text-proxy-type\> | |
-| proxy | \<text-proxy-url\> |  |
+| NA | \<text-proxy-type\> | Proxy type (http, https) |
+| NA | \<text-proxy-url\> | Proxy server URL |
 
 ### Options
 
 None
-
-### Sample Usage
-
 ### Related Commands
 
-- netq config del cli proxy
+- `netq config del cli proxy`
 - - -
 ## netq config add cli server
 
@@ -699,6 +748,99 @@ cumulus@switch:~# sudo netq config restart cli
 - ```netq config restart cli```
 
 - - -
+
+## netq config add opta config-key
+
+Adds the OPTA configuration key as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}. 
+
+### Syntax
+
+```
+netq config add opta config-key <text-opta-key> 
+    [vrf <text-vrf-name>] 
+    [proxy-host <text-proxy-host> proxy-port <text-proxy-port>]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| config-key | \<text-opta-key\> | OPTA configuration key |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| vrf | \<text-vrf-names\> | Specifies VRF used to communicate with the NetQ Cloud |
+| proxy-host | \<text-proxy-host\> | Specifies proxy host |
+| proxy-port | \<text-proxy-port\> | Specifies proxy port |
+
+### Sample Usage
+
+```
+netq config add opta config-key tHkSI2d3LmRldjMubmV0cWRldi5jdW11bHVasdf29ya3MuY29tGLsDIiwzeUpNc3BwK1IyUjVXY2p2dDdPL3JHS3ZrZ1dDUkpFY2JkMVlQOGJZUW84PTIEZGV2MzoHbmV0cWRldr vrf mgmt
+```
+
+### Related Commands
+
+- `netq config add opta proxy-host`
+
+- - -
+<!--
+## netq config add opta generate-opta-ssl
+
+For additional information, see {{<link title="gNMI Streaming">}}. 
+
+### Syntax
+
+```
+netq config add opta generate-opta-ssl 
+    [opta-hostnames <text-opta-hostnames>] 
+    [opta-ips <text-opta-ips>]
+```
+### Required Arguments
+
+None
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| opta-hostnames | \<text-opta-hostnames\> |  |
+| opta-ips | \<text-opta-ips\> |  |
+
+### Sample Usage
+
+### Related Commands
+- - -
+-->
+## netq config add opta proxy-host
+
+Adds a proxy host as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}.
+
+### Syntax
+
+```
+netq config add opta 
+    proxy-host <text-proxy-host> 
+    proxy-port <text-proxy-port>
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| proxy-host | \<text-proxy-host\> | Specifies proxy host |
+| proxy-port | \<text-proxy-port\> | Specifies proxy port |
+
+### Options
+
+None
+
+### Related Commands
+
+- `netq config del opta proxy-host`
+
+- - -
+<!--
 ## netq config addons
 
 ### Syntax
@@ -730,6 +872,7 @@ Addons config added
 None
 
 - - -
+-->
 ## netq config color
 
 <!-- vale off -->
@@ -994,7 +1137,28 @@ cumulus@switch:~$ netq config del cli server
 - ```netq config restart agent```
 
 - - -
+## netq config del opta proxy-host
 
+Deletes a proxy host as part of the {{<link title="Install NetQ Agents/#configure-the-on-switch-opta" text="on-switch OPTA configuration">}}.
+
+### Syntax
+
+```
+netq config del opta proxy-host
+```
+### Required Arguments
+
+None
+
+### Options
+
+None
+### Related Commands
+
+- `netq config add opta proxy-host`
+- - -
+
+<!--
 ## netq config experimental
 
 ### Syntax
@@ -1019,7 +1183,31 @@ None
 None
 
 - - -
+-->
+<!--
+## netq config opta
 
+### Syntax
+
+```
+netq config (start|stop|status|restart) opta
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| NA | start, stop, status, restart |  |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- - -
+-->
 ## netq config reload parser
 
 Loads the NetQ configuration file.
@@ -1087,6 +1275,7 @@ Restarting NetQ CLI... Success!
 ### Related Commands
 
 - `netq config stop agent`
+- `netq config status agent`
 
 - - -
 <!-- vale off -->
@@ -1155,7 +1344,7 @@ WJH Threshold: Displays whether you configured the NetQ Agent with WJH latency a
 
 ```
 netq config show agent 
-    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats||wjh|wjh-threshold] 
+    [cpu-limit|frr-monitor|kubernetes-monitor|loglevel|sensors|ssl|stats|wjh|wjh-threshold] 
     [json]
 ```
 ### Required Arguments
@@ -1394,9 +1583,9 @@ Starting netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent
-- netq config stop agent
-- netq config restart agent
+- `netq config show agent`
+- `netq config stop agent`
+- `netq config restart agent`
 
 - - -
 
@@ -1430,9 +1619,9 @@ netq-agent...stopped
 
 ### Related Commands
 
-- netq config show agent
-- netq config stop agent
-- netq config restart agent
+- `netq config show agent`
+- `netq config stop agent`
+- `netq config restart agent`
 
 - - -
 <!-- vale off -->
@@ -1458,7 +1647,6 @@ None
 ```
 cumulus@switch:~$ netq config status cli
 NetQ CLI... Running
-
 ```
 
 ### Related Commands
@@ -1495,7 +1683,7 @@ Stopping netq-agent... Success!
 
 ### Related Commands
 
-- netq config show agent
-- netq config start agent
-- netq config restart agent
-<!-- vale NVIDIA.HeadingTitles = YES -->
+- `netq config show agent`
+- `netq config start agent`
+- `netq config restart agent`
+

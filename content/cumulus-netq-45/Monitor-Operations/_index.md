@@ -10,14 +10,13 @@ toc: 2
 - {{<link title="EVPN">}}
 - {{<link title="Hosts">}}
 - {{<link title="Interfaces">}}
-- {{<link title="IP">}}
+- {{<link title="IP Addresses">}}
 - {{<link title="LLDP">}}
 - {{<link title="MAC Addresses">}}
 - {{<link title="MLAG">}}
 - {{<link title="Network Topology">}}
 - {{<link title="NTP">}}
 - {{<link title="OSPF">}}
-- {{<link title="PTP">}}
 - {{<link title="RoCE">}}
 - {{<link title="STP">}}
 - {{<link title="Switches">}}

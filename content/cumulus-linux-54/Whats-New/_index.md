@@ -10,18 +10,61 @@ This document supports the Cumulus Linux 5.4 release, and lists new platforms, f
 - For a list of open and fixed issues in Cumulus Linux 5.4, see the {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4 Release Notes">}}.
 - To upgrade to Cumulus Linux 5.4, follow the steps in {{<link url="Upgrading-Cumulus-Linux">}}.
 <!-- vale off -->
+## What's New in Cumulus Linux 5.4.0b
+<!-- vale on -->
+Cumulus Linux 5.4.0b only supports the following platform, which is available as a proof of concept (POC):
+
+- NVIDIA SN5600 (800G Spectrum-4)
+
+{{%notice note%}}
+- Cumulus Linux 5.4.0b does not support package upgrade; you must install the Cumulus Linux 5.4.0b image.
+- If you install a new Cumulus Linux 5.4.0b image, you must power cycle the switch after installation.
+- Cumulus Linux 5.4.0b does not support forced link speed; the switch uses auto-negotiation only.
+- For information about NetQ features supported for Spectrum-4, refer to {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-45/More-Documents/Spectrum-Support/" text="NetQ Spectrum-4 Support">}}.
+{{%/notice%}}
+
+The following list describes open issues specific to the NVIDIA SN5600 (Spectrum-4) switch. See {{<link title="Cumulus Linux 5.4 Release Notes" text="Cumulus Linux 5.4.0 Release Notes">}} for additional open issues that are not fixed in this release.
+
+{{< expand "NVIDIA SN5600 Open Issues" >}}
+| Issue ID | Description |
+| -------  | ---------- |
+| 3436305  | Auto-negotiation and link-training is not supported at 25G between the NVIDIA SN5600 switch and non-NVIDIA devices.|
+| 3436298  | On rare occasions, when you use the MMS4X00-NS transceiver with the NVIDIA SN5600 switch, the port might not come up.|
+| 3436296  | On the NVIDIA SN5600 switch, the 8x port breakout is not supported with the MCP4Y10-N00A cable.|
+| 3436291  | The NVIDIA SN5600 switch does not support connecting to a Spectrum-2 or Spectrum-3 switch with an MCP7Y70-H001 4X  breakout cable.|
+| 3436288  | When you connect two ports together on the same NVIDIA SN5600 switch with an MCP4Y10-N001 cable, you might see link flaps after the ports come up.|
+| 3436287  | The NVIDIA SN5600 switch does not support connecting to a Spectrum 1 switch using a 2x breakout with the MCP7Y60-H001 cable at 25G. |
+| 3436229  | On the NVIDIA SN5600 switch, when you connect a service port to non-NVIDIA devices, auto-negotiation is not supported for 25G links.|
+| 3436215  | On the NVIDIA SN5600 switch, the thermal control service crashes when you remove a fan tray.|
+| 3434855  | If the SDK becomes stuck and not able to process API calls, the {{systemd}} watchdog stops {{switchd}} and Cumulus Linux generates a {{cl-support}} file. {{switchd}} restarts after the watchdog timeout and then runs without issues. |
+| 3419124  | On rare occasions, LLDP and other CPU originated IP packets that egress a port might get replicated in the data plane and forwarded out of another port as well. The peer node might discard the unicast packets on the wrong port because of destination MAC address; however, there might be problems with multicast packets, such as LLDP, which uses a multicast MAC address as the destination MAC address. To work around this issue, reboot the switch. |
+| 3395489  | On a switch running MLAG, when you configure QoS buffer settings, MLAG peering resets.|
+{{< /expand >}}
+
+{{%notice warning%}}
+The NVIDIA SN5600 switch is available as a POC and open to customer feedback. Do not use this switch in production; it is not supported through NVIDIA networking support.
+{{%/notice%}}
+
+<!-- vale off -->
 ## What's New in Cumulus Linux 5.4.0
 <!-- vale on -->
-<!--Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 5.4.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
+
+{{%notice note%}}
+Early access features are now called beta features.
+{{%/notice%}}
+
+{{%notice warning%}}
+- If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the new port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
+- Cumulus Linux 5.4 package upgrade (`apt-upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
+{{%/notice%}}
 
 ### Platforms
 
-- NVIDIA SN3750-SX (200G Spectrum-2) generally available
--->
-Cumulus Linux 5.4.0 supports provides bug fixes, and contains several new features and improvements.
+- NVIDIA SN3750-SX (100G Spectrum-2) available for beta
 
-{{%notice note%}}
-Early Access features are now called Beta features.
+{{%notice warning%}}
+The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. Do not use this switch in production; it is not supported through NVIDIA networking support.
 {{%/notice%}}
 
 ### New Features and Enhancements
@@ -30,16 +73,10 @@ Early Access features are now called Beta features.
    - New format for {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="port breakouts">}} in the `/etc/cumulus/ports.conf` file
    - {{<link url="Switch-Port-Attributes/#configure-a-breakout-port" text="Breakout port speed">}} configuration is now in the `/etc/network/interfaces` file
    - New {{<link url="Switch-Port-Attributes/#configure-port-lanes" text="port lane">}} and {{<link url="Switch-Port-Attributes/#set-the-number-of-lanes-per-split-port" text="breakout port lane">}} configuration settings
-
-   {{%notice warning%}}
-If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and earlier, the port configuration changes might impact your Cumulus Linux 5.4 upgrade. Refer to {{<link url="Switch-Port-Attributes/#important-upgrade-information-for-breakout-ports-and-nvue" text="Important Upgrade Information for Breakout Ports and NVUE">}} for important upgrade information.
-{{%/notice%}}
-
-- 1G support for all NVIDIA Spectrum-2 and Spectrum-3 switches
-- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (Beta)
+- 1G support (beta) for all NVIDIA Spectrum-2 and Spectrum-3 switches
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="User-Accounts" text="User management">}} commands
-  - {{<link url="TACACS" text="TACACS+">}} commands (Beta)
+  - {{<link url="TACACS" text="TACACS+">}} commands (beta)
   - {{<link url="Supported-Route-Table-Entries/#supported-route-entries" text="ASIC Resource Slicing">}} (KVD) commands
   - {{<link url="Link-Layer-Discovery-Protocol/#set-lldp-mode" text="LLDP commands">}} to send either CDP frames only or LLDP frames only
   - QoS commands for {{<link url="Quality-of-Service/#shaping" text="egress traffic shaping">}}, {{<link url="Quality-of-Service/#pause-frames" text="link pause">}}, {{<link url="Quality-of-Service/#8021p-or-dscp-for-marking" text="traffic remarking">}}, and {{<link url="Quality-of-Service/#advanced-buffer-tuning" text="advanced buffer configuration">}}
@@ -51,8 +88,8 @@ If you configured breakout ports with NVUE commands in Cumulus Linux 5.3 and ear
   - New {{<link url="Troubleshooting-EVPN" text="EVPN show commands">}} to show {{<link url="Troubleshooting-EVPN#show-the-vni-evpn-routing-table" text="EVPN local RIB">}} and {{<link url="Troubleshooting-EVPN/#show-evpn-vnis" text="VNI">}} information
   - The `nv set evpn evi`, `nv unset evpn evi`, and `nv show evpn evi` commands are now `nv set evpn vni`, `nv unset evpn vni`, and `nv show evpn vni`
   - Obfuscated passwords to protect passwords from casual viewing
-  - The `nv show config` command shows NVUE version information in addition to the saved configuration
-  - You can reorganize `nv show` command columns
+  - The NVUE `startup.yaml` file shows NVUE version information in addition to saved configuration
+  <!-- - {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP Shaping">}} for Spectrum 1 (Beta)-->
   - New commands:
    {{< tabs "TabID40 ">}}
 {{< tab "show commands ">}}
@@ -126,7 +163,6 @@ nv show interface <interface-id> qos buffer ingress-priority-group
 nv show interface <interface-id> qos buffer egress-port
 nv show interface <interface-id> qos buffer egress-traffic-class
 nv show interface <interface-id> qos buffer egress-multicast
-nv show interface <interface-id> ptp shaper
 nv show system config auto-save
 nv show system aaa
 nv show system aaa user
@@ -261,8 +297,8 @@ nv set interface <interface-id> qos remark
 nv set interface <interface-id> qos remark profile <profile-name>
 nv set interface <interface-id> qos egress-shaper
 nv set interface <interface-id> qos egress-shaper profile <profile-name>
-nv set interface <interface-id> ptp shaper enable (on|off)
 nv set service lldp mode
+nv set service ptp <instance-id> logging-level
 nv set system config auto-save
 nv set system config auto-save enable (on|off)
 nv set system aaa
@@ -398,8 +434,8 @@ nv unset interface <interface-id> qos remark
 nv unset interface <interface-id> qos remark profile
 nv unset interface <interface-id> qos egress-shaper
 nv unset interface <interface-id> qos egress-shaper profile
-nv unset interface <interface-id> ptp shaper enable (on|off)
 nv unset service lldp mode
+nv unset service ptp <instance-id> logging-level
 nv unset system config auto-save
 nv unset system config auto-save enable
 nv unset system aaa
@@ -442,10 +478,10 @@ nv unset system aaa tacacs vrf
 {{< /tabs >}}
   
 {{%notice info%}}
-Cumulus Linux 5.4 includes the NVUE object model. After you upgrade to Cumulus Linux 5.4, running NVUE configuration commands replaces the configuration in files such as `/etc/network/interfaces` and `/etc/frr/frr.conf` and removes any configuration you add manually or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
+Cumulus Linux 5.4 includes the NVUE object model. After you upgrade to Cumulus Linux 5.4, running NVUE configuration commands might override configuration for features that are now configurable with NVUE and removes configuration you added manually to files or with automation tools like Ansible, Chef, or Puppet. To keep your configuration, you can do one of the following:
 
 - Update your automation tools to use NVUE.
-- {{<link url="NVIDIA-User-Experience-NVUE/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
+- {{<link url="NVUE-CLI/#configure-nvue-to-ignore-linux-files" text="Configure NVUE to ignore certain underlying Linux files">}} when applying configuration changes.
 - Use Linux and FRR (vtysh) commands instead of NVUE for **all** switch configuration.
 
 Cumulus Linux 3.7, 4.3, and 4.4 continue to support NCLU. For more information, contact your NVIDIA Spectrum platform sales representative.

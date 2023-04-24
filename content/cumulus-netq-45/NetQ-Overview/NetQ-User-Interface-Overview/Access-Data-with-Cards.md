@@ -69,13 +69,13 @@ Cards are available in 4 sizes. The granularity of the content on a card varies 
 ## Card Actions
 ### Add Cards to Your Workbench
 
-1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> Card in the header.
+1. Click <img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18"/> **Add card** in the header.
 
-2. Locate and select the card(s) you want to add to your workbench.
+2. Select the card(s) you want to add to your workbench.
 
 3. When you have selected the cards you want to add to your workbench, select **Open cards**:
 
-      {{<figure src="/images/netq/access-cards-450.png" alt="1 selected card to be added to a workbench" width="900">}}
+      {{<figure src="/images/netq/access-cards-450.png" alt="1 selected card to be added to a workbench" width="1000">}}
 
 The cards are placed at the end of the set of cards currently on the workbench. You might need to scroll down to see them. Drag and drop the cards on the workbench to rearrange them.
 
@@ -83,7 +83,7 @@ The cards are placed at the end of the set of cards currently on the workbench. 
 
 You can add switch cards to a workbench through the Devices icon on the header or by searching for it in the Global Search field. To add a switch card from the header:
 
-1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} Devices, then select **Open a device card**.
+1. Click {{<img src="/images/netq/devices.svg" height="18" width="18">}} **Devices**, then select **Open a device card**.
 
 2. Select the device from the suggestions that appear:
 
@@ -93,7 +93,7 @@ You can add switch cards to a workbench through the Devices icon on the header o
 
 ### Remove Cards from Your Workbench
 
-To remove all the cards from your workbench, click the Clear icon in the header. To remove an individual card: 
+To remove all the cards from your workbench, click the **Clear** icon in the header. To remove an individual card: 
 
 1. Hover over the card you want to remove.
 2. Click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu-horizontal.svg" height="18" width="18"/> (*More Actions* menu).
@@ -136,7 +136,7 @@ Changing the time period in this manner only changes the time period for the giv
 
 You can manipulate the tabular data displayed in a full-screen card by filtering and sorting the columns. Hover over the column header and select it to sort the column. The data is sorted in ascending or descending order: A-Z, Z-A, 1-n, or n-1. The number of rows that can be sorted is limited to 10,000.
 
-To reposition the columns, drag and drop them using your mouse. You can also export the data presented in the table by selecting <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> Export.
+To reposition the columns, drag and drop them using your mouse. You can also export the data presented in the table by selecting <img src="https://icons.cumulusnetworks.com/05-Internet-Networks-Servers/08-Upload-Download/upload-bottom.svg" height="18" width="18"/> **Export**.
 
 The following icons are common in the full-screen card view:
 

@@ -45,18 +45,18 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 1. Determine the IP addresses of the two devices you want to trace.
 
-    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} Menu, then select **IP addresses**.
+    1. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**, then select **IP addresses**.
 
-    2. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} Filter and enter a hostname.
+    2. Select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/15-Filter/filter-1.svg" height="18" width="18">}} **Filter** and enter a hostname.
 
-    3. Make note of the relevant address.
+    3. From the list of results, note the relevant address.
 
-    4. Filter the list again for the other hostname, and make note of its address.
+    4. Filter the list again for the other hostname, and note its address.
 
 2. Open the Trace Request card.
 
     - On a new workbench: Type *trace* in the **Global search** field and select the card.
-    - On a current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} Card, then select and open the **Trace** card.
+    - On a current workbench: Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} **Add card**, then select the **Trace** card.
 
 3. In the **Source** field, enter the hostname or IP address of the device where you want to start the trace.
 
@@ -66,7 +66,7 @@ It is helpful to verify the connectivity between two devices when you suspect an
 
 <div style="padding-left: 18px;"><div class="notices tip"><p>If you mistype an address, you must double-click it, or backspace over the error, and retype the address. You cannot select the address by dragging over it as this action attempts to move the card to another location.</p></div></div>
 
-5. Click **Run Now**. A corresponding Trace Results card is opened on your workbench.
+5. Click **Run now**. A corresponding Trace Results card is opened on your workbench.
 
 {{</tab>}}
 
@@ -333,7 +333,7 @@ cumulus@switch:~$ netq add trace 10.1.10.104 from 10.1.10.101 vrf RED
 ### Create a Layer 2 On-demand Trace
 <!-- vale on -->
 
-It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. It you cannot find a path through a layer 2 path, you might also try checking connectivity through a layer 3 path.
+It is helpful to verify the connectivity between two devices when you suspect an issue is preventing proper communication between them. If you cannot find a path through a layer 2 path, you might also try checking connectivity through a layer 3 path.
 
 {{<tabs "Create Layer 2 On-demand Trace">}}
 
@@ -780,7 +780,7 @@ To view the results:
 
 1. Open the Trace Request card.
 
-    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}}. Click **Trace**. Click on card. Click **Open Cards**.
+    Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} **Add card** and select the **Trace** card.
 
 2. Change to the full-screen card using the card size picker to view all scheduled traces.
 
@@ -788,7 +788,7 @@ To view the results:
 
 3. Select the scheduled trace results you want to view.
 
-4. Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} (Open Card). This opens the medium Scheduled Trace Results card(s) for the selected items.
+4. Click {{<img src="https://icons.cumulusnetworks.com/44-Entertainment-Events-Hobbies/02-Card-Games/card-game-diamond.svg" height="18" width="18">}} **Open card**. This opens the medium Scheduled Trace Results card(s) for the selected items.
 
     {{<figure src="/images/netq/sch-trace-result-medium.png" width="200">}}
 
@@ -948,11 +948,9 @@ Both a standard user and an administrative user can remove scheduled traces. No 
 
 1. Open the Trace Request card and expand the card to the largest size.
 
-2. Select one or more traces to remove.
+2. Select one or more traces.
 
-    {{<figure src="/images/netq/sch-trace-delete-trace-320.png" width="700">}}
-
-4. Click {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}}.
+3. Above the table, select {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/23-Delete/bin-1.svg" height="18" width="18">}} **Delete**.
 
 {{</tab>}}
 

@@ -72,7 +72,7 @@ IPV6 Duplicate Address Test   : passed
 ### Related Commands
 - ```netq show address-history```
 - ```netq add validation```
-
+- - -
 ## netq check agents
 
 Validates the communication status of all nodes (leafs, spines, and hosts) running the NetQ Agent in your network fabric. The output displays the status (passed/failed/skipped) of all tests and a summary including:
@@ -1160,15 +1160,14 @@ RoCE Classification Test       : passed
 RoCE Congestion Control Test   : passed
 RoCE Flow Control Test         : passed
 RoCE ETS mode Test             : passed
-
 ```
 ### Related Commands
 
-- ```netq show roce-counters``` 
-- ```netq show roce-config```
-- ```netq show roce-counters pool```
-- ```netq show events```
-- ```netq show unit-tests```
+- `netq show roce-counters`
+- `netq show roce-config`
+- `netq show roce-counters pool`
+- `netq show events`
+- `netq show unit-tests`
 
 - - -
 ## netq check sensors

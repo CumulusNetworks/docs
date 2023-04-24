@@ -227,8 +227,8 @@ The above commands configure the switch to send all multicast traffic to RP 10.1
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 224.10.0.0/16
-cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.102 224.10.2.0/24
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 group-range 224.10.0.0/16
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.102 group-range 224.10.2.0/24
 ```
 
 {{< /tab >}}
@@ -247,8 +247,42 @@ spine01# exit
 {{< /tab >}}
 {{< /tabs >}}
 
+The following commands use a prefix list to configure PIM to send traffic from multicast group 224.10.0.0/16 to RP 10.10.10.101 and traffic from multicast group 224.10.2.0/24 to RP 10.10.10.102:
+
+{{< tabs "TabID252 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set router policy prefix-list MCAST1 rule 1 action permit
+cumulus@leaf01:~$ nv set router policy prefix-list MCAST1 rule 1 match 224.10.0.0/16
+cumulus@leaf01:~$ nv set router policy prefix-list MCAST2 rule 1 action permit
+cumulus@leaf01:~$ nv set router policy prefix-list MCAST2 rule 1 match 224.10.2.0/24
+cumulus@leaf01:~$ nv config apply
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.101 prefix-list MCAST1
+cumulus@leaf01:~$ nv set vrf default router pim address-family ipv4-unicast rp 10.10.10.102 prefix-list MCAST2
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+...
+spine01# configure terminal
+switch(config)# ip prefix-list MCAST1 seq 1 permit 224.10.0.0/16
+switch(config)# ip prefix-list MCAST2 seq 1 permit 224.10.2.0/24
+spine01(config)# ip pim rp 10.10.10.101 prefix-list MCAST1
+spine01(config)# ip pim rp 10.10.10.102 prefix-list MCAST2
+spine01(config)# end
+spine01# exit
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 {{%notice note%}}
-- You can either configure RP mappings for different multicast groups (as shown above) or use a prefix list to specify the RP to group mapping. You cannot use both methods at the same time.
+- You can either configure RP mappings for different multicast groups or use a prefix list to specify the RP to group mapping. You cannot use both methods at the same time.
 - NVIDIA recommends that you do not use a spine switch as an RP when using eBGP in a Clos network. See the [PIM Overview knowledge-base article]({{<ref "/knowledge-base/Configuration-and-Usage/Network-Configuration/PIM-Overview" >}}).
 - zebra does not resolve the next hop for the RP through the default route. To prevent multicast forwarding from failing, either provide a specific route to the RP or run the vtysh `ip nht resolve-via-default` configuration command to resolve the next hop for the RP through the default route.
 {{%/notice%}}
@@ -262,6 +296,10 @@ This section describes optional configuration procedures.
 When the LHR receives the first multicast packet, it sends a [PIM (S,G) join](## "a single PIM message with a list of groups to join. ") towards the FHR to forward traffic through the network. This builds the [SPT](## "shortest path tree "), or the tree that is the shortest path to the source. When the traffic arrives over the SPT, a PIM (S,G) RPT prune goes up the shared tree towards the RP. This removes multicast traffic from the shared tree; multicast data only goes over the SPT.
 
 You can configure SPT switchover per group (SPT infinity), which allows for some groups to never switch to a shortest path tree. The LHR now sends both (*,G) joins and (S,G) RPT prune messages towards the RP.
+
+{{%notice note%}}
+When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
+{{%/notice%}}
 
 To configure a group to never follow the SPT, create the necessary prefix lists, then configure SPT switchover for the prefix list:
 
@@ -312,7 +350,7 @@ Source          Group           Proto   Input     Output     TTL  Uptime
 For [SSM](## "Source Specific Multicast"), `232.0.0.0/8` is the default multicast group range. To change the multicast group range, define a prefix list and apply it. You can change the default group or add additional group ranges.
 
 {{%notice note%}}
-You must include `232.0.0.0/8` in the prefix list.
+You must include `232.0.0.0/8` in the prefix list. When you use a prefix list in Cumulus Linux to match a multicast group destination address (GDA) range, you must include the /32 operator. In the NVUE command example below, `max-prefix-len 32` after the group match range specifies the /32 operator. In the vtysh command example, `ge 32` after the group permit range specifies the /32 operator.
 {{%/notice%}}
 
 {{< tabs "TabID825 ">}}

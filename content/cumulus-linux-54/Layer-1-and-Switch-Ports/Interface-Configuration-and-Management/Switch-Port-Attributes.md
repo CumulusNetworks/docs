@@ -21,7 +21,7 @@ Each physical network interface (port) has several settings:
 - <span style="background-color:#F5F5DC">[MTU](## "Maximum Transmission Unit")</span>
 - <span style="background-color:#F5F5DC">[FEC](## "Forward Error Correction")</span>
 
-For NVIDIA **Spectrum ASICs**, MTU is the only port attribute you can directly configure. The Spectrum firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. However, you can disable FEC if necessary, which forces the firmware to not try any FEC options.
+For NVIDIA Spectrum ASICs, the firmware configures FEC, link speed, duplex mode and auto-negotiation automatically, following a predefined list of parameter settings until the link comes up. You can disable FEC if necessary, which forces the firmware to not try any FEC options.
 
 ## MTU
 
@@ -543,7 +543,7 @@ All 4x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 {{< tab "10G ">}}
 
 - 18x 10G - 18x SFP28 set to 10G
-- 16x 10G - 4x QSFP28 configured as 4x25G breakouts and set to 10G
+- 16x 10G - 4x QSFP28 configured as 4x breakouts and set to 10G
 
 Maximum 10G ports: 34
 
@@ -551,7 +551,7 @@ Maximum 10G ports: 34
 {{< tab "25G ">}}
 
 - 18x 25G - 18x SFP28 (native speed)
-- 16x 25G - 4x QSFP28 breakouts to 4x25G
+- 16x 25G - 4x QSFP28 breakouts to 4x
 
 Maximum 25G ports: 34
 
@@ -565,7 +565,7 @@ Maximum 40G ports: 4
 {{< /tab >}}
 {{< tab "50G ">}}
 
-8x 50G - 4x QSFP28 break out into 2x 50G
+8x 50G - 4x QSFP28 break out into 2x
 
 Maximum 50G ports: 8
 
@@ -589,14 +589,14 @@ All QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 {{< tabs "2100_ports ">}}
 {{< tab "10G ">}}
 
-64x 10G - 16x QSFP28 break out into 4x 25G and set to 10G
+64x 10G - 16x QSFP28 break out into 4x and set to 10G
 
 Maximum 10G ports: 64
 
 {{< /tab >}}
 {{< tab "25G ">}}
 
-64x 25G - 16x QSFP28 break out into 4x 25G
+64x 25G - 16x QSFP28 break out into 4x
 
 Maximum 25G ports: 64
 
@@ -610,7 +610,7 @@ Maximum 40G ports: 16
 {{< /tab >}}
 {{< tab "50G ">}}
 
-32x 50G - 16x QSFP28 break out into 2x 50G
+32x 50G - 16x QSFP28 break out into 2x
 
 Maximum 50G ports: 32
 
@@ -635,7 +635,7 @@ All 4x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 {{< tab "1G ">}}
 
 - 48x 1GBase-T - 48x Base-T set to 1G. You can set them to also to 10/100Mb.
-- 16x 1G - 4x QSFP28 configured as 4x25G breakouts and set to 1G
+- 16x 1G - 4x QSFP28 configured as 4x breakouts and set to 1G
 
 Maximum 10/100MBase-T ports: 48
 Maximum 1GBase-T ports: 48
@@ -643,14 +643,14 @@ Maximum 1G ports: 16
 {{< /tab >}}
 {{< tab "10G ">}}
 
-- 16x 10G - 4x QSFP28 configured as 4x25G breakouts and set to 10G
+- 16x 10G - 4x QSFP28 configured as 4x breakouts and set to 10G
 
 Maximum 10G ports: 16
 
 {{< /tab >}}
 {{< tab "25G ">}}
 
-- 16x 25G - 4x QSFP28 breakouts to 4x25G
+- 16x 25G - 4x QSFP28 breakouts to 4x
 
 Maximum 25G ports: 16
 
@@ -664,7 +664,7 @@ Maximum 40G ports: 4
 {{< /tab >}}
 {{< tab "50G ">}}
 
-8x 50G - 4x QSFP28 break out into 2x 50G
+8x 50G - 4x QSFP28 break out into 2x
 
 Maximum 50G ports: 8
 
@@ -691,7 +691,7 @@ All 8x QSFP28 ports can break out into 2x QSFP28 without disabling ports.
 {{< tab "10G ">}}
 
 - 48x 10G - 48x SFP28 set to 10G
-- 16x 10G - 4x QSPF28 break out into 4x25G and set to 10G
+- 16x 10G - 4x QSFP28 break out into 4x and set to 10G
 
 Maximum 10G ports: 64
 
@@ -699,7 +699,7 @@ Maximum 10G ports: 64
 {{< tab "25G ">}}
 
 - 48x 25G - 48x SFP28 (native speed)
-- 16x 25G - Top 4x QSFP28 break out into 4x25G (bottom 4x QSFP28 disabled)
+- 16x 25G - Top 4x QSFP28 break out into 4x (bottom 4x QSFP28 disabled)
 
 Maximum 25G ports: 64
 
@@ -713,14 +713,14 @@ Maximum 40G ports: 8
 {{< /tab >}}
 {{< tab "50G ">}}
 
-16x 50G - 8x QSFP28 break out into 2x 50G
+16x 50G - 8x QSFP28 break out into 2x
 
 Maximum 50G ports: 16
 
 {{< /tab >}}
 {{< tab "100G ">}}
 
-8x 100G - 16x QSFP28 (native speed)
+8x 100G - 8x QSFP28 (native speed)
 
 Maximum 100G ports: 8
 
@@ -739,14 +739,14 @@ All 32x QSFP28 ports can break out into 2x QSFP28 without disabling ports.
 {{< tabs "2700_ports ">}}
 {{< tab "10G ">}}
 
-64x 10G - Top 16x QSFP28 break out into 4x 25G and set to 10G (bottom 16x QSFP28 disabled)
+64x 10G - Top 16x QSFP28 break out into 4x and set to 10G (bottom 16x QSFP28 disabled)
 
 Maximum 10G ports: 64
 
 {{< /tab >}}
 {{< tab "25G ">}}
 
-64x 25G - Top 16x QSFP28 break out into 4x25G (bottom 16x QSFP28 disabled)
+64x 25G - Top 16x QSFP28 break out into 4x (bottom 16x QSFP28 disabled)
 
 Maximum 25G ports: 64
 
@@ -760,7 +760,7 @@ Maximum 40G ports: 32
 {{< /tab >}}
 {{< tab "50G ">}}
 
-64x 50G - 64x QSFP28 break out into 2x 50G
+64x 50G - 64x QSFP28 break out into 2x
 
 Maximum 50G ports: 64
 
@@ -785,7 +785,7 @@ All 12x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 {{< tab "10G ">}}
 
 - 48x 10G - 48x SFP28 set to 10G
-- 48x 10G - 12x QSPF28 break out into 4x 25G and set to 10G
+- 48x 10G - 12x QSFP28 break out into 4x and set to 10G
 
 Maximum 10G ports: 96
 
@@ -793,7 +793,7 @@ Maximum 10G ports: 96
 {{< tab "25G ">}}
 
 - 48x 25G - 48x SFP28 (native speed)
-- 48x 25G - 12x QSPF28 break out into 4x 25G
+- 48x 25G - 12x QSFP28 break out into 4x
 
 Maximum 25G ports: 96
 
@@ -807,7 +807,7 @@ Maximum 40G ports: 12
 {{< /tab >}}
 {{< tab "50G ">}}
 
-24x 50G - 12x QSFP28 break out into 2x 50G
+24x 50G - 12x QSFP28 break out into 2x
 
 Maximum 50G ports: 24
 
@@ -844,7 +844,7 @@ Maximum 10G ports: 96
 {< tab "25G ">}}
 
 - 48x25G - 48xSFP56 set to 25G
-- 48x25G - 6xQSPF-DD break out into 8x50G and set to 25G
+- 48x25G - 6xQSFP-DD break out into 8x50G and set to 25G
 
 Maximum 25G ports: 96
 
@@ -900,14 +900,14 @@ All 32x QSFP28 ports can break out into 4x SFP28 or 2x QSFP28.
 {{< tabs "3700C_ports ">}}
 {{< tab "10G ">}}
 
-128x 10G - 32x QSFP28 break out into 4x 25G and set to 10G
+128x 10G - 32x QSFP28 break out into 4x and set to 10G
 
 Maximum 10G ports: 128
 
 {{< /tab >}}
 {{< tab "25G ">}}
 
-128x 25G - 32x QSFP28 break out into 4x 25G
+128x 25G - 32x QSFP28 break out into 4x
 
 Maximum 25G ports: 128
 
@@ -921,7 +921,7 @@ Maximum 40G ports: 32
 {{< /tab >}}
 {{< tab "50G ">}}
 
-64x 50G - 32x QSFP28 break out into 2x 50G
+64x 50G - 32x QSFP28 break out into 2x
 
 Maximum 50G ports: 64
 
@@ -947,14 +947,14 @@ All 32x QSFP56 ports can break out into 4xSFP56 or 2x QSFP56.
 {{< tabs "3700_ports ">}}
 {{< tab "10G ">}}
 
-128x 10G - 32x QSFP56 break out into 4x 50G and set to 10G
+128x 10G - 32x QSFP56 break out into 4x and set to 10G
 
 Maximum 10G ports: 128
 
 {{< /tab >}}
 {{< tab "25G ">}}
 
-128x 25G - 32x QSFP56 break out into 4x 50G and set to 25G
+128x 25G - 32x QSFP56 break out into 4x and set to 25G
 
 Maximum 25G ports: 128
 
@@ -968,14 +968,14 @@ Maximum 40G ports: 32
 {{< /tab >}}
 {{< tab "50G ">}}
 
-128x 50G - 32x QSFP56 break out into 4x 50G
+128x 50G - 32x QSFP56 break out into 4x and set to 50G
 
 Maximum 50G ports: 128
 
 {{< /tab >}}
 {{< tab "100G ">}}
 
-64x 100G - 32x QSFP56 break out into 2x 100G
+64x 100G - 32x QSFP56 break out into 2x and set to 100G
 
 Maximum 100G ports: 64
 
@@ -1007,22 +1007,22 @@ All the 8xQSFP-DD ports can break out into 4xQSFP56 (4x100GbE), or 2xQSFP56 (2x2
 {{< tabs "4410_ports ">}}
 {{< tab "10G ">}}
 
-- 96x10G - 24xQSFP28-DD break out into 4x25G and set to 10G
-- 32x10G - 4 top QSFP-DD break out into 8x50G and set to 10G (bottom 4xQSFP-DD blocked*)
+- 96x10G - 24xQSFP28-DD break out into 4x and set to 10G
+- 32x10G - 4 top QSFP-DD break out into 8x and set to 10G (bottom 4xQSFP-DD blocked*)
 
 Maximum 10G ports: 128
 
-*Other QSFP-DD breakout combinations are available up to maximum of 128x10G ports.
+*Other QSFP-DD breakout combinations are available up to maximum of 128x ports.
 
 {{< /tab >}}
 {{< tab "25G ">}}
 
-- 96x25G - 24xQSFP28-DD break out into 4x25G
-- 32x25G - 4 top QSFP-DD break out into 8x50G and set to 25G (bottom 4xQSFP-DD blocked*)
+- 96x25G - 24xQSFP28-DD break out into 4x
+- 32x25G - 4 top QSFP-DD break out into 8x and set to 25G (bottom 4xQSFP-DD blocked*)
 
 Maximum 25G ports: 128
 
-*Other QSFP-DD breakout combinations are available up to maximum of 128x25G ports.
+*Other QSFP-DD breakout combinations are available up to maximum of 128x ports set to 25G.
 
 {{< /tab >}}
 {{< tab "40G ">}}
@@ -1034,25 +1034,25 @@ Maximum 40G ports: 32
 {{< /tab >}}
 {{< tab "50G ">}}
 
-- 48x50G - 24xQSFP28-DD break out into 2x50G
-- 32x50G - 4 top QSFP-DD break out into 8x50G (bottom 4xQSFP-DD blocked*)
+- 48x50G - 24xQSFP28-DD break out into 2x and set to 50G
+- 32x50G - 4 top QSFP-DD break out into 8x and set to 50G (bottom 4xQSFP-DD blocked*)
 
 Maximum 50G ports: 80
 
-*Other QSFP-DD breakout combinations are available up to maximum of 80x50G ports.
+*Other QSFP-DD breakout combinations are available up to maximum of 80x ports set to 50G.
 
 {{< /tab >}}
 {{< tab "100G ">}}
 
-- 48x100G - 24xQSFP28-DD break out into 2x100G (using special 2xQSFP28-DD breakout cable)
-- 32x100G - 8xQSFP-DD break out into 4x100G
+- 48x100G - 24xQSFP28-DD break out into 2x (using special 2xQSFP28-DD breakout cable)
+- 32x100G - 8xQSFP-DD break out into 4x and set to 100G
 
 Maximum 100G ports: 80
 
 {{< /tab >}}
 {{< tab "200G ">}}
 
-16x200G - 8xQSFP-DD break out into 2x200G
+16x200G - 8xQSFP-DD break out into 2x and set to 200G
 
 Maximum 200G ports: 16
 
@@ -1078,14 +1078,14 @@ All 64x QSFP28 ports can break out into 2x QSFP28 without disabling ports.
 {{< tabs "4600C_ports ">}}
 {{< tab "10G ">}}
 
-128x 10G - 32x QSFP28 break out into 4x 25G and set to 10G
+128x 10G - 32x QSFP28 break out into 4x and set to 10G
 
 Maximum 10G ports: 128
 
 {{< /tab >}}
 {{< tab "25G ">}}
 
-128x 25G - 32x QSFP28 break out into 4x 25G
+128x 25G - 32x QSFP28 break out into 4x and set to 25G
 
 Maximum 25G ports: 128
 
@@ -1099,7 +1099,7 @@ Maximum 40G ports: 64
 {{< /tab >}}
 {{< tab "50G ">}}
 
-128x 50G - 64x QSFP28 break out into 2x 50G
+128x 50G - 64x QSFP28 break out into 2x and set to 50G
 
 Maximum 50G ports: 128
 
@@ -1108,7 +1108,7 @@ Maximum 50G ports: 128
 
 64x 100G - 64x QSFP28 (native speed)
 
-Maximum 100G ports: 80
+Maximum 100G ports: 64
 
 {{< /tab >}}
 {{< /tab >}}
@@ -1127,14 +1127,14 @@ All 64xQSFP56 ports can break out into 2xQSFP56 (2x100GbE) without blocking port
 {{< tabs "4600_ports ">}}
 {{< tab "10G ">}}
 
-128x10G - 64xQSFP56 break out into 4x50G and set to 10G
+128x10G - 64xQSFP56 break out into 4x and set to 10G
 
 Maximum 10G ports: 128
 
 {{< /tab >}}
 {{< tab "25G ">}}
 
-128x25G - 64xQSFP56 break out into 4x50G and set to 25G
+128x25G - 64xQSFP56 break out into 4x and set to 25G
 
 Maximum 25G ports: 128
 
@@ -1148,14 +1148,14 @@ Maximum 40G ports: 64
 {{< /tab >}}
 {{< tab "50G ">}}
 
-128x50G - 32xQSFP56 break out into 4x50G
+128x50G - 32xQSFP56 break out into 4x and set to 50G
 
 Maximum 50G ports: 128
 
 {{< /tab >}}
 {{< tab "100G ">}}
 
-- 128x100G - 64xQSFP56 break out into 2x100G
+- 128x100G - 64xQSFP56 break out into 2x and set to 100G
 - 64x100G - 64xQSFP28 set to 100G
 
 Maximum 100G ports: 128
@@ -1184,20 +1184,20 @@ All 32x QSFP-DD ports can break out into 2x QSFP56 at 2x200G or 4x QSFP56 at 4x 
 {{< tabs "4700_ports ">}}
 {{< tab "10G ">}}
 
-128x 10G - 16x QSFP-DD break out into 8x 50G and set to 10G
+128x 10G - 16x QSFP-DD break out into 8x and set to 10G
 
 Maximum 10G ports: 128
 
-*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x 10G ports.
+*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x ports set to 10G.
 
 {{< /tab >}}
 {{< tab "25G ">}}
 
-128x 25G - 16x QSFP-DD break out into 8x 50G and set to 25G
+128x 25G - 16x QSFP-DD break out into 8x and set to 25G
 
 Maximum 25G ports: 128
 
-*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x 25G ports.
+*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x ports set to 25G.
 
 {{< /tab >}}
 {{< tab "40G ">}}
@@ -1213,19 +1213,19 @@ Maximum 40G ports: 32
 
 Maximum 50G ports: 128
 
-*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x 50G ports.
+*Cumulus Linux supports other QSFP-DD breakout combinations up to maximum of 128x ports and set to 50G.
 
 {{< /tab >}}
 {{< tab "100G ">}}
 
-128x 100G - 32x QSFP-DD break out into 4x 100G
+128x 100G - 32x QSFP-DD break out into 4x and set to 100G
 
 Maximum 100G ports: 128
 
 {{< /tab >}}
 {{< tab "200G ">}}
 
-64x 200G - 64x QSFP-DD break out into 2x 200G
+64x 200G - 64x QSFP-DD break out into 2x and set to 200G
 
 Maximum 200G ports: 64
 
@@ -1243,23 +1243,9 @@ Maximum 400G ports: 32
 {{< /tabs >}}
 <!-- vale on -->
 {{%notice note%}}
-- You can use a single SFP (10/25/50G) transceiver in a QSFP (100/200/400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface> link speed <speed>` command. Do not configure this port as a breakout port.
+- You can use a single SFP (10G, 25G, or 50G) transceiver in a QSFP (100G, 200G, or 400G) port with *QSFP-to-SFP Adapter* (QSA). Set the port speed to the SFP speed with the `nv set interface <interface> link speed <speed>` command. Do not configure this port as a breakout port.
 - If you break out a port, then reload the `switchd` service on a switch running in *nonatomic* ACL mode, temporary disruption to traffic occurs while the ACLs reinstall.
 - Cumulus Linux does not support port ganging.
-- Switches with the Spectrum 1 ASIC have a limit of 64 logical ports. If you want to break ports out into 4 interfaces at 25G or 4 interfaces at 10G:
-  - You can only break out odd-numbered ports into four logical ports.
-  - You must disable the next even numbered port. For example, if you break out port 11 into four logical ports, you must disable port 12.
-  These restrictions do *not* apply to a 2x50G breakout configuration or to the NVIDIA SN2100 and SN2010 switch.
-- Spectrum-2 and Spectrum-3 switches have a limit of 128 logical ports. To ensure that the number of total logical interfaces does not exceed the limit, if you split ports into four interfaces on Spectrum-2 and Spectrum-3 switches with 64 interfaces, you must disable the next even numbered port. For example, when splitting port 1 into four 25G interfaces, you must disable port 2 in the `/etc/cumulus/ports.conf` file:
-
-    ```
-    1=4x
-    2=disabled
-    ```
-
-   When you split a port into two interfaces, such as 2x, you do **not** have to disable the adjacent port.
-
-<!--For valid port configuration and breakout guidance, see the `/etc/cumulus/ports.conf` file.-->
 {{%/notice%}}
 
 ### Configure a Breakout Port
@@ -1298,7 +1284,8 @@ cumulus@switch:~$ nv set interface swp1s0-3 link speed 10G
 ```
 
 {{%notice note%}}
-Cumulus Linux supports breakout port configuration on odd numbered ports. When you configure a breakout port for 4x or 8x, you must disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command.
+- When you configure a breakout port for 8x, you must configure an odd-numbered port, then disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command.
+- When you configure a breakout port for 4x on certain switches such as SN2700, SN4600, and SN4600c, you must configure an odd-numbered port, then disable the subsequent even-numbered port with the `nv set interface <port> link breakout disabled` command. The SN3700, SN3700c, SN2201, SN2010, and SN2100 switches do not not have any port breakout limitations on odd or even-numbered ports.
 {{%/notice%}}
 
 {{< /tab >}}
@@ -1589,6 +1576,10 @@ To upgrade with `apt upgrade`:
 1. **Before** you run `apt upgrade`, save the current NVUE configuration with the `nv config save` command.
 2. Edit the `/etc/nvue.d/startup.yaml` file to use the new NVUE breakout syntax for each breakout port. For example, change `4x10G` to `4x: {}`:
 
+{{%notice note%}}
+You must also add the colon (`:`) and curly brackets (`{}`) after the split port setting and also after any split port `disabled` setting.
+{{%/notice%}}
+
    Change:
 
    ```
@@ -1597,6 +1588,11 @@ To upgrade with `apt upgrade`:
        link:
          breakout: 4x10G
        type: swp
+...
+      swp2:
+        link:
+          breakout: disabled
+        type: swp
    ```
 
    to
@@ -1608,6 +1604,12 @@ To upgrade with `apt upgrade`:
          breakout:
            4x: {}
        type: swp
+...
+      swp2:
+        link:
+          breakout:
+            disabled: {}
+        type: swp
    ```
 
 3. {{<link url="Upgrading-Cumulus-Linux/" text="Upgrade">}} to Cumulus Linux 5.4 with `apt-get upgrade`.
@@ -1621,7 +1623,7 @@ If auto-negotiation is off on 100G and 25G interfaces, you must set FEC to *OFF*
 <!-- Vale issue #253 -->
 ### Auto-negotiation and Link Speed
 <!-- vale on -->
-If auto-negotiation is on and the link speed is set for a port, auto-negotiation takes precedence over the link speed setting.
+If auto-negotiation is on and you set the link speed for a port, Cumulus Linux disables auto-negotiation and uses the port speed setting you configure.
 
 <!--### Port Speed and the ifreload -a Command
 

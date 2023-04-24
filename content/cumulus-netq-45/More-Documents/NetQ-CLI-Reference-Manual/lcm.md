@@ -17,15 +17,14 @@ Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. I
 ### Syntax
 
 ```
-netq lcm add
-    cl-image <text-image-path>
+netq lcm add cl-image <text-cl-image-path>
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| cl-image | \<text-image-path\> | Add the Cumulus Linux .bin file from this location. You must specify the full path, including the file name. |
+| cl-image | \<text-cl-image-path\> | Add the Cumulus Linux .bin file from this location. You must specify the full path, including the file name. |
 
 ### Options
 
@@ -48,7 +47,9 @@ cumulus@switch:~$ netq lcm add cl-image /path/to/download/cumulus-linux-4.2.0-ml
 
 ## netq lcm add credentials
 
-Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. You can define set of credentials. Choose between basic SSH authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to properly configure switches when using the SSH key method.
+Configures the access credentials for all switches that you plan to manage with the NetQ lifecycle management feature. You can choose between basic authentication using a username and password or SSH public/private key authentication. You must have sudoer permission to configure switches when using the SSH key method.
+
+To obtain the access profile's name, run `netq lcm show credentials`.
 
 {{<notice tip>}}
 The default credentials for Cumulus Linux have changed from <!-- vale off -->cumulus/CumulusLinux!<!-- vale on --> to cumulus/cumulus for releases 4.2 and later. For details, read <a href="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/">Cumulus Linux User Accounts</a>.
@@ -58,6 +59,7 @@ The default credentials for Cumulus Linux have changed from <!-- vale off -->cum
 
 ```
 netq lcm add credentials
+    profile_name <text-switch-profile-name>
     username <text-switch-username>
     (password <text-switch-password> | ssh-key <text-ssh-key>)
 ```
@@ -66,7 +68,7 @@ netq lcm add credentials
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| credentials | NA | Adds switch credentials for software installation and upgrade management |
+| profile_name | \<text-switch-profile-name\> | Specifies the access profile's name |
 | username | \<text-switch-username\> | Specifies the username for the user who can configure switches |
 | password | \<text-switch-password\> | Specifies the password associated with the username so that user can configure switches |
 | ssh-key | \<text-ssh-key\> | Specifies the *private* key required to configure switches. You must have already installed the *public* key on each switch. |
@@ -78,13 +80,14 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm add credentials username cumulus password cumulus
+cumulus@switch:~$ netq lcm add credentials profile_name n-2000 username cumulus password cumulus
 ```
 
 ### Related Commands
 
-- ```netq lcm show credentials```
-- ```netq lcm del credentials```
+- `netq lcm attach credentials`
+- `netq lcm show credentials`
+- `netq lcm del credentials`
 
 - - -
 
@@ -123,7 +126,7 @@ None
 ```
 cumulus@switch:~$ netq lcm add default-version cl-images 5.3.0
 
-cumulus@switch:~$ netq lcm add default-version netq-images 4.4.0
+cumulus@switch:~$ netq lcm add default-version netq-images 4.5.0
 ```
 
 ### Related Commands
@@ -139,8 +142,7 @@ Adds a NetQ image (.deb package) to the lifecycle management repository. Images 
 ### Syntax
 
 ```
-netq lcm add
-    netq-image <text-netq-image-path>
+netq lcm add netq-image <text-netq-image-path>
 ```
 
 ### Required Arguments
@@ -168,7 +170,22 @@ cumulus@switch:~$ netq lcm add netq-image /path/to/download/netq-apps_4.0.0-ub18
 - ```netq lcm add cl-image```
 
 - - -
+<!-- NVlink command
+## netq lcm add nvos-image
 
+### Syntax
+
+```
+ netq lcm add nvos-image <text-nvos-image-path> 
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| nvos-image | \<text-nvos-image-path\> |  |
+
+- - -
+-->
 ## netq lcm add role
 
 Assigns or changes a role for one or more switches that defines its placement in a Clos topology and influences the order in which you can upgrade switches.
@@ -207,17 +224,41 @@ None
 - - -
 ## netq lcm attach credentials
 
+Assigns an {{<link title="Credentials and Profiles" text="access profile">}} to one or more switches. For step-by-step instructions, see {{<link title="Switch Management#assign-a-profile-to-a-switch" text="Switch Management">}}.
+
+To display the `profile_id`, run `netq lcm show credentials`.
+
+To display `hostnames`, run `netq lcm show switches`.
+
 ### Syntax
 
+```
+netq lcm attach credentials 
+    profile_id <text-switch-profile-id> 
+    hostnames <text-switch-hostnames>
+```
 ### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| profile_id | <text-switch-profile-id\> | Attach the access profile with this ID to the switch |
+| hostnames | <text-switch-hostnames\>  | Assign the access profile to this hostname |
 
 ### Options
 
+None
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq lcm attach credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 hostnames tor-1,tor-2
+Attached profile to switch(es).
+```
 ### Related Commands
 
-- netq lcm show credentials
+- `netq lcm add credentials`
+- `netq lcm detach credentials`
+- `netq lcm show credentials`
+- `netq lcm show switches`
 
 - - -
 
@@ -228,15 +269,14 @@ Removes a selected Cumulus Linux image (.bin) from the NetQ lifecycle management
 ### Syntax
 
 ```
-netq lcm del
-    cl-image <text-image-id>
+netq lcm del cl-image <text-cl-image-id>
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| cl-image | \<text-image-id\> | Remove the Cumulus Linux image with this identifier |
+| cl-image | \<text-cl-image-id\> | Remove the Cumulus Linux image with this identifier |
 
 ### Options
 
@@ -269,19 +309,20 @@ cumulus@switch:~$ netq lcm del cl-image image_cc97be3955042ca41857c4d0fe95296bce
 
 ## netq lcm del credentials
 
-Removes the access credentials required to upgrade Cumulus Linux or NetQ on switches using the lifecycle management feature. Alternately, use the `netq lcm add credentials` command to change the credentials.
+Deletes the access credentials required to upgrade Cumulus Linux or NetQ on switches using lifecycle management. Run `netq show credentials` to obtain the profile ID. Refer to {{<link title="Credentials and Profiles/#delete-access-profiles" text="delete access profiles">}} for step-by-step examples.
 
 ### Syntax
 
 ```
-netq lcm del credentials
+netq lcm del credentials 
+    profile_id <text-credential-profile-id>
 ```
-
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| credentials | \<text-image-id\> | Remove the access credentials used to upgrade switches |
+| credentials | NA | Remove the access credentials used to upgrade switches |
+| profile_id | <text-credential-profile-id\> | Remove the profile assigned this ID |
 
 ### Options
 
@@ -290,13 +331,14 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm del credentials
+cumulus@switch:~$ netq lcm del credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
 ```
 
 ### Related Commands
 
-- ```netq lcm add credentials```
-- ```netq lcm show credentials```
+- `netq lcm add credentials`
+- `netq lcm detach credentials`
+- `netq lcm show credentials`
 
 - - -
 
@@ -307,15 +349,14 @@ Removes a selected NetQ image (.deb) from the NetQ lifecycle management reposito
 ### Syntax
 
 ```
-netq lcm del
-    netq-image <text-image-id>
+netq lcm del netq-image <text-netq-image-id>
 ```
 
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| netq-image | \<text-image-id\> | Remove the NetQ image with this identifier |
+| netq-image | \<text-netq-image-id\> | Remove the NetQ image with this identifier |
 
 ### Options
 
@@ -324,7 +365,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show netq-images json
+cumulus@switch:~$ netq lcm show netq-image json
 [
     {
         "id": "image_d23a9e006641c675ed9e152948a9d1589404e8b83958d53eb0ce7698512e7001",
@@ -349,38 +390,45 @@ cumulus@switch:~$ netq lcm del netq-image image_68db386683c796d86422f2172c103494
 - ```netq lcm upgrade netq-image```
 
 - - -
-## netq lcm detach credentials
+<!--NVLink command
+## netq lcm del nvos image
+
 ### Syntax
 
+```
+netq lcm del nvos-image <text-nvos-image-id>
+```
 ### Required Arguments
 
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| nvis-image | \<text-nvos-image-id\> | Remove the NVOS image with this identifier |
+
 ### Options
+
+None
 
 ### Sample Usage
 
 ### Related Commands
 
-- netq lcm show credentials
-
 - - -
+-->
+## netq lcm detach credentials
 
-## netq lcm discover
-
-Searches for switches that do not have NetQ installed based on IP addresses or from a file. After discovery, you can add them to the lifecycle management repository and upgrade Cumulus Linux. Use the `netq lcm show discovery-job` command to view the results of this command.
+Detaches an access profile from a switch and restores the default profile. Obtain the hostname by running `netq lcm show switches`.
 
 ### Syntax
 
 ```
-netq lcm discover
-    (ip-range <text-ip-range> | csv-file <text-csv-file-path>)
+netq lcm detach credentials 
+    hostname <text-switch-hostname>
 ```
-
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| ip-range | \<text-ip-range\> | Search for switches with this IP address or within this address range. Ranges can be contiguous, for example 192.168.0.24-64, or non-contiguous, for example 192.168.0.24-64,128-190,225, but they must reside within a single subnet. You can include a maximum of 50 addresses in an address range. |
-| csv-file | \<text-csv-file-path\> | Search for switches in this CSV file containing the IP address, and optionally, the hostname and port for each switch on the network. If the port is blank, NetQ uses switch port 22 by default. They can be in any order you like, but the data must match that order. |
+| hostname | <text-switch-hostname\>  | Detach access credentials from the switch with this hostname |
 
 ### Options
 
@@ -389,7 +437,47 @@ None
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 
+cumulus@switch:~$ netq lcm detach credentials hostname spine-1
+Detached profile from switch.
+```
+
+### Related Commands
+
+- `netq lcm attach credentials`
+- `netq lcm del credentials`
+- `netq lcm show credentials`
+- `netq lcm show switches`
+
+- - -
+
+## netq lcm discover
+
+Searches for switches that do not have NetQ installed based on IP addresses or from a file. After discovery, you can add them to the lifecycle management repository and upgrade Cumulus Linux. To obtain the profile ID, run `netq lcm show credentials`. Use the `netq lcm show discovery-job` command to view the results of this command.
+
+### Syntax
+
+```
+netq lcm discover
+    (ip-range <text-ip-range> | csv-file <text-csv-file-path>)
+    profile_id <text-credential-profile-id>
+```
+
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| ip-range | \<text-ip-range\> | Search for switches with this IP address or within this address range. Ranges can be contiguous, for example 192.168.0.24-64, or non-contiguous, for example 192.168.0.24-64,128-190,225, but they must reside within a single subnet. You can include a maximum of 50 addresses in an address range. |
+| csv-file | \<text-csv-file-path\> | Search for switches in this CSV file containing the IP address, and optionally, the hostname and port for each switch on the network. If the port is blank, NetQ uses switch port 22 by default. They can be in any order you like, but the data must match that order. |
+| profile_id | <text-credential-profile-id\> | Search for switches attached to this access profile |
+
+### Options
+
+None
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq lcm discover ip-range 10.0.1.12 profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289
 NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556db
 ```
 
@@ -399,19 +487,76 @@ NetQ Discovery Started with job id: job_scan_4f3873b0-5526-11eb-97a2-5b3ed2e556d
 
 - - -
 ## netq lcm edit credentials
+
+Modifies an access profile's name, authentication type, username, or password. See {{<link title="Credentials and Profiles">}} for more information about access profiles.
+
+Before editing an access profile, run `netq lcm show credentials` to obtain the profile's ID.
 ### Syntax
 
+```
+netq lcm edit credentials 
+    profile_id <text-switch-profile-id> 
+    [profile_name <text-switch-profile-name>] 
+    [auth-type <text-switch-auth-type>] 
+    [username <text-switch-username>] 
+    [password <text-switch-password> | ssh-key <text-ssh-key>]
+```
 ### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| credentials | NA | Edit the access credentials used to upgrade switches |
+| profile_id | <text-credential-profile-id\> | Edit the profile assigned this ID |
 
 ### Options
 
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| profile_name | \<text-switch-profile-name\> | Changes the access profile's name |
+| auth-type | \<text-switch-auth-type\> | Changes the authentication method (basic or SSH) |
+| username | \<text-switch-username\> | Changes the username for the user who can configure switches |
+| password | \<text-switch-password\> | Changes the password associated with the username so that the user can configure switches |
+| ssh-key | \<text-ssh-key\> | Changes the *private* key required to configure switches. You must have already installed the *public* key on each switch. |
+
 ### Sample Usage
 
+To obtain the profile ID, run `netq lcm show credentials`:
+
+```
+cumulus@switch:~$ netq lcm show credentials
+Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
+-------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
+credential_profile_3 n-1000                   BASIC                           admin            **************   3                                    Fri Feb  3 21:49:10 2023
+eddab251bddea9653df7
+cd1be0fc123c5d7a42f8
+18b68134e42858e54a9c
+289
+```
+To change the name of the profile (in this example from n-1000 to n-2000) run:
+
+```
+cumulus@switch:~$ netq lcm edit credentials profile_id credential_profile_3eddab251bddea9653df7cd1be0fc123c5d7a42f818b68134e42858e54a9c289 profile_name n-2000
+Credential profile modified.
+```
+
+Run `netq lcm show credentials` to verify the edit:
+
+```
+netq lcm show credentials
+Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
+-------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
+credential_profile_3 n-2000                   BASIC                           admin            **************   3                                    Tue Feb  7 16:57:46 2023
+eddab251bddea9653df7
+cd1be0fc123c5d7a42f8
+18b68134e42858e54a9c
+289
+```
 ### Related Commands
 
-- netq lcm show credentials
+- `netq lcm show credentials`
 
 - - -
+<!--
 ## netq lcm install netq-image
 
 ### Syntax
@@ -429,6 +574,35 @@ netq lcm install netq-image
 ```
 
 - - -
+-->
+<!-- NVLink command
+## netq lcm restart nvos
+
+### Syntax
+
+```
+netq lcm restart nvos 
+    job-name <text-job-name> 
+    ips <text-switch-ips> 
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| job-name | \<text-job-name\> | Name for the upgrade |
+| ips | <text-switch-ips\> | |
+
+### Options
+
+None
+
+### Sample Usage
+
+### Related Commands
+
+- netq lcm upgrade nvos
+- - -
+-->
 ## netq lcm show cl-images
 
 Displays all Cumulus Linux images in the lifecycle management repository. 
@@ -437,7 +611,7 @@ Displays all Cumulus Linux images in the lifecycle management repository.
 
 ```
 netq lcm show cl-images
-    [<text-image-id>]
+    [<text-cl-image-id>]
     [json]
 ```
 
@@ -451,7 +625,7 @@ netq lcm show cl-images
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| NA | \<text-image-id\> | Only display Cumulus Linux image with this identifier |
+| NA | \<text-cl-image-id\> | Only display Cumulus Linux image with this identifier |
 | json | NA | Display the output in JSON format |
 
 ### Sample Usage
@@ -480,14 +654,14 @@ cumulus@switch:~$ netq lcm show cl-images json
 
 ### Related Commands
 
-- ```netq lcm add cl-images```
-- ```netq lcm del cl-images```
+- ```netq lcm add cl-image```
+- ```netq lcm del cl-image```
 
 - - -
 
 ## netq lcm show credentials
 
-Displays the switch access credentials method and values currently configured.
+Displays access profiles, their associated credentials, and the number of switches assigned to each access profile.
 
 ### Syntax
 
@@ -511,23 +685,31 @@ netq lcm show credentials
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show credentials 
-Type             SSH Key        Username         Password         Last Changed
----------------- -------------- ---------------- ---------------- -------------------------
-BASIC                           cumulus          **************   Wed Jan 27 19:24:03 2021
-```
-
-```
 cumulus@switch:~$ netq lcm show credentials
-Type             SSH Key        Username         Password         Last Changed
----------------- -------------- ---------------- ---------------- -------------------------
-SSH              <your-SSH-key>                                   Tue Apr 28 19:08:52 2020
+Profile ID           Profile Name             Type             SSH Key        Username         Password         Number of switches                   Last Changed
+-------------------- ------------------------ ---------------- -------------- ---------------- ---------------- ------------------------------------ -------------------------
+credential_profile_d Netq-Default             BASIC                           cumulus          **************   11                                   Fri Feb  3 18:20:33 2023
+9e875bd2e6784617b304
+c20090ce28ff2bb46a4b
+9bf23cda98f1bdf91128
+5c9
+credential_profile_3 Nvl4-Default             BASIC                           admin            **************   1                                    Fri Feb  3 19:18:26 2023
+5a2eead7344fb91218bc
+dec29b12c66ebef0d806
+659b20e8805e4ff629bc
+23e
+credential_profile_3 n-1000                   BASIC                           admin            **************   3                                    Fri Feb  3 21:49:10 2023
+eddab251bddea9653df7
+cd1be0fc123c5d7a42f8
+18b68134e42858e54a9c
+289
 ```
 
 ### Related Commands
 
-- ```netq lcm add credentials```
-- ```netq lcm del credentials```
+- `netq lcm add credentials`
+- `netq lcm attach credentials`
+- `netq lcm del credentials`
 
 - - -
 
@@ -736,11 +918,37 @@ cumulus@switch:~$ netq lcm show netq-images json
 
 ### Related Commands
 
-- ```netq lcm add netq-images```
-- ```netq lcm del netq-images```
+- `netq lcm add netq-image`
+- `netq lcm del netq-image`
 
 - - -
+<!--NVLink command
+## netq lcm show nvos-images
 
+Displays all NVOS images in the lifecycle management repository.
+
+### Syntax
+
+```
+netq lcm show nvos-images
+    [<text-nvos-image-id>]
+    [json]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| nvos-images | NA | Display all NVOS images in the lifecycle management repository |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| NA | \<text-nvos-image-id\> | Only display the NVOS image with this identifier |
+| json | NA | Display the output in JSON format |
+
+- - -
+-->
 ## netq lcm show status
 
 Displays status of Cumulus Linux or NetQ image upgrade jobs.
@@ -809,7 +1017,7 @@ leaf01      4.2.0         FAILED           Wed Jan 20 19:30:12 2021  SKIPPED_ON_
 
 ## netq lcm show switches
 
-Displays information about switches monitored by NetQ and contained in the lifecycle management repository, including their hostnames, any assigned role, IP and MAC addresses, CPU architecture, Cumulus Linux and NetQ versions, and NetQ configuration profiles. Filter the output by Cumulus Linux or NetQ version running on the switch.
+Displays information about switches monitored by NetQ and contained in the lifecycle management repository, including their hostnames, any assigned role, IP and MAC addresses, CPU architecture, Cumulus Linux and NetQ versions, and NetQ configuration and access profiles. Filter the output by Cumulus Linux or NetQ version running on the switch.
 
 ### Syntax
 
@@ -826,7 +1034,7 @@ netq lcm show switches
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| switches | NA | Display information about switches known to the lifecycle management feature |
+| switches | NA | Display information about switches known to lifecycle management |
 
 ### Options
 
@@ -839,12 +1047,15 @@ netq lcm show switches
 ### Sample Usage
 
 ```
-cumulus@switch:~$ netq lcm show switches cl-version 4.2.1
-Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Last Changed
------------------ ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- -------------------------
-leaf02                       192.168.200.12            44:38:39:00:01:78  x86_64   4.2.1       4.0.0-cl4u32~ []                           Thu Feb 18 21:33:37 2021
-                                                                                               1609391187.7d
-                                                                                               f4e1d2
+cumulus@switch:~$ netq lcm show switches cl-version 5.2.0
+Hostname          Role       IP Address                MAC Address        CPU      CL Version  NetQ Version  Config Profile               Credential Profile                   Last Changed
+----------------- ---------- ------------------------- ------------------ -------- ----------- ------------- ---------------------------- ------------------------------------ -------------------------
+noc-se                       192.168.0.15              00:01:00:00:12:00  x86_64   5.2.0       4.5.0-cl4u41~ []                           Netq-Default                         Fri Feb  3 20:50:40 2023
+                                                                                               1675445092.42
+                                                                                               fbac0a
+spine-1                      192.168.0.15              00:01:00:00:13:00  x86_64   5.2.0       4.5.0-cl4u41~ []                           n-2000                               Fri Feb  3 22:28:25 2023
+                                                                                               1675445092.42
+                                                                                               fbac0a
 ```
 
 ### Related Commands
@@ -908,13 +1119,12 @@ bad118cc7
 - - -
 ## netq lcm upgrade cl-image
 
-Upgrades Cumulus Linux on one or more switches in your network
+Upgrades Cumulus Linux on one or more switches in your network.
 
 ### Syntax
 
 ```
-netq lcm upgrade 
-    [cl-image] 
+netq lcm upgrade cl-image 
     job-name <text-job-name> 
     cl-version <text-cumulus-linux-version> 
     netq-version <text-netq-version> 
@@ -927,27 +1137,31 @@ netq lcm upgrade
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | job-name | \<text-job-name\> | Name for the upgrade |
-| cl-version | \<text-cumulus-linux-version\> | |
-| netq-version | \<text-netq-version\> | |
+| cl-version | \<text-cumulus-linux-version\> | Upgrade to this CL version in x.y.z format |
+| netq-version | \<text-netq-version\> | Upgrade to this NetQ version in x.z.y format |
 | hostnames | \<text-switch-hostnames\> | Comma-separated list of the hostname(s) to be upgraded |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| cl-image | NA |  |
 | run-restore-on-failure | NA | Restore the previous version of Cumulus Linux if the upgrade fails (recommended) |
 | run-snapshot-before-after | NA | Generate a network snapshot before and after the upgrade |
 
 ### Sample Usage
 
+```
+cumulus@switch:~$ netq lcm upgrade cl-image job-name upgrade-cl430 cl-version 4.3.0 netq-version 4.5.0 hostnames spine01,spine02
+```
 
 ### Related Commands
 
-- netq lcm show discovery-job
+- `netq lcm show discovery-job`
 
 - - -
 ## netq lcm upgrade netq-image
+
+Upgrades NetQ Agents on one or more switches in your network.
 
 ### Syntax
 
@@ -964,22 +1178,60 @@ netq lcm upgrade netq-image
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
-| netq-image | NA |  |
-| job-name | \<text-job-name\> | Name for the upgrade |
+| job-name | \<text-job-name\> | User-defined name for the upgrade |
 | hostnames | \<text-switch-hostnames\> | Comma-separated list of the hostname(s) to be upgraded |
 
 ### Options
 
 | Option | Value | Description |
 | ---- | ---- | ---- |
-| netq-version | <text-netq-version\> |  |
+| netq-version | <text-netq-version\> |  Upgrade to this NetQ version in x.y.z format |
 | upgrade-cli | True, False | Upgrade the NetQ CLI as part of the upgrade (True) |
-| config_profile | <text-config-profile\> |  |
+| config_profile | <text-config-profile\> | Configuration file applied after the upgrade |
+
+### Sample Usage
+
+```
+cumulus@switch:~$ netq lcm upgrade netq-image job-name upgrade-cl530-nq450 netq-version 4.5.0 hostnames spine01,spine02
+```
+
+### Related Commands
+
+- `netq lcm show upgrade-jobs netq-image`
+
+- - -
+
+<!--NVLink command
+## netq lcm upgrade nvos-image
+
+### Syntax
+
+```
+netq lcm upgrade nvos-image 
+    job-name <text-job-name> 
+    nvos-version <text-nvos-version> 
+    ips <text-switch-ips> 
+    [restart_after_upgrade]
+```
+### Required Arguments
+
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| nvos-image | NA |  |
+| job-name | \<text-job-name\> | Name for the upgrade |
+| nvos-version | <text-netq-version\> | |
+| ips | <text-switch-ips\> | |
+
+### Options
+
+| Option | Value | Description |
+| ---- | ---- | ---- |
+| restart_after_upgrade | NA |  |
 
 ### Sample Usage
 
 ### Related Commands
 
-- netq lcm show upgrade-jobs netq-image 
+- netq lcm restart nvos
 
-- - -
+-->

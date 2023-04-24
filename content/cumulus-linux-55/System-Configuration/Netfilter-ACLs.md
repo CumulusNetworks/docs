@@ -780,6 +780,7 @@ copp.catch_all.enable = TRUE
 copp.catch_all.rate = 100
 copp.catch_all.burst = 100
 ```
+
 {{< /expand >}}
 
 ### Control Plane ACLs
@@ -806,29 +807,12 @@ To show statistics for all control-plane ACLs, run the `nv show system control-p
 
 ```
 cumulus@switch:~$ nv show system control-plane acl
-ACL Name  Rule ID  In Stats   Out Stats  Match  Action 
-
---------  -------  ---------  ---------  -----  ------ 
-
-acl1      1        byte: 0               ip     set 
-
-                   packet: 0 
-
-          2        byte: 0               ip     permit 
-
-                   packet: 0 
-
-          29       byte: 0               ip     deny 
-
-                   packet: 0 
-
-acl2      1                   byte: 0    ip     permit 
-
-                              packet: 0 
-
-          2                   byte: 0    ip     permit 
-
-                              packet: 0 
+ACL Name   Rule ID  In Packets  In Bytes  Out Packets  Out Bytes
+---------  -------  ----------  --------  -----------  ---------
+acl1       1        0           0         0            0
+           65535    0           0         0            0
+acl2       1        0           0         0            0
+           65535    0           0         0            0 
 ```
 
 To show statistics for a specific control-plane ACL, run the `nv show system control-plane acl <acl_name> statistics` command:

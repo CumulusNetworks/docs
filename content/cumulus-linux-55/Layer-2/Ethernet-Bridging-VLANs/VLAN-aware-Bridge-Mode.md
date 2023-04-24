@@ -581,7 +581,7 @@ Edit the `/etc/network/interfaces` file to **remove** the line `ipv6-addrgen off
 
 ## MAC Address Ageing
 
-By default, Cumulus Linux stores MAC addresses in the Ethernet switching table for 1800 seconds (30 minutes). You can change this setting to a value between 0 and 65535. A value of 0 turns MAC ageing off.
+By default, Cumulus Linux stores MAC addresses in the Ethernet switching table for 1800 seconds (30 minutes). You can change this setting to a value between 0 and 65535. A value of 0 disables MAC learning and frames flood out of all ports in a VLAN.
 
 The following command example changes the MAC ageing setting to 600 seconds:
 

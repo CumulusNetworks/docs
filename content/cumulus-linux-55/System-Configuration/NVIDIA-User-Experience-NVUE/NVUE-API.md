@@ -6,6 +6,58 @@ toc: 3
 ---
 In addition to the CLI, NVUE supports a REST API. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL or a web browser.
 
+# Enabling the NVUE REST API
+# Accessing NVUE REST API from a Front Panel Port
+# Securing the API
+## User Accounts
+### Linux Group Permissions
+## TLS
+### Certificates
+# Understanding the API Architecture (Theory)
+## Supported HTTP Methods
+### Get -- used for Show Commands
+### Post -- used to Set Configuration
+### Patch -- used to Replace or Unset Configuration
+### Delete -- used to Remove Configuration
+## Using the API (Your preamble from Automation QSG)
+The CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI nv show commands reflect any PATCH operation (create) you run through the REST API. 
+NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path. 
+There is more we can say here from other sources too @Andreas La Quiante and @Abhinava Sadasivarao both had some good content here IIRC.
+# Primary API Use Cases -- We should show a curl/python tabbed example of each.
+## View a Configuration
+Applied config with a note that any revision can be viewed by changing the rev arg.
+## Replace an entire configuration
+We know this is common workflow that customers want to see examples for and it's not a straightforward process.
+- Grab a new revision,
+- Do a root patch to delete the whole config tree
+- Do a root patch with the entire config
+- Apply
+## Make a configuration change
+- Grab a new revision
+- Do a root patch with the change.
+- Apply
+### Troubleshooting Configuration Changes
+- Configuration Fails Because of a Dependency https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-API/#configuration-fails-because-of-a-dependency
+- Configuration Apply Fails with Warnings https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-API/#configuration-apply-fails-with-warnings
+## Use the API for Active Monitoring
+Give an example of how to watch a piece of data via the API such as an interface Counter.
+# Converting CLI Changes to Use the API
+Show a user how to take a configuration change from the CLI and deliver the same thing with the API
+- Make your config changes on the system
+- View the changes as a json blob
+` nv config diff -o json `
+- Staple the JSON blob to a root patch request as the payload.
+- Apply
+# Practical API Examples
+## System configuration – hostname, pre-login/post-login message, timezone
+## Services configuration – NTP, DNS, SNMP
+## Functionality – interface, bond, bridge, BGP
+# Try the API
+Link to Try It Demo for API
+# Resources
+- Swagger API Documentation https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/api/index.html
+- Full Object Model Download https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/api/openapi.json
+
 ## Access the NVUE API
 
 To access the NVUE API, run these commands on the switch:

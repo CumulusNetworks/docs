@@ -351,6 +351,10 @@ Cumulus Linux Image Version Test   : passed
 
 ## netq check clag
 
+{{%notice tip%}}
+Use `netq check mlag` in place of `netq check clag`. The `netq check clag` command remains available for automation scripts, but is no longer being developed.
+{{%/notice%}}
+
 Verifies CLAG session consistency by identifying all CLAG peers with errors or misconfigurations in the NetQ domain. In particular, it looks for:
 
 - multiple link pairs with the same system MAC address

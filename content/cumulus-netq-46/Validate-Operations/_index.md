@@ -27,11 +27,11 @@ Validation support is available in the NetQ UI and the NetQ CLI for the followin
 
 ## View and Run Validations in the UI
 
-The Validation Summary card displays a summary of validation checks from the past 24 hours:
+The Validation Summary card displays a summary of validation checks from the past 24 hours. Select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation** in the header to create or schedule new validation checks, as well as view previous checks.
 
 {{<figure src="/images/netq/val-summary-460.png" width="200">}}
 
-Select {{<img src="/images/netq/validation-icon.svg" height="18" width="18">}} **Validation** in the header to create or schedule new validation checks, as well as view previous checks.
+
 ## Validation with the NetQ CLI
 
 The NetQ CLI uses the {{<link title="check" text="netq check commands">}} to validate the various elements of your network fabric, looking for inconsistencies in configuration across your fabric, connectivity faults, missing configurations, and so forth. You can run commands from any node in the network.
@@ -230,7 +230,3 @@ netq-cli:
 Then run `netq config restart cli` to apply the change.
 
 If you update your scripts to work with the new version of the commands, change the `old-check` value to *false* or remove it. Then restart the CLI.
-
-{{%notice tip%}}
-Use `netq check mlag` in place of `netq check clag` from NetQ 2.4 onward. `netq check clag` remains available for automation scripts, but you should begin migrating to `netq check mlag` to maintain compatibility with future NetQ releases.
-{{%/notice%}}

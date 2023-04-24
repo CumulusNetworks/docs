@@ -10,13 +10,13 @@ This section provides various commands to help you examine your EVPN configurati
 
 You can use various NVUE or Linux commands to examine interfaces, VLAN mappings and the bridge MAC forwarding database known to the Linux kernel. You can also use these commands to examine the neighbor cache and the routing table (for the underlay or for a specific tenant VRF). Some of the key commands are:
 
-- `nv show nve vxlan` (NVUE) or `ip [-d] link show type vxlan` (Linux)
+- `ip [-d] link show type vxlan` (Linux)
 - `nv show bridge domain <domain> mac-table` (NVUE) or `bridge [-s] fdb show` (Linux)
 - `nv show bridge domain <domain> vlan` (NVUE) or `bridge vlan show` (Linux)
 - `ip neighbor show` (Linux)
 - `ip route show [table <vrf-name>]` (Linux)
 
-The sample output below shows `ip -d link show type vxlan` for one VXLAN interface. Relevant parameters are the VNI value, the state, the local IP address for the VXLAN tunnel, the UDP port number (4789) and the bridge of which the interface is part (*bridge* in the example below). The output also shows that MAC learning is *off* on the VXLAN interface.
+The sample output below shows `ip -d link show type vxlan` command output for one VXLAN interface. Relevant parameters are the VNI value, the state, the local IP address for the VXLAN tunnel, the UDP port number (4789) and the bridge of which the interface is part (*bridge* in the example below). The output also shows that MAC learning is *off* on the VXLAN interface.
 
 ```
 cumulus@leaf01:~$ ip -d link show type vxlan

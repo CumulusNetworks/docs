@@ -303,75 +303,9 @@ To apply a custom profile to specific interfaces, see [Port Groups](#port-groups
 
 You can mark or remark traffic in two ways:
 
- * Use [iptables](#iptables) to match packets and set 802.1p COS or DSCP values.
  * Use ingress COS or DSCP to remark an existing 802.1p COS or DSCP value to a new value.
+ * Use [iptables](#iptables) to match packets and set 802.1p COS or DSCP values.
 
-### iptables
-
-Cumulus Linux supports ACLs through `ebtables`, `iptables` or `ip6tables` for _egress_ packet marking and remarking.
-
-Cumulus Linux uses `ebtables` to mark layer 2, 802.1p COS values.
-Cumulus Linux uses `iptables` to match IPv4 traffic and `ip6tables` to match IPv6 traffic for DSCP marking.
-
-{{% notice info %}}
-For more information on configuring and applying ACLs, refer to {{<link title="Netfilter - ACLs" text="Netfilter - ACLs" >}}.
-{{% /notice %}}
-
-#### Mark Layer 2 COS
-
-You must use `ebtables` to match and mark layer 2 bridged traffic. You can match traffic with any supported ebtables rule.  
-
-To set the new 802.1p COS value when traffic matches, use `-A FORWARD -o <interface> -j setqos --set-cos <value>`.
-
-{{% notice info %}}
-You can only set COS on a *per-egress interface* basis. Cumulus Linux does not support `ebtables` based matching on ingress.
-{{% /notice %}}
-
-The configured action always has the following conditions:
-- The rule is always part of the `FORWARD` chain.
-- The interface (`<interface>`) is a physical swp port.
-- The *jump* action is always `setqos` (lowercase).
-- The `--set-cos` value is a 802.1p COS value between 0 and 7.
-
-For example, to set traffic leaving interface `swp5` to 802.1p COS value `4`:
-
-```
--A FORWARD -o swp5 -j setqos --set-cos 4
-```
-
-#### Mark Layer 3 DSCP
-
-You must use `iptables` (for IPv4 traffic) or `ip6tables` (for IPv6 traffic) to match and mark layer 3 traffic.
-
-You can match traffic with any supported iptable or ip6tables rule.
-To set the new COS or DSCP value when traffic matches, use `-A FORWARD -o <interface> -j SETQOS [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
-
-The configured action always has the following conditions:
-- The rule is always configured as part of the `FORWARD` chain.
-- The interface (`<interface>`) is a physical swp port.
-- The *jump* action is always `SETQOS` (uppercase).
-
-You can configure COS markings with `--set-cos` and a value between 0 and 7 (inclusive).
-
-You can use only one of `--set-dscp` or `--set-dscp-class`.  
-`--set-dscp` supports decimal or hex DSCP values between 0 and 77.
-`--set-dscp-class` supports standard DSCP naming, described in [RFC3260](https://datatracker.ietf.org/doc/html/rfc3260), including `ef`, `be`, CS and AF classes.
-
-{{%notice note%}}
-You can specify either `--set-dscp` or `--set-dscp-class`, but not both.
-{{%/notice%}}
-
-For example, to set traffic leaving interface swp5 to DSCP value `32`:
-
-```
--A FORWARD -o swp5 -j SETQOS --set-dscp 32
-```
-
-To set traffic leaving interface swp11 to DSCP class value `CS6`:
-
-```
--A FORWARD -o swp11 -j SETQOS --set-dscp-class cs6
-```
 <!-- vale off -->
 ### 802.1p or DSCP for Marking
 <!-- vale on -->
@@ -458,6 +392,73 @@ traffic.cos_2.priority_remark.dscp = [40]
 {{< /tabs >}}
 
 To apply a custom profile to specific interfaces, see [Port Groups](#remarking).
+
+### Policy-based Marking
+
+Cumulus Linux supports ACLs through `ebtables`, `iptables` or `ip6tables` for _egress_ packet marking and remarking.
+
+Cumulus Linux uses `ebtables` to mark layer 2, 802.1p COS values.
+Cumulus Linux uses `iptables` to match IPv4 traffic and `ip6tables` to match IPv6 traffic for DSCP marking.
+
+{{% notice info %}}
+For more information on configuring and applying ACLs, refer to {{<link title="Netfilter - ACLs" text="Netfilter - ACLs" >}}.
+{{% /notice %}}
+
+#### Mark Layer 2 COS
+
+You must use `ebtables` to match and mark layer 2 bridged traffic. You can match traffic with any supported ebtables rule.  
+
+To set the new 802.1p COS value when traffic matches, use `-A FORWARD -o <interface> -j setqos --set-cos <value>`.
+
+{{% notice info %}}
+You can only set COS on a *per-egress interface* basis. Cumulus Linux does not support `ebtables` based matching on ingress.
+{{% /notice %}}
+
+The configured action always has the following conditions:
+- The rule is always part of the `FORWARD` chain.
+- The interface (`<interface>`) is a physical swp port.
+- The *jump* action is always `setqos` (lowercase).
+- The `--set-cos` value is a 802.1p COS value between 0 and 7.
+
+For example, to set traffic leaving interface `swp5` to 802.1p COS value `4`:
+
+```
+-A FORWARD -o swp5 -j setqos --set-cos 4
+```
+
+#### Mark Layer 3 DSCP
+
+You must use `iptables` (for IPv4 traffic) or `ip6tables` (for IPv6 traffic) to match and mark layer 3 traffic.
+
+You can match traffic with any supported iptable or ip6tables rule.
+To set the new COS or DSCP value when traffic matches, use `-A FORWARD -o <interface> -j SETQOS [--set-dscp <value> | --set-cos <value> | --set-dscp-class <name>]`.
+
+The configured action always has the following conditions:
+- The rule is always configured as part of the `FORWARD` chain.
+- The interface (`<interface>`) is a physical swp port.
+- The *jump* action is always `SETQOS` (uppercase).
+
+You can configure COS markings with `--set-cos` and a value between 0 and 7 (inclusive).
+
+You can use only one of `--set-dscp` or `--set-dscp-class`.  
+`--set-dscp` supports decimal or hex DSCP values between 0 and 77.
+`--set-dscp-class` supports standard DSCP naming, described in [RFC3260](https://datatracker.ietf.org/doc/html/rfc3260), including `ef`, `be`, CS and AF classes.
+
+{{%notice note%}}
+You can specify either `--set-dscp` or `--set-dscp-class`, but not both.
+{{%/notice%}}
+
+For example, to set traffic leaving interface swp5 to DSCP value `32`:
+
+```
+-A FORWARD -o swp5 -j SETQOS --set-dscp 32
+```
+
+To set traffic leaving interface swp11 to DSCP class value `CS6`:
+
+```
+-A FORWARD -o swp11 -j SETQOS --set-dscp-class cs6
+```
 
 ## Flow Control
 

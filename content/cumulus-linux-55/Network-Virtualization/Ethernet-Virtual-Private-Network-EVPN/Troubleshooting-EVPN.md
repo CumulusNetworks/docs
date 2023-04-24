@@ -396,7 +396,7 @@ MAC address        remote-vtep
 
 ## Examine Gateway Next Hops
 
-To examine the gateway next hops for symmetric routing, run the NVUE `nv show vrf <vrf> evpn nexthop-vtep` command or the vtysh `show evpn next-hops vni <vni>` command. This command is only relevant for a layer 3 VNI. The gateway next hop IP addresses correspond to the remote VTEP IP addresses. Cumulus Linux installs the remote host and prefix routes using these next hops:
+To examine the gateway next hops for symmetric routing, run the NVUE `nv show vrf <vrf> evpn nexthop-vtep` command or the vtysh `show evpn next-hops vni all` command. This command is only relevant for a layer 3 VNI. The gateway next hop IP addresses correspond to the remote VTEP IP addresses. Cumulus Linux installs the remote host and prefix routes using these next hops.
 
 ```
 cumulus@border01:mgmt:~$ nv show vrf RED evpn nexthop-vtep
@@ -410,9 +410,16 @@ Nexthop      router-mac
 10.10.10.64  44:38:39:22:01:7c
 ```
 
-Run the vtysh `show evpn next-hops vni all` command to examine gateway next hops for all layer 3 VNIs.
+To show the router MAC address for a specific next hop, run the NVUE `nv show vrf <vrf> evpn nexthop-vtep <ip-address>` command:
 
-With vtysh, you can query a specific next hop; the output displays the remote host and prefix routes through this next hop:
+```
+cumulus@leaf01:mgmt:~$ nv show vrf RED evpn nexthop-vtep 10.10.10.2
+            operational        applied
+----------  -----------------  -------
+router-mac  44:38:39:22:01:78
+```
+
+To show the remote host and prefix routes through a specific next hop, run the vtysh `show evpn next-hops vni <vni> ip <ip-address>` command:
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -425,6 +432,8 @@ Ip: 10.0.1.2
     10.1.10.104/32
     10.1.20.105/32
 ```
+
+To show the VTEP IP addresses for the next hop groups, run the `nv show evpn l2-nhg vtep-ip` command.
 
 ## Show EVPN Access VLANs
 

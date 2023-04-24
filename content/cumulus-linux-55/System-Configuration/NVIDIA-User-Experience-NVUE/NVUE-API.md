@@ -6,70 +6,15 @@ toc: 3
 ---
 In addition to the CLI, NVUE supports a REST API. Instead of accessing Cumulus Linux using SSH, you can interact with the switch using an HTTP client, such as cURL or a web browser.
 
-# Enabling the NVUE REST API
-# Accessing NVUE REST API from a Front Panel Port
-# Securing the API
-## User Accounts
-### Linux Group Permissions
-## TLS
-### Certificates
-# Understanding the API Architecture (Theory)
-## Supported HTTP Methods
-### Get -- used for Show Commands
-### Post -- used to Set Configuration
-### Patch -- used to Replace or Unset Configuration
-### Delete -- used to Remove Configuration
-## Using the API (Your preamble from Automation QSG)
-The CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI nv show commands reflect any PATCH operation (create) you run through the REST API. 
-NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path. 
-There is more we can say here from other sources too @Andreas La Quiante and @Abhinava Sadasivarao both had some good content here IIRC.
-# Primary API Use Cases -- We should show a curl/python tabbed example of each.
-## View a Configuration
-Applied config with a note that any revision can be viewed by changing the rev arg.
-## Replace an entire configuration
-We know this is common workflow that customers want to see examples for and it's not a straightforward process.
-- Grab a new revision,
-- Do a root patch to delete the whole config tree
-- Do a root patch with the entire config
-- Apply
-## Make a configuration change
-- Grab a new revision
-- Do a root patch with the change.
-- Apply
-### Troubleshooting Configuration Changes
-- Configuration Fails Because of a Dependency https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-API/#configuration-fails-because-of-a-dependency
-- Configuration Apply Fails with Warnings https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-API/#configuration-apply-fails-with-warnings
-## Use the API for Active Monitoring
-Give an example of how to watch a piece of data via the API such as an interface Counter.
-# Converting CLI Changes to Use the API
-Show a user how to take a configuration change from the CLI and deliver the same thing with the API
-- Make your config changes on the system
-- View the changes as a json blob
-` nv config diff -o json `
-- Staple the JSON blob to a root patch request as the payload.
-- Apply
-# Practical API Examples
-## System configuration – hostname, pre-login/post-login message, timezone
-## Services configuration – NTP, DNS, SNMP
-## Functionality – interface, bond, bridge, BGP
-# Try the API
-Link to Try It Demo for API
-# Resources
-- Swagger API Documentation https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/api/index.html
-- Full Object Model Download https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/api/openapi.json
-
-## Access the NVUE API
-
-To access the NVUE API, run these commands on the switch:
+## Enabling the NVUE REST API
+To enable the NVUE API, run these commands on the switch:
 
 ```
 cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf
 cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 ipv6only=off ssl;/g' /etc/nginx/sites-available/nvue.conf
 cumulus@switch:~$ sudo systemctl restart nginx
 ```
-
-## Access the NVUE API from a Front Panel Port
-
+## Accessing NVUE REST API from a Front Panel Port
 To access the NVUE REST API from a front panel port (swp) on the switch:
 
 1. Ensure that the `nvue.conf` file is present in the `/etc/nginx/sites-enabled` directory.
@@ -91,8 +36,14 @@ To access the NVUE REST API from a front panel port (swp) on the switch:
 - To access the REST API from the switch running `curl` locally, invoke the REST API client from the default VRF from the Cumulus Linux shell by prefixing the command with `ip vrf exec default curl`.
 - To access the NVUE REST API from a client on a peer Cumulus Linux switch or virtual appliance, or any other off-the-shelf Linux server or virtual machine, make sure the switch or appliance has the correct IP routing configuration so that the REST API HTTP packets arrive on the correct target interface and VRF.
 {{%/notice%}}
+## Securing the API
+### User Accounts
+NVUE REST API supports HTTP Basic Authentication. The API supports the same underlying authentication methods that NVUE CLI supports for username and password and the user accounts function the same on both API and CLI.
 
-## Transport Layer Security
+#### Linux Group Permissions
+In order to create a API-only user without SSH permissions, you an either use a ZTP script to create a new user primed for API usage, or use API calls to create a a new automation user and prevent it from logging in.
+
+### Transport Layer Security
 <!-- vale off -->
 Cumulus Linux contains a self-signed certificate and private key used server-side in this application so that it works out of the box; however, NVIDIA recommends you use your own certificates and keys. Certificates must be in PEM format.
 <!-- vale on -->
@@ -100,7 +51,24 @@ For step by step documentation on generating self-signed certificates and keys, 
 
 After installing the certificates and keys, edit the `/etc/nginx/sites-available/nvue.conf` file to set the `ssl_certificate` and the `ssl_certificate_key` values to your keys, then restart NGINX with the `sudo systemctl restart nginx` command.
 
-## Run cURL Commands
+## Understanding the API Architecture (Theory)
+### Supported HTTP Methods
+- Get -- used for Show Commands
+- Post -- used to Set Configuration
+- Patch -- used to Replace or Unset Configuration
+  
+  To change configuration settings with the REST API, you can either perform:
+  - A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. 
+  - A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
+
+  You typically perform a *root patch* to push all configurations to the switch in bulk. For example, if you use a centralized configuration engine (such as an SDN controller or a network management system) to push the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running many specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
+- Delete -- used to Remove Configuration
+### Using the API 
+The NVUE CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI `nv show commands` reflect any PATCH operation (create) you run through the REST API. 
+
+NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path. 
+
+#### Run cURL Commands
 
 You can run the cURL commands from the command line. Use the username and password for the switch. For example:
 
@@ -132,46 +100,126 @@ cumulus@switch:~$ curl  -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:
 ...
 ```
 
-### Set a Configuration Change
+## Primary API Use Cases -- We should show a curl/python tabbed example of each.
+### View a Configuration
+You can use the following example to get the current applied configuration on the switch. By changing the `rev` argument, any revision can be viewed. 
+{{< tabs "ViewConfig">}}
+{{< tab "Curl Command ">}}
 
-To make a configuration change with the NVUE API:
+```
+cumulus@switch:~$ curl -k -u cumulus:CumulusLinux! -X GET "https://127.0.0.1:8765/nvue_v1/?rev=applied&filled=false"
+"acl": {}, 
+  "bridge": { 
+    "domain": { 
+      "br_default": { 
+        "encap": "802.1Q", 
+        "mac-address": "auto", 
+        "multicast": { 
+          "snooping": { 
+            "enable": "off" 
+          } 
+        }, 
+        "stp": { 
+          "priority": 32768, 
+          "state": { 
+            "up": {} 
+          } 
+        }, 
+        "type": "vlan-aware", 
+        "untagged": 1, 
+        "vlan": { 
+          "10": { 
+            "multicast": { 
+... 
+(output has been shortened) 
+```
 
+{{< /tab >}}
+{{< tab "Python Code ">}}
+
+
+
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
+
+```
+cumulus@switch:~$ nv config show
+- set: 
+    bridge: 
+      domain: 
+        br_default: 
+          type: vlan-aware 
+          vlan: 
+            '10': 
+              vni: 
+                '10': {} 
+            '20': 
+              vni: 
+                '20': {} 
+            '30': 
+              vni: 
+                '30': {} 
+    evpn: 
+      enable: on 
+    mlag: 
+      backup: 
+        10.10.10.2: {} 
+      enable: on 
+      init-delay: 10 
+      mac-address: 44:38:39:BE:EF:AA 
+... 
+(output has been shortened) 
+```
+{{< /tab >}}
+{{< /tabs >}}
+### Replace an entire configuration
+We know this is common workflow that customers want to see examples for and it's not a straightforward process.
+1. Grab a new revision
+2. Do a root patch to delete the whole config tree
+3. Do a root patch with the entire config
+4. Apply
+### Make a configuration change
 1. Create a new revision ID using a POST:
 
    ```
    cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X POST https://127.0.0.1:8765/nvue_v1/revision
-   {
-     "4": {
-       "state": "pending",
-       "transition": {
-         "issue": {},
-         "progress": ""
-       }
-     }
-   }
-
+   { 
+      "changeset/cumulus/2023-04-06_20.22.44_T2XP": { 
+      "state": "pending", 
+      "transition": { 
+        "issue": {}, 
+        "progress": "" 
+      } 
+    } 
+   } 
    ```
-
-   {{%notice note%}}
-
-To allow the `cumulus` user access to the NVUE API, you must change the default password for the `cumulus` user.
-{{%/notice%}}
-
-2. Record the revision ID. In the above example, the revision ID is `"4"`
+2. Record the revision ID. In the above example, the revision ID is `"changeset/cumulus/2023-04-06_20.22.44_T2XP"`. URL encode this in order to use it in the next step - `changeset%2Fcumulus%2F2023-04-06_20.22.44_T2XP`
 
 3. Make the change using a PATCH and link it to the revision ID:
+{{< tabs "MakeConfigChange">}}
+{{< tab "Curl Command ">}}
 
    ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=4
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address?rev=changeset%2Fcumulus%2F2023-04-06_20.22.44_T2XP 
    {
      "99.99.99.99/32": {}
    }
    ```
-
-4. Apply the changes using a PATCH to the revision changeset.
+{{</ tab >}}
+{{< tab "NVUE CLI ">}}
 
    ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply"}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/4
+   cumulus@switch:~$ nv set interface lo ip address 99.99.99.99/32
+   ```
+{{</ tab >}}
+{{</ tabs>}}
+
+
+4. Apply the changes using a PATCH to the revision changeset.
+{{< tabs "ApplyConfigChange">}}
+{{< tab "Curl Command ">}}
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -H 'Content-Type:application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-06_20.22.44_T2XP 
    {
      "state": "apply",
      "transition": {
@@ -180,20 +228,28 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
      }
    }
    ```
-
-5. Review the status of the apply and the configuration:
+{{</ tab >}}
+{{< tab "NVUE CLI ">}}
 
    ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
+   cumulus@switch:~$ nv config apply
+   ```
+{{</ tab >}}
+{{</ tabs>}}
+
+5. Review the status of the apply and the configuration:
+{{< tabs "ReviewConfigChange">}}
+{{< tab "Curl Command ">}}
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-06_20.22.44_T2XP 
    {
-     "state": "applied",
+     "state": "apply",
      "transition": {
        "issue": {},
        "progress": ""
      }
    }
    ```
-
    ```
    cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/interface/lo/ip/address
    {
@@ -202,21 +258,122 @@ To allow the `cumulus` user access to the NVUE API, you must change the default 
      "::1/128": {}
    }
    ```
-
-6. To collect the applied configuration:
+{{</ tab >}}
+{{< tab "NVUE CLI ">}}
 
    ```
-   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET "https://127.0.0.1:8765/nvue_v1/?rev=applied&filled=false"
+   cumulus@switch:~$ 
    ```
 
-### Save an Applied Configuration
+   ```
+   cumulus@switch:~$ nv show interface lo ip address
+   
+-------------
+99.99.99.99/32
+127.0.0.1/8
+::1/128
 
+   ```
+{{</ tab >}}
+{{</ tabs>}}
+
+#### Troubleshooting Configuration Changes
+When a configuration change fails, you see an error in the change request.
+
+##### Configuration Fails Because of a Dependency
+
+If you stage a configuration but it fails because of a dependency, the failure shows the reason. In the following example, the change fails because the BGP router ID is not set:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
+{
+  "state": "invalid",
+  "transition": {
+    "issue": {
+      "0": {
+        "code": "config_invalid",
+        "data": {
+          "location": "router.bgp.enable",
+          "reason": "BGP requires router-id to be set globally or in the VRF.\n"
+        },
+        "message": "Config invalid at router.bgp.enable: BGP requires router-id to be set globally or in the VRF.\n",
+        "severity": "error"
+      }
+    },
+    "progress": "Invalid config"
+  }
+}
+```
+
+The staged configuration is missing `router-id`:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=4
+{
+  "autonomous-system": 65999,
+  "enable": "on"
+}
+```
+
+##### Configuration Apply Fails with Warnings
+
+In some cases, such as the first push with NVUE or if you change a file manually instead of using NVUE, you see a warning prompt and the apply fails:
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/4
+{
+  "4": {
+    "state": "ays_fail",
+    "transition": {
+      "issue": {
+        "0": {
+          "code": "client_timeout",
+          "data": {},
+          "message": "Timeout while waiting for client response",
+          "severity": "error"
+        }
+      },
+      "progress": "Aborted apply after warnings"
+    }
+  }
+```
+
+To resolve this issue, observe the failures or errors, and inspect the configuration that you are trying to apply. After you resolve the errors, retry the API. If you prefer to overlook the errors and force an apply, add `"auto-prompt":{"ays": "ays_yes"}` to the configuration apply.
+
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/4
+```
+
+### Save a configuration
 To save an applied configuration change to the startup configuration (`/etc/nvue.d/startup.yaml`) so that the changes persist after a reboot, use a PATCH to the applied revision with the `save` state. For example:
+{{< tabs "SaveConfig">}}
+{{< tab "Curl Command ">}}
 
 ```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X PATCH -d '{"state": "save", "auto-prompt": {"ays": "ays_yes"}}' -H 'Content-Type: application/json'  https://127.0.0.1:8765/nvue_v1/revision/applied
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X PATCH -d '{"state": "save", "auto-prompt": {"ays": "ays_yes"}}' -H 'Content-Type: application/json'  https://127.0.0.1:8765/nvue_v1/revision/applied 
+{ 
+  "state": "save", 
+  "transition": { 
+    "issue": {}, 
+    "progress": "" 
+  } 
+} 
 ```
 
+{{< /tab >}}
+{{< tab "Python Code ">}}
+
+
+
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
+
+```
+cumulus@switch:~$ nv config save
+saved
+```
+{{< /tab >}}
+{{< /tabs >}}
 ### Unset a Configuration Change
 
 To unset a change, use the `null` value to the key. For example, to delete `vlan100` from a switch, use the following syntax:
@@ -226,14 +383,347 @@ cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"vlan100":null}' -H 'Cont
 ```
 
 When you unset a change, you must still use the `PATCH` action. The value indicates removal of the entry. The data is `{"vlan100":null}` with the PATCH action.
+### Use the API for Active Monitoring
+In the example below, we fetch the counters for `interface swp1`.
+{{< tabs "ActiveMonitoring" >}}
+{{< tab "Curl Command" >}}
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/interface/swp1/link/stats
+{
+  "carrier-transitions": 6,
+  "in-bytes": 293771538,
+  "in-drops": 0,
+  "in-errors": 0,
+  "in-pkts": 2321737,
+  "out-bytes": 366068936,
+  "out-drops": 0,
+  "out-errors": 0,
+  "out-pkts": 3536629
+}
 
-### Patch Operations
+```
+{{< /tab >}}
+{{< tab "Python Code" >}}
+{{< /tab >}}
+{{< tab "NVUE CLI" >}}
+```
+cumulus@switch:~$ nv show interface swp1 link stats
+                     operational  applied  pending  description
+-------------------  -----------  -------  -------  ----------------------------------------------------------------------
+carrier-transitions  6                              Number of times the interface state has transitioned between up and...
+in-bytes             280.15 MB                      total number of bytes received on the interface
+in-drops             0                              number of received packets dropped
+in-errors            0                              number of received packets with errors
+in-pkts              2321659                        total number of packets received on the interface
+out-bytes            349.10 MB                      total number of bytes transmitted out of the interface
+out-drops            0                              The number of outbound packets that were chosen to be discarded eve...
+out-errors           0                              The number of outbound packets that could not be transmitted becaus...
+out-pkts             3536508                        total number of packets transmitted out of the interface
+```
+{{< /tab >}}
+{{< /tabs >}}
+### Converting CLI Changes to Use the API
+You cna take a configuration change from the CLI and use the API to set the same set of changes.
+1. Make your config changes on the system using the NVUE CLI.
+```
+cumulus@switch:~$ nv set system hostname switch01
+cumulus@switch:~$ nv set interface lo ip address 99.99.99.99/32
+cumulus@switch:~$ nv set interface eth0 ip address 192.168.200.6/24
+cumulus@switch:~$ nv set interface bond0 bond member swp1-4
 
-To change configuration settings with the REST API, you can either perform:
-- A root patch, where you run the NVUE PATCH API on the root node of the schema so that a single PATCH operation can change one, some, or the entire configuration in a single payload. The payload of the PATCH method must be aware of the entire NVUE object model schema because you make the configuration changes relative to the root node `/nvue_v1`. 
-- A targeted configuration patch, where you run a specific NVUE REST API, targeted at a particular OpenAPI end-point URI, to make a configuration change. Based on the NVUE schema definition, you need to direct the PATCH REST API request at a particular endpoint (for example, `/nvue_v1/vrf/{vrf-id}/router/bgp`) and provide the payload that conforms to the schema. With a targeted configuration patch, you can control individual resources.
+```
+2. View the changes as a JSON blob.
+```
+cumulus@switch:~$ nv config diff -o json 
+[
+  {
+    "set": {
+      "interface": {
+        "bond0": {
+          "bond": {
+            "member": {
+              "swp1": {},
+              "swp2": {},
+              "swp3": {},
+              "swp4": {}
+            }
+          },
+          "type": "bond"
+        },
+        "lo": {
+          "ip": {
+            "address": {
+              "99.99.99.99/32": {}
+            }
+          }
+        }
+      },
+      "system": {
+        "hostname": "switch01"
+      }
+    }
+  }
+]
+```
+3. Staple the JSON blob to a root patch request as the payload.
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{
+      "interface": {
+        "bond0": {
+          "bond": {
+            "member": {
+              "swp1": {},
+              "swp2": {},
+              "swp3": {},
+              "swp4": {}
+            }
+          },
+          "type": "bond"
+        },
+        "lo": {
+          "ip": {
+            "address": {
+              "99.99.99.99/32": {}
+            }
+          }
+        }
+      },
+      "system": {
+        "hostname": "switch01"
+      }
+    }' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-04-24_20.12.25_T2XX
 
-You typically perform a *root patch* to push all configurations to the switch in bulk. For example, if you use a centralized configuration engine (such as an SDN controller or a network management system) to push the entire switch configuration every time you need to make a change, regardless of how small or large the change. A root patch can also make configuration changes with fewer round trips to the switch; running many specific NVUE PATCH APIs to set or unset objects requires many round trips to the switch to set up the HTTP connection, transfer payload and responses, manage network utilization, and so on.
+{
+  "bridge": {
+    "domain": {
+      "br_default": {
+        "type": "vlan-aware",
+        "vlan": {
+          "10": {
+            "vni": {
+              "10": {}
+            }
+          },
+          "20": {
+            "vni": {
+              "20": {}
+            }
+          },
+          "30": {
+            "vni": {
+              "30": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "evpn": {
+    "enable": "on"
+  },
+  "interface": {
+    "bond1": {
+      "bond": {
+        "lacp-bypass": "on",
+        "member": {
+          "swp1": {}
+        },
+...
+```
+4. Apply the changes using a PATCH to the revision changeset.
+{{< tabs "CLItoAPIApplyConfigChange">}}
+{{< tab "Curl Command ">}}
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -H 'Content-Type:application/json' -k -d '{"state": "apply", "auto-prompt": {"ays": "ays_yes"}}' -X PATCH https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-24_20.12.25_T2XX 
+   {
+     "state": "apply",
+     "transition": {
+       "issue": {},
+       "progress": ""
+     }
+   }
+   ```
+{{</ tab >}}
+{{< tab "Python Code ">}}
+
+   ```
+   
+   ```
+{{</ tab >}}
+{{</ tabs>}}
+
+5. Review the status of the apply and the configuration:
+{{< tabs "CLItoAPIReviewConfigChange">}}
+{{< tab "Curl Command ">}}
+   ```
+   cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/revision/changeset%2Fcumulus%2F2023-04-24_20.12.25_T2XX 
+   {
+     "state": "applied",
+     "transition": {
+       "issue": {},
+       "progress": ""
+     }
+   }
+   ```
+{{</ tab >}}
+{{< tab "NVUE CLI ">}}
+
+   ```
+   
+   ```
+{{</ tab >}}
+{{</ tabs>}}
+## Practical API Examples
+### System configuration 
+Send a targeted API request to `/nvue_v1/system ` to set system hostname, a pre-login/post-login message, and timezone on the switch.
+{{< tabs "SystemConfig" >}}
+{{< tab "Curl Command" >}}
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"system": {"hostname":"switch01","timezone":"America/Los_Angeles","message":{"pre-login":"Welcome to NVIDIA Cumulus Linux","post-login:"You have successfully logged in to switch01"}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-04-06_20.31.58_T2XR 
+```
+{{< /tab >}}
+{{< tab "Python Code" >}}
+{{< /tab >}}
+{{< tab "NVUE CLI" >}}
+```
+cumulus@switch:~$ nv set system hostname switch01
+cumulus@switch:~$ nv set system timezone America/Los_Angeles
+cumulus@switch:~$ nv set system message pre-login "Welcome to NVIDIA Cumulus Linux"
+cumulus@switch:~$ nv set system message post-login "You have successfully logged into switch01"
+```
+{{< /tab >}}
+{{< /tabs >}}
+### Services configuration
+Send a targeted API request to `/nvue_v1/service ` to set up NTP, DNS, and SNMP on the switch.
+{{< tabs "ServicesConfig" >}}
+{{< tab "Curl Command" >}}
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"service": { "ntp": {"default":{"server:{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}, "dns": {"mgmt":{"server:{"192.168.1.100":{}}}}, "syslog": {"mgmt":{"server:{"192.168.1.120":{"port":8000}}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-04-06_20.31.58_T2XR 
+```
+{{< /tab >}}
+{{< tab "Python Code" >}}
+{{< /tab >}}
+{{< tab "NVUE CLI" >}}
+```
+cumulus@switch:~$ nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on
+cumulus@switch:~$ nv set service dns mgmt server 192.168.1.100 
+cumulus@switch:~$ nv set service syslog mgmt server 192.168.1.120 port 8000
+```
+{{< /tab >}}
+{{< /tabs >}}
+### Functionality
+#### Interface
+{{< tabs "InterfaceConfig" >}}
+{{< tab "Curl Command" >}}
+{{< /tab >}}
+{{< tab "Python Code" >}}
+{{< /tab >}}
+{{< tab "NVUE CLI" >}}
+{{< /tab >}}
+{{< /tabs >}}
+#### Bond
+{{< tabs "BondConfig" >}}
+{{< tab "Curl Command" >}}
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"bond0": {"type":"bond","bond":{"member":{"swp1":{},"swp2":{},"swp3":{},"swp4":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XV 
+{ 
+  "bond0": { 
+    "bond": { 
+      "member": { 
+        "swp1": {}, 
+        "swp2": {}, 
+        "swp3": {}, 
+        "swp4": {} 
+      } 
+    }, 
+    "type": "bond" 
+  }, 
+  "bond1": { 
+    "bond": { 
+      "lacp-bypass": "on", 
+      "member": { 
+        "swp1": {} 
+      }, 
+      "mlag": { 
+        "enable": "on", 
+        "id": 1 
+      }, 
+      "mode": "lacp" 
+    }, 
+    "bridge": { 
+      "domain": { 
+        "br_default": { 
+          "access": 10, 
+          "stp": { 
+            "admin-edge": "on", 
+            "auto-edge": "on", 
+            "bpdu-guard": "on" 
+          } 
+        } 
+      } 
+    }, 
+    "link": { 
+      "mtu": 9000 
+    }, 
+    "type": "bond" 
+  }, 
+  "eth0": { 
+    "ip": { 
+      "address": { 
+        "192.168.200.6/24": {} 
+      }, 
+      "vrf": "mgmt" 
+    }, 
+    "type": "eth" 
+  }, 
+  "lo": { 
+    "ip": { 
+      "address": { 
+        "10.10.10.1/32": {} 
+      } 
+    }, 
+    "type": "loopback" 
+  } 
+} 
+```
+{{< /tab >}}
+{{< tab "Python Code" >}}
+{{< /tab >}}
+{{< tab "NVUE CLI" >}}
+```
+cumulus@switch:~$ nv set interface bond0 bond member swp1-4
+```
+{{< /tab >}}
+{{< /tabs >}}
+#### Bridge
+{{< tabs "BridgeConfig" >}}
+{{< tab "Curl Command" >}}
+```
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2X 
+cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XV 
+```
+{{< /tab >}}
+{{< tab "Python Code" >}}
+{{< /tab >}}
+{{< tab "NVUE CLI" >}}
+```
+cumulus@switch:~$ nv set interface swp1-2 bridge domain br_default 
+cumulus@switch:~$ nv set bridge domain br_default vlan 10,20 
+cumulus@switch:~$ nv set bridge domain br_default untagged 1 
+```
+{{< /tab >}}
+{{< /tabs >}}
+#### BGP
+{{< tabs "BGPConfig" >}}
+{{< tab "Curl Command" >}}
+{{< /tab >}}
+{{< tab "Python Code" >}}
+{{< /tab >}}
+{{< tab "NVUE CLI" >}}
+{{< /tab >}}
+{{< /tabs >}}
+
+## Example Python Script
 
 In the following python example, the `full_config_example()` method sets the system pre-login message, enables BGP globally, and a changes a few other configuration settings in a single bulk operation. The API end-point goes to the root node `/nvue_v1`. The `bridge_config_example()` method performs a targeted API request to `/nvue_v1/bridge/domain/{domain-id}` to set the `vlan-vni-offset` attribute.
 
@@ -473,77 +963,14 @@ if __name__ == "__main__":
 
 {{< /expand >}}
 
-## Troubleshoot Configuration Changes
+## Try the API
 
-When a configuration change fails, you see an error in the change request.
+You can try out the NVUE REST API using the {{<exlink url="https://air.nvidia.com/marketplace?demo_id=aa77bb13-6a7d-431c-9203-640510778beb" text="NVUE API Lab">}} available on NVIDIA Air. It has a basic example and will help you get started with the APIs. You can try out the other examples in this document.
 
-### Configuration Fails Because of a Dependency
+## Resources
 
-If you stage a configuration but it fails because of a dependency, the failure shows the reason. In the following example, the change fails because the BGP router ID is not set:
-
-```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/revision/4
-{
-  "state": "invalid",
-  "transition": {
-    "issue": {
-      "0": {
-        "code": "config_invalid",
-        "data": {
-          "location": "router.bgp.enable",
-          "reason": "BGP requires router-id to be set globally or in the VRF.\n"
-        },
-        "message": "Config invalid at router.bgp.enable: BGP requires router-id to be set globally or in the VRF.\n",
-        "severity": "error"
-      }
-    },
-    "progress": "Invalid config"
-  }
-}
-```
-
-The staged configuration is missing `router-id`:
-
-```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure https://127.0.0.1:8765/nvue_v1/vrf/default/router/bgp?rev=4
-{
-  "autonomous-system": 65999,
-  "enable": "on"
-}
-```
-
-### Configuration Apply Fails with Warnings
-
-In some cases, such as the first push with NVUE or if you change a file manually instead of using NVUE, you see a warning prompt and the apply fails:
-
-```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' --insecure -X GET https://127.0.0.1:8765/nvue_v1/revision/4
-{
-  "4": {
-    "state": "ays_fail",
-    "transition": {
-      "issue": {
-        "0": {
-          "code": "client_timeout",
-          "data": {},
-          "message": "Timeout while waiting for client response",
-          "severity": "error"
-        }
-      },
-      "progress": "Aborted apply after warnings"
-    }
-  }
-```
-
-To resolve this issue, observe the failures or errors, and inspect the configuration that you are trying to apply. After you resolve the errors, retry the API. If you prefer to overlook the errors and force an apply, add `"auto-prompt":{"ays": "ays_yes"}` to the configuration apply.
-
-```
-cumulus@switch:~$ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-prompt":{"ays": "ays_yes"}}' -H 'Content-Type:application/json' --insecure -X PATCH https://127.0.0.1:8765/nvue_v1/revision/4
-```
-
-## NVUE REST API Documentation
-
-For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-54/api/index.html" text="NVUE API documentation.">}}
+For information about using the NVUE REST API, refer to the {{<mib_link url="cumulus-linux-54/api/index.html" text="NVUE API Swagger documentation.">}}
+The Full Object Model Download is available {{<mib_link url="cumulus-linux-54/api/openapi.json" text="here.">}}
 
 ## Considerations
 
@@ -553,3 +980,4 @@ Unlike the NVUE CLI, the NVUE API does not support configuring a plain text pass
 
 - {{<exlink url="https://docs.nginx.com/" text="NGINX documentaion">}}
 - {{<exlink url="https://help.ubuntu.com/lts/serverguide/certificates-and-security.html" text="Ubuntu Certificates and Security documentation">}}
+

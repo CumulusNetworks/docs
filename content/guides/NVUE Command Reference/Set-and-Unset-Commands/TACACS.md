@@ -175,7 +175,7 @@ Configures the TACACS server priority number. You must set a priority even if yo
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<priority-id>`  |  TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
+| `<priority-id>`  | The TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
 
 ### Version History
 
@@ -197,7 +197,7 @@ Configures the IPv4 address or hostname of at least one TACACS+ server.
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<priority-id>`  |  TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
+| `<priority-id>`  | The TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
 
 ### Version History
 
@@ -219,7 +219,7 @@ Configures the TACACS+ server port to use for communication between the TACACS+ 
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<priority-id>`  |  TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
+| `<priority-id>`  |  The TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
 
 ### Version History
 
@@ -233,6 +233,28 @@ cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 port 32
 
 - - -
 
+## nv set system aaa tacacs server \<priority-id\> prefer-ip-version 6
+
+Configures the TACACS server to use IPv6.
+
+### Command Syntax
+
+| Syntax |  Description   |
+| --------- | -------------- |
+| `<priority-id>`  |  The TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
+
+### Version History
+
+Introduced in Cumulus Linux 5.5.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system aaa tacacs server 5 prefer-ip-version 6 
+```
+
+- - -
+
 ## nv set system aaa tacacs server \<priority-id\> secret \<value\>
 
 Configures the shared secret between the TACACS server and client. The TACACS client on the switch and the TACACS server must have the same shared secret key.
@@ -241,7 +263,7 @@ Configures the shared secret between the TACACS server and client. The TACACS cl
 
 | Syntax |  Description   |
 | --------- | -------------- |
-| `<priority-id>`  |  TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
+| `<priority-id>`  | The TACACS server priority number. NVUE commands require you to specify the priority for each TACACS+ server. |
 
 ### Version History
 

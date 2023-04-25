@@ -43,7 +43,7 @@ Early access features are now called beta features.
   - New command to {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="clear matches against a route map">}}
   - New {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP commands">}} to clear BGP routes
   - New commands to {{<link url="Precision-Time-Protocol-PTP/#ptp-configuration-and-status" text="show PTP counters">}}
-  - New EVPN commands to show {{<link url="EVPN-Multihoming/#troubleshooting" text="multihoming ESI information">}}, layer 2 nexthop group VTEP IP addresses, {{<link url="Troubleshooting-EVPN/#examine-remote-router-mac-addresses" text="remote router MAC addresses">}}, {{<link url="Troubleshooting-EVPN/#examine-gateway-next-hops" text="nexthop VTEPs">}}, and {{<link url="Troubleshooting-EVPN/#show-evpn-access-vlans" text="EVPN access VLAN information">}}
+  - New EVPN commands to show {{<link url="EVPN-Multihoming/#troubleshooting" text="multihoming ESI information">}}, {{<link url="Troubleshooting-EVPN/#examine-remote-router-mac-addresses" text="remote router MAC addresses">}}, {{<link url="Troubleshooting-EVPN/#examine-gateway-next-hops" text="nexthop VTEPs">}}, and {{<link url="Troubleshooting-EVPN/#show-evpn-access-vlans" text="EVPN access VLAN information">}}
   - Updated EVPN commands show operational data
   - Updated {{<link url="Policy-based-Routing/#troubleshooting" text="PBR commands">}} show operational data
   - Updated `nv show router nexthop rib` and `nv show vrf <vrf> router nexthop-tracking ipv4|ipv6 ip-address` commands show operational data

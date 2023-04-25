@@ -70,7 +70,7 @@ cumulus@switch:~$ nv config apply
 If you want the server to use IPv6, you must add the `nv set system aaa tacacs server <priority> prefer-ip-version 6` command:
 
 ```
-cumulus@switch:~$ nv set system aaa tacacs server 5 host 192.168.0.30
+cumulus@switch:~$ nv set system aaa tacacs server 5 host server5
 cumulus@switch:~$ nv set system aaa tacacs server 5 prefer-ip-version 6
 ...
 ```
@@ -111,10 +111,10 @@ cumulus@switch:~$ nv config apply
    ```
    cumulus@switch:~$ sudo nano /etc/tacplus_servers
    secret=mytacac$key
-   server=192.168.0.30
+   server=server5
    prefer_ip_version=ipv6 
    secret=mytacac$key2
-   server=192.168.1.30
+   server=server6
    prefer_ip_version=ipv6 
    ```
 

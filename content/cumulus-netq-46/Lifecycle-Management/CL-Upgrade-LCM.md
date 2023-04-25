@@ -5,13 +5,13 @@ weight: 680
 toc: 4
 ---
 
-Lifecycle management lets you upgrade Cumulus Linux on one or more switches in your network via the NetQ UI or the CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time. Upgrading Cumulus Linux on a switch typically takes around 45 minutes.
+Lifecycle management lets you upgrade Cumulus Linux on one or more switches in your network via the NetQ UI or the CLI. You can run up to five upgrade jobs simultaneously; however, a given switch can only appear in one running job at a time.
 
 You can upgrade Cumulus Linux from:
 
 - 4.3.0 to later versions of Cumulus Linux 4.3 (Broadcom switches)
-- 4.4.0 or later to Cumulus Linux 5 releases
-- 5.0.0 or later to subsequent versions of Cumulus Linux 5
+- 4.4.0 or later to Cumulus Linux 5 releases (Spectrum switches)
+- 5.0.0 or later to subsequent versions of Cumulus Linux 5 (Spectrum switches)
 
 {{<notice warning>}}
 When upgrading to Cumulus Linux 5.0.0 or later, LCM backs up and restores flat file configurations in Cumulus Linux. After you upgrade to Cumulus Linux 5, running NVUE configuration commands replaces any configuration restored by NetQ LCM. See {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Installation-Management/Upgrading-Cumulus-Linux/" text="Upgrading Cumulus Linux">}} for additional information.

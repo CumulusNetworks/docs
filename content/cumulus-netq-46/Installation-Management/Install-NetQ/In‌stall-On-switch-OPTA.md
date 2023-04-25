@@ -80,7 +80,7 @@ When the LCM executor is configured, the on-switch OPTA service supports the fol
 - Switch decommission
 - Flow analysis
 
-The {{<link title="Install On-switch OPTA/#connect-netq-agents-to-the-opta-service" text="NetQ Agent must be running">}} for lifecycle management functions to work properly. 
+The {{<link title="Install On-switch OPTA/#connect-netq-agents-to-the-opta-service" text="NetQ Agent must be running">}} for lifecycle management to work properly. 
 
 {{<notice note>}}
 LCM with the on-switch OPTA service is supported on NVIDIA Spectrum-2 platforms and above.

@@ -16,16 +16,16 @@ RIB entry for 10.10.10.3/32
 ===========================
 Routing entry for 10.10.10.3/32
   Known via "bgp", distance 20, metric 0, best
-  Last update 00:57:26 ago
-  * fe80::4638:39ff:fe00:1, via swp51, weight 1
-  * fe80::4638:39ff:fe00:3, via swp52, weight 1
-  * fe80::4638:39ff:fe00:5, via swp53, weight 1
-  * fe80::4638:39ff:fe00:7, via swp54, weight 1
+  Last update 10:04:41 ago
+  * fe80::4ab0:2dff:fe60:910e, via swp54, weight 1
+  * fe80::4ab0:2dff:fea7:7852, via swp53, weight 1
+  * fe80::4ab0:2dff:fec8:8fb9, via swp52, weight 1
+  * fe80::4ab0:2dff:feff:e147, via swp51, weight 1
 
 
 FIB entry for 10.10.10.3/32
 ===========================
-10.10.10.3 nhid 150 proto bgp metric 20
+10.10.10.3 nhid 108 proto bgp metric 20 
 ```
 
 For Cumulus Linux to consider routes equal, the routes must:
@@ -38,6 +38,83 @@ When multiple routes are in the routing table, a hash determines through which p
 {{%notice note%}}
 Cumulus Linux enables the BGP `maximum-paths` setting by default and installs multiple routes. Refer to {{<link url="Optional-BGP-Configuration#ecmp" text="BGP and ECMP">}}.
 {{%/notice%}}
+
+### Next Hop Groups
+
+ECMP routes resolve to next hop groups, which identify one or more next hops. To view next hop information, use the `ip nexthop show` or `ip nexthop show <id>` kernel commands or the `nv show router nexthop rib` or `nv show router nexthop rib <id>` NVUE commands.
+
+
+```
+cumulus@leaf01:mgmt:~$ nv show router nexthop rib
+Nexthop-group  address-family  installed  interface-index  ref-count  type   valid  vrf      Summary           
+-------------  --------------  ---------  ---------------  ---------  -----  -----  -------  ------------------
+...
+75             ipv4            on         74               2          zebra  on     default                    
+76             ipv4            on         74               2          zebra  on     default                    
+77             unspecified     on                          2          zebra  on     default  Nexthop-group:  78
+                                                                                             Nexthop-group:  79
+                                                                                             Nexthop-group:  78
+                                                                                             Nexthop-group:  79
+78             ipv4            on         67               3          zebra  on     default                    
+79             ipv4            on         67               3          zebra  on     default                    
+90             ipv6            on         55               8          zebra  on     default                    
+96             ipv6            on         54               8          zebra  on     default                    
+108            unspecified     on                          6          zebra  on     default  Nexthop-group: 109
+                                                                                             Nexthop-group:  65
+                                                                                             Nexthop-group:  90
+                                                                                             Nexthop-group:  96
+                                                                                             Nexthop-group: 109
+                                                                                             Nexthop-group:  65
+                                                                                             Nexthop-group:  90
+                                                                                             Nexthop-group:  96
+...
+```
+
+The following example shows information for next hop group 108:
+
+```
+cumulus@leaf01:mgmt:~$ nv show router nexthop rib 108
+                operational  applied
+--------------  -----------  -------
+address-family  unspecified         
+installed       on                  
+ref-count       6                   
+type            zebra               
+valid           on                  
+vrf             default             
+
+
+
+resolved-via
+===============
+    Nexthop                    type        vrf      weight  Summary         
+    -------------------------  ----------  -------  ------  ----------------
+    fe80::4ab0:2dff:fe60:910e  ip-address  default  1       Interface: swp54
+    fe80::4ab0:2dff:fea7:7852  ip-address  default  1       Interface: swp53
+    fe80::4ab0:2dff:fec8:8fb9  ip-address  default  1       Interface: swp52
+    fe80::4ab0:2dff:feff:e147  ip-address  default  1       Interface: swp51
+
+
+
+resolved-via-backup
+======================
+
+
+
+depends
+==========
+    Nexthop-group
+    -------------
+    65           
+    90           
+    96           
+    109          
+
+
+
+dependents
+=============
+```
 
 ## ECMP Hashing
 

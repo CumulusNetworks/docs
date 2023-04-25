@@ -196,7 +196,7 @@ Ansible modules are in Beta as of the publication of this guide. The various mod
 
 The {{<exlink url="https://air.nvidia.com/migrate/" text="NVUE Migration tool">}} is designed to help you automate migration from older Cumulus Linux systems that support NCLU and ONYX to the newer systems that support NVUE.
 
-ADD GRAPHIC
+{{< img src = "/images/guides/migration-tool.png" >}}
 
 ## NVIDIA Air
 

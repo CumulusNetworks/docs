@@ -11,7 +11,7 @@ Day 0 configuration is the initial minimal configuration with which the switch s
 
 Day 1 configuration includes setting up of common services like NTP, syslog, and so on.
 
-Day 2 to Day-N are the configurations pushed to the device for day-to-day operations. This also includes patching and upgrading based on the changing needs of the environment.
+Day 2 to Day N are the configurations pushed to the device for day-to-day operations. This also includes patching and upgrading based on the changing needs of the environment.
 
 ## Automation Options
 

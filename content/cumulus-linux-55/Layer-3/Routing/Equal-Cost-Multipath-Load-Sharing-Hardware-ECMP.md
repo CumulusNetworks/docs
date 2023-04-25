@@ -41,8 +41,7 @@ Cumulus Linux enables the BGP `maximum-paths` setting by default and installs mu
 
 ### Next Hop Groups
 
-ECMP routes resolve to next hop groups, which identify one or more next hops. To view next hop information, use the `ip nexthop show` or `ip nexthop show <id>` kernel commands or the `nv show router nexthop rib` or `nv show router nexthop rib <id>` NVUE commands.
-
+ECMP routes resolve to next hop groups, which identify one or more next hops. To view next hop information, run the NVUE `nv show router nexthop rib` or `nv show router nexthop rib <id>` commands, or the `ip nexthop show` or `ip nexthop show <id>` kernel commands.
 
 ```
 cumulus@leaf01:mgmt:~$ nv show router nexthop rib
@@ -107,8 +106,6 @@ depends
 dependents
 =============
 ```
-
-To show next hop tracking information per VRF, run the `nv show vrf <vrf> router nexthop-tracking ipv4` or `nv show vrf <vrf> router nexthop-tracking ipv6` command.
 
 ## ECMP Hashing
 

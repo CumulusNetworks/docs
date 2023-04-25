@@ -294,3 +294,246 @@ cumulus@switch:~$ nv show interface lo ip address
 
 **System Hostname and time zone**
 
+{{< tabs "TabID297 ">}}
+{{< tab "Sample API Call ">}}
+
+```
+curl -u 'cumulus:CumulusLinux!' -d '{"hostname":"switch01","timezone":"America/Los_Angeles"}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/system?rev=changeset%2Fcumulus%2F2023-04-06_20.31.58_T2XR
+```
+
+{{< /tab >}}
+{{< tab "Sample Output ">}}
+
+```
+{}  
+```
+
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
+
+```
+cumulus@switch:~$ nv set system hostname switch01 
+cumulus@switch:~$ nv set system timezone America/Los_Angeles
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+**NTP**
+
+{{< tabs "TabID324 ">}}
+{{< tab "Sample API Call ">}}
+
+```
+curl -u 'cumulus:CumulusLinux!' -d '{"default":{"server:{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/service/ntp?rev=changeset%2Fcumulus%2F2023-04-06_20.31.58_T2XR
+```
+
+{{< /tab >}}
+{{< tab "Sample Output ">}}
+
+```
+{} 
+```
+
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
+
+```
+cumulus@switch:~$ nv set service ntp default server 4.cumulusnetworks.pool.ntp.org iburst on 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+**DNS**
+
+{{< tabs "TabID350 ">}}
+{{< tab "Sample API Call ">}}
+
+```
+curl -u 'cumulus:CumulusLinux!' -d '{"mgmt":{"server:{"192.168.1.100":{}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/service/dns?rev=changeset%2Fcumulus%2F2023-04-06_20.31.58_T2XR
+```
+
+{{< /tab >}}
+{{< tab "Sample Output ">}}
+
+```
+{} 
+```
+
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
+
+```
+cumulus@switch:~$ nv set service dns mgmt server 192.168.1.100
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+**Syslog**
+
+{{< tabs "TabID376 ">}}
+{{< tab "Sample API Call ">}}
+
+```
+curl -u 'cumulus:CumulusLinux!' -d '{"mgmt":{"server:{"192.168.1.120":{"port":8000}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/service/syslog?rev=changeset%2Fcumulus%2F2023-04-06_20.31.58_T2XR
+```
+
+{{< /tab >}}
+{{< tab "Sample Output ">}}
+
+```
+{} 
+```
+
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
+
+```
+cumulus@switch:~$ nv set service syslog mgmt server 192.168.1.120 port 8000
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+**All services at the root level**
+
+{{< tabs "TabID402 ">}}
+{{< tab "Sample API Call ">}}
+
+```
+curl -u 'cumulus:CumulusLinux!' -d '{"system": {"hostname":"switch01","timezone":"America/Los_Angeles"}, "service": { "ntp": {"default":{"server:{"4.cumulusnetworks.pool.ntp.org":{"iburst":"on"}}}}, "dns": {"mgmt":{"server:{"192.168.1.100":{}}}}, "syslog": {"mgmt":{"server:{"192.168.1.120":{"port":8000}}}}}}' -k -X PATCH https://127.0.0.1:8765/nvue_v1/?rev=changeset%2Fcumulus%2F2023-04-06_20.31.58_T2XR
+```
+
+{{< /tab >}}
+{{< tab "Sample Output ">}}
+
+```
+{} 
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Day 2..N: Setup Configuration
+
+**Bond**
+
+{{< tabs "TabID376 ">}}
+{{< tab "Sample API Call ">}}
+
+```
+curl -u 'cumulus:CumulusLinux!' -d '{"bond0": {"type":"bond","bond":{"member":{"swp1":{},"swp2":{},"swp3":{},"swp4":{}}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XV
+```
+
+{{< /tab >}}
+{{< tab "Sample Output ">}}
+
+```
+{ 
+  "bond0": { 
+    "bond": { 
+      "member": { 
+        "swp1": {}, 
+        "swp2": {}, 
+        "swp3": {}, 
+        "swp4": {} 
+      } 
+    }, 
+    "type": "bond" 
+  }, 
+  "bond1": { 
+    "bond": { 
+      "lacp-bypass": "on", 
+      "member": { 
+        "swp1": {} 
+      }, 
+      "mlag": { 
+        "enable": "on", 
+        "id": 1 
+      }, 
+      "mode": "lacp" 
+    }, 
+    "bridge": { 
+      "domain": { 
+        "br_default": { 
+          "access": 10, 
+          "stp": { 
+            "admin-edge": "on", 
+            "auto-edge": "on", 
+            "bpdu-guard": "on" 
+          } 
+        } 
+      } 
+    }, 
+    "link": { 
+      "mtu": 9000 
+    }, 
+    "type": "bond" 
+  }, 
+  "eth0": { 
+    "ip": { 
+      "address": { 
+        "192.168.200.6/24": {} 
+      }, 
+      "vrf": "mgmt" 
+    }, 
+    "type": "eth" 
+  }, 
+  "lo": { 
+    "ip": { 
+      "address": { 
+        "10.10.10.1/32": {} 
+      } 
+    }, 
+    "type": "loopback" 
+  } 
+}  
+```
+
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
+
+```
+cumulus@switch:~$ nv set interface bond0 bond member swp1-4
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+**Bridge**
+
+{{< tabs "TabID376 ">}}
+{{< tab "Sample API Call ">}}
+
+```
+curl -u 'cumulus:CumulusLinux!' -d '{"swp1": {"bridge":{"domain":{"br_default":{}}},"swp2": {"bridge":{"domain":{"br_default":{}}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/interface?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2X 
+
+curl -u 'cumulus:CumulusLinux!' -d '{"untagged":1,"vlan":{"10":{},"20":{}}}' -H 'Content-Type: application/json' -k -X PATCH https://127.0.0.1:8765/nvue_v1/bridge/domain/br_default?rev=changeset%2Fcumulus%2F2023-04-06_21.08.10_T2XVResourcesResources
+```
+
+{{< /tab >}}
+{{< tab "Sample Output ">}}
+
+```
+{} 
+```
+
+{{< /tab >}}
+{{< tab "NVUE CLI ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1-2 bridge domain br_default
+cumulus@switch:~$ nv set bridge domain br_default vlan 10,20
+cumulus@switch:~$ nv set bridge domain br_default untagged 1
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## Resources
+
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-Snippets/" text="NVIDIA User Experience Documentation">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/guides/production-ready-automation/" text="Production Ready Automation">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-soft" text="NVUE API Swagger Documentation">}}

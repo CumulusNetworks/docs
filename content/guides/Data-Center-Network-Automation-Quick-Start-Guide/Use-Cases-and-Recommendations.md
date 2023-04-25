@@ -1,17 +1,15 @@
 ---
 title: Use Cases and Recommendations
 author: Cumulus Networks
-weight: 30
+weight: 40
 product: Cumulus Networks Guides
 imgData: guides
 ---
 In the world of data center automation and deployment, Day 0, Day 1, Day 2 and Day N are widely used terms to determine the stage of the device configuration and usage. The classification determines when the configurations are applied.
 
-Day 0 configuration is the initial minimal configuration with which the switch starts up, based on the topology and network architecture that has been designed.
-
-Day 1 configuration includes setting up of common services like NTP, syslog, and so on.
-
-Day 2 to Day N are the configurations pushed to the device for day-to-day operations. This also includes patching and upgrading based on the changing needs of the environment.
+- **Day 0** configuration is the initial minimal configuration with which the switch starts up, based on the topology and network architecture that has been designed.
+- **Day 1** configuration includes setting up of common services like NTP, syslog, and so on.
+- **Day 2** to **Day N** are the configurations you push to the device for day-to-day operations. This also includes patching and upgrading based on the changing needs of the environment.
 
 ## Automation Options
 
@@ -25,14 +23,14 @@ Day 2 to Day N are the configurations pushed to the device for day-to-day operat
 
 | Tools | Recommendation |
 | ----- | -------------- |
-| Ansible |For Day 0 configurations, you can use the PRA package to automate startup.yaml file generation or use the Ansible modules to set up the configuration as desired and run it across all the switches.</br>For Day 1 through day N configurations, you can leverage the Ansible modules that are available to make configuration changes on the go. |
-| Salt | For Day 0 configurations, you can automate startup.yaml file generation.</br>For Day 1 through day N configurations, you can automate startup.yaml file updates and apply them on the switches. |
-| Puppet |For Day 0 configurations, you can automate startup.yaml file generation.</br>For Day 1 through day N configurations, you can use the http_request module to interact with NVUE API. |
-| Scripts | Most programming languages support making REST API calls. Use the RESTful NVUE API to integrate into your existing automation scripts. |
+| **Ansible** |For Day 0 configurations, you can use the PRA package to automate startup.yaml file generation or use the Ansible modules to set up the configuration as desired and run it across all the switches.</br>For Day 1 through day N configurations, you can leverage the Ansible modules that are available to make configuration changes on the go. |
+| **Salt** | For Day 0 configurations, you can automate startup.yaml file generation.</br>For Day 1 through day N configurations, you can automate startup.yaml file updates and apply them on the switches. |
+| **Puppet** |For Day 0 configurations, you can automate startup.yaml file generation.</br>For Day 1 through day N configurations, you can use the http_request module to interact with NVUE API. |
+| **Scripts** | Most programming languages support making REST API calls. Use the RESTful NVUE API to integrate into your existing automation scripts. |
 
 ## Code Snippets
 
-Using the REST API to make any updates (PATCH) is a three step process:
+Using the REST API to make any updates (PATCH) is a multi step process:
 1. Create a new revision ID.
 2. Make the change using a PATCH request against the revision ID recorded in the previous step.
 3. Apply the changes to the revision changeset.
@@ -48,7 +46,7 @@ The examples below use curl. You can do this with any tool or programming langua
 
 1. View the current applied configuration.
 
-   {{< tabs "TabID51 ">}}
+   {{< tabs "TabID49 ">}}
 {{< tab "Sample API Call ">}}
 
 ```
@@ -112,7 +110,7 @@ cumulus@switch:~$ nv config show
 
 2. Create a new revision ID.
 
-     {{< tabs "TabID116 ">}}
+     {{< tabs "TabID113 ">}}
 {{< tab "Sample API Call ">}}
 
 ```
@@ -141,7 +139,7 @@ curl -u 'cumulus:CumulusLinux!' -k -X POST https://127.0.0.1:8765/nvue_v1/revisi
 3. Apply the revision changeset after you push all the configurations. 
 Note: Cumulus Linux applies but does not save the configuration; the configuration does not persist after a reboot.
 
-     {{< tabs "TabID144 ">}}
+     {{< tabs "TabID142 ">}}
 {{< tab "Sample API Call ">}}
 
 ```
@@ -173,7 +171,7 @@ cumulus@switch:~$ nv config apply
 
 4. Review the revision.
 
-     {{< tabs "TabID176 ">}}
+     {{< tabs "TabID174 ">}}
 {{< tab "Sample API Call ">}}
 
 ```
@@ -198,7 +196,7 @@ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/revisio
 
 5. Save a revision. Save an applied configuration change to the startup configuration (`/etc/nvue.d/startup.yaml`) so that the changes persist after a reboot.
 
-     {{< tabs "TabID201 ">}}
+     {{< tabs "TabID199 ">}}
 {{< tab "Sample API Call ">}}
 
 ```
@@ -228,7 +226,7 @@ cumulus@switch:~$ nv config save
 {{< /tab >}}
 {{< /tabs >}}
 
-### Day 0: Set Up Basic Connectivity
+### Day 0 - Set Up Basic Connectivity
 
 **Interfaces**
 
@@ -290,7 +288,7 @@ cumulus@switch:~$ nv show interface lo ip address
 {{< /tab >}}
 {{< /tabs >}}
 
-### Day 1: Set Up Common Services
+### Day 1 - Set Up Common Services
 
 **System Hostname and time zone**
 
@@ -416,11 +414,11 @@ curl -u 'cumulus:CumulusLinux!' -d '{"system": {"hostname":"switch01","timezone"
 {{< /tab >}}
 {{< /tabs >}}
 
-### Day 2 through Day N: Setup Configuration
+### Day 2 through Day N - Setup Configuration
 
 **Bond**
 
-{{< tabs "TabID376 ">}}
+{{< tabs "TabID421 ">}}
 {{< tab "Sample API Call ">}}
 
 ```
@@ -504,7 +502,7 @@ cumulus@switch:~$ nv set interface bond0 bond member swp1-4
 
 **Bridge**
 
-{{< tabs "TabID376 ">}}
+{{< tabs "TabID505 ">}}
 {{< tab "Sample API Call ">}}
 
 ```

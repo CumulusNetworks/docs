@@ -10,7 +10,7 @@ Data center networking is an integral part of modern enterprise networks. As dat
 
 ## The Importance of Data Center Automation
 
-The massive growth in data and the speed at which businesses operate today mean that manual monitoring, troubleshooting, and remediation is too slow to be effective and can put businesses at risk. Automation can make day-two operations almost autonomous.  
+The massive growth in data and the speed at which businesses operate today mean that manual monitoring, troubleshooting, and remediation is too slow to be effective and can put businesses at risk. Automation can make day 2 operations almost autonomous.  
 
 Data center automation is immensely valuable because it frees up human computational time. In addition, data center automation:
 - Delivers insight into all nodes and configurations. 

@@ -55,7 +55,14 @@ Early access features are now called beta features.
 | `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>`| `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>` |
 | `nv set service dhcp-relay6 <vrf> interface downstream <interface> address <ipv6-address>` | `nv set service dhcp-relay6 <vrf> interface downstream <interface> link-address <ipv6-address>` |
 | `nv set service dhcp-relay <vrf> giaddress-interface`| `nv set service dhcp-relay <vrf> gateway-interface`|
-| `nv show interface <intf> ptp counters` | `nv show interface <intf> counters ptp`|
+| `nv show interface <interface> ptp counters` | `nv show interface <interface> counters ptp`|
+| `nv show interface <interface> qos counters` | `nv show interface <interface> counters qos` |
+| `nv show interface <interface> qos counters egress-queue-stats` | `nv show interface <interface> counters qos egress-queue-stats` |
+| `nv show interface <interface> qos counters ingress-buffer-stats` |`nv show interface <interface> counters qos ingress-buffer-stats`|
+| `nv show interface <interface> qos counters pfc-stats` | `nv show interface <interface> counters qos pfc-stats`|
+| `nv show interface <interface> qos counters port-stats` |`nv show interface <interface> counters qos port-stats` |
+| `nv show interface <interface> qos counters port-stats rx-stats` | `nv show interface <interface> counters qos port-stats rx-stats` |
+| `nv show interface <interface> qos counters port-stats tx-stats` | `nv show interface <interface> counters qos port-stats tx-stats` |
 {{< /expand >}}
 
 {{< expand "New Commands" >}}

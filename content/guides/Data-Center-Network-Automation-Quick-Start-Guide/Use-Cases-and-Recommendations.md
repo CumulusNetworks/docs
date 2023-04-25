@@ -5,13 +5,13 @@ weight: 30
 product: Cumulus Networks Guides
 imgData: guides
 ---
-In the world of data center automation and deployment, Day-0, Day-1, Day-2 and Day-N are widely used terms to determine the stage of the device configuration and usage. The classification determines when the configurations are applied.
+In the world of data center automation and deployment, Day 0, Day 1, Day 2 and Day N are widely used terms to determine the stage of the device configuration and usage. The classification determines when the configurations are applied.
 
-Day-0 configuration is the initial minimal configuration with which the switch starts up, based on the topology and network architecture that has been designed.
+Day 0 configuration is the initial minimal configuration with which the switch starts up, based on the topology and network architecture that has been designed.
 
-Day-1 configuration includes setting up of common services like NTP, syslog, and so on.
+Day 1 configuration includes setting up of common services like NTP, syslog, and so on.
 
-Day-2 to Day-N are the configurations pushed to the device for day-to-day operations. This also includes patching and upgrading based on the changing needs of the environment.
+Day 2 to Day-N are the configurations pushed to the device for day-to-day operations. This also includes patching and upgrading based on the changing needs of the environment.
 
 ## Automation Options
 
@@ -25,9 +25,9 @@ Day-2 to Day-N are the configurations pushed to the device for day-to-day operat
 
 | Tools | Recommendation |
 | ----- | -------------- |
-| Ansible |For Day-0 configurations, you can use the PRA package to automate startup.yaml file generation or use the Ansible modules to set up the configuration as desired and run it across all the switches.</br>For Day-1..N configurations, you can leverage the Ansible modules that are available to make configuration changes on the go. |
-| Salt | For Day-0 configurations, you can automate startup.yaml file generation.</br>For Day-1..N configurations, you can automate startup.yaml file updates and apply them on the switches. |
-| Puppet |For Day-0 configurations, you can automate startup.yaml file generation.</br>For Day-1..N configurations, you can use the http_request module to interact with NVUE API. |
+| Ansible |For Day 0 configurations, you can use the PRA package to automate startup.yaml file generation or use the Ansible modules to set up the configuration as desired and run it across all the switches.</br>For Day 1..N configurations, you can leverage the Ansible modules that are available to make configuration changes on the go. |
+| Salt | For Day 0 configurations, you can automate startup.yaml file generation.</br>For Day 1..N configurations, you can automate startup.yaml file updates and apply them on the switches. |
+| Puppet |For Day 0 configurations, you can automate startup.yaml file generation.</br>For Day 1..N configurations, you can use the http_request module to interact with NVUE API. |
 | Scripts | Most programming languages support making REST API calls. Use the RESTful NVUE API to integrate into your existing automation scripts. |
 
 ## Code Snippets
@@ -161,7 +161,7 @@ curl -u 'cumulus:CumulusLinux!' -d '{"state":"apply","auto-prompt":{"ays":"ays_y
 } 
 ```
 
-{< /tab >}}
+{{< /tab >}}
 {{< tab "NVUE CLI ">}}
 
 ```
@@ -218,7 +218,7 @@ curl -u 'cumulus:CumulusLinux!' -k -X PATCH -d '{"state": "save", "auto-prompt":
 } 
 ```
 
-{< /tab >}}
+{{< /tab >}}
 {{< tab "NVUE CLI ">}}
 
 ```
@@ -250,7 +250,7 @@ curl -u 'cumulus:CumulusLinux!' -d '{"99.99.99.99/32": {}}' -H 'Content-Type: ap
 }
 ```
 
-{< /tab >}}
+{{< /tab >}}
 {{< tab "NVUE CLI ">}}
 
 ```
@@ -280,7 +280,7 @@ curl -u 'cumulus:CumulusLinux!' -k -X GET https://127.0.0.1:8765/nvue_v1/interfa
 }
 ```
 
-{< /tab >}}
+{{< /tab >}}
 {{< tab "NVUE CLI ">}}
 
 ```

@@ -1,7 +1,7 @@
 ---
 title: Automation with Cumulus Linux
 author: Cumulus Networks
-weight: 20
+weight: 30
 product: Cumulus Networks Guides
 imgData: guides
 ---

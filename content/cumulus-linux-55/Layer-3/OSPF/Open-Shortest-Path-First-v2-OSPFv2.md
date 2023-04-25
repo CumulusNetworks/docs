@@ -1126,6 +1126,11 @@ statistics
   state-changes    318     
 ```
 
+{{%notice note%}}
+- The NVUE commands show brief output. To show more detailed information, run the vtysh commands.
+- You can also run the NVUE commands with the `-o json` option to see a clearer presentation of the output.
+{{%/notice%}}
+
 FRR (vtysh) provides several OSPF troubleshooting commands:
 
 | Description | <div style="width:330px">vtysh Command |

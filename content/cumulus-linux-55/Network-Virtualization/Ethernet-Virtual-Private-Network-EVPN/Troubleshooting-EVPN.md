@@ -243,22 +243,27 @@ Total number of neighbors 4
 
 ## Show EVPN VNIs
 
-To display the configured VNIs on a network device participating in BGP EVPN, run the NVUE `nv show vrf <vrf> evpn bgp-info` command or the vtysh `show bgp l2vpn evpn vni` command. This command is only relevant on a VTEP. For symmetric routing, this command displays the special layer 3 VNIs for each tenant VRF.
+To display the configured VNIs on a network device participating in BGP EVPN, run the vtysh `show bgp l2vpn evpn vni` command. This command is only relevant on a VTEP. For symmetric routing, this command displays the special layer 3 VNIs for each tenant VRF.
 
 ```
-cumulus@border01:mgmt:~$ nv show vrf RED evpn bgp-info
-                       operational        applied
----------------------  -----------------  -------
-local-vtep             10.0.1.255                
-rd                     10.10.10.63:3             
-router-mac             44:38:39:be:ef:ff         
-system-ip              10.10.10.63               
-system-mac             44:38:39:22:01:74         
-[export-route-target]  65253:4001                
-[import-route-target]  65253:4001
+cumulus@leaf01:mgmt:~$ sudo vtysh
+leaf01# show bgp l2vpn evpn vni
+Advertise Gateway Macip: Disabled
+Advertise SVI Macip: Disabled
+Advertise All VNI flag: Enabled
+BUM flooding: Head-end replication
+Number of L2 VNIs: 3
+Number of L3 VNIs: 2
+Flags: * - Kernel
+  VNI        Type RD                    Import RT                 Export RT                 Tenant VRF
+* 20         L2   10.10.10.1:4          65101:20                  65101:20                 RED
+* 30         L2   10.10.10.1:6          65101:30                  65101:30                 BLUE
+* 10         L2   10.10.10.1:3          65101:10                  65101:10                 RED
+* 4002       L3   10.1.30.2:2           65101:4002                65101:4002               BLUE
+* 4001       L3   10.1.20.2:5           65101:4001                65101:4001               RED
 ```
 
-Run the NVUE `nv show evpn vni` command or the vtysh `show evpn vni` command to see a summary of VNIs and the number of MAC or ARP entries associated with each VNI.
+Run the vtysh `show evpn vni` command to see a summary of all VNIs and the number of MAC or ARP entries associated with each VNI.
 
 ```
 cumulus@leaf01:mgmt:~$ sudo vtysh
@@ -271,6 +276,8 @@ VNI        Type VxLAN IF              # MACs   # ARPs   # Remote VTEPs  Tenant V
 4001       L3   vniRED                1        1        n/a             RED
 4002       L3   vniBLUE               0        0        n/a             BLUE
 ```
+
+You can also show the above information with the NVUE `nv show evpn vni` and `nv show vrf <vrf> evpn vni` commands.
 
 Run the NVUE `nv show evpn vni <vni>` command or the vtysh `show evpn vni <vni>` command to examine EVPN information for a specific VNI in detail. The following example output shows details for the layer 2 VNI 10. The output shows the remote VTEPs that contain that VNI.
 
@@ -296,6 +303,21 @@ remote-vtep
     ---------  -----
     10.0.1.12  HER  
     10.0.1.34  HER  
+```
+
+To show VNI BGP information run the NVUE `nv show evpn vni <id> bgp-info` and `nv show vrf <vrf_id> evpn bgp-info` commands, or the vtysh `show bgp l2vpn evpn vni <vni>` command.
+
+```
+cumulus@border01:mgmt:~$ nv show vrf RED evpn bgp-info
+                       operational        applied
+---------------------  -----------------  -------
+local-vtep             10.0.1.255                
+rd                     10.10.10.63:3             
+router-mac             44:38:39:be:ef:ff         
+system-ip              10.10.10.63               
+system-mac             44:38:39:22:01:74         
+[export-route-target]  65253:4001                
+[import-route-target]  65253:4001
 ```
 
 ## Examine Local and Remote MAC Addresses for a VNI
@@ -380,7 +402,7 @@ cumulus@leaf01:mgmt:~$ nv show nve counters vni 10
 -->
 ## Examine Remote Router MAC Addresses
 
-To examine the router MACs corresponding to all remote VTEPs for symmetric routing, run the NVUE `nv show vrf <vrf> evpn remote-router-mac` command or the vtysh `show evpn rmac vni all` command. This command is only relevant for a layer 3 VNI:
+To examine the router MAC addresses corresponding to all remote VTEPs for symmetric routing, run the NVUE `nv show vrf <vrf> evpn remote-router-mac` command or the vtysh `show evpn rmac vni all` command. This command is only relevant for a layer 3 VNI:
 
 ```
 cumulus@border01:mgmt:~$ nv show vrf RED evpn remote-router-mac
@@ -435,9 +457,9 @@ Ip: 10.0.1.2
 
 To show the VTEP IP addresses for the next hop groups, run the `nv show evpn l2-nhg vtep-ip` command.
 
-## Show EVPN Access VLANs
+## Show Access VLANs
 
-To show EVPN access VLAN information, run the NVUE `nv show evpn access-vlan-info vlan` command or the vtysh `show evpn access-vlan` command.
+To show access VLANs on the switch and their corresponding VNI, run the NVUE `nv show evpn access-vlan-info vlan` command or the vtysh `show evpn access-vlan` command.
 
 ```
 cumulus@border01:mgmt:~$ nv show evpn access-vlan-info vlan

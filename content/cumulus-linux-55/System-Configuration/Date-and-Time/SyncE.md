@@ -12,8 +12,6 @@ The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 - The SyncE daemon (`syncd`) manages:
   - Transmitting and receiving <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
   - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
-  - The next best clock to use when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
-  - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
 
 {{%notice note%}}
 Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
@@ -23,7 +21,7 @@ Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
 
 Basic SyncE configuration requires you:
 - Enable SyncE on the switch.
-- Configure SyncE on at least one interface or bond so that the interface is a timing source that passes to the selection algorithm.
+- Configure SyncE on at least one interface so that the interface is a timing source that passes to the selection algorithm.
 
 The basic configuration shown below uses the default SyncE settings:
 <!-- - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.-->
@@ -165,7 +163,7 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 ### Frequency Source Priority
 
-The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 100.
+The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 1.
 
 The following command example sets the priority on swp2 to 1, on swp2 to 10, and on swp3 to 1:
 

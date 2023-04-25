@@ -1,31 +1,30 @@
 ---
-title: Hybrid Cloud Connectivity with QinQ and VXLANs
+title: QinQ and VXLANs
 author: NVIDIA
 weight: 630
 toc: 3
 ---
 *QinQ* is an amendment to the {{<exlink url="http://www.ieee802.org/1/pages/802.1Q.html" text="IEEE 802.1Q specification">}} that enables you to insert multiple VLAN tags into a single Ethernet frame.
 
-QinQ with VXLAN is typically used by a service provider who offers multi-tenant layer 2 connectivity between different customer data centers (private clouds) and also needs to connect those data centers to public cloud providers. Public clouds tend to have a mandatory QinQ handoff interface, where the outer tag is for the customer and the inner tag is for the service.
+QinQ with VXLAN is typically used by a service provider who offers multi-tenant layer 2 connectivity between different customer data centers over a virtualized layer 3 provider network.  The customer VLANs are transparent to the provider network.
 
-In Cumulus Linux, you map QinQ packets to VXLANs through:
+Cumulus Linux supports the standard 802.1ad with VLAN-aware bridge where you map a customer (S-tag) to a VNI and preserve the inner VLAN (C-tag) inside a VXLAN packet.
 
-- *Single tag translation*, where you map a customer to a VNI and preserve the service as an inner VLAN inside a VXLAN packet.
-- *Double tag translation*, where you map a customer and service to a VNI.
+Cumulus Linux also supports a special case with VLAN-unaware bridge where both the (S-tag, C-tag) tuple are used for forwarding lookup and mapping to a VNI, both the S-tag and C-tag are removed during VXLAN encapsulation.  This is hereafter referred to as Double Tag Translation.
 
 {{%notice note%}}
 You must disable ARP and ND suppression on VXLAN bridges when using QinQ.
 {{%/notice%}}
 
-## Single Tag Translation
+## 802.1ad with VLAN-aware bridge
 
-Single tag translation adheres to the traditional QinQ service model. The customer-facing interface is a QinQ access port with the outer S-tag being the PVID, representing the customer. Cumulus Linux translates the S-tag to a VXLAN VNI. The inner C-tag, which represents the service, is transparent to the provider. The public cloud handoff interface is a QinQ trunk where packets on the wire carry both the S-tag and the C-tag.
+In the standard 802.1ad QinQ model, customer-facing interface is a QinQ access port with the outer S-tag being the PVID, representing the customer. Cumulus Linux translates the S-tag to a VXLAN VNI. The inner C-tag is transparent to the provider. It is also possible that the provider has VLAN trunks connected to the same bridge, carrying different customers' traffic on the same port.  In this case the S-tag is mapped to VNI and is removed during VXLAN encapsulation and added after decapsulation.
 
 An example configuration in VLAN-aware bridge mode looks like this:
 
 {{< img src="/images/cumulus-linux/QinQ-single-tag-translation.png" width="600" >}}
 
-You configure two switches: one at the service provider edge that faces the customer (the switch on the left above), and one on the public cloud handoff edge (the switch on the right above).
+You configure two switches: one at the service provider edge that faces the customer (the switch on the left above), and one on the remote provider edge with VLAN trunk (the switch on the right above).
 
 {{%notice note%}}
 - All edges must support QinQ with VXLANs.
@@ -37,15 +36,15 @@ You configure two switches: one at the service provider edge that faces the cust
 - When the bridge VLAN protocol is 802.1ad and is VXLAN-enabled, all bridge ports must be either access ports (except for the MLAG peerlink) or VLAN trunks.
 {{%/notice%}}
 <!-- vale off -->
-### Public Cloud-facing Switch
+### Remote Provider Edge Switch
 <!-- vale on -->
-For the switch facing the public cloud:
+For the switch facing the remote provider cloud:
 
 - Configure the bridge with `vlan_protocol` set to *802.1ad*.
 - The VNI maps back to S-tag (customer).
 - A trunk port connected to the public cloud is the QinQ trunk and packets are double tagged, where the S-tag is for the customer and the C-tag is for the service.
 
-To configure the public cloud-facing switch:
+To configure the remote provider switch:
 
 {{< tabs "TabID51 ">}}
 {{< tab "NVUE Commands ">}}
@@ -150,7 +149,7 @@ iface bridge
 
 In the output below, customer A is on VLAN 100 (S-TAG) and customer B is on VLAN 200 (S-TAG).
 
-To check the public cloud-facing switch, run the `net show  <bridge-name> vlan` command:
+To check the remote provider switch, run the `net show  <bridge-name> vlan` command:
 
 ```
 cumulus@switch:~$ net show bridge vlan
@@ -188,7 +187,7 @@ cumulus@switch:~$ sudo ip -d link show bridge
 
 ### Example Configuration
 
-This example shows a configuration for single tag translation in traditional bridge mode on a leaf.
+This example shows a configuration for 802.1ad QinQ in traditional bridge mode on a leaf.
 
 {{< expand "Example /etc/network/interfaces File" >}}
 

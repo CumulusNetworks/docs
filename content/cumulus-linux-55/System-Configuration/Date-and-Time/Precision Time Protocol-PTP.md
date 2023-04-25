@@ -294,16 +294,16 @@ Cumulus Linux supports the following predefined profiles:
 
 |  | IEEE 1588 | ITU 8275-1 | ITU 8275-2 |
 | --------- | --------- | ---------- | ---------- |
-| Application | Enterprise | Mobile Networks | Mobile Networks |
-| Transport | Layer 2 and Layer 3  | Layer 2 | Layer 3 |
-| Encapsulation | 802.3, UDPv4, or UDPv6 | 802.3 | UDPv4 or UDPv6 |
-| Transmission | Unicast and Multicast  | Multicast | Unicast |
-| Supported Clock Types | Boundary Clock  | Boundary Clock | Boundary Clock |
+| **Application** | Enterprise | Mobile Networks | Mobile Networks |
+| **Transport** | Layer 2 and Layer 3  | Layer 2 | Layer 3 |
+| **Encapsulation** | 802.3, UDPv4, or UDPv6 | 802.3 | UDPv4 or UDPv6 |
+| **Transmission** | Unicast and Multicast  | Multicast | Unicast |
+| **Supported Clock Types** | Boundary Clock  | Boundary Clock | Boundary Clock |
 
 {{%notice note%}}
 - You cannot modify the predefined profiles. If you want to set a parameter to a different value in a predefined profile, you need to create a custom profile. You can modify a custom profile within the range applicable to the profile type.
 - You cannot set the current profile to a profile not yet created.
-- You cannot set global PTP parameters when you set the current profile to a predefined profile.
+- You cannot set global PTP parameters in the currently set profile.
 - PTP profiles do not support VLANs and bonds. You must configure profile settings individually for each bond or VLAN.
 - If you set a predefined or custom profile, do not change any global PTP settings, such as the DiffServ code point (DSCP) or the clock domain.
 - For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp burst <value>` and `nv set system control-plane policer lldp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
@@ -1072,7 +1072,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-To configure a PTP interface to be the unicast *server*, Set PTP unicast-service-mode to `server`.
+To configure a PTP interface to be the unicast *server*, set PTP unicast-service-mode to `server`.
 
 {{< tabs "TabID706 ">}}
 {{< tab "NVUE Commands ">}}
@@ -1381,7 +1381,7 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 
 ### Configure Clock Correction and Path Delay Thresholds
 
-Cumulus Linux monitors clock correction and path delay against thresholds, and generates counters that show in the `nv show interface swp5 ptp` command output and log messages when PTP reaches the thresholds. You can configure the following monitor settings:
+Cumulus Linux monitors clock correction and path delay against thresholds, and generates counters that show in NVUE show command output and log messages when PTP reaches the thresholds. You can configure the following monitor settings:
 
 {{< tabs "TabID851 ">}}
 {{< tab "NVUE Commands ">}}

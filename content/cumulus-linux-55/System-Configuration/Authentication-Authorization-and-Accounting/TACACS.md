@@ -108,7 +108,7 @@ cumulus@switch:~$ nv config apply
 
    If you want the server to use IPv6, you must add the `prefer_ip_version=6` parameter in the `/etc/tacplus_servers` file:
 
-```
+   ```
    cumulus@switch:~$ sudo nano /etc/tacplus_servers
    secret=mytacac$key
    server=192.168.0.30

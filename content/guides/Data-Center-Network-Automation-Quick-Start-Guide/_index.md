@@ -20,9 +20,8 @@ Data center automation is immensely valuable because it frees up human computati
 
 ## Tools for Data Center Automation
 
-An **API** is a set of definitions and protocols for building and integrating application software. APIs save resources, time, and money, and can deliver consistency in developer environments.
-
-Configuration management tools:
-- **Ansible Tower** is an automation platform for Red Hat Linux and more. Ansible Tower is a software framework that supports disciplines ranging from agile development to DevOps to continuous delivery.
-- **Puppet** is a framework and language that system operations professionals use to define operations like software deployment so that they can be automated. The Puppet language creates the definitions and workflow that are implemented by the Puppet framework. Puppet brings a common language and compatibility across a broad range of devices. IT departments use Puppet to automate intricate processes involving many pieces of hardware and software.
-- **Chef** is a suite of products that is open-source and commercial. Chef is written in Ruby and provides a framework in which users can write recipes. Those recipes can implement processes that span an entire infrastructure or focus on a single component. The three components of Chef are Chef, Inspect, and Habitat. You can use these components individually or together for a complete DevOps framework.
+- An **API** is a set of definitions and protocols for building and integrating application software. APIs save resources, time, and money, and can deliver consistency in developer environments.
+- Configuration management tools:
+  - **Ansible Tower** is an automation platform for Red Hat Linux and more. Ansible Tower is a software framework that supports disciplines ranging from agile development to DevOps to continuous delivery.
+  - **Puppet** is a framework and language that system operations professionals use to define operations like software deployment so that they can be automated. The Puppet language creates the definitions and workflow that are implemented by the Puppet framework. Puppet brings a common language and compatibility across a broad range of devices. IT departments use Puppet to automate intricate processes involving many pieces of hardware and software.
+  - **Chef** is a suite of products that is open-source and commercial. Chef is written in Ruby and provides a framework in which users can write recipes. Those recipes can implement processes that span an entire infrastructure or focus on a single component. The three components of Chef are Chef, Inspect, and Habitat. You can use these components individually or together for a complete DevOps framework.

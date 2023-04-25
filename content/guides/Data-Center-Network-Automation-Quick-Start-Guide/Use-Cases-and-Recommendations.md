@@ -13,7 +13,7 @@ Day-1 configuration includes setting up of common services like NTP, syslog, and
 
 Day-2 to Day-N are the configurations pushed to the device for day-to-day operations. This also includes patching and upgrading based on the changing needs of the environment.
 
-## Automation options
+## Automation Options
 
 | Options | Recommendations |
 | ------- | --------------- |
@@ -100,7 +100,7 @@ curl -u 'cumulus:CumulusLinux!' -k -X GET "https://127.0.0.1:8765/nvue_v1/?rev=a
 .... 
 ```
 
-{< /tab >}}
+{{< /tab >}}
 {{< tab "NVUE CLI ">}}
 
 ```

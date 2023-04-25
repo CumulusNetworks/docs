@@ -178,14 +178,30 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    priority2               128
    domainNumber            0
    
-   twoStepFlag             1
    dscp_event              46
    dscp_general            46
-   
+   network_transport              L2
+   dataset_comparison             G.8275.x
+   G.8275.defaultDS.localPriority 128
+   ptp_dst_mac                    01:80:C2:00:00:0E
+
+   #
+   # Port Data Set
+   #
+   logAnnounceInterval            -3
+   logSyncInterval                -4
+   logMinDelayReqInterval         -4
+   announceReceiptTimeout         3
+   delay_mechanism                E2E
+
    offset_from_master_min_threshold   -50
    offset_from_master_max_threshold   50
    mean_path_delay_threshold          200
-   
+   tsmonitor_num_ts                   100
+   tsmonitor_num_log_sets             3
+   tsmonitor_num_log_entries          4
+   tsmonitor_log_wait_seconds         1
+
    #
    # Run time options
    #
@@ -226,13 +242,11 @@ Restarting the `switchd` service causes all network ports to reset in addition t
    udp_ttl                 1
    masterOnly              0
    delay_mechanism         E2E
-   network_transport       UDPv4
    
    [swp2]
    udp_ttl                 1
    masterOnly              0
    delay_mechanism         E2E
-   network_transport       UDPv4
    ```
    
    For a trunk VLAN, add the VLAN configuration to the switch port stanza: set `l2_mode` to `trunk`, `vlan_intf` to the VLAN interface, and `src_ip` to    the IP adress of the VLAN interface:
@@ -277,33 +291,21 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
 Cumulus Linux supports the following predefined profiles:
-- *IEEE 1588* is the profile specified in the IEEE 1588 standard. This profile addresses some common applications and does not have any network restrictions.
-- *ITU 8275.1* is the PTP profile for use in telecom networks that require phase or time-of-day synchronization. Each device in the network must participate in the PTP protocol.
-- *ITU 8275.2* is similar to ITU 8275.1 but each device in the network does not need to participate in the PTP protocol.
 
-The following table shows the default parameter values for the predefined profiles.
-
-| Parameter | IEEE 1588 | ITU 8275-1 | ITU 8275-2 |
+|  | IEEE 1588 | ITU 8275-1 | ITU 8275-2 |
 | --------- | --------- | ---------- | ---------- |
-| Announce rate | 1 | -3 | -4 |
-| Sync rate | 0  | -4 | -6 |
-| Delay rate | 0 | -4 | -6 |
-| Announce Timeout | 3  | 3 | 3 |
-| Domain | 0  | 24 | 44 |
-| Priority1 | 128 | 128 | 128 |
-| Priority2 |  128 | 128 |  128|
-| Local priority | NA | 128  | 128 |
-| Transport | UDPv4 (UDPv6 supported) |802.3 | UDPv4 |
-| Transmission | Multicast (unicast supported) | Multicast | Unicast |
-| <span style="background-color:#F5F5DC">[BMCA](## "Best Master Clock Algorythm")</span> | IEEE 1588 | G.8275.x | G.8275.x |
-
-The switch has a predefined default profile of each profile type, one for IEEE1588, one for ITU8275.1, and one for ITU8275.2.
-You can configure the switch to use a predefined profile or you can create a custom profile. You can change the profile settings of the predfined profiles, such as the announce rate, sync rate, domain, priority, transport, and so on. These changes conform to the ranges and allowed values of the profile type. You can also configure these parameters for individual PTP interfaces. When you configure parameters for an individual interface, the configuration takes precedence over the profile configuration. The interface is not part of the profile.
+| Application | Enterprise | Mobile Networks | Mobile Networks |
+| Transport | Layer 2 and Layer 3  | Layer 2 | Layer 3 |
+| Encapsulation | 802.3, UDPv4, or UDPv6 | 802.3 | UDPv4 or UDPv6 |
+| Transmission | Unicast and Multicast  | Multicast | Unicast |
+| Supported Clock Types | Boundary Clock  | Boundary Clock | Boundary Clock |
 
 {{%notice note%}}
+- You cannot modify the predefined profiles. If you want to set a parameter to a different value in a predefined profile, you need to create a custom profile. You can modify a custom profile within the range applicable to the profile type.
+- You cannot set the current profile to a profile not yet created.
+- You cannot set global PTP parameters when you set the current profile to a predefined profile.
 - PTP profiles do not support VLANs and bonds. You must configure profile settings individually for each bond or VLAN.
 - If you set a predefined or custom profile, do not change any global PTP settings, such as the DiffServ code point (DSCP) or the clock domain.
-- If you configure transport mode on individual PTP interfaces, you must reconfigure transport mode for those interfaces whenever you change the current profile.
 - For better performance in a high scale network with PTP on multiple interfaces, configure a higher system policer rate with the `nv set system control-plane policer lldp burst <value>` and `nv set system control-plane policer lldp rate <value>` commands. The switch uses the LLDP policer for PTP protocol packets. The default value for the LLDP policer is 2500. When you use the ITU 8275.1 profile with higher sync rates, use higher policer values.
 {{%/notice%}}
 
@@ -349,14 +351,11 @@ priority1                      128
 priority2                      128
 domainNumber                   24
 
-twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
 dataset_comparison             G.8275.1
 G.8275.defaultDS.localPriority 128
-G.8275.portDS.localPriority    128
 ptp_dst_mac                    01:80:C2:00:00:0E
-network_transport              L2
 
 #
 # Port Data Set
@@ -370,6 +369,10 @@ delay_mechanism                E2E
 offset_from_master_min_threshold   -50
 offset_from_master_max_threshold   50
 mean_path_delay_threshold          200
+tsmonitor_num_ts                   100
+tsmonitor_num_log_sets             3
+tsmonitor_num_log_entries          4
+tsmonitor_log_wait_seconds         1
 
 #
 # Run time options
@@ -411,13 +414,11 @@ time_stamping                  software
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       L2
 
 [swp2]
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       L2
 ```
 
 ```
@@ -437,9 +438,9 @@ priority1                      128
 priority2                      128
 domainNumber                   0
 
-twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
+network_transport              UDPv4
 dataset_comparison             ieee1588
 
 #
@@ -454,6 +455,10 @@ delay_mechanism                E2E
 offset_from_master_min_threshold   -50
 offset_from_master_max_threshold   50
 mean_path_delay_threshold          200
+tsmonitor_num_ts                   100
+tsmonitor_num_log_sets             3
+tsmonitor_num_log_entries          4
+tsmonitor_log_wait_seconds         1
 
 #
 # Run time options
@@ -495,13 +500,11 @@ time_stamping                  software
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       UDPv4
 
 [swp2]
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       UDPv4
 ```
 
 ```
@@ -548,14 +551,12 @@ priority1                      128
 priority2                      128
 domainNumber                   28
 
-twoStepFlag                    1
 dscp_event                     46
 dscp_general                   46
+network_transport              L2
 dataset_comparison             G.8275.x
 G.8275.defaultDS.localPriority 128
-G.8275.portDS.localPriority    128
 ptp_dst_mac                    01:80:C2:00:00:0E
-network_transport              L2
 
 #
 # Port Data Set
@@ -569,6 +570,10 @@ delay_mechanism                E2E
 offset_from_master_min_threshold   -50
 offset_from_master_max_threshold   50
 mean_path_delay_threshold          200
+tsmonitor_num_ts                   100
+tsmonitor_num_log_sets             3
+tsmonitor_num_log_entries          4
+tsmonitor_log_wait_seconds         1
 
 #
 # Run time options
@@ -610,13 +615,11 @@ time_stamping                  software
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       L2
 
 [swp2]
 udp_ttl                 1
 masterOnly              0
 delay_mechanism         E2E
-network_transport       L2
 ```
 
 ```
@@ -638,7 +641,6 @@ domain                       24           0                   Domain number of t
 ip-dscp                      46           46                  Sets the Diffserv code point for all PTP packets originated locally.
 priority1                    128          128                 Priority1 attribute of the local clock
 priority2                    128          128                 Priority2 attribute of the local clock
-two-step                     on           on                  Determines if the Clock is a 2 step clock
 ...
 ```
 
@@ -646,19 +648,24 @@ To show the settings for a profile, run the `nv show service ptp 1 profile <prof
 
 ```
 cumulus@switch:~$ nv show service ptp 1 profile CUSTOM1
-                    operational  applied         description
-------------------  -----------  ------------    ----------------------------------------------------------------------
-announce-interval                -3              Mean time interval between successive Announce messages.  It's spec...
-announce-timeout                 5               The number of announceIntervals that have to pass without receipt o...
-delay-mechanism                  end-to-end      Mode in which PTP message is transmitted.
-delay-req-interval               -4              The minimum permitted mean time interval between successive Delay R...
-domain                           19              Domain number of the current syntonization
-local-priority                   128             Local priority attribute of the local clock
-priority1                        128             Priority1 attribute of the local clock
-priority2                        128             Priority2 attribute of the local clock
-profile-type                     itu-g-8275-1    The profile type
-sync-interval                    -4              The mean SyncInterval for multicast messages.  It's specified as a...
-transport                        802.3           Transport method for the PTP messages.
+                             operational  applied           
+---------------------------  -----------  ------------------
+enable                                    on                
+current-profile                           default-itu-8275-1
+domain                                    0                 
+ip-dscp                                   46                
+logging-level                             info              
+priority1                                 128               
+priority2                                 128               
+[acceptable-master]    
+monitor                                                     
+  max-offset-threshold                    50                
+  max-timestamp-entries                   100               
+  max-violation-log-entries               4                 
+  max-violation-log-sets                  3                 
+  min-offset-threshold                    -50               
+  path-delay-threshold                    200               
+  violation-log-interval                  1                 
 ```
 
 ### Clock Domains
@@ -825,7 +832,6 @@ priority1               200
 priority2               200
 domainNumber            3
 
-twoStepFlag             1
 dscp_event              22
 dscp_general            22
 ...
@@ -925,7 +931,6 @@ time_stamping           hardware
 udp_ttl                 1
 masterOnly              1
 delay_mechanism         E2E
-network_transport       UDPv4
 ...
 ```
 
@@ -1007,7 +1012,6 @@ To configure a PTP interface to be the unicast *client*:
 - Configure the unicast master table. You must configure at least one unicast master table on the switch. If you configure more than one unicast master table, each table must have a unique ID.
   - Set the unicast table ID; a unique ID that identifies the unicast master table.
   - Set the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
-  - Set the IP address for peer delay requests. You can set an IPv4 or IPv6 address.
   - Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between `-3` and `4`. The default value is `-0` (2 power).
 - On the PTP interface:
   - Set the table ID of the unicast master table you want to use.
@@ -1018,14 +1022,13 @@ To configure a PTP interface to be the unicast *client*:
 A PTP interface as a unicast client or server only supports a single communictation mode and does not work with multicast servers or clients. Make sure that both sides of a PTP link are in unicast mode.
 {{%/notice%}}
 
-The following example commands configure a unicast master table with ID 1. The commands set the unicast master address and the peer address to 10.10.10.1, the query interval to 4, the unicast service mode to `client`, and the unicast request duration to 20 in the unicast master table.
+The following example commands configure a unicast master table with ID 1. The commands set the unicast master address to 10.10.10.1, the query interval to 4, the unicast service mode to `client`, and the unicast request duration to 20 in the unicast master table.
 
 {{< tabs "TabID668 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
 cumulus@switch:~$ nv set service ptp 1 unicast-master 1 address 10.10.10.1
-cumulus@switch:~$ nv set service ptp 1 unicast-master 1 peer-address 10.10.10.1
 cumulus@switch:~$ nv set service ptp 1 unicast-master 1 query-interval 4
 cumulus@switch:~$ nv set interface swp1 ptp unicast-master-table-id 1
 cumulus@switch:~$ nv set interface swp1 ptp unicast-service-mode client
@@ -1046,7 +1049,6 @@ cumulus@switch:~$ nv config apply
    [unicast_master_table]
    table_id               1
    logQueryInterval       4
-   peer_address           10.10.10.1
    UDPv4                  10.10.10.1
    ...
    ```
@@ -1070,24 +1072,12 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< /tabs >}}
 
-To configure a PTP interface to be the unicast *server*:
-- Set the unicast table ID and the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
-  - Set the IP address for peer delay requests. You can set an IPv4 or IPv6 address.
-  - Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between `-3` and `4`. The default value is `-0` (2 power).
-- On the PTP interface:
-  - Set the table index of the unicast master table you want to use.
-  - Set the unicast service mode to `server`.
-
-The following example commands set the unicast table ID to 1, the unicast master address and the peer address to 10.10.10.1, the query interval to 4, and the unicast service mode to `server`.
+To configure a PTP interface to be the unicast *server*, Set PTP unicast-service-mode to `server`.
 
 {{< tabs "TabID706 ">}}
 {{< tab "NVUE Commands ">}}
 
 ```
-cumulus@switch:~$ nv set service ptp 1 unicast-master 1 address 10.10.10.1
-cumulus@switch:~$ nv set service ptp 1 unicast-master 1 peer-address 10.10.10.1
-cumulus@switch:~$ nv set service ptp 1 unicast-master 1 query-interval 4
-cumulus@switch:~$ nv set interface swp1 ptp unicast-master-table-id 1
 cumulus@switch:~$ nv set interface swp1 ptp unicast-service-mode server
 cumulus@switch:~$ nv config apply
 ```
@@ -1095,22 +1085,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-1. Add the following lines at the end of the `# Default interface options` section of the  `/etc/ptp4l.conf` file:
-
-   ```
-   cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-   ...
-   # Default interface options
-   ...
-   [unicast_master_table]
-   table_id               1
-   logQueryInterval       4
-   peer_address           10.10.10.1
-   UDPv4                  10.10.10.1
-   ...
-   ```
-
-2. Add the following lines at the end of the interface section of the  `/etc/ptp4l.conf` file:
+1. Add the following lines at the end of the interface section of the  `/etc/ptp4l.conf` file:
 
    ```
    [swp1]
@@ -1140,18 +1115,10 @@ To show the unicast master table configuration on the switch, run the `nv show s
 
 ```
 cumulus@switch:~$ nv show service ptp 1 unicast-master 1
-                operational  applied     description
---------------  -----------  ----------  ----------------------------------------------------------------------
-peer-address                 10.10.10.1  IP address for Peer Delay request
-query-interval               4           Mean interval between requests for Announce messages. It is specifi...
-[address]                    10.10.10.1  ipv4, ipv6 or mac address
-
-```
-
-To show information about a specific unicast master, run the `nv show service ptp <instance-id> unicast-master <table-id> address <ip-mac-address-id>` command:
-
-```
-cumulus@switch:~$ nv show service ptp 1 unicast-master 1 address 10.10.10.1
+                operational  applied     
+--------------  -----------  ----------
+Query-interval  0             0  
+[address]       10.10.10.1   10.10.10.1
 ```
 
 ### TTL for a PTP Message
@@ -1187,7 +1154,6 @@ time_stamping           hardware
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
-network_transport       UDPv4
 ...
 ```
 
@@ -1257,7 +1223,6 @@ logSyncInterval         -5
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
-network_transport       UDPv4
 ...
 ```
 
@@ -1399,7 +1364,6 @@ time_stamping           hardware
 udp_ttl                 20
 masterOnly              1
 delay_mechanism         E2E
-network_transport       UDPv4
 acceptable_master       on
 ...
 ```
@@ -1414,6 +1378,8 @@ cumulus@switch:~$ sudo systemctl restart ptp4l.service
 {{< /tabs >}}
 
 ## Optional Monitor Configuration
+
+### Configure Clock Correction and Path Delay Thresholds
 
 Cumulus Linux monitors clock correction and path delay against thresholds, and generates counters that show in the `nv show interface swp5 ptp` command output and log messages when PTP reaches the thresholds. You can configure the following monitor settings:
 
@@ -1453,7 +1419,7 @@ The following example sets the path delay threshold to 300 nanoseconds:
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
-global]
+[global]
 #
 # Default Data Set
 #
@@ -1475,30 +1441,109 @@ mean_path_delay_threshold          300
 {{< /tab >}}
 {{< /tabs >}}
 
-<!--## PTP on a VRF
+### Configure PTP Logging
 
-By default, Cumulus Linux enables PTP in the default VRF and in any VRFs you create. To isolate traffic to a specific VRF, disable PTP on any other VRFs.
+A log set contains the log entries for clock correction and path delay violations at different times. You can set the number of entries to log and the interval between successive violation logs.
 
-{{%notice warning%}}
-PTP in a VRF other than the default is an [early access feature]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) in Cumulus Linux.
-{{%/notice%}}
-
-{{< tabs "TabID777 ">}}
+{{< tabs "TabID1450 ">}}
 {{< tab "NVUE Commands ">}}
 
+| Command  | Description |
+| -------- | ----------- |
+| `nv set service ptp 1 monitor max-violation-log-sets` | Sets the maximum number of log sets allowed. You can specify a value between 2 and 4. The default value is 3. |
+| `nv set service ptp 1 monitor max-violation-log-entries` | Sets the maximum number of log entries allowed in a log set. You can specify a value between 4 and 8. The default value is 4. |
+| `nv set service ptp 1 monitor violation-log-interval` |  Sets the number of seconds to wait before logging back-to-back violations. You can specify a value between 0 and 60. The default value is 1.|
+
+The following example sets the maximum number of log sets allowed to 4, the maximum number of log entries allowed to 6, and the violation log interval to 10:
+
 ```
-cumulus@switch:~$ nv set vrf RED ptp enable off
+cumulus@switch:~$ nv set service ptp 1 monitor max-violation-log-sets 4
+cumulus@switch:~$ nv set service ptp 1 monitor max-violation-log-entries 6
+cumulus@switch:~$ nv set service ptp 1 monitor violation-log-interval 10
 cumulus@switch:~$ nv config apply
 ```
 
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Linux commands are not supported.
+You can configure the following monitor settings manually in the `/etc/ptp4l.conf` file. Be sure to run the `sudo systemctl restart ptp4l.service` to apply the settings.
+
+| Parameter | Description |
+| ----- | ----------- |
+| `tsmonitor_num_log_sets` | Sets the maxumum number of log sets allowed. You can specify a value between 2 and 4. The default value is 3.|
+| `tsmonitor_num_log_entries`  |  Sets the maximum number of log entries allowed in a log set. You can specify a value between 4 and 8. The default value is 4.|
+| `tsmonitor_log_wait_seconds` |  Sets the number of seconds to wait before logging back-to-back violations. You can specify a value between 0 and 60. The default value is 1.|
+
+The following example sets the maxumum number of log sets allowed to 4, the maximum number of log entries allowed to 6, and the violation log interval to 10:
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               128
+priority2               128
+domainNumber            0
+
+twoStepFlag             1
+dscp_event              46
+dscp_general            46
+
+offset_from_master_min_threshold   -50
+offset_from_master_max_threshold   50
+mean_path_delay_threshold          300
+tsmonitor_num_ts                   100
+tsmonitor_num_log_sets             4
+tsmonitor_num_log_entries          6
+tsmonitor_log_wait_seconds         10
+...
+```
 
 {{< /tab >}}
 {{< /tabs >}}
--->
+
+### Show PTP Logs
+
+PTP monitoring provides commands to show counters for violations as well as the timestamp log entries for a violation.
+
+| Command  | Description |
+| -------- | ----------- |
+| `nv show service ptp <instance> monitor timestamp-log` | Shows the last 25 PTP timestamps.  |
+| `nv show service ptp <instance> monitor violations` |  Shows the threshold violation count and the last time a violation of a specific type occured. |
+| `nv show service ptp 1 monitor violations log acceptable-master` | Shows logs with violations that occur when a PTP server not in the Acceptable Master table sends an Announce request. |
+| `nv show service ptp 1 monitor violations log forced-master`  | Shows logs with violations that occur when a forced master port gets a higher clock. |
+| `nv show service ptp 1 monitor violations log max-offset` | Shows logs with violations that occur when the timestamp offset is higher than the max offset threshold. |
+| `nv show service ptp 1 monitor violations log min-Offset`  | Shows logs with violations that occur when the timestamp offset is lower than the minimum offset threshold. |
+| `nv show service ptp 1 monitor violations log path-delay`  | Shows logs with violations that occur when the mean path delay is higher than the path delay threshold. |
+
+The following example shows the threshold violation count and the last time a minimum offset threshold violation occurred:
+
+```
+cumulus@switch:~$ nv show service ptp 1 monitor violations
+                  operational                  applied
+----------------  ---------------------------  -------
+last-max-offset
+last-min-offset   2023-04-24T15:22:01.312295Z
+last-path-delay
+max-offset-count  0
+min-offset-count  2
+path-delay-count  0
+```
+
+### Clear PTP Violation Logs
+
+- To clear the maximum offset violation logs, run the `nv action clear service ptp <instance> monitor violations log max-offset` command 
+- To clear the minimum offset violation logs, run the `nv action clear service ptp <instance> monitor violations log min-offset` command.
+- To clear the path delay violation logs, run the `nv action clear service ptp <instance> monitor violations log path-delay` command.
+
+```
+cumulus@leaf01:mgmt:~$ nv action clear service ptp 1 monitor violations log path-delay
+Action succeeded
+```
+
 ## Delete PTP Configuration
 
 To delete PTP configuration, delete the PTP master and slave interfaces. The following example commands delete the PTP interfaces `swp1`, `swp2`, and `swp3`.
@@ -1674,26 +1719,6 @@ sending: GET TIME_STATUS_NP
         lastGmPhaseChange          0x0000'0000000000000000.0000
         gmPresent                  true
         gmIdentity                 000200.fffe.000005
-```
-
-### PTP Violations
-
-You can check PTP violations:
-- To show the collection of violation logs, run the `nv show service ptp <instance> monitor timestamp-log` command.
-- To show PTP violations, run the `nv show service ptp <instance> monitor violations` command.
-
-The following example shows that there are no violations:
-
-```
-cumulus@switch:~$ nv show service ptp 1 monitor violations
-                  operational  applied  description
-----------------  -----------  -------  -----------------------------------------------
-last-max-offset                         Time at which last max offest violation occured
-last-min-offset                         Time at which last min offest violation occured
-last-path-delay                         Time at which last path delay violation occured
-max-offset-count  0                     Number of maximum offset violations
-min-offset-count  0                     Number of min offset violations
-path-delay-count  0                     Number of Path delay violations
 ```
 
 - To see a full list of NVUE show commands for PTP, run the `nv list-commands service ptp` command.

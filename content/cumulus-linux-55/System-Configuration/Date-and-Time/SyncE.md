@@ -12,8 +12,6 @@ The Cumulus Linux switch includes a SyncE controller and a SyncE daemon.
 - The SyncE daemon (`syncd`) manages:
   - Transmitting and receiving <span style="background-color:#F5F5DC">[SSMs](## "Synchronization Status Messages")</span> on all SyncE enabled ports using the Ethernet Synchronization Messaging Channel (ESMC).
   - The synchronization hierarchy and runs the master selection algorithm to choose the best reference clock from the <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span> in the SSM.
-  - The next best clock to use when the master clock fails. The selection algorithm only selects the best source, which is the Primary Clock source.
-  - The switchover time if the algorithm also selects a secondary reference clock in case of primary failure.
 
 {{%notice note%}}
 Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
@@ -23,7 +21,7 @@ Cumulus Linux supports SyncE for the NVIDIA SN3750-SX switch only.
 
 Basic SyncE configuration requires you:
 - Enable SyncE on the switch.
-- Configure SyncE on at least one interface or bond so that the interface is a timing source that passes to the selection algorithm.
+- Configure SyncE on at least one interface so that the interface is a timing source that passes to the selection algorithm.
 
 The basic configuration shown below uses the default SyncE settings:
 <!-- - The {{<link url="#ql-for-the-switch" text="QL">}} for the switch is set to `option 1`, which includes PRC, SSU-A, SSU-B, SEC and DNU.-->

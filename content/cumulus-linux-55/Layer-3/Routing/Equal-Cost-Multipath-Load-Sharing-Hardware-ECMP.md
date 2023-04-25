@@ -83,8 +83,6 @@ type            zebra
 valid           on                  
 vrf             default             
 
-
-
 resolved-via
 ===============
     Nexthop                    type        vrf      weight  Summary         
@@ -94,12 +92,8 @@ resolved-via
     fe80::4ab0:2dff:fec8:8fb9  ip-address  default  1       Interface: swp52
     fe80::4ab0:2dff:feff:e147  ip-address  default  1       Interface: swp51
 
-
-
 resolved-via-backup
 ======================
-
-
 
 depends
 ==========
@@ -110,11 +104,11 @@ depends
     96           
     109          
 
-
-
 dependents
 =============
 ```
+
+To show next hop tracking information per VRF, run the `nv show vrf <vrf> router nexthop-tracking ipv4` or `nv show vrf <vrf> router nexthop-tracking ipv6` command.
 
 ## ECMP Hashing
 

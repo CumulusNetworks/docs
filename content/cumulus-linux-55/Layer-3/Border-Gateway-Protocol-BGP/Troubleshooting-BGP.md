@@ -731,7 +731,7 @@ Cumulus Linux records the changes that a neighbor goes through in `syslog` and i
 NVUE provides commands to clear and refresh routes in the BGP table. You can clear routes for the IPv4, IPv6, and EVPN address families. The clear commands do not clear counters in the kernel or hardware.
 
 {{%notice note%}}
-- BGP clear route commands without `soft` specified do not reset BGP neighbor adjacencies.
+- BGP clear route commands that specify a direction (`in` or `out`) do not reset BGP neighbor adjacencies.
 - When using BGP `soft` clear commands in the inbound direction, if a peer has the `soft-reconfiguration inbound` option on, the routes refresh in the BGP table based on the received routes stored in memory. Peers configured without `soft-reconfiguration inbound` receive a route refresh message requesting the neighbor to resend routes.
 - Outbound BGP clear commands reannounce all routes of the specified address family.
 {{%/notice%}}

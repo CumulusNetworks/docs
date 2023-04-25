@@ -25,9 +25,9 @@ Day 2 to Day N are the configurations pushed to the device for day-to-day operat
 
 | Tools | Recommendation |
 | ----- | -------------- |
-| Ansible |For Day 0 configurations, you can use the PRA package to automate startup.yaml file generation or use the Ansible modules to set up the configuration as desired and run it across all the switches.</br>For Day 1..N configurations, you can leverage the Ansible modules that are available to make configuration changes on the go. |
-| Salt | For Day 0 configurations, you can automate startup.yaml file generation.</br>For Day 1..N configurations, you can automate startup.yaml file updates and apply them on the switches. |
-| Puppet |For Day 0 configurations, you can automate startup.yaml file generation.</br>For Day 1..N configurations, you can use the http_request module to interact with NVUE API. |
+| Ansible |For Day 0 configurations, you can use the PRA package to automate startup.yaml file generation or use the Ansible modules to set up the configuration as desired and run it across all the switches.</br>For Day 1 through day N configurations, you can leverage the Ansible modules that are available to make configuration changes on the go. |
+| Salt | For Day 0 configurations, you can automate startup.yaml file generation.</br>For Day 1 through day N configurations, you can automate startup.yaml file updates and apply them on the switches. |
+| Puppet |For Day 0 configurations, you can automate startup.yaml file generation.</br>For Day 1 through day N configurations, you can use the http_request module to interact with NVUE API. |
 | Scripts | Most programming languages support making REST API calls. Use the RESTful NVUE API to integrate into your existing automation scripts. |
 
 ## Code Snippets
@@ -416,7 +416,7 @@ curl -u 'cumulus:CumulusLinux!' -d '{"system": {"hostname":"switch01","timezone"
 {{< /tab >}}
 {{< /tabs >}}
 
-### Day 2..N: Setup Configuration
+### Day 2 through Day N: Setup Configuration
 
 **Bond**
 

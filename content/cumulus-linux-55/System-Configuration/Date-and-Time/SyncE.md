@@ -215,12 +215,16 @@ To show global SyncE configuration, run the `nv show service synce` command. To 
 
 ```
 cumulus@switch:~$ nv show service synce
-                     operational                                                         applied
--------------------  ------------------------------------------------------------------  -------
-clock-identity       0x913500fffe00d100
-local-clock-quality  eec1
-network-type         1
-summary              Group #0: TRACKING holdover acquired on swp1. freq_diff: -51 (ppb)
+                           operational                                                        applied
+-------------------------  -----------------------------------------------------------------  -------
+enable                     On                                                                 on
+log-level                  notice
+provider-default-priority  10                                                                 10
+wait-to-restore-time       40                                                                 40
+clock-identity             0x849e00fffe00ca00
+local-clock-quality        eec1
+network-type               1
+summary                    Group #0: TRACKING holdover acquired on swp1. freq_diff: 77 (ppb)
 ```
 
 To show SyncE statistics for a specific interface, run the `nv show interface <interface-id> synce counters` command:

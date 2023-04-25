@@ -5,7 +5,7 @@ weight: 190
 toc: 3
 ---
 
-The following sections provides installation instruction for the NetQ system and software. To install NetQ:
+To install NetQ:
 
 1. Visit {{<link title="Before You Install" text="Before You Install">}} to understand the various NetQ deployments.
 

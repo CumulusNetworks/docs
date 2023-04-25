@@ -12,7 +12,7 @@ type: nojsscroll
 ## netq lcm add cl-image
 <!-- vale on -->
 
-Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade. For detailed instructions, see {{<link title="Upgrade Cumulus Linux Using LCM">}}.
+Adds a Cumulus Linux image (.bin file) to the lifecycle management repository. Images must match the version, architecture, and ASIC vendor for the switches you want to upgrade. For detailed instructions, see {{<link title="Upgrade Cumulus Linux">}}.
 
 ### Syntax
 
@@ -315,14 +315,14 @@ Deletes the access credentials required to upgrade Cumulus Linux or NetQ on swit
 
 ```
 netq lcm del credentials 
-    profile_id <text-credential-profile-id>
+    profile_ids <text-credential-profile-ids>
 ```
 ### Required Arguments
 
 | Argument | Value | Description |
 | ---- | ---- | ---- |
 | credentials | NA | Remove the access credentials used to upgrade switches |
-| profile_id | <text-credential-profile-id\> | Remove the profile assigned this ID |
+| profile_ids | <text-credential-profile-ids\> | Remove the profile assigned this ID |
 
 ### Options
 

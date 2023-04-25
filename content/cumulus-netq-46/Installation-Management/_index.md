@@ -1,5 +1,5 @@
 ---
-title: Installation Management
+title: Installation Guide
 author: NVIDIA
 weight: 170
 toc: 2

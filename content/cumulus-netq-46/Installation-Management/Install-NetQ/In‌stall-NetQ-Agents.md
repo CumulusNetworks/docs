@@ -7,7 +7,7 @@ toc: 4
 
 After installing the NetQ software, you should install the NetQ Agents on each switch you want to monitor. You can install NetQ Agents on switches and servers running:
 
-- Cumulus Linux 3.7.16 and later
+- Cumulus Linux 4.3.1 (Broadcom switches) and 4.4.0 and above (Spectrum switches)
 - SONiC 202012
 - CentOS 7
 - RHEL 7.1
@@ -65,57 +65,26 @@ If you are running NTP in your out-of-band management network with VRF, specify 
 
 ### Obtain NetQ Agent Software Package
 
-To install the NetQ Agent you need to install `netq-agent` on each switch or host. This is available from the NVIDIA networking repository.
+Cumulus Linux 4.4 and later includes the `netq-agent` package by default. To upgrade the NetQ Agent to the latest version: 
 
-To obtain the NetQ Agent package:
-
-Edit the `/etc/apt/sources.list` file to add the repository for NetQ.
-
-*Note that NetQ has a separate repository from Cumulus Linux.*
-
-{{<tabs "Get Agent Package" >}}
-
-{{<tab "Cumulus Linux 3.7" >}}
+1. Add the repository by uncommenting or adding the following line in `/etc/apt/sources.list`:
 
 ```
 cumulus@switch:~$ sudo nano /etc/apt/sources.list
 ...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-{{<version>}}
+deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest
 ...
 ```
 
 {{<notice tip>}}
-You  can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-3 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
+You can specify a NetQ Agent version in the repository configuration. The following example shows the repository configuration to retrieve NetQ Agent 4.3: <pre>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-4.3</pre>
 {{</notice>}}
 
-{{</tab>}}
-
-{{<tab "Cumulus Linux 4.0 and later">}}
-
-Cumulus Linux 4.4 and later includes the `netq-agent` package by default.
-
-To add the repository, uncomment or add the following line in `/etc/apt/sources.list`:
-
-```
-cumulus@switch:~$ sudo nano /etc/apt/sources.list
-...
-deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-{{<version>}}
-...
-```
-
-{{<notice tip>}}
-You can use the <code>deb https://apps3.cumulusnetworks.com/repos/deb CumulusLinux-4 netq-latest</code> repository if you want to always retrieve the latest posted version of NetQ.
-{{</notice>}}
-
-Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
+2. Add the `apps3.cumulusnetworks.com` authentication key to Cumulus Linux:
 
 ```
 cumulus@switch:~$ wget -qO - https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey | sudo apt-key add -
 ```
-
-{{</tab>}}
-
-{{</tabs>}}
 
 {{</tab>}}
 
@@ -172,7 +141,7 @@ To install the NetQ Agent you need to install `netq-agent` on each switch or hos
 
 To obtain the NetQ Agent package:
 
-1. Install the `wget` utility so you can install the GPG keys in step 3.
+1. Install the `wget` utility so that you can install the GPG keys in step 3.
 
        admin@switch:~$ sudo apt-get update
        admin@switch:~$ sudo apt-get install wget -y
@@ -201,7 +170,7 @@ Before you install the NetQ Agent on a Red Hat or CentOS server, make sure you i
 
 ### Verify the Server is Running lldpd and wget
 
-Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`; however,the installation requires it.
+Make sure you are running lldp**d**, not lldp**ad**. CentOS does not include `lldpd` by default, nor does it include `wget`; however, the installation requires it.
 
 To install this package, run the following commands:
 
@@ -678,45 +647,5 @@ By default, NetQ uses port 31980 for communication between the NetQ Appliance or
 sudo netq config add agent server 192.168.1.254 port 7379
 sudo netq config restart agent
 ```
-
-## Configure the On-switch OPTA
-
-{{<notice note>}}
-On-switch OPTA functionality is an early access feature, and it does not support Flow Analysis or LCM. 
-{{</notice>}}
-
-On-switch OPTA (on-premises telemetry aggregator) is intended for use in small NetQ Cloud deployments where a dedicated OPTA might not be necessary. If you need help assessing the correct OPTA configuration for your deployment, {{<exlink url="https://www.nvidia.com/en-us/contact/sales/" text="contact your NVIDIA">}} sales team.
-
-Instead of installing a dedicated OPTA appliance, you can enable the OPTA service on every switch in your environment that will send data to the NetQ Cloud. To configure a switch for OPTA functionality, install the `netq-opta` package.
-
-```
-sudo apt-get update
-sudo apt-get install netq-opta
-```
-
-After the `netq-opta` package is installed, add your OPTA configuration key. Run the following command with the `config-key` obtained from the email you received from NVIDIA titled _NetQ Access Link_. You can also obtain the configuration key through the NetQ UI in the {{<link title="Premises Management" text="premises management configuration">}}.
-
-```
-netq config add opta config-key <config_key> [vrf <vrf_name>] [proxy-host <text-proxy-host> proxy-port <text-proxy-port>] 
-```
-
-The VRF name should be the VRF used to communicate with the NetQ Cloud. Specifying a proxy host and port is optional. For example:
-
-```
-netq config add opta config-key tHkSI2d3LmRldjMubmV0cWRldi5jdW11bHVasdf29ya3MuY29tGLsDIiwzeUpNc3BwK1IyUjVXY2p2dDdPL3JHS3ZrZ1dDUkpFY2JkMVlQOGJZUW84PTIEZGV2MzoHbmV0cWRldr vrf mgmt
-```
-
-You can also add a proxy host separately with the following command:
-
-```
-netq config add opta proxy-host <text-proxy-host> proxy-port <text-proxy-port>
-```
-
-The final step is configuring the local NetQ Agent on the switch to connect to the local OPTA service. Configure the agent on the switch to connect to `localhost` with the following command:
-
-```
-netq config add agent server localhost vrf mgmt
-```
-
 ## Related Information
 - {{<link title="Manage NetQ Agents">}}

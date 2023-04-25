@@ -86,7 +86,7 @@ Validates the communication status of all nodes (leafs, spines, and hosts) runni
 ### Syntax
 
 ```
-netq check agents streaming
+netq check agents (legacy | streaming)
     [hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <agents-number-range-list> | exclude <agents-number-range-list>]
@@ -96,7 +96,9 @@ netq check agents streaming
 
 ### Required Arguments
 
-None
+| Argument | Value | Description |
+| ---- | ---- | ---- |
+| legacy, streaming | N/A | Perform a legacy (non-streaming) or streaming check.  |
 
 ### Options
 
@@ -707,7 +709,7 @@ The output displays the status (passed/failed/skipped) of all tests and a summar
 
 ```
 netq check mlag
-    [label <text-label-name> | hostnames <text-list-hostnames> ]
+    [label <text-label-name> | hostnames <text-list-hostnames>]
     [check_filter_id <text-check-filter-id>]
     [include <mlag-number-range-list> | exclude <mlag-number-range-list>]
     [around <text-time>]

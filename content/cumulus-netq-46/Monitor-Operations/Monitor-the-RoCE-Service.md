@@ -24,13 +24,17 @@ Priority code point (PCP) monitoring requires a switch running NetQ Agent 4.5 or
 
 {{</notice>}}
 
+The {{<link title="check/#netq check roce" text="netq check roce">}} command checks for consistent RoCE and QoS configurations across all nodes in your network fabric.
+
+```
+netq check roce
+```
+
 ## View RoCE Counters Networkwide in the UI
 
 1. Select the {{<img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18">}} **Menu**.
 
-2. Under the Network heading, select **RoCE counters**. Use the tabs to view receive (Rx), transmit (Tx), and pool counters networkwide:
-
-{{<figure src="/images/netq/placeholder-roce-460.png" alt="" width="1100">}}
+2. Under the Network heading, select **RoCE counters**. Use the tabs to view receive (Rx), transmit (Tx), and pool counters networkwide.
 ## View RoCE Counters for a Given Switch
 
 You can view the following RoCE counters for a given switch:
@@ -72,6 +76,5 @@ To disable RoCE monitoring:
 
 ## Related Information
 
-- {{<link title="Configure Threshold-Crossing Event Notifications" text="Configure notifications for TCA events">}}
-- {{<link title="TCA Event Messages Reference#roce" text="RoCE TCA event reference">}}
-- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-53/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE and Cumulus Linux">}}
+- {{<link title="Threshold-Crossing Events Reference#roce" text="RoCE threshold-crossing events reference">}}
+- {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux/Layer-1-and-Switch-Ports/Quality-of-Service/RDMA-over-Converged-Ethernet-RoCE/" text="RoCE and Cumulus Linux">}}

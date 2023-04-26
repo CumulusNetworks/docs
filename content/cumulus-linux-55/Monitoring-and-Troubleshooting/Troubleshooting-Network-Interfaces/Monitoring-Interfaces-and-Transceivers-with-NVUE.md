@@ -208,18 +208,18 @@ Packet Size Statistics
     2048-4095   0        0       
     4096-16383  0        0
 
-Egress Queue Statistics
-==========================
-    traffic-class  tx-frames  tx-bytes  tx-uc-buffer-discards  wred-discards
-    -------------  ---------  --------  ---------------------  -------------
-    0              0          0 Bytes   0 Bytes                0            
-    1              0          0 Bytes   0 Bytes                0            
-    2              0          0 Bytes   0 Bytes                0            
-    3              0          0 Bytes   0 Bytes                0            
-    4              0          0 Bytes   0 Bytes                0            
-    5              0          0 Bytes   0 Bytes                0            
-    6              0          0 Bytes   0 Bytes                0            
-    7              0          0 Bytes   0 Bytes                0
+Ingress Buffer Statistics
+============================
+    priority-group  rx-frames  rx-buffer-discards  rx-shared-buffer-discards
+    --------------  ---------  ------------------  -------------------------
+    0               0          0 Bytes             0 Bytes                  
+    1               0          0 Bytes             0 Bytes                  
+    2               0          0 Bytes             0 Bytes                  
+    3               0          0 Bytes             0 Bytes                  
+    4               0          0 Bytes             0 Bytes                  
+    5               0          0 Bytes             0 Bytes                  
+    6               0          0 Bytes             0 Bytes                  
+    7               0          0 Bytes             0 Bytes 
 ...
 ```
 

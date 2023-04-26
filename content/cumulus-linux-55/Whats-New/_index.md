@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 5.5 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.5.0
 <!-- vale on -->
-Cumulus Linux 5.5.0 supports new platforms, provides bug fixes, and contains several new features and improvements.
+Cumulus Linux 5.5.0 contains several new features and improvements, and provides bug fixes.
 
 {{%notice note%}}
 Early access features are now called beta features.
@@ -23,16 +23,13 @@ Early access features are now called beta features.
 - Cumulus Linux 5.4 package upgrade (`apt-upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
 {{%/notice%}}
 -->
-### Platforms
-
-- NVIDIA SN3750-SX (100G Spectrum-2) is now generally available
 
 ### New Features and Enhancements
 
 - {{<link url="Switch-Port-Attributes/#breakout-ports" text="1G support">}} for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
 - {{<link url="SyncE" text="SyncE">}} (available for Beta)
 - {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 Profile">}}
-- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} (available for Beta)
+- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}}
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="TACACS" text="TACACS+">}} commands are now generally available
   - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}} restart mode
@@ -43,7 +40,7 @@ Early access features are now called beta features.
   - New command to {{<link url="Route-Filtering-and-Redistribution/#clear-matches-against-a-route-map" text="clear matches against a route map">}}
   - New {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP commands">}} to clear BGP routes
   - New commands to {{<link url="Precision-Time-Protocol-PTP/#ptp-configuration-and-status" text="show PTP counters">}}
-  - New EVPN commands to show {{<link url="EVPN-Multihoming/#troubleshooting" text="multihoming ESI information">}}, {{<link url="Troubleshooting-EVPN/#examine-remote-router-mac-addresses" text="remote router MAC addresses">}}, {{<link url="Troubleshooting-EVPN/#examine-gateway-next-hops" text="nexthop VTEPs">}}, and {{<link url="Troubleshooting-EVPN/#show-access-vlans" text="access VLANs and their VNIs">}}
+  - New EVPN commands to show {{<link url="EVPN-Multihoming/#troubleshooting" text="multihoming information">}}, {{<link url="Troubleshooting-EVPN/#examine-remote-router-mac-addresses" text="remote router MAC addresses">}}, {{<link url="Troubleshooting-EVPN/#examine-gateway-next-hops" text="nexthop VTEPs">}}, and {{<link url="Troubleshooting-EVPN/#show-access-vlans" text="access VLANs and their VNIs">}}
   - Updated {{<link url="Policy-based-Routing/#troubleshooting" text="PBR commands">}} show operational data
   - Updated {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#next-hop-groups" text="nv show router nexthop rib">}} and `nv show vrf <vrf> router nexthop-tracking ipv4|ipv6 ip-address` commands show operational data
   - Updated {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data

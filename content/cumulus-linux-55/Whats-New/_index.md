@@ -12,7 +12,7 @@ This document supports the Cumulus Linux 5.5 release, and lists new platforms, f
 <!-- vale off -->
 ## What's New in Cumulus Linux 5.5.0
 <!-- vale on -->
-Cumulus Linux 5.5.0 contains several new features and improvements, and provides bug fixes.
+Cumulus Linux 5.5.0 supports new platforms, contains several new features and improvements, and provides bug fixes.
 
 {{%notice note%}}
 Early access features are now called beta features.
@@ -23,13 +23,20 @@ Early access features are now called beta features.
 - Cumulus Linux 5.4 package upgrade (`apt-upgrade`) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage. Refer to {{<link url="Upgrading-Cumulus-Linux/#package-upgrade" text="Package Upgrade">}} for important information about package upgrade and warm restart.
 {{%/notice%}}
 -->
+### Platforms
+
+- NVIDIA SN3750-SX (100G Spectrum-2) continues to be in Beta
+
+{{%notice warning%}}
+The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Support/Support-Offerings/Early-Access-Features-Defined" >}}) and open to customer feedback. Do not use this switch in production; it is not supported through NVIDIA networking support.
+{{%/notice%}}
 
 ### New Features and Enhancements
 
 - {{<link url="Switch-Port-Attributes/#breakout-ports" text="1G support">}} for all NVIDIA Spectrum-2 and Spectrum-3 switches now generally available
 - {{<link url="SyncE" text="SyncE">}} (available for Beta)
 - {{<link url="Precision-Time-Protocol-PTP/#ptp-profiles" text="PTP ITU-T G.8275.2 Profile">}}
-- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}}
+- {{<link url="Precision-Time-Protocol-PTP#ptp-traffic-shaping" text="PTP traffic shaping">}} (available for Beta)
 - {{<link url="NVUE-Object-Model" text="NVUE">}} enhancements include:
   - {{<link url="TACACS" text="TACACS+">}} commands are now generally available
   - {{<link url="In-Service-System-Upgrade-ISSU/#restart-mode" text="Fast, cold, and warm">}} restart mode

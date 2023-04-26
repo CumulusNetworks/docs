@@ -31,7 +31,7 @@ None
 ### Sample Usage
 
 ```
-cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.5.0.tgz
+cumulus@<hostname>:~$ netq upgrade bundle /mnt/installables/NetQ-4.6.0.tgz
 ```
 
 ### Related Commands

@@ -1560,14 +1560,14 @@ NVUE provides the following commands to show QoS statistics for an interface:
 | <div style="width:430px">NVUE Command | Description |
 | ----------- | ------------ |
 | `nv show interface <interface> counters qos` | Shows all QoS statistics for a specific interface.|
-| `nv show interface <interface> counters qos egress-queue-stats` | Shows all QoS egress queue statistics for a specific interface.|
-| `nv show interface <interface> counters qos ingress-buffer-stats` |Shows all QoS ingress buffer statistics for a specific interface. |
-| `nv show interface <interface> counters qos pfc-stats`| Shows all QoS PFC statistics for a specific interface.|
-| `nv show interface <interface> counters qos port-stats`| Shows all QoS port statistics for a specific interface.|
-| `nv show interface <interface> counters qos port-stats rx-stats` | Shows all QoS port received statistics for a specific interface.|
-| `nv show interface <interface> counters qos port-stats tx-stats` | Shows all QoS port transmitted statistics for a specific interface.|
+| `nv show interface <interface> counters qos egress-queue-stats` | Shows QoS egress queue statistics for a specific interface.|
+| `nv show interface <interface> counters qos ingress-buffer-stats` |Shows QoS ingress buffer statistics for a specific interface. |
+| `nv show interface <interface> counters qos pfc-stats`| Shows QoS PFC statistics for a specific interface.|
+| `nv show interface <interface> counters qos port-stats`| Shows QoS port statistics for a specific interface.|
+| `nv show interface <interface> counters qos port-stats rx-stats` | Shows QoS port received statistics for a specific interface.|
+| `nv show interface <interface> counters qos port-stats tx-stats` | Shows QoS port transmitted statistics for a specific interface.|
 
-The following example shows all Qos statistics for swp1:
+The following example shows all QoS statistics for swp1:
 
 ```
 cumulus@switch:~$ nv show interface swp1 counters qos

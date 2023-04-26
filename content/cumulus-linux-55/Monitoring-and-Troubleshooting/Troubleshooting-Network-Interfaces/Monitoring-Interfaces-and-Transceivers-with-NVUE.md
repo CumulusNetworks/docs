@@ -229,7 +229,7 @@ NVUE does not provide statistics for logical interfaces, such as bonds, VLAN int
 <!--- To show statistics for all VNIs in a single VXLAN device, run the `nv show nve counters` command. To show statistics for a specific VNI in a single VXLAN device,run the `nv show nve counters vni <vni>` command.-->
 {{%/notice%}}
 
-## Clear Interface Counters
+<!--## Clear Interface Counters
 
 To clear counters (statistics) for all interfaces, run the `nv action clear interface counters` command:
 
@@ -249,4 +249,4 @@ Action succeeded
 
 {{%notice note%}}
 The `nv action clear interface <interface> counters` command does not clear counters in the hardware.
-{{%/notice%}}
+{{%/notice%}}-->

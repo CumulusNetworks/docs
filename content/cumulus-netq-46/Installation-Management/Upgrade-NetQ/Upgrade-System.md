@@ -134,13 +134,25 @@ netq upgrade bundle /mnt/installables/NetQ-4.6.0-opta.tgz
 
 2. After the upgrade completes, confirm the upgrade was successful.
 
+On-premises VM:
+
     ```
     cumulus@<hostname>:~$ cat /etc/app-release
     BOOTSTRAP_VERSION=4.6.0
-    APPLIANCE_MANIFEST_HASH=d552ed2f70b56e31aad8f35cab9383af4b2fe61abe55939b19b491b4e480d737
+    APPLIANCE_MANIFEST_HASH=1c3b0266c12606d2bd4ce482afa30d118a2c84a07850fda3376c716514edce05
     APPLIANCE_VERSION=4.6.0
+    APPLIANCE_NAME=NetQ On-premises Appliance
     ```
 
+Cloud VM:
+
+    ```
+    cumulus@<hostname>:~$ cat /etc/app-release
+    BOOTSTRAP_VERSION=4.6.0
+    APPLIANCE_MANIFEST_HASH=9a654b495a3175500f9a09f5af52e6f79c33706143a39f54b980a43a254fa2dd
+    APPLIANCE_VERSION=4.6.0
+    APPLIANCE_NAME=NetQ Cloud Appliance
+    ```
 
 ## Upgrading from Earlier Releases
 

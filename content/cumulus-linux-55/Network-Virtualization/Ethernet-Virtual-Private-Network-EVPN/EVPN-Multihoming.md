@@ -584,7 +584,7 @@ Use the following commands to troubleshoot your EVPN multihoming configuration.
 
 ### Show Global EVPN-MH Information
 
-To show global EVPN-MH information, such as the uplink count, startup delay timer, neighbor holdtime, and MAC entry hold time, run the NVUE `nv show evpn multihoming` command:
+To show global EVPN-MH information, such as the uplink count, startup delay timer, neighbor hold time, and MAC entry hold time, run the NVUE `nv show evpn multihoming` command:
 
 ```
 cumulus@switch:~$ nv show evpn multihoming
@@ -606,31 +606,10 @@ uplink-count         2
 
 ### Show Ethernet Segment Information
 
-To display the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi --operational -o json` command or the vtysh `show evpn es` command. For example:
+To display the Ethernet segments across all VNIs, run the `nv show evpn multihoming esi -o json` command or the vtysh `show evpn es` command. For example:
 
 ```
-cumulus@switch:~$ sudo vtysh
-...
-switch# show evpn es
-Type: B bypass, L local, R remote, N non-DF
-ESI                            Type ES-IF                 VTEPs
-03:44:38:39:be:ef:aa:00:00:01  LB   bond1                 
-03:44:38:39:be:ef:aa:00:00:02  LB   bond2                 
-03:44:38:39:be:ef:aa:00:00:03  LB   bond3
-```
-
-To show information about a specific Ethernet segment ID (ESI), run the `nv show evpn multihoming esi <esi>` command:
-
-```
-cumulus@switch:~$ nv show evpn multihoming esi 00:44:38:39:BE:EF:AA:00:00:01
-```
-
-### Show Ethernet Segment per VNI Information
-
-To display the Ethernet segments learned for each VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command or the vtysh `show evpn es-evi` command. For example:
-
-```
-cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi -o json
+cumulus@switch:~$ nv show evpn multihoming esi -o json
 {
   "03:44:38:39:be:ef:aa:00:00:01": {
     "df-preference": 50000,
@@ -719,45 +698,192 @@ cumulus@leaf01:mgmt:~$ nv show evpn multihoming esi -o json
 }
 ```
 
-### Show BGP Ethernet Segment Information
+```
+cumulus@switch:~$ sudo vtysh
+...
+switch# show evpn es
+Type: B bypass, L local, R remote, N non-DF
+ESI                            Type ES-IF                 VTEPs
+03:44:38:39:be:ef:aa:00:00:01  LB   bond1                 
+03:44:38:39:be:ef:aa:00:00:02  LB   bond2                 
+03:44:38:39:be:ef:aa:00:00:03  LB   bond3
+```
 
-To display the Ethernet segments across all VNIs learned via type-1 and type-4 routes, run the NVUE `nv show evpn vni <vni> multihoming bgp-info esi --operational -o json` command or the vtysh `show bgp l2vpn evpn es` command. For example:
+### Show Ethernet Segment per VNI Information
+
+To display the Ethernet segments learned for each VNI, run the vtysh `show evpn es-evi` command. For example:
 
 ```
-cumulus@leaf01:mgmt:~$ nv show evpn vni 10 multihoming bgp-info esi --operational -o json
+cumulus@switch:~$ sudo vtysh
+...
+switch# show evpn es-evi
+Type: L local, R remote
+Type: L local, R remote
+VNI      ESI                            Type
+20       03:44:38:39:be:ef:aa:00:00:02  L   
+30       03:44:38:39:be:ef:aa:00:00:03  L   
+10       03:44:38:39:be:ef:aa:00:00:01  L 
+```
+
+To display the Ethernet segments for a specific VNI, run the NVUE `nv show evpn vni <vni> multihoming esi` command. For example:
+
+```
+cumulus@switch:~$ nv show evpn vni 10 multihoming esi
+                               type.local  type.remote
+-----------------------------  ----------  -----------
+03:44:38:39:be:ef:aa:00:00:01  on
+```
+
+### Show BGP Ethernet Segment Information
+
+To display the Ethernet segments across all VNIs learned via type-1 and type-4 routes, run the NVUE `nv show evpn multihoming bgp-info esi -o json` command or the vtysh `show bgp l2vpn evpn es` command. For example:
+
+```
+cumulus@switch:~$ nv show evpn multihoming bgp-info esi -o json
 {
   "03:44:38:39:be:ef:aa:00:00:01": {
+    "es-df-preference": 50000,
+    "flags": {
+      "advertise-evi": "on",
+      "up": "on"
+    },
+    "fragments": {
+      "10.10.10.1:3": {
+        "evi-count": 1
+      }
+    },
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 8,
+    "macip-path-count": 4,
+    "originator-ip": "10.10.10.1",
+    "rd": "10.10.10.1:3",
     "remote-vtep": {
       "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
         "flags": {
-          "ead-per-es": "on",
-          "ead-per-evi": "on"
+          "active": "on",
+          "esr": "on"
         }
       }
     },
     "type": {
       "local": "on",
       "remote": "on"
-    }
+    },
+    "vni-count": 1,
+    "vrf-count": 1
+  },
+  "03:44:38:39:be:ef:aa:00:00:02": {
+    "es-df-preference": 50000,
+    "flags": {
+      "advertise-evi": "on",
+      "up": "on"
+    },
+    "fragments": {
+      "10.10.10.1:4": {
+        "evi-count": 1
+      }
+    },
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 6,
+    "macip-path-count": 3,
+    "originator-ip": "10.10.10.1",
+    "rd": "10.10.10.1:4",
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "flags": {
+          "active": "on",
+          "esr": "on"
+        }
+      }
+    },
+    "type": {
+      "local": "on",
+      "remote": "on"
+    },
+    "vni-count": 1,
+    "vrf-count": 1
+  },
+  "03:44:38:39:be:ef:aa:00:00:03": {
+    "es-df-preference": 50000,
+    "flags": {
+      "advertise-evi": "on",
+      "up": "on"
+    },
+    "fragments": {
+      "10.10.10.1:5": {
+        "evi-count": 1
+      }
+    },
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 6,
+    "macip-path-count": 3,
+    "originator-ip": "10.10.10.1",
+    "rd": "10.10.10.1:5",
+    "remote-vtep": {
+      "10.10.10.2": {
+        "df-algorithm": "preference",
+        "df-preference": 50000,
+        "flags": {
+          "active": "on",
+          "esr": "on"
+        }
+      }
+    },
+    "type": {
+      "local": "on",
+      "remote": "on"
+    },
+    "vni-count": 1,
+    "vrf-count": 1
   },
   "03:44:38:39:be:ef:bb:00:00:01": {
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 16,
+    "macip-path-count": 0,
+    "originator-ip": "0.0.0.0",
     "remote-vtep": {
       "10.10.10.3": {
         "flags": {
-          "ead-per-es": "on",
-          "ead-per-evi": "on"
+          "active": "on"
         }
       },
       "10.10.10.4": {
         "flags": {
-          "ead-per-es": "on",
-          "ead-per-evi": "on"
+          "active": "on"
         }
       }
     },
     "type": {
       "remote": "on"
-    }
+    },
+    "vni-count": 1,
+    "vrf-count": 1
+  },
+  "03:44:38:39:be:ef:bb:00:00:02": {
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 0,
+    "macip-path-count": 0,
+    "originator-ip": "0.0.0.0",
+    "type": {
+      "remote": "on"
+    },
+    "vni-count": 1,
+    "vrf-count": 1
+  },
+  "03:44:38:39:be:ef:bb:00:00:03": {
+    "inconsistent-vni-count": 0,
+    "macip-global-path-count": 0,
+    "macip-path-count": 0,
+    "originator-ip": "0.0.0.0",
+    "type": {
+      "remote": "on"
+    },
+    "vni-count": 1,
+    "vrf-count": 1
   }
 }
 ```

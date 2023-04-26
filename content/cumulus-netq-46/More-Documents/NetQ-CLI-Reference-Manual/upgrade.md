@@ -10,7 +10,7 @@ type: nojsscroll
 
 ## netq upgrade
 
-Upgrades NetQ on NetQ On-premises Appliances or VMs. For detailed instructions, see {{<link title="Upgrade NetQ Appliances and Virtual Machines" text="Upgrade NetQ Appliances and Virtual Machines">}}
+Upgrades NetQ on NetQ On-premises Appliances or VMs. For detailed instructions, see {{<link title="Upgrade NetQ Virtual Machines" text="Upgrade NetQ Virtual Machines">}}
 
 ### Syntax
 

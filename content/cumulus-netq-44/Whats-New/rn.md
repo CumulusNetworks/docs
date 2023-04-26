@@ -14,6 +14,8 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3438973"></a> [3438973](#3438973) <a name="3438973"></a> <br /> | When you install NetQ onto your VM, the installation fails with the following messages:<pre>05:57:33.023618: master-node-installer: Installed Debian ...	&#91; FAILED &#93;--------------------------------------ERROR: Failed to install the master node</pre>This is due to an expired key in the installation tarball. For assistance working around this issue, contact NVIDIA support. | 4.3.0-4.4.1 | |
+| <a name="3395385"></a> [3395385](#3395385) <a name="3395385"></a> <br /> | When you use NetQ LCM to upgrade a Cumulus Linux switch in an MLAG pair, the upgrade might fail. | 4.4.1 | |
 | <a name="3360627"></a> [3360627](#3360627) <a name="3360627"></a> <br /> | When the switch RoCE egress pool buffer limit is configured as unlimited, the maximum buffer usage for RoCE counters might display incorrect values in the NetQ UI. | 4.4.1 | |
 | <a name="3303284"></a> [3303284](#3303284) <a name="3303284"></a> <br /> | When you run the  <code>netq show opta-health</code> command, it might fail and produce the following error:<pre>ERROR: Expecting value: line 1 column 1 (char 0)</pre> | 4.3.0-4.4.1 | |
 | <a name="3226405"></a> [3226405](#3226405) <a name="3226405"></a> <br /> | TLS versions 1.0 and 1.1 are enabled for the OPTA API Gateway listening on TCP port 32708. Only TLS versions 1.2 and 1.3 should be enabled. | 4.3.0-4.4.1 | |
@@ -38,6 +40,7 @@ pdfhidden: True
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
+| <a name="3438973"></a> [3438973](#3438973) <a name="3438973"></a> <br /> | When you install NetQ onto your VM, the installation fails with the following messages:<pre>05:57:33.023618: master-node-installer: Installed Debian ...	&#91; FAILED &#93;--------------------------------------ERROR: Failed to install the master node</pre>This is due to an expired key in the installation tarball. For assistance working around this issue, contact NVIDIA support. | 4.3.0-4.4.0 | |
 | <a name="3305144"></a> [3305144](#3305144) <a name="3305144"></a> <br /> | When you perform a <code>netq trace</code> between two hosts, the following message might be printed in the output even when the trace is successful:<pre>argument of type ‘NoneType’ is not iterable</pre> | 4.4.0 | |
 | <a name="3303284"></a> [3303284](#3303284) <a name="3303284"></a> <br /> | When you run the  <code>netq show opta-health</code> command, it might fail and produce the following error:<pre>ERROR: Expecting value: line 1 column 1 (char 0)</pre> | 4.3.0-4.4.0 | |
 | <a name="3290068"></a> [3290068](#3290068) <a name="3290068"></a> <br /> | When you back up NetQ data with the <code>backuprestore.sh</code> script, the operation fails with the following log messages:<pre>Failed to clear all earlier snapshot for keyspace:master. Exiting!command terminated with exit code 1Failed to execute /opt/backuprestore/createbackup.sh script on cassandra pod<br />Failed to proceed ahead with backup procedure. Exiting !</pre>Contact NVIDIA support for assistance performing a backup. | 4.4.0 | |

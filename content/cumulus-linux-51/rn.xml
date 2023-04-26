@@ -25,6 +25,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3413785</td>
+<td>Per command authorization with TACACS+ and use of sudo by TACACS+ users does not work when you want to reach the TACACS+ server through the default VRF (with {{vrf=default}} set in the {{/etc/tacplus_servers}} file). To work around this issue, specify the egress interface name you use in the default VRF to reach your TACACS+ server in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file; for example, {{vrf=swp51}}. Alternatively, run the NVUE {{nv set system aaa tacacs vrf}} command; for example, {{nv set system aaa tacacs vrf swp51}}.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3402935</td>
 <td>For layer 3 interfaces configured on the switch, certain triggers, such as port flaps and subinterface flaps, or when configuring the ports to and from layer 2 and layer 3, cause the dummy internal VLAN to not free up, which can result in exhaustion of the dummy internal VLANs designated for the layer 3 interfaces. When this occurs, you see the following {{switchd}} log messages:
 
@@ -59,12 +65,6 @@ The {{apt upgrade}} process now automatically translates the old syntax to the n
 <td>When using TACACS+, a TACACS+ server name that returns more than one IP address, such as an IPv6 and IPv4 address, is counted many times against the limit of seven TACACS+ servers, which might cause some of the later listed servers to be ignored as over the limit. To work around this issue, you can set the {{prefer_ip_version}} configuration option (the default value is 4) to choose between an IPv4 or IPv6 address if both are present.</td>
 <td>3.7.0-5.3.1</td>
 <td>5.4.0-5.4.0</td>
-</tr>
-<tr>
-<td>3330654</td>
-<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
 </tr>
 <tr>
 <td>3327477</td>

@@ -23,7 +23,7 @@ PTP in Cumulus Linux uses the `linuxptp` package that includes the following pro
 
 Cumulus Linux supports:
 - PTP boundary clock mode only (the switch provides timing to downstream servers; it is a slave to a higher-level clock and a master to downstream clocks).
-- Both IPv4 and IPv6 UDP PTP encapsulation.
+- UDPv4, UDPv6, and 802.3 encapsulation.
 - Only a single PTP domain per network.
 - PTP on layer 3 interfaces, trunk ports, bonds, and switch ports belonging to a VLAN.
 - Multicast, unicast, and mixed message mode.
@@ -45,7 +45,7 @@ Basic PTP configuration requires you:
 - Configure PTP on at least one interface; this can be a layer 3 routed port, switch port, or trunk port. You do not need to specify which is a master interface and which is a slave interface; the PTP Best Master Clock Algorithm (BMCA) determines the master and slave.
 
 {{%notice note%}}
-If you configure PTP with Linux commands, you must also enable PTP timestamping; see step 1 of the Linux procedure below. NVUE enables PTP timestamping automatically; you do not have to run any NVUE commands to enable PTP timestamping.
+If you configure PTP with Linux commands, you must also enable PTP timestamping; see step 1 of the Linux procedure below. NVUE enables timestamping when you enable PTP on the switch.
 {{%/notice%}}
 
 The basic configuration shown below uses the *default* PTP settings:
@@ -53,13 +53,13 @@ The basic configuration shown below uses the *default* PTP settings:
 - {{<link url="#clock-domains" text="The PTP clock domain">}} is 0.
 - {{<link url="#ptp-priority" text="PTP Priority1 and Priority2">}} are both 128.
 - {{<link url="#dscp" text="The DSCP" >}} is 46 for both general and event messages.
-- {{<link url="#Transport-mode" text="The PPT interface transport mode">}} is IPv4.
+- {{<link url="#Transport-mode" text="The PTP interface transport mode">}} is IPv4.
 - {{<link url="#Forced-master-mode" text="Announce messages from any master are accepted">}}.
 - {{<link url="#Message-mode" text="The PTP Interface Message Mode">}} is multicast.
 - The delay mechanism is End-to-End (E2E), where the slave measures the delay between itself and the master. The master and slave send delay request and delay response messages between each other to measure the delay.
 - The hardware packet time stamping mode is two-step.
 
-To configure optional settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
+To configure other settings, such as the PTP profile, domain, priority, and DSCP, the PTP interface transport mode and timers, and PTP monitoring, see the Optional Configuration sections below.
 
 {{< tabs "TabID65 ">}}
 {{< tab "NVUE Commands ">}}
@@ -284,9 +284,531 @@ Restarting the `switchd` service causes all network ports to reset in addition t
 {{< /tab >}}
 {{< /tabs >}}
 
-## Optional Global PTP Configuration
+## Global Configuration
 
-### PTP Profiles
+Cumulus Linux provides three ways to modify the default basic global configuration. One way is to use profiles, the second is to modify the parameters directly using NVUE commands, and the third is to modify the Linux file. When a profile is in use, setting the global parameters with NVUE is disabled. Avoid editing the Linux file to modify the global parameters when a profile is in use.
+
+### Clock Domains
+
+PTP domains allow different independent timing systems to be present in the same network without confusing each other. A PTP domain is a network or a portion of a network within which all the clocks synchronize. Every PTP message contains a domain number. A PTP instance works in only one domain and ignores messages that contain a different domain number. Cumulus Linux supports only one domain in the system.
+
+You can specify multiple PTP clock domains. PTP isolates each domain from other domains so that each domain is a different PTP network. You can specify a number between 0 and 127.
+
+The following example commands configure domain 3 when a profile is not set:
+
+{{< tabs "TabID173 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 domain 3
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `domainNumber` setting, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               128
+priority2               128
+domainNumber            3
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### PTP Priority
+
+Use the PTP priority to select the best master clock. You can set priority 1 and 2:
+- Priority 1 overrides the clock class and quality selection criteria to select the best master clock.
+- Priority 2 identifies primary and backup clocks among identical redundant Grandmasters.
+
+The range for both priority1 and priority2 is between 0 and 255. The default priority is 128. For the boundary clock, use a number above 128. The lower priority applies first.
+
+The following example commands set priority 1 and priority 2 to 200 when a profile is not set:
+
+{{< tabs "TabID212 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 priority1 200
+cumulus@switch:~$ nv set service ptp 1 priority2 200
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `priority1` and, or `priority2` setting, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               200
+priority2               200
+domainNumber            3
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Local Priority
+
+Use the local priority when you enable a Telecom profile. Modify the local priority in the profile. The default priority is 128.
+
+## Optional Global Configuration
+
+### DSCP
+
+You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
+
+{{< tabs "TabID320 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 ip-dscp 22
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a timestamp read from the clock and the `dscp_general` setting for PTP messages that carry commands, responses, information, or timestamps.
+
+After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+[global]
+#
+# Default Data Set
+#
+slaveOnly               0
+priority1               200
+priority2               200
+domainNumber            3
+
+dscp_event              22
+dscp_general            22
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## PTP Interface Configuration
+
+Cumulus Linux provides three ways to modify the default basic interface configuration. One way is to use profiles, the second is to modify the parameters directly with NVUE commands, and the third is modify the Linux configuration file. When a profile is set, setting the following configuration parameters with NVUE or editing Linux configuration file might make that interface to be out of profile.
+
+### Transport Mode
+
+By default, Cumulus Linux encapsulates PTP messages in UDP/IPV4 frames. To encapsulate PTP messages on an interface in UDP/IPV6 frames:
+
+{{< tabs "TabID274 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp transport ipv6
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to change the `network_transport` setting for the interface, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           hardware
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv6
+
+[swp2]
+udp_ttl                 1
+masterOnly              0
+delay_mechanism         E2E
+network_transport       UDPv6
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Message Mode
+
+Cumulus Linux supports the following PTP message modes:
+- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages with timestamps and the other for general messages without timestamps. The Sync message that the master sends is a multicast message; all slave ports receive this message because the slaves need the time from the master. The slave ports in turn generate a Delay Request to the master. This is a multicast message that the intended master for the message and other slave ports receive. Similarly, all slave ports in addition to the intended slave port receive the master's Delay Response. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth if there are hundreds of slave ports.
+- *Unicast*, where you configure the port as a unicast client or server. The client sends out requests for Announce, Sync and Delay Response from its list of servers (masters) from the Unicast Master Table. The servers respond, then start sending Announce Messages. The client uses the Announce Messages to run the BMCA and to choose the best master. You typically use PTP unicast when multicast is not an option in the network or when sending multicast traffic to unintended devices is not desirable.
+- *Mixed*, where Sync and Announce messages are multicast messages but Delay Request and Response messages are unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
+
+#### Multicast and Mixed Mode
+
+Multicast mode is the default setting; when you enable PTP on an interface, the message mode is multicast.
+
+To change the message mode to mixed on swp1:
+
+{{< tabs "TabID494 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast on
+cumulus@switch:~$ nv config apply
+```
+
+To change the message mode back to the default setting of multicast on swp1:
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast off
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to add the `hybrid_e2e  1` line under the interface, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           hardware
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+Hybrid_e2e              1
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+To change the message mode back to the default setting of multicast, remove the `hybrid_e2e` line under the interface, then restart the `ptp4l` service.
+
+{{< /tab >}}
+{{< /tabs >}}
+
+#### Unicast Mode
+
+You can configure a PTP interface on the switch to be a unicast client or a unicast server. Unicast mode reduces the amount of bandwidth consumed.
+
+{{%notice note%}}
+PTP unicast mode does not support bond or VLAN interfaces.
+{{%/notice%}}
+
+To configure a PTP interface to be the unicast *client*:
+- Configure the unicast master table. You must configure at least one unicast master table on the switch. If you configure more than one unicast master table, each table must have a unique ID.
+  - Set the unicast table ID; a unique ID that identifies the unicast master table.
+  - Set the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
+  - Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between `-3` and `4`. The default value is `-0` (2 power).
+- On the PTP interface:
+  - Set the table ID of the unicast master table you want to use.
+  - Set the unicast service mode to `client`.
+  - Optional: Set the unicast request duration; the service time in seconds requested during discovery. The default value is 300 seconds.
+
+{{%notice note%}}
+A PTP interface as a unicast client or server only supports a single communictation mode and does not work with multicast servers or clients. Make sure that both sides of a PTP link are in unicast mode.
+{{%/notice%}}
+
+The following example commands configure a unicast master table with ID 1. The commands set the unicast master address to 10.10.10.1, the query interval to 4, the unicast service mode to `client`, and the unicast request duration to 20 in the unicast master table.
+
+{{< tabs "TabID668 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set service ptp 1 unicast-master 1 address 10.10.10.1
+cumulus@switch:~$ nv set service ptp 1 unicast-master 1 query-interval 4
+cumulus@switch:~$ nv set interface swp1 ptp unicast-master-table-id 1
+cumulus@switch:~$ nv set interface swp1 ptp unicast-service-mode client
+cumulus@switch:~$ nv set interface swp1 ptp unicast-request-duration 20
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Add the following lines at the end of the `# Default interface options` section of the  `/etc/ptp4l.conf` file:
+
+   ```
+   cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+   ...
+   # Default interface options
+   ...
+   [unicast_master_table]
+   table_id               1
+   logQueryInterval       4
+   UDPv4                  10.10.10.1
+   ...
+   ```
+
+2. Add the following lines at the end of the interface section (`[swp1]` in the example) of the  `/etc/ptp4l.conf` file:
+
+   ```
+   [swp1]
+   ...
+   table_id                 1
+   unicast_request_duration 20
+   ...
+   ```
+
+3. Restart the `ptp4l` service.
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart ptp4l.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+To configure a PTP interface to be the unicast *server*, set PTP unicast-service-mode to `server`.
+
+{{< tabs "TabID706 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp unicast-service-mode server
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+1. Add the following lines at the end of the interface section of the  `/etc/ptp4l.conf` file:
+
+   ```
+   [swp1]
+   ...
+   unicast_listen            1
+   inhibit_multicast_service 1
+
+   ...
+   ```
+
+3. Restart the `ptp4l` service.
+
+   ```
+   cumulus@switch:~$ sudo systemctl restart ptp4l.service
+   ```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+{{%notice note%}}
+When you configure a unicast client or server on a PTP interface, make sure to set the global parameter `Priority1` or `Priority2` so that BMCA can choose that end to be the slave or master. See {{<link url="#ptp-priority" text="PTP Priority">}}.
+{{%/notice%}}
+
+To show the unicast master table configuration on the switch, run the `nv show service ptp <instance-id> unicast-master <table-id>` command.
+
+### PTP Interface Timers
+
+You can set the following timers for PTP messages.
+
+| Timer | Description |
+| ----- | ----------- |
+| `announce-interval` | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
+| `announce-timeout` | The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs. <br>Make sure that this value is longer than the announce-interval in your network.|
+| `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
+| `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
+
+- To set the timers with NVUE, run the `nv set interface <interface> ptp timers <timer> <value>` command.
+- To set the timers with Linux commands, edit the `/etc/ptp4l.conf` file and set the timers in the `Default interface options` section.
+
+{{< tabs "TabID542 ">}}
+{{< tab "NVUE Commands ">}}
+
+The following example sets the announce interval between successive Announce messages on swp1 to -1.
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp timers announce-interval -1
+cumulus@switch:~$ nv config apply
+```
+
+The following example sets the mean sync-interval for multicast messages on swp1 to -5.
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp timers sync-interval -5
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file:
+
+- To set the announce interval between successive Announce messages on swp1 to -1, change the `logAnnounceInterval` setting for the interface to -1.
+- To set the mean sync-interval for multicast messages on swp1 to -5, change the `logSyncInterval` setting for the interface to -5.
+
+After you edit the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           hardware
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+logAnnounceInterval     -1
+logSyncInterval         -5
+udp_ttl                 20
+masterOnly              1
+delay_mechanism         E2E
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### Local Priority
+
+Use the local priority when you enable a Telecom profile. Modify the local priority in the profile. The default priority is 128.
+
+## Optional PTP Interface Configuration
+
+### Forced Master Mode
+
+By default, PTP ports are in auto mode, where the BMC algorithm determines the state of the port.
+
+You can configure *Forced Master* mode on a PTP port so that it is always in a master state and the BMC algorithm does not run for this port. This port ignores any Announce messages it receives.
+
+{{< tabs "TabID384 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp forced-master on
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to change the `masterOnly` setting for the interface, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           hardware
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+udp_ttl                 1
+masterOnly              1
+delay_mechanism         E2E
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+### TTL for a PTP Message
+
+To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
+
+{{< tabs "TabID462 ">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@switch:~$ nv set interface swp1 ptp ttl 20
+cumulus@switch:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `udp_ttl` setting for the interface, then restart the `ptp4l` service.
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+# Default interface options
+#
+time_stamping           hardware
+
+# Interfaces in which ptp should be enabled
+# these interfaces should be routed ports
+# if an interface does not have an ip address
+# the ptp4l will not work as expected.
+
+[swp1]
+udp_ttl                 20
+masterOnly              1
+delay_mechanism         E2E
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+## PTP Profiles
 
 PTP profiles are a standardized set of configurations and rules intended to meet the requirements of a specific application. Profiles define required, allowed, and restricted PTP options, network restrictions, and performance requirements.
 
@@ -668,623 +1190,7 @@ monitor
   violation-log-interval                  1                 
 ```
 
-### Clock Domains
-
-PTP domains allow different independent timing systems to be present in the same network without confusing each other. A PTP domain is a network or a portion of a network within which all the clocks synchronize. Every PTP message contains a domain number. A PTP instance works in only one domain and ignores messages that contain a different domain number.
-
-You can specify multiple PTP clock domains. PTP isolates each domain from other domains so that each domain is a different PTP network. You can specify a number between 0 and 127.
-
-The following example commands configure domain 3:
-
-{{< tabs "TabID173 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set service ptp 1 domain 3
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `domainNumber` setting, then restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-[global]
-#
-# Default Data Set
-#
-slaveOnly               0
-priority1               128
-priority2               128
-domainNumber            3
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### PTP Priority
-
-Use the PTP priority to select the best master clock. You can set priority 1 and 2:
-- Priority 1 overrides the clock class and quality selection criteria to select the best master clock.
-- Priority 2 identifies primary and backup clocks among identical redundant Grandmasters.
-
-The range for both priority1 and priority2 is between 0 and 255. The default priority is 128. For the boundary clock, use a number above 128. The lower priority applies first.
-
-The following example commands set priority 1 and priority 2 to 200:
-
-{{< tabs "TabID212 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set service ptp 1 priority1 200
-cumulus@switch:~$ nv set service ptp 1 priority2 200
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `priority1` and, or `priority2` setting, then restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-[global]
-#
-# Default Data Set
-#
-slaveOnly               0
-priority1               200
-priority2               200
-domainNumber            3
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-<!--
-### One-step and Two-step Clock
-
-The Cumulus Linux switch supports hardware packet time stamping and provides two modes:
-- In *one-step* mode, the PTP packet is time stamped as it egresses the port and there is no need for a follow-up packet.
-- In *two-step* mode, PTP notes the time when the PTP packet egresses the port and sents it in a separate (follow-up) message.
-
-{{%notice note%}}
-One-step mode is available for early access only.
-{{%/notice%}}
-
-Two-step mode is the default configuration. To configure the switch to use one-step mode:
-
-{{< tabs "TabID272 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set service ptp 1 two-step off
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `twoStepFlag` setting to 0, then restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-[global]
-#
-# Default Data Set
-#
-slaveOnly               0
-priority1               254
-priority2               254
-domainNumber            3
-
-twoStepFlag             0
-dscp_event              43
-dscp_general            43
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
- -->
-### DSCP
-
-You can configure the DiffServ code point (DSCP) value for all PTP IPv4 packets originated locally. You can set a value between 0 and 63.
-
-{{< tabs "TabID320 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set service ptp 1 ip-dscp 22
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default Data Set` section of the `/etc/ptp4l.conf` file to change the `dscp_event` setting for PTP messages that trigger a timestamp read from the clock and the `dscp_general` setting for PTP messages that carry commands, responses, information, or timestamps.
-
-After you save the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-[global]
-#
-# Default Data Set
-#
-slaveOnly               0
-priority1               200
-priority2               200
-domainNumber            3
-
-dscp_event              22
-dscp_general            22
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-## Optional PTP Interface Configuration
-
-### Transport Mode
-
-By default, Cumulus Linux encapsulates PTP messages in UDP/IPV4 frames. To encapsulate PTP messages on an interface in UDP/IPV6 frames:
-
-{{< tabs "TabID274 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp transport ipv6
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to change the `network_transport` setting for the interface, then restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-...
-# Default interface options
-#
-time_stamping           hardware
-
-# Interfaces in which ptp should be enabled
-# these interfaces should be routed ports
-# if an interface does not have an ip address
-# the ptp4l will not work as expected.
-
-[swp1]
-udp_ttl                 1
-masterOnly              0
-delay_mechanism         E2E
-network_transport       UDPv6
-
-[swp2]
-udp_ttl                 1
-masterOnly              0
-delay_mechanism         E2E
-network_transport       UDPv6
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Forced Master Mode
-
-By default, PTP ports are in auto mode, where the BMC algorithm determines the state of the port.
-
-You can configure *Forced Master* mode on a PTP port so that it is always in a master state and the BMC algorithm does not run for this port. This port ignores any Announce messages it receives.
-
-{{< tabs "TabID384 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp forced-master on
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default interface options` section of the `/etc/ptp4l.conf` file to change the `masterOnly` setting for the interface, then restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-...
-# Default interface options
-#
-time_stamping           hardware
-
-# Interfaces in which ptp should be enabled
-# these interfaces should be routed ports
-# if an interface does not have an ip address
-# the ptp4l will not work as expected.
-
-[swp1]
-udp_ttl                 1
-masterOnly              1
-delay_mechanism         E2E
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### Message Mode
-
-Cumulus Linux supports the following PTP message modes:
-- *Multicast*, where the ports subscribe to two multicast addresses, one for event messages with timestamps and the other for general messages without timestamps. The Sync message that the master sends is a multicast message; all slave ports receive this message because the slaves need the time from the master. The slave ports in turn generate a Delay Request to the master. This is a multicast message that the intended master for the message and other slave ports receive. Similarly, all slave ports in addition to the intended slave port receive the master's Delay Response. The slave ports receiving the unintended Delay Requests and Responses need to drop the packets. This can affect network bandwidth if there are hundreds of slave ports.
-- *Unicast*, where you configure the port as a unicast client or server. The client sends out requests for Announce, Sync and Delay Response from its list of servers (masters) from the Unicast Master Table. The servers respond, then start sending Announce Messages. The client uses the Announce Messages to run the BMCA and to choose the best master. You typically use PTP unicast when multicast is not an option in the network or when sending multicast traffic to unintended devices is not desirable.
-- *Mixed*, where Sync and Announce messages are multicast messages but Delay Request and Response messages are unicast. This avoids the issue seen in multicast message mode where every slave port sees Delay Requests and Responses from every other slave port.
-
-#### Multicast and Mixed Mode
-
-Multicast mode is the default setting; when you enable PTP on an interface, the message mode is multicast. 
-
-To change the message mode to mixed on swp1:
-
-{{< tabs "TabID494 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast on
-cumulus@switch:~$ nv config apply
-```
-
-To change the message mode back to the default setting of multicast on swp1:
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp mixed-multicast-unicast off
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to add the `hybrid_e2e  1` line under the interface, then restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-...
-# Default interface options
-#
-time_stamping           hardware
-
-# Interfaces in which ptp should be enabled
-# these interfaces should be routed ports
-# if an interface does not have an ip address
-# the ptp4l will not work as expected.
-
-[swp1]
-Hybrid_e2e              1
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-To change the message mode back to the default setting of multicast, remove the `hybrid_e2e` line under the interface, then restart the `ptp4l` service.
-
-{{< /tab >}}
-{{< /tabs >}}
-
-#### Unicast Mode
-
-You can configure a PTP interface on the switch to be a unicast client or a unicast server. Unicast mode reduces the amount of bandwidth consumed.
-
-{{%notice note%}}
-PTP unicast mode does not support bond or VLAN interfaces.
-{{%/notice%}}
-
-To configure a PTP interface to be the unicast *client*:
-- Configure the unicast master table. You must configure at least one unicast master table on the switch. If you configure more than one unicast master table, each table must have a unique ID.
-  - Set the unicast table ID; a unique ID that identifies the unicast master table.
-  - Set the unicast master address. You can set more than one unicast master address, which can be an IPv4, IPv6, or MAC address.
-  - Optional: Set the unicast master query interval, which is the mean interval between requests for announce messages. Specify this value as a power of two in seconds. You can specify a value between `-3` and `4`. The default value is `-0` (2 power).
-- On the PTP interface:
-  - Set the table ID of the unicast master table you want to use.
-  - Set the unicast service mode to `client`.
-  - Optional: Set the unicast request duration; the service time in seconds requested during discovery. The default value is 300 seconds.
-
-{{%notice note%}}
-A PTP interface as a unicast client or server only supports a single communictation mode and does not work with multicast servers or clients. Make sure that both sides of a PTP link are in unicast mode.
-{{%/notice%}}
-
-The following example commands configure a unicast master table with ID 1. The commands set the unicast master address to 10.10.10.1, the query interval to 4, the unicast service mode to `client`, and the unicast request duration to 20 in the unicast master table.
-
-{{< tabs "TabID668 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set service ptp 1 unicast-master 1 address 10.10.10.1
-cumulus@switch:~$ nv set service ptp 1 unicast-master 1 query-interval 4
-cumulus@switch:~$ nv set interface swp1 ptp unicast-master-table-id 1
-cumulus@switch:~$ nv set interface swp1 ptp unicast-service-mode client
-cumulus@switch:~$ nv set interface swp1 ptp unicast-request-duration 20
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-1. Add the following lines at the end of the `# Default interface options` section of the  `/etc/ptp4l.conf` file:
-
-   ```
-   cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-   ...
-   # Default interface options
-   ...
-   [unicast_master_table]
-   table_id               1
-   logQueryInterval       4
-   UDPv4                  10.10.10.1
-   ...
-   ```
-
-2. Add the following lines at the end of the interface section (`[swp1]` in the example) of the  `/etc/ptp4l.conf` file:
-
-   ```
-   [swp1]
-   ...
-   table_id                 1
-   unicast_request_duration 20
-   ...
-   ```
-
-3. Restart the `ptp4l` service.
-
-   ```
-   cumulus@switch:~$ sudo systemctl restart ptp4l.service
-   ```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-To configure a PTP interface to be the unicast *server*, set PTP unicast-service-mode to `server`.
-
-{{< tabs "TabID706 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp unicast-service-mode server
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-1. Add the following lines at the end of the interface section of the  `/etc/ptp4l.conf` file:
-
-   ```
-   [swp1]
-   ...
-   unicast_listen            1
-   inhibit_multicast_service 1
-
-   ...
-   ```
-
-3. Restart the `ptp4l` service.
-
-   ```
-   cumulus@switch:~$ sudo systemctl restart ptp4l.service
-   ```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-{{%notice note%}}
-When you configure a unicast client or server on a PTP interface, make sure to set the global parameter `Priority1` or `Priority2` so that BMCA can choose that end to be the slave or master. See {{<link url="#ptp-priority" text="PTP Priority">}}.
-{{%/notice%}}
-
-#### Show Unicast Master Information
-
-To show the unicast master table configuration on the switch, run the `nv show service ptp <instance-id> unicast-master <table-id>` command:
-
-```
-cumulus@switch:~$ nv show service ptp 1 unicast-master 1
-                operational  applied     
---------------  -----------  ----------
-Query-interval  0             0  
-[address]       10.10.10.1   10.10.10.1
-```
-
-### TTL for a PTP Message
-
-To restrict the number of hops a PTP message can travel, set the TTL on the PTP interface. You can set a value between 1 and 255.
-
-{{< tabs "TabID462 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp ttl 20
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default interface options` section of the  `/etc/ptp4l.conf` file to change the `udp_ttl` setting for the interface, then restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-...
-# Default interface options
-#
-time_stamping           hardware
-
-# Interfaces in which ptp should be enabled
-# these interfaces should be routed ports
-# if an interface does not have an ip address
-# the ptp4l will not work as expected.
-
-[swp1]
-udp_ttl                 20
-masterOnly              1
-delay_mechanism         E2E
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-### PTP Interface Timers
-
-You can set the following timers for PTP messages.
-
-| Timer | Description |
-| ----- | ----------- |
-| `announce-interval` | The average interval between successive Announce messages. Specify the value as a power of two in seconds. |
-| `announce-timeout` | The number of announce intervals that have to occur without receiving an Announce message before a timeout occurs. <br>Make sure that this value is longer than the announce-interval in your network.|
-| `delay-req-interval` | The minimum average time interval allowed between successive Delay Required messages. |
-| `sync-interval` | The interval between PTP synchronization messages on an interface. Specify the value as a power of two in seconds. |
-
-- To set the timers with NVUE, run the `nv set interface <interface> ptp timers <timer> <value>` command.
-- To set the timers with Linux commands, edit the `/etc/ptp4l.conf` file and set the timers in the `Default interface options` section.
-
-{{< tabs "TabID542 ">}}
-{{< tab "NVUE Commands ">}}
-
-The following example sets the announce interval between successive Announce messages on swp1 to -1.
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp timers announce-interval -1
-cumulus@switch:~$ nv config apply
-```
-
-The following example sets the mean sync-interval for multicast messages on swp1 to -5.
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp timers sync-interval -5
-cumulus@switch:~$ nv config apply
-```
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default interface options` section of the `/etc/ptp4l.conf` file:
-
-- To set the announce interval between successive Announce messages on swp1 to -1, change the `logAnnounceInterval` setting for the interface to -1.
-- To set the mean sync-interval for multicast messages on swp1 to -5, change the `logSyncInterval` setting for the interface to -5.
-
-After you edit the `/etc/ptp4l.conf` file, restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-...
-# Default interface options
-#
-time_stamping           hardware
-
-# Interfaces in which ptp should be enabled
-# these interfaces should be routed ports
-# if an interface does not have an ip address
-# the ptp4l will not work as expected.
-
-[swp1]
-logAnnounceInterval     -1
-logSyncInterval         -5
-udp_ttl                 20
-masterOnly              1
-delay_mechanism         E2E
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
-
-<!--### Delay Mechanism
-
-For PTP nodes to synchronize the time of day, each slave has to learn the delay between iteself and the master. There are two delay mehanism modes:
-- Peer-to-peer, where each network device measures the delay between its input port and the device attached to the other end of the input port. This is the default mode. 
-- End-to-end, where the slave measures the delay between itself and the master. The master and slave send delay request and delay response messages between each other to measure the delay.
-
-To set the delay mechanism to end-to-end:
-
-{{< tabs "TabID753 ">}}
-{{< tab "NVUE Commands ">}}
-
-```
-cumulus@switch:~$ nv set interface swp1 ptp delay-mechanism end-to-end
-cumulus@switch:~$ nv config apply
-```
-
-To reset the delay mechanism to peer-to-peer, run the `unset interface <interface> ptp delay-mechanism end-to-end` command.
-
-{{< /tab >}}
-{{< tab "Linux Commands ">}}
-
-Edit the `Default interface options` section of the `/etc/ptp4l.conf` file and set the `end-to-end` option to 1 for the interface, then restart the `ptp4l` service.
-
-```
-cumulus@switch:~$ sudo nano /etc/ptp4l.conf
-...
-# Default interface options
-#
-time_stamping           hardware
-
-# Interfaces in which ptp should be enabled
-# these interfaces should be routed ports
-# if an interface does not have an ip address
-# the ptp4l will not work as expected.
-
-[swp1]
-udp_ttl                 20
-masterOnly              1
-delay_mechanism         E2E
-network_transport       UDPv4
-end-to-end              1
-...
-```
-
-```
-cumulus@switch:~$ sudo systemctl restart ptp4l.service
-```
-
-{{< /tab >}}
-{{< /tabs >}}
--->
-### Acceptable Master Table
+## Optional Acceptable Master Table
 
 The acceptable master table option is a security feature that prevents a rogue player from pretending to be the Grandmaster to take over the PTP network. To use this feature, you configure the clock IDs of known Grandmasters in the acceptable master table and set the acceptable master table option on a PTP port. The BMC algorithm checks if the Grandmaster received on the Announce message is in this table before proceeding with the master selection. Cumulus Linux disables this option by default on PTP ports.
 <!-- vale off -->
@@ -1639,6 +1545,8 @@ You can drill down with the following `nv show service ptp <instance>` commands:
 - `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> time-properties` shows the clock time attributes.
 
+### Show Interface Configuration and Counters
+
 To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command. This command also shows PTP counters (statistics, such as the number of announce messages received, the number of Sync messages received, and so on).
 
 ```
@@ -1687,39 +1595,22 @@ counters
 
 To show PTP counters only for an interface, run the `nv show interface <interface> counters ptp` command.
 
-To show PTP status information, including the delta in nanoseconds from the master clock:
+### Show the Status of All PTP Interfaces
+
+To show the status of all PTP interfaces, run the `nv show service ptp <instance> status` command.
+The command output shows the PTP enabled ports, the PTP port mode (unicast or multicast), the state of the port based on BMCA, the unicast state, and identifies the server address to which the client is connected.
 
 ```
-cumulus@switch:~$ sudo pmc -u -b 0 'GET TIME_STATUS_NP'
-sending: GET TIME_STATUS_NP
-    7cfe90.fffe.f56dfc-0 seq 0 RESPONSE MANAGEMENT TIME_STATUS_NP
-        master_offset              12610
-        ingress_time               1525717806521177336
-        cumulativeScaledRateOffset +0.000000000
-        scaledLastGmPhaseChange    0
-        gmTimeBaseIndicator        0
-        lastGmPhaseChange          0x0000'0000000000000000.0000
-        gmPresent                  true
-        gmIdentity                 000200.fffe.000005
-    000200.fffe.000005-1 seq 0 RESPONSE MANAGEMENT TIME_STATUS_NP
-        master_offset              0
-        ingress_time               0
-        cumulativeScaledRateOffset +0.000000000
-        scaledLastGmPhaseChange    0
-        gmTimeBaseIndicator        0
-        lastGmPhaseChange          0x0000'0000000000000000.0000
-        gmPresent                  false
-        gmIdentity                 000200.fffe.000005
-    000200.fffe.000006-1 seq 0 RESPONSE MANAGEMENT TIME_STATUS_NP
-        master_offset              5544033534
-        ingress_time               1525717812106811842
-        cumulativeScaledRateOffset +0.000000000
-        scaledLastGmPhaseChange    0
-        gmTimeBaseIndicator        0
-        lastGmPhaseChange          0x0000'0000000000000000.0000
-        gmPresent                  true
-        gmIdentity                 000200.fffe.000005
+cumulus@switch:~$ nv show service ptp 1 status
+Port   Mode   State    Ustate                           Server
+-----  -----  -------  -------------------------------  -------
+swp9   Ucast  SLAVE    Sync and Delay Granted (H_SYDY)  9.9.9.2
+swp10  Ucast  PASSIVE  Initial State (WAIT)
+swp11  Ucast  PASSIVE  Initial State (WAIT)
+swp12  Ucast  PASSIVE  Initial State (WAIT)
 ```
+
+### Show the List of NVUE PTP Commands
 
 - To see a full list of NVUE show commands for PTP, run the `nv list-commands service ptp` command.
 - To show a full list of show commands for a PTP interface, run the `nv list-commands interface` command, then scroll to see PTP.
@@ -1816,61 +1707,81 @@ cumulus@switch:~$ sudo cat /etc/ptp4l.conf
 #
 # Default Data Set
 #
-slaveOnly               0
-priority1               254
-priority2               254
-domainNumber            3
+slaveOnly                      0
+priority1                      254
+priority2                      254
+domainNumber                   3
 
-twoStepFlag             1
-dscp_event              46
-dscp_general            46
+dscp_event                     46
+dscp_general                   46
 
 offset_from_master_min_threshold   -50
 offset_from_master_max_threshold   50
 mean_path_delay_threshold          200
+tsmonitor_num_ts                   100
+tsmonitor_num_log_sets             2
+tsmonitor_num_log_entries          4
+tsmonitor_log_wait_seconds         1
 
 #
 # Run time options
 #
-logging_level           6
-path_trace_enabled      0
-use_syslog              1
-verbose                 0
-summary_interval        0
+logging_level                  6
+path_trace_enabled             0
+use_syslog                     1
+verbose                        0
+summary_interval               0
+
+#
+# servo parameters
+#
+pi_proportional_const          0.000000
+pi_integral_const              0.000000
+pi_proportional_scale          0.700000
+pi_proportional_exponent       -0.300000
+pi_proportional_norm_max       0.700000
+pi_integral_scale              0.300000
+pi_integral_exponent           0.400000
+pi_integral_norm_max           0.300000
+step_threshold                 0.000002
+first_step_threshold           0.000020
+max_frequency                  900000000
+sanity_freq_limit              0
 
 #
 # Default interface options
 #
-time_stamping           hardware
+time_stamping                  software
+
 
 # Interfaces in which ptp should be enabled
 # these interfaces should be routed ports
 # if an interface does not have an ip address
 # the ptp4l will not work as expected.
 
-[swp1]
-udp_ttl                 1
-masterOnly              0
-delay_mechanism         E2E
-network_transport       UDPv4
+[swp41
+udp_ttl                      1
+masterOnly                   0
+delay_mechanism              E2E
+network_transport            UDPv4
 
 [swp2]
-udp_ttl                 1
-masterOnly              0
-delay_mechanism         E2E
-network_transport       UDPv4
+udp_ttl                      1
+masterOnly                   0
+delay_mechanism              E2E
+network_transport            UDPv4
 
 [swp3]
-udp_ttl                 1
-masterOnly              0
-delay_mechanism         E2E
-network_transport       UDPv4
+udp_ttl                      1
+masterOnly                   0
+delay_mechanism              E2E
+network_transport            UDPv4
 
 [swp4]
-udp_ttl                 1
-masterOnly              0
-delay_mechanism         E2E
-network_transport       UDPv4
+udp_ttl                      1
+masterOnly                   0
+delay_mechanism              E2E
+network_transport            UDPv4
 ```
 
 {{< /tab >}}

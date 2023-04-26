@@ -1993,6 +1993,8 @@ exit-address-family
 {{< tab "Try It " >}}
     {{< simulation name="Try It CL54 - PIM" showNodes="leaf01,leaf02,spine01,server01,server02" >}}
 
+This simulation is running Cumulus Linux 5.4. The Cumulus Linux 5.5 simulation is coming soon.
+
 This simulation starts with the example PIM configuration. To simplify the example, only one spine and two leafs are in the topology. The demo is pre-configured using NVUE commands.
 
 - To show the multicast routing table, run the NCLU `net show mroute` command on the FHR (leaf01), RP (spine01), or LHR (leaf02).

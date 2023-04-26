@@ -151,12 +151,6 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 <td></td>
 </tr>
 <tr>
-<td>3330654</td>
-<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3329494</td>
 <td>Ethtool HwIfInDot3FrameErrors (Rx FCS Errors) might lead to an incorrect very large HwIfInErrors count. To work around this issue, stop the source of the FCS errors, then reset the interface counters:
 1. Run the {{sudo mst status}} command to find the device.
@@ -468,6 +462,21 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3436595</td>
+<td>When using WJH, if you export dropped packets to a file in PCAP format, the file contains custom WJH header data and cannot be decoded by certain tools, such as Wireshark. To work around this issue, use the {{--no_metadata}} option with the export command:
+
+cumulus@switch:~$ what-just-happened poll --export --no_metadata
+</td>
+<td>5.4.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3434791</td>
+<td>Changing the {{ebgp-multihop}} setting for a BGP peer always resets the peer, even if the configured TTL value matches the existing TTL value of the peer.</td>
+<td>5.3.1-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3432897</td>
 <td>When you remove the restriction from a TACACS+ mapped user to remove per command authorization, the {{tacplus-restrict -R}} command does not restore ownership of restored files correctly. As a result, some commands might fail due to permission errors in the files or directories under the home directory. To work around this issue, run the {{sudo chown}} command  to correct the ownership of the affected files and directories.</td>
 <td>5.0.0-5.4.0</td>
@@ -482,6 +491,12 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <tr>
 <td>3413827</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbors cannot synchronize between MLAG nodes. The {{clagctl dumppermanentneighs}} command only shows local neighbors.</td>
+<td>5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3413785</td>
+<td>Per command authorization with TACACS+ and use of sudo by TACACS+ users does not work when you want to reach the TACACS+ server through the default VRF (with {{vrf=default}} set in the {{/etc/tacplus_servers}} file). To work around this issue, specify the egress interface name you use in the default VRF to reach your TACACS+ server in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file; for example, {{vrf=swp51}}. Alternatively, run the NVUE {{nv set system aaa tacacs vrf}} command; for example, {{nv set system aaa tacacs vrf swp51}}.</td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -691,11 +706,16 @@ Error: GET /nvue_v1/interface/swp45?rev=operational responded with 500 INTERNAL 
 </tr>
 <tr>
 <td>3339278</td>
-<td>Using the NVUE REST API with a TACACS+ user account does not work due to authentication failures.  To work around this problem, replace {{/etc/pam.d/nvueapi}} with the following content:
+<td>When you use the NVUE REST API with a TACACS+ user account, you see authentication failures.  To work around this issue, replace the {{/etc/pam.d/nvueapi}} file with the following content:
 
 @include common-auth
 @include common-account
 @include common-session-noninteractive
+
+After you replace the content, run these two commands:
+
+cumulus@switch:~$ sudo chown root:shadow /run/tacacs_client_map
+cumulus@switch:~$ sudo chmod 0664 /run/tacacs_client_map
 </td>
 <td>5.4.0-5.4.0</td>
 <td></td>
@@ -723,14 +743,10 @@ error: /etc/network/interfaces: line28: iface swp5: invalid syntax 'alias'
 <td></td>
 </tr>
 <tr>
-<td>3330654</td>
-<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} ({{files}} is listed before {{tacplus}}), the user name mapping might be incorrect; for example, the user name shown in the default prompt might be incorrect. When you use NVUE, this occurs when the priority for the authentication order of {{local}} is higher than {{tacacs}}.</td>
-<td>3.7.0-3.7.16, 4.0.0-4.4.5, 5.0.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
 <td>3329518</td>
-<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch.</td>
+<td>When using TACACS+, if the {{/etc/nsswitch.conf}} file specifies {{passwd: files tacplus}} (files is listed before tacplus), a user that is present in both the local {{/etc/passwd}} file and the TACACS+ server cannot log into the switch.
+
+We recommend that when using TACACS+, {{tacplus}} should be listed before {{files}} in {{/etc/nsswitch.conf}}.  When using NVUE, ensure that {{tacacs}} has priority over {{local}}.</td>
 <td>5.4.0-5.4.0</td>
 <td></td>
 </tr>
@@ -851,6 +867,15 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 <tr>
 <td>3145204</td>
 <td>On the NVIDIA Spectum-1 switch, the {{nv show system forwarding}} command shows GTP hashing  output, which is not supported on this switch.</td>
+<td>5.2.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
+<td>3144740</td>
+<td>The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token: ifXTable}} messages. To avoid these warnings, add the {{-noTokenWarnings}} option in {{snmpd.service}}:
+
+ExecStart=/usr/sbin/snmpd $SNMPDOPTS -f --noTokenWarnings
+</td>
 <td>5.2.0-5.4.0</td>
 <td></td>
 </tr>

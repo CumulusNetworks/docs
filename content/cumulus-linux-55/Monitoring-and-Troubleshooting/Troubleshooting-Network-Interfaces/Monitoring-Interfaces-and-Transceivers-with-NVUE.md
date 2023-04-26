@@ -111,6 +111,14 @@ NVUE provides the following commands to show counters (statistics) for the inter
 | `nv show interface <interface> counters errors`| Shows the number of error packets for a specific interface, such as the number of received and transmitted packet alignment, oversize, undersize, and jabber errors. |
 | `nv show interface <interface> counters drops` | Shows the number of received and transmitted packet drops for a specific interface, such as ACL drops, buffer drops, queue drops, and non-queue drops.|
 | `nv show interface <interface> counters pktdist` | Shows the number of received and transmitted packets of a certain size for a specific interface. |
+| `nv show interface <interface> counters qos` | Shows all QoS statistics for the specified interface.|
+| `nv show interface <interface> counters qos egress-queue-stats` | Shows all QoS egress queue statistics for a specific interface.|
+| `nv show interface <interface> counters qos ingress-buffer-stats` |Shows all QoS ingress buffer statistics for a specific interface. |
+| `nv show interface <interface> counters qos pfc-stats`| Shows all QoS PFC statistics for a specific interface.|
+| `nv show interface <interface> counters qos port-stats`| Shows all QoS port statistics for a specific interface.|
+| `nv show interface <interface> counters qos port-stats rx-stats` | Shows all QoS port received statistics for a specific interface.|
+| `nv show interface <interface> counters qos port-stats tx-stats` | Shows all QoS port transmitted statistics for a specific interface.|
+| `nv show interface <interface> counters ptp` | Shows all PTP statistics for a specific interface. |
 
 The following example shows all statistics for all the interfaces configured on the switch:
 
@@ -205,6 +213,19 @@ Packet Size Statistics
     1519-2047   0        0       
     2048-4095   0        0       
     4096-16383  0        0
+
+Egress Queue Statistics
+==========================
+    traffic-class  tx-frames  tx-bytes  tx-uc-buffer-discards  wred-discards
+    -------------  ---------  --------  ---------------------  -------------
+    0              0          0 Bytes   0 Bytes                0            
+    1              0          0 Bytes   0 Bytes                0            
+    2              0          0 Bytes   0 Bytes                0            
+    3              0          0 Bytes   0 Bytes                0            
+    4              0          0 Bytes   0 Bytes                0            
+    5              0          0 Bytes   0 Bytes                0            
+    6              0          0 Bytes   0 Bytes                0            
+    7              0          0 Bytes   0 Bytes                0
 ...
 ```
 

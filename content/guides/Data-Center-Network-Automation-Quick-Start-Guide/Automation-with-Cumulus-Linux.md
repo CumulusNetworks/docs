@@ -13,11 +13,11 @@ Like other systems that use OpenAPI, the NVUE OAS schema defines the endpoints (
 
 You can use the NVUE object model in the following ways:
 - With the NVUE CLI, where you configure, monitor, and manage the Cumulus Linux network elements. The CLI commands translate to their equivalent REST APIs, which Cumulus Linux then runs on the NVUE object model.
-- With the NVUE REST API, where you run the GET, PATCH, DELETE, and other REST APIs on the NVUE object model endpoints to configure, monitor, and manage the switch. Because of the large user community and maturity of OAS, you can use several popular tools and libraries to create client-side bindings to use the NVUE REST API. NVUE REST API has been documented using Swagger and you can find it {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/api/index.html" text="here">}}.
+- With the NVUE REST API, where you run the GET, PATCH, DELETE, and other REST APIs on the NVUE object model endpoints to configure, monitor, and manage the switch. Because of the large user community and maturity of OAS, you can work with several popular tools and libraries to create client-side bindings to use the NVUE REST API. You can view the NVUE REST API documentation using Swagger {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/api/index.html" text="here">}}.
 
 ## Enable the NVUE API
 
-As of Cumulus Linux 5.4, you need to enable the NVUE API to access it. Run the following set of commands on the switch:
+With Cumulus Linux 5.4 and later, you must enable the NVUE API to access it. Run the following set of commands on the switch:
 
 ```
 cumulus@switch:~$ sudo ln -s /etc/nginx/sites-{available,enabled}/nvue.conf 
@@ -25,9 +25,9 @@ cumulus@switch:~$ sudo sed -i 's/listen localhost:8765 ssl;/listen \[::\]:8765 i
 cumulus@switch:~$ sudo systemctl restart nginx 
 ```
 
-The CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI nv show commands reflect any PATCH operation (create) you run through the REST API.
+The CLI and the REST API are equivalent in functionality; you can run all management operations from the REST API or the CLI. The NVUE object model drives both the REST API and the CLI management operations. All operations are consistent; for example, the CLI `nv show` commands reflect any PATCH operation (create) you run through the REST API.
 
-NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are further branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
+NVUE follows a declarative model, removing context-specific commands and settings. It is structured as a big tree that represents the entire state of a Cumulus Linux instance. At the base of the tree are high level branches representing objects, such as router and interface. Under each of these branches are additional branches. As you navigate through the tree, you gain a more specific context. At the leaves of the tree are actual attributes, represented as key-value pairs. The path through the tree is similar to a filesystem path.
 
 ## Run your First NVUE API
 
@@ -139,44 +139,44 @@ With Cumulus Linux 5.4, the NVUE Object Model supports most features on the Cumu
 
 | High-level Objects | Description |
 | ------------------ | ----------- |
-| acl | Access Control Lists |
-| bridge | Bridge domain configuration |
-| evpn | EVPN configuration |
-| interface | Interface configuration |
-| mlag | MLAG configuration |
+| acl | Access control lists. |
+| bridge | Bridge domain configuration. |
+| evpn | EVPN configuration. |
+| interface | Interface configuration. |
+| mlag | MLAG configuration. |
 | nve | Network virtualization configuration, such as VXLAN-specfic MLAG configuration and VXLAN flooding. |
 | platform | Platform configuration, such as hardware and software components. |
-| qos | QoS RoCE configuration |
-| router |Router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
+| qos | QoS RoCE configuration. |
+| router | Router configuration, such as router policies, global BGP and OSPF configuration, PBR, PIM, IGMP, VRR, and VRRP configuration. |
 | service | DHCP relays and server, NTP, PTP, LLDP, and syslog configuration. |
 | system | Global system settings, such as the reserved routing table range for PBR and the reserved VLAN range for layer 3 VNIs, system login messages and switch reboot history. |
-| vrf | VRF configuration |
+| vrf | VRF configuration. |
 
 For features that NVUE does not yet support, you can use {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/NVIDIA-User-Experience-NVUE/NVUE-Snippets/#flexible-snippets" text="snippets">}}. Reach out to the Professional Services team for assistance.
 
 ## Ansible
 
-Ansible® is an open-source IT automation tool that automates provisioning, configuration management, application deployment, orchestration, and many other manual IT processes. It works by connecting to what you want automated and pushing programs that execute instructions you normally do manually. These programs utilize Ansible modules that are written based on the specific expectations of the endpoint’s connectivity, interface, and commands.
+Ansible® is an open-source IT automation tool that automates provisioning, configuration management, application deployment, orchestration, and many other manual IT processes. It works by connecting to what you want automated and pushing programs that execute instructions you normally do manually. These programs utilize Ansible modules that are written based on the specific expectations of the endpoint connectivity, interface, and commands.
 
 An Ansible playbook is a blueprint of automation tasks, which are complex IT actions executed with no need for human involvement. Ansible playbooks are written in human-readable {{<exlink url="https://www.redhat.com/en/topics/automation/what-is-yaml" text="YAML">}} format and executed on a set, group, or classification of hosts, which together make up an Ansible inventory.
 
 ### Production Ready Automation (PRA)
 
 The Production Ready Automation package from NVIDIA uses Ansible roles to provide several examples of a fully operationalized, automated data center in the form of playbooks and includes:
-- A standard reference topology for all examples
+- A standard reference topology for all examples.
 - A variety of golden standard EVPN-VXLAN architecture reference configurations for the following examples:
-  - EVPN Centralized
-  - EVPN L2 Only
-  - EVPN Symmetric
-  - EVPN Multihoming
-- A full Vagrant and libvirt simulation of the NVIDIA reference topology (cldemo2) that provides the foundational physical infrastructure and bootstrap configuration to support and demonstrate Cumulus Linux features and technologies
-- Best practice Ansible automation and infrastructure as code (IaC)
-- Working examples of Continuous Integration and Continuous Deployment (CI/CD) using GitLab
-- CI/CD testing powered by NetQ Cloud
+  - EVPN centralized
+  - EVPN layer 2 Only
+  - EVPN symmetric
+  - EVPN multihoming
+- A full Vagrant and libvirt simulation of the NVIDIA reference topology (cldemo2) that provides the foundational physical infrastructure and bootstrap configuration to support and demonstrate Cumulus Linux features and technologies.
+- Best practice Ansible automation and infrastructure as code (IaC).
+- Working examples of Continuous Integration and Continuous Deployment (CI/CD) using GitLab.
+- CI/CD testing powered by NetQ Cloud.
 
 You can use this Production Ready Automation package as a learning resource and as a starting template to implement these features, technologies, and operational workflows in your Cumulus Linux network environments.
 
-Production Ready Automation generates the jinja2 template for the startup configuration (startup.yaml) that NVUE uses.
+Production Ready Automation generates the `jinja2` template for the startup configuration (`startup.yaml`) that NVUE uses.
 
 You can find more information {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/guides/production-ready-automation/" text="here">}}.
 
@@ -186,11 +186,10 @@ The NVIDIA NVUE Collection (`nvidia.nvue`) includes Ansible modules to help you 
 
 {{%notice note%}}
 Ansible modules are in Beta as of the publication of this guide. The various modules available as of the publication of this guide are: 
-{{%/notice%}}
-
-- The **CLI** is a wrapper around the nv command line tool with added templating and automated dialog prompting. You can find more information {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/main" text="here">}}.
+- The **CLI** is a wrapper around the `nv` command line tool with added templating and automated dialog prompting. You can find more information {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/main" text="here">}}.
 - The **REST API** enables you to send and retrieve NVUE configuration.
 - **Object specific modules** are designed to work with the individual network objects and support various parameters that allow you to interact with them as required. The various modules supported include bridge, router, interface, evpn, mlag, system, vrf, and vxlan. These are available for download {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/develop?ref_type=heads" text="here">}}, with instructions for usage {{<exlink url="https://gitlab.com/nvidia-networking/systems-engineering/nvue/-/tree/develop/examples/nvair-demo" text="here">}}.
+{{%/notice%}}
 
 ## NVUE Migration Tool
 
@@ -202,4 +201,4 @@ The {{<exlink url="https://air.nvidia.com/migrate/" text="NVUE Migration tool">}
 
 {{<exlink url="https://air.nvidia.com/SimulationsAll" text="NVIDIA Air">}} is a cloud hosted, network simulation platform that behaves exactly like a real-world production environment. NVIDIA Air can be used to create a digital twin of the IT infrastructure to validate automation code.
 
-The {{<exlink url="https://air.nvidia.com/marketplace" text="demo marketplace">}} on NVIDIA Air has some fully configured pre-built labs that demonstrate best-practice configuration. It contains a {{<exlink url="https://air.nvidia.com/marketplace?demo_id=aa77bb13-6a7d-431c-9203-640510778beb" text="NVUE API lab">}} that will help you get started with the REST API.
+The {{<exlink url="https://air.nvidia.com/marketplace" text="demo marketplace">}} on NVIDIA Air has some fully configured pre-built labs that demonstrate best-practice configuration. It contains an {{<exlink url="https://air.nvidia.com/marketplace?demo_id=aa77bb13-6a7d-431c-9203-640510778beb" text="NVUE API lab">}} that helps you get started with the REST API.

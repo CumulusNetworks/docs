@@ -381,30 +381,51 @@ The first `adduser` command prompts for information and a password. You can skip
 <!-- vale off -->
 ## TACACS+ Per-command Authorization
 
+TACACS+ per-command authorization lets you configure the commands that TACACS+ users at different privilege levels can run.
+
 {{%notice note%}}
-- NVUE does not provide commands to configure per-command authorization.
-- Per command authorization with TACACS+ does not work when you want to reach the TACACS+ server through the default VRF (with `vrf=default` set in the `/etc/tacplus_servers` file). To work around this issue, specify the egress interface name you use in the default VRF to reach your TACACS+ server in the `vrf=` setting of the `/etc/tacplus_servers` file; for example, `vrf=swp51`. Alternatively, run the NVUE `nv set system aaa tacacs vrf` command; for example, `nv set system aaa tacacs vrf swp51`.
+To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE `nv set system aaa tacacs vrf <interface>` command (for example, `nv set system aaa tacacs vrf swp51`) or set the `vrf=<interface>` option in the `/etc/tacplus_servers` file (for example, `vrf=swp51`).
 {{%/notice%}}
 
-The `tacplus-auth` command handles authorization for each command. To make this an enforced authorization, change the TACACS+ login to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The `tacplus-restrict` utility simplifies setting up the restricted environment. The example below initializes the environment for the *tacacs0* user account. This is the account for TACACS+ users at privilege level `0`.
 <!-- vale on -->
+
+The following command allows TACACS+ users at privilege level 0 to run the `nv` and `ip` commands (if authorized by the TACACS+ server):
+
+{{< tabs "TabID392 ">}}
+{{< tab "NVUE Commands ">}}
+
 ```
-tacuser0@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a command1 command2 command3
+cumulus@switch:~$ nv set system aaa tacacs authorization 0 command ip 
+cumulus@switch:~$ nv set system aaa tacacs authorization 0 command nv
+cumulus@switch:~$ nv config apply
 ```
 
-The following table provides the command options:
+To show the per-command authorization settings, run the `nv show system aaa tacacs authorization` command:
+
+```
+cumulus@switch:~$ nv show system aaa tacacs authorization
+Privilege Level  role          command
+---------------  ------------  -------
+0                nvue-monitor  ip     
+                               nv  
+```
+
+{{< /tab >}}
+{{< tab "Linux Commands ">}}
+
+```
+tacuser0@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a ip nv
+```
+
+The `tacplus-auth` command handles authorization for each command. To make this an enforced authorization, change the TACACS+ login to use a restricted shell, with a very limited executable search path. Otherwise, the user can bypass the authorization. The `tacplus-restrict` utility simplifies setting up the restricted environment.
+
+The following table provides the `tacplus-restrict` command options:
 
 | Option | Description |
 |------- |------------ |
 | `-i` | Initializes the environment. You only need to issue this option one time per username. |
 | `-a` | You can invoke the utility with the `-a` option as often as you like. For each command in the `-a` list, the utility creates a symbolic link from `tacplus-auth` to the relative portion of the command name in the local bin subdirectory. You also need to enable these commands on the TACACS+ server (refer to your TACACS+ server documentation). It is common for the server to allow some options to a command, but not others. |
 | `-f` | Re-initializes the environment. If you need to restart, run the `-f` option with `-i` to force re-initialization; otherwise, the utility ignores repeated use of `-i`.<br>During initialization:<br>- The user shell changes to `/bin/rbash`.<br>- The utility saves any existing dot files. |
-
-For example, if you want to allow the user to be able to run the `nv` and `ip` commands (if authorized by the TACACS+ server):
-
-```
-cumulus@switch:~$ sudo tacplus-restrict -i -u tacacs0 -a ip nv
-```
 
 After running this command, examine the `tacacs0` directory::
 
@@ -415,7 +436,7 @@ lrwxrwxrwx 1 root root 22 Nov 21 22:07 ip -> /usr/sbin/tacplus-auth
 lrwxrwxrwx 1 root root 22 Nov 21 22:07 nv -> /usr/sbin/tacplus-auth
 ```
 
-Other than shell built-ins, privilege level 0 TACACS users can only run the `ip` and `nv` commands.
+Except for shell built-ins, privilege level 0 TACACS users can only run the `ip` and `nv` commands.
 
 If you add commands with the `-a` option by mistake, you can remove them. The example below removes the `nv` command:
 
@@ -423,17 +444,14 @@ If you add commands with the `-a` option by mistake, you can remove them. The ex
 cumulus@switch:~$ sudo rm ~tacacs0/bin/nv
 ```
 
-You can remove all commands:
+To remove all commands:
 
 ```
 cumulus@switch:~$ sudo rm ~tacacs0/bin/*
 ```
 
-For more information on `tacplus-auth` and `tacplus-restrict`, run the `man` command.
-
-```
-cumulus@switch:~$ man tacplus-auth tacplus-restrict
-```
+{{< /tab >}}
+{{< /tabs >}}
 
 ## Remove the TACACS+ Client Packages
 

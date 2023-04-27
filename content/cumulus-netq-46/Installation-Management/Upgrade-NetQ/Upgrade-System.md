@@ -82,7 +82,7 @@ cumulus@netq-appliance:~$
 ```
 NVIDIA recommends proceeding with the installation only if the `Use%` is less than 70%. You can delete previous software tarballs in the `/mnt/installables/` directory to regain some space. If you cannot decrease disk usage to under 70%, contact the NVIDIA support team.
 
-3. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If not, contact the NVIDIA support team.
+3. Run the `netq show opta-health` command and check that all pods are in the `READY` state. If the pods are in a state other than `READY`, contact the NVIDIA support team.
 
 4. Check if the certificates have expired:
 
@@ -106,7 +106,7 @@ If any issue occurs, contact the NVIDIA Support team.
 
 #### Upgrade Using the NetQ CLI
 
-After completing the preparation steps, upgrade your NetQ on-premises or Cloud VMs using the NetQ CLI.
+After completing the preparation steps, upgrade your NetQ on-premises or cloud VMs using the NetQ CLI.
 
 To upgrade your NetQ software:
 

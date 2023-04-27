@@ -63,7 +63,7 @@ Configures the configuration auto save feature.
 
 ## nv set system config auto-save enable
 
-Turns auto save on or off. The auto save option lets you save the pending configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+Turns auto save on or off. The auto save option lets you save the pending configuration to the startup configuration file automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
 
 ## Version History
 

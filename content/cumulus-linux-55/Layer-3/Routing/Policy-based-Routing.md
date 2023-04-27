@@ -507,12 +507,36 @@ cumulus@switch:~$ nv config apply
 
 ## Troubleshooting
 
-To see the policies applied to all interfaces on the switch, run the NVUE `nv show router pbr` command or the vtysh `show pbr interface` command. For example:
+To see the policies applied to all interfaces on the switch, run the NVUE `nv show router pbr -o json` command:
 
 ```
-cumulus@switch:~$ sudo vtysh
-switch# show pbr interface
-  swp51(53) with pbr-policy map1
+cumulus@switch:~$ nv show router pbr  -o json
+{
+  "map": {
+    "map1": {
+      "rule": {
+        "1": {
+          "action": {
+            "nexthop-group": {
+              "group1": {
+                "installed": "off",
+                "table-id": 10000
+              }
+            }
+          },
+          "installed": "off",
+          "installed-reason": "Invalid NH-group",
+          "ip-rule-id": 300,
+          "match": {
+            "destination-ip": "10.1.2.0/24",
+            "dscp": 10,
+            "source-ip": "10.1.4.1/24"
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
 To see the policies applied to a specific interface on the switch, run the NVUE `nv show interface <interface> router pbr` command or the vtysh `show pbr interface <interface>` command.
@@ -533,9 +557,9 @@ switch# show pbr map
       Installed: yes Tableid: 10004
 ```
 
-To see information about a policy, its matches, and associated interface, run the NVUE `nv show router pbr map <map-name>` command or the vtysh `show pbr map <map-name>` command.
+To see information about a policy, its matches, and associated interface, run the vtysh `show pbr map <map-name>` command.
 
-To see information about all next hop groups, run the NVUE `nv show router pbr map <pbr-map-id> rule <rule-id> action nexthop-group` command or the vtysh `show pbr nexthop-group` command.
+To see information about all next hop groups, run the vtysh `show pbr nexthop-group` command.
 
 ```
 cumulus@switch:~$ sudo vtysh
@@ -554,7 +578,7 @@ Valid: yes nexthop 192.168.8.2
 Valid: yes nexthop 192.168.8.3
 ```
 
-To see information about a specific next hop group, run the `nv show router pbr map <map-name> rule <rule-id> action nexthop-group <nexthop-group>` command or vtysh `show pbr nexthop-group group1` command.
+To see information about a specific next hop group, run the vtysh `show pbr nexthop-group group1` command.
 
 {{%notice note%}}
 Each next hop and next hop group uses a new Linux routing table ID.

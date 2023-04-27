@@ -14,9 +14,9 @@ Workbenches are dashboards where you collect and view data. Two types of workben
 Both types of workbenches display a set of cards. Default workbenches are public (accessible to all users), whereas custom workbenches are private (viewing is restricted to the user who created them).
 ## Default Workbenches
 
-The default workbench contains Device Inventory, Switch Inventory, Events, and Validation Summary cards, giving you an overview of how your network is operating.
+The default workbench contains Device Inventory, Switch Inventory, Validation Summary, What Just Happened, Host Inventory, DPU Inventory, and Events cards.
 
-{{<figure src="/images/netq/default-workbench.png" alt="default netq workbench" width="900">}}
+{{<figure src="/images/netq/default-wb-460.png" alt="default netq workbench" width="900">}}
 
 Upon initial login, the NetQ Workbench opens. Upon subsequent logins, the last workbench you viewed opens.
 
@@ -47,7 +47,7 @@ Refer to {{<link url="Access-Data-with-Cards">}} for information about interacti
 
 To create a duplicate of an existing workbench:
 
-1. Select <img src="/images/netq/clone.svg" height="18" width="18"/> **Clone** in the workbench header.
+1. Select **Clone** in the workbench header.
 
 2. Name the cloned workbench and select **Clone**.
 

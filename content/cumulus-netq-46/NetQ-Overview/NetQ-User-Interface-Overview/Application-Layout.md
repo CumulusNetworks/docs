@@ -7,10 +7,10 @@ toc: 4
 The NetQ UI contains two main areas:
 
 - **Application Header**: Contains the main menu, NetQ version, search, validation summary, local time zone, premises list, and account information.
-{{<figure src="/images/netq/application-header.png" alt="">}}
+{{<figure src="/images/netq/application-header.png" alt="" width="1300">}}
 
 
-- **Workbench**: Contains a task bar and content cards (with status and configuration information about your network and its various components).
+- **Workbench**: Contains a task bar and cards that display operative status and network configuration information.
 
 {{<figure src="/images/netq/workbench-main-body.png" alt="workbench displaying task bar and 5 cards" width="1200">}}
 
@@ -18,23 +18,23 @@ The NetQ UI contains two main areas:
 
 Found in the application header, click <img src="https://icons.cumulusnetworks.com/01-Interface-Essential/03-Menu/navigation-menu.svg" height="18" width="18"/> Menu to navigate to:
 
-| Header | Menu |
+| Description | Menu |
 | ------ | ---- |
-| <ul><li><strong>Search</strong>: a search bar to quickly find an item on the main menu</li><li><strong>Favorites</strong>: contains link to the user-defined favorite workbenches; <em>Home</em> points to the NetQ Workbench until reset by a user</li><li><strong>Workbenches</strong>: contains links to all workbenches</li><li><strong>Network</strong>: contains links to tabular data about various network elements and the What Just Happened feature</li><li><strong>Notifications</strong>: contains link to threshold-based event rules and notification channel specifications</li><li><strong>Admin</strong>: contains links to application management and lifecycle management features (only visible to users with Admin access role)</li></ul> | {{<figure src="/images/netq/sidenav-light-450.png" alt="" width="300">}} |
+| <ul><li><strong>Search</strong>: searches items listed under the main menu</li><li><strong>Favorites</strong>: lists a user's favorite workbench</li><li><strong>Workbenches</strong>: lists all workbenches</li><li><strong>Network</strong>: lists various network elements which you can select to monitor your network's state</li><li><strong>Notifications</strong>: lets you set up notification channels and create rules for threshold-crossing events</li><li><strong>Admin</strong>: lets administrators manage NetQ itself and access lifecycle management</li></ul> | {{<figure src="/images/netq/sidenav-light-450.png" alt="" width="300">}} |
 ## Search
 
 You can search for devices and cards in the Global Search field in the header. It behaves like most searches and can help you quickly find device information.
 
 ## NVIDIA Logo
 
-Clicking the NVIDIA logo takes you to your favorite workbench. For details about specifying your favorite workbench, refer to {{<link title="Set User Preferences">}}.
+Selecting the NVIDIA logo takes you to your favorite workbench. For details about specifying your favorite workbench, refer to {{<link title="Set User Preferences">}}.
 
 ## Validation Summary
 
 Found in the header, the validation summary displays the overall health of your network.
 
 {{<notice note>}}
-On initial start up of the application, it can take up to an hour to reach an accurate health indication as some processes only run every 30 minutes.
+On initial start up, it can take up to an hour to reach an accurate health indication as some processes only run every 30 minutes.
 {{</notice>}}
 
 ## Workbenches
@@ -47,4 +47,4 @@ Cards display information about your network. Each card describes a particular a
 
 ## User Settings
 
-Each user can customize the NetQ application display, time zone and date format; change their account password; and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > **Profile & Preferences**. For details, refer to {{<link title="Set User Preferences">}}.
+Each user can customize the NetQ display, time zone, and date format; change their account password; and manage their workbenches. This is all performed from User Settings <img src="https://icons.cumulusnetworks.com/17-Users/19-Natural-Close%20Up-Single%20User-Man/single-man-circle.svg" height="18" width="18"/> > **Profile & Preferences**. For details, refer to {{<link title="Set User Preferences">}}.

@@ -496,7 +496,9 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </tr>
 <tr>
 <td>3413785</td>
-<td>Per command authorization with TACACS+ and use of sudo by TACACS+ users does not work when you want to reach the TACACS+ server through the default VRF (with {{vrf=default}} set in the {{/etc/tacplus_servers}} file). To work around this issue, specify the egress interface name you use in the default VRF to reach your TACACS+ server in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file; for example, {{vrf=swp51}}. Alternatively, run the NVUE {{nv set system aaa tacacs vrf}} command; for example, {{nv set system aaa tacacs vrf swp51}}.</td>
+<td>Per command authorization with TACACS+ and use of sudo by TACACS+ users does not work when you want to reach the TACACS+ server through the default VRF (with {{vrf=default}} set in the {{/etc/tacplus_servers}} file). To work around this issue, specify the egress interface name you use in the default VRF to reach your TACACS+ server in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file; for example, {{vrf=swp51}}. Alternatively, run the NVUE {{nv set system aaa tacacs vrf}} command; for example, {{nv set system aaa tacacs vrf swp51}}.
+
+A similar issue may prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and the above configuration workaround is not done, the TACACS+ user with privilege level 15 may use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -636,12 +638,6 @@ To work around this issue, run {{nv unset}} on the configured QoS settings, then
 <tr>
 <td>3351941</td>
 <td>Cumulus Linux 5.4 package upgrade ({{apt-upgrade}}) does not support warm restart to complete the upgrade; performing an unsupported upgrade can result in unexpected or undesirable behavior, such as a traffic outage.</td>
-<td>5.4.0-5.4.0</td>
-<td></td>
-</tr>
-<tr>
-<td>3351938</td>
-<td>Configuring TACACS NSS debugging can cause NVUE commands to break for all users who log in while they are enabled. To work around this issue, if your terminal session is unaffected and the debugs are configured with NVUE, unset the debugs or set the debug level to 0.</td>
 <td>5.4.0-5.4.0</td>
 <td></td>
 </tr>
@@ -872,10 +868,9 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 </tr>
 <tr>
 <td>3144740</td>
-<td>The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token: ifXTable}} messages. To avoid these warnings, add the {{-noTokenWarnings}} option in {{snmpd.service}}:
+<td>To avoid warning in the pre 5.5 CL releases:
 
-ExecStart=/usr/sbin/snmpd $SNMPDOPTS -f --noTokenWarnings
-</td>
+The {{/var/lib/snmp/snmpd.conf}} file contains multiple {{Warning: Unknown token: ifXTable}} messages. To avoid these warnings, add the {{-noTokenWarnings}} option to the SNMPDOPTS variable in the {{/etc/defaults/snmpd}} file, then restart the {{snmpd}} service.</td>
 <td>5.2.0-5.4.0</td>
 <td></td>
 </tr>

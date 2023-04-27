@@ -1564,8 +1564,6 @@ NVUE provides the following commands to show QoS statistics for an interface:
 | `nv show interface <interface> counters qos ingress-buffer-stats` |Shows QoS ingress buffer statistics for a specific interface. |
 | `nv show interface <interface> counters qos pfc-stats`| Shows QoS PFC statistics for a specific interface.|
 | `nv show interface <interface> counters qos port-stats`| Shows QoS port statistics for a specific interface.|
-| `nv show interface <interface> counters qos port-stats rx-stats` | Shows QoS port received statistics for a specific interface.|
-| `nv show interface <interface> counters qos port-stats tx-stats` | Shows QoS port transmitted statistics for a specific interface.|
 
 The following example shows all QoS statistics for swp1:
 

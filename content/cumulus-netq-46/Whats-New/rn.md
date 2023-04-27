@@ -9,8 +9,8 @@ type: rn
 pdfhidden: True
 ---
 {{<rn_xls_link dir="cumulus-netq-45" >}}
-## 4.5.0 Release Notes
-### Open Issues in 4.5.0
+## 4.6.0 Release Notes
+### Open Issues in 4.6.0
 
 |  Issue ID 	|   Description	|   Affects	|   Fixed |
 |---	        |---	        |---	    |---	                |
@@ -27,7 +27,7 @@ pdfhidden: True
 | <a name="2872288"></a> [2872288](#2872288) <a name="2872288"></a> <br /> | When a NetQ agent sends messages with validation check data, there might be a delay of up to 120 seconds before the new data is displayed in streaming validation checks. | 4.2.0-4.5.0 | |
 | <a name="2605545"></a> [2605545](#2605545) <a name="2605545"></a> <br /> | Sort functionality is disabled when the number of records exceeds 10,000 entries in a full-screen, tabular view.  | 4.3.0-4.5.0 | |
 
-### Fixed Issues in 4.5.0
+### Fixed Issues in 4.6.0
 |  Issue ID 	|   Description	|   Affects	|
 |---	        |---	        |---	    |
 | <a name="3305144"></a> [3305144](#3305144) <a name="3305144"></a> <br /> | When you perform a <code>netq trace</code> between two hosts, the following message might be printed in the output even when the trace is successful:<pre>argument of type ‘NoneType’ is not iterable</pre> |  | |

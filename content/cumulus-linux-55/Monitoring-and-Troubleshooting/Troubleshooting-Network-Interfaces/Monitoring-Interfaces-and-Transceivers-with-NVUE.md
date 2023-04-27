@@ -111,6 +111,8 @@ NVUE provides the following commands to show counters (statistics) for the inter
 | `nv show interface <interface> counters errors`| Shows the number of error packets for a specific interface, such as the number of received and transmitted packet alignment, oversize, undersize, and jabber errors. |
 | `nv show interface <interface> counters drops` | Shows the number of received and transmitted packet drops for a specific interface, such as ACL drops, buffer drops, queue drops, and non-queue drops.|
 | `nv show interface <interface> counters pktdist` | Shows the number of received and transmitted packets of a certain size for a specific interface. |
+| `nv show interface <interface> counters qos` | Shows QoS statistics for the specified interface. See {{<link url="Quality-of-Service/#show-qos-counters" text="Show Qos Counters">}}.|
+| `nv show interface <interface> counters ptp` | Shows PTP statistics for a specific interface. |
 
 The following example shows all statistics for all the interfaces configured on the switch:
 
@@ -205,6 +207,19 @@ Packet Size Statistics
     1519-2047   0        0       
     2048-4095   0        0       
     4096-16383  0        0
+
+Ingress Buffer Statistics
+============================
+    priority-group  rx-frames  rx-buffer-discards  rx-shared-buffer-discards
+    --------------  ---------  ------------------  -------------------------
+    0               0          0 Bytes             0 Bytes                  
+    1               0          0 Bytes             0 Bytes                  
+    2               0          0 Bytes             0 Bytes                  
+    3               0          0 Bytes             0 Bytes                  
+    4               0          0 Bytes             0 Bytes                  
+    5               0          0 Bytes             0 Bytes                  
+    6               0          0 Bytes             0 Bytes                  
+    7               0          0 Bytes             0 Bytes 
 ...
 ```
 

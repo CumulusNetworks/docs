@@ -101,9 +101,6 @@ nv show evpn l2-nhg vtep-ip
 nv show evpn l2-nhg vtep-ip <vtep-ip-id>
 nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address-family
 nv show interface <interface-id> ip vrrp virtual-router <virtual-router-id> address-family <afi>
-nv show interface <interface-id> link breakout
-nv show interface <interface-id> link breakout <mode-id>
-nv show interface <interface-id> pluggable
 nv show interface <interface-id> counters
 nv show interface <interface-id> counters errors
 nv show interface <interface-id> counters drops
@@ -201,29 +198,27 @@ nv show vrf <vrf-id> router ospf static-neighbor <ipv4-address-id>
 {{< tab "set commands ">}}
 
 ```
-nv set router policy route-map <route-map-id> rule <rule-id> match community-list (<generic-name>|<integer>)
-nv set router policy route-map <route-map-id> rule <rule-id> match ext-community-list (<generic-name>|<integer>)
-nv set bridge domain <domain-id> ageing 0-65535
-nv set interface <interface-id> link lanes (1|2|4|8)
-nv set interface <interface-id> ptp unicast-master-table-id (1-16|<integer>)
-nv set interface <interface-id> ptp local-priority 0-255
-nv set interface <interface-id> synce provider-priority 1-256
+nv set router policy route-map <route-map-id> rule <rule-id> match ext-community-list
+nv set bridge domain <domain-id> ageing
+nv set interface <interface-id> ptp unicast-master-table-id
+nv set interface <interface-id> ptp local-priority
+nv set interface <interface-id> synce provider-priority
 nv set service dhcp-relay <vrf-id> gateway-interface <interface-id>
-nv set service dhcp-relay <vrf-id> gateway-interface <interface-id> address (auto|<ipv4>)
+nv set service dhcp-relay <vrf-id> gateway-interface <interface-id> address
 nv set service dhcp-relay6 <vrf-id> interface upstream <interface-id> server-address <ipv6>
 nv set service dhcp-relay6 <vrf-id> interface downstream <interface-id> link-address <ipv6>
-nv set service synce log-level (info|debug|notice|error|critical)
-nv set service ptp <instance-id> profile <profile-id> profile-type (ieee-1588|itu-g-8275-1|itu-g-8275-2)
-nv set service lldp tx-interval 5-32768
-nv set service lldp tx-hold-multiplier 1-8192
-nv set service lldp lldp-med-inventory-tlv (on|off)
+nv set service synce log-level
+nv set service ptp <instance-id> profile <profile-id> profile-type
+nv set service lldp tx-interval
+nv set service lldp tx-hold-multiplier
+nv set service lldp lldp-med-inventory-tlv
 nv set system reboot
-nv set system reboot mode (fast|warm|cold)
-nv set system control-plane acl <acl-id> (outbound|inbound)
-nv set system aaa tacacs server <priority-id> prefer-ip-version (4|6)
+nv set system reboot mode
+nv set system control-plane acl 
+nv set system aaa tacacs server <priority-id> prefer-ip-version
 nv set system aaa tacacs authorization <privilege-level-id>
 nv set system aaa tacacs authorization <privilege-level-id> command
-nv set system aaa tacacs authorization <privilege-level-id> role (nvue-monitor|system-admin|nvue-admin)
+nv set system aaa tacacs authorization <privilege-level-id> role 
 nv set vrf <vrf-id> evpn vni
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast in
 nv set vrf <vrf-id> router bgp address-family ipv4-unicast out
@@ -234,11 +229,11 @@ nv set vrf <vrf-id> router bgp address-family l2vpn-evpn soft
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast in
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast out
 nv set vrf <vrf-id> router bgp address-family ipv6-unicast soft
-nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound maximum (1-4294967295|none)
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast prefix-limits inbound maximum
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast in
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast out
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv4-unicast soft
-nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound maximum (1-4294967295|none)
+nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast prefix-limits inbound maximum
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast in
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast out
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family ipv6-unicast soft
@@ -248,23 +243,23 @@ nv set vrf <vrf-id> router bgp peer-group <peer-group-id> address-family l2vpn-e
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> in
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> out
 nv set vrf <vrf-id> router bgp peer-group <peer-group-id> soft
-nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound maximum (1-4294967295|none)
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast prefix-limits inbound maximum
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast in
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast out
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv4-unicast soft
-nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound maximum (1-4294967295|none)
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast prefix-limits inbound maximum
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast in
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast out
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family ipv6-unicast soft
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn in
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn out
-nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn soft3
+nv set vrf <vrf-id> router bgp neighbor <neighbor-id> address-family l2vpn-evpn soft 
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> in
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> out
 nv set vrf <vrf-id> router bgp neighbor <neighbor-id> soft
 nv set vrf <vrf-id> router ospf static-neighbor <ipv4-address-id>
-nv set vrf <vrf-id> router ospf static-neighbor <ipv4-address-id> poll-interval 1-65535
-nv set vrf <vrf-id> router ospf static-neighbor <ipv4-address-id> priority 0-255
+nv set vrf <vrf-id> router ospf static-neighbor <ipv4-address-id> poll-interval
+nv set vrf <vrf-id> router ospf static-neighbor <ipv4-address-id> priority
 nv set acl <acl-id> rule <rule-id> match ip ttl 0-255
 ```
 
@@ -274,7 +269,6 @@ nv set acl <acl-id> rule <rule-id> match ip ttl 0-255
 ```
 nv unset router policy route-map <route-map-id> rule <rule-id> match ext-community-list
 nv unset bridge domain <domain-id> ageing
-nv unset interface <interface-id> link lanes
 nv unset interface <interface-id> ptp local-priority
 nv unset service dhcp-relay <vrf-id> gateway-interface
 nv unset service dhcp-relay <vrf-id> gateway-interface <interface-id>

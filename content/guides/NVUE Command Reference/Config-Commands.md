@@ -11,7 +11,9 @@ This document is in Beta.
 
 ## nv config apply
 
-Applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. You can specify the following options with this command:
+Applies the current pending configuration. This command does not save the configuration; the configuration does not persist after a reboot. To save the startup configuration automatically when you run `nv config apply` without having to run the `nv config save` command, set the `nv set system config auto-save enable on` command.
+
+You can specify the following options with the `nv config apply` command:
 
 - `--y` or `--assume-yes` automatically replies yes to all prompts.
 - `--assume-no` automatically replies no to all prompts.
@@ -57,6 +59,22 @@ cumulus@leaf01:mgmt:~$ nv config apply 5 --y
 
 - - -
 
+## nv set system config auto-save enable
+
+Enables or disables *auto save*. By default, when you run the `nv config apply` command to apply a configuration setting, NVUE applies the pending configuration to become the applied configuration but does not update the startup configuration file (`/etc/nvue.d/startup.yaml`). To save the applied configuration to the startup configuration so that the changes persist after the reboot, you must run the `nv config save` command. If you enable *auto save*, NVUE saves the pending configuration to the startup configuration automatically when you run `nv config apply` so that you do not have to run the `nv config save` command.
+
+### Version History
+
+Introduced in Cumulus Linux 5.4.0
+
+### Example
+
+```
+cumulus@leaf01:mgmt:~$ nv set system config auto-save enable on
+```
+
+- - -
+
 ## nv config save
 
 Overwrites the startup configuration with the applied configuration by writing to the `/etc/nvue.d/startup.yaml` file. The configuration persists after a reboot.
@@ -96,7 +114,7 @@ cumulus@leaf01:mgmt:~$ nv config replace myconfig.yaml
 
 ## nv config detach
 
-Detaches the configuration from the current pending configuration.
+Detaches the configuration from the current pending configuration. When you run this command, NVUE discards all configuration changes between the last `nv config apply` command and the `nv config detach` command.”
 
 ### Version History
 

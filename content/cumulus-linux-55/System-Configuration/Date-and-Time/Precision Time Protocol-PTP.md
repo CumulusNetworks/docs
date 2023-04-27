@@ -1564,7 +1564,7 @@ cumulus@switch:~$ nv list-commands interface
 ...
 nv show interface <interface-id> ptp
 nv show interface <interface-id> ptp timers
-nv show interface <interface-id> ptp counters
+nv show interface <interface-id> counters ptp 
 ...
 ```
 

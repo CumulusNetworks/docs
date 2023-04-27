@@ -48,12 +48,11 @@ The NVIDIA SN3750-SX switch is available for [beta]({{<ref "/knowledge-base/Supp
   - New {{<link url="Troubleshooting-BGP/#clear-bgp-routes" text="BGP commands">}} to clear BGP routes
   - New commands to {{<link url="Precision-Time-Protocol-PTP/#ptp-configuration-and-status" text="show PTP counters">}}
   - New EVPN commands to show {{<link url="EVPN-Multihoming/#troubleshooting" text="multihoming information">}}, {{<link url="Troubleshooting-EVPN/#examine-remote-router-mac-addresses" text="remote router MAC addresses">}}, {{<link url="Troubleshooting-EVPN/#examine-gateway-next-hops" text="nexthop VTEPs">}}, and {{<link url="Troubleshooting-EVPN/#show-access-vlans" text="access VLANs and their VNIs">}}
-  - Updated {{<link url="Policy-based-Routing/#troubleshooting" text="PBR commands">}} show operational data
   - Updated {{<link url="Equal-Cost-Multipath-Load-Sharing-Hardware-ECMP/#next-hop-groups" text="nv show router nexthop rib">}} and `nv show vrf <vrf> router nexthop-tracking ipv4|ipv6 ip-address` commands show operational data
   - Updated {{<link url="Troubleshooting-BGP/#show-bgp-route-information" text="nv show vrf <vrf> router bgp neighbor">}} and {{<link url="Troubleshooting-BGP/#show-next-hop-information" text="nv show vrf <vrf> router bgp nexthop">}} commands show operational data
   - Support for the {{<link url="Optional-BGP-Configuration/#bgp-community-lists" text="named well known BGP communities">}} for `no-export`, `no-advertise`, and `additive` options
 
-{{< expand "Updated commands" >}}
+{{< expand "Changed commands" >}}
 | Previous Command | New Command |
 | ---------------- | ----------- |
 | `nv set service dhcp-relay6 <vrf> interface upstream <interface> address <ipv6-address>`| `nv set service dhcp-relay6 <vrf> interface upstream <interface> server-address <ipv6-address>` |

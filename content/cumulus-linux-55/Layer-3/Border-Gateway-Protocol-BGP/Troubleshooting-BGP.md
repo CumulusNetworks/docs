@@ -169,27 +169,45 @@ cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast upd
 ```
 
 To show information about a specific update group, such as the number of peer refresh events, prune events, and packet queue length, run the vtysh `show bgp update-group <group-id>` command or run these NVUE commands:
-- `nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group <group-id>` for IPv4
-- `nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group <group-id>` for IPv6
+- `nv show vrf <vrf-id> router bgp address-family ipv4-unicast update-group <group-id> -o json` for IPv4
+- `nv show vrf <vrf-id> router bgp address-family ipv6-unicast update-group <group-id> -o json` for IPv6
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 5
-                                  operational  applied
---------------------------------  -----------  -------
-create-time                       1674253325          
-min-route-advertisement-interval  0                   
-update-group-id                   5
-sub-group
-============
-       Adjace…  Coales…  Join     Merge    Merge    Peer     Prune    Split    Switch   Time     Refresh   Packet   Packet    Total    Total     Split    Split     Sub      Version  Summary   
-       list     time     events   check    events   refersh  events   events   events   created  Flag      hwm      queue     queued   enqueued  group    subgroup  group                       
-       count                      events            events                                                 length   length    packets  packets   id       id        id                          
-    -  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  -------…  ------…  -------…  ------…  -------…  ------…  -------…  ------…  -------  ---------…
-    5  8        1300     2        0        1        0        0        0        0        167425…  off       1        0         7        7                            5        10       Neighbor: 
-                                                                                                                                                                                      peerlink.…
-                                                                                                                                                                                      Neighbor: 
-                                                                                                                                                                                      swp52
-...
+cumulus@leaf01:~$ nv show vrf default router bgp address-family ipv4-unicast update-group 1 -o json
+{
+  "create-time": 1682551552,
+  "min-route-advertisement-interval": 0,
+  "sub-group": {
+    "1": {
+      "adjacency-count": 6,
+      "coalesce-time": 1100,
+      "counters": {
+        "join-events": 2,
+        "merge-check-events": 0,
+        "merge-events": 1,
+        "peer-refresh-events": 0,
+        "prune-events": 0,
+        "split-events": 0,
+        "switch-events": 0
+      },
+      "create-time": 1682551552,
+      "needs-refresh": "off",
+      "neighbor": {
+        "swp51": {},
+        "swp52": {}
+      },
+      "packet-counters": {
+        "queue-hwm-len": 4,
+        "queue-len": 0,
+        "queue-total": 9,
+        "total-enqueued": 9
+      },
+      "sub-group-id": 1,
+      "version": 9
+    }
+  },
+  "update-group-id": "1"
+}
 ```
 
 ## Show BGP Route Information
@@ -215,44 +233,60 @@ usable          8
 valid           8
 ```
 
-To show all the advertised routes, run the `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast advertised-routes` command for IPv4 or the  `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast advertised-routes` command for IPv6.
+To show all the advertised routes, run the `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast advertised-routes -o json` command for IPv4 or the  `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast advertised-routes -o json` command for IPv6.
 
 To show information about a specific advertised route, add the route at the end of the command.
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes
-IPv4 Prefix      Summary
----------------  -------
-10.0.1.12/32     Path: 1
-                 Path: 2
-10.0.1.34/32     Path: 1
-                 Path: 2
-                 Path: 3
-                 Path: 4
-                 Path: 5
-10.0.1.255/32    Path: 1
-                 Path: 2
-                 Path: 3
-                 Path: 4
-                 Path: 5
-10.10.10.1/32    Path: 1
-10.10.10.2/32    Path: 1
-                 Path: 2
-                 Path: 3
-                 Path: 4
-                 Path: 5
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes -o json
+{
+  "10.10.10.1/32": {
+    "path": {
+      "1": {
+        "aspath": {},
+        "bestpath": {
+          "overall": "on",
+          "selection-reason": "First path received"
+        },
+        "flags": {},
+        "last-update": 1682551550,
+        "metric": 0,
+        "nexthop": {
+          "1": {
+            "accessible": "on",
+            "afi": "ipv4",
+            "ip": "0.0.0.0",
+            "metric": 0,
+            "used": "on"
+          }
+        },
+        "nexthop-count": 1,
+        "origin": "incomplete",
+        "peer": {
+          "id": "0.0.0.0",
+          "router-id": "10.10.10.1"
+        },
+        "sourced": "on",
+        "valid": "on",
+        "weight": 32768
+      }
+    }
+  },
+  "10.10.10.101/32": {
+    "path": {
+      "1": {
+        "aspath": {
+          "65199": {}
 ...
 ```
 
-To show all the received routes, run the `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast received-routes` command for IPv4 or the  `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast received-routes` command for IPv6.
+To show all the received routes, run the `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast received-routes -o json` command for IPv4 or the  `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast received-routes  -o json` command for IPv6.
 
 To show information about a specific received route, add the route at the end of the command:
 
 ```
-cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 
+cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 -o json
 ```
-
-You can also specify `-o json` at the end of the command to see the output in json format.
 
 ## Show Next Hop Information
 
@@ -291,40 +325,9 @@ Nexthops
                                             fe80::4ab0:2dff:feff:e147  swp51    
 ```
 
-To show information about a specific next hop, run the vtysh `show bgp vrf default nexthop <ip-address>` command or run these NVUE commands:
-- `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address>` for IPv4
-- `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address>` for IPv6
-
-Add the `-o json` option to the command to show the information in json format:
-
-```
-cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2
-                  operational  applied   
-----------------  -----------  ----------
-complete          on           on        
-igp-metric        0            0         
-last-update-time  1674572412   1674572412
-path-count        6            6         
-valid             on           on
-
-resolved-via
-===============
-    Nexthop                    interface
-    -------------------------  ---------
-    fe80::4ab0:2dff:fe20:ac25  swp51    
-    fe80::4ab0:2dff:fe93:d92d  swp52
-
-path
-===========
-    Path  addres…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags…  prefix   rd      vrf    
-    ----  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  -----…  ------…  -----…  -------
-    1     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
-    2     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
-    3     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
-    4     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
-    5     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
-    6     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
-```
+To show information about a specific next hop, run the vtysh `show bgp vrf default nexthop <ip-address> ` command or run these NVUE commands:
+- `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address> -o json` for IPv4
+- `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address> -o json` for IPv6
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 -o json
@@ -388,22 +391,8 @@ cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10
 ```
 
 To show specific next hop path information, run these NVUE commands:
-- `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> path` for IPv4
-- `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> path` for IPv6
-
-```
-cumulus@leaf01:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 path
-Path  addres…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags.…  flags…  prefix   rd      vrf    
-----  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  ------…  -----…  ------…  -----…  -------
-1     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
-2     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
-3     l2vpn-…  off      off      off      off      off      off      off      off      on      [5]:[0…  10.10…  default
-4     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
-5     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
-6     l2vpn-…  off      on       off      off      off      off      on       off      on      [5]:[0…  10.10…  default
-```
-
-Add the `-o json` option to the command to show the information in json format:
+- `nv show vrf <vrf-id> router bgp nexthop ipv4 ip-address <ip-address-id> path -o json` for IPv4
+- `nv show vrf <vrf-id> router bgp nexthop ipv6 ip-address <ip-address-id> path -o json` for IPv6
 
 ```
 cumulus@leaf01:mgmt:~$ nv show vrf default router bgp nexthop ipv4 ip-address 10.10.10.2 path -o json

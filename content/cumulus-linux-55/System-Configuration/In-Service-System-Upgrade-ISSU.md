@@ -46,6 +46,12 @@ NVIDIA recommends you use NVUE commands to configure restart mode and reboot the
    ...
    ```
 
+3. Save the configuration:
+
+   ```
+   cumulus@switch:~$ nv config save
+   ```
+
 The following command configures the switch to restart in cold mode:
 
 {{< tabs "28 ">}}

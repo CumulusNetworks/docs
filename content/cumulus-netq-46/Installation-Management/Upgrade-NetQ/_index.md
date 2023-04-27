@@ -10,6 +10,6 @@ You must upgrade your NetQ On-premises or Cloud Appliances or virtual machines (
 
 To complete the upgrade for either an on-premises or a cloud deployment:
 
-- Start with {{<link title="Upgrade NetQ Appliances and Virtual Machines">}}
+- Start with {{<link title="Upgrade NetQ Virtual Machines">}}
 - Then go to {{<link title="Upgrade NetQ Agents">}}
 - Then go to {{<link title="Upgrade NetQ CLI">}}

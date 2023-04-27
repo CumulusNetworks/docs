@@ -17,15 +17,9 @@ NetQ 4.6.0 includes the following new features and improvements:
 - Full support for {{<link title="PTP" text="Precision Time Protocol monitoring">}} via the UI and CLI.
 - Enhanced RoCE {{<link title="check/#netq-check-roce" text="validation checks">}} and {{<link title="RoCE" text="monitoring">}} for NVUE-enabled switches. The `netq check roce` command now checks for mismatches for switch priority, cable length, and congestion control.
 - Expanded {{<link title="Access Data with Cards#table-settings" text="table options">}} that allow you to export and download tables that exceed 10,000 rows as a CSV file.
-
-
 ## Upgrade Paths
 
-NetQ 4.5.0 images have been upgraded to Ubuntu 20.04. 
-
-To {{<link title="Upgrade NetQ Appliances and Virtual Machines" text="upgrade to NetQ 4.5.0">}}, you must back up your current NetQ data and perform a new installation of NetQ 4.5.0. This process is supported when upgrading from NetQ 4.3.0 or above.
-
-Upgrades from releases earlier than NetQ 4.3.0 require an incremental {{<exlink url="https://docs.nvidia.com/networking-ethernet-software/cumulus-netq-43/Installation-Management/Upgrade-NetQ/Upgrade-System/" text="upgrade to version 4.3.0">}} before you {{<link title="Upgrade NetQ Appliances and Virtual Machines" text="back up your data">}} and perform a new installation of NetQ 4.5.0.
+You can {{<link title="Upgrade NetQ Virtual Machines" text="upgrade to NetQ 4.6.0">}} directly from NetQ version 4.5.0. Upgrades from releases earlier than NetQ 4.5.0 require a {{<link title="Upgrade NetQ Virtual Machines/#upgrading-from-earlier-releases" text="fresh installation of NetQ 4.6.0">}}.
 ## Compatible Agent Versions
 
 NetQ 4.6.0 is compatible with NetQ Agent versions 4.5.0 and later. You can install NetQ Agents on switches and servers running:

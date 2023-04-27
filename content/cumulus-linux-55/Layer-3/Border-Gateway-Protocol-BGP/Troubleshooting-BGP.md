@@ -233,9 +233,13 @@ usable          8
 valid           8
 ```
 
-To show all the advertised routes, run the `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast advertised-routes -o json` command for IPv4 or the  `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast advertised-routes -o json` command for IPv6.
+To show all the advertised routes, run these commands:
+- `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast advertised-routes -o json` for IPv4 
+- `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast advertised-routes -o json` for IPv6
 
-To show information about a specific advertised route, add the route at the end of the command.
+To show information about a specific advertised route, run these commands:
+- `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast advertised-routes <route> -o json` for IPv4
+- `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast advertised-routes <route> -o json` for IPv6
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast advertised-routes -o json
@@ -280,9 +284,13 @@ cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family i
 ...
 ```
 
-To show all the received routes, run the `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast received-routes -o json` command for IPv4 or the  `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast received-routes  -o json` command for IPv6.
+To show all the received routes, run these commands:
+- `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast received-routes -o json` for IPv4
+- `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast received-routes -o json` for IPv6
 
-To show information about a specific received route, add the route at the end of the command:
+To show information about a specific received route, run these commands:
+- `nv show vrf default router bgp neighbor swp1 address-family ipv4-unicast received-routes <route> -o json` for IPv4
+- `nv show vrf default router bgp neighbor swp1 address-family ipv6-unicast received-routes <route> -o json` for IPv6
 
 ```
 cumulus@leaf01:~$ nv show vrf default router bgp neighbor swp51 address-family ipv4-unicast received-routes 10.0.1.2/32 -o json

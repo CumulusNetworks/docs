@@ -729,8 +729,10 @@ NVUE provides commands to clear and refresh routes in the BGP table. You can cle
 
 {{%notice note%}}
 - BGP clear route commands that specify a direction (`in` or `out`) do not reset BGP neighbor adjacencies.
-- When using BGP `soft` clear commands in the inbound direction, if a neighbor has the `soft-reconfiguration inbound` option enabled, the routes refresh in the BGP table based on the received routes stored in memory. Neighbors configured without the `soft-reconfiguration inbound` option enabled receive a route refresh message requesting the neighbor to resend routes.
+- When the switch has a neighbor configured with `soft-reconfiguration inbound` enabled, when you perform a clear in or soft clear in, the routes in the soft reconfiguration table will be cleared for the address family. This results in reevaluating routes in the BGP table against any applied input policies. 
+- When the switch has a neighbor configured without the `soft-reconfiguration inbound` option enabled, when you perform a clear in or soft in, the peer will receive a route refresh message.
 - Outbound BGP clear commands (either out or soft out) readvertise all routes to BGP peers.
+- BGP soft clear commands that do not specify a direction do not reset BGP neighbor adjacencies, and affect both inbound and outbound routes as described above based on whether `soft-reconfiguration inbound` is enabled.
 {{%/notice%}}
 
 To clear and refresh all IP4 inbound routes:

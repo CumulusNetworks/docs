@@ -7,15 +7,20 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3445841</td>
+<td>FRR does not apply Type-0 ESI configuration for EVPN multihoming bonds consistently after an FRR service reload. This issue occurs because the system MAC address value ({{es-sys-mac}} is only compatible with a 3-byte Ethernet segment ID ({{es-id}}) for Type-3 ESIs, but still renders even when the Ethernet segment ID is 10 bytes for Type-0 ESIs. To work around this issue, configure EVPN multihoming bonds with a Type-3 ESI ({{es-sys-mac}} plus a 3-byte {{es-id}}).</td>
+<td>5.0.0-5.5.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3442569</td>
-<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS or LDAP, receive a 401 forbidden error.
-To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
+<td>When trying to access the NVUE API, user accounts authenticated with a newly-configured external service, such as TACACS, RADIUS, or LDAP, receive a 401 forbidden error. To work around this issue, after enabling a new authentication service, make sure to restart both {{nginx.service}} and {{nvued.service}} to begin authenticating users against the new authentication service.</td>
 <td>5.5.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3436595</td>
-<td>When using WJH, if you export dropped packets to a file in PCAP format, the file contains custom WJH header data and cannot be decoded by certain tools, such as Wireshark. To work around this issue, use the {{--no_metadata}} option with the export command:
+<td>When using WJH, if you export dropped packets to a file in PCAP format, the file contains custom WJH header data. As a result, certain tools, such as Wireshark, cannot decode the data. To work around this issue, use the {{--no_metadata}} option with the export command:
 
 cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </td>
@@ -30,15 +35,13 @@ cumulus@switch:~$ what-just-happened poll --export --no_metadata
 </tr>
 <tr>
 <td>3413785</td>
-<td>Per command authorization with TACACS+ and use of sudo by TACACS+ users does not work when you want to reach the TACACS+ server through the default VRF (with {{vrf=default}} set in the {{/etc/tacplus_servers}} file). To work around this issue, specify the egress interface name you use in the default VRF to reach your TACACS+ server in the {{vrf=}} setting of the {{/etc/tacplus_servers}} file; for example, {{vrf=swp51}}. Alternatively, run the NVUE {{nv set system aaa tacacs vrf}} command; for example, {{nv set system aaa tacacs vrf swp51}}.
-
-A similar issue may prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and the above configuration workaround is not done, the TACACS+ user with privilege level 15 may use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
+<td>To reach the TACACS+ server through the default VRF, you must specify the egress interface you use in the default VRF. Either run the NVUE {{nv set system aaa tacacs vrf &lt;interface&gt;}} command (for example, {{nv set system aaa tacacs vrf swp51}}) or set the {{vrf=&lt;interface&gt;}} option in the {{/etc/tacplus_servers}} file (for example, {{vrf=swp51}}). A similar issue might prevent TACACS+ users with privilege level 15 from using {{sudo}} if the TACACS+ server is reachable only on the {{default}} VRF.  If this occurs, and you do not run the above configuration workaround, the TACACS+ user with privilege level 15 can use {{vrf task exec default sudo ...}} to execute the {{sudo}} command using the TACACS+ server on the {{default}} VRF.</td>
 <td>5.0.0-5.5.0</td>
 <td></td>
 </tr>
 <tr>
 <td>3405024</td>
-<td>You can't remove PBR map configuration with source and destination rules. As a work around, delete the entire PBR map clause.</td>
+<td>You cannot remove PBR map configuration with source and destination rules. To work around this issue, delete the entire PBR map clause.</td>
 <td>5.5.0</td>
 <td></td>
 </tr>
@@ -50,12 +53,8 @@ A similar issue may prevent TACACS+ users with privilege level 15 from using {{s
 </tr>
 <tr>
 <td>3389950</td>
-<td>NVUE doesn't accept special characters in the system hostname. Avoid using special characters in the system hostname.
-
-Hostname does not accept special characters, which blocks FQDN hostnames
-
-cumulus@cumulus:mgmt:~$ nv set system hostname test.test
-Error at hostname: 'test.test' does not match '^[^.]*$’</td>
+<td>NVUE does not accept special characters in the system hostname; avoid using special characters in the system hostname.
+</td>
 <td>5.4.0-5.5.0</td>
 <td></td>
 </tr>
@@ -82,7 +81,7 @@ These errors do not affect new dynamic NAT flows from new NAT rules.</td>
 </tr>
 <tr>
 <td>3347538</td>
-<td>When connecting a NVIDIA-to-NVIDIA in PAM4, auto-negotiation should always be enabled.</td>
+<td>When connecting NVIDIA-to-NVIDIA in PAM4, you must enable auto-negotiation.</td>
 <td>5.4.0-5.5.0</td>
 <td></td>
 </tr>
@@ -142,7 +141,7 @@ We recommend that when using TACACS+, {{tacplus}} should be listed before {{file
 </tr>
 <tr>
 <td>3308191</td>
-<td>If you try to set an unsupported interface speed and FEC combination, the {{nv config apply}} command succeeds but Cumulus Linux ignores the FEC configuration and configures the default FEC setting for chosen speed. There is no warning or error message.</td>
+<td>If you try to set an unsupported interface speed together with FEC, the {{nv config apply}} command succeeds but Cumulus Linux ignores the FEC configuration and configures the default FEC setting for the chosen speed. There is no warning or error message.</td>
 <td>5.4.0-5.5.0</td>
 <td></td>
 </tr>
@@ -207,7 +206,7 @@ To work around this problem, reference the OID without the preceding period ( {{
 </tr>
 <tr>
 <td>3145869</td>
-<td>In Spectrum-3 systems, PTP offset in 10GbE changes between +-27. The average offset is about 7.</td>
+<td>On a Spectrum-3 swithc, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
 <td>5.2.0-5.5.0</td>
 <td></td>
 </tr>
@@ -403,6 +402,11 @@ Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.servic
 <td>3432897</td>
 <td>When you remove the restriction from a TACACS+ mapped user to remove per command authorization, the {{tacplus-restrict -R}} command does not restore ownership of restored files correctly. As a result, some commands might fail due to permission errors in the files or directories under the home directory. To work around this issue, run the {{sudo chown}} command  to correct the ownership of the affected files and directories.</td>
 <td>5.0.0-5.4.0</td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-5.4.0</td>
 </tr>
 <tr>
 <td>3418103</td>

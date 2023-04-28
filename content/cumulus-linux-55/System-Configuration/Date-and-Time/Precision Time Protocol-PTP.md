@@ -929,16 +929,26 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To set the predefined ITU 8275.1 or ITU 8275.2 profile:
-
-Edit the `/etc/ptp4l.conf` file to add the parameter shown below, then restart the `ptp4l` service:
+To set the predefined ITU 8275.1 profile, edit the `/etc/ptp4l.conf` file, then restart the `ptp4l` service:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
 ...
-[global]
 ...
-dataset_comparison             G.8275.x
+[global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   24
+ 
+dscp_event                     46
+dscp_general                   46
+dataset_comparison             G.8275.1
+G.8275.defaultDS.localPriority 128
+ptp_dst_mac                    01:80:C2:00:00:0E
 ...
 ```
 
@@ -946,15 +956,81 @@ dataset_comparison             G.8275.x
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To use the predefined IEEE 1588 profile:
-
-Edit the `/etc/ptp4l.conf` file to add the parameter shown below, then restart the `ptp4l` service:
+To set the predefined ITU 8275.2 profile, edit the `/etc/ptp4l.conf` file, then restart the `ptp4l` service:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+...
+...
 [global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   24
+ 
+dscp_event                     46
+dscp_general                   46
+network_transport              UDPv4
+dataset_comparison             G.8275.2
+G.8275.defaultDS.localPriority 128
+hybrid_e2e                     1
+inhibit_multicast_service      1
+unicast_listen                 1
+unicast_req_duration           60
+...
+```
+
+```
+cumulus@switch:~$ sudo systemctl restart ptp4l.service
+```
+
+To use the predefined IEEE 1588 profile:, edit the `/etc/ptp4l.conf` file, then restart the `ptp4l` service:
+
+```
+cumulus@switch:~$ sudo nano /etc/ptp4l.conf
+ [global]
+#
+# Default Data Set
+#
+slaveOnly                      0
+priority1                      128
+priority2                      128
+domainNumber                   0
+
+dscp_event                     46
+dscp_general                   46
+network_transport              UDPv4
 ...
 dataset_comparison             ieee1588
+
+#
+# Port Data Set
+#
+logAnnounceInterval            1
+logSyncInterval                0
+logMinDelayReqInterval         0
+announceReceiptTimeout         3
+delay_mechanism                E2E
+
+offset_from_master_min_threshold   -50
+offset_from_master_max_threshold   50
+mean_path_delay_threshold          200
+tsmonitor_num_ts                   100
+tsmonitor_num_log_sets             3
+tsmonitor_num_log_entries          4
+tsmonitor_log_wait_seconds         1
+
+#
+# Run time options
+#
+logging_level                  6
+path_trace_enabled             0
+use_syslog                     1
+verbose                        0
+summary_interval               0
 ...
 ```
 
@@ -1443,28 +1519,38 @@ cumulus@switch:~$ sudo systemctl disable ptp4l.service phc2sys.service
 
 ## Troubleshooting
 
-### PTP Configuration and Status
+### PTP Configuration
 
 To show a summary of the PTP configuration on the switch, run the `nv show service ptp <instance>` command:
 
 ```
 cumulus@switch:~$ nv show service ptp 1
-
----------------------------  -----------  -------  --------------------------------------------------------------------
-enable                       on           on       Turn the feature 'on' or 'off'.  The default is 'off'.
-domain                       0            0        Domain number of the current syntonization
-ip-dscp                      46           46       Sets the Diffserv code point for all PTP packets originated locally.
-priority1                    128          128      Priority1 attribute of the local clock
-priority2                    128          128      Priority2 attribute of the local clock
-two-step                     on           on       Determines if the Clock is a 2 step clock
-monitor
-  max-offset-threshold       50           50       Maximum offset threshold in nano seconds
-  max-timestamp-entries                   400      Maximum timestamp entries allowed
-  max-violation-log-entries               8        Maximum violation log entries per set
-  max-violation-log-sets                  8        Maximum violation logs sets allowed
-  min-offset-threshold       -50          -50      Minimum offset threshold in nano seconds
-  path-delay-threshold       200          200      Path delay threshold in nano seconds
-  violation-log-interval                  0        violation log intervals in seconds
+                             operational  applied                       0
+---------------------------  -----------  ------------------       277800
+enable                       on           on
+current-profile                           default-itu-8275-2
+domain                                    0                             0
+ip-dscp                                   46                            0
+logging-level                             info                          0
+priority1                                 128                           0
+priority2                                 128                           0
+[acceptable-master]                                                     0
+monitor                                                                 0
+  max-offset-threshold                    50                            0
+  max-timestamp-entries                   100                      277800
+  max-violation-log-entries               4
+  max-violation-log-sets                  2
+  min-offset-threshold                    -50
+  path-delay-threshold                    200
+  violation-log-interval                  1
+[profile]                                 abc
+[profile]                                 default-1588
+[profile]                                 default-itu-8275-1
+[profile]                                 default-itu-8275-2
+[unicast-master]                          1
+[unicast-master]                          2
+[unicast-master]                          3
+[unicast-master]                          4
 ...
 ```
 
@@ -1476,9 +1562,10 @@ You can drill down with the following `nv show service ptp <instance>` commands:
 - `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> time-properties` shows the clock time attributes.
 
-### Show Interface Configuration and Counters
+### Show Interface Configuration
 
-To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command. This command also shows PTP counters (statistics, such as the number of announce messages received, the number of Sync messages received, and so on).
+To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command. 
+<!--This command also shows PTP counters (statistics, such as the number of announce messages received, the number of Sync messages received, and so on).-->
 
 ```
 cumulus@leaf03:mgmt:~$ nv show interface swp1 ptp
@@ -1501,30 +1588,11 @@ timers
 peer-mean-path-delay       0                        An estimate of the current one-way propagation delay on the link wh...
 port-state                 master                   State of the port
 protocol-version           2                        The PTP version in use on the port
-counters
-  rx-announce              0                        Number of Announce messages received
-  rx-delay-req             0                        Number of Delay Request messages received
-  rx-delay-resp            0                        Number of Delay response messages received
-  rx-delay-resp-follow-up  0                        Number of Delay response follow upmessages received
-  rx-follow-up             0                        Number of Follow up messages received
-  rx-management            0                        Number of Management messages received
-  rx-peer-delay-req        0                        Number of Peer Delay Request messages received
-  rx-peer-delay-resp       0                        Number of Peer Delay Response messages received
-  rx-signaling             0                        Number of singnaling messages received
-  rx-sync                  0                        Number of Sync messages received
-  tx-announce              2639                     Number of Announce messages transmitted
-  tx-delay-req             0                        Number of Delay Request messages transmitted
-  tx-delay-resp            0                        Number of Delay response messages transmitted
-  tx-delay-resp-follow-up  0                        Number of Delay response follow upmessages transmitted
-  tx-follow-up             21099                    Number of Follow up messages transmitted
-  tx-management            0                        Number of Management messages transmitted
-  tx-peer-delay-req        0                        Number of Peer Delay Request messages transmitted
-  tx-peer-delay-resp       0                        Number of Peer Delay Response messages transmitted
-  tx-signaling             0                        Number of singnaling messages transmitted
-  tx-sync                  21099                    Number of Sync messages transmitted
 ```
 
-To show PTP counters only for an interface, run the `nv show interface <interface> counters ptp` command.
+### Show PTP Counters
+
+To show PTP counters for an interface, run the `nv show interface <interface> counters ptp` command.
 
 ### Show the Status of All PTP Interfaces
 

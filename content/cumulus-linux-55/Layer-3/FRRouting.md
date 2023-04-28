@@ -467,6 +467,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
+You can view tracked next hops with the `nv show vrf <vrf> router nexthop-tracking [ipv4 | ipv6] [ip-address] <ip-address>` NVUE command or the `show ip nht vrf <vrf> <ip-address>` vtysh command.
 ## Reload the FRR Configuration
 
 {{%notice warning%}}

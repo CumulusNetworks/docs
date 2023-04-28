@@ -59,23 +59,17 @@ Edit the `/etc/network/interfaces` file to add the following configuration:
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto vni-1000
-iface vni-1000
-    bridge-access 100
-    vxlan-id 1000
-    vxlan-local-tunnelip 10.0.0.1
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 100=1000 200=3000
+    bridge-learning off
 
-auto vni-3000
-iface vni-3000
-    bridge-access 200
-    vxlan-id 3000
-    vxlan-local-tunnelip 10.0.0.1
-
-auto bridge
-iface bridge
-    bridge-ports swp3 vni-1000 vni-3000
+auto br_default
+iface br_default
+    bridge-ports swp3 vxlan48
     bridge-vids 100 200
     bridge-vlan-aware yes
+    bridge-pvid 1
     bridge-vlan-protocol 802.1ad
 ...
 ```
@@ -113,17 +107,10 @@ Edit the `/etc/network/interfaces` file to add the following configuration:
 ```
 cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
-auto vni-1000
-iface vni-1000
-    bridge-access 100
-    vxlan-id 1000
-    vxlan-local-tunnelip 10.0.0.1
-
-auto vni-3000
-iface vni-3000
-    bridge-access 200
-    vxlan-id 3000
-    vxlan-local-tunnelip 10.0.0.1
+auto vxlan48
+iface vxlan48
+    bridge-vlan-vni-map 100=1000 200=3000
+    bridge-learning off
 
 auto swp3
 iface swp3
@@ -133,11 +120,12 @@ auto swp4
 iface swp4
     bridge-access 200
 
-auto bridge
-iface bridge
-    bridge-ports swp3 swp4 vni-1000 vni-3000
+auto br_default
+iface br_default
+    bridge-ports swp3 swp4 vxlan48
     bridge-vids 100 200
     bridge-vlan-aware yes
+    bridge-pvid 1
     bridge-vlan-protocol 802.1ad
 ...
 ```

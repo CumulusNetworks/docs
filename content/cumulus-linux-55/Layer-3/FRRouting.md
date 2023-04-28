@@ -405,7 +405,7 @@ If you try to configure a routing protocol that is not running, vtysh ignores th
 
 Routing daemons track the validity of next hops through notifications from the `zebra` daemon. For example, BGP routes that resolve to a next hop over a connected route in `zebra` are uninstalled when `bgpd` receives a nexthop-tracking (NHT) notification after `zebra` removes the connected route if the associated interface goes down.
 
-The `zebra` daemon does not consider next hops that resolve to a default route as valid by default. You can configure NHT to consider a longest prefix match lookup for next hop addresses resolving to the default route as a valid next hop. The following example configures the default route to be valid for NHT in VRF `default`:
+The `zebra` daemon does not consider next hops that resolve to a default route as valid by default. You can configure NHT to consider a longest prefix match lookup for next hop addresses resolving to the default route as a valid next hop. The following example configures the default route to be valid for NHT in default VRF:
 
 {{< tabs "410">}}
 {{< tab "NVUE Commands ">}}
@@ -431,7 +431,7 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-You can apply a route-map to NHT for specific routing daemons to permit or deny routes from consideration as valid next-hops. The following example applies `ROUTEMAP1` to BGP preventing NHT from considering next hops resolving to 10.0.0.0/8 in the `default` VRF as a valid:
+You can apply a route map to NHT for specific routing daemons to permit or deny routes from consideration as valid next hops. The following example applies `ROUTEMAP1` to BGP, preventing NHT from considering next hops resolving to 10.0.0.0/8 in the default VRF as valid:
 
 {{< tabs "436">}}
 {{< tab "NVUE Commands ">}}
@@ -467,7 +467,14 @@ cumulus@leaf01:~$
 {{< /tab >}}
 {{< /tabs >}}
 
-You can view tracked next hops with the `nv show vrf <vrf> router nexthop-tracking [ipv4 | ipv6] [ip-address] <ip-address>` NVUE command or the `show ip nht vrf <vrf> <ip-address>` vtysh command.
+You can show tracked next hops with the following NVUE commands:
+- `nv show vrf <vrf> router nexthop-tracking ipv4`
+- `nv show vrf <vrf> router nexthop-tracking ipv4 <ip-address>`
+- `nv show vrf <vrf> router nexthop-tracking ipv6`
+- `nv show vrf <vrf> router nexthop-tracking ipv6 <ip-address>`
+
+Alternatively, you can run the vtysh `show ip nht vrf <vrf> <ip-address>` command.
+
 ## Reload the FRR Configuration
 
 {{%notice warning%}}

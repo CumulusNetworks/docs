@@ -7,6 +7,12 @@
 <th> Fixed </th>
 </tr>
 <tr>
+<td>3429530</td>
+<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3389994</td>
 <td>During upgrade, when one MLAG node is upgraded and the other MLAG node is not yet upgraded, permanent neighbor entries cannot synchronize between MLAG nodes. During this transitory upgrade state, neighbor entry resolution relies on data plane traffic being forwarded to the CPU so ARP can resolve the necessary neighbor entry before traffic can go through the fastpath.</td>
 <td>4.2.1-4.4.5</td>
@@ -2080,6 +2086,12 @@ ValueError: invalid literal for int() with base 10: ‘0t
 <td>3434315</td>
 <td>If you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>

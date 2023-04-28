@@ -13,6 +13,12 @@
 <td></td>
 </tr>
 <tr>
+<td>3429530</td>
+<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.6, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3419953</td>
 <td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
 <td>4.3.1-4.4.6</td>
@@ -2141,6 +2147,12 @@ sx_sdk: EMAD_RX_THREAD: EMAD transaction FW error
 <td>3434315</td>
 <td>If you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -4325,6 +4337,12 @@ To work around this issue, change the value of {{arp_ignore}} to 2. See [Address
 <td>3434315</td>
 <td>If you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -6664,6 +6682,12 @@ To work around this issue, restart {{switchd}} with the {{sudo systemctl restart
 <td></td>
 </tr>
 <tr>
+<td>3429530</td>
+<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
+<td></td>
+</tr>
+<tr>
 <td>3419953</td>
 <td>If you remove a double tagged bridge port from a bridge when a different interface exists with the same port and virtual ID, you might see a segmentation fault and a {{switchd}} crash due to incorrect initialization when Cumulus Linux creates the second double-tagged interface. To work around this issue, make sure you remove the double-tagged interfaces from the bridge in the {{/etc/network/interfaces}} file.</td>
 <td>4.3.1-4.4.5</td>
@@ -8960,6 +8984,12 @@ Fixed: 9.27~dfsg-2+deb10u5</td>
 <td>3434315</td>
 <td>If you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>
@@ -11441,6 +11471,12 @@ The minimum supported size of the reserved VLAN range in the {{/etc/cumulus/swit
 <td>3434315</td>
 <td>If you use MD5 passwords and you configure a non-default VRF before the default VRF in the {{/etc/frr/frr.conf}} file, numbered BGP sessions do not establish.</td>
 <td>4.3.0-4.4.5</td>
+<td></td>
+</tr>
+<tr>
+<td>3429530</td>
+<td>On a Spectrum-2 and Spectrum-3 switch, multiple interfaces (in the same PLL quarter) might flap intermittently at the same time.</td>
+<td>4.2.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
 <tr>

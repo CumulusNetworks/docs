@@ -341,7 +341,7 @@ You can specify a NetQ CLI version in the repository configuration. The followin
     cumulus@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.5" opsys="cl">}}
+{{<netq-install/cli-version version="4.6" opsys="cl">}}
 <!-- vale on -->
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -375,9 +375,9 @@ To obtain the NetQ CLI package:
     admin@switch:~$ dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 
-    You should see version 4.5.0 and update 40 in the results. For example:
+    You should see version 4.6.0 and update 41 in the results. For example:
 
-    - netq-apps_<strong>4.5.0</strong>-deb10u<strong>41</strong>~1677245149.f5b57862_amd64.deb
+    - netq-apps_<strong>4.6.0</strong>-deb10u<strong>41</strong>~1682430128.e13e0426_amd64.deb
 
 4. Continue with NetQ CLI configuration in the next section.
 
@@ -423,7 +423,7 @@ To obtain the NetQ CLI package:
     root@rhel7:~# rpm -q -netq-apps
     ```
 <!-- vale off -->
-    {{<netq-install/cli-version version="4.1.0" opsys="rh">}}
+{{<netq-install/cli-version version="4.6" opsys="rh">}}
 <!-- vale on -->
 5. Continue with the next section.
 
@@ -444,7 +444,7 @@ To obtain the NetQ CLI package:
     root@ubuntu:~# dpkg-query -W -f '${Package}\t${Version}\n' netq-apps
     ```
 <!-- vale off -->
-{{<netq-install/cli-version version="4.5" opsys="ub">}}
+{{<netq-install/cli-version version="4.6" opsys="ub">}}
 <!-- vale on -->
 3. Continue with NetQ CLI configuration in the next section.
 

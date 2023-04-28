@@ -1,0 +1,1 @@
+libtai1-dbgsym has no copyright file

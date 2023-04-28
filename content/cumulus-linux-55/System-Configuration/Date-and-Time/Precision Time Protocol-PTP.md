@@ -929,7 +929,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-To set the predefined ITU 8275.1 profile, edit the `/etc/ptp4l.conf` file, then restart the `ptp4l` service:
+To set the predefined ITU 8275.1 profile, edit the `/etc/ptp4l.conf` file and set the parameters shown below, then restart the `ptp4l` service:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -946,7 +946,7 @@ domainNumber                   24
  
 dscp_event                     46
 dscp_general                   46
-dataset_comparison             G.8275.1
+dataset_comparison             G.8275.x
 G.8275.defaultDS.localPriority 128
 ptp_dst_mac                    01:80:C2:00:00:0E
 ...
@@ -956,7 +956,7 @@ ptp_dst_mac                    01:80:C2:00:00:0E
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To set the predefined ITU 8275.2 profile, edit the `/etc/ptp4l.conf` file, then restart the `ptp4l` service:
+To set the predefined ITU 8275.2 profile, edit the `/etc/ptp4l.conf` file and set the parameters shown below, then restart the `ptp4l` service:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -974,7 +974,7 @@ domainNumber                   24
 dscp_event                     46
 dscp_general                   46
 network_transport              UDPv4
-dataset_comparison             G.8275.2
+dataset_comparison             G.8275.x
 G.8275.defaultDS.localPriority 128
 hybrid_e2e                     1
 inhibit_multicast_service      1
@@ -987,11 +987,11 @@ unicast_req_duration           60
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To use the predefined IEEE 1588 profile:, edit the `/etc/ptp4l.conf` file, then restart the `ptp4l` service:
+To use the predefined IEEE 1588 profile:, edit the `/etc/ptp4l.conf` file and set the parameters shown below, then restart the `ptp4l` service:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
- [global]
+[global]
 #
 # Default Data Set
 #
@@ -1003,34 +1003,7 @@ domainNumber                   0
 dscp_event                     46
 dscp_general                   46
 network_transport              UDPv4
-...
 dataset_comparison             ieee1588
-
-#
-# Port Data Set
-#
-logAnnounceInterval            1
-logSyncInterval                0
-logMinDelayReqInterval         0
-announceReceiptTimeout         3
-delay_mechanism                E2E
-
-offset_from_master_min_threshold   -50
-offset_from_master_max_threshold   50
-mean_path_delay_threshold          200
-tsmonitor_num_ts                   100
-tsmonitor_num_log_sets             3
-tsmonitor_num_log_entries          4
-tsmonitor_log_wait_seconds         1
-
-#
-# Run time options
-#
-logging_level                  6
-path_trace_enabled             0
-use_syslog                     1
-verbose                        0
-summary_interval               0
 ...
 ```
 

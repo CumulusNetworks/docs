@@ -12,6 +12,8 @@ To check the configuration and statistics for an interface, run the `nv show int
 
 ```
 cumulus@switch:~$ nv show interface swp1
+                          operational        applied  pending
+------------------------  -----------------  -------  -------
 type                       swp                swp      
 [acl]                                                  
 evpn                                                   

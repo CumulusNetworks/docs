@@ -1498,28 +1498,28 @@ To show a summary of the PTP configuration on the switch, run the `nv show servi
 
 ```
 cumulus@switch:~$ nv show service ptp 1
-                             operational  applied                       0
----------------------------  -----------  ------------------       277800
+                             operational  applied
+---------------------------  -----------  ------------------
 enable                       on           on
-current-profile                           default-itu-8275-2
-domain                                    0                             0
-ip-dscp                                   46                            0
-logging-level                             info                          0
-priority1                                 128                           0
-priority2                                 128                           0
-[acceptable-master]                                                     0
-monitor                                                                 0
-  max-offset-threshold                    50                            0
-  max-timestamp-entries                   100                      277800
+current-profile                            default-itu-8275-2
+domain                                    0
+ip-dscp                                   46
+logging-level                             info
+priority1                                 128
+priority2                                 128
+[acceptable-master]
+monitor
+  max-offset-threshold                     50
+  max-timestamp-entries                   100
   max-violation-log-entries               4
   max-violation-log-sets                  2
-  min-offset-threshold                    -50
+  min-offset-threshold                     -50
   path-delay-threshold                    200
   violation-log-interval                  1
-[profile]                                 abc
-[profile]                                 default-1588
-[profile]                                 default-itu-8275-1
-[profile]                                 default-itu-8275-2
+[profile]                                  abc
+[profile]                                  default-1588
+[profile]                                  default-itu-8275-1
+[profile]                                  default-itu-8275-2
 [unicast-master]                          1
 [unicast-master]                          2
 [unicast-master]                          3

@@ -421,7 +421,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.6, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -1569,9 +1569,10 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
 
-Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
 <td>4.0.0-4.4.6, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -2673,7 +2674,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -3862,9 +3863,10 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
 
-Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
 <td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -4885,7 +4887,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -6074,9 +6076,10 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
 
-Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
 <td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -7282,7 +7285,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -8471,9 +8474,10 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
 
-Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
 <td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -9561,7 +9565,7 @@ Fixed: 2.5.5-3+deb10u4</td>
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -10766,9 +10770,10 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
 
-Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
 <td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -11937,7 +11942,7 @@ Fixed: 2.5.5-3+deb10u4</td>
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -13370,9 +13375,10 @@ To work around this issue, remove the interface alias description from {{iproute
 </tr>
 <tr>
 <td>2543915</td>
-<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
 
-Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
 <td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>

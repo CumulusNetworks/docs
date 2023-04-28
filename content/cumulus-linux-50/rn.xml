@@ -582,7 +582,7 @@ Unrecoverable internal error
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -723,7 +723,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2867042</td>
-<td>When connecting the SN4600V to an SNxxxx system, it must run in auto-negotiation mode (not force mode) otherwise the wrong Tx configuration might be chosen.</td>
+<td>When connecting the NVIDIA SN4600V switch to an SNxxxx system, the switch must run in auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -855,9 +855,10 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2543915</td>
-<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
 
-Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
 <td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -1289,7 +1290,7 @@ To work around this issue, always use sudo when running ifupdown2 commands ({{if
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -1431,7 +1432,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2867042</td>
-<td>When connecting the SN4600V to an SNxxxx system, it must run in auto-negotiation mode (not force mode) otherwise the wrong Tx configuration might be chosen.</td>
+<td>When connecting the NVIDIA SN4600V switch to an SNxxxx system, the switch must run in auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -1563,9 +1564,10 @@ cumulus@leaf01:~$ nv set vrf default router ospf area 0 network 10.10.10.1/32
 </tr>
 <tr>
 <td>2543915</td>
-<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
 
-Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
 <td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>

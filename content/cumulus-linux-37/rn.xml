@@ -186,7 +186,7 @@ This condition has been seen when customers re-use the VTEP IP on an interface i
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -2717,7 +2717,7 @@ Fixed: 4.8.6+git64-g5dc8b2b+dfsg-3+deb8u4</td>
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>

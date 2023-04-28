@@ -332,7 +332,7 @@ To work around this problem, reference the OID without the preceding period ( {{
 </tr>
 <tr>
 <td>3145869</td>
-<td>On a Spectrum-3 swithc, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
+<td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
 <td>5.2.0-5.4.0</td>
 <td></td>
 </tr>
@@ -352,7 +352,7 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 </tr>
 <tr>
 <td>3145204</td>
-<td>On the NVIDIA Spectum-1 switch, the {{nv show system forwarding}} command shows GTP hashing  output, which is not supported on this switch.</td>
+<td>On the NVIDIA Spectrum-1 switch, the {{nv show system forwarding}} command shows GTP hashing  output, which is not supported on this switch.</td>
 <td>5.2.0-5.4.0</td>
 <td></td>
 </tr>
@@ -506,7 +506,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -536,7 +536,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2867042</td>
-<td>When connecting the SN4600V to an SNxxxx system, it must run in auto-negotiation mode (not force mode) otherwise the wrong Tx configuration might be chosen.</td>
+<td>When connecting the NVIDIA SN4600V switch to an SNxxxx system, the switch must run in auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -591,9 +591,10 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 </tr>
 <tr>
 <td>2543915</td>
-<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
 
-Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
 <td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -939,7 +940,7 @@ To work around this problem, reference the OID without the preceding period ( {{
 </tr>
 <tr>
 <td>3145869</td>
-<td>On a Spectrum-3 swithc, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
+<td>On a Spectrum-3 switch, the PTP offset in 10GbE changes between +-27. The average offset is around 7.</td>
 <td>5.2.0-5.4.0</td>
 <td></td>
 </tr>
@@ -959,7 +960,7 @@ To work around this issue, delete the {{nvue_traffic.conf}} file with the {{sudo
 </tr>
 <tr>
 <td>3145204</td>
-<td>On the NVIDIA Spectum-1 switch, the {{nv show system forwarding}} command shows GTP hashing  output, which is not supported on this switch.</td>
+<td>On the NVIDIA Spectrum-1 switch, the {{nv show system forwarding}} command shows GTP hashing  output, which is not supported on this switch.</td>
 <td>5.2.0-5.4.0</td>
 <td></td>
 </tr>
@@ -1113,7 +1114,7 @@ exclude_users=root,daemon,nobody,cron,radius_user,radius_priv_user,sshd,cumulus,
 </tr>
 <tr>
 <td>2951110</td>
-<td>The {{net show time ntp servers}} command does not show any output with management VRF.</td>
+<td>The {{net show time ntp servers}} command does not show any output with the management VRF.</td>
 <td>3.7.15-3.7.16, 4.1.1-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -1143,7 +1144,7 @@ Fixed: 2.6.0+dfsg.1-1+deb10u1</td>
 </tr>
 <tr>
 <td>2867042</td>
-<td>When connecting the SN4600V to an SNxxxx system, it must run in auto-negotiation mode (not force mode) otherwise the wrong Tx configuration might be chosen.</td>
+<td>When connecting the NVIDIA SN4600V switch to an SNxxxx system, the switch must run in auto-negotiation mode (not force mode); otherwise the switch might use the wrong Tx configuration.</td>
 <td>5.0.0-5.4.0</td>
 <td></td>
 </tr>
@@ -1198,9 +1199,10 @@ To work around this issue, use the localHost IP address or the MGMT IP address t
 </tr>
 <tr>
 <td>2543915</td>
-<td>systemctl issues a warning similar to this when a service is enabled in the mgmt vrf:
+<td>{{systemctl}} issues a warning similar to the following when you enable a service in the management VRF:
 
-Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit</td>
+Warning: The unit file, source configuration file or drop-ins of ntp@mgmt.service changed on disk. Run 'systemctl daemon-reload' to reload unit
+</td>
 <td>4.0.0-4.4.5, 5.0.0-5.4.0</td>
 <td></td>
 </tr>

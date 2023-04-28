@@ -1,5 +1,5 @@
 ---
-title: Hybrid Cloud Connectivity with QinQ and VXLANs
+title: QinQ and VXLANs
 author: NVIDIA
 weight: 630
 toc: 3
@@ -61,7 +61,7 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto vxlan48
 iface vxlan48
-    bridge-vlan-vni-map 1000=1000 3000=3000
+    bridge-vlan-vni-map 100=1000 200=3000
     bridge-learning off
 
 auto br_default
@@ -109,7 +109,7 @@ cumulus@switch:~$ sudo nano /etc/network/interfaces
 ...
 auto vxlan48
 iface vxlan48
-    bridge-vlan-vni-map 1000=1000 3000=3000
+    bridge-vlan-vni-map 100=1000 200=3000
     bridge-learning off
 
 auto swp3

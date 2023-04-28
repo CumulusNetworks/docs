@@ -11,10 +11,10 @@ This overview is designed to help you understand the various NetQ deployment and
 
 Consider the following before you install the NetQ system:
 
-1. Determine whether to deploy fully **on premises** or as a **remote** solution.
+1. Determine whether to deploy fully **on-premises** or as a **remote** solution.
 2. Choose whether to install the software on a **single server** or as a **server cluster**.
 
-## Deployment Type: On Premises or Remote
+## Deployment Type: On-premises or Remote
 
 You can deploy NetQ in one of two ways.
 
@@ -30,7 +30,7 @@ In all deployment models, the NetQ Agents reside on the switches and hosts they 
 
 The flow of data differs based on your deployment model.
 
-For the on-premises deployment, the NetQ Agents collect and transmit data from the switches and hosts back to the NetQ On-premises Appliance or virtual machine running the NetQ Platform software, which in turn processes and stores the data in its database. This data is then displayed through the user interface.
+For the on-premises deployment, the NetQ Agents collect and transmit data from the switches and hosts back to the NetQ On-premises Appliance or virtual machine running the NetQ software, which in turn processes and stores the data in its database. This data is then displayed through the user interface.
 
 {{<figure src="/images/netq/install-onprem-basic-300.png" width="600" alt="on-premises deployment type displaying data transmission between the agents, the platform, and the user interface.">}}
 
@@ -75,7 +75,7 @@ After you've decided on your deployment type, you're ready to {{<link title="Ins
 No matter which choices you made above, the installation workflow can be summarized as follows:
 
 1. Prepare the physical server or virtual machine.
-1. Install the software (NetQ Platform or NetQ Collector).
+1. Install the software.
 1. Install and configure the NetQ Agents on switches and hosts.
 1. Install and configure the NetQ CLI on switches and hosts (optional, but useful).
 --->

@@ -7,21 +7,26 @@ toc: 3
 Cumulus Linux uses <span style="background-color:#F5F5DC">[FRR](## "FRRouting")</span> to provide the routing protocols for dynamic routing and supports the following routing protocols:
 
 - Open Shortest Path First ({{<link url="Open-Shortest-Path-First-v2-OSPFv2" text="v2">}} and {{<link url="Open-Shortest-Path-First-v3-OSPFv3" text="v3">}})
-- {{<link url="Border-Gateway-Protocol-BGP">}}
-
+- {{<link url="Border-Gateway-Protocol-BGP" text="Border Gateway Protocol (BGP)">}}
+- {{<link url="Protocol-Independent-Multicast-PIM" text="Protocol Independent Multicast (PIM)">}}
+- {{<link url="Policy-based-Routing" text="Policy-based Routing (PBR)">}}
 ## Architecture
 
 {{< img src = "/images/cumulus-linux/frrouting-overview-daemons.png" >}}
 
 The FRR suite consists of various protocol-specific daemons and a protocol-independent daemon called `zebra`. Each of the protocol-specific daemons are responsible for running the relevant protocol and building the routing table based on the information exchanged.
 
-It is not uncommon to have more than one protocol daemon running at the same time. For example, at the edge of an enterprise, protocols internal to an enterprise (called IGP for Interior Gateway Protocol) such as {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF text">}} or RIP run alongside the protocols that connect an enterprise to the rest of the world (called EGP or Exterior Gateway Protocol) such as {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}.
+It is not uncommon to have more than one protocol daemon running at the same time. For example, at the edge of an enterprise, protocols internal to an enterprise such as {{<link url="Open-Shortest-Path-First-OSPF" text="OSPF">}} run alongside the protocols that connect an enterprise to the rest of the world such as {{<link url="Border-Gateway-Protocol-BGP" text="BGP">}}.
 
 `zebra` is the daemon that resolves the routes provided by multiple protocols (including the static routes you specify) and programs these routes in the Linux kernel using `netlink` (in Linux). The {{<exlink url="http://docs.frrouting.org/en/latest/zebra.html" text="FRRouting documentation">}} defines `zebra` as the IP routing manager for FRR that provides kernel routing table updates, interface lookups, and redistribution of routes between different routing protocols.
 
 ## Configure FRR
 
-FRR does not start by default in Cumulus Linux. Before you run FRR, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d` or `pimd`) in the `/etc/frr/daemons` file.
+{{%notice warning%}}
+The information in this section does not apply if you use {{<link url="NVUE-CLI" text="NVUE">}} to configure your switch. NVUE manages FRR daemons and configuration automatically. These instructions are only applicable for users managing FRR directly through linux flat file configurations.
+{{%/notice%}}
+
+If you do not configure your system using {{<link url="NVUE-CLI" text="NVUE">}}, FRR does not start by default in Cumulus Linux. Before you run FRR, make sure you have enabled the relevant daemons that you intend to use (`bgpd`, `ospfd`, `ospf6d`, `pimd`, or `pbrd`) in the `/etc/frr/daemons` file.
 
 {{%notice note%}}
 NVIDIA has not tested <span style="background-color:#F5F5DC">[RIP](## "Routing Information Protocol RIP")</span>, RIPv6, <span style="background-color:#F5F5DC">[IS-IS](## "Intermediate System - Intermediate System")</span>, or <span style="background-color:#F5F5DC">[Babel](## "a loop-avoiding distance-vector routing protocol")</span>.
@@ -53,6 +58,10 @@ vrrpd=no
 
 ## Enable and Start FRR
 
+{{%notice warning%}}
+The information in this section does not apply if you use {{<link url="NVUE-CLI" text="NVUE">}} to configure your switch. NVUE manages FRR daemons and configuration automatically. These instructions are only applicable for users managing FRR directly through linux flat file configurations.
+{{%/notice%}}
+
 After you enable the appropriate daemons, enable and start the FRR service:
 
 ```
@@ -66,53 +75,12 @@ cumulus@switch:~$ sudo systemctl start frr.service
 - For more information on the `systemctl` command and changing the state of daemons, see {{<link url="Services-and-Daemons-in-Cumulus-Linux" text="Services and Daemons in Cumulus Linux">}}.
 {{%/notice%}}
 
-## Integrated Configurations
-
-By default in Cumulus Linux, FRR saves all daemon configurations in a single integrated configuration file, `frr.conf`.
-
-You can disable this mode by running the following command in the {{%link url="#vtysh-modal-cli" text="`vtysh` CLI"%}}:
-
-```
-cumulus@switch:~$ sudo vtysh
-...
-switch# configure terminal
-switch(config)# no service integrated-vtysh-config
-```
-
-To reenable integrated configuration file mode, run:
-
-```
-switch(config)# service integrated-vtysh-config
-```
-
-If you disable integrated configuration mode, FRR saves each daemon-specific configuration file in a separate file. For a daemon to start, you must enable that daemon and its daemon-specific configuration file must be present, even if the file is empty.
-
-To save the current configuration:
-
-```
-switch# write memory
-Building Configuration...
-Integrated configuration saved to /etc/frr/frr.conf
-[OK]
-switch# exit
-cumulus@switch:~$
-```
+## Restore the Default Configuration
 
 {{%notice note%}}
-You can use `write file` instead of `write memory`.
+The information in this section does not apply if you use NVUE to configure your switch. NVUE manages FRR daemons and configuration automatically. These instructions are only applicable for users managing FRR directly through linux flat file configurations.
 {{%/notice%}}
 
-When you enable integrated configuration mode, the output looks like this:
-
-```
-switch# write memory
-Building Configuration...
-Configuration saved to /etc/frr/zebra.conf
-Configuration saved to /etc/frr/bgpd.conf
-[OK]
-```
-
-## Restore the Default Configuration
 
 If you need to restore the FRR configuration to the default running configuration, delete the `frr.conf` file and restart the `frr` service.
 
@@ -126,7 +94,6 @@ Back up `frr.conf` (or any configuration files you want to remove) before procee
     cumulus@switch:~$ sudo rm /etc/frr/frr.conf
     ```
 
-    If you disable integrated configuration file mode, remove all the configuration files (such as `zebra.conf` or `ospf6d.conf`) instead of `frr.conf`.
 
 3. Restart FRR with this command:
 
@@ -155,7 +122,7 @@ Copyright 1996-2005 Kunihiro Ishiguro, et al.
 switch#
 ```
 
-vtysh provides a Cisco-like modal CLI and the commands are similar to Cisco IOS commands. There are different modes to the CLI and certain commands are only available within a specific mode. Configuration is available with the `configure terminal` command:
+There are different modes to the CLI and certain commands are only available within a specific mode. Configuration is available with the `configure terminal` command:
 
 ```
 switch# configure terminal
@@ -434,13 +401,79 @@ end
 If you try to configure a routing protocol that is not running, vtysh ignores those commands.
 {{%/notice%}}
 
+## Next Hop Tracking
+
+Routing daemons track the validity of next hops through notifications from the `zebra` daemon. For example, BGP routes that resolve to a next hop over a connected route in `zebra` are uninstalled when `bgpd` receives a nexthop-tracking (NHT) notification when `zebra` removes the connected route if the associated interface goes down.
+
+The `zebra` daemon does not consider next hops that resolve to a default route as valid by default. You can configure NHT to consider a longest prefix match lookup for next hop addresses resolving to the default route as a valid next hop. The following example configures the default route to be valid for NHT in VRF `default`:
+
+{{< tabs "410">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set vrf default router nexthop-tracking ipv4 resolved-via-default on
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf01# configure terminal
+leaf01(config)# ip nht resolve-via-default
+leaf01(config)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
+You can apply a route-map to NHT for specific routing daemons to permit or deny routes from consideration as valid next-hops. The following example applies `ROUTEMAP1` to BGP preventing NHT from considering next hops resolving to 10.0.0.0/8 in the `default` VRF as a valid:
+
+{{< tabs "436">}}
+{{< tab "NVUE Commands ">}}
+
+```
+cumulus@leaf01:~$ nv set router policy prefix-list PREFIX1 type ipv4
+cumulus@leaf01:~$ nv set router policy prefix-list PREFIX1 rule 1 match 10.0.0.0/8
+cumulus@leaf01:~$ nv set router policy prefix-list PREFIX1 rule 1 action permit
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 1 match ip-prefix-list PREFIX1
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 1 action deny 
+cumulus@leaf01:~$ nv set router policy route-map ROUTEMAP1 rule 2 action permit
+cumulus@leaf01:~$ nv set vrf default router nexthop-tracking ipv4 route-map ROUTEMAP1 protocol bgp
+cumulus@leaf01:~$ nv config apply
+```
+
+{{< /tab >}}
+{{< tab "vtysh Commands ">}}
+
+```
+cumulus@leaf01:~$ sudo vtysh
+leaf02# configure terminal
+leaf02(config)# ip prefix-list PREFIX1 seq 1 permit 10.0.0.0/8
+leaf02(config)# route-map ROUTEMAP1 deny 1
+leaf02(config-route-map)#  match ip address prefix-list PREFIX1
+leaf02(config-route-map)# route-map ROUTEMAP1 permit 2
+leaf02(config-route-map)# ip nht bgp route-map ROUTEMAP1
+leaf02(config)# end
+leaf01# write memory
+leaf01# exit
+cumulus@leaf01:~$
+```
+
+{{< /tab >}}
+{{< /tabs >}}
+
 ## Reload the FRR Configuration
 
-If you make a change to your routing configuration, you need to reload FRR so your changes take place. *FRR reload* enables you to apply only the modifications you make to your FRR configuration, synchronizing its running state with the configuration in `/etc/frr/frr.conf`. This is useful for optimizing FRR automation in your environment or to apply changes made at runtime.
-
-{{%notice note%}}
-FRR reload only applies to an integrated service configuration, where your FRR configuration is in a single `frr.conf` file instead of one configuration file per FRR daemon (like `zebra` or `bgpd`).
+{{%notice warning%}}
+The information in this section does not apply if you use {{<link url="NVUE-CLI" text="NVUE">}} to configure your switch. NVUE manages FRR daemons and configuration automatically. These instructions are only applicable for users managing FRR directly through linux flat file configurations.
 {{%/notice%}}
+
+If you make a change to your routing configuration, you need to reload FRR so your changes take place. *FRR reload* enables you to apply only the modifications you make to your FRR configuration, synchronizing its running state with the configuration in `/etc/frr/frr.conf`. This is useful for optimizing FRR automation in your environment or to apply changes made at runtime.
 
 To reload your FRR configuration after you modify `/etc/frr/frr.conf`, run:
 
@@ -457,6 +490,10 @@ If the running configuration is not what you expect, {{<exlink url="https://ente
 - The contents of `/var/log/frr/frr-reload.log`
 
 ## FRR Logging
+
+{{%notice warning%}}
+The information in this section does not apply if you use {{<link url="NVUE-CLI" text="NVUE">}} to configure your switch. NVUE manages FRR daemons and configuration automatically. These instructions are only applicable for users managing FRR directly through linux flat file configurations.
+{{%/notice%}}
 
 By default, Cumulus Linux configures FFR with syslog severity level 6 (informational). Log output writes to the `/var/log/frr/frr.log` file.
 

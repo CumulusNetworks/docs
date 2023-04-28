@@ -36,27 +36,6 @@ Static NAT provides a one-to-one mapping between a private IP address inside you
 
 Static NAT entries do not time out from the translation table.
 
-### Enable Static NAT
-
-To enable static NAT, edit the `/etc/cumulus/switchd.conf` file and uncomment the `nat.static_enable = TRUE` option:
-
-```
-cumulus@switch:~$ sudo nano /etc/cumulus/switchd.conf
-...
-# NAT configuration
-# Enables NAT
-nat.static_enable = TRUE
-...
-```
-
-Then restart `switchd`.
-<!-- vale off -->
-{{<cl/restart-switchd>}}
-<!-- vale on -->
-{{%notice note%}}
-Other options in the NAT configuration section of the `switchd.conf` file, such as `nat.age_poll_interval` and `nat.table_size` are dynamic NAT configuration options and are not supported with static NAT.
-{{%/notice%}}
-
 ### Configure Static NAT
 
 For static **NAT**, create a rule that matches a source or destination IP address and translates the IP address to a public IP address.

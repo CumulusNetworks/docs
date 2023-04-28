@@ -987,7 +987,7 @@ unicast_req_duration           60
 cumulus@switch:~$ sudo systemctl restart ptp4l.service
 ```
 
-To use the predefined IEEE 1588 profile:, edit the `/etc/ptp4l.conf` file and set the parameters shown below, then restart the `ptp4l` service:
+To use the predefined IEEE 1588 profile, edit the `/etc/ptp4l.conf` file and set the parameters shown below, then restart the `ptp4l` service:
 
 ```
 cumulus@switch:~$ sudo nano /etc/ptp4l.conf
@@ -1421,7 +1421,7 @@ path-delay-count  0
 
 ### Clear PTP Violation Logs
 
-- To clear the maximum offset violation logs, run the `nv action clear service ptp <instance> monitor violations log max-offset` command 
+- To clear the maximum offset violation logs, run the `nv action clear service ptp <instance> monitor violations log max-offset` command.
 - To clear the minimum offset violation logs, run the `nv action clear service ptp <instance> monitor violations log min-offset` command.
 - To clear the path delay violation logs, run the `nv action clear service ptp <instance> monitor violations log path-delay` command.
 
@@ -1492,7 +1492,7 @@ cumulus@switch:~$ sudo systemctl disable ptp4l.service phc2sys.service
 
 ## Troubleshooting
 
-### PTP Configuration
+### Show PTP Configuration
 
 To show a summary of the PTP configuration on the switch, run the `nv show service ptp <instance>` command:
 
@@ -1535,13 +1535,13 @@ You can drill down with the following `nv show service ptp <instance>` commands:
 - `nv show service ptp <instance> parent` shows the local states learned during PTP message exchange.
 - `nv show service ptp <instance> time-properties` shows the clock time attributes.
 
-### Show Interface Configuration
+### Show PTP Interface Configuration
 
 To check configuration for a PTP interface, run the `nv show interface <interface> ptp` command. 
 <!--This command also shows PTP counters (statistics, such as the number of announce messages received, the number of Sync messages received, and so on).-->
 
 ```
-cumulus@leaf03:mgmt:~$ nv show interface swp1 ptp
+cumulus@switch:~$ nv show interface swp1 ptp
                            operational  applied     description
 -------------------------  -----------  ----------  ----------------------------------------------------------------------
 enable                                  on          Turn the feature 'on' or 'off'.  The default is 'off'.
@@ -1565,7 +1565,22 @@ protocol-version           2                        The PTP version in use on th
 
 ### Show PTP Counters
 
-To show PTP counters for an interface, run the `nv show interface <interface> counters ptp` command.
+To show PTP counters for an interface, run the `nv show interface <interface> counters ptp` command:
+
+```
+cumulus@switch:~$ nv show interface swp1 counters ptp
+Packet Type          Received  Transmitted
+-------------------  --------  -----------
+Announce             0         10370      
+Delay Request        0         0          
+Delay Response       0         0          
+Follow-up            0         20731      
+Management           0         0          
+Peer Delay Request   0         0          
+Peer Delay Response  0         0          
+Signaling            0         0          
+Sync                 0         20731  
+```
 
 ### Show the Status of All PTP Interfaces
 

@@ -2082,7 +2082,7 @@ cumulus@leaf01:~$ nv config apply
 ```
 
 {{%notice note%}}
-To use a special character, such as a period (.) in the regular expression for an expanded BGP community list in the NVUE command, you must escape the character with a backslash (\). For example, `nv set router policy community-list MATCH_NOT_ADVERTISE_DOWNSTREAM rule 100 community "\.*_65000:2002_.*"`.
+To use a special character, such as a period (.) in the regular expression for an expanded BGP community list in the NVUE command, you must escape the character with a backslash (\). For example, `nv set router policy community-list COMMUNITY1 rule 10 community "\.*_65000:2002_.*"`.
 {{%/notice%}}
 
 {{< /tab >}}

@@ -64,7 +64,6 @@ iface vxlan48
     bridge-vlan-vni-map 1000=1000 3000=3000
     bridge-learning off
 
-
 auto br_default
 iface br_default
     bridge-ports swp3 vxlan48

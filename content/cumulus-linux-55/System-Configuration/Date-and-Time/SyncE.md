@@ -73,7 +73,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced/synced.conf` file to change the `twtr_seconds setting`, then restart the `synced` service.
+Edit the `/etc/synced/synced.conf` file to change the `twtr_seconds setting`, then restart the SyncE service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -106,7 +106,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced/synced.conf` file to change the `priority` setting, then restart the `synced` service.
+Edit the `/etc/synced/synced.conf` file to change the `priority` setting, then restart the SyncE service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -145,7 +145,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced.conf` file to change the `log-level` setting, then restart the `synced` service.
+Edit the `/etc/synced.conf` file to change the `log-level` setting, then restart the SyncE service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
@@ -169,7 +169,7 @@ cumulus@switch:~$ sudo systemctl restart synced.service
 
 The clock selection algorithm uses the frequency source priority on an interface to choose between two sources that have the same <span style="background-color:#F5F5DC">[QL](## "Quality Level")</span>. You can specify a value between 1 (the highest priority) and 254 (the lowest priority). The default value is 1.
 
-The following command example sets the priority on swp2 to 10, on swp2 to 10, and on swp3 to 10:
+The following command example sets the priority on swp2 to 10, on swp2 to 20, and on swp3 to 10:
 
 {{< tabs "TabID172 ">}}
 {{< tab "NVUE Commands ">}}
@@ -184,7 +184,7 @@ cumulus@switch:~$ nv config apply
 {{< /tab >}}
 {{< tab "Linux Commands ">}}
 
-Edit the `/etc/synced.conf` file to change the `priority` setting for the interface, then restart the `synced` service.
+Edit the `/etc/synced.conf` file to change the `priority` setting for the interface, then restart the SyncE service.
 
 ```
 cumulus@switch:~$ sudo nano /etc/synced/synced.conf
